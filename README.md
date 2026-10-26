@@ -16,7 +16,7 @@ It contains the cooked game content (`.upk`, `.udk`, `.pak`, `.bik` videos, the 
 
 1. Download `Client Assets.7z` and extract it with [7-Zip](https://www.7-zip.org/).
 2. Extract it **into the `Client` folder of this repository**, so the folders merge: the archive uses the same relative paths as the repository (`client\UE3\MMOGame\CookedPC\...`, `client\UE3\Development\External\...` and so on).
-3. Do not commit the extracted files. The assets are meant to stay out of git.
+3. There is nothing to configure: the extracted files are already ignored by `Client/.gitignore` (see the "Client assets" block at the end of that file), so git will not pick them up.
 
 Without the assets you can read and edit the source, but you cannot build or run the client.
 
@@ -26,27 +26,45 @@ The same folder also hosts the other files from this release: packaged client bu
 
 `Client` and `Server` are independent: neither needs the other to compile. Both compile against the shared `Common` folder, so each one carries its own copy.
 
+**`*GitIgnored*`** marks files and folders that come from [`Client Assets.7z`](#client-assets-required-to-build-and-run-the-client) (63.65 GB, 29,650 files). They sit in the normal places in the tree so everything builds, but `Client/.gitignore` stops git from committing them. `(partly GitIgnored)` means the folder itself is committed and only the prebuilt files inside it are ignored.
+
 ```text
 Client/
-├── client/                    The UE3-based game client
+├── client/                              The UE3-based game client
 │   ├── UE3/
-│   │   ├── Development/
-│   │   │   ├── Src/           C++ and UnrealScript source (UE3.sln, MMOGame.sln)
-│   │   │   ├── External/      Bundled third-party libraries
-│   │   │   ├── Tools/         UnrealBuildTool and engine tools
-│   │   │   └── Flash/         Flash / Scaleform UI source
-│   │   ├── Engine/            Engine config, shaders, localization
-│   │   ├── MMOGame/           Game config, scripts, localization
-│   │   ├── Binaries*/         Binary and runtime support files
-│   │   └── Launcher*/, SDO/   Launcher and SDO login
-│   ├── DevTools/              DevLauncher, ReplayView
-│   ├── PatchTools/            FixClient, FileUpdate
-│   ├── OtherTools/            dump_analyze (crash dump analyser)
-│   ├── PackageTool/           Packaging scripts
-│   ├── ClientBuildServer/     Cook and packaging scripts
-│   └── SDOTest/, AODBenchmarkLaunch/   Small test and benchmark projects
-├── Common/                    Shared protocol and data definitions (define, message, fusion)
-└── _AutoBuild/                Build-server scripts and packaging toolchain
+│   │   ├── Development/                 (partly GitIgnored)
+│   │   │   ├── Src/                     C++ and UnrealScript source (UE3.sln, MMOGame.sln)
+│   │   │   ├── External/                Bundled third-party libraries
+│   │   │   │                            *GitIgnored*: prebuilt .lib/.dll files (Scaleform GFx, 4.5 GB)
+│   │   │   ├── Tools/                   UnrealBuildTool and engine tools
+│   │   │   ├── Flash/                   Flash / Scaleform UI source (*GitIgnored*: .swf/.fla)
+│   │   │   └── Documentation/           *GitIgnored*: UnrealEngine3.chm (over 100 MB)
+│   │   ├── Engine/                      Config, shaders, localization
+│   │   │   └── Content/                 *GitIgnored*: engine content packages (.upk)
+│   │   ├── MMOGame/                     Game config and localization
+│   │   │   ├── CookedPC/                *GitIgnored*: cooked game packages (10.6 GB)
+│   │   │   ├── Content/                 *GitIgnored*: game content (33.6 GB)
+│   │   │   ├── Movies/                  *GitIgnored*: .bik videos (2.6 GB)
+│   │   │   ├── Flash/                   *GitIgnored*: UI .swf/.fla files (1.5 GB)
+│   │   │   └── Script*/                 *GitIgnored*: compiled UnrealScript packages (.u)
+│   │   ├── Binaries/, BinariesRelease/  (partly GitIgnored) runtime support files
+│   │   │   ├── Win32/, Win64/           *GitIgnored*: prebuilt .exe/.dll files
+│   │   │   └── Mac/                     *GitIgnored*: Mac binaries
+│   │   ├── Install/                     *GitIgnored*: redistributable installers (.exe/.cab)
+│   │   └── Launcher*/, SDO/             Launcher and SDO login (*GitIgnored*: .exe/.dll)
+│   ├── DevTools/                        DevLauncher, ReplayView
+│   ├── PatchTools/                      FixClient, FileUpdate
+│   ├── OtherTools/                      dump_analyze (crash dump analyser)
+│   ├── PackageTool/                     Packaging scripts (*GitIgnored*: bundled .exe/.dll)
+│   ├── ClientBuildServer/               Cook and packaging scripts (*GitIgnored*: bundled .exe/.dll)
+│   └── SDOTest/, AODBenchmarkLaunch/    Small test and benchmark projects
+├── Common/                              Shared protocol and data definitions (define, message, fusion)
+├── _AutoBuild/                          Build-server scripts and packaging toolchain
+│   ├── aod_pack/                        (partly GitIgnored) toolchain; bundled .exe/.dll are *GitIgnored*
+│   └── edition/_CQ_S1/client_qa_build/  *GitIgnored*: UE3 dev/editor binaries (1.3 GB)
+├── DevLauncher.exe                      *GitIgnored*: prebuilt tools
+├── dump_analyze.exe                     *GitIgnored*
+└── MsgBox.exe                           *GitIgnored*
 
 Server/
 ├── NewServer/
