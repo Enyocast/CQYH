@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<winzipjob version="4">
+<wizard usevars="yes"/>
+<items>
+<item exclude="no" recurse="yes">&lt;^19&gt;\</item>
+</items>
+<output>
+<name append="none">My Desktop.zipx</name>
+<folder append="none">&lt;^29&gt;\My WinZip Files\</folder>
+<log type="none"/>
+</output>
+<options>
+<flags>0001</flags>
+<compression type="best"/>
+<span mode="auto"/>
+<split unit="byte">0</split>
+<encryption mode="none" method="none"/>
+<folders mode="relative"/>
+<cd speed="fast" finalize="yes"/>
+</options>
+<email>
+<mailitem options="0">
+<sendto/>
+<subject type="ok"/>
+<subject type="error"/>
+</mailitem>
+</email>
+</winzipjob>

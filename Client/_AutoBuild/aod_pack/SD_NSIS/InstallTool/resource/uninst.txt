@@ -1,0 +1,9 @@
+ [FILENAMES]
+ Exe=    Uninst.exe
+ SaveAs= Uninst_new.exe
+ Log=    Uninst.log
+
+ [COMMANDS]
+ -addoverwrite     uninst.ico, IconGroup,102,2052
+ -addoverwrite     uninst.ttf, FONTRES,103,2052
+ -addoverwrite     skin.zip, ZIPRES,101,2052

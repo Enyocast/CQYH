@@ -1,0 +1,1 @@
+start MMOGame-Win32-Debug.exe -log -ConsolePosX=0 -ConsolePosY=0

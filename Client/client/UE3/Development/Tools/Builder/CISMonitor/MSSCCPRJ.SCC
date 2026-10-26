@@ -1,0 +1,5 @@
+SCC = This is a source code control file
+
+[CISMonitor.csproj]
+SCC_Aux_Path = "P4SCC#172.30.10.122:1668##chenwang.oscarken##chenwang.oscarken_sh-chenwang01-d_1"
+SCC_Project_Name = Perforce Project

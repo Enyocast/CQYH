@@ -1,0 +1,438 @@
+/*=============================================================================
+	FilterPixelShader.usf: Filter pixel shader source.
+	Copyright 1998-2013 Epic Games, Inc. All Rights Reserved.
+=============================================================================*/
+
+// needed for CompressDeviceZIntoHalfResTextureChannel(), also includes Common.usf
+#include "PostProcessCommon.usf"
+//shan@snda
+#include "DepthOfFieldCommon.usf"
+//shan@snda
+
+#ifndef NUM_SAMPLES
+#define NUM_SAMPLES 4
+#endif
+
+sampler2D FilterTexture;
+half4 SampleWeights[NUM_SAMPLES];
+// minv, minv, maxu,maxv
+float4 SampleMaskRect;
+
+//shanling@snda
+sampler2D VelocityTexture;
+
+// UV.y and UV.wz are the input UV coordinates
+half ComputeMask(float2 UV)
+{
+	// actual masking costs performance and might be not really needed
+	// (only required with spitscreen or not using full screen resolution)
+	// can be a shader combination but when measured it wasn't faster
+	// also the implementation can be changed to
+	//    float4 Mask = saturate(UV.xyxy*MulConst+AddConst);
+	//    return Mask2.x * Mask2.y * Mask2.y * Mask2.w;
+	// which is softer and might be even faster
+	half2 Mask = (UV > SampleMaskRect.xy) * (UV < SampleMaskRect.zw);
+
+	return Mask.x * Mask.y;
+}
+
+void Main(
+	float4 InOffsetUVs[(NUM_SAMPLES + 1) / 2] : TEXCOORD0,
+	out float4 OutColor : COLOR0
+	)
+{
+	int SampleIndex;
+	half4 Sum = 0;
+	for(SampleIndex = 0;SampleIndex < NUM_SAMPLES - 1;SampleIndex += 2)
+	{
+		half Mask; 
+		float4 UVUV = InOffsetUVs[SampleIndex / 2];
+		
+		Mask = ComputeMask(UVUV.xy);
+		Sum += tex2D(FilterTexture,UVUV.xy) * Mask * SampleWeights[SampleIndex + 0];
+
+		Mask = ComputeMask(UVUV.wz);
+		Sum += tex2D(FilterTexture,UVUV.wz) * Mask * SampleWeights[SampleIndex + 1];
+	}
+	if(SampleIndex < NUM_SAMPLES)
+	{
+		float4 UVUV = InOffsetUVs[SampleIndex / 2];
+
+		half Mask = ComputeMask(UVUV.xy);
+		Sum += tex2D(FilterTexture,UVUV.xy) * Mask * SampleWeights[SampleIndex + 0];
+	}
+
+	// RETURN_COLOR not needed unless writing to SceneColor;
+	OutColor = Sum;
+}
+
+// image space pixel motion vectors
+
+//shanling@snda
+sampler2D DOFDownSampleTex;
+
+// currently only used for downsampling, doesn't need to be masked as it doesn't read outside bounds
+// reads 4 samples
+void DownsampleScene(
+	float4 InOffsetUVs[2] : TEXCOORD0,
+//shan@snda
+	float2 UV : TEXCOORD8,
+//shan@snda
+	out float4 OutColor : COLOR0
+	)
+{
+	int SampleIndex;
+	half4 Sum = 0;
+
+
+	for(SampleIndex = 0;SampleIndex < 4 - 1;SampleIndex += 2)
+		{
+			{
+				float2 UV = InOffsetUVs[SampleIndex / 2].xy;
+				Sum.rgb += FixupSceneColor(tex2D(FilterTexture, UV)).rgb;
+			
+			}
+			{
+				float2 UV = InOffsetUVs[SampleIndex / 2].wz;
+				Sum.rgb += FixupSceneColor(tex2D(FilterTexture, UV)).rgb;
+			}
+		}
+		Sum.rgb *= 0.25f;
+	
+
+	//shanling@snda
+// 	{
+// 		float Best;
+// 		{
+// 			// to avoid leaking between far and near blur we don't do average on depth
+// 			// we take the sample that is nearest to the average
+// 
+// 			float4 Samples;
+// 			
+// 			Samples.x = CalcSceneDepth(InOffsetUVs[0].xy);
+// 			Samples.y = CalcSceneDepth(InOffsetUVs[0].wz);
+// 			Samples.z = CalcSceneDepth(InOffsetUVs[1].xy);
+// 			Samples.w = CalcSceneDepth(InOffsetUVs[1].wz);
+// 
+// 			float Avg = dot(Samples, 0.25f);
+// 			Samples -= Avg;
+//  			float Chosen = Samples.x;
+//  			Chosen = (abs(Samples.y) < abs(Chosen)) ? Samples.y : Chosen;
+//  			Chosen = (abs(Samples.z) < abs(Chosen)) ? Samples.z : Chosen;
+//  			Chosen = (abs(Samples.w) < abs(Chosen)) ? Samples.w : Chosen;
+// 			Best = Chosen + Avg;
+// 
+// 		}
+// 
+// 		float ObjectMask = 
+// 			(dot(tex2D(VelocityTexture, InOffsetUVs[0].xy).rg, 1.0f) > 0 ? 1.0f : 0.0f)
+// 		  + (dot(tex2D(VelocityTexture, InOffsetUVs[0].wz).rg, 1.0f) > 0 ? 1.0f : 0.0f)
+// 		  + (dot(tex2D(VelocityTexture, InOffsetUVs[1].xy).rg, 1.0f) > 0 ? 1.0f : 0.0f)
+// 		  + (dot(tex2D(VelocityTexture, InOffsetUVs[1].wz).rg, 1.0f) > 0 ? 1.0f : 0.0f);
+// 
+// 		bool SelectorOpaque = ObjectMask > 1.0f;
+// 
+// 		Sum.a = CompressSceneDepthIntoHalfResTextureChannel(Best, SelectorOpaque);
+// 	}
+	half4 depthandandObjectMask = tex2D( DOFDownSampleTex, UV );
+	Sum.a = depthandandObjectMask.a;
+	//shanling@snda
+	
+
+	// RETURN_COLOR not needed unless writing to SceneColor;
+	OutColor = Sum;
+}
+
+// --------------------
+
+// to visualize the content of a texture to the screen, useful for debugging
+// use "VisualizeTexture" in the console to activate
+sampler2D VisualizeTexture;
+// [0]: RGBAdd, AMul, Add, FracScale
+// [1]: BlinkState=0/1, Frac when 0, saturate when 1, unused, unused
+float4 VisualizeParam[2];
+
+void VisualizeTexturePS(
+	float4 InOffsetUVs[1] : TEXCOORD0,
+	out float4 OutColor : COLOR0)
+{
+	float2 UV = InOffsetUVs[0].xy;
+
+	float4 TexLookup = tex2D(VisualizeTexture, UV);
+
+	float Add = TexLookup.a * VisualizeParam[0].y + VisualizeParam[0].z;
+	OutColor.rgb = TexLookup.rgb * VisualizeParam[0].xxx + Add.xxx;
+
+	float3 ScaledColor = OutColor.rgb * VisualizeParam[0].w;
+	float3 FracOutColor = lerp(frac(ScaledColor), saturate(ScaledColor), VisualizeParam[1].y);
+
+	float3 AlternateColor = FracOutColor;
+
+	// blink green if >1
+	if(OutColor.r > 1.0f || OutColor.g > 1.0f || OutColor.b > 1.0f)
+	{
+		AlternateColor = float3(0,1,0);
+	}
+	
+	// blink red if <0
+	if(OutColor.r < 0.0f || OutColor.g < 0.0f || OutColor.b < 0.0f)
+	{
+		AlternateColor = float3(1,0,0);
+	}
+	
+	// blink blue if not finite
+	if (isfinite(OutColor.rgb).x == false)
+	{
+		AlternateColor = float3(0,0,1);
+	}
+
+	OutColor.rgb = lerp(FracOutColor, AlternateColor, VisualizeParam[1].x);
+	OutColor.a = 0;
+}
+
+
+//shanling@snda
+float LuminanceClampParameters;
+
+float3 rgb2hsv( float3 rgb )
+{
+	float3 hsv;
+	float  maxc = max( rgb.r, max( rgb.g, rgb.b ) );
+	float  minc = min( rgb.r, min( rgb.g, rgb.b ) );
+	float  delta = maxc - minc;
+
+	hsv.z = maxc;
+	hsv.y = maxc != 0.0f ? delta / maxc : 0.0f;
+	
+	if ( rgb.r == maxc )
+	{
+		hsv.x =  ( rgb.g - rgb.b ) / delta;
+	}
+	else if ( rgb.g == maxc ) 
+	{
+		hsv.x = 2 + ( rgb.b - rgb.r ) / delta;
+	}
+	else
+	{
+		hsv.x = 4 + ( rgb.r - rgb.g ) / delta;
+	}
+
+	hsv.x /= 6.0f;
+	hsv.x += hsv.x < 0.0f ? 1.0f : 0.0f;
+
+	return hsv;
+}
+
+float3 hsv2rgb( float3 hsv )
+{
+	float3 ret;
+
+	if ( hsv.y == 0 )
+	{
+		ret.r = ret.g = ret.b = hsv.z;
+	}
+	else
+	{
+		if ( 1.0 <= hsv.x )
+			hsv -= 1.0f;
+		hsv.x *= 6.0;
+		float i = floor( hsv.x );
+		float f = hsv.x - i;
+		float aa = hsv.z * ( 1- hsv.y );
+		float bb = hsv.z * ( 1- ( hsv.y * f ) ); 
+		float cc = hsv.z * ( 1- ( hsv.y * ( 1.0f - f ) ) );
+		
+		if ( i < 1.0f )
+		{
+			ret.r = hsv.z;
+			ret.g = cc;
+			ret.b = aa;
+		}
+		else if ( i < 2.0f )
+		{
+			ret.r = bb;
+			ret.g = hsv.z;
+			ret.b = aa;
+		}
+		else if ( i < 3 )
+		{
+			ret.r = aa;
+			ret.g = hsv.z;
+			ret.b = cc;
+		}
+		else if ( i < 4 )
+		{
+			ret.r = aa;
+			ret.g = bb;
+			ret.b = hsv.z;
+		}
+		else if ( i < 5 )
+		{
+			ret.r = cc;
+			ret.g = aa;
+			ret.b = hsv.z;
+		}
+		else
+		{
+			ret.r = hsv.z;
+			ret.g = aa;
+			ret.b = bb;
+		}		
+	}
+	return ret;
+}
+
+float3 ToneMapping(float3 ColorSrc, float4 ColorLuminance)
+{
+
+	float avg_luminance = ColorLuminance.a;
+	float white_luminance = ColorLuminance.g;
+	float black_luminance = ColorLuminance.b;
+
+	float middle_gray = ColorLuminance.r;
+
+	float3 GrayWeight =  float3(0.299f, 0.587f, 0.114f);
+
+	float Lw = dot(GrayWeight, ColorSrc);
+
+	Lw -= black_luminance;
+
+	float Ld = 0;
+
+	if (Lw > 0.0f)
+	{
+		float L = (middle_gray / avg_luminance) * Lw;
+		Ld = L * (1.0f + L / (white_luminance * white_luminance)) / (1.0f + L);
+	}
+	
+	float3 ColorMapped = ColorSrc * Ld / Lw;
+	return ColorMapped;
+
+}
+
+
+float4 ClampColor( float4 color )
+{
+	float4 clampedcolor;
+	clampedcolor.a = color.a;
+#if USE_LUMINANCE_CLAMP
+	float3 hsv = rgb2hsv( color.rgb );
+	hsv.z = min( hsv.z , LuminanceClampParameters );
+	clampedcolor.rgb = hsv2rgb( hsv );
+#else
+	//float4 luminance = tex2D( LuminanceTexture, float2( 0.5, 0.5 ));
+	clampedcolor.rgb = color.rgb;//ToneMapping( color.rgb, luminance );
+#endif
+	return clampedcolor;
+}
+
+
+
+
+void DownsampleSceneforDof(
+	float4 InOffsetUVs[2] : TEXCOORD0, 
+//shan@snda
+	float2 UV : TEXCOORD8,
+//shan@snda
+	out float4 OutColor : COLOR0
+	)
+{
+	int SampleIndex;
+	half4 Sum = 0;
+
+	//shan@snda
+	float  TempDepth[4];
+	float4 tempColor = 0;
+	float  tempPercent  = 0;
+	float  Smapleweight = 0;
+	float  currentDepth = CalcSceneDepth( UV );
+	//float  percent      = CalcUnfocusedPercent( currentDepth );
+	//shan@snda
+
+
+	//shan@snda
+	{
+		for(SampleIndex = 0;SampleIndex < 4 - 1;SampleIndex += 2)
+		{
+			{
+				float2 UV = InOffsetUVs[SampleIndex / 2].xy;
+				//Sum.rgb += FixupSceneColor(tex2D(FilterTexture, UV)).rgb;
+
+				//shan@snda
+				tempColor = FixupSceneColor(tex2D(FilterTexture, UV));
+				TempDepth[ SampleIndex ] = tempColor.a;
+				tempColor = ClampColor( tempColor );
+				tempPercent = CalcUnfocusedPercent( DecodeFloatW( tempColor.a ) );
+				//tempPercent = tempPercent < 0.2f ? 0 : tempPercent;
+				Smapleweight += tempPercent;
+				Sum.rgb += tempColor.rgb * tempPercent;
+				//shan@snda
+	
+			
+			}
+			{
+				float2 UV = InOffsetUVs[SampleIndex / 2].wz;
+				//Sum.rgb += FixupSceneColor(tex2D(FilterTexture, UV)).rgb;
+
+				//shan@snda
+				tempColor = FixupSceneColor(tex2D(FilterTexture, UV));
+				TempDepth[ SampleIndex + 1 ] = tempColor.a;
+				tempColor = ClampColor( tempColor );
+				tempPercent = CalcUnfocusedPercent( DecodeFloatW( tempColor.a ) );
+				//tempPercent = tempPercent < 0.2f ? 0 : tempPercent;
+				Smapleweight += tempPercent;
+				Sum.rgb += tempColor.rgb * tempPercent;
+				//shan@snda
+
+			}
+		}
+		Sum.rgb /= Smapleweight < 1 ? 1.0f : Smapleweight;
+	}
+	
+
+	// depth in alpha feature
+	{
+		float Best;
+		{
+			// to avoid leaking between far and near blur we don't do average on depth
+			// we take the sample that is nearest to the average
+
+			float4 Samples;
+#if !SUPPORTS_DEPTH_TEXTURES && PREPASS_SCENE_ALPHA_DEPTH
+			Samples.x = DecodeFloatW(TempDepth[0]);
+			Samples.y = DecodeFloatW(TempDepth[1]);
+			Samples.z = DecodeFloatW(TempDepth[2]);
+			Samples.w = DecodeFloatW(TempDepth[3]);
+#else
+			Samples.x = CalcSceneDepth(InOffsetUVs[0].xy);
+			Samples.y = CalcSceneDepth(InOffsetUVs[0].wz);
+			Samples.z = CalcSceneDepth(InOffsetUVs[1].xy);
+			Samples.w = CalcSceneDepth(InOffsetUVs[1].wz);
+#endif
+
+
+//shan@snda
+			Samples -= currentDepth;
+			float Chosen = Samples.x;
+			Chosen = (abs(Samples.y) < abs(Chosen)) ? Samples.y : Chosen;
+			Chosen = (abs(Samples.z) < abs(Chosen)) ? Samples.z : Chosen;
+			Chosen = (abs(Samples.w) < abs(Chosen)) ? Samples.w : Chosen;
+			Best = Chosen + currentDepth;
+//shan@snda
+
+		}
+
+		float ObjectMask = 
+			(dot(tex2D(VelocityTexture, InOffsetUVs[0].xy).rg, 1.0f) > 0 ? 1.0f : 0.0f)
+		  + (dot(tex2D(VelocityTexture, InOffsetUVs[0].wz).rg, 1.0f) > 0 ? 1.0f : 0.0f)
+		  + (dot(tex2D(VelocityTexture, InOffsetUVs[1].xy).rg, 1.0f) > 0 ? 1.0f : 0.0f)
+		  + (dot(tex2D(VelocityTexture, InOffsetUVs[1].wz).rg, 1.0f) > 0 ? 1.0f : 0.0f);
+
+		bool SelectorOpaque = ObjectMask > 1.0f; 
+
+		Sum.a = CompressSceneDepthIntoHalfResTextureChannel(Best, SelectorOpaque);
+	}
+
+	// RETURN_COLOR not needed unless writing to SceneColor;
+	OutColor = Sum;
+}

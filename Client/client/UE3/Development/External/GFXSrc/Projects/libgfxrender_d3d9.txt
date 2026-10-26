@@ -1,0 +1,13 @@
+Src/Render/D3D9/D3D9_HAL.cpp
+Src/Render/D3D9/D3D9_HAL.h
+Src/Render/D3D9/D3D9_HALSetup.cpp
+Src/Render/D3D9/D3D9_MeshCache.cpp
+Src/Render/D3D9/D3D9_MeshCache.h
+Src/Render/D3D9/D3D9_Shader.cpp
+Src/Render/D3D9/D3D9_Shader.h
+Src/Render/D3D9/D3D9_ShaderManager.cpp
+Src/Render/D3D9/D3D9_ShaderManager.h
+Src/Render/D3D9/D3D9_Shaders.h
+Src/Render/D3D9/D3D9_Sync.h
+Src/Render/D3D9/D3D9_Texture.cpp
+Src/Render/D3D9/D3D9_Texture.h

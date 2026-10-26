@@ -1,0 +1,39 @@
+/*=============================================================================
+	ShadowOpacityPixelShader.usf: Pixel shader for writing shadow opacity.
+	Copyright 2012 NVIDIA Corporation, All Rights Reserved.
+=============================================================================*/
+
+// This to prevent DepthBiasedAlpha() and DepthBiasedBlend() from malfunctioning
+#define SKIP_SCREENSPACE_TEXTURE_LOOKUPS 1
+
+#include "Common.usf"
+#include "Material.usf"
+#include "VertexFactory.usf"
+#include "ShadowDepthCommon.usf"
+#include "ShadowOpacityCommon.usf"
+
+void Main( 
+	FShadowDepthVSToPS Inputs,
+	out float4 OutColor0 : COLOR0
+	)
+{
+	OutColor0 = 0;
+
+	// Evaluate the mask for masked materials
+	FMaterialPixelParameters MaterialParameters = GetMaterialPixelParameters(Inputs.FactoryInterpolants);
+	// Note: Using default values for camera vector and screen position to reduce interpolator cost.
+	// If the mask depends on either of these it will be subtly wrong.
+	CalcMaterialParameters(MaterialParameters, 1, float4(0,0,1,0), float4(0,0,.00001f,1));
+
+	float Opacity = saturate(GetMaterialOpacity(MaterialParameters));
+	Opacity *= ShadowOpacityMultiplier;
+	
+	// DC component
+	float LnTransmittance = -log(1 - Opacity);
+	OutColor0.r = LnTransmittance;
+	
+	// Remaining outputs require sin/cos
+	float2 CosSin;
+	sincos(M_TWO_PI * Inputs.ShadowDepth, CosSin.y, CosSin.x);
+	OutColor0.gb = M_RECIP_PI * LnTransmittance * CosSin;
+}

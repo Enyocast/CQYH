@@ -1,0 +1,9 @@
+SCC = This is a source code control file
+
+[detour.vcproj]
+SCC_Aux_Path = "P4SCC#172.30.10.122:1668##zhujianqiu##workroom"
+SCC_Project_Name = Perforce Project
+
+[detour.sln]
+SCC_Aux_Path = "P4SCC#172.30.10.122:1668##zhujianqiu##workroom"
+SCC_Project_Name = Perforce Project

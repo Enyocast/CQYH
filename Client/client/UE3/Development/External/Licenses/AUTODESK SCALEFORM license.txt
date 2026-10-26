@@ -1,0 +1,300 @@
+Autodesk Scaleform
+Uses Autodesk Scaleform (c) 2013 Autodesk, Inc.  All rights reserved.
+If the Licensed Technology licensed by Epic Games, Inc.  to Licensee pursuant to the attached License Agreement (the “Epic License Agreement”) includes Autodesk Scaleform software and materials furnished by Autodesk, Inc.  located at 111 McInnis Parkway, San Rafael, CA 94903 (“Autodesk”), then the following terms (“Autodesk License Terms”) shall apply to Licensee’s use of such Autodesk Scaleform software (the “Scaleform Software”) and materials (the “Scaleform User Materials”, and together with the Scaleform Software, the “Scaleform Products”) furnished by Autodesk as part of the Licensed Technology.  Capitalized terms used in these Autodesk License Terms that are not otherwise defined herein shall have the meanings assigned to them in the Epic License Agreement.  If any provisions of the Epic License Agreement conflict with any provisions of these Autodesk License Terms, these Autodesk License Terms shall prevail.
+6.	LICENSE
+7..	Licensee is permitted to use the Scaleform Products as permitted pursuant to the Epic License Agreement and these Autodesk License Terms.
+ 1: Restrictions on Use.
+1	Licensee shall not:
+2	distribute, resell, or relicense the Scaleform Software or any portion of the Scaleform Software as a stand-alone product and shall not incorporate any portion of the Scaleform Software into any product that will be sold or licensed as a development tool;
+a.	distribute Authorized Games in other than compiled executable form;
+i.	use the Scaleform Software in any manner which may disclose the Scaleform Software source code or other Autodesk proprietary information to a third party, unless such third party is working for Licensee and is bound by the provisions of 1.2c;
+ii.	distribute the Scaleform Software in any manner other than as an integral part of Authorized Games; or
+iii.	copy, reproduce or duplicate, in any manner or form, in whole or in part the Scaleform Software and any supporting documentation pertaining thereto (except only as necessary to exercise its license rights herein).  Licensee shall take diligent measures to prevent any third parties to whom it licenses or sells Authorized Games from copying, reproducing or duplicating the Scaleform Software and/or supporting documentation.
+iv.	All copies of the Scaleform Software made by Licensee, whether in source or object code form, must contain the original copyright notice that was included in the Scaleform Software upon its delivery to Licensee; or
+v.	Licensee shall not disclose the Scaleform Products or Autodesk Confidential Information (as defined in Section 5.1 below) to any person or entity, other than those employees or contractors of Licensee whose duties justify a “need-to-know” and who have executed a confidentiality agreement (which confidentiality agreement shall also include the restrictions contained in 1.2 above) in which such employees or contractors have agreed not to disclose and to hold confidential all confidential information and materials (inclusive of those of third parties) which may be disclosed to them or to which they may have access during the course of their duties.  Any employees or contractors who obtain access to the Scaleform Products or Autodesk Confidential Information shall be advised by Licensee of the confidential nature of the Scaleform Products and Autodesk Confidential Information, and Licensee shall be responsible for any breach of this Agreement by its employees or contractors.
+Notwithstanding anything to the contrary in this Section 1.2, (i) Licensee shall have the right and license to distribute the Scaleform Software as integrated into Epic’s Unreal Editor program, in connection with Authorized Games, and (ii) Licensee shall have the right and license to provide the source code for its Authorized Games to Epic, Epic’s Affiliates or Autodesk for technical support purposes.
+b.	Copyright Notice and Trademarks.  With respect to the Scaleform Software, Autodesk shall be entitled to the same required copyright notices, trademark notices and logo placement as apply to the Unreal Engine per the Epic License Agreement.  The Autodesk copyright notice shall include the following wording:  “Uses Autodesk Scaleform (c) 2011 Autodesk, Inc.  All rights reserved.”  Autodesk grants Licensee the right to use the “Autodesk Scaleform” trademark and accompanying Autodesk Scaleform logo solely in connection with such notices and logo placement.  If Licensee does not display the name, mark or copyright notice of any other middleware vendor (including Epic), Licensee shall use commercially reasonable efforts to display the name, mark and copyright notice for Autodesk Scaleform.  Notwithstanding the foregoing, the requirements in this section shall only apply to the extent that the Authorized Game(s) include Scaleform Software.  Autodesk’s logos and usage details can be found here:  http://usa.autodesk.com/legal-notices-trademarks/.
+c.	INDEMNIFICATION
+3	Licensee shall defend, indemnify, and hold harmless Autodesk and its officers, employees, agents and representatives from any demand, claim, loss, liability or damage including, but not limited to, actual attorneys’ fees (collectively, a “Claim”), that Autodesk or any of them may incur arising from a breach by Licensee of its obligations with respect to these Autodesk License Terms.
+ 2:NO WARRANTY
+4	THE SCALEFORM SOFTWARE AND SCALEFORM USER MATERIALS ARE PROVIDED “AS IS,” AND AUTODESK MAKES NO (AND HEREBY DISCLAIMS ALL) OTHER WARRANTIES, REPRESENTATIONS, OR CONDITIONS, WHETHER WRITTEN OR ORAL, OR EXPRESS, IMPLIED, OR STATUTORY, INCLUDING ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE WITH RESPECT TO THE USE, MISUSE, OR INABILITY TO USE THE SCALEFORM SOFTWARE (IN WHOLE OR IN PART) OR ANY OTHER PRODUCTS OR SERVICES PROVIDED BY AUTODESK.  NO WARRANTIES MAY BE IMPOSED ON AUTODESK BY CUSTOM OR LAW IN ANY COUNTRY UNLESS AND UNTIL AUTODESK EXPRESSLY AND IN WRITING AGREES TO SAME.  AUTODESK DOES NOT WARRANT THAT ALL ERRORS CAN BE CORRECTED, OR THAT OPERATION OF THE SCALEFORM SOFTWARE SHALL BE UNINTERRUPTED OR ERROR-FREE.
+ 3:LIMITATION OF LIABILITY
+5.	IN NO EVENT SHALL AUTODESK, ANY PARENT, SUBSIDIARY, AFFILIATE, OR ANY OF THEIR OFFICERS, DIRECTORS, EMPLOYEES, SHAREHOLDERS, OR REPRESENTATIVES, BE LIABLE TO LICENSEE OR ANY THIRD PARTY, INCLUDING ANY USER OF THE AUTHORIZED GAMES, FOR DAMAGES OF ANY KIND OR NATURE OR IN ANY MANNER WHATSOEVER RELATING TO THE USE OF THE SCALEFORM PRODUCTS, INCLUDING, BUT NOT LIMITED TO ANY SPECIAL, INDIRECT, INCIDENTAL OR CONSEQUENTIAL DAMAGES, INCLUDING DAMAGES OR COSTS DUE TO LOSS OF PROFITS, DATA, USE OR GOODWILL, OR ANY PROCUREMENT COSTS CLAIMED BY LICENSEE FOR SUBSTITUTE PRODUCTS OR SERVICES, OR INABILITY TO USE THE SCALEFORM SOFTWARE, REGARDLESS OF THE CAUSE OF ACTION OR THE THEORY OF LIABILITY, WHETHER IN TORT, CONTRACT, OR OTHERWISE, EVEN IF AUTODESK HAS BEEN NOTIFIED OF THE LIKELIHOOD OF SUCH DAMAGES OCCURRING.  THE PARTIES AGREE THAT THE LIMITATION OF LIABILITY SET FORTH IN THIS SECTION SHALL SURVIVE AND CONTINUE IN FULL FORCE AND EFFECT DESPITE ANY FAILURE OF CONSIDERATION OR OF AN EXCLUSIVE REMEDY.
+ 4:PROPRIETARY RIGHTS
+6.	Confidential Information.  “Autodesk Confidential Information” as referenced herein consists of any information furnished by Autodesk and designated as confidential, the nature of the relationship between Licensee and Autodesk, any trade secrets related to the Scaleform Products, and any information relating to Autodesk’s products, plans, product designs, product costs, product prices, product names, finances, marketing plans, business opportunities, business plans, marketing concepts and plans, personnel, research, development, or know-how, and the Scaleform Software source code, including without limitation its underlying logic and concepts.  Licensee shall protect the Autodesk Confidential Information in the same manner as Licensee is required to protect Epic’s Confidential Information pursuant to the Epic License Agreement.
+ 5:Title.  Licensee acknowledges and agrees that nothing in these Autodesk License Terms constitutes, or shall be construed to constitute, any transfer of title or ownership with respect to the Scaleform Products, including without limitation transfer of any copyrights, patents, trademarks, trade secrets, intellectual property, source code, improvements, enhancements, sequence, logic, structure, and other proprietary rights therein, now or hereafter existing.  Licensee acknowledges that (a) the Scaleform Products, including but not limited to source code, contains trade secrets of Autodesk, entrusted by Autodesk to Licensee under this Agreement for use only in the manner expressly permitted hereby; and (b) Autodesk holds all right, title and interest in and to all tangible and intangible intellectual property contained in the Scaleform Products, including all trade secrets, copyrights, and other intellectual property rights pertaining thereto, and Licensee shall have only the limited, revocable right to use the Scaleform Products expressly as set forth in and limited by the Epic License Agreement and these Autodesk License Terms.  All modifications, adaptations, changes, or additions made to the Scaleform Products shall be the sole and exclusive property of Autodesk, even if created at the request of or in conjunction with the assistance of any Licensee, and shall be considered a part of the Scaleform Products, including all applicable rights to patents, copyrights, trademarks and trade secrets inherent therein and appurtenant thereto.  The Scaleform Products are protected by copyright and contain proprietary information protected by copyright laws, intellectual property laws, international treaty provisions and other applicable laws.  Licensee acknowledges that Autodesk owns all United States and international copyrights in the Scaleform Products and any portions thereof.  Licensee shall not do anything to infringe upon, harm, or contest the validity of any intellectual property rights of Autodesk.
+7.	TERMINATION
+8.	Autodesk shall have the right to terminate Licensee’s license to use the Scaleform Products if Licensee breaches any material term or condition of these Autodesk License Terms and fails to cure that breach within ten (10) days after receiving written notice indicating Autodesk’s intention to terminate and specifying the nature of the breach.  Upon any such termination, Licensee’s rights to possess and use the Scaleform Products terminate.
+9.	Within ten (10) days after termination, Licensee shall delete from electronic storage and memory and shall destroy all portions of the Scaleform Products in whatever form they exist, including those portions of Authorized Games that include the Scaleform Software and are in inventory or are otherwise unlicensed.  A senior officer (Executive Vice President or above) of Licensee shall certify to Autodesk that said deletions have occurred and that Licensee is not and shall not continue to use the Scaleform Products except as set forth in Section 6.3 which follows.
+4	All licenses for the Authorized Games previously entered into with end users shall continue in effect after termination of Licensee’s rights to use the Scaleform Products.  Further, Licensee shall require any third party developer to comply with the terms of Section 6.2 within ten (10) days after termination or the completion of such third party developer’s development activities on the Authorized Games, whichever occurs earlier.
+ 6:GOVERNING LAW
+10.	The laws of the State of New York, USA shall govern regarding these Autodesk License Terms.  Any action related to or arising out of these Autodesk License Terms shall be brought solely in a court of competent jurisdiction, whether federal or state, in New York, NY and the parties irrevocably commit to the jurisdiction of said courts.
+
+Third Party Components in Autodesk® Scaleform®
+
+	Component Name
+	Version Number (if any)	Open Source (Y/N)	License Agreement Link
+1.	zlib	1.2.5	Y	http://zlib.net/zlib_license.html
+2.	LibJPEG	6b	Y	http://www.cyberlink.com/stat/support/enu/open-source-info/license/libjpeg-readme.jsp
+3.	Libpng	1.2.18	Y	http://www.libpng.org/pub/png/src/libpng-LICENSE.txt
+4.	NVIDIA Texture Tools (nvtt)	2.0.3	Y	http://www.opensource.org/licenses/mit-license.html
+5.	Expat “xml”	2.0.1	Y	http://www.jclark.com/xml/copying.txt
+6.	glext_h	68	Y	http://oss.sgi.com/projects/FreeB/SGIFreeSWLicB.1.0.html
+7.	AMD ATI_Compress.h	1.7	Y	License agreement is provided with the Component.
+A copy of the license agreement is provided below.
+8. 	FreeType2	2.1.9	Y	http://www.freetype.org/FTL.TXT
+
+Licensing Terms for the Third Party Components in Autodesk Scaleform
+
+zlib 1.2.5
+
+zlib.h -- interface of the 'zlib' general purpose compression library version 1.2.5, April 19th, 2010
+
+Copyright (C) 1995-2010 Jean-loup Gailly and Mark Adler
+
+This software is provided 'as-is', without any express or implied warranty.  In no event will the authors be held liable for any damages arising from the use of this software.
+
+Permission is granted to anyone to use this software for any purpose, including commercial applications, and to alter it and redistribute it freely, subject to the following restrictions:
+
+1. The origin of this software must not be misrepresented; you must not claim that you wrote the original software. If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required.
+
+2. Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software.
+
+3. This notice may not be removed or altered from any source distribution.
+
+LibJPEG 6b
+
+The authors make NO WARRANTY or representation, either express or implied, with respect to this software, its quality, accuracy, merchantability, or fitness for a particular purpose. This software is provided "AS IS", and you, its user, assume the entire risk as to its quality and accuracy.
+
+This software is copyright (C) 1991-2011, Thomas G. Lane, Guido Vollbeding. All Rights Reserved except as specified below.
+
+Permission is hereby granted to use, copy, modify, and distribute this software (or portions thereof) for any purpose, without fee, subject to these conditions: (1) If any part of the source code for this software is distributed, then this README file must be included, with this copyright and no-warranty notice unaltered; and any additions, deletions, or changes to the original files must be clearly indicated in accompanying documentation. (2) If only executable code is distributed, then the accompanying documentation must state that "this software is based in part on the work of the Independent JPEG Group". (3) Permission for use of this software is granted only if the user accepts full responsibility for any undesirable consequences; the authors accept NO LIABILITY for damages of any kind.
+These conditions apply to any software derived from or based on the IJG code, not just to the unmodified library. If you use our work, you ought to acknowledge us.
+
+Permission is NOT granted for the use of any IJG author's name or company name in advertising or publicity relating to this software or products derived from it. This software may be referred to only as "the Independent JPEG Group's software".
+We specifically permit and encourage the use of this software as the basis of commercial products, provided that all warranty or liability claims are assumed by the product vendor.
+ansi2knr.c is included in this distribution by permission of L. Peter Deutsch, sole proprietor of its copyright holder, Aladdin Enterprises of Menlo Park, CA. ansi2knr.c is NOT covered by the above copyright and conditions, but instead by the usual distribution terms of the Free Software Foundation; principally, that you must include source code if you redistribute it. (See the file ansi2knr.c for full details.) However, since ansi2knr.cis not needed as part of any program generated from the IJG code, this does not limit you more than the foregoing paragraphs do.
+
+The Unix configuration script "configure" was produced with GNU Autoconf. It is copyright by the Free Software Foundation but is freely distributable. The same holds for its supporting scripts (config.guess, config.sub, ltmain.sh).
+
+Another support script, install-sh, is copyright by X Consortium but is also freely distributable.
+The IJG distribution formerly included code to read and write GIF files.
+
+To avoid entanglement with the Unisys LZW patent, GIF reading support has been removed altogether, and the GIF writer has been simplified to produce "uncompressed GIFs". This technique does not use the LZW algorithm; the resulting GIF files are larger than usual, but are readable by all standard GIF decoders. We are required to state that "The Graphics Interchange Format(c) is the Copyright property of CompuServe Incorporated. GIF(sm) is a Service Mark property of CompuServe Incorporated."
+
+Libpng 1.2.18 
+
+COPYRIGHT NOTICE, DISCLAIMER, and LICENSE:
+
+If you modify libpng you may insert additional notices immediately following this sentence.
+
+This code is released under the libpng license.
+
+libpng versions 1.2.6, August 15, 2004, through 1.5.0, January 6, 2011, are Copyright (c) 2004, 2006-2010 Glenn Randers-Pehrson, and are distributed according to the same disclaimer and license as libpng-1.2.5 with the following individual added to the list of Contributing Authors: Cosmin Truta
+
+libpng versions 1.0.7, July 1, 2000, through 1.2.5 - October 3, 2002, are Copyright (c) 2000-2002 Glenn Randers-Pehrson, and are distributed according to the same disclaimer and license as libpng-1.0.6 with the following individuals added to the list of Contributing Authors
+Simon-Pierre Cadieux, Eric S. Raymond, Gilles Vollant, and with the following additions to the disclaimer: 
+
+There is no warranty against interference with your enjoyment of the library or against infringement. There is no warranty that our efforts or the library will fulfill any of your particular purposes or needs. This library is provided with all faults, and the entire risk of satisfactory quality, performance, accuracy, and effort is with the user.
+
+libpng versions 0.97, January 1998, through 1.0.6, March 20, 2000, are Copyright (c) 1998, 1999 Glenn Randers-Pehrson, and are distributed according to the same disclaimer and license as libpng-0.96, with the following individuals added to the list of Contributing Authors: Tom Lane, Glenn Randers-Pehrson, Willem van Schaik
+
+libpng versions 0.89, June 1996, through 0.96, May 1997, are Copyright (c) 1996, 1997 Andreas Dilger 
+
+Distributed according to the same disclaimer and license as libpng-0.88, with the following individuals added to the list of Contributing Authors: John Bowler, Kevin Bracey, Sam Bushell, Magnus Holmgren, Greg Roelofs, Tom Tanner
+
+libpng versions 0.5, May 1995, through 0.88, January 1996, are Copyright (c) 1995, 1996 Guy Eric Schalnat, Group 42, Inc.
+
+For the purposes of this copyright and license, "Contributing Authors" is defined as the following set of individuals: Andreas Dilger, Dave Martindale, Guy Eric Schalnat, Paul Schmidt, Tim Wegner
+The PNG Reference Library is supplied "AS IS". The Contributing Authors and Group 42, Inc. disclaim all warranties, expressed or implied, including, without limitation, the warranties of merchantability and of fitness for any purpose. The Contributing Authors and Group 42, Inc. assume no liability for direct, indirect, incidental, special, exemplary, or consequential damages, which may result from the use of the PNG Reference Library, even if advised of the possibility of such damage.
+
+Permission is hereby granted to use, copy, modify, and distribute this source code, or portions hereof, for any purpose, without fee, subject to the following restrictions: 1. The origin of this source code must not be misrepresented. 2. Altered versions must be plainly marked as such and must not be misrepresented as being the original source. 3. This Copyright notice may not be removed or altered from any source or altered source distribution. The Contributing Authors and Group 42, Inc. specifically permit, without fee, and encourage the use of this source code as a component to supporting the PNG file format in commercial products. If you use this source code in a product, acknowledgment is not required but would be appreciated.
+
+A "png_get_copyright" function is available, for convenient use in "about" boxes and the like: printf("%s",png_get_copyright(NULL));
+
+Also, the PNG logo (in PNG format, of course) is supplied in the files "pngbar.png" and "pngbar.jpg (88x31) and "pngnow.png" (98x31).
+Libpng is OSI Certified Open Source Software. OSI Certified Open Source is a certification mark of the Open Source Initiative.
+
+Glenn Randers-Pehrson, glennrp at users.sourceforge.net, January 6, 2011
+
+NVIDIA Texture Tool (nvtt) 2.0.3  
+
+NVIDIA Texture Tools (nvtt) 2.0.3 is licensed under the MIT license.
+
+Copyright (c) 2007 NVIDIA Corporation
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Expat “xml” 2.0.1
+
+Copyright (c) 1998, 1999, 2000 Thai Open Source Software Center Ltd and Clark Cooper 
+Copyright (c) 2001, 2002, 2003, 2004, 2005, 2006 Expat maintainers. 
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+6. glext_h 68
+
+SGI Free Software License B, Version 1.0 (the "License"), the contents of this file are subject only to the provisions of the License. You may not use this file except in compliance with the License. You may obtain a copy of the License at Silicon Graphics, Inc., attn: Legal Services, 1600 Ampitheatre Parkway, Mountain View, CA 94043-1351, or at: http://oss.sgi.com/projects/FreeB.  Note that, as provided in the License, the Software is distributed on an "AS IS" basis, with ALL EXPRESS AND IMPLIED WARRANTIES AND CONDITIONS DISCLAIMED, INCLUDING, WITHOUT LIMITATION, ANY IMPLIED WARRANTIES AND CONDITIONS OF MERCHANTABILITY, SATISFACTORY QUALITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.  The Original Code is: OpenGL Sample Implementation, Version 1.2.1, released January 26, 2000, developed by Silicon Graphics, Inc. The Original Code is Copyright (c) 1991-2004 Silicon Graphics, Inc. Copyright in any portions created by third parties is as indicated elsewhere herein. All Rights Reserved.  This software was created using the OpenGL(R) version 1.2.1 Sample Implementation published by SGI, but has not been independently verified as being compliant with the OpenGL(R) version 1.2.1 Specification.
+
+AMD ATI_Compress.h 1.7
+
+ATI_Compress.h Header file 
+
+Advanced Micro Devices, Inc.
+
+1 AMD Place
+Sunnyvale, CA
+USA 94088
+
+File Name:   ATI_Compress.h
+
+Description: A library to compress/decompress textures
+
+Copyright (c) 2007, 2008 Advanced Micro Devices, Inc.
+Copyright (c) 2004-2006 ATI Technologies Inc.
+
+Version:	1.7
+Developer:	Seth Sowerby	
+Email:		gputools.support@amd.com
+
+ATI_Compress.h License Agreement
+
+LIBRARY SOFTWARE LICENSE AGREEMENT
+
+IMPORTANT -- READ CAREFULLY:  Do not load this Software until you have carefully read and agreed to the following terms and conditions.  This is a legal agreement ("Agreement") between you (either an individual or an entity) (“You” or "Licensee") and Advanced Micro Devices, Inc. ("AMD"). If Licensee does not agree to the terms of this Agreement, do not install or use this Software or any portion thereof.  By loading or using this software that may include associated media, printed Software, and online or electronic documentation or any portion thereof that is made available to install from this CD-ROM ("Software"), Licensee agrees to all of the terms of this Agreement.
+
+1. License.  The software accompanying this License (hereinafter "Software"), regardless of the media on which it is distributed, is licensed to you by Advanced Micro Devices, Inc.  You own the medium on which the Software is recorded, but Advanced Micro Devices, Inc. and, if applicable, its Licensors (referred to collectively as "AMD") retain title to the Software and related documentation.  You may:
+
+a) use the Software;
+b) make copies of the Software in machine-readable form.  You must reproduce on any such copy AMD's copyright notice and any other proprietary legends that were on the original copy of the Software;
+c) transfer all your license rights in the Software to a third party provided you must also transfer a copy of this License, the backup copy of the Software and the related documentation and provided the other party reads and agrees to accept the terms and conditions of this License.  Upon such transfer your license is then terminated; and
+d) make and distribute, commercially or noncommercially, copies of the Software as a component in a distinct application, provided that Licensee agrees to include all copyright legends and other legal notices that may appear in the Software, as well as this Software License Agreement in its entirety, in each copy of the Software that is made or distributed.
+
+2.  Restrictions.  The Software contains copyrighted and patented material, trade secrets and other proprietary material.  In order to protect them, and except as permitted by applicable legislation, you may not:
+a) decompile, reverse engineer, disassemble or otherwise reduce the Software to a human-perceivable form;
+b) modify, network, rent, lend, loan, distribute or create derivative works based upon the Software in whole or in part except as expressly allowed under section 1 above; 
+c) repackage, combine, or include the Software with any other software, tool or library that offers substantially similar functionality; or
+d) electronically transmit the Software from one computer to another or over a network or otherwise transfer the Software except as permitted by this License.
+
+3 OWNERSHIP AND COPYRIGHT OF SOFTWARE: The Software is owned by AMD and is protected by United States and foreign intellectual property laws (e.g. patent and copyright laws) and international treaty provisions.  Licensee will not remove the copyright notice from the Software.  Licensee agrees to prevent any unauthorized copying of the Software.  All title and copyrights in and to the Software, all copies thereof (in whole or in part, and in any form), and all rights therein shall remain vested in AMD.  Except as expressly provided herein, AMD does not grant any express or implied right to Licensee under AMD patents, copyrights, trademarks, or trade secret information.  All rights in and to the Software not expressly granted to Licensee in this Agreement are reserved to AMD.
+
+4.  SUPPORT:  Under this Agreement, AMD is under no obligation to assist in the use of this Software, to provide support to licensees of the Software, or to provide maintenance, correction, modification, enhancement, or upgrades to the Software.  AMD may provide such support, maintenance, correction, modification, enhancement or upgrades in a media determined by AMD and AMD shall have no obligation to notify Licensee thereof.  Additionally, such support, maintenance, correction, modification, enhancement, or upgrades shall be considered part of the Software, and shall be subject to this Agreement.
+
+5.  Termination.  This License is effective until terminated.  You may terminate this License at any time by destroying the Software, related documentation and all copies thereof.  This License will terminate immediately without notice from AMD if you fail to comply with any provision of this License.  Upon termination you must destroy the Software, related documentation and all copies thereof.
+
+6.  Government End Users. If you are acquiring the Software on behalf of any unit or agency of the United States Government, the following provisions apply.  The Government agrees the Software and documentation were developed at private expense and are provided with "RESTRICTED RIGHTS".  Use, duplication, or disclosure by the Government is subject to restrictions as set forth in DFARS 227.7202-1(a) and 227.7202-3(a) (1995), DFARS 252.227-7013(c)(1)(ii) (Oct 1988), FAR 12.212(a)(1995), FAR 52.227-19, (June 1987) or FAR 52.227-14(ALT III) (June 1987),as amended from time to time.  In the event that this License, or any part thereof, is deemed inconsistent with the minimum rights identified in the Restricted Rights provisions, the minimum rights shall prevail.
+
+8.  EXPORT ASSURANCES:  Licensee agrees and certifies that neither the Software, nor any direct product thereof will be exported, directly or indirectly, into any country prohibited by the United States Export Administration Act and the regulations thereunder without the required authorization from the United States government nor will it be used for any purpose prohibited by the same.
+
+9.  No Other License.  No rights or licenses are granted by AMD under this License, expressly or by implication, with respect to any proprietary information or patent, copyright, trade secret or other intellectual property right owned or controlled by AMD, except as expressly provided in this License.
+
+10.  Additional Licenses.  DISTRIBUTION OR USE OF THE SOFTWARE WITH AN OPERATING SYSTEM MAY REQUIRE ADDITIONAL LICENSES FROM THE OPERATING SYSTEM VENDOR.  
+
+11.  Disclaimer of Warranty on Software.  You expressly acknowledge and agree that use of the Software is at your sole risk.  The Software and related documentation are provided "AS IS" and without warranty of any kind and AMD EXPRESSLY DISCLAIMS ALL WARRANTIES, EXPRESS AND IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  AMD DOES NOT WARRANT THAT THE FUNCTIONS CONTAINED IN THE SOFTWARE WILL MEET YOUR REQUIREMENTS, OR THAT THE OPERATION OF THE SOFTWARE WILL BE UNINTERRUPTED OR ERROR-FREE, OR THAT DEFECTS IN THE SOFTWARE WILL BE CORRECTED.  THE ENTIRE RISK AS TO THE RESULTS AND PERFORMANCE OF THE SOFTWARE IS ASSUMED BY YOU.  FURTHERMORE, AMD DOES NOT WARRANT OR MAKE ANY REPRESENTATIONS REGARDING THE USE OR THE RESULTS OF THE USE OF THE SOFTWARE OR RELATED DOCUMENTATION IN TERMS OF THEIR CORRECTNESS, ACCURACY, RELIABILITY, CURRENTNESS, OR OTHERWISE. NO ORAL OR WRITTEN INFORMATION OR ADVICE GIVEN BY AMD OR AMD'S AUTHORIZED REPRESENTATIVE SHALL CREATE A WARRANTY OR IN ANY WAY INCREASE THE SCOPE OF THIS WARRANTY.  SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU (AND NOT AMD OR AMD'S AUTHORIZED REPRESENTATIVE) ASSUME THE ENTIRE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.  THE SOFTWARE IS NOT INTENDED FOR USE IN MEDICAL, LIFE SAVING OR LIFE SUSTAINING APPLICATIONS.  SOME JURISDICTIONS DO NOT ALLOW THE EXCLUSION OF IMPLIED WARRANTIES, SO THE ABOVE EXCLUSION MAY NOT APPLY TO YOU.  
+
+12.  Limitation of Liability. UNDER NO CIRCUMSTANCES INCLUDING NEGLIGENCE, SHALL AMD, OR ITS DIRECTORS, OFFICERS, EMPLOYEES OR AGENTS, BE LIABLE TO YOU FOR ANY INCIDENTAL, INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES (INCLUDING DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, AND THE LIKE) ARISING OUT OF THE USE, MISUSE OR INABILITY TO USE THE SOFTWARE OR RELATED DOCUMENTATION, BREACH OR DEFAULT, INCLUDING THOSE ARISING FROM INFRINGEMENT OR ALLEGED INFRINGEMENT OF ANY PATENT, TRADEMARK, COPYRIGHT OR OTHER INTELLECTUAL PROPERTY RIGHT, BY AMD, EVEN IF AMD OR AMD'S AUTHORIZED REPRESENTATIVE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.  SOME JURISDICTIONS DO NOT ALLOW THE LIMITATION OR EXCLUSION OF LIABILITY FOR INCIDENTAL OR CONSEQUENTIAL DAMAGES, SO THE ABOVE LIMITATION OR EXCLUSION MAY NOT APPLY TO YOU.  AMD will not be liable for 1) loss of, or damage to, your records or data or 2) any damages claimed by you based on any third party claim.   In no event shall AMD's total liability to you for all damages, losses, and causes of action (whether in contract, tort (including negligence) or otherwise) exceed the amount paid by you for the Software.
+
+13.  Controlling Law and Severability.  This License shall be governed by and construed under the laws of the state of California without reference to its conflict of law principles.  In the event of any conflicts between foreign law, rules, and regulations, and United States law, rules, and regulations, United States rules and regulations shall prevail and govern.  The United Nations Convention on Contracts for the International Sale of Goods shall not apply to this License.  If for any reason a court of competent jurisdiction finds any provision of this License or portion thereof, to be unenforceable, that provision of the License shall be enforced to the maximum extent permissible so as to effect the intent of the parties, and the remainder of this License shall continue in full force and effect.
+
+14.  Complete Agreement.  This License constitutes the entire agreement between the parties with respect to the use of the Software and the related documentation, and supersedes all prior or contemporaneous understandings or agreements, written or oral, regarding such subject matter.  No amendment to or modification of this License will be binding unless in writing and signed by a duly authorized representative of AMD.
+
+FreeType 2 2.1.9
+
+The FreeType 2 font engine is copyrighted work and cannot be used legally without a software license.  In order to make this project usable to a vast majority of developers, we distribute it under two mutually exclusive open-source licenses.
+
+This means that *you* must choose *one* of the two licenses described below, then obey  all its terms and conditions when using FreeType 2 in any of your projects or products.
+
+- The FreeType License, found in the file `FTL.TXT', which is similar to the original BSD license *with* an advertising clause that forces you to explicitly cite the FreeType project in your product's documentation.  All details are in the license file. This license is suited to products which don't use the GNU General Public License.
+
+- The GNU General Public License version 2, found in `GPL.TXT' (any later version can be used also), for programs which already use the GPL.  Note that the FTL is incompatible with the GPL due  to its advertisement clause.
+
+The contributed PCF driver comes with a license similar to that of the X Window System.  It is compatible to the above two licenses (see file src/pcf/readme).
+
+The FreeType Project LICENSE
+                    ----------------------------
+
+2006-Jan-27
+
+Copyright 1996-2002, 2006 by David Turner, Robert Wilhelm, and Werner Lemberg
+
+Introduction
+============
+
+The FreeType Project is distributed in several archive packages some of them may contain, in addition to the FreeType font engine, various tools and contributions which rely on, or relate to, the FreeType Project.
+
+This license applies to all files found in such packages, and which do not fall under their own explicit license.  The license affects thus the FreeType font engine, the test programs, documentation and make files, at the very least.  This license was inspired by the BSD, Artistic, and IJG (Independent JPEG Group) licenses, which all encourage inclusion and use of free software in commercial  and freeware products alike.  As a consequence, its main points are that:
+
+o We don't promise that this software works. However, we will be interested in any kind of bug reports. (`as is' distribution)
+
+o You can  use this software for whatever you  want, in parts or full form, without having to pay us. (`royalty-free' usage)
+
+o You may not pretend that  you wrote this software.  If you use it, or only parts of it, in a program, you must acknowledge somewhere in your documentation that you have used the FreeType code. (`credits')
+
+We specifically permit and encourage the inclusion of this software, with or without modifications, in commercial products.
+
+We disclaim all warranties covering The FreeType Project and assume no liability related to The FreeType Project.
+
+Finally, many people asked us for a preferred form for a credit/disclaimer to use in compliance with this license.  We thus encourage you to use the following text:
+
+"""
+    Portions of this software are copyright © <year> The FreeType Project (www.freetype.org).  All rights reserved.
+   """
+Please replace <year> with the value from the FreeType version you actually use.
+Legal Terms
+===========
+
+0. Definitions
+--------------
+Throughout this license, the terms `package', `FreeType Project', and `FreeType archive' refer to the set of files originally distributed by the authors (David Turner, Robert Wilhelm, and Werner Lemberg) as the `FreeType Project', be they named as alpha, beta or final release.
+
+`You' refers to the licensee, or person using the project, where `using' is a generic term including compiling the project's source code as well as linking it to form a `program' or `executable'.  This program is referred to as `a program using the FreeType engine'.
+
+This license applies to all files distributed in the original FreeType Project, including all source code, binaries and documentation, unless otherwise stated in the file in its original, unmodified form as distributed in the original archive.  If you are unsure whether or not a particular file is covered by this license, you must contact us to verify this.
+
+The FreeType Project is copyright (C) 1996-2000 by David Turner, Robert Wilhelm, and Werner Lemberg.  All rights reserved except as specified below.
+
+1. No Warranty
+--------------
+
+THE FREETYPE PROJECT IS PROVIDED `AS IS' WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT WILL ANY OF THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY DAMAGES CAUSED BY THE USE OR THE INABILITY TO USE, OF THE FREETYPE PROJECT.
+
+2. Redistribution
+-----------------
+
+This license grants a worldwide, royalty-free, perpetual and irrevocable right and license to use, execute, perform, compile, display, copy, create derivative works of, distribute and sublicense the FreeType Project (in both source and object code forms) and derivative works thereof for any purpose; and to authorize others to exercise some or all of the rights granted herein, subject to the following conditions:
+
+o Redistribution of  source code  must retain this  license file (`FTL.TXT') unaltered; any  additions, deletions or changes to the original files must be clearly indicated in accompanying documentation. The copyright notices of the unaltered, original files must be preserved in all copies of source files.
+
+o Redistribution in binary form must provide a disclaimer that states that the software is based in part of the work of the FreeType Team, in the distribution documentation. We also encourage you to put an URL to the FreeType web page in your documentation, though this isn't mandatory.
+
+These conditions apply to any software derived from or based on the FreeType Project, not just the unmodified files.  If you use our work, you must acknowledge us.  However, no fee need be paid to us.
+
+3. Advertising
+--------------
+
+Neither the FreeType authors and contributors nor you shall use the name of the other for commercial, advertising, or promotional purposes without specific prior written permission.
+
+We suggest, but do not require, that you use one or more of the following phrases to refer to this software in your documentation or advertising materials: `FreeType Project', `FreeType Engine', `FreeType library', or `FreeType Distribution'.
+
+As you have not signed this license, you are not required to accept it.  However, as the FreeType Project is copyrighted material, only this license, or another one contracted with the authors, grants you the right to use, distribute, and modify it.  Therefore, by using, distributing, or modifying the FreeType Project, you indicate that you understand and accept all the terms of this license.
+
+4. Contacts
+-----------
+There are two mailing lists related to FreeType:
+
+o freetype@nongnu.org
+
+Discusses general use and applications of FreeType, as well as future and wanted additions to the library and distribution.  If you are looking for support, start in this list if you haven't found anything to help you in the documentation.
+
+o freetype-devel@nongnu.org
+
+Discusses bugs, as well as engine internals, design issues, specific licenses, porting, etc.
+
+Our home page can be found at
+
+http://www.freetype.org
+
+--- end of sublist for Autodesk Scaleform ---

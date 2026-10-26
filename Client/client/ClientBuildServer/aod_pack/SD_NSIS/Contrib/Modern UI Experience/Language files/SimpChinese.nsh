@@ -1,0 +1,383 @@
+;NSIS Modern User Interface - Language File
+;Compatible with Modern UI 1.68
+
+;Language: 'Chinese (Simplified)' (2052)
+;Translator: Kii Ali <kiiali@cpatch.org>
+;Revision date: 2003-12-29
+;Revision date: 2004-11-27
+;--------------------------------
+
+!insertmacro MUI_LANGUAGEFILE_BEGIN "SimpChinese"
+
+  !ifndef SD_MUI_LANGNAME
+ 	!define MUI_LANGNAME "Chinese (Simplified)" ;(以语言本身的方式，写下语言名称) Use only ASCII characters (if this is not possible, use the English name)
+ !else 
+ 	!define MUI_LANGNAME "${SD_MUI_LANGNAME}" 
+ !endif
+
+  
+  !ifndef SD_MUI_TEXT_WELCOME_INFO_TITLE
+ 	!define MUI_TEXT_WELCOME_INFO_TITLE "欢迎使用$(^NameDA) 安装向导"
+ !else 
+ 	!define MUI_TEXT_WELCOME_INFO_TITLE "${SD_MUI_TEXT_WELCOME_INFO_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_TEXT_WELCOME_INFO_TEXT
+ 	!define MUI_TEXT_WELCOME_INFO_TEXT "这个向导将指引您完成 $(^NameDA) 的安装进程。"
+  !else 
+ 	!define MUI_TEXT_WELCOME_INFO_TEXT "${SD_MUI_TEXT_WELCOME_INFO_TEXT}" 
+ !endif
+
+  
+  !ifndef SD_MUI_TEXT_LICENSE_TITLE
+ 	!define MUI_TEXT_LICENSE_TITLE "许可协议"
+ !else 
+ 	!define MUI_TEXT_LICENSE_TITLE "${SD_MUI_TEXT_LICENSE_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_TEXT_LICENSE_SUBTITLE
+ 	!define MUI_TEXT_LICENSE_SUBTITLE "在安装 $(^NameDA) 之前，请仔细阅读许可协议。"
+ !else 
+ 	!define MUI_TEXT_LICENSE_SUBTITLE "${SD_MUI_TEXT_LICENSE_SUBTITLE}" 
+ !endif
+
+  !ifndef SD_MUI_INNERTEXT_LICENSE_TOP
+ 	!define MUI_INNERTEXT_LICENSE_TOP "要阅读许可协议的其余部分，请按 Page Down 往下翻页。"
+ !else 
+ 	!define MUI_INNERTEXT_LICENSE_TOP "${SD_MUI_INNERTEXT_LICENSE_TOP}" 
+ !endif
+
+  !ifndef SD_MUI_INNERTEXT_LICENSE_BOTTOM
+ 	!define MUI_INNERTEXT_LICENSE_BOTTOM "如果您接受许可协议，点击“我接受”继续安装。如果您选择“取消”，安装程序将会关闭。您必须接受协议才能安装 $(^NameDA) 。"
+ !else 
+ 	!define MUI_INNERTEXT_LICENSE_BOTTOM "${SD_MUI_INNERTEXT_LICENSE_BOTTOM}" 
+ !endif
+
+  !ifndef SD_MUI_INNERTEXT_LICENSE_BOTTOM_CHECKBOX
+ 	!define MUI_INNERTEXT_LICENSE_BOTTOM_CHECKBOX "如果您接受许可协议，点击下方的单选框。您必须接受协议才能安装 $(^NameDA)。$_CLICK"
+ !else 
+ 	!define MUI_INNERTEXT_LICENSE_BOTTOM_CHECKBOX "${SD_MUI_INNERTEXT_LICENSE_BOTTOM_CHECKBOX}" 
+ !endif
+
+  !ifndef SD_MUI_INNERTEXT_LICENSE_BOTTOM_RADIOBUTTONS
+ 	!define MUI_INNERTEXT_LICENSE_BOTTOM_RADIOBUTTONS "如果您接受许可协议，选择下方第一个选项。您必须接受协议才能安装 $(^NameDA)。$_CLICK"
+ !else 
+ 	!define MUI_INNERTEXT_LICENSE_BOTTOM_RADIOBUTTONS "${SD_MUI_INNERTEXT_LICENSE_BOTTOM_RADIOBUTTONS}" 
+ !endif
+
+
+  !ifndef SD_MUI_TEXT_COMPONENTS_TITLE
+ 	!define MUI_TEXT_COMPONENTS_TITLE "选择组件"
+ !else 
+ 	!define MUI_TEXT_COMPONENTS_TITLE "${SD_MUI_TEXT_COMPONENTS_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_TEXT_COMPONENTS_SUBTITLE
+ 	!define MUI_TEXT_COMPONENTS_SUBTITLE "选择 $(^NameDA) 当中您想要安装的功能。"
+ !else 
+ 	!define MUI_TEXT_COMPONENTS_SUBTITLE "${SD_MUI_TEXT_COMPONENTS_SUBTITLE}" 
+ !endif
+
+  !ifndef SD_MUI_INNERTEXT_COMPONENTS_DESCRIPTION_TITLE
+ 	!define MUI_INNERTEXT_COMPONENTS_DESCRIPTION_TITLE "描述"
+ !else 
+ 	!define MUI_INNERTEXT_COMPONENTS_DESCRIPTION_TITLE "${SD_MUI_INNERTEXT_COMPONENTS_DESCRIPTION_TITLE}" 
+ !endif
+
+  !ifdef NSIS_CONFIG_COMPONENTPAGE_ALTERNATIVE
+	!ifndef SD_MUI_INNERTEXT_COMPONENTS_DESCRIPTION_INFO
+ 		!define MUI_INNERTEXT_COMPONENTS_DESCRIPTION_INFO "鼠标点击组件，便可见到它的描述。"
+ 	!else
+ 		!define MUI_INNERTEXT_COMPONENTS_DESCRIPTION_INFO "${SD_MUI_INNERTEXT_COMPONENTS_DESCRIPTION_INFO}"
+ 	!endif
+  !else
+	!ifndef SD_MUI_INNERTEXT_COMPONENTS_DESCRIPTION_INFO
+ 		!define MUI_INNERTEXT_COMPONENTS_DESCRIPTION_INFO "移动您的鼠标指针到组件之上，便可见到它的描述。"
+ 	!else
+ 		!define MUI_INNERTEXT_COMPONENTS_DESCRIPTION_INFO "${SD_MUI_INNERTEXT_COMPONENTS_DESCRIPTION_INFO}"
+ 	!endif
+  !endif
+  
+  !ifndef SD_MUI_TEXT_DIRECTORY_TITLE
+ 	!define MUI_TEXT_DIRECTORY_TITLE "选择安装位置" 
+ !else 
+ 	!define MUI_TEXT_DIRECTORY_TITLE "${SD_MUI_TEXT_DIRECTORY_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_TEXT_DIRECTORY_SUBTITLE
+ 	!define MUI_TEXT_DIRECTORY_SUBTITLE "选择 $(^NameDA) 要安装的文件夹。"
+ !else 
+ 	!define MUI_TEXT_DIRECTORY_SUBTITLE "${SD_MUI_TEXT_DIRECTORY_SUBTITLE}" 
+ !endif
+
+
+  !ifndef SD_MUI_TEXT_INSTALLING_TITLE
+ 	!define MUI_TEXT_INSTALLING_TITLE "正在安装"
+ !else 
+ 	!define MUI_TEXT_INSTALLING_TITLE "${SD_MUI_TEXT_INSTALLING_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_TEXT_INSTALLING_SUBTITLE
+ 	!define MUI_TEXT_INSTALLING_SUBTITLE "$(^NameDA) 正在安装，请等候..."
+ !else 
+ 	!define MUI_TEXT_INSTALLING_SUBTITLE "${SD_MUI_TEXT_INSTALLING_SUBTITLE}" 
+ !endif
+
+  
+  !ifndef SD_MUI_TEXT_FINISH_TITLE
+ 	!define MUI_TEXT_FINISH_TITLE "安装完成"
+ !else 
+ 	!define MUI_TEXT_FINISH_TITLE "${SD_MUI_TEXT_FINISH_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_TEXT_FINISH_SUBTITLE
+ 	!define MUI_TEXT_FINISH_SUBTITLE "安装程序已成功运行完毕。"
+ !else 
+ 	!define MUI_TEXT_FINISH_SUBTITLE "${SD_MUI_TEXT_FINISH_SUBTITLE}" 
+ !endif
+
+  
+  !ifndef SD_MUI_TEXT_ABORT_TITLE
+ 	!define MUI_TEXT_ABORT_TITLE "安装己中止"
+ !else 
+ 	!define MUI_TEXT_ABORT_TITLE "${SD_MUI_TEXT_ABORT_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_TEXT_ABORT_SUBTITLE
+ 	!define MUI_TEXT_ABORT_SUBTITLE "安装程序并未成功运行完毕。"
+ !else 
+ 	!define MUI_TEXT_ABORT_SUBTITLE "${SD_MUI_TEXT_ABORT_SUBTITLE}" 
+ !endif
+
+  
+  !ifndef SD_MUI_BUTTONTEXT_FINISH
+ 	!define MUI_BUTTONTEXT_FINISH "完成(&F)"
+ !else 
+ 	!define MUI_BUTTONTEXT_FINISH "${SD_MUI_BUTTONTEXT_FINISH}" 
+ !endif
+
+  !ifndef SD_MUI_TEXT_FINISH_INFO_TITLE
+ 	!define MUI_TEXT_FINISH_INFO_TITLE "$(^NameDA)安装完成!"
+ !else 
+ 	!define MUI_TEXT_FINISH_INFO_TITLE "${SD_MUI_TEXT_FINISH_INFO_TITLE}"
+ !endif
+
+  !ifndef SD_MUI_TEXT_FINISH_INFO_TEXT
+ 	!define MUI_TEXT_FINISH_INFO_TEXT "$(^NameDA) 已在您的系统安装。\r\n单击 [完成(F)] 关闭此向导。"
+ !else 
+ 	!define MUI_TEXT_FINISH_INFO_TEXT "${SD_MUI_TEXT_FINISH_INFO_TEXT}" 
+ !endif
+
+  !ifndef SD_MUI_TEXT_FINISH_INFO_REBOOT
+ 	!define MUI_TEXT_FINISH_INFO_REBOOT "您的系统需要重新启动，以便完成 $(^NameDA) 的安装。现在要重新启动吗？"
+ !else 
+ 	!define MUI_TEXT_FINISH_INFO_REBOOT "${SD_MUI_TEXT_FINISH_INFO_REBOOT}" 
+ !endif
+
+  !ifndef SD_MUI_TEXT_FINISH_REBOOTNOW
+ 	!define MUI_TEXT_FINISH_REBOOTNOW "是，现在重新启动(&Y)"
+ !else 
+ 	!define MUI_TEXT_FINISH_REBOOTNOW "${SD_MUI_TEXT_FINISH_REBOOTNOW}" 
+ !endif
+
+  !ifndef SD_MUI_TEXT_FINISH_REBOOTLATER
+ 	!define MUI_TEXT_FINISH_REBOOTLATER "否，我稍后再自行重新启动(&N)"
+ !else 
+ 	!define MUI_TEXT_FINISH_REBOOTLATER "${SD_MUI_TEXT_FINISH_REBOOTLATER}" 
+ !endif
+
+  !ifndef SD_MUI_TEXT_FINISH_RUN
+ 	!define MUI_TEXT_FINISH_RUN "运行 $(^NameDA)(&R)"
+ !else 
+ 	!define MUI_TEXT_FINISH_RUN "${SD_MUI_TEXT_FINISH_RUN}" 
+ !endif
+
+  !ifndef SD_MUI_TEXT_FINISH_SHOWREADME
+ 	!define MUI_TEXT_FINISH_SHOWREADME "显示说明文件(&M)"
+ !else 
+ 	!define MUI_TEXT_FINISH_SHOWREADME "${SD_MUI_TEXT_FINISH_SHOWREADME}" 
+ !endif
+
+  
+  !ifndef SD_MUI_TEXT_STARTMENU_TITLE
+ 	!define MUI_TEXT_STARTMENU_TITLE "选择开始菜单文件夹"
+ !else 
+ 	!define MUI_TEXT_STARTMENU_TITLE "${SD_MUI_TEXT_STARTMENU_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_TEXT_STARTMENU_SUBTITLE
+ 	!define MUI_TEXT_STARTMENU_SUBTITLE "选择开始菜单文件夹，用于程序的快捷方式。"
+ !else 
+ 	!define MUI_TEXT_STARTMENU_SUBTITLE "${SD_MUI_TEXT_STARTMENU_SUBTITLE}" 
+ !endif
+
+  !ifndef SD_MUI_INNERTEXT_STARTMENU_TOP
+ 	!define MUI_INNERTEXT_STARTMENU_TOP "选择开始菜单文件夹，以便创建程序的快捷方式。您也可以输入名称，创建新文件夹。"
+ !else 
+ 	!define MUI_INNERTEXT_STARTMENU_TOP "${SD_MUI_INNERTEXT_STARTMENU_TOP}" 
+ !endif
+
+  !ifndef SD_MUI_INNERTEXT_STARTMENU_CHECKBOX
+ 	!define MUI_INNERTEXT_STARTMENU_CHECKBOX "不要创建快捷方式(&N)"
+ !else 
+ 	!define MUI_INNERTEXT_STARTMENU_CHECKBOX "${SD_MUI_INNERTEXT_STARTMENU_CHECKBOX}" 
+ !endif
+
+  
+  !ifndef SD_MUI_TEXT_ABORTWARNING
+ 	!define MUI_TEXT_ABORTWARNING "您确实要退出 $(^Name) 安装程序？"
+ !else 
+ 	!define MUI_TEXT_ABORTWARNING "${SD_MUI_TEXT_ABORTWARNING}" 
+ !endif
+
+  
+
+  !ifndef SD_MUI_UNTEXT_WELCOME_INFO_TITLE
+ 	!define MUI_UNTEXT_WELCOME_INFO_TITLE "欢迎使用 $(^NameDA) 卸载向导"
+ !else 
+ 	!define MUI_UNTEXT_WELCOME_INFO_TITLE "${SD_MUI_UNTEXT_WELCOME_INFO_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_UNTEXT_WELCOME_INFO_TEXT
+ 	!define MUI_UNTEXT_WELCOME_INFO_TEXT "这个向导将全程指引您进行 $(^NameDA) 的卸载进程。在开始卸载之前，确认 $(^NameDA) 并未运行。\r\n\r\n$_CLICK"
+ !else 
+ 	!define MUI_UNTEXT_WELCOME_INFO_TEXT "${SD_MUI_UNTEXT_WELCOME_INFO_TEXT}" 
+ !endif
+
+ 
+  !ifndef SD_MUI_UNTEXT_CONFIRM_TITLE
+ 	!define MUI_UNTEXT_CONFIRM_TITLE "卸载 $(^NameDA)"
+ !else 
+ 	!define MUI_UNTEXT_CONFIRM_TITLE "${SD_MUI_UNTEXT_CONFIRM_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_UNTEXT_CONFIRM_SUBTITLE
+ 	!define MUI_UNTEXT_CONFIRM_SUBTITLE "从您的计算机中卸载 $(^NameDA) 。"
+ !else 
+ 	!define MUI_UNTEXT_CONFIRM_SUBTITLE "${SD_MUI_UNTEXT_CONFIRM_SUBTITLE}" 
+ !endif
+
+  
+  !ifndef SD_MUI_UNTEXT_LICENSE_TITLE
+ 	!define MUI_UNTEXT_LICENSE_TITLE "许可协议"
+ !else 
+ 	!define MUI_UNTEXT_LICENSE_TITLE "${SD_MUI_UNTEXT_LICENSE_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_UNTEXT_LICENSE_SUBTITLE
+ 	!define MUI_UNTEXT_LICENSE_SUBTITLE "在卸载 $(^NameDA) 之前，请先阅读许可协议。"
+ !else 
+ 	!define MUI_UNTEXT_LICENSE_SUBTITLE "${SD_MUI_UNTEXT_LICENSE_SUBTITLE}" 
+ !endif
+
+  !ifndef SD_MUI_UNINNERTEXT_LICENSE_BOTTOM
+ 	!define MUI_UNINNERTEXT_LICENSE_BOTTOM "如果您接受许可协议，点击“我同意”继续卸载。如果您选择“取消”，安装程序将会关闭。您必须接受协议才能卸载 $(^NameDA) 。"
+ !else 
+ 	!define MUI_UNINNERTEXT_LICENSE_BOTTOM "${SD_MUI_UNINNERTEXT_LICENSE_BOTTOM}" 
+ !endif
+
+  !ifndef SD_MUI_UNINNERTEXT_LICENSE_BOTTOM_CHECKBOX
+ 	!define MUI_UNINNERTEXT_LICENSE_BOTTOM_CHECKBOX "如果您接受许可协议，点击下方的单选框。您必须接受协议才能卸载 $(^NameDA)。$_CLICK"
+ !else 
+ 	!define MUI_UNINNERTEXT_LICENSE_BOTTOM_CHECKBOX "${SD_MUI_UNINNERTEXT_LICENSE_BOTTOM_CHECKBOX}" 
+ !endif
+
+  !ifndef SD_MUI_UNINNERTEXT_LICENSE_BOTTOM_RADIOBUTTONS
+ 	!define MUI_UNINNERTEXT_LICENSE_BOTTOM_RADIOBUTTONS "如果您接受许可协议，选择下方第一个选项。您必须接受协议才能卸载 $(^NameDA)。$_CLICK"
+ !else 
+ 	!define MUI_UNINNERTEXT_LICENSE_BOTTOM_RADIOBUTTONS "${SD_MUI_UNINNERTEXT_LICENSE_BOTTOM_RADIOBUTTONS}" 
+ !endif
+
+  
+  !ifndef SD_MUI_UNTEXT_COMPONENTS_TITLE
+ 	!define MUI_UNTEXT_COMPONENTS_TITLE "选择组件"
+ !else 
+ 	!define MUI_UNTEXT_COMPONENTS_TITLE "${SD_MUI_UNTEXT_COMPONENTS_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_UNTEXT_COMPONENTS_SUBTITLE
+ 	!define MUI_UNTEXT_COMPONENTS_SUBTITLE "选择 $(^NameDA) 当中您想要卸载的功能。"
+ !else 
+ 	!define MUI_UNTEXT_COMPONENTS_SUBTITLE "${SD_MUI_UNTEXT_COMPONENTS_SUBTITLE}" 
+ !endif
+
+  
+  !ifndef SD_MUI_UNTEXT_DIRECTORY_TITLE
+ 	!define MUI_UNTEXT_DIRECTORY_TITLE "选择卸载位置" 
+ !else 
+ 	!define MUI_UNTEXT_DIRECTORY_TITLE "${SD_MUI_UNTEXT_DIRECTORY_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_UNTEXT_DIRECTORY_SUBTITLE
+ 	!define MUI_UNTEXT_DIRECTORY_SUBTITLE "选择 $(^NameDA) 要卸载的文件夹。"
+ !else 
+ 	!define MUI_UNTEXT_DIRECTORY_SUBTITLE "${SD_MUI_UNTEXT_DIRECTORY_SUBTITLE}" 
+ !endif
+
+
+  !ifndef SD_MUI_UNTEXT_UNINSTALLING_TITLE
+ 	!define MUI_UNTEXT_UNINSTALLING_TITLE "正在卸载"
+ !else 
+ 	!define MUI_UNTEXT_UNINSTALLING_TITLE "${SD_MUI_UNTEXT_UNINSTALLING_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_UNTEXT_UNINSTALLING_SUBTITLE
+ 	!define MUI_UNTEXT_UNINSTALLING_SUBTITLE "$(^NameDA) 正在卸载，请等候..."
+ !else 
+ 	!define MUI_UNTEXT_UNINSTALLING_SUBTITLE "${SD_MUI_UNTEXT_UNINSTALLING_SUBTITLE}" 
+ !endif
+
+    
+  !ifndef SD_MUI_UNTEXT_FINISH_TITLE
+ 	!define MUI_UNTEXT_FINISH_TITLE "卸载已完成"
+ !else 
+ 	!define MUI_UNTEXT_FINISH_TITLE "${SD_MUI_UNTEXT_FINISH_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_UNTEXT_FINISH_SUBTITLE
+ 	!define MUI_UNTEXT_FINISH_SUBTITLE "卸载程序已成功运行完毕。"
+ !else 
+ 	!define MUI_UNTEXT_FINISH_SUBTITLE "${SD_MUI_UNTEXT_FINISH_SUBTITLE}" 
+ !endif
+
+  
+  !ifndef SD_MUI_UNTEXT_ABORT_TITLE
+ 	!define MUI_UNTEXT_ABORT_TITLE "卸载已中止"
+ !else 
+ 	!define MUI_UNTEXT_ABORT_TITLE "${SD_MUI_UNTEXT_ABORT_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_UNTEXT_ABORT_SUBTITLE
+ 	!define MUI_UNTEXT_ABORT_SUBTITLE "卸载程序并未成功运行完毕。"
+ !else 
+ 	!define MUI_UNTEXT_ABORT_SUBTITLE "${SD_MUI_UNTEXT_ABORT_SUBTITLE}" 
+ !endif
+
+  
+  !ifndef SD_MUI_UNTEXT_FINISH_INFO_TITLE
+ 	!define MUI_UNTEXT_FINISH_INFO_TITLE "正在完成 $(^NameDA) 卸载向导"
+ !else 
+ 	!define MUI_UNTEXT_FINISH_INFO_TITLE "${SD_MUI_UNTEXT_FINISH_INFO_TITLE}" 
+ !endif
+
+  !ifndef SD_MUI_UNTEXT_FINISH_INFO_TEXT
+ 	!define MUI_UNTEXT_FINISH_INFO_TEXT "$(^NameDA) 已从您的计算机卸载。\r\n\r\n点击“完成”关闭来向导。"
+ !else 
+ 	!define MUI_UNTEXT_FINISH_INFO_TEXT "${SD_MUI_UNTEXT_FINISH_INFO_TEXT}" 
+ !endif
+
+  !ifndef SD_MUI_UNTEXT_FINISH_INFO_REBOOT
+ 	!define MUI_UNTEXT_FINISH_INFO_REBOOT "计算机需要重新启动，以便完成 $(^NameDA) 的卸载。现在想要重新启动吗？"
+ !else 
+ 	!define MUI_UNTEXT_FINISH_INFO_REBOOT "${SD_MUI_UNTEXT_FINISH_INFO_REBOOT}" 
+ !endif
+
+
+  !ifndef SD_MUI_UNTEXT_ABORTWARNING
+ 	!define MUI_UNTEXT_ABORTWARNING "您确实要退出 $(^Name) 的卸载吗？"  
+ !else 
+ 	!define MUI_UNTEXT_ABORTWARNING "${SD_MUI_UNTEXT_ABORTWARNING}" 
+ !endif
+
+  
+!insertmacro MUI_LANGUAGEFILE_END

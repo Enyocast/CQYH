@@ -1,0 +1,5 @@
+Setting environment for using Microsoft Visual Studio 2010 x86 tools.
+
+D:\_AutoBuild\python_client8089>..\source\08.Prog\Client\UE3\Binaries\Win64\MMOGame.com make -auto -DEMOMODE -NOPAUSEONSUCCESS -full -DEV_RELEASE
+
+D:\_AutoBuild\python_client8089>exit

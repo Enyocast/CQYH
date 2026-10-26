@@ -1,0 +1,27 @@
+/*=============================================================================
+	OpacityShadowProjectionPixelShader.usf: Pixel shader for projecting an
+	opacity shadow onto the scene.
+	Copyright 2012 NVIDIA Corporation, All Rights Reserved.
+=============================================================================*/
+
+#include "Common.usf"
+#include "ShadowProjectionCommon.usf"
+#include "ShadowOpacityCommon.usf"
+
+float4x4 ScreenToShadowMatrix;
+float2 ShadowBufferInvSize;
+
+void Main(
+	in float4 ScreenPosition : TEXCOORD0,
+	out float4 OutColor : COLOR0
+	)
+{
+	half SceneW = PreviousDepth(ScreenPosition);
+
+	float4 ShadowPosition = MulMatrix(ScreenToShadowMatrix,float4(ScreenPosition.xy / ScreenPosition.w * SceneW,SceneW,1));
+	ShadowPosition.xy /= ShadowPosition.w;
+	ShadowPosition.z = min(ShadowPosition.z,0.999);
+	
+	float3 Shadow = OpacityShadowOuter(ShadowPosition.xy, ShadowPosition.z);
+	OutColor = float4(Shadow,0.f);
+}

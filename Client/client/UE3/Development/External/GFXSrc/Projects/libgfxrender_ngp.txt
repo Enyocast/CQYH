@@ -1,0 +1,12 @@
+Src/Render/NGP/NGP_HAL.cpp
+Src/Render/NGP/NGP_HAL.h
+Src/Render/NGP/NGP_HALSetup.cpp
+Src/Render/NGP/NGP_MemoryManager.cpp
+Src/Render/NGP/NGP_MemoryManager.h
+Src/Render/NGP/NGP_MeshCache.cpp
+Src/Render/NGP/NGP_MeshCache.h
+Src/Render/NGP/NGP_Shader.cpp
+Src/Render/NGP/NGP_Shader.h
+Src/Render/NGP/NGP_Sync.h
+Src/Render/NGP/NGP_Texture.cpp
+Src/Render/NGP/NGP_Texture.h

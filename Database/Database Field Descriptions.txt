@@ -1,0 +1,11 @@
+'version' table
+
+First column 'id' => enter 'all'
+Second column 'number' => enter '8'
+
+// Diagram
+|--------|--------|
+|   id   | number |
+|--------|--------|
+|   all  |    8   |
+|--------|--------|

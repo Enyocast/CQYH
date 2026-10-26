@@ -1,0 +1,1 @@
+copy MMOGame.exe  \\172.30.68.97\Binaries\Win32\MMOGame.exe /Y

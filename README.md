@@ -1,3 +1,94 @@
+# Legend Eternal (CQYH) – Source Code
+
+The 2016 Shanda Games *Legend Eternal* (传奇永恒 / CQYH) source code: the Unreal Engine 3 client and the server, split into `Client` and `Server`.
+
+> **The client assets are not in this repository.** The game content and prebuilt binaries (about 64 GB) are too large for GitHub and are hosted separately. See [Client assets](#client-assets-required-to-build-and-run-the-client) below.
+
+## Client assets (required to build and run the client)
+
+This repository contains the client **source code only**. The game assets and prebuilt binaries the client needs are in a single archive:
+
+**[`Client Assets.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/Client%20Assets.7z)**, hosted in the [Organised files folder](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/).
+
+It contains the cooked game content (`.upk`, `.udk`, `.pak`, `.bik` videos, the `CookedPC` and `Content` folders), prebuilt third-party libraries (for example the Scaleform GFx `.lib` files), executables and DLLs, compiled UnrealScript packages (`.u`), the Mac binaries and the QA build tools.
+
+**How to use it:**
+
+1. Download `Client Assets.7z` and extract it with [7-Zip](https://www.7-zip.org/).
+2. Extract it **into the `Client` folder of this repository**, so the folders merge: the archive uses the same relative paths as the repository (`client\UE3\MMOGame\CookedPC\...`, `client\UE3\Development\External\...` and so on).
+3. Do not commit the extracted files. The assets are meant to stay out of git.
+
+Without the assets you can read and edit the source, but you cannot build or run the client.
+
+The same folder also hosts the other files from this release: packaged client builds, packaged server builds, tool installers and `Documentation.7z` (setup and compile notes, database files, design documents).
+
+## Repository layout
+
+`Client` and `Server` are independent: neither needs the other to compile. Both compile against the shared `Common` folder, so each one carries its own copy.
+
+```text
+Client/
+├── client/                    The UE3-based game client
+│   ├── UE3/
+│   │   ├── Development/
+│   │   │   ├── Src/           C++ and UnrealScript source (UE3.sln, MMOGame.sln)
+│   │   │   ├── External/      Bundled third-party libraries
+│   │   │   ├── Tools/         UnrealBuildTool and engine tools
+│   │   │   └── Flash/         Flash / Scaleform UI source
+│   │   ├── Engine/            Engine config, shaders, localization
+│   │   ├── MMOGame/           Game config, scripts, localization
+│   │   ├── Binaries*/         Binary and runtime support files
+│   │   └── Launcher*/, SDO/   Launcher and SDO login
+│   ├── DevTools/              DevLauncher, ReplayView
+│   ├── PatchTools/            FixClient, FileUpdate
+│   ├── OtherTools/            dump_analyze (crash dump analyser)
+│   ├── PackageTool/           Packaging scripts
+│   ├── ClientBuildServer/     Cook and packaging scripts
+│   └── SDOTest/, AODBenchmarkLaunch/   Small test and benchmark projects
+├── Common/                    Shared protocol and data definitions (define, message, fusion)
+└── _AutoBuild/                Build-server scripts and packaging toolchain
+
+Server/
+├── NewServer/
+│   ├── src/                   Server source (universe.sln): gameserver, gateserver, loginserver,
+│   │                          dbserver, gmserver, manageserver, nameserver, balanceserver, ...
+│   ├── bin/                   Runtime layout: commonconfig (game scripts and data tables),
+│   │                          start/stop scripts, configs
+│   ├── 3rd/                   Third-party libraries (MySQL, Lua, tolua++, zlib, oasdk, ...)
+│   ├── inc/, lib/             Shared headers and libraries
+│   ├── tools/                 gmtool, maintaintool, guardserver, certserver and other tools
+│   ├── test/                  Test projects
+│   └── build/                 Linux Makefile
+├── Common/                    Shared protocol and data definitions (newest version)
+└── Common1/                   Alternative "new protocol" variant (not used by the build)
+```
+
+### Things to know
+
+- **Keep the folder layout.** Project files reach `Common` with paths such as `..\..\..\Common`, so `client` / `NewServer` and `Common` must stay side by side inside `Client` and `Server`.
+- **Two `Common` copies.** `Client/Common` and `Server/Common` are separate; a change in one does not carry to the other.
+- **Compiled server executables are not included.** Packaged server builds are in the [Organised folder](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/) under `Server Builds`.
+- **Two things need `Client` and `Server` side by side.** The server tool `gen_msg` writes `ServerEnum.uc` and `MMOBT*.ini` into the client folder, and the client cook scripts in `ClientBuildServer` copy `NewServer\bin\commonconfig`. They do not work with the two apart.
+
+### Dependencies
+
+Visual Studio and the DirectX SDK come from Microsoft. Everything else is hosted in the [Organised files folder](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/):
+
+| Needed for | Dependency | Download |
+|---|---|---|
+| Server build | Visual Studio 2013 | Microsoft (not hosted) |
+| Client build | Visual Studio 2010 + Service Pack 1, DirectX SDK (June 2010) | Microsoft (not hosted) |
+| Database | MySQL 5.5.62 (64-bit MSI) – the original notes also mention 5.1 | [`MySQL Install.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/MySQL%20Install.7z) |
+| Database tool | Navicat for MySQL 12.1 (64-bit) | [`Navicat Install.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/Navicat%20Install.7z) |
+| Client troubleshooting | DirectX repair tool (blank-screen and DirectX errors on old clients) | [`DirectX 4.2 Repair Tool.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/DirectX%204.2%20Repair%20Tool.7z) |
+| Dev environment | Python 2.7.8, Perforce P4V, XAMPP 1.8.3 | [`Dev Tools Install.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/Dev%20Tools%20Install.7z) |
+| Setup and compile notes | Build, database and runtime guides, SQL files, design documents | [`Documentation.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/Documentation.7z) |
+
+- **MySQL:** official installers are also available from the [MySQL archive](https://downloads.mysql.com/archives/community/) (5.5.62 Windows MSI and ZIP).
+- **Navicat** is commercial software and needs a valid licence; the official version is on the [Navicat website](https://www.navicat.com/en/products#navicat). Any MySQL client works if you prefer another.
+- **Legacy client problems:** if the DirectX SDK installer fails, uninstall the Microsoft Visual C++ redistributables (2005 to 2022), reinstall the SDK, then run the DirectX repair tool. The details are in `Documentation.7z`.
+- Packaged client builds, packaged server builds and the rest of the release are in the same folder.
+---
 ## 🔗 Quick Links
 
 ### Project Resources

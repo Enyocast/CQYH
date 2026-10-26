@@ -1,0 +1,140 @@
+/*=============================================================================
+	ShadowOpacityCommon.usf: utils for opacity mapping.
+	Copyright 2012 NVIDIA Corporation, All Rights Reserved.
+=============================================================================*/
+
+#define M_PI 3.1415926535897932384626433832795
+#define M_TWO_PI (2.f * M_PI)
+#define M_RECIP_PI (1.0f / M_PI)
+
+sampler2D ShadowFOMTexture;
+float3 ShadowAmbientUplift;
+float ShadowOpacityMultiplier;
+float4 ShadowCoordScaleAndBias;
+float ShadowTransitionSize;
+
+sampler2D OpaqueShadowDepthTexture;
+float4x4 OpaqueScreenToShadowMatrix;
+float4 OpaqueShadowBufferAndTexelSize;
+float4 OpaqueShadowModulateColor;
+bool bReceiveOpaqueShadows;
+
+float3 AmbientUplift(float3 PreUplift)
+{
+	return lerp(PreUplift,1.f,ShadowAmbientUplift);
+}
+
+float3 OpacityShadowImpl(float4 Color0, float LinearDepth)
+{
+	// DC component
+	float LnTransmittance = Color0.r * LinearDepth;
+
+	// Remaining outputs require sin/cos
+	float2 CosSin;
+	sincos(M_TWO_PI * LinearDepth, CosSin.y, CosSin.x);
+	
+	LnTransmittance += (1.0 - CosSin.x) * Color0.b;
+	LnTransmittance += CosSin.y * Color0.g;
+
+	return saturate(exp(-LnTransmittance));
+}
+
+float3 FadeShadow(float2 TexCoord, float3 ShadowedColor)
+{
+	BRANCH
+	if (ShadowTransitionSize == 0)
+	{
+		return ShadowedColor;
+	}
+
+	float2 Scale = ShadowCoordScaleAndBias.xy;
+	float2 Bias = ShadowCoordScaleAndBias.zw;
+	float2 ShadowCoord = saturate(TexCoord * Scale + Bias);
+
+	float ShadowAmount;
+	ShadowAmount  = saturate(ShadowCoord.x / ShadowTransitionSize);
+	ShadowAmount *= saturate(ShadowCoord.y / ShadowTransitionSize);
+	ShadowAmount *= saturate((1 - ShadowCoord.x) / ShadowTransitionSize);
+	ShadowAmount *= saturate((1 - ShadowCoord.y) / ShadowTransitionSize);
+
+	ShadowAmount = smoothstep(0, 1, ShadowAmount);
+
+	float3 UnshadowedColor = float3(1,1,1);
+	return lerp(UnshadowedColor, ShadowedColor, ShadowAmount);
+}
+
+// For when LinearDepth could fall outsides [0,1] i.e. external projection
+float3 OpacityShadowOuter(float2 TexCoord, float LinearDepth)
+{
+	BRANCH
+	if(LinearDepth <= 0.f)
+		return 1.f;
+		
+	float4 Color0 = tex2Dlod(ShadowFOMTexture, float4(TexCoord,0,0));
+	
+	BRANCH
+	if(LinearDepth >= 1.f)
+		return AmbientUplift(saturate(exp(-Color0.r)));
+	
+	float3 ShadowedColor = AmbientUplift(OpacityShadowImpl(Color0, LinearDepth));
+	return FadeShadow(TexCoord, ShadowedColor);
+}
+
+// For when the range of LinearDepth is known to be [0,1] i.e. self-shadowing
+float3 OpacityShadowInner(float2 TexCoord, float LinearDepth)
+{
+	float4 Color0 = tex2Dlod(ShadowFOMTexture, float4(TexCoord,0,0));
+	float3 ShadowedColor = AmbientUplift(OpacityShadowImpl(Color0, LinearDepth));
+	return FadeShadow(TexCoord, ShadowedColor);
+}
+
+float CompareDepths(float SceneDepth, float ShadowmapDepth)
+{
+	return SceneDepth < ShadowmapDepth;
+}
+
+float OpaqueShadowFilter(float4 ShadowPosition)
+{
+	float2 ShadowBufferSize = OpaqueShadowBufferAndTexelSize.xy;
+	float2 ShadowTexelSize = OpaqueShadowBufferAndTexelSize.zw;
+
+	float2 Fraction = frac(ShadowPosition.xy * ShadowBufferSize.xy);
+	float2 Sample00TexelCorner = floor(ShadowPosition.xy * ShadowBufferSize.xy - float2(1, 1));
+	float2 Sample00TexelCenter = Sample00TexelCorner + float2(.5, .5);
+
+	float Sample00Value = CompareDepths(ShadowPosition.z, texDepth2Dlod(OpaqueShadowDepthTexture, float4(Sample00TexelCenter * ShadowTexelSize, 0, 0)).x);
+	
+	float Sample01Value = CompareDepths(ShadowPosition.z, texDepth2Dlod(OpaqueShadowDepthTexture, float4((Sample00TexelCenter + float2(0, 1)) * ShadowTexelSize, 0, 0)).x);
+	float Sample02Value = CompareDepths(ShadowPosition.z, texDepth2Dlod(OpaqueShadowDepthTexture, float4((Sample00TexelCenter + float2(0, 2)) * ShadowTexelSize, 0, 0)).x);
+	float Sample10Value = CompareDepths(ShadowPosition.z, texDepth2Dlod(OpaqueShadowDepthTexture, float4((Sample00TexelCenter + float2(1, 0)) * ShadowTexelSize, 0, 0)).x);
+	float Sample11Value = CompareDepths(ShadowPosition.z, texDepth2Dlod(OpaqueShadowDepthTexture, float4((Sample00TexelCenter + float2(1, 1)) * ShadowTexelSize, 0, 0)).x);
+	
+	float Sample12Value = CompareDepths(ShadowPosition.z, texDepth2Dlod(OpaqueShadowDepthTexture, float4((Sample00TexelCenter + float2(1, 2)) * ShadowTexelSize, 0, 0)).x);
+	float Sample20Value = CompareDepths(ShadowPosition.z, texDepth2Dlod(OpaqueShadowDepthTexture, float4((Sample00TexelCenter + float2(2, 0)) * ShadowTexelSize, 0, 0)).x);
+	float Sample21Value = CompareDepths(ShadowPosition.z, texDepth2Dlod(OpaqueShadowDepthTexture, float4((Sample00TexelCenter + float2(2, 1)) * ShadowTexelSize, 0, 0)).x);
+	float Sample22Value = CompareDepths(ShadowPosition.z, texDepth2Dlod(OpaqueShadowDepthTexture, float4((Sample00TexelCenter + float2(2, 2)) * ShadowTexelSize, 0, 0)).x);
+	
+	float2 HorizontalLerp00 = lerp(float2(Sample00Value, Sample01Value), float2(Sample10Value, Sample11Value), Fraction.xx);
+	float PCFResult00 = lerp(HorizontalLerp00.x, HorizontalLerp00.y, Fraction.y); 
+	float2 HorizontalLerp01 = lerp(float2(Sample01Value, Sample02Value), float2(Sample11Value, Sample12Value), Fraction.xx);
+	float PCFResult01 = lerp(HorizontalLerp01.x, HorizontalLerp01.y, Fraction.y); 
+	float2 HorizontalLerp10 = lerp(float2(Sample10Value, Sample11Value), float2(Sample20Value, Sample21Value), Fraction.xx);
+	float PCFResult10 = lerp(HorizontalLerp10.x, HorizontalLerp10.y, Fraction.y); 
+	float2 HorizontalLerp11 = lerp(float2(Sample11Value, Sample12Value), float2(Sample21Value, Sample22Value), Fraction.xx);
+	float PCFResult11 = lerp(HorizontalLerp11.x, HorizontalLerp11.y, Fraction.y); 
+	
+	return saturate((PCFResult00 + PCFResult01 + PCFResult10 + PCFResult11) * .25);
+}
+
+float3 OpaqueShadow(float4 ScreenPosition)
+{
+	float4 ShadowPosition = MulMatrix(OpaqueScreenToShadowMatrix, ScreenPosition);
+	ShadowPosition.xy /= ShadowPosition.w;
+	ShadowPosition.z = min(ShadowPosition.z,0.999);
+
+	float Shadow = OpaqueShadowFilter(ShadowPosition);
+
+	float3 ShadowedColor = Square(OpaqueShadowModulateColor.rgb);
+	float3 UnshadowedColor = float3(1,1,1);
+	return lerp(ShadowedColor,UnshadowedColor,Square(Shadow));
+}

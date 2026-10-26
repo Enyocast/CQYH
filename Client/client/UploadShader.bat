@@ -1,0 +1,1 @@
+xcopy .\UE3\MMOGame\Content\*ShaderCache*.* \\172.30.68.104\Tools\ShaderCache\	 /S /F /Y /R

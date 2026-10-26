@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pt_SystemInfo>
+<pt_hardware>
+  <CPU_INFO SubmitType="Yes">
+    <item Name="BitsPerPel" SubmitType="Yes"/>
+    <item Name="CPU_Architecture" SubmitType="Yes"/>
+    <item Name="CPU_Manufacturer" SubmitType="Yes"/>
+  </CPU_INFO>
+  <DISK_INFO SubmitType="Yes">
+    <item Name="Disk_Capacity" SubmitType="Yes"/>
+    <item Name="Disk_Caption" SubmitType="Yes"/>
+    <item Name="Disk_File_System" SubmitType="Yes"/>
+  </DISK_INFO>
+  <SOUND_DEVICE SubmitType="Yes">
+    <item Name="Sound_Card_Manufacturer" SubmitType="Yes"/>
+    <item Name="Sound_Card_Name" SubmitType="Yes"/>
+  </SOUND_DEVICE>
+  <Memory SubmitType="Yes">
+    <item Name="Memory_Capacity" SubmitType="Yes"/>
+    <item Name="Memory_Frequency" SubmitType="Yes"/>
+    <item Name="Memory_Type" SubmitType="Yes"/>
+  </Memory>
+  <Monitor SubmitType="Yes">
+    <item Name="Manufacturer" SubmitType="Yes"/>
+    <item Name="Max_Height" SubmitType="Yes"/>
+    <item Name="Max_Width" SubmitType="Yes"/>
+    <item Name="Width_Height" SubmitType="Yes"/>
+    <item Name="Cur_Resolution_Height" SubmitType="Yes"/>
+    <item Name="Cur_Resolution_Width" SubmitType="Yes"/>
+  </Monitor>
+  <Netword_Adapter SubmitType="Yes">
+    <item Name="Name" SubmitType="Yes"/>
+    <item Name="Speed" SubmitType="Yes"/>
+  </Netword_Adapter>
+  <Video_Card SubmitType="Yes">
+    <item Name="Driver_Version" SubmitType="Yes"/>
+    <item Name="Name" SubmitType="Yes"/>
+    <item Name="Memory_Capacity" SubmitType="Yes"/>
+  </Video_Card>
+</pt_hardware>
+<pt_os>
+  <WINDOWS_TYPE SubmitType="Yes">
+    <item Name="WIN_XP_SP2" Code ="512"/>
+    <item Name="WIN_XP_SP3" Code ="513"/>
+    <item Name="WIN_2003_SP0" Code ="520"/>
+    <item Name="WIN_2003_SP1" Code ="521"/>
+    <item Name="WIN_2003_SP2" Code ="522"/>
+    <item Name="WIN_VISTA_SP0" Code ="600"/>
+    <item Name="WIN_VISTA_SP1" Code ="601"/>
+    <item Name="WIN_VISTA_SP2" Code ="602"/>
+    <item Name="WIN_7_SP0" Code ="610"/>
+    <item Name="WIN_7_SP1" Code ="611"/>
+    <item Name="WIN_8_SP0" Code ="620"/>
+    <item Name="WIN_8_SP1" Code ="621"/>
+    <item Name="WIN_8.1_SP0" Code ="630"/>
+    <item Name="Other" Code="999"/>
+  </WINDOWS_TYPE>
+  <WINDOWS_VERSION SubmitType="Yes"/>
+  <WINDOWS_BITS SubmitType="Yes"/>
+  <MAC_ADDRESS SubmitType="Yes"/>
+  <IP SubmitType="Yes"/>
+</pt_os>
+<pt_software>
+  <Security_Software  Security_Version="Yes" SubmitType="Yes">
+    <item Name="NOD32" Regkey="ESET NOD32"/>
+    <item Name="avast!网络安全软件" Regkey="avast!"/>
+    <item Name="卡巴斯基" Regkey="卡巴斯基"/>
+    <item Name="诺顿安全套装" Regkey="Norton Internet Security"/>
+    <item Name="迈克菲防病毒+防火墙" Regkey="迈克菲"/>
+    <item Name="瑞星防火墙" Regkey="瑞星个人防火墙"/>
+    <item Name="瑞星杀软V16" Regkey="瑞星杀毒软件"/>
+    <item Name="瑞星安全助手" Regkey="瑞星安全助手"/>
+    <item Name="金山毒霸" Regkey="新毒霸"/>
+    <item Name="金山卫士" Regkey="金山卫士"/>
+    <item Name="360杀毒" Regkey="360杀毒"/>
+    <item Name="360安全卫士" Regkey="360安全卫士"/>
+    <item Name="小红伞网络安全软件" Regkey="Avira"/>
+    <item Name="QQ电脑管家" Regkey="电脑管家"/>
+  </Security_Software>
+  <Browser_Software>
+    <item Name="Internet Explorer6" Regkey=""/>
+    <item Name="Internet Explorer7" Regkey=""/>
+    <item Name="Internet Explorer8" Regkey="Windows Internet Explorer 8"/>
+    <item Name="Internet Explorer9" Regkey=""/>
+    <item Name="Internet Explorer10" Regkey=""/>
+    <item Name="Internet Explorer11" Regkey=""/>
+    <item Name="Chrome浏览器" Regkey="Google Chrome"/>
+    <item Name="Firefox浏览器" Regkey="Firefox "/>
+    <item Name="360安全浏览器" Regkey="360安全浏览器"/>
+    <item Name="搜狗高速浏览器" Regkey="搜狗高速浏览器"/>
+    <item Name="猎豹安全浏览器" Regkey="猎豹安全浏览器"/>
+    <item Name="傲游云浏览器" Regkey="傲游"/>
+    <item Name="QQ浏览器" Regkey="QQ浏览器"/>
+    <item Name="Safari浏览器" Regkey="Safari"/>
+    <item Name="360极速浏览器" Regkey="360极速"/>
+    <item Name="Opera浏览器" Regkey="Opera"/>
+    <item Name="世界之窗浏览器" Regkey="世界之窗"/>
+    <item Name="淘宝浏览器" Regkey="淘宝浏览器"/>
+    <item Name="百度浏览器" Regkey="百度浏览器"/>
+  </Browser_Software>
+  <Input_Method>
+    <item Name="谷歌拼音" Regkey="谷歌拼音"/>
+    <item Name="搜狗拼音" Regkey="搜狗拼音"/>
+    <item Name="BING拼音" Regkey="必应Bing输入法"/>
+    <item Name="搜狗五笔" Regkey="搜狗五笔"/>
+    <item Name="百度输入" Regkey="百度输入法"/>
+    <item Name="华宇拼音" Regkey="华宇拼音"/>
+    <item Name="QQ拼音" Regkey="QQ拼音"/>
+    <item Name="QQ五笔" Regkey="QQ五笔"/>
+    <item Name="光速输入" Regkey="光速输入法"/>
+    <item Name="微软拼音" Regkey="Microsoft Office IME"/>
+  </Input_Method>
+  <Chat_Tools>
+    <item Name="Skype" Regkey="Skype"/>
+    <item Name="阿里旺旺" Regkey="阿里旺旺"/>
+    <item Name="飞信" Regkey="飞信"/>
+    <item Name="腾讯QQ" Regkey="腾讯QQ"/>
+    <item Name="YY语音" Regkey="YY"/>
+    <item Name="MSN" Regkey="Windows Live Messenger"/>
+  </Chat_Tools>
+  <Media_Player>
+    <item Name="百度影音" Regkey="百度影音"/>
+    <item Name="Cbox" Regkey="CNTV-CBox"/>
+    <item Name="优酷客户端" Regkey="优酷客户端"/>
+    <item Name="腾讯视频" Regkey="腾讯视频"/>
+    <item Name="搜狐影音" Regkey="搜狐影音"/>
+    <item Name="迅雷看看" Regkey="迅雷看看"/>
+    <item Name="PPTV" Regkey="PPTV"/>
+    <item Name="PPS" Regkey="PPS影音"/>
+    <item Name="爱奇艺" Regkey="爱奇艺"/>
+    <item Name="快播" Regkey="快播"/>
+    <item Name="暴风影音" Regkey="暴风影音"/>
+    <item Name="风行" Regkey="风行"/>
+    <item Name="风行" Regkey="funshion"/>
+    <item Name="Adobe Flash Player" Regkey="Adobe Flash Player"/>
+  </Media_Player>
+  <Music_Tools>
+    <item Name="酷狗音乐" Regkey="酷狗音乐"/>
+    <item Name="酷我音乐" Regkey="酷我音乐"/>
+    <item Name="千千静听" Regkey="千千静听"/>
+    <item Name="百度音乐" Regkey="百度音乐"/>
+    <item Name="Foobar2000" Regkey="Foobar"/>
+    <item Name="QQ音乐" Regkey="QQ音乐"/>
+    <item Name="iTunes" Regkey="iTunes"/>
+  </Music_Tools>
+  <Download_Software>
+    <item Name="QQ旋风" Regkey="QQ旋风"/>
+    <item Name="uTorrent" Regkey="uTorrent"/>
+    <item Name="迅雷" Regkey="迅雷"/>
+    <item Name="电驴(easymule)" Regkey="easyMule"/>
+    <item Name="快车(FlashGet)" Regkey="快车"/>
+    <item Name="BitComet" Regkey="BitComet"/>
+  </Download_Software>
+  <Assisted_Tools>
+    <item Name="驱动人生" Regkey="驱动人生"/>
+    <item Name="驱动精灵" Regkey="驱动精灵"/>
+    <item Name="91助手" Regkey="91助手"/>
+    <item Name="腾讯手机管家" Regkey="腾讯手机助手"/>
+    <item Name="鲁大师" Regkey="鲁大师"/>
+    <item Name="豌豆荚" Regkey="豌豆荚"/>
+    <item Name="PP助手" Regkey="PP助手"/>
+    <item Name="iTools" Regkey="iTools"/>
+    <item Name="360手机助手" Regkey="360手机助手"/>
+    <item Name="盛大安卓助手" Regkey="盛大安卓游戏助手"/>
+    <item Name="MaxDOS 8" Regkey="MaxDOS"/>
+  </Assisted_Tools>
+  <Compression_Tools>
+    <item Name="WinZip" Regkey="WinZip"/>
+    <item Name="7-Zip" Regkey="7-Zip"/>
+    <item Name="Winrar" Regkey="Winrar"/>
+    <item Name="DAEMON Tools" Regkey="DAEMON"/>
+    <item Name="快压" Regkey="快压"/>
+  </Compression_Tools>
+  <Office_Software>
+    <item Name="Office" Regkey="Microsoft Office Professional"/>
+    <item Name="金山词霸" Regkey="金山词霸"/>
+    <item Name="Adobe AIR" Regkey="Adobe AIR"/>
+    <item Name="Adobe Reader" Regkey="Adobe Reader"/>
+    <item Name="有道词典" Regkey="有道词典"/>
+  </Office_Software>
+  <Other_Software>
+    <item Name="支付宝安全控件" Regkey="支付宝"/>
+    <item Name="网维大师" Regkey="网维大师"/>
+    <item Name="八爪鱼" Regkey="锐起八爪鱼"/>
+    <item Name="如意淘" Regkey="如意淘"/>
+    <item Name="Fraps" Regkey="Fraps"/>
+  </Other_Software>
+</pt_software>
+</pt_SystemInfo>

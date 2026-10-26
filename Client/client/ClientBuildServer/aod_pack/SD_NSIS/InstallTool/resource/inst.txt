@@ -1,0 +1,11 @@
+ [FILENAMES]
+ Exe=    Inst.exe
+ SaveAs= Inst_new.exe
+ Log=    Inst.log
+
+ [COMMANDS]
+ -addoverwrite     inst.ico, IconGroup,102,2052
+ -addoverwrite     inst.ttf, FONTRES,105,2052
+ -addoverwrite     skin.zip, ZIPRES,101,2052
+ -addoverwrite     Uninst.exe, EXERES,104,2052
+ -addoverwrite     GameInfoReference.xml, XMLRES,103,2052

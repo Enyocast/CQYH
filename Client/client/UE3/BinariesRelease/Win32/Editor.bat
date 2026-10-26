@@ -1,0 +1,1 @@
+start MMOGame.exe editor -NoGADWarning -log -ConsolePosX=0 -ConsolePosY=0 -FINAL_RELEASE

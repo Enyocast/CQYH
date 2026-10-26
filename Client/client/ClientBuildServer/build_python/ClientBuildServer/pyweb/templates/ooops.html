@@ -1,0 +1,14 @@
+$def with (del_file)
+<html>
+  <head>
+    <title>卡牌删除</title>
+  </head>
+  <body>
+    <h1>你是谁？</h1>
+    $if del_file:
+      <p>你删除了卡牌 <b>$del_file</b></p>
+    $else:
+      <p>卡牌删除失败</p>
+    <p><a href="/">返回</a></p>
+  </body>
+</html>

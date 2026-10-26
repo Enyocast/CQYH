@@ -1,0 +1,25 @@
+SCC = This is a source code control file
+
+[UnSetupNativeWrapper.vcxproj]
+SCC_Aux_Path = "P4SCC#172.30.66.40:1668##chenwang##chenwang_dev"
+SCC_Project_Name = Perforce Project
+
+[UnSetup.csproj]
+SCC_Aux_Path = "P4SCC#172.30.66.40:1668##chenwang##chenwang_dev"
+SCC_Project_Name = Perforce Project
+
+[UnSetupNativeRedistWrapper.vcxproj]
+SCC_Aux_Path = "P4SCC#172.30.66.40:1668##chenwang##chenwang_dev"
+SCC_Project_Name = Perforce Project
+
+[UnSetup.sln]
+SCC_Aux_Path = "P4SCC#172.30.10.122:1668##chenwang.oscarken##chenwang.oscarken_sh-chenwang01-d_1"
+SCC_Project_Name = Perforce Project
+
+[UnSetupNativeWrapper.vcproj]
+SCC_Aux_Path = "P4SCC#172.30.10.122:1668##chenwang.oscarken##chenwang.oscarken_sh-chenwang01-d_1"
+SCC_Project_Name = Perforce Project
+
+[UnSetupNativeRedistWrapper.vcproj]
+SCC_Aux_Path = "P4SCC#172.30.10.122:1668##chenwang.oscarken##chenwang.oscarken_sh-chenwang01-d_1"
+SCC_Project_Name = Perforce Project

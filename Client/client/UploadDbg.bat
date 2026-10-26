@@ -1,0 +1,1 @@
+xcopy .\UE3\Binaries\win32\MMOGame-Win32-Debug.* \\172.30.61.44\æ≈ÃÏ_qa∞Ê±æ\PDB\	 /S /F /Y /R

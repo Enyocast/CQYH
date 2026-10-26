@@ -1,0 +1,1 @@
+xcopy \\172.30.68.104\Prog_Dev\MMOGame.exe .\ /F /Y /R

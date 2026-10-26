@@ -1,0 +1,228 @@
+﻿//
+// 家族总揽
+//
+package ActionScript3.Guild
+{
+	import flash.display.DisplayObject;
+	import flash.external.ExternalInterface;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.events.KeyboardEvent;
+	import flash.display.MovieClip;
+	import flash.text.TextField;
+	import flash.text.TextFieldAutoSize;
+	import flash.utils.getDefinitionByName;
+
+	import scaleform.clik.core.UIComponent;
+	import scaleform.clik.constants.InvalidationType;
+	import scaleform.clik.controls.Button;
+	import scaleform.clik.controls.ScrollBar;
+	import scaleform.clik.controls.ScrollingList;
+	import scaleform.clik.controls.ListItemRenderer;
+	import scaleform.clik.events.ButtonEvent;
+	import scaleform.clik.events.ListEvent;
+	import scaleform.clik.data.DataProvider;
+	import scaleform.clik.data.TreeDataProvider;
+	import scaleform.clik.utils.Padding;
+	
+	import ActionScript3.MyPanel;
+	
+	public class GuildBuildingCreatePanel extends MyPanel
+	{
+		public var guild_building_icon_mc:MovieClip;
+		public var guild_building_level_tf:TextField;
+		public var guild_building_desc_tf:TextField;
+		public var guild_building_cur_count_tf:TextField;
+		public var guild_building_max_count_tf:TextField;
+		public var tf_name:TextField;
+		//public var guild_building_keepup_tf:TextField;
+		public var guild_money_mc:MovieClip;
+		public var guild_herb_mc:MovieClip;
+		public var guild_wood_mc:MovieClip;
+		public var guild_crystal_mc:MovieClip;
+		public var guild_silver_mc:MovieClip;
+		
+		public var guild_building_pre_building_mc:MovieClip;
+		public var guild_building_pre_building_level_tf:TextField;
+		
+		public var guild_building_list_mc:ScrollingList;
+		public var guild_building_create_bt_mc:MovieClip;
+		
+		public var guild_building_data:Object;
+		
+		override protected function configUI():void
+		{
+			this.ShowMode="BC";
+			super.configUI();
+			clear();
+			this.SetWindowTitle("建筑建造");
+			guild_building_list_mc.selectedIndex = 0;
+			guild_building_list_mc.addEventListener(ListEvent.INDEX_CHANGE, onListItemChange, false, 0, true);
+			guild_building_list_mc.addEventListener(ListEvent.ITEM_CLICK, onListItemClick, false, 0, true);
+			guild_building_create_bt_mc.addEventListener(MouseEvent.CLICK, onBtClickCreate);
+		}
+		
+		private function onBtClickCreate(evt:MouseEvent):void
+		{
+			if(guild_building_data)
+			{
+				ExternalInterface.call("ASCreateGuildBuilding", guild_building_data.guild_building_type);
+			    ExternalInterface.call("ASOnPanelClose" , this.PanelName);
+			}
+		}
+		
+		private function onListItemChange( event:ListEvent ):void
+		{
+			var list:ScrollingList = event.target as ScrollingList;
+			if (list != null)
+			{
+				list.invalidateData();
+			}
+		}
+		
+		private function onListItemClick(event:ListEvent):void
+		{
+			var list:ScrollingList = event.target as ScrollingList;
+			if (list != null)
+			{
+				var provider:TreeDataProvider = list.dataProvider as TreeDataProvider;
+				if (provider!=null)
+				{
+					provider.handleListItemClick(event);
+					guild_building_data = provider.requestItemAt(event.index);
+					ExternalInterface.call( "ASUpdateGuildBuildingCreateData", guild_building_data.guild_building_type);
+				}
+			}
+		}
+		
+		public function UCUpdateGuildBuildingList(data:Array):void
+		{
+			guild_building_list_mc.dataProvider = new TreeDataProvider(data);
+			guild_building_list_mc.validateNow();
+			guild_building_list_mc.invalidateData();
+			if(data && data.length>0)
+			{
+				guild_building_list_mc.selectedIndex=0;
+				guild_building_data = data[0];
+			    ExternalInterface.call( "ASUpdateGuildBuildingCreateData", guild_building_data.guild_building_type);
+			}
+		}
+		
+		public function UCUpdateGuildBuildingData(data:Object):void
+		{
+			if (data != null)
+			{
+				clear();
+				var guild_res_name_tf:TextField = guild_money_mc.getChildByName("guild_res_name_tf") as TextField;
+			    var guild_res_num_tf:TextField = guild_money_mc.getChildByName("guild_res_num_tf") as TextField;
+			    var guild_res_icon_mc:MovieClip = guild_money_mc.getChildByName("guild_res_icon_mc") as MovieClip;
+				guild_building_icon_mc.source = data.guild_building_icon;
+				tf_name.text=data.guild_building_name;
+				//guild_building_level_tf.text = String(data.guild_building_level);
+				guild_building_desc_tf.text = String(data.guild_building_desc);
+				guild_building_cur_count_tf.text = String(data.guild_building_cur_count);
+				guild_building_max_count_tf.text = String(data.guild_building_max_count);
+				//guild_building_keepup_tf.text = String(data.guild_building_keepup);
+				
+				var colorText:String;
+				guild_res_name_tf = guild_money_mc.getChildByName("guild_res_name_tf") as TextField;
+				guild_res_num_tf = guild_money_mc.getChildByName("guild_res_num_tf") as TextField;
+				guild_res_icon_mc = guild_money_mc.getChildByName("guild_res_icon_mc") as MovieClip;
+				guild_res_name_tf.text = data.guild_money_name;
+				guild_res_icon_mc.source = data.guild_money_icon;
+				colorText = data.guild_building_money_req > data.guild_money ? "<font color='#FF0000'>" : "<font color='#FFFFFF'>";
+				guild_res_num_tf.htmlText = colorText + String(data.guild_building_money_req) + "</font>";
+				
+				guild_res_name_tf = guild_herb_mc.getChildByName("guild_res_name_tf") as TextField;
+				guild_res_num_tf = guild_herb_mc.getChildByName("guild_res_num_tf") as TextField;
+				guild_res_icon_mc = guild_herb_mc.getChildByName("guild_res_icon_mc") as MovieClip;
+				guild_res_name_tf.text = data.guild_herb_name;
+				guild_res_icon_mc.source = data.guild_herb_icon;
+				colorText = data.guild_building_herb_req > data.guild_herb ? "<font color='#FF0000'>" : "<font color='#FFFFFF'>";
+				guild_res_num_tf.htmlText = colorText + String(data.guild_building_herb_req) + "</font>";
+				
+				guild_res_name_tf = guild_wood_mc.getChildByName("guild_res_name_tf") as TextField;
+				guild_res_num_tf = guild_wood_mc.getChildByName("guild_res_num_tf") as TextField;
+				guild_res_icon_mc = guild_wood_mc.getChildByName("guild_res_icon_mc") as MovieClip;
+				guild_res_name_tf.text = data.guild_wood_name;
+				guild_res_icon_mc.source = data.guild_wood_icon;
+				colorText = data.guild_building_wood_req > data.guild_wood ? "<font color='#FF0000'>" : "<font color='#FFFFFF'>";
+				guild_res_num_tf.htmlText = colorText + String(data.guild_building_wood_req) + "</font>";
+				
+				guild_res_name_tf = guild_crystal_mc.getChildByName("guild_res_name_tf") as TextField;
+				guild_res_num_tf = guild_crystal_mc.getChildByName("guild_res_num_tf") as TextField;
+				guild_res_icon_mc = guild_crystal_mc.getChildByName("guild_res_icon_mc") as MovieClip;
+				guild_res_name_tf.text = data.guild_crystal_name;
+				guild_res_icon_mc.source = data.guild_crystal_icon;
+				colorText = data.guild_building_crystal_req > data.guild_crystal ? "<font color='#FF0000'>" : "<font color='#FFFFFF'>";
+				guild_res_num_tf.htmlText = colorText + String(data.guild_building_crystal_req) + "</font>";
+				
+				guild_res_name_tf = guild_silver_mc.getChildByName("guild_res_name_tf") as TextField;
+				guild_res_num_tf = guild_silver_mc.getChildByName("guild_res_num_tf") as TextField;
+				guild_res_icon_mc = guild_silver_mc.getChildByName("guild_res_icon_mc") as MovieClip;
+				guild_res_name_tf.text = data.guild_silver_name;
+				guild_res_icon_mc.source = data.guild_silver_icon;
+				colorText = data.guild_building_silver_req > data.guild_silver ? "<font color='#FF0000'>" : "<font color='#FFFFFF'>";
+				guild_res_num_tf.htmlText = colorText + String(data.guild_building_silver_req) + "</font>";
+				
+				guild_building_pre_building_mc.source = null;
+				guild_building_pre_building_level_tf.htmlText = "";
+				var building_req:int = data.guild_building_pre_building_level_req;
+				if (building_req > 0)
+				{
+					guild_building_pre_building_mc.source = String(data.guild_building_pre_building_icon);
+					colorText = data.guild_building_pre_building_level_req > data.guild_building_pre_building_level ? "<font color='#FF0000'>" : "<font color='#FFFFFF'>";
+					guild_building_pre_building_level_tf.htmlText = data.guild_building_pre_building + ":"  + colorText + String(data.guild_building_pre_building_level_req) + "级" + "</font>";
+				}
+			}
+		}
+		
+		private function clear():void
+		{
+			guild_building_icon_mc.source = null;
+			guild_building_level_tf.text = "";
+			guild_building_desc_tf.text = "";
+			guild_building_cur_count_tf.text = "0";
+			guild_building_max_count_tf.text = "0";
+			//guild_building_keepup_tf.text = "0";
+			tf_name.text="";
+			guild_building_pre_building_mc.source = null;
+			guild_building_pre_building_level_tf.htmlText = "";
+			
+			var guild_res_name_tf:TextField = guild_money_mc.getChildByName("guild_res_name_tf") as TextField;
+			var guild_res_num_tf:TextField = guild_money_mc.getChildByName("guild_res_num_tf") as TextField;
+			var guild_res_icon_mc:MovieClip = guild_money_mc.getChildByName("guild_res_icon_mc") as MovieClip;
+			guild_res_name_tf.text = "";
+			guild_res_icon_mc.source = null;
+			guild_res_num_tf.htmlText = "";
+			
+			guild_res_name_tf = guild_herb_mc.getChildByName("guild_res_name_tf") as TextField;
+			guild_res_num_tf = guild_herb_mc.getChildByName("guild_res_num_tf") as TextField;
+			guild_res_icon_mc = guild_herb_mc.getChildByName("guild_res_icon_mc") as MovieClip;
+			guild_res_name_tf.text = "";
+			guild_res_icon_mc.source = null;
+			guild_res_num_tf.htmlText = "";
+			
+			guild_res_name_tf = guild_wood_mc.getChildByName("guild_res_name_tf") as TextField;
+			guild_res_num_tf = guild_wood_mc.getChildByName("guild_res_num_tf") as TextField;
+			guild_res_icon_mc = guild_wood_mc.getChildByName("guild_res_icon_mc") as MovieClip;
+			guild_res_name_tf.text = "";
+			guild_res_icon_mc.source = null;
+			guild_res_num_tf.htmlText = "";
+			
+			guild_res_name_tf = guild_crystal_mc.getChildByName("guild_res_name_tf") as TextField;
+			guild_res_num_tf = guild_crystal_mc.getChildByName("guild_res_num_tf") as TextField;
+			guild_res_icon_mc = guild_crystal_mc.getChildByName("guild_res_icon_mc") as MovieClip;
+			guild_res_name_tf.text = "";
+			guild_res_icon_mc.source = null;
+			guild_res_num_tf.htmlText = "";
+			
+			guild_res_name_tf = guild_silver_mc.getChildByName("guild_res_name_tf") as TextField;
+			guild_res_num_tf = guild_silver_mc.getChildByName("guild_res_num_tf") as TextField;
+			guild_res_icon_mc = guild_silver_mc.getChildByName("guild_res_icon_mc") as MovieClip;
+			guild_res_name_tf.text = "";
+			guild_res_icon_mc.source = null;
+			guild_res_num_tf.htmlText = "";
+		}
+	}
+}

@@ -1,0 +1,24 @@
+$def with (cards)
+<html>
+  <head>
+    <title>卡牌管理</title>
+  </head>
+  <body>
+    <h1>上传卡牌</h1>
+    <form id="upload" method="post" enctype="multipart/form-data" action="/">
+      <input name="img_file" type="file" size="200">
+      <input type="submit" value="上传" />
+    </form>
+    <h1>卡牌列表</h1>
+    <table width="100%">
+      $for line in cards:
+      <tr width="80%">
+	$for c in line:
+	<td>
+	  <img src='./static/$(c)' width="200px" />
+	  <p>$(c)</p><a href="/del?cid=$(c)">删除</a>
+	</td>
+      </tr>
+    </table>
+  </body>
+</html>

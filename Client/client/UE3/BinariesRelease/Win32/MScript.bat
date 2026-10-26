@@ -1,0 +1,1 @@
+MMOGame.exe make -auto -NOPAUSEONSUCCESS -full -DEMOMODE

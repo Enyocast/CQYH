@@ -1,0 +1,426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug (Unreal)|Win32">
+      <Configuration>Debug (Unreal)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug (Unreal)|x64">
+      <Configuration>Debug (Unreal)</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release (Unreal)|Win32">
+      <Configuration>Release (Unreal)</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release (Unreal)|x64">
+      <Configuration>Release (Unreal)</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>FxSDK</ProjectName>
+    <ProjectGuid>{932FCB01-FA64-43E6-967A-B0EFB0AE62BD}</ProjectGuid>
+    <RootNamespace>FxSDK</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (Unreal)|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (Unreal)|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (Unreal)|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug (Unreal)|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release (Unreal)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug (Unreal)|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release (Unreal)|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug (Unreal)|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">./lib/$(Platform)/vs10\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\intermediate\$(Platform)\vs10\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">./lib/$(Platform)/vs10\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\intermediate\$(Platform)\vs10\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">./lib/$(Platform)/vs10\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\intermediate\$(Platform)\vs10\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">./lib/$(Platform)/vs10\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\intermediate\$(Platform)\vs10\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (Unreal)|Win32'">./lib/$(Platform)/vs10\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (Unreal)|Win32'">.\intermediate\$(Platform)\vs10\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug (Unreal)|x64'">./lib/$(Platform)/vs10\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug (Unreal)|x64'">.\intermediate\$(Platform)\vs10\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (Unreal)|Win32'">./lib/$(Platform)/vs10\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (Unreal)|Win32'">.\intermediate\$(Platform)\vs10\$(Configuration)\</IntDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release (Unreal)|x64'">./lib/$(Platform)/vs10\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release (Unreal)|x64'">.\intermediate\$(Platform)\vs10\$(Configuration)\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (Unreal)|Win32'">$(ProjectName)d_Unreal</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (Unreal)|Win32'">$(ProjectName)_Unreal</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release (Unreal)|x64'">$(ProjectName)_Unreal</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug (Unreal)|x64'">$(ProjectName)d_Unreal</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>./Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProgramDataBaseFileName>$(TargetDir)\$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)FxSDK.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalIncludeDirectories>./Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProgramDataBaseFileName>$(TargetDir)\$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)FxSDK.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProgramDataBaseFileName>$(TargetDir)\$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)FxSDKd.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./Inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProgramDataBaseFileName>$(TargetDir)\$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)FxSDKd.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (Unreal)|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./Inc;../../../Src/Engine/FaceFX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;__UNREAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <StructMemberAlignment>4Bytes</StructMemberAlignment>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProgramDataBaseFileName>$(TargetDir)\$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)FxSDKd_Unreal.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug (Unreal)|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>./Inc;../../../Src/Engine/FaceFX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;__UNREAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <StructMemberAlignment>4Bytes</StructMemberAlignment>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProgramDataBaseFileName>$(TargetDir)\$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)FxSDKd_Unreal.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (Unreal)|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>./Inc;../../../Src/Engine/FaceFX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;__UNREAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <StructMemberAlignment>4Bytes</StructMemberAlignment>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProgramDataBaseFileName>$(TargetDir)\$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)FxSDK_Unreal.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release (Unreal)|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <AdditionalIncludeDirectories>./Inc;../../../Src/Engine/FaceFX;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;__UNREAL__;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <StructMemberAlignment>4Bytes</StructMemberAlignment>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <ProgramDataBaseFileName>$(TargetDir)\$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeaderFile>
+      </PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>
+      </PrecompiledHeaderOutputFile>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)FxSDK_Unreal.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Inc\FxActor.h" />
+    <ClInclude Include="Inc\FxActorInstance.h" />
+    <ClInclude Include="Inc\FxAnim.h" />
+    <ClInclude Include="Inc\FxAnimCurve.h" />
+    <ClInclude Include="Inc\FxAnimSet.h" />
+    <ClInclude Include="Inc\FxArchive.h" />
+    <ClInclude Include="Inc\FxArchiveStore.h" />
+    <ClInclude Include="Inc\FxArchiveStoreFile.h" />
+    <ClInclude Include="Inc\FxArchiveStoreFileFast.h" />
+    <ClInclude Include="Inc\FxArchiveStoreMemory.h" />
+    <ClInclude Include="Inc\FxArchiveStoreMemoryNoCopy.h" />
+    <ClInclude Include="Inc\FxArchiveStoreNull.h" />
+    <ClInclude Include="Inc\FxArray.h" />
+    <ClInclude Include="Inc\FxArrayBase.h" />
+    <ClInclude Include="Inc\FxArrayImpl.h" />
+    <ClInclude Include="Inc\FxBone.h" />
+    <ClInclude Include="Inc\FxBonePoseNode.h" />
+    <ClInclude Include="Inc\FxCharTraits.h" />
+    <ClInclude Include="Inc\FxClass.h" />
+    <ClInclude Include="Inc\FxCombinerNode.h" />
+    <ClInclude Include="Inc\FxCompiledFaceGraph.h" />
+    <ClInclude Include="Inc\FxCurrentTimeNode.h" />
+    <ClInclude Include="Inc\FxDeltaNode.h" />
+    <ClInclude Include="Inc\FxDoxygen.h" />
+    <ClInclude Include="Inc\FxFaceGraph.h" />
+    <ClInclude Include="Inc\FxFaceGraphBaker.h" />
+    <ClInclude Include="Inc\FxFaceGraphNode.h" />
+    <ClInclude Include="Inc\FxFaceGraphNodeLink.h" />
+    <ClInclude Include="Inc\FxFaceGraphShared.h" />
+    <ClInclude Include="Inc\FxFile.h" />
+    <ClInclude Include="Inc\FxGenericTargetNode.h" />
+    <ClInclude Include="Inc\FxKey.h" />
+    <ClInclude Include="Inc\FxLazyLoader.h" />
+    <ClInclude Include="Inc\FxLinkFn.h" />
+    <ClInclude Include="Inc\FxList.h" />
+    <ClInclude Include="Inc\FxListImpl.h" />
+    <ClInclude Include="Inc\FxMasterBoneList.h" />
+    <ClInclude Include="Inc\FxMath.h" />
+    <ClInclude Include="Inc\FxMathANSI.h" />
+    <ClInclude Include="Inc\FxMemory.h" />
+    <ClInclude Include="Inc\FxMorphTargetNode.h" />
+    <ClInclude Include="Inc\FxName.h" />
+    <ClInclude Include="Inc\FxNamedObject.h" />
+    <ClInclude Include="Inc\FxObject.h" />
+    <ClInclude Include="Inc\FxPhonemeEnum.h" />
+    <ClInclude Include="Inc\FxPhonemeMap.h" />
+    <ClInclude Include="Inc\FxPlatform.h" />
+    <ClInclude Include="Inc\FxPlatformANSI.h" />
+    <ClInclude Include="Inc\FxPlatformGCC.h" />
+    <ClInclude Include="Inc\FxPlatformWin32.h" />
+    <ClInclude Include="Inc\FxPlatformXBox.h" />
+    <ClInclude Include="Inc\FxQuat.h" />
+    <ClInclude Include="Inc\FxRandomGenerator.h" />
+    <ClInclude Include="Inc\FxRefObject.h" />
+    <ClInclude Include="Inc\FxRefString.h" />
+    <ClInclude Include="Inc\FxSDK.h" />
+    <ClInclude Include="Inc\FxString.h" />
+    <ClInclude Include="Inc\FxStringHash.h" />
+    <ClInclude Include="Inc\FxStringHashImpl.h" />
+    <ClInclude Include="Inc\FxStringImpl.h" />
+    <ClInclude Include="Inc\FxTypesANSI.h" />
+    <ClInclude Include="Inc\FxTypeTraits.h" />
+    <ClInclude Include="Inc\FxUnrealSupport.h" />
+    <ClInclude Include="Inc\FxUtil.h" />
+    <ClInclude Include="Inc\FxVec2.h" />
+    <ClInclude Include="Inc\FxVec3.h" />
+    <ClInclude Include="Inc\FxVersionInfo.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\FxActor.cpp" />
+    <ClCompile Include="Src\FxActorInstance.cpp" />
+    <ClCompile Include="Src\FxAnim.cpp" />
+    <ClCompile Include="Src\FxAnimCurve.cpp" />
+    <ClCompile Include="Src\FxAnimSet.cpp" />
+    <ClCompile Include="Src\FxArchive.cpp" />
+    <ClCompile Include="Src\FxArchiveStoreFile.cpp" />
+    <ClCompile Include="Src\FxArchiveStoreFileFast.cpp" />
+    <ClCompile Include="Src\FxArchiveStoreMemory.cpp" />
+    <ClCompile Include="Src\FxArchiveStoreMemoryNoCopy.cpp" />
+    <ClCompile Include="Src\FxArchiveStoreNull.cpp" />
+    <ClCompile Include="Src\FxBone.cpp" />
+    <ClCompile Include="Src\FxBonePoseNode.cpp" />
+    <ClCompile Include="Src\FxClass.cpp" />
+    <ClCompile Include="Src\FxCombinerNode.cpp" />
+    <ClCompile Include="Src\FxCompiledFaceGraph.cpp" />
+    <ClCompile Include="Src\FxCurrentTimeNode.cpp" />
+    <ClCompile Include="Src\FxDeltaNode.cpp" />
+    <ClCompile Include="Src\FxFaceGraph.cpp" />
+    <ClCompile Include="Src\FxFaceGraphBaker.cpp" />
+    <ClCompile Include="Src\FxFaceGraphNode.cpp" />
+    <ClCompile Include="Src\FxFaceGraphNodeLink.cpp" />
+    <ClCompile Include="Src\FxFaceGraphShared.cpp" />
+    <ClCompile Include="Src\FxFile.cpp" />
+    <ClCompile Include="Src\FxGenericTargetNode.cpp" />
+    <ClCompile Include="Src\FxKey.cpp" />
+    <ClCompile Include="Src\FxLinkFn.cpp" />
+    <ClCompile Include="Src\FxMasterBoneList.cpp" />
+    <ClCompile Include="Src\FxMemory.cpp" />
+    <ClCompile Include="Src\FxMorphTargetNode.cpp" />
+    <ClCompile Include="Src\FxName.cpp" />
+    <ClCompile Include="Src\FxNamedObject.cpp" />
+    <ClCompile Include="Src\FxObject.cpp" />
+    <ClCompile Include="Src\FxPhonemeEnum.cpp" />
+    <ClCompile Include="Src\FxPhonemeMap.cpp" />
+    <ClCompile Include="Src\FxQuat.cpp" />
+    <ClCompile Include="Src\FxRandomGenerator.cpp" />
+    <ClCompile Include="Src\FxRefObject.cpp" />
+    <ClCompile Include="Src\FxRefString.cpp" />
+    <ClCompile Include="Src\FxSDK.cpp" />
+    <ClCompile Include="Src\FxUnrealSupport.cpp" />
+    <ClCompile Include="Src\FxVec2.cpp" />
+    <ClCompile Include="Src\FxVec3.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

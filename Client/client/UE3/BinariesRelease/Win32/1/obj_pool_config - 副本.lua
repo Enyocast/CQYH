@@ -1,0 +1,30 @@
+ObjPoolConfig = {
+	nSceneCount = 4,
+	nRegionCount = 512,
+
+	nRoleCount = 8,
+	nNpcCount = 128,
+	nDoodadCount = 128,
+	nVolumeCount = 128,
+	nDropCount = 128,
+	nMissileCount = 1024,
+	nTeamCount = 128,
+	nArenaTeamCount = 128,
+	nItemCount = 1024,
+	nSignalCount = 1024,
+
+	nSpellInstanceCount = 1024,
+	nSpellSetCount = 1024,
+	nAuraInstanceCount = 1024,
+	nBulletCount = 1024,
+	nRuneCount = 1024,
+	nExtraModifierNodeCount = 65536,
+	nThreadNodeCount = 1024,
+	nBTCtxCount = 1024,
+	nBTNodeCount = 1024,
+	nAITemplateCount = 1024,
+	nBlockCount = 1024,
+	nMasterTeacherPoolCount = 128,
+	nMasterStudentPoolCount = 128,
+
+};

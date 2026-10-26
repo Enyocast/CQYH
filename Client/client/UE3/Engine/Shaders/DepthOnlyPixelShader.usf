@@ -1,0 +1,62 @@
+/*=============================================================================
+	DepthOnlyPixelShader.hlsl: Depth-only pixel shader.
+	Copyright 1998-2013 Epic Games, Inc. All Rights Reserved.
+=============================================================================*/
+
+#include "Common.usf"
+#include "Material.usf"
+#include "VertexFactory.usf"
+
+void Main(
+#if !MATERIALBLENDING_SOLID
+	FVertexFactoryInterpolantsVSToPS FactoryInterpolants,
+	float4 CameraVectorOrVertexColor : TEXCOORD4,
+	// [ming@snda
+	float4 PixelPosition : TEXCOORD5,
+	OPTIONAL_PixelShaderScreenPosition
+	OPTIONAL_FacingSign
+#else
+	#if DRAW_DEPTH_IN_PREPASS
+		float4 PixelPosition : TEXCOORD5,
+	#endif
+	#if MATERIAL_USE_SCREEN_DOOR_FADE
+		OPTIONAL_PixelShaderScreenPosition
+	#endif
+	// ming@snda]
+#endif
+	OPTIONAL_PixelShaderCoverageInputOutput
+
+	out float4 OutColor : COLOR0
+	)
+{
+#if !MATERIALBLENDING_SOLID
+
+	FMaterialPixelParameters MaterialParameters = GetMaterialPixelParameters(FactoryInterpolants);
+	CalcMaterialParameters(MaterialParameters, FacingSign, CameraVectorOrVertexColor, PixelPosition);
+
+	#if MATERIAL_LIT_TRANSLUCENCY_PREPASS
+		GetMaterialClippingLitTranslucencyDepthOnly(MaterialParameters);
+	#else
+		GetMaterialCoverageAndClipping(MaterialParameters,PixelShaderScreenPosition.xy,InCoverage,OutCoverage);
+	#endif
+
+#elif MATERIAL_USE_SCREEN_DOOR_FADE
+	// Apply screen door fade clip mask
+	ApplyScreenDoorFadeMask( PixelShaderScreenPosition.xy );
+#endif
+
+	// [ming@snda
+#if DRAW_DEPTH_IN_PREPASS
+	// todo: change to a smaller format
+	#if PREPASS_SCENE_ALPHA_DEPTH
+		// A16R16G16B16F
+		OutColor = RETURN_COLOR(float4(0,0,1,EncodeFloatW(PixelPosition.w)));
+	#else	
+		// R16F
+		OutColor = RETURN_COLOR(EncodeFloatW(PixelPosition.w));
+	#endif
+#else
+	OutColor = 0;
+#endif
+	// ming@snda]
+}

@@ -1,0 +1,604 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script language="javascript" type="text/javascript" src="src/inc/json.js"></script>
+<script language="javascript" type="text/javascript" src="src/inc/function.common.js"></script>
+
+<script language="javascript" type="text/javascript" src="src/sdgff/SDGFF.js"></script>
+<script language="javascript" type="text/javascript" src="src/nsis/C_NSISBrowser.js"></script>
+<script language="javascript" type="text/javascript" src="src/nsis/C_NSISTemplate.js"></script>
+<script language="javascript" type="text/javascript" src="src/nsis/C_NSISLicenseTemplate.js"></script>
+<script language="javascript" type="text/javascript" src="src/nsis/C_NSISConfigObject.js"></script>
+<script language="javascript" type="text/javascript" src="src/nsis/C_NSISViewer.js"></script>
+<script language="javascript" type="text/javascript" src="src/common.js"></script>
+
+
+<script language="javascript" type="text/javascript">
+NSISBrowser.setWindowSize(680,462);
+NSISBrowser.dragEnable();
+//构造函数
+window.onload = function(){
+	NSISViewer.init();
+};
+</script>
+<link href="style/css.css" type="text/css" rel="stylesheet" rev="stylesheet" />
+
+
+
+<script type="text/javascript" src="highslide/highslide-with-html.js"></script>
+<link rel="stylesheet" type="text/css" href="highslide/highslide.css" />
+
+<script type="text/javascript">
+    hs.graphicsDir = 'highslide/graphics/';
+    hs.outlineType = 'rounded-white';
+</script>
+</head>
+
+<body scroll="no" oncontextmenu="return false;">
+
+
+<div id="main">
+	<!--网页标题栏-->
+	<div id="title"><img src="images/title.jpg" /></div>
+	<div id="txtTitle">NSIS模板生成器</div>
+
+	<div id="btnMinimize" onclick="NSISBrowser.setWindowState(6);"></div>
+	<div id="btnClose" onclick="NSISViewer.exit();"></div>
+
+	<div id="menu">
+		<ul>
+			<li id="menu1" onclick="NSISViewer.stepControl.goto(0);">基本设置</li>
+			<li id="menu2" onclick="NSISViewer.stepControl.goto(1);">自定义界面</li>
+			<li id="menu3" onclick="NSISViewer.stepControl.goto(2);">功能选项</li>
+			<li id="menu4" onclick="NSISViewer.stepControl.goto(3);">杂项添加</li>
+			<li id="menu5" onclick="NSISViewer.stepControl.goto(4);">版权设置</li>
+			<li onclick="NSISViewer.submit();">生成模板</li>
+			<li onclick="NSISViewer.save();" style="background-image:url(images/save.gif); padding-left:10px; margin-top:1px;">保存设置</span>
+		</ul>
+	</div>
+	<div class="clear"></div>
+	<!--网页状态栏-->
+	<div id="status"></div>
+	<!--页面控制栏-->
+	<div id="controller">
+		<span id="btnPrevious" class="button" onclick="NSISViewer.stepControl.gotoPrevious();" ><img src="images/btnPrevious.jpg" onmousemove="this.src='images/btnPreviousOver.jpg';" onmouseout="this.src='images/btnPrevious.jpg';" /></span>
+		<span id="btnNext" class="button" onclick="NSISViewer.stepControl.gotoNext();" ><img src="images/btnNext.jpg" onmousemove="this.src='images/btnNextOver.jpg';" onmouseout="this.src='images/btnNext.jpg';" /></span>
+		<span id="btnFinish" class="button" onclick="NSISViewer.stepControl.gotoNext();" ><img src="images/btnFinish.jpg" onmousemove="this.src='images/btnFinishOver.jpg';" onmouseout="this.src='images/btnFinish.jpg';" /></span>
+		<span id="btnExit" class="button" onclick="NSISViewer.exit();" ><img src="images/btnExit.jpg" onmousemove="this.src='images/btnExitOver.jpg';" onmouseout="this.src='images/btnExit.jpg';" /></span>
+	</div>
+	<!--版本号-->
+	<div id="softVersion">版本号：1.0.4</div>
+	<!--网页主题内容-->
+	<div id="content">
+		<form id="nsisform" onsubmit="NSISViewer.submit( this );return false;">
+
+			<div id="tab1" class="tab">
+				<fieldset style="left:5px; top:5px;">
+					<legend>&nbsp;必填区&nbsp;</legend>
+					<div class="fieldArea">
+						<table width="100%" cellpadding="0" cellspacing="0" >
+						<tr>
+							<td valign="top" width="50%">
+								<table width="100%" cellpadding="0" cellspacing="0">
+								<tr>
+									<td>
+										<label for="nameCn">游戏中文名：&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<input name="nameCn" id="nameCn"  type="text" onblur="NSISViewer.refreshLicense();" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="gameId">游戏ID编号：&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<input name="gameId" id="gameId" type="text" maxlength="20" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="productMP">倍率：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<select name="productMP" id="productMP" style="z-index:0;">
+										<option value="1" selected="selected">1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+										<option value="3">4</option>
+										<option value="3">5</option>
+										</select>  &nbsp;<a onclick="return hs.htmlExpand(this, { contentId: 'help_mp' } );"  style="cursor:pointer;">什么是倍率?</a>					
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="version">客户端版本号：</label>
+										<input name="version" id="version" type="text" style="width:50px;" /> (格式：X.X.X.X)
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="programName">客户端启动程序名：&nbsp;&nbsp;</label>
+										<input name="programName" id="programName" type="text" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="programGameName">客户端主程序名：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<input name="programGameName" id="programGameName" type="text" />
+									</td>
+								</tr>
+								</table>
+
+							
+							</td>
+							<td valign="top" width="50%">
+								<table width="100%" cellpadding="0" cellspacing="0">
+								<tr>
+									<td>
+										<label for="nameEnglish">游戏英文名：</label>
+										<input id="nameEnglish" name="nameEnglish" type="text" onblur="NSISViewer.refreshLicense();" />
+								
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="nameEn">注册表项：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<input id="nameEn" name="nameEn" type="text" size="10" />&nbsp;<a onclick="return hs.htmlExpand(this, { contentId: 'help_regedit' } );"  style="cursor:pointer;">&nbsp;什么是注册表项</a>	
+								
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="website">游戏主页：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+										<input name="website" type="text" id="website" value="http://" onblur="NSISViewer.refreshLicense();" />					
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<label for="versionEx">对外版本号：</label>
+										<input name="versionEx" id="versionEx" type="text" size='8' />&nbsp;<label for="versionExText">版</label>&nbsp;&nbsp;&nbsp;<a onclick="return hs.htmlExpand(this, { contentId: 'help_outversion' } );"  style="cursor:pointer;">&nbsp;什么是对外版本号</a>
+									</td>
+								</tr>
+			
+								<tr>
+									<td>
+										<label for="AppChanel">渠道来源：&nbsp;</label>
+										<select name="AppChanel" id="AppChanel" style="z-index:0;">
+											<option value="01" selected="selected">01</option>
+											<option value="02">02</option>
+											<option value="03">03</option>
+											<option value="04">04</option>
+											<option value="05">05</option>
+											<option value="06">06</option>
+											<option value="07">07</option>
+											<option value="08">08</option>
+											<option value="09">09</option>
+										</select>&nbsp;<a onclick="return hs.htmlExpand(this, { contentId: 'help_AppChanel' } );"  style="cursor:pointer;">什么是渠道来源？</a>	
+										
+									</td>
+								</tr>
+								</table>
+
+							
+							</td>
+						</tr>
+						</table>
+					</div>
+				</fieldset>
+			</div>
+
+			<div id="tab2" class="tab">
+			
+				<fieldset style="width:261px; height:93px; top:5px; left:5px;">
+					<legend>&nbsp;选择皮肤&nbsp;</legend>
+					<div class="fieldArea">
+						<span style="width:148px;">选择皮肤包:</span>
+						<span style="width:78px; padding-left:40px;"><a onclick="return hs.htmlExpand(this, { contentId: 'help_whatisskin' } );" style="cursor:pointer;">什么是皮肤包?</a></span>
+						<br /><br />
+						<input type="text" name="skinPath" id="skinPath"  style="width:100px; height:12px;" />
+						<img src="images/view.gif" onclick="NSISViewer.selectSkinPackage();" style="vertical-align:bottom; cursor:pointer;" />
+					</div>                 
+				</fieldset>
+	
+	
+				<fieldset style="width:261px; height:170px; top:110px; left:5px;" >
+					<legend>&nbsp;欢迎界面预览&nbsp;</legend>
+					<div style=" position:absolute; width:240px; height:130px; left:10px; top:25px;">
+						<img id="skinSplash" src="bin/Resources/splash.bmp" width="240" height="130" onclick="NSISViewer.selectSkin( 'splash' , this );"  title="点击更换该图片" style="cursor:pointer;" onmousemove="NSISViewer.showBorder(this);" onmouseout="NSISViewer.hideBorder(this);" />
+					</div>                 
+				</fieldset>
+	
+				<fieldset style="width:352px; height:276px; top:5px; left:280px;">
+					<legend>&nbsp;主界面预览&nbsp;</legend>
+					<div style=" position:absolute; width:352px; height:276px; left:10px; top:20px;">
+						<div style=" position:absolute; top:0px; left:0px; width:334px; height:25px; margin:0px;"><img id="skinHeader" width="334" height="25" onclick="NSISViewer.selectSkin( 'header' , this );"title="点击更换该图片"  style="cursor:pointer;" onmousemove="NSISViewer.showBorder(this);" onmouseout="NSISViewer.hideBorder(this);" /></div>
+						<div style=" position:absolute; top:25px; left:0px; width:111px; height:171px; margin:0px;"><img id="skinLeft" width="111" height="171" onclick="NSISViewer.selectSkin( 'left' , this );"title="点击更换该图片"  style="cursor:pointer;" onmousemove="NSISViewer.showBorder(this);" onmouseout="NSISViewer.hideBorder(this);" /></div>
+						<div style=" position:absolute; top:25px; left:111px; width:223px; height:171px; margin:0px;"><img id="skinPT" width="223" height="171" onclick="NSISViewer.selectSkin( 'pt' , this );"title="点击更换该图片"  style="cursor:pointer;" onmousemove="NSISViewer.showBorder(this);" onmouseout="NSISViewer.hideBorder(this);" /></div>
+						<div style=" position:absolute; top:196px; left:0px; width:334px; height:32px; margin:0px;"><img id="skinBottom" width="334" height="32" onclick="NSISViewer.selectSkin( 'bottom' , this );"title="点击更换该图片"  style="cursor:pointer;" onmousemove="NSISViewer.showBorder(this);" onmouseout="NSISViewer.hideBorder(this);" /></div>
+					</div>
+				</fieldset>
+
+				<input type="hidden" name="skinSplashPath" id="skinSplashPath" />
+				<input type="hidden" name="skinHeaderPath" id="skinHeaderPath" />
+				<input type="hidden" name="skinLeftPath" id="skinLeftPath" />
+				<input type="hidden" name="skinPTPath" id="skinPTPath" />
+				<input type="hidden" name="skinBottomPath" id="skinBottomPath" />
+				<input type="hidden" name="skinSetupPath" id="skinSetupPath" />
+				<input type="hidden" name="skinUninstallPath" id="skinUninstallPath" />
+			</div>
+
+			<div id="tab3" class="tab">
+				<fieldset style="height:85px; left:5px; top:5px;">
+					<legend>&nbsp;压缩方式&nbsp;</legend>
+					<div style=" margin:10px; margin-left:20px;">
+						<div style="width:200px;float:left;">
+						<input type="radio" id="compressTypeZLib" name="compressType" value="zlib"/>			
+						方式一: zlib	
+						</div>
+						<div style="width:200px;float:left; ">
+						  <input type="radio" id="compressTypeBZip2" name="compressType" value="bzip2" />
+						方式二: bzip2			</div>
+						<div style="width:200px;float:left; ">
+						  <input type="radio" id="compressTypeLzma" name="compressType" value="lzma" />
+						方式三: lzma	
+						</div>
+						<div class="clear"></div>
+						<div></div>
+						<div style="width:300px;">
+							<a onclick="return hs.htmlExpand(this, { contentId: 'help_compressType' } );" style="cursor:pointer;">1. 三种压缩方式介绍</a>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							  <a onclick="return hs.htmlExpand(this, { contentId: 'help_compressResult',width:550,height:180 } );" style="cursor:pointer;">2. 压缩方式效果参照表</a>
+						</div>
+					</div>
+				</fieldset>				
+
+				<fieldset style="height:250px; left:5px; top:125px;">
+					<legend>&nbsp;自动分卷压缩&nbsp;</legend>
+					<div style=" margin:10px; margin-left:20px;">
+						<div style="width:200px;float:left;">
+						  <input type="radio" id="isSplitCompressFalse" name="isSplitCompress" value="noSplit" checked="checked" />不分卷</br>
+						  <input type="radio" id="isSplitCompressDefault" name="isSplitCompress" value="defaultSplit"  />默认自动分卷	
+						</br>
+						  <input type="radio" id="isSplitCompressCustom" name="isSplitCompress" value="customSplit"  />自定义名称自动分卷	</br>	</br>
+							  <a onclick="return hs.htmlExpand(this, { contentId: 'help_splitattention' } );" style="cursor:pointer;">分卷说明及注意事项</a>	</div>
+					
+								
+						<div id="sub_isSplitCompress" style="float:left; width:390px; padding-left:5px; display:none">
+							<input type="radio" id="compressFileZip" checked="checked" name="compressFileType" value="ExtractZipMutiArchivesA" />zip压缩
+							<input type="radio" id="compressFile7z" name="compressFileType" value="Extract7zMutiArchivesA" />7z压缩
+							
+						  <div id="compressFileTab" style="float:right;margin-top:10px;display:none;">
+						  <span style="margin-left:0px;display:block;">
+						  压缩文件名：<input type="text" name="compressFileName" />
+						  </span>
+						  <span style="display:block;margin-left:0px;">
+						  输入压缩密码：<input type="password" name="splitCompressPassword" id="splitCompressPassword" style="width:150px; height:15px;" />
+						  <label style="color:#FF0000">(可选)zip压缩时建议设置密码，且至少为8位,默认为sndagame</label>
+						  </span>
+						  <span style="display:block;margin-left:0px;">
+						  压缩文件大小：<input type="text" name="zipFileSize" id="zipFileSize" style="width:150px; height:15px;" />
+						  <label style="color:#FF0000">（单位为G，如0.9G）</label>
+						  </span>
+						  </div>
+						  
+						</div>
+				
+					</div>                 
+				</fieldset>
+			</div>
+			<div id="tab4" class="tab">
+				<fieldset style="height:150px; left:5px; top:5px;">
+					<legend>&nbsp;附加安装&nbsp;</legend>
+					<div style="margin:5px;">
+						<div style="padding-bottom:10px;">
+							<input type="checkbox" id="isSetupDotnet" /><span id="lblIsSetupDotnet">安装.NET</span>						</div>	
+						<div style="padding-bottom:10px;">
+							<input type="checkbox" id="isSetupVcredist" /><span id="lblIsSetupVcredist">安装Vcredist2005</span>						</div>
+						<div style="padding-bottom:10px;">
+							<input type="checkbox" id="isSetupVcredist2008" /><span id="lblIsSetupVcredist2008">安装Vcredist2008</span>						</div>
+						<div style="padding-bottom:10px;">
+							<input type="checkbox" id="isSetupDX" /><span id="lblIsSetupDX">安装DirectX DownCenter(微软官方提供的自动检测DX最新版本工具) </span>
+							<span id="sub_helpInfo" style="color:#FF0000; padding-bottom:10px;">
+								<label for="Dx_helpInfo">特别提示：因DX的特殊绑定机制，附加该软件会被360拦截; 如需添加,请各项目组自行联系360解除拦截。</label>
+							</span>
+							<span id="sub_isSetupDX" style="display:none; padding-left:20px;">
+								<label for="versionDX">DX版本号：</label>
+								<input type="text" name="versionDX" id="versionDX" />
+							</span>
+						</div>
+					</div>
+				</fieldset>
+
+				<fieldset style="height:120px; left:5px; top:180px;">
+					<legend>&nbsp;自定义安装&nbsp;</legend>
+					<div style="margin:15px;">
+						该功能即将推出，敬请期待
+					</div>                 
+				</fieldset>
+
+			</div>
+
+			<div id="tab5" class="tab">
+	
+				<fieldset style="top:5px; left:5px;">
+					<legend>&nbsp;版权设置&nbsp;</legend>
+					<div style="margin:10px;">
+						<div >
+						  <textarea id="license" name="license" style="width:610px; height:220px;"></textarea>
+						</div>
+						<div style="margin-top:5px;">
+						<input name="developer" id="developer" type="hidden" onblur="NSISViewer.refreshLicense();" value="上海盛大网络发展有限公司" />
+						注:请根据游戏类型向法务部索取对应的license。license文本的内容必须以回车("\r\n")结尾，然后复制粘贴到此处。
+						</div>
+					</div>                 
+				</fieldset>
+			</div>
+
+		</form>
+	</div>
+	
+
+	
+
+	<!--选择皮肤的黄色边框-->
+	<div id="skinImgBorder" style="display:none;"></div>
+
+
+</div>
+
+
+
+
+<div id="help">
+
+
+	<div id="help_mp" class="highslide-html-content">
+		<div class="highslide-header">
+			<ul>
+				<li class="highslide-move">
+					<a href="#" onclick="return false">移动</a>
+				</li>
+				<li class="highslide-close">
+					<a href="#" onclick="return hs.close(this)">关闭</a>
+				</li>
+			</ul>
+		</div>
+		<div class="highslide-body">
+			当开启推广员功能时，倍率将生效，默认数值为1，即推广员的ID积分为1，倍率的数值等同于推广员获得的积分，项目组可根据推广员的等级来设置不同的倍率。
+		</div>
+		<div class="highslide-footer">
+			<div>
+			</div>
+		</div>
+	</div>
+	<div id="help_AppChanel" class="highslide-html-content">
+		<div class="highslide-header">
+			<ul>
+				<li class="highslide-move">
+					<a href="#" onclick="return false">移动</a>
+				</li>
+				<li class="highslide-close">
+					<a href="#" onclick="return hs.close(this)">关闭</a>
+				</li>
+			</ul>
+		</div>
+		<div class="highslide-body">
+			<br>
+			默认值为01
+			<br>
+			01：官方下载
+			<br>
+			02：合作渠道1下载
+			<br>
+			03：合作渠道2下载
+			<br>
+			04-09: 以此类推
+		</div>
+		<div class="highslide-footer">
+			<div>
+			</div>
+		</div>
+	</div>
+
+	<div id="help_whatisskin" class="highslide-html-content">
+		<div class="highslide-header">
+			<ul>
+				<li class="highslide-move">
+					<a href="#" onclick="return false">移动</a>
+				</li>
+				<li class="highslide-close">
+					<a href="#" onclick="return hs.close(this)">关闭</a>
+				</li>
+			</ul>
+		</div>
+		<div class="highslide-body">
+客户端在安装过程中界面美化所需要的图片统一放在某个文件夹内其文件夹称为皮肤包，皮肤包有5张图片和2个ICO组成。
+<br>
+图片规则： BMP格式，图片名称按照下图标记位置所示进行命名
+<br>
+① header.bmp  尺寸: 693*54
+<br>
+② Left.bmp    尺寸: 240*357
+<br>
+③ pt.bmp      尺寸: 453*357
+<br>
+④ bottom.bmp  尺寸: 693*63
+<br>
+启动加载图片名称为：splash.bmp 尺寸：不限
+<br>
+ICO规则：ICO格式，分别为setup.ico，uninstall.ico
+
+<img src="images/help/snap1.JPG" />
+
+		</div>
+		<div class="highslide-footer">
+			<div>
+
+			</div>
+		</div>
+	</div>
+	
+	
+	
+
+	<div id="help_compressType" class="highslide-html-content">
+		<div class="highslide-header">
+			<ul>
+				<li class="highslide-move">
+					<a href="#" onclick="return false">移动</a>
+				</li>
+				<li class="highslide-close">
+					<a href="#" onclick="return hs.close(this)">关闭</a>
+				</li>
+			</ul>
+		</div>
+		<div class="highslide-body">
+三种压缩方式zlib,bzip2,lzma。不同的压缩方式对CPU、内存等系统资源占用不同，压缩比率也不相同。zlib方式占用CPU较少20%左右，但压缩率只有50%，bzip2、lzma压缩率都在40%以上，但CPU占用率高。lzma采用7zib算法，压缩慢解压快。		</div>
+  </div>
+		<div class="highslide-footer">
+			<div>
+
+			</div>
+		</div>
+</div>
+	
+	
+	
+	
+	
+	
+
+	<div id="help_compressResult" class="highslide-html-content">
+		<div class="highslide-header">
+			<ul>
+				<li class="highslide-move">
+					<a href="#" onclick="return false">移动</a>
+				</li>
+				<li class="highslide-close">
+					<a href="#" onclick="return hs.close(this)">关闭</a>
+				</li>
+			</ul>
+		</div>
+		<div class="highslide-body">
+测试机配置：赛扬2.4G，内存1G
+<br>
+<br><br>
+<img src="images/help/snap2.JPG" width="531" height="92" />
+<br>
+		</div>
+		<div class="highslide-footer">
+			<div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<div id="help_whatispopulater" class="highslide-html-content">
+		<div class="highslide-header">
+			<ul>
+				<li class="highslide-move">
+					<a href="#" onclick="return false">移动</a>
+				</li>
+				<li class="highslide-close">
+					<a href="#" onclick="return hs.close(this)">关闭</a>
+				</li>
+			</ul>
+		</div>
+		<div class="highslide-body">
+在安装游戏客户端的过程中，会提示玩家输入邀请人账号，成功安装后，推荐人可以获得相应积分，本功能意在协助推广、提高安装量，表现形式为内嵌客户端页面，项目组只需开启功能即可显示，推广页面定制可联系WEB开发部同事吴超，分机5939。
+<br />
+注意事项：由于是内嵌在客户端的页面，打开显示响应时间较长，一般300M的客户端内嵌页面显示的时间为15秒内，700M以上的客户端响应时间为25秒以上 ，请项目组根据实际需求开启本功能。
+		</div>
+		<div class="highslide-footer">
+			<div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+	<div id="help_splitattention" class="highslide-html-content">
+		<div class="highslide-header">
+			<ul>
+				<li class="highslide-move">
+					<a href="#" onclick="return false">移动</a>
+				</li>
+				<li class="highslide-close">
+					<a href="#" onclick="return hs.close(this)">关闭</a>
+				</li>
+			</ul>
+		</div>
+		<div class="highslide-body">
+建议客户端大小超过2G的使用分卷压缩，每个生成的DATA约1G左右，请使用设置的解压密码来进行压缩，压缩工具使用winzip17.5以上。<br>
+1、默认全自动打包的配置如下：分卷大小为1.8G；分卷包名称默认为游戏英文名+此次对外版本号；分卷密码默认为空</br><br>
+2、自定义全自动打包配置则由自己填写，分卷包大小的单位可为k，m，g等，如不填写单位，则默认单位为B</br></div>
+		<div class="highslide-footer">
+			<div>
+
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<div id="help_regedit" class="highslide-html-content">
+		<div class="highslide-header">
+			<ul>
+				<li class="highslide-move">
+					<a href="#" onclick="return false">移动</a>
+				</li>
+				<li class="highslide-close">
+					<a href="#" onclick="return hs.close(this)">关闭</a>
+				</li>
+			</ul>
+		</div>
+		<div class="highslide-body">
+如图所示：
+<br />
+			<div style="margin-left:20px;">
+			<img src="images/help/snap3.jpg" width="294" height="169" />
+			</div>
+<br />
+		</div>
+		<div class="highslide-footer">
+			<div>
+
+			</div>
+		</div>
+	</div>
+
+	<div id="help_outversion" class="highslide-html-content">
+		<div class="highslide-header">
+			<ul>
+				<li class="highslide-move">
+					<a href="#" onclick="return false">移动</a>
+				</li>
+				<li class="highslide-close">
+					<a href="#" onclick="return hs.close(this)">关闭</a>
+				</li>
+			</ul>
+		</div>
+		<div class="highslide-body">
+对外版本就是玩家在安装客户端时候可以看到的版本<br />
+如图所示：
+<br />
+			<div style="margin-left:20px;">
+			<img src="images/help/outversion.JPG" width="283" height="111" />
+			</div>
+<br />
+		</div>
+		<div class="highslide-footer">
+			<div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="cover">
+	<div id="coverText">
+		请使用SDG技术中心专用浏览器访问该页面，谢谢	</div>
+</div>
+</body>
+</html>

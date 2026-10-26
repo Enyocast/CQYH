@@ -1,0 +1,7 @@
+.pdb
+.log
+.rtf
+ExampleGame
+-Shipping.
+-Debug.
+UDK

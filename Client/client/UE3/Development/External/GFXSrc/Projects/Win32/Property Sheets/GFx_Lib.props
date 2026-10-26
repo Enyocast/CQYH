@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir>.\..\..\..\..\..\Lib\$(PlatformName)\$(MsvcVer)\$(Configuration)\</OutDir>
+    <IntDir>.\..\..\..\..\..\Obj\$(PlatformName)\$(MsvcVer)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\..\..\..\Include;..\..\..\..\..\Src;..\..\..\..\..\3rdParty\zlib-1.2.5;..\..\..\..\..\3rdParty\jpeg-6b;..\..\..\..\..\3rdParty\libpng;..\..\..\..\..\3rdParty\expat-2.0.1\lib;..\..\..\..\..\3rdParty\glext;..\..\..\..\..\3rdParty\PlatformSDK;..\..\..\..\..\3rdParty\cri\pc\include;..\..\..\..\..\3rdParty\fmod\pc\$(Platform)\inc;$(DXSDK_DIR)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+	  <AdditionalOptions>/MP /w44264</AdditionalOptions>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;SF_BUILD_STATICLIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+	  <StructMemberAlignment>8Bytes</StructMemberAlignment>
+    </ClCompile>
+  </ItemDefinitionGroup>
+</Project>

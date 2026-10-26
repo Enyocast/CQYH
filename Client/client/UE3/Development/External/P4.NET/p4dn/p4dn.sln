@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "p4dn", "p4dn.vcxproj", "{4B413B63-B681-4896-BF62-5CCB9FCBC170}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P4API", "P4API\P4API.csproj", "{1369E8EE-C820-4FD0-B751-4C271CD634E1}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 3
+		SccProjectUniqueName0 = P4API\\P4API.csproj
+		SccLocalPath0 = P4API
+		SccProjectUniqueName1 = p4dn.vcxproj
+		SccLocalPath1 = .
+		SccLocalPath2 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4B413B63-B681-4896-BF62-5CCB9FCBC170}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{4B413B63-B681-4896-BF62-5CCB9FCBC170}.Debug|Mixed Platforms.ActiveCfg = Debug|x64
+		{4B413B63-B681-4896-BF62-5CCB9FCBC170}.Debug|Mixed Platforms.Build.0 = Debug|x64
+		{4B413B63-B681-4896-BF62-5CCB9FCBC170}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4B413B63-B681-4896-BF62-5CCB9FCBC170}.Debug|Win32.Build.0 = Debug|Win32
+		{4B413B63-B681-4896-BF62-5CCB9FCBC170}.Debug|x64.ActiveCfg = Debug|x64
+		{4B413B63-B681-4896-BF62-5CCB9FCBC170}.Debug|x64.Build.0 = Debug|x64
+		{4B413B63-B681-4896-BF62-5CCB9FCBC170}.Release|Any CPU.ActiveCfg = Release|x64
+		{4B413B63-B681-4896-BF62-5CCB9FCBC170}.Release|Mixed Platforms.ActiveCfg = Release|x64
+		{4B413B63-B681-4896-BF62-5CCB9FCBC170}.Release|Mixed Platforms.Build.0 = Release|x64
+		{4B413B63-B681-4896-BF62-5CCB9FCBC170}.Release|Win32.ActiveCfg = Release|Win32
+		{4B413B63-B681-4896-BF62-5CCB9FCBC170}.Release|Win32.Build.0 = Release|Win32
+		{4B413B63-B681-4896-BF62-5CCB9FCBC170}.Release|x64.ActiveCfg = Release|x64
+		{4B413B63-B681-4896-BF62-5CCB9FCBC170}.Release|x64.Build.0 = Release|x64
+		{1369E8EE-C820-4FD0-B751-4C271CD634E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1369E8EE-C820-4FD0-B751-4C271CD634E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1369E8EE-C820-4FD0-B751-4C271CD634E1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1369E8EE-C820-4FD0-B751-4C271CD634E1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1369E8EE-C820-4FD0-B751-4C271CD634E1}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{1369E8EE-C820-4FD0-B751-4C271CD634E1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1369E8EE-C820-4FD0-B751-4C271CD634E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1369E8EE-C820-4FD0-B751-4C271CD634E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1369E8EE-C820-4FD0-B751-4C271CD634E1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1369E8EE-C820-4FD0-B751-4C271CD634E1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1369E8EE-C820-4FD0-B751-4C271CD634E1}.Release|Win32.ActiveCfg = Release|Any CPU
+		{1369E8EE-C820-4FD0-B751-4C271CD634E1}.Release|x64.ActiveCfg = Release|Any CPU
+		{1369E8EE-C820-4FD0-B751-4C271CD634E1}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

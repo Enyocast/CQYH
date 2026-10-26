@@ -1,0 +1,149 @@
+/*=============================================================================
+	SilhouetteShader.usf: Draw mesh silhouettes.
+	ming@snda
+=============================================================================*/
+
+#include "Common.usf"
+#include "Material.usf"
+#include "VertexFactory.usf"
+
+float4 SilhouetteColor;
+
+struct FSilhouetteVSToPS
+{
+	FVertexFactoryInterpolantsVSToPS	FactoryInterpolants;
+	float4 Position :	POSITION;
+};
+
+#if USING_SM5_TESSELLATION
+	struct FSilhouetteVSToDS
+	{
+		FVertexFactoryInterpolantsVSToDS FactoryInterpolants;
+		float4 Position :	VS_to_DS_Position;
+		OPTIONAL_VertexID_VS_To_DS
+	};
+	
+	#define FVertexOutput	FSilhouetteVSToDS
+	#define VertexFactoryGetInterpolants	VertexFactoryGetInterpolantsVSToDS
+#else
+	#define FVertexOutput	FSilhouetteVSToPS
+	#define VertexFactoryGetInterpolants	VertexFactoryGetInterpolantsVSToPS
+#endif
+
+#if USING_SM5_TESSELLATION
+
+struct FSilhouetteDSToPS
+{
+	#if !MATERIALBLENDING_SOLID
+	FVertexFactoryInterpolantsVSToPS FactoryInterpolants;
+#endif
+
+#if ONEPASS_POINTLIGHT_SHADOW
+	float4 GSPosition : TEXCOORD4;
+
+#elif PERSPECTIVE_CORRECT_DEPTH || !SUPPORTS_DEPTH_TEXTURES
+	float ShadowDepth : TEXCOORD4;
+
+#elif !COMPILER_SUPPORTS_EMPTY_STRUCTS
+	float Dummy : TEXCOORD4;
+
+#endif
+
+	float4 Position : POSITION;
+};
+
+
+#define FPassSpecificVSToDS FSilhouetteVSToDS
+#define FPassSpecificVSToPS FSilhouetteDSToPS
+
+FSilhouetteVSToDS PassInterpolate(FSilhouetteVSToDS a, float aInterp, FSilhouetteVSToDS b, float bInterp)
+{
+	FSilhouetteVSToDS O;
+	O.FactoryInterpolants = VertexFactoryInterpolate(a.FactoryInterpolants, aInterp, b.FactoryInterpolants, bInterp);
+	return O;
+}
+
+FSilhouetteDSToPS PassFinalizeTessellationOutput(FSilhouetteVSToDS Interpolants, float4 WorldPosition, FMaterialTessellationParameters MaterialParameters)
+{
+	FSilhouetteDSToPS O;
+	
+#if !MATERIALBLENDING_SOLID
+	O.FactoryInterpolants = VertexFactoryAssignInterpolants(Interpolants.FactoryInterpolants);
+#endif
+
+
+#if ONEPASS_POINTLIGHT_SHADOW
+	O.Position = O.GSPosition = WorldPosition;
+#else
+
+//	float ShadowDepth;
+//	SetShadowDepthOutputs(
+//		WorldPosition, 
+//		O.Position, 
+//#if PERSPECTIVE_CORRECT_DEPTH || !SUPPORTS_DEPTH_TEXTURES
+//		O.ShadowDepth
+//#else
+//		ShadowDepth
+//#endif
+//		);
+#endif
+
+#if !(ONEPASS_POINTLIGHT_SHADOW || PERSPECTIVE_CORRECT_DEPTH || !SUPPORTS_DEPTH_TEXTURES) && COMPILER_SUPPORTS_EMPTY_STRUCTS
+	O.Dummy = 0;
+#endif
+
+	return O;
+}
+
+#include "Tessellation.usf"
+
+#endif 
+
+void MainVertexShader(
+	in FVertexFactoryInput	Input,
+	OPTIONAL_VertexID
+	out FVertexOutput Output )
+{
+	FVertexFactoryIntermediates VFIntermediates = GetVertexFactoryIntermediates(Input);
+	float4 WorldPosition		= VertexFactoryGetWorldPosition( Input, VFIntermediates );
+	float3x3 TangentBasis		= VertexFactoryGetTangentBasis( Input, VFIntermediates );
+
+	FMaterialVertexParameters VertexParameters = GetMaterialVertexParameters(Input, VFIntermediates, WorldPosition.xyz, TangentBasis);
+	// Isolate instructions used for world position offset on xbox 360, 
+	// As these cause the optimizer to generate different position calculating instructions in each pass, resulting in self-z-fighting.
+	// This is only necessary for shaders used in passes that have depth testing enabled.
+	//ISOLATE
+	//{
+	//	WorldPosition.xyz += GetMaterialWorldPositionOffset(VertexParameters);
+	//}
+
+	Output.FactoryInterpolants = VertexFactoryGetInterpolants( Input, VFIntermediates );
+
+//#if USING_SM5_TESSELLATION
+//	Output.Position = WorldPosition;
+//#else
+	ISOLATE
+	{
+		float4 ScreenPosition = MulMatrix( ViewProjectionMatrix, float4(WorldPosition.xyz, 1) );
+		Output.Position = ApplyTemporalAAJitter(ScreenPosition);
+		//Output.Position = ScreenPosition;
+	}
+//#endif
+
+	OutputVertexID( Output );
+}
+ 
+void MainPixelShader(
+	in FVertexOutput Input,
+	OPTIONAL_PixelShaderScreenPosition
+	OPTIONAL_FacingSign
+	OPTIONAL_PixelShaderCoverageInputOutput
+	out float4 OutColor	: COLOR0 )
+{
+	// Manual clipping here (alpha-test, etc)
+	FMaterialPixelParameters MaterialParameters = GetMaterialPixelParameters( Input.FactoryInterpolants );
+	CalcMaterialParameters( MaterialParameters, FacingSign, float4(0,0,1,0), float4(0,0,.00001f,1));
+	GetMaterialCoverageAndClipping(MaterialParameters,PixelShaderScreenPosition.xy,InCoverage,OutCoverage);
+
+	OutColor = float4( SilhouetteColor.xyz, 1 );
+}

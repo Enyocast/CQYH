@@ -1,0 +1,32 @@
+/*=============================================================================
+	SimpleElementAlphaMaskPixelShader.hlsl: Pixel shader for mask opaque objects.
+	Copyright 1998-2012 Epic Games, Inc. All Rights Reserved.
+=============================================================================*/
+
+#include "Common.usf"
+
+sampler2D InTexture;
+
+void Main(
+	in float2 TextureCoordinate : TEXCOORD0,
+	in float4 Color : TEXCOORD1,
+	out float4 OutColor : COLOR0
+#if SM5_PROFILE
+	,out float4 OutWorldNormal : COLOR1 
+	,out float4 OutReflectionWorldNormal : COLOR2 
+	,out float4 OutSpecularColorAndPower : COLOR3
+#endif
+	)
+{
+	float4 BaseColor = tex2D(InTexture,TextureCoordinate);
+	if( BaseColor.a > 0.f )
+		BaseColor.a = 1.f;
+	OutColor = RETURN_COLOR(BaseColor * Color);	
+
+#if SM5_PROFILE
+	// Set the G buffer bits that indicate that deferred lighting and image reflections are not enabled
+	OutWorldNormal = 0;
+	OutReflectionWorldNormal = 0;
+	OutSpecularColorAndPower = 0;
+#endif
+}

@@ -1,0 +1,1 @@
+ViGenerator.exe d:\_AutoBuild\edition\_CQ\Shipping_Bin\ D:\xampp\htdocs\aodpatch\_CQ\shipping_bin_patch\

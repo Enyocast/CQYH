@@ -1,0 +1,1 @@
+start MMOGame.exe editor -DX11  -FINAL_RELEASE -NoGADWarning

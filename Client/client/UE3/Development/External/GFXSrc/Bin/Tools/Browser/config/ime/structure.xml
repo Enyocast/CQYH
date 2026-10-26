@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<browser>
+	<section name="$HelpSection">
+		<tab name="$TutorialsTab">
+			<item id="57"  image="images/pdf-imeb.png" title="$GettingStartedIMETitle" description="$GettingStartedIMEDesc" dataType="PDF" fileName="$GettingStartedIMEFilename" relPath="%DocDir" excludeFrom="MacOS"/>	
+		</tab>
+	</section>
+	<section name="$HelpSection">
+		<tab name="$DocumentationTab">
+			<item id="80" image="images/pdf-ime.png" title="$IMEOverviewTitle" description="$IMEOverviewDesc" dataType="PDF" fileName="$IMEOverviewFilename" relPath="%DocDir" excludeFrom="MacOS"/>
+		</tab>
+	</section>
+</browser>

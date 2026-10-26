@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<resource xmlns="http://www.wxwindows.org/wxxrc" version="2.3.0.1">
+	<object class="wxPanel" name="ID_GridEdit">
+		<style>wxTAB_TRAVERSAL</style>
+		<size>121,285</size>
+		<object class="wxBoxSizer">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<option>1</option>
+				<flag>wxEXPAND</flag>
+				<border>5</border>
+				<object class="wxBoxSizer">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxEXPAND</flag>
+						<border>5</border>
+						<object class="wxBoxSizer">
+							<orient>wxHORIZONTAL</orient>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALL</flag>
+								<border>5</border>
+								<object class="wxBitmapButton" name="toolbar_undo">
+									<style>wxBU_AUTODRAW</style>
+									<bitmap>../wxRes/Undo.bmp</bitmap>
+									<default>0</default>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALL</flag>
+								<border>5</border>
+								<object class="wxBitmapButton" name="toolbar_redo">
+									<style>wxBU_AUTODRAW</style>
+									<bitmap>../wxRes/Redo.bmp</bitmap>
+									<default>0</default>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>5</border>
+						<object class="wxRadioBox" name="radio_brush_type">
+							<style>wxRA_SPECIFY_COLS</style>
+							<label>格子阻挡属性</label>
+							<selection>0</selection>
+							<content>
+								<item>不可移动</item>
+								<item>不可跳越</item>
+								<item>挡Missile</item>
+								<item>挡Bullet</item>
+								<item>不阻挡角色</item>
+                <item>可摆摊区域</item>
+							</content>
+							<dimension>1</dimension>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>1</option>
+						<flag>wxEXPAND</flag>
+						<border>5</border>
+						<object class="wxBoxSizer">
+							<orient>wxHORIZONTAL</orient>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALL</flag>
+								<border>5</border>
+								<object class="wxStaticText" name="m_staticText60">
+									<label>笔刷大小:</label>
+									<wrap>-1</wrap>
+								</object>
+							</object>
+							<object class="sizeritem">
+								<option>0</option>
+								<flag>wxALL</flag>
+								<border>5</border>
+								<object class="wxStaticText" name="brush_txt_size">
+									<label>2</label>
+									<wrap>-1</wrap>
+								</object>
+							</object>
+						</object>
+					</object>
+					<object class="sizeritem">
+						<option>0</option>
+						<flag>wxALL</flag>
+						<border>5</border>
+						<object class="wxSlider" name="slider_brush_size">
+							<style>wxSL_HORIZONTAL</style>
+							<value>2</value>
+							<min>1</min>
+							<max>16</max>
+						</object>
+					</object>
+				</object>
+			</object>
+		</object>
+	</object>
+</resource>

@@ -1,0 +1,88 @@
+$def with (val)
+<html>
+  <head>
+    <title>机器人程序管理入口</title>
+  </head>
+  <body>
+    <h1>机器人管理程序状况: <a href="/">刷新</a></h1>
+    <h2> Sina 环境 </h2>
+    $if val['amy']:
+      <p>
+        进程号: $val['amy']['pid'], 内存: $val['amy']['memory'] M
+	<a href='/?kill_amy=sina'>停止</a>
+      </p>
+    $else:
+      <p>
+	未运行。
+	<a href="/?start_amy=sina">启动</a>
+      </p>
+
+      <hr style=" border:0px dashed #ccc; border-top: 1px dashed #ccc; width: 100%; height: 1px;" width="100%" />
+    <h3>机器人运行状况:</h3>
+    $if val['lala']:
+      <ul>
+      $for i in val['lala']:
+        <li>
+	用户ID:$i['user_id'] 房间: $i['room_id'] 名字: $i['name'] 进程号: $i['pid'] CPU使用率: $i['cpu'] 内存使用: $i['memory'] M
+	  <a href="/?kill_lala=$i['pid']">停止</a>
+	</li>
+      </ul>
+    $else:
+      <p>还没有机器人程序启动。</p>
+
+    <hr />
+
+    <h2> Sina 环境(自由场) </h2>
+    $if val['amy_spike']:
+      <p>
+        进程号: $val['amy_spike']['pid'], 内存: $val['amy_spike']['memory'] M
+	<a href='/?kill_amy=spike'>停止</a>
+      </p>
+    $else:
+      <p>
+	未运行。
+	<a href="/?start_amy=spike">启动</a>
+      </p>
+
+      <hr style=" border:0px dashed #ccc; border-top: 1px dashed #ccc; width: 100%; height: 1px;" width="100%" />
+    <h3>机器人运行状况:</h3>
+    $if val['lala_spike']:
+      <ul>
+      $for i in val['lala_spike']:
+        <li>
+	用户ID:$i['user_id'] 房间: $i['room_id'] 名字: $i['name'] 进程号: $i['pid'] CPU使用率: $i['cpu'] 内存使用: $i['memory'] M
+	  <a href="/?kill_lala=$i['pid']">停止</a>
+	</li>
+      </ul>
+    $else:
+      <p>还没有机器人程序启动。</p>
+
+    <hr />
+
+    <h2> 本地环境 </h2>
+    $if val['amy_local']:
+      <p>
+        进程号: $val['amy_local']['pid'], 内存: $val['amy_local']['memory'] M
+	<a href='/?kill_amy=local'>停止</a>
+      </p>
+    $else:
+      <p>
+	未运行。
+	<a href="/?start_amy=local">启动</a>
+      </p>
+
+    <hr style=" border:0px dashed #ccc; border-top: 1px dashed #ccc; width: 100%; height: 1px;" width="100%" />
+      
+    <h3>机器人运行状况:</h3>
+    $if val['lala_local']:
+      <ul>
+      $for i in val['lala_local']:
+        <li>
+	用户ID:$i['user_id'] 房间: $i['room_id'] 名字: $i['name'] 进程号: $i['pid'] CPU使用率: $i['cpu'] 内存使用: $i['memory'] M
+	  <a href="/?kill_lala=$i['pid']">停止</a>
+	</li>
+      </ul>
+    $else:
+      <p>还没有机器人程序启动。</p>
+  </body>
+</html>

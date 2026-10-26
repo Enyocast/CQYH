@@ -1,0 +1,40 @@
+#include "Common.usf"
+
+float4 Parameters;
+sampler2D ParticleColorLowResBilinearTexture;
+
+#ifndef BLUR_RADIUS
+#define BLUR_RADIUS 4
+#endif
+
+void Main(
+			in float2 InUV : TEXCOORD0,
+			out float4 OutColor : COLOR0
+			)
+{
+	float2 TexelSize = Parameters.xy;
+	float RadiusPixels = Parameters.z;
+	float MaxRadiusScaleFactor = Parameters.w;
+
+	OutColor = tex2D(ParticleColorLowResBilinearTexture, InUV);
+	float TotalWeight = 1;
+
+	float ScaleFactor = clamp(RadiusPixels / BLUR_RADIUS, 1, MaxRadiusScaleFactor);
+	float2 StepSize = TexelSize * ScaleFactor;
+
+	UNROLL
+	for (float R = -BLUR_RADIUS; R <= BLUR_RADIUS; ++R)
+	{
+		if (R != 0)
+		{
+			const float BlurSigma = (BLUR_RADIUS + 1.0f) * 0.5f;
+			const float BlurFalloff = 1.f / (2.0f*BlurSigma*BlurSigma);
+			float Weight = exp2(-R*R*BlurFalloff);
+
+			OutColor += Weight * tex2D(ParticleColorLowResBilinearTexture, StepSize * R + InUV);
+			TotalWeight += Weight;
+		}
+	}
+
+	OutColor /= TotalWeight;
+}

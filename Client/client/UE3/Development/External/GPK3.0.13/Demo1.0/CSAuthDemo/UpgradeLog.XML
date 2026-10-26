@@ -1,0 +1,25 @@
+��<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="CSAuthTest">
+</Property><Property Name="Solution File" Value="C:\Users\fangruyi\Desktop\GPK3.0.13_接入\Demo1.0\CSAuthDemo\CSAuthTest.sln">
+</Property><Property Name="Date" Value="2013年11月27日">
+</Property><Property Name="Time" Value="13:30">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="CSAuthTest.sln" Description="File successfully backed up as C:\Users\fangruyi\Desktop\GPK3.0.13_接入\Demo1.0\CSAuthDemo\CSAuthTest.sln.old">
+</Event><Event ErrorLevel="0" Project="Server" Source="Server\Server.vcproj" Description="Converting project file 'C:\Users\fangruyi\Desktop\GPK3.0.13_接入\Demo1.0\CSAuthDemo\Server\Server.vcproj'.">
+</Event><Event ErrorLevel="1" Project="Server" Source="Server\Server.vcproj" Description="This application has been updated to include settings related to the User Account Control (UAC) feature of Windows Vista. By default, when run on Windows Vista with UAC enabled, this application is marked to run with the same privileges as the process that launched it. This marking also disables the application from running with virtualization. You can change UAC related settings from the Property Pages of the project.">
+</Event><Event ErrorLevel="1" Project="Server" Source="Server\Server.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="Server" Source="Server\Server.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="0" Project="Server" Source="Server\Server.vcproj" Description="Web deployment to the local IIS server is no longer supported. The Web Deployment build tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="Server" Source="Server\Server.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="0" Project="Server" Source="Server\Server.vcproj" Description="Done converting to new project file 'C:\Users\fangruyi\Desktop\GPK3.0.13_接入\Demo1.0\CSAuthDemo\Server\Server.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="Server" Source="Server\Server.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Client" Source="Client\Client.vcproj" Description="Converting project file 'C:\Users\fangruyi\Desktop\GPK3.0.13_接入\Demo1.0\CSAuthDemo\Client\Client.vcproj'.">
+</Event><Event ErrorLevel="1" Project="Client" Source="Client\Client.vcproj" Description="This application has been updated to include settings related to the User Account Control (UAC) feature of Windows Vista. By default, when run on Windows Vista with UAC enabled, this application is marked to run with the same privileges as the process that launched it. This marking also disables the application from running with virtualization. You can change UAC related settings from the Property Pages of the project.">
+</Event><Event ErrorLevel="1" Project="Client" Source="Client\Client.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="Client" Source="Client\Client.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="0" Project="Client" Source="Client\Client.vcproj" Description="Web deployment to the local IIS server is no longer supported. The Web Deployment build tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="Client" Source="Client\Client.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="0" Project="Client" Source="Client\Client.vcproj" Description="Done converting to new project file 'C:\Users\fangruyi\Desktop\GPK3.0.13_接入\Demo1.0\CSAuthDemo\Client\Client.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="Client" Source="Client\Client.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="CSAuthTest.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="CSAuthTest.sln" Description="Converted">
+</Event></UpgradeLog

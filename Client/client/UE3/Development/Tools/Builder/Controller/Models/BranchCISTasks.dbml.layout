@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="BranchCISTasks">
+  <DataContextMoniker Name="/BranchCISTasksDataContext" />
+  <nestedChildShapes>
+    <classShape Id="3ea7b809-1ef5-4002-87d5-afdfe1eb30c2" absoluteBounds="0.5, 0.5, 2, 1.26050048828125">
+      <DataClassMoniker Name="/BranchCISTasksDataContext/BranchCISTask" />
+      <nestedChildShapes>
+        <elementListCompartment Id="490d2385-606e-4dd5-8518-89749e7d7047" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

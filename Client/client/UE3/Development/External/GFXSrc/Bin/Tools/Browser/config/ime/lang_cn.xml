@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<language name="Simplified">
+	<translations>
+		<entry key="$GettingStartedIMETitle" value="Getting Started with IME"/>
+       <entry key="$GettingStartedIMEDesc" value="本文档解释怎么安装和使用Scaleform的输入法支持。"/>
+       <entry key="$GettingStartedIMEFilename" value="gfx_4.0_getting_started_with_ime_cn.pdf"/>
+       <entry key="$IMEOverviewTitle" value="Input Method Configuration Overview"/>
+       <entry key="$IMEOverviewDesc" value="本文档表达GFx 4.0的IME输入法系统，描述怎么将GFx IME整合进客户游戏，配合游戏的式样定做输入法界面。"/>
+       <entry key="$IMEOverviewFilename" value="gfx_4.0_ime_cn.pdf" />
+	</translations>
+</language>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<winzipjob minwinrun="61" minwinedit="0" version="5">
+<wizard usevars="yes"/>
+<items>
+<filter exclude="yes">*\My WinZip Files\*</filter>
+<item guid="yes" type="library" exclude="no" recurse="yes">{7B0DB17D-9CD2-4A93-9733-46CC89022E7C}</item>
+</items>
+<output>
+<name append="none">Documents Library.zipx</name>
+<folder append="none">&lt;^24&gt;\My WinZip Files</folder>
+<log type="none"/>
+</output>
+<options>
+<flags>0001</flags>
+<compression type="best"/>
+<span mode="auto"/>
+<split unit="byte">0</split>
+<encryption mode="none" method="none"/>
+<folders mode="relative"/>
+<cd speed="fast" finalize="yes"/>
+</options>
+<email>
+<mailitem options="0">
+<sendto/>
+<subject type="ok"/>
+<subject type="error"/>
+</mailitem>
+</email>
+</winzipjob>

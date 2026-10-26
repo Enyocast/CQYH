@@ -1,0 +1,14 @@
+
+This file maintains a directory listing of the NoRedist folder which contains
+external libraries that are generally free for anyone to download and use,
+but are not redistributable by Epic. Also included are instructions for
+acquiring these tools yourself.
+
+NoRedist\Apsalar
+
+	This SDK is used for analytics and can be downloaded from the Apsalar website http://www.apsalar.com/
+	
+NoRedist\Swrve
+
+	This SDK is used for analytics and can be downloaded from the Swrve website when you have started your trial.
+	Your Swrve account managers will provide the information needed (currently the files are swrve.c/h).

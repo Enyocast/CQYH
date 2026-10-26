@@ -1,0 +1,15 @@
+# Define the root logger
+log4cplus.rootLogger=TRACE, consoleAppender, fileAppender
+
+# Define a file appender named "consoleAppender"
+log4cplus.appender.consoleAppender=log4cplus::ConsoleAppender
+log4cplus.appender.consoleAppender.layout=log4cplus::PatternLayout
+log4cplus.appender.consoleAppender.layout.ConversionPattern=%-5p-[%t][%D{%H:%M:%S %Q}]%m
+
+# Define a file appender named "fileAppender"
+log4cplus.appender.fileAppender=log4cplus::RollingFileAppender
+log4cplus.appender.fileAppender.MaxFileSize=5000KB
+log4cplus.appender.fileAppender.File=./LauncherModules/Launcher2.0LogFile.log
+log4cplus.appender.fileAppender.MaxBackupIndex=10
+log4cplus.appender.fileAppender.layout=log4cplus::PatternLayout
+log4cplus.appender.fileAppender.layout.ConversionPattern=%D{%m/%d/%y %H:%M:%S}  - %m [%l]%n

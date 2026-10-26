@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application
+	xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:f="http://flintparticles.org/2009/flint3d"
+	xmlns:geom="flash.geom.*"
+	xmlns:filters="flash.filters.*"
+	width="500" height="500"
+	backgroundColor="#000000">
+
+<f:PixelRenderer id="renderer" width="500" height="500">
+	<f:camera>
+		<f:Camera>
+			<f:position>
+				<geom:Vector3D x="0" y="-100" z="-300"/>
+			</f:position>
+			<f:target>
+				<geom:Vector3D x="0" y="-100" z="0"/>
+			</f:target>
+			<f:controller>
+				<f:OrbitCamera/>
+			</f:controller>
+		</f:Camera>
+	</f:camera>
+	<f:postFilters>
+		<filters:BlurFilter blurX="2" blurY="2" quality="1"/>
+		<filters:ColorMatrixFilter matrix="{[ 1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0.99,0 ]}"/>
+	</f:postFilters>
+	<f:emitters>
+		<f:Emitter id="emitter" autoStart="true">
+			<f:counter>
+				<f:Steady rate="2500"/>
+			</f:counter>
+			<f:initializers>
+				<f:Velocity>
+					<f:DiscZone innerRadius="0" outerRadius="60">
+						<f:center>
+							<geom:Vector3D x="0" y="-250" z="0"/>
+						</f:center>
+						<f:normal>
+							<geom:Vector3D x="0" y="1" z="0"/>
+						</f:normal>
+					</f:DiscZone>
+				</f:Velocity>
+				<f:ColorInit minColor="0xFFCCCCFF" maxColor="0xFF6666FF"/>
+				<f:Lifetime lifetime="3.2"/>
+			</f:initializers>
+			<f:actions>
+				<f:Move/>
+				<f:Age/>
+				<f:Accelerate x="0" y="150" z="0" />
+			</f:actions>
+		</f:Emitter>
+	</f:emitters>
+</f:PixelRenderer>
+</s:Application>

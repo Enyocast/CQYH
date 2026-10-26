@@ -1,0 +1,448 @@
+Setting environment for using Microsoft Visual Studio 2010 x86 tools.
+
+D:\_AutoBuild\python_client8089>devenv "../source/08.Prog_CQ/Client/UE3/Development/Src/UE3.sln" /Rebuild "Release|Mixed platforms"
+
+Microsoft (R) Visual Studio Version 10.0.40219.1.
+Copyright (C) Microsoft Corp. All rights reserved.
+D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\External\FaceFX\Studio\Studio_vs10.vcxproj : warning  : Platform 'Xbox 360' referenced in the project file 'Studio' cannot be found. Please make sure you have it installed under '%VCTargetsPath%\Platforms\Xbox 360'.
+
+D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Src\Targets\MultiBuild\MultiBuild.vcxproj : warning  : Platform 'Xbox 360' referenced in the project file 'MultiBuild' cannot be found. Please make sure you have it installed under '%VCTargetsPath%\Platforms\Xbox 360'.
+
+1>------ Rebuild All started: Project: UnrealBuildTool, Configuration: Release Any CPU ------
+1>Build started 2015/12/30 17:33:59.
+1>CoreClean:
+1>  Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\UnrealBuildTool\Release\UnrealBuildTool.exe.config".
+1>  Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\UnrealBuildTool\Release\UnrealBuildTool.exe".
+1>  Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\UnrealBuildTool\Release\UnrealBuildTool.pdb".
+1>  Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Src\UnrealBuildTool\obj\Release\ResolveAssemblyReference.cache".
+1>  Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Src\UnrealBuildTool\obj\Release\UnrealBuildTool.exe".
+1>  Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Src\UnrealBuildTool\obj\Release\UnrealBuildTool.pdb".
+1>ResolveAssemblyReferences:
+1>  A TargetFramework profile exclusion list will be generated.
+1>GenerateTargetFrameworkMonikerAttribute:
+1>Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+1>CoreCompile:
+1>  C:\Windows\Microsoft.NET\Framework\v4.0.30319\Csc.exe /noconfig /nowarn:1701,1702 /nostdlib+ /errorreport:prompt /warn:4 /define:TRACE /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\mscorlib.dll" /reference:D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Binaries\RPCUtility.exe /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Data.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Runtime.Remoting.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Windows.Forms.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Xml.dll" /debug:pdbonly /optimize+ /out:obj\Release\UnrealBuildTool.exe /target:exe ..\Xenon\UnrealBuildTool\Scripts\UE3BuildXbox360.cs Configuration\UE3BuildIPhoneStub.cs ToolChain\IPhoneToolChainStub.cs Configuration\UE3BuildAndroidStub.cs ToolChain\AndroidToolChainStub.cs Configuration\UE3BuildFlashStub.cs ToolChain\FlashToolChainStub.cs ..\Launch\Resources\MetaData.cs Configuration\UE3BuildExoGame.cs Configuration\UE3BuildMac.cs Configuration\UE3BuildMMOGame.cs Configuration\UE3BuildSwordGame.cs Properties\AssemblyInfo.cs Configuration\DebugInfoHeuristic.cs Configuration\UE3BuildConfiguration.cs Configuration\UE3BuildExampleGame.cs Configuration\UE3BuildExternal.cs Configuration\UE3BuildTarget.cs Configuration\UE3BuildUTGame.cs Configuration\UE3BuildWin32.cs System\ActionGraph.cs System\BuildException.cs Configuration\BuildConfiguration.cs System\CPPEnvironment.cs System\CPPHeaders.cs System\DependencyCache.cs System\DataBase.cs System\FileItem.cs System\RPCUtilHelper.cs ToolChain\IntelToolChain.cs System\LinkEnvironment.cs System\LocalExecutor.cs System\ResponseFile.cs System\Unity.cs System\UnrealBuildTool.cs System\Utils.cs System\VCProject.cs ToolChain\MacToolChain.cs ToolChain\VCToolChain.cs System\XGE.cs ToolChain\XcodeMacToolChain.cs "C:\Users\Administrator\AppData\Local\Temp\1\.NETFramework,Version=v4.0,Profile=Client.AssemblyAttributes.cs"
+1>_CopyAppConfigFile:
+1>  Copying file from "app.config" to "..\..\Intermediate\UnrealBuildTool\Release\UnrealBuildTool.exe.config".
+1>CopyFilesToOutputDirectory:
+1>  Copying file from "obj\Release\UnrealBuildTool.exe" to "..\..\Intermediate\UnrealBuildTool\Release\UnrealBuildTool.exe".
+1>  UnrealBuildTool -> D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\UnrealBuildTool\Release\UnrealBuildTool.exe
+1>  Copying file from "obj\Release\UnrealBuildTool.pdb" to "..\..\Intermediate\UnrealBuildTool\Release\UnrealBuildTool.pdb".
+1>
+1>Build succeeded.
+1>
+1>Time Elapsed 00:00:00.44
+2>------ Skipped Rebuild All: Project: MMOEditor, Configuration: BuiltWithUnrealBuildTool Win32 ------
+2>Project not selected to build for this solution configuration 
+3>------ Rebuild All started: Project: MMOGame Win64, Configuration: Release Win32 ------
+4>------ Skipped Rebuild All: Project: Mac (Platforms\Desktop\Mac\Mac), Configuration: BuildWithUnrealBuildTool Win32 ------
+4>Project not selected to build for this solution configuration 
+5>------ Skipped Rebuild All: Project: OpenGLDrv, Configuration: BuiltWithUnrealBuildTool Win32 ------
+5>Project not selected to build for this solution configuration 
+6>------ Skipped Rebuild All: Project: D3D11Drv, Configuration: BuiltWithUnrealBuildTool Win32 ------
+6>Project not selected to build for this solution configuration 
+7>------ Skipped Rebuild All: Project: ALAudio, Configuration: BuiltWithUnrealBuildTool Win32 ------
+7>Project not selected to build for this solution configuration 
+8>------ Skipped Rebuild All: Project: GFxUIEditor, Configuration: BuiltWithUnrealBuildTool Win32 ------
+8>Project not selected to build for this solution configuration 
+9>------ Skipped Rebuild All: Project: GFxUI, Configuration: BuiltWithUnrealBuildTool Win32 ------
+9>Project not selected to build for this solution configuration 
+10>------ Skipped Rebuild All: Project: OnlineSubsystemSteamworks, Configuration: BuiltWithUnrealBuildTool Win32 ------
+10>Project not selected to build for this solution configuration 
+11>------ Skipped Rebuild All: Project: Studio, Configuration: BuiltWithUnrealBuildTool Win32 ------
+11>Project not selected to build for this solution configuration 
+12>------ Skipped Rebuild All: Project: SwarmInterfaceMake, Configuration: Debug Win32 ------
+12>Project not selected to build for this solution configuration 
+13>------ Skipped Rebuild All: Project: UnrealEdCLR, Configuration: BuiltWithUnrealBuildTool Win32 ------
+13>Project not selected to build for this solution configuration 
+14>------ Skipped Rebuild All: Project: XAudio2, Configuration: BuiltWithUnrealBuildTool Win32 ------
+14>Project not selected to build for this solution configuration 
+15>------ Skipped Rebuild All: Project: UDKBase, Configuration: BuiltWithUnrealBuildTool Win32 ------
+15>Project not selected to build for this solution configuration 
+16>------ Skipped Rebuild All: Project: OnlineSubsystemPC, Configuration: BuiltWithUnrealBuildTool Win32 ------
+16>Project not selected to build for this solution configuration 
+17>------ Skipped Rebuild All: Project: OnlineSubsystemGameSpy, Configuration: BuiltWithUnrealBuildTool Win32 ------
+17>Project not selected to build for this solution configuration 
+18>------ Skipped Rebuild All: Project: IpDrv, Configuration: BuiltWithUnrealBuildTool Win32 ------
+18>Project not selected to build for this solution configuration 
+19>------ Skipped Rebuild All: Project: D3D9Drv, Configuration: BuiltWithUnrealBuildTool Win32 ------
+19>Project not selected to build for this solution configuration 
+20>------ Skipped Rebuild All: Project: WinDrv, Configuration: BuiltWithUnrealBuildTool Win32 ------
+20>Project not selected to build for this solution configuration 
+21>------ Skipped Rebuild All: Project: Launch, Configuration: BuiltWithUnrealBuildTool Win32 ------
+21>Project not selected to build for this solution configuration 
+22>------ Skipped Rebuild All: Project: OnlineSubsystemLive, Configuration: BuiltWithUnrealBuildTool Win32 ------
+22>Project not selected to build for this solution configuration 
+23>------ Skipped Rebuild All: Project: GameFramework, Configuration: BuiltWithUnrealBuildTool Win32 ------
+23>Project not selected to build for this solution configuration 
+24>------ Skipped Rebuild All: Project: UnrealEd, Configuration: BuiltWithUnrealBuildTool Win32 ------
+24>Project not selected to build for this solution configuration 
+25>------ Skipped Rebuild All: Project: Engine, Configuration: BuiltWithUnrealBuildTool Win32 ------
+25>Project not selected to build for this solution configuration 
+26>------ Skipped Rebuild All: Project: Core, Configuration: BuiltWithUnrealBuildTool Win32 ------
+26>Project not selected to build for this solution configuration 
+27>------ Skipped Rebuild All: Project: MMOGame, Configuration: BuiltWithUnrealBuildTool Win32 ------
+27>Project not selected to build for this solution configuration 
+28>------ Rebuild All started: Project: MMOGame Win32, Configuration: Release Win32 ------
+29>------ Skipped Rebuild All: Project: UDKGame Mac, Configuration: Release Win32 ------
+29>Project not selected to build for this solution configuration 
+30>------ Skipped Rebuild All: Project: MultiBuild, Configuration: Release Win32 ------
+30>Project not selected to build for this solution configuration 
+31>------ Skipped Rebuild All: Project: UDKGameDLL Win32, Configuration: Release Win32 ------
+31>Project not selected to build for this solution configuration 
+32>------ Skipped Rebuild All: Project: UDKGame Win64, Configuration: Release Win32 ------
+32>Project not selected to build for this solution configuration 
+33>------ Skipped Rebuild All: Project: UDKGame Win32, Configuration: Release Win32 ------
+33>Project not selected to build for this solution configuration 
+34>------ Skipped Rebuild All: Project: UnrealEdCSharp, Configuration: Release Any CPU ------
+34>Project not selected to build for this solution configuration 
+3>Build started 2015/12/30 17:34:00.
+28>Build started 2015/12/30 17:34:00.
+3>CoreClean:
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\Core
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\D3D9Drv
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\Engine
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\GameFramework
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\GFxUI
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\GFxUIEditor
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\IpDrv
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\Launch
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\MMOEditor
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\MMOGame
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\OnlineSubsystemPC
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\Studio_vs10
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\SwarmInterfaceMake
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\UnrealEd
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\UnrealEdCLR
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\WinDrv
+3>  Deleting folder: ..\Intermediate\MMOGame\Win64\Release\XAudio2
+3>  Deleting generated binaries from ..\..\Binaries\Win64\MMOGame
+28>CoreClean:
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\Core
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\D3D9Drv
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\Engine
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\GameFramework
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\GFxUI
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\GFxUIEditor
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\IpDrv
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\Launch
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\MMOEditor
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\MMOGame
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\OnlineSubsystemPC
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\Studio_vs10
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\SwarmInterfaceMake
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\UnrealEd
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\UnrealEdCLR
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\WinDrv
+28>  Deleting folder: ..\Intermediate\MMOGame\Win32\Release\XAudio2
+28>  Deleting generated binaries from ..\..\Binaries\Win32\MMOGame
+3>Rebuild:
+3>  Deleting generated binaries from ..\..\Binaries\Win64\MMOGame
+3>  UBT Arguments: MMOGame Win64 Release -output ../../Binaries/Win64/MMOGame.exe
+28>Rebuild:
+28>  Deleting generated binaries from ..\..\Binaries\Win32\MMOGame
+28>  UBT Arguments: MMOGame Win32 Release -output ../../Binaries/Win32/MMOGame.exe
+3>  MMOGAME	WIN64	RELEASE	-OUTPUT	Initializing...
+3>  --------------------Project: Default-------------------------------------------
+3>  FxStudioApp.rc
+3>  PCLaunch.rc
+3>  OpenAutomate.c
+3>  OpenAutomate.c
+3>  Unity_FxConsoleEtAl.cpp
+3>  Unity_FxConsoleEtAl.cpp
+3>  CorePrivate.h
+3>  CorePrivate.h.PCH.cpp
+3>  Unity_MMOEditorEtAl.cpp
+3>  Unity_MMOEditorEtAl.cpp
+3>  UnrealEdCSharp.csproj
+3>  Microsoft (R) Build Engine Version 4.0.30319.1
+3>  [Microsoft .NET Framework, Version 4.0.30319.225]
+3>  Copyright (C) Microsoft Corporation 2007. All rights reserved.
+3>  
+3>  Build started 2015/12/30 17:34:14.
+3>  Project "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Src\UnrealEdCSharp\UnrealEdCSharp.csproj" on node 1 (rebuild target(s)).
+3>  CoreClean:
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Binaries\UnrealEdCSharp.dll".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Binaries\UnrealEdCSharp.pdb".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ResolveAssemblyReference.cache".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\Autocomplete.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\SortableColumnHeader.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\YesNoPrompt.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\Autocomplete.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\TagBox.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\FilterListView.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\SortableColumnHeader.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\NameEntryPrompt.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataAssetCanvas.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataAssetView.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataFilterPanel.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\MainControl.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\PackagePanel.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\InfoPanel.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\AssetInspector.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\TagFilterTier.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataMainControl.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\SourcesPanel.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\FilterPanel.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\AssetView.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\AssetCanvas.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\TypeFilterTier.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\RefreshButton.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\YesNoPrompt.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\GeneratedInternalTypeHelper.g.cs".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\UnrealEdCSharp_MarkupCompile.cache".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\UnrealEdCSharp_MarkupCompile.lref".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\TagBox.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\FilterListView.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\NameEntryPrompt.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataAssetCanvas.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataAssetView.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataFilterPanel.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\MainControl.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\PackagePanel.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\InfoPanel.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\UnrealEdStyles.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\AssetInspector.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\TagFilterTier.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataMainControl.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\SourcesPanel.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\FilterPanel.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\AssetView.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\AssetCanvas.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\TypeFilterTier.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\RefreshButton.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\themes\generic.baml".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\UnrealEdCSharp.g.resources".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\UnrealEdCSharp.dll".
+3>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\UnrealEdCSharp.pdb".
+3>  ResolveAssemblyReferences:
+3>    A TargetFramework profile exclusion list will be generated.
+3>  Project "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Src\UnrealEdCSharp\UnrealEdCSharp.csproj" (1) is building "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Src\UnrealEdCSharp\2b423fme.tmp_proj" (2) on node 1 (_CompileTemporaryAssembly target(s)).
+3>  CoreCompile:
+3>    C:\Windows\Microsoft.NET\Framework\v4.0.30319\Csc.exe /noconfig /nowarn:1668,1701,1702 /nostdlib+ /warn:4 /define:TRACE /reference:"D:\Program Files (x86)\Microsoft Visual Studio 10.0\Visual Studio Tools for Office\PIA\Office12\Microsoft.Office.Interop.Excel.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\mscorlib.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\PresentationCore.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\PresentationFramework.Classic.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\PresentationFramework.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Data.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Windows.Forms.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Xaml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Xml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\UIAutomationProvider.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\WindowsBase.dll" /debug+ /debug:pdbonly /optimize+ /out:..\..\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\UnrealEdCSharp.dll /target:library /warnaserror+ ..\Launch\Resources\MetaData.cs CustomControls\Autocomplete.xaml.cs CustomControls\TagBox.xaml.cs CustomControls\TagBoxAdorner.cs CustomControls\FilterListView.xaml.cs CustomControls\SortableColumnHeader.xaml.cs CustomControls\NameEntryPrompt.xaml.cs BackendInterface.cs ContentBrowser\AssetInspector.xaml.cs ContentBrowser\AssetItem.cs ContentBrowser\AssetItemToolTip.cs ContentBrowser\AssetVisual.cs ContentBrowser\DataBrowser\DataAssetCanvas.xaml.cs ContentBrowser\DataBrowser\DataAssetFilter.cs ContentBrowser\DataBrowser\DataAssetItem.cs ContentBrowser\DataBrowser\DataAssetView.xaml.cs ContentBrowser\DataBrowser\DataAssetViewModel.cs ContentBrowser\DataBrowser\DataAssetVisual.cs ContentBrowser\DataBrowser\DataBackendInterface.cs ContentBrowser\DataBrowser\DataFilterPanel.xaml.cs ContentBrowser\DataBrowser\DataTagUtils.cs ContentBrowser\DataBrowser\PackagePanelViewModel.cs ContentBrowser\MainControl.xaml.cs ContentBrowser\DataBrowser\PackagePanel.xaml.cs ContentBrowser\TagFilterTier.xaml.cs ContentBrowser\ThumbnailCache.cs ContentBrowser\TypeFilterTier.xaml.cs CustomControls\ColorWheel.cs CustomControls\DragSlider.cs CustomControls\ExpandoSubpanel.cs CustomControls\CollectionVisual.cs ContentBrowser\DataBrowser\DataMainControl.xaml.cs ContentBrowser\PackageNodeVisual.cs ContentBrowser\SourcesPanelViewModel.cs ContentBrowser\SourcesPanel.xaml.cs ContentBrowser\FilterPanel.xaml.cs ContentBrowser\AssetViewModel.cs ContentBrowser\AssetView.xaml.cs ContentBrowser\AssetCanvas.xaml.cs ContentBrowser\AssetFilter.cs ContentBrowser\BackendInterface.cs CustomControls\GradientSlider.cs CustomControls\ImageRadioButton.cs CustomControls\InfoPanel.xaml.cs CustomControls\RefreshButton.xaml.cs CustomControls\SlateBorder.cs CustomControls\Switcher.cs CustomControls\TagVisual.cs CustomControls\CellSizer.cs CustomControls\ToolDropdownRadioButton.cs CustomControls\TreeView\AbstractTreeNode.cs CustomControls\TreeView\FolderNodeVisual.cs CustomControls\TreeView\TreeNodeVisual.cs CustomControls\TreeView\TreeView.cs CustomControls\UnrealTextBox.cs CustomControls\ExpandoPanel.cs CustomControls\YesNoPrompt.xaml.cs Excel\ExcelUtil.cs Landscape\LandscapeEdit.cs Properties\AssemblyInfo.cs ContentBrowser\TagUtils.cs Utils.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\Autocomplete.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\TagBox.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\FilterListView.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\SortableColumnHeader.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\NameEntryPrompt.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataAssetCanvas.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataAssetView.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataFilterPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\MainControl.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\PackagePanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\InfoPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\AssetInspector.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\TagFilterTier.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataMainControl.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\SourcesPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\FilterPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\AssetView.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\AssetCanvas.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\TypeFilterTier.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\RefreshButton.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\YesNoPrompt.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\GeneratedInternalTypeHelper.g.cs
+3>  Done Building Project "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Src\UnrealEdCSharp\2b423fme.tmp_proj" (_CompileTemporaryAssembly target(s)).
+3>  MarkupCompilePass2:
+3>    MarkupCompilePass2 successfully generated BAML or source code files.
+3>  CleanupTemporaryTargetAssembly:
+3>    Deleting file "..\..\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\UnrealEdCSharp.dll".
+3>  GenerateTargetFrameworkMonikerAttribute:
+3>  Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+3>  CoreCompile:
+3>    C:\Windows\Microsoft.NET\Framework\v4.0.30319\Csc.exe /noconfig /nowarn:1668,1701,1702 /nostdlib+ /warn:4 /define:TRACE /reference:"D:\Program Files (x86)\Microsoft Visual Studio 10.0\Visual Studio Tools for Office\PIA\Office12\Microsoft.Office.Interop.Excel.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\mscorlib.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\PresentationCore.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\PresentationFramework.Classic.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\PresentationFramework.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Data.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Windows.Forms.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Xaml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Xml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\UIAutomationProvider.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\WindowsBase.dll" /debug+ /debug:pdbonly /optimize+ /out:..\..\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\UnrealEdCSharp.dll /resource:..\..\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\UnrealEdCSharp.g.resources /target:library /warnaserror+ ..\Launch\Resources\MetaData.cs CustomControls\Autocomplete.xaml.cs CustomControls\TagBox.xaml.cs CustomControls\TagBoxAdorner.cs CustomControls\FilterListView.xaml.cs CustomControls\SortableColumnHeader.xaml.cs CustomControls\NameEntryPrompt.xaml.cs BackendInterface.cs ContentBrowser\AssetInspector.xaml.cs ContentBrowser\AssetItem.cs ContentBrowser\AssetItemToolTip.cs ContentBrowser\AssetVisual.cs ContentBrowser\DataBrowser\DataAssetCanvas.xaml.cs ContentBrowser\DataBrowser\DataAssetFilter.cs ContentBrowser\DataBrowser\DataAssetItem.cs ContentBrowser\DataBrowser\DataAssetView.xaml.cs ContentBrowser\DataBrowser\DataAssetViewModel.cs ContentBrowser\DataBrowser\DataAssetVisual.cs ContentBrowser\DataBrowser\DataBackendInterface.cs ContentBrowser\DataBrowser\DataFilterPanel.xaml.cs ContentBrowser\DataBrowser\DataTagUtils.cs ContentBrowser\DataBrowser\PackagePanelViewModel.cs ContentBrowser\MainControl.xaml.cs ContentBrowser\DataBrowser\PackagePanel.xaml.cs ContentBrowser\TagFilterTier.xaml.cs ContentBrowser\ThumbnailCache.cs ContentBrowser\TypeFilterTier.xaml.cs CustomControls\ColorWheel.cs CustomControls\DragSlider.cs CustomControls\ExpandoSubpanel.cs CustomControls\CollectionVisual.cs ContentBrowser\DataBrowser\DataMainControl.xaml.cs ContentBrowser\PackageNodeVisual.cs ContentBrowser\SourcesPanelViewModel.cs ContentBrowser\SourcesPanel.xaml.cs ContentBrowser\FilterPanel.xaml.cs ContentBrowser\AssetViewModel.cs ContentBrowser\AssetView.xaml.cs ContentBrowser\AssetCanvas.xaml.cs ContentBrowser\AssetFilter.cs ContentBrowser\BackendInterface.cs CustomControls\GradientSlider.cs CustomControls\ImageRadioButton.cs CustomControls\InfoPanel.xaml.cs CustomControls\RefreshButton.xaml.cs CustomControls\SlateBorder.cs CustomControls\Switcher.cs CustomControls\TagVisual.cs CustomControls\CellSizer.cs CustomControls\ToolDropdownRadioButton.cs CustomControls\TreeView\AbstractTreeNode.cs CustomControls\TreeView\FolderNodeVisual.cs CustomControls\TreeView\TreeNodeVisual.cs CustomControls\TreeView\TreeView.cs CustomControls\UnrealTextBox.cs CustomControls\ExpandoPanel.cs CustomControls\YesNoPrompt.xaml.cs Excel\ExcelUtil.cs Landscape\LandscapeEdit.cs Properties\AssemblyInfo.cs ContentBrowser\TagUtils.cs Utils.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\Autocomplete.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\TagBox.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\FilterListView.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\SortableColumnHeader.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\NameEntryPrompt.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataAssetCanvas.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataAssetView.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataFilterPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\MainControl.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\PackagePanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\InfoPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\AssetInspector.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\TagFilterTier.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\DataBrowser\DataMainControl.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\SourcesPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\FilterPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\AssetView.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\AssetCanvas.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\ContentBrowser\TypeFilterTier.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\RefreshButton.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\CustomControls\YesNoPrompt.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\GeneratedInternalTypeHelper.g.cs "C:\Users\Administrator\AppData\Local\Temp\1\IB_CPU_5\.NETFramework,Version=v4.0,Profile=Client.AssemblyAttributes.cs"
+3>  CopyFilesToOutputDirectory:
+3>    Copying file from "..\..\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\UnrealEdCSharp.dll" to "..\..\..\Binaries\UnrealEdCSharp.dll".
+3>    UnrealEdCSharp -> D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Binaries\UnrealEdCSharp.dll
+3>    Copying file from "..\..\Intermediate\CLR\Release\UnrealEdCSharp\x64\Release\UnrealEdCSharp.pdb" to "..\..\..\Binaries\UnrealEdCSharp.pdb".
+3>  Done Building Project "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Src\UnrealEdCSharp\UnrealEdCSharp.csproj" (rebuild target(s)).
+3>  
+3>  Build succeeded.
+3>      0 Warning(s)
+3>      0 Error(s)
+3>  
+3>  Time Elapsed 00:00:06.29
+3>  Unity_UnPropEtAl.cpp
+3>  Unity_UnPropEtAl.cpp
+3>  Unity_UnMathEtAl.cpp
+3>  Unity_UnMathEtAl.cpp
+3>  Unity_SwarmInterfaceEtAl.cpp
+3>  Unity_SwarmInterfaceEtAl.cpp
+3>  Unity_UnMiscEtAl.cpp
+3>  Unity_UnMiscEtAl.cpp
+3>  Unity_UnCorScEtAl.cpp
+3>  Unity_UnCorScEtAl.cpp
+3>  Unity_UnClassEtAl.cpp
+3>  Unity_UnClassEtAl.cpp
+3>  Unity_NedMemoryNedPoolingEtAl.cpp
+3>  Unity_NedMemoryNedPoolingEtAl.cpp
+3>  Unity_UnObjEtAl.cpp
+3>  Unity_UnObjEtAl.cpp
+3>  Unity_UHelpCommandletEtAl.cpp
+3>  Unity_UHelpCommandletEtAl.cpp
+3>  EnginePrivate.h
+3>  EnginePrivate.h.PCH.cpp
+3>  Unity_file_name_hash_tableEtAl.cpp
+3>  Unity_file_name_hash_tableEtAl.cpp
+3>  Unity_UnPatchCommandletsEtAl.cpp
+3>  Unity_UnPatchCommandletsEtAl.cpp
+3>  Unity_XAudio2SourceEtAl.cpp
+3>  Unity_XAudio2SourceEtAl.cpp
+3>  Unity_FFileManagerNetworkEtAl.cpp
+3>  Unity_FFileManagerNetworkEtAl.cpp
+3>  Unity_UnVcWin32EtAl.cpp
+3>  Unity_UnVcWin32EtAl.cpp
+3>d:\_autobuild\source\08.prog_cq\common\define\dl_def.h(243): error C3861: 'LOG_PROCESS_ERROR': identifier not found
+3>d:\_autobuild\source\08.prog_cq\common\define\dl_def.h(262): error C3861: 'LOG_PROCESS_ERROR': identifier not found
+3>d:\_autobuild\source\08.prog_cq\common\define\dl_def.h(271): error C3861: 'LOG_PROCESS_ERROR': identifier not found
+3>d:\_autobuild\source\08.prog_cq\common\define\dl_def.h(280): error C3861: 'LOG_PROCESS_ERROR': identifier not found
+3>d:\_autobuild\source\08.prog_cq\common\define\dl_def.h(289): error C3861: 'LOG_PROCESS_ERROR': identifier not found
+3>d:\_autobuild\source\08.prog_cq\common\define\dl_def.h(307): error C3861: 'LOG_PROCESS_ERROR': identifier not found
+3>   
+3>  ---------------------- Done ----------------------
+3>   
+3>      Rebuild All: 0 succeeded, 1 failed, 0 skipped
+3>EXEC : UBT error : Failed to produce item: D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Binaries\Win64\MMOGame.exe
+3>EXEC : UBT error : Failed to produce item: D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Binaries\Win64\MMOGame.lib
+3>EXEC : UBT error : Failed to produce item: D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Binaries\Win64\MMOGame.exp
+3>EXEC : UBT error : Failed to produce item: D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Binaries\Win64\MMOGame.pdb
+3>  [17:34] XGE execution time: 43.29 seconds
+3>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.MakeFile.Targets(43,5): error MSB3073: The command "@cd ..
+3>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.MakeFile.Targets(43,5): error MSB3073: @call Targets/CleanGame.bat MMOGame Win64 Release "../../Binaries/Win64/MMOGame.exe"
+3>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.MakeFile.Targets(43,5): error MSB3073: @call Targets/Build.bat MMOGame Win64 Release -output "../../Binaries/Win64/MMOGame.exe"" exited with code 1.
+3>
+3>Build FAILED.
+3>
+3>Time Elapsed 00:00:44.30
+28>  MMOGAME	WIN32	RELEASE	-OUTPUT	Initializing...
+28>  --------------------Project: Default-------------------------------------------
+28>  FxStudioApp.rc
+28>  PCLaunch.rc
+28>  OpenAutomate.c
+28>  OpenAutomate.c
+28>  Unity_FxConsoleEtAl.cpp
+28>  Unity_FxConsoleEtAl.cpp
+28>  CorePrivate.h
+28>  CorePrivate.h.PCH.cpp
+28>  UnrealEdCSharp.csproj
+28>  Microsoft (R) Build Engine Version 4.0.30319.1
+28>  [Microsoft .NET Framework, Version 4.0.30319.225]
+28>  Copyright (C) Microsoft Corporation 2007. All rights reserved.
+28>  
+28>  Build started 2015/12/30 17:34:56.
+28>  Project "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Src\UnrealEdCSharp\UnrealEdCSharp.csproj" on node 1 (rebuild target(s)).
+28>  CoreClean:
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Binaries\UnrealEdCSharp.dll".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Binaries\UnrealEdCSharp.pdb".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ResolveAssemblyReference.cache".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\Autocomplete.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\SortableColumnHeader.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\YesNoPrompt.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\Autocomplete.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\TagBox.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\FilterListView.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\SortableColumnHeader.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\NameEntryPrompt.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataAssetCanvas.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataAssetView.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataFilterPanel.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\MainControl.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\PackagePanel.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\InfoPanel.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\AssetInspector.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\TagFilterTier.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataMainControl.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\SourcesPanel.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\FilterPanel.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\AssetView.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\AssetCanvas.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\TypeFilterTier.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\RefreshButton.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\YesNoPrompt.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\GeneratedInternalTypeHelper.g.cs".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\UnrealEdCSharp_MarkupCompile.cache".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\UnrealEdCSharp_MarkupCompile.lref".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\TagBox.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\FilterListView.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\NameEntryPrompt.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataAssetCanvas.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataAssetView.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataFilterPanel.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\MainControl.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\PackagePanel.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\InfoPanel.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\UnrealEdStyles.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\AssetInspector.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\TagFilterTier.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataMainControl.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\SourcesPanel.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\FilterPanel.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\AssetView.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\AssetCanvas.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\TypeFilterTier.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\RefreshButton.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\themes\generic.baml".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\UnrealEdCSharp.g.resources".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\UnrealEdCSharp.dll".
+28>    Deleting file "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\UnrealEdCSharp.pdb".
+28>  ResolveAssemblyReferences:
+28>    A TargetFramework profile exclusion list will be generated.
+28>  Project "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Src\UnrealEdCSharp\UnrealEdCSharp.csproj" (1) is building "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Src\UnrealEdCSharp\advezhbd.tmp_proj" (2) on node 1 (_CompileTemporaryAssembly target(s)).
+28>  CoreCompile:
+28>    C:\Windows\Microsoft.NET\Framework\v4.0.30319\Csc.exe /noconfig /nowarn:1668,1701,1702 /nostdlib+ /warn:4 /define:TRACE /reference:"D:\Program Files (x86)\Microsoft Visual Studio 10.0\Visual Studio Tools for Office\PIA\Office12\Microsoft.Office.Interop.Excel.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\mscorlib.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\PresentationCore.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\PresentationFramework.Classic.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\PresentationFramework.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Data.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Windows.Forms.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Xaml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Xml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\UIAutomationProvider.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\WindowsBase.dll" /debug+ /debug:pdbonly /optimize+ /out:..\..\Intermediate\CLR\Release\UnrealEdCSharp\Release\UnrealEdCSharp.dll /target:library /warnaserror+ ..\Launch\Resources\MetaData.cs CustomControls\Autocomplete.xaml.cs CustomControls\TagBox.xaml.cs CustomControls\TagBoxAdorner.cs CustomControls\FilterListView.xaml.cs CustomControls\SortableColumnHeader.xaml.cs CustomControls\NameEntryPrompt.xaml.cs BackendInterface.cs ContentBrowser\AssetInspector.xaml.cs ContentBrowser\AssetItem.cs ContentBrowser\AssetItemToolTip.cs ContentBrowser\AssetVisual.cs ContentBrowser\DataBrowser\DataAssetCanvas.xaml.cs ContentBrowser\DataBrowser\DataAssetFilter.cs ContentBrowser\DataBrowser\DataAssetItem.cs ContentBrowser\DataBrowser\DataAssetView.xaml.cs ContentBrowser\DataBrowser\DataAssetViewModel.cs ContentBrowser\DataBrowser\DataAssetVisual.cs ContentBrowser\DataBrowser\DataBackendInterface.cs ContentBrowser\DataBrowser\DataFilterPanel.xaml.cs ContentBrowser\DataBrowser\DataTagUtils.cs ContentBrowser\DataBrowser\PackagePanelViewModel.cs ContentBrowser\MainControl.xaml.cs ContentBrowser\DataBrowser\PackagePanel.xaml.cs ContentBrowser\TagFilterTier.xaml.cs ContentBrowser\ThumbnailCache.cs ContentBrowser\TypeFilterTier.xaml.cs CustomControls\ColorWheel.cs CustomControls\DragSlider.cs CustomControls\ExpandoSubpanel.cs CustomControls\CollectionVisual.cs ContentBrowser\DataBrowser\DataMainControl.xaml.cs ContentBrowser\PackageNodeVisual.cs ContentBrowser\SourcesPanelViewModel.cs ContentBrowser\SourcesPanel.xaml.cs ContentBrowser\FilterPanel.xaml.cs ContentBrowser\AssetViewModel.cs ContentBrowser\AssetView.xaml.cs ContentBrowser\AssetCanvas.xaml.cs ContentBrowser\AssetFilter.cs ContentBrowser\BackendInterface.cs CustomControls\GradientSlider.cs CustomControls\ImageRadioButton.cs CustomControls\InfoPanel.xaml.cs CustomControls\RefreshButton.xaml.cs CustomControls\SlateBorder.cs CustomControls\Switcher.cs CustomControls\TagVisual.cs CustomControls\CellSizer.cs CustomControls\ToolDropdownRadioButton.cs CustomControls\TreeView\AbstractTreeNode.cs CustomControls\TreeView\FolderNodeVisual.cs CustomControls\TreeView\TreeNodeVisual.cs CustomControls\TreeView\TreeView.cs CustomControls\UnrealTextBox.cs CustomControls\ExpandoPanel.cs CustomControls\YesNoPrompt.xaml.cs Excel\ExcelUtil.cs Landscape\LandscapeEdit.cs Properties\AssemblyInfo.cs ContentBrowser\TagUtils.cs Utils.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\Autocomplete.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\TagBox.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\FilterListView.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\SortableColumnHeader.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\NameEntryPrompt.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataAssetCanvas.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataAssetView.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataFilterPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\MainControl.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\PackagePanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\InfoPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\AssetInspector.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\TagFilterTier.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataMainControl.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\SourcesPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\FilterPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\AssetView.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\AssetCanvas.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\TypeFilterTier.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\RefreshButton.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\YesNoPrompt.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\GeneratedInternalTypeHelper.g.cs
+28>  Done Building Project "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Src\UnrealEdCSharp\advezhbd.tmp_proj" (_CompileTemporaryAssembly target(s)).
+28>  MarkupCompilePass2:
+28>    MarkupCompilePass2 successfully generated BAML or source code files.
+28>  CleanupTemporaryTargetAssembly:
+28>    Deleting file "..\..\Intermediate\CLR\Release\UnrealEdCSharp\Release\UnrealEdCSharp.dll".
+28>  GenerateTargetFrameworkMonikerAttribute:
+28>  Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+28>  CoreCompile:
+28>    C:\Windows\Microsoft.NET\Framework\v4.0.30319\Csc.exe /noconfig /nowarn:1668,1701,1702 /nostdlib+ /warn:4 /define:TRACE /reference:"D:\Program Files (x86)\Microsoft Visual Studio 10.0\Visual Studio Tools for Office\PIA\Office12\Microsoft.Office.Interop.Excel.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\mscorlib.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\PresentationCore.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\PresentationFramework.Classic.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\PresentationFramework.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Data.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Windows.Forms.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Xaml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\System.Xml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\UIAutomationProvider.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Profile\Client\WindowsBase.dll" /debug+ /debug:pdbonly /optimize+ /out:..\..\Intermediate\CLR\Release\UnrealEdCSharp\Release\UnrealEdCSharp.dll /resource:..\..\Intermediate\CLR\Release\UnrealEdCSharp\Release\UnrealEdCSharp.g.resources /target:library /warnaserror+ ..\Launch\Resources\MetaData.cs CustomControls\Autocomplete.xaml.cs CustomControls\TagBox.xaml.cs CustomControls\TagBoxAdorner.cs CustomControls\FilterListView.xaml.cs CustomControls\SortableColumnHeader.xaml.cs CustomControls\NameEntryPrompt.xaml.cs BackendInterface.cs ContentBrowser\AssetInspector.xaml.cs ContentBrowser\AssetItem.cs ContentBrowser\AssetItemToolTip.cs ContentBrowser\AssetVisual.cs ContentBrowser\DataBrowser\DataAssetCanvas.xaml.cs ContentBrowser\DataBrowser\DataAssetFilter.cs ContentBrowser\DataBrowser\DataAssetItem.cs ContentBrowser\DataBrowser\DataAssetView.xaml.cs ContentBrowser\DataBrowser\DataAssetViewModel.cs ContentBrowser\DataBrowser\DataAssetVisual.cs ContentBrowser\DataBrowser\DataBackendInterface.cs ContentBrowser\DataBrowser\DataFilterPanel.xaml.cs ContentBrowser\DataBrowser\DataTagUtils.cs ContentBrowser\DataBrowser\PackagePanelViewModel.cs ContentBrowser\MainControl.xaml.cs ContentBrowser\DataBrowser\PackagePanel.xaml.cs ContentBrowser\TagFilterTier.xaml.cs ContentBrowser\ThumbnailCache.cs ContentBrowser\TypeFilterTier.xaml.cs CustomControls\ColorWheel.cs CustomControls\DragSlider.cs CustomControls\ExpandoSubpanel.cs CustomControls\CollectionVisual.cs ContentBrowser\DataBrowser\DataMainControl.xaml.cs ContentBrowser\PackageNodeVisual.cs ContentBrowser\SourcesPanelViewModel.cs ContentBrowser\SourcesPanel.xaml.cs ContentBrowser\FilterPanel.xaml.cs ContentBrowser\AssetViewModel.cs ContentBrowser\AssetView.xaml.cs ContentBrowser\AssetCanvas.xaml.cs ContentBrowser\AssetFilter.cs ContentBrowser\BackendInterface.cs CustomControls\GradientSlider.cs CustomControls\ImageRadioButton.cs CustomControls\InfoPanel.xaml.cs CustomControls\RefreshButton.xaml.cs CustomControls\SlateBorder.cs CustomControls\Switcher.cs CustomControls\TagVisual.cs CustomControls\CellSizer.cs CustomControls\ToolDropdownRadioButton.cs CustomControls\TreeView\AbstractTreeNode.cs CustomControls\TreeView\FolderNodeVisual.cs CustomControls\TreeView\TreeNodeVisual.cs CustomControls\TreeView\TreeView.cs CustomControls\UnrealTextBox.cs CustomControls\ExpandoPanel.cs CustomControls\YesNoPrompt.xaml.cs Excel\ExcelUtil.cs Landscape\LandscapeEdit.cs Properties\AssemblyInfo.cs ContentBrowser\TagUtils.cs Utils.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\Autocomplete.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\TagBox.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\FilterListView.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\SortableColumnHeader.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\NameEntryPrompt.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataAssetCanvas.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataAssetView.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataFilterPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\MainControl.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\PackagePanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\InfoPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\AssetInspector.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\TagFilterTier.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\DataBrowser\DataMainControl.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\SourcesPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\FilterPanel.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\AssetView.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\AssetCanvas.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\ContentBrowser\TypeFilterTier.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\RefreshButton.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\CustomControls\YesNoPrompt.g.cs D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Intermediate\CLR\Release\UnrealEdCSharp\Release\GeneratedInternalTypeHelper.g.cs "C:\Users\Administrator\AppData\Local\Temp\1\IB_CPU_5\.NETFramework,Version=v4.0,Profile=Client.AssemblyAttributes.cs"
+28>  CopyFilesToOutputDirectory:
+28>    Copying file from "..\..\Intermediate\CLR\Release\UnrealEdCSharp\Release\UnrealEdCSharp.dll" to "..\..\..\Binaries\UnrealEdCSharp.dll".
+28>    UnrealEdCSharp -> D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Binaries\UnrealEdCSharp.dll
+28>    Copying file from "..\..\Intermediate\CLR\Release\UnrealEdCSharp\Release\UnrealEdCSharp.pdb" to "..\..\..\Binaries\UnrealEdCSharp.pdb".
+28>  Done Building Project "D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Development\Src\UnrealEdCSharp\UnrealEdCSharp.csproj" (rebuild target(s)).
+28>  
+28>  Build succeeded.
+28>      0 Warning(s)
+28>      0 Error(s)
+28>  
+28>  Time Elapsed 00:00:05.62
+28>  Unity_MMOEditorEtAl.cpp
+28>  Unity_MMOEditorEtAl.cpp
+28>  Unity_SwarmInterfaceEtAl.cpp
+28>  Unity_SwarmInterfaceEtAl.cpp
+28>  Unity_UnPropEtAl.cpp
+28>  Unity_UnPropEtAl.cpp
+28>  Unity_UnMathEtAl.cpp
+28>  Unity_UnMathEtAl.cpp
+28>  Unity_UnCorScEtAl.cpp
+28>  Unity_UnCorScEtAl.cpp
+28>  Unity_UnMiscEtAl.cpp
+28>  Unity_UnMiscEtAl.cpp
+28>  Unity_UnClassEtAl.cpp
+28>  Unity_UnClassEtAl.cpp
+28>  Unity_NedMemoryNedPoolingEtAl.cpp
+28>  Unity_NedMemoryNedPoolingEtAl.cpp
+28>  Unity_UnObjEtAl.cpp
+28>  Unity_UnObjEtAl.cpp
+28>  Unity_UHelpCommandletEtAl.cpp
+28>  Unity_UHelpCommandletEtAl.cpp
+28>  Unity_file_name_hash_tableEtAl.cpp
+28>  Unity_file_name_hash_tableEtAl.cpp
+28>  EnginePrivate.h
+28>  EnginePrivate.h.PCH.cpp
+28>  Unity_XAudio2SourceEtAl.cpp
+28>  Unity_XAudio2SourceEtAl.cpp
+28>  Unity_UnPatchCommandletsEtAl.cpp
+28>  Unity_UnPatchCommandletsEtAl.cpp
+28>  Unity_UnVcWin32EtAl.cpp
+28>  Unity_UnVcWin32EtAl.cpp
+28>d:\_autobuild\source\08.prog_cq\common\define\dl_def.h(243): error C3861: 'LOG_PROCESS_ERROR': identifier not found
+28>d:\_autobuild\source\08.prog_cq\common\define\dl_def.h(262): error C3861: 'LOG_PROCESS_ERROR': identifier not found
+28>d:\_autobuild\source\08.prog_cq\common\define\dl_def.h(271): error C3861: 'LOG_PROCESS_ERROR': identifier not found
+28>d:\_autobuild\source\08.prog_cq\common\define\dl_def.h(280): error C3861: 'LOG_PROCESS_ERROR': identifier not found
+28>d:\_autobuild\source\08.prog_cq\common\define\dl_def.h(289): error C3861: 'LOG_PROCESS_ERROR': identifier not found
+28>d:\_autobuild\source\08.prog_cq\common\define\dl_def.h(307): error C3861: 'LOG_PROCESS_ERROR': identifier not found
+28>   
+28>  ---------------------- Done ----------------------
+28>   
+28>      Rebuild All: 0 succeeded, 1 failed, 0 skipped
+28>EXEC : UBT error : Failed to produce item: D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Binaries\Win32\MMOGame.exe
+28>EXEC : UBT error : Failed to produce item: D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Binaries\Win32\MMOGame.lib
+28>EXEC : UBT error : Failed to produce item: D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Binaries\Win32\MMOGame.exp
+28>EXEC : UBT error : Failed to produce item: D:\_AutoBuild\Source\08.Prog_CQ\Client\UE3\Binaries\Win32\MMOGame.pdb
+28>  [17:35] XGE execution time: 42.46 seconds
+28>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.MakeFile.Targets(43,5): error MSB3073: The command "@cd ..
+28>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.MakeFile.Targets(43,5): error MSB3073: @call Targets/CleanGame.bat MMOGame Win32 Release "../../Binaries/Win32/MMOGame.exe"
+28>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\Microsoft.MakeFile.Targets(43,5): error MSB3073: @call Targets/Build.bat MMOGame Win32 Release -output "../../Binaries/Win32/MMOGame.exe"" exited with code 1.
+28>
+28>Build FAILED.
+28>
+28>Time Elapsed 00:01:26.65
+========== Rebuild All: 1 succeeded, 2 failed, 31 skipped ==========
+
+D:\_AutoBuild\python_client8089>exit

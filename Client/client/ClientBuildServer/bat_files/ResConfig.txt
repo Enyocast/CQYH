@@ -1,0 +1,3 @@
+MMOGame\Config
+MMOGame\Localization
+MMOGame\CookedPC

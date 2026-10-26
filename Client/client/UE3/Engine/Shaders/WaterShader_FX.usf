@@ -1,0 +1,808 @@
+// Copyright (c) 2011 NVIDIA Corporation. All rights reserved.
+//
+// TO  THE MAXIMUM  EXTENT PERMITTED  BY APPLICABLE  LAW, THIS SOFTWARE  IS PROVIDED
+// *AS IS*  AND NVIDIA AND  ITS SUPPLIERS DISCLAIM  ALL WARRANTIES,  EITHER  EXPRESS
+// OR IMPLIED, INCLUDING, BUT NOT LIMITED  TO, NONINFRINGEMENT,IMPLIED WARRANTIES OF
+// MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  IN NO EVENT SHALL  NVIDIA 
+// OR ITS SUPPLIERS BE  LIABLE  FOR  ANY  DIRECT, SPECIAL,  INCIDENTAL,  INDIRECT,  OR  
+// CONSEQUENTIAL DAMAGES WHATSOEVER (INCLUDING, WITHOUT LIMITATION,  DAMAGES FOR LOSS 
+// OF BUSINESS PROFITS, BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, OR ANY 
+// OTHER PECUNIARY LOSS) ARISING OUT OF THE  USE OF OR INABILITY  TO USE THIS SOFTWARE, 
+// EVEN IF NVIDIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+//
+// Please direct any bugs or questions to SDKFeedback@nvidia.com
+ 
+#include "WaterCommon_FX.usf"
+
+//--------------------------------------------------------------------------------------
+// Textures
+//--------------------------------------------------------------------------------------
+
+// static textures
+Texture2D g_HeightfieldTexture;  // 0
+Texture2D g_LayerdefTexture;
+Texture2D g_RockBumpTexture;	// 2
+Texture2D g_RockMicroBumpTexture;
+Texture2D g_RockDiffuseTexture;	// 4
+Texture2D g_SandBumpTexture;
+Texture2D g_SandMicroBumpTexture;// 8
+Texture2D g_SandDiffuseTexture;
+Texture2D g_GrassDiffuseTexture; // 10
+Texture2D g_SlopeDiffuseTexture;
+Texture2D g_WaterBumpTexture;	// 12
+Texture2D g_DepthMapTexture;
+
+// rendertarget textures
+Texture2D g_SkyTexture;			// 14
+Texture2D g_ReflectionTexture;
+Texture2D g_RefractionTexture;	// 16
+Texture2D g_RefractionDepthTextureResolved;
+Texture2D g_WaterNormalMapTexture;	// 18
+Texture2D g_DepthTexture;
+Texture2D g_MainTexture;	// 20
+Texture2DMS<float,1> g_RefractionDepthTextureMS1;
+Texture2DMS<float,2> g_RefractionDepthTextureMS2;
+Texture2DMS<float,4> g_RefractionDepthTextureMS4;
+
+Texture2D g_FoamTexture;
+Texture2D 	SceneDepthTexture;
+Texture2D	SceneColorTexture;
+
+//samplerCUBE g_ReflectionCubeTexture;
+
+//--------------------------------------------------------------------------------------
+// Shader Inputs/Outputs
+//--------------------------------------------------------------------------------------
+struct VSIn_Diffuse
+{
+    float3 position : POSITION;
+    float2 texcoord : TEXCOORD;
+    float3 normal   : NORMAL;
+};
+
+struct PSIn_Diffuse
+{
+    float4 position     : SV_Position;
+    centroid float2 texcoord     : TEXCOORD0;
+    centroid float3 normal       : NORMAL;
+    centroid float3 positionWS   : TEXCOORD1;
+// #if DOMAINSHADER || HULLSHADER
+// 	centroid float4 depthmap_scaler: TEXCOORD2;
+// #else
+	centroid float4 layerdef		: TEXCOORD2;
+	centroid float4 depthmap_scaler: TEXCOORD3;
+	centroid float3 positionLS	 : TEXCOORD4;
+// #endif
+};
+
+struct PSIn_Quad
+{
+    float4 position     : SV_Position;
+    float2 texcoord     : TEXCOORD0;
+};
+
+struct VSIn_Default
+{
+	float4 position : POSITION;
+    float2 texcoord  : TEXCOORD;
+};
+
+
+struct DUMMY
+{
+	float Dummmy : DUMMY;
+};
+
+struct HSIn_Heightfield
+{
+    float3 origin   : ORIGIN;
+    float2 size     : SIZE;
+};
+
+
+struct PatchData
+{
+    float Edges[4]  : SV_TessFactor;
+    float Inside[2]	: SV_InsideTessFactor;
+
+	float3 origin   : ORIGIN;
+    float2 size     : SIZE;
+};
+
+//--------------------------------------------------------------------------------------
+// Constant Buffers
+//--------------------------------------------------------------------------------------
+#define PIXELREGISTER(type,name,cx)		type name
+
+//shared cbuffer cb0
+//{
+	float		g_GameTime; // game time 
+
+	// rendering control variables
+	float		g_RenderCaustics;
+	float		g_UseDynamicLOD = 1;
+	float		g_FrustumCullInHS;
+
+	float       g_DynamicTessFactor = 5;
+	float       g_StaticTessFactor;
+
+	float		g_HalfSpaceCullSign;
+	float		g_HalfSpaceCullPosition;
+	float		g_SkipCausticsCalculation;
+	int			g_MSSamples;
+
+	// view/time dependent variables
+	float4x4    g_ModelViewMatrix;
+    float4x4    g_ModelViewProjectionMatrix;
+	float4x4	g_ModelViewProjectionMatrixInv;
+    float4x4    g_LightModelViewProjectionMatrix;
+    float4x4    g_LightModelViewProjectionMatrixInv;
+    float3      g_CameraPosition;
+    float3      g_CameraDirection;
+
+
+	float3      g_LightPosition;
+	float2      g_WaterBumpTexcoordShift;
+	float2      g_ScreenSizeInv = {0.0009765625, 0.0013020833333333};
+	float	    g_MainBufferSizeMultiplier = 1.1;
+	float		g_ZNear = 1;
+
+	// constants defining visual appearance
+	float2		g_DiffuseTexcoordScale={130.0,130.0};
+	float2		g_RockBumpTexcoordScale={10.0,10.0};
+	float		g_RockBumpHeightScale=3.0;
+	float2		g_SandBumpTexcoordScale={3.5,3.5};
+	float		g_SandBumpHeightScale=0.5;
+	float       g_TerrainSpecularIntensity=0.5;
+	
+	float2		g_WaterMicroBumpTexcoordScale={225,225};
+	float2		g_WaterBumpTexcoordScale={7,7};
+	float		g_WaterHeightBumpScale=1.0f;
+
+	float3      g_WaterDeepColor={0.1,0.4,0.7};
+	float3      g_WaterScatterColor={0.3,0.7,0.6};
+	float3      g_WaterSpecularColor={1,1,1};
+	float       g_WaterSpecularIntensity=350.0;
+
+	float       g_WaterSpecularPower=1000;
+	float2      g_WaterColorIntensity={0.1,0.2};
+	float3      g_AtmosphereBrightColor={1.0,1.1,1.4};
+	float3      g_AtmosphereDarkColor={0.6,0.6,0.7};
+	float3		g_FogDensity = 0.0005;
+    float2		g_HeightFieldOrigin = float2(0, 0);
+	float		g_HeightFieldSize = 512;
+
+	float		g_ReflectionIntensity;
+	float		g_WaterScatterColorIntensity;
+
+	//float2		g_WaterSizeScale;
+
+	PIXELREGISTER(float4,		ScreenPositionScaleBias,	PSR_ScreenPositionScaleBias);
+	PIXELREGISTER(float4,		MinZ_MaxZRatio,				PSR_MinZ_MaxZ_Ratio);
+	PIXELREGISTER(float,		NvStereoEnabled,			PSR_NvStereoEnabled);
+	PIXELREGISTER(float4,		DiffuseOverrideParameter,	PSR_DiffuseOverride);
+	PIXELREGISTER(float4,		SpecularOverrideParameter,	PSR_SpecularOverride);
+	PIXELREGISTER(float4,		CameraPositionPS,			PSR_ViewOrigin);
+	PIXELREGISTER(float4,		ScreenAndTexelSize,			PSR_ScreenAndTexelSize);
+
+	//float3x3 WorldToViewMatrix;
+	//float3x3 ViewToWorldMatrix;
+	float4x4 LocalToWorld;
+	float3 CameraWorldPos;
+	float g_WaterScatterColorPower;
+//};
+
+
+#define Z_PRECISION	0.001f
+
+/** 
+ * Decodes the value stored in scene color alpha into world space depth. 
+ * Note: This must match DecodeFloatW in Scene.h!
+ */
+float DecodeFloatW(float EncodedW)
+{
+	float DepthAdd = -MinZ_MaxZRatio[0];
+	float DepthMul = 1 - MinZ_MaxZRatio[1];
+	// Solve for W
+	return DepthAdd / (EncodedW - DepthMul);
+}
+
+// Converts depth buffer Z / W into W
+float ConvertFromDeviceZ(float DeviceZ)
+{
+	// Clamp to be valid
+	// Only values less than 1 - Z_PRECISION can be decoded, but background depths may have been cleared to 1
+	DeviceZ = min(DeviceZ, 1 - Z_PRECISION);
+	return 1.f / (DeviceZ * MinZ_MaxZRatio[2] - MinZ_MaxZRatio[3]);	
+}
+
+
+/** Returns clip space W, which is world space distance along the View Z axis. */
+float CalcSceneDepthCmp( Texture2D inTexture, float2 ScreenUV, float cmpVal )
+{
+//#if 1 || SUPPORTS_DEPTH_TEXTURES
+	// Fetch the depth buffer Z / W value, solve for W
+	return ConvertFromDeviceZ(inTexture.SampleCmp(SamplerDepthAnisotropic, ScreenUV, cmpVal).r);
+//#else
+	// Fetch the encoded W in scene color alpha, solve for W
+//	return DecodeFloatW(inTexture.SampleCmp(SamplerDepthAnisotropic, ScreenUV, cmpVal).a);
+//#endif
+}
+
+// float CalcSceneDepthRaw( Texture2D inTexture, float2 ScreenUV )
+// {
+// //#if 1 || SUPPORTS_DEPTH_TEXTURES
+// 	// Fetch the depth buffer Z / W value, solve for W
+// 	float r = inTexture.Sample(SamplerDepthAnisotropic, float2(ScreenUV.xy)).r;
+// 	return ConvertFromDeviceZ( r );
+// //#else
+// 	// Fetch the encoded W in scene color alpha, solve for W
+// //	return DecodeFloatW(inTexture.SampleLevel(SamplerDepthAnisotropic, ScreenUV).a);
+// //#endif
+// }
+
+//--------------------------------------------------------------------------------------
+// Misc functions
+//--------------------------------------------------------------------------------------
+
+// calculating tessellation factor. It is either constant or hyperbolic depending on g_UseDynamicLOD switch
+float CalculateTessellationFactor(float distance)
+{
+	return lerp( g_StaticTessFactor, g_DynamicTessFactor * ( 1 / (0.0002 * distance) ), g_UseDynamicLOD );
+}
+
+// to avoid vertex swimming while tessellation varies, one can use mipmapping for displacement maps
+// it's not always the best choice, but it effificiently suppresses high frequencies at zero cost
+float CalculateMIPLevelForDisplacementTextures(float distance)
+{
+	return log2(128/CalculateTessellationFactor(distance));
+}
+
+// primitive simulation of non-uniform atmospheric fog
+float3 CalculateFogColor(float3 pixel_to_light_vector, float3 pixel_to_eye_vector)
+{
+	//return g_AtmosphereBrightColor;
+	return lerp(g_AtmosphereDarkColor,g_AtmosphereBrightColor,0.5*dot(pixel_to_light_vector,-pixel_to_eye_vector)+0.5).rgb;
+}
+
+// constructing the displacement amount and normal for water surface geometry
+float4 CombineWaterNormal(float3 world_position)
+{
+
+	float2 offsetXY = float2( 0.0, 0.0 );
+	float normalZ = 4.0;
+	float height = 0.0;
+	float water_miplevel;
+	float distance_to_camera;
+	float4 texvalue;
+	float texcoord_scale=1.0;
+	float height_disturbance_scale=1.0;
+	float normal_disturbance_scale=1.0;
+	float2 tc;
+	float2 variance={1.0,1.0};
+
+	// calculating MIP level for water texture fetches
+	//distance_to_camera = length( g_CameraPosition - world_position);
+	//water_miplevel = CalculateMIPLevelForDisplacementTextures( distance_to_camera ) / 2.0 - 2.0;
+	tc = (world_position.xy * g_WaterBumpTexcoordScale / g_HeightFieldSize);
+
+	// fetching water heightmap
+	for(float i = 0; i < 5; i++)
+	{
+		texvalue = g_WaterBumpTexture.SampleLevel(SamplerLinearWrap,
+			//tc * texcoord_scale + g_WaterBumpTexcoordShift * 0.03 * variance, water_miplevel).rbga;
+			tc * texcoord_scale + g_WaterBumpTexcoordShift * 0.03 * variance, 0).rgba;
+
+		variance.x = -variance.x;
+		offsetXY += (2.0*texvalue.xy-float2(1.0,1.0)) * normal_disturbance_scale;
+		//offsetXY += texvalue.xy * normal_disturbance_scale;
+		height += (texvalue.w - 0.5) * height_disturbance_scale;
+		texcoord_scale *= 1.4;
+		height_disturbance_scale *= 0.65;
+		normal_disturbance_scale *= 0.65;
+	}
+	//height *= g_WaterHeightBumpScale;
+	return float4(normalize(float3(offsetXY, normalZ)), height);
+}
+
+// constructing water surface normal for water refraction caustics
+float3 CombineSimplifiedWaterNormal(float3 world_position, float mip_level)
+{
+	float3 water_normal=float3(0.0,0.0,4.0);
+
+	float water_miplevel;
+	float distance_to_camera;
+	float4 texvalue;
+	float texcoord_scale=1.0;
+	float normal_disturbance_scale=1.0;
+	float2 tc;
+	float2 variance={1.0,1.0};
+
+	tc=(world_position.xy*g_WaterBumpTexcoordScale/g_HeightFieldSize);
+	
+	// need more high frequensy details for caustics, so summing more "octaves"
+	for(float i=0;i<8;i++)
+	{
+		texvalue=g_WaterBumpTexture.SampleLevel(SamplerLinearWrap, tc*texcoord_scale+g_WaterBumpTexcoordShift*0.03*variance,mip_level/*+i*/).rgba;
+		variance.x*=-1.0;
+		water_normal.xy+=(2*texvalue.xy-float2(1,1))*normal_disturbance_scale;
+		texcoord_scale*=1.4;
+		normal_disturbance_scale*=0.85;
+	}
+	return normalize(water_normal);
+}
+
+// calculating water refraction caustics intensity
+float CalculateWaterCausticIntensity(float3 worldpos)
+{
+
+	float distance_to_camera=length(g_CameraPosition-worldpos);
+
+	float2 refraction_disturbance;
+	float3 n;
+	float m=0.2;
+	float cc=0;
+	float k=0.15;
+	float water_depth=0.5-worldpos.y;
+
+	float3 pixel_to_light_vector=normalize(g_LightPosition-worldpos);
+
+	worldpos.xy-=worldpos.y*pixel_to_light_vector.xy;
+	float3 pixel_to_water_surface_vector=pixel_to_light_vector*water_depth;
+	float3 refracted_pixel_to_light_vector;
+
+	// tracing approximately refracted rays back to light
+	for(float i=-3; i<=3;i+=1)
+		for(float j=-3; j<=3;j+=1)
+		{
+			n=2.0f*g_WaterNormalMapTexture.SampleLevel(SamplerLinearWrap,(worldpos.xy-g_CameraPosition.xy-float2(200.0,200.0)+float2(i*k,j*k)*m*water_depth)/400.0,0).rgb-float3(1.0f,1.0f,1.0f);
+			refracted_pixel_to_light_vector=m*(pixel_to_water_surface_vector+float3(i*k, j*k, 0))-0.5*float3(n.x,n.y,0);
+			cc+=0.05*max(0,pow(max(0,dot(normalize(refracted_pixel_to_light_vector),normalize(pixel_to_light_vector))),500.0f));
+		}
+	return cc;
+}
+
+
+float GetRefractionDepth(float2 position)
+{
+	return g_RefractionDepthTextureResolved.SampleLevel(SamplerLinearClamp,position,0).r;
+}
+
+float GetConservativeRefractionDepth(float2 position)
+{
+	float result =      g_RefractionDepthTextureResolved.SampleLevel(SamplerPointClamp,position + 2.0*float2(g_ScreenSizeInv.x,g_ScreenSizeInv.y),0).r;
+	result = min(result,g_RefractionDepthTextureResolved.SampleLevel(SamplerPointClamp,position + 2.0*float2(g_ScreenSizeInv.x,-g_ScreenSizeInv.y),0).r);
+	result = min(result,g_RefractionDepthTextureResolved.SampleLevel(SamplerPointClamp,position + 2.0*float2(-g_ScreenSizeInv.x,g_ScreenSizeInv.y),0).r);
+	result = min(result,g_RefractionDepthTextureResolved.SampleLevel(SamplerPointClamp,position + 2.0*float2(-g_ScreenSizeInv.x,-g_ScreenSizeInv.y),0).r);
+	return result;
+}
+
+
+//--------------------------------------------------------------------------------------
+// Heightfield shaders
+//--------------------------------------------------------------------------------------
+
+HSIn_Heightfield MainVertexShader(float3 PatchParams : POSITION/*PATCH_PARAMETERS*/)
+{
+    HSIn_Heightfield output;
+	output.origin = mul( LocalToWorld, float4(PatchParams.xy + PatchParams.zz * 0.5, 0.0, 1.0 ) ).xyz;
+    output.size = PatchParams.zz;
+    return output;
+}
+
+PatchData PatchConstantHS( InputPatch<HSIn_Heightfield, 1> inputPatch )
+{    
+    PatchData output = (PatchData)0;
+
+	float distance_to_camera;
+	float tesselation_factor;
+	float inside_tessellation_factor=0;
+	float in_frustum=0;
+
+	//float3 patch_center = mul( LocalToWorld, float4(inputPatch[0].origin + inputPatch[0].size * 0.5, 0.0, 1.0 ) ).xyz;
+	//output.origin = patch_center;
+
+	output.origin = inputPatch[0].origin;
+	output.size = inputPatch[0].size;
+	/*
+	float2 texcoord0to1 = (inputPatch[0].origin + inputPatch[0].size / 2.0) / g_HeightFieldSize;
+	texcoord0to1.y = 1 - texcoord0to1.y;
+	
+	// conservative frustum culling
+	float3 patch_center = float3( inputPatch[0].origin.x + inputPatch[0].size.x * 0.5,
+		inputPatch[0].origin.y + inputPatch[0].size.y * 0.5,
+		//g_HeightfieldTexture.SampleLevel(SamplerLinearWrap, texcoord0to1, 0).w
+		0.0
+		);
+	*/
+	float3 camera_to_patch_vector =  inputPatch[0].origin - g_CameraPosition;
+	float3 patch_to_camera_direction_vector = g_CameraDirection * dot(camera_to_patch_vector, g_CameraDirection)-camera_to_patch_vector;
+	float3 patch_center_realigned=inputPatch[0].origin+normalize(patch_to_camera_direction_vector)*min(2*inputPatch[0].size.x,length(patch_to_camera_direction_vector));
+	float4 patch_screenspace_center = mul(g_ModelViewProjectionMatrix, float4(patch_center_realigned, 1.0));
+
+	if(((patch_screenspace_center.x/patch_screenspace_center.w>-1.0) && (patch_screenspace_center.x/patch_screenspace_center.w<1.0) 
+		&& (patch_screenspace_center.y/patch_screenspace_center.w>-1.0) && (patch_screenspace_center.y/patch_screenspace_center.w<1.0)
+		&& (patch_screenspace_center.w>0)) || (length(camera_to_patch_vector)<2.0*inputPatch[0].size.x))
+	{
+		in_frustum=1;
+	}
+
+	if((in_frustum) || (g_FrustumCullInHS ==0))
+	{
+		distance_to_camera=length(-camera_to_patch_vector.xy-float2(0,inputPatch[0].size.y*0.5));
+		tesselation_factor=CalculateTessellationFactor(distance_to_camera);
+		output.Edges[0] =  tesselation_factor;
+		inside_tessellation_factor+=tesselation_factor;
+
+
+		distance_to_camera=length(-camera_to_patch_vector.xy-float2(inputPatch[0].size.x*0.5,0));
+		tesselation_factor=CalculateTessellationFactor(distance_to_camera);
+		output.Edges[1] =  tesselation_factor;
+		inside_tessellation_factor+=tesselation_factor;
+
+		distance_to_camera=length(-camera_to_patch_vector.xy-float2(inputPatch[0].size.x,inputPatch[0].size.y*0.5));
+		tesselation_factor=CalculateTessellationFactor(distance_to_camera);
+		output.Edges[2] =  tesselation_factor;
+		inside_tessellation_factor+=tesselation_factor;
+
+		distance_to_camera=length(-camera_to_patch_vector.xy-float2(inputPatch[0].size.x*0.5,inputPatch[0].size.y));
+		tesselation_factor=CalculateTessellationFactor(distance_to_camera);
+		output.Edges[3] =  tesselation_factor;
+		inside_tessellation_factor+=tesselation_factor;
+
+		output.Inside[0] = output.Inside[1] = inside_tessellation_factor*0.25;
+	}
+	else
+	{
+		output.Edges[0]=-1;
+		output.Edges[1]=-1;
+		output.Edges[2]=-1;
+		output.Edges[3]=-1;
+		output.Inside[0]=-1;
+		output.Inside[1]=-1;
+	}
+
+    return output;
+}
+
+[domain("quad")]
+[partitioning("fractional_odd")]
+[outputtopology("triangle_ccw")]
+[outputcontrolpoints(1)]
+[patchconstantfunc("PatchConstantHS")]
+#if 0
+HSIn_Heightfield MainHull( InputPatch<HSIn_Heightfield, 1> inputPatch )
+{
+	HSIn_Heightfield output = (HSIn_Heightfield)0;
+	output.origin = inputPatch[0].origin;
+	output.size = inputPatch[0].size;
+    return output;
+}
+#else
+DUMMY MainHull( InputPatch<HSIn_Heightfield, 1> inputPatch )
+{
+    return (DUMMY)0;
+}
+#endif
+
+//--------------------------------------------------------------------------------------
+// Water shaders
+//--------------------------------------------------------------------------------------
+
+[domain("quad")]
+PSIn_Diffuse MainDomain(    PatchData input, 
+                                    float2 uv : SV_DomainLocation,
+                                    OutputPatch<DUMMY, 1> inputPatch )
+{
+    PSIn_Diffuse output;
+	float3 vertexPosition;
+	float2 texcoord0to1 = (input.origin.xy + uv * input.size) / g_HeightFieldSize;
+	float4 water_normal;
+	float4 depthmap_scaler;
+
+	// getting rough estimate of water depth from depth map texture 
+	depthmap_scaler = g_DepthMapTexture.SampleLevel( SamplerLinearWrap, float2(texcoord0to1.x, 1 - texcoord0to1.y), 0);
+	
+	output.layerdef = depthmap_scaler;
+
+	depthmap_scaler = float4( 1, 1, 1, 1 );
+
+	// calculating water surface geometry position and normal
+	vertexPosition.xy = input.origin.xy + uv * input.size;
+
+
+	vertexPosition.z  = input.origin.z - g_WaterHeightBumpScale / 2;
+
+	water_normal = CombineWaterNormal(vertexPosition.xyz);
+
+	output.layerdef = water_normal;
+
+	// fading out displacement and normal disturbance near shores by 60%
+	//water_normal.xyz = lerp( float3(0,0,1), normalize(water_normal.xyz), 0.4 + 0.6 * depthmap_scaler.b);	
+	vertexPosition.z += water_normal.w * g_WaterHeightBumpScale;// * (0.4 + 0.6 * depthmap_scaler.b);
+	vertexPosition.xy -= float2(water_normal.x, water_normal.y) * 0.5;// * (0.4 + 0.6 * depthmap_scaler.b);
+
+	//output.positionRaw.xy = vertexPosition.xy;
+	//output.positionRaw.z = max(0, vertexPosition.z);
+
+	//float4 posWS = mul( LocalToWorld, float4(vertexPosition, 1.0) );
+	float4 posWS = float4( vertexPosition, 1.0 );
+
+	// writing output params
+    output.position = mul( g_ModelViewProjectionMatrix, posWS);
+    output.texcoord = texcoord0to1 * g_WaterMicroBumpTexcoordScale + g_WaterBumpTexcoordShift * 0.07;
+	output.normal = normalize(water_normal.xyz);
+	output.depthmap_scaler = depthmap_scaler;
+	output.positionWS = posWS.xyz;
+	output.positionLS = vertexPosition - input.origin;
+	//output.positionWS.z = max(0, vertexPosition.z);
+	//output.layerdef = float4(texcoord0to1.xy, 0, 0);
+    return output;
+}
+
+float3 ClampToZero(float3 v)
+{
+	float3 r;
+	r.x = max(0, v.x);
+	r.y = max(0, v.y);
+	r.z = max(0, v.z);
+	return r;
+}
+
+PSIn_Diffuse MainVertexShader_NoTess( float3 PatchParams : POSITION )
+{
+    PSIn_Diffuse output;
+	float3 vertexPosition = mul( LocalToWorld, float4(PatchParams.xyz, 1.0 ) ).xyz;
+	float2 texcoord0to1 = vertexPosition.xy / g_HeightFieldSize;
+	float4 water_normal;
+	float4 depthmap_scaler;
+
+	// getting rough estimate of water depth from depth map texture
+	depthmap_scaler = float4( 1, 1, 1, 1 );
+
+	vertexPosition.z -= g_WaterHeightBumpScale / 2;
+
+	water_normal = CombineWaterNormal(vertexPosition);
+
+	output.layerdef = water_normal;
+
+	// fading out displacement and normal disturbance near shores by 60%
+	//water_normal.xyz = lerp( float3(0,0,1), normalize(water_normal.xyz), 0.4 + 0.6 * depthmap_scaler.b);	
+	vertexPosition.z += water_normal.w * g_WaterHeightBumpScale;// * (0.4 + 0.6 * depthmap_scaler.b);
+	vertexPosition.xy -= float2(water_normal.x, water_normal.y) * 0.5;// * (0.4 + 0.6 * depthmap_scaler.b);
+
+	//output.positionRaw.xy = vertexPosition.xy;
+	//output.positionRaw.z = max(0, vertexPosition.z);
+
+	//float4 posWS = mul( LocalToWorld, float4(vertexPosition, 1.0) );
+	float4 posWS = float4( vertexPosition, 1.0 );
+
+	// writing output params
+    output.position = mul( g_ModelViewProjectionMatrix, posWS);
+    output.texcoord = texcoord0to1 * g_WaterMicroBumpTexcoordScale + g_WaterBumpTexcoordShift * 0.07;
+	output.normal = normalize(water_normal.xyz);
+	output.depthmap_scaler = depthmap_scaler;
+	output.positionWS = posWS.xyz;
+	output.positionLS = vertexPosition - PatchParams.xyz;
+	//output.positionWS.z = max(0, vertexPosition.z);
+	//output.layerdef = float4(texcoord0to1.xy, 0, 0);
+    return output;
+}
+
+float4 MainPixelShader(PSIn_Diffuse input) : SV_Target
+{
+	float4 color={0,0,0,0};
+	float3 pixel_to_light_vector = normalize(g_LightPosition - input.positionWS);
+	float3 pixel_to_eye_vector = normalize(g_CameraPosition - input.positionWS);
+	float3 reflected_eye_to_pixel_vector={0,0,0};
+	float3 microbump_normal; 
+	float3x3 normal_rotation_matrix;
+
+	float fresnel_factor = 0;
+	float diffuse_factor = 0;
+	float specular_factor = 0;
+	float scatter_factor = 0;
+	float4 refraction_color={0,0,0,0};
+	float4 reflection_color={0,0,0,0};
+	float4 disturbance_eyespace={0,0,0,0};
+
+	float water_depth = 0;
+	float4 water_color={0,0,0,0};
+
+	float distToCamera = length( g_CameraPosition - input.positionWS);
+
+	// calculating pixel position in light space
+	/*float4 positionLS = mul( g_LightModelViewProjectionMatrix, float4(input.positionWS,1) );
+	positionLS.xyz /= positionLS.w;
+	positionLS.x = (positionLS.x + 1) * 0.5;
+	positionLS.y = (1 - positionLS.y) * 0.5;*/
+
+	// calculating shadow multiplier to be applied to diffuse/scatter/specular light components
+	//float dsf = 1.0f / 4096.0f;
+	//float shadow_factor = 1.0;
+	//shadow_factor  = 0.2 * g_DepthTexture.SampleCmp(SamplerDepthAnisotropic, positionLS.xy, positionLS.y * 0.995f).r;
+	//shadow_factor += 0.2 * g_DepthTexture.SampleCmp(SamplerDepthAnisotropic,positionLS.xy+float2(dsf,dsf),positionLS.y* 0.995f).r;
+	//shadow_factor += 0.2 * g_DepthTexture.SampleCmp(SamplerDepthAnisotropic,positionLS.xy+float2(-dsf,dsf),positionLS.y* 0.995f).r;
+	//shadow_factor += 0.2 * g_DepthTexture.SampleCmp(SamplerDepthAnisotropic,positionLS.xy+float2(dsf,-dsf),positionLS.y* 0.995f).r;
+	//shadow_factor += 0.2 * g_DepthTexture.SampleCmp(SamplerDepthAnisotropic,positionLS.xy+float2(-dsf,-dsf),positionLS.y* 0.995f).r;
+
+	// need more high frequency bumps for plausible water surface, so creating normal defined by 2 instances of same bump texture
+	microbump_normal = normalize(2.0*g_WaterBumpTexture.Sample(SamplerAnisotropicWrap,input.texcoord-g_WaterBumpTexcoordShift*0.2).grb - float3(1,1,-8));
+	microbump_normal+= normalize(2.0*g_WaterBumpTexture.Sample(SamplerAnisotropicWrap,input.texcoord*0.5+g_WaterBumpTexcoordShift*0.05).grb - float3(1,1,-8));
+	//microbump_normal = normalize(g_WaterBumpTexture.Sample(SamplerAnisotropicWrap,input.texcoord-g_WaterBumpTexcoordShift*0.2).grb + float3(0,0,8));
+	//microbump_normal+= normalize(g_WaterBumpTexture.Sample(SamplerAnisotropicWrap,input.texcoord*0.5+g_WaterBumpTexcoordShift*0.05).grb + float3(0,0,8));
+
+	//float4 dptc = g_DepthMapTexture.SampleLevel( SamplerLinearWrap, input.texcoord, 0);
+	//return input.layerdef;
+	//return float4(input.normal.xyz, 0);
+	// calculating base normal rotation matrix
+	//normal_rotation_matrix[2]=input.normal.xyz;
+	//normal_rotation_matrix[0]=normalize(cross(float3(0.0,-1.0,0.0),normal_rotation_matrix[2]));
+	//normal_rotation_matrix[1]=normalize(cross(normal_rotation_matrix[0],normal_rotation_matrix[2]));
+
+	normal_rotation_matrix[2]=input.normal.xyz;
+	normal_rotation_matrix[0]=normalize(cross(float3(1.0,0.0,0.0),normal_rotation_matrix[2]));
+	normal_rotation_matrix[1]=normalize(cross(normal_rotation_matrix[2],normal_rotation_matrix[0]));
+
+	// applying base normal rotation matrix to high frequency bump normal
+	microbump_normal=mul(normalize(microbump_normal), normal_rotation_matrix);
+	
+	// simulating scattering/double refraction: light hits the side of wave, travels some distance in water, and leaves wave on the other side
+	// it's difficult to do it physically correct without photon mapping/ray tracing, so using simple but plausible emulation below
+	
+	// only the crests of water waves generate double refracted light
+	scatter_factor = 2.5 * max(0, input.positionLS.z * 0.00125 + 0.25);
+	
+	// the waves that lie between camera and light projection on water plane generate maximal amount of double refracted light 
+	float viewcos = dot(normalize(float3(
+		pixel_to_light_vector.x,
+		pixel_to_light_vector.y,
+		0.0)), -pixel_to_eye_vector);
+
+	scatter_factor *= /*shadow_factor * */pow(max(0.0, viewcos),2.0);
+	
+	// the slopes of waves that are oriented back to light generate maximal amount of double refracted light 
+	scatter_factor *= pow(max(0.0, 1.0 - dot(pixel_to_light_vector, microbump_normal)), g_WaterScatterColorPower);
+	
+	// water crests gather more light than lobes, so more light is scattered under the crests
+  	scatter_factor += /*shadow_factor * */1.5 * g_WaterColorIntensity.y * max(0, input.positionLS.z + 200)
+  		// the scattered light is best seen if observing direction is normal to slope surface
+  		* max(0, dot(pixel_to_eye_vector, microbump_normal))
+  		// fading scattered light out at distance and if viewing direction is vertical to avoid unnatural look
+  		* max(0, -pixel_to_eye_vector.z) * (15000.0 / (15000.0 + distToCamera));
+
+	// fading scatter out by 90% near shores so it looks better
+	//scatter_factor*=0.1+0.9*input.depthmap_scaler.g;
+
+
+	// calculating fresnel factor 
+	float r = (1.2 - 1.0) / (1.2 + 1.0);
+	fresnel_factor = max(
+		0.0, 
+		min(1.0, r + (1.0 - r) * pow(1.0 - dot(microbump_normal, pixel_to_eye_vector), 4)));
+
+	// calculating specular factor
+	reflected_eye_to_pixel_vector = -reflect(pixel_to_eye_vector, microbump_normal);
+	//reflected_eye_to_pixel_vector = -pixel_to_eye_vector + 2 * dot(dotpixel_to_eye_vector, microbump_normal) * microbump_normal;
+	specular_factor = /*shadow_factor * */fresnel_factor * 0.5;
+	specular_factor *= pow(max(0, dot(pixel_to_light_vector, reflected_eye_to_pixel_vector)), g_WaterSpecularPower);
+
+	// calculating diffuse intensity of water surface itself
+	diffuse_factor = g_WaterColorIntensity.x + g_WaterColorIntensity.y * max(0,dot(pixel_to_light_vector,microbump_normal));
+	
+	// calculating disturbance which has to be applied to planar reflections/refractions to give plausible results
+	//disturbance_eyespace = mul( g_ModelViewMatrix, float4(microbump_normal.x, microbump_normal.y, microbump_normal.z, 0));
+	disturbance_eyespace = mul(g_ModelViewMatrix, float4(microbump_normal.x, microbump_normal.y, 0,0));
+
+	float2 reflection_disturbance = float2(disturbance_eyespace.x, disturbance_eyespace.y) * 0.06;
+	float2 refraction_disturbance = float2(-disturbance_eyespace.x, disturbance_eyespace.z)* 0.05 *
+		// fading out reflection disturbance at distance so reflection doesn't look noisy at distance
+		(1000.0 / (1000.0 + distToCamera));
+	
+	// calculating correction that shifts reflection up/down according to water wave Y position
+	float4 projected_waveheight = mul(g_ModelViewProjectionMatrix, float4(input.positionWS.x,input.positionWS.y, input.positionWS.z,1));
+	float waveheight_correction = -0.5 * projected_waveheight.y / projected_waveheight.w;
+	projected_waveheight = mul(g_ModelViewProjectionMatrix, float4(input.positionWS.x, input.positionWS.y, input.positionWS.z-80.0, 1));
+	waveheight_correction += 0.5 * projected_waveheight.y / projected_waveheight.w;
+	reflection_disturbance.y = max(-0.15, waveheight_correction + reflection_disturbance.y);
+
+	// picking refraction depth at non-displaced point, need it to scale the refraction texture displacement amount according to water depth
+	float refraction_depth = GetRefractionDepth( input.position.xy * g_ScreenSizeInv);
+	//refraction_depth = g_ZFar * g_ZNear / (g_ZFar - refraction_depth *(g_ZFar - g_ZNear));
+	refraction_depth = g_ZNear * ( 1.0 - Z_PRECISION ) / ( 1.0 - Z_PRECISION - refraction_depth );
+	float4 vertex_in_viewspace = mul( g_ModelViewMatrix, float4(input.positionWS, 1));
+	water_depth = refraction_depth - vertex_in_viewspace.z;
+/*	float nondisplaced_water_depth = water_depth;
+	
+	// scaling refraction texture displacement amount according to water depth, with some limit
+	//refraction_disturbance *= min(2, water_depth);
+
+	// picking refraction depth again, now at displaced point, need it to calculate correct water depth
+	refraction_depth = GetRefractionDepth(input.position.xy * g_ScreenSizeInv + refraction_disturbance);
+	//refraction_depth = g_ZFar * g_ZNear / (g_ZFar - refraction_depth * (g_ZFar - g_ZNear));
+	refraction_depth = g_ZNear * ( 1.0 - Z_PRECISION ) / ( 1.0 - Z_PRECISION - refraction_depth );
+	//vertex_in_viewspace = mul( g_ModelViewMatrix, float4(input.positionWS, 1) );
+	water_depth = refraction_depth - vertex_in_viewspace.z;
+
+
+	// zeroing displacement for points where displaced position points at geometry which is actually closer to the camera than the water surface
+	float conservative_refraction_depth = GetConservativeRefractionDepth(input.position.xy * g_ScreenSizeInv + refraction_disturbance);
+	//conservative_refraction_depth = g_ZFar * g_ZNear / (g_ZFar - conservative_refraction_depth * (g_ZFar - g_ZNear));
+	conservative_refraction_depth = g_ZNear * ( 1.0 - Z_PRECISION ) / ( 1.0 - Z_PRECISION - conservative_refraction_depth );
+	//vertex_in_viewspace = mul(g_ModelViewMatrix, float4(input.positionWS, 1));
+	float conservative_water_depth = conservative_refraction_depth - vertex_in_viewspace.z;
+
+	if(conservative_water_depth < 0)
+	{
+		refraction_disturbance = 0;
+		water_depth = nondisplaced_water_depth;
+	}
+	water_depth = max(0, water_depth);
+	
+*/
+	//return water_depth;
+
+	float2 reflectUV = float2(input.position.x * g_ScreenSizeInv.x, input.position.y * g_ScreenSizeInv.y) + reflection_disturbance;
+	// getting reflection and refraction color at disturbed texture coordinates
+	// fix the green bord issue
+	reflectUV.x = clamp( reflectUV.x, 0.005, 0.985 );
+	//reflectUV.y = clamp( reflectUV.y, 0.005, 0.97 );
+	reflection_color = g_ReflectionTexture.SampleLevel(SamplerLinearClamp, reflectUV, 0) * g_ReflectionIntensity;
+
+	float2 refractUV = input.position.xy * g_ScreenSizeInv + refraction_disturbance;
+	refraction_color = g_RefractionTexture.SampleLevel(SamplerLinearClamp, refractUV,0);
+
+	// calculating water surface color
+	water_color = diffuse_factor * float4(g_WaterDeepColor, 1);
+
+	// fading fresnel factor to 0 to soften water surface edges
+	fresnel_factor *= min(1, water_depth * 0.02);
+
+	// fading refraction color to water color according to distance that refracted ray travels in water 
+	refraction_color = lerp(water_color, refraction_color, min(1, 1.0 * exp(-water_depth / 150.0)));
+	//refraction_color = water_color * 0.8 + refraction_color * 0.2;
+
+	// combining final water color
+	color.rgb = lerp(refraction_color.rgb, reflection_color.rgb, fresnel_factor);
+	color.rgb += g_WaterSpecularIntensity * specular_factor * g_WaterSpecularColor * (1.0 - fresnel_factor);
+	color.rgb += g_WaterScatterColor * scatter_factor * g_WaterScatterColorIntensity;
+	
+	// apply fog
+	float fogFactor = min(1,exp(-distToCamera*g_FogDensity));
+	float3 fogColor = CalculateFogColor(pixel_to_light_vector,pixel_to_eye_vector);
+	color.rgb = lerp( fogColor, color.rgb, fogFactor );
+
+	// add foam
+	//float4 foamClr = g_FoamTexture.SampleLevel(SamplerLinearWrap, input.texcoord, 0);	
+	//float4 foamClr = float4( 0.5, 0.5, 0.6, 1.0 );
+	//color.rgb  += foamClr.rgb * ( 1.0 - min( 1.0, water_depth * 0.01 ) );
+
+	//color.rgb = 0.2 / 2.2;
+	//color.rgb = float3( 0, 0, 1 );
+	//color.rgb = float3( input.texcoord, 0.f );
+	//color.rgb = 0.5 * ( input.normal.xyz + float3( 1.0, 1.0, 1.0 ) );
+	//color.rgb = pixel_to_eye_vector.xyz;
+	//color.rgb = reflectCubeClr.rgb;
+	//color.rgb = pixel_to_light_vector.rgb;
+	//color.rgb = pixel_to_eye_vector.rgb;
+	//color.rgb = reflected_eye_to_pixel_vector.rgb;
+	//color.rgb = 0.5 * ( microbump_normal.xyz + float3( 1.0, 1.0, 1.0 ) );
+	//color.rgb = g_WaterSpecularIntensity * specular_factor * g_WaterSpecularColor * fresnel_factor;
+	//color.rgb = water_color;
+	//color.rgb = refraction_color.rgb;
+	//color.rgb = reflection_color.rgb;
+	//color.rgb = disturbance_eyespace.rgb;
+	//color.rgb = water_color.rgb;
+	//color.rgb = refraction_depth / 1000.0;
+	//color.rgb = vertex_in_viewspace.z / 10000.0;
+	//color.rgb = water_depth / 1000.0;
+	//color.rgb = fresnel_factor;
+	//color.rgb = scatter_factor;
+	//color.rgb = specular_factor;
+	//color.rgb = g_RefractionDepthTextureResolved.SampleLevel(SamplerLinearClamp, refractUV,0).r;
+	//color.rgb = g_AtmosphereBrightColor.rgb;
+	//color.rgb = input.positionLS.z / 500.0;
+
+	color.a = 1;
+	return color;
+}

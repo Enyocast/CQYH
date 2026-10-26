@@ -1,0 +1,2 @@
+ActorLineCheck
+An Efficient Parametric Algorithm for Octree Traversal by J.Revelles/C.Ureña/M.Lastra (University of Granada, Spain).

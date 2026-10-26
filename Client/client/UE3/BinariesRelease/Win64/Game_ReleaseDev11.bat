@@ -1,0 +1,1 @@
+start MMOGame -log -ConsolePosX=0 -ConsolePosY=0 -novsync -dx11

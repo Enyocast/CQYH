@@ -1,0 +1,9 @@
+#ifndef _CLIENT_OPTION_DEF_H_
+#define _CLIENT_OPTION_DEF_H_
+
+#define CLIENT_OPTION_BIT_AUCTION               (1)
+#define CLIENT_OPTION_BIT_DYNAMIC_PASSWORD      (2)
+#define CLIENT_OPTION_BIT_ACTIVITY_VALUE        (4)
+#define CLIENT_OPTION_BIT_GUILD_WAR		        (8)
+
+#endif // _CLIENT_OPTION_DEF_H_

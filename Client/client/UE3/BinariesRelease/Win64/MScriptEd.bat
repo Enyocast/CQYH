@@ -1,0 +1,1 @@
+MMOGame.exe make -auto -NOPAUSEONSUCCESS -editor_release -full -DEMOMODE

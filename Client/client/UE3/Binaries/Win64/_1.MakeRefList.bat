@@ -1,0 +1,1 @@
+start MMOGame.exe MakeRefList -dev_release -processes=40

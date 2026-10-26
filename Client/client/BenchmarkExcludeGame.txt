@@ -1,0 +1,15 @@
+Account
+Autosaves
+Build
+Cloud
+CookedPC
+DLC
+ExportData
+Logs
+MovieCaptures
+Movies
+SaveData
+ScreenShots
+ScriptDevRelease
+ScriptFinalRelease
+Content

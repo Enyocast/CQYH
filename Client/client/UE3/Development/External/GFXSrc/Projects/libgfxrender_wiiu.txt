@@ -1,0 +1,13 @@
+Src/Render/WiiU/WiiU_HAL.cpp
+Src/Render/WiiU/WiiU_HAL.h
+Src/Render/WiiU/WiiU_HALSetup.cpp
+Src/Render/WiiU/WiiU_MemoryManager.h
+Src/Render/WiiU/WiiU_MeshCache.cpp
+Src/Render/WiiU/WiiU_MeshCache.h
+Src/Render/WiiU/WiiU_Shader.cpp
+Src/Render/WiiU/WiiU_Shader.h
+Src/Render/WiiU/WiiU_Sync.h
+Src/Render/WiiU/WiiU_Texture.cpp
+Src/Render/WiiU/WiiU_Texture.h
+Src/Render/ImageFiles/GTX_ImageReader.h
+Src/Render/ImageFiles/GTX_ImageReader.cpp

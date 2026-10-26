@@ -1,0 +1,47 @@
+��<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<ErrorDescription>
+	<Version value="0" />	
+	<Error id="-10524000" message="未知错误" />
+	<Error id="-10524001" message="请选择游戏区服" />
+	<Error id="-10524002" message="请输入账号" />
+	<Error id="-10524003" message="请输入密码" />
+	<Error id="-10524004" message="当前登录方式不支持，请使用其他登录方式" />
+	<Error id="-10524005" message="获取短信验证码失败，请重试" />
+	<Error id="-10524006" message="请输入短信验证码" />
+	<Error id="-10524007" message="请输入动态密码" />
+	<Error id="-10524008" message="请输入第%s位安全卡数字" />
+	<Error id="-10524009" message="请输入验证码" />
+	<Error id="-10524010" message="请输入第%s位动态密码" />
+	<Error id="-10524011" message="确认码为空，请重试" />
+	<Error id="-10524012" message="快速登录已失效,请重新登录" />
+	
+	<!-- 认证组件错误码(-10130100~-10130200)会被映射到区间（-10524100~-10524200） -394000 -->
+	<Error id="-10524100" message="网络传输异常，请检查网络或{a http://kf.sdo.com/kf/index.aspx}联系客服{/a}）" /> 
+	<Error id="-10524101" message="网络传输异常，请检查网络或{a http://kf.sdo.com/kf/index.aspx}联系客服{/a}）" /> 
+	<Error id="-10524102" message="网络传输异常，请检查网络或{a http://kf.sdo.com/kf/index.aspx}联系客服{/a}）" /> 
+	<Error id="-10524103" message="网络传输异常，请检查网络或{a http://kf.sdo.com/kf/index.aspx}联系客服{/a}）" /> 
+	<Error id="-10524104" message="网络传输异常，请检查网络或{a http://kf.sdo.com/kf/index.aspx}联系客服{/a}）" /> 
+	<Error id="-10524105" message="网络传输异常，请检查网络或{a http://kf.sdo.com/kf/index.aspx}联系客服{/a}）" /> 
+	<Error id="-10524106" message="网络传输异常，请检查网络或{a http://kf.sdo.com/kf/index.aspx}联系客服{/a}）" /> 
+	<Error id="-10524107" message="网络传输异常，请检查网络或{a http://kf.sdo.com/kf/index.aspx}联系客服{/a}）" /> 
+	<Error id="-10524108" message="网络传输异常，请检查网络或{a http://kf.sdo.com/kf/index.aspx}联系客服{/a}）" /> 
+	<Error id="-10524109" message="网络传输异常，请检查网络或{a http://kf.sdo.com/kf/index.aspx}联系客服{/a}）" /> 
+	
+	<!-- 键盘驱动错误码(-10524800~-10524999)-->
+	<Error id="-10524800" message="警告：您的上网环境存在风险，键盘输入暂无法使用，建议您使用盛大通行证手机版进行安全登录（下载地址：{a http://txz.sdo.com/default.aspx}{u}txz.sdo.com{/u}{/a}）。" /> <!-- 键盘驱动错误码(-10524800~-10524999)-->
+	
+	<Error id="-10524801" message="警告：您的上网环境存在风险，键盘输入暂无法使用，建议您使用盛大通行证手机版进行安全登录（下载地址：{a http://txz.sdo.com/default.aspx}{u}txz.sdo.com{/u}{/a}）。" /> <!-- 64位系统下取消系统的文件重定向功能失败-->
+	<Error id="-10524802" message="警告：您的上网环境存在风险，键盘输入暂无法使用，建议您使用盛大通行证手机版进行安全登录（下载地址：{a http://txz.sdo.com/default.aspx}{u}txz.sdo.com{/u}{/a}）。" /> <!-- 创建驱动文件失败-->
+	<Error id="-10524803" message="警告：您的上网环境存在风险，键盘输入暂无法使用，建议您使用盛大通行证手机版进行安全登录（下载地址：{a http://txz.sdo.com/default.aspx}{u}txz.sdo.com{/u}{/a}）。" /> <!-- 释放驱动文件失败-->
+	<Error id="-10524804" message="警告：您的上网环境存在风险，键盘输入暂无法使用，建议您使用盛大通行证手机版进行安全登录（下载地址：{a http://txz.sdo.com/default.aspx}{u}txz.sdo.com{/u}{/a}）。" /> <!-- 打开内核中的驱动对象失败-->
+	<Error id="-10524805" message="警告：您的上网环境存在风险，键盘输入暂无法使用，建议您使用盛大通行证手机版进行安全登录（下载地址：{a http://txz.sdo.com/default.aspx}{u}txz.sdo.com{/u}{/a}）。" /> <!-- 与内核中的驱动对象交互失败-->
+	<Error id="-10524806" message="警告：您的上网环境存在风险，键盘输入暂无法使用，建议您使用盛大通行证手机版进行安全登录（下载地址：{a http://txz.sdo.com/default.aspx}{u}txz.sdo.com{/u}{/a}）。" /> <!-- 创建内部临时窗口失败-->
+	<Error id="-10524807" message="警告：您的上网环境存在风险，键盘输入暂无法使用，建议您使用盛大通行证手机版进行安全登录（下载地址：{a http://txz.sdo.com/default.aspx}{u}txz.sdo.com{/u}{/a}）。" /> <!-- 打开SCM失败-->
+	<Error id="-10524808" message="警告：您的上网环境存在风险，键盘输入暂无法使用，建议您使用盛大通行证手机版进行安全登录（下载地址：{a http://txz.sdo.com/default.aspx}{u}txz.sdo.com{/u}{/a}）。" /> <!-- 删除服务失败-->
+	<Error id="-10524809" message="警告：您的上网环境存在风险，键盘输入暂无法使用，建议您使用盛大通行证手机版进行安全登录（下载地址：{a http://txz.sdo.com/default.aspx}{u}txz.sdo.com{/u}{/a}）。" /> <!-- 第一次创建服务失败-->
+	<Error id="-10524810" message="警告：您的上网环境存在风险，键盘输入暂无法使用，建议您使用盛大通行证手机版进行安全登录（下载地址：{a http://txz.sdo.com/default.aspx}{u}txz.sdo.com{/u}{/a}）。" /> <!-- 第二次创建服务失败-->
+	<Error id="-10524811" message="警告：您的上网环境存在风险，键盘输入暂无法使用，建议您使用盛大通行证手机版进行安全登录（下载地址：{a http://txz.sdo.com/default.aspx}{u}txz.sdo.com{/u}{/a}）。" /> <!-- 启动服务失败-->
+	<Error id="-10524812" message="警告：您的上网环境存在风险，键盘输入暂无法使用，建议您使用盛大通行证手机版进行安全登录（下载地址：{a http://txz.sdo.com/default.aspx}{u}txz.sdo.com{/u}{/a}）。" /> <!-- 文件验证失败-->
+	
+	<Error id="-10524900" message="温馨提示：如果您感觉密码输入不方便，推荐您使用盛大通行证手机版进行便捷登录（手机一键登录或二维码登录），更快更方便，安全不打折。下载地址：{a http://txz.sdo.com/default.aspx}{u}txz.sdo.com{/u}{/a}"	/> <!--字符校验失败-->
+</ErrorDescription

@@ -1,0 +1,73 @@
+#coding=utf8
+import os
+
+client_build_UE3_path = u'H:\\p4\\08.Prog\\Client\\UE3\\'
+targCookVerDir = u'h:\\BinRel\\'
+
+cookDirList = [
+	    #'robocopy ' + client_build_UE3_path + 'MMOGame\\ScriptFinalRelease\\ ' + targCookVerDir + 'MMOGame\\ScriptFinalRelease\\ *.* /MT:128 /E',
+        'robocopy ' + client_build_UE3_path + 'MMOGame\\CookedPC\\ ' + targCookVerDir + 'MMOGame\\CookedPC\\ *.* /MT:128 /E',
+        'xcopy ' + client_build_UE3_path + 'MMOGame\\Config\\*.* ' + targCookVerDir + 'MMOGame\\Config\\' + ' /S /F /Y /R /Q /EXCLUDE:ex.txt',
+        'robocopy ' + client_build_UE3_path + 'MMOGame\\Localization\\ ' + targCookVerDir + 'MMOGame\\Localization\\ *.* /MT:128 /E',
+        'robocopy ' + client_build_UE3_path + 'MMOGame\\Movies\\ ' + targCookVerDir + 'MMOGame\\Movies\\ *.* /MT:128 /E',
+        'robocopy ' + client_build_UE3_path + 'MMOGame\\Splash\\ ' + targCookVerDir + 'MMOGame\\Splash\\ *.* /MT:128 /E',
+        #'xcopy ' + client_build_UE3_path + 'MMOGame\\Flash\\Fonts\\*.* ' + targCookVerDir + 'MMOGame\\Flash\\Fonts\\' + ' /S /F /Y /R /Q',
+        'robocopy ' + client_build_UE3_path + 'MMOGame\\Content\\CursorAni\\ ' + targCookVerDir + 'MMOGame\\Content\\CursorAni\\ *.* /MT:128 /E',
+        'robocopy ' + client_build_UE3_path + 'MMOGame\\Content\\MapsGlobalInfo\\ ' + targCookVerDir + 'MMOGame\\CookedPC\\MapsGlobalInfo\\ *.npc /MT:128 /E',
+        #'xcopy ' + client_build_UE3_path + 'MMOGame\\Content\\*ShaderCache*.* ' + targCookVerDir + 'MMOGame\\Content\\' + ' /S /F /Y /R /Q',
+        #'xcopy ' + client_build_UE3_path + 'Engine\\*.* ' + targCookVerDir + 'Engine\\' + ' /S /F /Y /R /Q /EXCLUDE:ex.txt',
+        'robocopy ' + client_build_UE3_path + 'Engine\\Config\\ ' + targCookVerDir + 'Engine\\Config\\ *.ini /MT:128 /E',
+        'robocopy ' + client_build_UE3_path + 'Engine\\Config\\ ' + targCookVerDir + 'Engine\\Config\\ *.txt /MT:128 /E',
+        'robocopy ' + client_build_UE3_path + 'Engine\\Content\\  ' + targCookVerDir + 'Engine\\Content\\ *.* /MT:128 /E',
+        'robocopy ' + client_build_UE3_path + 'Engine\\Localization\\INT\\ ' + targCookVerDir + 'Engine\\Localization\\INT\\ *.* /MT:128 /E',
+        'robocopy ' + client_build_UE3_path + 'Engine\\Shaders\\Binaries\\ ' + targCookVerDir + 'Engine\\Shaders\\Binaries\\ *.* /MT:128 /E',
+
+        'robocopy ' + client_build_UE3_path + 'SDO\\ ' + targCookVerDir + 'SDO\\ *.* /MT:128 /E',
+        'robocopy ' + client_build_UE3_path + 'Launcher\\ ' + targCookVerDir + '\\ *.* /MT:128 /E',
+        'xcopy ' + client_build_UE3_path + 'LauncherRelease\\*.* ' + targCookVerDir + '\\' + ' /S /F /Y /R /Q',
+        'robocopy ' + client_build_UE3_path + 'Binaries\\Win32\\GPK\ ' + targCookVerDir + 'Binaries\\Win32\\GPK\\ *.* /MT:128 /E',
+        #'xcopy ' + client_build_UE3_path + 'Binaries\\Win32\\*.dll ' + targCookVerDir + 'Binaries\\Win32\\' + ' /S /F /Y /R /Q',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\MMOGame-Win32-Shipping.exe ' + targCookVerDir + 'Binaries\\Win32\\MMOGame.exe /Y',
+        'robocopy ' + client_build_UE3_path + 'Binaries\\Win32\\ ' + targCookVerDir + 'Binaries\\Win32\\ Apex*.dll /MT:128 /E',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\cudart32_41_22.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\EasyHook32.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\GPKitClt.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\libogg.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\libresample.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\libvorbis.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\libvorbisfile.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\nvtt.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\ogg.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\PhysX3GpuCHECKED_x86.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\PhysXCooking.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\PhysXCore.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\PhysXDevice.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\PhysXExtensions.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\PhysXLoader.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\wxmsw28u_adv_vc_custom.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\wxmsw28u_aui_vc_custom.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\wxmsw28u_core_vc_custom.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\wxmsw28u_html_vc_custom.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\wxmsw28u_richtext_vc_custom.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\wxmsw28u_vc_custom.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\wxmsw28u_xml_vc_custom.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\wxmsw28u_xrc_vc_custom.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\binkw32.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        #'copy ' + client_build_UE3_path + 'Binaries\\Win32\\xinput1_3.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        #'copy ' + client_build_UE3_path + 'Binaries\\Win32\\D3DCompiler_43.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        #'copy ' + client_build_UE3_path + 'Binaries\\Win32\\D3DX9_43.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        #'copy ' + client_build_UE3_path + 'Binaries\\Win32\\d3dx11_43.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        #'copy ' + client_build_UE3_path + 'Binaries\\Win32\\X3DAudio1_7.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        #'copy ' + client_build_UE3_path + 'Binaries\\Win32\\XAPOFX1_5.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\msvcp100.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy ' + client_build_UE3_path + 'Binaries\\Win32\\msvcr100.dll ' + targCookVerDir + 'Binaries\\Win32\\ /Y',
+        'copy C:\\AutoBuild\\aod_pack\\MMOGameCfg\\IP.ini ' + targCookVerDir + 'MMOGame\\Config\\IP.ini /Y',
+        #'copy ' + shippingVerIni + ' ' + targCookVerDir + 'Binaries\\ver.ini /Y',
+        'robocopy ' + client_build_UE3_path + '..\\..\\NewServer\\bin\\commonconfig\\scene\\ ' + targCookVerDir + 'MMOGame\\CookedPC\\scene\\ *.nav /MT:128 /E',
+        'robocopy ' + client_build_UE3_path + '..\\..\\NewServer\\bin\\commonconfig\\scene\\ ' + targCookVerDir + 'MMOGame\\CookedPC\\scene\\ *.phx /MT:128 /E',
+        'del ' + targCookVerDir + 'MMOGame\\Config\\*.xlsx' + '/F /Q',
+	]
+
+for copy_cooked in cookDirList:
+    print copy_cooked
+    os.system(copy_cooked)

@@ -1,0 +1,29 @@
+﻿package ActionScript3.fla
+{
+	import flash.external.ExternalInterface;
+	import flash.text.TextField;
+	import flash.ui.Mouse;	
+	import flash.events.Event;
+	import flash.events.TimerEvent;
+	import flash.events.MouseEvent;
+	import flash.utils.Timer;
+	import flash.display.MovieClip;
+	import flash.display.DisplayObject;
+	import flash.display.StageScaleMode;
+
+	import scaleform.clik.core.UIComponent;
+	import scaleform.clik.controls.Button;
+
+	import ActionScript3.fla.MoviePlayerBase;
+	import UI_WeaponSkillSetting.WeaponSkillSettingAS3.WeaponSkillSettingPanel;
+	
+	public class MoviePlayer_WeaponSkillSetting extends MoviePlayerBase
+	{
+		public var WeaponSkillSettingPanelMc:WeaponSkillSettingPanel;
+		
+		override protected function configUI():void
+		{
+			super.configUI();
+		}
+	}
+}

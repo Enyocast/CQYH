@@ -1,0 +1,1 @@
+MMOGame-Win32-Debug.exe make  -full -NOPAUSEONSUCCESS -DEMOMODE

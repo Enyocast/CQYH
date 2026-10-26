@@ -1,0 +1,65 @@
+//
+// 通知在特定的时候绑定一个模型
+//
+class AnimNotify_AttachDestructablePart extends AnimNotify_Scripted
+	dependson(NPC);
+
+// 初始时的可破坏部件列表
+var(MMO) editinline DestructablePartAttachInfo DestructablePartTemplate;
+
+var(MMO) bool NotifyScript;
+var(MMO) name ScriptEventName;
+
+var DestructablePartAttachInfo AttachedInstance;
+
+event Notify( Actor Owner, AnimNodeSequence AnimSeqInstigator )
+{
+	local NPC actor;
+	actor = NPC(Owner);
+	if(actor == none)
+	{
+		//`log("Error[AnimNotify_AttachDestructablePart.Notify]: notify owner actor is not MMOActor!" @Owner);
+		return;
+	}
+
+	//`log("event Notify( Actor Owner, AnimNodeSequence AnimSeqInstigator)");
+	if(AttachedInstance == none)
+	{
+		AttachedInstance = new DestructablePartTemplate.Class ( DestructablePartTemplate );
+	}
+
+	actor.AttachDestructablePart(AttachedInstance);
+
+	`log("___________AnimNotify_AttachDestructablePart::AttachDestructablePart" @AttachedInstance);
+
+	if(NotifyScript)
+	{
+		// TODO: 用脚本配置名来调用，似乎要用C++扩展。
+		actor.OnAttachDestructablePart(AttachedInstance);
+	}
+}
+
+event NotifyEnd( Actor Owner, AnimNodeSequence AnimSeqInstigator )
+{
+	local NPC actor;
+
+	actor = NPC(Owner);
+	if(actor == none)
+	{
+		//`log("Error[AnimNotify_AttachDestructablePart.NotifyEnd]: notify owner actor is not MMOActor!" @Owner);
+		return;
+	}
+
+	//`log("event NotifyEnd( Actor Owner, AnimNodeSequence AnimSeqInstigator)");
+	if(AttachedInstance != none)
+	{
+		actor.DetachDestructablePart(AttachedInstance);
+		AttachedInstance = none;
+	}
+}
+
+
+DefaultProperties
+{
+	NotifyColor=(R=255,G=255,B=0,A=255)
+}

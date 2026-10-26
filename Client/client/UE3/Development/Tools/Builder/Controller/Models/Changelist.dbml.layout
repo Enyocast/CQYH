@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 14.875" name="Changelist">
+  <DataContextMoniker Name="/ChangelistDataContext" />
+  <nestedChildShapes>
+    <classShape Id="98623687-ac0e-48d8-9e00-b803e27f8185" absoluteBounds="0.5, 0.5, 2, 4.0544051106770826">
+      <DataClassMoniker Name="/ChangelistDataContext/Changelist" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d404f4a9-73fe-4a96-bbf3-64030ea46501" absoluteBounds="0.51500000000000012, 0.96, 1.9700000000000002, 3.494405110677083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b1e86a02-4335-4f70-b64a-7a8d4b8669d1" absoluteBounds="3.625, 0.5, 2, 13.586550292968751">
+      <DataClassMoniker Name="/ChangelistDataContext/BranchConfigAlt" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3a515034-e42c-4340-95a7-7c4f466a29c3" absoluteBounds="3.6399999999999997, 0.96, 1.9700000000000002, 13.02655029296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.625 : 2.52720255533854); (2.5 : 2.52720255533854)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ChangelistDataContext/BranchConfigAlt/BranchConfig_Changelist" />
+      <nodes>
+        <classShapeMoniker Id="b1e86a02-4335-4f70-b64a-7a8d4b8669d1" />
+        <classShapeMoniker Id="98623687-ac0e-48d8-9e00-b803e27f8185" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.33423076923077 : 14.0865502929688); (4.33423076923077 : 14.3365502929688); (4.92961538461539 : 14.3365502929688); (4.92961538461539 : 14.0865502929688)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/ChangelistDataContext/BranchConfigAlt/BranchConfig_BranchConfig" />
+      <nodes>
+        <classShapeMoniker Id="b1e86a02-4335-4f70-b64a-7a8d4b8669d1" />
+        <classShapeMoniker Id="b1e86a02-4335-4f70-b64a-7a8d4b8669d1" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

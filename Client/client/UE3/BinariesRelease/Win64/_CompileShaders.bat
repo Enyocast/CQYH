@@ -1,0 +1,1 @@
+start MMOGame.exe PrecompileShaders -platform=pc_sm3 -log  -BUILDMACHINE -DEMOMODE -nopause

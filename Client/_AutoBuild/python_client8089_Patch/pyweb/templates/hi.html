@@ -1,0 +1,14 @@
+$def with (up_file)
+<html>
+  <head>
+    <title>卡牌上传</title>
+  </head>
+  <body>
+    <h1>上传卡牌</h1>
+    $if up_file:
+      <p>你上传了卡牌 <b>$up_file</b></p>
+    $else:
+      <p>卡牌上传失败</p>
+    <p><a href="/">返回</a></p>
+  </body>
+</html>

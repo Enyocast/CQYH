@@ -1,0 +1,27 @@
+/**
+ * Copyright 1998-2011 Epic Games, Inc. All Rights Reserved.
+ */
+ 
+OUT_BUILTIN(vec4, gl_Position, POSITION);
+OUT_BUILTIN(float, gl_PointSize, PSIZE);
+
+UNIFORM(mat4, LocalToWorld);
+UNIFORM(mat4, ViewProjection);
+
+ATTRIBUTE(vec4, Position, POSITION);
+ATTRIBUTE(float, Size, TANGENT);
+ATTRIBUTE(vec4, Color, COLOR);
+
+OUT_VARYING_LOW( vec4, Interp_Color, COLOR0 );
+
+void main()
+{
+	vec4 Pos = MulMatrix( LocalToWorld, Position );
+	gl_Position = MulMatrix( ViewProjection, Pos );
+		
+	Interp_Color = Color.bgra;
+#if USE_PREMULTIPLIED_OPACITY
+	Interp_Color.rgb = Interp_Color.a;
+#endif
+	gl_PointSize = Size;
+}

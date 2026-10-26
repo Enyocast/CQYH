@@ -1,0 +1,35 @@
+
+class SeqEvent_Server2Client_VarChange_Quest extends SequenceEvent
+	native;
+
+var() int VarIndex;
+var() int VarReferID <DisplayName="QuestID">;
+var() int VarValue;
+
+cpptext
+{
+	virtual UBOOL IsServerKismetObject() const { return FALSE; }
+	virtual int GetKismetObjectServerType() const;
+	virtual void ExportServerData(FArchive& inStream);
+}
+
+function bool IsDesiredInstigator(IServerTrigger obj)
+{
+	
+	return false;
+}
+
+
+DefaultProperties
+{	
+	ObjName="Server Var Change - Quest"
+	ObjCategory="MMO Server To Client"
+	
+	OutputLinks.Empty
+	OutputLinks(0)=(LinkDesc="Out")
+
+	VariableLinks.Empty
+	VariableLinks(0)=(ExpectedType=class'SeqVar_Int',LinkDesc="Var Index",PropertyName=VarIndex)
+	VariableLinks(1)=(ExpectedType=class'SeqVar_Int',LinkDesc="QuestID",PropertyName=VarReferID)
+	VariableLinks(2)=(ExpectedType=class'SeqVar_Int',LinkDesc="Var Value",PropertyName=VarValue)
+}

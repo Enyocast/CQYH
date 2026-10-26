@@ -1,0 +1,12 @@
+.pdb
+.log
+ActorX
+.rtf
+apex_
+cudart
+fonixttsdt
+physx
+wxmsw28
+ExampleGame
+-Shipping.
+-Debug.

@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Builder" Class="ChangelistDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=db-09;Initial Catalog=Builder;Integrated Security=True" SettingsObjectName="Controller.Properties.Settings" SettingsPropertyName="BuilderConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Changelists" Member="Changelists">
+    <Type Name="Changelist">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="BranchIndex" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Changelist" Member="Changelist1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BuildStatus" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Submitter" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="TimeStamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="ExampleCIS" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="UDKCIS" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="GearCIS" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="ExoCIS" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="FortressCIS" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="MobileCIS" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Xbox360CIS" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="PS3CIS" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="WiiUCIS" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="ToolsCIS" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="MonolithicCIS" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="NonUnityCIS" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="GamesCIS" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="BranchConfig_Changelist" Member="BranchConfigAlt" ThisKey="BranchIndex" OtherKey="ID" Type="BranchConfigAlt" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BranchConfig" Member="BranchConfigAlts">
+    <Type Name="BranchConfigAlt">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Version" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Branch" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="Server" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="P4User" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="P4Password" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="P4SyncUser" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="P4SyncPassword" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="P4ClientSpec" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="BranchAdmin" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="DirectXVersion" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="AndroidSDKVersion" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="iPhoneSDKVersion" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="MacSDKVersion" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="NGPSDKVersion" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="PS3SDKVersion" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="WiiUSDKVersion" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="XDKVersion" Type="System.String" DbType="VarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="PFXSubjectName" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="IPhone_DeveloperSigningIdentity" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="IPhone_DistributionSigningIdentity" Type="System.String" DbType="VarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="HeadChangelist" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastFullyKnown" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastGoodOverall" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastFailOverall" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastAttemptedOverall" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastAttemptedXbox360" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastGoodXbox360" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastFailXbox360" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Xbox360Error" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LastAttemptedPS3" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastGoodPS3" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastFailPS3" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SonyPS3Error" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LastAttemptedTools" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastGoodTools" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastFailTools" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ToolsError" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LastAttemptedMobile" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastGoodMobile" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastFailMobile" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MobileError" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LastAttemptedWiiU" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastGoodWiiU" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastFailWiiU" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WiiUError" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LastAttemptedExample" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastGoodExample" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastFailExample" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExampleError" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LastAttemptedGear" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastGoodGear" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastFailGear" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GearError" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LastAttemptedUDK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastGoodUDK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastFailUDK" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UDKError" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LastAttemptedExo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastGoodExo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastFailExo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ExoError" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LastAttemptedFortress" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastGoodFortress" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastFailFortress" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FortressError" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LastAttemptedMonolithic" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastGoodMonolithic" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastFailMonolithic" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MonolithicError" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LastAttemptedNonUnity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastGoodNonUnity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastFailNonUnity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NonUnityError" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="LastAttemptedGames" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastGoodGames" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="LastFailGames" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GamesError" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Association Name="BranchConfig_Changelist" Member="Changelists" ThisKey="ID" OtherKey="BranchIndex" Type="Changelist" />
+      <Association Name="BranchConfig_BranchConfig" Member="BranchConfigAlt1" ThisKey="ID" OtherKey="ID" Type="BranchConfigAlt" Cardinality="One" />
+      <Association Name="BranchConfig_BranchConfig" Member="BranchConfig1" ThisKey="ID" OtherKey="ID" Type="BranchConfigAlt" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

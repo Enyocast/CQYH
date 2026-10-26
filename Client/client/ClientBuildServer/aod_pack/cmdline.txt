@@ -1,0 +1,11 @@
+
+// 目录分隔尽量使用\, 结尾不要以/及\结尾
+const char* FolderName/*资源位置*/, const char* DestPackageFolder/*mpq位置*/,
+	const char* RefFolderName/* = NULL*//*比对mpq位置*/, const char* DestPatchFolder/* = NULL*//*补丁位置*/, const char* PatchPostfix/* = NULL*//*补丁文件名后缀*/,
+	UINT expectedSize = 1073741824/*正常大小1G*/, UINT maxSize = 2147483648/*最大尺寸2G*/, 
+	bool bDelSrc = false/*是否删除源文件，暂未实现*/)
+
+make D:\work\Project\08.Prog_Stable\Client\UE3\MMOGame\Content\MMOContent\03_FX D:\work\Project\08.Prog_Stable\Client\UE3\MMOGame\Content\MMOContent\03_FX_PAK D:\work\Project\08.Prog_MPQ2\Client\UE3\MMOGame\Content\MMOContent\03_FX_PAK D:\work\Project\08.Prog_Stable\Client\UE3\MMOGame\Content\MMOContent\03_FX_PATCH
+
+// 应用补丁，现提供给launcher， para1:目标目录， para2:补丁目录
+apply D:\work\Project\08.Prog_MPQ2\Client\UE3\MMOGame\Content\MMOContent\03_FX_PAK D:\work\Project\08.Prog_Stable\Client\UE3\MMOGame\Content\MMOContent\03_FX_PATCH

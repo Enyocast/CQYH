@@ -1,0 +1,29 @@
+$def with (val)
+<html>
+  <head>
+    <title>服务器端程序管理</title>
+  </head>
+  <body>
+    <h1>服务器端程序运行状况: <a href="/">刷新</a></h1>
+    <h2> Sina 环境 </h2>
+    $if val['process']:
+      <p>
+        进程号: $val['process']['pid'], 内存: $val['process']['memory'] M
+		<a href='/?action=start_process'>停止</a>
+      </p>
+    $else:
+      <p>
+		未运行。
+		<a href="/?action=stop_process">启动</a>
+      </p>
+	  
+	<hr />
+	
+	<h1>服务器端版本</h1>
+	$for server in val['available_servers']
+	  <p>
+	    版本号: $server <a href='/?change_version=$server'>运行此版本</a>
+	  </p>
+    <hr />
+  </body>
+</html>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<language name="Korean">
+	<translations>
+		<entry key="$GettingStartedIMETitle" value="Getting Started with IME"/>
+       <entry key="$GettingStartedIMEDesc" value="본 문서는 Scaleform IME 어떻게 설치하고 사용하는지 가르쳐 드립니다."/>
+       <entry key="$GettingStartedIMEFilename" value="gfx_4.0_getting_started_with_ime_kr.pdf"/>
+       <entry key="$IMEOverviewTitle" value="Input Method Configuration Overview"/>
+       <entry key="$IMEOverviewDesc" value="본 문서는 Scaleform GFx 4.0에서 사용할 수 있는 Input Method Editor(IME) system 대하여 설명하며 GFxIME가 사용자의 application에 어떻게 통합이 되는가와 application의 UI style에 어떻게 customize 할 수 있는지에 대하여 설명합니다."/>
+       <entry key="$IMEOverviewFilename" value="gfx_4.0_ime_kr.pdf"/>
+	</translations>
+</language>

@@ -1,0 +1,32 @@
+[FontLib]
+
+FontLib=UI_MMOFonts.gfxfontlib
+
+[Fonts]
+;NewTitleFont=FZLiShu II-S06
+NewContentFont=Source Han Sans CN Medium
+TitleFont=Microsoft YaHei
+;AodCustomFont=AgeOfDawn
+StoryFont=FZWeiBei-S03
+CQYHNumberFont=CQYH_Number
+
+
+;NewTitleFont=方正隶变简体
+;NewContentFont=方正粗圆简体
+;TitleFont=微软雅黑
+;StoryFont=方正魏碑
+
+;NewTitleFont=FZLiShu II-S06
+;NewContentFont=FZLanTingHei-DB-GBK
+;ContentFont=FZLanTingHei-DB-GBK
+;TitleFont=Microsoft YaHei
+;;TitleFont=FZLanTingHei-M-GBK
+;AodCustomFont=AgeOfDawn
+;StoryFont=FZWeiBei-S03
+
+
+[IME]
+MoviePath=MMO_UI.IME
+
+[Translation]
+Enable=false

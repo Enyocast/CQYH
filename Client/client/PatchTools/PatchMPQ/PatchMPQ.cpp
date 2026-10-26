@@ -1,0 +1,138 @@
+/*====================================================================
+	Created Date  :		2005-8-25
+	
+	Specification :  
+====================================================================*/
+#include "stdafx.h"
+#include "PatchMPQ.h"
+#include "PatchMPQDlg.h"
+#include "CheckServerDlg.h"
+#include "Controls.h"
+#include "Task.h"
+#include "ThreadPool.h"
+#include <iostream>
+
+#include <vector>
+using namespace std;
+
+//int g_threadCnt = 0;
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
+
+CPatchMPQApp theApp;
+
+BEGIN_MESSAGE_MAP(CPatchMPQApp, CWinApp)
+	ON_COMMAND(ID_HELP, CWinApp::OnHelp)
+END_MESSAGE_MAP()
+
+CPatchMPQApp::CPatchMPQApp()
+{
+}
+
+BOOL CPatchMPQApp::InitInstance()
+{
+//	_tsetlocale(LC_ALL, _T("zh-CN"));
+ 	_tsetlocale(LC_ALL, NULL);
+// 	std::wcout.imbue(locale(""));
+
+	HANDLE hnd = CreateMutex(NULL, FALSE, _T("AOD_Patch"));
+	if(hnd)
+	{
+		DWORD dwR = ::WaitForSingleObject(hnd, 2000); // try 2 seconds
+		if(dwR == WAIT_TIMEOUT || dwR == WAIT_ABANDONED)
+		{
+			CloseHandle( hnd );
+			return FALSE;
+		}
+	}
+	
+	InitCommonControls();
+
+	CWinApp::InitInstance();
+
+	AfxEnableControlContainer();
+	
+
+//	UINT winVer = 0;
+	OSVERSIONINFO osinfo;
+	GetVersionEx(&osinfo);
+
+	if(osinfo.dwMajorVersion > 4)
+	{
+		HMODULE hMSIModule = 0;
+		hMSIModule = LoadLibrary(_T("Msimg32.dll")); 
+		if(hMSIModule) 
+		{ 
+			g_pTransparentBlt = (LPTRANSPARENTBLT) GetProcAddress(hMSIModule, "TransparentBlt"); 
+		} 
+	}
+
+	srand( (unsigned)time( NULL ) );
+
+	SYSTEM_INFO info;
+	GetSystemInfo(&info);	
+
+	//g_threadCnt = info.dwNumberOfProcessors * 2;
+	g_packThreadPool = new CThreadPool(max(1, info.dwNumberOfProcessors * 2), true, 100);
+
+	// add by zhangrui
+	// >>
+	g_hXDelta3 = ::LoadLibraryEx(L"XDelta3WrapFactory.dll", NULL, LOAD_WITH_ALTERED_SEARCH_PATH);
+	if (g_hXDelta3)
+	{
+		g_pfDeletePackFile = (pfDeletePackFile)(::GetProcAddress(g_hXDelta3, "DeletePackFile"));
+		g_pfExtractPackFile = (pfExtractPackFile)(::GetProcAddress(g_hXDelta3, "ExtractPackFile"));
+		g_pfAddPackFile = (pfAddPackFile)(::GetProcAddress(g_hXDelta3, "AddPackFile"));
+		g_pfMergePackFile = (pfMergePackFile)(::GetProcAddress(g_hXDelta3, "MergePackFile"));
+	}
+	// <<
+
+	CPatchMPQDlg dlg;
+	m_pMainWnd = &dlg;
+	INT_PTR nResponse = dlg.DoModal();
+	if (nResponse == IDOK)
+	{
+	}
+	else if (nResponse == IDCANCEL)
+	{
+	}
+
+	if(dlg.PatchSuccess() == TRUE)
+	{
+	}
+	else
+	{
+		AfxMessageBox( _T("修复过程被中断，有可能不能正常进入游戏，请抽空重新运行全文件修复！"), MB_OK | MB_ICONHAND );
+		return FALSE;
+	}
+
+	return FALSE;
+}
+
+void DestroyThreadPool(CThreadPool* pool)
+{
+	pool->Destroy();
+	while(pool->GetState() != Destroyed)
+	{
+		::Sleep(2);
+	}
+
+	delete pool;
+}
+
+
+int CPatchMPQApp::ExitInstance()
+{
+	// TODO: Add your specialized code here and/or call the base class
+
+	// add zhangrui 
+	// >>
+	FreeLibrary(g_hXDelta3);
+	// <<
+
+	DestroyThreadPool(g_packThreadPool);
+
+	return CWinApp::ExitInstance();
+}

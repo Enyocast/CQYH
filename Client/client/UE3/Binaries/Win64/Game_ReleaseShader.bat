@@ -1,0 +1,1 @@
+xcopy \\172.30.61.44\Tools\ShaderCache\*.*	.\..\..\MMOGame\Content /F /Y /R

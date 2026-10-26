@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="BmpRgnButton.cpp" />
+    <ClCompile Include="Caption.cpp" />
+    <ClCompile Include="CheckServerDlg.cpp" />
+    <ClCompile Include="Configer.cpp" />
+    <ClCompile Include="Controls.cpp" />
+    <ClCompile Include="DhtmlEdit.cpp" />
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="md5.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Task.cpp" />
+    <ClCompile Include="ThreadPool.cpp" />
+    <ClCompile Include="TransparentCaption.cpp" />
+    <ClCompile Include="FixClient.cpp" />
+    <ClCompile Include="FixClientDlg.cpp" />
+    <ClCompile Include="Markup.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="App.h" />
+    <ClInclude Include="BmpRgnButton.h" />
+    <ClInclude Include="Caption.h" />
+    <ClInclude Include="CheckServerDlg.h" />
+    <ClInclude Include="configer.h" />
+    <ClInclude Include="Controls.h" />
+    <ClInclude Include="DhtmlEdit.h" />
+    <ClInclude Include="File.h" />
+    <ClInclude Include="md5.h" />
+    <ClInclude Include="MemDC.h" />
+    <ClInclude Include="RunObject.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="ThreadPool.h" />
+    <ClInclude Include="TransparentCaption.h" />
+    <ClInclude Include="Resource.h">
+      <Filter>Res</Filter>
+    </ClInclude>
+    <ClInclude Include="FixClient.h" />
+    <ClInclude Include="FixClientDlg.h" />
+    <ClInclude Include="FixClientUtil.h" />
+    <ClInclude Include="Markup.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\bk.bmp">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="res\Cancel.bmp">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="res\Close.bmp">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="res\hand.cur">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="res\Min.bmp">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="res\Start.bmp">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="res\FixClient.rc2">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="res\FixClient.ico">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="res\Fix.bmp">
+      <Filter>Res</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Res">
+      <UniqueIdentifier>{bb0487dc-c92a-4e13-94ef-a10ade347e70}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FixClient.rc">
+      <Filter>Res</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

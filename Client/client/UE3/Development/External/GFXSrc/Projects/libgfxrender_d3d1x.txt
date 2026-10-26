@@ -1,0 +1,14 @@
+Src/Render/D3D1x/D3D1x_Config.h
+Src/Render/D3D1x/D3D1x_HAL.cpp
+Src/Render/D3D1x/D3D1x_HAL.h
+Src/Render/D3D1x/D3D1x_HALSetup.cpp
+Src/Render/D3D1x/D3D1x_MeshCache.cpp
+Src/Render/D3D1x/D3D1x_MeshCache.h
+Src/Render/D3D1x/D3D1x_Shader.cpp
+Src/Render/D3D1x/D3D1x_Shader.h
+Src/Render/D3D1x/D3D1x_ShaderManager.cpp
+Src/Render/D3D1x/D3D1x_ShaderManager.h
+Src/Render/D3D1x/D3D1x_Shaders.h
+Src/Render/D3D1x/D3D1x_Sync.h
+Src/Render/D3D1x/D3D1x_Texture.cpp
+Src/Render/D3D1x/D3D1x_Texture.h

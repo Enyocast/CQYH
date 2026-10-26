@@ -1,0 +1,1 @@
+start MMOGame.exe CookPackages -platform=PC -log -AUTOCOOKMAPS -final_release -multilanguagecook=INT+CHN -BUILDMACHINE -DEMOMODE -NOPAUSE

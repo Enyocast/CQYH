@@ -1,0 +1,2779 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<mmoweaponList>
+    <Weapon type="object">
+        <Dmg_Min type="int" value="0" />
+        <Dmg_Max type="int" value="0" />
+        <Speed type="int" value="0" />
+        <DPS type="int" value="0" />
+        <WeaponType type="byte" value="3" />
+        <HandType type="byte" value="0" />
+        <WeaponMeshs type="struct">
+            <HoldSocket type="string" value="Weapon_L" />
+            <CarrySocket type="string" value="None" />
+        </WeaponMeshs>
+        <WeaponMeshs type="struct">
+            <HoldSocket type="string" value="Weapon_R" />
+            <CarrySocket type="string" value="None" />
+        </WeaponMeshs>
+        <BaseBonuses type="struct">
+            <Strength type="int" value="0" />
+            <Intellect type="int" value="0" />
+            <Stamina type="int" value="0" />
+            <Spirit type="int" value="0" />
+            <Agility type="int" value="0" />
+            <Impression type="int" value="0" />
+        </BaseBonuses>
+        <AttackBonuses type="struct">
+            <CurrentMeleeAttack type="int" value="0" />
+            <MeleeAttackMin type="int" value="0" />
+            <MeleeAttackMax type="int" value="0" />
+            <CurrentSpellAttack type="int" value="0" />
+            <SpellAttackMin type="int" value="0" />
+            <SpellAttackMax type="int" value="0" />
+            <HitRating type="float" value="0.000000" />
+            <CriticalChance type="float" value="0.000000" />
+            <AttackRatioRange type="struct">
+                <X type="float" value="0.000000" />
+                <Y type="float" value="0.000000" />
+            </AttackRatioRange>
+        </AttackBonuses>
+        <StateName type="string" value="None" />
+        <bUseSkeleMesh type="bool" value="0" />
+        <HoldSocket type="string" value="None" />
+        <CarrySocket type="string" value="None" />
+        <ItemId type="int" value="20" />
+        <IconId type="int" value="0" />
+        <ItemTypeId type="int" value="0" />
+        <ItemName type="string" value="" />
+        <Description type="string" value="" />
+        <SellPrice type="int" value="0" />
+        <BuyPrice type="int" value="0" />
+        <ItemLevel type="int" value="0" />
+        <RequireLevel type="int" value="0" />
+        <Rarity type="byte" value="3" />
+        <MaxStackNum type="int" value="1" />
+        <bDefaultItem type="bool" value="0" />
+        <TempStaticMesh1 type="object">
+            <TempStaticMesh1 type="object">
+                <ForcedLodModel type="int" value="0" />
+                <PreviousLODLevel type="int" value="0" />
+                <WireframeColor type="struct">
+                    <B type="byte" value="255" />
+                    <G type="byte" value="255" />
+                    <R type="byte" value="0" />
+                    <A type="byte" value="255" />
+                </WireframeColor>
+                <bIgnoreInstanceForTextureStreaming type="bool" value="0" />
+                <bOverrideLightMapRes type="bool" value="0" />
+                <OverriddenLightMapRes type="int" value="64" />
+                <OverriddenLODMaxRange type="float" value="0.000000" />
+                <StreamingDistanceMultiplier type="float" value="1.000000" />
+                <SubDivisionStepSize type="int" value="32" />
+                <bUseSubDivisions type="bool" value="1" />
+                <bUseSimpleLightmapModifications type="bool" value="0" />
+                <SimpleLightmapModificationFunction type="byte" value="0" />
+                <bNeverBecomeDynamic type="bool" value="0" />
+                <IrrelevantLights type="array" />
+                <VertexPositionVersionNumber type="int" value="0" />
+                <LightmassSettings type="struct">
+                    <bUseTwoSidedLighting type="bool" value="0" />
+                    <bShadowIndirectOnly type="bool" value="0" />
+                    <bUseEmissiveForStaticLighting type="bool" value="0" />
+                    <EmissiveLightFalloffExponent type="float" value="2.000000" />
+                    <EmissiveLightExplicitInfluenceRadius type="float" value="0.000000" />
+                    <EmissiveBoost type="float" value="1.000000" />
+                    <DiffuseBoost type="float" value="1.000000" />
+                    <SpecularBoost type="float" value="1.000000" />
+                    <FullyOccludedSamplesFraction type="float" value="1.000000" />
+                </LightmassSettings>
+                <Materials type="array" />
+                <MinDrawDistance type="float" value="0.000000" />
+                <MassiveLODDistance type="float" value="0.000000" />
+                <MaxDrawDistance type="float" value="6000.000000" />
+                <CachedMaxDrawDistance type="float" value="6000.000000" />
+                <MotionBlurInstanceScale type="float" value="1.000000" />
+                <DepthPriorityGroup type="byte" value="1" />
+                <ViewOwnerDepthPriorityGroup type="byte" value="0" />
+                <DetailMode type="byte" value="0" />
+                <RBChannel type="byte" value="0" />
+                <RBDominanceGroup type="byte" value="15" />
+                <PreviewEnvironmentShadowing type="byte" value="180" />
+                <bUseViewOwnerDepthPriorityGroup type="bool" value="0" />
+                <bAllowCullDistanceVolume type="bool" value="1" />
+                <HiddenGame type="bool" value="0" />
+                <HiddenEditor type="bool" value="0" />
+                <bOwnerNoSee type="bool" value="0" />
+                <bOnlyOwnerSee type="bool" value="0" />
+                <bIgnoreOwnerHidden type="bool" value="0" />
+                <bUseAsOccluder type="bool" value="1" />
+                <bAllowApproximateOcclusion type="bool" value="0" />
+                <bFirstFrameOcclusion type="bool" value="0" />
+                <bIgnoreNearPlaneIntersection type="bool" value="0" />
+                <bSelectable type="bool" value="1" />
+                <bForceMipStreaming type="bool" value="0" />
+                <bAcceptsStaticDecals type="bool" value="1" />
+                <bAcceptsDynamicDecals type="bool" value="1" />
+                <CastShadow type="bool" value="1" />
+                <bForceDirectLightMap type="bool" value="0" />
+                <bCastDynamicShadow type="bool" value="1" />
+                <bCastStaticShadow type="bool" value="1" />
+                <bSelfShadowOnly type="bool" value="0" />
+                <bAcceptsDynamicDominantLightShadows type="bool" value="1" />
+                <bCastHiddenShadow type="bool" value="0" />
+                <bCastShadowAsTwoSided type="bool" value="0" />
+                <bAcceptsLights type="bool" value="1" />
+                <bAcceptsDynamicLights type="bool" value="1" />
+                <bUseOnePassLightingOnTranslucency type="bool" value="0" />
+                <bUsePrecomputedShadows type="bool" value="0" />
+                <CollideActors type="bool" value="1" />
+                <AlwaysCheckCollision type="bool" value="0" />
+                <BlockActors type="bool" value="1" />
+                <BlockZeroExtent type="bool" value="1" />
+                <BlockNonZeroExtent type="bool" value="1" />
+                <CanBlockCamera type="bool" value="1" />
+                <BlockRigidBody type="bool" value="1" />
+                <bBlockFootPlacement type="bool" value="1" />
+                <bDisableAllRigidBody type="bool" value="0" />
+                <bSkipRBGeomCreation type="bool" value="0" />
+                <bNotifyRigidBodyCollision type="bool" value="0" />
+                <bFluidDrain type="bool" value="0" />
+                <bFluidTwoWay type="bool" value="0" />
+                <bIgnoreRadialImpulse type="bool" value="0" />
+                <bIgnoreRadialForce type="bool" value="0" />
+                <bIgnoreForceField type="bool" value="0" />
+                <bUseCompartment type="bool" value="0" />
+                <AlwaysLoadOnClient type="bool" value="1" />
+                <AlwaysLoadOnServer type="bool" value="1" />
+                <bIgnoreHiddenActorsMembership type="bool" value="0" />
+                <AbsoluteTranslation type="bool" value="0" />
+                <AbsoluteRotation type="bool" value="0" />
+                <AbsoluteScale type="bool" value="0" />
+                <bAllowShadowFade type="bool" value="1" />
+                <TranslucencySortPriority type="int" value="0" />
+                <LightingChannels type="struct">
+                    <bInitialized type="bool" value="0" />
+                    <BSP type="bool" value="0" />
+                    <Static type="bool" value="0" />
+                    <Dynamic type="bool" value="0" />
+                    <CompositeDynamic type="bool" value="0" />
+                    <Skybox type="bool" value="0" />
+                    <Unnamed_1 type="bool" value="0" />
+                    <Unnamed_2 type="bool" value="0" />
+                    <Unnamed_3 type="bool" value="0" />
+                    <Unnamed_4 type="bool" value="0" />
+                    <Unnamed_5 type="bool" value="0" />
+                    <Unnamed_6 type="bool" value="0" />
+                    <Cinematic_1 type="bool" value="0" />
+                    <Cinematic_2 type="bool" value="0" />
+                    <Cinematic_3 type="bool" value="0" />
+                    <Cinematic_4 type="bool" value="0" />
+                    <Cinematic_5 type="bool" value="0" />
+                    <Cinematic_6 type="bool" value="0" />
+                    <Cinematic_7 type="bool" value="0" />
+                    <Cinematic_8 type="bool" value="0" />
+                    <Cinematic_9 type="bool" value="0" />
+                    <Cinematic_10 type="bool" value="0" />
+                    <Gameplay_1 type="bool" value="0" />
+                    <Gameplay_2 type="bool" value="0" />
+                    <Gameplay_3 type="bool" value="0" />
+                    <Gameplay_4 type="bool" value="0" />
+                    <Crowd type="bool" value="0" />
+                </LightingChannels>
+                <RBCollideWithChannels type="struct">
+                    <Default type="bool" value="0" />
+                    <Nothing type="bool" value="0" />
+                    <Pawn type="bool" value="0" />
+                    <Vehicle type="bool" value="0" />
+                    <Water type="bool" value="0" />
+                    <GameplayPhysics type="bool" value="0" />
+                    <EffectPhysics type="bool" value="0" />
+                    <Untitled1 type="bool" value="0" />
+                    <Untitled2 type="bool" value="0" />
+                    <Untitled3 type="bool" value="0" />
+                    <Untitled4 type="bool" value="0" />
+                    <Cloth type="bool" value="0" />
+                    <FluidDrain type="bool" value="0" />
+                    <SoftBody type="bool" value="0" />
+                    <FracturedMeshPart type="bool" value="0" />
+                    <BlockingVolume type="bool" value="0" />
+                    <DeadPawn type="bool" value="0" />
+                    <Clothing type="bool" value="0" />
+                    <ClothingCollision type="bool" value="0" />
+                </RBCollideWithChannels>
+                <Translation type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </Translation>
+                <Rotation type="struct">
+                    <Pitch type="int" value="0" />
+                    <Yaw type="int" value="0" />
+                    <Roll type="int" value="0" />
+                </Rotation>
+                <Scale type="float" value="1.000000" />
+                <Scale3D type="struct">
+                    <X type="float" value="1.000000" />
+                    <Y type="float" value="1.000000" />
+                    <Z type="float" value="1.000000" />
+                </Scale3D>
+                <BoundsScale type="float" value="1.000000" />
+                <ScriptRigidBodyCollisionThreshold type="float" value="0.000000" />
+                <bTickInEditor type="bool" value="0" />
+                <TickGroup type="byte" value="0" />
+            </TempStaticMesh1>
+        </TempStaticMesh1>
+        <Components type="array">
+            <CollisionCylinder type="object">
+                <CollisionCylinder type="object">
+                    <CollisionHeight type="float" value="24.000000" />
+                    <CollisionRadius type="float" value="24.000000" />
+                    <CylinderColor type="struct">
+                        <B type="byte" value="157" />
+                        <G type="byte" value="149" />
+                        <R type="byte" value="223" />
+                        <A type="byte" value="255" />
+                    </CylinderColor>
+                    <bDrawBoundingBox type="bool" value="1" />
+                    <bDrawNonColliding type="bool" value="0" />
+                    <bAlwaysRenderIfSelected type="bool" value="0" />
+                    <MinDrawDistance type="float" value="0.000000" />
+                    <MassiveLODDistance type="float" value="0.000000" />
+                    <MaxDrawDistance type="float" value="6000.000000" />
+                    <CachedMaxDrawDistance type="float" value="6000.000000" />
+                    <MotionBlurInstanceScale type="float" value="1.000000" />
+                    <DepthPriorityGroup type="byte" value="1" />
+                    <ViewOwnerDepthPriorityGroup type="byte" value="0" />
+                    <DetailMode type="byte" value="0" />
+                    <RBChannel type="byte" value="0" />
+                    <RBDominanceGroup type="byte" value="15" />
+                    <PreviewEnvironmentShadowing type="byte" value="180" />
+                    <bUseViewOwnerDepthPriorityGroup type="bool" value="0" />
+                    <bAllowCullDistanceVolume type="bool" value="1" />
+                    <HiddenGame type="bool" value="1" />
+                    <HiddenEditor type="bool" value="0" />
+                    <bOwnerNoSee type="bool" value="0" />
+                    <bOnlyOwnerSee type="bool" value="0" />
+                    <bIgnoreOwnerHidden type="bool" value="0" />
+                    <bUseAsOccluder type="bool" value="0" />
+                    <bAllowApproximateOcclusion type="bool" value="0" />
+                    <bFirstFrameOcclusion type="bool" value="0" />
+                    <bIgnoreNearPlaneIntersection type="bool" value="0" />
+                    <bSelectable type="bool" value="1" />
+                    <bForceMipStreaming type="bool" value="0" />
+                    <bAcceptsStaticDecals type="bool" value="0" />
+                    <bAcceptsDynamicDecals type="bool" value="1" />
+                    <CastShadow type="bool" value="0" />
+                    <bForceDirectLightMap type="bool" value="0" />
+                    <bCastDynamicShadow type="bool" value="0" />
+                    <bCastStaticShadow type="bool" value="1" />
+                    <bSelfShadowOnly type="bool" value="0" />
+                    <bAcceptsDynamicDominantLightShadows type="bool" value="1" />
+                    <bCastHiddenShadow type="bool" value="0" />
+                    <bCastShadowAsTwoSided type="bool" value="0" />
+                    <bAcceptsLights type="bool" value="0" />
+                    <bAcceptsDynamicLights type="bool" value="1" />
+                    <bUseOnePassLightingOnTranslucency type="bool" value="0" />
+                    <bUsePrecomputedShadows type="bool" value="0" />
+                    <CollideActors type="bool" value="0" />
+                    <AlwaysCheckCollision type="bool" value="0" />
+                    <BlockActors type="bool" value="0" />
+                    <BlockZeroExtent type="bool" value="1" />
+                    <BlockNonZeroExtent type="bool" value="1" />
+                    <CanBlockCamera type="bool" value="1" />
+                    <BlockRigidBody type="bool" value="0" />
+                    <bBlockFootPlacement type="bool" value="1" />
+                    <bDisableAllRigidBody type="bool" value="0" />
+                    <bSkipRBGeomCreation type="bool" value="0" />
+                    <bNotifyRigidBodyCollision type="bool" value="0" />
+                    <bFluidDrain type="bool" value="0" />
+                    <bFluidTwoWay type="bool" value="0" />
+                    <bIgnoreRadialImpulse type="bool" value="0" />
+                    <bIgnoreRadialForce type="bool" value="0" />
+                    <bIgnoreForceField type="bool" value="0" />
+                    <bUseCompartment type="bool" value="0" />
+                    <AlwaysLoadOnClient type="bool" value="1" />
+                    <AlwaysLoadOnServer type="bool" value="1" />
+                    <bIgnoreHiddenActorsMembership type="bool" value="0" />
+                    <AbsoluteTranslation type="bool" value="0" />
+                    <AbsoluteRotation type="bool" value="0" />
+                    <AbsoluteScale type="bool" value="0" />
+                    <bAllowShadowFade type="bool" value="1" />
+                    <TranslucencySortPriority type="int" value="0" />
+                    <LightingChannels type="struct">
+                        <bInitialized type="bool" value="1" />
+                        <BSP type="bool" value="0" />
+                        <Static type="bool" value="0" />
+                        <Dynamic type="bool" value="1" />
+                        <CompositeDynamic type="bool" value="0" />
+                        <Skybox type="bool" value="0" />
+                        <Unnamed_1 type="bool" value="0" />
+                        <Unnamed_2 type="bool" value="0" />
+                        <Unnamed_3 type="bool" value="0" />
+                        <Unnamed_4 type="bool" value="0" />
+                        <Unnamed_5 type="bool" value="0" />
+                        <Unnamed_6 type="bool" value="0" />
+                        <Cinematic_1 type="bool" value="0" />
+                        <Cinematic_2 type="bool" value="0" />
+                        <Cinematic_3 type="bool" value="0" />
+                        <Cinematic_4 type="bool" value="0" />
+                        <Cinematic_5 type="bool" value="0" />
+                        <Cinematic_6 type="bool" value="0" />
+                        <Cinematic_7 type="bool" value="0" />
+                        <Cinematic_8 type="bool" value="0" />
+                        <Cinematic_9 type="bool" value="0" />
+                        <Cinematic_10 type="bool" value="0" />
+                        <Gameplay_1 type="bool" value="0" />
+                        <Gameplay_2 type="bool" value="0" />
+                        <Gameplay_3 type="bool" value="0" />
+                        <Gameplay_4 type="bool" value="0" />
+                        <Crowd type="bool" value="0" />
+                    </LightingChannels>
+                    <RBCollideWithChannels type="struct">
+                        <Default type="bool" value="0" />
+                        <Nothing type="bool" value="0" />
+                        <Pawn type="bool" value="0" />
+                        <Vehicle type="bool" value="0" />
+                        <Water type="bool" value="0" />
+                        <GameplayPhysics type="bool" value="0" />
+                        <EffectPhysics type="bool" value="0" />
+                        <Untitled1 type="bool" value="0" />
+                        <Untitled2 type="bool" value="0" />
+                        <Untitled3 type="bool" value="0" />
+                        <Untitled4 type="bool" value="0" />
+                        <Cloth type="bool" value="0" />
+                        <FluidDrain type="bool" value="0" />
+                        <SoftBody type="bool" value="0" />
+                        <FracturedMeshPart type="bool" value="0" />
+                        <BlockingVolume type="bool" value="0" />
+                        <DeadPawn type="bool" value="0" />
+                        <Clothing type="bool" value="0" />
+                        <ClothingCollision type="bool" value="0" />
+                    </RBCollideWithChannels>
+                    <Translation type="struct">
+                        <X type="float" value="0.000000" />
+                        <Y type="float" value="0.000000" />
+                        <Z type="float" value="0.000000" />
+                    </Translation>
+                    <Rotation type="struct">
+                        <Pitch type="int" value="0" />
+                        <Yaw type="int" value="0" />
+                        <Roll type="int" value="0" />
+                    </Rotation>
+                    <Scale type="float" value="1.000000" />
+                    <Scale3D type="struct">
+                        <X type="float" value="1.000000" />
+                        <Y type="float" value="1.000000" />
+                        <Z type="float" value="1.000000" />
+                    </Scale3D>
+                    <BoundsScale type="float" value="1.000000" />
+                    <ScriptRigidBodyCollisionThreshold type="float" value="0.000000" />
+                    <bTickInEditor type="bool" value="0" />
+                    <TickGroup type="byte" value="1" />
+                </CollisionCylinder>
+            </CollisionCylinder>
+        </Components>
+        <Location type="struct">
+            <X type="float" value="0.000000" />
+            <Y type="float" value="0.000000" />
+            <Z type="float" value="0.000000" />
+        </Location>
+        <Rotation type="struct">
+            <Pitch type="int" value="0" />
+            <Yaw type="int" value="0" />
+            <Roll type="int" value="0" />
+        </Rotation>
+        <DrawScale type="float" value="1.000000" />
+        <DrawScale3D type="struct">
+            <X type="float" value="1.000000" />
+            <Y type="float" value="1.000000" />
+            <Z type="float" value="1.000000" />
+        </DrawScale3D>
+        <PrePivot type="struct">
+            <X type="float" value="0.000000" />
+            <Y type="float" value="0.000000" />
+            <Z type="float" value="0.000000" />
+        </PrePivot>
+        <EditorIconColor type="struct">
+            <B type="byte" value="255" />
+            <G type="byte" value="255" />
+            <R type="byte" value="255" />
+            <A type="byte" value="255" />
+        </EditorIconColor>
+        <CustomTimeDilation type="float" value="1.000000" />
+        <Physics type="byte" value="0" />
+        <RemoteRole type="byte" value="0" />
+        <Role type="byte" value="3" />
+        <TickGroup type="byte" value="0" />
+        <Timers type="array" />
+        <bStatic type="bool" value="0" />
+        <bHidden type="bool" value="0" />
+        <bNoDelete type="bool" value="0" />
+        <bDeleteMe type="bool" value="0" />
+        <bOnlyOwnerSee type="bool" value="0" />
+        <bTickIsDisabled type="bool" value="0" />
+        <bWorldGeometry type="bool" value="0" />
+        <bIgnoreRigidBodyPawns type="bool" value="0" />
+        <bOrientOnSlope type="bool" value="0" />
+        <bIgnoreEncroachers type="bool" value="0" />
+        <bPushedByEncroachers type="bool" value="1" />
+        <bDestroyedByInterpActor type="bool" value="0" />
+        <bRouteBeginPlayEvenIfStatic type="bool" value="1" />
+        <bIsMoving type="bool" value="0" />
+        <bAlwaysEncroachCheck type="bool" value="0" />
+        <bHasAlternateTargetLocation type="bool" value="0" />
+        <bCanStepUpOn type="bool" value="1" />
+        <bNetTemporary type="bool" value="0" />
+        <bOnlyRelevantToOwner type="bool" value="0" />
+        <bAlwaysRelevant type="bool" value="0" />
+        <bReplicateInstigator type="bool" value="0" />
+        <bReplicateMovement type="bool" value="1" />
+        <bSkipActorPropertyReplication type="bool" value="0" />
+        <bUpdateSimulatedPosition type="bool" value="0" />
+        <bTearOff type="bool" value="0" />
+        <bOnlyDirtyReplication type="bool" value="0" />
+        <bAllowFluidSurfaceInteraction type="bool" value="1" />
+        <bDemoOwner type="bool" value="0" />
+        <bForceDemoRelevant type="bool" value="0" />
+        <bNetInitialRotation type="bool" value="0" />
+        <bReplicateRigidBodyLocation type="bool" value="0" />
+        <bKillDuringLevelTransition type="bool" value="0" />
+        <bExchangedRoles type="bool" value="0" />
+        <bConsiderAllStaticMeshComponentsForStreaming type="bool" value="0" />
+        <bDebug type="bool" value="0" />
+        <bPostRenderIfNotVisible type="bool" value="0" />
+        <bHardAttach type="bool" value="0" />
+        <bIgnoreBaseRotation type="bool" value="0" />
+        <bShadowParented type="bool" value="0" />
+        <bSkipAttachedMoves type="bool" value="1" />
+        <bCanBeAdheredTo type="bool" value="0" />
+        <bCanBeFrictionedTo type="bool" value="0" />
+        <bHurtEntry type="bool" value="0" />
+        <bGameRelevant type="bool" value="0" />
+        <bMovable type="bool" value="1" />
+        <bDestroyInPainVolume type="bool" value="0" />
+        <bCanBeDamaged type="bool" value="0" />
+        <bShouldBaseAtStartup type="bool" value="0" />
+        <bPendingDelete type="bool" value="0" />
+        <bCanTeleport type="bool" value="0" />
+        <bAlwaysTick type="bool" value="0" />
+        <bBlocksNavigation type="bool" value="0" />
+        <bCollideWhenPlacing type="bool" value="0" />
+        <bCollideActors type="bool" value="0" />
+        <bCollideWorld type="bool" value="1" />
+        <bCollideComplex type="bool" value="0" />
+        <bBlockActors type="bool" value="0" />
+        <bProjTarget type="bool" value="0" />
+        <bBlocksTeleport type="bool" value="0" />
+        <bMoveIgnoresDestruction type="bool" value="0" />
+        <bProjectileMoveSingleBlocking type="bool" value="0" />
+        <bNoEncroachCheck type="bool" value="0" />
+        <bCollideAsEncroacher type="bool" value="0" />
+        <bPhysRigidBodyOutOfWorldCheck type="bool" value="0" />
+        <bForceOctreeSNFilter type="bool" value="0" />
+        <bCallRigidBodyWakeEvents type="bool" value="0" />
+        <bBounce type="bool" value="0" />
+        <bJustTeleported type="bool" value="1" />
+        <bNetInitial type="bool" value="0" />
+        <bNetOwner type="bool" value="0" />
+        <bHiddenEd type="bool" value="0" />
+        <bEditable type="bool" value="1" />
+        <bHiddenEdLayer type="bool" value="0" />
+        <bHiddenEdCustom type="bool" value="0" />
+        <bEdShouldSnap type="bool" value="0" />
+        <bPathColliding type="bool" value="0" />
+        <bScriptInitialized type="bool" value="0" />
+        <bLockLocation type="bool" value="0" />
+        <bForceAllowKismetModification type="bool" value="0" />
+        <bDebugEffectIsRelevant type="bool" value="0" />
+        <NetUpdateTime type="float" value="0.000000" />
+        <NetUpdateFrequency type="float" value="100.000000" />
+        <NetPriority type="float" value="1.000000" />
+        <TimeSinceLastTick type="float" value="0.000000" />
+        <LifeSpan type="float" value="0.000000" />
+        <CreationTime type="float" value="244.215164" />
+        <Tag type="string" value="MMOWeapon" />
+        <InitialState type="string" value="None" />
+        <Layer type="string" value="None" />
+        <LatentFloat type="float" value="0.000000" />
+        <Velocity type="struct">
+            <X type="float" value="0.000000" />
+            <Y type="float" value="0.000000" />
+            <Z type="float" value="0.000000" />
+        </Velocity>
+        <Acceleration type="struct">
+            <X type="float" value="0.000000" />
+            <Y type="float" value="0.000000" />
+            <Z type="float" value="0.000000" />
+        </Acceleration>
+        <BaseBoneName type="string" value="None" />
+        <Attached type="array" />
+        <RelativeLocation type="struct">
+            <X type="float" value="0.000000" />
+            <Y type="float" value="0.000000" />
+            <Z type="float" value="0.000000" />
+        </RelativeLocation>
+        <RelativeRotation type="struct">
+            <Pitch type="int" value="0" />
+            <Yaw type="int" value="0" />
+            <Roll type="int" value="0" />
+        </RelativeRotation>
+        <CollisionCylinder type="object">
+            <CollisionCylinder type="object">
+                <CollisionHeight type="float" value="24.000000" />
+                <CollisionRadius type="float" value="24.000000" />
+                <CylinderColor type="struct">
+                    <B type="byte" value="157" />
+                    <G type="byte" value="149" />
+                    <R type="byte" value="223" />
+                    <A type="byte" value="255" />
+                </CylinderColor>
+                <bDrawBoundingBox type="bool" value="1" />
+                <bDrawNonColliding type="bool" value="0" />
+                <bAlwaysRenderIfSelected type="bool" value="0" />
+                <MinDrawDistance type="float" value="0.000000" />
+                <MassiveLODDistance type="float" value="0.000000" />
+                <MaxDrawDistance type="float" value="6000.000000" />
+                <CachedMaxDrawDistance type="float" value="6000.000000" />
+                <MotionBlurInstanceScale type="float" value="1.000000" />
+                <DepthPriorityGroup type="byte" value="1" />
+                <ViewOwnerDepthPriorityGroup type="byte" value="0" />
+                <DetailMode type="byte" value="0" />
+                <RBChannel type="byte" value="0" />
+                <RBDominanceGroup type="byte" value="15" />
+                <PreviewEnvironmentShadowing type="byte" value="180" />
+                <bUseViewOwnerDepthPriorityGroup type="bool" value="0" />
+                <bAllowCullDistanceVolume type="bool" value="1" />
+                <HiddenGame type="bool" value="1" />
+                <HiddenEditor type="bool" value="0" />
+                <bOwnerNoSee type="bool" value="0" />
+                <bOnlyOwnerSee type="bool" value="0" />
+                <bIgnoreOwnerHidden type="bool" value="0" />
+                <bUseAsOccluder type="bool" value="0" />
+                <bAllowApproximateOcclusion type="bool" value="0" />
+                <bFirstFrameOcclusion type="bool" value="0" />
+                <bIgnoreNearPlaneIntersection type="bool" value="0" />
+                <bSelectable type="bool" value="1" />
+                <bForceMipStreaming type="bool" value="0" />
+                <bAcceptsStaticDecals type="bool" value="0" />
+                <bAcceptsDynamicDecals type="bool" value="1" />
+                <CastShadow type="bool" value="0" />
+                <bForceDirectLightMap type="bool" value="0" />
+                <bCastDynamicShadow type="bool" value="0" />
+                <bCastStaticShadow type="bool" value="1" />
+                <bSelfShadowOnly type="bool" value="0" />
+                <bAcceptsDynamicDominantLightShadows type="bool" value="1" />
+                <bCastHiddenShadow type="bool" value="0" />
+                <bCastShadowAsTwoSided type="bool" value="0" />
+                <bAcceptsLights type="bool" value="0" />
+                <bAcceptsDynamicLights type="bool" value="1" />
+                <bUseOnePassLightingOnTranslucency type="bool" value="0" />
+                <bUsePrecomputedShadows type="bool" value="0" />
+                <CollideActors type="bool" value="0" />
+                <AlwaysCheckCollision type="bool" value="0" />
+                <BlockActors type="bool" value="0" />
+                <BlockZeroExtent type="bool" value="1" />
+                <BlockNonZeroExtent type="bool" value="1" />
+                <CanBlockCamera type="bool" value="1" />
+                <BlockRigidBody type="bool" value="0" />
+                <bBlockFootPlacement type="bool" value="1" />
+                <bDisableAllRigidBody type="bool" value="0" />
+                <bSkipRBGeomCreation type="bool" value="0" />
+                <bNotifyRigidBodyCollision type="bool" value="0" />
+                <bFluidDrain type="bool" value="0" />
+                <bFluidTwoWay type="bool" value="0" />
+                <bIgnoreRadialImpulse type="bool" value="0" />
+                <bIgnoreRadialForce type="bool" value="0" />
+                <bIgnoreForceField type="bool" value="0" />
+                <bUseCompartment type="bool" value="0" />
+                <AlwaysLoadOnClient type="bool" value="1" />
+                <AlwaysLoadOnServer type="bool" value="1" />
+                <bIgnoreHiddenActorsMembership type="bool" value="0" />
+                <AbsoluteTranslation type="bool" value="0" />
+                <AbsoluteRotation type="bool" value="0" />
+                <AbsoluteScale type="bool" value="0" />
+                <bAllowShadowFade type="bool" value="1" />
+                <TranslucencySortPriority type="int" value="0" />
+                <LightingChannels type="struct">
+                    <bInitialized type="bool" value="1" />
+                    <BSP type="bool" value="0" />
+                    <Static type="bool" value="0" />
+                    <Dynamic type="bool" value="1" />
+                    <CompositeDynamic type="bool" value="0" />
+                    <Skybox type="bool" value="0" />
+                    <Unnamed_1 type="bool" value="0" />
+                    <Unnamed_2 type="bool" value="0" />
+                    <Unnamed_3 type="bool" value="0" />
+                    <Unnamed_4 type="bool" value="0" />
+                    <Unnamed_5 type="bool" value="0" />
+                    <Unnamed_6 type="bool" value="0" />
+                    <Cinematic_1 type="bool" value="0" />
+                    <Cinematic_2 type="bool" value="0" />
+                    <Cinematic_3 type="bool" value="0" />
+                    <Cinematic_4 type="bool" value="0" />
+                    <Cinematic_5 type="bool" value="0" />
+                    <Cinematic_6 type="bool" value="0" />
+                    <Cinematic_7 type="bool" value="0" />
+                    <Cinematic_8 type="bool" value="0" />
+                    <Cinematic_9 type="bool" value="0" />
+                    <Cinematic_10 type="bool" value="0" />
+                    <Gameplay_1 type="bool" value="0" />
+                    <Gameplay_2 type="bool" value="0" />
+                    <Gameplay_3 type="bool" value="0" />
+                    <Gameplay_4 type="bool" value="0" />
+                    <Crowd type="bool" value="0" />
+                </LightingChannels>
+                <RBCollideWithChannels type="struct">
+                    <Default type="bool" value="0" />
+                    <Nothing type="bool" value="0" />
+                    <Pawn type="bool" value="0" />
+                    <Vehicle type="bool" value="0" />
+                    <Water type="bool" value="0" />
+                    <GameplayPhysics type="bool" value="0" />
+                    <EffectPhysics type="bool" value="0" />
+                    <Untitled1 type="bool" value="0" />
+                    <Untitled2 type="bool" value="0" />
+                    <Untitled3 type="bool" value="0" />
+                    <Untitled4 type="bool" value="0" />
+                    <Cloth type="bool" value="0" />
+                    <FluidDrain type="bool" value="0" />
+                    <SoftBody type="bool" value="0" />
+                    <FracturedMeshPart type="bool" value="0" />
+                    <BlockingVolume type="bool" value="0" />
+                    <DeadPawn type="bool" value="0" />
+                    <Clothing type="bool" value="0" />
+                    <ClothingCollision type="bool" value="0" />
+                </RBCollideWithChannels>
+                <Translation type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </Translation>
+                <Rotation type="struct">
+                    <Pitch type="int" value="0" />
+                    <Yaw type="int" value="0" />
+                    <Roll type="int" value="0" />
+                </Rotation>
+                <Scale type="float" value="1.000000" />
+                <Scale3D type="struct">
+                    <X type="float" value="1.000000" />
+                    <Y type="float" value="1.000000" />
+                    <Z type="float" value="1.000000" />
+                </Scale3D>
+                <BoundsScale type="float" value="1.000000" />
+                <ScriptRigidBodyCollisionThreshold type="float" value="0.000000" />
+                <bTickInEditor type="bool" value="0" />
+                <TickGroup type="byte" value="1" />
+            </CollisionCylinder>
+        </CollisionCylinder>
+        <RotationRate type="struct">
+            <Pitch type="int" value="0" />
+            <Yaw type="int" value="0" />
+            <Roll type="int" value="0" />
+        </RotationRate>
+        <SupportedEvents type="array" />
+        <GeneratedEvents type="array" />
+        <LatentActions type="array" />
+    </Weapon>
+    <Weapon_Spear_01 type="object">
+        <Dmg_Min type="int" value="100" />
+        <Dmg_Max type="int" value="200" />
+        <Speed type="int" value="0" />
+        <DPS type="int" value="0" />
+        <WeaponType type="byte" value="5" />
+        <HandType type="byte" value="0" />
+        <WeaponMeshs type="struct">
+            <HoldSocket type="string" value="None" />
+            <CarrySocket type="string" value="None" />
+        </WeaponMeshs>
+        <WeaponMeshs type="struct">
+            <HoldSocket type="string" value="None" />
+            <CarrySocket type="string" value="None" />
+        </WeaponMeshs>
+        <BaseBonuses type="struct">
+            <Strength type="int" value="0" />
+            <Intellect type="int" value="0" />
+            <Stamina type="int" value="0" />
+            <Spirit type="int" value="0" />
+            <Agility type="int" value="0" />
+            <Impression type="int" value="0" />
+        </BaseBonuses>
+        <AttackBonuses type="struct">
+            <CurrentMeleeAttack type="int" value="0" />
+            <MeleeAttackMin type="int" value="0" />
+            <MeleeAttackMax type="int" value="0" />
+            <CurrentSpellAttack type="int" value="0" />
+            <SpellAttackMin type="int" value="0" />
+            <SpellAttackMax type="int" value="0" />
+            <HitRating type="float" value="90.000000" />
+            <CriticalChance type="float" value="10.000000" />
+            <AttackRatioRange type="struct">
+                <X type="float" value="0.000000" />
+                <Y type="float" value="0.000000" />
+            </AttackRatioRange>
+        </AttackBonuses>
+        <StateName type="string" value="None" />
+        <SkeletalMeshComponent_0 type="object">
+            <SkeletalMeshComponent_0 type="object">
+                <PhysicsWeight type="float" value="0.000000" />
+                <GlobalAnimRateScale type="float" value="1.000000" />
+                <StreamingDistanceMultiplier type="float" value="1.000000" />
+                <WireframeColor type="struct">
+                    <B type="byte" value="28" />
+                    <G type="byte" value="221" />
+                    <R type="byte" value="221" />
+                    <A type="byte" value="255" />
+                </WireframeColor>
+                <LowUpdateFrameRate type="int" value="0" />
+                <AnimSets type="array" />
+                <MorphSets type="array" />
+                <ForcedLodModel type="int" value="0" />
+                <MinLodModel type="int" value="0" />
+                <PredictedLODLevel type="int" value="0" />
+                <OldPredictedLODLevel type="int" value="0" />
+                <AnimationLODDistanceFactor type="float" value="0.000000" />
+                <AnimationLODFrameRate type="int" value="2" />
+                <MaxDistanceFactor type="float" value="0.000000" />
+                <bForceWireframe type="int" value="0" />
+                <bForceRefpose type="int" value="0" />
+                <bOldForceRefPose type="int" value="0" />
+                <bNoSkeletonUpdate type="bool" value="0" />
+                <bDisplayBones type="int" value="0" />
+                <bShowPrePhysBones type="int" value="0" />
+                <bHideSkin type="int" value="0" />
+                <bForceRawOffset type="int" value="0" />
+                <bIgnoreControllers type="int" value="0" />
+                <bTransformFromAnimParent type="int" value="1" />
+                <bUseSingleBodyPhysics type="int" value="0" />
+                <MinDistFactorForKinematicUpdate type="float" value="0.000000" />
+                <bSkipAllUpdateWhenPhysicsAsleep type="bool" value="0" />
+                <bComponentUseFixedSkelBounds type="bool" value="0" />
+                <bUseBoundsFromParentAnimComponent type="bool" value="0" />
+                <bConsiderAllBodiesForBounds type="bool" value="0" />
+                <bUpdateSkelWhenNotRendered type="bool" value="1" />
+                <bIgnoreControllersWhenNotRendered type="bool" value="0" />
+                <bTickAnimNodesWhenNotRendered type="bool" value="1" />
+                <bNotUpdatingKinematicDueToDistance type="bool" value="0" />
+                <bForceDiscardRootMotion type="bool" value="0" />
+                <bNotifyRootMotionProcessed type="bool" value="0" />
+                <bRootMotionModeChangeNotify type="bool" value="0" />
+                <bRootMotionExtractedNotify type="bool" value="0" />
+                <bDisableFaceFXMaterialInstanceCreation type="bool" value="0" />
+                <bDisableFaceFX type="bool" value="0" />
+                <bHasPhysicsAssetInstance type="bool" value="0" />
+                <bUpdateKinematicBonesFromAnimation type="bool" value="1" />
+                <bUpdateJointsFromAnimation type="bool" value="0" />
+                <bSkelCompFixed type="bool" value="0" />
+                <bHasHadPhysicsBlendedIn type="bool" value="0" />
+                <bForceUpdateAttachmentsInTick type="bool" value="0" />
+                <bPerBoneVolumeEffects type="bool" value="0" />
+                <bPerBoneMotionBlur type="bool" value="0" />
+                <bSyncActorLocationToRootRigidBody type="bool" value="1" />
+                <bUseRawData type="bool" value="0" />
+                <bDisableWarningWhenAnimNotFound type="bool" value="0" />
+                <bOverrideAttachmentOwnerVisibility type="bool" value="0" />
+                <bPauseAnims type="bool" value="0" />
+                <bChartDistanceFactor type="bool" value="0" />
+                <bEnableLineCheckWithBounds type="bool" value="0" />
+                <bUpdateMorphWhenParentAnimComponentExists type="bool" value="0" />
+                <LineCheckBoundsScale type="struct">
+                    <X type="float" value="1.000000" />
+                    <Y type="float" value="1.000000" />
+                    <Z type="float" value="1.000000" />
+                </LineCheckBoundsScale>
+                <bEnableClothSimulation type="bool" value="0" />
+                <bDisableClothCollision type="bool" value="0" />
+                <bClothFrozen type="bool" value="0" />
+                <bAutoFreezeClothWhenNotRendered type="bool" value="1" />
+                <bClothAwakeOnStartup type="bool" value="0" />
+                <bClothBaseVelClamp type="bool" value="0" />
+                <bClothBaseVelInterp type="bool" value="0" />
+                <bAttachClothVertsToBaseBody type="bool" value="0" />
+                <bIsClothOnStaticObject type="bool" value="0" />
+                <bUpdatedFixedClothVerts type="bool" value="0" />
+                <bClothPositionalDampening type="bool" value="0" />
+                <bClothWindRelativeToOwner type="bool" value="0" />
+                <bCacheAnimSequenceNodes type="bool" value="1" />
+                <FrozenLocalToWorldPos type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </FrozenLocalToWorldPos>
+                <FrozenLocalToWorldRot type="struct">
+                    <Pitch type="int" value="0" />
+                    <Yaw type="int" value="0" />
+                    <Roll type="int" value="0" />
+                </FrozenLocalToWorldRot>
+                <ClothExternalForce type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </ClothExternalForce>
+                <ClothWind type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </ClothWind>
+                <ClothBaseVelClampRange type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </ClothBaseVelClampRange>
+                <ClothBlendWeight type="float" value="1.000000" />
+                <ClothDynamicBlendWeight type="float" value="0.000000" />
+                <ClothBlendMinDistanceFactor type="float" value="-1.000000" />
+                <ClothBlendMaxDistanceFactor type="float" value="0.000000" />
+                <MinPosDampRange type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </MinPosDampRange>
+                <MaxPosDampRange type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </MaxPosDampRange>
+                <MinPosDampScale type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </MinPosDampScale>
+                <MaxPosDampScale type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </MaxPosDampScale>
+                <ClothMeshPosData type="array" />
+                <ClothMeshNormalData type="array" />
+                <ClothMeshIndexData type="array" />
+                <NumClothMeshVerts type="int" value="0" />
+                <NumClothMeshIndices type="int" value="0" />
+                <ClothMeshParentData type="array" />
+                <NumClothMeshParentIndices type="int" value="0" />
+                <ClothDirtyBufferFlag type="int" value="0" />
+                <ClothRBChannel type="byte" value="11" />
+                <ClothRBCollideWithChannels type="struct">
+                    <Default type="bool" value="0" />
+                    <Nothing type="bool" value="0" />
+                    <Pawn type="bool" value="0" />
+                    <Vehicle type="bool" value="0" />
+                    <Water type="bool" value="0" />
+                    <GameplayPhysics type="bool" value="0" />
+                    <EffectPhysics type="bool" value="0" />
+                    <Untitled1 type="bool" value="0" />
+                    <Untitled2 type="bool" value="0" />
+                    <Untitled3 type="bool" value="0" />
+                    <Untitled4 type="bool" value="0" />
+                    <Cloth type="bool" value="0" />
+                    <FluidDrain type="bool" value="0" />
+                    <SoftBody type="bool" value="0" />
+                    <FracturedMeshPart type="bool" value="0" />
+                    <BlockingVolume type="bool" value="0" />
+                    <DeadPawn type="bool" value="0" />
+                    <Clothing type="bool" value="0" />
+                    <ClothingCollision type="bool" value="0" />
+                </ClothRBCollideWithChannels>
+                <ClothForceScale type="float" value="0.000000" />
+                <ClothImpulseScale type="float" value="1.000000" />
+                <ClothAttachmentTearFactor type="float" value="-1.000000" />
+                <bClothUseCompartment type="bool" value="0" />
+                <MinDistanceForClothReset type="float" value="256.000000" />
+                <ApexClothingRBChannel type="byte" value="17" />
+                <ApexClothingRBCollideWithChannels type="struct">
+                    <Default type="bool" value="1" />
+                    <Nothing type="bool" value="0" />
+                    <Pawn type="bool" value="0" />
+                    <Vehicle type="bool" value="0" />
+                    <Water type="bool" value="0" />
+                    <GameplayPhysics type="bool" value="1" />
+                    <EffectPhysics type="bool" value="1" />
+                    <Untitled1 type="bool" value="0" />
+                    <Untitled2 type="bool" value="0" />
+                    <Untitled3 type="bool" value="0" />
+                    <Untitled4 type="bool" value="0" />
+                    <Cloth type="bool" value="0" />
+                    <FluidDrain type="bool" value="0" />
+                    <SoftBody type="bool" value="0" />
+                    <FracturedMeshPart type="bool" value="0" />
+                    <BlockingVolume type="bool" value="1" />
+                    <DeadPawn type="bool" value="0" />
+                    <Clothing type="bool" value="0" />
+                    <ClothingCollision type="bool" value="1" />
+                </ApexClothingRBCollideWithChannels>
+                <ApexClothingCollisionRBChannel type="byte" value="18" />
+                <bAutoFreezeApexClothingWhenNotRendered type="bool" value="1" />
+                <bLocalSpaceWind type="bool" value="0" />
+                <WindVelocity type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </WindVelocity>
+                <WindVelocityBlendTime type="float" value="0.000000" />
+                <bEnableSoftBodySimulation type="bool" value="0" />
+                <SoftBodyTetraPosData type="array" />
+                <SoftBodyTetraIndexData type="array" />
+                <NumSoftBodyTetraVerts type="int" value="0" />
+                <NumSoftBodyTetraIndices type="int" value="0" />
+                <SoftBodyImpulseScale type="float" value="1.000000" />
+                <bSoftBodyFrozen type="bool" value="0" />
+                <bAutoFreezeSoftBodyWhenNotRendered type="bool" value="0" />
+                <bSoftBodyAwakeOnStartup type="bool" value="0" />
+                <bSoftBodyUseCompartment type="bool" value="1" />
+                <SoftBodyRBChannel type="byte" value="13" />
+                <SoftBodyRBCollideWithChannels type="struct">
+                    <Default type="bool" value="0" />
+                    <Nothing type="bool" value="0" />
+                    <Pawn type="bool" value="0" />
+                    <Vehicle type="bool" value="0" />
+                    <Water type="bool" value="0" />
+                    <GameplayPhysics type="bool" value="0" />
+                    <EffectPhysics type="bool" value="0" />
+                    <Untitled1 type="bool" value="0" />
+                    <Untitled2 type="bool" value="0" />
+                    <Untitled3 type="bool" value="0" />
+                    <Untitled4 type="bool" value="0" />
+                    <Cloth type="bool" value="0" />
+                    <FluidDrain type="bool" value="0" />
+                    <SoftBody type="bool" value="0" />
+                    <FracturedMeshPart type="bool" value="0" />
+                    <BlockingVolume type="bool" value="0" />
+                    <DeadPawn type="bool" value="0" />
+                    <Clothing type="bool" value="0" />
+                    <ClothingCollision type="bool" value="0" />
+                </SoftBodyRBCollideWithChannels>
+                <RootMotionAccelScale type="struct">
+                    <X type="float" value="1.000000" />
+                    <Y type="float" value="1.000000" />
+                    <Z type="float" value="1.000000" />
+                </RootMotionAccelScale>
+                <RootMotionMode type="byte" value="2" />
+                <PreviousRMM type="byte" value="2" />
+                <PendingRMM type="byte" value="0" />
+                <OldPendingRMM type="byte" value="0" />
+                <bRMMOneFrameDelay type="int" value="0" />
+                <RootMotionRotationMode type="byte" value="0" />
+                <AnimRotationOnly type="byte" value="0" />
+                <FaceFXBlendMode type="byte" value="1" />
+                <Materials type="array" />
+                <MinDrawDistance type="float" value="0.000000" />
+                <MassiveLODDistance type="float" value="0.000000" />
+                <MaxDrawDistance type="float" value="6000.000000" />
+                <CachedMaxDrawDistance type="float" value="6000.000000" />
+                <MotionBlurInstanceScale type="float" value="1.000000" />
+                <DepthPriorityGroup type="byte" value="1" />
+                <ViewOwnerDepthPriorityGroup type="byte" value="0" />
+                <DetailMode type="byte" value="0" />
+                <RBChannel type="byte" value="0" />
+                <RBDominanceGroup type="byte" value="15" />
+                <PreviewEnvironmentShadowing type="byte" value="180" />
+                <bUseViewOwnerDepthPriorityGroup type="bool" value="0" />
+                <bAllowCullDistanceVolume type="bool" value="1" />
+                <HiddenGame type="bool" value="0" />
+                <HiddenEditor type="bool" value="0" />
+                <bOwnerNoSee type="bool" value="0" />
+                <bOnlyOwnerSee type="bool" value="0" />
+                <bIgnoreOwnerHidden type="bool" value="0" />
+                <bUseAsOccluder type="bool" value="1" />
+                <bAllowApproximateOcclusion type="bool" value="0" />
+                <bFirstFrameOcclusion type="bool" value="0" />
+                <bIgnoreNearPlaneIntersection type="bool" value="0" />
+                <bSelectable type="bool" value="1" />
+                <bForceMipStreaming type="bool" value="0" />
+                <bAcceptsStaticDecals type="bool" value="0" />
+                <bAcceptsDynamicDecals type="bool" value="0" />
+                <CastShadow type="bool" value="1" />
+                <bForceDirectLightMap type="bool" value="0" />
+                <bCastDynamicShadow type="bool" value="1" />
+                <bCastStaticShadow type="bool" value="1" />
+                <bSelfShadowOnly type="bool" value="0" />
+                <bAcceptsDynamicDominantLightShadows type="bool" value="1" />
+                <bCastHiddenShadow type="bool" value="0" />
+                <bCastShadowAsTwoSided type="bool" value="0" />
+                <bAcceptsLights type="bool" value="1" />
+                <bAcceptsDynamicLights type="bool" value="1" />
+                <bUseOnePassLightingOnTranslucency type="bool" value="0" />
+                <bUsePrecomputedShadows type="bool" value="0" />
+                <CollideActors type="bool" value="0" />
+                <AlwaysCheckCollision type="bool" value="0" />
+                <BlockActors type="bool" value="0" />
+                <BlockZeroExtent type="bool" value="0" />
+                <BlockNonZeroExtent type="bool" value="0" />
+                <CanBlockCamera type="bool" value="1" />
+                <BlockRigidBody type="bool" value="0" />
+                <bBlockFootPlacement type="bool" value="1" />
+                <bDisableAllRigidBody type="bool" value="0" />
+                <bSkipRBGeomCreation type="bool" value="0" />
+                <bNotifyRigidBodyCollision type="bool" value="0" />
+                <bFluidDrain type="bool" value="0" />
+                <bFluidTwoWay type="bool" value="0" />
+                <bIgnoreRadialImpulse type="bool" value="0" />
+                <bIgnoreRadialForce type="bool" value="0" />
+                <bIgnoreForceField type="bool" value="0" />
+                <bUseCompartment type="bool" value="0" />
+                <AlwaysLoadOnClient type="bool" value="1" />
+                <AlwaysLoadOnServer type="bool" value="1" />
+                <bIgnoreHiddenActorsMembership type="bool" value="0" />
+                <AbsoluteTranslation type="bool" value="0" />
+                <AbsoluteRotation type="bool" value="0" />
+                <AbsoluteScale type="bool" value="0" />
+                <bAllowShadowFade type="bool" value="1" />
+                <TranslucencySortPriority type="int" value="0" />
+                <LightingChannels type="struct">
+                    <bInitialized type="bool" value="0" />
+                    <BSP type="bool" value="0" />
+                    <Static type="bool" value="0" />
+                    <Dynamic type="bool" value="0" />
+                    <CompositeDynamic type="bool" value="0" />
+                    <Skybox type="bool" value="0" />
+                    <Unnamed_1 type="bool" value="0" />
+                    <Unnamed_2 type="bool" value="0" />
+                    <Unnamed_3 type="bool" value="0" />
+                    <Unnamed_4 type="bool" value="0" />
+                    <Unnamed_5 type="bool" value="0" />
+                    <Unnamed_6 type="bool" value="0" />
+                    <Cinematic_1 type="bool" value="0" />
+                    <Cinematic_2 type="bool" value="0" />
+                    <Cinematic_3 type="bool" value="0" />
+                    <Cinematic_4 type="bool" value="0" />
+                    <Cinematic_5 type="bool" value="0" />
+                    <Cinematic_6 type="bool" value="0" />
+                    <Cinematic_7 type="bool" value="0" />
+                    <Cinematic_8 type="bool" value="0" />
+                    <Cinematic_9 type="bool" value="0" />
+                    <Cinematic_10 type="bool" value="0" />
+                    <Gameplay_1 type="bool" value="0" />
+                    <Gameplay_2 type="bool" value="0" />
+                    <Gameplay_3 type="bool" value="0" />
+                    <Gameplay_4 type="bool" value="0" />
+                    <Crowd type="bool" value="0" />
+                </LightingChannels>
+                <RBCollideWithChannels type="struct">
+                    <Default type="bool" value="0" />
+                    <Nothing type="bool" value="0" />
+                    <Pawn type="bool" value="0" />
+                    <Vehicle type="bool" value="0" />
+                    <Water type="bool" value="0" />
+                    <GameplayPhysics type="bool" value="0" />
+                    <EffectPhysics type="bool" value="0" />
+                    <Untitled1 type="bool" value="0" />
+                    <Untitled2 type="bool" value="0" />
+                    <Untitled3 type="bool" value="0" />
+                    <Untitled4 type="bool" value="0" />
+                    <Cloth type="bool" value="0" />
+                    <FluidDrain type="bool" value="0" />
+                    <SoftBody type="bool" value="0" />
+                    <FracturedMeshPart type="bool" value="0" />
+                    <BlockingVolume type="bool" value="0" />
+                    <DeadPawn type="bool" value="0" />
+                    <Clothing type="bool" value="0" />
+                    <ClothingCollision type="bool" value="0" />
+                </RBCollideWithChannels>
+                <Translation type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </Translation>
+                <Rotation type="struct">
+                    <Pitch type="int" value="0" />
+                    <Yaw type="int" value="0" />
+                    <Roll type="int" value="0" />
+                </Rotation>
+                <Scale type="float" value="1.000000" />
+                <Scale3D type="struct">
+                    <X type="float" value="1.000000" />
+                    <Y type="float" value="1.000000" />
+                    <Z type="float" value="1.000000" />
+                </Scale3D>
+                <BoundsScale type="float" value="1.000000" />
+                <ScriptRigidBodyCollisionThreshold type="float" value="0.000000" />
+                <bTickInEditor type="bool" value="0" />
+                <TickGroup type="byte" value="0" />
+            </SkeletalMeshComponent_0>
+        </SkeletalMeshComponent_0>
+        <bUseSkeleMesh type="bool" value="1" />
+        <HoldSocket type="string" value="Weapon_Hand" />
+        <CarrySocket type="string" value="Weapon_BackR2" />
+        <ItemId type="int" value="13" />
+        <IconId type="int" value="13" />
+        <ItemTypeId type="int" value="-1" />
+        <ItemName type="string" value="威烈神水枪" />
+        <Description type="string" value="\n道具类别：枪\n等级限制：60\n职业限制：虎卫" />
+        <SellPrice type="int" value="0" />
+        <BuyPrice type="int" value="0" />
+        <ItemLevel type="int" value="0" />
+        <RequireLevel type="int" value="0" />
+        <Rarity type="byte" value="1" />
+        <MaxStackNum type="int" value="1" />
+        <bDefaultItem type="bool" value="0" />
+        <TempStaticMesh1 type="object">
+            <TempStaticMesh1 type="object">
+                <ForcedLodModel type="int" value="0" />
+                <PreviousLODLevel type="int" value="0" />
+                <WireframeColor type="struct">
+                    <B type="byte" value="255" />
+                    <G type="byte" value="255" />
+                    <R type="byte" value="0" />
+                    <A type="byte" value="255" />
+                </WireframeColor>
+                <bIgnoreInstanceForTextureStreaming type="bool" value="0" />
+                <bOverrideLightMapRes type="bool" value="0" />
+                <OverriddenLightMapRes type="int" value="64" />
+                <OverriddenLODMaxRange type="float" value="0.000000" />
+                <StreamingDistanceMultiplier type="float" value="1.000000" />
+                <SubDivisionStepSize type="int" value="32" />
+                <bUseSubDivisions type="bool" value="1" />
+                <bUseSimpleLightmapModifications type="bool" value="0" />
+                <SimpleLightmapModificationFunction type="byte" value="0" />
+                <bNeverBecomeDynamic type="bool" value="0" />
+                <IrrelevantLights type="array" />
+                <VertexPositionVersionNumber type="int" value="0" />
+                <LightmassSettings type="struct">
+                    <bUseTwoSidedLighting type="bool" value="0" />
+                    <bShadowIndirectOnly type="bool" value="0" />
+                    <bUseEmissiveForStaticLighting type="bool" value="0" />
+                    <EmissiveLightFalloffExponent type="float" value="2.000000" />
+                    <EmissiveLightExplicitInfluenceRadius type="float" value="0.000000" />
+                    <EmissiveBoost type="float" value="1.000000" />
+                    <DiffuseBoost type="float" value="1.000000" />
+                    <SpecularBoost type="float" value="1.000000" />
+                    <FullyOccludedSamplesFraction type="float" value="1.000000" />
+                </LightmassSettings>
+                <Materials type="array" />
+                <MinDrawDistance type="float" value="0.000000" />
+                <MassiveLODDistance type="float" value="0.000000" />
+                <MaxDrawDistance type="float" value="6000.000000" />
+                <CachedMaxDrawDistance type="float" value="6000.000000" />
+                <MotionBlurInstanceScale type="float" value="1.000000" />
+                <DepthPriorityGroup type="byte" value="1" />
+                <ViewOwnerDepthPriorityGroup type="byte" value="0" />
+                <DetailMode type="byte" value="0" />
+                <RBChannel type="byte" value="0" />
+                <RBDominanceGroup type="byte" value="15" />
+                <PreviewEnvironmentShadowing type="byte" value="180" />
+                <bUseViewOwnerDepthPriorityGroup type="bool" value="0" />
+                <bAllowCullDistanceVolume type="bool" value="1" />
+                <HiddenGame type="bool" value="0" />
+                <HiddenEditor type="bool" value="0" />
+                <bOwnerNoSee type="bool" value="0" />
+                <bOnlyOwnerSee type="bool" value="0" />
+                <bIgnoreOwnerHidden type="bool" value="0" />
+                <bUseAsOccluder type="bool" value="1" />
+                <bAllowApproximateOcclusion type="bool" value="0" />
+                <bFirstFrameOcclusion type="bool" value="0" />
+                <bIgnoreNearPlaneIntersection type="bool" value="0" />
+                <bSelectable type="bool" value="1" />
+                <bForceMipStreaming type="bool" value="0" />
+                <bAcceptsStaticDecals type="bool" value="1" />
+                <bAcceptsDynamicDecals type="bool" value="1" />
+                <CastShadow type="bool" value="1" />
+                <bForceDirectLightMap type="bool" value="0" />
+                <bCastDynamicShadow type="bool" value="1" />
+                <bCastStaticShadow type="bool" value="1" />
+                <bSelfShadowOnly type="bool" value="0" />
+                <bAcceptsDynamicDominantLightShadows type="bool" value="1" />
+                <bCastHiddenShadow type="bool" value="0" />
+                <bCastShadowAsTwoSided type="bool" value="0" />
+                <bAcceptsLights type="bool" value="1" />
+                <bAcceptsDynamicLights type="bool" value="1" />
+                <bUseOnePassLightingOnTranslucency type="bool" value="0" />
+                <bUsePrecomputedShadows type="bool" value="0" />
+                <CollideActors type="bool" value="1" />
+                <AlwaysCheckCollision type="bool" value="0" />
+                <BlockActors type="bool" value="1" />
+                <BlockZeroExtent type="bool" value="1" />
+                <BlockNonZeroExtent type="bool" value="1" />
+                <CanBlockCamera type="bool" value="1" />
+                <BlockRigidBody type="bool" value="1" />
+                <bBlockFootPlacement type="bool" value="1" />
+                <bDisableAllRigidBody type="bool" value="0" />
+                <bSkipRBGeomCreation type="bool" value="0" />
+                <bNotifyRigidBodyCollision type="bool" value="0" />
+                <bFluidDrain type="bool" value="0" />
+                <bFluidTwoWay type="bool" value="0" />
+                <bIgnoreRadialImpulse type="bool" value="0" />
+                <bIgnoreRadialForce type="bool" value="0" />
+                <bIgnoreForceField type="bool" value="0" />
+                <bUseCompartment type="bool" value="0" />
+                <AlwaysLoadOnClient type="bool" value="1" />
+                <AlwaysLoadOnServer type="bool" value="1" />
+                <bIgnoreHiddenActorsMembership type="bool" value="0" />
+                <AbsoluteTranslation type="bool" value="0" />
+                <AbsoluteRotation type="bool" value="0" />
+                <AbsoluteScale type="bool" value="0" />
+                <bAllowShadowFade type="bool" value="1" />
+                <TranslucencySortPriority type="int" value="0" />
+                <LightingChannels type="struct">
+                    <bInitialized type="bool" value="0" />
+                    <BSP type="bool" value="0" />
+                    <Static type="bool" value="0" />
+                    <Dynamic type="bool" value="0" />
+                    <CompositeDynamic type="bool" value="0" />
+                    <Skybox type="bool" value="0" />
+                    <Unnamed_1 type="bool" value="0" />
+                    <Unnamed_2 type="bool" value="0" />
+                    <Unnamed_3 type="bool" value="0" />
+                    <Unnamed_4 type="bool" value="0" />
+                    <Unnamed_5 type="bool" value="0" />
+                    <Unnamed_6 type="bool" value="0" />
+                    <Cinematic_1 type="bool" value="0" />
+                    <Cinematic_2 type="bool" value="0" />
+                    <Cinematic_3 type="bool" value="0" />
+                    <Cinematic_4 type="bool" value="0" />
+                    <Cinematic_5 type="bool" value="0" />
+                    <Cinematic_6 type="bool" value="0" />
+                    <Cinematic_7 type="bool" value="0" />
+                    <Cinematic_8 type="bool" value="0" />
+                    <Cinematic_9 type="bool" value="0" />
+                    <Cinematic_10 type="bool" value="0" />
+                    <Gameplay_1 type="bool" value="0" />
+                    <Gameplay_2 type="bool" value="0" />
+                    <Gameplay_3 type="bool" value="0" />
+                    <Gameplay_4 type="bool" value="0" />
+                    <Crowd type="bool" value="0" />
+                </LightingChannels>
+                <RBCollideWithChannels type="struct">
+                    <Default type="bool" value="0" />
+                    <Nothing type="bool" value="0" />
+                    <Pawn type="bool" value="0" />
+                    <Vehicle type="bool" value="0" />
+                    <Water type="bool" value="0" />
+                    <GameplayPhysics type="bool" value="0" />
+                    <EffectPhysics type="bool" value="0" />
+                    <Untitled1 type="bool" value="0" />
+                    <Untitled2 type="bool" value="0" />
+                    <Untitled3 type="bool" value="0" />
+                    <Untitled4 type="bool" value="0" />
+                    <Cloth type="bool" value="0" />
+                    <FluidDrain type="bool" value="0" />
+                    <SoftBody type="bool" value="0" />
+                    <FracturedMeshPart type="bool" value="0" />
+                    <BlockingVolume type="bool" value="0" />
+                    <DeadPawn type="bool" value="0" />
+                    <Clothing type="bool" value="0" />
+                    <ClothingCollision type="bool" value="0" />
+                </RBCollideWithChannels>
+                <Translation type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </Translation>
+                <Rotation type="struct">
+                    <Pitch type="int" value="0" />
+                    <Yaw type="int" value="0" />
+                    <Roll type="int" value="0" />
+                </Rotation>
+                <Scale type="float" value="1.000000" />
+                <Scale3D type="struct">
+                    <X type="float" value="1.000000" />
+                    <Y type="float" value="1.000000" />
+                    <Z type="float" value="1.000000" />
+                </Scale3D>
+                <BoundsScale type="float" value="1.000000" />
+                <ScriptRigidBodyCollisionThreshold type="float" value="0.000000" />
+                <bTickInEditor type="bool" value="0" />
+                <TickGroup type="byte" value="0" />
+            </TempStaticMesh1>
+        </TempStaticMesh1>
+        <Components type="array">
+            <CollisionCylinder type="object">
+                <CollisionCylinder type="object">
+                    <CollisionHeight type="float" value="24.000000" />
+                    <CollisionRadius type="float" value="24.000000" />
+                    <CylinderColor type="struct">
+                        <B type="byte" value="157" />
+                        <G type="byte" value="149" />
+                        <R type="byte" value="223" />
+                        <A type="byte" value="255" />
+                    </CylinderColor>
+                    <bDrawBoundingBox type="bool" value="1" />
+                    <bDrawNonColliding type="bool" value="0" />
+                    <bAlwaysRenderIfSelected type="bool" value="0" />
+                    <MinDrawDistance type="float" value="0.000000" />
+                    <MassiveLODDistance type="float" value="0.000000" />
+                    <MaxDrawDistance type="float" value="6000.000000" />
+                    <CachedMaxDrawDistance type="float" value="6000.000000" />
+                    <MotionBlurInstanceScale type="float" value="1.000000" />
+                    <DepthPriorityGroup type="byte" value="1" />
+                    <ViewOwnerDepthPriorityGroup type="byte" value="0" />
+                    <DetailMode type="byte" value="0" />
+                    <RBChannel type="byte" value="0" />
+                    <RBDominanceGroup type="byte" value="15" />
+                    <PreviewEnvironmentShadowing type="byte" value="180" />
+                    <bUseViewOwnerDepthPriorityGroup type="bool" value="0" />
+                    <bAllowCullDistanceVolume type="bool" value="1" />
+                    <HiddenGame type="bool" value="1" />
+                    <HiddenEditor type="bool" value="0" />
+                    <bOwnerNoSee type="bool" value="0" />
+                    <bOnlyOwnerSee type="bool" value="0" />
+                    <bIgnoreOwnerHidden type="bool" value="0" />
+                    <bUseAsOccluder type="bool" value="0" />
+                    <bAllowApproximateOcclusion type="bool" value="0" />
+                    <bFirstFrameOcclusion type="bool" value="0" />
+                    <bIgnoreNearPlaneIntersection type="bool" value="0" />
+                    <bSelectable type="bool" value="1" />
+                    <bForceMipStreaming type="bool" value="0" />
+                    <bAcceptsStaticDecals type="bool" value="0" />
+                    <bAcceptsDynamicDecals type="bool" value="1" />
+                    <CastShadow type="bool" value="0" />
+                    <bForceDirectLightMap type="bool" value="0" />
+                    <bCastDynamicShadow type="bool" value="0" />
+                    <bCastStaticShadow type="bool" value="1" />
+                    <bSelfShadowOnly type="bool" value="0" />
+                    <bAcceptsDynamicDominantLightShadows type="bool" value="1" />
+                    <bCastHiddenShadow type="bool" value="0" />
+                    <bCastShadowAsTwoSided type="bool" value="0" />
+                    <bAcceptsLights type="bool" value="0" />
+                    <bAcceptsDynamicLights type="bool" value="1" />
+                    <bUseOnePassLightingOnTranslucency type="bool" value="0" />
+                    <bUsePrecomputedShadows type="bool" value="0" />
+                    <CollideActors type="bool" value="0" />
+                    <AlwaysCheckCollision type="bool" value="0" />
+                    <BlockActors type="bool" value="0" />
+                    <BlockZeroExtent type="bool" value="1" />
+                    <BlockNonZeroExtent type="bool" value="1" />
+                    <CanBlockCamera type="bool" value="1" />
+                    <BlockRigidBody type="bool" value="0" />
+                    <bBlockFootPlacement type="bool" value="1" />
+                    <bDisableAllRigidBody type="bool" value="0" />
+                    <bSkipRBGeomCreation type="bool" value="0" />
+                    <bNotifyRigidBodyCollision type="bool" value="0" />
+                    <bFluidDrain type="bool" value="0" />
+                    <bFluidTwoWay type="bool" value="0" />
+                    <bIgnoreRadialImpulse type="bool" value="0" />
+                    <bIgnoreRadialForce type="bool" value="0" />
+                    <bIgnoreForceField type="bool" value="0" />
+                    <bUseCompartment type="bool" value="0" />
+                    <AlwaysLoadOnClient type="bool" value="1" />
+                    <AlwaysLoadOnServer type="bool" value="1" />
+                    <bIgnoreHiddenActorsMembership type="bool" value="0" />
+                    <AbsoluteTranslation type="bool" value="0" />
+                    <AbsoluteRotation type="bool" value="0" />
+                    <AbsoluteScale type="bool" value="0" />
+                    <bAllowShadowFade type="bool" value="1" />
+                    <TranslucencySortPriority type="int" value="0" />
+                    <LightingChannels type="struct">
+                        <bInitialized type="bool" value="1" />
+                        <BSP type="bool" value="0" />
+                        <Static type="bool" value="0" />
+                        <Dynamic type="bool" value="1" />
+                        <CompositeDynamic type="bool" value="0" />
+                        <Skybox type="bool" value="0" />
+                        <Unnamed_1 type="bool" value="0" />
+                        <Unnamed_2 type="bool" value="0" />
+                        <Unnamed_3 type="bool" value="0" />
+                        <Unnamed_4 type="bool" value="0" />
+                        <Unnamed_5 type="bool" value="0" />
+                        <Unnamed_6 type="bool" value="0" />
+                        <Cinematic_1 type="bool" value="0" />
+                        <Cinematic_2 type="bool" value="0" />
+                        <Cinematic_3 type="bool" value="0" />
+                        <Cinematic_4 type="bool" value="0" />
+                        <Cinematic_5 type="bool" value="0" />
+                        <Cinematic_6 type="bool" value="0" />
+                        <Cinematic_7 type="bool" value="0" />
+                        <Cinematic_8 type="bool" value="0" />
+                        <Cinematic_9 type="bool" value="0" />
+                        <Cinematic_10 type="bool" value="0" />
+                        <Gameplay_1 type="bool" value="0" />
+                        <Gameplay_2 type="bool" value="0" />
+                        <Gameplay_3 type="bool" value="0" />
+                        <Gameplay_4 type="bool" value="0" />
+                        <Crowd type="bool" value="0" />
+                    </LightingChannels>
+                    <RBCollideWithChannels type="struct">
+                        <Default type="bool" value="0" />
+                        <Nothing type="bool" value="0" />
+                        <Pawn type="bool" value="0" />
+                        <Vehicle type="bool" value="0" />
+                        <Water type="bool" value="0" />
+                        <GameplayPhysics type="bool" value="0" />
+                        <EffectPhysics type="bool" value="0" />
+                        <Untitled1 type="bool" value="0" />
+                        <Untitled2 type="bool" value="0" />
+                        <Untitled3 type="bool" value="0" />
+                        <Untitled4 type="bool" value="0" />
+                        <Cloth type="bool" value="0" />
+                        <FluidDrain type="bool" value="0" />
+                        <SoftBody type="bool" value="0" />
+                        <FracturedMeshPart type="bool" value="0" />
+                        <BlockingVolume type="bool" value="0" />
+                        <DeadPawn type="bool" value="0" />
+                        <Clothing type="bool" value="0" />
+                        <ClothingCollision type="bool" value="0" />
+                    </RBCollideWithChannels>
+                    <Translation type="struct">
+                        <X type="float" value="0.000000" />
+                        <Y type="float" value="0.000000" />
+                        <Z type="float" value="0.000000" />
+                    </Translation>
+                    <Rotation type="struct">
+                        <Pitch type="int" value="0" />
+                        <Yaw type="int" value="0" />
+                        <Roll type="int" value="0" />
+                    </Rotation>
+                    <Scale type="float" value="1.000000" />
+                    <Scale3D type="struct">
+                        <X type="float" value="1.000000" />
+                        <Y type="float" value="1.000000" />
+                        <Z type="float" value="1.000000" />
+                    </Scale3D>
+                    <BoundsScale type="float" value="1.000000" />
+                    <ScriptRigidBodyCollisionThreshold type="float" value="0.000000" />
+                    <bTickInEditor type="bool" value="0" />
+                    <TickGroup type="byte" value="1" />
+                </CollisionCylinder>
+            </CollisionCylinder>
+        </Components>
+        <Location type="struct">
+            <X type="float" value="0.000000" />
+            <Y type="float" value="0.000000" />
+            <Z type="float" value="0.000000" />
+        </Location>
+        <Rotation type="struct">
+            <Pitch type="int" value="0" />
+            <Yaw type="int" value="0" />
+            <Roll type="int" value="0" />
+        </Rotation>
+        <DrawScale type="float" value="1.000000" />
+        <DrawScale3D type="struct">
+            <X type="float" value="1.000000" />
+            <Y type="float" value="1.000000" />
+            <Z type="float" value="1.000000" />
+        </DrawScale3D>
+        <PrePivot type="struct">
+            <X type="float" value="0.000000" />
+            <Y type="float" value="0.000000" />
+            <Z type="float" value="0.000000" />
+        </PrePivot>
+        <EditorIconColor type="struct">
+            <B type="byte" value="255" />
+            <G type="byte" value="255" />
+            <R type="byte" value="255" />
+            <A type="byte" value="255" />
+        </EditorIconColor>
+        <CustomTimeDilation type="float" value="1.000000" />
+        <Physics type="byte" value="0" />
+        <RemoteRole type="byte" value="0" />
+        <Role type="byte" value="3" />
+        <TickGroup type="byte" value="0" />
+        <Timers type="array" />
+        <bStatic type="bool" value="0" />
+        <bHidden type="bool" value="0" />
+        <bNoDelete type="bool" value="0" />
+        <bDeleteMe type="bool" value="0" />
+        <bOnlyOwnerSee type="bool" value="0" />
+        <bTickIsDisabled type="bool" value="0" />
+        <bWorldGeometry type="bool" value="0" />
+        <bIgnoreRigidBodyPawns type="bool" value="0" />
+        <bOrientOnSlope type="bool" value="0" />
+        <bIgnoreEncroachers type="bool" value="0" />
+        <bPushedByEncroachers type="bool" value="1" />
+        <bDestroyedByInterpActor type="bool" value="0" />
+        <bRouteBeginPlayEvenIfStatic type="bool" value="1" />
+        <bIsMoving type="bool" value="0" />
+        <bAlwaysEncroachCheck type="bool" value="0" />
+        <bHasAlternateTargetLocation type="bool" value="0" />
+        <bCanStepUpOn type="bool" value="1" />
+        <bNetTemporary type="bool" value="0" />
+        <bOnlyRelevantToOwner type="bool" value="0" />
+        <bAlwaysRelevant type="bool" value="0" />
+        <bReplicateInstigator type="bool" value="0" />
+        <bReplicateMovement type="bool" value="1" />
+        <bSkipActorPropertyReplication type="bool" value="0" />
+        <bUpdateSimulatedPosition type="bool" value="0" />
+        <bTearOff type="bool" value="0" />
+        <bOnlyDirtyReplication type="bool" value="0" />
+        <bAllowFluidSurfaceInteraction type="bool" value="1" />
+        <bDemoOwner type="bool" value="0" />
+        <bForceDemoRelevant type="bool" value="0" />
+        <bNetInitialRotation type="bool" value="0" />
+        <bReplicateRigidBodyLocation type="bool" value="0" />
+        <bKillDuringLevelTransition type="bool" value="0" />
+        <bExchangedRoles type="bool" value="0" />
+        <bConsiderAllStaticMeshComponentsForStreaming type="bool" value="0" />
+        <bDebug type="bool" value="0" />
+        <bPostRenderIfNotVisible type="bool" value="0" />
+        <bHardAttach type="bool" value="0" />
+        <bIgnoreBaseRotation type="bool" value="0" />
+        <bShadowParented type="bool" value="0" />
+        <bSkipAttachedMoves type="bool" value="1" />
+        <bCanBeAdheredTo type="bool" value="0" />
+        <bCanBeFrictionedTo type="bool" value="0" />
+        <bHurtEntry type="bool" value="0" />
+        <bGameRelevant type="bool" value="0" />
+        <bMovable type="bool" value="1" />
+        <bDestroyInPainVolume type="bool" value="0" />
+        <bCanBeDamaged type="bool" value="0" />
+        <bShouldBaseAtStartup type="bool" value="0" />
+        <bPendingDelete type="bool" value="0" />
+        <bCanTeleport type="bool" value="0" />
+        <bAlwaysTick type="bool" value="0" />
+        <bBlocksNavigation type="bool" value="0" />
+        <bCollideWhenPlacing type="bool" value="0" />
+        <bCollideActors type="bool" value="0" />
+        <bCollideWorld type="bool" value="1" />
+        <bCollideComplex type="bool" value="0" />
+        <bBlockActors type="bool" value="0" />
+        <bProjTarget type="bool" value="0" />
+        <bBlocksTeleport type="bool" value="0" />
+        <bMoveIgnoresDestruction type="bool" value="0" />
+        <bProjectileMoveSingleBlocking type="bool" value="0" />
+        <bNoEncroachCheck type="bool" value="0" />
+        <bCollideAsEncroacher type="bool" value="0" />
+        <bPhysRigidBodyOutOfWorldCheck type="bool" value="0" />
+        <bForceOctreeSNFilter type="bool" value="0" />
+        <bCallRigidBodyWakeEvents type="bool" value="0" />
+        <bBounce type="bool" value="0" />
+        <bJustTeleported type="bool" value="1" />
+        <bNetInitial type="bool" value="0" />
+        <bNetOwner type="bool" value="0" />
+        <bHiddenEd type="bool" value="0" />
+        <bEditable type="bool" value="1" />
+        <bHiddenEdLayer type="bool" value="0" />
+        <bHiddenEdCustom type="bool" value="0" />
+        <bEdShouldSnap type="bool" value="0" />
+        <bPathColliding type="bool" value="0" />
+        <bScriptInitialized type="bool" value="0" />
+        <bLockLocation type="bool" value="0" />
+        <bForceAllowKismetModification type="bool" value="0" />
+        <bDebugEffectIsRelevant type="bool" value="0" />
+        <NetUpdateTime type="float" value="0.000000" />
+        <NetUpdateFrequency type="float" value="100.000000" />
+        <NetPriority type="float" value="1.000000" />
+        <TimeSinceLastTick type="float" value="0.000000" />
+        <LifeSpan type="float" value="0.000000" />
+        <CreationTime type="float" value="65.671188" />
+        <Tag type="string" value="MMOWeapon" />
+        <InitialState type="string" value="None" />
+        <Layer type="string" value="None" />
+        <LatentFloat type="float" value="0.000000" />
+        <Velocity type="struct">
+            <X type="float" value="0.000000" />
+            <Y type="float" value="0.000000" />
+            <Z type="float" value="0.000000" />
+        </Velocity>
+        <Acceleration type="struct">
+            <X type="float" value="0.000000" />
+            <Y type="float" value="0.000000" />
+            <Z type="float" value="0.000000" />
+        </Acceleration>
+        <BaseBoneName type="string" value="None" />
+        <Attached type="array" />
+        <RelativeLocation type="struct">
+            <X type="float" value="0.000000" />
+            <Y type="float" value="0.000000" />
+            <Z type="float" value="0.000000" />
+        </RelativeLocation>
+        <RelativeRotation type="struct">
+            <Pitch type="int" value="0" />
+            <Yaw type="int" value="0" />
+            <Roll type="int" value="0" />
+        </RelativeRotation>
+        <CollisionCylinder type="object">
+            <CollisionCylinder type="object">
+                <CollisionHeight type="float" value="24.000000" />
+                <CollisionRadius type="float" value="24.000000" />
+                <CylinderColor type="struct">
+                    <B type="byte" value="157" />
+                    <G type="byte" value="149" />
+                    <R type="byte" value="223" />
+                    <A type="byte" value="255" />
+                </CylinderColor>
+                <bDrawBoundingBox type="bool" value="1" />
+                <bDrawNonColliding type="bool" value="0" />
+                <bAlwaysRenderIfSelected type="bool" value="0" />
+                <MinDrawDistance type="float" value="0.000000" />
+                <MassiveLODDistance type="float" value="0.000000" />
+                <MaxDrawDistance type="float" value="6000.000000" />
+                <CachedMaxDrawDistance type="float" value="6000.000000" />
+                <MotionBlurInstanceScale type="float" value="1.000000" />
+                <DepthPriorityGroup type="byte" value="1" />
+                <ViewOwnerDepthPriorityGroup type="byte" value="0" />
+                <DetailMode type="byte" value="0" />
+                <RBChannel type="byte" value="0" />
+                <RBDominanceGroup type="byte" value="15" />
+                <PreviewEnvironmentShadowing type="byte" value="180" />
+                <bUseViewOwnerDepthPriorityGroup type="bool" value="0" />
+                <bAllowCullDistanceVolume type="bool" value="1" />
+                <HiddenGame type="bool" value="1" />
+                <HiddenEditor type="bool" value="0" />
+                <bOwnerNoSee type="bool" value="0" />
+                <bOnlyOwnerSee type="bool" value="0" />
+                <bIgnoreOwnerHidden type="bool" value="0" />
+                <bUseAsOccluder type="bool" value="0" />
+                <bAllowApproximateOcclusion type="bool" value="0" />
+                <bFirstFrameOcclusion type="bool" value="0" />
+                <bIgnoreNearPlaneIntersection type="bool" value="0" />
+                <bSelectable type="bool" value="1" />
+                <bForceMipStreaming type="bool" value="0" />
+                <bAcceptsStaticDecals type="bool" value="0" />
+                <bAcceptsDynamicDecals type="bool" value="1" />
+                <CastShadow type="bool" value="0" />
+                <bForceDirectLightMap type="bool" value="0" />
+                <bCastDynamicShadow type="bool" value="0" />
+                <bCastStaticShadow type="bool" value="1" />
+                <bSelfShadowOnly type="bool" value="0" />
+                <bAcceptsDynamicDominantLightShadows type="bool" value="1" />
+                <bCastHiddenShadow type="bool" value="0" />
+                <bCastShadowAsTwoSided type="bool" value="0" />
+                <bAcceptsLights type="bool" value="0" />
+                <bAcceptsDynamicLights type="bool" value="1" />
+                <bUseOnePassLightingOnTranslucency type="bool" value="0" />
+                <bUsePrecomputedShadows type="bool" value="0" />
+                <CollideActors type="bool" value="0" />
+                <AlwaysCheckCollision type="bool" value="0" />
+                <BlockActors type="bool" value="0" />
+                <BlockZeroExtent type="bool" value="1" />
+                <BlockNonZeroExtent type="bool" value="1" />
+                <CanBlockCamera type="bool" value="1" />
+                <BlockRigidBody type="bool" value="0" />
+                <bBlockFootPlacement type="bool" value="1" />
+                <bDisableAllRigidBody type="bool" value="0" />
+                <bSkipRBGeomCreation type="bool" value="0" />
+                <bNotifyRigidBodyCollision type="bool" value="0" />
+                <bFluidDrain type="bool" value="0" />
+                <bFluidTwoWay type="bool" value="0" />
+                <bIgnoreRadialImpulse type="bool" value="0" />
+                <bIgnoreRadialForce type="bool" value="0" />
+                <bIgnoreForceField type="bool" value="0" />
+                <bUseCompartment type="bool" value="0" />
+                <AlwaysLoadOnClient type="bool" value="1" />
+                <AlwaysLoadOnServer type="bool" value="1" />
+                <bIgnoreHiddenActorsMembership type="bool" value="0" />
+                <AbsoluteTranslation type="bool" value="0" />
+                <AbsoluteRotation type="bool" value="0" />
+                <AbsoluteScale type="bool" value="0" />
+                <bAllowShadowFade type="bool" value="1" />
+                <TranslucencySortPriority type="int" value="0" />
+                <LightingChannels type="struct">
+                    <bInitialized type="bool" value="1" />
+                    <BSP type="bool" value="0" />
+                    <Static type="bool" value="0" />
+                    <Dynamic type="bool" value="1" />
+                    <CompositeDynamic type="bool" value="0" />
+                    <Skybox type="bool" value="0" />
+                    <Unnamed_1 type="bool" value="0" />
+                    <Unnamed_2 type="bool" value="0" />
+                    <Unnamed_3 type="bool" value="0" />
+                    <Unnamed_4 type="bool" value="0" />
+                    <Unnamed_5 type="bool" value="0" />
+                    <Unnamed_6 type="bool" value="0" />
+                    <Cinematic_1 type="bool" value="0" />
+                    <Cinematic_2 type="bool" value="0" />
+                    <Cinematic_3 type="bool" value="0" />
+                    <Cinematic_4 type="bool" value="0" />
+                    <Cinematic_5 type="bool" value="0" />
+                    <Cinematic_6 type="bool" value="0" />
+                    <Cinematic_7 type="bool" value="0" />
+                    <Cinematic_8 type="bool" value="0" />
+                    <Cinematic_9 type="bool" value="0" />
+                    <Cinematic_10 type="bool" value="0" />
+                    <Gameplay_1 type="bool" value="0" />
+                    <Gameplay_2 type="bool" value="0" />
+                    <Gameplay_3 type="bool" value="0" />
+                    <Gameplay_4 type="bool" value="0" />
+                    <Crowd type="bool" value="0" />
+                </LightingChannels>
+                <RBCollideWithChannels type="struct">
+                    <Default type="bool" value="0" />
+                    <Nothing type="bool" value="0" />
+                    <Pawn type="bool" value="0" />
+                    <Vehicle type="bool" value="0" />
+                    <Water type="bool" value="0" />
+                    <GameplayPhysics type="bool" value="0" />
+                    <EffectPhysics type="bool" value="0" />
+                    <Untitled1 type="bool" value="0" />
+                    <Untitled2 type="bool" value="0" />
+                    <Untitled3 type="bool" value="0" />
+                    <Untitled4 type="bool" value="0" />
+                    <Cloth type="bool" value="0" />
+                    <FluidDrain type="bool" value="0" />
+                    <SoftBody type="bool" value="0" />
+                    <FracturedMeshPart type="bool" value="0" />
+                    <BlockingVolume type="bool" value="0" />
+                    <DeadPawn type="bool" value="0" />
+                    <Clothing type="bool" value="0" />
+                    <ClothingCollision type="bool" value="0" />
+                </RBCollideWithChannels>
+                <Translation type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </Translation>
+                <Rotation type="struct">
+                    <Pitch type="int" value="0" />
+                    <Yaw type="int" value="0" />
+                    <Roll type="int" value="0" />
+                </Rotation>
+                <Scale type="float" value="1.000000" />
+                <Scale3D type="struct">
+                    <X type="float" value="1.000000" />
+                    <Y type="float" value="1.000000" />
+                    <Z type="float" value="1.000000" />
+                </Scale3D>
+                <BoundsScale type="float" value="1.000000" />
+                <ScriptRigidBodyCollisionThreshold type="float" value="0.000000" />
+                <bTickInEditor type="bool" value="0" />
+                <TickGroup type="byte" value="1" />
+            </CollisionCylinder>
+        </CollisionCylinder>
+        <RotationRate type="struct">
+            <Pitch type="int" value="0" />
+            <Yaw type="int" value="0" />
+            <Roll type="int" value="0" />
+        </RotationRate>
+        <SupportedEvents type="array" />
+        <GeneratedEvents type="array" />
+        <LatentActions type="array" />
+    </Weapon_Spear_01>
+    <Weapon_Spear_02 type="object">
+        <Dmg_Min type="int" value="100" />
+        <Dmg_Max type="int" value="200" />
+        <Speed type="int" value="0" />
+        <DPS type="int" value="0" />
+        <WeaponType type="byte" value="5" />
+        <HandType type="byte" value="0" />
+        <WeaponMeshs type="struct">
+            <HoldSocket type="string" value="None" />
+            <CarrySocket type="string" value="None" />
+        </WeaponMeshs>
+        <WeaponMeshs type="struct">
+            <HoldSocket type="string" value="None" />
+            <CarrySocket type="string" value="None" />
+        </WeaponMeshs>
+        <BaseBonuses type="struct">
+            <Strength type="int" value="0" />
+            <Intellect type="int" value="0" />
+            <Stamina type="int" value="0" />
+            <Spirit type="int" value="0" />
+            <Agility type="int" value="0" />
+            <Impression type="int" value="0" />
+        </BaseBonuses>
+        <AttackBonuses type="struct">
+            <CurrentMeleeAttack type="int" value="0" />
+            <MeleeAttackMin type="int" value="0" />
+            <MeleeAttackMax type="int" value="0" />
+            <CurrentSpellAttack type="int" value="0" />
+            <SpellAttackMin type="int" value="0" />
+            <SpellAttackMax type="int" value="0" />
+            <HitRating type="float" value="90.000000" />
+            <CriticalChance type="float" value="10.000000" />
+            <AttackRatioRange type="struct">
+                <X type="float" value="0.000000" />
+                <Y type="float" value="0.000000" />
+            </AttackRatioRange>
+        </AttackBonuses>
+        <StateName type="string" value="None" />
+        <SkeletalMeshComponent_0 type="object">
+            <SkeletalMeshComponent_0 type="object">
+                <PhysicsWeight type="float" value="0.000000" />
+                <GlobalAnimRateScale type="float" value="1.000000" />
+                <StreamingDistanceMultiplier type="float" value="1.000000" />
+                <WireframeColor type="struct">
+                    <B type="byte" value="28" />
+                    <G type="byte" value="221" />
+                    <R type="byte" value="221" />
+                    <A type="byte" value="255" />
+                </WireframeColor>
+                <LowUpdateFrameRate type="int" value="0" />
+                <AnimSets type="array" />
+                <MorphSets type="array" />
+                <ForcedLodModel type="int" value="0" />
+                <MinLodModel type="int" value="0" />
+                <PredictedLODLevel type="int" value="0" />
+                <OldPredictedLODLevel type="int" value="0" />
+                <AnimationLODDistanceFactor type="float" value="0.000000" />
+                <AnimationLODFrameRate type="int" value="2" />
+                <MaxDistanceFactor type="float" value="0.000000" />
+                <bForceWireframe type="int" value="0" />
+                <bForceRefpose type="int" value="0" />
+                <bOldForceRefPose type="int" value="0" />
+                <bNoSkeletonUpdate type="bool" value="0" />
+                <bDisplayBones type="int" value="0" />
+                <bShowPrePhysBones type="int" value="0" />
+                <bHideSkin type="int" value="0" />
+                <bForceRawOffset type="int" value="0" />
+                <bIgnoreControllers type="int" value="0" />
+                <bTransformFromAnimParent type="int" value="1" />
+                <bUseSingleBodyPhysics type="int" value="0" />
+                <MinDistFactorForKinematicUpdate type="float" value="0.000000" />
+                <bSkipAllUpdateWhenPhysicsAsleep type="bool" value="0" />
+                <bComponentUseFixedSkelBounds type="bool" value="0" />
+                <bUseBoundsFromParentAnimComponent type="bool" value="0" />
+                <bConsiderAllBodiesForBounds type="bool" value="0" />
+                <bUpdateSkelWhenNotRendered type="bool" value="1" />
+                <bIgnoreControllersWhenNotRendered type="bool" value="0" />
+                <bTickAnimNodesWhenNotRendered type="bool" value="1" />
+                <bNotUpdatingKinematicDueToDistance type="bool" value="0" />
+                <bForceDiscardRootMotion type="bool" value="0" />
+                <bNotifyRootMotionProcessed type="bool" value="0" />
+                <bRootMotionModeChangeNotify type="bool" value="0" />
+                <bRootMotionExtractedNotify type="bool" value="0" />
+                <bDisableFaceFXMaterialInstanceCreation type="bool" value="0" />
+                <bDisableFaceFX type="bool" value="0" />
+                <bHasPhysicsAssetInstance type="bool" value="0" />
+                <bUpdateKinematicBonesFromAnimation type="bool" value="1" />
+                <bUpdateJointsFromAnimation type="bool" value="0" />
+                <bSkelCompFixed type="bool" value="0" />
+                <bHasHadPhysicsBlendedIn type="bool" value="0" />
+                <bForceUpdateAttachmentsInTick type="bool" value="0" />
+                <bPerBoneVolumeEffects type="bool" value="0" />
+                <bPerBoneMotionBlur type="bool" value="0" />
+                <bSyncActorLocationToRootRigidBody type="bool" value="1" />
+                <bUseRawData type="bool" value="0" />
+                <bDisableWarningWhenAnimNotFound type="bool" value="0" />
+                <bOverrideAttachmentOwnerVisibility type="bool" value="0" />
+                <bPauseAnims type="bool" value="0" />
+                <bChartDistanceFactor type="bool" value="0" />
+                <bEnableLineCheckWithBounds type="bool" value="0" />
+                <bUpdateMorphWhenParentAnimComponentExists type="bool" value="0" />
+                <LineCheckBoundsScale type="struct">
+                    <X type="float" value="1.000000" />
+                    <Y type="float" value="1.000000" />
+                    <Z type="float" value="1.000000" />
+                </LineCheckBoundsScale>
+                <bEnableClothSimulation type="bool" value="0" />
+                <bDisableClothCollision type="bool" value="0" />
+                <bClothFrozen type="bool" value="0" />
+                <bAutoFreezeClothWhenNotRendered type="bool" value="1" />
+                <bClothAwakeOnStartup type="bool" value="0" />
+                <bClothBaseVelClamp type="bool" value="0" />
+                <bClothBaseVelInterp type="bool" value="0" />
+                <bAttachClothVertsToBaseBody type="bool" value="0" />
+                <bIsClothOnStaticObject type="bool" value="0" />
+                <bUpdatedFixedClothVerts type="bool" value="0" />
+                <bClothPositionalDampening type="bool" value="0" />
+                <bClothWindRelativeToOwner type="bool" value="0" />
+                <bCacheAnimSequenceNodes type="bool" value="1" />
+                <FrozenLocalToWorldPos type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </FrozenLocalToWorldPos>
+                <FrozenLocalToWorldRot type="struct">
+                    <Pitch type="int" value="0" />
+                    <Yaw type="int" value="0" />
+                    <Roll type="int" value="0" />
+                </FrozenLocalToWorldRot>
+                <ClothExternalForce type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </ClothExternalForce>
+                <ClothWind type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </ClothWind>
+                <ClothBaseVelClampRange type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </ClothBaseVelClampRange>
+                <ClothBlendWeight type="float" value="1.000000" />
+                <ClothDynamicBlendWeight type="float" value="0.000000" />
+                <ClothBlendMinDistanceFactor type="float" value="-1.000000" />
+                <ClothBlendMaxDistanceFactor type="float" value="0.000000" />
+                <MinPosDampRange type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </MinPosDampRange>
+                <MaxPosDampRange type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </MaxPosDampRange>
+                <MinPosDampScale type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </MinPosDampScale>
+                <MaxPosDampScale type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </MaxPosDampScale>
+                <ClothMeshPosData type="array" />
+                <ClothMeshNormalData type="array" />
+                <ClothMeshIndexData type="array" />
+                <NumClothMeshVerts type="int" value="0" />
+                <NumClothMeshIndices type="int" value="0" />
+                <ClothMeshParentData type="array" />
+                <NumClothMeshParentIndices type="int" value="0" />
+                <ClothDirtyBufferFlag type="int" value="0" />
+                <ClothRBChannel type="byte" value="11" />
+                <ClothRBCollideWithChannels type="struct">
+                    <Default type="bool" value="0" />
+                    <Nothing type="bool" value="0" />
+                    <Pawn type="bool" value="0" />
+                    <Vehicle type="bool" value="0" />
+                    <Water type="bool" value="0" />
+                    <GameplayPhysics type="bool" value="0" />
+                    <EffectPhysics type="bool" value="0" />
+                    <Untitled1 type="bool" value="0" />
+                    <Untitled2 type="bool" value="0" />
+                    <Untitled3 type="bool" value="0" />
+                    <Untitled4 type="bool" value="0" />
+                    <Cloth type="bool" value="0" />
+                    <FluidDrain type="bool" value="0" />
+                    <SoftBody type="bool" value="0" />
+                    <FracturedMeshPart type="bool" value="0" />
+                    <BlockingVolume type="bool" value="0" />
+                    <DeadPawn type="bool" value="0" />
+                    <Clothing type="bool" value="0" />
+                    <ClothingCollision type="bool" value="0" />
+                </ClothRBCollideWithChannels>
+                <ClothForceScale type="float" value="0.000000" />
+                <ClothImpulseScale type="float" value="1.000000" />
+                <ClothAttachmentTearFactor type="float" value="-1.000000" />
+                <bClothUseCompartment type="bool" value="0" />
+                <MinDistanceForClothReset type="float" value="256.000000" />
+                <ApexClothingRBChannel type="byte" value="17" />
+                <ApexClothingRBCollideWithChannels type="struct">
+                    <Default type="bool" value="1" />
+                    <Nothing type="bool" value="0" />
+                    <Pawn type="bool" value="0" />
+                    <Vehicle type="bool" value="0" />
+                    <Water type="bool" value="0" />
+                    <GameplayPhysics type="bool" value="1" />
+                    <EffectPhysics type="bool" value="1" />
+                    <Untitled1 type="bool" value="0" />
+                    <Untitled2 type="bool" value="0" />
+                    <Untitled3 type="bool" value="0" />
+                    <Untitled4 type="bool" value="0" />
+                    <Cloth type="bool" value="0" />
+                    <FluidDrain type="bool" value="0" />
+                    <SoftBody type="bool" value="0" />
+                    <FracturedMeshPart type="bool" value="0" />
+                    <BlockingVolume type="bool" value="1" />
+                    <DeadPawn type="bool" value="0" />
+                    <Clothing type="bool" value="0" />
+                    <ClothingCollision type="bool" value="1" />
+                </ApexClothingRBCollideWithChannels>
+                <ApexClothingCollisionRBChannel type="byte" value="18" />
+                <bAutoFreezeApexClothingWhenNotRendered type="bool" value="1" />
+                <bLocalSpaceWind type="bool" value="0" />
+                <WindVelocity type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </WindVelocity>
+                <WindVelocityBlendTime type="float" value="0.000000" />
+                <bEnableSoftBodySimulation type="bool" value="0" />
+                <SoftBodyTetraPosData type="array" />
+                <SoftBodyTetraIndexData type="array" />
+                <NumSoftBodyTetraVerts type="int" value="0" />
+                <NumSoftBodyTetraIndices type="int" value="0" />
+                <SoftBodyImpulseScale type="float" value="1.000000" />
+                <bSoftBodyFrozen type="bool" value="0" />
+                <bAutoFreezeSoftBodyWhenNotRendered type="bool" value="0" />
+                <bSoftBodyAwakeOnStartup type="bool" value="0" />
+                <bSoftBodyUseCompartment type="bool" value="1" />
+                <SoftBodyRBChannel type="byte" value="13" />
+                <SoftBodyRBCollideWithChannels type="struct">
+                    <Default type="bool" value="0" />
+                    <Nothing type="bool" value="0" />
+                    <Pawn type="bool" value="0" />
+                    <Vehicle type="bool" value="0" />
+                    <Water type="bool" value="0" />
+                    <GameplayPhysics type="bool" value="0" />
+                    <EffectPhysics type="bool" value="0" />
+                    <Untitled1 type="bool" value="0" />
+                    <Untitled2 type="bool" value="0" />
+                    <Untitled3 type="bool" value="0" />
+                    <Untitled4 type="bool" value="0" />
+                    <Cloth type="bool" value="0" />
+                    <FluidDrain type="bool" value="0" />
+                    <SoftBody type="bool" value="0" />
+                    <FracturedMeshPart type="bool" value="0" />
+                    <BlockingVolume type="bool" value="0" />
+                    <DeadPawn type="bool" value="0" />
+                    <Clothing type="bool" value="0" />
+                    <ClothingCollision type="bool" value="0" />
+                </SoftBodyRBCollideWithChannels>
+                <RootMotionAccelScale type="struct">
+                    <X type="float" value="1.000000" />
+                    <Y type="float" value="1.000000" />
+                    <Z type="float" value="1.000000" />
+                </RootMotionAccelScale>
+                <RootMotionMode type="byte" value="2" />
+                <PreviousRMM type="byte" value="2" />
+                <PendingRMM type="byte" value="0" />
+                <OldPendingRMM type="byte" value="0" />
+                <bRMMOneFrameDelay type="int" value="0" />
+                <RootMotionRotationMode type="byte" value="0" />
+                <AnimRotationOnly type="byte" value="0" />
+                <FaceFXBlendMode type="byte" value="1" />
+                <Materials type="array" />
+                <MinDrawDistance type="float" value="0.000000" />
+                <MassiveLODDistance type="float" value="0.000000" />
+                <MaxDrawDistance type="float" value="6000.000000" />
+                <CachedMaxDrawDistance type="float" value="6000.000000" />
+                <MotionBlurInstanceScale type="float" value="1.000000" />
+                <DepthPriorityGroup type="byte" value="1" />
+                <ViewOwnerDepthPriorityGroup type="byte" value="0" />
+                <DetailMode type="byte" value="0" />
+                <RBChannel type="byte" value="0" />
+                <RBDominanceGroup type="byte" value="15" />
+                <PreviewEnvironmentShadowing type="byte" value="180" />
+                <bUseViewOwnerDepthPriorityGroup type="bool" value="0" />
+                <bAllowCullDistanceVolume type="bool" value="1" />
+                <HiddenGame type="bool" value="0" />
+                <HiddenEditor type="bool" value="0" />
+                <bOwnerNoSee type="bool" value="0" />
+                <bOnlyOwnerSee type="bool" value="0" />
+                <bIgnoreOwnerHidden type="bool" value="0" />
+                <bUseAsOccluder type="bool" value="1" />
+                <bAllowApproximateOcclusion type="bool" value="0" />
+                <bFirstFrameOcclusion type="bool" value="0" />
+                <bIgnoreNearPlaneIntersection type="bool" value="0" />
+                <bSelectable type="bool" value="1" />
+                <bForceMipStreaming type="bool" value="0" />
+                <bAcceptsStaticDecals type="bool" value="0" />
+                <bAcceptsDynamicDecals type="bool" value="0" />
+                <CastShadow type="bool" value="1" />
+                <bForceDirectLightMap type="bool" value="0" />
+                <bCastDynamicShadow type="bool" value="1" />
+                <bCastStaticShadow type="bool" value="1" />
+                <bSelfShadowOnly type="bool" value="0" />
+                <bAcceptsDynamicDominantLightShadows type="bool" value="1" />
+                <bCastHiddenShadow type="bool" value="0" />
+                <bCastShadowAsTwoSided type="bool" value="0" />
+                <bAcceptsLights type="bool" value="1" />
+                <bAcceptsDynamicLights type="bool" value="1" />
+                <bUseOnePassLightingOnTranslucency type="bool" value="0" />
+                <bUsePrecomputedShadows type="bool" value="0" />
+                <CollideActors type="bool" value="0" />
+                <AlwaysCheckCollision type="bool" value="0" />
+                <BlockActors type="bool" value="0" />
+                <BlockZeroExtent type="bool" value="0" />
+                <BlockNonZeroExtent type="bool" value="0" />
+                <CanBlockCamera type="bool" value="1" />
+                <BlockRigidBody type="bool" value="0" />
+                <bBlockFootPlacement type="bool" value="1" />
+                <bDisableAllRigidBody type="bool" value="0" />
+                <bSkipRBGeomCreation type="bool" value="0" />
+                <bNotifyRigidBodyCollision type="bool" value="0" />
+                <bFluidDrain type="bool" value="0" />
+                <bFluidTwoWay type="bool" value="0" />
+                <bIgnoreRadialImpulse type="bool" value="0" />
+                <bIgnoreRadialForce type="bool" value="0" />
+                <bIgnoreForceField type="bool" value="0" />
+                <bUseCompartment type="bool" value="0" />
+                <AlwaysLoadOnClient type="bool" value="1" />
+                <AlwaysLoadOnServer type="bool" value="1" />
+                <bIgnoreHiddenActorsMembership type="bool" value="0" />
+                <AbsoluteTranslation type="bool" value="0" />
+                <AbsoluteRotation type="bool" value="0" />
+                <AbsoluteScale type="bool" value="0" />
+                <bAllowShadowFade type="bool" value="1" />
+                <TranslucencySortPriority type="int" value="0" />
+                <LightingChannels type="struct">
+                    <bInitialized type="bool" value="0" />
+                    <BSP type="bool" value="0" />
+                    <Static type="bool" value="0" />
+                    <Dynamic type="bool" value="0" />
+                    <CompositeDynamic type="bool" value="0" />
+                    <Skybox type="bool" value="0" />
+                    <Unnamed_1 type="bool" value="0" />
+                    <Unnamed_2 type="bool" value="0" />
+                    <Unnamed_3 type="bool" value="0" />
+                    <Unnamed_4 type="bool" value="0" />
+                    <Unnamed_5 type="bool" value="0" />
+                    <Unnamed_6 type="bool" value="0" />
+                    <Cinematic_1 type="bool" value="0" />
+                    <Cinematic_2 type="bool" value="0" />
+                    <Cinematic_3 type="bool" value="0" />
+                    <Cinematic_4 type="bool" value="0" />
+                    <Cinematic_5 type="bool" value="0" />
+                    <Cinematic_6 type="bool" value="0" />
+                    <Cinematic_7 type="bool" value="0" />
+                    <Cinematic_8 type="bool" value="0" />
+                    <Cinematic_9 type="bool" value="0" />
+                    <Cinematic_10 type="bool" value="0" />
+                    <Gameplay_1 type="bool" value="0" />
+                    <Gameplay_2 type="bool" value="0" />
+                    <Gameplay_3 type="bool" value="0" />
+                    <Gameplay_4 type="bool" value="0" />
+                    <Crowd type="bool" value="0" />
+                </LightingChannels>
+                <RBCollideWithChannels type="struct">
+                    <Default type="bool" value="0" />
+                    <Nothing type="bool" value="0" />
+                    <Pawn type="bool" value="0" />
+                    <Vehicle type="bool" value="0" />
+                    <Water type="bool" value="0" />
+                    <GameplayPhysics type="bool" value="0" />
+                    <EffectPhysics type="bool" value="0" />
+                    <Untitled1 type="bool" value="0" />
+                    <Untitled2 type="bool" value="0" />
+                    <Untitled3 type="bool" value="0" />
+                    <Untitled4 type="bool" value="0" />
+                    <Cloth type="bool" value="0" />
+                    <FluidDrain type="bool" value="0" />
+                    <SoftBody type="bool" value="0" />
+                    <FracturedMeshPart type="bool" value="0" />
+                    <BlockingVolume type="bool" value="0" />
+                    <DeadPawn type="bool" value="0" />
+                    <Clothing type="bool" value="0" />
+                    <ClothingCollision type="bool" value="0" />
+                </RBCollideWithChannels>
+                <Translation type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </Translation>
+                <Rotation type="struct">
+                    <Pitch type="int" value="0" />
+                    <Yaw type="int" value="0" />
+                    <Roll type="int" value="0" />
+                </Rotation>
+                <Scale type="float" value="1.000000" />
+                <Scale3D type="struct">
+                    <X type="float" value="1.000000" />
+                    <Y type="float" value="1.000000" />
+                    <Z type="float" value="1.000000" />
+                </Scale3D>
+                <BoundsScale type="float" value="1.000000" />
+                <ScriptRigidBodyCollisionThreshold type="float" value="0.000000" />
+                <bTickInEditor type="bool" value="0" />
+                <TickGroup type="byte" value="0" />
+            </SkeletalMeshComponent_0>
+        </SkeletalMeshComponent_0>
+        <bUseSkeleMesh type="bool" value="1" />
+        <HoldSocket type="string" value="Weapon_Hand" />
+        <CarrySocket type="string" value="Weapon_BackR2" />
+        <ItemId type="int" value="7" />
+        <IconId type="int" value="7" />
+        <ItemTypeId type="int" value="-1" />
+        <ItemName type="string" value="点睛枪" />
+        <Description type="string" value="\n道具类别：枪\n等级限制：30\n职业限制：虎卫" />
+        <SellPrice type="int" value="0" />
+        <BuyPrice type="int" value="0" />
+        <ItemLevel type="int" value="0" />
+        <RequireLevel type="int" value="0" />
+        <Rarity type="byte" value="1" />
+        <MaxStackNum type="int" value="1" />
+        <bDefaultItem type="bool" value="0" />
+        <TempStaticMesh1 type="object">
+            <TempStaticMesh1 type="object">
+                <ForcedLodModel type="int" value="0" />
+                <PreviousLODLevel type="int" value="0" />
+                <WireframeColor type="struct">
+                    <B type="byte" value="255" />
+                    <G type="byte" value="255" />
+                    <R type="byte" value="0" />
+                    <A type="byte" value="255" />
+                </WireframeColor>
+                <bIgnoreInstanceForTextureStreaming type="bool" value="0" />
+                <bOverrideLightMapRes type="bool" value="0" />
+                <OverriddenLightMapRes type="int" value="64" />
+                <OverriddenLODMaxRange type="float" value="0.000000" />
+                <StreamingDistanceMultiplier type="float" value="1.000000" />
+                <SubDivisionStepSize type="int" value="32" />
+                <bUseSubDivisions type="bool" value="1" />
+                <bUseSimpleLightmapModifications type="bool" value="0" />
+                <SimpleLightmapModificationFunction type="byte" value="0" />
+                <bNeverBecomeDynamic type="bool" value="0" />
+                <IrrelevantLights type="array" />
+                <VertexPositionVersionNumber type="int" value="0" />
+                <LightmassSettings type="struct">
+                    <bUseTwoSidedLighting type="bool" value="0" />
+                    <bShadowIndirectOnly type="bool" value="0" />
+                    <bUseEmissiveForStaticLighting type="bool" value="0" />
+                    <EmissiveLightFalloffExponent type="float" value="2.000000" />
+                    <EmissiveLightExplicitInfluenceRadius type="float" value="0.000000" />
+                    <EmissiveBoost type="float" value="1.000000" />
+                    <DiffuseBoost type="float" value="1.000000" />
+                    <SpecularBoost type="float" value="1.000000" />
+                    <FullyOccludedSamplesFraction type="float" value="1.000000" />
+                </LightmassSettings>
+                <Materials type="array" />
+                <MinDrawDistance type="float" value="0.000000" />
+                <MassiveLODDistance type="float" value="0.000000" />
+                <MaxDrawDistance type="float" value="6000.000000" />
+                <CachedMaxDrawDistance type="float" value="6000.000000" />
+                <MotionBlurInstanceScale type="float" value="1.000000" />
+                <DepthPriorityGroup type="byte" value="1" />
+                <ViewOwnerDepthPriorityGroup type="byte" value="0" />
+                <DetailMode type="byte" value="0" />
+                <RBChannel type="byte" value="0" />
+                <RBDominanceGroup type="byte" value="15" />
+                <PreviewEnvironmentShadowing type="byte" value="180" />
+                <bUseViewOwnerDepthPriorityGroup type="bool" value="0" />
+                <bAllowCullDistanceVolume type="bool" value="1" />
+                <HiddenGame type="bool" value="0" />
+                <HiddenEditor type="bool" value="0" />
+                <bOwnerNoSee type="bool" value="0" />
+                <bOnlyOwnerSee type="bool" value="0" />
+                <bIgnoreOwnerHidden type="bool" value="0" />
+                <bUseAsOccluder type="bool" value="1" />
+                <bAllowApproximateOcclusion type="bool" value="0" />
+                <bFirstFrameOcclusion type="bool" value="0" />
+                <bIgnoreNearPlaneIntersection type="bool" value="0" />
+                <bSelectable type="bool" value="1" />
+                <bForceMipStreaming type="bool" value="0" />
+                <bAcceptsStaticDecals type="bool" value="1" />
+                <bAcceptsDynamicDecals type="bool" value="1" />
+                <CastShadow type="bool" value="1" />
+                <bForceDirectLightMap type="bool" value="0" />
+                <bCastDynamicShadow type="bool" value="1" />
+                <bCastStaticShadow type="bool" value="1" />
+                <bSelfShadowOnly type="bool" value="0" />
+                <bAcceptsDynamicDominantLightShadows type="bool" value="1" />
+                <bCastHiddenShadow type="bool" value="0" />
+                <bCastShadowAsTwoSided type="bool" value="0" />
+                <bAcceptsLights type="bool" value="1" />
+                <bAcceptsDynamicLights type="bool" value="1" />
+                <bUseOnePassLightingOnTranslucency type="bool" value="0" />
+                <bUsePrecomputedShadows type="bool" value="0" />
+                <CollideActors type="bool" value="1" />
+                <AlwaysCheckCollision type="bool" value="0" />
+                <BlockActors type="bool" value="1" />
+                <BlockZeroExtent type="bool" value="1" />
+                <BlockNonZeroExtent type="bool" value="1" />
+                <CanBlockCamera type="bool" value="1" />
+                <BlockRigidBody type="bool" value="1" />
+                <bBlockFootPlacement type="bool" value="1" />
+                <bDisableAllRigidBody type="bool" value="0" />
+                <bSkipRBGeomCreation type="bool" value="0" />
+                <bNotifyRigidBodyCollision type="bool" value="0" />
+                <bFluidDrain type="bool" value="0" />
+                <bFluidTwoWay type="bool" value="0" />
+                <bIgnoreRadialImpulse type="bool" value="0" />
+                <bIgnoreRadialForce type="bool" value="0" />
+                <bIgnoreForceField type="bool" value="0" />
+                <bUseCompartment type="bool" value="0" />
+                <AlwaysLoadOnClient type="bool" value="1" />
+                <AlwaysLoadOnServer type="bool" value="1" />
+                <bIgnoreHiddenActorsMembership type="bool" value="0" />
+                <AbsoluteTranslation type="bool" value="0" />
+                <AbsoluteRotation type="bool" value="0" />
+                <AbsoluteScale type="bool" value="0" />
+                <bAllowShadowFade type="bool" value="1" />
+                <TranslucencySortPriority type="int" value="0" />
+                <LightingChannels type="struct">
+                    <bInitialized type="bool" value="0" />
+                    <BSP type="bool" value="0" />
+                    <Static type="bool" value="0" />
+                    <Dynamic type="bool" value="0" />
+                    <CompositeDynamic type="bool" value="0" />
+                    <Skybox type="bool" value="0" />
+                    <Unnamed_1 type="bool" value="0" />
+                    <Unnamed_2 type="bool" value="0" />
+                    <Unnamed_3 type="bool" value="0" />
+                    <Unnamed_4 type="bool" value="0" />
+                    <Unnamed_5 type="bool" value="0" />
+                    <Unnamed_6 type="bool" value="0" />
+                    <Cinematic_1 type="bool" value="0" />
+                    <Cinematic_2 type="bool" value="0" />
+                    <Cinematic_3 type="bool" value="0" />
+                    <Cinematic_4 type="bool" value="0" />
+                    <Cinematic_5 type="bool" value="0" />
+                    <Cinematic_6 type="bool" value="0" />
+                    <Cinematic_7 type="bool" value="0" />
+                    <Cinematic_8 type="bool" value="0" />
+                    <Cinematic_9 type="bool" value="0" />
+                    <Cinematic_10 type="bool" value="0" />
+                    <Gameplay_1 type="bool" value="0" />
+                    <Gameplay_2 type="bool" value="0" />
+                    <Gameplay_3 type="bool" value="0" />
+                    <Gameplay_4 type="bool" value="0" />
+                    <Crowd type="bool" value="0" />
+                </LightingChannels>
+                <RBCollideWithChannels type="struct">
+                    <Default type="bool" value="0" />
+                    <Nothing type="bool" value="0" />
+                    <Pawn type="bool" value="0" />
+                    <Vehicle type="bool" value="0" />
+                    <Water type="bool" value="0" />
+                    <GameplayPhysics type="bool" value="0" />
+                    <EffectPhysics type="bool" value="0" />
+                    <Untitled1 type="bool" value="0" />
+                    <Untitled2 type="bool" value="0" />
+                    <Untitled3 type="bool" value="0" />
+                    <Untitled4 type="bool" value="0" />
+                    <Cloth type="bool" value="0" />
+                    <FluidDrain type="bool" value="0" />
+                    <SoftBody type="bool" value="0" />
+                    <FracturedMeshPart type="bool" value="0" />
+                    <BlockingVolume type="bool" value="0" />
+                    <DeadPawn type="bool" value="0" />
+                    <Clothing type="bool" value="0" />
+                    <ClothingCollision type="bool" value="0" />
+                </RBCollideWithChannels>
+                <Translation type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </Translation>
+                <Rotation type="struct">
+                    <Pitch type="int" value="0" />
+                    <Yaw type="int" value="0" />
+                    <Roll type="int" value="0" />
+                </Rotation>
+                <Scale type="float" value="1.000000" />
+                <Scale3D type="struct">
+                    <X type="float" value="1.000000" />
+                    <Y type="float" value="1.000000" />
+                    <Z type="float" value="1.000000" />
+                </Scale3D>
+                <BoundsScale type="float" value="1.000000" />
+                <ScriptRigidBodyCollisionThreshold type="float" value="0.000000" />
+                <bTickInEditor type="bool" value="0" />
+                <TickGroup type="byte" value="0" />
+            </TempStaticMesh1>
+        </TempStaticMesh1>
+        <Components type="array">
+            <CollisionCylinder type="object">
+                <CollisionCylinder type="object">
+                    <CollisionHeight type="float" value="24.000000" />
+                    <CollisionRadius type="float" value="24.000000" />
+                    <CylinderColor type="struct">
+                        <B type="byte" value="157" />
+                        <G type="byte" value="149" />
+                        <R type="byte" value="223" />
+                        <A type="byte" value="255" />
+                    </CylinderColor>
+                    <bDrawBoundingBox type="bool" value="1" />
+                    <bDrawNonColliding type="bool" value="0" />
+                    <bAlwaysRenderIfSelected type="bool" value="0" />
+                    <MinDrawDistance type="float" value="0.000000" />
+                    <MassiveLODDistance type="float" value="0.000000" />
+                    <MaxDrawDistance type="float" value="6000.000000" />
+                    <CachedMaxDrawDistance type="float" value="6000.000000" />
+                    <MotionBlurInstanceScale type="float" value="1.000000" />
+                    <DepthPriorityGroup type="byte" value="1" />
+                    <ViewOwnerDepthPriorityGroup type="byte" value="0" />
+                    <DetailMode type="byte" value="0" />
+                    <RBChannel type="byte" value="0" />
+                    <RBDominanceGroup type="byte" value="15" />
+                    <PreviewEnvironmentShadowing type="byte" value="180" />
+                    <bUseViewOwnerDepthPriorityGroup type="bool" value="0" />
+                    <bAllowCullDistanceVolume type="bool" value="1" />
+                    <HiddenGame type="bool" value="1" />
+                    <HiddenEditor type="bool" value="0" />
+                    <bOwnerNoSee type="bool" value="0" />
+                    <bOnlyOwnerSee type="bool" value="0" />
+                    <bIgnoreOwnerHidden type="bool" value="0" />
+                    <bUseAsOccluder type="bool" value="0" />
+                    <bAllowApproximateOcclusion type="bool" value="0" />
+                    <bFirstFrameOcclusion type="bool" value="0" />
+                    <bIgnoreNearPlaneIntersection type="bool" value="0" />
+                    <bSelectable type="bool" value="1" />
+                    <bForceMipStreaming type="bool" value="0" />
+                    <bAcceptsStaticDecals type="bool" value="0" />
+                    <bAcceptsDynamicDecals type="bool" value="1" />
+                    <CastShadow type="bool" value="0" />
+                    <bForceDirectLightMap type="bool" value="0" />
+                    <bCastDynamicShadow type="bool" value="0" />
+                    <bCastStaticShadow type="bool" value="1" />
+                    <bSelfShadowOnly type="bool" value="0" />
+                    <bAcceptsDynamicDominantLightShadows type="bool" value="1" />
+                    <bCastHiddenShadow type="bool" value="0" />
+                    <bCastShadowAsTwoSided type="bool" value="0" />
+                    <bAcceptsLights type="bool" value="0" />
+                    <bAcceptsDynamicLights type="bool" value="1" />
+                    <bUseOnePassLightingOnTranslucency type="bool" value="0" />
+                    <bUsePrecomputedShadows type="bool" value="0" />
+                    <CollideActors type="bool" value="0" />
+                    <AlwaysCheckCollision type="bool" value="0" />
+                    <BlockActors type="bool" value="0" />
+                    <BlockZeroExtent type="bool" value="1" />
+                    <BlockNonZeroExtent type="bool" value="1" />
+                    <CanBlockCamera type="bool" value="1" />
+                    <BlockRigidBody type="bool" value="0" />
+                    <bBlockFootPlacement type="bool" value="1" />
+                    <bDisableAllRigidBody type="bool" value="0" />
+                    <bSkipRBGeomCreation type="bool" value="0" />
+                    <bNotifyRigidBodyCollision type="bool" value="0" />
+                    <bFluidDrain type="bool" value="0" />
+                    <bFluidTwoWay type="bool" value="0" />
+                    <bIgnoreRadialImpulse type="bool" value="0" />
+                    <bIgnoreRadialForce type="bool" value="0" />
+                    <bIgnoreForceField type="bool" value="0" />
+                    <bUseCompartment type="bool" value="0" />
+                    <AlwaysLoadOnClient type="bool" value="1" />
+                    <AlwaysLoadOnServer type="bool" value="1" />
+                    <bIgnoreHiddenActorsMembership type="bool" value="0" />
+                    <AbsoluteTranslation type="bool" value="0" />
+                    <AbsoluteRotation type="bool" value="0" />
+                    <AbsoluteScale type="bool" value="0" />
+                    <bAllowShadowFade type="bool" value="1" />
+                    <TranslucencySortPriority type="int" value="0" />
+                    <LightingChannels type="struct">
+                        <bInitialized type="bool" value="1" />
+                        <BSP type="bool" value="0" />
+                        <Static type="bool" value="0" />
+                        <Dynamic type="bool" value="1" />
+                        <CompositeDynamic type="bool" value="0" />
+                        <Skybox type="bool" value="0" />
+                        <Unnamed_1 type="bool" value="0" />
+                        <Unnamed_2 type="bool" value="0" />
+                        <Unnamed_3 type="bool" value="0" />
+                        <Unnamed_4 type="bool" value="0" />
+                        <Unnamed_5 type="bool" value="0" />
+                        <Unnamed_6 type="bool" value="0" />
+                        <Cinematic_1 type="bool" value="0" />
+                        <Cinematic_2 type="bool" value="0" />
+                        <Cinematic_3 type="bool" value="0" />
+                        <Cinematic_4 type="bool" value="0" />
+                        <Cinematic_5 type="bool" value="0" />
+                        <Cinematic_6 type="bool" value="0" />
+                        <Cinematic_7 type="bool" value="0" />
+                        <Cinematic_8 type="bool" value="0" />
+                        <Cinematic_9 type="bool" value="0" />
+                        <Cinematic_10 type="bool" value="0" />
+                        <Gameplay_1 type="bool" value="0" />
+                        <Gameplay_2 type="bool" value="0" />
+                        <Gameplay_3 type="bool" value="0" />
+                        <Gameplay_4 type="bool" value="0" />
+                        <Crowd type="bool" value="0" />
+                    </LightingChannels>
+                    <RBCollideWithChannels type="struct">
+                        <Default type="bool" value="0" />
+                        <Nothing type="bool" value="0" />
+                        <Pawn type="bool" value="0" />
+                        <Vehicle type="bool" value="0" />
+                        <Water type="bool" value="0" />
+                        <GameplayPhysics type="bool" value="0" />
+                        <EffectPhysics type="bool" value="0" />
+                        <Untitled1 type="bool" value="0" />
+                        <Untitled2 type="bool" value="0" />
+                        <Untitled3 type="bool" value="0" />
+                        <Untitled4 type="bool" value="0" />
+                        <Cloth type="bool" value="0" />
+                        <FluidDrain type="bool" value="0" />
+                        <SoftBody type="bool" value="0" />
+                        <FracturedMeshPart type="bool" value="0" />
+                        <BlockingVolume type="bool" value="0" />
+                        <DeadPawn type="bool" value="0" />
+                        <Clothing type="bool" value="0" />
+                        <ClothingCollision type="bool" value="0" />
+                    </RBCollideWithChannels>
+                    <Translation type="struct">
+                        <X type="float" value="0.000000" />
+                        <Y type="float" value="0.000000" />
+                        <Z type="float" value="0.000000" />
+                    </Translation>
+                    <Rotation type="struct">
+                        <Pitch type="int" value="0" />
+                        <Yaw type="int" value="0" />
+                        <Roll type="int" value="0" />
+                    </Rotation>
+                    <Scale type="float" value="1.000000" />
+                    <Scale3D type="struct">
+                        <X type="float" value="1.000000" />
+                        <Y type="float" value="1.000000" />
+                        <Z type="float" value="1.000000" />
+                    </Scale3D>
+                    <BoundsScale type="float" value="1.000000" />
+                    <ScriptRigidBodyCollisionThreshold type="float" value="0.000000" />
+                    <bTickInEditor type="bool" value="0" />
+                    <TickGroup type="byte" value="1" />
+                </CollisionCylinder>
+            </CollisionCylinder>
+        </Components>
+        <Location type="struct">
+            <X type="float" value="0.000000" />
+            <Y type="float" value="0.000000" />
+            <Z type="float" value="0.000000" />
+        </Location>
+        <Rotation type="struct">
+            <Pitch type="int" value="0" />
+            <Yaw type="int" value="0" />
+            <Roll type="int" value="0" />
+        </Rotation>
+        <DrawScale type="float" value="1.000000" />
+        <DrawScale3D type="struct">
+            <X type="float" value="1.000000" />
+            <Y type="float" value="1.000000" />
+            <Z type="float" value="1.000000" />
+        </DrawScale3D>
+        <PrePivot type="struct">
+            <X type="float" value="0.000000" />
+            <Y type="float" value="0.000000" />
+            <Z type="float" value="0.000000" />
+        </PrePivot>
+        <EditorIconColor type="struct">
+            <B type="byte" value="255" />
+            <G type="byte" value="255" />
+            <R type="byte" value="255" />
+            <A type="byte" value="255" />
+        </EditorIconColor>
+        <CustomTimeDilation type="float" value="1.000000" />
+        <Physics type="byte" value="0" />
+        <RemoteRole type="byte" value="0" />
+        <Role type="byte" value="3" />
+        <TickGroup type="byte" value="0" />
+        <Timers type="array" />
+        <bStatic type="bool" value="0" />
+        <bHidden type="bool" value="0" />
+        <bNoDelete type="bool" value="0" />
+        <bDeleteMe type="bool" value="0" />
+        <bOnlyOwnerSee type="bool" value="0" />
+        <bTickIsDisabled type="bool" value="0" />
+        <bWorldGeometry type="bool" value="0" />
+        <bIgnoreRigidBodyPawns type="bool" value="0" />
+        <bOrientOnSlope type="bool" value="0" />
+        <bIgnoreEncroachers type="bool" value="0" />
+        <bPushedByEncroachers type="bool" value="1" />
+        <bDestroyedByInterpActor type="bool" value="0" />
+        <bRouteBeginPlayEvenIfStatic type="bool" value="1" />
+        <bIsMoving type="bool" value="0" />
+        <bAlwaysEncroachCheck type="bool" value="0" />
+        <bHasAlternateTargetLocation type="bool" value="0" />
+        <bCanStepUpOn type="bool" value="1" />
+        <bNetTemporary type="bool" value="0" />
+        <bOnlyRelevantToOwner type="bool" value="0" />
+        <bAlwaysRelevant type="bool" value="0" />
+        <bReplicateInstigator type="bool" value="0" />
+        <bReplicateMovement type="bool" value="1" />
+        <bSkipActorPropertyReplication type="bool" value="0" />
+        <bUpdateSimulatedPosition type="bool" value="0" />
+        <bTearOff type="bool" value="0" />
+        <bOnlyDirtyReplication type="bool" value="0" />
+        <bAllowFluidSurfaceInteraction type="bool" value="1" />
+        <bDemoOwner type="bool" value="0" />
+        <bForceDemoRelevant type="bool" value="0" />
+        <bNetInitialRotation type="bool" value="0" />
+        <bReplicateRigidBodyLocation type="bool" value="0" />
+        <bKillDuringLevelTransition type="bool" value="0" />
+        <bExchangedRoles type="bool" value="0" />
+        <bConsiderAllStaticMeshComponentsForStreaming type="bool" value="0" />
+        <bDebug type="bool" value="0" />
+        <bPostRenderIfNotVisible type="bool" value="0" />
+        <bHardAttach type="bool" value="0" />
+        <bIgnoreBaseRotation type="bool" value="0" />
+        <bShadowParented type="bool" value="0" />
+        <bSkipAttachedMoves type="bool" value="1" />
+        <bCanBeAdheredTo type="bool" value="0" />
+        <bCanBeFrictionedTo type="bool" value="0" />
+        <bHurtEntry type="bool" value="0" />
+        <bGameRelevant type="bool" value="0" />
+        <bMovable type="bool" value="1" />
+        <bDestroyInPainVolume type="bool" value="0" />
+        <bCanBeDamaged type="bool" value="0" />
+        <bShouldBaseAtStartup type="bool" value="0" />
+        <bPendingDelete type="bool" value="0" />
+        <bCanTeleport type="bool" value="0" />
+        <bAlwaysTick type="bool" value="0" />
+        <bBlocksNavigation type="bool" value="0" />
+        <bCollideWhenPlacing type="bool" value="0" />
+        <bCollideActors type="bool" value="0" />
+        <bCollideWorld type="bool" value="1" />
+        <bCollideComplex type="bool" value="0" />
+        <bBlockActors type="bool" value="0" />
+        <bProjTarget type="bool" value="0" />
+        <bBlocksTeleport type="bool" value="0" />
+        <bMoveIgnoresDestruction type="bool" value="0" />
+        <bProjectileMoveSingleBlocking type="bool" value="0" />
+        <bNoEncroachCheck type="bool" value="0" />
+        <bCollideAsEncroacher type="bool" value="0" />
+        <bPhysRigidBodyOutOfWorldCheck type="bool" value="0" />
+        <bForceOctreeSNFilter type="bool" value="0" />
+        <bCallRigidBodyWakeEvents type="bool" value="0" />
+        <bBounce type="bool" value="0" />
+        <bJustTeleported type="bool" value="1" />
+        <bNetInitial type="bool" value="0" />
+        <bNetOwner type="bool" value="0" />
+        <bHiddenEd type="bool" value="0" />
+        <bEditable type="bool" value="1" />
+        <bHiddenEdLayer type="bool" value="0" />
+        <bHiddenEdCustom type="bool" value="0" />
+        <bEdShouldSnap type="bool" value="0" />
+        <bPathColliding type="bool" value="0" />
+        <bScriptInitialized type="bool" value="0" />
+        <bLockLocation type="bool" value="0" />
+        <bForceAllowKismetModification type="bool" value="0" />
+        <bDebugEffectIsRelevant type="bool" value="0" />
+        <NetUpdateTime type="float" value="0.000000" />
+        <NetUpdateFrequency type="float" value="100.000000" />
+        <NetPriority type="float" value="1.000000" />
+        <TimeSinceLastTick type="float" value="0.000000" />
+        <LifeSpan type="float" value="0.000000" />
+        <CreationTime type="float" value="65.671188" />
+        <Tag type="string" value="MMOWeapon" />
+        <InitialState type="string" value="None" />
+        <Layer type="string" value="None" />
+        <LatentFloat type="float" value="0.000000" />
+        <Velocity type="struct">
+            <X type="float" value="0.000000" />
+            <Y type="float" value="0.000000" />
+            <Z type="float" value="0.000000" />
+        </Velocity>
+        <Acceleration type="struct">
+            <X type="float" value="0.000000" />
+            <Y type="float" value="0.000000" />
+            <Z type="float" value="0.000000" />
+        </Acceleration>
+        <BaseBoneName type="string" value="None" />
+        <Attached type="array" />
+        <RelativeLocation type="struct">
+            <X type="float" value="0.000000" />
+            <Y type="float" value="0.000000" />
+            <Z type="float" value="0.000000" />
+        </RelativeLocation>
+        <RelativeRotation type="struct">
+            <Pitch type="int" value="0" />
+            <Yaw type="int" value="0" />
+            <Roll type="int" value="0" />
+        </RelativeRotation>
+        <CollisionCylinder type="object">
+            <CollisionCylinder type="object">
+                <CollisionHeight type="float" value="24.000000" />
+                <CollisionRadius type="float" value="24.000000" />
+                <CylinderColor type="struct">
+                    <B type="byte" value="157" />
+                    <G type="byte" value="149" />
+                    <R type="byte" value="223" />
+                    <A type="byte" value="255" />
+                </CylinderColor>
+                <bDrawBoundingBox type="bool" value="1" />
+                <bDrawNonColliding type="bool" value="0" />
+                <bAlwaysRenderIfSelected type="bool" value="0" />
+                <MinDrawDistance type="float" value="0.000000" />
+                <MassiveLODDistance type="float" value="0.000000" />
+                <MaxDrawDistance type="float" value="6000.000000" />
+                <CachedMaxDrawDistance type="float" value="6000.000000" />
+                <MotionBlurInstanceScale type="float" value="1.000000" />
+                <DepthPriorityGroup type="byte" value="1" />
+                <ViewOwnerDepthPriorityGroup type="byte" value="0" />
+                <DetailMode type="byte" value="0" />
+                <RBChannel type="byte" value="0" />
+                <RBDominanceGroup type="byte" value="15" />
+                <PreviewEnvironmentShadowing type="byte" value="180" />
+                <bUseViewOwnerDepthPriorityGroup type="bool" value="0" />
+                <bAllowCullDistanceVolume type="bool" value="1" />
+                <HiddenGame type="bool" value="1" />
+                <HiddenEditor type="bool" value="0" />
+                <bOwnerNoSee type="bool" value="0" />
+                <bOnlyOwnerSee type="bool" value="0" />
+                <bIgnoreOwnerHidden type="bool" value="0" />
+                <bUseAsOccluder type="bool" value="0" />
+                <bAllowApproximateOcclusion type="bool" value="0" />
+                <bFirstFrameOcclusion type="bool" value="0" />
+                <bIgnoreNearPlaneIntersection type="bool" value="0" />
+                <bSelectable type="bool" value="1" />
+                <bForceMipStreaming type="bool" value="0" />
+                <bAcceptsStaticDecals type="bool" value="0" />
+                <bAcceptsDynamicDecals type="bool" value="1" />
+                <CastShadow type="bool" value="0" />
+                <bForceDirectLightMap type="bool" value="0" />
+                <bCastDynamicShadow type="bool" value="0" />
+                <bCastStaticShadow type="bool" value="1" />
+                <bSelfShadowOnly type="bool" value="0" />
+                <bAcceptsDynamicDominantLightShadows type="bool" value="1" />
+                <bCastHiddenShadow type="bool" value="0" />
+                <bCastShadowAsTwoSided type="bool" value="0" />
+                <bAcceptsLights type="bool" value="0" />
+                <bAcceptsDynamicLights type="bool" value="1" />
+                <bUseOnePassLightingOnTranslucency type="bool" value="0" />
+                <bUsePrecomputedShadows type="bool" value="0" />
+                <CollideActors type="bool" value="0" />
+                <AlwaysCheckCollision type="bool" value="0" />
+                <BlockActors type="bool" value="0" />
+                <BlockZeroExtent type="bool" value="1" />
+                <BlockNonZeroExtent type="bool" value="1" />
+                <CanBlockCamera type="bool" value="1" />
+                <BlockRigidBody type="bool" value="0" />
+                <bBlockFootPlacement type="bool" value="1" />
+                <bDisableAllRigidBody type="bool" value="0" />
+                <bSkipRBGeomCreation type="bool" value="0" />
+                <bNotifyRigidBodyCollision type="bool" value="0" />
+                <bFluidDrain type="bool" value="0" />
+                <bFluidTwoWay type="bool" value="0" />
+                <bIgnoreRadialImpulse type="bool" value="0" />
+                <bIgnoreRadialForce type="bool" value="0" />
+                <bIgnoreForceField type="bool" value="0" />
+                <bUseCompartment type="bool" value="0" />
+                <AlwaysLoadOnClient type="bool" value="1" />
+                <AlwaysLoadOnServer type="bool" value="1" />
+                <bIgnoreHiddenActorsMembership type="bool" value="0" />
+                <AbsoluteTranslation type="bool" value="0" />
+                <AbsoluteRotation type="bool" value="0" />
+                <AbsoluteScale type="bool" value="0" />
+                <bAllowShadowFade type="bool" value="1" />
+                <TranslucencySortPriority type="int" value="0" />
+                <LightingChannels type="struct">
+                    <bInitialized type="bool" value="1" />
+                    <BSP type="bool" value="0" />
+                    <Static type="bool" value="0" />
+                    <Dynamic type="bool" value="1" />
+                    <CompositeDynamic type="bool" value="0" />
+                    <Skybox type="bool" value="0" />
+                    <Unnamed_1 type="bool" value="0" />
+                    <Unnamed_2 type="bool" value="0" />
+                    <Unnamed_3 type="bool" value="0" />
+                    <Unnamed_4 type="bool" value="0" />
+                    <Unnamed_5 type="bool" value="0" />
+                    <Unnamed_6 type="bool" value="0" />
+                    <Cinematic_1 type="bool" value="0" />
+                    <Cinematic_2 type="bool" value="0" />
+                    <Cinematic_3 type="bool" value="0" />
+                    <Cinematic_4 type="bool" value="0" />
+                    <Cinematic_5 type="bool" value="0" />
+                    <Cinematic_6 type="bool" value="0" />
+                    <Cinematic_7 type="bool" value="0" />
+                    <Cinematic_8 type="bool" value="0" />
+                    <Cinematic_9 type="bool" value="0" />
+                    <Cinematic_10 type="bool" value="0" />
+                    <Gameplay_1 type="bool" value="0" />
+                    <Gameplay_2 type="bool" value="0" />
+                    <Gameplay_3 type="bool" value="0" />
+                    <Gameplay_4 type="bool" value="0" />
+                    <Crowd type="bool" value="0" />
+                </LightingChannels>
+                <RBCollideWithChannels type="struct">
+                    <Default type="bool" value="0" />
+                    <Nothing type="bool" value="0" />
+                    <Pawn type="bool" value="0" />
+                    <Vehicle type="bool" value="0" />
+                    <Water type="bool" value="0" />
+                    <GameplayPhysics type="bool" value="0" />
+                    <EffectPhysics type="bool" value="0" />
+                    <Untitled1 type="bool" value="0" />
+                    <Untitled2 type="bool" value="0" />
+                    <Untitled3 type="bool" value="0" />
+                    <Untitled4 type="bool" value="0" />
+                    <Cloth type="bool" value="0" />
+                    <FluidDrain type="bool" value="0" />
+                    <SoftBody type="bool" value="0" />
+                    <FracturedMeshPart type="bool" value="0" />
+                    <BlockingVolume type="bool" value="0" />
+                    <DeadPawn type="bool" value="0" />
+                    <Clothing type="bool" value="0" />
+                    <ClothingCollision type="bool" value="0" />
+                </RBCollideWithChannels>
+                <Translation type="struct">
+                    <X type="float" value="0.000000" />
+                    <Y type="float" value="0.000000" />
+                    <Z type="float" value="0.000000" />
+                </Translation>
+                <Rotation type="struct">
+                    <Pitch type="int" value="0" />
+                    <Yaw type="int" value="0" />
+                    <Roll type="int" value="0" />
+                </Rotation>
+                <Scale type="float" value="1.000000" />
+                <Scale3D type="struct">
+                    <X type="float" value="1.000000" />
+                    <Y type="float" value="1.000000" />
+                    <Z type="float" value="1.000000" />
+                </Scale3D>
+                <BoundsScale type="float" value="1.000000" />
+                <ScriptRigidBodyCollisionThreshold type="float" value="0.000000" />
+                <bTickInEditor type="bool" value="0" />
+                <TickGroup type="byte" value="1" />
+            </CollisionCylinder>
+        </CollisionCylinder>
+        <RotationRate type="struct">
+            <Pitch type="int" value="0" />
+            <Yaw type="int" value="0" />
+            <Roll type="int" value="0" />
+        </RotationRate>
+        <SupportedEvents type="array" />
+        <GeneratedEvents type="array" />
+        <LatentActions type="array" />
+    </Weapon_Spear_02>
+</mmoweaponList>

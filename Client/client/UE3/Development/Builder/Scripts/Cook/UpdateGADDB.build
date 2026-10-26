@@ -1,0 +1,23 @@
+errormode checkerrors
+
+CarbonCopyAddress Builder-Notify-Tools@epicgames.com
+triggeraddress 
+successaddress martin.sweitzer@epicgames.com;peter.knepley@epicgames.com;chris.mielke@epicgames.com
+failaddress mike.fricker@epicgames.com;martin.sweitzer@epicgames.com;peter.knepley@epicgames.com;chris.mielke@epicgames.com
+
+Dependency #LatestBuild
+
+status	Syncing to latest build
+artistsync
+
+timeout 960
+
+Game %Game%
+Platform Win64
+
+status Auditing content for %Game%Game
+AuditContent
+
+status Tagging referenced assets for %Game%Game
+TagReferencedAssets
+

@@ -1,0 +1,13 @@
+ActorX
+AgentStagingArea
+Editor
+FaceFXPlugins
+Jobs
+Logs
+Mac
+Simplygon
+SpeedTreeModeler
+SwarmCache
+UnrealFrontend.Profiles
+Win32
+Win64

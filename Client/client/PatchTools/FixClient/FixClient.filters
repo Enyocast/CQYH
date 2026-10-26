@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Res">
+      <UniqueIdentifier>{3384b2f8-6d0a-4ef2-8581-ac7678137a48}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\bk.bmp">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="res\Cancel.bmp">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="res\Close.bmp">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="res\FilePatch.ico">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="res\FilePatch.rc2">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="res\hand.cur">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="res\Min.bmp">
+      <Filter>Res</Filter>
+    </None>
+    <None Include="res\Start.bmp">
+      <Filter>Res</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FilePatch.rc">
+      <Filter>Res</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resource.h">
+      <Filter>Res</Filter>
+    </ClInclude>
+    <ClInclude Include="App.h" />
+    <ClInclude Include="BmpRgnButton.h" />
+    <ClInclude Include="Caption.h" />
+    <ClInclude Include="CheckServerDlg.h" />
+    <ClInclude Include="configer.h" />
+    <ClInclude Include="Controls.h" />
+    <ClInclude Include="DhtmlEdit.h" />
+    <ClInclude Include="File.h" />
+    <ClInclude Include="FilePatch.h" />
+    <ClInclude Include="FilePatchDlg.h" />
+    <ClInclude Include="md5.h" />
+    <ClInclude Include="MemDC.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="TransparentCaption.h" />
+    <ClInclude Include="Task.h" />
+    <ClInclude Include="ThreadPool.h" />
+    <ClInclude Include="RunObject.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="App.cpp" />
+    <ClCompile Include="BmpRgnButton.cpp" />
+    <ClCompile Include="Caption.cpp" />
+    <ClCompile Include="CheckServerDlg.cpp" />
+    <ClCompile Include="Configer.cpp" />
+    <ClCompile Include="Controls.cpp" />
+    <ClCompile Include="DhtmlEdit.cpp" />
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="FilePatch.cpp" />
+    <ClCompile Include="FilePatchDlg.cpp" />
+    <ClCompile Include="md5.cpp" />
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="TransparentCaption.cpp" />
+    <ClCompile Include="Task.cpp" />
+    <ClCompile Include="ThreadPool.cpp" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="GFx_Lib"
+	OutputDirectory=".\..\..\..\..\..\Lib\$(PlatformName)\$(MsvcVer)\$(ConfigurationName)\"
+	IntermediateDirectory=".\..\..\..\..\..\Obj\$(PlatformName)\$(MsvcVer)\$(ConfigurationName)\$(ProjectName)\"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalIncludeDirectories="..\..\..\..\..\Include;..\..\..\..\..\Src;&quot;..\..\..\..\..\3rdParty\zlib-1.2.5&quot;;&quot;..\..\..\..\..\3rdParty\jpeg-6b&quot;;..\..\..\..\..\3rdParty\libpng;&quot;..\..\..\..\..\3rdParty\expat-2.0.1\lib&quot;;..\..\..\..\..\3rdParty\glext;..\..\..\..\..\3rdParty\PlatformSDK;..\..\..\..\..\3rdParty\cri\pc\include;&quot;..\..\..\..\..\3rdParty\fmod\pc\$(PlatformName)\inc&quot;;&quot;$(DXSDK_DIR)\Include&quot;;"
+		AdditionalOptions="/MP /w44264"
+		PreprocessorDefinitions="WIN32;_WINDOWS;SF_BUILD_STATICLIB"
+		StructMemberAlignment="4"
+	/>
+</VisualStudioPropertySheet>

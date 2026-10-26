@@ -1,0 +1,7 @@
+Ogg Vorbis libs
+XiphWiki  © 2010, Xiph.Org Foundation
+License Terms:  http://www.xiph.org/licenses/bsd/
+Content other than XiphWiki Attribution.  You must attribute the work in the manner specified by the author or licensor (but not in any way that suggests that they endorse you or your use of the work).
+The text and media contained in the Xiph.Org Foundation’s Wiki is dual-licensed to the public under the Creative Commons Attribution 3.0 License, or any later version published by Creative Commons, and the New BSD License.
+What this means is that for software production you are free to use XiphWiki content under the New BSD License and, for everything else, you are free to use XiphWiki content under the Creative Commons Attribution 3.0 License, or any later version.
+http://creativecommons.org/licenses/by/3.0/

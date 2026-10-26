@@ -1,0 +1,3 @@
+http://172.30.66.31/Mir3DPatch/
+http://172.30.66.33/Mir3DPatch/
+https://cq.autopatch.sdo.com/cq/

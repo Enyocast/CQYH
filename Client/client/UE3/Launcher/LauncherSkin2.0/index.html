@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>《传奇永恒》</title>
+<meta name="keywords" content="《传奇永恒》" />
+<meta name="description" content="《传奇永恒》" />
+<link href="css/sub.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jqCommon.js" charset="gb2312"></script>
+<script type="text/javascript" src="js/Launcher.js"></script>
+<script type="text/javascript" src="js/LauncherMain.js"></script>
+
+<script type="text/javascript" src="js/jquery.SuperSlide.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.n_nav a').click(function(){
+		if(!$(this).hasClass('current')){
+			$('.n_nav a').removeClass('current');
+			$(this).addClass('current');
+			
+			$('.n_con').hide();
+			$($(this).attr('href')).show();
+		}
+			return false;
+	}); 
+	
+	$(".ch_server a").click(function() {
+			$(".hide_wrap").addClass("block")
+		return false;
+	});
+	
+	$(".btn_sure a").click(function() {
+			$(".hide_wrap").removeClass("block")
+		return false;
+	});
+
+});
+</script>
+<!--兼容ie6-->
+<!--[if IE 6]>
+		<script src="js/pngAlaph.js"></script>
+		<script>
+			DD_belatedPNG.fix('*');
+		</script>
+<![endif]-->
+
+
+</head>
+
+<body onload="LauncherMain.Init();">
+
+
+<div class="xzbg moveable">
+<!--关闭 start-->
+<div id="apDiv2"><a href="#" id='btn_close'></a></div>
+<!--关闭 end-->
+<!--最小化 start-->
+<div id="apDiv3"><a href="#" id='btn_min'></a></div>
+<!--最小化 end-->
+<!--wrapinner start-->
+<div class="wrapinner moveable">
+<!--导航 start-->
+<div class="main_nav">
+<ul>
+<li class="f1"><a href="http://cq.sdo.com" title="官网首页" target="_blank">官网首页</a></li>
+<li class="f2"><a href="http://register.sdo.com/register/index?appId=991002359" title="账号注册" target="_blank">账号注册</a></li>
+<li class="f3"><a href="https://pay.sdo.com/cqactivity" title="激活/查询" target="_blank">激活/查询</a></li>
+<li class="f4"><a href="http://act.cq.sdo.com/project/2014/CqIntro/newbie/" title="新手指南" target="_blank">新手指南</a></li>
+<li class="f5"><a href="http://act.cq.sdo.com/project/2015/CqIntro/role/role1.html" title="职业介绍" target="_blank">职业介绍</a></li>
+<li class="f6"><a href="http://act.cq.sdo.com/project/2015/CqIntro/systemIntro/index.html" title="游戏系统" target="_blank">游戏系统</a></li>
+</ul>
+<div class="clearboth"></div>
+</div>
+<!--导航 end-->
+
+<!--外调的主要内容 start-->
+<iframe allowtransparency="true" d_src="http://act.cq.sdo.com/client/new/01/news.aspx" id="ifr" width="667" height="200" scrolling="no" frameborder="0"></iframe>
+<!--外调的主要内容 end-->
+
+<!--文件更新 srart-->
+	<div class="l_c2">
+	<!--文件下载进度 start-->
+	<p class="t1">当前进度：</p>
+	<div class="l_c2_no1">
+	<p class="bg_color" style="width:100%" id="Progress"></p>
+	</div>
+	<p class="num" id="ProgressNum">100%</p>
+    <p class="t" id="Message">获取更新文件:</p>
+    <p class="b" id="VersionCode">当前版本:</p>
+	<div class="clearboth"></div>
+	<!--文件下载进度 end-->
+	</div>
+	<!--文件更新 end-->
+    
+    
+<!--选择服务器 start-->
+<div class="l_c3">	
+<p class="ch_server float_l"><a href="#" title="选择服务器"></a></p>
+<p id="curZoneName" class="current float_l"></p>
+</div>
+ <!--选择服务器 end-->
+
+
+<!--进入游戏 start-->
+<p id="enter" class="enter"><a href="#" title="进入游戏"></a></p>
+<!--进入游戏 end-->
+
+</div>
+
+
+<!--隐藏内容 start-->
+<div class="hide_wrap moveable">
+<!--区服列表 start-->
+<div class="sub_maincontent">
+
+
+<div class="server_list">
+	
+										<!--推荐专区 start-->
+											<div class="sub_sc" style="height:210px;">
+                                            	<!----><a href="#"><em><img src="images/new.png" /></em><span>屠龙</span></a>
+                                                <a href="#"><em><img src="images/new.png" /></em><span>屠龙1</span></a>
+                                                <a href="#"><em><img src="images/new.png" /></em><span>屠龙2</span></a>
+                                                <a href="#"><em><img src="images/new.png" /></em><span>屠龙3</span></a>
+<!--                                             
+										<a href="#"><img src="images/new.png" />122区-启示之光（电信）</a>
+										  <a href="#"><img src="images/hot.png" />122区-启示之光（电信）</a>
+                                          <a href="#"><img src="images/new.png" />122区-启示之光（电信） </a>
+										  <a href="#">122区-启示之光（电信）</a>
+                                          <br />
+-->
+                                         <!-- <strong class="s_blank"></strong>
+                                          <strong class="s_title og"> 更多区服：</strong>
+                                          <a href="#">122区-启示之光（电信）</a>-->
+<div class="clearboth"></div>
+											</div>
+											<div class="clearboth"></div>
+	
+								</div>
+
+
+
+
+</div>
+<!--区服列表 end-->
+						
+							<!--上次所选 start-->
+							<div class="last float_l">
+									<p id="lastZoneName" class="sel"></p>
+							</div>
+							<!--上次所选 end-->
+							
+							<!--本次所选 start-->
+							<div class="this float_l">
+									<p id="selectedZoneName" class="sel"></p>
+							</div>
+							<!--本次所选 end-->
+							
+							<!--确认按钮 start-->
+							<p class="btn_sure float_l"><a href="#" title="确认选择"></a></p>
+							<!--确认按钮 end-->
+								
+							<div class="clearboth"></div>
+						</div>
+						<!--隐藏内容 end-->
+						
+						
+						
+				 <div class="clearboth"></div>
+
+
+<!--wrapinner end-->
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.server_nav a').click(function(){
+		if(!$(this).hasClass('current')){
+			$('.server_nav a').removeClass('current');
+			$(this).addClass('current');
+			
+			$('.s_con').hide();
+			$($(this).attr('href')).show();
+		}
+			return false;
+	}); 
+	
+	$(".ch_server a").click(function() {
+			showServer()
+		return false;
+	});
+	
+	$(".btn_sure a").click(function() {
+			selectServer();
+		return false;
+	});
+
+});
+
+
+
+function selectServer(){
+	$(".hide_wrap").hide();
+}
+
+//alert(LauncherMain.servers.length);
+function showServer(){
+	$(".hide_wrap").show();
+}
+
+//鼠标选中区服按钮状态
+$(".sub_sc a").live("click", function(){
+		$(".sub_sc a").removeClass("current");
+		$(this).addClass("current");
+	});
+</script>
+
+</body>
+</html>

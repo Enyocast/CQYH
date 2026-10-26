@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<language name="Korean">
+	<translations>
+		<entry key="$GettingStartedIMETitle" value="Scaleform IMEスタートガイド"/>
+       <entry key="$GettingStartedIMEDesc" value="Scaleform IMEのインストールと使用法についての資料です。"/>
+       <entry key="$GettingStartedIMEFilename" value="gfx_4.0_getting_started_with_ime_jp.pdf"/>
+       <entry key="$IMEOverviewTitle" value="IME設定方法の概要"/>
+       <entry key="$IMEOverviewDesc" value="GFx4.0でIMEシステムがどのように使われるか、アプリケーションへの組み込みとゲームの雰囲気にあわせるカスタマイズ方法を説明します。"/>
+       <entry key="$IMEOverviewFilename" value="gfx_4.0_ime_jp.pdf"/>
+	</translations>
+</language>

@@ -1,0 +1,11 @@
+
+virtual void Init();
+virtual void UnInit();
+
+virtual void PostOnShow(UBOOL v);
+virtual void OnNativeGameEvent(struct MMOGameEvent* evt);
+
+
+void InputChange();
+void ExchangeOk();
+void RefreshLog();

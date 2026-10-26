@@ -1,0 +1,160 @@
+#include "stdafx.h"
+#include "MMOGameUIClasses.h"
+#include "MMOFacade.h"
+#include "MMOGuildManager.h"
+#include <time.h>
+#include "UITextParser.h"
+
+IMPLEMENT_CLASS(UMMOUIGuildDungeonBeginPanel)
+
+void UMMOUIGuildDungeonBeginPanel::Init()
+{
+	Super::Init();
+
+	check(EventAdapter == NULL);
+	TArray<EGameEvent> evts;
+	evts.AddItem(GameEvent_Guild);
+	EventAdapter = new TGameEventAdapter<UMMOUIGuildDungeonBeginPanel>(this, evts);
+}
+
+void UMMOUIGuildDungeonBeginPanel::PostOnShow(UBOOL v)
+{
+	Super::PostOnShow(v);
+	if (v)
+	{
+		eventCallSetWindowTitle(MMOUI::ParseLocalizedPropertyPath(TEXT("MMOGame.Guild.DungeonPanel")));
+		UpdateGuildDungeonList();
+		UpdateGuildMemberList();
+	}
+}
+
+void UMMOUIGuildDungeonBeginPanel::OnNativeGameEvent(struct MMOGameEvent* gameEvent)
+{
+	if (!IsVisible)
+	{
+		return;
+	}
+
+	if (gameEvent->GetEventType() != GameEvent_Guild)
+	{
+		return;
+	}
+
+	MMOGameEvent_Guild* guildEvent = (MMOGameEvent_Guild*)gameEvent;
+	if (guildEvent == NULL)
+	{
+		return;
+	}
+}
+
+void UMMOUIGuildDungeonBeginPanel::UpdateGuildDungeonList()
+{
+	UGFxObject* dataArray = GFXPlayer->CreateArray();
+	if (!dataArray)
+	{
+		return;
+	}
+
+	int index = 0;
+	GuildDungeonDataMap guildDungeonDataMap = MMOGuildData::getSingleton().GetGuildDungeonDataMap();
+	GuildDungeonDataMap::iterator iter = guildDungeonDataMap.begin();
+	for (; iter != guildDungeonDataMap.end(); ++ iter)
+	{
+		GuildDungeonData data = iter->second;
+		UGFxObject* object = GFXPlayer->CreateObject(TEXT("Object"));
+		if (object)
+		{
+			object->SetInt(TEXT("guild_dun_id"), data.DungeonId);
+			object->SetString(TEXT("guild_dun_name"), data.DungeonName);
+			object->SetString(TEXT("guild_dun_desc"), data.DungeonDesc);
+
+			GuildBuildingData preBuildingData;
+			MMOGuildData::getSingleton().GetGuildBuildingData(data.BuildingReq, data.BuildingLvReq, preBuildingData);
+			UINT32 preBuildingLv = MMOGuildData::getSingleton().GetGuildBuildingMaxLevel(data.BuildingReq);
+
+			FString buildingReq = FString::Printf(preBuildingLv >= data.BuildingLvReq ? TEXT("<font color='#FFFFFF'>%s:%d¼¶</font>") : TEXT("<font color='#FF0000'>%s:%d¼¶</font>"), *(preBuildingData.Name), data.BuildingLvReq);
+			object->SetString(TEXT("guild_dun_building_lv_req"), buildingReq);
+
+			AMMOPlayer* mainPlayer = MMOFacade::getSingleton().GetMainPlayer();
+			if (mainPlayer)
+			{
+				FString money = TEXT("");
+				if ((UINT32)(mainPlayer->GetMoney(MONEYTYPE_02)) < data.MoneyReq)
+				{
+					money = FString::Printf(TEXT("<font color='#FF0000'>%s</font>"), *UITextParser::HTMLMoneyIconString(MONEYTYPE_02, data.MoneyReq));
+				} 
+				else
+				{
+					money = FString::Printf(TEXT("<font color='#FFFFFF'>%s</font>"), *UITextParser::HTMLMoneyIconString(MONEYTYPE_02, data.MoneyReq));
+				}
+				object->SetString(TEXT("guild_dun_money_req"), money);
+			}
+
+			FString memberReq = data.MemberCountLimit > 0 ? appItoa(data.MemberCountLimit) : MMOUI::ParseLocalizedPropertyPath(TEXT("MMOGame.Guild.NoLimit"));
+			object->SetString(TEXT("guild_dun_member_count_req"), memberReq);
+
+			UGFxObject* awardArray = GFXPlayer->CreateArray();
+			if (awardArray)
+			{
+				for (int i = 0; i < GUILD_DUNGEON_AWARD_NUM; ++ i)
+				{
+					UGFxObject* awardObject = GFXPlayer->CreateObject(TEXT("Object"));
+					if (awardObject)
+					{
+						UItem* item = MMOFacade::getSingleton().FindItemTemplate(data.Award[i]);
+						if (item)
+						{
+							awardObject->SetInt(TEXT("guild_dun_award_id"), item->GetTemplateID());
+							awardObject->SetInt(TEXT("guild_dun_award_index"), i);
+							awardObject->SetString(TEXT("guild_dun_award_icon_name"), MMOFacade::getSingleton().GetItemIconNamePersonalized( item ));
+							awardObject->SetString(TEXT("guild_dun_award_item_name"), item->GetDisplayName());
+
+							awardArray->SetElementObject(i, awardObject);	
+						}
+					}
+				}
+
+				object->SetObject(TEXT("guild_dun_awards"), awardArray);
+			}
+
+			dataArray->SetElementObject(index, object);
+			index ++;
+		}
+	}
+
+	eventCallUpdateGuildDungeonList(dataArray);
+}
+
+void UMMOUIGuildDungeonBeginPanel::UpdateGuildMemberList()
+{
+	UGFxObject* dataArray = GFXPlayer->CreateArray();
+	if (!dataArray)
+	{
+		return;
+	}
+
+	int index = 0;
+	GuildFullMemberInfoList guildFullMemberList = MMOGuildData::getSingleton().GetGuildFullMemberInfoList();
+	GuildFullMemberInfoList::iterator iter = guildFullMemberList.begin();
+	for (; iter != guildFullMemberList.end(); ++ iter)
+	{
+		GuildFullMemberInfo info = *iter;
+		UGFxObject* object = GFXPlayer->CreateObject(TEXT("Object"));
+		if (object)
+		{
+			object->SetInt(TEXT("guild_mem_id"), info.Id);
+			object->SetString(TEXT("guild_mem_name"), info.Name);
+
+			dataArray->SetElementObject(index, object);
+			index ++;
+		}
+	}
+
+	eventCallUpdateGuildMemberList(dataArray);
+}
+//////////////////////////////////////////////////////////////////////////
+
+void UMMOUIGuildDungeonBeginPanel::ASOpenDungeon(INT dungeonId, INT leaderId)
+{
+	CMessageHandler::GetInstance().Send_OpenGuildDungeon(dungeonId, leaderId); 
+}

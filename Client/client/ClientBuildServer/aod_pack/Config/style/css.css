@@ -1,0 +1,223 @@
+/* CSS Document */
+
+body{
+	margin:0px;
+	font-size: 12px;
+}
+a{
+	color: #FF0000;
+	text-decoration: underline;
+}
+a:link {
+	color: #FF0000;
+	text-decoration: underline;
+	cursor:pointer;
+}
+a:visited {
+	color: #FF0000;
+	text-decoration: underline;
+	cursor:pointer;
+}
+a:hover {
+	color: #ff6200;
+	text-decoration: none;
+	cursor:pointer;
+}
+a:active {
+	color: #FF0000;
+	text-decoration: underline;
+	cursor:pointer;
+}
+
+
+
+#main{
+	position:absolute;
+	width:680px;
+	height:462px;
+	top:0px;
+	left:0px;
+	z-index:0;
+	background-color:#CCCCCC;
+	background-image:url(../images/bg.jpg);
+	margin:0px;
+}
+#main div{
+	position:absolute;
+}
+#title{
+	top:0px;
+	left:0px;
+	width:680px;
+	height:25px;
+	overflow:hidden;
+}
+#txtTitle{
+	top:10px;
+	left:40px;
+	width:680px;
+	height:25px;
+	color:#FFFFFF;
+	font-weight:bolder;
+	
+}
+#btnMinimize{
+	position:absolute;
+	left:628px;
+	top:0px;
+	width:24px;
+	height:20px;
+	z-index:1000;
+	cursor:pointer;
+	margin:0px;
+	background-image:url(../../../images/btnMinimize.jpg);
+	
+}
+#btnClose{
+	position:absolute;
+	left:648px;
+	top:0px;
+	width:32px;
+	height:21px;
+	z-index:1000;
+	cursor:pointer;
+	margin:0px;
+	background-image:url(../../../images/btnClose.jpg);
+}
+
+/*菜单选项*/
+#menu{
+	top:29px;
+	left:14px;
+	width:653px;
+	height:40px;
+	margin:2px;
+}
+#menu ul{
+	list-style-type:none;
+	margin:0px;
+	margin-left:5px;
+}
+#menu li{
+	float:left;
+	width:80px;
+	height:27px;
+	color:#FFFFFF;
+	cursor:pointer;
+	background-repeat:no-repeat;
+	text-align:center;
+	padding-top:7px;
+	padding-right:10px;
+}
+
+#menu li:hover {
+	color: #FFFF00;
+	background-image:url(../images/menu_bg.jpg);
+}
+
+.clear{
+	clear:both;
+}
+
+#status{
+	top:432px;
+	left:12px;
+	width:506px;
+	height:17px;
+	line-height:130%;
+	font-weight:bold;
+	color:#FFFF00;
+	text-align:center;
+}
+
+#controller{
+	top:385px;
+	left:257px;
+	width:400px;
+	height:30px;
+	text-align:right;
+}
+#controller .button{
+	margin-left:10px;
+	cursor:pointer;
+}
+
+#softVersion{
+	top:432px;
+	left:557px;
+	width:100px;
+	height:17px;
+}
+
+
+#skinImgBorder{
+	position:absolute;
+	z-index:10;
+}
+
+#cover{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:680px;
+	height:462px;
+	z-index:10000;
+	background-color:#666666;
+	filter: alpha( opacity:80 );
+	opacity:0.8;
+	display:none;
+}
+#coverText{
+	position:absolute;
+	top:200px;
+	left:0px;
+	width:100%;
+	z-index:10001;
+	font-size:24px;
+	font-weight:bolder;
+	color:#FFFFFF;
+	text-align:center;
+}
+
+
+fieldset{
+	position:absolute;
+	width: 640px;
+	height:280px;
+	border:1px solid;
+}
+legend {
+	margin-left:18px; color:#FF0000; font-weight:bold;
+}
+fieldset .fieldArea{
+	margin-left:15px;
+	margin-top:8px;
+}
+fieldset div td{
+	height:40px;
+}
+
+
+
+
+#content{
+	top:75px;
+	left:14px;
+	width:653px;
+	height:293px;
+}
+#content div
+{
+	position:relative;
+}
+
+.tab{
+	height:300px;
+}
+
+
+/*
+.subOptions{
+	display:none;
+}
+*/

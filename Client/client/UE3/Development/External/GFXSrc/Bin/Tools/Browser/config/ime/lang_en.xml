@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<language name="English">
+	<translations>
+		<entry key="$GettingStartedIMETitle" value="Getting Started with IME"/>
+       <entry key="$GettingStartedIMEDesc" value="This document explains how to install, and use the Scaleform IME."/>
+       <entry key="$GettingStartedIMEFilename" value="gfx_4.0_getting_started_with_ime.pdf"/>
+       <entry key="$IMEOverviewTitle" value="Input Method Configuration Overview"/>
+       <entry key="$IMEOverviewDesc" value="This document presents the Input Method Editor (IME) system used in GFx 4.0, describing how GFx IME can be integrated into end user application and customized to match application UI style."/>
+       <entry key="$IMEOverviewFilename" value="gfx_4.0_ime.pdf"/>
+	</translations>
+</language>

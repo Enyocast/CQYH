@@ -1,0 +1,11 @@
+delete dbo.Buggs
+delete dbo.Buggs_Crashes
+delete dbo.Buggs_UserGroups
+delete dbo.Buggs_Users
+delete dbo.CoderUsers
+delete dbo.Crashes_FunctionCalls
+delete dbo.FunctionCalls
+delete dbo.ReportData
+delete dbo.UserGroups
+delete dbo.Crashes
+delete dbo.Users

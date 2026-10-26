@@ -1,0 +1,135 @@
+/*=============================================================================
+	ParticleRainStreakVertexFactory.hlsl: Particle vertex factory shader code.
+	ming@snda
+=============================================================================*/
+
+float4		CameraWorldPosition;
+float4		CameraRight;
+float4		CameraUp;
+
+struct FVertexFactoryInput
+{
+	float4	Position	: POSITION;
+	float4	TexCoord	: TEXCOORD0;
+	float4	VelAndLife	: TEXCOORD1;
+};
+
+struct FVertexFactoryInterpolantsVSToPS
+{
+	float4	TexCoord			: TEXCOORD0;
+};
+
+struct FVertexFactoryIntermediates
+{
+	float Dummy;
+};
+
+/** Converts from vertex factory specific interpolants to a FMaterialPixelParameters, which is used by material inputs. */
+FMaterialPixelParameters GetMaterialPixelParameters(FVertexFactoryInterpolantsVSToPS Interpolants)
+{
+	FMaterialPixelParameters	Result;
+
+#if NUM_MATERIAL_TEXCOORDS
+	Result.TexCoords[0] = Interpolants.TexCoord.xy;
+	{
+		for(uint SampleIndex = 0;SampleIndex < NUM_TEXCOORD_SAMPLES;++SampleIndex)
+		{
+			Result.SampleTexCoords[SampleIndex][0] = EvaluateAttributeAtSample(Interpolants.TexCoord.xy,SampleIndex);
+		}
+	}
+#endif
+
+	return Result;
+}
+
+float4 VertexFactoryGetVertexColor(FVertexFactoryInput Input, FVertexFactoryIntermediates Intermediates)
+{
+	return float4(1,1,1,1);
+}
+
+/** Converts from vertex factory specific input to a FMaterialVertexParameters, which is used by vertex shader material inputs. */
+FMaterialVertexParameters GetMaterialVertexParameters( FVertexFactoryInput Input, FVertexFactoryIntermediates Intermediates, float3 WorldPosition, float3x3 TangentBasis )
+{
+	FMaterialVertexParameters Result;
+	Result.WorldPosition = WorldPosition - PreViewTranslation.xyz;
+	Result.VertexColor = VertexFactoryGetVertexColor(Input, Intermediates);
+	Result.TangentToWorld = float3x3(
+									1,0,0,
+									0,1,0,
+									0,0,1
+									);
+	return Result;
+}
+
+#if !VERTEX_LIGHTMAP // AJS: If this is an emissive+vertex light-map shader, we can save an interpolator by skipping the light-map coordinate.
+float2 GetLightMapCoordinate(FVertexFactoryInterpolantsVSToPS Interpolants)
+{
+	return Interpolants.TexCoord.xy;
+}
+
+#endif	//#if !VERTEX_LIGHTMAP
+
+float3 SafeNormalize(float3 V)
+{
+	return V / sqrt(max(dot(V,V),0.01));
+}
+
+float4 CalcWorldPosition(FVertexFactoryInput Input)
+{
+//	float4  TempPos = Input.Position;
+//	float4  Right;
+//	float4  Up;
+//	GetTangents(Input,Right,Up);
+//	float4	WorldPosition = mul(LocalToWorld,TempPos);
+//	WorldPosition += Input.Size.y * (Input.TexCoord.y - 0.5) * Up;
+//	float4	WorldPosition = MulMatrix(LocalToWorld,TempPos);
+//	return WorldPosition;
+	float4 CurrPos = Input.Position + 
+		float4(Input.VelAndLife.xyz * Input.VelAndLife.w, 0.f );
+
+	return CurrPos;
+}
+
+/** derive basis vectors */
+float3x3 CalcTangentBasis(FVertexFactoryInput Input)
+{
+	return float3x3(
+			1,0,0,
+			0,1,0,
+			0,0,1
+			);
+}
+
+float3x3 VertexFactoryGetTangentBasis( FVertexFactoryInput Input, FVertexFactoryIntermediates Intermediates )
+{
+	return CalcTangentBasis(Input);
+}
+
+FVertexFactoryIntermediates GetVertexFactoryIntermediates(FVertexFactoryInput Input)
+{
+	FVertexFactoryIntermediates Intermediates;
+	Intermediates.Dummy = 0;
+	return Intermediates;
+}
+
+float4 VertexFactoryGetWorldPosition(FVertexFactoryInput Input, FVertexFactoryIntermediates Intermediates)
+{
+	return CalcWorldPosition(Input);
+}
+
+FVertexFactoryInterpolantsVSToPS VertexFactoryGetInterpolantsVSToPS(FVertexFactoryInput Input, FVertexFactoryIntermediates Intermediates)
+{
+	FVertexFactoryInterpolantsVSToPS Interpolants;
+	Interpolants.TexCoord	= Input.TexCoord;
+	return Interpolants;
+}
+
+float4 VertexFactoryGetPreviousWorldPosition(FVertexFactoryInput Input, FVertexFactoryIntermediates Intermediates)
+{
+	return VertexFactoryGetWorldPosition(Input, Intermediates);
+}
+
+half3 VertexFactoryGetWorldNormal(FVertexFactoryInput Input, FVertexFactoryIntermediates Intermediates)
+{
+	return half3(1,1,1);
+}

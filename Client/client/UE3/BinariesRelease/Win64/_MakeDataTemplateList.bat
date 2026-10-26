@@ -1,0 +1,1 @@
+start MMOGame.exe MakeDataTemplateList -log

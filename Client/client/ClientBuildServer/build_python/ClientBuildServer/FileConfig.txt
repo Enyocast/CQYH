@@ -1,0 +1,9 @@
+Binaries
+Engine
+history
+SDO
+MMOGame\Account
+MMOGame\Content
+MMOGame\Logs
+MMOGame\Splash
+MMOGame\Movies

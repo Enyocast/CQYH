@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application
+	xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:s="library://ns.adobe.com/flex/spark" 
+	xmlns:f="http://flintparticles.org/2009/flint2d"
+	xmlns:filters="flash.filters.*"
+	width="500" height="500"
+	backgroundColor="#000000">
+	
+<fx:Script>
+	<![CDATA[
+		import org.flintparticles.common.easing.Quadratic;
+	]]>
+</fx:Script>
+
+<f:BitmapRenderer id="renderer" width="500" height="500">
+	<f:preFilters>
+		<filters:BlurFilter blurX="2" blurY="2" quality="1"/>
+		<filters:ColorMatrixFilter matrix="{[ 1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0.97,0 ]}"/>
+	</f:preFilters>
+	<f:emitters>
+		<f:Emitter id="emitter" autoStart="true" x="250" y="250">
+			<f:counter>
+				<f:Steady rate="200"/>
+			</f:counter>
+			<f:initializers>
+				<f:ColorInit minColor="0xFFFFFF00" maxColor="0xFFFF6600"/>
+				<f:Velocity>
+					<f:DiscSectorZone centerX="0" centerY="0" innerRadius="170" outerRadius="250" minAngle="0" maxAngle="0.2"/>
+				</f:Velocity>
+				<f:SharedImage>
+					<f:Line length="3"/>
+				</f:SharedImage>
+				<f:Lifetime lifetime="1.3"/>
+			</f:initializers>
+			<f:actions>
+				<f:Move/>
+				<f:Age easing="{Quadratic.easeIn}"/>
+				<f:Fade/>
+				<f:Accelerate x="0" y="50"/>
+				<f:LinearDrag drag="0.5"/>
+			</f:actions>
+			<f:activities>
+				<f:RotateEmitter angularVelocity="-7"/>
+			</f:activities>
+		</f:Emitter>
+	</f:emitters>
+</f:BitmapRenderer>
+</s:Application>

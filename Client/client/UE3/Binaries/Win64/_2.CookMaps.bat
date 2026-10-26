@@ -1,0 +1,1 @@
+start MMOGame.exe CookPackages -SKIPUNUSED -platform=PC -log -AUTOCOOKMAPS -final_release -multilanguagecook=INT+CHN -Processes=32 -SAVESHADERSATEND

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<PackageDiffSettings xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <AvailableGames>
+    <string>ExampleGame</string>
+    <string>GearGame</string>
+    <string>UTGame</string>
+    <string>WarGame</string>
+  </AvailableGames>
+  <AvailableConfigurations>
+    <string>Release</string>
+    <string>Debug</string>
+  </AvailableConfigurations>
+</PackageDiffSettings>

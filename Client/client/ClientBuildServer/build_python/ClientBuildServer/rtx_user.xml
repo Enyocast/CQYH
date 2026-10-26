@@ -1,0 +1,716 @@
+<?xml version="1.0" encoding="GB2312"?>
+<RTX2005OrLater_Exported_Data_9D373D5B-AA39-42e7-A819-BF5F7A8961FC>
+  <Database>
+    <Sys_User>
+      <Item ID="1001" UserName="chenwang" Pwd="FBA5AC3C14E17230F8B54725514C975600000000000000000000000000000000" PwdType="0" SmsID="" Name="C.陈旺" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="882" AuthType="0"/>
+      <Item ID="1002" UserName="zhuming" Pwd="B4B4C4EBB46889CA0F7E6C86EA1E22EE00000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.朱铭" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="778" AuthType="0"/>
+      <Item ID="1003" UserName="fangruyi" Pwd="0BABA683298E5A74058943F75CAFC4AC00000000000000000000000000000000" PwdType="0" SmsID="" Name="F.方如意" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="937" AuthType="0"/>
+      <Item ID="1008" UserName="yunyu" Pwd="3277ED41A842FFEB97DD7214C44593EC00000000000000000000000000000000" PwdType="0" SmsID="" Name="Y.恽玉" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="958" AuthType="0"/>
+      <Item ID="1013" UserName="suibo" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="S.隋波" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="961" AuthType="0"/>
+      <Item ID="1018" UserName="yulu" Pwd="3FD199A853617E257F8032A649ECA1B700000000000000000000000000000000" PwdType="0" SmsID="" Name="Y.俞露" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="720" AuthType="0"/>
+      <Item ID="1036" UserName="朱剑丘" Pwd="6D46576DCC3154F038B986DAFFF4216600000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.朱剑丘" UserType="0" Gender="0" Face="126" Mobile="1234567" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="655" AuthType="0"/>
+      <Item ID="1039" UserName="lixj" Pwd="1D6CD5C66E602D7EFA74D1BC425111FB00000000000000000000000000000000" PwdType="0" SmsID="" Name="L.李*+" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="962" AuthType="0"/>
+      <Item ID="1040" UserName="wubin" Pwd="97DB700B97CBFCEF63C565DBED0C586000000000000000000000000000000000" PwdType="0" SmsID="" Name="W.吴斌" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="954" AuthType="0"/>
+      <Item ID="1041" UserName="zhaohanhan" Pwd="62CC9C218B6F9549003830AE39EF976200000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.赵含寒" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="835" AuthType="0"/>
+      <Item ID="1044" UserName="XiongJun" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="X.熊军" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="751" AuthType="0"/>
+      <Item ID="1049" UserName="yangyun02" Pwd="9159B5787202C287F9699E6DCC7A9A7500000000000000000000000000000000" PwdType="0" SmsID="" Name="Y.杨云" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="961" AuthType="0"/>
+      <Item ID="1050" UserName="zhanglinjian" Pwd="7B3F6A1942998252A4264EFB070F01BF00000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.张林建" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="923" AuthType="0"/>
+      <Item ID="1056" UserName="zhangqi" Pwd="3AAED45EFEE0AECE0A5F1271D19E7AFE00000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.张琦" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="589" AuthType="0"/>
+      <Item ID="1062" UserName="luchenlei" Pwd="2389934D5B626FF9D587FA9B934861F400000000000000000000000000000000" PwdType="0" SmsID="" Name="L.陆陈磊" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="923" AuthType="0"/>
+      <Item ID="1063" UserName="gaohuaxiang.watson" Pwd="0670AD2967F4DB5409BF773FE3DD165900000000000000000000000000000000" PwdType="0" SmsID="" Name="G.高华翔" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="885" AuthType="0"/>
+      <Item ID="1064" UserName="李夏光" Pwd="DBD59CA344A25AB51734D0B24BF4353B00000000000000000000000000000000" PwdType="0" SmsID="" Name="L.李夏光" UserType="0" Gender="0" Face="126" Mobile="15000191285" Email="" Phone="891129" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="930" AuthType="0"/>
+      <Item ID="1071" UserName="avalon" Pwd="CED39EFA46EFAB530A229E002A9E1AAA00000000000000000000000000000000" PwdType="0" SmsID="" Name="H.胡俊杰" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="655" AuthType="0"/>
+      <Item ID="1072" UserName="zhaozhenyang" Pwd="A01B97892A7C679928FB1A308120FA8200000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.赵振阳" UserType="0" Gender="0" Face="126" Mobile="13916826873" Email="zhaozy1986@163.com" Phone="2163" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="597" AuthType="0"/>
+      <Item ID="1075" UserName="xingbing" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="X.邢冰" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="751" AuthType="0"/>
+      <Item ID="1079" UserName="taoqun" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="T.陶群 " UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="865" AuthType="0"/>
+      <Item ID="1084" UserName="GD-chenkai" Pwd="D8B27052634540737323CAC08FAC618000000000000000000000000000000000" PwdType="0" SmsID="" Name="C.陈凯" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="954" AuthType="0"/>
+      <Item ID="1089" UserName="johnmah" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="J.johnmah" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="543" AuthType="0"/>
+      <Item ID="1090" UserName="zhaoguangua.felix" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.ZhaoGuanghua" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="593" AuthType="0"/>
+      <Item ID="1091" UserName="felix" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.赵光华" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="909" AuthType="0"/>
+      <Item ID="1093" UserName="zhaojun" Pwd="141752AA06D78442BDF99FB3D479948F00000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.赵骏" UserType="0" Gender="0" Face="126" Mobile="18621590786" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="655" AuthType="0"/>
+      <Item ID="1094" UserName="张乐" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.张乐Brian" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="608" AuthType="0"/>
+      <Item ID="1095" UserName="zhangjingxuan" Pwd="6D46576DCC3154F038B986DAFFF4216600000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.张敬轩" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="962" AuthType="0"/>
+      <Item ID="1100" UserName="lintao" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="L.林涛" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="925" AuthType="0"/>
+      <Item ID="1101" UserName="zhangrui" Pwd="1C3A510433B2CA201ECD321F2059ACCE00000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.张瑞" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="964" AuthType="0"/>
+      <Item ID="1102" UserName="huangxiaodong02" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="H.黄晓东02" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="655" AuthType="0"/>
+      <Item ID="1105" UserName="wangcheng" Pwd="2418A5E0F4D8A89116A42FAAA45302CB00000000000000000000000000000000" PwdType="0" SmsID="" Name="W.汪程" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="574" AuthType="0"/>
+      <Item ID="1106" UserName="yangchen05" Pwd="782CC8AAD2119C1059AD59808F33883B00000000000000000000000000000000" PwdType="0" SmsID="" Name="Y.杨陈" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="581" AuthType="0"/>
+      <Item ID="1107" UserName="zhaobodong01" Pwd="A3A263822DDF206777D42B73A1B62AF800000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.赵伯东" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="847" AuthType="0"/>
+      <Item ID="1111" UserName="shujian" Pwd="666C39C7AD98E3B06B4E532553D6944000000000000000000000000000000000" PwdType="0" SmsID="" Name="S.舒建" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="870" AuthType="0"/>
+      <Item ID="1112" UserName="梅显忠" Pwd="9FCBC110BADFAB0781F7FFCA7F6652D800000000000000000000000000000000" PwdType="0" SmsID="" Name="M.梅显忠" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="962" AuthType="0"/>
+      <Item ID="1114" UserName="tanyong" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="T.tanyong" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="567" AuthType="0"/>
+      <Item ID="1117" UserName="meiliying" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="M.梅丽颖" UserType="0" Gender="1" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="887" AuthType="0"/>
+      <Item ID="1119" UserName="舒伟超" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="S.舒伟超" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="847" AuthType="0"/>
+      <Item ID="1128" UserName="mt" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="M.会议室" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="922" AuthType="0"/>
+      <Item ID="1132" UserName="pengyanxin.yancy" Pwd="0BB2BD5D76DA935AE5ABB62BD475A9CC00000000000000000000000000000000" PwdType="0" SmsID="" Name="P.彭艳馨.yancy" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="751" AuthType="0"/>
+      <Item ID="1140" UserName="wuxin03" Pwd="A73C1343C2FB65470E1195C8FA8FFB6200000000000000000000000000000000" PwdType="0" SmsID="" Name="W.伍昕" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="959" AuthType="0"/>
+      <Item ID="1141" UserName="shenyanggong" Pwd="07E591A6E68E7BA04F0ED9DBF36AD1F000000000000000000000000000000000" PwdType="0" SmsID="" Name="S.沈扬功" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="954" AuthType="0"/>
+      <Item ID="1145" UserName="wangying" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="W.王莹" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="887" AuthType="0"/>
+      <Item ID="1147" UserName="xuzhonghai" Pwd="B1352928B4E95C6D8C73DA6411C3CA1B00000000000000000000000000000000" PwdType="0" SmsID="" Name="X.徐中海" UserType="0" Gender="0" Face="126" Mobile="137-616-40794" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="923" AuthType="0"/>
+      <Item ID="1148" UserName="panyiyu" Pwd="A6D487BFD6328B861DC75DD5BE0AC02400000000000000000000000000000000" PwdType="0" SmsID="" Name="P.潘钇鄅" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="902" AuthType="0"/>
+      <Item ID="1149" UserName="管佳俊" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="G.管佳俊" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="744" AuthType="0"/>
+      <Item ID="1152" UserName="刘泓源" Pwd="8C8B3DC8079EB86FAC430E66343E815B00000000000000000000000000000000" PwdType="0" SmsID="" Name="L.刘泓源" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="783" AuthType="0"/>
+      <Item ID="1153" UserName="dengyile" Pwd="A5EDD04D8E12F153FF2B82F553D1B33500000000000000000000000000000000" PwdType="0" SmsID="" Name="D.邓一乐" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="948" AuthType="0"/>
+      <Item ID="1155" UserName="xiaoni" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="X.周荣才" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="0" UserVersion="808" AuthType="0"/>
+      <Item ID="1156" UserName="honggang02" Pwd="24C53E5D13482EE0B5704993B8B781E500000000000000000000000000000000" PwdType="0" SmsID="" Name="H.honggang02" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="809" AuthType="0"/>
+      <Item ID="1160" UserName="xinying" Pwd="900C722162BCE85CA31DD6393522DA9100000000000000000000000000000000" PwdType="0" SmsID="" Name="X.辛颖" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="963" AuthType="0"/>
+      <Item ID="1163" UserName="Jeff" Pwd="DBD59CA344A25AB51734D0B24BF4353B00000000000000000000000000000000" PwdType="0" SmsID="" Name="J.吉锋" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="959" AuthType="0"/>
+      <Item ID="1164" UserName="zhanglixi.sissi" Pwd="A1CF024F4E4121096D8A518FDC39088D00000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.张立曦" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="961" AuthType="0"/>
+      <Item ID="1166" UserName="yangtao" Pwd="6F6F2CE11195D0694F0CEDC085FBDF7D00000000000000000000000000000000" PwdType="0" SmsID="" Name="Y.杨涛" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="862" AuthType="0"/>
+      <Item ID="1167" UserName="nieqin" Pwd="472E8B914F87C93B874256DC168F857300000000000000000000000000000000" PwdType="0" SmsID="" Name="N.聂琴" UserType="0" Gender="1" Face="127" Mobile="13818257975" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="821" AuthType="0"/>
+      <Item ID="1168" UserName="zhourongcai" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.周荣才" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="0" UserVersion="957" AuthType="0"/>
+      <Item ID="1169" UserName="caojin" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="C.曹晋" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="958" AuthType="0"/>
+      <Item ID="1170" UserName="shiqing" Pwd="9EE61AEFC205CE38E02BBECFCA22512500000000000000000000000000000000" PwdType="0" SmsID="" Name="S.石晴" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="959" AuthType="0"/>
+      <Item ID="1171" UserName="xn" Pwd="BE7928BEDB508E1D0532117672DD109A00000000000000000000000000000000" PwdType="0" SmsID="" Name="X.肖妮" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="884" AuthType="0"/>
+      <Item ID="1172" UserName="zhujie" Pwd="9EE61AEFC205CE38E02BBECFCA22512500000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.zhujie" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="938" AuthType="0"/>
+      <Item ID="1173" UserName="lida" Pwd="2AED37500D987A36AF6689C7555D02BD00000000000000000000000000000000" PwdType="0" SmsID="" Name="L.李达" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="957" AuthType="0"/>
+      <Item ID="1174" UserName="kongxiangwen.robey" Pwd="BEBBF30CD5672B0B4EE7D72B270C7A5A00000000000000000000000000000000" PwdType="0" SmsID="" Name="K.孔祥文" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="922" AuthType="0"/>
+      <Item ID="1175" UserName="lihuanyi" Pwd="F5CB50F1598DADA71A7AF93F9943BAC300000000000000000000000000000000" PwdType="0" SmsID="" Name="L.李洹熠" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="891851" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="956" AuthType="0"/>
+      <Item ID="1176" UserName="祝春晖" Pwd="DBD59CA344A25AB51734D0B24BF4353B00000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.祝春晖" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="937" AuthType="0"/>
+      <Item ID="1179" UserName="wangxuan.vic" Pwd="5838205BBA900E1D34D07F58BF64F6BF00000000000000000000000000000000" PwdType="0" SmsID="" Name="W.王暄" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="961" AuthType="0"/>
+      <Item ID="1180" UserName="llyy" Pwd="AA856C3F8DF45381F892EF6B4C6C8C1400000000000000000000000000000000" PwdType="0" SmsID="" Name="L.梁艳" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="860" AuthType="0"/>
+      <Item ID="1181" UserName="wq" Pwd="47CC35459405D231C0BAC35FBB9EC69300000000000000000000000000000000" PwdType="0" SmsID="" Name="W.汪琼" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="958" AuthType="0"/>
+      <Item ID="1184" UserName="lxf" Pwd="FB33E1841DB487001F1D093E2746BFD100000000000000000000000000000000" PwdType="0" SmsID="" Name="L.刘晓峰" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="961" AuthType="0"/>
+      <Item ID="1185" UserName="lvyue01" Pwd="D1F3BFBCCD9572DE7383F12651C813A100000000000000000000000000000000" PwdType="0" SmsID="" Name="L.吕悦" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="876" AuthType="0"/>
+      <Item ID="1187" UserName="wph" Pwd="652C38B552DEA1B14618DC314F661F0800000000000000000000000000000000" PwdType="0" SmsID="" Name="W.王朋鹤" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="962" AuthType="0"/>
+      <Item ID="1188" UserName="wangyi" Pwd="0898FC334C3585C2E7DCD316218F134D00000000000000000000000000000000" PwdType="0" SmsID="" Name="W.王毅" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="886" AuthType="0"/>
+      <Item ID="1189" UserName="shanling" Pwd="149C5B4A10202BB1A41530689A005D9300000000000000000000000000000000" PwdType="0" SmsID="" Name="S.山凌" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="893" AuthType="0"/>
+      <Item ID="1190" UserName="fuyangyang.young" Pwd="EE58C6FA8D435C7DE3F65DC2DEDAD09300000000000000000000000000000000" PwdType="0" SmsID="" Name="F.付洋洋" UserType="0" Gender="1" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="961" AuthType="0"/>
+      <Item ID="1191" UserName="杨佐国" Pwd="3EA14F3AC66844AC262C165BE23F2D7B00000000000000000000000000000000" PwdType="0" SmsID="" Name="Y.杨佐国" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="955" AuthType="0"/>
+      <Item ID="1192" UserName="xupong" Pwd="F398FE46B951A9262BA51A0FC5E8B88F00000000000000000000000000000000" PwdType="0" SmsID="" Name="X.徐鹏" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="924" AuthType="0"/>
+      <Item ID="1193" UserName="xushizhen" Pwd="11D46888CAB90B4D8E3939D488AA501600000000000000000000000000000000" PwdType="0" SmsID="" Name="X.许师真" UserType="0" Gender="1" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="951" AuthType="0"/>
+      <Item ID="1194" UserName="tangpeng" Pwd="DBD59CA344A25AB51734D0B24BF4353B00000000000000000000000000000000" PwdType="0" SmsID="" Name="T.唐鹏" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="956" AuthType="0"/>
+      <Item ID="1195" UserName="luojing" Pwd="50110E1520C8A545320DEFAA20CE250300000000000000000000000000000000" PwdType="0" SmsID="" Name="R.任煜" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="972" AuthType="0"/>
+      <Item ID="1196" UserName="fujunjie" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="F.付俊杰" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="971" AuthType="0"/>
+      <Item ID="1197" UserName="yeyuqian" Pwd="FCAF15ABBEF04BA5B01CDA8224F2762200000000000000000000000000000000" PwdType="0" SmsID="" Name="Y.叶玉倩" UserType="0" Gender="1" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="960" AuthType="0"/>
+      <Item ID="1198" UserName="huangyuanyuan" Pwd="BB50C21165835BA8903964D854E821F500000000000000000000000000000000" PwdType="0" SmsID="" Name="H.黄媛媛" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="941" AuthType="0"/>
+      <Item ID="1199" UserName="yinjianbo" Pwd="ACB1AC3D814380630A860910154A289900000000000000000000000000000000" PwdType="0" SmsID="" Name="Y.尹建波" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="970" AuthType="0"/>
+      <Item ID="1200" UserName="yijianbo" Pwd="3CD5ED5B693D31F6130B6D387746866300000000000000000000000000000000" PwdType="0" SmsID="" Name="Y.尹建波" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="956" AuthType="0"/>
+      <Item ID="1201" UserName="liubing04" Pwd="25057C067E4CBF891D0211AB9078C14600000000000000000000000000000000" PwdType="0" SmsID="" Name="L.刘滨" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="942" AuthType="0"/>
+      <Item ID="1202" UserName="liubin04" Pwd="E2DDD5377F3C98117C118D00800BB5FE00000000000000000000000000000000" PwdType="0" SmsID="" Name="L.刘滨" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="969" AuthType="0"/>
+      <Item ID="1203" UserName="haoruikun" Pwd="EF038E2B986FAB15D4DF734654C85A6C00000000000000000000000000000000" PwdType="0" SmsID="" Name="H.郝锐锟" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="948" AuthType="0"/>
+      <Item ID="1204" UserName="hongzexuan" Pwd="8C7D4C37CBAB56516CFABF9420C2CD3100000000000000000000000000000000" PwdType="0" SmsID="" Name="H.洪泽轩" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="956" AuthType="0"/>
+      <Item ID="1205" UserName="caiyuyin" Pwd="F3F18F4BB12D7DD53CF5F2E9425D765E00000000000000000000000000000000" PwdType="0" SmsID="" Name="C.蔡雨吟" UserType="0" Gender="1" Face="127" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="955" AuthType="0"/>
+      <Item ID="1206" UserName="wanglongkui" Pwd="FE44244E8DCFDAEA056593F369989C3400000000000000000000000000000000" PwdType="0" SmsID="" Name="W.王隆馗" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="954" AuthType="0"/>
+      <Item ID="1207" UserName="yuliye" Pwd="F9C9381A7B77719773E615F955ED9ACD00000000000000000000000000000000" PwdType="0" SmsID="" Name="Y.余力烨" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="961" AuthType="0"/>
+      <Item ID="1208" UserName="wangfan01" Pwd="6A3D1843EDAD5BB901AA3EF0C24FD63300000000000000000000000000000000" PwdType="0" SmsID="" Name="W.王凡" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="958" AuthType="0"/>
+      <Item ID="1209" UserName="zhangqichen.ken" Pwd="AF76FDF50DD5ECB90FEE0606EB9C9A9400000000000000000000000000000000" PwdType="0" SmsID="" Name="Z.张其琛" UserType="0" Gender="0" Face="126" Mobile="" Email="" Phone="" ProfileOpenLevel="0" BuddyAuth="0" LastLogonTime="0" UserRight="00000000000000000000000000000000" AccountState="" UserVersion="961" AuthType="0"/>
+    </Sys_User>
+    <SYS_SysConfig>
+      <Item UserVersion="972" DeptVersion="1516" DetailVersion="" RCABListVersion="" RCAUserListVersion="" UserLevelVersion="" Reserver1="1421830314" Reserver2="" Reserver3=""/>
+    </SYS_SysConfig>
+    <SYS_InnerFriend/>
+    <RTX_UserDetail>
+      <Item ExValue2="" ExValue1="" ID="1001" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="客户端" memo="" Version="6" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1003" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="12" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1002" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="8" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1018" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="11" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1008" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="8" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1013" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="13" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1036" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="11" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1039" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="19" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1040" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="6" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1041" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="10" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1050" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="6" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1044" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="动画" memo="" Version="6" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1049" Birthday="0" Age="1024" BloodType="2" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="9" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1056" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="5" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1064" Birthday="0" Age="1024" BloodType="1" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="11" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1071" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="6" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1075" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="3" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1072" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="策划-战斗" memo="" Version="1" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1079" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="8" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1062" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="3" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1091" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="6" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1095" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="3" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1112" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="队长，别开枪！" memo="" Version="26" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1140" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="3" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1141" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="5" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1153" Birthday="" Age="0" BloodType="" Constellation="" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="2" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1160" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="追风二喵" memo="" Version="8" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1152" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="0" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1170" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="13" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1168" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="7" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1172" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="3" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1184" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="动画组" memo="" Version="9" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1187" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="5" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1189" Birthday="" Age="0" BloodType="" Constellation="" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="1" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1176" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="2" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1191" Birthday="" Age="0" BloodType="" Constellation="" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="3" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1190" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="4" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1193" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="2" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1195" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="7" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1197" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="4" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1198" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="2" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1203" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="2" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1204" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="1" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1202" Birthday="" Age="0" BloodType="" Constellation="" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="1" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1199" Birthday="" Age="0" BloodType="" Constellation="" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="1" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1101" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="5" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1084" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="4" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1094" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="1" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1100" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="2" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1105" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="4" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1106" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="3" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1063" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="6" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1111" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="1" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1093" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="7" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1102" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="2" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1089" Birthday="" Age="0" BloodType="" Constellation="" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="1" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1117" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="8" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1128" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="4" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1114" Birthday="" Age="0" BloodType="" Constellation="" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="1" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1107" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="6" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1090" Birthday="" Age="0" BloodType="" Constellation="" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="1" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1119" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="8" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1132" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="4" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1145" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="4" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1147" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="4" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1149" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="2" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1148" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="2" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1156" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="2" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1155" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="2" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1163" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="6" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1164" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="9" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1167" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="3" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1166" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="3" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1169" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="3" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1174" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="2" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1173" Birthday="" Age="0" BloodType="" Constellation="" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="2" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1175" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="7" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1179" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="8" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1180" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="3" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1171" Birthday="" Age="0" BloodType="" Constellation="" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="1" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1188" Birthday="" Age="0" BloodType="" Constellation="" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="1" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1200" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="4" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1206" Birthday="" Age="0" BloodType="" Constellation="" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="2" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1205" Birthday="" Age="0" BloodType="" Constellation="" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="1" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1207" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="2" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1196" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="4" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1194" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="0" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1181" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="0" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1208" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="0" PhotoVersion="0" ExPosition=""/>
+      <Item ExValue2="" ExValue1="" ID="1209" Birthday="0" Age="1024" BloodType="0" Constellation="0" College="" HomePage="" Fax="" Address="" PostCode="" Country="" Province="" City="" Street="" Position="" memo="" Version="0" PhotoVersion="0" ExPosition=""/>
+    </RTX_UserDetail>
+    <RTX_Dept>
+      <Item DeptID="1" PDeptID="0" DeptName="PM" SortID="3" Version="1382" DeptType=""/>
+      <Item DeptID="2" PDeptID="0" DeptName="GD" SortID="4" Version="1500" DeptType=""/>
+      <Item DeptID="3" PDeptID="0" DeptName="ART" SortID="5" Version="1516" DeptType=""/>
+      <Item DeptID="4" PDeptID="0" DeptName="Prog_Client" SortID="6" Version="1418" DeptType=""/>
+      <Item DeptID="5" PDeptID="0" DeptName="Prog_Server" SortID="7" Version="1504" DeptType=""/>
+      <Item DeptID="6" PDeptID="0" DeptName="外援" SortID="8" Version="1301" DeptType=""/>
+      <Item DeptID="7" PDeptID="0" DeptName="Prog_All" SortID="9" Version="1504" DeptType=""/>
+      <Item DeptID="9" PDeptID="0" DeptName="QA" SortID="10" Version="1485" DeptType=""/>
+    </RTX_Dept>
+    <RTX_DeptUser>
+      <Item DeptID="2" UserID="1084" SortID=""/>
+      <Item DeptID="4" UserID="1071" SortID=""/>
+      <Item DeptID="7" UserID="1001" SortID=""/>
+      <Item DeptID="4" UserID="1001" SortID=""/>
+      <Item DeptID="4" UserID="1003" SortID=""/>
+      <Item DeptID="7" UserID="1003" SortID=""/>
+      <Item DeptID="2" UserID="1063" SortID=""/>
+      <Item DeptID="3" UserID="1102" SortID=""/>
+      <Item DeptID="3" UserID="1089" SortID=""/>
+      <Item DeptID="2" UserID="1100" SortID=""/>
+      <Item DeptID="2" UserID="1062" SortID=""/>
+      <Item DeptID="2" UserID="1117" SortID=""/>
+      <Item DeptID="1" UserID="1128" SortID=""/>
+      <Item DeptID="2" UserID="1111" SortID=""/>
+      <Item DeptID="3" UserID="1013" SortID=""/>
+      <Item DeptID="2" UserID="1114" SortID=""/>
+      <Item DeptID="5" UserID="1079" SortID=""/>
+      <Item DeptID="3" UserID="1105" SortID=""/>
+      <Item DeptID="5" UserID="1040" SortID=""/>
+      <Item DeptID="7" UserID="1040" SortID=""/>
+      <Item DeptID="3" UserID="1075" SortID=""/>
+      <Item DeptID="3" UserID="1044" SortID=""/>
+      <Item DeptID="2" UserID="1106" SortID=""/>
+      <Item DeptID="3" UserID="1049" SortID=""/>
+      <Item DeptID="2" UserID="1008" SortID=""/>
+      <Item DeptID="2" UserID="1095" SortID=""/>
+      <Item DeptID="7" UserID="1050" SortID=""/>
+      <Item DeptID="4" UserID="1050" SortID=""/>
+      <Item DeptID="3" UserID="1056" SortID=""/>
+      <Item DeptID="4" UserID="1101" SortID=""/>
+      <Item DeptID="3" UserID="1090" SortID=""/>
+      <Item DeptID="3" UserID="1041" SortID=""/>
+      <Item DeptID="2" UserID="1072" SortID=""/>
+      <Item DeptID="4" UserID="1002" SortID=""/>
+      <Item DeptID="7" UserID="1002" SortID=""/>
+      <Item DeptID="7" UserID="1064" SortID=""/>
+      <Item DeptID="5" UserID="1064" SortID=""/>
+      <Item DeptID="3" UserID="1119" SortID=""/>
+      <Item DeptID="3" UserID="1094" SortID=""/>
+      <Item DeptID="5" UserID="1036" SortID=""/>
+      <Item DeptID="7" UserID="1036" SortID=""/>
+      <Item DeptID="9" UserID="1112" SortID=""/>
+      <Item DeptID="4" UserID="1093" SortID=""/>
+      <Item DeptID="3" UserID="1132" SortID=""/>
+      <Item DeptID="3" UserID="1107" SortID=""/>
+      <Item DeptID="3" UserID="1018" SortID=""/>
+      <Item DeptID="2" UserID="1140" SortID=""/>
+      <Item DeptID="3" UserID="1145" SortID=""/>
+      <Item DeptID="4" UserID="1147" SortID=""/>
+      <Item DeptID="9" UserID="1149" SortID=""/>
+      <Item DeptID="3" UserID="1141" SortID=""/>
+      <Item DeptID="9" UserID="1152" SortID=""/>
+      <Item DeptID="2" UserID="1163" SortID=""/>
+      <Item DeptID="3" UserID="1166" SortID=""/>
+      <Item DeptID="3" UserID="1168" SortID=""/>
+      <Item DeptID="2" UserID="1160" SortID=""/>
+      <Item DeptID="0" UserID="1155" SortID=""/>
+      <Item DeptID="3" UserID="1156" SortID=""/>
+      <Item DeptID="2" UserID="1148" SortID=""/>
+      <Item DeptID="9" UserID="1169" SortID=""/>
+      <Item DeptID="3" UserID="1167" SortID=""/>
+      <Item DeptID="3" UserID="1164" SortID=""/>
+      <Item DeptID="4" UserID="1174" SortID=""/>
+      <Item DeptID="6" UserID="1173" SortID=""/>
+      <Item DeptID="4" UserID="1175" SortID=""/>
+      <Item DeptID="1" UserID="1180" SortID=""/>
+      <Item DeptID="3" UserID="1181" SortID=""/>
+      <Item DeptID="2" UserID="1185" SortID=""/>
+      <Item DeptID="4" UserID="1187" SortID=""/>
+      <Item DeptID="3" UserID="1171" SortID=""/>
+      <Item DeptID="2" UserID="1188" SortID=""/>
+      <Item DeptID="4" UserID="1189" SortID=""/>
+      <Item DeptID="3" UserID="1176" SortID=""/>
+      <Item DeptID="3" UserID="1091" SortID=""/>
+      <Item DeptID="3" UserID="1179" SortID=""/>
+      <Item DeptID="3" UserID="1170" SortID=""/>
+      <Item DeptID="3" UserID="1184" SortID=""/>
+      <Item DeptID="3" UserID="1190" SortID=""/>
+      <Item DeptID="3" UserID="1172" SortID=""/>
+      <Item DeptID="3" UserID="1192" SortID=""/>
+      <Item DeptID="2" UserID="1193" SortID=""/>
+      <Item DeptID="3" UserID="1194" SortID=""/>
+      <Item DeptID="2" UserID="1197" SortID=""/>
+      <Item DeptID="3" UserID="1153" SortID=""/>
+      <Item DeptID="3" UserID="1198" SortID=""/>
+      <Item DeptID="3" UserID="1200" SortID=""/>
+      <Item DeptID="3" UserID="1201" SortID=""/>
+      <Item DeptID="3" UserID="1203" SortID=""/>
+      <Item DeptID="2" UserID="1204" SortID=""/>
+      <Item DeptID="9" UserID="1206" SortID=""/>
+      <Item DeptID="9" UserID="1205" SortID=""/>
+      <Item DeptID="2" UserID="1207" SortID=""/>
+      <Item DeptID="7" UserID="1191" SortID=""/>
+      <Item DeptID="3" UserID="1208" SortID=""/>
+      <Item DeptID="0" UserID="1209" SortID=""/>
+      <Item DeptID="5" UserID="1039" SortID=""/>
+      <Item DeptID="7" UserID="1039" SortID=""/>
+      <Item DeptID="3" UserID="1202" SortID=""/>
+      <Item DeptID="3" UserID="1199" SortID=""/>
+      <Item DeptID="3" UserID="1196" SortID=""/>
+      <Item DeptID="3" UserID="1195" SortID=""/>
+    </RTX_DeptUser>
+    <App_Right_Role>
+      <Item ID="1" Name="User" DescriptionInfo="默认角色，默认用于所有用户"/>
+      <Item ID="2" Name="管理员" DescriptionInfo="可以操作 RTX 管理器的 RTX 用户"/>
+    </App_Right_Role>
+    <App_Right_Right>
+      <Item ID="2" Identity="RIGHT_INNER_SEND_SMS" Name="发送短信" Tag="0" Extend="" DefaultAllow="1" DescriptionInfo="若管理员为用户分配该权限，则用户可以通过RTX客户端发送手机短信。"/>
+      <Item ID="3" Identity="RIGHT_INNER_LAUNCH_CONVERSATION_N" Name="发起%d人以上的多人会话" Tag="0" Extend="30" DefaultAllow="1" DescriptionInfo="该权限的设置需要管理员配置权限参数。多人会话的人数即管理员需配置的参数。如权限参数为30，则被分配该权限的用户可以发起30人以上的多人会话。注：强烈建议权限限参数的值小于80,如设置超过80,会带来效率及带宽等严重问题，一切后果自负。"/>
+      <Item ID="4" Identity="RIGHT_INNER_SEND_FILE_N(M)" Name="传送大于%dM的文件" Tag="0" Extend="3" DefaultAllow="1" DescriptionInfo="该权限的设置需要管理员配置权限参数。允许发送文件的大小即为需配置的参数。如，权限参数配置为3，则被分配该权限的用户可以传送3M以上的文件，没有被开放此权限的用户只能传送小于3M的文件。"/>
+      <Item ID="5" Identity="RIGHT_INNER_SEND_FILE_BYP2P" Name="点对点方式传送文件" Tag="0" Extend="" DefaultAllow="1" DescriptionInfo="若管理员为用户分配该权限，则该用户可以在客户端采取点对点方式传送文件。"/>
+      <Item ID="6" Identity="RIGHT_INNER_SEND_BROADCAST_MSG" Name="发送全员广播消息" Tag="0" Extend="" DefaultAllow="2" DescriptionInfo="若管理员为用户分配该权限，则该用户可以在客户端对所有部门发送广播消息。"/>
+      <Item ID="7" Identity="RIGHT_INNER_REMOTE_LOGON" Name="远程登录" Tag="0" Extend="" DefaultAllow="2" DescriptionInfo="若管理员为用户分配该权限，则该用户可以通过客户端进行远程登录。"/>
+      <Item ID="8" Identity="RIGHT_INNER_SEND_BROADCAST_MSG_ONLY_CURRENT_DEPT" Name="发送所属部门广播消息" Tag="0" Extend="" DefaultAllow="2" DescriptionInfo="若管理员为用户分配该权限，则该用户可以在客户端对其所在的部门以及子部门发送广播消息。"/>
+      <Item ID="9" Identity="RIGHT_OUT_CREATE_MULTI_SESSION" Name="发起外部多人会话" Tag="0" Extend="" DefaultAllow="2" DescriptionInfo="若管理员为对外用户分配该权限，则该用户可以发起外部多人会话，内部用户分配该权限不起作用。"/>
+      <Item ID="10" Identity="RIGHT_OUT_SEND_FILE_LIMIT" Name="对外发送小于%dM的文件" Tag="0" Extend="10" DefaultAllow="2" DescriptionInfo="若管理员为用户分配该权限，则该用户可以对外部用户发送限制大小的文件或者图片。"/>
+      <Item ID="11" Identity="RIGHT_OUT_SEND_FILE_NOLIMIT" Name="无限制对外发送文件大小" Tag="0" Extend="" DefaultAllow="2" DescriptionInfo="若管理员为用户分配该权限，则该用户可以对外部用户发送不限制大小的文件或者图片。"/>
+    </App_Right_Right>
+    <App_Right_RoleRight>
+      <Item RoleID="1" RightID="2" Allow="1" Deny="0"/>
+      <Item RoleID="1" RightID="3" Allow="1" Deny="0"/>
+      <Item RoleID="1" RightID="4" Allow="1" Deny="0"/>
+      <Item RoleID="1" RightID="5" Allow="1" Deny="0"/>
+      <Item RoleID="1" RightID="6" Allow="1" Deny="0"/>
+      <Item RoleID="1" RightID="7" Allow="1" Deny="0"/>
+      <Item RoleID="1" RightID="8" Allow="1" Deny="0"/>
+      <Item RoleID="1" RightID="9" Allow="1" Deny="0"/>
+      <Item RoleID="1" RightID="10" Allow="1" Deny="0"/>
+      <Item RoleID="1" RightID="11" Allow="1" Deny="0"/>
+    </App_Right_RoleRight>
+    <App_Right_UserRole/>
+    <App_Right_RoleApp/>
+    <App_Plugin_Info/>
+    <APP_ORG_File>
+      <Item ID="0" Name="默认组织架构" Version="14"/>
+    </APP_ORG_File>
+    <APP_ORG_UserFile/>
+    <RTX_UserLevel/>
+  </Database>
+  <OrgstructFileInfo>
+    <File name="Orgstruct_0" base64encode="
+eJwBxAA7/0JRUVpJULoAAAB4nLOxr8jNUShLLSrOzM+zVTLUM1BSSM1Lzk/JzEu3
+VXJ3MjI2NFKyt+PlsnEvyi8tKFYISy2yVdI1VLKDCChkpgB1GYCBoZJCXmJuqq3S
+9ZfX1u+5s3MnqiKYbICvkkJJZQGQZQBUoA9WgazQCKbQ3QW/QmOYQsegEPwqTeB2
+F+WnxzvnZKbmleDXYYqiIzi1CBhE+HWYwXScfXRlHX6l5iiGO+bk4FduCVMe6IhN
+ISpdDIwrAMoYlD+SiVqd"/>
+  </OrgstructFileInfo>
+  <TabFileInfo>
+    <File name="TabConfig.xml" base64encode="
+eJyzsa/IzVEoSy0qzszPs1Uy1DNQUkjNS85PycxLt1VydzIyNjRSsrfj5bIJSUwq
+VghLLbJVMlHSBwoAAAuLEBw=
+"/>
+  </TabFileInfo>
+  <DisGroupDB>
+    <GroupBasicInfo>
+      <Item GroupID="10001" GroupGUID="{3CB9263B-2F6D-40F5-893C-A449F5753623}" GroupName="传奇永恒" GroupInitiator="" CreateTime="1319705341" GroupDescription="常用信息：http://172.30.61.44:89/mediawiki/index.php/Common\r\n禅道：http://172.30.61.44:88/zentao/index.html\r\nP4 IP: 172.30.10.122:1668" ParticipantCount="86" GroupType="0" BasicInfoVer="637" UserListVer="637" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10002" GroupGUID="{841A8195-8A0D-4438-99B1-D4245A118778}" GroupName="Prog_All" GroupInitiator="" CreateTime="1343207893" GroupDescription="" ParticipantCount="23" GroupType="0" BasicInfoVer="633" UserListVer="633" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10003" GroupGUID="{8053E4F6-F9DA-4CA3-B14A-8BB71210E19F}" GroupName="Prog_Client" GroupInitiator="" CreateTime="1343207901" GroupDescription="" ParticipantCount="12" GroupType="0" BasicInfoVer="629" UserListVer="629" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10004" GroupGUID="{7D31B437-6910-44B1-9839-9F197116820B}" GroupName="Prog_Server" GroupInitiator="" CreateTime="1343207910" GroupDescription="" ParticipantCount="5" GroupType="0" BasicInfoVer="634" UserListVer="634" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10005" GroupGUID="{51A8CA2F-0702-4908-8C85-464A97CF5DB6}" GroupName="GD" GroupInitiator="" CreateTime="1343207914" GroupDescription="" ParticipantCount="20" GroupType="0" BasicInfoVer="623" UserListVer="623" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10006" GroupGUID="{7F72B9B3-EF11-4B87-A67B-D3A1533DCEAB}" GroupName="Art" GroupInitiator="" CreateTime="1343207917" GroupDescription="" ParticipantCount="41" GroupType="0" BasicInfoVer="638" UserListVer="638" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10007" GroupGUID="{2885DAA3-F1A3-4EB1-BD05-C47301FF5A5C}" GroupName="Managers" GroupInitiator="" CreateTime="1364270713" GroupDescription="" ParticipantCount="22" GroupType="0" BasicInfoVer="621" UserListVer="621" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10008" GroupGUID="{78BAF693-E1D2-42EF-B377-B400760709C4}" GroupName="Art_LA" GroupInitiator="" CreateTime="1365413230" GroupDescription="" ParticipantCount="12" GroupType="0" BasicInfoVer="586" UserListVer="586" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10009" GroupGUID="{249B4B86-C296-4762-845F-D7E0C7B9D5EE}" GroupName="GD_LD" GroupInitiator="" CreateTime="1365413237" GroupDescription="" ParticipantCount="6" GroupType="0" BasicInfoVer="624" UserListVer="624" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10010" GroupGUID="{1D59AE21-F636-4D27-9DE3-6053ADC634B3}" GroupName="LD_LA" GroupInitiator="" CreateTime="1365413246" GroupDescription="" ParticipantCount="17" GroupType="0" BasicInfoVer="625" UserListVer="625" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10011" GroupGUID="{61DEC035-B035-4BFF-AACE-04D21C6DAD36}" GroupName="GD_Combat" GroupInitiator="" CreateTime="1365658998" GroupDescription="" ParticipantCount="4" GroupType="0" BasicInfoVer="585" UserListVer="585" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10012" GroupGUID="{6A9FA23E-1CF3-423D-9BF0-5176BE1B78AC}" GroupName="Art_Anim" GroupInitiator="" CreateTime="1365667096" GroupDescription="" ParticipantCount="11" GroupType="0" BasicInfoVer="568" UserListVer="568" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10013" GroupGUID="{1235C73A-B633-407E-A62C-1BB076729676}" GroupName="Art_VFX" GroupInitiator="" CreateTime="1366005155" GroupDescription="" ParticipantCount="6" GroupType="0" BasicInfoVer="565" UserListVer="565" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10014" GroupGUID="{AB902615-64F8-4A6B-94B2-59035B669183}" GroupName="QA" GroupInitiator="" CreateTime="1368502404" GroupDescription="" ParticipantCount="8" GroupType="0" BasicInfoVer="611" UserListVer="611" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10015" GroupGUID="{79CB3340-9483-4DDD-B021-E516DB42B444}" GroupName="GD_SysGD" GroupInitiator="" CreateTime="1369126386" GroupDescription="" ParticipantCount="9" GroupType="0" BasicInfoVer="607" UserListVer="607" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10016" GroupGUID="{955EA36E-25CC-471A-873F-0B25660552D7}" GroupName="Art_UI" GroupInitiator="" CreateTime="1372136534" GroupDescription="" ParticipantCount="5" GroupType="0" BasicInfoVer="639" UserListVer="639" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10017" GroupGUID="{132BA664-175D-4224-95CC-EED6639E39CA}" GroupName="Prog_Client_Engine" GroupInitiator="" CreateTime="1373011762" GroupDescription="" ParticipantCount="6" GroupType="0" BasicInfoVer="505" UserListVer="505" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10018" GroupGUID="{4EAB37E1-8553-4F46-BAC5-8430A93F3F6B}" GroupName="VFX_Optimize" GroupInitiator="" CreateTime="1373937718" GroupDescription="" ParticipantCount="5" GroupType="0" BasicInfoVer="618" UserListVer="618" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10019" GroupGUID="{744E9A23-B26A-41E8-9D41-27F4C0106F5D}" GroupName="AI" GroupInitiator="" CreateTime="1401429669" GroupDescription="" ParticipantCount="7" GroupType="0" BasicInfoVer="626" UserListVer="626" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+      <Item GroupID="10020" GroupGUID="{7AD1EAFD-22D0-4B39-ACA0-7DE5EC332FC8}" GroupName="Movie" GroupInitiator="" CreateTime="1407219422" GroupDescription="" ParticipantCount="5" GroupType="0" BasicInfoVer="631" UserListVer="631" IsEffective="1" szExpand1="" dwExpand1="0" dwExpand2="0" dwExpand3="0"/>
+    </GroupBasicInfo>
+    <GroupUserList>
+      <Item IndexNumber="3" UserAccount="chenwang" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="5" UserAccount="fangruyi" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="13" UserAccount="lixj" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="22" UserAccount="suibo" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="23" UserAccount="wubin" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="27" UserAccount="XiongJun" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="29" UserAccount="yangyun02" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="31" UserAccount="yulu" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="32" UserAccount="yunyu" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="34" UserAccount="zhanglinjian" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="36" UserAccount="zhaohanhan" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="38" UserAccount="zhuming" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="41" UserAccount="朱剑丘" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="42" UserAccount="chenwang" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="43" UserAccount="fangruyi" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="47" UserAccount="lixj" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="50" UserAccount="wubin" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="52" UserAccount="zhanglinjian" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="53" UserAccount="zhuming" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="54" UserAccount="朱剑丘" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="55" UserAccount="chenwang" GroupID="10003" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="56" UserAccount="fangruyi" GroupID="10003" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="61" UserAccount="zhanglinjian" GroupID="10003" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="62" UserAccount="zhuming" GroupID="10003" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="63" UserAccount="lixj" GroupID="10004" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="65" UserAccount="wubin" GroupID="10004" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="67" UserAccount="朱剑丘" GroupID="10004" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="75" UserAccount="yunyu" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="85" UserAccount="suibo" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="87" UserAccount="XiongJun" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="89" UserAccount="yangyun02" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="90" UserAccount="yulu" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="91" UserAccount="zhaohanhan" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="94" UserAccount="zhangqi" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="101" UserAccount="luchenlei" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="103" UserAccount="gaohuaxiang.watson" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="106" UserAccount="luchenlei" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="117" UserAccount="gaohuaxiang.watson" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="120" UserAccount="zhangqi" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="121" UserAccount="李夏光" GroupID="10004" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="122" UserAccount="李夏光" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="140" UserAccount="avalon" GroupID="10003" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="141" UserAccount="avalon" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="174" UserAccount="johnmah" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="217" UserAccount="GD-chenkai" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="218" UserAccount="lintao" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="249" UserAccount="yangchen05" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="250" UserAccount="yangchen05" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="282" UserAccount="梅显忠" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="283" UserAccount="梅显忠" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="378" UserAccount="wuxin03" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="416" UserAccount="管佳俊" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="417" UserAccount="刘泓源" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="420" UserAccount="刘泓源" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="450" UserAccount="xinying" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="451" UserAccount="xinying" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="455" UserAccount="Jeff" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="456" UserAccount="Jeff" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="457" UserAccount="Jeff" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="467" UserAccount="zhourongcai" GroupID="10012" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="468" UserAccount="zhourongcai" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="469" UserAccount="caojin" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="474" UserAccount="caojin" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="498" UserAccount="zhujie" GroupID="10016" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="502" UserAccount="lvyue01" GroupID="10009" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="503" UserAccount="lvyue01" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="504" UserAccount="lvyue01" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="524" UserAccount="shanling" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="525" UserAccount="shanling" GroupID="10003" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="526" UserAccount="shanling" GroupID="10017" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="527" UserAccount="shanling" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="528" UserAccount="杨佐国" GroupID="10016" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="529" UserAccount="fuyangyang.young" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="530" UserAccount="fuyangyang.young" GroupID="10008" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="531" UserAccount="fuyangyang.young" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="532" UserAccount="zhanglixi.sissi" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="533" UserAccount="xupong" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="534" UserAccount="xupong" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="535" UserAccount="xupong" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="575" UserAccount="xushizhen" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="605" UserAccount="杨佐国" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="129" UserAccount="李夏光" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="142" UserAccount="avalon" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="145" UserAccount="zhaozhenyang" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="147" UserAccount="xingbing" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="149" UserAccount="xingbing" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="151" UserAccount="zhaozhenyang" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="156" UserAccount="taoqun" GroupID="10004" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="157" UserAccount="taoqun" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="158" UserAccount="taoqun" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="167" UserAccount="GD-chenkai" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="168" UserAccount="GD-chenkai" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="177" UserAccount="johnmah" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="178" UserAccount="felix" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="179" UserAccount="zhaoguangua.felix" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="180" UserAccount="felix" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="181" UserAccount="zhaoguangua.felix" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="184" UserAccount="zhaojun" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="185" UserAccount="zhaojun" GroupID="10003" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="186" UserAccount="zhaojun" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="187" UserAccount="张乐" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="188" UserAccount="张乐" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="189" UserAccount="zhangjingxuan" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="190" UserAccount="zhangjingxuan" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="201" UserAccount="chenwang" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="203" UserAccount="luchenlei" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="205" UserAccount="suibo" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="206" UserAccount="wubin" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="207" UserAccount="XiongJun" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="208" UserAccount="yunyu" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="209" UserAccount="zhangjingxuan" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="210" UserAccount="zhanglinjian" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="212" UserAccount="zhaohanhan" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="213" UserAccount="朱剑丘" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="214" UserAccount="zhangrui" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="215" UserAccount="zhangrui" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="216" UserAccount="zhangrui" GroupID="10003" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="219" UserAccount="lintao" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="222" UserAccount="lintao" GroupID="10009" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="224" UserAccount="yunyu" GroupID="10009" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="227" UserAccount="suibo" GroupID="10008" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="228" UserAccount="xingbing" GroupID="10008" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="229" UserAccount="yangyun02" GroupID="10008" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="230" UserAccount="zhangqi" GroupID="10008" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="236" UserAccount="suibo" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="237" UserAccount="xingbing" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="238" UserAccount="yunyu" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="352" UserAccount="pengyanxin.yancy" GroupID="10016" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="355" UserAccount="fangruyi" GroupID="10017" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="437" UserAccount="honggang02" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="438" UserAccount="honggang02" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="458" UserAccount="Jeff" GroupID="10009" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="459" UserAccount="zhanglixi.sissi" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="460" UserAccount="zhanglixi.sissi" GroupID="10008" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="461" UserAccount="zhanglixi.sissi" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="463" UserAccount="nieqin" GroupID="10012" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="464" UserAccount="yangtao" GroupID="10012" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="470" UserAccount="caojin" GroupID="10014" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="471" UserAccount="zhangjingxuan" GroupID="10014" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="472" UserAccount="shiqing" GroupID="10016" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="473" UserAccount="shiqing" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="475" UserAccount="xn" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="500" UserAccount="zhujie" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="501" UserAccount="wangxuan.vic" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="505" UserAccount="lvyue01" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="506" UserAccount="wph" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="507" UserAccount="wph" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="536" UserAccount="tangpeng" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="537" UserAccount="tangpeng" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="538" UserAccount="chenwang" GroupID="10020" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="539" UserAccount="Jeff" GroupID="10020" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="541" UserAccount="tangpeng" GroupID="10020" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="549" UserAccount="luojing" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="556" UserAccount="fuyangyang.young" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="557" UserAccount="yijianbo" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="583" UserAccount="hongzexuan" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="584" UserAccount="hongzexuan" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="585" UserAccount="hongzexuan" GroupID="10015" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="586" UserAccount="xinying" GroupID="10015" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="587" UserAccount="xushizhen" GroupID="10015" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="240" UserAccount="lintao" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="241" UserAccount="yangyun02" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="242" UserAccount="zhangqi" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="246" UserAccount="huangxiaodong02" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="251" UserAccount="gaohuaxiang.watson" GroupID="10011" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="252" UserAccount="luchenlei" GroupID="10011" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="253" UserAccount="yangchen05" GroupID="10011" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="254" UserAccount="zhaozhenyang" GroupID="10011" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="258" UserAccount="XiongJun" GroupID="10012" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="261" UserAccount="huangxiaodong02" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="263" UserAccount="wangcheng" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="265" UserAccount="zhaobodong01" GroupID="10012" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="266" UserAccount="zhaobodong01" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="267" UserAccount="wangcheng" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="269" UserAccount="wangcheng" GroupID="10013" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="270" UserAccount="zhaohanhan" GroupID="10013" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="271" UserAccount="张乐" GroupID="10013" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="281" UserAccount="shujian" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="289" UserAccount="梅显忠" GroupID="10014" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="290" UserAccount="tanyong" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="295" UserAccount="meiliying" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="297" UserAccount="meiliying" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="298" UserAccount="GD-chenkai" GroupID="10015" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="301" UserAccount="meiliying" GroupID="10015" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="302" UserAccount="tanyong" GroupID="10015" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="312" UserAccount="舒伟超" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="316" UserAccount="朱剑丘" GroupID="10014" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="323" UserAccount="mt" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="325" UserAccount="mt" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="329" UserAccount="舒伟超" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="337" UserAccount="johnmah" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="338" UserAccount="johnmah" GroupID="10008" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="339" UserAccount="huangxiaodong02" GroupID="10008" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="340" UserAccount="huangxiaodong02" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="342" UserAccount="pengyanxin.yancy" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="344" UserAccount="pengyanxin.yancy" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="346" UserAccount="tanyong" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="358" UserAccount="zhaojun" GroupID="10017" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="359" UserAccount="zhuming" GroupID="10017" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="360" UserAccount="chenwang" GroupID="10017" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="361" UserAccount="chenwang" GroupID="10018" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="362" UserAccount="fangruyi" GroupID="10018" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="364" UserAccount="zhaohanhan" GroupID="10018" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="365" UserAccount="zhaojun" GroupID="10018" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="366" UserAccount="zhuming" GroupID="10018" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="367" UserAccount="zhaoguangua.felix" GroupID="10012" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="379" UserAccount="wuxin03" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="380" UserAccount="wuxin03" GroupID="10015" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="382" UserAccount="shenyanggong" GroupID="10012" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="386" UserAccount="shenyanggong" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="389" UserAccount="zhaobodong01" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="393" UserAccount="shenyanggong" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="396" UserAccount="wangying" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="398" UserAccount="wangying" GroupID="10012" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="401" UserAccount="wangying" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="405" UserAccount="xuzhonghai" GroupID="10003" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="406" UserAccount="xuzhonghai" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="407" UserAccount="xuzhonghai" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="408" UserAccount="panyiyu" GroupID="10009" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="409" UserAccount="panyiyu" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="410" UserAccount="panyiyu" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="411" UserAccount="panyiyu" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="413" UserAccount="zhanglinjian" GroupID="10017" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="414" UserAccount="管佳俊" GroupID="10014" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="415" UserAccount="管佳俊" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="423" UserAccount="刘泓源" GroupID="10014" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="426" UserAccount="dengyile" GroupID="10013" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="427" UserAccount="dengyile" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="428" UserAccount="dengyile" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="433" UserAccount="xiaoni" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="434" UserAccount="xiaoni" GroupID="10012" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="435" UserAccount="honggang02" GroupID="10008" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="436" UserAccount="honggang02" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="465" UserAccount="nieqin" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="466" UserAccount="yangtao" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="476" UserAccount="lida" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="477" UserAccount="kongxiangwen.robey" GroupID="10003" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="478" UserAccount="kongxiangwen.robey" GroupID="10016" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="479" UserAccount="kongxiangwen.robey" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="480" UserAccount="kongxiangwen.robey" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="481" UserAccount="lihuanyi" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="482" UserAccount="lihuanyi" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="483" UserAccount="lihuanyi" GroupID="10003" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="490" UserAccount="wangxuan.vic" GroupID="10012" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="491" UserAccount="llyy" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="492" UserAccount="wq" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="493" UserAccount="caojin" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="494" UserAccount="wq" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="495" UserAccount="llyy" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="496" UserAccount="wq" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="508" UserAccount="wph" GroupID="10003" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="510" UserAccount="lintao" GroupID="10019" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="511" UserAccount="lixj" GroupID="10019" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="512" UserAccount="luchenlei" GroupID="10019" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="513" UserAccount="lvyue01" GroupID="10019" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="514" UserAccount="panyiyu" GroupID="10019" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="515" UserAccount="yunyu" GroupID="10019" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="516" UserAccount="朱剑丘" GroupID="10019" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="517" UserAccount="wangyi" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="518" UserAccount="wangyi" GroupID="10009" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="519" UserAccount="wangyi" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="520" UserAccount="wangyi" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="521" UserAccount="lxf" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="522" UserAccount="lxf" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="550" UserAccount="luojing" GroupID="10008" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="551" UserAccount="luojing" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="552" UserAccount="luojing" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="553" UserAccount="fujunjie" GroupID="10013" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="554" UserAccount="fujunjie" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="555" UserAccount="fujunjie" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="558" UserAccount="yijianbo" GroupID="10013" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="559" UserAccount="yijianbo" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="560" UserAccount="祝春晖" GroupID="10008" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="561" UserAccount="liubing04" GroupID="10012" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="562" UserAccount="liubing04" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="563" UserAccount="liubing04" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="564" UserAccount="huangyuanyuan" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="565" UserAccount="nieqin" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="566" UserAccount="shiqing" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="568" UserAccount="wangxuan.vic" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="569" UserAccount="xn" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="570" UserAccount="yangtao" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="572" UserAccount="zhourongcai" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="573" UserAccount="zhujie" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="574" UserAccount="祝春晖" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="576" UserAccount="yeyuqian" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="577" UserAccount="haoruikun" GroupID="10008" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="578" UserAccount="haoruikun" GroupID="10010" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="579" UserAccount="haoruikun" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="606" UserAccount="wangfan01" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="607" UserAccount="wangfan01" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="580" UserAccount="haoruikun" GroupID="10006" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="581" UserAccount="suibo" GroupID="10020" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="582" UserAccount="zhuming" GroupID="10020" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="589" UserAccount="lixj" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="590" UserAccount="zhaojun" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="591" UserAccount="zhuming" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="592" UserAccount="wuxin03" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="593" UserAccount="zhangqi" GroupID="10007" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="594" UserAccount="caiyuyin" GroupID="10014" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="595" UserAccount="caiyuyin" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="596" UserAccount="caiyuyin" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="597" UserAccount="yeyuqian" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="598" UserAccount="yeyuqian" GroupID="10015" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="599" UserAccount="wanglongkui" GroupID="10014" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="600" UserAccount="wanglongkui" GroupID="10002" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="601" UserAccount="wanglongkui" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="602" UserAccount="yuliye" GroupID="10005" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="603" UserAccount="yuliye" GroupID="10015" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+      <Item IndexNumber="604" UserAccount="yuliye" GroupID="10001" UserRight="0" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+    </GroupUserList>
+    <TotalGroupInfo>
+      <Item IndexNumber="0" CurrentGroupMaxVer="639" TotalGroupCount="20" MaxGroupID="10020" szExpand1="" dwExpand1="0" dwExpand2="0"/>
+    </TotalGroupInfo>
+  </DisGroupDB>
+  <ClientConfig>
+    <ModifyAllowMarks>
+      <Item ConfigName="AllowModifyUserInfo" ConfigValue="1"/>
+      <Item ConfigName="AllowModifyUserPwd" ConfigValue="1"/>
+      <Item ConfigName="AllowModifyUserPhoto" ConfigValue="1"/>
+    </ModifyAllowMarks>
+    <ClientDisplay>
+      <Item ConfigName="IsFixedSort" ConfigValue="0"/>
+      <Item ConfigName="IsForbidModify" ConfigValue="0"/>
+      <Item ConfigName="IsDefShowName" ConfigValue="1"/>
+    </ClientDisplay>
+    <SYSMSG_Config>
+      <Item ConfigName="SYSMSG_Stay_Time_In_Seconds" ConfigValue="10"/>
+      <Item ConfigName="SYSMSG_Never_Disappear" ConfigValue="Y"/>
+      <Item ConfigName="SYSMSG_Send_to_OnLine" ConfigValue="0"/>
+    </SYSMSG_Config>
+    <Orgstruct TimeInterval="30000"/>
+  </ClientConfig>
+</RTX2005OrLater_Exported_Data_9D373D5B-AA39-42e7-A819-BF5F7A8961FC>

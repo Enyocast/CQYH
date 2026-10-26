@@ -1,0 +1,381 @@
+$def with (val)
+<html>
+  <head>
+    <title>客户端版本构建管理</title>
+  </head>
+  <body>
+    上次操作结果：<br>
+    $val['msg']<br>
+    <script type="text/javascript">
+    $if val['msg']:
+      alert("$val['msg']");
+    </script>
+    <hr>
+    <h2><a href="/">刷新</a></h2>
+    <h2><a href="/?action=stop_current_build">终止当前编译</a></h2>
+    
+	  <h2>
+	  <br><a href='/?action=del_log'>删除全部LOG</a>
+	   
+    <hr />
+   
+   <script language="javascript">
+	var xmlHttp;
+	
+	function createXMLHttpRequest()
+	{  
+		var xmlHttp;  
+		if (window.XMLHttpRequest)
+		{  
+			xmlHttp = new XMLHttpRequest();  
+			if (xmlHttp.overrideMimeType)  
+            {
+				xmlHttp.overrideMimeType('text/xml');  
+			}
+		}
+		else if (window.ActiveXObject)
+		{  
+			try 
+			{  
+				xmlHttp = new ActiveXObject("Msxml2.XMLHTTP"); 
+			}
+			catch (e)
+			{  
+				try
+				{  
+					xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");  
+				}
+				catch (e)
+				{  
+				}  
+			}  
+		}  
+		//alert(xmlHttp);
+		return xmlHttp;  
+	}  
+
+	
+	function chooseinput(mainAction)
+	{
+		var s1 = document.selectform.build_cl;		
+				
+		var s2 = s1.options[s1.selectedIndex].text;
+		
+		var chk = document.selectform.use_label;
+		var chk_val = chk.checked;
+		
+		var lab_sel = document.selectform.build_label;		
+		var lab_val = lab_sel.options[lab_sel.selectedIndex].text;
+	
+		var url = mainAction + '&use_label=' + chk_val.toString()
+			+ '&build_label=' + lab_val.toString() + '&build_cl=' + s2.toString();
+		alert(url);
+		
+		var frm = document.getElementById("rebuildform");		
+				
+		frm.action = url;
+		
+		frm.submit();
+		
+		alert(frm);
+	}	
+
+	function chooseinput2(mainAction)
+	{
+		//alert(mainAction);
+		
+		var s1 = document.selectform.build_cl;		
+				
+		var s2 = s1.options[s1.selectedIndex].text;
+		//alert(s2);
+		
+		var chk = document.selectform.use_label;
+		var chk_val = chk.checked;
+		
+		//alert(chk_val);
+		
+		var lab_sel = document.selectform.build_label;		
+		var lab_val = lab_sel.options[lab_sel.selectedIndex].text;
+		
+		//alert(lab_val);
+		
+		var frm = document.getElementById("rebuildform");
+		//var frm = document.createElement("form");
+		//frm.setAtrribute("method", "post");
+		//alert(frm.method);
+		// "localhost:8098" + 
+		var url = mainAction + '&use_label=' + chk_val.toString()
+			+ '&lab=' + lab_val.toString() + '&cl=' + s2.toString();
+		//document.write(url);
+		xmlHttp = createXMLHttpRequest();
+		//document.write(xmlHttp);
+		//alert(xmlHttp.status);
+		
+		xmlHttp.onreadystatechange = getStatusBack;  
+		xmlHttp.setRequestHeader("Content-Type",  
+				"application/x-www-form-urlencoded;");  
+		try
+		{
+			xmlHttp.open("POST", "", true);  
+		}
+		catch(e)
+		{
+			document.write(e);
+		}
+		
+		document.write(url);
+		
+				
+		alert(xmlHttp.status);
+		xmlHttp.send(url); 
+		//alert(xmlHttp.status);
+
+		//document.body.appendChild(frm);
+		//frm.submit();
+	}	
+	
+	function getStatusBack()
+	{
+		document.write(xmlHttp.responseText);
+	}
+	
+	</script>
+	 
+	 <h2>编译操作</h2>
+	
+	$if not val['is_compile_client']:	
+		<form name='selectform'>
+		<table border='1' cellspacing='0'>
+		<tr>
+		<td><b>选择版本号</b></td>
+		<td>
+		$for p in val['cur_version']:
+			<p>目录 $p[0] 版本 $p[1]</p>
+
+
+		分支：<Select name='build_branch'>
+			    <option>_CQ</option><option>_CQ_S1</option><option>_CQ_F</option><option>_CQ_OB</option><option>_OB_1130</option><option>_Stable</option><option>_CBT1</option>
+			</Select>
+			<br>
+			<input type='checkbox' name='use_label'>使用标签</input><br>
+            <input type='checkbox' name='split_upk'>COOK前先拆包</input><br>
+            <input type='checkbox' name='use_mpq' checked='on'>使用MPQ安装包</input><br>
+            <input type='checkbox' name='SeekFreeMap'>UseSeekFreeMap</input><br>
+            <input type='checkbox' name='use_resref' checked='on'>去除未引用资源</input><br>
+
+            <input type='checkbox' name='dbg_skip_compile'>跳过编译</input><br>
+            <input type='checkbox' name='dbg_skip_split'>跳过拆包</input><br>
+            <input type='checkbox' name='dbg_skip_resref'>跳过资源引用表生成</input><br>
+            <input type='checkbox' name='dbg_skip_cook'>跳过COOK</input><br>
+
+			
+			ChangeList:<Select name='build_cl'> 
+			$if val['change_list']:
+				$for p2 in val['change_list']:
+					<option>$p2</option>
+			</Select> 
+			
+			<br>
+			Label:<Select name = 'build_label'> 
+			$if val['label_list']:
+				$for p2 in val['label_list']:
+					<option>$p2</option>
+			</Select>
+		</td>
+		</tr>
+		<tr>
+		<td><b>选择命令</b></td>
+		<td>
+            <br>
+            运营版本号:<Select name = 'ver_use'>
+			$if val['ver_list']:
+				$for p2 in val['ver_list']:
+					<option>$p2</option>
+			</Select>请在'编译游戏'、'生成安装包' 、 '创建版本快照' 前选择<br>
+			<br><input name='action' value='compile_client_rebuild' type='radio' checked='checked'>编译客户端</input>
+            <br><input name='action' value='compile_client_rebuild' type='radio'>全部重编客户端</input>
+			<br><input name='action' value='release_client' type='radio' >发布客户端</input><br>
+			
+			<br><input name='action' value='compile_editor_rebuild' type='radio' >编译Editor</input>
+			<br><input name='action' value='release_editor' type='radio' >发布Editor</input><br>
+
+            <hr><input name='action' value='gen_res_ref_table' type='radio' >生成资源引用表</input>
+            <br><input name='action' value='compile_shipping_manual_config' type='radio' >编译发行版(增量烘焙配置表中的地图文件——不外放的都不打包)</input>
+            <br><input name='action' value='compile_shipping_manual_config_full' type='radio' >编译发行版(重新烘焙配置表中的地图文件——材质有丢失时用这个)</input>
+			<br><input name='action' value='compile_shipping' type='radio' >编译发行版(增量烘焙全部数据)</input>
+			<br><input name='action' value='compile_shipping_full' type='radio' >编译发行版(重新烘焙全部数据——材质有丢失时用这个)</input>
+            <br><input name='action' value='compile_shipping_skip_cook' type='radio' >编译发行版(只编译、不烘焙文件——没有改过美术资源时用这个)</input>
+            <br><input name='action' value='compile_shipping_skip_cook_compile' type='radio' >编译发行版(不编译、不烘焙——只改了配置文件时用这个)</input><br><br>
+            <br><input name='action' value='compile_shipping_only' type='radio' >仅编译发行版EXE</input><br>
+		    <hr>
+
+			<br><input name='action' value='snap_ver' type='radio' >创建版本快照(仅在发行版本编译完后有效)</input>
+			<br><input name='action' value='pack_zip' type='radio' >生成安装包(需要选择运营版本号，并且要先创建快照)</input><br>
+            <hr>
+
+            <br><input name='action' value='compile_shadercache' type='radio' >编译材质缓存</input><br>
+			<br><input name='action' value='fix_mat_usage' type='radio' >修正材质标签</input><br>
+            <br><input name='action' value='auto_integrate' type='radio' >自动从08.Prog_Stable集成必要文件到08.Prog</input><br><br>
+
+            <br><input name='action' value='patch_qa_build' type='radio' >Patch QABuild</input>
+            <br><input name='action' value='patch_shipping' type='radio' >Patch Shipping</input><br><br>
+            <br><input name='action' value='auto_cook' type='radio' >auto_cook</input><br><br>
+            <br><input name='action' value='make_doodad_quest_cfg' type='radio' >make_doodad_quest_cfg</input><br><br>
+
+		</td>
+		</tr>
+		<tr>
+		<td colspan='2' align='center'>
+			<br><button >&nbsp;&nbsp;开始编译&nbsp;&nbsp;</button>       
+		</td>
+		</tr>
+		</table>
+		</form>
+		<hr>
+		<h1>签名文件上传</h1>
+		<form name='upload_exe' method="post" enctype="multipart/form-data">
+			<table border='1' cellspacing='0' cellpadding='5' bordercolor='#000000'>
+				<tr>
+					<td align='center'>
+						<input name='mmogame_exe_file' size='25' value='' type='file'></input>
+
+						<input type='submit' value='上传签名EXE'/>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<hr>
+		<h1>RTX广播</h1>
+		<form name='send_rtx'>
+			<table border='1' cellspacing='0' cellpadding='5' bordercolor='#880000'>
+				<tr>
+					<td align='center'>						
+						<input name='send_rtx' size='100' value='' type='text' wrap='true'></input>
+                        <input type='submit' value='发送RTX通知'/>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<hr>
+		<h1>全文件修复包管理</h1>
+		<form name='fix_url_mgr'>
+			<table border='0' cellspacing='0' bordercolor='#880000'>
+				<tr>
+					<td align='center'>
+						<input name='fix_url_str' size='25' value='' type='text' wrap='true'></input>
+					</td>
+
+					<td align='left'>
+						<input type='submit' value='增加全文件修复下载基址URL'/>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<form name='make_fix_files'>
+			<table border='0' cellspacing='0' bordercolor='#880000'>
+				 <tr>
+					<td align='left' colspan='2'>
+						版本号:<Select name = 'ver_fix_files'>
+			$if val['ver_list']:
+				$for p2 in val['ver_list']:
+					<option>$p2</option>
+			</Select>下载URL基址:<Select name = 'fix_url_lists'>
+			$if val['fix_url_list']:
+				$for p2 in val['fix_url_list']:
+					<option>$p2</option>
+			</Select>
+
+						<input type='submit' value='生成全文件修复包'/>
+					</td>
+				</tr>
+                <tr>
+                    <td>
+
+                    </td>
+				</tr>
+			</table>
+		</form>
+		<hr>
+		<h1>版本号、补丁管理</h1>
+		<form name='ver_mgr'>
+			<table border='0' cellspacing='0' bordercolor='#880000'>
+				 <tr>
+					<td align='left' colspan='2'>
+						最新版本号: $val['last_ver']
+					</td>
+				</tr>
+				<tr>
+					<td align='center'>
+						<input name='new_ver_str' size='25' value='' type='text' wrap='true'></input>
+					</td>
+
+					<td align='left'>
+						<input type='submit' value='增加版本号'/>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<form name='make_patch'>
+			<table border='0' cellspacing='0' bordercolor='#880000'>
+				 <tr>
+					<td align='left' colspan='2'>
+						从：<Select name = 'ver_from'>
+			$if val['ver_list']:
+				$for p2 in val['ver_list']:
+					<option>$p2</option>
+			</Select> 到:<Select name = 'ver_to'>
+			$if val['ver_list']:
+				$for p2 in val['ver_list']:
+					<option>$p2</option>
+			</Select>
+					</td>
+
+					<td align='left'>
+						<input type='submit' value='生成补丁'/>
+					</td>
+				</tr>
+                <tr>
+				</tr>
+			</table>
+		</form>
+    $else:
+		<form name='upload_exe' method="post" enctype="multipart/form-data">
+			<table border='1' cellspacing='0' cellpadding='5' bordercolor='#000000'>
+				<tr>
+					<td align='center'>
+						<input name='mmogame_exe_file' size='25' value='' type='file'></input>
+
+						<input type='submit' value='上传签名EXE'/>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<h1>RTX广播</h1>
+		<form name='send_rtx'>
+			<table border='1' cellspacing='0' cellpadding='5' bordercolor='#880000'>
+				<tr>
+					<td align='center'>
+						<input name='send_rtx' size='100' value='' type='text' wrap='true'></input>
+                        <input type='submit' value='发送RTX通知'/>
+					</td>
+				</tr>
+			</table>
+		</form>
+		<br>编译中...
+    $if val['is_compile_client']:
+      <h2>_编译信息_</h2>
+      <textarea style="width: 800px;height: 360px;font-size: smaller" >$val['compile_info_client']</textarea>
+
+
+    
+
+    <hr />
+	
+	<h2>_编译错误信息_</h2>
+    $for log in val['err_log']:
+      <p>
+        <a href='./static/$log'>$log</a>
+      </p>
+    <hr />
+  </body>
+</html>

@@ -1,0 +1,63 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+/* =0 Reset
+--------------------------------------------------------------*/
+html,body,div,h2,h3,ul,li,h4,dl,dd,td,p,tr,table,img {padding:0;margin: 0;cursor:default}
+img {border-style:none;}
+ul,li {list-style-type:none;}
+form {margin:0;padding:0;}
+body {font-size:12px;font-family:"宋体",Verdana,Arial, Helvetica, sans-serif;color:#e8d6b3;line-height:18px;background: transparent;}
+input {font-size:12px;font-family:"宋体", Verdana, Arial, Helvetica, sans-serif;color:#333;line-height: 17px;}
+select {border: 1px solid #744219;font-size: 12px;color: #333;}
+.clearboth {line-height:0px;height:0px;clear:both;*display:inline; font-size:1px;}
+
+button {border: 0 none; cursor: pointer; margin: 0;padding: 0;}
+
+.float_l {float:left;}
+.float_r {float:right;}
+
+a:visited,a:link {color:#d6bbaa;text-decoration:none;border-style:none;}
+a:hover {color:#fff;text-decoration:underline;border-style:none;}
+.og { color:#ff3300;}
+.og a { color:#ff3300;}
+.og a:hover { color:#f1d8ad;}
+
+.maincontent {background: url() no-repeat; width:658px; position:relative; padding:12px 0 0 8px;}
+
+/*==News--*/
+	.news {width: 331px;height: 235px;}
+	.n_nav {height: 28px;width:100%; background: no-repeat left bottom; line-height: 28px; text-align:center; clear:both; margin:0 0 5px 0; }
+		.n_nav a {height: 28px; width:50px;font-weight:bold; color:#d6bbaa; float:left;}
+		.n_nav a.current {height: 28px; width:50px; font-size:12px; background: #5a322b; border-bottom:#a51e17 solid 2px; color:#FFF;display:block;font-size:13px;}
+	.n_con { width:322px; display:none; position:relative;clear:both;}
+		.news_list {height: 134px;}
+			.news_list li { height: 18px; _height: 18px;  position: relative;}
+				.news_list li a { padding:0 0 0 5px; width:240px; display:block;
+overflow:hidden; 
+white-space:nowrap; 
+text-overflow:ellipsis; /* for IE */ 
+-o-text-overflow: ellipsis; /* for Opera */ 
+-icab-text-overflow: ellipsis; /* for iCab */ 
+-khtml-text-overflow: ellipsis; /* for Konqueror Safari */ 
+-moz-text-overflow: ellipsis; /* for Firefox,mozilla */ 
+-webkit-text-overflow: ellipsis; /* for Safari,Swift*/ 
+ }
+				.date {position: absolute;right: 5px;top: 0px;color: #d6bbaa;}
+				.news_more {
+	position: absolute;
+	top: 18px;
+	right: 16px;
+}
+
+.right {width: 260px;}
+
+/*==scroll--*/
+.slideBox{ width:318px; height:181px; overflow:hidden; position:relative; padding:0; }
+.slideBox .hd{ height:11px; overflow:hidden; position:absolute; left:231px; bottom:6px; z-index:1; }
+.slideBox .hd ul{ overflow:hidden; zoom:1; float:left;  }
+.slideBox .hd ul li{ float:left; margin-left:5px;  width:11px; height:11px; line-height:17px; text-align:center; background: no-repeat url(../images/focus_num.png); background-position:0 -11px; cursor:pointer; color:#141414;}
+.slideBox .hd ul li.on{ background: no-repeat url(../images/focus_num.png); background-position:0 0; color:#fff; }
+.slideBox .bd{ position:relative; height:100%; z-index:0;   }
+.slideBox .bd img{ width:318px; height:181px; }
+

@@ -1,0 +1,11 @@
+#ifndef _MMO_COMMANDLET_H_
+#define _MMO_COMMANDLET_H_
+
+BEGIN_COMMANDLET(MakeCookMapList, MMOGame)
+END_COMMANDLET
+
+// BEGIN_COMMANDLET(MakeDataTemplateList, MMOGame)
+// END_COMMANDLET
+
+
+#endif

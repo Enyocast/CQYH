@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<browser>
+  <section name="$GettingStartedSection" template="welcomeView">
+    <title>$WelcomeTitle</title>
+    <body>$WelcomeText</body>
+    <box1 id="1" image="images/mainImage5.png" title="$Feature5Title" description="$Feature5Desc" yoffset="8" dataType="WEB" fileName="vid&amp;vid=Getting_Started_with_Scaleform_en" relPath="https://developer.scaleform.com/gfx?action=" />
+    <box2 id="2" image="images/mainImage2.png" title="$Feature2Title" description="$Feature2Desc" yoffset="8"   dataType="PDF" fileName="$RenderThreadingFile" relPath="%DocDir" />
+    <box3 id="3" image="images/mainImage3.png" title="$Feature3Title" description="$Feature3Desc" yoffset="8" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS3Dir" param="-q 3DGenerator_AS3.swf" />
+    <box4 id="4" image="images/mainImage1.png" title="$Feature1Title" description="$Feature1Desc" yoffset="-22" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS2Dir" param="-q MMO_PackedRenderDemo.swf" />
+    <footer>$WelcomeFooter</footer>
+  </section>
+  <section name="$ProgramsSection" template="bigItemsTabView">
+    <tab name="$PlayersTab">
+        <item id="50" image="images/player-d9.png" title="$FxPlayerD3D9Title" description="$FxPlayerD3D9Desc" dataType="EXE" fileName="%D9FxPlayer" relPath="%GFxBinDir" relWorkingDir="" param="-q" excludeFrom="MacOS" >
+            <link text="$Resources" path="%GFxBinDir" />
+            <link text="$Solution" path="%DemoSolutionsDir" />
+        </item>
+		<item id="40" image="images/player-d10.png" title="$FxPlayerD3D10Title" description="$FxPlayerD3D10Desc" dataType="EXE" fileName="%D10FxPlayer" relPath="%GFxBinDir" relWorkingDir="" param="-q" excludeFrom="MacOS" >
+			<link text="$Resources" path="%GFxBinDir" />
+			<link text="$Solution"  path="%DemoSolutionsDir" />
+		</item>
+		<item id="20" image="images/player-d11.png" title="$FxPlayerD3D11Title" description="$FxPlayerD3D11Desc" dataType="EXE" fileName="%D11FxPlayer" relPath="%GFxBinDir" relWorkingDir="" param="-q" excludeFrom="MacOS" >
+			<link text="$Resources" path="%GFxBinDir" />
+			<link text="$Solution"  path="%DemoSolutionsDir" />
+		</item>
+        <item id="60" image="images/player-gl.png" title="$FxPlayerOpenGLTitle" description="$FxPlayerOpenGLDesc" dataType="EXE" fileName="%GLFxPlayer" relPath="%GFxBinDir" relWorkingDir="" param="-q" excludeFrom="MacOS" >
+            <link text="$Resources" path="%GFxBinDir" />
+            <link text="$Solution" path="%DemoSolutionsDir" />
+        </item>
+    </tab>
+	<tab name="$DemosTab" excludeFrom="MacOS">
+         <item id="1" image="images/fontconfig.png" title="$FontConfigTitle" description="$FontConfigDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FontConfigPlayerDir" relWorkingDir="%BinFontConfig" param="-q sample.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%BinFontConfig" />
+        </item>
+		<item id="2" image="images/DrawText.png" title="$DrawTextTitle" description="$DrawTextDesc" dataType="EXE" fileName="%DrawTextPlayer" relPath="%DrawTextDir" relWorkingDir="%AS2Dir" param="-q">
+			<link text="$Resources" path="%AS2Dir" />
+			<link text="$Solution" path="%DemoSolutionsDir" excludeFrom="MacOS" />
+      </item>
+    </tab>
+    <tab name="$ToolsTab" excludeFrom="MacOS">
+        <item id="10" image="images/tool-amp.png" title="$GFxAmpTitle" description="$GFxAmpDesc" dataType="EXE" fileName="%GFxAmpClient" relPath="" relWorkingDir="%GFxAmpBinDir" param="" excludeFrom="MacOS" >
+        </item>
+        <item id="20" type="tool" image="images/tool-export.png" title="$GFxExportTitle" description="$GFxExportDesc" dataType="EXT" fileName="launch_gfxexport.cmd"  relPath=""  relWorkingDir="../../"  param="" excludeFrom="MacOS" >        
+            <link text="$Resources" path="%BinDir" />
+        </item>
+    </tab>
+  </section>
+   <section name="$AS2Section" template="bigItemsTabView">
+   <tab name="$DemosTab">
+        <item id="1" image="images/3Di.png" title="$3DiDemoTitle" description="$3DiDemoDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS2Dir" param="-q 3DGenerator.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%AS2Dir" />
+        </item>
+        <item id="2" image="images/3dinventory.png" title="$UTInventoryTitle" description="$UTInventoryDescAS2" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS2Dir" param="-q 3DInventory_AS2.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%AS2Dir" />
+        </item>
+        <item id="3" image="images/3DWindow.png" title="$3DWindowTitle" description="$3DWindowDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS2Dir" param="-q 3DWindow.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%AS2Dir" />
+        </item>
+		<item id="4" image="images/batching_sample.png" title="$40RendererDemoTitle" description="$40RendererDemoDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS2Dir" param="-q MMO_PackedRenderDemo.swf" >
+            <link text="$Resources" path="%AS2Dir" />
+        </item>
+        <item id="5" image="images/Scalelogo.png" title="$AS3Title" description="$AS3Desc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS2Dir" param="-q ScaleformLogo.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%AS2Dir" />
+        </item>
+        <item id="6" image="images/FishVector.png" title="$AS3Title2" description="$AS3Desc2" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS2Dir" param="-q FishVector.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%AS2Dir" />
+        </item>
+        <item id="7" image="images/FishImage.png" title="$AS3Title3" description="$AS3Desc3" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS2Dir" param="-q FishImage.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%AS2Dir" />
+        </item>
+        <item id="8" image="images/Mask.png" title="$AS3Title4" description="$AS3Desc4" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS2Dir" param="-q Mask.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%AS2Dir" />
+        </item>
+        <item id="9"  image="images/audio.png"  title="$SoundDemoTitleAS2"  description="$SoundDemoDescAS2"  dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir"  relWorkingDir="%AS2Dir" param="-q Audio_Demo_AS2.swf" excludeFrom="MacOS">
+            <link text="$Resources" path="%AS2Dir" />
+        </item>
+		 <item id="2"  image="images/filters.png"  title="$FiltersDemoTitle"  description="$FiltersDemoDesc"  dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir"  relWorkingDir="%AS2Dir" param="-q -q filters_example.swf" excludeFrom="MacOS">
+		<link text="$Resources" path="%AS2Dir" />
+	  </item>
+		<item id="30" image="images/textureinswf.png" title="$TextureInSWFTitle" description="$TextureInSWFDesc" dataType="EXE" fileName="%TextureInSWFFilename" relPath="%TextureInSWFExeDir" relWorkingDir="%BinRenderTexture" param="-q">
+			<link text="$Resources" path="%BinRenderTexture" />
+			<link text="$Solution" path="%DemoSolutionsDir" excludeFrom="MacOS" />
+      </item>
+	  <item id="35" image="images/swftotexture.png" title="$SWFToTextureTitle" description="$SWFToTextureDesc" dataType="EXE" fileName="%SWFToTextureFilename" relPath="%SWFToTextureExeDir" relWorkingDir="%BinSWFtoTexture" param="-q">
+        <link text="$Resources" path="%BinSWFtoTexture" />
+        <link text="$Solution" path="%DemoSolutionsDir" excludeFrom="MacOS" />
+      </item>
+	   <item id="36" image="images/imagedelegate.png" title="$ImageTitle" description="$ImageDesc" dataType="EXE" fileName="%ImageDelegateFilename" relPath="%ImageDelegateBinDir" relWorkingDir="%SamplesDir" param="-q" >
+            <link text="$Resources" path="%AS2Dir" />
+            <link text="$Solution" path="%DemoSolutionsDir" />
+        </item>	
+        <item id="45" image="images/video.png" title="$VideoDemoTitle" description="$VideoDemoDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%BinVideoDemo" param="-q VideoDemo.swf" excludeFrom="MacOS">
+            <link text="$Resources" path="%BinVideoDemo" />
+            <link text="$Solution" path="%DemoSolutionsDir" />
+        </item>
+        <item id="50" image="images/videoloading-data.png" title="$VidDemoBGDataTitle" description="$VidDemoBGDataDesc"  dataType="WEB" fileName="video" relPath="https://www.scaleform.com/products/" param="" excludeFrom="MacOS" > 
+            <link text="$Download" path="https://developer.scaleform.com/gfx?action=dl" />
+        </item>
+        <item id="70" image="images/ime.png" title="$IMEDemoTitle" description="$IMEDemoDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%BinIME" param="-q IMESample.swf" excludeFrom="MacOS">
+            <link text="$Resources" path="%BinIME" />
+            <link text="$Solution" path="%DemoSolutionsDir" />
+        </item>			
+    </tab>
+    <tab name="$KitsTabAS2" excludeFrom="MacOS">
+        <item id="10" image="images/hudkit.png" title="$HUDKitTitle" description="$HUDKitDesc" dataType="WEB" fileName="hudkit" relPath="https://developer.scaleform.com/gfx?action=dl&amp;p=sdk&amp;f=" excludeFrom="MacOS" >
+            <link text="$Download" path="https://developer.scaleform.com/gfx?action=dl&amp;p=sdk&amp;f=hudkit" />
+        </item>
+        <item id="20" image="images/demo-menukit.png" title="$MenuKitTitle" description="$MenuKitDesc" dataType="WEB" fileName="dl&amp;p=sdk&amp;v=4.0#GFX_KIT" relPath="https://developer.scaleform.com/gfx?action=" excludeFrom="MacOS">
+            <link text="$Download" path="https://developer.scaleform.com/gfx?action=dl&amp;p=sdk&amp;v=4.0#GFX_KIT" />
+        </item>
+    </tab>
+    <tab name="$CLIKWidgetsTab" >
+        <item id="10"  image="images/clik1.png" title="$AccordionTitle" description="$AccordionDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q AccordionDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item> 
+        <item id="20" image="images/clik2.png" title="$ButtonBarTitle" description="$ButtonBarDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q ButtonBarDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="30" image="images/clik3.png" title="$ButtonTitle" description="$ButtonDesc"  dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK"  relWorkingDir="%CLIKDemosDirAS2" param="-q ButtonDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="40" image="images/clik4.png" title="$CheckBoxTitle" description="$CheckBoxDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q CheckBoxDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="50" image="images/clik5.png" title="$ColorPickerTitle" description="$ColorPickerDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q ColorPickerDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="60" image="images/clik6.png" title="$ColorSliderTitle" description="$ColorSliderDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q ColorSliderDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="80" image="images/clik8.png" title="$DataGridTitle" description="$DataGridDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q DataGridDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="90" image="images/clik9.png" title="$DataProviderTitle"   description="$DataProviderDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q DataProviderDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="100" image="images/clik10.png" title="$DialogTitle" description="$DialogDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q DialogDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="110" image="images/clik11.png" title="$DropdownMenuTitle" description="$DropdownMenuDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q DropdownMenuDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="120" image="images/clik13.png" title="$InventorySlotTitle"  description="$InventorySlotDesc"  dataType="EXE" fileName="%FxPlayerFilename"  relPath="%FxPlayerDirFromCLIK"  relWorkingDir="%CLIKDemosDirAS2" param="-q InventoryDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="125" image="images/clik26.png" title="$LayoutTitle" description="$LayoutDesc"  dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK"  relWorkingDir="%CLIKDemosDirAS2" param="-q LayoutDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="130" image="images/clik14.png" title="$NumericStepperTitle" description="$NumericStepperDesc"  dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK"  relWorkingDir="%CLIKDemosDirAS2" param="-q NumericStepperDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="140" image="images/clik15.png" title="$OptionStepperTitle"  description="$OptionStepperDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q OptionStepperDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="150" image="images/clik16.png" title="$RadioButtonTitle" description="$RadioButtonDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q RadioButtonDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="170" image="images/clik18.png" title="$ScrollBarTitle" description="$ScrollBarDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q ScrollBarDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="180" image="images/clik19.png" title="$ScrollingListTitle"  description="$ScrollingListDesc" dataType="EXE" fileName="%FxPlayerFilename"  relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q ScrollingListDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="190" image="images/clik20.png" title="$SliderTitle" description="$SliderDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q SliderDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="195" image="images/clik25.png" title="$SplitScreenTitle" description="$SplitScreenDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK"  relWorkingDir="%CLIKDemosDirAS2" param="-q SplitScreenDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="200" image="images/clik21.png" title="$TabNavigatorTitle" description="$TabNavigatorDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q TabNavigatorDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="210" image="images/clik22.png" title="$TreeViewTitle"  description="$TreeViewDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK"  relWorkingDir="%CLIKDemosDirAS2" param="-q TreeViewDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+        <item id="230" image="images/clik24.png" title="$WindowTitle"  description="$WindowDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS2" param="-q WindowDemo.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS2" />
+        </item>
+    </tab>
+  </section>
+  <section name="$AS3Section" template="bigItemsTabView">
+    <tab name="$SamplesTab">
+        <item id="1" image="images/3Di.png" title="$3DGeneratorTitle" description="$3DGeneratorDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS3Dir" param="-q 3DGenerator_AS3.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%AS3Dir" />
+        </item>
+        <item id="5" image="images/3dinventory.png" title="$UTInventoryTitle" description="$UTInventoryDescAS3" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS3Dir" param="-q 3DInventory_AS3.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%AS3Dir" />
+        </item>
+        <item id="10" image="images/CharacterManager.png" title="$AS3Title6" description="$AS3Desc6" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS3Dir" param="-q CharacterManager.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%AS3Dir" />
+        </item>
+        <item id="20" image="images/PropertyModifier.png" title="$AS3Title7" description="$AS3Desc7" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS3Dir" param="-q PropertyModifier.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%AS3Dir" />
+        </item>
+        <item id="30" image="images/Scalelogo.png" title="$AS3Title" description="$AS3Desc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS3Dir" param="-q ScaleformLogo.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%AS3Dir" />
+        </item>
+        <item id="40" image="images/FishVector.png" title="$AS3Title2" description="$AS3Desc2" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS3Dir" param="-q FishVector.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%AS3Dir" />
+        </item>
+        <item id="50" image="images/FishImage.png" title="$AS3Title3" description="$AS3Desc3" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS3Dir" param="-q FishImage.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%AS3Dir" />
+        </item>
+        <item id="60" image="images/Mask.png" title="$AS3Title4" description="$AS3Desc4" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS3Dir" param="-q Mask.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%AS3Dir" />
+        </item>
+        <item id="70" image="images/video_demo.png" title="$VideoDemoTitle2" description="$VideoDemoDesc2" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%AS3Dir" param="-q VideoDemo_AS3.swf" excludeFrom="MacOS">
+            <link text="$Resources" path="%AS3Dir" />
+            <link text="$Solution" path="%DemoSolutionsDir" />
+        </item>
+		<item id="65"  image="images/audio.png"  title="$SoundDemoTitleAS3"  description="$SoundDemoDescAS3"  dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir"  relWorkingDir="%AS3Dir" param="-q AudioDemo_AS3.swf" excludeFrom="MacOS">
+            <link text="$Resources" path="%AS3Dir" />
+        </item>
+	  <item id="70" image="images/ime.png" title="$IMEDemoTitleAS3" description="$IMEDemoDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDir" relWorkingDir="%BinIMEAS3" param="-q IMESample.swf" excludeFrom="MacOS">
+            <link text="$Resources" path="%BinIME" />
+            <link text="$Solution" path="%DemoSolutionsDir" />
+        </item>	
+    </tab>
+    <tab name="$KitsTabAS3" excludeFrom="MacOS">
+        <item id="10" image="images/hudkit.png" title="$HUDKitTitle2" description="$HUDKitDesc2" dataType="WEB" fileName="hudkit" relPath="https://developer.scaleform.com/gfx?action=dl&amp;p=sdk&amp;f=" excludeFrom="MacOS" >
+            <link text="$Download" path="https://developer.scaleform.com/gfx?action=dl&amp;p=sdk&amp;f=hudkit" />
+        </item>
+		<item id="20" image="images/demo-menukit.png" title="$MenuKitTitle2" description="$MenuKitDesc2" dataType="WEB" fileName="dl&amp;p=sdk&amp;v=4.0#GFX_KIT" relPath="https://developer.scaleform.com/gfx?action=" excludeFrom="MacOS">
+            <link text="$Download" path="https://developer.scaleform.com/gfx?action=dl&amp;p=sdk&amp;v=4.0#GFX_KIT" />
+        </item>
+		<item id="30" image="images/demo-mmokit.png" title="$MMOKitTitle" description="$MMOKitDesc" dataType="WEB" fileName="dl&amp;p=sdk&amp;v=4.0#GFX_KIT" relPath="https://developer.scaleform.com/gfx?action=" excludeFrom="MacOS">
+            <link text="$Download" path="https://developer.scaleform.com/gfx?action=dl&amp;p=sdk&amp;v=4.0#GFX_KIT" />
+        </item>
+    </tab>
+    <tab name="$CLIKAS3" excludeFrom="MacOS">
+        <item id="10" image="images/clikbrowser.png" title="$CLIKBrowserTitle" description="$CLIKBrowserDesc" dataType="EXE" fileName="%FxPlayerFilename" relPath="%FxPlayerDirFromCLIK" relWorkingDir="%CLIKDemosDirAS3" param="-q  ComponentBrowser.swf">
+            <link text="$Resources" path="%CLIKDemosDirAS3" />
+        </item>
+    </tab>
+  </section>
+  <section name="$HelpSection" template="bigItemsTabView">
+   <tab name="$PlayersTab">
+        <item id="50" image="images/player-d9.png" title="$FxPlayerTinyD3D9Title" description="$FxPlayerTinyD3D9Desc" dataType="EXE" fileName="%D9FxPlayerTiny" relPath="%GFxTinyBinDir" relWorkingDir="%GFxTinyDir" param="-q Window.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%GFxTinyBinDir" />
+            <link text="$Solution" path="%DemoSolutionsDir" />
+        </item>
+		<item id="40" image="images/player-d10.png" title="$FxPlayerTinyD3D10Title" description="$FxPlayerTinyD3D10Desc" dataType="EXE" fileName="%D10FxPlayerTiny" relPath="%GFxTinyBinDir" relWorkingDir="%GFxTinyDir" param="-q Window.swf" excludeFrom="MacOS" >
+			<link text="$Resources" path="%GFxTinyBinDir" />
+			<link text="$Solution"  path="%DemoSolutionsDir" />
+		</item>
+		<item id="20" image="images/player-d11.png" title="$FxPlayerTinyD3D11Title" description="$FxPlayerTinyD3D11Desc" dataType="EXE" fileName="%D11FxPlayerTiny" relPath="%GFxTinyBinDir" relWorkingDir="%GFxTinyDir" param="-q Window.swf" excludeFrom="MacOS" >
+			<link text="$Resources" path="%GFxTinyBinDir" />
+			<link text="$Solution"  path="%DemoSolutionsDir" />
+		</item>
+        <item id="60" image="images/player-gl.png" title="$FxPlayerTinyOpenGLTitle" description="$FxPlayerTinyOpenGLDesc" dataType="EXE" fileName="%GLFxPlayerTiny" relPath="%GFxTinyBinDir" relWorkingDir="%GFxTinyDir" param="-q Window.swf" excludeFrom="MacOS" >
+            <link text="$Resources" path="%GFxTinyBinDir" />
+            <link text="$Solution" path="%DemoSolutionsDir" />
+        </item>
+    </tab>
+    <tab name="$TutorialsTab">
+        <item id="10" image="images/pdf-gfx.png"  title="$GettingStartedGFxTitle" description="$GettingStartedGFxDesc" dataType="PDF" fileName="$GettingStartedGFxFile" relPath="%DocDirRoot"/>
+        <item id="30" image="images/pdf-ue3.png" title="$IntegrationTutorialTitle" description="$IntegrationTutorialDesc" dataType="PDF" fileName="$IntegrationTutorialFile" relPath="%DocDir" excludeFrom="MacOS" >
+            <link text="$Resources" path="%IntegrationSourceDir"/>
+        </item>
+        <item id="80" image="images/tool-amp.png" title="$AmpUseCasesTitle" description="$AmpUseCasesDesc" dataType="WEB" fileName="dl&amp;p=sdk&amp;v=4.0#GFX_AMP_USE_CASES" relPath="https://developer.scaleform.com/gfx?action=" excludeFrom="MacOS"/>
+    </tab>
+    <tab name="$DocumentationTab">
+        <item id="10" image="images/chm-gfx.png" title="$ReferenceDocumentationTitle" description="$ReferenceDocumentationDesc"  dataType="PDF" fileName="gfx_4.0_reference.chm" relPath="%DocDir" excludeFrom="MacOS"/>
+        <item id="15" image="images/renderthreading.png" title="$RenderThreadingTitle" description="$RenderThreadingDesc" dataType="PDF" fileName="$RenderThreadingFile" relPath="%DocDir"/>
+        <item id="20" image="images/pdf-mig.png" title="$MigrationTitle" description="$MigrationDesc" dataType="PDF" fileName="$MigrationFile" relPath="%DocDir" />
+        <item id="30" image="images/pdf-gfxbp.png" title="$BestPracticesTitle" description="$BestPracticesDesc" dataType="PDF" fileName="$BestPracticesFile" relPath="%DocDir" />
+        <item id="40" image="images/pdf-clikug.png" title="$CLIKUserGuideTitle" description="$CLIKUserGuideDesc" dataType="PDF" fileName="$CLIKUserGuideFile" relPath="%DocDir" />
+		<item id="40" image="images/pdf-clikug.png" title="$CLIKUserGuideTitle2" description="$CLIKUserGuideDesc2" dataType="PDF" fileName="$CLIKUserGuideFile2" relPath="%DocDir" />
+        <item id="50" image="images/pdf-font.png" title="$FontAndTextOverviewTitle" description="$FontAndTextOverviewDesc" dataType="PDF" fileName="$FontAndTextOverviewFile" relPath="%DocDir"/>
+		<item id="55" image="images/pdf-3di.png" title="$GFx3DiTitle" description="$GFx3DiDesc" dataType="PDF" fileName="$GFx3DiFile" relPath="%DocDir"/>
+        <item id="60" image="images/pdf-scale9.png" title="$Scale9GridGuideTitle" description="$Scale9GridGuideDesc" dataType="PDF" fileName="$Scale9GridGuideFile" relPath="%DocDir"/>
+        <item id="70" image="images/pdf-as.png" title="$ActionScriptReferenceTitle" description="$ActionScriptReferenceDesc" dataType="PDF" fileName="$ActionScriptReferenceFile" relPath="%DocDir"/>
+        <item id="80" image="images/pdf-xml.png" title="$XMLGuideTitle" description="$XMLGuideDesc" dataType="PDF" fileName="$XMLGuideFile" relPath="%DocDir"/>
+        <item id="90" image="images/pdf-dtext.png" title="$DrawTextAPITitle" description="$DrawTextAPIDesc" dataType="PDF" fileName="$DrawTextAPIFile" relPath="%DocDir"/>
+        <item id="100" image="images/pdf-memory.png" title="$MemorySystemOverviewTitle" description="$MemorySystemOverviewDesc" dataType="PDF" fileName="$MemorySystemOverviewFile" relPath="%DocDir"/>
+		<item id="105" image="images/pdf-gfxexport.png" title="$GFxExportReferenceTitle" description="$GFxExportReferenceDesc" dataType="PDF" fileName="$GFxExportReferenceFile" relPath="%DocDir"/>
+        <item id="110" image="images/tool-amp.png" title="$AMPDocTitle" description="$AMPDocDesc" dataType="PDF" fileName="$AMPDocFile" relPath="%DocDir"/>
+		<item id="115" image="images/gfxlite.png" title="$GFxLiteOverviewTitle" description="$GFxLiteOverviewDesc" dataType="PDF" fileName="$GFxLiteOverviewFile" relPath="%DocDir"/>
+        <item id="120" image="images/pdf-gamecomm.png" title="$GameCommOverviewTitle" description="$GameCommOverviewDesc" dataType="PDF" fileName="$GameCommOverviewFile" relPath="%DocDir"/>
+        <item id="130" image="images/Support-pdf.png" title="$FlashSupportTitle" description="$FlashSupportDesc" dataType="PDF" fileName="$FlashSupportFile" relPath="%DocDir"/>
+		<item id="150" image="images/pdf-audio.png" title="$AudioSupportTitle" description="$AudioSupportDesc" dataType="PDF" fileName="$AudioSupportFile" relPath="%DocDir"/>
+		<item id="55" image="images/mmokit.png" title="$MMOKitDocTitle" description="$MMOKitDocDesc" dataType="PDF" fileName="$MMOKitDocFile" relPath="%DocDir"/>
+    </tab>
+	<tab name="$VideosTab">
+		<item id="20"  image="images/videotutorial_all.png"    title="$AllTutorialVideos" description="$AllTutorialVideosDesc" dataType="WEB" fileName="vid&amp;vid=Getting_Started_with_Scaleform_en" relPath="https://developer.scaleform.com/gfx?action=" />
+		<item id="30"  image="images/videotutorial_clik.png"    title="$CLIKTutorialVideos" description="$CLIKTutorialVideosDesc" dataType="WEB" fileName="vid&amp;tab=clik&amp;vid=Clik_Tutorial_1_1_en" relPath="https://developer.scaleform.com/gfx?action=" />
+		<item id="40"  image="images/videotutorial_gb.png"    title="$GamebryoTutorialVideos" description="$GamebryoTutorialVideosDesc" dataType="WEB" fileName="vid&amp;tab=egb&amp;vid=Gamebryo_Tutorial_1_en" relPath="https://developer.scaleform.com/gfx?action=" />
+		<item id="50"  image="images/videotutorial_unreal.png"    title="$UnrealTutorialVideos" description="$UnrealTutorialVideosDesc" dataType="WEB" fileName="vid&amp;tab=ue3&amp;vid=UDK_Tutorial_1_en" relPath="https://developer.scaleform.com/gfx?action=" />
+	</tab>
+  </section>
+</browser>

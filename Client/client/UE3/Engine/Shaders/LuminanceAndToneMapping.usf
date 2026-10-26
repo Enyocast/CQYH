@@ -1,0 +1,241 @@
+/*=============================================================================
+	LuminanceAndToneMapping.usf: Code which is common to depth of field shaders.
+	Copyright 1998-2013 Shanda Games, Inc. All Rights Reserved. zhaojun@snda
+=============================================================================*/
+
+
+void HDRVSMain(
+	in float4 InPosition : POSITION,
+	in float2 InTexCoord : TEXCOORD0,
+	out float2 OutTexCoord : TEXCOORD0,
+	out float4 OutPosition : POSITION
+	)
+{
+	OutPosition = InPosition;
+	OutTexCoord = InTexCoord;
+}
+
+sampler2D SrcTexture;
+//[shanling@snda
+float2 InvTexWH;	// 3*3 # sample
+
+void RT2DownSampleMain(
+	in float2 UV : TEXCOORD0,
+	out float4 OutColor : COLOR0)
+{
+	float2 UVOffset;
+	float2 UVNew;
+
+	//float4 Color = float4(0,0,1,1);	// avg, max, min
+	//float4 GrayWeight =  float4(0.299f, 0.587f, 0.114f, 0);
+	float4 ColorSrc;
+	//float Gray;
+	float minGray = 100.f;
+	float maxGray = 0.f;
+
+	for ( float i = -0.5f; i < 1.5f; i += 1.f )
+	{
+		for( float j = -0.5f ; j < 1.5f ; j+=1.f )
+		{
+			//UVOffset = UVOffsets[i];
+
+			UVNew = UV + float2( i * InvTexWH.x , j * InvTexWH.y );
+
+			ColorSrc += tex2D(SrcTexture, UVNew);
+
+// 			float temp  = dot(GrayWeight, ColorSrc);
+// 			minGray = min( temp, minGray );
+// 			maxGray = max( temp, maxGray );
+// 			Gray += temp;//log( 1e-5 + temp );//
+
+			//Color.r = log( 1e-5 + Gray ); //1e-5 necessary to stop the singularity at GreyValue=0
+			//Color.g = max(Color.g, Gray);
+			//Color.b = min(Color.b, Gray);
+		}
+		
+	}
+	//Gray = dot( ColorSrc/16.0f, GrayWeight );
+	//shanling@snda
+// 	Color.r = Gray;//exp( Color.r );
+// 	Color.g = Gray;//Color.r;
+// 	Color.b = Gray;//Color.r;
+
+//	OutColor = Color;
+
+	OutColor = ColorSrc/4.0f;
+}
+
+float4 UVOffsets[9];	// 3*3 # sample
+
+
+void DownSampleCalculateLuminancePS(
+	in float2 UV : TEXCOORD0,
+	out float4 OutColor : COLOR0)
+{
+	float2 UVOffset;
+	float2 UVNew;
+	float4 GrayWeight =  float4(0.299f, 0.587f, 0.114f, 0);
+	float4 ColorSrc;
+	float Gray;
+
+	float Sum = 0;
+	float Max = 0;
+	float Min = 1;
+
+	for (int i = 0; i < 9; ++i)
+	{
+		UVOffset = UVOffsets[i];
+
+		UVNew = UV + UVOffset.xy;
+
+		ColorSrc = tex2D(SrcTexture, UVNew);
+		Gray =dot( GrayWeight, ColorSrc );
+		Sum += Gray;
+		Max = max(Max, Gray);
+		Min = min(Min, Gray);
+	}
+
+	OutColor = float4(Sum / 9.0f, Max, Min, 1);
+}
+//]shanling@snda
+
+void DownSampleMain(
+	in float2 UV : TEXCOORD0,
+	out float4 OutColor : COLOR0)
+{
+	float2 UVOffset;
+	float2 UVNew;
+
+	float4 ColorSrc;
+
+	float Sum = 0;
+	float Max = 0;
+	float Min = 1;
+
+	for (int i = 0; i < 9; ++i)
+	{
+		UVOffset = UVOffsets[i];
+
+		UVNew = UV + UVOffset.xy;
+
+		ColorSrc = tex2D(SrcTexture, UVNew);
+
+		Sum += ColorSrc.r;
+		Max = max(Max, ColorSrc.g);
+		Min = min(Min, ColorSrc.b);;
+	}
+
+	OutColor = float4(Sum / 9.0f, Max, Min, 1);
+}
+
+//shanling@snda
+float4 CalculateLuminance( float2 UV : TEXCOORD0 ):COLOR0
+{
+	float4 ColorSrc = tex2D(SrcTexture, UV);
+
+	//ColorSrc.r = exp( ColorSrc.r );
+	return float4( ColorSrc.rgb, 1 );
+}
+
+
+sampler2D LuminanceTexture;
+float4	  BufferWidthHeight;
+float2	  InvLuminanceBufferWidthHeight;
+void ToneMapingHistogramImageVS( in float position : POSITION , out float4 oPos : POSITION, out float2 UV : TEXCOORD0, out float3 ocolor: COLOR0 )
+{
+	float Histogram_Size = 1024.0f;
+	float3 GrayWeight =  float3( 0.299f, 0.587f, 0.114f );
+	int    ycoord       = floor( position / BufferWidthHeight.r );
+	int    xcoord       = position - BufferWidthHeight.r * ycoord;
+
+	float    fxcoord       = xcoord * BufferWidthHeight.z + BufferWidthHeight.z * 0.5f;
+	float    fycoord       = ycoord * BufferWidthHeight.a + BufferWidthHeight.a * 0.5f;
+
+	float3 color        = tex2Dlod( SrcTexture, float4(  fxcoord, fycoord, 0, 0 ) ).rgb;
+	float4 LuminanceAvg = tex2Dlod( LuminanceTexture, float4( InvLuminanceBufferWidthHeight * 0.5f, 0, 0 ) );
+	float  Luminance    = dot( color, GrayWeight ) - LuminanceAvg.b;
+	float  temp         = ( LuminanceAvg.g - LuminanceAvg.b ) / Histogram_Size ;
+	int    pixel_index  = (  Luminance / temp );
+	float  posX         = float( pixel_index - Histogram_Size * 0.5f ) / (Histogram_Size* 0.5f);
+	oPos                = float4( clamp( posX, -1, 1 ) - 1.0/1024.0 * 0.5, 0, 0, 1 );//float4( posX, 0, 0, 1 )//float4( (fxcoord -0.5) * 2, (0.5-fycoord) * 2, 0, 1 );
+	UV                  = float2( pixel_index, Luminance + LuminanceAvg.b );
+	ocolor				= color;
+}
+
+
+float4 ToneMapingHistogramImagePS( float2 UV : TEXCOORD0, float3 color: COLOR0 ): COLOR0
+{
+	//return float4( color, 1 );
+	return float4( 1, UV.x, UV.y, 1 );
+}
+
+sampler2D AdaptedLum;
+sampler2D CurrentLum;
+float4 HDRLuminanceParameter;
+float    g_fElapsedTime;
+float4 CalculateAdaptedLumPS
+    (
+    in float2 vScreenPosition : TEXCOORD0
+    ) : COLOR
+{
+    float4 fAdaptedLum ;//= tex2D(AdaptedLum, float2(0.00001f, 0.00001f));
+    float4 fCurrentLum = tex2D(CurrentLum, float2(0.5f, 0.5f));
+	fAdaptedLum.g = HDRLuminanceParameter.z;
+	fAdaptedLum.b = HDRLuminanceParameter.x;
+	fAdaptedLum.a = HDRLuminanceParameter.y;
+	fAdaptedLum.r = HDRLuminanceParameter.w; 
+    
+	float4 temp = abs(fAdaptedLum - fCurrentLum);
+	temp = saturate( temp - 1.f );
+	if ( any(temp) )
+	{
+		fCurrentLum = fAdaptedLum;
+	}
+    // The user's adapted luminance level is simulated by closing the gap between
+    // adapted luminance and current luminance by 2% every frame, based on a
+    // 30 fps rate. This is not an accurate model of human adaptation, which can
+    // take longer than half an hour.
+    float4 fNewAdaptation = fCurrentLum + (fAdaptedLum - fCurrentLum) * ( 1 - pow( 0.98f, 30 * g_fElapsedTime ) );
+    return fNewAdaptation;
+}
+
+
+//shanling@snda
+
+float4 ConverRGB2LogLUV(float4 c)
+{
+	float esp = pow(2, -64);
+
+	float4x4 mRGB_to_XYZ =
+		{
+		{0.498f, 0.256f, 0.023f, 0},
+		{0.339f, 0.678f, 0.113f, 0},
+		{0.164f, 0.066f, 0.864f, 0},
+		{0,0,0,0}
+		};
+
+	float4 XYZ = mul(mRGB_to_XYZ, c);
+	XYZ = max(XYZ, float4(esp, esp, esp, 0));
+
+	float2 xy = XYZ.xz / dot(float4(1,1,1,0), XYZ);
+	float2 uv = float2(4,9)*xy/dot(float3(-2, 13, 3), float3(xy,1));
+	float LogL = 256.0f * log(XYZ.y + 64);
+	float LogL_LSB = frac(LogL);
+	return float4(uv, LogL_LSB, LogL);
+}
+
+
+//void ToneMappingMain(
+//	in float2 UV : TEXCOORD0,
+//	out float4 OutColor : COLOR0)
+//{
+//    // Read the HDR value that was computed as part of the original scene
+//	float4 c = tex2D(SrcTexture, UV);
+
+//	// Read the luminance value, target the centre of the texture
+//  // which will map to the only pixel in it!
+//	float4 l = tex2D(LuminanceTexture, float2(0.00001f, 0.00001f));
+
+//	OutColor = ToneMapping(c, l);
+//	OutColor.a = c.a * fGaussianScalar * fExposure;
+//}

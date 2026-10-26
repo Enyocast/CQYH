@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<winzipjob minwinrun="61" minwinedit="0" version="5">
+<wizard usevars="yes"/>
+<items>
+<item guid="yes" type="library" exclude="no" recurse="yes">{A990AE9F-A03B-4E80-94BC-9912D7504104}</item>
+</items>
+<output>
+<name append="none">Pictures Library.zipx</name>
+<folder append="none">&lt;^24&gt;\My WinZip Files</folder>
+<log type="none"/>
+</output>
+<options>
+<flags>0001</flags>
+<compression type="best"/>
+<span mode="auto"/>
+<split unit="byte">0</split>
+<encryption mode="none" method="none"/>
+<folders mode="relative"/>
+<cd speed="fast" finalize="yes"/>
+</options>
+<email>
+<mailitem options="0">
+<sendto/>
+<subject type="ok"/>
+<subject type="error"/>
+</mailitem>
+</email>
+</winzipjob>

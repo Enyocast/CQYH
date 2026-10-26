@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Inc">
+      <UniqueIdentifier>{bbeb092a-a56f-499c-8da2-c2bbe3ebdffb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src">
+      <UniqueIdentifier>{b406fd09-2d94-46b2-858d-8fa39ab9c8dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{99a193c2-8973-4d3e-84d6-9618f0b58ef0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\libresample.h">
+      <Filter>Inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\configtemplate.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\filterkit.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\resample_defs.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\filterkit.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\resample.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\resamplesubs.c">
+      <Filter>Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

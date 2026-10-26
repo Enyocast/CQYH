@@ -1,0 +1,26 @@
+/*=============================================================================
+	FilterVertexShader.usf: Filter vertex shader source.
+	Copyright 1998-2011 Epic Games, Inc. All Rights Reserved.
+=============================================================================*/
+
+#define NUM_SAMPLES 4
+// macros fall over with the (NUM_SAMPLES + 1)/2 stuff, so, just use a number
+// 4 + 1 / 2 = 2
+#define NUM_VARYINGS 2
+
+UNIFORM(vec4, SampleOffsets[(NUM_SAMPLES + 1) / 2]);
+
+ATTRIBUTE(vec4, Position, POSITION);
+ATTRIBUTE(vec2, TexCoords0, TEXCOORD0);
+
+OUT_VARYING_ARRAY_DEFAULT(vec4, OffsetUVs, NUM_VARYINGS, TEXCOORD0);
+OUT_BUILTIN(vec4, gl_Position, POSITION);
+
+void main()
+{
+	for(int OffsetIndex = 0;OffsetIndex < (NUM_SAMPLES + 1) / 2;OffsetIndex++)
+	{
+		OffsetUVs[OffsetIndex] = TexCoords0.xyyx + SampleOffsets[OffsetIndex];
+	}
+	gl_Position = Position;
+}

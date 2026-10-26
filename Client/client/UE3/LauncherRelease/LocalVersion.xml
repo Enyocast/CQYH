@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Root><CQYHpre>
+  {
+  "downloaded_patchs" :
+  {
+  "patchs" : null
+  },
+  "installed_patchs" :
+  {
+  "patchs" : null
+  },
+  "product_name" : "CQYHpre",
+  "version" :
+  {
+  "v" : "0.0.1.1"
+  }
+  }
+</CQYHpre>
+<CQYHzone>
+{
+	"downloaded_patchs" : 
+	{
+		"patchs" : null
+	},
+	"installed_patchs" : 
+	{
+		"patchs" : null
+	},
+	"product_name" : "CQYHzone",
+	"version" : 
+	{
+		"v" : "0.0.1.1"
+	}
+}
+</CQYHzone>
+</Root>

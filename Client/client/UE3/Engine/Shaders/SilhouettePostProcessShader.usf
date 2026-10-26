@@ -1,0 +1,148 @@
+/*=============================================================================
+	SilhouettePostProcess.usf: Vertex & Pixel shader for post process silhouette rendering
+	ming@snda
+=============================================================================*/
+
+#include "PostProcessCommon.usf"
+
+sampler2D SilhouetteColorTex;
+sampler2D SilhouetteColorBlurTex;
+
+float2 InvTex;
+
+void VertexMain( 
+				in float4 InPosition :		POSITION,
+				in float2 InScreenUV :		TEXCOORD0,
+				out float4 OutPosition :	POSITION,
+				out float2 ScreenPosition :	TEXCOORD0 )
+{
+	OutPosition = InPosition;
+	ScreenPosition = InScreenUV; 
+} 
+
+
+ 
+
+float4 PixelBlurX(float2 texCoord: TEXCOORD0) : COLOR {
+	float4 offset1 = { 1.5, 0, 3.5, 0.336101592 };
+	float4 offset2 = { 5.5, 0, 7.5, 9.5 };
+	float4 weight = { 0.380852997, 0.192839444, 0.0709416643, 0.0167335141 };
+	float weigh1 = 0.00253077247;
+
+	float4 fristSamlppos =  -offset1.xyzy * InvTex.x + texCoord.xyxy;
+    float4 color1 = tex2D( SilhouetteColorTex, fristSamlppos .xy );
+    float4 color2 = tex2D( SilhouetteColorTex, fristSamlppos .zw );
+
+    fristSamlppos = offset1.xyzy * InvTex.x + texCoord.xyxy;
+    float4 color3 = tex2D( SilhouetteColorTex, fristSamlppos .xy );
+    float4 color4 = tex2D( SilhouetteColorTex, fristSamlppos .zw );
+
+	float3 tempcolor1 = max( color1.rgb, color3.rgb );
+	float  alpha1     = color1.a + color3.a;
+    alpha1            *= offset1.w;
+
+	float4 color5 = tex2D( SilhouetteColorTex, texCoord );
+	tempcolor1    = max( color5.rgb, tempcolor1.rgb );
+	alpha1        = color5.a * weight.x + alpha1;
+
+	float3 tempcolor2 = max( color2.rgb, color4.rgb );
+	float  alpha2     = ( color2.a + color4.a ) * weight.y + alpha1;
+	tempcolor1        = max( tempcolor2, tempcolor1 );
+
+	fristSamlppos = -offset2.xyzy * InvTex.x + texCoord.xyxy;
+	float4 color6 = tex2D( SilhouetteColorTex, fristSamlppos .xy );
+    float4 color7 = tex2D( SilhouetteColorTex, fristSamlppos .zw );
+	
+
+	fristSamlppos = offset2.xyzy * InvTex.x + texCoord.xyxy;
+	float4 color8 = tex2D( SilhouetteColorTex, fristSamlppos .xy );
+    float4 color9 = tex2D( SilhouetteColorTex, fristSamlppos .zw );
+
+	float3 tempcolor3 = max( color6.rgb, color8.rgb );
+	float  alpha3     = ( color6.a + color8.a ) * weight.z + alpha2;
+
+	float3 tempcolor4 = max( tempcolor1, tempcolor3 );
+
+	float3 tempcolor5 = max( color7.rgb, color9.rgb );
+	float  alpha4     = ( color7.a + color9.a ) * weight.w + alpha3;
+	float3 tempcolor6 = max( tempcolor4, tempcolor5 );
+
+	fristSamlppos.xy = -offset2.xw * InvTex.x + texCoord.xx;
+	float4 color10 = tex2D( SilhouetteColorTex, fristSamlppos .xy );
+	fristSamlppos.xy = offset2.xw * InvTex.x + texCoord.xx;
+    float4 color11 = tex2D( SilhouetteColorTex, fristSamlppos .xy );
+	tempcolor5 = max( color10.rgb, color11.rgb );
+
+	alpha4 = ( color10.a + color11.a ) * weigh1 + alpha4;
+    tempcolor5 = max( tempcolor6, tempcolor5 );
+    return float4( tempcolor5, alpha4 ); 
+}
+
+
+float4 PixelBlurY(float2 texCoord: TEXCOORD0) : COLOR {
+
+   float4 offset1 = { 0, 1.5, 3.5, 0.336101592 };
+	float4 offset2 = { 0, 5.5, 7.5, 9.5 };
+	float4 weight = { 0.380852997, 0.192839444, 0.0709416643, 0.0167335141 };
+	float weigh1 = 0.00253077247;
+
+	float4 fristSamlppos =  -offset1.xyxz * InvTex.y + texCoord.xyxy;
+    float4 color1 = tex2D( SilhouetteColorTex, fristSamlppos .xy );
+    float4 color2 = tex2D( SilhouetteColorTex, fristSamlppos .zw );
+
+    fristSamlppos = offset1.xyxz * InvTex.y + texCoord.xyxy;
+    float4 color3 = tex2D( SilhouetteColorTex, fristSamlppos .xy );
+    float4 color4 = tex2D( SilhouetteColorTex, fristSamlppos .zw );
+
+	float3 tempcolor1 = max( color1.rgb, color3.rgb );
+	float  alpha1     = color1.a + color3.a;
+    alpha1            *= offset1.w;
+
+	float4 color5 = tex2D( SilhouetteColorTex, texCoord );
+	tempcolor1    = max( color5.rgb, tempcolor1.rgb );
+	alpha1        = color5.a * weight.x + alpha1;
+
+	float3 tempcolor2 = max( color2.rgb, color4.rgb );
+	float  alpha2     = ( color2.a + color4.a ) * weight.y + alpha1;
+	tempcolor1        = max( tempcolor2, tempcolor1 );
+
+	fristSamlppos = -offset2.xyxz * InvTex.y + texCoord.xyxy;
+	float4 color6 = tex2D( SilhouetteColorTex, fristSamlppos .xy );
+    float4 color7 = tex2D( SilhouetteColorTex, fristSamlppos .zw );
+	
+
+	fristSamlppos = offset2.xyxz * InvTex.y + texCoord.xyxy;
+	float4 color8 = tex2D( SilhouetteColorTex, fristSamlppos .xy );
+    float4 color9 = tex2D( SilhouetteColorTex, fristSamlppos .zw );
+
+	float3 tempcolor3 = max( color6.rgb, color8.rgb );
+	float  alpha3     = ( color6.a + color8.a ) * weight.z + alpha2;
+
+	float3 tempcolor4 = max( tempcolor1, tempcolor3 );
+
+	float3 tempcolor5 = max( color7.rgb, color9.rgb );
+	float  alpha4     = ( color7.a + color9.a ) * weight.w + alpha3;
+	float3 tempcolor6 = max( tempcolor4, tempcolor5 );
+
+	fristSamlppos.xy = -offset2.xx * InvTex.y + texCoord.xx;
+	float4 color10 = tex2D( SilhouetteColorTex, fristSamlppos .xy );
+	fristSamlppos.xy = offset2.xx * InvTex.y + texCoord.xx;
+    float4 color11 = tex2D( SilhouetteColorTex, fristSamlppos .xy );
+	tempcolor5 = max( color10.rgb, color11.rgb );
+
+	alpha4 = ( color10.a + color11.a ) * weigh1 + alpha4;
+    tempcolor5 = max( tempcolor6, tempcolor5 );
+    return float4( tempcolor5, alpha4 ); 
+}
+
+void PixelMain(
+			   in float2 ScreenPosition :	TEXCOORD0,
+			   out float4 OutColor :		COLOR0 )
+{
+	float4 colorBase = tex2D(SilhouetteColorTex, ScreenPosition);
+	float4 colorBlur = tex2D(SilhouetteColorBlurTex, ScreenPosition);
+	colorBase.a = -colorBase.a + 0.125;
+	OutColor.rgb = colorBlur.rgb;
+	OutColor.a = colorBase.a > 0 ? colorBlur.a : 0;
+	return;
+}

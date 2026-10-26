@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<resource version="2.3.0.1" xmlns="http://www.wxwidgets.org/wxxrc">
+    <object class="wxPanel" name="ID_GM_COMMAND_PAGE" subclass="MyDialog">
+        <style>wxNO_BORDER|wxCLIP_CHILDREN |wxTAB_TRAVERSAL</style>
+        <size>640,320</size>
+        <object class="wxBoxSizer">
+            <orient>wxVERTICAL</orient>
+            <object class="sizeritem">
+                <flag>wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL|wxALL|wxADJUST_MINSIZE</flag>
+                <border>5</border>
+                <size>1,1</size>
+                <object class="wxStaticText" name="wxID_STATIC">
+                    <label> </label>
+                </object>
+            </object>
+        </object>
+    </object>
+</resource>

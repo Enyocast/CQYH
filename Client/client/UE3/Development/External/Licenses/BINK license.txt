@@ -1,0 +1,2 @@
+Bink
+Uses Bink Video.  Copyright (C) 1997-2009 by RAD Game Tools, Inc.

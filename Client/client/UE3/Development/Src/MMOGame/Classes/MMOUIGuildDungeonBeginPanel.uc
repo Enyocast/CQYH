@@ -1,0 +1,32 @@
+class MMOUIGuildDungeonBeginPanel extends MMOUIBase
+	native(UI);
+
+event InitLoad(MMOGFXPlayer pl)
+{
+	super.InitLoad(pl);
+}
+
+// UC->AS
+event CallSetWindowTitle(string title)
+{
+	ActionScriptVoid("UCSetWindowTitle");
+}
+
+event CallUpdateGuildDungeonList(GFxObject dataProvider)
+{
+	ActionScriptVoid("UCUpdateGuildDungeonList");
+}
+
+event CallUpdateGuildMemberList(GFxObject dataProvider)
+{
+	ActionScriptVoid("UCUpdateGuildMemberList");
+}
+
+// 家族副本
+native final function ASOpenDungeon(int dungeonId, int leaderId);
+
+DefaultProperties
+{
+	IsDynamicLoad=true
+	DefaultVisible=false
+}

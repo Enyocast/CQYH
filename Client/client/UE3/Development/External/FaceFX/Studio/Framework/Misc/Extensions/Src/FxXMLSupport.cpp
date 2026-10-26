@@ -1,0 +1,17 @@
+//------------------------------------------------------------------------------
+// A wrapper around tinyxml.
+//
+// Owner: Doug Perkowski
+//
+// Copyright (c) 2002-2010 OC3 Entertainment, Inc.
+//------------------------------------------------------------------------------
+
+#include "stdwx.h"
+
+// we always need TINYXML
+// oscar@snda #if FX_USE_TINYXML 
+//#include "tinyxml.cpp"
+//#include "tinystr.cpp"
+//#include "tinyxmlerror.cpp"
+//#include "tinyxmlparser.cpp"
+// oscar@snda #endif
