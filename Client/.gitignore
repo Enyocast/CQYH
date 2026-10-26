@@ -266,3 +266,45 @@
 /Common_back/fusion/out/win64
 /NewServer/src/gameworld/script/x64/Debug
 /NewServer/out/win64
+
+# ---------------------------------------------------------------------------
+# Client assets are hosted separately (Client Assets.7z) and must not be
+# committed: game content and prebuilt binaries, about 64 GB. Extract the
+# archive into this folder so the paths merge; these rules keep git ignoring it.
+# ---------------------------------------------------------------------------
+# Cooked game content, Mac binaries and QA build tools
+/client/UE3/MMOGame/CookedPC/
+/client/UE3/MMOGame/Content/
+/client/UE3/Binaries/Mac/
+/client/UE3/BinariesRelease/Mac/
+/_AutoBuild/edition/_CQ_S1/client_qa_build/
+# Over GitHub's 100 MB file limit
+/client/UE3/Development/Documentation/UnrealEngine3.chm
+# Game data, art, video, compiled and prebuilt binary file types
+*.7z
+*.a
+*.bik
+*.cab
+*.dds
+*.dll
+*.dylib
+*.exe
+*.fla
+*.hdr
+*.lib
+*.map
+*.ocx
+*.otf
+*.pak
+*.psd
+*.rar
+*.swf
+*.tga
+*.tif
+*.ttf
+*.u
+*.udk
+*.upk
+*.usm
+*.wav
+*.zip
