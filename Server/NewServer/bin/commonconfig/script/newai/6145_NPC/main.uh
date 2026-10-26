@@ -1,0 +1,47 @@
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { 666801, 50000, 'get_Total()', 'get_ABC()' } },	-- 一番赏 这里修改get_power() 返还一番赏还剩余多少 如果可能的话顺便返回ABC三种大奖各还有多少个
+	{ batSelector, 
+		{ batSequencer, 
+			{batRoleCheckInteractOption, param = { 1 } },--买一个
+			{batSelector,
+				{batSequencer,--下面是购买逻辑
+					{ Buy_One },
+				},
+				{batSequencer,
+					{ batRoleOpenDialog, param = { 666802, 50000, 0, 0 } },
+				},
+			},
+		},
+		{ batSequencer, 
+			{batRoleCheckInteractOption, param = { 2 } },--买10个
+			{batSelector,
+				{batSequencer,--下面是购买逻辑
+					{ Buy_Ten },
+				},
+				{batSequencer,
+					{ batRoleOpenDialog, param = { 666802, 50000, 0, 0 } },
+				},
+			},
+		},
+		{ batSequencer, 
+			{batRoleCheckInteractOption, param = { 3 } },--领取W赏
+			{batSelector,
+				{batSequencer,--下面是购买逻辑
+					{ Get_Big },
+				},
+				{batSequencer,
+					{ batRoleOpenDialog, param = { 666803, 50000, 0, 0 } },
+				},
+			},
+		},
+	},
+};
+
+evtAIIdle = 
+{ batSelector,
+	{ batSequencer,
+		{ batWait, param = { 'get_wait_time()' } },	--等待到每日刷新时间
+		{ EveryDayInit },
+	},
+};

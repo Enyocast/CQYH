@@ -1,0 +1,55 @@
+on_init = 
+{batSequencer,
+	{ batCheckSceneVariable, param={ boEQ,11, 0 } },
+	{ batSpawnNpc  , param = { 9737, 29000, 57300, 8000 } },
+	{ batSpawnNpc  , param = { 9737, 32000, 62100, 8000 } },
+	{ batSpawnNpc  , param = { 9737, 52400, 61900, 8000 } },
+	{ batSpawnNpc  , param = { 9737, 52900, 46700, 8000 } },
+	{ batSpawnNpc  , param = { 9737, 32800, 44100, 8000 } },
+	{ batSpawnNpc  , param = { 9740, 29000, 57300, 8000 } },
+	{ batSpawnNpc  , param = { 9740, 32000, 62100, 8000 } },
+	{ batSpawnNpc  , param = { 9740, 52400, 61900, 8000 } },
+	{ batSpawnNpc  , param = { 9740, 52900, 46700, 8000 } },
+	{ batSpawnNpc  , param = { 9740, 32800, 44100, 8000 } },
+};
+
+
+on_wander = 
+{ batSelector, 
+	{batSequencer,
+		{ batMoveTo, param={ tarPosition,39000,55300,650}, },
+		{ batSelector,
+			{batSequencer,
+				{ batCheckSceneVariable , param={ boGTE, 10, 50 } },
+				{ batSetSceneVariable , param={ 11, 1 } },
+				{ batSuicide, param = { 1, true },},
+				
+			},
+			{batSequencer,
+				{ batCheckDistanceCM, param = {boLTE,39000,55300,1500},},
+				{ batSetSceneVariable , param={ 10, 0, 1 } },
+				{ batSay, param = { cctScene, 666725, cltTvShow } },
+				{ batSay, param = { cctScene, 666725, cltNormal } },
+				{ batSuicide, param = { 1, true },},
+				
+			},
+		},	
+	},
+};
+
+on_chase = 
+{ batSelector, 
+	{batSequencer,
+		{ batCheckSceneVariable , param={ boGTE, 10, 50 } },
+		{ batSetSceneVariable , param={ 11, 1 } },
+		{ batSuicide, param = { 1, true },},
+	},
+	{batSequencer,
+		{batCheckDistanceCM, param = {boLTE,39000,55300,1500},},
+		{ batSetSceneVariable , param={ 10, 0, 1 } },
+		{ batSay, param = { cctScene, 666725, cltTvShow } },
+		{ batSay, param = { cctScene, 666725, cltNormal } },
+		{ batSuicide, param = { 1, true },},
+		
+	},
+};

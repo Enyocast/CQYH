@@ -1,0 +1,19 @@
+
+
+
+on_chase = 
+{ batSequencer,		
+	{ batCheckCDTimer, param = { COOLDOWN_AI, 10 } },
+	   { batRandom , param = { 5000, 5000 }, 
+			{ batSequencer,
+				{ batSyncCastSpellToTarget, param = { 3722, tarAITarget } },		
+			},
+			{ batSequencer,
+				{ batSyncCastSpellToTarget, param = { 3722, tarAITarget } },
+				{ batSyncCastSpellToTarget, param = { 3723, tarAITarget } },			
+			},
+	   }, 
+   { batSetCDTimer, param = { COOLDOWN_AI, 10, 6000 } },
+   { batSetCDTimer, param = { COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime } },
+};
+

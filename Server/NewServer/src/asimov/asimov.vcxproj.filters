@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Form Files">
+      <UniqueIdentifier>{99349809-55BA-4b9d-BF79-8FDBB0286EB3}</UniqueIdentifier>
+      <Extensions>ui</Extensions>
+    </Filter>
+    <Filter Include="Generated Files">
+      <UniqueIdentifier>{71ED8ED8-ACB9-4CE9-BBE1-E00B30144E11}</UniqueIdentifier>
+      <Extensions>moc;h;cpp</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Release">
+      <UniqueIdentifier>{6818e12c-9703-4ee2-8281-906fd133a56e}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="Generated Files\Debug">
+      <UniqueIdentifier>{39097671-753c-410b-a6f3-4ccfa793b55a}</UniqueIdentifier>
+      <Extensions>cpp;moc</Extensions>
+      <SourceControlFiles>False</SourceControlFiles>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{b00887e2-6fa4-44d7-920d-832768b6ac30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="message">
+      <UniqueIdentifier>{f33e8682-c8fc-48a8-a5a8-f0a02593a6cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="user">
+      <UniqueIdentifier>{42b0ec6d-45bb-4399-92ca-4714824a9207}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script">
+      <UniqueIdentifier>{7cc764b8-90ea-47f9-b8f4-992ab286c0c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script\package">
+      <UniqueIdentifier>{7ee9218d-6bb6-4867-bcbc-ce302e9aff2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script\generated files">
+      <UniqueIdentifier>{3a8e3400-1b3a-45a2-a541-8d94355afcac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sdo">
+      <UniqueIdentifier>{457ea319-5780-4a7d-806c-e5fabe42981e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GeneratedFiles\qrc_asimov.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_asimov.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_asimov.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="asimov.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="asimov_message_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="robot_message_notifier.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="user.cpp">
+      <Filter>user</Filter>
+    </ClCompile>
+    <ClCompile Include="user_mgr.cpp">
+      <Filter>user</Filter>
+    </ClCompile>
+    <ClCompile Include="robot_script_func.cpp">
+      <Filter>script</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_asimov_common.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_asimov_message_handler.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_asimov_user.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_asimov_user_mgr.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_msg.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="sdo\staticlogin.cpp">
+      <Filter>sdo</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <toluapp_msg Include="script\asimov_common.pkg">
+      <Filter>script\package</Filter>
+    </toluapp_msg>
+    <toluapp_msg Include="script\asimov_message_handler.pkg">
+      <Filter>script\package</Filter>
+    </toluapp_msg>
+    <toluapp_msg Include="script\asimov_user.pkg">
+      <Filter>script\package</Filter>
+    </toluapp_msg>
+    <toluapp_msg Include="script\asimov_user_mgr.pkg">
+      <Filter>script\package</Filter>
+    </toluapp_msg>
+    <toluapp_msg Include="script\msg.pkg">
+      <Filter>script\package</Filter>
+    </toluapp_msg>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="asimov.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asimov.h">
+      <Filter>main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asimov.qrc">
+      <Filter>main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="GeneratedFiles\ui_asimov.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="stdafx.h">
+      <Filter>main</Filter>
+    </CustomBuild>
+    <CustomBuild Include="asimov_message_handler.h">
+      <Filter>message</Filter>
+    </CustomBuild>
+    <CustomBuild Include="net_event_msg.h">
+      <Filter>message</Filter>
+    </CustomBuild>
+    <CustomBuild Include="robot_message_notifier.h">
+      <Filter>message</Filter>
+    </CustomBuild>
+    <CustomBuild Include="user.h">
+      <Filter>user</Filter>
+    </CustomBuild>
+    <CustomBuild Include="user_mgr.h">
+      <Filter>user</Filter>
+    </CustomBuild>
+    <CustomBuild Include="script\tolua_asimov_common.h">
+      <Filter>script\generated files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="script\tolua_asimov_message_handler.h">
+      <Filter>script\generated files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="script\tolua_asimov_user.h">
+      <Filter>script\generated files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="script\tolua_asimov_user_mgr.h">
+      <Filter>script\generated files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="script\tolua_msg.h">
+      <Filter>script\generated files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="sdo\staticlogin.h">
+      <Filter>sdo</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

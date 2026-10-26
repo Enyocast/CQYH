@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "bteditor", "bteditor.vcproj", "{EEB53918-0F3A-40CF-89B1-DFBB456AD6AD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7FC53F49-2F00-4121-81C3-0D1B3EFF16EB} = {7FC53F49-2F00-4121-81C3-0D1B3EFF16EB}
+		{456E824D-1E8C-4CDF-BC98-F694118A6C8B} = {456E824D-1E8C-4CDF-BC98-F694118A6C8B}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "baselib", "..\baselib\baselib.vcproj", "{7FC53F49-2F00-4121-81C3-0D1B3EFF16EB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gameworld", "..\gameworld\gameworld.vcproj", "{456E824D-1E8C-4CDF-BC98-F694118A6C8B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "script", "..\gameworld\script\script.vcproj", "{CF5C97C8-62FF-4419-AD7F-98FA19EF37CA}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 5
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = bteditor.vcproj
+		SccLocalPath1 = .
+		SccProjectUniqueName2 = ..\\baselib\\baselib.vcproj
+		SccLocalPath2 = ..\\..\\..
+		SccProjectFilePathRelativizedFromConnection2 = NewServer\\src\\baselib\\
+		SccProjectUniqueName3 = ..\\gameworld\\gameworld.vcproj
+		SccLocalPath3 = ..\\..\\..
+		SccProjectFilePathRelativizedFromConnection3 = NewServer\\src\\gameworld\\
+		SccProjectUniqueName4 = ..\\gameworld\\script\\script.vcproj
+		SccLocalPath4 = ..\\..\\..
+		SccProjectFilePathRelativizedFromConnection4 = NewServer\\src\\gameworld\\script\\
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EEB53918-0F3A-40CF-89B1-DFBB456AD6AD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{EEB53918-0F3A-40CF-89B1-DFBB456AD6AD}.Debug|Win32.Build.0 = Debug|Win32
+		{EEB53918-0F3A-40CF-89B1-DFBB456AD6AD}.Release|Win32.ActiveCfg = Release|Win32
+		{EEB53918-0F3A-40CF-89B1-DFBB456AD6AD}.Release|Win32.Build.0 = Release|Win32
+		{7FC53F49-2F00-4121-81C3-0D1B3EFF16EB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7FC53F49-2F00-4121-81C3-0D1B3EFF16EB}.Debug|Win32.Build.0 = Debug|Win32
+		{7FC53F49-2F00-4121-81C3-0D1B3EFF16EB}.Release|Win32.ActiveCfg = Release|Win32
+		{7FC53F49-2F00-4121-81C3-0D1B3EFF16EB}.Release|Win32.Build.0 = Release|Win32
+		{456E824D-1E8C-4CDF-BC98-F694118A6C8B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{456E824D-1E8C-4CDF-BC98-F694118A6C8B}.Debug|Win32.Build.0 = Debug|Win32
+		{456E824D-1E8C-4CDF-BC98-F694118A6C8B}.Release|Win32.ActiveCfg = Release|Win32
+		{456E824D-1E8C-4CDF-BC98-F694118A6C8B}.Release|Win32.Build.0 = Release|Win32
+		{CF5C97C8-62FF-4419-AD7F-98FA19EF37CA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{CF5C97C8-62FF-4419-AD7F-98FA19EF37CA}.Release|Win32.ActiveCfg = Release|Win32
+		{CF5C97C8-62FF-4419-AD7F-98FA19EF37CA}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

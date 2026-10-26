@@ -1,0 +1,37 @@
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { strAI4792_1, 30000 } },
+	{ batSequencer, 
+		{ batRoleCheckInteractOption, param = { 1 } },
+
+		{ batRoleOpenDialog, param = { strAI4792_2, 30000 } },
+
+		{ batRoleCheckInteractOption, param = { 1 } },
+
+		{ batSelector,
+			{ batSequencer,
+				{ batRoleCheckMoney , param={ boLT ,1 ,5000 } },
+
+				{ batRoleOpenDialog, param = { strAI4792_3, 30000 } },
+			},
+
+			{ batSequencer,
+				{ batRoleCheckMoney , param={ boGTE ,1 ,5000 } },
+
+				{ batRoleSubMoney , param={ tarRole,1, 5000, MONEYLOG_BT_01 } },
+
+
+				{ batRandom, param = {2500, 2500, 2500, 2500 },
+					{ batRoleTeleport, param={ 9500,12600,28500, 179 },},
+
+					{ batRoleTeleport, param={ 9800,12600,28500, 179 },},
+
+					{ batRoleTeleport, param={ 9800,12300,28500, 179 },},
+
+					{ batRoleTeleport, param={ 9300,12100,28500, 179 },},
+				},
+
+			},
+		},
+    },
+};

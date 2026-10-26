@@ -1,0 +1,9 @@
+evtAIInteract = 
+{ batSequencer,
+    { batRoleCheckRoleVariable, param = { boEQ, 131, 1 } },
+	{ batRoleOpenDialog, param = { 50327, 30000 } },
+    { batRoleTeleport, param={ Tel_X, Tel_Y, Tel_Z, Tel_SceneID } },
+	{ batRoleCheckHasQuest, param={ 1531 }},
+	{ batRoleCheckQuestVariable , param={boEQ,1531,1,0} },
+	{ batRoleSetQuestVariable  , param={1531,1,0,1} },
+};

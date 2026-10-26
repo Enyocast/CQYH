@@ -1,0 +1,43 @@
+﻿local spell_common =
+{
+	{ id = 5660, cd = 3000, chance = 10000, target = tarAITarget },    --1.幽灵船：鲸鱼人头领 : 大范围的近战打击(把原来的两连击调整一下，随即左右，前方U形2-3层）
+	{ id = 5662, cd = 25000, chance = 10000, target = tarAITarget },   --2.幽灵船：鲸鱼人头领 : 高速移动的范围攻击，发动时物理和魔法防御力增加(7x7范围内伤害）
+	{ id = 5666, cd = 0, chance = 10000, target = tarAITarget },       --3.幽灵船：鲸鱼人头领 : 连续单体投技，单体高伤害，击破武器耐久(MaxGrid=5)
+	{ id = 5664, cd = 0, chance = 10000, target = tarAITarget },       --4.幽灵船：鲸鱼人头领 : 连续单体投技，单体高伤害，击破盔甲耐久(MaxGrid=5)
+	{ id = 5665, cd = 0, chance = 10000, target = tarAITarget },       --5.幽灵船：鲸鱼人头领 : 近距离AOE，造成魔法伤害，威力很高。分3段向前延展
+};
+
+
+on_wander = 
+{ batSequencer,
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[2].id, spell_common[2].cd);
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[3].id, spell_common[3].cd);
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[4].id, spell_common[4].cd);
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[5].id, spell_common[5].cd);
+};
+
+on_cast_spell =
+{ batSelector,
+	__cast_spell(spell_common[1].id, tarAITarget, spell_common[1].chance, spell_common[1].cd);
+	__cast_spell(spell_common[2].id, tarAITarget, spell_common[2].chance, spell_common[2].cd);
+	{ batSequencer,
+	    { batCheckCDTimer , param = { COOLDOWN_AI , 100 },},
+	    { batRandom, param = { 5000, 5000 },
+		    __cast_spell(spell_common[3].id, tarAITarget, spell_common[3].chance, spell_common[3].cd);
+		    __cast_spell(spell_common[4].id, tarAITarget, spell_common[4].chance, spell_common[4].cd);
+	    },
+		{ batSetCDTimer, param = { COOLDOWN_AI , 100 , 20000},},
+	},
+	{ batSequencer,
+		{ batCheckCharHp , param = { tarSelf, boLTE, 9000 } },	
+		{ batCheckCDTimer , param = { COOLDOWN_AI , 99 },},
+		__cast_spell(spell_common[5].id, tarAITarget, spell_common[5].chance, spell_common[5].cd);
+        { batSetCDTimer, param = { COOLDOWN_AI , 99 , 30000},},		
+	},
+};
+
+
+
+
+
+

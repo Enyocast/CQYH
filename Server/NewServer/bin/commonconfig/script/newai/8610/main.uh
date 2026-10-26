@@ -1,0 +1,16 @@
+
+evtAIInteract = 
+{ batSelector,
+	{ batSequencer,
+	    { batCheckDistance , param={ tarRole , boLTE, 128 },
+	    }, 
+	    { batRoleTeleport, param={ 58378, 52405, 6016, 152 },
+	    },
+	},
+	{ batSequencer,
+	    { batCheckDistance , param={ tarRole , boGT , 128 },
+	    }, 
+	    { batSay, param={ cctScreen, 50388 , cltTvShow },
+	    },
+	},
+};

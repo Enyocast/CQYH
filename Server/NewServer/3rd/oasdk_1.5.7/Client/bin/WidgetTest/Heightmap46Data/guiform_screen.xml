@@ -1,0 +1,83 @@
+<unires>
+	<!-- *********************************************************************** -->
+	<!-- AsphyreGUI control declaration                                        -->
+	<!-- *********************************************************************** -->
+	<agui>
+		<!-- *********************************************************************** -->
+		<!-- Screen_Form1: TGuiCnWebForm                                             -->
+		<!-- *********************************************************************** -->
+		<control class="TGuiCnForm" name="Screen_Form1">
+			<property name="Shape" text="form_test01"/>
+			<property name="Origin" x="100" y="100" />
+			<property name="DragShape" text=""/>
+			<property name="CaptRect" x="0" y="0" width="10" height="11"/>
+			<property name="CaptFont" text="sys:tahoma"/>
+			<property name="CaptColor" color="#F0DEBF" alpha="200"/>
+			<property name="Caption"  widestring=""/>
+			<property name="CaptHAlign" align="left"/>
+			<property name="Enabled" value="yes"/>
+			<property name="Visible" value="yes"/>
+					
+			<property name="CaptOpt">
+				<text kerning="-3" scale="65536" dx="0" dy="3"/>
+				<shadow show="no" alpha="128" dx="2" dy="2"/>
+			</property> 
+  		
+			<control class="TGuiCnButton" name="Screen_BtnLogin">
+  			<property name="Shape" text="button_test01_close" />
+  			<property name="CaptRect" x="10" y="-2" width="50" height="30" />
+  			<property name="CaptFont" text="sys:tahoma" />
+  			<property name="CaptColor" color="#FF0000" alpha="128" />
+  			<property name="Origin" x="0" y="0" />
+  			<property name="Caption" text="" utf8text="E799BB2020E5BD95"/>
+  			<property name="CaptHAlign" align="center" />
+  			<property name="CaptVAlign" align="center" />
+  			<property name="Enabled" value="yes" />
+  			<property name="Visible" value="yes" />
+  			<property name="CaptOpt">
+   				<text kerning="-3" scale="65536" dx="0" dy="3" />
+   				<shadow show="no" alpha="128" dx="2" dy="2" />
+  			</property> 
+  			<property name="Skin">
+   				<normal skin="NormalBtn" left="0" top="0" right="66" bottom="23"  />
+   				<focused skin="NormalBtn" left="0" top="0" right="66" bottom="23" />
+   				<over skin="NormalBtn" left="0" top="24" right="66" bottom="47" />
+   				<down skin="NormalBtn" left="0" top="48" right="66" bottom="71" />
+ 				</property>
+			  <property name="CaptCol">
+   				<normal color="#F0E3C7" alpha="192" />
+   				<down color="#DED1B4" alpha="192" />
+  			</property>  		
+  			</control><!-- the end of TGuiCnButton -->
+  			
+			<control class="TGuiCnButton" name="Screen_BtnBalance">
+  			<property name="Shape" text="button_test01_close" />
+  			<property name="CaptRect" x="10" y="-2" width="50" height="30" />
+  			<property name="CaptFont" text="sys:tahoma" />
+  			<property name="CaptColor" color="#FF0000" alpha="128" />
+  			<property name="Origin" x="0" y="24" />
+  			<property name="Caption" text="" utf8text="E4BD99E9A29DE69FA5E8AFA2"/>
+  			<property name="CaptHAlign" align="center" />
+  			<property name="CaptVAlign" align="center" />
+  			<property name="Enabled" value="yes" />
+  			<property name="Visible" value="yes" />
+  			<property name="CaptOpt">
+   				<text kerning="-3" scale="65536" dx="0" dy="3" />
+   				<shadow show="no" alpha="128" dx="2" dy="2" />
+  			</property> 
+  			<property name="Skin">
+   				<normal skin="NormalBtn" left="0" top="0" right="66" bottom="23"  />
+   				<focused skin="NormalBtn" left="0" top="0" right="66" bottom="23" />
+   				<over skin="NormalBtn" left="0" top="24" right="66" bottom="47" />
+   				<down skin="NormalBtn" left="0" top="48" right="66" bottom="71" />
+ 				</property>
+			  <property name="CaptCol">
+   				<normal color="#F0E3C7" alpha="192" />
+   				<down color="#DED1B4" alpha="192" />
+  			</property>  		
+  			</control><!-- the end of TGuiCnButton -->
+  			
+  		 
+		</control><!-- the end of TGuiCnWebForm -->		
+	</agui>
+</unires>

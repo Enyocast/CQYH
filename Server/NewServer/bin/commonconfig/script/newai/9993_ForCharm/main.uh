@@ -1,0 +1,32 @@
+
+
+on_init = 
+{ batSequencer, 
+	__add_aura(60000, tarHost ),
+};
+
+evtAIFight = 
+{ batParallel,
+	{ batSelector,
+		__check_live_timer(d.nLiveTime),
+		__check_out_of_range(d.nChaseRange),    
+		__check_target_die(d.nChaseRange),
+		__fight_move(d.nPreferDistance, d.nWithdrawThreshold, d.nChaseThreshold, d.nRunSpeed * 1000 / GAME_FPS, d.nStepAroundChance, d.nStepAroundCDTime),
+        { batSequencer,
+            { batCheckCanCastSpell },
+            _scan_nearby(),
+            { batSelector,
+				{ batRandom, param = { 2500, 2500, 2500, 2500 },
+					{ batCastSlotSpellToTarget, param = { qssKey1, tarNearestEnemyRole, 0, 0 } },
+					{ batCastSlotSpellToTarget, param = { qssKey2, tarNearestEnemyRole, 0, 0 } },
+					{ batCastSlotSpellToTarget, param = { qssKey3, tarNearestEnemyRole, 0, 0 } },
+					{ batCastSlotSpellToTarget, param = { qssKey4, tarNearestEnemyRole, 0, 0 } },
+				},
+				{ batCastSlotSpellToTarget, param = { qssMouseL, tarNearestEnemyRole, 0, 0 } },
+				{ batCastSlotSpellToTarget, param = { qssMouseR, tarNearestEnemyRole, 0, 0 } },
+            },
+        },
+		__chase(d.nRunSpeed * 1000 / GAME_FPS, d.nPreferDistance, d.nChaseThreshold, d.nChaseDelayTime),
+	},
+};
+

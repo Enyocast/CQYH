@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="logic">
+      <UniqueIdentifier>{fa4bfe1c-0cc4-4f8d-9d25-8fe5919beff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="db">
+      <UniqueIdentifier>{d4e1346a-484e-43fa-aade-8ad18bdb7e91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{3b975bf5-a1d8-47d1-b131-70adfa0d870b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="message">
+      <UniqueIdentifier>{4e4f8b36-2b4c-452f-85c7-67609a8828cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="session">
+      <UniqueIdentifier>{40655dd5-ee66-4018-817a-44e89cdb9c5f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="logic\db_worker_thread.cpp">
+      <Filter>logic</Filter>
+    </ClCompile>
+    <ClCompile Include="logic\dbrole.cpp">
+      <Filter>logic</Filter>
+    </ClCompile>
+    <ClCompile Include="logic\dbrole_mgr.cpp">
+      <Filter>logic</Filter>
+    </ClCompile>
+    <ClCompile Include="logic\dbuser.cpp">
+      <Filter>logic</Filter>
+    </ClCompile>
+    <ClCompile Include="logic\dbuser_mgr.cpp">
+      <Filter>logic</Filter>
+    </ClCompile>
+    <ClCompile Include="logic\mem_mgr.cpp">
+      <Filter>logic</Filter>
+    </ClCompile>
+    <ClCompile Include="db\db_create_role.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\db_delete_role.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\db_list_role.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\db_load_role.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\db_save_role.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\db_update_role_delete_time.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="dbserver.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="db_message_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="db_session_mgr.cpp">
+      <Filter>session</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="logic\db_worker_thread.h">
+      <Filter>logic</Filter>
+    </ClInclude>
+    <ClInclude Include="logic\dbrole.h">
+      <Filter>logic</Filter>
+    </ClInclude>
+    <ClInclude Include="logic\dbrole_mgr.h">
+      <Filter>logic</Filter>
+    </ClInclude>
+    <ClInclude Include="logic\dbuser.h">
+      <Filter>logic</Filter>
+    </ClInclude>
+    <ClInclude Include="logic\dbuser_mgr.h">
+      <Filter>logic</Filter>
+    </ClInclude>
+    <ClInclude Include="logic\mem_mgr.h">
+      <Filter>logic</Filter>
+    </ClInclude>
+    <ClInclude Include="db\db_create_role.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="db\db_delete_role.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="db\db_list_role.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="db\db_load_role.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="db\db_save_role.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="db\db_update_role_delete_time.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="dbserver.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="db_message_handler.h">
+      <Filter>message</Filter>
+    </ClInclude>
+    <ClInclude Include="db_session_mgr.h">
+      <Filter>session</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="db_session_mgr.inl">
+      <Filter>session</Filter>
+    </None>
+  </ItemGroup>
+</Project>

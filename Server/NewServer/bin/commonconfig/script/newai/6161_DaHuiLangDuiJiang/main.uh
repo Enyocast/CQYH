@@ -1,0 +1,13 @@
+﻿
+evtAIInteract = 
+{ batSequencer,
+	{ batSequencer,
+		{ batRoleOpenDialog, param = { 666770, 30000, 0, 0 } },
+		{ batSelector,
+			{ batSequencer,
+				{ batRoleCheckInteractOption, param = { 1 } },
+			},
+		},
+	},
+}; 
+

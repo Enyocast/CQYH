@@ -1,0 +1,180 @@
+-- tree evtAIDie refer external: -- 
+-- external table or function:  batChangeGuildBuildingState
+-- external table or function:  batSummonDoodad
+-- external consistant var:  GetDoodadTemplateID()
+-- external consistant var:  GetSelfGuildID()
+-- external consistant var:  GetIntruderGuildID()
+
+evtAIDie = 
+{ batParallel,
+	{ batSetFlag, param = { cfBTDenyDie } },
+	{ batInvincible, param = { true } },
+	{ batSetAIVariable, param = { 0, 1, 0 } },
+	{ batChangeGuildResource, param = { GUILD_RES_DEC_PERCENT, GUILD_ATTR_CRYSTAL, 10, 1 } },
+	{ batSequencer,
+		{ batCheckAIVariable, param = { boEQ, 0, 2 } },
+		{ BuildingDrop, },
+	},
+	{ batInvincible, param = { false } },
+	{ batSequencer,
+		{ batGBuildingDead, },
+		{ batSetCharHp, param = { tarSelf, 1, 0, 0 } },
+		{ batAddAura, param = { tarSelf, 2230 } },
+		{ batPlayAction, param = { 1 } },
+		{ batWait, param = { 2000 } },
+		{ BuildingDead },
+	},
+};
+
+
+evtAIInit = 
+{ batSequencer,
+	{ batSetAIVariable, param = { 2, 1, 0 } },
+	
+};
+
+on_enter_fight =
+{ batSequencer,
+	{ batCheckCDTimer, param = { COOLDOWN_AI, 10 } },
+	{ building_say },
+	{ building_say },
+	{ building_say },
+	{ batSetCDTimer, param = { COOLDOWN_AI, 10, 30000 } },
+};
+
+
+evtAIFight =
+		{ batParallel,
+			{ batSelector,
+					-- 1
+					{ batSequencer, 
+						{ batCheckAIVariable, param = { boEQ, 2, 1 } },
+						{ batCheckCharHp , param = { tarSelf, boLTE, 9000 } },
+						{ batSetAIVariable, param = { 0, 1, 0 } },
+						{ batChangeGuildResource, param = { GUILD_RES_DEC_PERCENT, GUILD_ATTR_CRYSTAL, 10, 0 } },
+						{ batSequencer,
+							{ batCheckAIVariable, param = { boEQ, 0, 2 } },
+							{ BuildingDrop, },
+						},
+						{ batSetAIVariable, param = { 2, 2, 0 } },
+					},
+					-- 2
+					{ batSequencer, 
+						{ batCheckAIVariable, param = { boEQ, 2, 2 } },
+						{ batCheckCharHp , param = { tarSelf, boLTE, 8000 } },
+						{ batSetAIVariable, param = { 0, 1, 0 } },
+						{ batChangeGuildResource, param = { GUILD_RES_DEC_PERCENT, GUILD_ATTR_CRYSTAL, 10, 0 } },
+						{ batSequencer,
+							{ batCheckAIVariable, param = { boEQ, 0, 2 } },
+							{ BuildingDrop, },
+						},
+						{ batSetAIVariable, param = { 2, 3, 0 } },
+					},		
+					-- 3
+					{ batSequencer, 
+						{ batCheckAIVariable, param = { boEQ, 2, 3 } },
+						{ batCheckCharHp , param = { tarSelf, boLTE, 7000 } },
+						{ batSetAIVariable, param = { 0, 1, 0 } },
+						{ batChangeGuildResource, param = { GUILD_RES_DEC_PERCENT, GUILD_ATTR_CRYSTAL, 10, 0 } },
+						{ batSequencer,
+							{ batCheckAIVariable, param = { boEQ, 0, 2 } },
+							{ BuildingDrop, },
+						},
+						{ batSetAIVariable, param = { 2, 4, 0 } },
+					},		
+					-- 4
+					{ batSequencer, 
+						{ batCheckAIVariable, param = { boEQ, 2, 4 } },
+						{ batCheckCharHp , param = { tarSelf, boLTE, 6000 } },
+						{ batSetAIVariable, param = { 0, 1, 0 } },
+						{ batChangeGuildResource, param = { GUILD_RES_DEC_PERCENT, GUILD_ATTR_CRYSTAL, 10, 0 } },
+						{ batSequencer,
+							{ batCheckAIVariable, param = { boEQ, 0, 2 } },
+							{ BuildingDrop, },
+						},
+						{ batSetAIVariable, param = { 2, 5, 0 } },
+					},		
+					-- 5
+					{ batSequencer, 
+						{ batCheckAIVariable, param = { boEQ, 2, 5 } },
+						{ batCheckCharHp , param = { tarSelf, boLTE, 5000 } },
+						{ batSetAIVariable, param = { 0, 1, 0 } },
+						{ batChangeGuildResource, param = { GUILD_RES_DEC_PERCENT, GUILD_ATTR_CRYSTAL, 10, 0 } },
+						{ batSequencer,
+							{ batCheckAIVariable, param = { boEQ, 0, 2 } },
+							{ BuildingDrop, },
+						},
+						{ batSetAIVariable, param = { 2, 6, 0 } },
+					},		
+					-- 6
+					{ batSequencer, 
+						{ batCheckAIVariable, param = { boEQ, 2, 6 } },
+						{ batCheckCharHp , param = { tarSelf, boLTE, 4000 } },
+						{ batSetAIVariable, param = { 0, 1, 0 } },
+						{ batChangeGuildResource, param = { GUILD_RES_DEC_PERCENT, GUILD_ATTR_CRYSTAL, 10, 0 } },
+						{ batSequencer,
+							{ batCheckAIVariable, param = { boEQ, 0, 2 } },
+							{ BuildingDrop, },
+						},
+						{ batSetAIVariable, param = { 2, 7, 0 } },
+					},		
+					-- 7
+					{ batSequencer, 
+						{ batCheckAIVariable, param = { boEQ, 2, 7 } },
+						{ batCheckCharHp , param = { tarSelf, boLTE, 3000 } },
+						{ batSetAIVariable, param = { 0, 1, 0 } },
+						{ batChangeGuildResource, param = { GUILD_RES_DEC_PERCENT, GUILD_ATTR_CRYSTAL, 10, 0 } },
+						{ batSequencer,
+							{ batCheckAIVariable, param = { boEQ, 0, 2 } },
+							{ BuildingDrop, },
+						},
+						{ batSetAIVariable, param = { 2, 8, 0 } },
+					},		
+					-- 8
+					{ batSequencer, 
+						{ batCheckAIVariable, param = { boEQ, 2, 8 } },
+						{ batCheckCharHp , param = { tarSelf, boLTE, 2000 } },
+						{ batSetAIVariable, param = { 0, 1, 0 } },
+						{ batChangeGuildResource, param = { GUILD_RES_DEC_PERCENT, GUILD_ATTR_CRYSTAL, 10, 0 } },
+						{ batSequencer,
+							{ batCheckAIVariable, param = { boEQ, 0, 2 } },
+							{ BuildingDrop, },
+						},
+						{ batSetAIVariable, param = { 2, 9, 0 } },
+					},		
+					-- 9
+					{ batSequencer, 
+						{ batCheckAIVariable, param = { boEQ, 2, 9 } },
+						{ batCheckCharHp , param = { tarSelf, boLTE, 1000 } },
+						{ batSetAIVariable, param = { 0, 1, 0 } },
+						{ batChangeGuildResource, param = { GUILD_RES_DEC_PERCENT, GUILD_ATTR_CRYSTAL, 10, 0 } },
+						{ batSequencer,
+							{ batCheckAIVariable, param = { boEQ, 0, 2 } },
+							{ BuildingDrop, },
+						},
+						{ batSetAIVariable, param = { 2, 0, 0 } },
+					},	
+			},
+			__issue_threat_signal(d.nSpreadThreatCount),
+			{ batSelector,
+				__change_target(d.nChangeTargetChance, d.nChangeTargetCDTime, d.nChaseRange, d.nChangeTargetDelayTime),
+				__get_valid_target(d.nChaseRange),
+			},
+			{ batSelector,
+				__check_live_timer(d.nLiveTime, d.bDisappearOnTimeout),
+				__flee(d.nFleeHpPercent, d.nFleeChance, 20000, d.nFleeDuration, d.nRunSpeed * 1000 / GAME_FPS),
+				__fight_move(d.nPreferDistance, d.nWithdrawThreshold, d.nChaseThreshold, d.nRunSpeed * 1000 / GAME_FPS, d.nStepAroundChance, d.nStepAroundCDTime),
+				'on_cast_spell',
+				_cast_all_spell(),
+				__chase(d.nRunSpeed * 1000 / GAME_FPS, d.nPreferDistance, d.nChaseThreshold, d.nChaseDelayTime),
+			},
+		};
+		
+		
+		
+		
+		
+		
+		
+		
+		

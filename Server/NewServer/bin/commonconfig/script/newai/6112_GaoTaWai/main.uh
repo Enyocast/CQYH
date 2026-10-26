@@ -1,0 +1,43 @@
+
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { strAI_6112_1, 50000, 0, 0 } },	
+
+	{ batSelector,
+		{ batSequencer, 
+			{ batRoleCheckInteractOption, param = { 1 } },
+			{ batSelector,
+				{ batSequencer, 
+					{ batRoleCheckLevel, param = { boGTE, 20 } }, 
+					{ batSelector,
+						{ batSequencer,
+							{ batRoleCheckDailyVariable, param = { 185 } },
+							{ batSelector,
+								{ batSequencer,
+									{ batCheckInTeam },    -- 检查角色是否有队伍
+									{ batRoleOpenDialog, param = { 50080, 50000, 0, 0 } },
+								},
+								{ batSequencer,
+									{ batRoleTeleport, param = { 13286, 12706, 4400, 227 } },    -- 把角色传进地图
+									----记录进入的时间
+									{ batRoleSetRoleVariable, param = { 218, 'CGameWorld:GetInstance():GetGameTime()', 0 } },
+								},
+							},
+						},
+						{ batSequencer,
+							{ batRoleOpenDialog, param = { 50046, 30000 } },
+						},
+					},	
+				},
+				{ batSequencer, 
+					{ batRoleCheckLevel, param = { boLT, 20 } }, 
+					{ batRoleOpenDialog, param = { 50035, 50000, 0, 0 } },		
+				},
+			},
+		},
+		{ batSequencer, 
+			{ batRoleCheckInteractOption, param = { 2 } },	
+			{ batReturnFail },
+		},
+	},
+}; 

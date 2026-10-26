@@ -1,0 +1,93 @@
+#coding=gbk
+
+url_template = r'http://172.30.68.104:8012/sendnotify.cgi?title=AutoBuild&msg=%s&receiver=%s'
+
+user_list = [
+	'chenwang',
+	'zhuming',
+	'fangruyi',
+	'huyue',
+	'zhangwujun',
+	'yunyu',
+	'zhuweiqiang',
+	'baichenglin',
+	'suibo',
+	'wuweiyi',
+	'xialiang',
+	'yulu',
+	'ª™÷“',
+	'songqi',
+	'dengxiaoshuang',
+	'songyuezhu',
+	'qinchuan',
+	'lixiaolong.bruce',
+	'Hemu',
+	'zhaohongfei',
+	'lubuyuan',
+	'shaojunjie',
+	'liuyang.ocean',
+	'÷ÏΩ£«',
+	'yangyun',
+	'huazhong',
+	'lixj',
+	'wubin',
+	'zhaohanhan',
+	'zhangguiquan',
+	'xiaoni',
+	'XiongJun',
+	'huqiongyu',
+	'longfei',
+	'qintao',
+	'yangyun02',
+	'zhanglinjian',
+	'ceping',
+	'lianhongkun',
+	'renbeili',
+	'yinyuna',
+	'wuliang',
+	'zhangqi',
+	'wuliang01',
+	'akillylove',
+	'songshenglan',
+	'¿Óœƒπ‚',
+	'zhangyuntian',
+	'yaochanghai',
+	'gaohuaxiang.watson',
+	'jinyuanfei',
+	'luchenlei',
+	'avalon',
+	'caixuhui',
+	'zhaomeng01',
+	'zhuqin',
+	'xingbing',
+	'zhaozhenyang',
+	'yulefeng',
+	'jinyinggang',
+	'zhangjingxuan',
+	'shujian',
+	'√∑œ‘÷“',	
+	'ZHANGMIAO'
+]   
+
+compile_user_list = [
+	'lixj',
+	'¿Óœƒπ‚',
+	'wubin',
+	'÷ÏΩ£«',
+	'ZHANGMIAO',
+	'√∑œ‘÷“',
+	'¡ı„¸‘¥'
+]   
+
+import urllib
+def send_msg(info):
+    for name in user_list:
+        url = url_template % (info, name)
+        urllib.urlopen(url).read()
+
+def send_compile_msg(info):
+    for name in compile_user_list:
+        url = url_template % (info, name)
+        urllib.urlopen(url).read()
+
+		

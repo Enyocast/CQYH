@@ -1,0 +1,174 @@
+local sign_reward_table = 
+		{
+			1100101,
+			1100102,
+			1100103,
+			1100104,
+			1100105,
+			1100106,
+			1100107,
+		};
+
+local collection_reward = 1500001;
+local collection_check_table = 
+		{
+			91001,
+			91002,
+			91003,
+			91004,
+			91005,
+			91006,
+		};
+
+local rolevarible_value = 1;
+local opendialog_id = 1;
+
+--[[
+function record_online_time(owner, index)
+	local role = CGameWorld:GetInstance():FindValidRole(get_ctx_role_id());
+	if not role then
+		return brvFail;
+	end
+	role:SetVariable(145+index, role:GetTotalOnlineTime());
+
+	return brvSuccess;
+end
+
+function _sign_check(rolevarible_value,opendialog_id)
+	-- body
+	local plus_value = rolevarible_value +1;
+	local sign_check_table = 
+		{ batSequencer,
+			{ batRoleCheckRoleVariable, param = { boEQ, 141, rolevarible_value, 0 } },
+			{ batRoleAddItem, param = { sign_reward_table[plus_value], 1 } },
+			-------------------设置签到CD
+			----------------开关是否有日常的限制-----------------------
+			{ batRoleUpdateDailyVariable, param = { 142, 0 } },
+			----------------开关是否有日常的限制-----------------------
+			{ batRoleSetRoleVariable , param = { 141, plus_value } },
+			{ record_online_time, param = {rolevarible_value} }
+,
+			{ batRoleOpenDialog, param = { opendialog_id, 50000, 0, 0 } },
+		};
+	return sign_check_table;
+end
+
+
+--签到活动
+function _sign_in(sign_reward_table)
+	local sign_table = 
+	{ batSelector,
+		{ batSequencer,
+			-------------------检查签到CD
+			----------------开关是否有日常的限制-----------------------
+			{ batRoleCheckDailyVariable, param = { 142 } },
+			----------------开关是否有日常的限制-----------------------
+			{ batRoleOpenDialog, param = { 479102, 50000, 0, 0 } },
+
+			{ batRoleCheckInteractOption, param = { 1 } },
+			{ batSelector,
+				--第一天
+				_sign_check(0,479103),
+				--第二天
+				_sign_check(1,479104),
+				--以此类推
+				_sign_check(2,479105),
+				_sign_check(3,479106),
+				_sign_check(4,479107),
+				_sign_check(5,479108),
+				_sign_check(6,479109),
+
+				{ batSequencer,
+					{ batRoleCheckRoleVariable, param = { boGTE, 141, 7, 0 } },
+					{ batRoleOpenDialog, param = { 479111, 50000, 0, 0 } },
+				},
+			},
+
+		},
+		{ batSequencer,
+			{ batRoleOpenDialog, param = { 479110, 50000, 0, 0 } },
+		},
+	};
+	return sign_table;
+end
+
+
+--收集字体活动
+function _item_collection(collection_reward,collection_check_table)
+	local _collection_table = 
+	{ batSelector,
+		{batSequencer,
+			{ batRoleCheckRoleVariable, param = { boNEQ, 143,  1, 0 } },
+			{ batRoleOpenDialog, param = { 479112, 50000, 0, 0 } },
+			{ batRoleCheckInteractOption, param = { 1 } },
+			{ batSelector,
+				{batSequencer,
+					{ batRoleCheckItemCount, param = { boGTE,collection_check_table[1], 1 } }, 
+					{ batRoleCheckItemCount, param = { boGTE,collection_check_table[2], 1 } }, 
+					{ batRoleCheckItemCount, param = { boGTE,collection_check_table[3], 1 } }, 
+					{ batRoleCheckItemCount, param = { boGTE,collection_check_table[4], 1 } }, 
+					{ batRoleCheckItemCount, param = { boGTE,collection_check_table[5], 1 } }, 
+					{ batRoleCheckItemCount, param = { boGTE,collection_check_table[6], 1 } }, 
+					{ batParallel,
+						{ batRoleDelItem, param = { collection_check_table[1], 1 } },
+						{ batRoleDelItem, param = { collection_check_table[2], 1 } },
+						{ batRoleDelItem, param = { collection_check_table[3], 1 } },
+						{ batRoleDelItem, param = { collection_check_table[4], 1 } },
+						{ batRoleDelItem, param = { collection_check_table[5], 1 } },
+						{ batRoleDelItem, param = { collection_check_table[6], 1 } },
+					},
+					{ batRoleSetRoleVariable , param = { 143, 1 } },
+					{ batRoleAddItem, param = { collection_reward, 1 } },	
+					{ batRoleOpenDialog, param = { 479113, 50000, 0, 0 } },		
+				},
+				{batSequencer,
+					{ batRoleOpenDialog, param = { 479114, 50000, 0, 0 } },
+				},
+			},
+		},
+		{batSequencer,
+			{ batRoleOpenDialog, param = { 479115, 50000, 0, 0 } },
+		},		
+
+	};
+	return _collection_table;
+end
+-----------------
+]]--
+
+--evtAIInteract = 
+--{ batSequencer,
+	--{ batRoleOpenDialog, param = { 479101, 50000, 0, 0 } },	
+
+	--{ batSelector,
+		--原选项1，进入签到领取测试答谢礼盒
+		--{ batSequencer, 
+			--{ batRoleCheckInteractOption, param = { 1 } },
+			--_sign_in(sign_reward_table),
+		--},
+		--选项1,进入“我爱传奇永恒”活动
+		--{ batSequencer, 
+		--	{ batRoleCheckInteractOption, param = { 1 } },
+		--	_item_collection(collection_reward,collection_check_table),
+		--},
+	--},
+--}; 
+
+
+
+evtAIInteract = 
+{ batSelector,
+	{ batSequencer,
+		{ batRoleCheckItemCount , param = { boLT, 93001, 10, true } },		
+		{ batRoleOpenDialog, param = { 479101, 50000, 0, 0 } },	
+
+			--原选项1，兑换时间卡
+			{ batSequencer, 
+				{ batRoleCheckInteractOption, param = { 1 } },
+				{ batRoleTemporaryCharge },
+			},	
+	},	
+	{ batSequencer,
+		{ batRoleOpenDialog, param = { 50079, 50000, 0, 0 } },		
+	},	
+}; 

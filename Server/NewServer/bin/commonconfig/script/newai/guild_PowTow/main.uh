@@ -1,0 +1,81 @@
+-- tree evtAIDie refer external: -- 
+-- external table or function:  batChangeGuildBuildingState
+-- external table or function:  batSummonDoodad
+-- external consistant var:  GetDoodadTemplateID()
+-- external consistant var:  GetSelfGuildID()
+-- external consistant var:  GetIntruderGuildID()
+
+
+evtAIIdle = 
+{ batSelector,
+	{ batSequencer,
+		{ batCheckBossState  , param = { 1 } },
+		{ batReturnSuccess},
+	},
+	{ batSequencer,
+		{ batCheckBossState  , param = { 0 } },		
+		{ batSelector,
+			__check_live_timer(d.nLiveTime, d.bDisappearOnTimeout),	
+			_detect_enemy(),	
+			__cast_spell(d.nSpellID[nastIdleSpell], tarSelf, d.nSpellChance[nastIdleSpell], d.nSpellCDTime[nastIdleSpell], d.nGlobalCDTime),
+			'on_wander',
+			_patrol(),
+			_follow(),
+			__wander(d.nWanderRange, d.nWanderInterval, d.nWalkSpeed * 1000 / GAME_FPS),
+		},
+	},
+};
+
+
+on_enter_fight =
+{ batSequencer,
+	{ batCheckCDTimer, param = { COOLDOWN_AI, 10 } },
+	{ building_say },
+	{ building_say },
+	{ building_say },
+	{ batSetCDTimer, param = { COOLDOWN_AI, 10, 30000 } },
+};
+
+
+
+
+
+
+evtAIFight =
+    { batParallel,
+        __issue_threat_signal(d.nSpreadThreatCount),
+		{ batRotateTo, param = { tarAITarget, 0, 0, d.nRotateSpeed } },
+		{ batSelector,
+			__change_target(d.nChangeTargetChance, d.nChangeTargetCDTime, d.nChaseRange, d.nChangeTargetDelayTime),
+			__get_valid_target(d.nChaseRange),
+		},
+        { batSelector,
+            __check_live_timer(d.nLiveTime, d.bDisappearOnTimeout),
+            __flee(d.nFleeHpPercent, d.nFleeChance, 20000, d.nFleeDuration, d.nRunSpeed * 1000 / GAME_FPS),
+            'on_fight_move',
+            __fight_move(d.nPreferDistance, d.nWithdrawThreshold, d.nChaseThreshold, d.nRunSpeed * 1000 / GAME_FPS, d.nStepAroundChance, d.nStepAroundCDTime),
+            'on_cast_spell',
+            _cast_all_spell(),
+            __chase(d.nRunSpeed * 1000 / GAME_FPS, d.nPreferDistance, d.nChaseThreshold, d.nChaseDelayTime),
+        },
+    };
+
+
+
+evtAIDie = 
+{ batParallel,
+	{ batInvincible, param = { true } },
+	{ batSetFlag, param = { cfBTDenyDie } },
+	{ batDebug,
+		{ batSequencer,
+			{ batGBuildingDead, },
+			{ batSetCharHp, param = { tarSelf, 1, 0, 0 } },
+			{ batSetBossState , param = { 1 } },
+			--{ batAddAura, param = { tarSelf, 2230 } },
+			{ batPlayAction, param = { 1 } },
+			{ batWait, param = { 2000 } },
+			{ batInvincible, param = { false } },
+			{ BuildingDead },
+		},
+	},
+};

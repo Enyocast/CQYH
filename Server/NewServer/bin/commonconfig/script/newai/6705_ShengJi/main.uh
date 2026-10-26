@@ -1,0 +1,18 @@
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { STR_LevelUpEquip, 30000 } },
+	{ batRoleCheckInteractOption, param = { 1 } },
+		{ batSequencer,
+			{ batRoleOpenDialog, param = { STR_CONFIRM_LevelUpEquip, 30000 } },
+			{ batSelector,
+				{ batSequencer, 
+					{ batRoleCheckInteractOption, param = { 1 } },
+					{ batReturnFail },
+				},
+			},
+			
+		},
+		
+
+			
+};

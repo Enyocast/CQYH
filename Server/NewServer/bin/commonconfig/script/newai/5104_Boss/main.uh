@@ -1,0 +1,110 @@
+LoadPackage("drop_generator.pkg")
+LoadPackage("npc.pkg")
+LoadPackage("scene.pkg")
+
+local BOSS_COUNT = 3;
+
+local SCENE_REWARD_MONEY_POOL_VAR = 1;
+local SCENE_BOSS_DIE_COUNT_VAR = 2;
+local SCENE_BOSS_COUNT_VAR = 3;
+
+local MONEY_COST_EACH_BOX = 40000; -- 可配置
+local TICKET_COST = 10000;
+
+local MAX_BOX_COUNT = 49;
+--[[
+on_init =
+{ batSequencer, 
+  { batSpawnMediumGroup , param = { 1 } },
+};]]--
+
+
+on_enter_fight = 
+{ batSequencer, 
+  { batSetCDTimer, param = { COOLDOWN_AI, 11, 1000 } },
+};
+
+on_cast_spell = 
+{ batSequencer,
+	{ batCheckCanCastSpell },
+	__check_cd_timer(COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime),
+	{ batSelector, 
+        --[[{ batSequencer,
+		    { batCheckBossState , param = { 0 } },
+		    { batCheckCharHp , param = { tarSelf , boLTE , 8000 } },
+			{ batSpawnMediumGroup , param = { 2 } },
+			{ batSetBossState , param = { 1 } },
+		}, 		
+        { batSequencer,
+		    { batCheckBossState , param = { 1 } },
+		    { batCheckCharHp , param = { tarSelf , boLTE , 5500 } },
+			{ batSpawnMediumGroup , param = { 3 } },
+			{ batSetBossState , param = { 2 } },
+		}, 		
+        { batSequencer,
+		    { batCheckBossState , param = { 2 } },
+		    { batCheckCharHp , param = { tarSelf , boLTE , 2500 } },
+			{ batSpawnMediumGroup , param = { 4 } },
+			{ batSetBossState , param = { 3 } },
+		},	]]--
+		{ batSequencer,
+			{ batCheckCharHp , param = { tarSelf, boLTE, 5000 } },	
+		    { batCheckCDTimer, param = { COOLDOWN_AI, 11 } },
+			{ batSyncCastSpellToTarget, param = { 5792, tarSelf } },		
+			{ batSetCDTimer, param = { COOLDOWN_AI, 11, 600000 } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime } },
+	    },	
+    },
+};
+--[[
+function OnBossDie(owner, p1, p2, p3, p4)
+	local scene = owner:GetScene();
+	if scene == nil then
+		return brvError;
+	end
+
+	print("BOSS DIE!");
+
+	local reward_money_count = scene:GetVariable(SCENE_REWARD_MONEY_POOL_VAR);
+
+	print("REWARD MONEY COUNT: " .. reward_money_count);
+
+	local boss_die_count = scene:GetVariable(SCENE_BOSS_DIE_COUNT_VAR);
+
+	print("BOSS DIE COUNT: " .. boss_die_count);
+
+	if boss_die_count <= 0 or boss_die_count > BOSS_COUNT then
+		return brvError;
+	end
+
+	local used_money_count = reward_money_count / (BOSS_COUNT - boss_die_count + 1);
+
+	print("USED MONEY COUNT: " .. used_money_count);
+
+	scene:SetVariable(SCENE_REWARD_MONEY_POOL_VAR, reward_money_count - used_money_count);
+
+	local box_count = math.floor(used_money_count / MONEY_COST_EACH_BOX);
+
+	print("BOX COUNT: " .. box_count);
+
+	if box_count > MAX_BOX_COUNT then
+		box_count = MAX_BOX_COUNT;
+	end
+
+	local gen = CDropGenerator:GetInstance();
+
+	for i = 1, box_count do
+		gen:GenerateDrop(scene:GetServerGroup(), 1029001, box_count, scene, owner:GetX(), owner:GetY(), owner:GetZ(), owner:GetObjID(), false);
+	end
+
+	return brvSuccess;
+end
+
+on_die =
+{ batSequencer,
+	{ batSetSceneVariable, param = { SCENE_BOSS_DIE_COUNT_VAR, 0, 1 } },
+	{ OnBossDie, param = { 0, 0, 0, 0} },
+};
+]]--
+
+

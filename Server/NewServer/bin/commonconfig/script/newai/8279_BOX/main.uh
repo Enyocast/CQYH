@@ -1,0 +1,20 @@
+﻿
+evtAIInteract = 
+	{ batSequencer, 
+	    { batCheckCDTimer , param={ COOLDOWN_SPELL, 0 },
+		},
+		{ batPlayAction , param={ 1 },
+		},
+		{ batSetCDTimer , param={ COOLDOWN_SPELL, 5000 },
+		},
+		{ batWait, param={ 1500 },
+		},
+		{ batCastSpell, param={ tarSelf, 3283, 0, 0, 0 },
+		},
+		{ batWait, param={ 1500 },
+		},
+		{ batSuicide,
+		},	
+	};
+	
+	

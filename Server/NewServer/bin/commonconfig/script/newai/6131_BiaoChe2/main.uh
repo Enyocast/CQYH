@@ -1,0 +1,88 @@
+
+function check_escort_car_follow(owner)
+
+	local role = g_GameWorld:FindValidRole(owner:GetHostID());
+	if role == nil then
+		return brvFail;  --角色可能下线
+	end
+
+	--判断距离：超过指定距离镖车不跟随
+	local distance = (role:GetX() - owner:GetX()) * (role:GetX() - owner:GetX()) 
+        + (role:GetY() - owner:GetY()) * (role:GetY() - owner:GetY());
+
+	if distance > ESCORT_CAR_VALID_FOLLOW_DISTANCE * ESCORT_CAR_VALID_FOLLOW_DISTANCE then
+        return brvFail;
+    end
+
+	return brvSuccess;
+end
+
+function escort_car_lose_notify(owner)
+
+	local role = g_GameWorld:FindValidRole(owner:GetHostID());
+	if role == nil then
+		return brvFail;
+	end
+	
+	local nX, nY = ConvertCoordN2O(owner:GetX()/POINT_PER_CM, owner:GetY()/POINT_PER_CM, owner:GetZ()/POINT_PER_CM)
+	nX = math.ceil(nX / 100);
+	nY = math.ceil(nY / 100);
+	role:GetScene():Say(role:GetObjID(), cltNormal, "镖车当前位置: "..role:GetScene():GetSceneData().szMapDisplayName.."("..nX..","..nY..")");
+
+	return brvSuccess;
+end
+
+function check_escort_car_return(owner)
+	
+	if 1 == owner:GetAIProcessor():GetBossState() then
+		owner:Die(0);
+		return brvSuccess;
+	end
+
+	return brvFail;
+end
+
+function escort_sucicide_notify(owner)
+	
+	local role = g_GameWorld:FindValidRole(owner:GetHostID());
+	if role ~= nil then
+		role:GetScene():Say(role:GetObjID(), cltNormal, "你太慢了（镖车的存在时间仅为30分钟）！");
+	end
+
+	return brvSuccess;
+end
+
+
+on_live_timer = 
+{ batSequencer,
+	{ escort_sucicide_notify },
+	{ batSuicide, param = { false, false } },         -- 如果第二个参数填true，会调用两次bfSuicide
+};
+
+function _idle_tree()
+    local result = 
+    { batSelector,
+        __check_live_timer(d.nLiveTime, d.bDisappearOnTimeout),  -- 这里d.bDisappearOnTimeout并不起作用
+		{ check_escort_car_return },
+		{ batSequencer,
+			{ batCheckCDTimer, param = { COOLDOWN_AI, CHECK_ESCORT_DISTANCE_TIMER } },
+			{ batSetCDTimer, param  = { COOLDOWN_AI, CHECK_ESCORT_DISTANCE_TIMER, CHECK_ESCORT_DISTANCE_INTERVAL } },
+			{ batSelector,
+				{ batSequencer,
+					{ check_escort_car_follow },
+					_follow(),
+					{ batSetCDTimer, param  = { COOLDOWN_AI, BROCAST_LOSE_ESCORT_TIMER, BROCAST_LOSE_ESCORT_INTERVAL } },
+				},
+				{ batSequencer,
+					{ batCheckCDTimer, param = { COOLDOWN_AI, BROCAST_LOSE_ESCORT_TIMER } },
+					{ escort_car_lose_notify },
+					{ batSetCDTimer, param  = { COOLDOWN_AI, BROCAST_LOSE_ESCORT_TIMER, BROCAST_LOSE_ESCORT_INTERVAL } },
+				},
+			},
+		},
+    };
+    
+    return result;
+end
+
+evtAIIdle = _idle_tree();

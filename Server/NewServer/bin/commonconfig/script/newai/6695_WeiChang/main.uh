@@ -1,0 +1,25 @@
+evtAIIdle = 
+{ batRandom, param = { 5000, 5000 },
+{ batSequencer,
+	{ batCheckSceneVariable, param={ boEQ , 3, 1 },
+	},
+	{ batSay, param = { cctScreen, 50471,cltNormal } },
+	{ batPlayAction, param={ 1},
+	},
+	{ batWait, param={6000},
+	},
+	{ batSetSceneVariable , param={3, 0},
+	},
+};
+{ batSequencer,
+	{ batCheckSceneVariable, param={ boEQ , 3, 1 },
+	},
+	{ batSay, param = { cctScreen, 50472,cltNormal } },
+	{ batPlayAction, param={ 1},
+	},
+	{ batWait, param={6000},
+	},
+	{ batSetSceneVariable , param={3, 0},
+	},
+};
+};

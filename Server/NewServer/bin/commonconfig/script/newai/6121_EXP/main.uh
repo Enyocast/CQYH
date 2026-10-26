@@ -1,0 +1,20 @@
+on_init =
+{ batSequencer,
+    { batSetCDTimer, param = { COOLDOWN_AI, nastLiveTimer, d.nLiveTime } },
+};
+
+evtAIIdle = 
+{ batSelector,
+	{ batSequencer,
+		{ batCheckCDTimer, param = { COOLDOWN_AI, nastLiveTimer } },
+		{ batSuicide },
+	},
+	{ batSequencer,
+		{ batCheckCDTimer, param = { COOLDOWN_AI, nastCustom + 1 } },
+		{ batSetCDTimer, param = { COOLDOWN_AI, nastCustom + 1, 5000 } },
+		{ batScanEnemy },
+		{ batCheckDistance, param = { tarAITarget, boLT, 64 } },
+		{ add_exp },
+		{ batAddAura, param = { tarAITarget , 2514 } }, 
+	},
+};

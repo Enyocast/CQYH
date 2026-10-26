@@ -1,0 +1,2 @@
+$hfile "../../../Common/define/affix_def.h"
+$hfile "../../inc/gameworld/affix.h"

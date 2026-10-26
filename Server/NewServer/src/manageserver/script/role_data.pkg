@@ -1,0 +1,24 @@
+$pfile "script/common.pkg"
+$#include "role_data.h"
+
+struct MS_ROLE_DATA
+{
+    UINT32          dwRoleID;
+	CHAR            szRoleName[ROLE_NAME_LEN];
+    UINT8			byGroup;
+    UINT8           byLevel;
+    UINT8           bySex;
+    UINT8           byClass;
+    INT32           nLastLoginTime;
+    
+	INT32		    nSceneTempID;
+	INT32		    nSceneID;
+    
+    UINT32          dwTeamID;
+
+    UINT32          dwMailCounts;
+    CBaseList       lstMails;
+
+	UINT32      dwGuildID;
+    UINT32      dwJoinGuildCD;
+};

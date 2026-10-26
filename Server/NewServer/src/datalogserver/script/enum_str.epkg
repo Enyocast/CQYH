@@ -1,0 +1,7 @@
+$pfile "script/common.pkg"
+
+$hfile "../../../common/define/item_def.h"
+$hfile "../../../common/define/char_def.h"
+$hfile "../../../common/define/id_def.h"
+$hfile "../../../common/define/quest_def.h"
+$hfile "../../../common/define/guild_def.h"

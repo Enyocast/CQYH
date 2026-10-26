@@ -1,0 +1,17 @@
+
+function lua_trigger_callback(callback_func_name, ...)
+	local callback_func = _G[callback_func_name];
+	
+	if not callback_func then
+		return
+	end
+	
+	if type(callback_func) ~= 'function' then
+		return
+	end
+	
+	local co = coroutine.create(callback_func);
+	coroutine.resume(co, ...);
+	
+	return
+end

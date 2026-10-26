@@ -1,0 +1,6 @@
+evtAIIdle  = 
+{ batSequencer,
+	{ batCheckSceneVariable , param={ boEQ, 3, 0 },
+	}, 
+	{ batSuicide },
+};

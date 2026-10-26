@@ -1,0 +1,108 @@
+on_enter_fight = 
+{ batParallel,
+    { batPlayAction, param = { 253 } },
+    -- __set_cd_timer(COOLDOWN_SCRIPT_SPELL, 5707, 25000);
+    -- __set_cd_timer(COOLDOWN_SCRIPT_SPELL, 5712, 5000);
+    -- __set_cd_timer(COOLDOWN_SCRIPT_SPELL, 5708, 30000);
+    -- __set_cd_timer(COOLDOWN_SCRIPT_SPELL, 5710, 14000);
+    -- __set_cd_timer(COOLDOWN_SCRIPT_SPELL, 5706, 25000); 
+    -- __set_cd_timer(COOLDOWN_SCRIPT_SPELL, 5709, 14000); 
+    { batSequencer,
+        { batCloseDoor, param = { 63 } },
+        { batSetSceneVariable, param={ 14, 1} },
+    },
+};
+
+on_cast_spell = 
+{ batSelector,
+    { batSequencer, 
+        { batCheckCDTimer, param={ COOLDOWN_AI , 4 },
+        },
+        { batSetCDTimer, param={ COOLDOWN_AI , 4, 5000 },
+        },
+        { batCheckCanCastSpell, 
+        },
+        { batRandom, param = { 5000,5000 },
+            { batSequencer,
+                -- 兽王-普通攻击1 普通地左手挥打，20%几率击飞玩家           
+                { batSyncCastSpellToTarget , param={ 5500 , tarAITarget },
+                },
+                { batSyncCastSpellToTarget , param={ 5507 , tarAITarget },
+                },
+            },
+            { batSequencer,
+                -- 兽王-普通攻击2 普通地右手挥打，20%几率击飞玩家           
+                { batSyncCastSpellToTarget , paam={ 5507 , tarAITarget },
+                },
+                { batSyncCastSpellToTarget , param={ 5500 , tarAITarget },
+                },
+            },
+        },
+        -- 兽王-凶残冲撞  做出预备冲锋的动作，并快速做出一次奔驰冲撞。冲撞可造成巨大伤害，但有较长前摇时间并可移动躲避。冲撞会造成自己3秒的眩晕         
+        { batSyncCastSpellToTarget, param={ 5505 , tarAITarget },
+        },
+    },
+  	{ batSequencer, 
+        { batCheckCDTimer, param={ COOLDOWN_AI , 5 },
+        },
+        { batSetCDTimer, param={ COOLDOWN_AI , 5, 15000},
+        },
+        
+        -- 抓投压杀   
+        { batSyncCastSpellToTarget, param={ 5503 , tarAITarget },
+        },
+    },
+    { batSequencer, 
+		{ batCheckCDTimer, param={ COOLDOWN_AI , 1 },
+		},
+		{ batSetCDTimer, param={ COOLDOWN_AI , 1, 50000 },
+		},
+		{ batCheckCanCastSpell, 
+		},
+        -- 兽王-灰烬球   受伤害到一定数值后，从身体里向外飞出一圈Missile。发出时身体有材质闪动的特效，配合动作。
+		{ batSyncCastSpellToTarget, param={ 5508 , tarAITarget },
+		},
+		{ batWait, param={ 100 },
+		},
+        -- 兽王-裂地猛击  带发力前摇的强力砸地打击， 可将目标击飞或击晕         
+		{ batSyncCastSpellToTarget, param={ 5504 , tarAITarget },
+		},
+	},
+    { batSequencer, 
+        { batCheckCDTimer, param={ COOLDOWN_AI , 2 },
+        },
+        { batSetCDTimer, param={ COOLDOWN_AI , 2, 35000},
+        },
+        { batCheckCanCastSpell, 
+        },
+        --兽王-地动山摇   朝一个5米外的目标施放该技能,产生直线的冲击.同时对大范围内目标产生一次有提示的岩石打击            
+        { batSyncCastSpellToTarget, param={ 5506 , tarAITarget },
+        },
+    },
+   { batSequencer, 
+		{ batCheckDice, param={ boLTE, 5000 },
+		},
+        { batCheckCDTimer, param={ COOLDOWN_AI , 3 },
+        },
+		{ batSetCDTimer, param={ COOLDOWN_AI , 3, 25000 },
+		},
+		{ batCheckCanCastSpell, 
+		},
+        --兽王-低气压 后退半步（动作），猛趴下身体，对前方单位吸取气流，进行拉扯。
+		{ batSyncCastSpellToTarget, param={ 5501 , tarAITarget },
+		},
+		{ batWait, param={ 100 },
+		},
+        -- 兽王-裂地猛击  带发力前摇的强力砸地打击， 可将目标击飞或击晕         
+		{ batSyncCastSpellToTarget, param={ 5504 , tarAITarget },
+		},
+	},	
+  --[[ { batSequencer, 
+      - { batCheckCDTimer, param={ COOLDOWN_AI , FireStart },
+        },
+        { FireAround, param={ 5111 },
+        },
+        { batSetCDTimer, param={ COOLDOWN_AI , FireStart, 7000, 7000 },
+        },
+    },]]--
+};

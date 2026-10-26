@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lua", "lua.vcxproj", "{E29FCF8D-4667-4DC0-B746-D8911966A915}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 2
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = lua.vcxproj
+		SccLocalPath1 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		lua compiler debug|Win32 = lua compiler debug|Win32
+		lua compiler debug|x64 = lua compiler debug|x64
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E29FCF8D-4667-4DC0-B746-D8911966A915}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E29FCF8D-4667-4DC0-B746-D8911966A915}.Debug|Win32.Build.0 = Debug|Win32
+		{E29FCF8D-4667-4DC0-B746-D8911966A915}.Debug|x64.ActiveCfg = Debug|x64
+		{E29FCF8D-4667-4DC0-B746-D8911966A915}.Debug|x64.Build.0 = Debug|x64
+		{E29FCF8D-4667-4DC0-B746-D8911966A915}.lua compiler debug|Win32.ActiveCfg = lua compiler debug|Win32
+		{E29FCF8D-4667-4DC0-B746-D8911966A915}.lua compiler debug|Win32.Build.0 = lua compiler debug|Win32
+		{E29FCF8D-4667-4DC0-B746-D8911966A915}.lua compiler debug|x64.ActiveCfg = lua compiler debug|Win32
+		{E29FCF8D-4667-4DC0-B746-D8911966A915}.lua compiler debug|x64.Build.0 = lua compiler debug|Win32
+		{E29FCF8D-4667-4DC0-B746-D8911966A915}.Release|Win32.ActiveCfg = Release|Win32
+		{E29FCF8D-4667-4DC0-B746-D8911966A915}.Release|Win32.Build.0 = Release|Win32
+		{E29FCF8D-4667-4DC0-B746-D8911966A915}.Release|x64.ActiveCfg = Release|x64
+		{E29FCF8D-4667-4DC0-B746-D8911966A915}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

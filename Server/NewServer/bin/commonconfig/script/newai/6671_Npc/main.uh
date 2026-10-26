@@ -1,0 +1,317 @@
+--捆绑成功，弹出确认对话，包含返回选项
+function _tie_success()
+		local tie_table = 
+		 { batSequencer,
+		 	{ batRoleOpenDialog, param = { 666508, 50000, 0, 0 } },
+ 			{ batRoleCheckInteractOption, param = { 1 } },
+		 };
+		return tie_table;
+end
+
+--尝试捆绑药水
+function _tie_potions(potions_1,potions_2,price,moneytype)
+		local tie_table = 
+
+		{ batSelector,
+			{ batSelector,
+
+				{ batSequencer,
+					{ batRoleCheckLevel , param = { boGTE, 36 } },
+					{ batRoleCheckLevel , param = { boLT, 99 } },
+					{ batRoleCheckRoleVariable , param = { boGTE, 211, 250, 0 } },
+					{ batRoleOpenDialog, param = { strAI6671_5, 50000, 0, 0 } },
+				},
+
+				{ batSequencer,
+					{ batRoleCheckLevel , param = { boGTE, 21 } },
+					{ batRoleCheckLevel , param = { boLT, 36 } },
+					{ batRoleCheckRoleVariable , param = { boGTE, 211, 200, 0 } },
+					{ batRoleOpenDialog, param = { strAI6671_5, 50000, 0, 0 } },
+				},
+
+				{ batSequencer,
+					{ batRoleCheckLevel , param = { boGTE, 15 } },
+					{ batRoleCheckLevel , param = { boLT, 21 } },
+					{ batRoleCheckRoleVariable , param = { boGTE, 211, 100, 0 } },
+					{ batRoleOpenDialog, param = { strAI6671_5, 50000, 0, 0 } },
+				},
+
+
+				{ batSequencer,					
+					{ batRoleCheckLevel , param = { boGTE, 1 } },
+					{ batRoleCheckLevel , param = { boLT, 15 } },
+					{ batRoleCheckRoleVariable , param = { boGTE, 211, 0, 0 } },
+					{ batRoleOpenDialog, param = { strAI6671_5, 50000, 0, 0 } },
+				},
+			},
+
+			{ batSelector,
+				--检查是否具备足够的药水
+				{ batSequencer, 
+					{ batRoleCheckItemCount, param = { boGTE,potions_1, 6 } },
+					{ batSelector,
+						{ batSequencer, 
+							--检查是否具备足够的钱,有就扣钱扣道具换道具
+							{ batRoleCheckMoney , param = { boGTE,1, price } },
+							{ batRoleSubMoney , param = { tarRole,1, price, moneytype } },
+							{ batRoleDelItem, param = { potions_1, 6 } },
+							{ batRoleAddItem , param = { potions_2, 1, 6 } },
+							--捆绑成功提示
+							{ batRoleSetRoleVariable , param = { 211, 0, 1 } },
+							_tie_success(),
+						},
+						{ batSequencer, 
+							--提示没有足够的钱-例如price = 100金
+							{ batRoleOpenDialog, param = { 666507, 50000, 0, 0 } },
+						},
+					},
+
+				},
+				--没有足够的药水
+				{ batSequencer, 
+					{ batRoleOpenDialog, param = { 666505, 50000, 0, 0 } },
+				},
+        	},
+
+		};
+
+
+		return tie_table;
+end
+
+--尝试捆绑卷书
+function _tie_scrolls(scroll_1,scroll_2,price,moneytype)
+		local tie_table = 
+		{ batSelector,
+			--检查是否具备足够的卷轴
+			{ batSequencer, 
+				{ batRoleCheckItemCount, param = { boGTE,scroll_1, 6 } },
+				{ batSelector,
+					{ batSequencer, 
+						--检查是否具备足够的钱,有就扣钱扣道具换道具
+						{ batRoleCheckMoney , param = { boGTE,1, price } },
+						{ batRoleSubMoney , param = { tarRole,1, price, moneytype } },
+						{ batRoleDelItem, param = { scroll_1, 6 } },
+						{ batRoleAddItem , param = { scroll_2, 1, 6 } },
+						--捆绑成功提示
+						_tie_success(),
+					},
+					{ batSequencer, 
+						--提示没有足够的钱-例如price = 100金
+						{ batRoleOpenDialog, param = { 666507, 50000, 0, 0 } },
+					},
+				},
+
+			},
+			--提示没有足够的卷轴
+			{ batSequencer, 
+				{ batRoleOpenDialog, param = { 666506, 50000, 0, 0 } },
+			},
+        };
+		return tie_table;
+end
+
+function _random_action()
+    local action_table = {};
+    local count = 0;
+    if d.nParam[1] ~= 0 then
+        count = count + 1;
+        table.insert(action_table,
+            { batParallel,
+                { batSay, param = { cctScreen, d.nParam[1], cltNormal } },
+            }
+        );
+    end
+    if d.nParam[2] ~= 0 then
+        count = count + 1;
+        table.insert(action_table,
+            { batParallel,
+                { batSay, param = { cctScreen, d.nParam[2], cltNormal } },
+            }
+        );
+    end
+    if d.nParam[3] ~= 0 then
+        count = count + 1;
+        table.insert(action_table,
+            { batParallel,
+                { batSay, param = { cctScreen, d.nParam[3], cltNormal } },
+            }
+        );
+    end
+
+    if count == 1 then
+        return action_table;
+    elseif count == 2 then
+        return 
+        { batRandom, param = { 1, 1 }, 
+            unpack(action_table)
+        };
+    elseif count == 3 then
+        return 
+        { batRandom, param = { 1, 1, 1 }, 
+            unpack(action_table)
+        };
+    else
+        return nil;
+    end
+end
+
+evtAIInteract = 
+{ batRepeat, param = { 30 },
+	{ batSequencer,
+
+		{ batRoleOpenDialog, param = { strAI6671_1, 50000, 0, 0 } },	
+		{ batParallel,
+			{ batSequencer,
+				{ batRoleCheckDailyVariable, param = { 210 } },
+				{ batRoleSetRoleVariable , param = { 211, 0, 0 } },
+				{ batRoleUpdateDailyVariable, param = { 210, 0 } },
+			},
+		},
+		{ batSelector,
+			{ batSequencer, 
+				{ batRoleCheckLevel, param = { boLT, 15 } },
+				{ batRoleOpenDialog, param = { strAI6671_6, 50000, 0, 0 } },
+			},
+
+			--选项1，进入捆绑药水的菜单
+			{ batSequencer, 
+				{ batRoleCheckInteractOption, param = { 1 } },
+				{ batParallel,
+					{ batRepeat, param = { 30 },
+						{ batSequencer,
+							{ batRoleOpenDialog, param = { 666502, 50000, 0, 0 } },	
+
+							{ batSelector,
+								{ batSequencer, 
+									{ batRoleCheckInteractOption, param = { 1 } },
+									--选项，超红，绑定药水ID：303 to 363
+									_tie_potions(303,363,100,MONEYLOG_BT_14),
+								},
+								{ batSequencer, 
+									{ batRoleCheckInteractOption, param = { 2 } },
+									--选项，超蓝，绑定药水ID：323 to 373
+									_tie_potions(323,373,100,MONEYLOG_BT_14),
+								},
+								{ batSequencer, 
+									{ batRoleCheckInteractOption, param = { 3 } },
+									--选项，中红，绑定药水ID：302 to 362
+									_tie_potions(302,362,100,MONEYLOG_BT_06),
+								},
+								{ batSequencer, 
+									{ batRoleCheckInteractOption, param = { 4 } },
+									--选项，中蓝，绑定药水ID：322 to 372
+									_tie_potions(322,372,100,MONEYLOG_BT_06),
+								},
+								{ batSequencer, 
+									{ batRoleCheckInteractOption, param = { 5 } },
+									--选项，小红，绑定药水ID：301 to 361
+									_tie_potions(301,361,100,MONEYLOG_BT_06),
+								},
+								{ batSequencer, 
+									{ batRoleCheckInteractOption, param = { 6 } },
+									--选项，小蓝，绑定药水ID：321 to 371
+									_tie_potions(321,371,100,MONEYLOG_BT_06),
+								},							
+								--回到绑定药水及卷书的选择菜单
+								{ batSequencer, 
+									{ batRoleCheckInteractOption, param = { 7 } },
+									{ batReturnFail },
+								},
+							},
+						},
+					},
+				},
+			},
+			--选项2,进入捆高级药水的菜单
+			{ batSequencer, 
+				{ batRoleCheckInteractOption, param = { 2 } },
+				{ batParallel,
+					{ batRepeat, param = { 30 },
+						{ batSequencer,
+							{ batRoleOpenDialog, param = { strAI6671_2, 50000, 0, 0 } },	
+
+							{ batSelector,
+								{ batSequencer, 
+									{ batRoleCheckInteractOption, param = { 1 } },
+									--选项，太阳水，绑定药水ID：351 to 381
+									_tie_potions(351,381,200,MONEYLOG_BT_15),
+								},
+								{ batSequencer, 
+									{ batRoleCheckInteractOption, param = { 2 } },
+									--选项，强效太阳水，绑定药水ID：352 to 382
+									_tie_potions(352,382,500,MONEYLOG_BT_16),
+								},	
+									--选项：绑定疗伤药 2000
+								{ batSequencer, 
+								 	{ batRoleCheckInteractOption, param = { 3 } },
+								 	--选项，绑定药水ID：353 to 383
+								 	_tie_potions(353,383,1000,MONEYLOG_BT_17),
+								},							
+								--回到绑定药水及卷书的选择菜单
+								{ batSequencer, 
+									{ batRoleCheckInteractOption, param = { 4 } },
+									{ batReturnFail },
+								},
+							},
+						},
+					},
+				},
+			},
+
+
+
+			--选项3,进入绑定卷书的菜单
+			{ batSequencer, 
+				{ batRoleCheckInteractOption, param = { 3 } },
+				{ batParallel,
+					{ batRepeat, param = { 30 },
+						{ batSequencer,
+							{ batRoleOpenDialog, param = { strAI6671_4, 50000, 0, 0 } },	
+
+							{ batSelector,
+								{ batSequencer, 
+									{ batRoleCheckInteractOption, param = { 1 } },
+									--选项，绑定卷书ID：80001 to 80101
+									_tie_scrolls(80001,80101,100),
+								},
+								{ batSequencer, 
+									{ batRoleCheckInteractOption, param = { 2 } },
+									--选项，绑定卷书ID：80007 to 80107
+									_tie_scrolls(80007,80107,100),
+								},
+
+								{ batSequencer, 
+									{ batRoleCheckInteractOption, param = { 3 } },
+									--选项，绑定卷书ID：80005 to 80105
+									_tie_scrolls(80005,80105,100),
+								},
+								--回到绑定药水及卷书的选择菜单
+								{ batSequencer, 
+									{ batRoleCheckInteractOption, param = { 4 } },
+									{ batReturnFail },
+								},
+							},
+						},
+					},
+				}
+			},
+		},
+	},
+}; 
+
+on_init =
+{ batSequencer,
+   { batSetCDTimer , param={ COOLDOWN_AI ,SAY_TEXT_CD_TIMER,d.nParam[0],d.nParam[0]+20000},
+    },
+};
+
+
+on_wander = 
+{ batSequencer,
+    { batCheckCDTimer, param={ COOLDOWN_AI , SAY_TEXT_CD_TIMER},
+    },
+    { batSetCDTimer , param={ COOLDOWN_AI ,SAY_TEXT_CD_TIMER,d.nParam[0],d.nParam[0]+20000},
+    },
+    _random_action(),
+};

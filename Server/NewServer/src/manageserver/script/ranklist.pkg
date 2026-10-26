@@ -1,0 +1,12 @@
+$pfile "script/common.pkg"
+$hfile "./ranklist/ranklist.h"
+$#include "./ranklist/ranklist.h"
+
+
+class CRankListMgr
+{
+public:
+	static CRankListMgr& GetInstance(void);
+
+	BOOL	DelGuildRankNode(INT32 nServerGroupID, UINT32 dwGuildID);
+};

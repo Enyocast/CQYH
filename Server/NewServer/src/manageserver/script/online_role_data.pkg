@@ -1,0 +1,48 @@
+$pfile "script/common.pkg"
+$#include "onlinerole/online_role_data.h"
+$#include "onlinerole/online_role_data_mgr.h"
+
+struct MS_ONLINE_ROLE_DATA
+{
+    MS_USER*            pUser;
+    MS_ROLE_DATA*       pRoleData;
+
+    // basic info
+    INT32               nGMLevel;
+    INT32				nCurrentHp;
+    INT32				nCurrentMp;
+    INT32				nMaxHp;
+    INT32				nMaxMp;
+
+    // frequency limits
+    UINT32				dwLastSpeakTime;
+    UINT32              dwLastQueryRoleInfoTime;
+    UINT8               byQueryRoleInfoCount;
+
+    //////////////////////////////////////////////////////////////////////////
+    // scene session info
+    //////////////////////////////////////////////////////////////////////////
+    UINT32   		    dwCliSessionID;
+    UINT32   		    dwGSSessionID;
+    UINT32              dwSaveTime;
+
+
+	// master
+	UINT32              dwMasterCD;
+
+};
+
+class COnlineRoleDataMgr
+{
+public:
+    static COnlineRoleDataMgr& GetInstance(void);
+
+    MS_ONLINE_ROLE_DATA*    FindOnlineRoleByName(const char* pcszRoleName);
+    MS_ONLINE_ROLE_DATA*    FindOnlineRoleByRoleID(UINT32 dwRoleID);
+
+    MS_ONLINE_ROLE_DATA*    FindOnlineRoleByNameInGroup(const char* pcszRoleName, UINT8 byGroupID);
+    MS_ONLINE_ROLE_DATA*    FindOnlineRoleByRoleIDInGroup(UINT32 dwRoleID, UINT8 byGroupID);
+
+	UINT32					GetRoleNumberCount(UINT8 byGroupIndex);
+    UINT32					GetRoleNumberCount(void);
+};

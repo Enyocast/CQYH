@@ -1,0 +1,14 @@
+--公会铭文师 - 6713_Rune
+evtAIInteract = 
+{ batSelector,
+		{ batSequencer,
+			{ batRoleCheckLevel, param = { boGTE, ROLE_LEVEL_LIMIT } },
+				-- { batRoleOpenDialog, param = { 50058, 30000, 'Mingwenputong(o)', 'Mingwengaoji(o)'  } },
+				{ batRoleOpenDialog, param = { 50058, 30000, 0, 0  } },
+		},
+		{ batSequencer,
+			{ batRoleOpenDialog, param = { 50059, 30000 } },
+		},	
+};
+
+

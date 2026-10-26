@@ -1,0 +1,9 @@
+lua64_d.dll
+lua64.dll
+msvcp120d.dll
+msvcp120.dll
+msvcr120d.dll
+msvcr120.dll
+guardserver\guardserver64.exe
+guardserver\guardserver64_d.exe
+guardserver\guardserver64_d.pdb

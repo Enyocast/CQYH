@@ -1,0 +1,19 @@
+on_init = 
+{ batSequencer ,
+	{ batAddAura, param = { tarSelf , 35510 } },
+};
+
+--on_wander =
+--{ batSelector, 
+	--{ batCheckAura, param = { tarSelf , 35510 } },
+    --{ batSequencer,
+		--{ batCheckCDTimer, param = { COOLDOWN_AI, 100 } },
+		--{ batAddAura, param = { tarSelf , 35510 } },
+	--},	
+--};
+
+on_enter_fight = 
+{ batSequencer, 
+    { batRemoveAura , param = { tarSelf , 35510 } },
+	--{ batSetCDTimer, param = { COOLDOWN_AI, 100, 60000 } },
+};

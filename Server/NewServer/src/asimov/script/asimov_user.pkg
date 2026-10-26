@@ -1,0 +1,251 @@
+$pfile "script/asimov_common.pkg"
+$#include "user.h"
+
+class CUser
+{
+public:
+    BOOL ConnectServer(const char* pcszIP, UINT16 wPort, BOOL bConnectBS, BOOL bAutoLogin);
+    BOOL IsConnected();
+    BOOL Login(void);
+    BOOL CreateRole(const char* pcszRoleName, INT32 eSex, 
+        INT32 eFaceType, INT32 eHairType, INT32 eHairColor, INT32 eClass);
+    BOOL DeleteRole(UINT32 dwRoleID);
+    BOOL SelectRole(UINT32 dwRoleID);
+    BOOL Teleport(UINT32 dwTelportID);
+    BOOL Logout(void);
+    BOOL LogoutCancel();
+   
+	BOOL SelectFocus(UINT32 dwCharID);
+    
+    BOOL MoveTo(INT32 nDestX, INT32 nDestY);
+    BOOL LearnSpell(INT32 nSpellID, INT32 nSpellLevel);
+	BOOL CastSpell(INT32 nSlotID, UINT32 dwTargetID, INT32 nX, INT32 nY, INT32 nZ);
+	BOOL CastSwitchSpell(INT32 nSwitchSlotID, UINT32 dwTargetID, INT32 nX, INT32 nY, INT32 nZ);
+	BOOL DirectlyCastSpell(INT32 nSpellID, INT32 nSpellLevel, UINT32 dwTargetID, INT32 nX, INT32 nY, INT32 nZ);
+	
+    BOOL GMCommand(const char* pcszGmcmd);
+    BOOL UpdateClientVariable(INT32 nIndex , INT32 nValue);
+
+	BOOL InteractNpc(UINT32 dwNpcID);
+
+	BOOL MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, UINT8 dstitemslot);
+	BOOL SplitItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, UINT8 dstitemslot, INT16 itemcount);
+	BOOL DeleteItem(UINT8 conslot, UINT8 itemslot, INT16 itemcount);
+	BOOL PickUpItem(UINT32 dwDropID);
+	BOOL BuyItem(INT32 nShopID, INT32 nShopItemIndex, INT32 nItemCount);
+	BOOL SellItem(UINT8 conslot, UINT8 itemslot);
+	BOOL UseItem(UINT8 conslot, UINT8 itemslot);
+
+	BOOL ViewSoldItem(void);
+	BOOL BuyBackItem(UINT8 slot);
+	BOOL RepairItem(UINT8 conslot, UINT8 itemslot);
+	BOOL RepairAllEquippedItem(void);
+	BOOL Refine(UINT8 nRefineSlot, BOOL bAddEquip, UINT8 byConSlot, UINT8 byItemSlot);
+	BOOL BuyContainerSlot(UINT8 byConSlot, UINT8 byCount);
+	BOOL OrganizeBag(UINT8 byConSlot);
+	BOOL IdentifyItem(UINT8 byConSlot, UINT8 byItemSlot);
+	BOOL RandomizeItem(UINT8 byConSlot, UINT8 byItemSlot);
+	BOOL ConfirmRandomizeItem(void);
+	BOOL UseMoneyType01Only(BOOL bValue);
+	BOOL CheckNpcShopData(UINT32 dwCrc);
+    
+    BOOL OpenStall();
+    BOOL CloseStall();
+    BOOL RealOpenStall();
+    BOOL RealCloseStall();
+    BOOL AddStallItem(UINT8 stallslot, UINT16 conslot, UINT16 itemslot, INT32 itemcount, INT32 price);
+    BOOL ViewStallItem(UINT32 roleid);
+    BOOL BuyStallItem(UINT32 roleid, UINT8 stallslot, INT32 itemcount, UINT32 modifytime);
+	BOOL ChangeStallName(const char* stallname);
+	BOOL RemoveStallItem(UINT8 slot);
+	BOOL UpgradeStall(UINT8 upgradetype);
+    
+    BOOL AddFriend(UINT32 friendid, const char* friendname);
+    BOOL DelFriend(UINT32 friendid);
+    BOOL ChangeFriendGroup(UINT32 friendid, UINT8 groupid);
+    BOOL AskTrade(UINT32 roleid);
+    BOOL AcceptTrade(UINT32 roleid);
+    BOOL CancelTrade();
+    BOOL LockTrade();
+    BOOL ConfirmTrade();
+    BOOL UnlockTrade();
+   	BOOL ExploreZone();
+	BOOL TalkToNpc(INT32 nQuestID, INT32 nTalkNpcID);
+    BOOL SetTradeMoney(INT32 money);
+    BOOL SetTradeItem(UINT8 tradeslot, UINT8 bAdd, UINT16 conslot, UINT16 itemslot);
+    BOOL SendMail(const char* rolename, const char* subject, const char* content);
+    BOOL ListMail();
+    BOOL ReadMail(UINT32 mailid);
+    BOOL DeleteMail(UINT32 mailid);
+    BOOL GetMailAttach(UINT32 mailid);
+    
+	BOOL EquipSpell(INT32 nSlot, INT32 nSpellID);
+
+	BOOL CancelSpell(INT32 nSlot);
+	BOOL AdjustTargetPt(INT32 nX, INT32 nY, INT32 nZ);
+	BOOL CombatPoseSwitch(BOOL bPoseOn);
+	BOOL CancelAura(UINT32 dwInstanceID);
+	BOOL OnMount(INT32 nMountID);
+	BOOL OffMount(void);
+
+    const char* GetUserName(void);
+    //const char* GetUserType(void);
+
+    INT32 GetUserState(void);
+
+    INT32 GetRoleCount(void);
+    CRole* GetRoleByIndex(INT32 nIndex);
+    CRole* GetPlayingRole(void);
+
+    const char* GetServerAddress(void);
+    UINT16 GetServerPort(void);
+    UINT32 GetSessionID();
+    
+    BOOL AcceptQuest(INT32 nQuestID, INT32 nAcceptType, INT32 nSrcID);
+    BOOL AbandonQuest(INT32 nQuestID);
+    BOOL CompleteQuest(INT32 nQuestID, INT32 nSelectedIdx);
+    BOOL ShareQuest(INT32 nQuestID, INT32 nShareType);
+	BOOL ConfirmPublishQuest(INT32 nQuestID, INT32 nMasterID);
+	BOOL GenerateCircleQuest();
+     
+	BOOL CompleteAchievement(INT32 nAchievementID);    
+   	BOOL GetAchievementReward(INT32 nAchievementID);
+	BOOL CompareAchievement(UINT32 dwRoleID);
+    
+    BOOL InteractWithNpc(UINT32 dwNpcID);
+    BOOL SelectDialogOption(INT32 nParam);
+    
+    BOOL OperateDoodad(UINT32 dwDoodadID);
+    
+	BOOL FireHero(void);
+	BOOL SummonHero(void);
+	BOOL RecallHero(void);
+	BOOL QueryHeroAttrList(void);
+	BOOL ChangeHeroAi(INT32 nAiType);
+    
+    BOOL SendLoadFinsh(); 
+    
+    BOOL SelectDungeonDifficulty(UINT32 nDifficulty);
+    BOOL EnterDungeon(UINT32 nDifficulty);
+	BOOL LeaveScene(void);
+	BOOL ChangeLine(INT32 nSceneID);
+
+	BOOL QueryRoleDetailData(UINT32 dwRoleID);
+	BOOL QueryRolePow(UINT32 dwRoleID);
+    
+   	BOOL VerifyItem(UINT32 dwSrcRoleId, char* pText);
+   	
+	BOOL QueryRanklist(INT32 nPage, INT32 nRanklistID);
+	
+	BOOL ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline);
+	BOOL SpiritAddAir(BOOL bQuick);	
+	BOOL MergeAir(INT32 nSrcSlot);
+	BOOL MoveAir(INT32 nSrcType, INT32 nSrcSlot, INT32 nTarType, INT32 nTarSlot);
+	BOOL BuyAirSlot(INT32 nBagType);
+	BOOL BrushSlot(INT32 nPage, INT32 nIndex);	
+	
+	BOOL AwardUseNumber(char* pAwardNumber);		
+		
+	// title
+    BOOL EquipTitle(UINT8 byTitleID);
+    BOOL UnEquipTitle();	
+
+    // master
+	BOOL GetMasterInfo();
+	BOOL GetMasterRecruitList();
+	BOOL GetMasterSoloList();
+	BOOL ApplyTeacher(UINT32 dwRoleID);
+	BOOL TeacherAgreeApp(UINT32 dwStudentID);
+	BOOL TeacherRefuseApp(UINT32 dwStudID);
+	BOOL SoloCancelApp(UINT32 dwTeacherID);
+	
+	BOOL ApplyToStudent(UINT32 dwStudentID);
+	BOOL SoloAgreeApp(UINT32 dwTeacherID);
+    BOOL SoloRefuseApp(UINT32 dwTeacherID);
+    BOOL TeacherCancelApp(UINT32 dwStudentID);
+    
+    BOOL LeaveTeacher();
+    BOOL FireStudent(UINT32 dwStudentID);
+    
+    BOOL MasterCZ(UINT32 dwSelfID, UINT32 dwTargetID, UINT8 byCZType, const char *pcszText);
+    BOOL DesireGraduate();
+    BOOL AgreeGraduate(UINT32 dwStudentID);
+    BOOL ForceGraduate();
+
+    BOOL AuctionSearchType(UINT8 byAuctionType, UINT8 byAuctionSubType);
+    BOOL AuctionSearch(UINT8 bySortBy, INT32 nItemID);
+    BOOL AuctionQuery(UINT32 dwAuctionID);
+    BOOL AuctionSell(UINT8 byConSlot, UINT8 byItemSlot, INT32 nPrice, INT32 nBuyoutPrice);
+    BOOL AuctionCancelSell(UINT32 dwAuctionID);
+    BOOL AuctionBuy(UINT32 dwAuctionID, INT32 nPrice);
+    BOOL AuctionListMySelling();
+    BOOL AuctionListMyBuying();
+	
+	BOOL SubscribeVIP(INT32 nVIPLevel, INT32 nMonth);
+
+    BOOL ShieldRole(UINT32  dwRoleID);
+    BOOL UnShieldRole(UINT32  dwRoleID);
+
+    // guild
+    BOOL    QueryGuildInfo(UINT32 dwGuildID);
+	BOOL    CreateGuild(const char *pcszGuildName, const char *pcszAnnounce);
+    BOOL    GetGuildMoreInfo();
+
+    BOOL    ViewGuildList(UINT32 dwLastGuildID);
+    BOOL	FindGuild(UINT32 dwGuildID);
+    BOOL    ApplyToJoinGuild(UINT32 dwGuildID);
+    BOOL    GetGuildAppList();
+	BOOL    RefuseGuildApp(UINT32 dwRoleID);
+    BOOL    AgreeGuildApp(UINT32 dwRoleID);
+    BOOL    RevertGuildApp(UINT8 byRevertType, UINT32 dwRoleID);
+    BOOL    InviteToJoinGuild(const char *pcszRoleName);
+    BOOL    RevertGuildInvitation(UINT8 byResult, UINT32 dwRoleID);
+	BOOL    DisbandGuild();
+	BOOL    ChangeNotice(const char *pStr);
+	BOOL    ChangePosition(UINT32 dwRoleID, INT32 nPosition);
+	BOOL    LeaveGuild();
+	BOOL    BanishRole(UINT32 dwRoleID);
+	BOOL    Demise(UINT32 dwRoleID);
+	BOOL    DrawSalary();
+	BOOL    ContributeFund(INT32 nType, INT32 nMoney);
+	BOOL    ForbidChat(INT32 nOP, UINT32 dwRoleID);
+	BOOL    ChangeWeather(INT32 nWeatherType, INT32 nTimeType);
+	BOOL    MoreHistory();
+    BOOL    MoreChest();
+	BOOL    ChangeStorageRight(INT32 nPosition, INT32 nRight);
+	BOOL    DiplomatApp(INT32 nOP, INT32 nTimeType, const char *pcszGuildName);
+	BOOL    GetApplyUnionList();
+    BOOL    ReplyUnionApp(INT32 nOP, UINT32 dwGuildID);
+
+
+	//UINT32  GetInviteGuildRoleID();
+	//INT32   GetViewListNum();
+    //UINT32  GetViewListGuildIDByIndex(INT32 nIndex);
+
+
+	// lua
+    INT32   LuaMasterGetRecruitNum();
+    UINT32  LuaMasterGetRecruitRoleByIndex(INT32 nIndex);
+    INT32   LuaMasterGetSoloNum();
+    UINT32  LuaMasterGetSoloRoleByIndex(INT32 nIndex);
+    INT32   LuaMasterGetSendListNum();
+    UINT32  LuaMasterGetSendRoleIDByIndex(INT32 nIndex);
+    INT32   LuaMasterGetRecvAppNum();
+    UINT32  LuaMasterGetRecvRoleIDByIndex(INT32 nIndex);
+    BOOL	LuaMasterIsSendListFull();
+    BOOL	LuaMasterClearSendList();
+    BOOL	LuaMasterIsRecvListFull();
+    BOOL	LuaMasterClearRecvLIst();
+	BOOL    LuaMasterCanCZTeacher();
+    BOOL    LuaMasterCanCZStudent(UINT32 dwRoleID);
+    BOOL    LuaMasterSetGraduateRoleID(UINT32 dwRoleID);
+    UINT32  LuaMasterGetGraduateRoleID();
+	    
+	//BOOL    LuaClearGuildApp();
+	//BOOL	LuaIsInGuildAppList(UINT32 dwGuildID);
+    //INT32   LuaGetGuildAppNum();
+    //UINT32  LuaGetGuildAppByIndex(INT32 nIndex);
+    //BOOL    LuaDelGuildApp(UINT32 dwGuildID);
+    
+ };
+

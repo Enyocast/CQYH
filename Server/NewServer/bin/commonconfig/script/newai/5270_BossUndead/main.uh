@@ -1,0 +1,8 @@
+evtAIInit =
+{ batSequencer, 
+	{ batWait , param = {1500},
+	},	
+	{ batPlayAction , param = {1},
+	},	
+	{ batSuicide },
+};

@@ -1,0 +1,11 @@
+
+
+evtAIIdle = 
+{ batSequencer, 
+    { batCastSpell, param={ tarSelf , 5509 },
+    },
+    { batWait, param={ 100, 100 },
+    },
+    { batSetCharHp, param={ tarSelf , 0, 0 },
+    },
+};

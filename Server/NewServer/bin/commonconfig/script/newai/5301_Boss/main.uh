@@ -1,0 +1,27 @@
+on_init = 
+{ batSequencer ,
+	{ batSetCDTimer, param = { COOLDOWN_AI, 20, d.nParam[0] } },  --cd index 20为boss idle自杀配置用index param0   战斗中自杀用livetime
+	{ batSetAlwaysRun , param = { true } },
+	{ batAddAura, param = { tarSelf , 35510 } },
+};
+
+
+on_wander = 
+	{ batSequencer, 
+		{ batCheckCDTimer, param = { COOLDOWN_AI, 20 } },
+		{ batSay, param = { cctScreen, 50568, cltNormal } },
+		{ batSuicide, param = { false, false } },
+	};
+
+
+on_enter_fight = 
+{ batSequencer, 
+    { batPlayAction , param = { 1 } },
+    { batRemoveAura , param = { tarSelf , 35510 } },
+};	
+		
+on_live_timer = 
+{ batSequencer, 
+  { batSay, param = { cctScreen, 50568, cltNormal } },
+  { batReturnFail },
+};

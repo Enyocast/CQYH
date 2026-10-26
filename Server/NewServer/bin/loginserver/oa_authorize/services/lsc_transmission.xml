@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service  name="LscTransmission" id="55103" IsTreeStruct="true" serviceencoding="utf-8" sdkencoding="gbk" >
+    <type name="loginAccount_type" class="string" code="1"/>
+    <type name="loginAccountType_type" class="int" code="2"/>
+    <type name="port" class="string" code="3"/>
+    <type name="cmdType" class="int" code="4"/>
+    <type name="reserved" class="string" code="5"/>    
+    <type name="ipFromType" class="int" code="6"/>
+    <type name="DynamicPw_type" class="string" code="7"/>
+    <type name="AuthMethod_type" class="string" code="8"/>
+    <type name="ChallengeNo_type" class="string" code="9"/> 
+    <type name="guid_type" class="string" code="10"/>
+    <type name="sessionId_type" class="string" code="11"/>	
+    <type name="spId_type" class="int" code="12"/>	
+    <type name="appId_type" class="int" code="13"/>	
+    <type name="areaId_type" class="int" code="14"/> 	
+    <type name="callTime_type" class="string" code="15"/>
+    <type name="appSvrIp_type" class="string" code="16"/>
+    <type name="appSiteCode_type" class="string" code="17"/>
+	<type name="endPointIp_type" class="string" code="18"/>	
+	<type name="endPointType_type" class="int" code="19"/>	
+	<type name="platformType_type" class="int" code="20"/>
+	<type name="indication_type" class="string" code="21"/>
+	<type name="password_type" class="string" code="22"/>    
+	<type name="operator_type" class="string" code="23"/>     
+	<type name="riskLocation_type" class="int" code="30"/>   
+	<type name="GameAccount_type" class="string" code="31"/>   
+    <type name="sndaId_type" class="string" code="32"/>   
+    <type name="ptId_type" class="string" code="33"/>   
+    <type name="emailId_type" class="string" code="34"/>  
+    <type name="authenType_type" class="int" code="35"/>     
+    <type name="appendix_type" class="string" code="36"/>
+    <type name="processTime_type" class="string" code="37"/>    
+    <type name="lossTypes_type" class="int" code="38"/>
+    <type name="lossTypes_Array_type" class="array" itemType="lossTypes_type"/>
+    <type name="bindTimes_type" class="string" code="39"/>
+    <type name="bindTimes_Array_type" class="array" itemType="bindTimes_type"/>
+    <type name="endpointIps_type" class="string" code="40"/>
+    <type name="endpointIps_Array_type" class="array" itemType="endpointIps_type"/>
+    <type name="safeDeviceSerialNos_type" class="string" code="41"/>
+    <type name="safeDeviceSerialNos_Array_type" class="array" itemType="safeDeviceSerialNos_type"/>
+    <type name="safeDeviceLevels_type" class="int" code="42"/>    
+    <type name="safeDeviceLevels_Array_type" class="array" itemType="safeDeviceLevels_type"/>
+    <type name="safeDeviceApplyTypeList_type" class="string" code="43"/>
+    <type name="safeDeviceApplyTypeList_Array_type" class="array" itemType="safeDeviceApplyTypeList_type"/>
+    <type name="verifyStopTimes_type" class="string" code="44"/>
+    <type name="verifyStopTimes_Array_type" class="array" itemType="verifyStopTimes_type"/>    
+    <type name="gameApp_type" class="string" code="45"/>
+    <type name="gameApp_Array_type" class="array" itemType="gameApp_type"/>
+	<type name="bindEnables_type" class="int" code="46"/>
+    <type name="bindEnable_Array_type" class="array" itemType="bindEnables_type"/>
+    <type name="validateTime_type" class="string" code="47"/>    
+    <type name="validateTimes_Array_type" class="array" itemType="validateTime_type"/>
+    <type name="invalidateTime_type" class="string" code="48"/>
+    <type name="invalidateTimes_Array_type" class="array" itemType="invalidateTime_type"/>
+    <type name="safeDeviceType_type" class="int" code="49"/>
+    <type name="safeDeviceType_Array_type" class="array" itemType="safeDeviceType_type"/>
+    <type name="reservedpwd_type" class="string" code="50"/>
+    <type name="reservedPwd_Array_type" class="array" itemType="reservedpwd_type"/>
+    <type name="isNeedDeviceAuthen_type" class="int" code="51"/>    
+    <type name="masterSndaId_type" class="string" code="52"/>    
+    <type name="ekeyTypes_Array_type" class="string" code="55" />
+    <type name="ekeyType_Array_type" class="array" itemType="ekeyTypes_Array_type" />
+    <type name="ekeyDisplayTypes_Array_type" class="string" code="56" />
+	<type name="ekeyDisplayType_Array_type" class="array" itemType="ekeyDisplayTypes_Array_type" />    
+    <type name="ekeyAttacheds_Array_type" class="string" code="57" />
+	<type name="ekeyAttached_Array_type" class="array" itemType="ekeyAttacheds_Array_type" />
+    <type name="version_type" class="int" code="58" />
+    <type name="loginType_type" class="int" code="61" />
+    <type name="Notify_type" class="string" code="101" />
+    <type name="failReason_type" class="string" code="102" />
+    <type name="voiceFeatures_type" class="string" code="201"/>
+    <type name="phrasesArray_type" class="string" code="202"/>
+    <type name="safeDeviceSerialNo_type" class="string" code="203"/>
+    <type name="pgt_type" class="string" code="204"/>
+    <type name="StartDate_type" class="string" code="205"/>
+    <type name="UsedTimes_type" class="int" code="206"/>
+    <type name="verifyScore_type" class="string" code="207"/>
+    
+    <type name="account_type" class="string" code="301" />
+    <type name="isPt_type" class="int" code="302" />    
+    <type name="mac_type" class="string" code="303" />
+    <type name="beaconId_type" class="string" code="304" />    
+
+    <type name="ascommand_type" class="string" code="10000"/>
+    <type name="ulsfWeb_type" class="int" code="10001" />
+    <type name="productid_type" class="int" code="10002" />
+    <type name="productVersion_type" class="string" code="10003" />
+
+    <message name="CommonAuthonAccount" id="1">
+        <requestParameter>        
+            <field name="loginAccount" type="loginAccount_type"  />   
+            <field name="loginAccountType" type="loginAccountType_type"  />   
+            <field name="ascommand" type="ascommand_type" /> 
+            <field name="ulsfWeb" type="ulsfWeb_type" /> 
+            <field name="productid" type="productid_type" /> 
+            <field name="productVersion" type="productVersion_type" /> 
+
+            <field name="port" type="port" />
+			<field name="cmdType" type="cmdType" />
+			<field name="reserved" type="reserved" />     
+			<field name="password" type="password_type" />                 
+           
+            <field name="guid" type="guid_type"   />
+			<field name="sessionId" type="sessionId_type"   />
+			<field name="spId" type="spId_type"   />
+			<field name="appId" type="appId_type"   />
+			<field name="areaId" type="areaId_type"   />			
+			<field name="callTime" type="callTime_type"   />
+			<field name="appSvrIp" type="appSvrIp_type"   />
+            <field name="appSiteCode" type="appSiteCode_type" />
+			<field name="endpointIp" type="endpointIp_type"   />
+			<field name="endpointType" type="endpointType_type"   />
+			<field name="platformType" type="platformType_type" />
+			<field name="indication" type="indication_type" />			
+            <field name="operator" type="operator_type" />
+            <field name="version" type="version_type" />
+            <field name="ipFromType" type="ipFromType" />        
+            <field name="mac" type="mac_type" />
+            <field name="beaconId" type="beaconId_type" />
+        </requestParameter>
+		
+		<responseParameter>
+            <field name="loginType" type="loginType_type"  /> 
+            <field name="authenType" type="authenType_type"  /> 
+            <field name="isNeedDeviceAuthen" type="isNeedDeviceAuthen_type"  /><!--1:need/0:not-->
+            <field name="riskLocation" type="riskLocation_type"  />  
+            
+            <field name="safeDeviceTypeArray" type="safeDeviceType_Array_type" />
+			<field name="safeDeviceSerialNoArray" type="safeDeviceSerialNos_Array_type" />
+			<field name="safeDeviceLevelArray" type="safeDeviceLevels_Array_type" />
+			<field name="safeDeviceApplyTypeArray" type="safeDeviceApplyTypeList_Array_type" />
+			<field name="lossTypeArray" type="lossTypes_Array_type" />
+			<field name="bindTimeArray" type="bindTimes_Array_type" />
+			<field name="verifyStopTimeArray" type="verifyStopTimes_Array_type" />
+			<field name="endpointIpArray" type="endpointIps_Array_type"/>	
+            <field name="bindEnableArray" type="bindEnable_Array_type"/>	
+            <field name="validateTimeArray" type="validateTimes_Array_type"/>
+            <field name="invalidateTimeArray" type="invalidateTimes_Array_type" />	
+            <field name="reservedPwdArray" type="reservedPwd_Array_type"/>
+            <field name="ekeyTypeArray" type="ekeyType_Array_type" />
+			<field name="ekeyDisplayTypeArray" type="ekeyDisplayType_Array_type" />
+			<field name="ekeyAttachedArray" type="ekeyAttached_Array_type" />
+            
+            <field name="gameApp" type="gameApp_Array_type" />
+            <field name="emailId" type="emailId_type" />
+            <!--for old account-->
+            <field name="ptId" type="ptId_type" />
+            <field name="sndaId" type="sndaId_type" />
+            <field name="GameAccount" type="GameAccount_type" /> 
+            <field name="loginAccount" type="loginAccount_type"  />              
+            <field name="masterSndaId" type="masterSndaId_type"  /> 
+            
+            <field name="pgt" type="pgt_type"  /> 
+            <field name="Notify" type="Notify_type" />
+            <field name="failReason" type="failReason_type" />
+    	</responseParameter>
+	</message>  
+    
+    <message name="AuthenSafeDevice" id="2">
+        <requestParameter>        
+            <field name="loginAccount" type="loginAccount_type" />
+            <field name="loginAccountType" type="loginAccountType_type" />
+            <!--risk control-->
+            <field name="port" type="port" />
+			<field name="cmdType" type="cmdType" />
+			<field name="reserved" type="reserved" />
+            <field name="ipFromType" type="ipFromType" />               
+            <!--ekey-->
+            <field name="AuthMethod" type="AuthMethod_type"  />
+			<field name="DynamicPw" type="DynamicPw_type"  />
+			<field name="ChallengeNo" type="ChallengeNo_type" />                 
+            <!--ecard-->
+            <field name="Password" type="Password_type" />            
+            <!--voice-->		
+			<field name="safeDeviceSerialNo" type="safeDeviceSerialNo_type" />
+			<field name="voiceFeatures" type="voiceFeatures_type" />
+			<field name="phrasesArray" type="phrasesArray_type"  />
+           
+            <field name="guid" type="guid_type"   />
+			<field name="sessionId" type="sessionId_type"   />
+			<field name="spId" type="spId_type"   />
+			<field name="appId" type="appId_type"   />
+			<field name="areaId" type="areaId_type"   />			
+			<field name="callTime" type="callTime_type"   />
+			<field name="appSvrIp" type="appSvrIp_type"   />
+            <field name="appSiteCode" type="appSiteCode_type" />
+			<field name="endpointIp" type="endpointIp_type"   />
+			<field name="endpointType" type="endpointType_type"   />
+			<field name="platformType" type="platformType_type" />
+			<field name="indication" type="indication_type" />	
+			<field name="safeDeviceType" type="safeDeviceType_type" />
+        </requestParameter>
+		
+		<responseParameter>      			
+            <field name="StartDate" type="StartDate_type" />
+			<field name="UsedTimes" type="UsedTimes_type" />            
+            <!--voice-->
+            <field name="guid" type="guid_type" />
+			<field name="processTime" type="processTime_type" />
+            <field name="appendix" type="appendix_type" />
+			<field name="safeDeviceSerialNo" type="safeDeviceSerialNo_type" />
+			<field name="verifyScore" type="verifyScore_type"  /> 
+            <!--ekey-->
+            <field name="ptId" type="ptId_type" />
+			<field name="sndaId" type="sndaId_type"  /> 
+            <field name="gameAccount" type="gameAccount_type" />
+            
+            <field name="pgt" type="pgt_type"  /> 
+            <field name="Notify" type="Notify_type" />
+            <field name="failReason" type="failReason_type" />
+    	</responseParameter>
+	</message>  
+    
+    <message name="AuthenEkey" id="3">
+        <requestParameter>        
+            <field name="loginAccount" type="loginAccount_type" />
+            <field name="loginAccountType" type="loginAccountType_type" />
+            <!--risk control-->
+            <field name="port" type="port" />
+			<field name="cmdType" type="cmdType" />
+			<field name="reserved" type="reserved" />
+            <field name="ipFromType" type="ipFromType" />               
+            <!--ekey-->
+            <field name="AuthMethod" type="AuthMethod_type"  />
+			<field name="DynamicPw" type="DynamicPw_type"  />
+			<field name="ChallengeNo" type="ChallengeNo_type" />           
+            
+            <field name="guid" type="guid_type"   />
+			<field name="sessionId" type="sessionId_type"   />
+			<field name="spId" type="spId_type"   />
+			<field name="appId" type="appId_type"   />
+			<field name="areaId" type="areaId_type"   />			
+			<field name="callTime" type="callTime_type"   />
+			<field name="appSvrIp" type="appSvrIp_type"   />
+            <field name="appSiteCode" type="appSiteCode_type" />
+			<field name="endpointIp" type="endpointIp_type"   />
+			<field name="endpointType" type="endpointType_type"   />
+			<field name="platformType" type="platformType_type" />
+			<field name="indication" type="indication_type" />	
+        </requestParameter>		
+		<responseParameter>   
+            <field name="ptId" type="ptId_type" />
+			<field name="sndaId" type="sndaId_type"  /> 
+            <field name="gameAccount" type="gameAccount_type" />
+            <field name="appidArray" type="gameApp_Array_type" />
+            
+            <field name="pgt" type="pgt_type"  /> 
+            <field name="Notify" type="Notify_type" />
+            <field name="failReason" type="failReason_type" />
+    	</responseParameter>
+	</message>  
+    
+    <message name="OthersUpdateGameAccount" id="4">
+        <requestParameter>
+            <field name="loginAccount" type="loginAccount_type"  />
+            <field name="loginAccountType" type="loginAccountType_type"  />             
+            <field name="guid" type="guid_type"   />
+			<field name="sessionId" type="sessionId_type"   />
+			<field name="spId" type="spId_type"   />
+			<field name="appId" type="appId_type"   />
+			<field name="areaId" type="areaId_type"   />
+			<field name="callTime" type="callTime_type"   />
+			<field name="appSvrIp" type="appSvrIp_type"   />
+            <field name="appSiteCode" type="appSiteCode_type" />
+			<field name="endpointIp" type="endpointIp_type"   />
+			<field name="endpointType" type="endpointType_type"   />
+			<field name="platformType" type="platformType_type" />
+			<field name="indication" type="indication_type" />
+			<field name="gameAccount" type="gameAccount_type"   />
+        </requestParameter>		
+		<responseParameter>  
+            <field name="sndaId" type="sndaId_type"  />
+    	</responseParameter>
+	</message>  
+    
+    <message name="AccountCenterUserExist" id="5">
+        <requestParameter>
+			<field name="account" type="account_type"  />
+			<field name="isPt" type="isPt_type"  />
+		</requestParameter>		
+		<responseParameter/>
+	</message>  
+    
+    
+</service>

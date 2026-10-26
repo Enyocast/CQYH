@@ -1,0 +1,37 @@
+$pfile "script/common.pkg"
+$#include "guild_mgr.h"
+$#include "gs_guild.h"
+$#include "asimov_guild.h"
+
+class CGuildMgr
+{
+public:
+    static  CGuildMgr &GetInstance();
+
+    CGSGuild *FindGuild(UINT32 dwGuildID);
+
+	// war
+    BOOL    AddWarRelation(UINT32 dwIntruderID, UINT32 dwDefenderID);
+    GUILD_WAR_DATA *FindWarRelation(UINT32 dwIntruderID, UINT32 dwDefenderID);
+    GUILD_WAR_DATA *FindWarByAttackGuildID(UINT32 dwIntruderID);
+    GUILD_WAR_DATA *FindWarByDefendGuildID(UINT32 dwDefenderID);
+    BOOL    DelWarRelation(UINT32 dwIntruderID, UINT32 dwDefenderID);
+
+    // 敌对的表示可以互相pk，无pk值
+    BOOL    IsHostile(UINT32 dwGuildID, UINT32 dwTargetGuildID);
+    BOOL    IsFriendly(UINT32 dwGuildID, UINT32 dwTargetGuildID);
+};
+
+
+BOOL SendMSToAddRes(UINT32 dwRoleID, INT32 nType, INT32 nCount);
+
+
+
+
+
+
+
+
+
+
+

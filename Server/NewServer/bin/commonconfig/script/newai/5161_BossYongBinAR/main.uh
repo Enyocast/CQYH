@@ -1,0 +1,87 @@
+local scan_range = 1500;
+local chase_range = 700;
+local pref_dist = 700;
+local pref_dist_offset = 200;
+local run_speed = 600;
+local chase_delay = 1000;
+
+local spell_common =
+{	-- 1 冲击矢_螺旋 箭上加持了螺旋的力量, 可以推动沿途的单位并造成多段的伤害
+	{ id = 5583, cd = 5000, chance = 10000, group = 1 },
+	-- 2 三叉戟 发射3支箭攻击直线内单位 
+	{ id = 5879, cd = 2500, chance = 10000, group = 1 },
+	-- 3 紧急回避
+	{ id = 5589, cd = 1000, chance = 10000 },
+	-- 4 变色龙
+	{ id = 5584, cd = 1000, chance = 10000 },
+	-- 5 炼狱 将目标踩倒在地，并追加多重射击。在变色龙状态下才会释放
+	{ id = 5881, cd = 1000, chance = 10000 },
+	-- 6 紧急回避
+	{ id = 5884, cd = 1000, chance = 10000 },
+	-- 7 猎杀标记 标记目标，白色闪光对目标的伤害将提升，持续10秒
+	{ id = 5586, cd = 12000, chance = 10000 },
+	-- 8 灵魂链接 与白色闪光分担伤害，持续20秒，CD28秒
+	{ id = 5587, cd = 15000, chance = 10000 },
+};
+
+evtAIInit =
+{ batParallel, 
+	_init_tree();
+	__cast_init_spell(5880, 10000);
+    { batSetScanFriendParam, param = { scan_range, 9257, 0, 0 } },
+	{ batSetFlag, param = { cfImmuneStiff } },
+	{ batSetFlag, param = { cfImmuneControl } },
+	{ batSetFlag, param = { cfImmunePassiveMove } },
+};
+
+on_cast_spell = 
+{ batSelector,
+	{ btSequencer,
+		__scan_nearby();
+		{ batCheckDistance , param = { tarAITarget, boLTE, 400 } },		
+		__check_cd_timer(COOLDOWN_AI, SPELL_GROUP_CD_TIMER_INDEX, 20000);
+		__set_cd_timer(COOLDOWN_AI, SPELL_GROUP_CD_TIMER_INDEX, 20000);
+		--5589
+		__cast_spell(spell_common[3].id, tarAITarget, spell_common[3].chance, spell_common[3].cd);
+		--5581 
+		__cast_spell(spell_common[5].id, tarAITarget, spell_common[5].chance, spell_common[5].cd);
+		--5584
+		__cast_spell(spell_common[4].id, tarAITarget, spell_common[4].chance, spell_common[4].cd);
+		
+	},
+ 	{ batRandom, param = { 4000, 6000 }, 
+ 		{ btSequencer,
+			--5583
+			__cast_spell(spell_common[1].id, tarAITarget, spell_common[1].chance, spell_common[1].cd, 0, COOLDOWN_SCRIPT_SPELL, spell_common[1].group);
+		},
+		{ btSequencer,
+			--5579
+			__cast_spell(spell_common[2].id, tarAITarget, spell_common[2].chance, spell_common[2].cd, 0, COOLDOWN_SCRIPT_SPELL, spell_common[2].group);
+		},
+	},
+	
+ 	
+	--__cast_spell(spell_common[6].id, tarAITarget, spell_common[6].chance, spell_common[6].cd);
+
+	{ btSequencer,
+		__check_target(tarNearestFriend);
+		{ batParallel,
+			{ btSequencer,
+				{ batCheckCDTimer, param={ COOLDOWN_AI , 10 },
+   				},
+					__cast_spell(spell_common[7].id, tarAITarget, spell_common[7].chance, spell_common[7].cd);
+					{ batSay, param = { cctScreen, 50201, cltNormal } },
+				{ batSetCDTimer , param={ COOLDOWN_AI , 10, 12000 },
+        		},
+			},
+			{ btSequencer,
+				{ batCheckCDTimer, param={ COOLDOWN_AI , 11},
+   				},
+				__cast_spell(spell_common[8].id, tarNearestFriend, spell_common[8].chance, spell_common[8].cd);
+				{ batSay, param = { cctScreen, 50202, cltNormal } },
+				{ batSetCDTimer, param={ COOLDOWN_AI , 11, 15000 },
+        		},
+			},
+		},
+	},
+};

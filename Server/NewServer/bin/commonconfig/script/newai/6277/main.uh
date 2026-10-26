@@ -1,0 +1,72 @@
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { 666811, 50000, 'get_Total()', 'get_ABC()' } }, -- 这里仿照着一番赏的方式返回共传入2个参数，第一个参数为2位数 十位为屠龙 个位为斩月疾步印   第二个参数共4位数  1234  12为武器属性转移 34为项链幸运转移
+	{ batSelector, 
+		{ batSequencer, 
+			{batRoleCheckInteractOption, param = { 1 } },--兑换屠龙
+			{batSelector,
+				{batSequencer,--下面是购买逻辑
+					{ Buy_One },
+				},
+				{batSequencer,
+					{ batRoleOpenDialog, param = { 666812, 50000, 0, 0 } },
+				},
+			},
+		},
+		{ batSequencer, 
+			{batRoleCheckInteractOption, param = { 2 } },--兑换斩月疾步
+			{batSelector,
+				{batSequencer,--下面是购买逻辑
+					{ Buy_Two },
+				},
+				{batSequencer,
+					{ batRoleOpenDialog, param = { 666812, 50000, 0, 0 } },
+				},
+			},
+		},
+		{ batSequencer, 
+			{batRoleCheckInteractOption, param = { 3 } },--武器属性转移
+			{batSelector,
+				{batSequencer,--下面是购买逻辑
+					{ Buy_Three },
+				},
+				{batSequencer,
+					{ batRoleOpenDialog, param = { 666812, 50000, 0, 0 } },
+				},
+			},
+		},
+		{ batSequencer, 
+			{batRoleCheckInteractOption, param = { 4 } },--项链幸运转移
+			{batSelector,
+				{batSequencer,--下面是购买逻辑
+					{ Buy_Four },
+				},
+				{batSequencer,
+					{ batRoleOpenDialog, param = { 666812, 50000, 0, 0 } },
+				},
+			},
+		},
+		{ batSequencer, 
+			{batRoleCheckInteractOption, param = { 5 } },--疗伤药礼盒
+			{batSelector,
+				{batSequencer,--下面是购买逻辑
+					{ Buy_Five },
+				},
+				{batSequencer,
+					{ batRoleOpenDialog, param = { 666812, 50000, 0, 0 } },
+				},
+			},
+		},
+		{ batSequencer, 
+			{batRoleCheckInteractOption, param = { 6 } },--幽冥海4传送卷
+			{batSelector,
+				{batSequencer,--下面是购买逻辑
+					{ Buy_Six },
+				},
+				{batSequencer,
+					{ batRoleOpenDialog, param = { 666812, 50000, 0, 0 } },
+				},
+			},
+		},
+	},
+};

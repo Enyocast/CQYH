@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <PropertyPageSchema
+      Include="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml" />
+    <AvailableItemName
+      Include="lua_compiler">
+      <Targets>_lua_compiler</Targets>
+    </AvailableItemName>
+  </ItemGroup>
+  <UsingTask
+    TaskName="lua_compiler"
+    TaskFactory="XamlTaskFactory"
+    AssemblyName="Microsoft.Build.Tasks.v4.0, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <Task>$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml</Task>
+  </UsingTask>
+  <Target
+    Name="_lua_compiler"
+    BeforeTargets="$(lua_compilerBeforeTargets)"
+    AfterTargets="$(lua_compilerAfterTargets)"
+    Condition="'@(lua_compiler)' != ''"
+    DependsOnTargets="$(lua_compilerDependsOn);Computelua_compilerOutput"
+    Outputs="@(lua_compiler-&gt;'%(Outputs)')"
+    Inputs="@(lua_compiler);%(lua_compiler.AdditionalDependencies);$(MSBuildProjectFile)">
+    <ItemGroup
+      Condition="'@(SelectedFiles)' != ''">
+      <lua_compiler
+        Remove="@(lua_compiler)"
+        Condition="'%(Identity)' != '@(SelectedFiles)'" />
+    </ItemGroup>
+    <ItemGroup>
+      <lua_compiler_tlog
+        Include="%(lua_compiler.Outputs)"
+        Condition="'%(lua_compiler.Outputs)' != '' and '%(lua_compiler.ExcludedFromBuild)' != 'true'">
+        <Source>@(lua_compiler, '|')</Source>
+      </lua_compiler_tlog>
+    </ItemGroup>
+    <Message
+      Importance="High"
+      Text="%(lua_compiler.ExecutionDescription)" />
+    <WriteLinesToFile
+      Condition="'@(lua_compiler_tlog)' != '' and '%(lua_compiler_tlog.ExcludedFromBuild)' != 'true'"
+      File="$(TLogLocation)$(ProjectName).write.1u.tlog"
+      Lines="^%(lua_compiler_tlog.Source);@(lua_compiler_tlog-&gt;'%(Fullpath)')"
+      Encoding="Unicode" />
+    <lua_compiler
+      Condition="'@(lua_compiler)' != '' and '%(lua_compiler.ExcludedFromBuild)' != 'true'"
+      CommandLineTemplate="%(lua_compiler.CommandLineTemplate)"
+      AdditionalOptions="%(lua_compiler.AdditionalOptions)"
+      Inputs="@(lua_compiler)" />
+  </Target>
+  <PropertyGroup>
+    <ComputeLinkInputsTargets>
+            $(ComputeLinkInputsTargets);
+            Computelua_compilerOutput;
+          </ComputeLinkInputsTargets>
+    <ComputeLibInputsTargets>
+            $(ComputeLibInputsTargets);
+            Computelua_compilerOutput;
+          </ComputeLibInputsTargets>
+  </PropertyGroup>
+  <Target
+    Name="Computelua_compilerOutput"
+    Condition="'@(lua_compiler)' != ''">
+    <ItemGroup>
+      <lua_compilerDirsToMake
+        Condition="'@(lua_compiler)' != '' and '%(lua_compiler.ExcludedFromBuild)' != 'true'"
+        Include="%(lua_compiler.Outputs)" />
+      <Link
+        Include="%(lua_compilerDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <Lib
+        Include="%(lua_compilerDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <ImpLib
+        Include="%(lua_compilerDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+    </ItemGroup>
+    <MakeDir
+      Directories="@(lua_compilerDirsToMake-&gt;'%(RootDir)%(Directory)')" />
+  </Target>
+</Project>

@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <PropertyPageSchema
+      Include="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml" />
+    <AvailableItemName
+      Include="toluapp_gen_msg">
+      <Targets>_toluapp_gen_msg</Targets>
+    </AvailableItemName>
+  </ItemGroup>
+  <UsingTask
+    TaskName="toluapp_gen_msg"
+    TaskFactory="XamlTaskFactory"
+    AssemblyName="Microsoft.Build.Tasks.v4.0, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <Task>$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml</Task>
+  </UsingTask>
+  <Target
+    Name="_toluapp_gen_msg"
+    BeforeTargets="$(toluapp_gen_msgBeforeTargets)"
+    AfterTargets="$(toluapp_gen_msgAfterTargets)"
+    Condition="'@(toluapp_gen_msg)' != ''"
+    DependsOnTargets="$(toluapp_gen_msgDependsOn);Computetoluapp_gen_msgOutput"
+    Outputs="%(toluapp_gen_msg.Outputs)"
+    Inputs="%(toluapp_gen_msg.Identity);%(toluapp_gen_msg.AdditionalDependencies);$(MSBuildProjectFile)">
+    <ItemGroup
+      Condition="'@(SelectedFiles)' != ''">
+      <toluapp_gen_msg
+        Remove="@(toluapp_gen_msg)"
+        Condition="'%(Identity)' != '@(SelectedFiles)'" />
+    </ItemGroup>
+    <ItemGroup>
+      <toluapp_gen_msg_tlog
+        Include="%(toluapp_gen_msg.Outputs)"
+        Condition="'%(toluapp_gen_msg.Outputs)' != '' and '%(toluapp_gen_msg.ExcludedFromBuild)' != 'true'">
+        <Source>@(toluapp_gen_msg, '|')</Source>
+      </toluapp_gen_msg_tlog>
+    </ItemGroup>
+    <Message
+      Importance="High"
+      Text="%(toluapp_gen_msg.ExecutionDescription)" />
+    <WriteLinesToFile
+      Condition="'@(toluapp_gen_msg_tlog)' != '' and '%(toluapp_gen_msg_tlog.ExcludedFromBuild)' != 'true'"
+      File="$(TLogLocation)$(ProjectName).write.1u.tlog"
+      Lines="^%(toluapp_gen_msg_tlog.Source);@(toluapp_gen_msg_tlog-&gt;'%(Fullpath)')"
+      Encoding="Unicode" />
+    <toluapp_gen_msg
+      Condition="'@(toluapp_gen_msg)' != '' and '%(toluapp_gen_msg.ExcludedFromBuild)' != 'true'"
+      CommandLineTemplate="%(toluapp_gen_msg.CommandLineTemplate)"
+      AdditionalOptions="%(toluapp_gen_msg.AdditionalOptions)"
+      Inputs="%(toluapp_gen_msg.Identity)" />
+  </Target>
+  <PropertyGroup>
+    <ComputeLinkInputsTargets>
+            $(ComputeLinkInputsTargets);
+            Computetoluapp_gen_msgOutput;
+          </ComputeLinkInputsTargets>
+    <ComputeLibInputsTargets>
+            $(ComputeLibInputsTargets);
+            Computetoluapp_gen_msgOutput;
+          </ComputeLibInputsTargets>
+  </PropertyGroup>
+  <Target
+    Name="Computetoluapp_gen_msgOutput"
+    Condition="'@(toluapp_gen_msg)' != ''">
+    <ItemGroup>
+      <toluapp_gen_msgDirsToMake
+        Condition="'@(toluapp_gen_msg)' != '' and '%(toluapp_gen_msg.ExcludedFromBuild)' != 'true'"
+        Include="%(toluapp_gen_msg.Outputs)" />
+      <Link
+        Include="%(toluapp_gen_msgDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <Lib
+        Include="%(toluapp_gen_msgDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <ImpLib
+        Include="%(toluapp_gen_msgDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+    </ItemGroup>
+    <MakeDir
+      Directories="@(toluapp_gen_msgDirsToMake-&gt;'%(RootDir)%(Directory)')" />
+  </Target>
+</Project>

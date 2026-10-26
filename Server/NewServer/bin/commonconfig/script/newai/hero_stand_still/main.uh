@@ -1,0 +1,4 @@
+evtAIIdle = 
+{ batSelector,
+	{ batDebug, param = { 111 } },
+};

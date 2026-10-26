@@ -1,0 +1,4 @@
+on_die =
+{ batSequencer, 
+	{ batSummonNpc , param = { 9747, 0, 0, 25 } },	
+}

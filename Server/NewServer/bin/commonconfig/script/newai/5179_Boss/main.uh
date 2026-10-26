@@ -1,0 +1,64 @@
+
+on_enter_fight =
+{ batParallel,
+	{ batPlayAction, param = { 253 } },
+	{ batCloseDoor, param = { 63 } },
+	{ batSetSceneVariable, param = { 14, 1 } },
+};
+
+on_wander = 
+{ batSequencer,
+	{ batCheckCDTimer, param = { COOLDOWN_AI, OPEN_DOOR_CD_TIMER } },
+	{ batSetCDTimer, param = { COOLDOWN_AI, OPEN_DOOR_CD_TIMER, 3000 } },	
+	{ batOpenDoor, param = { 63 } },
+	{ batSetSceneVariable, param = { 14, 0 } },
+};
+
+on_fight_move =
+{ batSequencer,
+	{ batCheckCharHp, param = { tarSelf, boLTE, 5000 } },
+	{ batInvincible , param = { true } },
+	{ batPlayAction, param = { 3 } },
+	{ batWait, param = { 6000 } },
+	{ batSummonNpc, param = { 5176, 0, 0, 0 } },
+	{ batWait, param = { 1000 } },
+	{ batSuicide },
+};
+
+on_chase =
+{ batSequencer,
+	__check_dice(6000),
+	{ batRandom, param = { 1500, 8500 },
+		__cast_spell(5651, tarAITarget, 10000, 5000, d.nGlobalCDTime),
+		__cast_spell(5653, tarAITarget, 10000, 5000, d.nGlobalCDTime),
+	},
+};
+
+on_cast_spell =
+{ batSequencer,
+	{ batRandom, param = { 500, 3000, 6500 },
+		__cast_spell(5651, tarAITarget, 10000, 15000, d.nGlobalCDTime),
+		{ batSequencer,
+			{ batRandom, param = { 5000, 5000 },
+				__cast_spell(5652, tarAITarget, 10000, 10000, d.nGlobalCDTime),
+				{ batSequencer,
+					{ batCheckCanCastSpell },
+					{ batCheckCDTimer, param = { COOLDOWN_AI, nastGlobalCDTimer } },
+					{ batCheckCDTimer, param = { COOLDOWN_AI, 101 } },
+					{ batSetCDTimer, param = { COOLDOWN_AI, 101, 10000 } },
+					{ batSyncCastSpellToTarget, param = { 5653, tarAITarget } },
+					{ batSyncCastSpellToTarget, param = { 5652, tarAITarget } },
+					{ batSetCDTimer, param = { COOLDOWN_AI, nastGlobalCDTimer, 1000 } },
+				},
+			},
+		},
+		__cast_spell(5650, tarAITarget, 10000, 1500, d.nGlobalCDTime),
+	},
+};
+
+evtAIDie  = 
+{ batSequencer,
+	{ batOpenDoor, param = { 63 }	},
+	{ batPlayAction, param = { 254 } },
+	{ batSetSceneVariable, param = { 14, 0 } },
+};

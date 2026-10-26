@@ -1,0 +1,5 @@
+$pfile "script/common.pkg"
+$#include "math_ex.h"
+
+#define MAX_DIRECTION_COUNT		(1024 * 8)
+#define SIN_COS_NUMBER	(16384)

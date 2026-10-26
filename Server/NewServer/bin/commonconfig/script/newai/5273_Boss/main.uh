@@ -1,0 +1,50 @@
+on_init = 
+	{ batSequencer, 
+	  { batSetCDTimer, param = { COOLDOWN_AI, 20, d.nParam[0] } },  --cd index 20为boss idle自杀配置用index param0   战斗中自杀用livetime
+	  { batSetAlwaysRun , param = { true } },
+	};
+
+on_wander = 
+	{ batSequencer, 
+		{ batCheckCDTimer, param = { COOLDOWN_AI, 20 } },
+		--{ batSay, param = { cctScreen, 50568, cltNormal } },
+		{ batSuicide, param = { false, false } },
+	};
+
+on_enter_fight = 
+{ batSequencer, 
+	{ batSetCDTimer, param = { COOLDOWN_AI, 11, 1000 } },  --21 击退
+	{ batSetCDTimer, param = { COOLDOWN_AI, 12, 1000 } },  --22 灼烧
+	{ batSetCDTimer, param = { COOLDOWN_AI, 13, 1000 } },  --21 红毒
+};
+
+on_cast_spell = 
+{ batSequencer,
+	{ batSelector,
+        	{ batSequencer,
+			{ batCheckCharHp , param = { tarSelf , boGTE  , 6000 } },
+			{ batCheckCDTimer, param = { COOLDOWN_AI, 11 } },
+			--{ batSay, param = { cctScreen, 50569, cltNormal } },
+			{ batAddAura, param = { tarAITarget, 25500 } },
+			{ batAddAura, param = { tarAITarget, 60420 } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, 11, 10000 } },
+		}, 
+        	{ batSequencer,
+			{ batCheckCharHp , param = { tarSelf , boLTE  , 4000 } },
+			{ batCheckCharHp , param = { tarSelf , boGTE  , 2000 } },
+			{ batCheckCDTimer, param = { COOLDOWN_AI, 12 } },
+			--{ batSay, param = { cctScreen, 50600, cltNormal } },
+			{ batAddAura, param = { tarSelf, 25411 } },
+			{ batAddAura, param = { tarSelf, 37770 } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, 12, 60000 } },
+		}, 
+		{ batSequencer,
+			{ batCheckCharHp , param = { tarSelf , boLTE  , 2000 } },
+			{ batCheckCDTimer, param = { COOLDOWN_AI, 13 } },
+			--{ batSay, param = { cctScreen, 503902, cltNormal } },
+			{ batSetCharHp , param = { tarAITarget, -1 , 1000 } },
+			{ batAddAura, param = { tarAITarget, 10370 } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, 13, 30000 } },
+		}, 
+	},	
+};

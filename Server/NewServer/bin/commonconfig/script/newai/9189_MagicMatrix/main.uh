@@ -1,0 +1,40 @@
+
+-- { btDebug,
+-- { btParallel, 
+-- 	{ batSetScanEnemyParam, param = { 1300, 0, 0, 0 } },
+-- 	{ batAddAura, param = { tarHost, d.nInitAuraID[0] } },
+-- 	{ batAddAura, param = { tarHost, d.nInitAuraID[1] } },
+-- 	{ batAddAura, param = { tarSelf, d.nInitAuraID[2] } },
+-- 	{ batSetCDTimer, param = { COOLDOWN_AI, LIVE_LIMIT_CD_TIMER_INDEX, d.nLiveTime } },
+	
+-- },
+-- };evtAIInit =
+
+
+on_wander= 
+{ batSelector,
+	{ batSequencer,
+		{ batCheckCDTimer, param = { COOLDOWN_AI, 1 } },
+		{ batSetCDTimer, param = { COOLDOWN_AI, 1, 15000 } },
+		{ batSetCDTimer, param = { COOLDOWN_AI, 2, 10000 } },
+		{ batAddAura, param = { tarSelf, 25055 } },
+	},
+	{ batSequencer,
+		{ batCheckCDTimer, param = { COOLDOWN_AI, 2 } },
+		{ batSetCharHp, param = { tarSelf, 0, 0 } },
+	},
+};
+
+on_cas````t_spell=
+{ batSelector,
+	{ batSequencer,
+		{ batCheckCDTimer, param = { COOLDOWN_AI, 1 } },
+		{ batSetCDTimer, param = { COOLDOWN_AI, 1, 15000 } },
+		{ batSetCDTimer, param = { COOLDOWN_AI, 2, 10000 } },
+		{ batAddAura, param = { tarSelf, 25055 } },
+	},
+	{ batSequencer,
+		{ batCheckCDTimer, param = { COOLDOWN_AI, 2 } },
+		{ batSetCharHp, param = { tarSelf, 0, 0 } },
+	},
+};

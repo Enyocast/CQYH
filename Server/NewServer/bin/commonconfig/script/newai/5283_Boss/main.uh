@@ -1,0 +1,35 @@
+on_init = 
+	{ batSequencer, 
+		{ batSetCDTimer, param = { COOLDOWN_AI, 20, d.nParam[0] } },  --cd index 20为boss idle自杀配置用index param0   战斗中自杀用livetime
+		{ batSetAlwaysRun , param = { true } },
+	};
+
+on_wander = 
+	{ batSequencer, 
+		{ batCheckCDTimer, param = { COOLDOWN_AI, 20 } },
+		{ batSuicide, param = { false, false } },
+	};
+
+on_enter_fight = 
+{ batSequencer, 
+ { batCheckCharHp , param = { tarSelf, boGTE, 8000 } },
+ { batSetCDTimer, param = { COOLDOWN_AI, 10, 1000} },
+};
+
+on_cast_spell = 
+{ batSequencer,
+	{ batCheckCanCastSpell },
+	__check_cd_timer(COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime),
+	{ batSelector, 		
+		{ batSequencer,
+			{ batCheckCharHp , param = { tarSelf, boLTE, 3000 } },
+			{ batCheckCDTimer, param = { COOLDOWN_AI, 10 } },
+			{batSummonNpc, param= {5284,700,700,0}},
+			{batSummonNpc, param= {5284,700,-700,0}}, 
+			{batSummonNpc, param= {5284,-700,700,0}},
+			{batSummonNpc, param= {5284,-700,-700,0}},
+			{ batSetCDTimer, param = { COOLDOWN_AI, 10, 60000 } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime } },
+		},
+	},
+};

@@ -1,0 +1,27 @@
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { d.nParam[0], 30000 } },
+    	{ batSelector,
+		{ batSequencer,						
+			{ batParallel ,
+				{ batSequencer,
+			--		{ batRoleCheckItemCount , param = { boGTE , 90202 , 1 } },
+				},
+				{ batSequencer,
+					{ batSelector ,
+						{ batSequencer,
+					--检查是否具备足够的钱,有就进入传送
+					--		{ batRoleCheckItemCount , param = { boGTE , 90202 , 1} },
+					--		{ batRoleDelItem , param = { 90202 , 1 } },
+							{ batRoleTeleport, param={ 39600, 84400, 6000, 226 } },
+						},
+						{ batSequencer,
+							{ batRoleOpenDialog, param = { 50584, 30000 } },
+							--提示没有足够的钱-50000金
+						},
+					},
+				},
+			},
+		},												
+	},  	
+};

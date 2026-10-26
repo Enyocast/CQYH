@@ -1,0 +1,13 @@
+on_init =
+{ batSequencer,
+    { batSetAlwaysRun , param = { true } },
+};
+
+evtAIIdle = 
+{ batSelector,
+	{ batSequencer,
+		{ batCheckCDTimer, param = { COOLDOWN_AI, 11 } },
+		{ batSetCDTimer, param = { COOLDOWN_AI, 11, 5000 } },
+		{ batDistributeExp , param = { 1, 2513 } },
+	},
+};

@@ -1,0 +1,52 @@
+$pfile "script/common.pkg"
+$#include "item.h"
+
+struct ItemInfo
+{
+    UINT64 m_llGuid;
+    INT32 m_nTemplateID;
+    UINT8 m_byConSlot;
+    UINT8 m_byItemSlot;
+    INT16 m_nCurDur;
+    INT16 m_nMaxDur;
+    UINT8 m_byBindType;
+
+    //以下属性仅限装备
+    //是否已鉴定
+    UINT8 m_byIdentified;
+    //随机属性
+    UINT16 m_wRandomAttrID[MAX_RANDOM_ATTR_COUNT];
+    //签名
+    UINT32 m_dwRoleID;
+    //已消费金币
+    UINT32 m_dwCostMoney;
+
+    //以下属性仅限武器
+    //幸运值
+    INT8 m_byLuck;
+    //武器升级
+    UINT8 m_byLevelupTimes;
+    UINT8 m_byLevelupPhyPoint;
+    UINT8 m_byLevelupMagPoint;
+    UINT8 m_byLevelupTaoPoint;
+    UINT8 m_byLevelupTypeHidden;
+    UINT8 m_byLevelupPointHidden;
+    //铸魂
+    UINT16 m_wRune[MAX_RUNE_COUNT];
+
+    //以下属性仅限防具
+    //融灵
+    UINT32 m_dwSocketCombination;
+    INT32 m_nSoulID[MAX_SOCKET_COUNT];
+};
+
+struct Item
+{
+    const ITEM_DATA* m_pTemplate;
+    ItemInfo m_iteminfo;
+
+    //调试功能
+    BOOL SetAttribute(INT32 index, UINT16 attrid);
+    BOOL SetSocketColor(INT32 index, UINT8 color);
+    BOOL SetSoul(INT32 index, INT32 soulid);
+};

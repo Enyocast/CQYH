@@ -1,0 +1,16 @@
+$pfile "script/common.pkg"
+$hfile "../../../Common/define/arena_def.h"
+$#include "./arena/arena_mgr.h"
+
+class CArenaMgr
+{
+public:
+    static  CArenaMgr&  GetInstance();
+
+    // lua
+    BOOL    LuaBroadcastArenaBegin();
+
+};
+
+
+

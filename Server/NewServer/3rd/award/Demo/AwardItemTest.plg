@@ -1,0 +1,35 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: AwardItemTest - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\Chengwu\LOCALS~1\Temp\RSP474.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /I "./include/bsip" /I "./include" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/AwardItemTest.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"C:\Documents and Settings\Chengwu\×ÀÃæ\AwardItemTest\AwardItemTest.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\Chengwu\LOCALS~1\Temp\RSP474.tmp" 
+Creating temporary file "C:\DOCUME~1\Chengwu\LOCALS~1\Temp\RSP475.tmp" with contents
+[
+ws2_32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/AwardItemTest.pdb" /debug /machine:I386 /out:"./bin/AwardItemTest.exe" /pdbtype:sept /libpath:"e:\workspace\sots2009\rpc\lib" 
+".\Debug\AwardItemTest.obj"
+".\Debug\AwardItemTestDlg.obj"
+".\Debug\StdAfx.obj"
+".\Debug\AwardItemTest.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\Chengwu\LOCALS~1\Temp\RSP475.tmp"
+<h3>Output Window</h3>
+Compiling...
+AwardItemTest.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+AwardItemTest.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

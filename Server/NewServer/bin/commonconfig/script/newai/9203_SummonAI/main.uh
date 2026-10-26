@@ -1,0 +1,13 @@
+evtAIInit =
+{ batParallel,
+	{ batAddAura, param = { tarHost, d.nInitAuraID[0] } },
+	{ batAddAura, param = { tarHost, d.nInitAuraID[1] } },
+	{ batAddAura, param = { tarSelf, d.nInitAuraID[2] } },
+	{ batSetCDTimer, param = { COOLDOWN_AI, LIVE_LIMIT_CD_TIMER_INDEX, d.nLiveTime } },
+    { batAddAura, param = { tarHost, 25100 } },
+};
+--[[evtAIDie =
+{ batSelector,
+	_cast_template_spell(nastDeadSpell, tarHost, 0),
+	_cast_template_spell(nastDeadSpell, tarSelf, 0),
+};]]--

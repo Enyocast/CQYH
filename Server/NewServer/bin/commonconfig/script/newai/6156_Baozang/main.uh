@@ -1,0 +1,122 @@
+evtAIInteract = 
+{ batSelector,
+	{ batSequencer,
+		{ batRoleCheckLevel , param = { boLT, 15 } },
+		{ batRoleOpenDialog, param = { 50142, 50000, 15, 0 } },	
+	 },
+
+	{ batSequencer,
+
+		{ batRoleOpenDialog, param = { 50143, 50000, 0, 0 } },	
+
+		{ batSelector,
+			{ batSequencer,
+
+				{ batRoleCheckInteractOption, param = { 1 } },
+
+				{ batSelector,
+					{ batSequencer,
+						{ batRoleCheckItemCount , param = { boGTE, 91101, 1, false } },		
+						{ batRoleOpenDialog, param = { 50116, 50000, 'get_role_var(o, 207)', 0 } },	
+
+							--选项1，兑换京东虚拟卡。  batRoleTemporaryCharge  ?
+							{ batSequencer, 
+								{ batRoleCheckInteractOption, param = { 1 } },
+								{ batRoleDelItem, param = { 91101, 1 } },
+								{ batRoleSetRoleVariable , param = { 207, 0, 1 } },
+								{ batRoleOpenDialog, param = { 50117, 50000, 'get_role_var(o, 207)', 0 } },	
+							},	
+					},	
+					{ batSequencer,
+						{ batRoleOpenDialog, param = { 50118, 50000, 'get_role_var(o, 207)', 0 } },		
+					},	
+				},
+			},
+
+			{ batSequencer,
+
+				{ batRoleCheckInteractOption, param = { 2 } },
+
+				{ batSelector,
+					{ batSequencer,
+						{ batRoleCheckItemCount , param = { boGTE, 91104, 1, false } },		
+						{ batRoleOpenDialog, param = { 50144, 50000, 'get_role_var(o, 212)', 0 } },	
+
+							--选项1，兑换京东虚拟卡。  batRoleTemporaryCharge  ?
+							{ batSequencer, 
+								{ batRoleCheckInteractOption, param = { 1 } },
+								{ batRoleDelItem, param = { 91104, 1 } },
+								{ batRoleSetRoleVariable , param = { 212, 0, 1 } },
+								{ batRoleOpenDialog, param = { 50145, 50000, 'get_role_var(o, 212)', 0 } },	
+							},	
+					},	
+					{ batSequencer,
+						{ batRoleOpenDialog, param = { 50146, 50000, 'get_role_var(o, 212)', 0 } },		
+					},	
+				},
+			},
+			{ batSequencer,
+
+				{ batRoleCheckInteractOption, param = { 3 } },
+				
+				{ batRoleOpenDialog, param = { 50148, 50000, 0, 0 } },
+
+				{ batRoleCheckInteractOption, param = { 1 } },
+				
+				{ batSelector,
+
+					{ batSequencer, 
+						--提示没有足够的钱
+						{ batRoleCheckMoney , param = { boLT,1, 2000 } },
+						{ batRoleOpenDialog, param = { 50138, 50000, 0, 0 } },
+					},				
+
+					{ batSequencer, 
+						{ batRoleCheckItemCount, param = { boLT, 91021, 1 } }, 
+						{ batRoleOpenDialog, param = { 50151, 30000} },
+					},
+
+					{ batSequencer, 
+						{ batRoleCheckItemCount, param = { boLT, 91022, 1 } }, 
+						{ batRoleOpenDialog, param = { 50151, 30000} },
+					},
+
+					{ batSequencer, 
+						{ batRoleCheckItemCount, param = { boLT, 91023, 1 } }, 
+						{ batRoleOpenDialog, param = { 50151, 30000} },
+					},
+
+					{ batSequencer, 
+						{ batRoleCheckItemCount, param = { boLT, 91024, 1 } }, 
+						{ batRoleOpenDialog, param = { 50151, 30000} },
+					},
+
+					{ batSequencer, 
+						--检查是否具备足够的钱,有就扣钱
+						{ batRoleCheckMoney , param = { boGTE,1, 2000 } },
+						{ batRoleCheckItemCount, param = { boGTE, 91021, 1 } }, 
+						{ batRoleCheckItemCount, param = { boGTE, 91022, 1 } }, 
+						{ batRoleCheckItemCount, param = { boGTE, 91023, 1 } }, 
+						{ batRoleCheckItemCount, param = { boGTE, 91024, 1 } }, 
+
+						{ batRoleSubMoney , param = { tarRole,1, 2000, MONEYLOG_BT_18 } },
+						{ batRoleDelItem, param = { 91021, 1 } },
+						{ batRoleDelItem, param = { 91022, 1 } },
+						{ batRoleDelItem, param = { 91023, 1 } },
+						{ batRoleDelItem, param = { 91024, 1 } },
+
+						{ batRoleAddItem, param = { 91025, 1 } },	
+
+						{ batRoleOpenDialog, param = { 50150, 30000} },		
+					},
+
+					{ batSequencer,
+						{ batRoleOpenDialog, param = { 50151, 30000} },
+					},
+				},
+				
+			},
+			
+		},	
+	},	
+}; 

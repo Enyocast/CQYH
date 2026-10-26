@@ -1,0 +1,15 @@
+--技能书重著
+evtAIInteract = 
+{ batSelector,
+			{ batSequencer,
+				{ batRoleCheckLevel, param = { boGTE, ROLE_LEVEL_LIMIT } },
+				{ batRoleOpenDialog, param = { 50091, 30000 } },
+			},
+			
+			{ batSequencer,
+				{ batRoleOpenDialog, param = { 50092, 30000 } },
+			},
+			
+	
+			
+};

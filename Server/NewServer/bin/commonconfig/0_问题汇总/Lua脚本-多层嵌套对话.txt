@@ -1,0 +1,13 @@
+
+
+// 说明 - 嵌套对话
+
+batRoleOpenDialog 打开窗口之后, 使用 batSelector 选择其中之一
+
+每一个选择都是一个 batSequencer, 不能全部写在一个 batSequencer 里面, 否则会合并成一个选项
+
+内层对话也要严格按照 batSelector => batSequencer 的逻辑
+
+batSequencer 后面接 batRoleOpenDialog, 再接 batSelector => batSequencer
+
+

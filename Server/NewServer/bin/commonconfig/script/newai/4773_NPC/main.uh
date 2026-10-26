@@ -1,0 +1,12 @@
+--魔音岛
+evtAIIdle = 
+{batSequencer,
+    { batCheckCDTimer, param = { COOLDOWN_AI, 1 } },
+    { batSetCDTimer, param = { COOLDOWN_AI, 1, 900000 } },  
+    { batWait, param={ 900000 } },
+    { batSay, param = { cctScene, 50330, cltTvShow} },
+ 	{ batWait, param = { 15 * 1 * 1000 } }, 
+    { batSay, param = { cctScene, 50330, cltTvShow} },
+  	{ batWait, param = { 15 * 1 * 1000 } }, 
+    { batSay, param = { cctScene, 50330, cltTvShow} },
+};

@@ -1,0 +1,8 @@
+
+
+evtAIDie =
+	{ batSequencer,
+        { batSequencer,
+			{ batSummonNpc, param= { 8610 , 0 , 0 , 0 } },
+		},
+	};

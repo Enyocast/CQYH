@@ -1,0 +1,27 @@
+<unires>
+	<!-- *********************************************************************** -->
+	<!-- AsphyreGUI polygonal shape declaration                                  -->
+	<!-- *********************************************************************** -->
+	<shapes>
+		<shape name="button_test01_close">
+			<polygon vertices="4">
+				<vertex index="0" x="0" y="0"/>
+				<vertex index="1" x="66" y="0"/>
+				<vertex index="2" x="66" y="24"/>
+				<vertex index="3" x="0" y="24"/>
+			</polygon>
+			<moveby x="0" y="0"/>
+			<rescale x="65536" y="65536"/>
+		</shape>
+		<shape name="form_test01">
+			<polygon vertices="4">
+				<vertex index="0" x="0" y="0"/>
+				<vertex index="1" x="66" y="0"/>
+				<vertex index="2" x="66" y="48"/>
+				<vertex index="3" x="0" y="48"/>
+			</polygon>
+			<moveby x="0" y="0"/>
+			<rescale x="65536" y="65536"/>
+		</shape>		
+	</shapes>
+</unires>

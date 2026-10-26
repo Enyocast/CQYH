@@ -1,0 +1,206 @@
+
+function check_escort_car_follow(owner)
+
+	if 0 == owner:GetHostID() then
+		return brvSuccess;
+	end
+
+	local role = g_GameWorld:FindValidRole(owner:GetHostID());
+	if role == nil then
+		return brvFail;  --角色可能下线
+	end
+
+	--判断距离：超过指定距离镖车不跟随
+	local distance = (role:GetX() - owner:GetX()) * (role:GetX() - owner:GetX()) 
+        + (role:GetY() - owner:GetY()) * (role:GetY() - owner:GetY());
+
+	if distance > ESCORT_CAR_VALID_FOLLOW_DISTANCE * ESCORT_CAR_VALID_FOLLOW_DISTANCE then
+        return brvFail;
+    end
+
+	return brvSuccess;
+end
+
+function escort_car_lose_notify(owner)
+
+	if 0 == owner:GetHostID() then
+		return brvSuccess;
+	end
+
+	local nX, nY = ConvertCoordN2O(owner:GetX()/POINT_PER_CM, owner:GetY()/POINT_PER_CM, owner:GetZ()/POINT_PER_CM)
+	nX = math.ceil(nX / 100);
+	nY = math.ceil(nY / 100);
+	owner:GetScene():Say(owner:GetHostID(), cltNormal, "您的货箱位于" .. owner:GetScene():GetSceneData().szMapDisplayName .. "（" .. nX .. "," .. nY .. "），已经超出您的警戒范围，请尽快返回寻找！");
+
+	return brvSuccess;
+end
+
+function check_escort_car_return(owner)
+	
+	if 1 == owner:GetAIProcessor():GetBossState() then
+		owner:GetAIProcessor():SetVariable(VAR_AI_ESCORT_NOT_GENERATE_DROP, DO_NOT_GENERATE_DROP);
+		return brvSuccess;
+	end
+
+	return brvFail;
+end
+
+function check_give_up_quest(owner)
+
+	if 0 == owner:GetHostID() then
+		return brvSuccess;
+	end
+
+	local role = g_GameWorld:FindValidRole(owner:GetHostID());
+	if role == nil then
+		return brvFail;  --角色可能下线
+	end
+
+	local accepted_quest = role:GetQuestList():GetAcceptedQuest(ESCORT_QUEST_ID);
+	if accepted_quest == nil then
+		owner:GetAIProcessor():SetVariable(VAR_AI_ESCORT_NOT_GENERATE_DROP, DO_NOT_GENERATE_DROP);
+		return brvSuccess;
+	end
+
+	return brvFail;
+end
+
+function escort_live_timeout_notify(owner)
+
+	owner:GetAIProcessor():SetVariable(VAR_AI_ESCORT_NOT_GENERATE_DROP, DO_NOT_GENERATE_DROP);
+
+	if 0 == owner:GetHostID() then
+		return brvSuccess;
+	end
+	
+	local role = g_GameWorld:FindValidRole(owner:GetHostID());
+	if role ~= nil then
+		role:GetScene():Say(role:GetObjID(), cltNormal, "您未在规定时间内到达送货地点，任务失败！");
+	end
+
+	return brvSuccess;
+end
+
+function escort_on_die(owner)
+
+	owner:GetAIProcessor():SetVariable(VAR_AI_ESCORT_DEAD, ESCORT_ALREADY_DEAD);
+
+	if DO_NOT_GENERATE_DROP == owner:GetAIProcessor():GetVariable(VAR_AI_ESCORT_NOT_GENERATE_DROP) then
+		return brvSuccess;
+	end
+
+	local escortCar = g_GameWorld:FindNpc(owner:GetObjID());
+	if escortCar == nil then
+		return brvSuccess;
+	end
+
+	-- 角色可能下线了
+	local role = g_GameWorld:FindValidRole(escortCar:GetHostID());
+	if role ~= nil then
+		role:ErrorCodeNotify(errGuildEscortCarBeenKilled, 0, 0);
+		role:GetScene():Say(role:GetObjID(), cltNormal, "您的货箱已被击毁，任务失败！");
+	end
+	
+    local guildBusinessLevel = escortCar:GetAIProcessor():GetVariable(VAR_AI_ESCORT_BUSINESS_LEVEL);
+    local car_info = find_escort_car_info(escortCar:GetNpcData().nTemplateID);
+    if car_info == nil then
+        print("escort_on_die find_escort_car_info nil : " .. escortCar:GetNpcData().nTemplateID);
+		return brvFail;
+    end
+    
+    local accept_money_cost = cal_accept_escort_cost(car_info.accept_base_money_cost, guildBusinessLevel);
+	local coeff_prop = math.random(ESCORT_COEFF_PROP_LOW, ESCORT_COEFF_PROP_UP);
+	local escort_worth_money = math.ceil(accept_money_cost * car_info.coeff * coeff_prop / 10000);
+
+	if role ~= nil then
+		print("escort been killed, role_info[" .. role:GetObjID() .. "@" .. role:GetName() .. "], car_info(" .. escortCar:GetObjID() .. "@" .. car_info.id .. ")");
+	else
+		print("escort been killed, role_info[" .. escortCar:GetHostID() .. "@], car_info(" .. escortCar:GetObjID() .. "@" .. car_info.id .. ")");
+	end
+	
+	local pile_count = 0;
+	while escort_worth_money ~= 0 and pile_count < ESCORT_DIE_DROP_MAX_PILE_COUNT do
+		if escort_worth_money < ESCORT_DIE_DROP_PILE_MONEY_COUNT then
+			CDropGenerator:GetInstance():GenerateDrop(escortCar:GetScene():GetServerGroup(), 1, escort_worth_money, escortCar:GetScene(), escortCar:GetX(), escortCar:GetY(), escortCar:GetZ(), escortCar:GetObjID(), true);
+			escort_worth_money = 0;
+		else
+			CDropGenerator:GetInstance():GenerateDrop(escortCar:GetScene():GetServerGroup(), 1, ESCORT_DIE_DROP_PILE_MONEY_COUNT, escortCar:GetScene(), escortCar:GetX(), escortCar:GetY(), escortCar:GetZ(), escortCar:GetObjID(), true);
+			escort_worth_money = escort_worth_money - ESCORT_DIE_DROP_PILE_MONEY_COUNT;
+		end
+
+		pile_count = pile_count + 1;
+	end
+	
+	if role ~= nil then
+		local accepted_quest = role:GetQuestList():GetAcceptedQuest(ESCORT_QUEST_ID);
+		if accepted_quest ~= nil then
+			role:GetQuestList():SetQuestFailed(accepted_quest);
+		end
+	end
+
+	return brvSuccess;
+end
+
+function escort_error_notify(owner, error_code)
+	
+	local role = g_GameWorld:FindValidRole(owner:GetHostID());
+	if role then
+		role:ErrorCodeNotify(error_code, 0, 0);
+	end
+
+	return brvSuccess;
+end
+
+function _die_tree()
+    local result = 
+    { batSequencer,
+		{ escort_on_die },
+    };
+    
+    return result;
+end
+
+on_live_timer = 
+{ batSequencer,
+	{ escort_live_timeout_notify },
+	{ escort_error_notify, param = { errGuildEscortCarTimeOut, 0, 0 } },
+	{ batSuicide, param = { false, true } },
+};
+
+function _idle_tree()
+    local result = 
+    { batSelector,
+        __check_live_timer(d.nLiveTime, d.bDisappearOnTimeout),  -- 这里d.bDisappearOnTimeout并不起作用
+		{ batSequencer,
+			{ batCheckCDTimer, param = { COOLDOWN_AI, CHECK_ESCORT_DISTANCE_TIMER } },
+			{ batSetCDTimer, param  = { COOLDOWN_AI, CHECK_ESCORT_DISTANCE_TIMER, CHECK_ESCORT_DISTANCE_INTERVAL } },
+			{ batSelector,
+				{ batSequencer,
+					{ check_give_up_quest },
+					{ batSuicide, param = { false, true } },
+				},
+				{ batSequencer,
+					{ check_escort_car_return },
+					{ batSuicide, param = { false, true } },
+				},
+				{ batSelector,
+					{ batSequencer,
+						{ check_escort_car_follow },
+						_follow(),
+						{ batSetCDTimer, param  = { COOLDOWN_AI, BROCAST_LOSE_ESCORT_TIMER, BROCAST_LOSE_ESCORT_INTERVAL } },
+					},
+					{ batSequencer,
+						{ batCheckCDTimer, param = { COOLDOWN_AI, BROCAST_LOSE_ESCORT_TIMER } },
+						{ escort_car_lose_notify },
+						{ batSetCDTimer, param  = { COOLDOWN_AI, BROCAST_LOSE_ESCORT_TIMER, BROCAST_LOSE_ESCORT_INTERVAL } },
+					},
+				},
+			},
+		},
+    };
+    
+    return result;
+end
+
+evtAIIdle = _idle_tree();
+evtAIDie = _die_tree();

@@ -1,0 +1,2 @@
+start bteditor/bteditor.exe
+

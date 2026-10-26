@@ -1,0 +1,188 @@
+
+on_wander = 
+{ batSelector,
+	trade_tree,
+	stall_tree,
+	rotate_tree, 
+	jump_tree,
+	{ batSequencer,
+		{ batCheckCDTimer, param = { COOLDOWN_AI, DO_ACTION_TIMER } },
+		{ batSetCDTimer, param  = { COOLDOWN_AI, DO_ACTION_TIMER, DO_ACTION_INTERVAL } },
+		{ do_action },	
+	},
+};
+
+on_enter_fight = 
+{ batParallel,
+	{ batSetHome },
+--	{ batPrint, param = {77777} },
+};
+
+on_fight_move =
+{ batSelector,
+	jump_tree,
+	{ batSequencer,
+		{ batCheckCDTimer, param = { COOLDOWN_AI, DO_ACTION_TIMER } },
+		{ batSetCDTimer, param  = { COOLDOWN_AI, DO_ACTION_TIMER, DO_ACTION_INTERVAL } },
+		{ do_action },	
+	},
+};
+
+on_cast_spell =
+{ batSequencer,
+    { batCheckCDTimer, param = { COOLDOWN_AI, FIGHT_CD_TIMER } },
+    { batSetCDTimer, param  = { COOLDOWN_AI, FIGHT_CD_TIMER, SPELL_INTERVAL } },		
+	{ performance_fight },
+};
+
+on_init = 
+{ batParallel,
+    { batSetCDTimer, param  = { COOLDOWN_AI, JUMP_CD_TIMER, 0, JUMP_SCENE_INTERVAL } },	
+    { batSetCDTimer, param  = { COOLDOWN_AI, JUMP_DUNGEON_CD_TIMER, QUERY_ROLE_POW_INTERVAL / 2, QUERY_ROLE_POW_INTERVAL } },
+	{ performance_init },
+	{ init_action_list },
+	{ batSetHome },
+};
+
+---------------------- override default tree function --------------------------
+
+function _init_tree()
+    local result =
+	--{ btDebug,
+    { batParallel,
+        'on_init',
+        _set_scan_param(),
+        __cast_init_spell(d.nSpellID[nastInitSpell1], d.nSpellChance[nastInitSpell1]),
+        __cast_init_spell(d.nSpellID[nastInitSpell2], d.nSpellChance[nastInitSpell2]),
+        __cast_init_spell(d.nSpellID[nastInitSpell3], d.nSpellChance[nastInitSpell3]),
+        _add_init_aura(),
+        __set_cd_timer(COOLDOWN_AI, nastLiveTimer, d.nLiveTime),
+    --},
+    };
+    
+    return result;
+end
+
+function __check_fight_timer()
+	return 
+		{ batSequencer,
+			{ batCheckCDTimer, param = { COOLDOWN_AI, IDLE_FIGHT_CD_TIMER } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, IDLE_FIGHT_CD_TIMER, IN_IDLE_INTERVAL } },
+			{ batEnterIdle },
+		};
+end
+
+function _robot_detect_enemy()
+    local scan_table = { batSelector };
+
+    if d.nScanEnemyRange > 0 then
+        table.insert(scan_table, 
+            { batSequencer,
+                { batScanEnemy, param = { d.nScanEnemyRange } },
+                { batAddTargetThreat, param = { 50 } },
+            }
+        );
+    end
+    
+    if d.nScanFriendRange > 0 then
+        table.insert(scan_table, 
+            { batSequencer,
+                { batPickSignal, param = { sigSpreadHate, d.nScanFriendRange } },
+                { batAddThreatListFromSignal, param = { 50 } },
+            }
+        );
+    end
+
+    result = 
+    { batSequencer,
+        { batParallel,
+			{ batSequencer,
+				{ batParallel,
+					scan_table,
+				},
+			},
+        },
+        { batSequencer,
+            { batCheckInCombat },
+			{ batCheckCDTimer, param = { COOLDOWN_AI, IDLE_FIGHT_CD_TIMER } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, IDLE_FIGHT_CD_TIMER, IN_FIGHT_INTERVAL } },	
+            { batParallel,
+                { batGetTargetFromThreatList, param = { d.nChaseRange } },
+                _cast_template_spell(nastEnterFightSpell, tarAITarget, 0),
+                __set_cd_timer(COOLDOWN_AI, nastNormalSpell2, d.nSpellCDTime[nastNormalSpell2]),
+                __set_cd_timer(COOLDOWN_AI, nastNormalSpell3, d.nSpellCDTime[nastNormalSpell3]),
+                __set_cd_timer(COOLDOWN_AI, nastNormalSpell4, d.nSpellCDTime[nastNormalSpell4]),
+                __set_cd_timer(COOLDOWN_AI, nastChaseSpell, d.nSpellCDTime[nastChaseSpell]),
+                _set_home(),
+                { batEnterFight },
+                'on_enter_fight',
+            },
+        },
+    }; 
+
+    return result;    
+end
+
+function _idle_tree()
+    local result = 
+	--{ btDebug,
+    { batSelector,
+        __check_live_timer(d.nLiveTime),		
+	_robot_detect_enemy(),
+        __cast_spell(d.nSpellID[nastIdleSpell], tarSelf, d.nSpellChance[nastIdleSpell], d.nSpellCDTime[nastIdleSpell], d.nGlobalCDTime),
+        'on_wander',
+        _patrol(),
+        _follow(),
+        __wander(d.nWanderRange, d.nWanderInterval, d.nWalkSpeed * 1000 / GAME_FPS),
+    --},
+	};
+    
+    return result;
+end
+
+
+function _fight_tree()
+    local result =  
+	--{ btDebug,
+    { batParallel,
+		{ reset_pk_value },
+        __issue_threat_signal(d.nSpreadThreatCount),
+        __change_target(d.nChangeTargetChance, d.nChangeTargetCDTime, d.nChaseRange, d.nChangeTargetDelayTime),
+        { batSelector,
+			__check_fight_timer(),
+            __check_live_timer(d.nLiveTime),
+            __check_out_of_range(d.nChaseRange),    
+            __check_target_die(d.nChaseRange),
+            __flee(d.nFleeHpPercent, d.nFleeChance, 20000, d.nFleeDuration, d.nRunSpeed * 1000 / GAME_FPS),
+            'on_fight_move',
+--            __fight_move(d.nPreferDistance, d.nWithdrawThreshold, d.nChaseThreshold, d.nRunSpeed * 1000 / GAME_FPS, d.nStepAroundChance, d.nStepAroundCDTime),
+            'on_cast_spell',
+            _cast_all_spell(),
+            __chase(d.nRunSpeed * 1000 / GAME_FPS, d.nPreferDistance, d.nChaseThreshold, d.nChaseDelayTime),
+        },
+    --},
+    };
+    
+    return result;
+end
+
+function _die_tree()
+    if d.nSpellID[nastDeadSpell] == 0 or d.nSpellChance[nastDeadSpell] == 0  then
+        return nil;
+    else
+        return 
+		--{ btDebug,
+        { batParallel,
+            { batInvincible, param = { true } },    
+            { batSyncBreakCast, param = { true } },
+            _cast_template_spell(nastDeadSpell, tarAITarget, 0),
+            { batInvincible, param = { false } },
+		--},
+        };
+    end
+end
+
+evtAIInit = _init_tree();
+evtAIIdle = _idle_tree();
+evtAIFight = _fight_tree();
+evtAIDie = _die_tree();

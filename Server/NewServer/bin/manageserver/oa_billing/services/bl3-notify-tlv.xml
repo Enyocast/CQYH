@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service name="bl3-notify" id="3" istreestruct="true" serviceencoding="utf-8" sdkencoding="gbk">
+
+    <type name="resultCode_type" class="int" code="1"/>
+    <type name="resultMsg_type" class="string" code="2"/>
+    <type name="resultDescription_type" class="string" code="4"/>
+    <type name="userPrompts_type" class="string" code="5"/>
+
+    <type name="inputUserId_type" class="string" code="15"/>
+
+    <type name="uniqueId_type" class="string" code="20"/>
+    <type name="billingOrder_type" class="string" code="22"/>
+
+    <type name="transactionTimestamp_type" class="string" code="31"/>
+
+    <type name="balanceInfo_type" class="string" code="45"/>
+    <type name="chargeDetail_type" class="string" code="49"/>
+    <type name="freezeDetail_type" class="string" code="50"/>
+    <type name="exchangeToDetail_type" class="string" code="51"/>
+
+    <type name="notifyUrl_type" class="string" code="93"/>
+
+    <type name="balanceInfoSrc_type" class="string" code="145"/>
+    <type name="feeDetailSrc_type" class="string" code="157"/>
+
+    <type name="balanceInfoDest_type" class="string" code="245"/>
+    <type name="feeDetailDest_type" class="string" code="257"/>
+
+    <message name="chargeNotify" id="1002">
+        <requestParameter>
+            <field name="uniqueId" type="uniqueId_type"/>
+            <field name="billingOrder" type="billingOrder_type"/>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="resultDescription" type="resultDescription_type"/>
+            <field name="userPrompts" type="userPrompts_type"/>
+            <field name="chargeDetail" type="chargeDetail_type"/>
+            <field name="balanceInfo" type="balanceInfo_type"/>
+            <field name="transactionTimestamp" type="transactionTimestamp_type"/>
+            <field name="notifyUrl" type="notifyUrl_type"/>
+        </requestParameter>
+        <responseParameter>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="uniqueId" type="uniqueId_type"/>
+        </responseParameter>
+    </message>
+
+    <message name="timeChargeNotify" id="1003">
+        <requestParameter>
+            <field name="uniqueId" type="uniqueId_type"/>
+            <field name="billingOrder" type="billingOrder_type"/>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="resultDescription" type="resultDescription_type"/>
+            <field name="userPrompts" type="userPrompts_type"/>
+            <field name="chargeDetail" type="chargeDetail_type"/>
+            <field name="balanceInfo" type="balanceInfo_type"/>
+            <field name="transactionTimestamp" type="transactionTimestamp_type"/>
+            <field name="notifyUrl" type="notifyUrl_type"/>
+            <field name="inputUserId" type="inputUserId_type"/>
+        </requestParameter>
+        <responseParameter>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="uniqueId" type="uniqueId_type"/>
+        </responseParameter>
+    </message>
+
+    <message name="chargeLockNotify" id="1004">
+        <requestParameter>
+            <field name="uniqueId" type="uniqueId_type"/>
+            <field name="billingOrder" type="billingOrder_type"/>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="resultDescription" type="resultDescription_type"/>
+            <field name="userPrompts" type="userPrompts_type"/>
+            <field name="chargeDetail" type="chargeDetail_type"/>
+            <field name="balanceInfo" type="balanceInfo_type"/>
+            <field name="transactionTimestamp" type="transactionTimestamp_type"/>
+            <field name="notifyUrl" type="notifyUrl_type"/>
+        </requestParameter>
+        <responseParameter>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="uniqueId" type="uniqueId_type"/>
+        </responseParameter>
+    </message>
+
+    <message name="chargeConfirmNotify" id="1005">
+        <requestParameter>
+            <field name="uniqueId" type="uniqueId_type"/>
+            <field name="billingOrder" type="billingOrder_type"/>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="resultDescription" type="resultDescription_type"/>
+            <field name="userPrompts" type="userPrompts_type"/>
+            <field name="chargeDetail" type="chargeDetail_type"/>
+            <field name="balanceInfo" type="balanceInfo_type"/>
+            <field name="transactionTimestamp" type="transactionTimestamp_type"/>
+            <field name="notifyUrl" type="notifyUrl_type"/>
+        </requestParameter>
+        <responseParameter>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="uniqueId" type="uniqueId_type"/>
+        </responseParameter>
+    </message>
+
+    <message name="chargeCancelNotify" id="1006">
+        <requestParameter>
+            <field name="uniqueId" type="uniqueId_type"/>
+            <field name="billingOrder" type="billingOrder_type"/>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="resultDescription" type="resultDescription_type"/>
+            <field name="userPrompts" type="userPrompts_type"/>
+            <field name="balanceInfo" type="balanceInfo_type"/>
+            <field name="transactionTimestamp" type="transactionTimestamp_type"/>
+            <field name="notifyUrl" type="notifyUrl_type"/>
+        </requestParameter>
+        <responseParameter>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="uniqueId" type="uniqueId_type"/>
+        </responseParameter>
+    </message>
+
+    <message name="consignTransferLockNotify" id="1007">
+        <requestParameter>
+            <field name="uniqueId" type="uniqueId_type"/>
+            <field name="billingOrder" type="billingOrder_type"/>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="resultDescription" type="resultDescription_type"/>
+            <field name="userPrompts" type="userPrompts_type"/>
+            <field name="feeDetailSrc" type="feeDetailSrc_type"/>
+            <field name="chargeDetail" type="chargeDetail_type"/>
+            <field name="balanceInfoSrc" type="balanceInfoSrc_type"/>
+            <field name="transactionTimestamp" type="transactionTimestamp_type"/>
+            <field name="notifyUrl" type="notifyUrl_type"/>
+        </requestParameter>
+        <responseParameter>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="uniqueId" type="uniqueId_type"/>
+        </responseParameter>
+    </message>
+
+    <message name="consignTransferConfirmNotify" id="1008">
+        <requestParameter>
+            <field name="uniqueId" type="uniqueId_type"/>
+            <field name="billingOrder" type="billingOrder_type"/>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="resultDescription" type="resultDescription_type"/>
+            <field name="userPrompts" type="userPrompts_type"/>
+            <field name="freezeDetail" type="freezeDetail_type"/>
+            <field name="chargeDetail" type="chargeDetail_type"/>
+            <field name="feeDetailSrc" type="feeDetailSrc_type"/>
+            <field name="feeDetailDest" type="feeDetailDest_type"/>
+            <field name="balanceInfoSrc" type="balanceInfoSrc_type"/>
+            <field name="balanceInfoDest" type="balanceInfoDest_type"/>
+            <field name="transactionTimestamp" type="transactionTimestamp_type"/>
+            <field name="notifyUrl" type="notifyUrl_type"/>
+        </requestParameter>
+        <responseParameter>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="uniqueId" type="uniqueId_type"/>
+        </responseParameter>
+    </message>
+
+    <message name="consignTransferCancelNotify" id="1009">
+        <requestParameter>
+            <field name="uniqueId" type="uniqueId_type"/>
+            <field name="billingOrder" type="billingOrder_type"/>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="resultDescription" type="resultDescription_type"/>
+            <field name="userPrompts" type="userPrompts_type"/>
+            <field name="balanceInfoSrc" type="balanceInfoSrc_type"/>
+            <field name="transactionTimestamp" type="transactionTimestamp_type"/>
+            <field name="notifyUrl" type="notifyUrl_type"/>
+        </requestParameter>
+        <responseParameter>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="uniqueId" type="uniqueId_type"/>
+        </responseParameter>
+    </message>
+
+    <message name="transferNotify" id="1010">
+        <requestParameter>
+            <field name="uniqueId" type="uniqueId_type"/>
+            <field name="billingOrder" type="billingOrder_type"/>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="resultDescription" type="resultDescription_type"/>
+            <field name="userPrompts" type="userPrompts_type"/>
+            <field name="chargeDetail" type="chargeDetail_type"/>
+            <field name="feeDetailSrc" type="feeDetailSrc_type"/>
+            <field name="feeDetailDest" type="feeDetailDest_type"/>
+            <field name="balanceInfoSrc" type="balanceInfoSrc_type"/>
+            <field name="balanceInfoDest" type="balanceInfoDest_type"/>
+            <field name="transactionTimestamp" type="transactionTimestamp_type"/>
+            <field name="notifyUrl" type="notifyUrl_type"/>
+        </requestParameter>
+        <responseParameter>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="uniqueId" type="uniqueId_type"/>
+        </responseParameter>
+    </message>
+
+    <message name="exchangeNotify" id="1011">
+        <requestParameter>
+            <field name="uniqueId" type="uniqueId_type"/>
+            <field name="billingOrder" type="billingOrder_type"/>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="resultDescription" type="resultDescription_type"/>
+            <field name="userPrompts" type="userPrompts_type"/>
+            <field name="chargeDetail" type="chargeDetail_type"/>
+            <field name="balanceInfo" type="balanceInfo_type"/>
+            <field name="exchangeToDetail" type="exchangeToDetail_type"/>
+            <field name="transactionTimestamp" type="transactionTimestamp_type"/>
+            <field name="notifyUrl" type="notifyUrl_type"/>
+        </requestParameter>
+        <responseParameter>
+            <field name="resultCode" type="resultCode_type"/>
+            <field name="uniqueId" type="uniqueId_type"/>
+        </responseParameter>
+    </message>
+
+</service>

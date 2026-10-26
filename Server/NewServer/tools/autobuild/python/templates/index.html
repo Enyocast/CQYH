@@ -1,0 +1,91 @@
+$def with (val)
+<html>
+<head>
+    <title>服务器端自动化编译工具</title>
+</head>
+<body>
+    <script language="javascript">
+    function chooseinput()
+    {
+        var revision_number = document.revisionform.revision_number.value;
+
+        var branch_list = document.branchform.branch_list;
+        var branch_name = branch_list.options[branch_list.selectedIndex].text;
+
+        var projectform = document.projectform;
+        var optionform = document.optionform;
+        var build_type = 0;
+
+        if (projectform.server.checked)
+            build_type |= parseInt(projectform.server.value);
+        if (projectform.asimov.checked)
+            build_type |= parseInt(projectform.asimov.value);
+
+        if (optionform.final.checked)
+            build_type |= parseInt(optionform.final.value);
+        if (optionform.rebuild.checked)
+            build_type |= parseInt(optionform.rebuild.value);
+        if (optionform.incredibuild.checked)
+            build_type |= parseInt(optionform.incredibuild.value);
+
+        compileform.action = '/?action=compile&revision=' + revision_number + '&branch=' + branch_name + '&type=' + build_type.toString();
+        document.getElementById("compileform").submit();
+    }
+    </script>
+
+    <h2>
+        1.选择版本号
+        <br>
+        <br>
+        <form name='revisionform'>
+            <input type="text" name="revision_number" value="0">
+        </form>
+    </h2>
+    <p>（0表示最新版本）</p>
+    <hr/>
+
+    <h2>2.选择分支</h2>
+    <form name='branchform'>
+        <select name='branch_list'>
+            <option>Stable</option>
+            <option>CBT1</option>
+        </select>
+    </form>
+    </h2>
+    <hr />
+
+    <h2>3.选择编译工程</h2>
+    <form name='projectform'>
+        <input type='checkbox' name='server' value='0x0003' checked="true">Server
+        <br>
+        <input type='checkbox' name='asimov' value='0x0300'>Asimov
+        <br>
+    </form>
+    <br />
+
+    <h2>4.选择编译选项</h2>
+    <form name='optionform'></form>
+        <input type='checkbox' name='final' value='0x40000000' checked="false"> Final
+        <br>
+        <input type='checkbox' name='rebuild' value='0x10000000' checked="true"> Rebuild
+        <br>
+        <input type='checkbox' name='incredibuild' value='0x20000000' checked="true"> Incredibuild
+        <br>
+    <br />
+
+    <form name='compileform' id='compileform' method='post'>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" onclick="javascript:chooseinput()">编译</a>
+    </form>
+
+    <br />
+    <hr />
+
+    <h2>版本信息</h2>
+    $for version in val['versions']:
+    <p>
+        版本号: $version["name"] <a href='/?action=distribute&version=$version["name"]'>发布此版本</a>
+        <a href=$version["ip"]>下载此版本</a>
+    </p>
+    <hr />
+</body>
+</html>

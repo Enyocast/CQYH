@@ -1,0 +1,16 @@
+﻿""
+{
+"FILE_VERSION" = "9237"
+"ENLISTMENT_CHOICE" = "NEVER"
+"PROJECT_FILE_RELATIVE_PATH" = "relative:NewServer\\src\\net"
+"NUMBER_OF_EXCLUDED_FILES" = "6"
+"EXCLUDED_FILE0" = "script\\tolua_common.h"
+"EXCLUDED_FILE1" = "script\\tolua_external_message.cpp"
+"EXCLUDED_FILE2" = "script\\tolua_internal_message.cpp"
+"EXCLUDED_FILE3" = "script\\tolua_common.cpp"
+"EXCLUDED_FILE4" = "script\\tolua_external_message.h"
+"EXCLUDED_FILE5" = "script\\tolua_internal_message.h"
+"ORIGINAL_PROJECT_FILE_PATH" = ""
+"NUMBER_OF_NESTED_PROJECTS" = "0"
+"SOURCE_CONTROL_SETTINGS_PROVIDER" = "PROJECT"
+}

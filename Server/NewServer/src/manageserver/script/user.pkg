@@ -1,0 +1,13 @@
+$pfile "script/common.pkg"
+$hfile "client/user.h"
+$#include "client/usermgr.h"
+
+class CUserMgr
+{
+    static CUserMgr&    GetInstance(void);
+
+    UINT32 Count();
+	inline INT32 GetCountPerGroup(INT32 nServerGroup);
+	inline INT32 GetCountByIP(const char* pcszIDAddress);
+
+};

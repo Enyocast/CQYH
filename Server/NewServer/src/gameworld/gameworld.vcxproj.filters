@@ -1,0 +1,1231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="object">
+      <UniqueIdentifier>{fe3eb1dc-287f-41ff-84f5-c8880fb8f421}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="spell">
+      <UniqueIdentifier>{6c4741a5-1a24-4355-865b-3f66276b91ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="item">
+      <UniqueIdentifier>{350452b4-49f1-4c72-bfe8-912dade65e79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene">
+      <UniqueIdentifier>{c7bec5b0-0f38-4752-bb8b-b69d58822eb5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ai">
+      <UniqueIdentifier>{cc39e1bd-00ae-41ec-a52d-8e878bcb43ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guild">
+      <UniqueIdentifier>{53af070e-bf4c-4baf-bb4f-3391a19e7e71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="quest">
+      <UniqueIdentifier>{49158085-1f80-4996-bb1e-2c65a254bf27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="message">
+      <UniqueIdentifier>{ab08d8a6-dd62-4fb6-848f-f23a1a1ccf4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script">
+      <UniqueIdentifier>{a9417bbe-64c7-4cea-809e-dc67e082b7a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script\package">
+      <UniqueIdentifier>{27cf1273-60da-4da5-b083-d644aaaf9eac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script\generated files">
+      <UniqueIdentifier>{f56f0afa-3ef9-4fa8-9c52-266c6d2a87ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="data">
+      <UniqueIdentifier>{e9d01f9c-7193-41e8-a797-a9b4c671a991}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="attribute">
+      <UniqueIdentifier>{bd9e64d5-454c-4ccc-8a2c-79a94bc51081}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="kismet">
+      <UniqueIdentifier>{0038c7d6-5ee1-4598-8b96-8d4ccdd98269}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="relation">
+      <UniqueIdentifier>{f221dd90-fa7a-4b6a-823e-5eb5dad59b31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="team">
+      <UniqueIdentifier>{758f3183-a626-4a30-981d-a86cc3c0924f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="friend">
+      <UniqueIdentifier>{6cf285c3-6500-4d54-ac44-3d3d5d0728fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="chat">
+      <UniqueIdentifier>{1feb707f-72b8-4aaf-9225-42da8fd2d1f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="title">
+      <UniqueIdentifier>{4bf7c98c-110d-48cd-9bb8-010b093d6c6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="statistic">
+      <UniqueIdentifier>{6b716aaa-dbec-482a-8dea-b6463c1c7a82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="achievement">
+      <UniqueIdentifier>{74915d61-6850-4edc-8226-6b44de46c120}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="behavior tree">
+      <UniqueIdentifier>{07e9bd22-9a98-4d9a-9ce0-318f8722e75b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="master">
+      <UniqueIdentifier>{dd09f4c3-70ef-4d22-8ff4-10a504e02d66}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="spirit">
+      <UniqueIdentifier>{50efebfd-4c3a-4c2f-945f-0fc44424cfd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="main">
+      <UniqueIdentifier>{b23418b9-3e36-4d6a-ba5c-16c060eccd49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="adventure">
+      <UniqueIdentifier>{285b9fce-be79-482f-b099-1b6e593471b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="arena">
+      <UniqueIdentifier>{8e081206-2136-4237-8937-ea0e77710781}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sabac">
+      <UniqueIdentifier>{52fee89b-25d2-4658-8b64-71fe09ee90e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="asimov">
+      <UniqueIdentifier>{587c5e28-af9c-4810-9d4c-8ff3c4128ef2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="object\load_save">
+      <UniqueIdentifier>{aa8e2501-f183-4fd5-8c65-61a46809f8ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cheat">
+      <UniqueIdentifier>{53d9e3e8-0edb-471b-8d7e-727ac917efe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gamble">
+      <UniqueIdentifier>{2aaa80f3-9083-427c-9da2-309f43e856d7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="object\char_attr.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\char_spell.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\character.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\doodad.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\drop.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\hero.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\missile.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\npc.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\role.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\scene_object.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="object\vehicle_slot.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="spell\aura.cpp">
+      <Filter>spell</Filter>
+    </ClCompile>
+    <ClCompile Include="spell\aura_instance.cpp">
+      <Filter>spell</Filter>
+    </ClCompile>
+    <ClCompile Include="spell\cooldown.cpp">
+      <Filter>spell</Filter>
+    </ClCompile>
+    <ClCompile Include="spell\spell.cpp">
+      <Filter>spell</Filter>
+    </ClCompile>
+    <ClCompile Include="spell\spell_book.cpp">
+      <Filter>spell</Filter>
+    </ClCompile>
+    <ClCompile Include="spell\spell_book_hero.cpp">
+      <Filter>spell</Filter>
+    </ClCompile>
+    <ClCompile Include="spell\spell_book_npc.cpp">
+      <Filter>spell</Filter>
+    </ClCompile>
+    <ClCompile Include="spell\spell_book_role.cpp">
+      <Filter>spell</Filter>
+    </ClCompile>
+    <ClCompile Include="spell\spell_bullet.cpp">
+      <Filter>spell</Filter>
+    </ClCompile>
+    <ClCompile Include="spell\spell_instance.cpp">
+      <Filter>spell</Filter>
+    </ClCompile>
+    <ClCompile Include="spell\spell_slot.cpp">
+      <Filter>spell</Filter>
+    </ClCompile>
+    <ClCompile Include="spell\target_scanner.cpp">
+      <Filter>spell</Filter>
+    </ClCompile>
+    <ClCompile Include="item\drop_generator.cpp">
+      <Filter>item</Filter>
+    </ClCompile>
+    <ClCompile Include="item\item.cpp">
+      <Filter>item</Filter>
+    </ClCompile>
+    <ClCompile Include="item\item_bag.cpp">
+      <Filter>item</Filter>
+    </ClCompile>
+    <ClCompile Include="item\item_mgr.cpp">
+      <Filter>item</Filter>
+    </ClCompile>
+    <ClCompile Include="item\npc_shop_mgr.cpp">
+      <Filter>item</Filter>
+    </ClCompile>
+    <ClCompile Include="item\processed_mails.cpp">
+      <Filter>item</Filter>
+    </ClCompile>
+    <ClCompile Include="item\stall.cpp">
+      <Filter>item</Filter>
+    </ClCompile>
+    <ClCompile Include="item\trade.cpp">
+      <Filter>item</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\region.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\scene.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\scene_file_mgr.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\ai_manager.cpp">
+      <Filter>ai</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\ai_processor.cpp">
+      <Filter>ai</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\ai_signal.cpp">
+      <Filter>ai</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\threat_list.cpp">
+      <Filter>ai</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\gs_guild.cpp">
+      <Filter>guild</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\guild_mgr.cpp">
+      <Filter>guild</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\role_guild_data.cpp">
+      <Filter>guild</Filter>
+    </ClCompile>
+    <ClCompile Include="quest\circle_quest_mgr.cpp">
+      <Filter>quest</Filter>
+    </ClCompile>
+    <ClCompile Include="quest\daily_quest_mgr.cpp">
+      <Filter>quest</Filter>
+    </ClCompile>
+    <ClCompile Include="quest\quest_list.cpp">
+      <Filter>quest</Filter>
+    </ClCompile>
+    <ClCompile Include="message\achievement_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\activity_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\attr_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\chat_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\doodad_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\friend_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\guild_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\hero_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\item_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\message_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\move_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\quest_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\robot_message_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\score_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\spell_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\spirit_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\stall_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\team_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message\title_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="script\script_func.cpp">
+      <Filter>script</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_achievement_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_achievement_list.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_adventure.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_ai.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_attr_list.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_attribute_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_char_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_character.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_chat_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_check_data.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_common.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_data_manager.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_doodad.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_error_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_friend.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_gameworld.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_gs_guild.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_guild_mgr.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_hero.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_hero_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_id_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_item.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_item_bag.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_master.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_math_ex.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_money_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_npc.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_npc_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_quest_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_quest_list.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_robot_message_handler.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_role.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_scene.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_scene_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_scene_object.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_score_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_spell.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_spell_book.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_spirit.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_spirit_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_teleport.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_title.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_variable.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="data\post_process_data.cpp">
+      <Filter>data</Filter>
+    </ClCompile>
+    <ClCompile Include="data\spell_config.cpp">
+      <Filter>data</Filter>
+    </ClCompile>
+    <ClCompile Include="attribute\attr_list.cpp">
+      <Filter>attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="attribute\attr_modifier.cpp">
+      <Filter>attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="attribute\aura_modifier.cpp">
+      <Filter>attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="attribute\bullet_modifier.cpp">
+      <Filter>attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="attribute\char_modifier.cpp">
+      <Filter>attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="attribute\missile_modifier.cpp">
+      <Filter>attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="attribute\modifier_tree.cpp">
+      <Filter>attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="attribute\spell_modifier.cpp">
+      <Filter>attribute</Filter>
+    </ClCompile>
+    <ClCompile Include="kismet\kismet_event.cpp">
+      <Filter>kismet</Filter>
+    </ClCompile>
+    <ClCompile Include="kismet\kismet_func.cpp">
+      <Filter>kismet</Filter>
+    </ClCompile>
+    <ClCompile Include="kismet\kismet_node.cpp">
+      <Filter>kismet</Filter>
+    </ClCompile>
+    <ClCompile Include="kismet\kismet_node_load.cpp">
+      <Filter>kismet</Filter>
+    </ClCompile>
+    <ClCompile Include="relation\npc_force_mgr.cpp">
+      <Filter>relation</Filter>
+    </ClCompile>
+    <ClCompile Include="relation\reputation.cpp">
+      <Filter>relation</Filter>
+    </ClCompile>
+    <ClCompile Include="relation\role_faction_mgr.cpp">
+      <Filter>relation</Filter>
+    </ClCompile>
+    <ClCompile Include="team\team.cpp">
+      <Filter>team</Filter>
+    </ClCompile>
+    <ClCompile Include="friend\friend.cpp">
+      <Filter>friend</Filter>
+    </ClCompile>
+    <ClCompile Include="friend\shield_list.cpp">
+      <Filter>friend</Filter>
+    </ClCompile>
+    <ClCompile Include="chat\chat.cpp">
+      <Filter>chat</Filter>
+    </ClCompile>
+    <ClCompile Include="title\title.cpp">
+      <Filter>title</Filter>
+    </ClCompile>
+    <ClCompile Include="statistic\statistic.cpp">
+      <Filter>statistic</Filter>
+    </ClCompile>
+    <ClCompile Include="achievement\achievement_list.cpp">
+      <Filter>achievement</Filter>
+    </ClCompile>
+    <ClCompile Include="ai\bt_action.cpp">
+      <Filter>behavior tree</Filter>
+    </ClCompile>
+    <ClCompile Include="bt\bt_manager.cpp">
+      <Filter>behavior tree</Filter>
+    </ClCompile>
+    <ClCompile Include="master\master.cpp">
+      <Filter>master</Filter>
+    </ClCompile>
+    <ClCompile Include="spiritlevel\spirit.cpp">
+      <Filter>spirit</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\game_world.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="adventure\adventure.cpp">
+      <Filter>adventure</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_arena.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="message\arena_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="arena\arena.cpp">
+      <Filter>arena</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\asimov_guild.cpp">
+      <Filter>guild</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_asimov_guild.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="sabac\sabac_mgr.cpp">
+      <Filter>sabac</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\block_handler.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="asimov\general_mgr.cpp">
+      <Filter>asimov</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_general_mgr.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="asimov\asimov_role.cpp">
+      <Filter>asimov</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_asimov_role.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="object\load_role_v_1.cpp">
+      <Filter>object\load_save</Filter>
+    </ClCompile>
+    <ClCompile Include="object\load_role.cpp">
+      <Filter>object\load_save</Filter>
+    </ClCompile>
+    <ClCompile Include="object\save_role.cpp">
+      <Filter>object\load_save</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_rank_list_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="object\role_kick_mgr.cpp">
+      <Filter>object</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_gs_team.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="item\drop_manager.cpp">
+      <Filter>item</Filter>
+    </ClCompile>
+    <ClCompile Include="spell\spell_set.cpp">
+      <Filter>spell</Filter>
+    </ClCompile>
+    <ClCompile Include="kill_npc_quest.cpp">
+      <Filter>quest</Filter>
+    </ClCompile>
+    <ClCompile Include="cheat\anti_cheat.cpp">
+      <Filter>cheat</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_drop_generator.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_stall.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_trade.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="message\master_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="object\load_role_v_2.cpp">
+      <Filter>object\load_save</Filter>
+    </ClCompile>
+    <ClCompile Include="object\load_role_v_3.cpp">
+      <Filter>object\load_save</Filter>
+    </ClCompile>
+    <ClCompile Include="gamble\gamble.cpp">
+      <Filter>gamble</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\inc\gameworld\character.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\character_inl.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\doodad.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\drop.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\hero.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\missile.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\npc.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\role.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\role_inl.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\scene_object.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\scene_object_inl.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\vehicle_slot.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\aura.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\aura_inl.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\aura_instance.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\aura_instance_inl.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\cooldown.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\spell.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\spell_book.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\spell_book_hero.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\spell_book_npc.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\spell_book_role.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\spell_bullet.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\spell_bullet_inl.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\spell_inl.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\spell_instance.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\spell_instance_inl.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\spell_slot.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\target_scanner.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\target_scanner_inl.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\drop_generator.h">
+      <Filter>item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\item.h">
+      <Filter>item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\item_bag.h">
+      <Filter>item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\item_mgr.h">
+      <Filter>item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\npc_shop_mgr.h">
+      <Filter>item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\processed_mails.h">
+      <Filter>item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\stall.h">
+      <Filter>item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\trade.h">
+      <Filter>item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\region.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\scene.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\ai_manager.h">
+      <Filter>ai</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\ai_processor.h">
+      <Filter>ai</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\ai_signal.h">
+      <Filter>ai</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\threat_list.h">
+      <Filter>ai</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\gs_guild.h">
+      <Filter>guild</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\gs_guild_inl.h">
+      <Filter>guild</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\guild_mgr.h">
+      <Filter>guild</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\role_guild_data.h">
+      <Filter>guild</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\circle_quest_mgr.h">
+      <Filter>quest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\daily_quest_mgr.h">
+      <Filter>quest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\quest_list.h">
+      <Filter>quest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\imessage_notifier.h">
+      <Filter>message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\irobot_message_notifier.h">
+      <Filter>message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\message_handler.h">
+      <Filter>message</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\robot_message_handler.h">
+      <Filter>message</Filter>
+    </ClInclude>
+    <ClInclude Include="script\script_func.h">
+      <Filter>script</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_achievement_def.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_achievement_list.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_adventure.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_ai.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_attr_list.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_attribute_def.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_char_def.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_character.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_chat_def.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_check_data.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_common.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_data_manager.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_doodad.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_error_def.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_friend.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_gameworld.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_gs_guild.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_guild_mgr.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_hero.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_hero_def.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_id_def.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_item.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_item_bag.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_master.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_math_ex.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_money_def.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_npc.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_npc_def.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_quest_def.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_quest_list.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_role.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_scene.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_scene_def.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_scene_object.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_score_def.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_spell.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_spell_book.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_spirit.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_spirit_def.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_teleport.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_title.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_variable.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="data\post_process_data.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\spell_config.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\attr_list.h">
+      <Filter>attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\attr_list_inl.h">
+      <Filter>attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\attr_modifier.h">
+      <Filter>attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\bullet_modifier.h">
+      <Filter>attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\char_modifier.h">
+      <Filter>attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\missile_modifier.h">
+      <Filter>attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\define\modifier_def.h">
+      <Filter>attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\modifier_tree.h">
+      <Filter>attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\spell_modifier.h">
+      <Filter>attribute</Filter>
+    </ClInclude>
+    <ClInclude Include="kismet\kismet_node.h">
+      <Filter>kismet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\define\scene_kismet_def.h">
+      <Filter>kismet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\npc_force_mgr.h">
+      <Filter>relation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\reputation.h">
+      <Filter>relation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\role_faction_mgr.h">
+      <Filter>relation</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\team.h">
+      <Filter>team</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\friend.h">
+      <Filter>friend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\shield_list.h">
+      <Filter>friend</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\chat.h">
+      <Filter>chat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\title.h">
+      <Filter>title</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\statistic.h">
+      <Filter>statistic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\achievement_list.h">
+      <Filter>achievement</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\bt_action.h">
+      <Filter>behavior tree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\bt_event.h">
+      <Filter>behavior tree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\bt_manager.h">
+      <Filter>behavior tree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\master.h">
+      <Filter>master</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\blood_sea.h">
+      <Filter>spirit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\chi_sea.h">
+      <Filter>spirit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\spirit.h">
+      <Filter>spirit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\game_world.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\game_world_inl.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\adventure.h">
+      <Filter>adventure</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_arena.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\arena.h">
+      <Filter>arena</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\scene_file_mgr.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\asimov_guild.h">
+      <Filter>guild</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\gs_guild_data.h">
+      <Filter>guild</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_asimov_guild.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\sabac_mgr.h">
+      <Filter>sabac</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\block_handler.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_general_mgr.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\general_mgr.h">
+      <Filter>asimov</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\asimov_role.h">
+      <Filter>asimov</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_asimov_role.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_rank_list_def.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\role_kick_mgr.h">
+      <Filter>object</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_gs_team.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\drop_manager.h">
+      <Filter>item</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\spell_set.h">
+      <Filter>spell</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\kill_npc_quest.h">
+      <Filter>quest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\anti_cheat.h">
+      <Filter>cheat</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_drop_generator.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_stall.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_trade.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\gameworld\gamble.h">
+      <Filter>gamble</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <toluapp Include="script\achievement_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\achievement_list.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\adventure.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\ai.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\attr_list.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\attribute_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\char_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\character.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\chat_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\check_data.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\common.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\data_manager.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\doodad.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\error_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\friend.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\gameworld.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\gs_guild.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\guild_mgr.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\hero.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\hero_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\id_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\item.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\item_bag.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\master.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\math_ex.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\money_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\npc.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\npc_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\quest_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\quest_list.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\rank_list_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\scene.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\scene_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\scene_object.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\score_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\spell.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\spell_book.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\spirit.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\spirit_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\teleport.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\title.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\variable.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\role.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\arena.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\gs_team.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\robot_message_handler.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\asimov_guild.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\asimov_role.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\general_mgr.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\stall.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\drop_generator.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\trade.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="script\tolua_robot_message_handler.h">
+      <Filter>script\generated files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

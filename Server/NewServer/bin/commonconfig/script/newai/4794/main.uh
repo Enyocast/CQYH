@@ -1,0 +1,57 @@
+function get_remain_time()
+	local role = CGameWorld:GetInstance():FindValidRole(get_ctx_role_id());
+	if not role then
+		return 0;
+	end
+
+	local t = role:GetCoolDown():GetRemainFrm(MakeCoolDownID(COOLDOWN_MISC, COOLDOWN_MISC_ARREST)) / GAME_FPS / 60;
+	print (t)
+	if t <= 0 then
+		return 0;
+	else	
+		return t + 1  ;
+	end
+end
+
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { 666516, 50000, 0, 0 } },	
+	{ batSelector,
+		{ batSequencer, 
+			{ batRoleCheckInteractOption, param = { 1 } },
+			{ batRoleOpenDialog, param = { 666517, 50000, 'get_remain_time()', 0 } },
+		},
+		{ batSequencer, 
+			{ batSelector,
+				{ batSequencer,
+					{ batRoleCheckCDTimer, param = { COOLDOWN_MISC, COOLDOWN_MISC_ARREST } },
+					{ batSequencer, 
+						{ batRandom, param = {2500, 2500, 2500, 2500 },
+							{ batSequencer,
+								{ batRoleTeleport, param={ 62900, 48375, 43834, 143 },
+								},
+							},
+							{ batSequencer,
+								{ batRoleTeleport, param={ 62919, 47565, 43834, 143 },
+								},
+							},
+							{ batSequencer,
+								{ batRoleTeleport, param={ 62332, 47843, 43834, 143 },
+								},
+							},
+							{ batSequencer,
+								{ batRoleTeleport, param={ 62593, 48378, 43834, 143 },
+								},
+							},
+						},		
+					},
+				},
+				{ batSequencer, 
+					{ batRoleOpenDialog, param = { 666522, 50000, 0, 0 } },		
+				},
+			},
+			
+		},
+		
+	},
+}; 

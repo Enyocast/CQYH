@@ -1,0 +1,51 @@
+﻿on_init = 
+{ batSequencer, 
+    { batSetCDTimer, param = { COOLDOWN_AI, 100, 3595000 } },
+};
+
+evtAIFight = 
+{ batParallel,
+    { batSelector,
+		{ batSequencer,
+			{ batCheckCDTimer, param = { COOLDOWN_AI, 100 } },
+			{ batSequencer,
+				{ batPlayAction, param = { 4 } },
+				{ batWait, param = { 4000 } },
+				{ batSay, param = { cctScreen, 50181, 0, 0 } },
+			},
+		},
+		{ batSequencer,
+			{ batCheckDistance , param = { tarAITarget, boLT, 640 } },
+			{ batFlee, param = { 10000 } },
+		},
+		{ batSequencer,
+			{ batCheckCDTimer, param = { COOLDOWN_AI, PLAY_ACTION_CD_TIMER } },
+			{ batSetCDTimer, param = {COOLDOWN_AI, PLAY_ACTION_CD_TIMER, 6000 } },
+			{ batRotateTo , param = { tarAITarget, 0, 300 } },
+			{ batRandom , param={ 3400, 3300, 3300 },
+				{ batPlayAction, param = { 2 } },
+				{ batPlayAction, param = { 3 } },
+				{ batPlayAction, param = { 4 } },
+			},
+			{ batSetAIVariable, param = { SPEAK_STATE, 1 } },
+		},
+    },
+    { batSequencer,
+    	{ batCheckAIVariable, param = { boEQ, SPEAK_STATE, 1 } },
+		{ batCheckCDTimer, param = { COOLDOWN_AI, SPEAK_CD_TIMER } },
+		{ batSetCDTimer, param = {COOLDOWN_AI, SPEAK_CD_TIMER, 6000, 12000 } },
+		{ batRandom , param={ 2500, 2500, 2500, 2500},
+			{ batSay, param = { cctScreen, 50177, 0, 0 } },
+			{ batSay, param = { cctScreen, 50178, 0, 0 } },
+			{ batSay, param = { cctScreen, 50179, 0, 0 } },
+			{ batSay, param = { cctScreen, 50178, 0, 0 } },
+		}
+	}
+};
+
+
+
+
+
+
+

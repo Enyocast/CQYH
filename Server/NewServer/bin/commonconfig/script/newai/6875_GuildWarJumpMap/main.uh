@@ -1,0 +1,51 @@
+-- tree evtAIInteract refer external: -- 
+-- external table or function:  batCheckGuildWarStage
+-- external table or function:  batCheckGuildWarStage
+-- external table or function:  batRoleTeleportToPoint
+-- external consistant var:  SceneTemplateID
+-- external consistant var:  'GetTargetGuildSceneID(o)'
+
+evtAIInteract = 
+	{ batSelector,
+		{ batSequencer,
+			{ batRoleOpenDialog, param = { 50586, 50000, 0, 0 } },	
+			{ batPrint  , param={ 11111 } },
+			{ batSelector,
+				{ batSequencer,
+					{ batRoleCheckInteractOption, param = { 1 } },   
+					{ batPrint  , param={ 22222 } },
+					{ batSelector,				
+							{ batSequencer,
+								--{ batRoleCheckSelfScene },
+								{ batCheckGuildWarCharacter, param = { GUILD_WAR_INTRUDER } },
+								{ batPrint  , param={ 33333 } },
+								{ batRoleTeleportToPoint, param = { 127, 'GetTargetGuildSceneID(o)', 3 } },
+							},
+							{ batSequencer,
+								{ batPrint  , param={ 44444 } },
+								{ batRoleOpenDialog, param = { 50587, 50000, 0, 0 } },	
+								{ batSequencer,
+									{ batRoleCheckInteractOption, param = { 1 } },
+								},
+							},
+					},		
+							
+				},
+				{ batSequencer,
+					{ batRoleCheckInteractOption, param = { 2 } },   
+				
+				},
+			},
+			
+		},
+	
+};
+--[[
+evtAIIdle = 
+{ batParallel,
+	{ batWait, param = { 10000, 0 } },
+};
+evtAIFight = 
+{ batParallel,
+	{ batWait, param = { 10000, 0 } },
+};]]--

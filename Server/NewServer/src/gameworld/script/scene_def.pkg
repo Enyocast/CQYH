@@ -1,0 +1,2 @@
+$pfile "script/common.pkg"
+$hfile "../../../Common/define/scene_def.h"

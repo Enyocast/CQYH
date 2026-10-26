@@ -1,0 +1,13 @@
+CREATE TABLE `logdata_rolelogout_master` (
+  `LogTime` datetime NOT NULL,
+  `AreaID` tinyint(1) NOT NULL,
+  `GroupID` tinyint(1) NOT NULL,
+  `RoleID` int(4) NOT NULL,
+  `SndaID` varchar(32) NOT NULL,
+  `Name` varchar(21) NOT NULL,
+  `Student1` int(4) NOT NULL,
+  `Student2` int(4) NOT NULL,
+  `Student3` int(4) NOT NULL,
+  `Student4` int(4) NOT NULL,
+  `Student5` int(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

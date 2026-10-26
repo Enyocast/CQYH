@@ -1,0 +1,41 @@
+evtAIDie = 
+{ batParallel,
+	{ batInvincible, param = { true } },    
+	{ batSyncBreakCast, param = { true } },
+	_cast_template_spell(nastDeadSpell, tarAITarget, 0),
+	{ batInvincible, param = { false } },
+	{ batRandom, param = { 2500 , 7500 },
+		{ batSequencer ,
+			{ batPlayAction, param={ 1 } },	
+			{ batSuicide, param={ 1 } },
+			{ batSummonNpc, param={ d.nParam[0] } },
+		},
+		{ batSequencer ,
+			{ batSelector,
+				{ batSequencer ,
+					{ batCheckSceneVariable, param={ boEQ,10, 10 } },
+					
+					-- { batCheckSceneVariable , param={ boGTE, 9, 2000 } }, -- 原代码, 判断 刷新[尸王殿]的[场景变量数值], 是否 >= 2000
+					{ batCheckSceneVariable , param={ boGTE, 9, 200 } }, -- 原代码, 判断 刷新[尸王殿]的[场景变量数值], 是否 >= 200
+		
+					{ batSummonNpc , param={ 3119 } },    -- 刷新 尸王殿 地图
+					
+					{ batSuicide, param = { 1, false } },
+				},
+				{ batSequencer ,
+					{ batCheckSceneVariable, param={ boEQ,10, 10 } },
+					
+					-- { batCheckSceneVariable , param={ boLT, 9, 2000 } },    -- 原代码
+					{ batCheckSceneVariable , param={ boLT, 9, 200 } },    -- 原代码
+					
+					{ batSetSceneVariable , param={ 9, 0, 1 } },
+					{ batSuicide, param = { 1, false } },
+				},
+				{ batSequencer ,
+					{ batCheckSceneVariable, param={ boEQ,10, 9 } },
+					{ batSuicide, param = { 1, false } },
+				},
+			}
+		},						
+	},
+};

@@ -1,0 +1,17 @@
+on_init =
+{ batSequencer ,
+    { batSetSceneVariable, param = { 2, 0 },},
+    { batSetAlwaysRun, param = { 1 } },
+};  
+
+on_wander =
+{ batSequencer, 
+	{ batCheckSceneVariable, param = { boEQ, 2, 1 },},
+	{ batCheckCDTimer , param = { COOLDOWN_AI , 100 },},
+	{ batSetCDTimer, param = { COOLDOWN_AI , 100 , 5000},},
+	{ batMoveTo, param = {tarPosition , 90771, 42104 , d.nWalkSpeed * 1000 / GAME_FPS },},
+	{ batWait, param={3000},},
+	{ batSuicide },
+	{ batSummonNpc, param= { 806 },},
+};
+      

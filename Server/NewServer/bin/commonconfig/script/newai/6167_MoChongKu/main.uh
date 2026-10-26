@@ -1,0 +1,101 @@
+
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { 50601, 50000, 'GetCount_MoChongKu(o)', 0 } },
+	{ batSelector,
+		{ batSequencer, 
+			{ batRoleCheckInteractOption, param = { 1 } },
+			{ batSelector,
+				{ batSequencer, 
+					{ CheckEnterCondition },
+					{ batSelector,
+						{ batSequencer, 
+							{ SubItem },    -- 扣钱
+							{ batRoleTeleport, param = { 44717, 23205, 6000, 72 } },    -- 传入副本地图
+							{ batRoleSetRoleVariable, param = { 1022, 0, 1 } },	
+							{ batRoleUpdateDailyVariable, param = { 232, 0 } },
+							
+							-- 记录时间
+							-- { batRoleSetRoleVariable, param = { 232, 'CGameWorld:GetInstance():GetGameTime()', 0 } },
+						},
+						{ batSequencer,
+							{ batRoleOpenDialog, param = { 50604, 30000 } },
+						},
+					},
+				},
+				{ batSequencer,
+					{ batRoleOpenDialog, param = { 50604, 30000 } },--这里应该是物品或者金币不足的判断
+				},
+			},
+		},
+		
+		{ batSequencer,
+			{ batRoleCheckInteractOption, param = { 2 } },
+			{ batSelector,
+				{ batSequencer, 								
+					{ batRoleCheckItemCount , param={ boGTE, 2800314 , 1 } },
+					{ batSequencer ,
+						{ batRoleDelItem , param={ 2800314 , 1 } },
+						{ batRoleAddItem , param={ 2800322 , 1 } },
+					},
+				},
+				{ batSequencer,
+					{ batRoleOpenDialog, param = { 50584, 50000, 0, 0 } },
+				},
+			},
+		},	
+	},
+};
+
+
+-- 原代码
+--[[
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { 50601, 50000, 'EnterCount(o)', 'GetVipCount(o)' } },    -- 原代码
+	-- { batRoleOpenDialog, param = { 50601, 50000, 0, 0 } },
+	{ batSelector,
+		{ batSequencer, 
+			{ batRoleCheckInteractOption, param = { 1 } },
+			{ batSelector,
+				{ batSequencer, 
+					{ CheckEnterCondition },
+					{ batSelector,
+						{ batSequencer, 
+							{ SubItem },    -- 扣钱
+							{ batRoleTeleport, param = { 44717, 23205, 6000, 72 } },    -- 传入副本地图
+							----记录进入的时间
+							{ batRoleSetRoleVariable, param = { 232, 'CGameWorld:GetInstance():GetGameTime()', 0 } },
+						},
+						{ batSequencer,
+							{ batRoleOpenDialog, param = { 50604, 30000 } },
+						},
+					},
+				},
+				{ batSequencer,
+					{ batRoleOpenDialog, param = { 50604, 30000 } },--这里应该是物品或者金币不足的判断
+				},
+			},
+		},
+		
+		{ batSequencer,
+			{ batRoleCheckInteractOption, param = { 2 } },
+			{ batSelector,
+				{ batSequencer, 								
+					{ batRoleCheckItemCount , param={ boGTE, 2800314 , 1 } },
+					{ batSequencer ,
+						{ batRoleDelItem , param={ 2800314 , 1 } },		
+						{ batRoleAddItem , param={ 2800322 , 1 } },
+					},
+				},
+				{ batSequencer,
+					{ batRoleOpenDialog, param = { 50584, 50000, 0, 0 } },
+				},
+			},
+		},	
+	},
+};
+]]--
+
+
+

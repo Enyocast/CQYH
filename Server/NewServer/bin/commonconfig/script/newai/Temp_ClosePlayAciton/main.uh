@@ -1,0 +1,12 @@
+
+evtAIFight = 
+{ batSequencer,
+	{ batCheckCDTimer, param = { COOLDOWN_AI, 2 } },
+	{ batSetCDTimer, param = { COOLDOWN_AI, 2, d.nParam[1],d.nParam[2]} },
+    { batCheckDistance , param = { tarAITarget, boLT, d.nPreferDistance } },
+    { batCheckDice, param = { boLT, d.nFleeChance } },
+    { batPlayAction, param={d.nParam[3]},},
+    { batWait, param={2000}},
+    --{ batFlee, param = { d.nFleeDuration, d.nRunSpeed } },
+    --__flee(d.nFleeHpPercent, d.nFleeChance, 1000, d.nFleeDuration, d.nRunSpeed * 1000 / GAME_FPS),
+};

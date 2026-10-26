@@ -1,0 +1,13 @@
+
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { 50036, 30000 , 0, 0 } },
+	{ batSelector,	
+		{ batSequencer, 
+			{ batRoleCheckInteractOption, param = { 1 } },
+				{ Check_Yuanbao },
+				{ batRoleTeleport, param = { 23500, 13400, 6000, 223 } },
+		},
+	},
+	
+};

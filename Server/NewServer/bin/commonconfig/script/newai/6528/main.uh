@@ -1,0 +1,228 @@
+
+-- 字符串, 改用 stringtable.lh 文件里的 strAI6528_1, strAI6528_2, strAI6528_3, strAI6528_4, strAI6528_99
+
+evtAIInteract = 
+{ batSequencer,
+	-- "我可以把你传送到指定地图！
+	-- <#SO:1>城市传送<#SO/>
+	-- <#SO:2>初级野外<#SO/>
+	-- <#SO:3>高级野外<#SO/>"
+	{ batRoleOpenDialog, param = { strAI6528_1, 50000, 0, 0 } },
+	{ batSelector,
+	
+		{ batSequencer, 
+			{ batRoleCheckInteractOption, param = { 1 } },    -- 城市传送
+			{ batSelector,
+				{ batSequencer, 
+					-- "城市传送！
+					-- <#SO:21>边界村<#SO/>
+					-- <#SO:22>盟重省<#SO/>
+					-- <#SO:23>比奇省<#SO/>"
+					{ batRoleOpenDialog, param = { strAI6528_2, 50000, 0, 0 } },
+					{ batSelector,
+						{ batSequencer, 
+							{ batRoleCheckInteractOption, param = { 21 } },    -- 边界村
+							{ batSelector,
+								{ batSequencer, 
+									{ batRoleTeleport, param = { 25900, 56800, 10000, 142 } },
+								},
+							},
+						},	
+						{ batSequencer, 
+							{ batRoleCheckInteractOption, param = { 22 } },    -- 盟重省
+							{ batSelector,
+								{ batSequencer, 
+									{ batRoleTeleport, param = { 39100, 55300, 6144, 147 } },
+								},
+							},
+						},	
+						{ batSequencer, 
+							{ batRoleCheckInteractOption, param = { 23 } },    -- 比奇省
+							{ batSelector,
+								{ batSequencer, 
+									{ batRoleTeleport, param = { 62700, 47900, 43776, 143 } },
+								},
+							},
+						},	
+					},
+				},
+			},
+		},
+		
+		
+		{ batSequencer, 
+			{ batRoleCheckInteractOption, param = { 2 } },    -- 初级野外传送
+			{ batSelector,
+				{ batSequencer, 
+					-- 初级野外！
+					-- <#SO:31>沃玛森林(8级)-1000金币<#SO/>
+					-- <#SO:32>矿区一层(19级)-1500金币<#SO/>
+					-- <#SO:33>沃玛寺庙(24级)-2000金币<#SO/>
+					-- <#SO:34>死亡峡谷(25级)-2000金币<#SO/>
+					-- <#SO:35>石墓一层(30级)-2500金币<#SO/>
+					{ batRoleOpenDialog, param = { strAI6528_3, 50000, 0, 0 } },
+					{ batSelector,
+						{ batSequencer, 
+							{ batRoleCheckInteractOption, param = { 31 } },    -- <#SO:31>沃玛森林(8级)-1000金币<#SO/>
+							{ batSelector,
+								{ batSequencer, 
+									{ batRoleCheckLevel , param = { boGTE, 8 } },
+									{ batRoleCheckMoney , param = { boGTE,1, 1000 } },
+									{ batRoleSubMoney , param = {tarRole, 1, 1000 } },
+									{ batRoleTeleport, param = { 12800, 50500, 10000, 145 } },
+								},
+								{ batSequencer,
+									{ batRoleOpenDialog, param = { strAI6528_99, 30000, 0, 0 } },
+								},
+							},
+						},	
+						{ batSequencer, 
+							{ batRoleCheckInteractOption, param = { 32 } },    -- <#SO:32>矿区一层(10级)-1500金币<#SO/>
+							{ batSelector,
+								{ batSequencer, 
+									{ batRoleCheckLevel , param = { boGTE, 10 } },
+									{ batRoleCheckMoney , param = { boGTE,1, 1500 } },
+									{ batRoleSubMoney , param = {tarRole, 1, 1500 } },
+									{ batRoleTeleport, param = { 14000, 12800, 51196, 144 } },
+								},
+								{ batSequencer,
+									{ batRoleOpenDialog, param = { strAI6528_99, 30000, 0, 0 } },
+								},
+							},
+						},	
+						{ batSequencer, 
+							{ batRoleCheckInteractOption, param = { 33 } },    -- <#SO:33>沃玛寺庙(17级)-2000金币<#SO/>
+							{ batSelector,
+								{ batSequencer, 
+									{ batRoleCheckLevel , param = { boGTE, 17 } },
+									{ batRoleCheckMoney , param = { boGTE,1, 2000 } },
+									{ batRoleSubMoney , param = {tarRole, 1, 2000 } },
+									{ batRoleTeleport, param = { 58000, 78200, 19055, 146 } },
+								},
+								{ batSequencer,
+									{ batRoleOpenDialog, param = { strAI6528_99, 30000, 0, 0 } },
+								},
+							},
+						},	
+						{ batSequencer, 
+							{ batRoleCheckInteractOption, param = { 34 } },    -- <#SO:34>死亡峡谷(22级)-2000金币<#SO/>
+							{ batSelector,
+								{ batSequencer, 
+									{ batRoleCheckLevel , param = { boGTE, 22 } },
+									{ batRoleCheckMoney , param = { boGTE,1, 2000 } },
+									{ batRoleSubMoney , param = {tarRole, 1, 2000 } },
+									{ batRoleTeleport, param = { 75600, 22700, 27971, 148 } },
+								},
+								{ batSequencer,
+									{ batRoleOpenDialog, param = { strAI6528_99, 30000, 0, 0 } },
+								},
+							},
+						},	
+						{ batSequencer, 
+							{ batRoleCheckInteractOption, param = { 35 } },    -- <#SO:35>石墓一层(25级)-2500金币<#SO/>
+							{ batSelector,
+								{ batSequencer, 
+									{ batRoleCheckLevel , param = { boGTE, 25 } },
+									{ batRoleCheckMoney , param = { boGTE,1, 2500 } },
+									{ batRoleSubMoney , param = {tarRole, 1, 2500 } },
+									{ batRoleTeleport, param = { 56200, 21000, 7280, 149 } },
+								},
+								{ batSequencer,
+									{ batRoleOpenDialog, param = { strAI6528_99, 30000, 0, 0 } },
+								},
+							},
+						},	
+					},
+				},
+			},
+		},
+		
+		
+		{ batSequencer, 
+			{ batRoleCheckInteractOption, param = { 3 } },    -- 高级野外传送
+			{ batSelector,
+				{ batSequencer, 
+					-- 高级野外！
+					-- <#SO:41>祖玛寺庙(35级)-3000金币<#SO/>
+					-- <#SO:42>骨魔洞一层(40级)-3500金币<#SO/>
+					-- <#SO:43>尸魔洞一层(40级)-3500金币<#SO/>
+					-- <#SO:44>牛魔寺庙(45级)-5000金币<#SO/>
+					-- <#SO:45>丛林迷宫(45级)-5000金币<#SO/>
+					{ batRoleOpenDialog, param = { strAI6528_4, 50000, 0, 0 } },
+					{ batSelector,
+						{ batSequencer, 
+							{ batRoleCheckInteractOption, param = { 41 } },    -- <#SO:41>祖玛寺庙(30级)-3000金币<#SO/>
+							{ batSelector,
+								{ batSequencer, 
+									{ batRoleCheckLevel , param = { boGTE, 30 } },
+									{ batRoleCheckMoney , param = { boGTE,1, 3000 } },
+									{ batRoleSubMoney , param = {tarRole, 1, 3000 } },
+									{ batRoleTeleport, param = { 21000, 14300, 3622, 180 } },
+								},
+								{ batSequencer,
+									{ batRoleOpenDialog, param = { strAI6528_99, 30000, 0, 0 } },
+								},
+							},
+						},	
+						--{ batSequencer, 
+						--	{ batRoleCheckInteractOption, param = { 42 } },    -- <#SO:42>骨魔洞一层(40级)-3500金币<#SO/>
+						--	{ batSelector,
+						--		{ batSequencer, 
+						--			-- { batRoleCheckLevel , param = { boGTE, 40 } },
+						--			{ batRoleCheckMoney , param = { boGTE,1, 3500 } },
+						--			{ batRoleSubMoney , param = {tarRole, 1, 3500 } },
+						--			{ batRoleTeleport, param = { 27000, 10400, 8208, 51 } },
+						--		},
+						--		{ batSequencer,
+						--			{ batRoleOpenDialog, param = { strAI6528_99, 30000, 0, 0 } },
+						--		},
+						--	},
+						--},	
+						--{ batSequencer, 
+						--	{ batRoleCheckInteractOption, param = { 43 } },    -- <#SO:43>尸魔洞一层(40级)-3500金币<#SO/>
+						--	{ batSelector,
+						--		{ batSequencer, 
+						--			-- { batRoleCheckLevel , param = { boGTE, 40 } },
+						--			{ batRoleCheckMoney , param = { boGTE,1, 3500 } },
+						--			{ batRoleSubMoney , param = {tarRole, 1, 3500 } },
+						--			{ batRoleTeleport, param = { 37000, 20000, 8208, 56 } },
+						--		},
+						--		{ batSequencer,
+						--			{ batRoleOpenDialog, param = { strAI6528_99, 30000, 0, 0 } },
+						--		},
+						--	},
+						--},	
+						--{ batSequencer, 
+						--	{ batRoleCheckInteractOption, param = { 44 } },    -- <#SO:44>牛魔寺庙(45级)-5000金币<#SO/>
+						--	{ batSelector,
+						--		{ batSequencer, 
+						--			-- { batRoleCheckLevel , param = { boGTE, 45 } },
+						--			{ batRoleCheckMoney , param = { boGTE,1, 5000 } },
+						--			{ batRoleSubMoney , param = {tarRole, 1, 5000 } },
+						--			{ batRoleTeleport, param = { 25100, 43500, 2064, 60 } },
+						--		},
+						--		{ batSequencer,
+						--			{ batRoleOpenDialog, param = { strAI6528_99, 30000, 0, 0 } },
+						--		},
+						--	},
+						--},	
+						{ batSequencer, 
+							{ batRoleCheckInteractOption, param = { 45 } },    -- <#SO:45>丛林迷宫(45级)-5000金币<#SO/>
+							{ batSelector,
+								{ batSequencer, 
+									{ batRoleCheckLevel , param = { boGTE, 35 } },
+									{ batRoleCheckMoney , param = { boGTE,1, 5000 } },
+									{ batRoleSubMoney , param = {tarRole, 1, 5000 } },
+									{ batRoleTeleport, param = { 24500, 68200, 4568, 187 } },
+								},
+								{ batSequencer,
+									{ batRoleOpenDialog, param = { strAI6528_99, 30000, 0, 0 } },
+								},
+							},
+						},	
+					},
+				},
+			},
+		},
+	},		
+};

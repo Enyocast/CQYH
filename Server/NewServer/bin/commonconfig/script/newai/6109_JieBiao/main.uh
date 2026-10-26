@@ -1,0 +1,74 @@
+
+function escort_check_role_can_not_submit(owner)
+
+	local role = CGameWorld:GetInstance():FindRole(get_ctx_role_id());
+	
+	local dstNpc = CGameWorld:GetInstance():FindNpc(role:GetInteractNpc());
+	if dstNpc == nil then
+		return brvSuccess;
+	end
+
+	local escortCar = CGameWorld:GetInstance():FindNpc(role:GetVariable(VAR_ROLE_ESCORT_CAR_ID));
+	if escortCar == nil then
+		return brvSuccess;
+	end
+
+	if ESCORT_ALREADY_DEAD == escortCar:GetAIProcessor():GetVariable(VAR_AI_ESCORT_DEAD) then
+		return brvSuccess;
+	end
+
+	local llDistance = (dstNpc:GetX() - escortCar:GetX()) * (dstNpc:GetX() - escortCar:GetX()) 
+					+ (dstNpc:GetY() - escortCar:GetY()) * (dstNpc:GetY() - escortCar:GetY())
+					+ (dstNpc:GetZ() - escortCar:GetZ()) * (dstNpc:GetZ() - escortCar:GetZ());
+
+	if llDistance > (ESCORT_RETURN_VALID_GRID_COUNT * GRID_WIDTH) * (ESCORT_RETURN_VALID_GRID_COUNT * GRID_WIDTH) then
+		return brvSuccess;
+	end
+	
+	if escortCar:GetNpcData().nTemplateID ~= role:GetVariable(VAR_ROLE_ESCORT_CAR_TEMP_ID) or escortCar:GetHostID() ~= role:GetObjID() then
+		return brvSuccess;
+	end
+
+	return brvFail;
+end
+
+function escort_take_back_car(owner)
+
+	local role = CGameWorld:GetInstance():FindRole(get_ctx_role_id());
+	
+    -- ÉèÖÃïÚ³µ×ÔÉ±×´Ì¬
+	local escortCar = CGameWorld:GetInstance():FindNpc(role:GetVariable(VAR_ROLE_ESCORT_CAR_ID));
+    if escortCar then
+        escortCar:GetAIProcessor():SetBossState(1);
+    end
+
+	return brvSuccess;
+end
+
+evtAIInteract = 
+{ batSelector,
+	{ batSequencer,
+		{ batRoleCheckHasQuest, param = { ESCORT_QUEST_ID } },
+		{ batRoleCheckQuestVariable, param = { boNEQ, ESCORT_QUEST_ID, ESCORT_QUEST_CAN_COMPLETE_VAR_ID, ESCORT_QUEST_CAN_COMPLETE_VAR_VALUE } },
+		{ batRoleOpenDialog, param = { DIALOG_SUBMIT_ESCORT, 30000 } },
+		{ batSelector,
+			{ batSequencer,
+				{ escort_check_role_can_not_submit },
+				{ batRoleOpenDialog, param = { DIALOG_SUBMIT_ESCORT_FAIL_CONFIRM, 30000 } },
+				{ batReturnSuccess },
+			},
+			{ batSequencer,
+				{ escort_take_back_car },
+				{ batRoleSetQuestVariable, param = { ESCORT_QUEST_ID, ESCORT_QUEST_CAN_COMPLETE_VAR_ID, ESCORT_QUEST_CAN_COMPLETE_VAR_VALUE } },
+				{ batRoleOpenDialog, param = { DIALOG_SUBMIT_ESCORT_SUCCESS_CONFIRM, 30000 } },
+				{ batReturnSuccess },
+			},
+		},
+	},
+	{ batSequencer,
+		{ batRoleOpenDialog, param = { DIALOG_SUBMIT_ESCORT_NONE, 30000 } },
+		{ batReturnSuccess },
+	},
+};
+
+

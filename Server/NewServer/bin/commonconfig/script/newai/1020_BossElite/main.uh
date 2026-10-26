@@ -1,0 +1,18 @@
+local spell_common =
+{
+	{ id = 3766, cd = 2500, chance = 10000, target = tarAITarget },         --邪恶钳虫-扑腾 : 微微跳起来扑腾一下身前的目标，会对中距离产生伤害并击退。
+	{ id = 3773, cd = 10000, chance = 10000, target = tarAITarget },        --邪恶钳虫-魔力释放 : 释放魔力堆积的能量。
+	{ id = 3769, cd = 15000, chance = 10000, target = tarAITarget },        --邪恶钳虫-恶臭气息 : 邪恶钳虫会抖动尾部，产生恶臭气息，污染一个区域，形成持续的瘴气。进入的单位会沉默一段时间。有一定几率,恶臭气息会漂移。
+	{ id = 3770, cd = 16000, chance = 10000, target = tarAITarget },        --邪恶钳虫-钳杀啮咬 : 长前置后，猛地向前咬出，抓住目标后会进行持续撕扯。并回复HP。
+	{ id = 3771, cd = 25000, chance = 7000, target = tarAITarget },         --邪恶钳虫-毒虫制造 : 向一个目标发射毒浆。使得其变成一只具有污染效果的单位，会持续队周围造成伤害，并导致中毒。
+	{ id = 3772, cd = 45000, chance = 10000, target = tarSelf },            --邪恶钳虫-坦克猛冲 : 钳虫加持了Buff，无法使用技能但可以移动。移动对周围产生余震。
+};
+
+on_cast_spell =
+{ batSelector,
+    __cast_spell(spell_common[1].id, spell_common[1].target, spell_common[1].chance, spell_common[1].cd); 
+    __cast_spell(spell_common[2].id, spell_common[2].target, spell_common[2].chance, spell_common[2].cd); 
+    __cast_spell(spell_common[3].id, spell_common[3].target, spell_common[3].chance, spell_common[3].cd); 
+    __cast_spell(spell_common[4].id, spell_common[4].target, spell_common[4].chance, spell_common[4].cd); 
+    __cast_spell(spell_common[5].id, spell_common[5].target, spell_common[5].chance, spell_common[5].cd); 
+};

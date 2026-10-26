@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="main">
+      <UniqueIdentifier>{5094183d-206a-4c8a-91c7-a5adc66ee110}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="message">
+      <UniqueIdentifier>{ee80abba-4a3b-43f0-950e-308d337c07c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="session">
+      <UniqueIdentifier>{01f843d9-6a87-4fa8-afaa-a9f4ecf8d817}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="auth">
+      <UniqueIdentifier>{e9137132-55e2-4f1c-8c4c-167eb9a761e5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="login_server.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="ls_message_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="ls_session_mgr.cpp">
+      <Filter>session</Filter>
+    </ClCompile>
+    <ClCompile Include="oa_auth_mgr.cpp">
+      <Filter>auth</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="login_server.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="ls_message_handler.h">
+      <Filter>message</Filter>
+    </ClInclude>
+    <ClInclude Include="ls_session_mgr.h">
+      <Filter>session</Filter>
+    </ClInclude>
+    <ClInclude Include="oa_auth_mgr.h">
+      <Filter>auth</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

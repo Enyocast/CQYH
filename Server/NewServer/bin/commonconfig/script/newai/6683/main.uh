@@ -1,0 +1,29 @@
+evtAIInteract = 
+{ batSequencer,	
+		{ batRoleOpenDialog, param = { 666784, 50000, 0, 0 } },	
+		{ batSelector,				
+			{ batSequencer,
+				{ batRoleCheckInteractOption, param = { 1 } },
+					{ batSelector,
+						{ batSequencer, 								
+							{ batRoleCheckItemCount , param={ boGTE, 2800308 , 1 } },
+								{ batSelector,
+									{ batSequencer ,
+										{ batRoleDelItem , param={ 2800308 , 1 } },		
+										{ batRoleAddItem , param={ 2800316 , 1 } },
+										{ batRoleAddItem , param={ 2800313 , 1 } },
+									},
+								},	
+						},
+						{batSequencer,
+							{ batRoleOpenDialog, param = { 50584, 50000, 0, 0 } },
+						},
+					},
+			},	
+		},	
+						
+						
+
+	
+
+}; 

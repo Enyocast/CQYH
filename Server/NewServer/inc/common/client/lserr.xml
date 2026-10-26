@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<code decoding="GBK">
+	<output filename="lserr.h">
+		<namespace name="ERR_LS">
+			<message id="1001" varname="LGERR_TIME_OUT" msg="验证超时"/>
+			<message id="1002" varname="LGERR_SYS_ERROR" msg="系统内部错误"/>
+			<message id="1003" varname="LGERR_MODE_ERROR" msg="认证模式错误"/>
+			<message id="1004" varname="LGERR_INFO_ERROR" msg="客户端传来的信息错误"/>
+			<message id="1005" varname="LGERR_ID_ERROR" msg="在OnAuthSuccess中没有获得到UserName或DigitID"/>
+			<message id="1006" varname="LGERR_AUTH_ERROR" msg="验证失败"/>
+			<message id="1007" varname="LGERR_REPEATED_LOGIN" msg="用户重复登录"/>
+		</namespace>
+	</output>
+</code>

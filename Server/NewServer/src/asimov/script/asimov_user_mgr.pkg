@@ -1,0 +1,13 @@
+$pfile "script/asimov_common.pkg"
+$#include "user_mgr.h"
+
+class CUserMgr
+{
+public:
+    static CUserMgr& GetInstance(void);
+
+    CUser* FindUser(INT32 nUserID);
+    CUser* RandAnotherUser(CUser* poSelfUser);
+    
+    INT32 GetDefaultGroupID();
+};

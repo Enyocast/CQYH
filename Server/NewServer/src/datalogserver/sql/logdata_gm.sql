@@ -1,0 +1,9 @@
+CREATE TABLE `logdata_gm` (
+  `LogTime` datetime NOT NULL,
+  `AreaID` tinyint(1) NOT NULL,
+  `GroupID` tinyint(1) NOT NULL,
+  `RoleID` int(4) NOT NULL,
+  `RoleName` varchar(21) NOT NULL,
+  `Command` varchar(128) NOT NULL,
+  `Result` tinyint(1) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

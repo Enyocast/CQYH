@@ -1,0 +1,18 @@
+CREATE TABLE `logdata_die` (
+  `LogTime` datetime NOT NULL,
+  `AreaID` tinyint(1) NOT NULL,
+  `GroupID` tinyint(1) NOT NULL,
+  `SceneID` int(4) NOT NULL,
+  `X` int(4) NOT NULL,
+  `Y` int(4) NOT NULL,
+  `Z` int(4) NOT NULL,
+  `KillerID` int(4) NOT NULL,
+  `KillerType` varchar(10) NOT NULL,
+  `KillerName` varchar(21) NOT NULL,
+  `KillerLevel` tinyint(1) NOT NULL,
+  `KillerClass` tinyint(1) NOT NULL,
+  `VicID` int(4) NOT NULL,
+  `VicLevel` tinyint(1) NOT NULL,
+  `VicClass` varchar(8) NOT NULL,
+  `VicName` varchar(21) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

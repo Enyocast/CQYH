@@ -1,0 +1,46 @@
+evtAIIdle =
+{ batSequencer,
+	{ batCheckCDTimer, param = { COOLDOWN_AI, 0 } },
+	{ batPlayAction, param= { 2 } },
+	{ batRandom, param = { 5000, 5000 },
+        { batSequencer,
+			{ batSay, param= { cctScreen, 50368 } },
+		},
+		{ batSequencer,
+			{ batSay, param= { cctScreen, 50369 } },
+		},
+	},
+	{ batSetCDTimer, param = { COOLDOWN_AI, 0, 20000 } },
+};
+evtAIInteract = 
+{ batSelector,
+	--检查玩家money
+	{ batSequencer,
+		{ batCheckCDTimer, param = { COOLDOWN_AI, 1 } },
+		{ batRoleCheckMoney , param={ boLT ,1 ,100 } },
+		{ batSay, param= { cctScreen, 50371 } },
+		{ batSetCDTimer, param = { COOLDOWN_AI, 1, 10000 } },
+	},
+	{ batSequencer,
+	--检查钱后打开对话框
+		{ batRoleCheckMoney , param={ boGTE ,1 ,100 } },
+		{ batRoleOpenDialog, param = { 666509, 50000, 0, 0 } },	
+			{ batSequencer,
+			--选择选项一
+				{ batRoleCheckInteractOption, param = { 1 } },
+				{ batRandom, param = { 20, 1 },
+				--随机扣钱或者给钱
+        			{ batSequencer,
+						{ batSay, param= { cctScreen, 50370 } },
+						{ batPlayAction, param= { 1 } },
+						{ batRoleSubMoney , param={ tarRole,1, 100, MONEYLOG_BT_07 } },
+					},
+					{ batSequencer,
+						{ batSay, param= { cctScreen, 50372 } },
+						{ batPlayAction, param= { 1 } },
+						{ batRoleAddMoney , param={ tarRole,1, 400, MONEYLOG_BT_07 } },
+					},
+				},	
+			},
+	},		
+};

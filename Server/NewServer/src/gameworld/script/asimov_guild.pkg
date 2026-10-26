@@ -1,0 +1,63 @@
+$pfile "script/common.pkg"
+$hfile "../../../Common/define/guild_def.h"
+$hfile "../../inc/gameworld/asimov_guild.h"
+
+class CGSGuild
+{
+public:
+
+	UINT32  GetID();
+    const char *GetName();
+    INT32   GetState();
+    void    SetState(INT32 nState);
+    UINT32  GetLeaderID();
+    void    SetLeaderID(UINT32 dwRoleID);
+	INT32   GetLevel();
+
+    //const char *GetAnnounce();
+    const char *GetNotice();
+    INT32   GetMoney();          
+    void    SetMoney(INT32 nMoney);
+    INT32   GetProsperity();
+    void    SetProsperity(INT32 nProsperity);
+    INT32   GetHerb();
+    void    SetHerb(INT32 nHerb);
+    INT32   GetWood();
+    void    SetWood(INT32 nWood);
+    INT32   GetCrystal();
+    void    SetCrystal(INT32 nCrystal);
+    INT32   GetSilver();
+    void    SetSilver(INT32 nSilver);
+    INT32   GetMemberCount();
+
+	INT32   GetAllianceNum();
+    INT32   GetEnemyNum();
+
+    BOOL    SetName(const char* pcszName);
+    BOOL    SetNotice(const char *pcszNotice);
+
+	ASIMOV_GUILD_MEMBER *GetMemberByIndex(INT32 nIndex);
+    ASIMOV_GUILD_MEMBER *GetMember(UINT32 dwRoleID);
+	BOOL    IsOfficeFull(INT32 nPosition);
+	BOOL    AddMember(UINT32 dwRoleID, UINT8 byPosition, UINT8 byFlag, INT32 nSalary);
+	BOOL    DelMember(UINT32 dwRoleID);
+
+    BOOL    ChangeStorageRight(INT32 nPosition, UINT16 wRight);
+
+    BOOL    IsAlliance(UINT32 dwGuildID);
+    BOOL    IsEnemy(UINT32 dwGuildID);
+    BOOL    AddAlliance(UINT32  dwGuildID, UINT32 dwEndTime);
+    BOOL    DelAlliance(UINT32 dwGuildID);
+    BOOL    AddEnemy(UINT32 dwGuildID, UINT32 dwEndTime, BOOL bIsActive);
+    BOOL    DelEnemy(UINT32 dwGuildID);
+
+	UINT32  RandomApplyUnion();
+
+	BOOL    ClearApp();
+    BOOL    AddApp(UINT32 dwRoleID);
+    BOOL    AlreadyExistInAppList(UINT32 dwRoleID);
+    INT32   GetAppNum();
+    UINT32  GetRoleIDByIndexFromAppList(INT32 nIndex);
+
+
+};

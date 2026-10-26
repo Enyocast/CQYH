@@ -1,0 +1,1 @@
+start ..\..\Client\bin\WidgetTest\WidgetGraphicTest_D3D9.exe

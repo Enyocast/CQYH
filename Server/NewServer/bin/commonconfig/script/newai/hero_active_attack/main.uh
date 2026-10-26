@@ -1,0 +1,3 @@
+
+on_init = { batSetFollowParam, param = { 0, 0, -400, 1 } };
+on_wander = { batFollow };

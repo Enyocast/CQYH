@@ -1,0 +1,15 @@
+on_enter_fight = 
+{ batSequencer,
+    { batPlayAction, param={ 1 } },	
+	{ batSequencer,
+		{ batRandom, param = { 5000, 5000 },
+            { batSequencer,
+			    { batSummonNpc, param= { 919 , 0 , 0 , 0 } },
+			},
+			{ batSequencer,
+			    { batSummonNpc, param= { 920 , 0 , 0 , 0 } },
+			},
+		},
+	},
+	{ batSuicide },
+};

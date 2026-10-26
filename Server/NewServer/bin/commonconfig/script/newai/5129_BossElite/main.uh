@@ -1,0 +1,20 @@
+on_enter_fight =
+{ batParallel,
+	{ batCloseDoor, param = { 2 } },
+	{ batSetSceneVariable, param = { 12, 1 } },
+};
+
+on_wander = 
+{ batSequencer,
+	{ batCheckCDTimer, param = { COOLDOWN_AI, 100 } },
+	{ batSetCDTimer, param = { COOLDOWN_AI, 100, 3000 } },	
+	{ batOpenDoor, param = { 2 } },
+	{ batSetSceneVariable, param = { 12, 0 } },
+1};
+
+evtAIDie  = 
+{ batSequencer,
+	{ batOpenDoor, param = { 2 } },
+	{ batSetSceneVariable, param = { 12, 0 } },
+};
+

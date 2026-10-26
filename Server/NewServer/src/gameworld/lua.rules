@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VisualStudioToolFile
+	Name="lua compiler"
+	Version="8.00"
+	>
+	<Rules>
+		<CustomBuildRule
+			Name="lua compiler"
+			DisplayName="lua compiler"
+			CommandLine="luac.exe -p -o $(InputDir)$(InputName).out $(InputDir)$(InputName)$(InputExt)"
+			Outputs="$(InputDir)$(InputName).out"
+			FileExtensions="*.lua;*.uh;*.lh"
+			SupportsFileBatching="true"
+			>
+			<Properties>
+			</Properties>
+		</CustomBuildRule>
+	</Rules>
+</VisualStudioToolFile>

@@ -1,0 +1,141 @@
+local boss_stage_1 = 1;
+local boss_stage_2 = 2;
+local boss_stage_3 = 3;
+local boss_stage_4 = 4;
+local boss_stage_5 = 5;
+
+local spell_common =
+{
+	{ id = 5665, cd = 0, chance = 10000, target = tarAITarget },            --独角鲸人头目的爆鲸盛宴 : 呼唤千万头独角鲸人出现释放"蛮鲸冲撞"技能(类似于war3中兽王的大招,实体子弹,保证两头鲸人之间有足够的间隔供玩家躲避),施放过程中自身霸体,免疫控制类技能,但会受到伤害
+	{ id = 5662, cd = 30000, chance = 10000, target = tarAITarget },        --独角鲸人头目的十字海鲜大螺旋 : 保持双臂横向展开的姿势的情况下,不停的360度旋转移动攻击周围的敌方单位,在旋转的过程中从身体里掉出小鱼小虾散落到地面,玩家碰到小鱼小虾会再受到一次伤害.技能施法结束后,懊恼弯下身躯捡起一条小鱼.单手捡起一条小鱼,单手拍拍自己的后脑勺). 过程中会反射远程伤害.后阶段演出硬直大,可以输出
+	{ id = 5663, cd = 40000, chance = 10000, target = tarAITarget },        --独角鲸人头目的蛮鲨冲撞 : 身形下躬,颈部下屈将头顶的尖角顶在身前，左脚进行两次踢铲（类似于斗牛时，公牛冲刺前的热身动作），然后进行一次速度很快的冲刺攻击（冲刺动作为双脚急速跑动），冲刺结束后需要有一个作用力的表现（跌跌撞撞，站不住脚，略微冲过头的感觉）
+	{ id = 5664, cd = 25000, chance = 10000, target = tarFarthestEnemy },   --独角鲸人头目的翔空彗星投 : 向身前进行一次冲锋抓取攻击, 优先针对远距离单位,命中目标后抱紧目标保持旋转状态跳至高空然后抱着目标冲向地面(类似于街霸中桑吉尔夫的投技),落地后自身因为没有站稳而摔倒,再缓慢的从地上爬起来,空放则为破绽
+	{ id = 5660, cd = 0, chance = 7000 },                                   --独角鲸人头目的两连挥打 : 左右两下连续的挥打
+	{ id = 5661, cd = 0, chance = 7000 },                                   --独角鲸人头目的拍扁了好作菜 : 拍扁了好作菜,组合掌击，破绽技能
+	{ id = 5666, cd = 25000, chance = 10000, target = tarAITarget },        --独角鲸人头目的松松骨 : 向身前进行一次抓取攻击,命中目标后抓住目标的脚踝,身体下蹲,将目标拎过头顶后猛地砸向左侧的地面,然后再次拎过头顶猛地砸向右侧的地面,反复两次后将目标放回地面.(类似于KOF97里陈可汉的投技)
+};
+
+on_init =
+{ batSequencer, 
+	{ batSetBossState, param = { 1 } },
+	{ batSetCDTimer, param = { COOLDOWN_AI , 100 , 10000},},
+};
+
+on_chase =
+{ batSequencer,
+	__check_dice(6000),
+    __cast_spell(spell_common[2].id, spell_common[2].target, spell_common[2].chance, spell_common[2].cd); 
+};
+
+fight_sub = 
+{ batParallel,
+	__scan_nearby();
+
+	{ batSequencer,
+		__check_cd_timer(COOLDOWN_AI, SPELL_GROUP_CD_TIMER_INDEX);
+		__set_cd_timer(COOLDOWN_AI, SPELL_GROUP_CD_TIMER_INDEX, 3000);
+		{ batSelector,
+			{ batSequencer,
+				__check_dice(7000);
+				__cast_spell(spell_common[5].id, tarAITarget, spell_common[5].chance, spell_common[5].cd);
+			},
+			__cast_spell(spell_common[6].id, tarAITarget, spell_common[6].chance, spell_common[6].cd);
+		},
+	},
+
+	{ batSequencer,
+	    { batRandom, param = { 4000, 6000 },
+		    __cast_spell(spell_common[7].id, tarAITarget, spell_common[7].chance, spell_common[7].cd);
+		    { batSequencer,
+		        __cast_spell(spell_common[4].id, tarAITarget, spell_common[4].chance, spell_common[4].cd);
+		        __change_target(10000, 15000, d.nChaseRange, 0);
+			},
+	    },
+	},
+
+	{ batSelector,
+		{ batSequencer,
+       		{ batCheckCharHp, param = { tarSelf, boLTE, 5000 } };
+			__cast_spell(spell_common[2].id, spell_common[2].target, spell_common[2].chance, spell_common[2].cd);
+		},	
+		__cast_spell(spell_common[3].id, spell_common[3].target, spell_common[3].chance, spell_common[3].cd);
+	},
+};
+
+stage_tree_1 =
+{ batSequencer,
+	{ batCheckBossState, param = { 1 } },
+	fight_sub,
+	{ batSequencer,
+      	{ batCheckCharHp, param = { tarSelf, boLTE, 8000 } };
+		__cast_spell(spell_common[1].id, spell_common[1].target, spell_common[1].chance, spell_common[1].cd);
+		{ batSetBossState, param = { 2 } },
+	},
+};
+
+stage_tree_2 =
+{ batSequencer,
+	{ batCheckBossState, param = { 2 } },
+	fight_sub,
+	{ batSequencer,
+      	{ batCheckCharHp, param = { tarSelf, boLTE, 6000 } };
+		__cast_spell(spell_common[1].id, spell_common[1].target, spell_common[1].chance, spell_common[1].cd);
+		{ batSetBossState, param = { 3 } },
+	},
+};
+
+stage_tree_3 =
+{ batSequencer,
+	{ batCheckBossState, param = { 3 } },
+	fight_sub,
+	{ batSequencer,
+      	{ batCheckCharHp, param = { tarSelf, boLTE, 4000 } };
+		__cast_spell(spell_common[1].id, spell_common[1].target, spell_common[1].chance, spell_common[1].cd);
+		{ batSetBossState, param = { 4 } },
+	},
+};
+
+stage_tree_4 =
+{ batSequencer,
+	{ batCheckBossState, param = { 4 } },
+	fight_sub,
+	{ batSequencer,
+      	{ batCheckCharHp, param = { tarSelf, boLTE, 2000 } };
+		__cast_spell(spell_common[1].id, spell_common[1].target, spell_common[1].chance, spell_common[1].cd);
+		{ batSetBossState, param = { boss_stage_5 } },
+	},
+};
+
+stage_tree_5 =
+{ batSequencer,
+	{ batCheckBossState, param = { 5 } },
+	fight_sub,
+};
+
+on_cast_spell =
+{ batSelector,
+	stage_tree_1,
+	stage_tree_2,
+	stage_tree_3,
+	stage_tree_4,
+	stage_tree_5,
+};
+
+on_wander =
+{ batSequencer, 
+	{ batSetBossState, param = { 1 } },
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[2].id, spell_common[2].cd);
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[3].id, spell_common[3].cd);
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[4].id, spell_common[4].cd);
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[7].id, spell_common[7].cd);
+	{ batCheckCDTimer , param = { COOLDOWN_AI , 100 },},
+	{ batSetCharHp , param = { tarSelf , 0 },},	
+};
+
+evtAIDie = 
+{batParallel ,
+    { batSequencer,
+        { batSay, param = { cctScreen, 50310, cltNormal },},
+        --{ batSpawnSingleNpc, param={ 0 },},
+    },
+};

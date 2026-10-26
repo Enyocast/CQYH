@@ -1,0 +1,29 @@
+evtAIFight =
+{
+    { batSelector,
+		__check_live_timer(d.nLiveTime),
+		{ batCastSpellToTarget, param = { d.nSpellID[nastNormalSpell1], tarHost } },
+	};
+    { batParallel,
+        __issue_threat_signal(d.nSpreadThreatCount),
+        __change_target(d.nChangeTargetChance, d.nChangeTargetCDTime, d.nChaseRange, d.nChangeTargetDelayTime),
+        { batSelector,
+            __check_live_timer(d.nLiveTime),
+            __check_out_of_range(d.nChaseRange),    
+            __check_target_die(d.nChaseRange),
+            __flee(d.nFleeHpPercent, d.nFleeChance, 20000, d.nFleeDuration, d.nRunSpeed * 1000 / GAME_FPS),
+            'on_fight_move',
+            __fight_move(d.nPreferDistance, d.nWithdrawThreshold, d.nChaseThreshold, d.nRunSpeed * 1000 / GAME_FPS, d.nStepAroundChance, d.nStepAroundCDTime),
+            'on_cast_spell',
+            __cast_spell(d.nSpellID[nastNormalSpell1], tarHost, 10000, 250, 0, timer_type, timer_index, hp_percent)		--
+            __chase(d.nRunSpeed * 1000 / GAME_FPS, d.nPreferDistance, d.nChaseThreshold, d.nChaseDelayTime),
+        },
+    };
+};
+
+
+--evtAIDie =
+--{ batSelector,
+--	{ batCastSpellToTarget, param = { d.nSpellID[astDead], tarHost } },
+--	{ batCastSpellToTarget, param = { d.nSpellID[astDead], tarSelf } },
+--};

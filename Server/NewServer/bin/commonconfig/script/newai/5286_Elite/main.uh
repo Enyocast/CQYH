@@ -1,0 +1,27 @@
+
+on_enter_fight = 
+{ batSequencer, 
+ { batSetCDTimer, param = { COOLDOWN_AI, 10, 25000 } },
+ { batSetCDTimer, param = { COOLDOWN_AI, 11, 20000 } },
+};
+
+on_cast_spell = 
+{ batSequencer,
+	{ batCheckCanCastSpell },
+	__check_cd_timer(COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime),
+	{ batSelector, 
+		{ batSequencer,	
+		    { batCheckCDTimer, param = { COOLDOWN_AI, 10 } },
+			{ batSyncCastSpellToTarget, param = { 3771, tarFarthestEnemy  } },		
+			{ batSetCDTimer, param = { COOLDOWN_AI, 10, 25000 } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime } },
+	    },	
+		{ batSequencer,
+		    { batCheckCDTimer, param = { COOLDOWN_AI, 11 } },
+			{ batSyncCastSpellToTarget, param = { 3772, tarSelf  } },		
+			{ batSetCDTimer, param = { COOLDOWN_AI, 11, 30000 } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime } },
+	    },	
+    },
+};
+		

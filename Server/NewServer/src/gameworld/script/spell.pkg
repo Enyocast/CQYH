@@ -1,0 +1,191 @@
+$pfile "script/common.pkg"
+$#include "spell.h"
+$#include "spell_set.h"
+$#include "aura.h"
+$#include "spell_slot.h"
+$#include "spell_config.h"
+$#include "spell_book.h"
+$#include "spell_instance.h"
+$#include "aura_instance.h"
+$#include "target_scanner.h"
+$hfile "../../../Common/define/spell_def.h"
+
+class CSpell
+{
+public:
+	inline INT32 GetID(void);
+	inline INT32 GetLevel(void);
+	inline INT32 GetRuneSlot(void);
+	inline INT32 GetAttr(INT32 eAttrType);
+	
+	inline BOOL CanBindSlot(INT32 nSlotID);
+	inline BOOL CanShowOnUI(void);
+	inline BOOL CanLearnByClass(INT32 nClass);
+};
+
+class CSpellTemplate : public CSpell
+{
+public:
+	virtual void SetAttr(INT32 eAttrType, INT32 nVal);
+};
+
+class CSpellSet
+{
+	inline INT32 GetID(void);
+	inline INT32 GetLevel(void);
+	CSpell* GetSpell(void);
+};
+
+class CSpellInstance : public CSpell
+{
+public:
+	inline UINT32 GetFromObjID(void);
+	inline CTargetScanner& GetScanner(void);
+
+	inline INT64 GetInitX(void);
+	inline INT64 GetInitY(void);
+	inline INT64 GetInitZ(void);
+
+	inline INT32 GetAtkSpeedFactor(void);
+	inline INT32 GetWeaponSpeedFactor(void);
+	inline INT32 GetWeaponStiffFactor(void);
+
+	inline INT32 GetCastSerial(void);
+	inline INT32 GetEffectSerial(void);
+
+	inline INT32 GetPrepareTimeMinFrm(void);
+	inline INT32 GetPrepareTimeMaxFrm(void);
+	inline INT32 GetIntervalFrm(void);
+	inline INT32 GetHardTimeFrm(void);
+	inline INT32 GetResetTimeFrm(void);
+	inline INT32 GetCacheTimeFrm(void);
+	inline INT32 GetAccumulateTimeMaxFrm(void);
+	inline INT32 GetStiffFrm(void);
+	inline INT32 GetExCastFrm(INT32 idx);
+
+};
+
+class CSpellSlot
+{
+public:
+	inline void Lock(BOOL bLock);
+	inline BOOL IsLocked(void);
+	INT32 GetMainSpellID(void);
+};
+
+class CSpellSet
+{
+public:
+	inline INT32 GetID(void);
+	inline INT32 GetLevel(void);
+	inline INT32 GetRuneSlot(void);
+};
+
+
+
+class CAura
+{
+public:
+	inline INT32 GetID(void);
+	inline INT32 GetAttr(INT32 eAttrType);
+
+	inline INT32 GetDurationFrm(void);
+	inline INT32 GetIntervalFrm(void);
+	inline INT32 GetDelayFrm(void);
+	inline INT32 GetEffectMinFrm(void);
+};
+
+class CAuraTemplate : public CAura
+{
+public:
+	inline void InitAttr(INT32 eAttrType, INT32 nVal);
+	inline void InitWithData(AURA_ENTRY* pData);
+};
+
+class CAuraInstance : public CAura
+{
+public:
+	inline UINT32 GetInstanceID(void);
+	inline INT32 GetStackCount(void);
+	inline UINT32 GetCasterID(void);
+	inline UINT32 GetFromObjID(void);
+	inline INT32 GetStrengthLevel(void);
+	inline INT32 GetTotalEffectValue(void);
+	inline INT32 GetEffectPct(void);
+	inline INT32 GetEffectValue(void);
+	inline INT32 GetSpellID(void);
+	inline INT32 GetSpellLevel(void);
+	UINT32 GetRemainFrm(void);
+};
+
+class CAuraList
+{
+public:
+	CAuraInstance* BeginAura(INT32 nEffectType);
+	CAuraInstance* NextAura(INT32 nEffectType, CAuraInstance* poPrevAura);
+};
+
+class CSpellConfig
+{
+public:
+	static CSpellConfig& GetInstance(void);
+	
+	CAuraTemplate* FindAuraTemplate(INT32 nAuraID);
+
+	CAuraTemplate* NewAuraTemplate(INT32 nAuraID);
+
+	INT32 GetHighestLevel(INT32 nSpellID);
+
+	CSpellTemplate* FindSpellTemplate(INT32 nSpellID, INT32 nSpellLevel, INT32 nRuneID);
+
+	CSpellTemplate* SetSpellTemplate(INT32 nSpellID, INT32 nSpellLevel, INT32 nRuneID, const SPELL_ENTRY* pData);
+
+	BOOL SetSpellMaxProgress(INT32 nSpellID, INT32 nSpellLevel, INT32 nMaxProgress);
+
+	BOOL GetMaxProgress(INT32 nSpellID, INT32 nSpellLevel, INT32& nMaxProgress);
+	
+	void BeginSpell(void);
+
+	CSpellTemplate* NextSpell(void);
+};
+
+
+class ISpellBook
+{
+public:
+	virtual CSpell* GetMainSpell(INT32 nSpellID) = 0;
+
+	virtual CSpellSet* GetSpellSet(INT32 nSpellID) = 0;
+
+	virtual void BeginSpellSet(void) = 0;
+
+	virtual CSpellSet* NextSpellSet(void) = 0;
+
+	virtual void RemoveSpell(INT32 nSpellID) = 0;
+
+};
+
+class CTargetScanner
+{
+public:
+	inline UINT32 GetLockedTarget(void);
+
+	inline INT64 GetTargetX(void);
+	inline INT64 GetTargetY(void);
+	inline INT64 GetTargetZ(void);
+
+	inline INT32 GetRangeType(void);
+	inline INT32 GetParam1(void);
+	inline INT32 GetParam2(void);
+	inline INT32 GetParam3(void);
+
+	inline INT32 GetTargetCount(void);
+
+	inline INT32 GetDirection(void);
+
+	void BeginTarget(void);
+	UINT32 NextTarget(void);
+	UINT32 LoopNextTarget(void);
+};
+
+

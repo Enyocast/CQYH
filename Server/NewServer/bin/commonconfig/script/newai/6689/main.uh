@@ -1,0 +1,28 @@
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { 666527, 50000, 0, 0 } },	
+	{ batSequencer,
+		{ batRoleOpenDialog, param = { 666528, 50000, 0, 0 } },	
+		{ batSelector,
+			{ batSequencer, 
+				{batRoleCheckInteractOption, param = { 1 } },
+				{ batSelector,
+					
+					{ batSequencer,
+						{ batRoleCheckRoleVariable, param = { boGTE, 177, 1 } },
+						{ batRoleTeleport, param={ 25989, 56905, 4731, 142 },
+						},
+					},
+					{ batSequencer,
+						{ batRoleOpenDialog, param = { 666535, 50000, 0, 0 } },	
+					},
+				},	
+			},
+			{ batSequencer, 
+				{ batRoleCheckInteractOption, param = { 2 } },
+				{ batReturnFail },
+			},
+		},	
+		
+	},	
+};

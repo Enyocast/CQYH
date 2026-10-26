@@ -1,0 +1,11 @@
+DROP PROCEDURE IF EXISTS `update_db`;
+
+CREATE PROCEDURE update_db()
+BEGIN
+	CREATE TABLE `version` (`id` VARCHAR(64) NOT NULL,`number` INT(4) NOT NULL)  ENGINE=InnoDB DEFAULT CHARSET=utf8;
+	INSERT INTO `version` VALUES('all', 0);
+END;
+
+CALL update_db();
+
+DROP PROCEDURE IF EXISTS `update_db`;

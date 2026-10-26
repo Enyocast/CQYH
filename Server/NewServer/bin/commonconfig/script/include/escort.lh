@@ -1,0 +1,111 @@
+
+ESCORT_ACTIVITY_ID = 1;                              -- 押镖活动id
+ESCORT_QUEST_ID = 2049;                              -- 押镖任务ID
+ESCORT_QUEST_CAN_COMPLETE_VAR_ID = 1;                -- 任务变量id 标记任务可完成
+ESCORT_QUEST_CAN_COMPLETE_VAR_VALUE = 1;             -- 任务变量值 标记任务可完成
+
+VAR_ROLE_ESCORT_CAR_ID = 178;                        -- 角色镖车id变量
+VAR_ROLE_LAST_ESCORT_TIME = 179;                     -- 角色上次接镖时间变量
+VAR_ROLE_ESCORT_CAR_TEMP_ID = 184;                   -- 角色镖车模板id变量
+VAR_ROLE_ESCORT_BUSINESS_LEVEL = 186;                -- 角色接镖时的商会等级变量
+ESCORT_FOLLOW_Y_POS = -(1*GRID_WIDTH);               -- 镖车跟随的y轴位置（角色的前后格子数）
+ESCORT_RETURN_VALID_GRID_COUNT = 6;                  -- 还镖（镖车与交镖人）的有效格子距离
+ESCORT_CAR_VALID_FOLLOW_DISTANCE = 7 * GRID_WIDTH;   -- 镖车与角色的有效的距离
+
+BROCAST_LOSE_ESCORT_INTERVAL = 20000;                -- 镖车丢失通知时间间隔（单位/ms）
+CHECK_ESCORT_DISTANCE_INTERVAL = 1000;               -- 检测镖车与角色的距离时间间隔（单位/ms）
+
+ESCORT_DIE_DROP_PILE_MONEY_COUNT = 2000;             -- 镖车被打破后每堆掉落金币的数量
+ESCORT_DIE_DROP_MAX_PILE_COUNT = 81;                 -- 镖车被打破后掉落金币最大堆数
+ESCORT_COEFF_PROP_LOW = 4000;                        -- 镖车系数万分比下限
+ESCORT_COEFF_PROP_UP = 6000;                         -- 镖车系数万分比上限
+ESCORT_ACCEPT_BASE_MONEY = 100000;                   -- 押镖基本押金费用
+ESCORT_ACCEPT_BASE_BG = 1000;                        -- 押镖基本帮贡费用
+ESCORT_ACCEPT_BASE_ITEM_SS = 1800001;                --押开启镖车所需的物品
+ESCORT_ACCEPT_BASE_ITEM_S = 1800002;                 --押开启镖车所需的物品
+ESCORT_ACCEPT_BASE_ITEM_A = 1800003;                 --押开启镖车所需的物品
+
+VAR_AI_ESCORT_NOT_GENERATE_DROP = 0;                 -- 镖车npc ai变量：die tree不产生掉落标记，1-不产生，0-产生
+VAR_AI_ESCORT_BUSINESS_LEVEL = 1;                    -- 镖车npc ai变量：商会等级
+VAR_AI_ESCORT_DEAD = 2;                              -- 镖车npc ai变量：镖车已死亡
+DO_GENERATE_DROP = 0;                                -- 产生掉落
+DO_NOT_GENERATE_DROP = 1;                            -- 不产生掉落
+ESCORT_NOT_DEAD = 0;                                 -- 镖车未死亡
+ESCORT_ALREADY_DEAD = 1;                             -- 镖车已死亡
+
+
+--
+-- 生成镖车信息配置表
+--
+-- id: 镖车模板id
+-- 概率范围[1, 10000]，注意，所有项的概率上下限必须在[1, 10000]内
+-- prop_low: 概率值下限（闭区间）
+-- prop_up: 概率值下限（闭区间）
+-- coeff: 镖车系数
+-- accept_base_money_cost: 接镖基本金币费用
+-- accept_base_bg_cost: 接镖基本帮贡费用
+-- award_multi: 回馈倍数（押金的倍数）
+ESCORT_CAR_INFO_TABLE = 
+{
+    {
+	id = 6110,             
+	prop_low = 1,
+	prop_up = 9000,   
+	coeff = 1,
+	accept_base_money_cost = ESCORT_ACCEPT_BASE_MONEY,
+	accept_base_bg_cost = ESCORT_ACCEPT_BASE_BG,
+	accept_base_item_id = ESCORT_ACCEPT_BASE_ITEM_A,
+	award_item = 1,
+	award_multi = 2;     
+    },
+    {
+	id = 6131,       
+	prop_low = 9001,
+	prop_up = 10000,  
+	coeff = 2,
+	accept_base_money_cost = ESCORT_ACCEPT_BASE_MONEY,    
+	accept_base_bg_cost = ESCORT_ACCEPT_BASE_BG,  
+	accept_base_item_id = ESCORT_ACCEPT_BASE_ITEM_S,
+	award_item = 1,
+	award_multi = 3;     
+    },
+    {
+	id = 6131,       
+	prop_low = 9001,
+	prop_up = 10000,  
+	coeff = 2,
+	accept_base_money_cost = ESCORT_ACCEPT_BASE_MONEY,    
+	accept_base_bg_cost = ESCORT_ACCEPT_BASE_BG,  
+	accept_base_item_id = ESCORT_ACCEPT_BASE_ITEM_SS,
+	award_item = 1,
+	award_multi = 4;     
+    },
+
+};
+
+function find_escort_car_info(car_id)
+    for _,v in ipairs(ESCORT_CAR_INFO_TABLE) do
+        if v.id == car_id then
+            return v;
+        end
+    end
+
+    return nil;
+end
+
+function random_car_info(item_id)
+   -- local prop_value = math.random(1, 10000);
+    for _,v in ipairs(ESCORT_CAR_INFO_TABLE) do
+        if v.accept_base_item_id == item_id then
+            return v;
+        end
+    end
+
+    return nil;
+end
+
+function cal_accept_escort_cost(baseCost, guildBuildingLevel)
+
+    rInt, rFra = math.modf(baseCost * ( 10 + (guildBuildingLevel - 1)) / 10);
+	return rInt;
+end

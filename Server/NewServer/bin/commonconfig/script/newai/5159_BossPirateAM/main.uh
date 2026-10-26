@@ -1,0 +1,113 @@
+on_enter_fight = 
+{ batParallel,
+   -- { batPlayAction, param = { 253 } },
+    --__set_cd_timer(COOLDOWN_SCRIPT_SPELL, 5565, 15000);
+     { batSetCDTimer, param={ COOLDOWN_AI , 8, 60000 },},
+    -- { batSequencer,
+    --     { batCloseDoor, param = { 63 } },
+    --     { batSetSceneVariable, param={ 14, 1} },
+    -- },
+};
+
+on_cast_spell = 
+{ batSelector,
+	{ batSequencer, 
+        { batCheckCDTimer, param={ COOLDOWN_AI , 1 },
+        },
+        { batSetCDTimer, param={ COOLDOWN_AI , 1, 5000 },
+        },
+        { batCheckCanCastSpell, 
+        },
+       	{ batRandom, param = { 5000,5000 },
+        --{ batSequencer,
+            -- -- 魅惑      
+            -- { batSyncCastSpellToTarget , param={ 5566 , tarAITarget },
+            -- },
+        },
+    },
+    { batSequencer,
+    	{ batCheckCDTimer, param={ COOLDOWN_AI , 2 },
+        },
+        { batSetCDTimer, param={ COOLDOWN_AI , 2, 4000 },
+        },
+        { batCheckCanCastSpell, 
+        },
+        { batRandom, param = { 6000,4000,4000 },
+	        -- 魔能法球       
+	        { batSyncCastSpellToTarget, param={ 5571 , tarAITarget },
+	        },
+	        -- 暴雷轰       
+	        { batSyncCastSpellToTarget, param={ 5561 , tarAITarget },
+	        },
+	        -- 暴雷轰       
+	        { batSyncCastSpellToTarget, param={ 5561 , tarAITarget },
+	        },
+    	},
+        { batSequencer,
+        	{ batCheckCDTimer, param={ COOLDOWN_AI , 3 },
+        	},
+        	{ batSetCDTimer, param={ COOLDOWN_AI , 3, 6000 },
+        	},
+	     	{ batCheckDistance  , param={tarAITarget, boLT ,400 },
+	        },
+	      	{ batRandom, param = { 4000,6000 },
+	      		{batSequencer,
+		 			--极冻碎裂波
+		            { batSyncCastSpellToTarget , param={ 5560 , tarAITarget },
+		            },
+			        -- 连续闪烁1 离开
+			        { batSyncCastSpellToTarget , param={ 5562 , tarAITarget },
+			        },
+			        -- 魔能法球       
+		       		{ batSyncCastSpellToTarget, param={ 5571 , tarAITarget },
+		       		},
+		       		{ batWait, param={ 3000 }},
+		       		  -- 暴雷轰           
+		            { batSyncCastSpellToTarget , param={ 5561 , tarAITarget },
+		            },
+		       	},
+		       	{batSequencer,
+		 			--连续闪烁1 离开
+		            { batSyncCastSpellToTarget , param={ 5562 , tarAITarget },
+		            },
+		            -- 冰牢
+		            { batSyncCastSpellToTarget, param={ 5564 , tarAITarget },
+		        	},
+		        	 -- 暴雷轰           
+		            { batSyncCastSpellToTarget , param={ 5561 , tarAITarget },
+		            },
+		            { batWait, param={ 1000 }},
+		             -- 暴雷轰           
+		            { batSyncCastSpellToTarget , param={ 5561 , tarAITarget },
+		            },
+		            { batWait, param={ 1000 }},
+		             -- 暴雷轰           
+		            { batSyncCastSpellToTarget , param={ 5561 , tarAITarget },
+		            },
+		            { batWait, param={ 1000 }},
+		             -- 暴雷轰           
+		            { batSyncCastSpellToTarget , param={ 5561 , tarAITarget },
+		            },
+		            { batWait, param={ 2000 }},
+					-- 魅惑 
+		            -- { batSyncCastSpellToTarget , param={ 5566 , tarAITarget },
+            		-- },
+		       	},
+	      	},
+	        -- -- 连续闪烁2 靠近
+	        -- { batSyncCastSpellToTarget , param={ 5563 , tarAITarget },
+	        -- },
+	    },
+	},
+	{ batSequencer,
+    	{ batCheckCDTimer, param={ COOLDOWN_AI , 8 },
+        },
+        { batSetCDTimer, param={ COOLDOWN_AI , 8, 60000 },
+        },
+        { batCheckCanCastSpell, 
+        },
+         -- 招兵买马        
+        { batSyncCastSpellToTarget, param={ 5565 , tarAITarget },
+        },
+	},
+};

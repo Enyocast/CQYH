@@ -1,0 +1,34 @@
+<unires>
+<image-group name="Terrain" option="normal_quality">
+
+<image uid="Terrain45" type="image">
+ <format type="X8R8G8B8" miplevels="1" />
+   
+ <textures count="1">
+  <texture num="0" source="Heightmap46Data/diffusemap.jpg" />
+ </textures>
+</image>
+
+<image uid="MainFrmBg" type="image">
+ <format type="X8R8G8B8" miplevels="1" />   
+ <textures count="1">
+  <texture num="0" source="Heightmap46Data/bg_home.png" />
+ </textures>
+</image>
+
+<image uid="MainFrmSun" type="image">
+ <format type="A8R8G8B8" miplevels="1" />   
+ <textures count="1">
+  <texture num="0" source="Heightmap46Data/undocked_sun.png" />
+ </textures>
+</image>
+
+<image uid="NormalBtn" type="image">
+ <format type="A8R8G8B8" miplevels="1" />   
+ <textures count="1">
+  <texture num="0" source="Heightmap46Data/Normalbtn.png" />
+ </textures>
+</image>
+
+</image-group>
+</unires>

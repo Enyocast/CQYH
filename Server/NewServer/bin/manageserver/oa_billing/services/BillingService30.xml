@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<service  name="BillingService30" id="210" istreestruct="true" serviceencoding="utf-8" sdkencoding="gbk">
+	<type name="userId_type" class="string" code="1"/>
+	<type name="userIdType_type" class="int" code="2"/>
+	<type name="appId_type" class="int" code="3"/>
+	<type name="areaId_type" class="int" code="4"/>
+	<type name="groupId_type" class="int" code="5"/>
+	<type name="pgt_type" class="string" code="6"/>
+	<type name="sessionId_type" class="string" code="7"/>
+	<type name="uniqueId_type" class="string" code="8"/>
+	<type name="payTypeIdInfo_type" class="string" code="9"/>
+	<type name="eventTimestamp_type" class="string" code="10"/>
+	<type name="endpointType_type" class="int" code="11"/>
+	<type name="endpointIp_type" class="string" code="12"/>
+	<type name="roleLevel_type" class="string" code="13"/>
+	<type name="roleName_type" class="string" code="14"/>
+	<type name="tradeType_type" class="int" code="15"/>
+	<type name="payInfo_type" class="string" code="16"/>
+	<type name="goodsInfo_type" class="string" code="17"/>
+	<type name="freezePeriod_type" class="int" code="18"/>
+	<type name="billingOrder_type" class="string" code="19"/>
+	<type name="userIdSrc_type" class="string" code="20"/>
+	<type name="pgtSrc_type" class="string" code="21"/>
+	<type name="sessionIdSrc_type" class="string" code="22"/>
+	<type name="feeInfoSrc_type" class="string" code="23"/>
+	<type name="endpointTypeSrc_type" class="int" code="24"/>
+	<type name="endpointIpSrc_type" class="string" code="25"/>
+	<type name="roleLevelSrc_type" class="string" code="26"/>
+	<type name="roleNameSrc_type" class="string" code="27"/>
+	<type name="userIdDest_type" class="string" code="28"/>
+	<type name="pgtDest_type" class="string" code="29"/>
+	<type name="sessionIdDest_type" class="string" code="30"/>
+	<type name="feeInfoDest_type" class="string" code="31"/>
+	<type name="endpointTypeDest_type" class="int" code="32"/>
+	<type name="endpointIpDest_type" class="string" code="33"/>
+	<type name="roleLevelDest_type" class="string" code="34"/>
+	<type name="roleNameDest_type" class="string" code="35"/>
+	<type name="transferPayInfo_type" class="string" code="36"/>
+	<type name="transferGoodsInfo_type" class="string" code="37"/>
+	<type name="fromPayInfo_type" class="string" code="38"/>
+	<type name="toPayType_type" class="int" code="39"/>
+	<type name="queriedId_type" class="string" code="40"/>
+	<type name="verifiedId_type" class="string" code="41"/>
+	<type name="verificationCode_type" class="string" code="42"/>
+	<type name="resultCode_type" class="int" code="43"/>
+	<type name="isHttp_type" class="string" code="44"/>
+	<type name="resultDescription_type" class="string" code="45"/>
+	<type name="userPrompts_type" class="string" code="46"/>
+	<type name="balanceInfo_type" class="string" code="47"/>
+	<type name="balanceDetail_type" class="string" code="48"/>
+	<type name="disabledBalanceInfo_type" class="string" code="49"/>
+	<type name="transactionTimestamp_type" class="string" code="50"/>
+	<type name="chargeDetail_type" class="string" code="51"/>
+	<type name="feeDetailSrc_type" class="string" code="52"/>
+	<type name="feeDetailDest_type" class="string" code="53"/>
+	<type name="balanceInfoSrc_type" class="string" code="54"/>
+	<type name="balanceInfoDest_type" class="string" code="55"/>
+	<type name="freezeDetail_type" class="string" code="56"/>
+	<type name="exchangeToDetail_type" class="string" code="57"/>
+	<type name="orderType_type" class="int" code="58"/>
+	<type name="orderStatus_type" class="int" code="59"/>
+	<type name="mobile_type" class="string" code="60"/>
+	<type name="sms_type" class="string" code="61"/>
+	<type name="uniqueIdSrc_type" class="string" code="62"/>
+	<type name="isRollback_type" class="string" code="63"/>
+	<type name="isNotified_type" class="string" code="64"/>
+	<type name="faultCode_type" class="int" code="65"/>
+	
+	<message name="AccountQuery" id="1">
+  		<requestParameter>
+    		<field name="uniqueId" type="uniqueId_type"/>
+			<field name="userId" type="userId_type"/>
+			<field name="userIdType" type="userIdType_type"/>
+			<field name="appId" type="appId_type"/>
+			<field name="areaId" type="areaId_type"/>
+			<field name="groupId" type="groupId_type"/>
+			<field name="pgt" type="pgt_type"/>
+			<field name="sessionId" type="sessionId_type"/>
+			<field name="payTypeIdInfo" type="payTypeIdInfo_type"/>
+			<field name="eventTimestamp" type="eventTimestamp_type"/>
+			<field name="endpointType" type="endpointType_type"/>
+			<field name="endpointIp" type="endpointIp_type"/>
+			<field name="roleLevel" type="roleLevel_type"/>
+			<field name="roleName" type="roleName_type"/>
+			<field name="isHttp" type="isHttp_type"/>
+    </requestParameter>
+		<responseParameter>
+			<field name="resultCode" type="resultCode_type"/>
+			<field name="uniqueId" type="uniqueId_type"/>
+			<field name="resultDescription" type="resultDescription_type"/>
+			<field name="userPrompts" type="userPrompts_type"/>
+			<field name="balanceInfo" type="balanceInfo_type"/>
+			<field name="balanceDetail" type="balanceDetail_type"/>
+			<field name="disabledBalanceInfo" type="disabledBalanceInfo_type"/>
+			<field name="transactionTimestamp" type="transactionTimestamp_type"/>
+		</responseParameter>
+	</message>
+
+	<message name="Charge" id="2">
+  		<requestParameter>
+    		<field name="uniqueId" type="uniqueId_type"/>
+			<field name="userId" type="userId_type"/>
+			<field name="userIdType" type="userIdType_type"/>
+			<field name="appId" type="appId_type"/>
+			<field name="areaId" type="areaId_type"/>
+			<field name="groupId" type="groupId_type"/>
+			<field name="pgt" type="pgt_type"/>
+			<field name="sessionId" type="sessionId_type"/>
+			<field name="tradeType" type="tradeType_type"/>
+			<field name="payInfo" type="payInfo_type"/>
+			<field name="goodsInfo" type="goodsInfo_type"/>
+			<field name="eventTimestamp" type="eventTimestamp_type"/>
+			<field name="endpointType" type="endpointType_type"/>
+			<field name="endpointIp" type="endpointIp_type"/>
+			<field name="roleLevel" type="roleLevel_type"/>
+			<field name="roleName" type="roleName_type"/>
+			<field name="isHttp" type="isHttp_type"/>
+    </requestParameter>
+		<responseParameter>
+			<field name="resultCode" type="resultCode_type"/>
+			<field name="uniqueId" type="uniqueId_type"/>
+			<field name="faultCode" type="faultCode_type"/>
+		</responseParameter>
+	</message>
+
+	<message name="TimeCharge" id="3">
+  		<requestParameter>
+    		<field name="uniqueId" type="uniqueId_type"/>
+			<field name="userId" type="userId_type"/>
+			<field name="userIdType" type="userIdType_type"/>
+			<field name="appId" type="appId_type"/>
+			<field name="areaId" type="areaId_type"/>
+			<field name="groupId" type="groupId_type"/>
+			<field name="pgt" type="pgt_type"/>
+			<field name="sessionId" type="sessionId_type"/>
+			<field name="tradeType" type="tradeType_type"/>
+			<field name="payInfo" type="payInfo_type"/>
+			<field name="eventTimestamp" type="eventTimestamp_type"/>
+			<field name="endpointType" type="endpointType_type"/>
+			<field name="endpointIp" type="endpointIp_type"/>
+			<field name="roleLevel" type="roleLevel_type"/>
+			<field name="roleName" type="roleName_type"/>
+			<field name="isHttp" type="isHttp_type"/>
+			<field name="isNotified" type="isNotified_type"/>
+    </requestParameter>
+		<responseParameter>
+			<field name="resultCode" type="resultCode_type"/>
+			<field name="uniqueId" type="uniqueId_type"/>
+			<field name="faultCode" type="faultCode_type"/>
+		</responseParameter>
+	</message>
+
+	<message name="ChargeLock" id="4">
+  		<requestParameter>
+    		<field name="uniqueId" type="uniqueId_type"/>
+			<field name="userId" type="userId_type"/>
+			<field name="userIdType" type="userIdType_type"/>
+			<field name="appId" type="appId_type"/>
+			<field name="areaId" type="areaId_type"/>
+			<field name="groupId" type="groupId_type"/>
+			<field name="pgt" type="pgt_type"/>
+			<field name="sessionId" type="sessionId_type"/>
+			<field name="tradeType" type="tradeType_type"/>
+			<field name="payInfo" type="payInfo_type"/>
+			<field name="goodsInfo" type="goodsInfo_type"/>
+			<field name="freezePeriod" type="freezePeriod_type"/>
+			<field name="eventTimestamp" type="eventTimestamp_type"/>
+			<field name="endpointType" type="endpointType_type"/>
+			<field name="endpointIp" type="endpointIp_type"/>
+			<field name="roleLevel" type="roleLevel_type"/>
+			<field name="roleName" type="roleName_type"/>
+			<field name="isHttp" type="isHttp_type"/>
+    </requestParameter>
+		<responseParameter>
+			<field name="resultCode" type="resultCode_type"/>
+			<field name="uniqueId" type="uniqueId_type"/>
+			<field name="faultCode" type="faultCode_type"/>		
+		</responseParameter>
+	</message>
+
+	<message name="ChargeConfirm" id="5">
+  		<requestParameter>
+    		<field name="uniqueId" type="uniqueId_type"/>
+			<field name="billingOrder" type="billingOrder_type"/>
+			<field name="pgt" type="pgt_type"/>
+			<field name="sessionId" type="sessionId_type"/>
+			<field name="eventTimestamp" type="eventTimestamp_type"/>
+			<field name="endpointType" type="endpointType_type"/>
+			<field name="endpointIp" type="endpointIp_type"/>
+			<field name="roleLevel" type="roleLevel_type"/>
+			<field name="roleName" type="roleName_type"/>
+			<field name="isHttp" type="isHttp_type"/>
+		</requestParameter>
+		<responseParameter>
+			<field name="resultCode" type="resultCode_type"/>
+			<field name="uniqueId" type="uniqueId_type"/>
+			<field name="faultCode" type="faultCode_type"/>
+		</responseParameter>
+	</message>
+
+
+	<message name="ChargeCancel" id="6">
+  		<requestParameter>
+    		<field name="uniqueId" type="uniqueId_type"/>
+			<field name="billingOrder" type="billingOrder_type"/>
+			<field name="pgt" type="pgt_type"/>
+			<field name="sessionId" type="sessionId_type"/>
+			<field name="eventTimestamp" type="eventTimestamp_type"/>
+			<field name="endpointType" type="endpointType_type"/>
+			<field name="endpointIp" type="endpointIp_type"/>
+			<field name="roleLevel" type="roleLevel_type"/>
+			<field name="roleName" type="roleName_type"/>
+			<field name="isRollback" type="isRollback_type"/>
+			<field name="isHttp" type="isHttp_type"/>
+		</requestParameter>
+		<responseParameter>
+			<field name="resultCode" type="resultCode_type"/>
+			<field name="uniqueId" type="uniqueId_type"/>
+			<field name="faultCode" type="faultCode_type"/>
+		</responseParameter>
+	</message>
+
+
+	<message name="ConsignTransferLock" id="7">
+  		<requestParameter>
+    		<field name="uniqueId" type="uniqueId_type"/>
+			<field name="userIdSrc" type="userIdSrc_type"/>
+			<field name="pgtSrc" type="pgtSrc_type"/>
+			<field name="sessionIdSrc" type="sessionIdSrc_type"/>
+			<field name="feeInfoSrc" type="feeInfoSrc_type"/>
+			<field name="endpointTypeSrc" type="endpointTypeSrc_type"/>
+			<field name="endpointIpSrc" type="endpointIpSrc_type"/>
+			<field name="roleLevelSrc" type="roleLevelSrc_type"/>
+			<field name="roleNameSrc" type="roleNameSrc_type"/>
+			<field name="userIdType" type="userIdType_type"/>
+			<field name="appId" type="appId_type"/>
+			<field name="areaId" type="areaId_type"/>
+			<field name="groupId" type="groupId_type"/>
+			<field name="tradeType" type="tradeType_type"/>
+			<field name="transferPayInfo" type="transferPayInfo_type"/>
+			<field name="transferGoodsInfo" type="transferGoodsInfo_type"/>
+			<field name="freezePeriod" type="freezePeriod_type"/>
+			<field name="eventTimestamp" type="eventTimestamp_type"/>
+			<field name="isHttp" type="isHttp_type"/>
+		</requestParameter>
+		<responseParameter>
+			<field name="resultCode" type="resultCode_type"/>
+			<field name="uniqueId" type="uniqueId_type"/>
+			<field name="faultCode" type="faultCode_type"/>
+		</responseParameter>
+	</message>
+
+	<message name="ConsignTransferConfirm" id="8">
+  		<requestParameter>
+    		<field name="uniqueId" type="uniqueId_type"/>
+			<field name="billingOrder" type="billingOrder_type"/>
+			<field name="pgtSrc" type="pgtSrc_type"/>
+			<field name="sessionIdSrc" type="sessionIdSrc_type"/>
+			<field name="feeInfoSrc" type="feeInfoSrc_type"/>
+			<field name="endpointTypeSrc" type="endpointTypeSrc_type"/>
+			<field name="endpointIpSrc" type="endpointIpSrc_type"/>
+			<field name="roleLevelSrc" type="roleLevelSrc_type"/>
+			<field name="roleNameSrc" type="roleNameSrc_type"/>
+			<field name="userIdDest" type="userIdDest_type"/>
+			<field name="userIdType" type="userIdType_type"/>
+			<field name="pgtDest" type="pgtDest_type"/>
+			<field name="sessionIdDest" type="sessionIdDest_type"/>
+			<field name="feeInfoDest" type="feeInfoDest_type"/>
+			<field name="endpointTypeDest" type="endpointTypeDest_type"/>
+			<field name="endpointIpDest" type="endpointIpDest_type"/>
+			<field name="roleLevelDest" type="roleLevelDest_type"/>
+			<field name="roleNameDest" type="roleNameDest_type"/>
+			<field name="transferPayInfo" type="transferPayInfo_type"/>
+			<field name="transferGoodsInfo" type="transferGoodsInfo_type"/>
+			<field name="eventTimestamp" type="eventTimestamp_type"/>
+			<field name="isHttp" type="isHttp_type"/>
+		</requestParameter>
+		<responseParameter>
+			<field name="resultCode" type="resultCode_type"/>
+			<field name="uniqueId" type="uniqueId_type"/>
+			<field name="faultCode" type="faultCode_type"/>
+		</responseParameter>
+	</message>
+
+	<message name="ConsignTransferCancel" id="9">
+  		<requestParameter>
+    		<field name="uniqueId" type="uniqueId_type"/>
+			<field name="billingOrder" type="billingOrder_type"/>
+			<field name="pgtSrc" type="pgtSrc_type"/>
+			<field name="sessionIdSrc" type="sessionIdSrc_type"/>
+			<field name="uniqueIdSrc" type="uniqueIdSrc_type"/>
+			<field name="endpointTypeSrc" type="endpointTypeSrc_type"/>
+			<field name="endpointIpSrc" type="endpointIpSrc_type"/>
+			<field name="roleLevelSrc" type="roleLevelSrc_type"/>
+			<field name="roleNameSrc" type="roleNameSrc_type"/>
+			<field name="eventTimestamp" type="eventTimestamp_type"/>
+			<field name="isRollback" type="isRollback_type"/>
+			<field name="isHttp" type="isHttp_type"/>
+		</requestParameter>
+		<responseParameter>
+			<field name="resultCode" type="resultCode_type"/>
+			<field name="uniqueId" type="uniqueId_type"/>
+			<field name="faultCode" type="faultCode_type"/>
+		</responseParameter>
+	</message>
+
+	<message name="Transfer" id="10">
+  		<requestParameter>
+    		<field name="uniqueId" type="uniqueId_type"/>
+			<field name="userIdSrc" type="userIdSrc_type"/>
+			<field name="pgtSrc" type="pgtSrc_type"/>
+			<field name="sessionIdSrc" type="sessionIdSrc_type"/>
+			<field name="feeInfoSrc" type="feeInfoSrc_type"/>
+			<field name="endpointTypeSrc" type="endpointTypeSrc_type"/>
+			<field name="endpointIpSrc" type="endpointIpSrc_type"/>
+			<field name="roleLevelSrc" type="roleLevelSrc_type"/>
+			<field name="roleNameSrc" type="roleNameSrc_type"/>
+			<field name="userIdDest" type="userIdDest_type"/>
+			<field name="pgtDest" type="pgtDest_type"/>
+			<field name="sessionIdDest" type="sessionIdDest_type"/>
+			<field name="feeInfoDest" type="feeInfoDest_type"/>
+			<field name="endpointTypeDest" type="endpointTypeDest_type"/>
+			<field name="endpointIpDest" type="endpointIpDest_type"/>
+			<field name="roleLevelDest" type="roleLevelDest_type"/>
+			<field name="roleNameDest" type="roleNameDest_type"/>
+			<field name="userIdType" type="userIdType_type"/>
+			<field name="appId" type="appId_type"/>
+			<field name="areaId" type="areaId_type"/>
+			<field name="groupId" type="groupId_type"/>
+			<field name="tradeType" type="tradeType_type"/>
+			<field name="transferPayInfo" type="transferPayInfo_type"/>
+			<field name="transferGoodsInfo" type="transferGoodsInfo_type"/>
+			<field name="eventTimestamp" type="eventTimestamp_type"/>
+			<field name="isHttp" type="isHttp_type"/>
+		</requestParameter>
+		<responseParameter>
+			<field name="resultCode" type="resultCode_type"/>
+			<field name="uniqueId" type="uniqueId_type"/>
+			<field name="faultCode" type="faultCode_type"/>
+		</responseParameter>
+	</message>
+
+	<message name="Exchange" id="11">
+  		<requestParameter>
+    		<field name="uniqueId" type="uniqueId_type"/>
+			<field name="userId" type="userId_type"/>
+			<field name="userIdType" type="userIdType_type"/>
+			<field name="appId" type="appId_type"/>
+			<field name="areaId" type="areaId_type"/>
+			<field name="groupId" type="groupId_type"/>
+			<field name="pgt" type="pgt_type"/>
+			<field name="sessionId" type="sessionId_type"/>
+			<field name="tradeType" type="tradeType_type"/>
+			<field name="fromPayInfo" type="fromPayInfo_type"/>
+			<field name="toPayType" type="toPayType_type"/>
+			<field name="eventTimestamp" type="eventTimestamp_type"/>
+			<field name="endpointType" type="endpointType_type"/>
+			<field name="endpointIp" type="endpointIp_type"/>
+			<field name="roleLevel" type="roleLevel_type"/>
+			<field name="roleName" type="roleName_type"/>
+			<field name="isHttp" type="isHttp_type"/>
+    </requestParameter>
+		<responseParameter>
+			<field name="resultCode" type="resultCode_type"/>
+			<field name="uniqueId" type="uniqueId_type"/>
+			<field name="faultCode" type="faultCode_type"/>
+		</responseParameter>
+	</message>
+
+	<message name="OrderQuery" id="12">
+  		<requestParameter>
+    		<field name="uniqueId" type="uniqueId_type"/>
+			<field name="queriedId" type="queriedId_type"/>
+			<field name="appId" type="appId_type"/>
+			<field name="areaId" type="areaId_type"/>
+			<field name="groupId" type="groupId_type"/>
+			<field name="isHttp" type="isHttp_type"/>
+		</requestParameter>
+		<responseParameter>
+			<field name="resultCode" type="resultCode_type"/>
+			<field name="uniqueId" type="uniqueId_type"/>
+			<field name="resultDescription" type="resultDescription_type"/>
+			<field name="userPrompts" type="userPrompts_type"/>
+			<field name="billingOrder" type="billingOrder_type"/>
+			<field name="orderType" type="orderType_type"/>
+			<field name="orderStatus" type="orderStatus_type"/>
+			<field name="payInfo" type="payInfo_type"/>
+			<field name="freezeDetail" type="freezeDetail_type"/>
+			<field name="chargeDetail" type="chargeDetail_type"/>
+			<field name="transactionTimestamp" type="transactionTimestamp_type"/>
+		</responseParameter>
+	</message>
+
+	<message name="OrderVerify" id="13">
+  		<requestParameter>
+    		<field name="uniqueId" type="uniqueId_type"/>
+			<field name="verifiedId" type="verifiedId_type"/>
+			<field name="verificationCode" type="verificationCode_type"/>
+    </requestParameter>
+		<responseParameter>
+			<field name="resultCode" type="resultCode_type"/>
+			<field name="uniqueId" type="uniqueId_type"/>
+			<field name="resultDescription" type="resultDescription_type"/>
+			<field name="userPrompts" type="userPrompts_type"/>
+			<field name="transactionTimestamp" type="transactionTimestamp_type"/>
+		</responseParameter>
+	</message>
+
+
+	<message name="RiskUnlock" id="14">
+  		<requestParameter>
+    		<field name="uniqueId" type="uniqueId_type"/>
+			<field name="mobile" type="mobile_type"/>
+			<field name="sms" type="sms_type"/>
+		</requestParameter>
+		<responseParameter>
+			<field name="resultCode" type="resultCode_type"/>
+			<field name="uniqueId" type="uniqueId_type"/>
+			<field name="resultDescription" type="resultDescription_type"/>
+			<field name="userPrompts" type="userPrompts_type"/>
+		</responseParameter>
+	</message>
+
+	<message name="RiskResumeOrder" id="15">
+  		<requestParameter>
+    		<field name="uniqueId" type="uniqueId_type"/>
+			<field name="mobile" type="mobile_type"/>
+			<field name="sms" type="sms_type"/>
+		</requestParameter>
+		<responseParameter>
+			<field name="resultCode" type="resultCode_type"/>
+			<field name="uniqueId" type="uniqueId_type"/>
+			<field name="resultDescription" type="resultDescription_type"/>
+			<field name="userPrompts" type="userPrompts_type"/>
+		</responseParameter>
+	</message>
+
+</service>

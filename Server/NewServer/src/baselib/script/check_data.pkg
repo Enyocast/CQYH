@@ -1,0 +1,22 @@
+$hfile "../../inc/baselib/checkdata.h"
+
+
+class CCheckData
+{
+public:
+
+	CCheckData();
+	virtual ~CCheckData();
+
+	BOOL Check(const char* pPath, const char* pFoledrName);
+	CTabFile* GetDataByName(const char* pName); 
+
+	INT32 GetTabRowCount(CTabFile* pTab);
+	INT32 GetNumber(CTabFile* pTab, char* pCol, INT32 nRow);
+	
+	void PrintInfo(char* pInfo);
+	void PrintWrn(char* pWrn);
+	
+	static CCheckData& GetInstance(void);
+};
+

@@ -1,0 +1,62 @@
+local boss_stage_1 = 1;
+local boss_stage_2 = 2;
+
+local spell_stage_1 =
+{
+	{ id = 5590, cd = 3000, chance = 10000 },
+	{ id = 5589, cd = 5000, chance = 10000 },--射箭
+	{ id = 5582, cd = 10000, chance = 10000 },
+};
+
+local spell_stage_2 =
+{
+	{ id = 5585, cd = 6000, chance = 5000 },
+	{ id = 5796, cd = 12000, chance = 10000 },
+	{ id = 5797, cd = 15000, chance = 10000 },
+};
+
+on_init =
+{ batSequencer, 
+	{ batSetFlag, param = { cfImmuneStiff } },
+	{ batSetFlag, param = { cfImmuneControl } },
+	{ batSetFlag, param = { cfImmunePassiveMove } },
+	{ batSetBossState, param = { boss_stage_1 } },
+};
+
+on_wander =
+{ batSequencer, 
+	{ batSetBossState, param = { boss_stage_1 } },
+};
+
+boss_stage_tree_1 =
+{ btSequencer,
+	{ batCheckBossState, param = { boss_stage_1 } },
+	{ btParallel,
+		__cast_spell(spell_stage_1[1].id, tarAITarget, spell_stage_1[1].chance, spell_stage_1[1].cd);
+		__cast_spell(spell_stage_1[2].id, tarAITarget, spell_stage_1[2].chance, spell_stage_1[2].cd);
+		__cast_spell(spell_stage_1[3].id, tarAITarget, spell_stage_1[3].chance, spell_stage_1[3].cd);
+	},
+
+	{ btSequencer,
+		{ batCheckCharHp, param = { tarSelf, boLTE, 5000, 0 } },
+		__cast_spell(5795, tarSelf, 10000, 0);
+		{ batSetBossState, param = { boss_stage_2 } },
+	},
+};
+
+boss_stage_tree_2 =
+{ btSequencer,
+	{ batCheckBossState, param = { boss_stage_2 } },
+	{ btSelector,
+		__cast_spell(spell_stage_2[1].id, tarAITarget, spell_stage_2[1].chance, spell_stage_2[1].cd);
+		__cast_spell(spell_stage_2[2].id, tarAITarget, spell_stage_2[2].chance, spell_stage_2[2].cd);
+		__cast_spell(spell_stage_2[3].id, tarAITarget, spell_stage_2[3].chance, spell_stage_2[3].cd);
+	},
+};
+
+on_cast_spell = 
+{ btSelector,
+	boss_stage_tree_1,
+	boss_stage_tree_2,
+};
+

@@ -1,0 +1,135 @@
+﻿evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { strAI6172_1, 30000 } },
+	{ batSelector,	
+		{ batSequencer, 
+			{ batRoleCheckInteractOption, param = { 1 } },
+
+			{ batRoleOpenDialog, param = { strAI6172_2, 30000 } },
+
+			{ batRoleCheckInteractOption, param = { 1 } },
+
+			{ batSelector,
+				{ batSequencer,
+					{ batRoleCheckItemCount, param = { boLT,94005, 1 } },
+
+					{ batRoleOpenDialog, param = { strAI6172_3, 30000 } },
+				},
+
+				{ batSequencer,
+					{ batRoleCheckItemCount, param = { boGTE,94005, 1 } },
+
+					{ batRoleDelItem, param = { 94005, 1 } },
+
+					{ batRandom, param = {2500, 2500, 2500, 2500 },
+						{ batRandom, param = {2500, 2500, 2500, 2500 },
+							{ batRoleTeleport, param={ 30900,17500,4533, 197 },},
+
+							{ batRoleTeleport, param={ 30900,17400,4533, 197 },},
+
+							{ batRoleTeleport, param={ 30900,17600,4533, 197 },},
+
+							{ batRoleTeleport, param={ 30900,17700,4533, 197 },},
+						},
+						{ batRandom, param = {2500, 2500, 2500, 2500 },
+							{ batRoleTeleport, param={ 30000,16400,4533, 197 },},
+
+							{ batRoleTeleport, param={ 30000,16500,4533, 197 },},
+
+							{ batRoleTeleport, param={ 30000,16700,4533, 197 },},
+
+							{ batRoleTeleport, param={ 30000,17000,4533, 197 },},
+						},
+						{ batRandom, param = {2500, 2500, 2500, 2500 },
+							{ batRoleTeleport, param={ 29700,16500,4533, 197 },},
+
+							{ batRoleTeleport, param={ 29500,16400,4533, 197 },},
+
+							{ batRoleTeleport, param={ 29600,16600,4533, 197 },},
+
+							{ batRoleTeleport, param={ 29400,16300,4533, 197 },},
+						},
+						{ batRandom, param = {2500, 2500, 2500, 2500 },
+							{ batRoleTeleport, param={ 30900,17400,4533, 197 },},
+
+							{ batRoleTeleport, param={ 30900,17400,4533, 197 },},
+
+							{ batRoleTeleport, param={ 30900,17400,4533, 197 },},
+
+							{ batRoleTeleport, param={ 30900,17400,4533, 197 },},
+						},
+					},
+				},
+			},
+	    },
+		{ batSequencer,
+			{ batRoleCheckInteractOption, param = { 2 } },
+
+			{ batSelector,
+				{ batSequencer,
+					{ batRoleIsTeamLeader },
+
+					{ batRoleOpenDialog, param = { strAI6172_4, 30000 } },
+
+					{ batRoleCheckInteractOption, param = { 1 } },
+
+					{ batSelector,
+						{ batSequencer,
+							{ batRoleCheckItemCount, param = { boLT,94006, 1 } },
+
+							{ batRoleOpenDialog, param = { strAI6172_6, 30000 } },
+						},
+
+						{ batSequencer,
+							{ batRoleCheckItemCount, param = { boGTE,94006, 1 } },
+
+							{ batRoleDelItem, param = { 94006, 1 } },
+
+							{ batRandom, param = {2500, 2500, 2500, 2500 },
+								{ batRandom, param = {2500, 2500, 2500, 2500 },
+									{ batRoleTeleport, param={ 30900,17500,4533, 197 },},
+
+									{ batRoleTeleport, param={ 30900,17400,4533, 197 },},
+
+									{ batRoleTeleport, param={ 30900,17600,4533, 197 },},
+
+									{ batRoleTeleport, param={ 30900,17700,4533, 197 },},
+								},
+								{ batRandom, param = {2500, 2500, 2500, 2500 },
+									{ batRoleTeleport, param={ 30000,16400,4533, 197 },},
+
+									{ batRoleTeleport, param={ 30000,16500,4533, 197 },},
+
+									{ batRoleTeleport, param={ 30000,16700,4533, 197 },},
+
+									{ batRoleTeleport, param={ 30000,17000,4533, 197 },},
+								},
+								{ batRandom, param = {2500, 2500, 2500, 2500 },
+									{ batRoleTeleport, param={ 29700,16500,4533, 197 },},
+
+									{ batRoleTeleport, param={ 29500,16400,4533, 197 },},
+
+									{ batRoleTeleport, param={ 29600,16600,4533, 197 },},
+
+									{ batRoleTeleport, param={ 29400,16300,4533, 197 },},
+								},
+								{ batRandom, param = {2500, 2500, 2500, 2500 },
+									{ batRoleTeleport, param={ 30900,17400,4533, 197 },},
+
+									{ batRoleTeleport, param={ 30900,17400,4533, 197 },},
+
+									{ batRoleTeleport, param={ 30900,17400,4533, 197 },},
+
+									{ batRoleTeleport, param={ 30900,17400,4533, 197 },},
+								},
+							},
+						},
+					},
+				},
+				{ batSequencer,
+					{ batRoleOpenDialog, param = { strAI6172_5, 30000 } },
+				},
+			},
+	    },
+	},
+};

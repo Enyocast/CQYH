@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Final Debug|x64">
+      <Configuration>Final Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Final Release|x64">
+      <Configuration>Final Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7FC53F49-2F00-4121-81C3-0D1B3EFF16EB}</ProjectGuid>
+    <RootNamespace>baselib</RootNamespace>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="..\gameworld\script\toluapp.props" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>../../lib/win64\</OutDir>
+    <IntDir>../../out/win64/$(ProjectName)/$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>../../lib/win64\</OutDir>
+    <IntDir>../../out/win64/$(ProjectName)/$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'">
+    <OutDir>../../lib/win64\</OutDir>
+    <IntDir>../../out/win64/$(ProjectName)/$(Configuration)\</IntDir>
+    <TargetName>$(ProjectName)_d</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'">
+    <OutDir>../../lib/win64\</OutDir>
+    <IntDir>../../out/win64/$(ProjectName)/$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../inc;../../inc/baselib;../../3rd/lua/src;../../3rd/toluapp/include;../../3rd/mysql-5.1.65/include;../../3rd/zlib;../../../Common/define;../../../Common/fusion/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN64;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Async</ExceptionHandling>
+    </ClCompile>
+    <Lib />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>../../inc;../../inc/baselib;../../3rd/lua/src;../../3rd/toluapp/include;../../3rd/mysql-5.1.65/include;../../3rd/zlib;../../../Common/define;../../../Common/fusion/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN64;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling />
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+    </ClCompile>
+    <Lib />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../inc;../../inc/baselib;../../3rd/lua/src;../../3rd/toluapp/include;../../3rd/mysql-5.1.65/include;../../3rd/zlib;../../../Common/define;../../../Common/fusion/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN64;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <ExceptionHandling />
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Lib />
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <AdditionalIncludeDirectories>../../inc;../../inc/baselib;../../3rd/lua/src;../../3rd/toluapp/include;../../3rd/mysql-5.1.65/include;../../3rd/zlib;../../../Common/define;../../../Common/fusion/inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN64;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ExceptionHandling />
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <ProgramDataBaseFileName>$(OutDir)$(TargetName).pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+    </ClCompile>
+    <Lib />
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\inc\baselib\asm.h" />
+    <ClInclude Include="..\..\inc\baselib\base_list.h" />
+    <ClInclude Include="..\..\inc\baselib\btnod.h" />
+    <ClInclude Include="..\..\inc\baselib\cas.h" />
+    <ClInclude Include="..\..\inc\baselib\censored_word_list.h" />
+    <ClInclude Include="..\..\inc\baselib\checkdata.h" />
+    <ClInclude Include="..\..\inc\baselib\circle_list.h" />
+    <ClInclude Include="..\..\inc\baselib\data_manager.h" />
+    <ClInclude Include="..\..\inc\baselib\db_init.h" />
+    <ClInclude Include="..\..\inc\baselib\dir.h" />
+    <ClInclude Include="..\..\inc\baselib\dump.h" />
+    <ClInclude Include="..\..\inc\baselib\free_object_pool.h" />
+    <ClInclude Include="..\..\inc\baselib\free_stack.h" />
+    <ClInclude Include="..\..\inc\baselib\hash.h" />
+    <ClInclude Include="..\..\inc\baselib\id_object_pool.h" />
+    <ClInclude Include="..\..\inc\baselib\ifile.h" />
+    <ClInclude Include="..\..\inc\baselib\linux_compatible.h" />
+    <ClInclude Include="..\..\inc\baselib\linux_map.h" />
+    <ClInclude Include="..\..\inc\baselib\linux_map_inl.h" />
+    <ClInclude Include="..\..\inc\baselib\log.h" />
+    <ClInclude Include="..\..\inc\baselib\lua_script.h" />
+    <ClInclude Include="..\..\inc\baselib\math_ex.h" />
+    <ClInclude Include="..\..\inc\baselib\md5.h" />
+    <ClInclude Include="..\..\inc\baselib\mutex.h" />
+    <ClInclude Include="..\..\inc\baselib\object_pool.h" />
+    <ClInclude Include="..\..\inc\baselib\pak_def.h" />
+    <ClInclude Include="..\..\inc\baselib\pak_loader.h" />
+    <ClInclude Include="..\..\inc\baselib\process_error.h" />
+    <ClInclude Include="..\..\inc\baselib\process_option.h" />
+    <ClInclude Include="..\..\inc\baselib\profile.h" />
+    <ClInclude Include="..\..\inc\baselib\report.h" />
+    <ClInclude Include="..\..\inc\baselib\rsa_sign.h" />
+    <ClInclude Include="..\..\inc\baselib\script_mgr.h" />
+    <ClInclude Include="..\..\inc\baselib\share_mem.h" />
+    <ClInclude Include="..\..\inc\baselib\share_mem_io.h" />
+    <ClInclude Include="..\..\inc\baselib\simple_list.h" />
+    <ClInclude Include="..\..\inc\baselib\simple_timer.h" />
+    <ClInclude Include="..\..\inc\baselib\sql_mgr.h" />
+    <ClInclude Include="..\..\inc\baselib\sql_stmt.h" />
+    <ClInclude Include="..\..\inc\baselib\statis_info.h" />
+    <ClInclude Include="..\..\inc\baselib\std_type.h" />
+    <ClInclude Include="..\..\inc\baselib\string_ex.h" />
+    <ClInclude Include="..\..\inc\baselib\tabfile.h" />
+    <ClInclude Include="..\..\inc\baselib\thread.h" />
+    <ClInclude Include="..\..\inc\baselib\time_ex.h" />
+    <ClInclude Include="..\..\inc\baselib\tl_config.h" />
+    <ClInclude Include="..\..\inc\baselib\trie.h" />
+    <ClInclude Include="..\..\inc\baselib\utf8.h" />
+    <ClInclude Include="..\..\inc\baselib\weight_rand.h" />
+    <ClInclude Include="script\tolua_check_data.h" />
+    <ClInclude Include="script\tolua_common.h" />
+    <ClInclude Include="script\tolua_tl_config.h" />
+    <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="asm.cpp" />
+    <ClCompile Include="btnod.cpp" />
+    <ClCompile Include="btnod_test.cpp" />
+    <ClCompile Include="censored_word_list.cpp" />
+    <ClCompile Include="checkdata.cpp" />
+    <ClCompile Include="circle_list.cpp" />
+    <ClCompile Include="data_manager.cpp" />
+    <ClCompile Include="db_init.cpp" />
+    <ClCompile Include="dir.cpp" />
+    <ClCompile Include="dump.cpp" />
+    <ClCompile Include="free_stack.cpp" />
+    <ClCompile Include="hash.cpp" />
+    <ClCompile Include="ifile.cpp" />
+    <ClCompile Include="linux_compatible.cpp" />
+    <ClCompile Include="log.cpp" />
+    <ClCompile Include="lua_script.cpp" />
+    <ClCompile Include="math_ex.cpp" />
+    <ClCompile Include="md5.cpp" />
+    <ClCompile Include="mutex.cpp" />
+    <ClCompile Include="pak_loader.cpp" />
+    <ClCompile Include="process_option.cpp" />
+    <ClCompile Include="profile.cpp" />
+    <ClCompile Include="report.cpp" />
+    <ClCompile Include="rsa_sign.cpp" />
+    <ClCompile Include="script\tolua_check_data.cpp" />
+    <ClCompile Include="script\tolua_common.cpp" />
+    <ClCompile Include="script\tolua_tl_config.cpp" />
+    <ClCompile Include="script_mgr.cpp" />
+    <ClCompile Include="share_mem.cpp" />
+    <ClCompile Include="share_mem_io.cpp" />
+    <ClCompile Include="simple_timer.cpp" />
+    <ClCompile Include="sql_mgr.cpp" />
+    <ClCompile Include="sql_stmt.cpp" />
+    <ClCompile Include="statis_info.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="string_ex.cpp" />
+    <ClCompile Include="string_ex_test.cpp" />
+    <ClCompile Include="tabfile.cpp" />
+    <ClCompile Include="tabfile_test.cpp" />
+    <ClCompile Include="thread.cpp" />
+    <ClCompile Include="time_ex.cpp" />
+    <ClCompile Include="tl_config.cpp" />
+    <ClCompile Include="trie.cpp" />
+    <ClCompile Include="trie_test.cpp" />
+    <ClCompile Include="utf8.cpp" />
+    <ClCompile Include="weight_rand.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <toluapp Include="script\check_data.pkg" />
+    <toluapp Include="script\common.pkg" />
+    <toluapp Include="script\tl_config.pkg">
+      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../../inc/baselib/tl_config.h</AdditionalDependencies>
+    </toluapp>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="code.asm">
+      <FileType>Document</FileType>
+    </MASM>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\gameworld\script\toluapp.targets" />
+    <Import Project="$(VCTargetsPath)\BuildCustomizations\masm.targets" />
+  </ImportGroup>
+</Project>

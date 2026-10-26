@@ -1,0 +1,10 @@
+on_cast_spell = 
+{ batSequencer,
+	{ batCheckCanCastSpell },
+	{ batSelector, 
+		{ batSequencer,
+			{ batSyncCastSpellToTarget, param = { 5665, tarAITarget } },
+			{ batSuicide, param = { 1, true } },
+	    },			
+    },
+};			

@@ -1,0 +1,13 @@
+
+evtAIInteract = 
+{ batSelector,
+    { batSequencer,
+        { batRoleCheckQuestVariable, param = { boNEQ, d.nParam[0], d.nParam[1], d.nParam[2] } },
+        { batRoleOpenDialog, param = { d.nParam[3], 30000 } },
+        { batRoleCheckInteractOption, param = { 1 } },
+        { batSay, param = { cctScreen, d.nParam[4], cltNormal } },
+        { batPlayAction, param = { d.nParam[5] } },
+        { batRoleSetQuestVariable, param = { d.nParam[0], d.nParam[1], d.nParam[2] } },
+    },
+    { batSay, param = { cctScreen, d.nParam[6], cltNormal } },
+};

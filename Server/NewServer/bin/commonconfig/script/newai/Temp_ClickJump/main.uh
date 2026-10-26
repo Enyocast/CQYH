@@ -1,0 +1,15 @@
+evtAIInteract = 
+{ batSequencer,
+    __check_cd_timer(COOLDOWN_AI, JUMP_CD_TIMER, d.nParam[6]),
+    __set_cd_timer(COOLDOWN_AI, JUMP_CD_TIMER, d.nParam[6]),
+    { batPlayAction, param = { d.nParam[4] } },
+    { batSay, param = { d.nParam[5] } },
+    --{ batWait, param = { 500 } },
+
+    { batRandom, param = { 2500, 2500, 2500 ,2500 },    
+        { batRoleTeleport, param = { d.nParam[1]+200, d.nParam[2]-200, d.nParam[3], d.nParam[0] } },
+        { batRoleTeleport, param = { d.nParam[1]+200, d.nParam[2]-200, d.nParam[3], d.nParam[0] } },
+        { batRoleTeleport, param = { d.nParam[1]-200, d.nParam[2]+200, d.nParam[3], d.nParam[0] } },
+        { batRoleTeleport, param = { d.nParam[1]-200, d.nParam[2]+200, d.nParam[3], d.nParam[0] } },
+    },
+};

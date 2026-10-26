@@ -1,0 +1,7 @@
+on_wander = 
+{ batSequencer,
+	{ batCheckCDTimer, param = { COOLDOWN_AI, 1 } },
+	{ batCheckSceneRuning},
+	{ batDistributeExp},
+	{ batSetCDTimer, param = { COOLDOWN_AI, 1, 5000 } },
+};

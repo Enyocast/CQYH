@@ -1,0 +1,5 @@
+
+on_enter_fight = 
+{ batSequencer, 
+     { batSetCDTimer, param = { COOLDOWN_AI, 10, 25000 } },
+};

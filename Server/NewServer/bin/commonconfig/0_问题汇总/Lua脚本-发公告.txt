@@ -1,0 +1,31 @@
+
+
+-- 只针对单个角色发消息
+local msg = "今日[命运武器礼盒]开启次数已满! ";
+pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, msg);
+
+-- 给玩家发送粉色私聊消息
+Say(GetObjID(), cltNormal, str_utf8);
+
+
+
+// ==================== 其他玩家可见
+
+-- 全服滚屏公告, 其他玩家可见
+pRole:Say(cctServer, cltLighting, msg);
+
+-- 全服滚屏公告, 屏幕上方中间黄字, 其他玩家可见
+pRole:Say(cctServer, cltTvShow, msg);
+
+-- 聊天窗口, 玩家发广播消息, 其他玩家可见
+pRole:Say(cctServer, cltDialog, msg);
+
+
+
+
+
+
+
+
+
+

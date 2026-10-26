@@ -1,0 +1,20 @@
+on_init = { batSequencer,
+    { batSetSceneVariable, param={1, 0 },},
+};
+
+evtAIInteract = 
+{ batSequencer,
+    { batCheckSceneVariable, param={ boEQ , 2, 0 },
+    },
+    { batCheckCDTimer, param={ COOLDOWN_AI , 1},
+    },
+    { batSetCDTimer , param={ COOLDOWN_AI , 1,2000},
+    },
+
+    --{ batSpawnMediumGroup , param = {8} },
+    --{ batSpawnMediumGroup , param = {4} },
+    { batSummonNpc , param = {814,-512,0,-45},},
+    { batSetSceneVariable, param={2, 1 },},
+    { batSuicide },
+    --{ batSummonNpc , param = {815,0,500,135},},
+};

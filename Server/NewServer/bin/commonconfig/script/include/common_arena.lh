@@ -1,0 +1,17 @@
+﻿--竞技场的当前状态
+ARENA_STAGE_VAR_INDEX = 1;
+
+--竞技场准备时长
+ARENA_INIT_DURATION = 60 * 1000;
+
+--竞技场结束后等待时长
+ARENA_CLOSE_WAIT_DURATION = 1 * 60 * 1000;
+
+--竞技场最大开发时长
+ARENA_MAX_DURATION = 5 * 60 * 1000;
+
+--竞技场开始时服务器时间的场景变量
+ARENA_START_TIME_VAR_INDEX = 2;
+
+--竞技场开门的场景变量
+ARENA_DOOR_TOGGLE_VAR_INDEX = 4;

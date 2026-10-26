@@ -1,0 +1,20 @@
+on_init =
+{ batSequencer ,
+    { batSetSceneVariable, param = { 10, 0 },},
+};  
+
+on_wander =
+{ batSequencer, 
+	{ batCheckSceneVariable, param = { boEQ, 10 , 1 },},
+    { batMoveTo, param = {tarPosition ,75100,43700 , 200 },},
+	{ batWait, param={4000},},	
+    { batRotateTo, param = {tarDirection  , 180 , 200 },},	
+	{ batWait, param={500},},
+    { batPlayAction, param={ 1 },},	
+	{ batSay, param = { cctScreen, 50309, cltNormal },},
+    { batWait, param={4800},},
+	{ batPlayAction, param={ 2 },},	
+    { batWait, param={3000},},
+	{ batSummonNpc, param= { 808 },},
+	{ batSuicide },
+};

@@ -1,0 +1,76 @@
+$pfile "script/common.pkg"
+$hfile "../../../Common/define/item_def.h"
+
+$#include "item_bag.h"
+$#include "item_mgr.h"
+
+class CItemBag
+{
+public:
+    INT32 AddItem(INT32 itemid, INT32 itemcount, EItemLog reason, UINT64 userdefine, BOOL forcebinded);
+    INT32 AddItem(Item* item, EItemLog reason, UINT64 userdefine);
+
+    INT32 UseItem(UINT8 conslot, UINT8 itemslot);
+    INT32 MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, UINT8 dstitemslot);
+    INT32 SplitItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, UINT8 dstitemslot, INT16 itemcount);
+	INT32 DeleteItemPos(UINT8 conslot, UINT8 itemslot, INT16 itemcount, EItemLog reason, UINT64 qwUserDefinedID);
+    INT32 GetItemCount(INT32 itemid, BOOL includebank);
+	INT32 DeleteItemId(INT32 itemid, INT16 itemcount, EItemLog reason, BOOL includebank, UINT64 qwUserDefinedID);
+    UINT32 GetFreeSlots(UINT8 conslot);
+    INT32 IdentifyItem(UINT8 conslot, UINT8 itemslot);
+    INT32 Refine(UINT8 refineslot, UINT8 addequip, UINT8 conslot, UINT8 itemslot);
+    void SetRefineLevel(UINT8 refineslot, UINT16 level);
+    INT32 RandomizeItem(UINT8 conslot, UINT8 itemslot);
+    INT32 AddSoul(UINT8 equipconslot, UINT8 equipitemslot, UINT8 socketindex, UINT8 soulconslot, UINT8 soulitemslot);
+
+	Item* GetItem(UINT8 conslot, UINT8 itemslot);
+    void LoseWeaponDur();
+    void LoseArmorDur(INT32 damage);
+    INT32 BuySlots(UINT8 conslot, UINT8 slotcount);
+
+    BOOL EquipItemOnBirth(INT32 itemid, UINT8 itemslot);
+    BOOL EquipHeroItemOnBirth(INT32 itemid, UINT8 itemslot);
+    
+    INT32 GetMoney(INT32 moneytype) const;
+	INT32 AddMoney(INT32 moneytype, INT32 nCount, EMoneyLog reason, UINT32 dwSourceID);
+	INT32 SubMoney(INT32 moneytype, INT32 nCount, EMoneyLog reason, UINT32 dwTargetID);
+    INT32 SetMoney(INT32 moneytype, INT32 nCount);
+    INT32 GetGoldPool() const;
+    INT32 GetChanceByGoldPool() const;
+    
+    void SetUseMoneytype01Only(UINT8 use) { m_use_moneytype01_only = use; }
+    UINT8 GetUseMoneytype01Only() const { return m_use_moneytype01_only; }
+
+	//获取武器类型
+    UINT8 GetWeaponType();
+    UINT8 GetHeroWeaponType();
+
+    void Begin(UINT8 conslot);
+    const Item* Next(UINT8 conslot);
+    
+	//幸运值
+	void SetWeaponLuck(INT8 v);
+    void IncreaseWeaponLuck(INT8 v);
+	void DecreaseWeaponLuck();
+    
+	// ========== 自己新增代码 begin
+
+    INT32 RuneTest(INT32 nRuneID);
+    
+	INT32 EquipAddSocket(INT32 nIndex);
+	INT32 SetSocketColor(INT32 nIndex, INT32 nColor);
+    
+	// 命运礼盒
+	INT32 AddDestinyWeapon(INT32 nItemID, INT32 nLevel);
+
+	// ========== 自己新增代码 end
+}
+
+class CItemMgr
+{
+public:
+    static CItemMgr& GetInstance(void);
+    Item* GenerateItem(INT32 nTemplateID, INT32 nItemCount);
+    Item* GenerateItem(const ITEM_DATA* itemdata, INT32 nItemCount);
+    BOOL DestroyItem(Item* item);
+};

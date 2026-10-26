@@ -1,0 +1,86 @@
+local temp_target = nil;
+
+local function _remove_aura( temp_target )
+	local _removetable = 
+		{ batParallel, 
+			{ batSequencer,
+				{ batCheckTarget, param = { temp_target} },
+				{ batCheckAura, param = { temp_target , 58001} },
+				{ batRemoveAura, param = { temp_target , 58001 , 0} },
+			},
+
+			{ batSequencer,
+				{ batCheckTarget, param = { temp_target} },
+				{ batCheckAura, param = { temp_target , 58011} },
+				{ batRemoveAura, param = { temp_target , 58011 , 0} },
+			},		
+		};
+	return _removetable; 
+end
+
+local function _add_aura( temp_target )
+	local _addtable = 
+		{ batSequencer,
+			{ batCheckTarget, param = { temp_target} },
+			{ batAddAura, param = { temp_target , 58011 } },
+		};
+	return _addtable; 
+end
+
+evtAIIdle = 
+{ batSequencer,
+    { batCheckCDTimer, param={ COOLDOWN_AI ,1} },
+    { batCheckCDTimer, param={ COOLDOWN_AI ,2} },
+    { batSelector,
+	    { batSequencer,
+		    { batCheckAura, param = { tarSelf , 58012} },
+    		{ batSetCDTimer , param={ COOLDOWN_AI , 2, 3000 } },
+	    },
+	    { batParallel,
+	    	{ batPlayAction, param={ 1 } },
+	   		{ batSetCDTimer , param={ COOLDOWN_AI , 2, 3000 } },
+	   		{ batRemoveAura, param = { tarSelf , 58013, 0} },
+		 	{ batAddAura, param = { tarSelf , 58012} },
+		 	{ batSay, param = { cctScreen, 50032, cltNormal } },
+	    },
+    },
+};
+
+
+
+evtAIInteract = 
+{ batSequencer,
+	{ batCheckCDTimer, param={ COOLDOWN_AI ,1} },
+	{ batSetCDTimer , param={ COOLDOWN_AI , 1, 900000 } },
+	{ batParallel,
+		{ batSequencer,
+			{ batCheckAura, param = { tarRole , 58001} },
+			{ batRemoveAura, param = { tarRole , 58001 , 0} },
+		},
+
+		{ batSequencer,
+			{ batCheckAura, param = { tarRole , 58011} },
+			{ batRemoveAura, param = { tarRole , 58011 , 0} },
+		},
+		----------------------------------------------
+		_remove_aura(tarRolePet1),
+		_remove_aura(tarRolePet2),
+		_remove_aura(tarRolePet3),
+		_remove_aura(tarRolePet4),
+		_remove_aura(tarRolePet5),
+		_remove_aura(tarRolePet6),
+		----------------------------------------------
+	},
+	{ batParallel,
+		{ batAddAura, param = { tarRole , 58011} },
+		_add_aura(tarRolePet1),
+		_add_aura(tarRolePet2),
+		_add_aura(tarRolePet3),
+		_add_aura(tarRolePet4),
+		_add_aura(tarRolePet5),
+		_add_aura(tarRolePet6),
+		{ batPlayAction, param = { 1 } },
+		{ batRemoveAura, param = { tarSelf , 58012 , 0} }, 	
+		{ batAddAura, param = { tarSelf , 58013} },		
+	},	
+};

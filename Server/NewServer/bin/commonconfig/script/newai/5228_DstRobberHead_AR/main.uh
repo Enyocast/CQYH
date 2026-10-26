@@ -1,0 +1,28 @@
+﻿
+evtAIInteract = 
+{ batSelector, 
+	{ batSequencer, 
+		{ batRoleCheckHasQuest, param={ 1062 },
+		},
+		{ batRoleOpenDialog, param={ strDstPb02Quest1062Flag_1, 50000, 0, 0 },
+		},
+		{ batRoleCheckInteractOption, param={ 1, 0, 0, 0 },
+		},
+		{ batCheckCDTimer, param={ COOLDOWN_AI,1,0,0},
+		},
+		{ batSetCDTimer , param={ COOLDOWN_AI , 1,1000,1000},
+		},
+		{ batRoleSetQuestVariable, param={ 1062,0, 1, 0 },
+		},			 
+		{ batSay, param={ cctScreen, strDstPb02Quest1062Flag_2, 0, 0 },
+		},
+	
+	};	
+	
+	{ batCheckCDTimer, param={ COOLDOWN_AI,2,0,0},
+	},
+	{ batSetCDTimer , param={ COOLDOWN_AI , 2,1000,1000},
+	},		
+	{ batSay, param={ cctScreen, strDstPb02Quest1062Flag_3, 0, 0 },
+	},		
+};	

@@ -1,0 +1,13 @@
+on_enter_fight =
+{ batParallel,
+    { batPlayAction, param = { 2 } },
+    { batWait, param = { 1800 } },
+    { batPlayAction, param = { 1 } },
+};
+
+evtAIDie = 
+{ batSequencer,
+	{ batSetSceneVariable, param = { 15, 3 } },
+	{ batWait, param = { 14500 } },
+	{ batSetSceneVariable, param = { 15, 0 } },
+};

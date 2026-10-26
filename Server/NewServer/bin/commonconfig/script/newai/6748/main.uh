@@ -1,0 +1,15 @@
+evtAIIdle =
+{ batSequencer,
+	{ batCheckCDTimer, param = { COOLDOWN_AI, 0 } },
+	{ batPlayAction, param= { 1 } },
+	{ batSequencer,
+		{ batSay, param= { cctScreen, 50296, 0, 0 } },
+	},
+	{ batSetCDTimer, param = { COOLDOWN_AI, 0, 30000 } },
+};
+evtAIInteract = 
+{ batSequencer,
+    { batRoleCheckRoleVariable, param = { boEQ, 130, 0 } },
+	{ batRoleAddItem, param = { 90171, 1, 0 } },
+	{ batRoleSetRoleVariable, param = { 130, 1 } },
+};

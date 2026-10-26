@@ -1,0 +1,83 @@
+
+evtAIIdle = 
+    {batSequencer,
+        --MOVE到M1
+        {batSyncMoveTo, param = {tarPosition ,62556,38533 },
+        },
+        --PlayAction & Say
+        { batPlayAction, param={ 0},
+        },
+        { batWait, param={2000},
+        },
+        { batSay, param = { cctScreen, 50373,cltNormal } },
+        { batWait, param={24000},
+        },
+        --M2
+        {batSyncMoveTo, param = {tarPosition ,58809,38461 },
+        },
+        --M3
+        {batSyncMoveTo , param = {tarPosition ,58809,39944 },
+        },
+        { batPlayAction, param={ 0},
+        },
+        { batWait, param={2000},
+        },
+        { batSay, param = { cctScreen, 50373,cltNormal } },
+        { batWait, param={24000},
+        },
+        --M4
+        {batSyncMoveTo, param = {tarPosition ,58809,43144 },
+        },
+        --M5
+        {batSyncMoveTo, param = {tarPosition ,56054,43702 },
+        },
+        { batPlayAction, param={ 0},
+        },
+        { batWait, param={2000},
+        },
+        { batSay, param = { cctScreen, 50373,cltNormal } },
+        { batWait, param={24000},
+        },
+        --M6
+        {batSyncMoveTo, param = {tarPosition ,55595,40679 },
+        },
+        --M7
+        {batSyncMoveTo, param = {tarPosition ,54817,40530 },
+        },
+        { batPlayAction, param={ 0},
+        },
+        { batWait, param={2000},
+        },
+        { batSay, param = { cctScreen, 50373,cltNormal } },
+        { batWait, param={24000},
+        },
+        --M8
+        {batSyncMoveTo, param = {tarPosition ,52345,40516 },
+        },
+        --M9
+        {batSyncMoveTo, param = {tarPosition ,52274,48555 },
+        },
+        { batPlayAction, param={ 0},
+        },
+        { batWait, param={2000},
+        },
+        { batSay, param = { cctScreen, 50373,cltNormal } },
+        { batWait, param={24000},
+        },
+        --M10
+        {batSyncMoveTo, param = {tarPosition ,59526,48594 },
+        },
+        --M11
+        {batSyncMoveTo, param = {tarPosition ,63865,43445 },
+        },
+        { batPlayAction, param={ 0},
+        },
+        { batWait, param={2000},
+        },
+        { batSay, param = { cctScreen, 50373,cltNormal } },
+        { batWait, param={24000},
+        },
+        --M12
+        {batSyncMoveTo, param = {tarPosition ,64032,38248 },
+        },
+    };

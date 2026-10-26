@@ -1,0 +1,12 @@
+
+evtAIInit = 
+{ batSequencer, 
+	{ batSetFollowParam, param = { 0, -400, 0, 1 } },
+};
+
+
+evtAIIdle = 
+{ batSequencer,
+	{ batFollow }, 
+
+};

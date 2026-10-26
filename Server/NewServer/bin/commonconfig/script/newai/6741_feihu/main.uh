@@ -1,0 +1,16 @@
+﻿
+evtAIIdle = 
+ { batSequencer, 
+	{ batCheckCDTimer, param={ COOLDOWN_AI , 1,0,0},
+	},
+	{ batCheckSceneVariable, param={ boEQ, 1, 1},
+	},
+	{ batSay, param={ cctScreen, 50243, 0, 0 },
+	},
+	{ batPlayAction, param={ 0 },
+	},
+	{ batSetSceneVariable, param={ 1, 0},
+	},		
+	{ batSetCDTimer, param={ COOLDOWN_AI , 1,10000,20000},
+	},		
+};	

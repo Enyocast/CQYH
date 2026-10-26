@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Final Debug|x64">
+      <Configuration>Final Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Final Release|x64">
+      <Configuration>Final Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{CF5C97C8-62FF-4419-AD7F-98FA19EF37CA}</ProjectGuid>
+    <RootNamespace>script</RootNamespace>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Utility</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v120</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="..\lua.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.30501.0</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\arena\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\btedit\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\check_data\check_data.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\create_role\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\cs\cs_command_table.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\cs\gs.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\cs\ms.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\final_gm\final_gm_command_table.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\final_gm\gs.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\final_gm\ms.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\gs_gm\gm_command.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\gs_gm\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\gs_gm\robot.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\include\btnod.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\include\command_table.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\include\jump_table.lh" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\item\jump.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\item\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\item\package.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\item\title.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\master\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\ms_gm\gm_command.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\ms_gm\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\ms_gm\user_permission.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_jump\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_jump\main.uh" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_spell\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_spell\main.uh" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\default\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\quest_dialog\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\quest_dialog\main.uh" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\achievement.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\activity.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\auction.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\chat.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\item.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\jump.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\mail.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\main.uh" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\master.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\query.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\ranklist.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\spirit.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\team.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\title.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\vip.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\stand_show\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\stand_show\main.uh" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\sub_tree\sub_tree.lh" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\quest\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\read_data\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\robot\coroutine.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\robot\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\robot\show.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\robot\util.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\CommonArena\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\CommonArena\main.uh" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\DesertDungeon01\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\ProgIsland\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\SnowbergDungeon10\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\SnowbergPublic01\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\SnowbergPublic02\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\stringtable\main.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\stringtable\stringtable.lh" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\coverage\combat.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\coverage\quest.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\achievement.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\adventure.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\ai_table_btnod.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\arena_team.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\balanceserver.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\battle_queue.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\chat.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\drop.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\framework.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\friend.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\gm.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\group_line.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\guild.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\healingwell.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\item.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\jump.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\login.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\mail.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\master.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\move.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\pkvalue.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\quest.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\ranklist.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\reputation.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\score.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\server_test.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\spell.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\spirit.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\stall.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\team.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\teamjump.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\title.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\trade.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\weather.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\performance\performance_base.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\performance\test_db_operate.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\performance\test_game_logic.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\performance\test_login.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\test_case.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\achievement.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\ai.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\air.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\air_level.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\attributes1.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\attributes2.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\aura.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\doodad.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\doodad_drop_data.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\drop_group.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\hero_attribute1.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\hero_level.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\item.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\item_armor.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\level.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\master_gift.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\missile.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\mount.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\npc.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\npc_pattern.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\npc_relation.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\quest.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\refine.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\reputation.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\role_relation.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\rune.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\scene.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\shop.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\spell.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\spell_var.lua" />
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\title.lua" />
+    <lua_compiler Include="..\..\..\bin\globalconfig\area_config.lua" />
+    <lua_compiler Include="..\..\..\bin\globalconfig\asimovconfig.lua" />
+    <lua_compiler Include="..\..\..\bin\globalconfig\bsconfig.lua" />
+    <lua_compiler Include="..\..\..\bin\globalconfig\commonconfig.lua" />
+    <lua_compiler Include="..\..\..\bin\globalconfig\dbconfig.lua" />
+    <lua_compiler Include="..\..\..\bin\globalconfig\dlconfig.lua" />
+    <lua_compiler Include="..\..\..\bin\globalconfig\gameworldconfig.lua" />
+    <lua_compiler Include="..\..\..\bin\globalconfig\gsconfig.lua" />
+    <lua_compiler Include="..\..\..\bin\globalconfig\gtconfig.lua" />
+    <lua_compiler Include="..\..\..\bin\globalconfig\guildconfig.lua" />
+    <lua_compiler Include="..\..\..\bin\globalconfig\lsconfig.lua" />
+    <lua_compiler Include="..\..\..\bin\globalconfig\msconfig.lua" />
+    <lua_compiler Include="..\..\..\bin\globalconfig\newroleconfig.lua" />
+    <lua_compiler Include="..\..\..\bin\globalconfig\obj_pool_config.lua" />
+    <lua_compiler Include="..\..\..\bin\global_config.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\bin\commonconfig\script\test_case\performance\create_role.lua" />
+    <None Include="..\..\..\bin\commonconfig\script\activity\main.lua" />
+    <None Include="..\..\..\bin\commonconfig\script\activity\spawn_npc.lua" />
+    <None Include="..\..\..\bin\commonconfig\script\include\activity.lh" />
+    <None Include="..\..\..\bin\commonconfig\script\item\quest.lua" />
+    <None Include="..\..\..\bin\commonconfig\script\level\main.lua" />
+    <None Include="..\..\..\bin\commonconfig\script\load_role\main.lua" />
+    <None Include="..\..\..\bin\commonconfig\script\newai\robot\combat.lua" />
+    <None Include="..\..\..\bin\commonconfig\script\newai\robot\guild.lua" />
+    <None Include="..\..\..\bin\commonconfig\script\newai\robot\quest.lua" />
+    <None Include="..\..\..\bin\globalconfig\censored_word_list.lua" />
+    <None Include="..\..\..\bin\globalconfig\game_world_table.lua" />
+    <None Include="..\..\..\bin\globalconfig\group_config.lua" />
+    <None Include="..\..\..\bin\globalconfig\mgconfig.lua" />
+    <None Include="..\..\..\bin\globalconfig\mmconfig.lua" />
+    <None Include="..\..\..\bin\globalconfig\nsconfig.lua" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\lua.targets" />
+  </ImportGroup>
+</Project>

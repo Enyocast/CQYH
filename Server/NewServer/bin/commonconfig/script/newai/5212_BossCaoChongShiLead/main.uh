@@ -1,0 +1,114 @@
+local boss_stage_1 = 1;
+local boss_stage_2 = 2;
+local boss_stage_3 = 3;
+
+local scan_range = 1500;
+local chase_range = 2000;
+local pref_dist = 700;
+local pref_dist_offset = 200;
+local run_speed = 600;
+local chase_delay = 1000;
+
+local spell_stage_1 =
+{
+	{ id = 5808, cd = 3000, chance = 10000 },
+	{ id = 5811, cd = 10000, chance = 7000 },
+	{ id = 5814, cd = 12000, chance = 10000 },
+};
+
+local spell_stage_2 =
+{
+	{ id = 5808, cd = 3000, chance = 10000 },
+	{ id = 5815, cd = 15000, chance = 6000 },
+	{ id = 5813, cd = 15000, chance = 10000 },
+	{ id = 5809, cd = 10000, chance = 5000 },
+};
+
+local spell_stage_3 =
+{
+	{ id = 5808, cd = 3000, chance = 10000 },
+	{ id = 5816, cd = 12000, chance = 10000 },
+	{ id = 5810, cd = 10000, chance = 5000 },
+	{ id = 5814, cd = 15000, chance = 6000 },
+	{ id = 5812, cd = 15000, chance = 10000 },
+};
+
+evtAIInit =
+{ batSequencer, 
+	_init_tree();
+	{ batSetFlag, param = { cfImmuneStiff } },
+	{ batSetFlag, param = { cfImmuneControl } },
+	{ batSetFlag, param = { cfImmunePassiveMove } },
+	{ batSetBossState, param = { boss_stage_1 } },
+};
+
+
+boss_stage_tree_1 =
+{ btSequencer,
+	{ batCheckBossState, param = { boss_stage_1 } },
+	{ btParallel,
+		__cast_spell(spell_stage_1[1].id, tarAITarget, spell_stage_1[1].chance, spell_stage_1[1].cd);
+		__cast_spell(spell_stage_1[2].id, tarAITarget, spell_stage_1[2].chance, spell_stage_1[2].cd);
+		__cast_spell(spell_stage_1[3].id, tarAITarget, spell_stage_1[3].chance, spell_stage_1[3].cd);
+	},
+
+	{ btSequencer,
+		{ batCheckCharHp, param = { tarSelf, boLTE, 7000, 0 } },
+		{ batSetBossState, param = { boss_stage_2 } },
+	},
+};
+
+boss_stage_tree_2 =
+{ btSequencer,
+	{ batCheckBossState, param = { boss_stage_2 } },
+	{ btParallel,
+		__cast_spell(spell_stage_2[1].id, tarAITarget, spell_stage_2[1].chance, spell_stage_2[1].cd);
+		{ btSequencer,
+			__cast_spell(spell_stage_2[2].id, tarFarthestEnemy, spell_stage_2[2].chance, spell_stage_2[2].cd);
+			__cast_spell(spell_stage_2[3].id, tarFarthestEnemy, spell_stage_2[3].chance, spell_stage_2[3].cd);
+		},
+		__cast_spell(spell_stage_2[4].id, tarAITarget, spell_stage_2[4].chance, spell_stage_2[4].cd);
+	},
+
+	{ btSequencer,
+		{ batCheckCharHp, param = { tarSelf, boLTE, 2000, 0 } },
+		{ batSetBossState, param = { boss_stage_3 } },
+	},
+};
+
+boss_stage_tree_3 =
+{ btSequencer,
+	{ batCheckBossState, param = { boss_stage_3 } },
+	{ btParallel,
+		__cast_spell(spell_stage_3[1].id, tarAITarget, spell_stage_3[1].chance, spell_stage_3[1].cd);
+		__cast_spell(spell_stage_3[2].id, tarAITarget, spell_stage_3[2].chance, spell_stage_3[2].cd);
+		__cast_spell(spell_stage_3[3].id, tarAITarget, spell_stage_3[3].chance, spell_stage_3[3].cd);
+		{ btSequencer,
+			__cast_spell(spell_stage_3[4].id, tarFarthestEnemy, spell_stage_3[4].chance, spell_stage_3[4].cd);
+			__cast_spell(spell_stage_3[5].id, tarFarthestEnemy, spell_stage_3[5].chance, spell_stage_3[5].cd);
+		},
+	},
+};
+
+fight_sub = 
+{ btSelector,
+	boss_stage_tree_1,
+	boss_stage_tree_2,
+	boss_stage_tree_3,
+};
+
+evtAIFight = 
+{ batParallel,
+	__issue_threat_signal(d.nSpreadThreatCount),
+	__change_target(d.nChangeTargetChance, d.nChangeTargetCDTime, d.nChaseRange, d.nChangeTargetDelayTime),
+	{ batSelector,
+		__check_live_timer(d.nLiveTime),
+		__check_out_of_range(d.nChaseRange),    
+		__check_target_die(d.nChaseRange),
+		__flee(d.nFleeHpPercent, d.nFleeChance, 20000, d.nFleeDuration, d.nRunSpeed * 1000 / GAME_FPS),
+		__fight_move(d.nPreferDistance, d.nWithdrawThreshold, d.nChaseThreshold, d.nRunSpeed * 1000 / GAME_FPS, d.nStepAroundChance, d.nStepAroundCDTime),
+		fight_sub,
+		__chase(d.nRunSpeed * 1000 / GAME_FPS, d.nPreferDistance, d.nChaseThreshold, d.nChaseDelayTime),
+	},
+};
+

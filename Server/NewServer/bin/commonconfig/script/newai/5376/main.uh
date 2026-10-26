@@ -1,0 +1,52 @@
+LoadPackage("drop_generator.pkg")
+LoadPackage("npc.pkg")
+LoadPackage("scene.pkg")
+
+on_init = 
+{ batSequencer ,
+    	{ batSetSceneVariable , param={ 31, 0, 0 } },
+	{ batSetSceneVariable , param={ 30, 0, 0 } },
+	{ batSetSceneVariable , param={ 29, 0, 0 } },
+	{ batSetSceneVariable , param={ 28, 0, 0 } },
+};
+
+evtAIIdle = 
+{ batSelector, 
+	{ batSequencer, 
+		{ batCheckDateTime, param = { 0, 220001, 230000  } },
+		{ batSuicide, param = { 1, true } },
+	},
+	{ batSequencer, 
+		{ batCheckDateTime, param = { 0, 200001, 220000  } },
+		{ batCheckSceneVariable, param={ boGT, 28, 0} },
+		{ batSetCharHp, param = { tarSelf, 484, 848 } },
+		{ batSetSceneVariable , param={ 28, 0} },
+	},
+};
+
+
+function OnBossDie(owner, p1, p2, p3, p4)
+	local scene = owner:GetScene();
+	if scene == nil then
+		return brvError;
+	end
+	local gen = CDropGenerator:GetInstance();
+	index = math.random(70,120);
+	for i = 1, index do
+		gen:GenerateDrop(scene:GetServerGroup(), 2800357, 10, scene, owner:GetX(), owner:GetY(), owner:GetZ(), owner:GetObjID(), false);
+	end
+	return brvSuccess;
+end
+
+on_die =
+{ batSequencer,
+	{ OnBossDie, param = { 0, 0, 0, 0} },
+	{ batSay, param={ cctScene, str2021newyearBOSS }},
+	 
+};
+
+
+
+
+
+

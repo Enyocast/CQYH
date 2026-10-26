@@ -1,0 +1,18 @@
+on_init = 
+{ batSequencer ,
+    { batSetCDTimer, param = { COOLDOWN_AI , 100 , 10000},},
+    { batSetAlwaysRun, param = { 1 } },
+};
+
+on_wander = 
+{ batSequencer ,	
+    { batCheckCDTimer , param = { COOLDOWN_AI , 100 },},
+	{ batSetCharHp , param = { tarSelf , 0 },},
+};
+
+on_die = 
+{ batSequencer,
+    { batSpawnSingleNpc, param={ 51 },},
+};
+
+

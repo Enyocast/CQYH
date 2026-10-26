@@ -1,0 +1,13 @@
+
+on_chase = 
+{ batSequencer,
+	{ btRandom, param = { 5000,5000 }, 
+	    { batSequencer,
+			{ batChase, param = { 1375, d.nPreferDistance, d.nChaseThreshold, 1000 * 1000 / GAME_FPS } }, 
+		},
+		
+		{ batSequencer,
+			{ batChase, param = { 1375, d.nPreferDistance, d.nChaseThreshold, 1000 * 1000 / GAME_FPS } }, 
+		},
+	},
+};

@@ -1,0 +1,27 @@
+
+on_enter_fight = 
+{ batSequencer, 
+ { batSetCDTimer, param = { COOLDOWN_AI, 10, 15000 } },
+  { batSetCDTimer, param = { COOLDOWN_AI, 11, 1000 } },
+};
+
+on_cast_spell = 
+{ batSequencer,
+	{ batCheckCanCastSpell },
+	__check_cd_timer(COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime),
+	{ batSelector, 
+		{ batSequencer,
+		    { batCheckCDTimer, param = { COOLDOWN_AI, 10 } },
+			{ batSyncCastSpellToTarget, param = { 5794, tarAITarget  } },		
+			{ batSetCDTimer, param = { COOLDOWN_AI, 10, 10000 } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime } },
+	    },	
+		{ batSequencer,
+			{ batCheckCharHp , param = { tarSelf, boLTE, 5000 } },	
+		    { batCheckCDTimer, param = { COOLDOWN_AI, 11 } },
+			{ batSyncCastSpellToTarget, param = { 5792, tarSelf } },		
+			{ batSetCDTimer, param = { COOLDOWN_AI, 11, 600000 } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime } },
+	    },	
+    },
+};

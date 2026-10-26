@@ -1,0 +1,11 @@
+--沙魔岭
+evtAIIdle = 
+{batSequencer,
+    { batCheckCDTimer, param = { COOLDOWN_AI, 1 } },
+    { batSetCDTimer, param = { COOLDOWN_AI, 1, 900000 } },  
+    { batSay, param = { cctScene, 50331, cltTvShow } },
+	{ batWait, param = { 15 * 1 * 1000 } }, 
+    { batSay, param = { cctScene, 50331, cltTvShow } },
+	{ batWait, param = { 15 * 1 * 1000 } }, 
+    { batSay, param = { cctScene, 50331, cltTvShow } },
+};

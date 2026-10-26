@@ -1,0 +1,2 @@
+$pfile "script/common.pkg"
+$hfile "../../../Common/define/quest_def.h"

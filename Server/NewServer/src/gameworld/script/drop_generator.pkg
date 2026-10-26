@@ -1,0 +1,10 @@
+$pfile "script/common.pkg"
+$#include "drop_generator.h"
+
+class CDropGenerator
+{
+public:
+    static CDropGenerator& GetInstance(void);
+
+    BOOL GenerateDrop(INT32 nServerGroup, INT32 itemid, INT32 itemcount, CScene* scene, INT64 llX, INT64 llY, INT64 llZ, UINT32 srcid, BOOL instantpick);
+};

@@ -1,0 +1,22 @@
+﻿evtAIInit =
+{ batSequencer, 
+	{ batSetScanEnemyParam, param = { 1300, 0, 0, 0 } },
+};
+evtAIIdle = 
+{ batSequencer, 
+	{ batCheckSceneVariable, param={ boGTE , 2, 1 },
+	},
+	-- { batCheckCDTimer, param={ COOLDOWN_AI , 1,0,0},
+	-- },
+	-- { batSetCDTimer , param={ COOLDOWN_AI , 1,2000,2000},
+	-- },
+	{ batPlayAction, param={ 1},
+	},	
+	{ batSay, param={ cctScreen, DstDg05_Soldier2_1, 0, 0 },
+	},	
+	{ batWait, param={3000},
+	},
+	{batSpawnNpc, param={718,47200,46600,14500},
+	},
+	{batSuicide},	
+};

@@ -1,0 +1,29 @@
+
+evtAIInteract = 
+{ batSelector,
+	{ batSequencer,
+		{ batRoleOpenDialog, param = { 50575, 50000, 0, 0 } },		
+		  { batSelector,
+			{ batSequencer,
+			--选择选项一
+				{ batRoleCheckInteractOption, param = { 1 } },
+				{ batSequencer,
+					{ batRoleTeleport, param={ 62600, 47900, 10000, 143 } },	
+				},
+			},	
+			{ batSequencer,
+			--选择选项一
+				{ batRoleCheckInteractOption, param = { 2 } },
+				{ batSequencer,
+					{ batRoleTeleport, param={ 39100, 55300, 10000, 147 } },	
+				},
+			},	
+			{ batSequencer,
+				{ batRoleCheckInteractOption, param = { 3 } },
+			},
+		},
+	},		
+};
+
+
+

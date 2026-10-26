@@ -1,0 +1,8 @@
+
+on_enter_fight =
+{ batSequencer,
+	{ batAddAura, param = { tarHost, 60000 } },
+--	{ batPrint, param = { 22222 } },	
+};
+
+

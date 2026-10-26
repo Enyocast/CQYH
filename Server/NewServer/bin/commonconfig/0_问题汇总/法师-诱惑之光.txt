@@ -1,0 +1,478 @@
+
+
+/// @enum OBJECT_TYPE
+enum OBJECT_TYPE
+{
+	otInvalid = -1,
+
+	otRole,             ///< 0
+	otNpc,              ///< 1
+	otHero,             ///< 2
+	otDoodad,           ///< 3
+	otMissile,          ///< 4
+	otDrop,             ///< 5
+	otGuild,            ///< 6
+    otTeam,             ///< 7
+	otBattleTeam,       ///< 8
+    otChannel,          ///< 9
+	otTrumpet,
+
+	otTotal
+};
+
+
+// ====================
+
+
+// 佩戴 魔杖-魔魇印 提高诱惑成功率
+// 1031-黑色恶蛆 白色名字 成功, 一次就成功
+[W] ApplyGlobalNode 5211
+[W] Execute Function - ModifierChar_070  // 锁定目标
+
+[W] nNextNode 5212
+[W] Execute Function - ModifierChar_046  // 判断目标数量
+
+[W] nTrueRetNode 5213
+[W] Execute Function - ModifierChar_170  // 对目标执行 执行 DoBullet
+
+[W] ApplyGlobalNode 4096
+[W] Execute Function - ModifierBullet_022  // 判断目标 是不是特殊类型
+
+[W] nFalseRetNode 4097
+[W] Execute Function - ModifierBullet_102  // 判断目标 GetQuality
+
+[W] nFalseRetNode 4125
+[W] Execute Function - ModifierBullet_079  // 根据技能等级 判断随机数值
+
+[W] nTrueRetNode 4098
+[W] Execute Function - ModifierBullet_087  // 判断目标 ServerID 和 自己宠物ServerID 是否相同
+
+[W] nFalseRetNode 4100
+[W] Execute Function - ModifierBullet_083  // 判断目标 等级
+
+[W] nTrueRetNode 4127
+[W] Execute Function - ModifierBullet_022  // 判断目标 类型, GetObjType - b(otNpc), GetSpecies - b(spcUndead,spcDemon)
+
+[W] nTrueRetNode 4164
+[W] Execute Function - ModifierBullet_098  // 增加技能经验
+
+[W] nNextNode 4101
+[W] Execute Function - ModifierBullet_086  // 判断随机值 (0,1)
+
+[W] nTrueRetNode 4102
+[W] Execute Function - ModifierBullet_090  // 判断 (人物等级 - 目标等级) >= 差值
+
+[W] nTrueRetNode 4104
+[W] Execute Function - ModifierBullet_086  // 判断随机值 (0,1,2)
+
+[W] nTrueRetNode 4129
+[W] Execute Function - ModifierBullet_043  // 判断角色 标志位
+
+[W] nTrueRetNode 4130
+[W] Execute Function - ModifierBullet_092  // 判断随机值 if (g_Random(0, 人物等级 + 20 + 5 * 技能等级) > 目标等级 + 0)
+
+[W] nTrueRetNode 4131
+[W] Execute Function - ModifierBullet_085  // 判断目标 等级, 判断 角色当前宠物数量
+
+[W] nTrueRetNode 4138
+[W] Execute Function - ModifierBullet_022  // 判断目标 类型, GetObjType - b(otNpc), GetSpecies - b(spcDemon)
+
+[W] nTrueRetNode 4139
+[W] Execute Function - ModifierBullet_093  // 根据目标血量, 判断随机值 (目标血量越高, 概率越低)
+
+[W] nTrueRetNode 4142
+[W] Execute Function - ModifierBullet_099  // 判断 角色当前宠物数量
+
+[W] nTrueRetNode 4145
+[W] Execute Function - ModifierBullet_034  // 移除目标状态（驱散Debuff）
+
+[W] nNextNode 4146
+[W] Execute Function - ModifierBullet_034  // 移除目标状态（驱散Debuff）
+
+[W] nNextNode 4158
+[W] Execute Function - ModifierBullet_089  // 判断目标 主人ID
+
+[W] nFalseRetNode 4152
+[W] Execute Function - ModifierBullet_072  // 判断目标 是否存在某个光环
+
+[W] nFalseRetNode 4147
+[W] Execute Function - ModifierBullet_097  // 诱惑成功
+[I] pet debug log: CRole::AddPet HostID[13] OBJID[268493814]
+
+[W] nNextNode 4148
+[W] Execute Function - ModifierBullet_012  // 施放子技能（从施法者→目标）
+
+
+// ====================
+
+
+// 佩戴 魔杖-魔魇印 提高诱惑成功率
+// 1031-黑色恶蛆 白色 => 黄色, 失败
+[W] ApplyGlobalNode 5211
+[W] Execute Function - ModifierChar_070  // 锁定目标
+
+[W] nNextNode 5212
+[W] Execute Function - ModifierChar_046  // 判断目标数量
+
+[W] nTrueRetNode 5213
+[W] Execute Function - ModifierChar_170  // 对目标执行 执行 DoBullet
+
+[W] ApplyGlobalNode 4096
+[W] Execute Function - ModifierBullet_022  // 判断目标 是不是特殊类型
+
+[W] nFalseRetNode 4097
+[W] Execute Function - ModifierBullet_102  // 判断目标 GetQuality
+
+[W] nFalseRetNode 4125
+[W] Execute Function - ModifierBullet_079  // 根据技能等级 判断随机数值
+
+[W] nTrueRetNode 4098
+[W] Execute Function - ModifierBullet_087  // 判断目标 ServerID 和 自己宠物ServerID 是否相同
+
+[W] nFalseRetNode 4100
+[W] Execute Function - ModifierBullet_083  // 判断目标 等级
+
+[W] nTrueRetNode 4127
+[W] Execute Function - ModifierBullet_022  // 判断目标 类型, GetObjType - b(otNpc), GetSpecies - b(spcUndead,spcDemon)
+
+[W] nTrueRetNode 4164
+[W] Execute Function - ModifierBullet_098  // 增加技能经验
+
+[W] nNextNode 4101
+[W] Execute Function - ModifierBullet_086  // 判断随机值 (0,1)
+
+[W] nFalseRetNode 4103
+[W] Execute Function - ModifierBullet_004  // 给目标附加状态（Buff/Debuff） 红名/黄明
+
+[W] ApplyGlobalNode 5166
+[W] Execute Function - ModifierChar_174  // 搜索附近目标
+
+[W] ApplyGlobalNode 5161
+[W] Execute Function - ModifierChar_011  // 修改目标 ControlCount(不知道是啥东西)
+
+[W] nNextNode 5162
+[W] Execute Function - ModifierChar_014  // 移除光环事件
+
+
+// ====================
+
+
+// 佩戴 魔杖-魔魇印 提高诱惑成功率
+// 1031-黑色恶蛆 白色 => 红色, 失败
+[W] ApplyGlobalNode 5211
+[W] Execute Function - ModifierChar_070  // 锁定目标
+
+[W] nNextNode 5212
+[W] Execute Function - ModifierChar_046  // 判断目标数量
+
+[W] nTrueRetNode 5213
+[W] Execute Function - ModifierChar_170  // 对目标执行 执行 DoBullet
+
+[W] ApplyGlobalNode 4096
+[W] Execute Function - ModifierBullet_022  // 判断目标 是不是特殊类型
+
+[W] nFalseRetNode 4097
+[W] Execute Function - ModifierBullet_102  // 判断目标 GetQuality
+
+[W] nFalseRetNode 4125
+[W] Execute Function - ModifierBullet_079  // 根据技能等级 判断随机数值 
+
+[W] nTrueRetNode 4098
+[W] Execute Function - ModifierBullet_087  // 判断目标 ServerID 和 自己宠物ServerID 是否相同
+
+[W] nFalseRetNode 4100
+[W] Execute Function - ModifierBullet_083  // 判断目标 等级
+
+[W] nTrueRetNode 4127
+[W] Execute Function - ModifierBullet_022  // 判断目标 类型, GetObjType - b(otNpc), GetSpecies - b(spcUndead,spcDemon)
+
+[W] nTrueRetNode 4164
+[W] Execute Function - ModifierBullet_098  // 增加技能经验
+
+[W] nNextNode 4101
+[W] Execute Function - ModifierBullet_086  // 判断随机值 (0,1)
+
+[W] nTrueRetNode 4102
+[W] Execute Function - ModifierBullet_090  // 判断 (人物等级 - 目标等级) >= 差值
+
+[W] nTrueRetNode 4104
+[W] Execute Function - ModifierBullet_086  // 判断随机值 (0,1,2)
+
+[W] nTrueRetNode 4129
+[W] Execute Function - ModifierBullet_043  // 判断角色 标志位
+
+[W] nTrueRetNode 4130
+[W] Execute Function - ModifierBullet_092  // 判断随机值 if (g_Random(0, 角色等级 + nParam1 + nParam2 * 技能等级) > 目标等级 + nParam3)
+
+[W] nFalseRetNode 4132
+[W] Execute Function - ModifierBullet_022  // 判断目标 类型, GetObjType - b(otNpc), GetSpecies - b(spcUndead)
+
+[W] nFalseRetNode 4133
+[W] Execute Function - ModifierBullet_086  // 判断随机值 (0,1)
+
+[W] nTrueRetNode 4134
+[W] Execute Function - ModifierBullet_089  // 判断目标 主人ID
+
+[W] nFalseRetNode 4151
+[W] Execute Function - ModifierBullet_004  // 给目标附加状态（Buff/Debuff） 红名/黄明
+
+[W] ApplyGlobalNode 5163
+[W] Execute Function - ModifierChar_171  // 修改目标 待定光环 时间
+
+[W] nNextNode 5164
+[W] Execute Function - ModifierChar_189  // 修改目标 进入Idle状态
+
+[W] nNextNode 5165
+[W] Execute Function - ModifierChar_204  // 修改目标 ControlCount(不知道是啥东西)
+
+
+// ====================
+
+
+// 佩戴 魔杖-无铭文
+// 1031-黑色恶蛆 白色, 失败
+[W] ApplyGlobalNode 5134
+[W] Execute Function - ModifierChar_070  // 锁定目标
+
+[W] nNextNode 5135
+[W] Execute Function - ModifierChar_046  // 判断目标数量
+
+[W] nTrueRetNode 5136
+[W] Execute Function - ModifierChar_170  // 对目标执行 执行 DoBullet
+
+[W] ApplyGlobalNode 3951
+[W] Execute Function - ModifierBullet_022  // 判断目标 是不是特殊类型
+
+[W] nFalseRetNode 3952
+[W] Execute Function - ModifierBullet_102  // 判断目标 GetQuality
+
+[W] nFalseRetNode 3980
+[W] Execute Function - ModifierBullet_079  // 根据技能等级 判断随机数值
+
+[W] nTrueRetNode 3953
+[W] Execute Function - ModifierBullet_087  // 判断目标 ServerID 和 自己宠物ServerID 是否相同
+
+[W] nFalseRetNode 3955
+[W] Execute Function - ModifierBullet_083  // 判断目标 等级
+
+[W] nTrueRetNode 3982
+[W] Execute Function - ModifierBullet_022  // 判断目标 类型, GetObjType - b(otNpc), GetSpecies - b(spcUndead,spcDemon)
+
+[W] nTrueRetNode 3992
+[W] Execute Function - ModifierBullet_098  // 增加技能经验
+
+[W] nNextNode 3956
+[W] Execute Function - ModifierBullet_086  // 判断随机值 (0,1)
+
+[W] nTrueRetNode 3957
+[W] Execute Function - ModifierBullet_090  // 判断 (人物等级 - 目标等级) >= 差值
+
+[W] nTrueRetNode 3959
+[W] Execute Function - ModifierBullet_086  // 判断随机值 (0,1,2)
+
+[W] nFalseRetNode 3961
+[W] Execute Function - ModifierBullet_022  // 判断目标 类型, GetObjType - b(otNpc), GetSpecies - b(spcUndead)
+
+
+// ====================
+
+
+// 佩戴 魔杖-无铭文
+// 1031-黑色恶蛆 黄色, 失败
+[W] ApplyGlobalNode 5134
+[W] Execute Function - ModifierChar_070  // 锁定目标
+
+[W] nNextNode 5135
+[W] Execute Function - ModifierChar_046  // 判断目标数量
+
+[W] nTrueRetNode 5136
+[W] Execute Function - ModifierChar_170  // 对目标执行 执行 DoBullet
+
+[W] ApplyGlobalNode 3951
+[W] Execute Function - ModifierBullet_022  // 判断目标 是不是特殊类型
+
+[W] nFalseRetNode 3952
+[W] Execute Function - ModifierBullet_102  // 判断目标 GetQuality
+
+[W] nFalseRetNode 3980
+[W] Execute Function - ModifierBullet_079  // 根据技能等级 判断随机数值
+
+[W] nTrueRetNode 3953
+[W] Execute Function - ModifierBullet_087  // 判断目标 ServerID 和 自己宠物ServerID 是否相同
+
+[W] nFalseRetNode 3955
+[W] Execute Function - ModifierBullet_083  // 判断目标 等级
+
+[W] nTrueRetNode 3982
+[W] Execute Function - ModifierBullet_022  // 判断目标 类型, GetObjType - b(otNpc), GetSpecies - b(spcUndead,spcDemon)
+
+[W] nTrueRetNode 3992
+[W] Execute Function - ModifierBullet_098  // 增加技能经验
+
+[W] nNextNode 3956
+[W] Execute Function - ModifierBullet_086  // 判断随机值 (0,1)
+
+[W] nTrueRetNode 3957
+[W] Execute Function - ModifierBullet_090  // 判断 (人物等级 - 目标等级) >= 差值
+
+// 出现分支1/2
+[W] nTrueRetNode 3959 - 从这开始关键判断
+[W] Execute Function - ModifierBullet_086  // 判断随机值 (0,1,2)
+
+// 分支1
+[W] nFalseRetNode 3961
+[W] Execute Function - ModifierBullet_022  // 判断目标 类型, GetObjType - b(otNpc), GetSpecies - b(spcUndead)
+
+[W] ApplyGlobalNode 3993
+[W] Execute Function - ModifierBullet_036  // 检查技能与符文（符文强化效果）
+
+[W] ApplyGlobalNode 5166
+[W] Execute Function - ModifierChar_174
+
+
+// ====================
+
+
+[W] nTrueRetNode 3959 - 从这开始关键判断
+[W] Execute Function - ModifierBullet_086  // 判断随机值 (0,1,2)
+
+// 分支2 - 出现分支3/4
+[W] nTrueRetNode 3960 - 关键随机值
+[W] Execute Function - ModifierBullet_092  // 判断随机值 if (g_Random(0, 人物等级 + 20 + 5 * 技能等级) > 目标等级 + 10)
+
+// 分支3
+[W] nTrueRetNode 3963
+[W] Execute Function - ModifierBullet_085  // 判断宠物数量
+
+[W] nTrueRetNode 3983
+[W] Execute Function - ModifierBullet_085  // 判断目标 是不是特殊类型
+
+[W] nTrueRetNode 3967
+[W] Execute Function - ModifierBullet_093  // 判断随机值
+
+[W] nTrueRetNode 3975
+[W] Execute Function - ModifierBullet_099  // 判断宠物数量
+
+[W] nTrueRetNode 3971
+[W] Execute Function - ModifierBullet_034  // 移除目标状态（驱散Debuff）
+
+[W] nNextNode 3972
+[W] Execute Function - ModifierBullet_034  // 移除目标状态（驱散Debuff）
+
+[W] nNextNode 3989
+[W] Execute Function - ModifierBullet_089  // 判断目标 主人ID
+
+[W] nNextNode 3989
+[W] Execute Function - ModifierBullet_089  // 判断目标 主人ID
+
+[W] nTrueRetNode 3990
+[W] Execute Function - ModifierBullet_122  // 诱惑成功
+
+[W] nNextNode 3991
+[W] Execute Function - ModifierBullet_122  // 施放子技能（从施法者→目标）
+
+
+// ====================
+
+
+// 分支4
+[W] nTrueRetNode 3959 - 从这开始关键判断
+[W] Execute Function - ModifierBullet_086  // 判断随机值 (0,1,2)
+
+[W] nTrueRetNode 3960 - 关键随机值
+[W] Execute Function - ModifierBullet_092  // 判断随机值 if (g_Random(0, 人物等级 + 20 + 5 * 技能等级) > 目标等级 + 10)
+
+[W] nFalseRetNode 3964
+[W] Execute Function - ModifierBullet_022  // 判断目标 类型, GetObjType - b(otNpc), GetSpecies - b(spcUndead)
+
+
+=> nTrueRetNode 0 结束了
+
+
+// ====================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

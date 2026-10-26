@@ -1,0 +1,33 @@
+LoadPackage("drop_generator.pkg")
+LoadPackage("npc.pkg")
+LoadPackage("scene.pkg")
+
+function OnBossDie(owner, p1, p2, p3, p4)
+	local scene = owner:GetScene();
+	if scene == nil then
+		return brvError;
+	end
+
+	local gen = CDropGenerator:GetInstance();
+	local index = math.random(5,10);
+	for i = 1, index do
+		gen:GenerateDrop(scene:GetServerGroup(), 2800361, 1, scene, owner:GetX(), owner:GetY(), owner:GetZ(), owner:GetObjID(), true);
+	end
+	index = math.random(5,10);
+	for i = 1, index do
+		gen:GenerateDrop(scene:GetServerGroup(), 2800357, 1, scene, owner:GetX(), owner:GetY(), owner:GetZ(), owner:GetObjID(), true);
+	end
+	return brvSuccess;
+end
+
+on_die =
+{ batSequencer,
+	{ batCheckDateTime, param = { 0, 200001, 220000  } },
+	{ batSetSceneVariable , param={ 29, 0, 1 } },
+	{ batSetSceneVariable , param={ 28, 1, 0 } },
+	{ OnBossDie, param = { 0, 0, 0, 0} },
+	{ batSay, param={ cctScene, str2021newyearNianShou }},
+};
+
+
+

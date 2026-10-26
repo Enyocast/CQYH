@@ -1,0 +1,5 @@
+$pfile "script/common.pkg"
+$#include "scene_def.h"
+
+$hfile "../../../Common/define/score_def.h"
+

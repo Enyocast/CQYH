@@ -1,0 +1,118 @@
+-- tree evtRoleDie refer external: -- 
+-- external table or function:  DeadRoleArenaDefeat
+-- external table or function:  DeadRoleArenaCompetitorWin
+-- external table or function:  batTeleportSceneRoleToReturnPos
+
+evtEnterScene = 
+{ batDebug,
+	{
+	batParallel,
+		{ batSetSceneVariable, param = { ARENA_ROLE_NUM_INDEX, 0, 1 } },
+		{ AddAura, param = { ARENA_DEC_ROLE_ATTR_AURA_ID } },
+		{ AddAura, param = { ARENA_ADD_ROLE_ATTR_AURA_ID } },
+		{ batSequencer,
+			{ CanInheritArenaHp, },
+			{ SetRoleHp, },
+		},
+		
+		{ batSelector,
+			{ batSequencer,
+				{ batCheckSceneVariable, param = { boEQ, 1, 1 } },
+				{ batParallel,
+					{ batRoleSetFaction, param = { ARENA_FACTION_FIRST } },
+					{ batSetSceneVariable, param = { ARENA_FIRST_ROLE_INDEX, 'GetRoleID(o)' } },
+				},
+			},
+			{ batParallel,
+				{ batRoleSetFaction, param = { ARENA_FACTION_SECOND } },
+				{ batSetSceneVariable, param = { ARENA_SECOND_ROLE_INDEX, 'GetRoleID(o)' } },
+			},
+		},
+	},
+};
+
+evtLeaveScene = 
+{ batDebug, { batParallel,
+	{ batSetSceneVariable, param = { ARENA_ROLE_NUM_INDEX, 0, -1 } },
+	{ batRoleSetFaction, param = { 0 } },
+	{ DelAura, param = { ARENA_DEC_ROLE_ATTR_AURA_ID } },
+	{ DelAura, param = { ARENA_ADD_ROLE_ATTR_AURA_ID } },
+	{ batSequencer,
+		{ batCheckSceneVariable, param = { boEQ, ARENA_STATE_INDEX, ARENA_STATE_BEGIN } },
+		{ batCheckSceneVariable, param = { boEQ, 1, 1 } },
+		{ batParallel,
+			{ DeadRoleArenaDefeat },
+			{ DeadRoleArenaCompetitorWin },
+			{ batFinishScene, param = { ARENA_CLOSE_WAIT_DURATION } },
+			{ batSay, param = { cctScene, strBFEndNotification } },
+			{ batTeleportSceneRoleToReturnPos },
+		},
+	}, },
+};
+
+
+evtSceneInit = 
+-- before arena begin
+{ batDebug, { batParallel,
+	{ batWait, param = { 10000 } },
+	{ batCloseDoor, param = { 1 } },
+	{ batCloseDoor, param = { 2 } },
+	{ batSay, param = { cctScene, strBF1MinNotification } },
+	{ batSetSceneVariable, param = { ARENA_STATE_INDEX, ARENA_STATE_READY } },
+	{ batSetSceneVariable, param = { ARENA_START_TIME_INDEX, 'CGameWorld:GetInstance():GetGameTime()' } },
+	{ batWait, param = { 30000 } },
+	{ batSay, param = { cctScene, strBF30SecNotification } },
+	{ batWait, param = { 20000 } },
+	{ batSay, param = { cctScene, strBF10SecNotification } },	
+	{ batWait, param = { 9000 } },
+	{ batSetSceneVariable, param = { ARENA_DOOR_TOGGLE_INDEX, 1 } },
+	{ batWait, param = { 1000 } },
+	{ batSequencer,
+		{ batSay, param = { cctScene, strBFBeginNotification } },
+		{ batSequencer,
+			{ batOpenDoor, param = { 1 } },
+			{ batOpenDoor, param = { 2 } },
+		},
+	},
+	{ batSetSceneVariable, param = { ARENA_STATE_INDEX, ARENA_STATE_BEGIN } },
+	-- arena begin
+	{ batSelector,
+		{ batSequencer,
+			{ batCheckSceneVariable, param = { boEQ, 1, 2 } },
+			{ batParallel,
+				{ batWait, param = { ARENA_LAST_TIME } },
+				{ batSceneRoleSetFaction, param = { ARENA_FACTION_FIRST } },
+				{ batSetSceneVariable, param = { ARENA_STATE_INDEX, ARENA_STATE_END } },
+				{ batSceneEndArena },
+				{ batFinishScene, param = { ARENA_CLOSE_WAIT_DURATION } },
+				{ batSay, param = { cctScene, strBFEndNotification } },
+			},
+		},
+		{ batSequencer,
+			{ batCheckSceneVariable, param = { boEQ, 1, 1 } },
+			{ batParallel,
+				{ OnlyJoinArenaSceneWin },
+				{ batSetSceneVariable, param = { ARENA_STATE_INDEX, ARENA_STATE_END } },
+				{ batFinishScene, param = { ARENA_CLOSE_WAIT_DURATION } },
+				{ batSay, param = { cctScene, strBFEndNotification } },
+			},
+		},
+		{ batSequencer,
+			{ batCheckSceneVariable, param = { boEQ, 1, 0 } },
+			{ batSetSceneVariable, param = { ARENA_STATE_INDEX, ARENA_STATE_END } },
+			{ batFinishScene, param = { ARENA_CLOSE_WAIT_DURATION } },
+		},
+	}, },
+};
+
+
+evtRoleDie = 
+{ batDebug, { batParallel,
+	{ DeadRoleArenaDefeat },
+	{ DeadRoleArenaCompetitorWin },
+	{ batSetSceneVariable, param = { ARENA_STATE_INDEX, ARENA_STATE_END } },
+	{ batWait, param = { 10000 } },
+	{ batFinishScene, param = { ARENA_CLOSE_WAIT_DURATION } },
+	{ batSay, param = { cctScene, strBFEndNotification } },
+	{ batTeleportSceneRoleToReturnPos }, },
+};

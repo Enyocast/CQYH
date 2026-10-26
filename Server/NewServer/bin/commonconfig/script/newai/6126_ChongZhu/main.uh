@@ -1,0 +1,15 @@
+--жиж§
+evtAIInteract = 
+{ batSelector,
+			{ batSequencer,
+				{ batRoleCheckLevel, param = { boGTE, ROLE_LEVEL_LIMIT } },
+				{ batRoleOpenDialog, param = { 50163, 30000 } },
+			},
+			
+			{ batSequencer,
+				{ batRoleOpenDialog, param = { 50090, 30000 } },
+			},
+			
+	
+			
+};

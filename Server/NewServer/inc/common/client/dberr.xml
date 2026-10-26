@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<code decoding="GBK">
+	<output filename="dberr.h">
+		<namespace name="ERR_CREATEROLE_DB">
+			<message id="0" varname="NOERROR" msg="操作成功"/>
+			<message id="1" varname="TOOMUCHROLE" msg="角色创建过多"/>			
+			<message id="2" varname="PARAMERROR" msg="参数不正确"/>
+			<message id="3" varname="UNKNOWERROR" msg="角色名重复或数据库错误"/>
+		</namespace>	
+	</output>
+</code>

@@ -1,0 +1,235 @@
+local character_table = 
+		{
+			91011,
+			91012,
+			91013,
+			91014,
+		};
+
+local exp_table_1 = 
+		{
+			10000,
+			20000,
+			30000,
+			50000,
+		};	
+
+local exp_table_2 = 
+		{
+			60000,
+			100000,
+			150000,
+			200000,
+		};	
+
+
+
+function _exp_add_1()
+	local temp_table = 
+		{batSequencer,
+			{ batRoleDelItem, param = { character_table[1], 1 } },
+			{ batRoleDelItem, param = { character_table[2], 1 } },
+			{ batRoleUpdateDailyVariable, param = { 201, 0 } },
+			{ batRandom, param = {4000, 3000, 2000, 1000 },
+				{ batAddExp, param={ tarRole , exp_table_1[1] } },	
+				{ batAddExp, param={ tarRole , exp_table_1[2] } },
+				{ batAddExp, param={ tarRole , exp_table_1[3] } },
+				{ batAddExp, param={ tarRole , exp_table_1[4] } },
+			},	
+			{ batRoleOpenDialog, param = { 50126, 50000, 0, 0 } },
+		};
+
+	return temp_table;
+end
+
+
+function _exp_add_2()
+	local temp_table = 
+	{batSequencer,
+		{ batRoleUpdateDailyVariable, param = { 201, 0 } },
+		{ batRoleDelItem, param = { character_table[1], 1 } },
+		{ batRoleDelItem, param = { character_table[2], 1 } },
+		{ batRoleDelItem, param = { character_table[3], 1 } },
+		{ batRoleDelItem, param = { character_table[4], 1 } },
+
+		{ batRandom, param = {4000, 3000, 2000, 1000 },
+			{ batAddExp, param={ tarRole , exp_table_2[1] } },	
+			{ batAddExp, param={ tarRole , exp_table_2[2] } },		
+			{ batAddExp, param={ tarRole , exp_table_2[3] } },	
+			{ batAddExp, param={ tarRole , exp_table_2[4] } },		
+		},	
+
+		{ batRoleOpenDialog, param = { 50127, 50000, 0, 0 } },
+
+	};
+
+	return temp_table;
+end
+
+function _chuanqi_collection()
+
+	local temp_table =
+	{ batSelector,
+
+		{ batSequencer,
+			{ batRoleCheckDailyVariable, param = { 201 } },	
+			{ batRoleOpenDialog, param = { 50123, 30000 } },
+			{ batRoleCheckInteractOption, param = { 1 } },
+			{ batSelector,
+
+				{ batSequencer,
+					{ batRoleCheckItemCount, param = { boLT,character_table[1], 1 } }, 
+					{ batRoleOpenDialog, param = { 50125, 50000, 0, 0 } },
+				}, 
+				{ batSequencer,
+					{ batRoleCheckItemCount, param = { boLT,character_table[2], 1 } }, 
+					{ batRoleOpenDialog, param = { 50125, 50000, 0, 0 } },
+				}, 
+				{ batSequencer,
+					{ batRoleCheckDailyVariable, param = { 201 } },	
+					{ batRoleCheckItemCount, param = { boGTE,character_table[1], 1 } }, 
+					{ batRoleCheckItemCount, param = { boGTE,character_table[2], 1 } },
+					_exp_add_1(),
+				}, 
+				{ batSequencer,
+					{ batRoleOpenDialog, param = { 50122, 50000, 0, 0 } },
+				}, 
+			},	
+		},	
+		
+		--已经领取过
+		{batSequencer,
+			{ batRoleOpenDialog, param = { 50122, 50000, 0, 0 } },
+		},		
+	};
+
+	return temp_table;
+end
+
+
+function _chuanqiyongheng_collection()
+
+	local temp_table =
+	{ batSelector,
+
+		{ batSequencer,
+			{ batRoleCheckDailyVariable, param = { 201 } },	
+			{ batRoleOpenDialog, param = { 50124, 30000 } },
+			{ batRoleCheckInteractOption, param = { 1 } },
+			{ batSelector,
+
+				{ batSequencer,
+					{ batRoleCheckItemCount, param = { boLT,character_table[1], 1 } }, 
+					{ batRoleOpenDialog, param = { 50125, 50000, 0, 0 } },
+				}, 
+				{ batSequencer,
+					{ batRoleCheckItemCount, param = { boLT,character_table[2], 1 } }, 
+					{ batRoleOpenDialog, param = { 50125, 50000, 0, 0 } },
+				}, 
+
+				{ batSequencer,
+					{ batRoleCheckItemCount, param = { boLT,character_table[3], 1 } }, 
+					{ batRoleOpenDialog, param = { 50125, 50000, 0, 0 } },
+				}, 
+
+				{ batSequencer,
+					{ batRoleCheckItemCount, param = { boLT,character_table[4], 1 } }, 
+					{ batRoleOpenDialog, param = { 50125, 50000, 0, 0 } },
+				},
+
+
+				{ batSequencer,
+					{ batRoleCheckDailyVariable, param = { 201 } },	
+					{ batRoleCheckItemCount, param = { boGTE,character_table[1], 1 } }, 
+					{ batRoleCheckItemCount, param = { boGTE,character_table[2], 1 } },
+					{ batRoleCheckItemCount, param = { boGTE,character_table[3], 1 } },
+					{ batRoleCheckItemCount, param = { boGTE,character_table[4], 1 } },
+					_exp_add_2(),
+				}, 
+				{ batSequencer,
+					{ batRoleOpenDialog, param = { 50122, 50000, 0, 0 } },
+				}, 
+			},	
+		},	
+		
+		--已经领取过
+		{batSequencer,
+			{ batRoleOpenDialog, param = { 50122, 50000, 0, 0 } },
+		},		
+	};
+
+	return temp_table;
+end
+
+
+-----------------
+
+evtAIInteract = 
+{ batSelector,
+	--等级低于25
+	{ batSequencer,
+		{ batCheckDate , param = { boLT,20160608, 000000 } },
+		{ batRoleOpenDialog, param = { 50140, 30000 } },
+	},
+	{ batSequencer,
+		{ batCheckDate , param = { boGT, 20160622, 235959 } },
+		{ batRoleOpenDialog, param = { 50141, 30000 } },
+	},
+	{ batSequencer,
+		{ batSelector,
+			{ batSequencer,
+				{ batRoleCheckLevel, param = { boLT, ROLE_LEVEL_LIMIT } },
+				{ batRoleOpenDialog, param = { 50121, 30000 ,ROLE_LEVEL_LIMIT} },
+			},
+			{ batSequencer,
+				{ batRoleOpenDialog, param = { 50120, 50000, 0, 0 } },	
+				{ batSelector,
+					--收集传奇两字
+					{ batSequencer, 
+						{ batRoleCheckInteractOption, param = { 1 } },
+						_chuanqi_collection(),
+					},
+					--收集传奇永恒四字
+					{ batSequencer, 
+						{ batRoleCheckInteractOption, param = { 2 } },	
+						_chuanqiyongheng_collection(),
+					},
+
+					{ batSequencer, 
+						{ batRoleCheckInteractOption, param = { 3 } },	
+						{ batSelector,
+							{ batSequencer,
+								{ batRoleCheckDailyVariable, param = { 202 } },
+								{ batRoleUpdateDailyVariable, param = { 202, 0 } },
+								{ batRandom, param = {5500, 4500 },
+									{ batSequencer,
+										{ batRoleAddItem, param = { character_table[1], 1 } },
+									},
+									{ batSequencer,
+										{ batRoleAddItem, param = { character_table[2], 1 } },	
+									},
+								},
+								{ batRandom, param = {5500, 4500 },
+									{ batSequencer,
+										{ batRoleAddItem, param = { character_table[1], 1 } },
+									},
+									{ batSequencer,
+										{ batRoleAddItem, param = { character_table[2], 1 } },	
+									},
+								},
+								{ batRoleOpenDialog, param = { 50134, 30000 } },
+								
+							},
+							{batSequencer,
+								{ batRoleOpenDialog, param = { 50135, 30000} },
+							},
+							
+						},	
+					},
+				},
+				
+			},
+		},	
+	},
+
+}; 

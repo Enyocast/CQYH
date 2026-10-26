@@ -1,0 +1,39 @@
+local spell_common =
+{
+	{ id = 5324, cd = 2500, chance = 10000, target = tarAITarget },        --人鱼弓手-射击
+	{ id = 5323, cd = 6000, chance = 8000, target = tarAITarget },         --人鱼弓手-挥打
+	{ id = 5325, cd = 12000, chance = 6000, target = tarAITarget },        --人鱼弓手-尖冰穿刺
+	{ id = 3515, cd = 20000, chance = 8000, target = tarAITarget },        --人鱼弓手-连续射击
+	{ id = 3516, cd = 30000, chance = 10000, target = tarSelf },           --人鱼弓手-寒霜加持
+};
+
+on_enter_fight =
+{ batSequencer,
+    __cast_spell(spell_common[5].id, spell_common[5].target, spell_common[5].chance, spell_common[5].cd); 
+};
+
+on_chase =
+{ batSequencer,
+    __cast_spell(spell_common[3].id, spell_common[3].target, spell_common[3].chance, spell_common[3].cd); 
+};
+
+on_cast_spell =
+{ batSelector,
+
+    __cast_spell(spell_common[5].id, spell_common[5].target, spell_common[5].chance, spell_common[5].cd); 
+    __cast_spell(spell_common[1].id, spell_common[1].target, spell_common[1].chance, spell_common[1].cd); 
+    __cast_spell(spell_common[2].id, spell_common[2].target, spell_common[2].chance, spell_common[2].cd); 
+    __cast_spell(spell_common[3].id, spell_common[3].target, spell_common[3].chance, spell_common[3].cd); 
+    __cast_spell(spell_common[4].id, spell_common[4].target, spell_common[4].chance, spell_common[4].cd); 
+    
+	
+	{ batSequencer,
+            { batCheckCDTimer, param = { COOLDOWN_AI, 100 } },
+            { batCheckCharHp, param = { tarSelf, boLTE, 5000 } },
+            { batSpawnSingleNpc, param={ 27 } },
+	        { batSpawnSingleNpc, param={ 47 } },
+	        { batSpawnSingleNpc, param={ 24 } },
+	        { batSpawnSingleNpc, param={ 48 } },
+            { batSetCDTimer, param = { COOLDOWN_AI, 100, 60000 } },	
+    },
+};

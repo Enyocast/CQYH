@@ -1,0 +1,49 @@
+
+function _random_spell()
+    local spell_table = {};
+    local weight_table = {};
+    local count = 0;
+    if d.nParam[1] ~= 0 and d.nParam[4] ~= 0 then
+        count = count + 1;
+        table.insert(spell_table,
+            { batSyncCastSpellToTarget, param = { d.nParam[1], tarRole } }
+        );
+        table.insert(weight_table, d.nParam[4]);
+    end
+    if d.nParam[2] ~= 0 and d.nParam[5] ~= 0 then
+        count = count + 1;
+        table.insert(spell_table,
+            { batSyncCastSpellToTarget, param = { d.nParam[2], tarRole } }
+        );
+        table.insert(weight_table, d.nParam[5]);
+    end
+    if d.nParam[3] ~= 0 and d.nParam[6] ~= 0 then
+        count = count + 1;
+        table.insert(spell_table,
+            { batSyncCastSpellToTarget, param = { d.nParam[3], tarRole } }
+        );
+        table.insert(weight_table, d.nParam[6]);
+    end
+
+    if count == 1 then
+        return 
+        { batSequencer,
+            __check_cd_timer(COOLDOWN_AI, SPELL_CD_TIMER, d.nParam[0]),
+            __set_cd_timer(COOLDOWN_AI, SPELL_CD_TIMER, d.nParam[0]),
+            unpack(spell_table),
+        };
+    elseif count == 2 or count == 3 then
+        return 
+        { batSequencer,
+            __check_cd_timer(COOLDOWN_AI, SPELL_CD_TIMER, d.nParam[0]),
+            __set_cd_timer(COOLDOWN_AI, SPELL_CD_TIMER, d.nParam[0]),
+            { batRandom, param = weight_table,
+                unpack(spell_table),
+            },
+        };
+    else
+        return nil;
+    end
+end
+
+evtAIInteract = _random_spell();

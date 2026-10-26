@@ -1,0 +1,109 @@
+local boss_stage_1 = 1;
+local boss_stage_2 = 2;
+local boss_stage_3 = 3;
+
+local spell_common =
+{
+	{ id = 5848, cd = 3000, chance = 10000 , target = tarAITarget},  
+	--1.连续撕咬目标。
+	{ id = 5849, cd = 20000, chance = 10000 , target = tarAITarget}, 
+	--2.向前冲刺同时沿途单位将被踩倒在地。
+	{ id = 5850, cd = 12000, chance = 6000 , target = tarAITarget},  
+	--3.叼住身前一个目标持续甩动后抛掷出去。
+	{ id = 5851, cd = 30000, chance = 10000 , target = tarAITarget}, 
+	--4.抬起前腿猛击地面产生环形的冲击波，同时冲击波会引爆周围的石笋产生爆炸伤害。
+	{ id = 5852, cd = 20000, chance = 6000 , target = tarAITarget},  
+	--5.朝前方怒吼造成范围内目标进入恐惧状态。
+	{ id = 5853, cd = 30000, chance = 10000 , target = tarAITarget}, 
+	--6.抬起头大声吼叫，以自身为中心地面刺出多个石笋将最多8个目标围困。
+	{ id = 5854, cd = 16000, chance = 6000 , target = tarAITarget}, 	
+	--7.抬起前肢朝前重重践踏地面造成范围伤害，同时伤害区域内的目标将持续被减速。
+	{ id = 5855, cd = 0, chance = 10000 , target = tarAITarget},     
+	--8.头顶的巨石水晶发出闪电扫射身前扇形区域内目标。
+	{ id = 5856, cd = 0, chance = 10000 , target = tarAITarget},     
+	--9.被动效果，被攻击时会一定几率造成石盔破坏效果，迸射尖刺进行反击，同时可对攻击者造成流血伤害。
+	{ id = 5907, cd = 12000, chance = 6000 , target = tarAITarget},  
+	--10.抬起背部晃动身体，背部的石笋爆裂后施展360°范围的穿刺攻击。类似WAR3中玛维的匕首圆形投掷。	
+	{ id = 5908, cd = 15000, chance = 6000 , target = tarAITarget},	 
+	--11.抬起双腿后微微发力，然后猛然踩下地面，可将周围敌人顶到天空，并形成无法通过的区域。	
+};
+
+fight_sub = 
+{ batSelector,
+	{ batSequencer,
+	    { batCheckCharHp, param = { tarSelf, boLTE, 6000 } };
+		__cast_spell(spell_common[5].id, tarAITarget, spell_common[5].chance, spell_common[5].cd);  
+	},
+	__cast_spell(spell_common[1].id, tarAITarget, spell_common[1].chance, spell_common[1].cd);
+	__cast_spell(spell_common[3].id, tarAITarget, spell_common[3].chance, spell_common[3].cd);
+};
+
+stage_tree_1 =
+{ batSequencer,
+	{ batCheckBossState, param = { 1 } },
+	fight_sub,
+	{ batSequencer,
+      	{ batCheckCharHp, param = { tarSelf, boLTE, 8000 } };
+		__cast_spell(spell_common[8].id, spell_common[8].target, spell_common[8].chance, spell_common[8].cd);
+		{ batSetBossState, param = { 2 } },
+	},
+};
+
+stage_tree_2 =
+{ batSequencer,
+	{ batCheckBossState, param = { 2 } },
+	fight_sub,
+
+	{ batSequencer,
+		__cast_spell(spell_common[6].id, spell_common[6].target, spell_common[6].chance, spell_common[6].cd);
+		__cast_spell(spell_common[4].id, spell_common[4].target, spell_common[4].chance, spell_common[4].cd);
+	},
+
+	{ batSequencer,
+      	{ batCheckCharHp, param = { tarSelf, boLTE, 4000 } };
+		__cast_spell(spell_common[8].id, spell_common[8].target, spell_common[8].chance, spell_common[8].cd);
+		{ batSetBossState, param = { 3 } },
+	},
+};
+
+stage_tree_3 =
+{ batSequencer,
+	{ batCheckBossState, param = { 3 } },
+	fight_sub,
+	{ batParallel,
+		__cast_spell(spell_common[7].id, spell_common[7].target, spell_common[7].chance, spell_common[7].cd);
+		__cast_spell(spell_common[10].id, spell_common[10].target, spell_common[10].chance, spell_common[10].cd);
+		__cast_spell(spell_common[11].id, spell_common[11].target, spell_common[11].chance, spell_common[11].cd);
+	},
+};
+
+on_chase =
+{ batSequencer,
+	__check_dice(6000),
+    __cast_spell(spell_common[2].id, spell_common[2].target, spell_common[2].chance, spell_common[2].cd); 
+};
+
+on_cast_spell =
+{ batSelector,
+	stage_tree_1,
+	stage_tree_2,
+	stage_tree_3,
+};
+
+on_init =
+{ batSequencer, 
+	{ batSetBossState, param = { 1 } },
+};
+
+on_wander =
+{ batSequencer, 
+	{ batSetBossState, param = { 1 } },
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[2].id, spell_common[2].cd);
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[3].id, spell_common[3].cd);
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[4].id, spell_common[4].cd);
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[5].id, spell_common[5].cd);
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[6].id, spell_common[6].cd);
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[7].id, spell_common[7].cd);
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[10].id, spell_common[10].cd);
+	__set_cd_timer(COOLDOWN_SCRIPT_SPELL, spell_common[11].id, spell_common[11].cd);	
+};

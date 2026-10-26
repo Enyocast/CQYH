@@ -1,0 +1,626 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="gs_gm">
+      <UniqueIdentifier>{614efbf1-c405-418e-86cd-fa97d35612d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="robot">
+      <UniqueIdentifier>{7dd046ec-1b10-4a1b-81bd-fe6fa61ee834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="robot\ai">
+      <UniqueIdentifier>{46eca80a-3668-4954-a046-9aaf9b7af7dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test case">
+      <UniqueIdentifier>{c7566857-1ab3-4625-ad3f-06d368e62bde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test case\functionality">
+      <UniqueIdentifier>{ce00964d-9101-4c53-8a18-a021c8f43e1e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test case\coverage">
+      <UniqueIdentifier>{b276b767-271e-4606-abfb-57051add24a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="test case\performance">
+      <UniqueIdentifier>{dda538ca-d20a-4e28-82fd-f42fdb3eef59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{ff76a97a-89ee-4dc8-ac1f-561c0b264159}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ai">
+      <UniqueIdentifier>{b8d95be1-8c71-45d2-af11-61db8ae59b48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ai\default">
+      <UniqueIdentifier>{3426315c-ad2c-4a59-9429-0cc6121f26fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ai\stand_show">
+      <UniqueIdentifier>{41c65720-6717-4d96-82ac-d51b1dc4af2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ai\quest_dialog">
+      <UniqueIdentifier>{af15ba0d-4bda-49c5-953a-8a27fec20180}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ai\click_spell">
+      <UniqueIdentifier>{371ddb66-af05-4f4e-bad3-f0b6aec11b8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ai\click_jump">
+      <UniqueIdentifier>{dfaa59a8-7a3f-48a0-8346-c97e8dc72c0e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="create_role">
+      <UniqueIdentifier>{e51835cb-475d-444e-a042-5739f76d8974}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stringtable">
+      <UniqueIdentifier>{fef20810-65c9-4203-a4e9-511d57264260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene">
+      <UniqueIdentifier>{85897e04-7b10-465b-89e7-953f01967e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene\ProgIsland">
+      <UniqueIdentifier>{e73b0a7c-00d4-4e83-89c7-d7f233bf2f5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene\DesertDungeon01">
+      <UniqueIdentifier>{0c34191d-fb6a-4f90-a172-eaa4008fde94}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene\SnowbergDungeon10">
+      <UniqueIdentifier>{b29d10a3-798e-4402-b17c-81f44719b171}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene\SnowbergPublic01">
+      <UniqueIdentifier>{0c777ece-a235-46ab-9548-9002214b1eac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene\SnowbergPublic02">
+      <UniqueIdentifier>{ce3af4cf-593b-4854-aa91-b34c660e2736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene\CommonArena">
+      <UniqueIdentifier>{7b236b95-2aba-4ba2-a374-fc596f366bbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{08693404-1087-421b-856f-b73f77654957}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="check_data">
+      <UniqueIdentifier>{db8f13cb-eab2-412d-bc84-6371ec760292}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="read_data">
+      <UniqueIdentifier>{6addb084-154d-471f-9086-2fa89869e8f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="master">
+      <UniqueIdentifier>{ed734dfa-5da9-4a06-b524-0866a1aaf33a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="arena">
+      <UniqueIdentifier>{03f71afb-5d6e-4e9c-a4b7-8c69c941391c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="item">
+      <UniqueIdentifier>{6bc52a26-bfc9-41a8-b850-0ab721fca5dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ms_gm">
+      <UniqueIdentifier>{77b3a70c-db99-4a5d-81b2-82ea6bd20716}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="btedit">
+      <UniqueIdentifier>{574c6fcb-f1a9-4dba-9dda-ebe40aabf373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="quest">
+      <UniqueIdentifier>{f59ca08a-27a9-4c1d-8651-2d6fb3564b31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cs">
+      <UniqueIdentifier>{2e337cc6-7c3a-44ae-a0c6-0265f256e7ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="final_gm">
+      <UniqueIdentifier>{65292d74-1dde-4d62-b1b4-5d16efd182e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="activity">
+      <UniqueIdentifier>{e1b08381-d239-4c41-aa47-86da8a90742d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="load_role">
+      <UniqueIdentifier>{c2a938a0-c583-41b1-b60a-4ce7683af229}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="level">
+      <UniqueIdentifier>{81260231-31fb-40f0-a0ed-7a97054c08a7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\gs_gm\gm_command.lua">
+      <Filter>gs_gm</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\gs_gm\main.lua">
+      <Filter>gs_gm</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\robot\coroutine.lua">
+      <Filter>robot</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\robot\main.lua">
+      <Filter>robot</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\robot\show.lua">
+      <Filter>robot</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\robot\util.lua">
+      <Filter>robot</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\main.lua">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\main.uh">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\test_case.lua">
+      <Filter>test case</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\achievement.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\adventure.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\ai_table_btnod.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\arena_team.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\balanceserver.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\battle_queue.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\chat.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\drop.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\framework.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\friend.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\gm.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\group_line.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\guild.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\healingwell.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\item.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\jump.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\login.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\mail.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\master.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\move.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\pkvalue.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\quest.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\ranklist.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\reputation.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\score.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\server_test.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\spell.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\spirit.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\stall.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\team.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\teamjump.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\title.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\trade.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\functionality\weather.lua">
+      <Filter>test case\functionality</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\coverage\combat.lua">
+      <Filter>test case\coverage</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\coverage\quest.lua">
+      <Filter>test case\coverage</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\performance\performance_base.lua">
+      <Filter>test case\performance</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\performance\test_db_operate.lua">
+      <Filter>test case\performance</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\performance\test_game_logic.lua">
+      <Filter>test case\performance</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\performance\test_login.lua">
+      <Filter>test case\performance</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\globalconfig\area_config.lua">
+      <Filter>config</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\globalconfig\asimovconfig.lua">
+      <Filter>config</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\globalconfig\bsconfig.lua">
+      <Filter>config</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\globalconfig\commonconfig.lua">
+      <Filter>config</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\globalconfig\dbconfig.lua">
+      <Filter>config</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\globalconfig\dlconfig.lua">
+      <Filter>config</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\globalconfig\gameworldconfig.lua">
+      <Filter>config</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\global_config.lua">
+      <Filter>config</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\globalconfig\gsconfig.lua">
+      <Filter>config</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\globalconfig\gtconfig.lua">
+      <Filter>config</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\globalconfig\guildconfig.lua">
+      <Filter>config</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\globalconfig\lsconfig.lua">
+      <Filter>config</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\globalconfig\msconfig.lua">
+      <Filter>config</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\globalconfig\newroleconfig.lua">
+      <Filter>config</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\globalconfig\obj_pool_config.lua">
+      <Filter>config</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\sub_tree\sub_tree.lh">
+      <Filter>ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\default\main.lua">
+      <Filter>ai\default</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\stand_show\main.lua">
+      <Filter>ai\stand_show</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\stand_show\main.uh">
+      <Filter>ai\stand_show</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\quest_dialog\main.lua">
+      <Filter>ai\quest_dialog</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\quest_dialog\main.uh">
+      <Filter>ai\quest_dialog</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_spell\main.lua">
+      <Filter>ai\click_spell</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_spell\main.uh">
+      <Filter>ai\click_spell</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_jump\main.lua">
+      <Filter>ai\click_jump</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_jump\main.uh">
+      <Filter>ai\click_jump</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\create_role\main.lua">
+      <Filter>create_role</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\stringtable\main.lua">
+      <Filter>stringtable</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\stringtable\stringtable.lh">
+      <Filter>stringtable</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\ProgIsland\main.lua">
+      <Filter>scene\ProgIsland</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\DesertDungeon01\main.lua">
+      <Filter>scene\DesertDungeon01</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\SnowbergDungeon10\main.lua">
+      <Filter>scene\SnowbergDungeon10</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\SnowbergPublic01\main.lua">
+      <Filter>scene\SnowbergPublic01</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\SnowbergPublic02\main.lua">
+      <Filter>scene\SnowbergPublic02</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\CommonArena\main.lua">
+      <Filter>scene\CommonArena</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\CommonArena\main.uh">
+      <Filter>scene\CommonArena</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\include\btnod.lua">
+      <Filter>include</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\include\command_table.lua">
+      <Filter>include</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\achievement.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\ai.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\air.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\air_level.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\attributes1.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\attributes2.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\aura.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\check_data\check_data.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\doodad.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\doodad_drop_data.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\drop_group.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\hero_attribute1.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\hero_level.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\item.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\item_armor.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\level.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\master_gift.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\missile.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\mount.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\npc.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\npc_pattern.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\npc_relation.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\quest.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\refine.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\reputation.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\role_relation.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\rune.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\scene.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\shop.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\spell.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\spell_var.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\setting\title.lua">
+      <Filter>check_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\read_data\main.lua">
+      <Filter>read_data</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\master\main.lua">
+      <Filter>master</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\arena\main.lua">
+      <Filter>arena</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\item\main.lua">
+      <Filter>item</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\ms_gm\gm_command.lua">
+      <Filter>ms_gm</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\ms_gm\main.lua">
+      <Filter>ms_gm</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\ms_gm\user_permission.lua">
+      <Filter>ms_gm</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\btedit\main.lua">
+      <Filter>btedit</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\quest\main.lua">
+      <Filter>quest</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\cs\cs_command_table.lua">
+      <Filter>cs</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\cs\gs.lua">
+      <Filter>cs</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\cs\ms.lua">
+      <Filter>cs</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\chat.lua">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\team.lua">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\gs_gm\robot.lua">
+      <Filter>gs_gm</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\achievement.lua">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\activity.lua">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\mail.lua">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\master.lua">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\ranklist.lua">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\spirit.lua">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\title.lua">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\jump.lua">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\vip.lua">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\auction.lua">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\item.lua">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\final_gm\final_gm_command_table.lua">
+      <Filter>final_gm</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\final_gm\gs.lua">
+      <Filter>final_gm</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\final_gm\ms.lua">
+      <Filter>final_gm</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\include\jump_table.lh">
+      <Filter>final_gm</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\query.lua">
+      <Filter>robot\ai</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\item\title.lua">
+      <Filter>item</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\item\package.lua">
+      <Filter>item</Filter>
+    </lua_compiler>
+    <lua_compiler Include="..\..\..\bin\commonconfig\script\item\jump.lua">
+      <Filter>item</Filter>
+    </lua_compiler>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\bin\commonconfig\script\test_case\performance\create_role.lua">
+      <Filter>test case\performance</Filter>
+    </ClInclude>
+    <None Include="..\..\..\bin\commonconfig\script\newai\robot\guild.lua">
+      <Filter>robot\ai</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\bin\globalconfig\nsconfig.lua">
+      <Filter>config</Filter>
+    </None>
+    <None Include="..\..\..\bin\globalconfig\censored_word_list.lua">
+      <Filter>config</Filter>
+    </None>
+    <None Include="..\..\..\bin\commonconfig\script\activity\main.lua">
+      <Filter>activity</Filter>
+    </None>
+    <None Include="..\..\..\bin\commonconfig\script\include\activity.lh">
+      <Filter>activity</Filter>
+    </None>
+    <None Include="..\..\..\bin\commonconfig\script\load_role\main.lua">
+      <Filter>load_role</Filter>
+    </None>
+    <None Include="..\..\..\bin\commonconfig\script\activity\spawn_npc.lua">
+      <Filter>activity</Filter>
+    </None>
+    <None Include="..\..\..\bin\globalconfig\game_world_table.lua">
+      <Filter>config</Filter>
+    </None>
+    <None Include="..\..\..\bin\commonconfig\script\newai\robot\quest.lua">
+      <Filter>robot\ai</Filter>
+    </None>
+    <None Include="..\..\..\bin\commonconfig\script\newai\robot\combat.lua">
+      <Filter>robot\ai</Filter>
+    </None>
+    <None Include="..\..\..\bin\globalconfig\mmconfig.lua">
+      <Filter>config</Filter>
+    </None>
+    <None Include="..\..\..\bin\globalconfig\mgconfig.lua">
+      <Filter>config</Filter>
+    </None>
+    <None Include="..\..\..\bin\commonconfig\script\item\quest.lua">
+      <Filter>item</Filter>
+    </None>
+    <None Include="..\..\..\bin\commonconfig\script\level\main.lua">
+      <Filter>level</Filter>
+    </None>
+    <None Include="..\..\..\bin\globalconfig\group_config.lua">
+      <Filter>config</Filter>
+    </None>
+  </ItemGroup>
+</Project>

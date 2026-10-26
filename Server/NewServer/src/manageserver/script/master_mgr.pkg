@@ -1,0 +1,13 @@
+$pfile "script/common.pkg"
+$hfile "../../../Common/define/master_def.h"
+$#include "./master/master_mgr.h"
+$#include "role_data.h"
+
+class CMasterMgr
+{
+   static CMasterMgr& GetInstance(void);
+
+   BOOL    BeMaster(MS_ROLE_DATA *pRole);
+   INT32   CreateMasterRelation(MS_ONLINE_ROLE_DATA &teacher, MS_ONLINE_ROLE_DATA &student);
+   INT32   DelMasterRelation(UINT32 dwTeacherID, MS_ROLE_DATA &student, BOOL bIsGrad);
+};

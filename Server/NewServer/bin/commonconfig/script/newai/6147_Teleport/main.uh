@@ -1,0 +1,64 @@
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { strAI6147_1, 30000 } },
+	{ batSequencer, 
+		{ batRoleCheckInteractOption, param = { 1 } },
+
+		{ batRoleOpenDialog, param = { strAI6147_2, 30000 } },
+
+		{ batRoleCheckInteractOption, param = { 1 } },
+
+		{ batSelector,
+			{ batSequencer,
+				{ batRoleCheckMoney , param={ boLT ,1 ,10000 } },
+
+				{ batRoleOpenDialog, param = { strAI6147_3, 30000 } },
+			},
+
+			{ batSequencer,
+				{ batRoleCheckMoney , param={ boGTE ,1 ,10000 } },
+
+				{ batRoleSubMoney , param={ tarRole,1, 10000, MONEYLOG_BT_05 } },
+
+				{ batRandom, param = {2500, 2500, 2500, 2500 },
+					{ batRandom, param = {2500, 2500, 2500, 2500 },
+						{ batRoleTeleport, param={ 27800,64400,27000, 203 },},
+
+						{ batRoleTeleport, param={ 27700,65700,27000, 203 },},
+
+						{ batRoleTeleport, param={ 26000,65100,27000, 203 },},
+
+						{ batRoleTeleport, param={ 25900,63900,27000, 203 },},
+					},
+					{ batRandom, param = {2500, 2500, 2500, 2500 },
+						{ batRoleTeleport, param={ 28400,68600,27000, 203 },},
+
+						{ batRoleTeleport, param={ 28800,69500,27000, 203 },},
+
+						{ batRoleTeleport, param={ 27000,68600,27000, 203 },},
+
+						{ batRoleTeleport, param={ 26200,69200,27000, 203 },},
+					},
+					{ batRandom, param = {2500, 2500, 2500, 2500 },
+						{ batRoleTeleport, param={ 27200,63600,27000, 203 },},
+
+						{ batRoleTeleport, param={ 26600,63600,27000, 203 },},
+
+						{ batRoleTeleport, param={ 26800,65900,27000, 203 },},
+
+						{ batRoleTeleport, param={ 27200,66300,27000, 203 },},
+					},
+					{ batRandom, param = {2500, 2500, 2500, 2500 },
+						{ batRoleTeleport, param={ 29600,73500,27000, 203 },},
+
+						{ batRoleTeleport, param={ 31100,72900,27000, 203 },},
+
+						{ batRoleTeleport, param={ 25100,72500,27000, 203 },},
+
+						{ batRoleTeleport, param={ 25800,74000,27000, 203 },},
+					},
+				},
+			},
+		},
+    },
+};

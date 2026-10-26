@@ -1,0 +1,51 @@
+
+-- on_wander = 
+-- { batSequencer,
+--     __check_cd_timer(COOLDOWN_AI, SAY_TEXT_CD_TIMER, d.nParam[0]),
+--     __set_cd_timer(COOLDOWN_AI, SAY_TEXT_CD_TIMER, d.nParam[0]),
+--     _random_action(),
+-- };
+
+evtAIInteract = 
+{ batSequencer,
+    { batRoleCheckHasQuest, param={ 2093 }},
+    { batRoleCheckQuestVariable , param = {boNEQ ,2093,1,1}},
+    { batCheckCDTimer, param={ COOLDOWN_AI , 1},
+    },
+    { batSetCDTimer , param={ COOLDOWN_AI , 1,6000},
+    },
+    { batRandom , param={5000,5000},
+        -- 劝导失败
+        {batSequencer,
+            { batRandom , param={1000,1000},
+                {batSequencer,
+                    { batSay, param={ cctScreen, 50205, cltNormal },
+                    },  
+                    { batPlayAction, param={ 2},
+                    },  
+                },
+                {batSequencer,
+                    { batSay, param = { cctScreen, 50206, cltNormal } },
+                    { batPlayAction, param={ 3},
+                    },  
+                    { batWait, param={5000},
+                    },
+                },
+            },
+        },
+        -- 劝导成功
+        {batSequencer,
+            {batRoleSetQuestVariable , param = {2093,1,1}},
+            { batSay, param = { cctScreen, 50204, cltNormal } },
+            { batPlayAction, param={ 1},
+            },
+            { batWait, param={5000},
+            },
+            
+            {batSuicide},    
+        },
+    },
+    
+};
+
+

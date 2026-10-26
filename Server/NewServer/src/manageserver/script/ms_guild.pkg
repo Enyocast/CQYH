@@ -1,0 +1,127 @@
+$pfile "script/common.pkg"
+$hfile "../../../Common/define/guild_def.h"
+$hfile "./guild/ms_guild.h"
+$#include "./guild/ms_guild.h"
+
+
+class CMsGuild
+{
+public:
+    inline UINT32   GetID();
+    inline INT32    GetSvrGroup();
+    inline INT32    GetLevel();
+    inline const char * GetName();
+    inline const char * GetCreaterName();
+    inline UINT32   GetLeaderID();
+    inline UINT32   GetCreateTime();
+    inline const char * GetAnnounce();
+    void SetNotice(const char *pcszNotice);
+    inline const char * GetNotice();
+
+    inline CMsGuildStorage &GetStorage();
+    inline BASE_LIST_NODE  &GetLvlRankNode();
+
+    inline INT32 GetMoney();
+    void   AddMoney(INT32 nMoney, GUILD_HISTORY_EVENT_TYPE eReason, BOOL bIsSave = TRUE);
+    BOOL   SubMoney(INT32 nMoney, GUILD_HISTORY_EVENT_TYPE eReason, BOOL bIsSave = TRUE);
+
+    inline INT32    GetWood();
+    void    AddWood(INT32 nWood);
+    BOOL    SubWood(INT32 nWood);
+
+    inline INT32    GetHerb();
+    void    AddHerb(INT32 nHerb);
+    BOOL    SubHerb(INT32 nHerb);
+
+    inline INT32    GetCryStal();
+    void    AddCrystal(INT32 nCrystal);
+    BOOL    SubCrystal(INT32 nCrystal);
+
+    inline INT32    GetSilver();
+    void    AddSilver(INT32 nSilver);
+    BOOL    SubSilver(INT32 nSilver);
+
+	INT32   GetVariable(INT32 nIndex);
+    void    SetVariable(INT32 nIndex, INT32 nValue);
+
+
+    inline INT32 GetStorageRightByPosition(INT32 nPosition);
+
+    BOOL    CanGuildChat(UINT32 dwRoleID);
+    BOOL    AddGuildEvent(INT32 nType, UINT32 param1, UINT32 param2, UINT32 param3, UINT32 param4);
+
+    // guild member Allan Tao[8.5.2013] 
+    inline INT32    GetMemberNum();
+    BOOL    IsMember(UINT32 dwRoleID);
+    BOOL    AddMember(MS_ROLE_DATA* pRoleData, INT32 nPosition);
+    void    DelMember(UINT32 dwRoleID);
+    CMsGuildMember* GetMember(UINT32 dwRoleID);
+    INT32   GetMemberNumInAPost(UINT8 byPosition);
+
+	BOOL	BroadcastMail(const char *pcszTitle, const char *pcszContent);
+
+    // welfare
+    INT32   BeginUpgradeWelfareBuffer(UINT32 dwRoleID, INT32 nType);
+    INT32   CancelUpgradeWelfareBuffer(INT32 nType);
+
+    INT32   BeginUpgradeBuilding(UINT32 dwRoleID, UINT64 qwNpcNameID, INT32 nType);
+    INT32   CancelUpgradeBuilding(UINT64 qwNpcNameID, INT32 nType);
+
+
+    // diplomat
+    inline INT32   GetEnemyNum();
+    inline INT32   GetAllianceNum();
+
+    BOOL    IsAlliance(UINT32 dwGuildID);
+    BOOL    IsEnemy(UINT32 dwGuildID);
+
+    BOOL    AddAlliance(UINT32  dwGuildID, UINT32 dwEndTime);
+    void    DelAlliance(UINT32 dwGuildID);
+
+    BOOL    AddEnemy(UINT32 dwGuildID, UINT32 dwEndTime);
+    void    DelEnemy(UINT32 dwGuildID);
+
+	inline DIPLOMAT_DATA *GetEnemyDataByIndex(INT32 nIndex);
+    inline DIPLOMAT_DATA *GetAllianceDataByIndex(INT32 nIndex);
+
+    // guild dungeon
+    UINT32  AddDungeon(UINT32 dwTemplateID, UINT32 dwOwnerID, UINT32 dwLeaderID);
+    BOOL    DelDungeon(UINT32 dwTemplateID);
+    BOOL    CheckSameDungeonType(UINT32 dwTemplateID);
+    GUILD_DUNGEON   *FindDunGeon(UINT32 dwTemplateID);
+    BOOL    FilterDungeon();
+    
+	// sabac
+	inline UINT32 GetSabacEnrollTime(INT32 nIndex);
+	void EnrollSabac(UINT32 dwEnrollTime);
+	void OccupySabac(BOOL bOccupied);
+	inline BOOL IsOccupiedSabac(void);
+	BOOL IsEnrolledSabac(void);
+    
+
+	// war
+	BOOL    CheckCharacter(INT32 nC);
+	INT32   GetWarCharacter();
+	BOOL	SetWarCharacter(INT32 eC);
+    BOOL    ClearWarCharacter(INT32 nC);
+
+	BOOL    ClearIntruder();
+	inline INT32 GetIntruderNum();
+    UINT32  FirstIntruder();
+    UINT32  NextIntruder();
+
+    //
+    
+    BOOL	LuaBroadcastMsgNotifyType(INT32 nType);
+    BOOL    LuaAddProtectionTime(UINT32 dwTime);
+	BOOL    LuaLeaveGuild(INT32 nLeaveType, UINT32 dwRoleID);
+	BOOL    LuaBroadcastJoinWar(INT32 nWarCharacter, UINT32 dwTargetGuildID);
+	BOOL    LuaAddBuilding(const char *pcszNameID, INT32 nType, INT32 nLevel, UINT32 dwReviveTime);
+
+};
+
+
+
+inline INT32 GetMaxOfferInPosition(INT32 nPosition);
+
+

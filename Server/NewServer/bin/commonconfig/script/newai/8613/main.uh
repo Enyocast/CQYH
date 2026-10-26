@@ -1,0 +1,6 @@
+evtAIIdle = 
+{ batSequencer,
+	{ batCheckCDTimer, param = { COOLDOWN_AI, nastCustom + 1 } },
+	{ batSetCDTimer, param = { COOLDOWN_AI, nastCustom + 1, 60 * 1000 } },
+	{ save_all_npc },
+};

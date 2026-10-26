@@ -1,0 +1,7 @@
+
+
+evtAIIdle = 
+{ batSequencer, 
+    { batWander, param={ 600, 3000, 450 * 1000 / GAME_FPS },
+    },
+};

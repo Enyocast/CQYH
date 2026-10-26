@@ -1,0 +1,24 @@
+on_enter_fight =
+{ batParallel,
+	{ batSetSceneVariable, param = { d.nParam[0], 1 } 
+	},
+};
+
+on_wander = 
+{ batParallel,
+	{ batSequencer,
+		{ batCheckSceneVariable, param={ boNEQ, d.nParam[0], 2, 0}
+		},
+		{ batSetSceneVariable, param = { d.nParam[0], 2 } 
+		},
+	};
+};
+
+evtAIDie  = 
+{ batSequencer,
+	{ batCheckSceneVariable, param={ boNEQ, d.nParam[0], 2, 0}
+	},
+	{ batSetSceneVariable, param = { d.nParam[0], 2 } 
+	},
+};
+

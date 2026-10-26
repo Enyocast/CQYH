@@ -1,0 +1,17 @@
+evtAIIdle = 
+{ batSequencer,
+    {batMoveTo, param = {tarPosition ,62775,78006},
+    },
+    { batWait, param={5000},
+    },
+    {batMoveTo, param = {tarPosition ,62642,71745},
+    },
+    { batWait, param={5000},
+    },
+  	{ batSay, param = { cctScreen, 50260, cltNormal } },
+    { batWait, param={10000},
+    },
+    { batPlayAction, param={1},
+    },
+    {batSuicide},
+};

@@ -1,0 +1,16 @@
+﻿LoadPackage("gameworld.pkg")
+LoadPackage("role.pkg")
+LoadPackage("char_def.pkg")
+LoadPackage("character.pkg")
+LoadPackage("item.pkg")
+LoadPackage("item_bag.pkg")
+LoadPackage("arena.pkg")
+LoadPackage("money_def.pkg")
+LoadPackage("scene.pkg")
+LoadPackage("global_config.pkg")
+LoadPackage("data_manager.pkg")
+LoadPackage("rank_list_def.pkg")
+
+Include("script/include/btnod.lua")
+Include("script/scene/MirDg22_3/scene_bt.lua")
+

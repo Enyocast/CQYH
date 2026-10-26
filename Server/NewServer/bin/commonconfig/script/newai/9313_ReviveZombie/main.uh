@@ -1,0 +1,9 @@
+on_init =
+{ batSequencer, 
+    { batSetAlwaysRun, param = { 1 } },
+	{ batAddAura, param = { tarSelf , 2230 } },
+	{ batWait, param={ 2000 } },
+	{ batSummonNpc, param={ d.nParam[0] } },
+	{ batSuicide },
+};
+

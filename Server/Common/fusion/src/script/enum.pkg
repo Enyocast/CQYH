@@ -1,0 +1,42 @@
+$pfile "script/common.pkg"
+
+$hfile "../../define/error_def.h"
+$hfile "../../define/id_def.h"
+$hfile "../../define/server_def.h"
+
+$hfile "../../define/npc_def.h"
+$hfile "../../define/role_def.h"
+$hfile "../../define/doodad_def.h"
+$hfile "../../define/char_def.h"
+$hfile "../../define/missile_def.h"
+
+$hfile "../../define/grid_def.h"
+$hfile "../../define/scene_def.h"
+$hfile "../../define/scene_file_def.h"
+
+$hfile "../../define/attribute_def.h"
+$hfile "../../define/modifier_def.h"
+$hfile "../../define/spell_def.h"
+$hfile "../../define/aura_def.h"
+
+$hfile "../../define/ai_def.h"
+
+$hfile "../../define/chat_def.h"
+$hfile "../../define/friend_def.h"
+$hfile "../../define/item_def.h"
+$hfile "../../define/money_def.h"
+$hfile "../../define/quest_def.h"
+$hfile "../../define/team_def.h"
+$hfile "../../define/room_def.h"
+$hfile "../../define/adventure_def.h"
+$hfile "../../define/exchange_def.h"
+
+$hfile "../../define/achievement_def.h"
+
+$hfile "../../define/master_def.h"
+$hfile "../../define/queue_match_def.h"
+$hfile "../../define/variable_def.h"
+
+$hfile "../../define/guild_def.h"
+$hfile "../../define/gm_svr_def.h"
+

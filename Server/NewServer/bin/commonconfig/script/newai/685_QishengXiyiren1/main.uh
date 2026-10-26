@@ -1,0 +1,35 @@
+-- tree evtAIIdle refer external: -- 
+-- external consistant var:  cctScreen
+-- external consistant var:  cctScreen
+-- external consistant var:  cctScreen
+-- external consistant var:  cctScreen
+-- external table or function:  batSpawnDoodad
+
+evtAIIdle  = 
+{ batSelector, 
+	{ batSequencer,
+		{ batWait , param={ 4000, 6000},
+		},
+		{ batRandom , param={ 5000, 5000, 0, 0 },
+			
+			{ batSequencer, 
+				{ batSay, param={ cctScreen, DstDg02_685_1, 0, 0 },
+				},
+				{ batPlayAction, param={ 1, 0, 0, 0 },
+				},	
+				{ batSuicide , param={ 1 }, 
+				},
+			};
+			
+			{ batSequencer, 
+				{ batSay, param={ cctScreen, DstDg02_685_2, 0, 0 },
+				},
+				{ batPlayAction, param={ 2, 0, 0, 0 },
+				},	
+				{ batSuicide , param={ 1 }, 
+				},
+			};
+		};
+	};
+	
+};	

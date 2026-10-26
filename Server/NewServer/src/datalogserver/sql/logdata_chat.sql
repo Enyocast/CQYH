@@ -1,0 +1,9 @@
+CREATE TABLE `logdata_chat` (
+  `LogTime` datetime NOT NULL,
+  `AreaID` tinyint(1) NOT NULL,
+  `GroupID` tinyint(1) NOT NULL,
+  `SourceID` int(4) NOT NULL,
+  `TargetID` int(4) NOT NULL,
+  `ChatType` varchar(7) NOT NULL,
+  `Message` varchar(256) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

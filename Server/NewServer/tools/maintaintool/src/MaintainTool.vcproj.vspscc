@@ -1,0 +1,15 @@
+﻿""
+{
+"FILE_VERSION" = "9237"
+"ENLISTMENT_CHOICE" = "NEVER"
+"PROJECT_FILE_RELATIVE_PATH" = ""
+"NUMBER_OF_EXCLUDED_FILES" = "5"
+"EXCLUDED_FILE0" = "GeneratedFiles\\Release\\moc_maintaintool.cpp"
+"EXCLUDED_FILE1" = "GeneratedFiles\\ui_configmodify.h"
+"EXCLUDED_FILE2" = "GeneratedFiles\\Debug\\moc_maintaintool.cpp"
+"EXCLUDED_FILE3" = "GeneratedFiles\\qrc_maintaintool.cpp"
+"EXCLUDED_FILE4" = "GeneratedFiles\\ui_maintaintool.h"
+"ORIGINAL_PROJECT_FILE_PATH" = ""
+"NUMBER_OF_NESTED_PROJECTS" = "0"
+"SOURCE_CONTROL_SETTINGS_PROVIDER" = "PROVIDER"
+}

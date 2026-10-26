@@ -1,0 +1,23 @@
+on_enter_fight =
+{ batSequencer,
+    { batCheckCDTimer, param={ COOLDOWN_AI, 1, 0 },
+	},
+	{ batSay, param={ cctScreen, 50251, 0, 0 },
+	},
+	{ batSetCDTimer, param={ COOLDOWN_AI, 1, 10000, 30000 },
+	},
+	--{ batPlayAction, param = { 254 } 
+	--},
+};
+
+on_wander =
+{ batSequencer,
+	{ batCheckCDTimer, param={ COOLDOWN_AI, 2, 0 },
+	},
+	{ batSay, param={ cctScreen, 50252, 0, 0 },
+	},
+	{ batSetCDTimer, param={ COOLDOWN_AI, 2, 15000, 30000 },
+	},
+	--{ batPlayAction, param = { 254 } 
+	--},
+};

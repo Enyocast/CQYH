@@ -1,0 +1,23 @@
+local distance_limit = 5000;
+
+local Door_Spell =
+{
+	id = 6037,
+	cd = 10000,
+};
+
+evtAIIdle =
+{ btSequencer,
+	__scan_friend(distance_limit, 4143, 2000);	
+	__cast_spell(Door_Spell.id, tarNearestFriend, 10000, Door_Spell.cd);
+	{ batSuicide },
+};
+
+
+evtAIFight =
+{ btSequencer,
+	__scan_friend(distance_limit, 4143, 2000);	
+	__cast_spell(Door_Spell.id, tarNearestFriend, 10000, Door_Spell.cd);
+	{ batSuicide },
+};
+

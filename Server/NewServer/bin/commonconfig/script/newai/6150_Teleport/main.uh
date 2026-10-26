@@ -1,0 +1,135 @@
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { strAI6150_1, 30000 } },
+	{ batSelector,	
+		{ batSequencer, 
+			{ batRoleCheckInteractOption, param = { 1 } },
+
+			{ batRoleOpenDialog, param = { strAI6150_2, 30000 } },
+
+			{ batRoleCheckInteractOption, param = { 1 } },
+
+			{ batSelector,
+				{ batSequencer,
+					{ batRoleCheckItemCount, param = { boLT,94003, 1 } },
+
+					{ batRoleOpenDialog, param = { strAI6150_3, 30000 } },
+				},
+
+				{ batSequencer,
+					{ batRoleCheckItemCount, param = { boGTE,94003, 1 } },
+
+					{ batRoleDelItem, param = { 94003, 1 } },
+
+					{ batRandom, param = {2500, 2500, 2500, 2500 },
+						{ batRandom, param = {2500, 2500, 2500, 2500 },
+							{ batRoleTeleport, param={ 25600,8800,4112, 172 },},
+
+							{ batRoleTeleport, param={ 25400,9700,4112, 172 },},
+
+							{ batRoleTeleport, param={ 24900,8100,4112, 172 },},
+
+							{ batRoleTeleport, param={ 24800,9400,4112, 172 },},
+						},
+						{ batRandom, param = {2500, 2500, 2500, 2500 },
+							{ batRoleTeleport, param={ 24700,10300,4112, 172 },},
+
+							{ batRoleTeleport, param={ 23900,7600,4112, 172 },},
+
+							{ batRoleTeleport, param={ 24900,10100,4112, 172 },},
+
+							{ batRoleTeleport, param={ 22800,7600,4112, 172 },},
+						},
+						{ batRandom, param = {2500, 2500, 2500, 2500 },
+							{ batRoleTeleport, param={ 22800,11000,4112, 172 },},
+
+							{ batRoleTeleport, param={ 24000,9100,4112, 172 },},
+
+							{ batRoleTeleport, param={ 22200,7700,4112, 172 },},
+
+							{ batRoleTeleport, param={ 21500,10500,4112, 172 },},
+						},
+						{ batRandom, param = {2500, 2500, 2500, 2500 },
+							{ batRoleTeleport, param={ 20800,9300,4112, 172 },},
+
+							{ batRoleTeleport, param={ 25800,8800,4112, 172 },},
+
+							{ batRoleTeleport, param={ 25900,9900,4112, 172 },},
+
+							{ batRoleTeleport, param={ 25900,9300,4112, 172 },},
+						},
+					},
+				},
+			},
+	    },
+		{ batSequencer,
+			{ batRoleCheckInteractOption, param = { 2 } },
+
+			{ batSelector,
+				{ batSequencer,
+					{ batRoleIsTeamLeader },
+
+					{ batRoleOpenDialog, param = { strAI6150_4, 30000 } },
+
+					{ batRoleCheckInteractOption, param = { 1 } },
+
+					{ batSelector,
+						{ batSequencer,
+							{ batRoleCheckItemCount, param = { boLT,94004, 1 } },
+
+							{ batRoleOpenDialog, param = { strAI6150_6, 30000 } },
+						},
+
+						{ batSequencer,
+							{ batRoleCheckItemCount, param = { boGTE,94004, 1 } },
+
+							{ batRoleDelItem, param = { 94004, 1 } },
+
+							{ batRandom, param = {2500, 2500, 2500, 2500 },
+								{ batRandom, param = {2500, 2500, 2500, 2500 },
+									{ batRoleTeamTeleport, param={ 25600,8800,4112, 172 },},
+
+									{ batRoleTeamTeleport, param={ 25400,9700,4112, 172 },},
+
+									{ batRoleTeamTeleport, param={ 24900,8100,4112, 172 },},
+
+									{ batRoleTeamTeleport, param={ 24800,9400,4112, 172 },},
+								},
+								{ batRandom, param = {2500, 2500, 2500, 2500 },
+									{ batRoleTeamTeleport, param={ 24700,10300,4112, 172 },},
+
+									{ batRoleTeamTeleport, param={ 23900,7600,4112, 172 },},
+
+									{ batRoleTeamTeleport, param={ 24900,10100,4112, 172 },},
+
+									{ batRoleTeamTeleport, param={ 22800,7600,4112, 172 },},
+								},
+								{ batRandom, param = {2500, 2500, 2500, 2500 },
+									{ batRoleTeamTeleport, param={ 22800,11000,4112, 172 },},
+
+									{ batRoleTeamTeleport, param={ 24000,9100,4112, 172 },},
+
+									{ batRoleTeamTeleport, param={ 22200,7700,4112, 172 },},
+
+									{ batRoleTeamTeleport, param={ 21500,10500,4112, 172 },},
+								},
+								{ batRandom, param = {2500, 2500, 2500, 2500 },
+									{ batRoleTeamTeleport, param={ 20800,9300,4112, 172 },},
+
+									{ batRoleTeamTeleport, param={ 25800,8800,4112, 172 },},
+
+									{ batRoleTeamTeleport, param={ 25900,9900,4112, 172 },},
+
+									{ batRoleTeamTeleport, param={ 25900,9300,4112, 172 },},
+								},
+							},
+						},
+					},
+				},
+				{ batSequencer,
+					{ batRoleOpenDialog, param = { strAI6150_5, 30000 } },
+				},
+			},
+	    },
+	},
+};

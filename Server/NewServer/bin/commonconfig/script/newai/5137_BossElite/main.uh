@@ -1,0 +1,10 @@
+on_cast_spell =
+{ batSequencer,
+    { batCheckCDTimer, param = { COOLDOWN_AI, 100 } },
+    { batCheckCharHp, param = { tarSelf, boLTE, 8000 } },
+    { batSpawnSingleNpc, param={ 5 } },
+	{ batSpawnSingleNpc, param={ 7 } },
+	{ batSpawnSingleNpc, param={ 21 } },
+	{ batSpawnSingleNpc, param={ 22 } },
+    { batSetCDTimer, param = { COOLDOWN_AI, 100, 90000 } },	
+};

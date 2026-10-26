@@ -1,0 +1,7 @@
+evtAIInteract = 
+{ batSequencer,
+    { batCheckSceneVariable, param = { boEQ, 10, 0 },},
+--  { batRoleCheckQuestVariable , param={boEQ,0,1,0},},
+    { batRoleOpenDialog, param = { 50313, 30000 },},
+    { batSetSceneVariable, param = { 10 , 1 },},
+};

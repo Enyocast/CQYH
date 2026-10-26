@@ -1,0 +1,6 @@
+--Á¶Ò©
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { 50166, 30000 } },
+		
+};

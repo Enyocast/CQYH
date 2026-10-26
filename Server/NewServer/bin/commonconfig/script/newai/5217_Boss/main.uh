@@ -1,0 +1,20 @@
+
+on_enter_fight = 
+{ batSequencer, 
+     { batSetCDTimer, param = { COOLDOWN_AI, 10, 25000 } },
+};
+
+
+on_cast_spell = 
+{ batSequencer,
+	{ batCheckCanCastSpell },
+	__check_cd_timer(COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime),
+	{ batSelector, 		
+	    { batSequencer,		
+		   { batCheckCDTimer, param = { COOLDOWN_AI, 10 } },
+		   { batSyncCastSpellToTarget, param = { 5925, tarSelf } },	
+		   { batSetCDTimer, param = { COOLDOWN_AI, 10, 40000 } },
+		   { batSetCDTimer, param = { COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime } },
+	    },				
+	},	
+};

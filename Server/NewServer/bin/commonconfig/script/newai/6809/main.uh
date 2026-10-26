@@ -1,0 +1,846 @@
+﻿
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { 666777, 30000, 0, 0 } }, --选择档位
+	{  batSelector, 
+		{ batSequencer,
+		{ batRoleCheckInteractOption, param = { 1 } }, --炼狱
+			{  batSelector, 
+				{ batSequencer,
+				{ batRoleOpenDialog, param = { 666778, 30000, 0, 0 } }, --选择部位
+					{  batSelector, 
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 1 } }, --炼狱武器
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_one},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+											
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },		
+											},
+										},
+									},
+									
+
+								},
+							
+						},
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 2 } }, --炼狱帽子
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_two},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 3 } }, --炼狱肩甲
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_three},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 4 } }, --炼狱胸甲
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_four},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+						},
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 5 } }, --炼狱护腕
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_five},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 6 } }, --炼狱腰带
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_six},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 7 } }, --炼狱鞋子
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_seven},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 8 } }, --炼狱披风
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_eight},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 9 } }, --炼狱项链
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_nine},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 10 } }, --炼狱戒指
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_ten},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 11 } }, --炼狱手镯
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_elven},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+					},	
+				},
+			},
+		},	
+			
+			
+			
+			
+		{ batSequencer,
+		{ batRoleCheckInteractOption, param = { 2 } }, --裁决
+			{  batSelector, 
+				{ batSequencer,
+				{ batRoleOpenDialog, param = { 666778, 30000, 0, 0 } }, --选择部位
+					{  batSelector, 
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 1 } }, --裁决武器
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_One},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 2 } }, --裁决帽子
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_Two},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 3 } }, --裁决肩甲
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_Three},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 4 } }, --裁决胸甲
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_Four},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+						},
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 5 } }, --裁决护腕
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_Five},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 6 } }, --裁决腰带
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_Six},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 7 } }, --裁决鞋子
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_Seven},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 8 } }, --裁决披风
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_Eight},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 9 } }, --裁决项链
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_Nine},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 10 } }, --裁决戒指
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_Ten},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 11 } }, --裁决手镯
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_Elven},--检测两件武器是否一样
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --检查金币和元宝是否满足
+																	{ Change_Money }, --删除装备，扣元宝或金币
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+					},	
+				},
+			},
+			
+		},	
+
+
+					
+		{ batSequencer,
+			{ batRoleCheckInteractOption, param = { 3 } },
+				{ batSelector,
+					{ batSequencer, 								
+						{ batRoleCheckItemCount , param={ boGTE, 2800313 , 1 } },
+							{ batSelector,
+								{ batSequencer ,
+									{ batRoleDelItem , param={ 2800313 , 1 } },		
+									{ batRoleAddItem , param={ 2800309 , 1 } },
+									{ batRoleAddItem , param={ 2800321 , 1 } },
+								},
+							},	
+					},
+					{batSequencer,
+						{ batRoleOpenDialog, param = { 50584, 50000, 0, 0 } },
+					},
+				},
+		},	
+		
+	
+			--[[		
+				{ batSequencer,
+						{ batRoleCheckInteractOption, param = { 2 } }, --装备升品
+						{ batSelector,
+							{ batSequencer, 
+								{ Check_Weapon }, --检测两件武器是否一样
+								{ batSelector,
+									{ batSequencer,
+										{ Check_Weapon10_S }, --检测两件武器是否为10星
+										{ batSelector,
+											{ batSequencer,
+												{ Check_Money_S }, --检查金币和元宝是否满足
+												{ Change_Money_S }, --删除装备，扣元宝或金币												
+											},
+											{ batSequencer,
+												{ batRoleOpenDialog, param = { 666767, 30000 } },  --金币或者元宝不足
+											},	
+										},
+									},
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666765, 30000 } },  --装备未达到最高星级，无法升档
+									},
+								},	
+											
+							},
+							{ batSequencer, 
+								{ batRoleOpenDialog, param = { 666766, 30000 } },  --请放入两件同样可升级的装备
+							},
+							
+						},
+					},	]]--	
+										
+	},		
+};

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup
+    Condition="'$(lua_compilerBeforeTargets)' == '' and '$(lua_compilerAfterTargets)' == '' and '$(ConfigurationType)' != 'Makefile'">
+    <lua_compilerBeforeTargets>Midl</lua_compilerBeforeTargets>
+    <lua_compilerAfterTargets>CustomBuild</lua_compilerAfterTargets>
+  </PropertyGroup>
+  <PropertyGroup>
+    <lua_compilerDependsOn
+      Condition="'$(ConfigurationType)' != 'Makefile'">_SelectedFiles;$(lua_compilerDependsOn)</lua_compilerDependsOn>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <lua_compiler>
+      <CommandLineTemplate>luac.exe -p -o %(RootDir)%(Directory)%(Filename).out %(RootDir)%(Directory)%(Filename)%(Extension)</CommandLineTemplate>
+      <Outputs>%(RootDir)%(Directory)%(Filename).out</Outputs>
+    </lua_compiler>
+  </ItemDefinitionGroup>
+</Project>

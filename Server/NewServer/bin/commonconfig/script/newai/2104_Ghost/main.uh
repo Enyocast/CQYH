@@ -1,0 +1,38 @@
+local spell_common =
+{ 
+	{ id = 3779, cd = 3000, chance = 10000, target = tarAITarget },
+	{ id = 3648, cd = 3000, chance = 10000, target = tarAITarget },
+};
+
+evtAIFight =  
+{ batParallel,
+    __issue_threat_signal(d.nSpreadThreatCount),
+	{ batSelector,
+		__change_target(d.nChangeTargetChance, d.nChangeTargetCDTime, d.nChaseRange, d.nChangeTargetDelayTime),
+		__get_valid_target(d.nChaseRange),
+	},
+    { batSelector,
+   		{ batSequencer,
+     		{ batCheckDistance, param = { tarAITarget, boLTE , 360 } },
+     		{ batSelector,
+           		__check_live_timer(d.nLiveTime, d.bDisappearOnTimeout),
+            	__flee(d.nFleeHpPercent, d.nFleeChance, 20000, d.nFleeDuration, d.nRunSpeed * 1000 / GAME_FPS),
+            	__fight_move(0, 0, 120, d.nRunSpeed * 1000 / GAME_FPS, d.nStepAroundChance, d.nStepAroundCDTime),
+				__cast_spell(spell_common[1].id, tarAITarget, spell_common[1].chance, spell_common[1].cd);
+            	__chase(d.nRunSpeed * 1000 / GAME_FPS, 0, 120, d.nChaseDelayTime),
+        	},
+        },
+    	{ batSequencer,
+    		{ batCheckDistance, param = { tarAITarget, boGT , 360 } },
+    		{ batSelector,
+				__check_live_timer(d.nLiveTime, d.bDisappearOnTimeout),
+            	__flee(d.nFleeHpPercent, d.nFleeChance, 20000, d.nFleeDuration, d.nRunSpeed * 1000 / GAME_FPS),
+            	__fight_move(d.nPreferDistance, d.nWithdrawThreshold, d.nChaseThreshold, d.nRunSpeed * 1000 / GAME_FPS, d.nStepAroundChance, d.nStepAroundCDTime),
+				__cast_spell(spell_common[2].id, tarAITarget, spell_common[2].chance, spell_common[2].cd);
+            	__chase(d.nRunSpeed * 1000 / GAME_FPS, d.nPreferDistance, d.nChaseThreshold, d.nChaseDelayTime),
+    		},
+    	},
+    },
+};
+
+

@@ -1,0 +1,4 @@
+$pfile "script/common.pkg"
+
+$hfile "../../../common/define/error_def.h"
+$hfile "../../../common/define/item_def.h"

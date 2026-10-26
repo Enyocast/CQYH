@@ -1,0 +1,44 @@
+spell_common =
+{
+	{ id = 5620, cd = 10000, global_cd = 2000, chance = 10000, target = tarAITarget },
+	{ id = 5604, cd = 12000, global_cd = 500, chance = 10000, target = tarAITarget },
+	{ id = 5606, cd = 12000, global_cd = 500, chance = 10000, target = tarSelf },
+	{ id = 5608, cd = 15000, global_cd = 500, chance = 10000, target = tarAITarget },
+	{ id = 5614, cd = 0, global_cd = 0, chance = 7000, target = tarSelf },
+	{ id = 5602, cd = 25000, global_cd = 500, chance = 7000, target = tarSelf },
+	{ id = 5603, cd = 0, global_cd = 0, chance = 7000, target = tarSelf },
+	{ id = 5601, cd = 1500, global_cd = 500, chance = 7000, target = tarAITarget },
+};
+
+on_cast_spell =
+{ btParallel,
+	__cast_spell(spell_common[1].id, spell_common[1].target, spell_common[1].chance, spell_common[1].cd, spell_common[1].global_cd);
+
+	{ btSequencer,
+		__check_self_hp_percent(5000);
+		__check_dice(5000);
+		__cast_spell(spell_common[2].id, spell_common[2].target, spell_common[2].chance, spell_common[2].cd, spell_common[2].global_cd);
+	},
+
+	{ btRandom, param = { 2200, 800, 500, 6500 }, 
+		__cast_spell(spell_common[3].id, spell_common[3].target, spell_common[3].chance, spell_common[3].cd, spell_common[3].global_cd);
+		{ btSequencer,
+			__cast_spell(spell_common[4].id, spell_common[4].target, spell_common[4].chance, spell_common[4].cd, spell_common[4].global_cd);
+			__cast_spell(spell_common[5].id, spell_common[5].target, spell_common[5].chance, spell_common[5].cd, spell_common[5].global_cd);
+		},
+		{ btSequencer,
+			__cast_spell(spell_common[6].id, spell_common[6].target, spell_common[6].chance, spell_common[6].cd, spell_common[6].global_cd);
+			__cast_spell(spell_common[7].id, spell_common[7].target, spell_common[7].chance, spell_common[7].cd, spell_common[7].global_cd);
+		},
+		__cast_spell(spell_common[8].id, spell_common[8].target, spell_common[8].chance, spell_common[8].cd, spell_common[8].global_cd);
+	},
+};
+
+evtAIDie  = 
+{ batSequencer,
+	{ batOpenDoor, param={ 63 },
+	},
+	{ batPlayAction, param = { 254 } },
+	{ batSetSceneVariable, param={ 14, 0 },
+	},
+};

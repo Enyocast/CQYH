@@ -1,0 +1,30 @@
+ID,ÆæÓöÃû³Æ,StartDate,EndDate,StartTime,EndTime,TriggerType,VariableID,TriggerParam0,TriggerParam1,TriggerParam2,TriggerParam3,RewardType,RewardParam0,RewardParam1,RewardParam2,RewardParam3,RewardParam4,RewardParam5,RewardParam6,RewardParam7,NeedNotification,NotificationStringID
+N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A
+1,ÆæÓö²âÊÔ,102,102,230000,230000,attKillNpc,vRole + 1,101,10000,2,,adrSpawnNpcNearby ,102,20,nqElite,500,1000,,,,1,1008
+2,ÆæÓö²âÊÔ,102,102,230000,230000,attDestoryDoodad,vRole + 1,101,10000,3,,adrSpawnNpcSurround ,102,0,nqNormal1,8,400,,,,1,1008
+3,ÆæÓö²âÊÔ,102,102,230000,230000,attRefineEquip,vGuild + 1,10000,4,,,adrSpawnDoodadAtPoint ,102,1,10000,10000,10000,1000,,,1,1008
+4,ÆæÓö²âÊÔ,102,102,230000,230000,attAddSoul,vRole + 1,10000,5,,,adrSpawnNpcAtPoint,102,1,5000,5000,10000,1000,,,1,1008
+5,ÆæÓö²âÊÔ,102,102,230000,230000,attRandomizeEquip,vServer + 1,10000,6,,,adrSpawnDoodadNearby ,102,500,1000,,,,,,1,1008
+6,ÆæÓö²âÊÔ,102,102,230000,230000,att5MinOnlineTime,vRole + 1,10000,1,,,adrSendMail ,1008,,,,,,,,1,1008
+7,ÆæÓö²âÊÔ,102,102,230000,230000,attServerTime,,10000,600,,,adrSpawnDoodadAtPoint ,102,1,10000,10000,10000,1000,,,1,1008
+8,ÆæÓö²âÊÔ,102,102,230000,230000,attKillNpc,vServer + 1,102,10000,7,,adrSpawnNpcNearby ,102,20,nqNormal2,500,1000,,,,1,1008
+9,ÆæÓö²âÊÔ,102,102,230000,230000,attDestoryDoodad,vRole + 1,102,10000,8,,adrSpawnNpcSurround ,102,0,nqNormal3,12,400,,,,1,1008
+10,ÆæÓö²âÊÔ,102,102,230000,230000,attRefineEquip,vScene + 1,10000,9,,,adrSpawnDoodadNearby ,102,500,1000,,,,,,1,1008
+11,ÆæÓö²âÊÔ,102,102,230000,230000,attAddSoul,vGuild + 1,10000,10,,,adrSpawnDoodadAtPoint ,102,1,10000,10000,10000,1000,,,1,1008
+12,ÆæÓö²âÊÔ,102,102,230000,230000,attRandomizeEquip,vServer + 1,10000,11,,,adrSendMail ,1008,1009,101,2,,,,,1,1008
+13,ÆæÓö²âÊÔ,102,102,230000,230000,att5MinOnlineTime,vRole + 1,10000,2,,,adrSpawnNpcNearby ,102,20,nqElite,500,1000,,,,1,1008
+14,ÆæÓö²âÊÔ,102,102,230000,230000,attServerTime,,10000,600,,,adrSpawnNpcAtPoint,102,1,5000,5000,10000,1000,,,1,1008
+15,É±ËÀÉ³Ä®ÒÅÃñÆæÓö,102,1231,60000,230000,attKillNpc,vRole + 100,471,1000,10,,adrSpawnNpcNearby ,6259,20,nqElite,500,1000,,,,1,1001
+16,É³Ä®Ì½Ë÷Õß,102,1231,60000,230000,attKillNpc,vRole + 101,472,1000,10,,adrSpawnNpcNearby ,6259,20,nqElite,500,1000,,,,1,1001
+17,ÒÅÃñÊ¿±ø,102,1231,60000,230000,attKillNpc,vRole + 102,473,1000,10,,adrSpawnNpcNearby ,6259,20,nqElite,500,1000,,,,1,1001
+18,Ì½Ë÷ÕßÊ¿±ø,102,1231,60000,230000,attKillNpc,vRole + 103,474,1000,10,,adrSpawnNpcNearby ,6259,20,nqElite,500,1000,,,,1,1001
+19,Ç¿»¯ÆæÓö,102,1231,60000,230000,attRefineEquip,vRole + 104,100,10,,,adrSendMail ,1009,,,,,,,,1,1002
+20,Ç¿»¯ÆæÓö2,102,1231,60000,230000,attRefineEquip,vRole + 105,10000,200,,,adrSendMail ,1010,,,,,,,,1,1002
+21,ÃúÎÄÆæÓö,102,1231,60000,230000,attAddSoul,vRole + 106,100,10,,,adrSendMail ,1011,,,,,,,,1,1003
+22,ÃúÎÄÆæÓö2,102,1231,60000,230000,attAddSoul,vRole + 107,10000,200,,,adrSendMail ,1012,,,,,,,,1,1003
+23,ÔÚÏßÊ±¼äÆæÓö,102,1231,60000,230000,att5MinOnlineTime,vRole + 108,50,1,,,adrSendMail ,1013,,,,,,,,1,1004
+24,ÔÚÏßÊ±¼äÆæÓö2,102,1231,60000,230000,att5MinOnlineTime,vRole + 109,1000,144,,,adrSendMail ,1014,,,,,,,,1,1004
+25,»÷ÆÆÌÓÅÜ¹ÖÎï¸ç²¼ÁÖ,102,1231,60000,230000,attKillNpc,vRole + 118,484,1000,100,,adrSpawnNpcNearby ,5801,40,nqElite,500,1000,,,,1,1004
+26,»÷ÆÆÇ¿Á¦¹ÖÎï,102,1231,60000,230000,attKillNpc,vRole + 119,482,1000,100,,adrSpawnNpcNearby ,5802,40,nqElite,500,1000,,,,1,1004
+27,ÊØ»¤NPC,102,1231,60000,230000,attKillNpc,vRole + 120,471,1000,100,,adrSpawnNpcNearby,5803,40,nqElite,500,1000,,,,1,1004
+28,É±Íæ¼Ò,102,1231,60000,230000,attKillNpc,vRole + 121,472,1000,100,,adrSpawnNpcNearby,5805,40,nqElite,500,1000,,,,1,1004

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="script">
+      <UniqueIdentifier>{b69bff08-bfbc-4cc6-a1e9-f00b16ec73de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script\generated files">
+      <UniqueIdentifier>{902e4672-637c-4e13-8e8f-7260d024504d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="gen_msg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_common.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_enum_module.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_external_message.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_common.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_enum_module.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_external_message.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <toluapp_gen_msg Include="script\enum_module.epkg">
+      <Filter>script</Filter>
+    </toluapp_gen_msg>
+  </ItemGroup>
+  <ItemGroup>
+    <toluapp_msg Include="script\common.pkg">
+      <Filter>script</Filter>
+    </toluapp_msg>
+    <toluapp_msg Include="script\external_message.pkg">
+      <Filter>script</Filter>
+    </toluapp_msg>
+  </ItemGroup>
+</Project>

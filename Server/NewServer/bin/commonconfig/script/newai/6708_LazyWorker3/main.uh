@@ -1,0 +1,36 @@
+
+evtAIInteract = 
+{ batSequencer,
+    { batRoleCheckHasQuest, param={ 2093 }},
+    { batRoleCheckQuestVariable , param = {boNEQ ,2093,3,1}},
+    { batCheckCDTimer, param={ COOLDOWN_AI , 1},
+    },
+    { batSetCDTimer , param={ COOLDOWN_AI , 1,10000},
+    },
+    { batRandom , param={6000,4000},
+        --劝导失败
+        {batSequencer,
+            { batRandom , param={1000,1000},
+                { batSay, param={ cctScreen, 50283, cltNormal },
+                },  
+                { batSay, param={ cctScreen, 50206, cltNormal },
+                },  
+            },   
+            { batPlayAction, param={ 2},
+            },  
+        },
+        -- 劝导成功
+        {batSequencer,
+            {batRoleSetQuestVariable , param = {2093,3,1}},  
+            { batSay, param = { cctScreen, 50204, cltNormal } },
+            { batPlayAction, param={ 1},
+            },
+            
+            { batWait, param={5000},
+            },
+            
+            {batSuicide},  
+        },
+    },
+   
+};

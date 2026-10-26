@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<code decoding="GBK">
+	<output filename="errdef.h">
+		<namespace name="ERR_ENTER_GS">
+			<message id="0" varname="NOERROR" msg="操作成功"/>
+			<message id="1" varname="ENTERGAMEFAILED" msg="进入游戏失败"/>			
+			<message id="2" varname="EXISTEDINGAMESERVER" msg="已在游戏中"/>
+			<message id="3" varname="TASKLOADSTATUSFAILD" msg="加载任务信息失败"/>
+		</namespace>	
+		<namespace name="ERR_MOVE">
+			<message id="0" varname="NOERROR" msg="操作成功"/>		
+			<message id="1" varname="TIMEOUT" msg="超时"/>
+			<message id="2" varname="MOREPKG" msg="发包过多"/>			
+			<message id="3" varname="DIRERR" msg="方向值范围错误"/>
+			<message id="4" varname="MOVEERR" msg="移动错误"/>
+			<message id="5" varname="GETOBJERR" msg="OBJID错误"/>
+			<message id="6" varname="MOVETRYERR" msg="移动类型错误"/>
+			<message id="7" varname="NOTACTIVE" msg="角色当前不可活动"/>
+		</namespace>		
+		<namespace name="ERR_CHANGE_DIR">
+			<message id="0" varname="NOERROR" msg="操作成功"/>
+			<message id="1" varname="OUTOFMAX" msg="方向超出最大范围"/>
+		</namespace>			
+		<namespace name="ERR_DRESS">
+			<message id="0" varname="NOERROR" msg="操作成功"/>
+			<message id="1" varname="UNVALIDITEM" msg="请求装备无效"/>
+			<message id="2" varname="NOTMATCHTYPE" msg="请求装备类型不匹配"/>
+			<message id="3" varname="SRCPOSNOITEM" msg="源位置无装备"/>
+			<message id="4" varname="TARGETPOSHAVEITEM" msg="目标位置有装备，无法装备"/>
+			<message id="5" varname="POSNOTCHANGE" msg="位置没有修改"/>
+			<message id="6" varname="NOTMATCHOBJID" msg="OBJID不匹配"/>
+      <message id="7" varname="SPACENOTENOUGH" msg="包裹空间不足"/>
+      <message id="8" varname="SERVERCHECKINVALID" msg="服务器检查包裹不合法"/>
+		</namespace>	
+		<namespace name="ERR_SKILL_ATTACK">
+			<message id="0" varname="NOERROR" msg="操作成功"/>
+			<message id="1" varname="USE_SKILL_FAILED" msg="技能使用错误"/>
+		</namespace>		
+		<namespace name="ERR_NPC_TALK">
+			<message id="0" varname="NOERROR" msg="操作成功"/>
+		</namespace>		
+		<namespace name="ERR_SYNC_TIME">
+			<message id="0" varname="NOERROR" msg="操作成功"/>
+		</namespace>						
+		<namespace name="ERR_TASK_OPERATE">
+			<message id="0" varname="NOERROR" msg="任务操作成功"/>
+			<message id="1" varname="OPERATE_FAILED" msg="任务操作错误"/>
+			<message id="2" varname="INSTANCE_TASK_FAILED" msg="副本任务错误"/>
+		</namespace>		
+		<namespace name="ERR_ITEM_SMITHING">
+			<message id="0" varname="NOERROR" msg="操作成功"/>
+			<message id="1" varname="NOCHANGE" msg="失败，属性不变"/>
+			<message id="2" varname="OVERFLOW" msg="失败，已达到最大锻造次数"/>
+			<message id="3" varname="DESTROY" msg="失败，且该道具已被销毁"/>
+		</namespace>	
+		<namespace name="ERR_ITEM_USE">
+			<message id="0" varname="NOERROR" msg="操作成功"/> 
+			<message id="1" varname="DESTROY" msg="操作成功，且该道具已被销毁"/>			
+			<message id="2" varname="INVALIDPARA" msg="失败，非法参数"/>
+			<message id="3" varname="UNUSED" msg="失败，道具不可使用"/>
+		</namespace>
+    <namespace name="ERR_TRAP">
+      <message id="0" varname="NOERROR" msg="操作成功" />
+      <message id="1" varname="INTERNEL_ERROR" msg="内部错误" />
+      <message id="2" varname="BAD_TRAP_ID" msg="机关ID错误" />
+      <message id="3" varname="NOT_ONTIME" msg="触发时间错误" />
+      <message id="4" varname="PLAYER_CAN_NOT_OPEN" msg="玩家不能开启该机关" />
+      <message id="4" varname="BAD_TRAP_STATUS" msg="机关目前不能开启" />
+    </namespace>
+	</output>
+</code>

@@ -1,0 +1,655 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="main">
+      <UniqueIdentifier>{7847fc2f-d546-4482-bf33-766ecfe955f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="message">
+      <UniqueIdentifier>{7dfa7bea-1cbb-4e93-be97-99dc21b59d16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="session">
+      <UniqueIdentifier>{c8636af8-0acb-4a93-a361-cf8b0dfa1fc2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="variable">
+      <UniqueIdentifier>{0aa039d1-fa17-4dd3-869e-d69b12d8a381}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="role">
+      <UniqueIdentifier>{b8d97c6e-9028-43dd-9f73-9376f934c8bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script">
+      <UniqueIdentifier>{5ab30a8e-cc02-4bcb-8319-95a4f5e84514}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script\package">
+      <UniqueIdentifier>{1caa5a8d-e876-4824-936b-af79e8bc9333}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="script\generated files">
+      <UniqueIdentifier>{192e7d84-6b9b-413f-bc43-fb3063e6e52a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="team">
+      <UniqueIdentifier>{a1068bcc-f4ee-40f5-8caf-d16c3303eb38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="user">
+      <UniqueIdentifier>{8bf9d653-ab2d-41ef-bfc1-3c7b5a181424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene">
+      <UniqueIdentifier>{ef674e13-c00c-48f4-9d84-f7faf7e31600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gs">
+      <UniqueIdentifier>{efe88fcb-db5c-42e8-ba7d-b28bbd0fa010}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="onlinerole">
+      <UniqueIdentifier>{e89a402c-706d-4642-9c7c-619ad3fb9dea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="db">
+      <UniqueIdentifier>{726ff50f-9492-4c3d-8327-0cb3ea52fedc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="master">
+      <UniqueIdentifier>{f1b71963-340e-4da2-b3b2-1309bb92f6b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="arenateam">
+      <UniqueIdentifier>{904547ee-4662-4692-9faa-0650bbf9dcd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="mail">
+      <UniqueIdentifier>{ae5c276d-f978-44b6-ae0b-a4381e437288}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="timer">
+      <UniqueIdentifier>{76f5e0ba-f753-46ad-9bee-8d7ba5cb4e00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="queuematch">
+      <UniqueIdentifier>{0e4c21d6-4266-49f9-bfa0-f8a14a7e036b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guild">
+      <UniqueIdentifier>{c0d8c6b7-4960-4056-acf1-38152e539fb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="auction">
+      <UniqueIdentifier>{3ff81361-f54c-4abf-8fcc-c208d02da8fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="gm">
+      <UniqueIdentifier>{b9e08f0b-8755-4025-bea5-900495fe2f7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="drop">
+      <UniqueIdentifier>{a36e1c49-ecc4-44d4-87e5-426bae16117f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ranklist">
+      <UniqueIdentifier>{d662e6bb-c335-4d2b-84bf-02ff988ae381}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="activity">
+      <UniqueIdentifier>{86ce4541-71ff-4f75-b453-df79c23cc0bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="real_money_shop">
+      <UniqueIdentifier>{592c5bbe-4802-42f2-aaf5-84062eef5526}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="adventure">
+      <UniqueIdentifier>{9dc23a1d-8688-4e27-9660-28882ee6e916}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="award">
+      <UniqueIdentifier>{645e40da-b3be-427e-8d1c-14f4df8c7399}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="chat">
+      <UniqueIdentifier>{c0e50c32-4528-46a9-811b-7f84fc505878}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="exchange">
+      <UniqueIdentifier>{38b0c2e7-cd74-4519-a548-2c6a22fd4781}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="data">
+      <UniqueIdentifier>{56fd0c58-668f-43d8-b41e-74a08e75e7d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="arena">
+      <UniqueIdentifier>{49898e7b-5891-490d-a1a0-1ac48a9a102b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="fcm">
+      <UniqueIdentifier>{4a19c7e2-adb7-4bc4-acf0-3c6f38503af5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guild\db">
+      <UniqueIdentifier>{d63b8f5e-8615-47fe-82b4-82a0ee988750}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="blackmarket">
+      <UniqueIdentifier>{13b5084b-c682-4e23-8452-6c0cc36e41f0}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="manageserver.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="message_handle_bs.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message_handler_client.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message_handler_db.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message_handler_dl.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message_handler_gm.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message_handler_gs.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message_handler_gt.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="message_handler_ls.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="ms_guild_handler.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="ms_session_mgr.cpp">
+      <Filter>session</Filter>
+    </ClCompile>
+    <ClCompile Include="server_var.cpp">
+      <Filter>variable</Filter>
+    </ClCompile>
+    <ClCompile Include="role_data.cpp">
+      <Filter>role</Filter>
+    </ClCompile>
+    <ClCompile Include="role_data_mgr.cpp">
+      <Filter>role</Filter>
+    </ClCompile>
+    <ClCompile Include="script\ms_script_func.cpp">
+      <Filter>script</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_chat_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_common.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_error_def.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_master_mgr.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_ms_guild.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_ms_guild_member.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_ms_guild_mgr.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_role_data.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_role_data_mgr.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_string_table.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="team\ms_team_mgr.h.cpp">
+      <Filter>team</Filter>
+    </ClCompile>
+    <ClCompile Include="team\team.cpp">
+      <Filter>team</Filter>
+    </ClCompile>
+    <ClCompile Include="client\user.cpp">
+      <Filter>user</Filter>
+    </ClCompile>
+    <ClCompile Include="client\usermgr.cpp">
+      <Filter>user</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\scenemgr.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="gs_info_mgr.cpp">
+      <Filter>gs</Filter>
+    </ClCompile>
+    <ClCompile Include="gs_rsakey_mgr.cpp">
+      <Filter>gs</Filter>
+    </ClCompile>
+    <ClCompile Include="onlinerole\online_role_data.cpp">
+      <Filter>onlinerole</Filter>
+    </ClCompile>
+    <ClCompile Include="onlinerole\online_role_data_mgr.cpp">
+      <Filter>onlinerole</Filter>
+    </ClCompile>
+    <ClCompile Include="db\db_operation.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\ms_sql_stmt_list.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\ms_worker_thread.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\prep_stmt.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="master\master_mgr.cpp">
+      <Filter>master</Filter>
+    </ClCompile>
+    <ClCompile Include="data\arena_data.cpp">
+      <Filter>arenateam</Filter>
+    </ClCompile>
+    <ClCompile Include="mail\mail_mgr.cpp">
+      <Filter>mail</Filter>
+    </ClCompile>
+    <ClCompile Include="timer\time_trigger.cpp">
+      <Filter>timer</Filter>
+    </ClCompile>
+    <ClCompile Include="timer\timermgr.cpp">
+      <Filter>timer</Filter>
+    </ClCompile>
+    <ClCompile Include="queuematch\battlequeuemgr.cpp">
+      <Filter>queuematch</Filter>
+    </ClCompile>
+    <ClCompile Include="application_mgr.cpp">
+      <Filter>guild</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\guild_storage.cpp">
+      <Filter>guild</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\ms_guild.cpp">
+      <Filter>guild</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\ms_guild_member.cpp">
+      <Filter>guild</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\ms_guild_mgr.cpp">
+      <Filter>guild</Filter>
+    </ClCompile>
+    <ClCompile Include="auction\auction_mgr.cpp">
+      <Filter>auction</Filter>
+    </ClCompile>
+    <ClCompile Include="auction\auction_thread.cpp">
+      <Filter>auction</Filter>
+    </ClCompile>
+    <ClCompile Include="gm\gm_manager.cpp">
+      <Filter>gm</Filter>
+    </ClCompile>
+    <ClCompile Include="drop\ms_drop_mgr.cpp">
+      <Filter>drop</Filter>
+    </ClCompile>
+    <ClCompile Include="ranklist\ranklist.cpp">
+      <Filter>ranklist</Filter>
+    </ClCompile>
+    <ClCompile Include="data\activity_data.cpp">
+      <Filter>activity</Filter>
+    </ClCompile>
+    <ClCompile Include="real_money_shop\oa_bill_mgr.cpp">
+      <Filter>real_money_shop</Filter>
+    </ClCompile>
+    <ClCompile Include="real_money_shop\real_money_shop.cpp">
+      <Filter>real_money_shop</Filter>
+    </ClCompile>
+    <ClCompile Include="real_money_shop\real_money_shop_data.cpp">
+      <Filter>real_money_shop</Filter>
+    </ClCompile>
+    <ClCompile Include="ms_adventure.cpp">
+      <Filter>adventure</Filter>
+    </ClCompile>
+    <ClCompile Include="award\award_mgr.cpp">
+      <Filter>award</Filter>
+    </ClCompile>
+    <ClCompile Include="chat\ms_chat.cpp">
+      <Filter>chat</Filter>
+    </ClCompile>
+    <ClCompile Include="exchange\exchange_history.cpp">
+      <Filter>exchange</Filter>
+    </ClCompile>
+    <ClCompile Include="exchange\exchange_mgr.cpp">
+      <Filter>exchange</Filter>
+    </ClCompile>
+    <ClCompile Include="exchange\exchange_orders.cpp">
+      <Filter>exchange</Filter>
+    </ClCompile>
+    <ClCompile Include="data\ms_post_process_data.cpp">
+      <Filter>data</Filter>
+    </ClCompile>
+    <ClCompile Include="arena\arena_mgr.cpp">
+      <Filter>arena</Filter>
+    </ClCompile>
+    <ClCompile Include="message_handler_master.cpp">
+      <Filter>message</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_arena_mgr.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_online_role_data.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="fcm\fcm.cpp">
+      <Filter>fcm</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\load_guild.cpp">
+      <Filter>guild\db</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\save_guild.cpp">
+      <Filter>guild\db</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\load_guild_v_1.cpp">
+      <Filter>guild\db</Filter>
+    </ClCompile>
+    <ClCompile Include="db\pre_save_list.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\load_guild_v_2.cpp">
+      <Filter>guild\db</Filter>
+    </ClCompile>
+    <ClCompile Include="blackmarket\ms_black_market_mgr.cpp">
+      <Filter>blackmarket</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\load_guild_v_3.cpp">
+      <Filter>guild\db</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\load_guild_v_4.cpp">
+      <Filter>guild\db</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\load_guild_v_5.cpp">
+      <Filter>guild\db</Filter>
+    </ClCompile>
+    <ClCompile Include="guild\ms_guild_achi_mgr.cpp">
+      <Filter>guild</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_user.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_ms_chat.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_ranklist.cpp">
+      <Filter>script\generated files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="manageserver.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="message_handler.h">
+      <Filter>message</Filter>
+    </ClInclude>
+    <ClInclude Include="ms_session_mgr.h">
+      <Filter>session</Filter>
+    </ClInclude>
+    <ClInclude Include="server_var.h">
+      <Filter>variable</Filter>
+    </ClInclude>
+    <ClInclude Include="role_data.h">
+      <Filter>role</Filter>
+    </ClInclude>
+    <ClInclude Include="role_data_mgr.h">
+      <Filter>role</Filter>
+    </ClInclude>
+    <ClInclude Include="script\ms_script_func.h">
+      <Filter>script</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_common.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_error_def.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_master_mgr.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_ms_guild.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_ms_guild_member.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_ms_guild_mgr.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_role_data.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_role_data_mgr.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_string_table.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="team\ms_team_mgr.h">
+      <Filter>team</Filter>
+    </ClInclude>
+    <ClInclude Include="team\team.h">
+      <Filter>team</Filter>
+    </ClInclude>
+    <ClInclude Include="client\user.h">
+      <Filter>user</Filter>
+    </ClInclude>
+    <ClInclude Include="client\usermgr.h">
+      <Filter>user</Filter>
+    </ClInclude>
+    <ClInclude Include="scene\scenemgr.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="gs_info_mgr.h">
+      <Filter>gs</Filter>
+    </ClInclude>
+    <ClInclude Include="gs_rsakey_mgr.h">
+      <Filter>gs</Filter>
+    </ClInclude>
+    <ClInclude Include="onlinerole\online_role_data.h">
+      <Filter>onlinerole</Filter>
+    </ClInclude>
+    <ClInclude Include="onlinerole\online_role_data_mgr.h">
+      <Filter>onlinerole</Filter>
+    </ClInclude>
+    <ClInclude Include="db\db_operation.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="db\ms_sql_stmt_list.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="db\ms_worker_thread.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="db\prep_stmt.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\define\master_def.h">
+      <Filter>master</Filter>
+    </ClInclude>
+    <ClInclude Include="master\master_mgr.h">
+      <Filter>master</Filter>
+    </ClInclude>
+    <ClInclude Include="data\arena_data.h">
+      <Filter>arenateam</Filter>
+    </ClInclude>
+    <ClInclude Include="mail\mail.h">
+      <Filter>mail</Filter>
+    </ClInclude>
+    <ClInclude Include="mail\mail_mgr.h">
+      <Filter>mail</Filter>
+    </ClInclude>
+    <ClInclude Include="timer\time_trigger.h">
+      <Filter>timer</Filter>
+    </ClInclude>
+    <ClInclude Include="timer\timermgr.h">
+      <Filter>timer</Filter>
+    </ClInclude>
+    <ClInclude Include="queuematch\battlequeuemgr.h">
+      <Filter>queuematch</Filter>
+    </ClInclude>
+    <ClInclude Include="application_mgr.h">
+      <Filter>guild</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\define\guild_def.h">
+      <Filter>guild</Filter>
+    </ClInclude>
+    <ClInclude Include="guild\guild_storage.h">
+      <Filter>guild</Filter>
+    </ClInclude>
+    <ClInclude Include="guild\ms_guild.h">
+      <Filter>guild</Filter>
+    </ClInclude>
+    <ClInclude Include="guild\ms_guild_inl.h">
+      <Filter>guild</Filter>
+    </ClInclude>
+    <ClInclude Include="guild\ms_guild_member.h">
+      <Filter>guild</Filter>
+    </ClInclude>
+    <ClInclude Include="guild\ms_guild_mgr.h">
+      <Filter>guild</Filter>
+    </ClInclude>
+    <ClInclude Include="auction\auction_mgr.h">
+      <Filter>auction</Filter>
+    </ClInclude>
+    <ClInclude Include="auction\auction_thread.h">
+      <Filter>auction</Filter>
+    </ClInclude>
+    <ClInclude Include="gm\gm_manager.h">
+      <Filter>gm</Filter>
+    </ClInclude>
+    <ClInclude Include="drop\ms_drop_mgr.h">
+      <Filter>drop</Filter>
+    </ClInclude>
+    <ClInclude Include="ranklist\ranklist.h">
+      <Filter>ranklist</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Common\define\ranklist_def.h">
+      <Filter>ranklist</Filter>
+    </ClInclude>
+    <ClInclude Include="data\activity_data.h">
+      <Filter>activity</Filter>
+    </ClInclude>
+    <ClInclude Include="real_money_shop\oa_bill_mgr.h">
+      <Filter>real_money_shop</Filter>
+    </ClInclude>
+    <ClInclude Include="real_money_shop\real_money_shop.h">
+      <Filter>real_money_shop</Filter>
+    </ClInclude>
+    <ClInclude Include="real_money_shop\real_money_shop_data.h">
+      <Filter>real_money_shop</Filter>
+    </ClInclude>
+    <ClInclude Include="ms_adventure.h">
+      <Filter>adventure</Filter>
+    </ClInclude>
+    <ClInclude Include="award\award_mgr.h">
+      <Filter>award</Filter>
+    </ClInclude>
+    <ClInclude Include="chat\ms_chat.h">
+      <Filter>chat</Filter>
+    </ClInclude>
+    <ClInclude Include="exchange\exchange_history.h">
+      <Filter>exchange</Filter>
+    </ClInclude>
+    <ClInclude Include="exchange\exchange_mgr.h">
+      <Filter>exchange</Filter>
+    </ClInclude>
+    <ClInclude Include="exchange\exchange_orders.h">
+      <Filter>exchange</Filter>
+    </ClInclude>
+    <ClInclude Include="data\ms_post_process_data.h">
+      <Filter>data</Filter>
+    </ClInclude>
+    <ClInclude Include="arena\arena_mgr.h">
+      <Filter>arena</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_arena_mgr.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_online_role_data.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="fcm\fcm.h">
+      <Filter>fcm</Filter>
+    </ClInclude>
+    <ClInclude Include="guild\guild_db_def.h">
+      <Filter>guild\db</Filter>
+    </ClInclude>
+    <ClInclude Include="guild\guild_db_def_v_1.h">
+      <Filter>guild\db</Filter>
+    </ClInclude>
+    <ClInclude Include="db\pre_save_list.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="guild\guild_db_def_v_2.h">
+      <Filter>guild\db</Filter>
+    </ClInclude>
+    <ClInclude Include="blackmarket\ms_black_market_mgr.h">
+      <Filter>blackmarket</Filter>
+    </ClInclude>
+    <ClInclude Include="guild\guild_db_def_v_3.h">
+      <Filter>guild\db</Filter>
+    </ClInclude>
+    <ClInclude Include="guild\guild_db_def_v_4.h">
+      <Filter>guild\db</Filter>
+    </ClInclude>
+    <ClInclude Include="guild\guild_db_def_v_5.h">
+      <Filter>guild\db</Filter>
+    </ClInclude>
+    <ClInclude Include="guild\ms_guild_achi_mgr.h">
+      <Filter>guild</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_user.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_ms_chat.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_ranklist.h">
+      <Filter>script\generated files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ms_session_mgr.inl">
+      <Filter>session</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <toluapp Include="script\chat_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\common.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\error_def.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\master_mgr.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\ms_guild.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\ms_guild_member.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\ms_guild_mgr.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\role_data.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\role_data_mgr.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\string_table.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\arena_mgr.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\online_role_data.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\user.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\ranklist.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+    <toluapp Include="script\ms_chat.pkg">
+      <Filter>script\package</Filter>
+    </toluapp>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="main">
+      <UniqueIdentifier>{c77fb9c6-f564-42fa-9722-4a7539d1b55c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{60c77569-10c4-4c77-ab88-82f9c202447e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="config">
+      <UniqueIdentifier>{3f509192-d3f4-4149-a801-45b0d427b93f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lua">
+      <UniqueIdentifier>{99e7b217-b3c4-4328-a04f-d27e4060caf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="timer">
+      <UniqueIdentifier>{d3589284-9537-4732-ae7b-fe83c2adb0c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="log">
+      <UniqueIdentifier>{9642c675-c7c0-49c1-b209-72a6e933a8c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="btnod">
+      <UniqueIdentifier>{48634a94-9909-4936-9552-ad69664d1f19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="string">
+      <UniqueIdentifier>{84279c0c-bb6e-4301-ab0c-5ab8b83d4b37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sharemem">
+      <UniqueIdentifier>{d4acacb9-4fe6-49a4-8a1b-8271a2ac7864}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="toluapp">
+      <UniqueIdentifier>{e74c0e30-f5bb-47c3-b608-ff00f5a014e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="toluapp\generated files">
+      <UniqueIdentifier>{ccd38205-f18c-4d9a-acc3-e10b71fc62fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="container">
+      <UniqueIdentifier>{4fde259f-ed12-460d-9289-e259c97bdfac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="assembly">
+      <UniqueIdentifier>{6bef857f-0073-480b-8cd1-a19b681f63dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="dump">
+      <UniqueIdentifier>{3b134df4-9d87-46cc-9641-4b6750e38974}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="checkdata">
+      <UniqueIdentifier>{9064832b-f782-4681-8e29-b97c75ddbac8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="trie">
+      <UniqueIdentifier>{0aad940e-8eeb-44ff-a68b-90e58c5c40bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="linux">
+      <UniqueIdentifier>{f4f5a975-dc00-4162-a306-50a9b5bcd054}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="file">
+      <UniqueIdentifier>{8627dad5-8afa-4887-9114-41e3f9a4176c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="statis_info">
+      <UniqueIdentifier>{80e3f5a2-8331-45b1-ba36-a34ae8817c7d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thread">
+      <UniqueIdentifier>{4a4c15d6-aa2a-4d78-8403-c21cc76b0faa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="db">
+      <UniqueIdentifier>{2d155741-803e-48ee-96e1-42936ee6b344}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\inc\baselib\std_type.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>main</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\math_ex.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\weight_rand.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\data_manager.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\process_option.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\tabfile.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\tl_config.h">
+      <Filter>config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\lua_script.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\script_mgr.h">
+      <Filter>lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\simple_timer.h">
+      <Filter>timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\time_ex.h">
+      <Filter>timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\log.h">
+      <Filter>log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\process_error.h">
+      <Filter>log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\profile.h">
+      <Filter>log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\btnod.h">
+      <Filter>btnod</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\rsa_sign.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\string_ex.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\utf8.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\share_mem.h">
+      <Filter>sharemem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\share_mem_io.h">
+      <Filter>sharemem</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_check_data.h">
+      <Filter>toluapp\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_common.h">
+      <Filter>toluapp\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="script\tolua_tl_config.h">
+      <Filter>toluapp\generated files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\base_list.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\cas.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\circle_list.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\free_object_pool.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\free_stack.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\id_object_pool.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\linux_map.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\linux_map_inl.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\object_pool.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\asm.h">
+      <Filter>assembly</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\dump.h">
+      <Filter>dump</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\checkdata.h">
+      <Filter>checkdata</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\censored_word_list.h">
+      <Filter>trie</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\trie.h">
+      <Filter>trie</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\linux_compatible.h">
+      <Filter>linux</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\dir.h">
+      <Filter>file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\hash.h">
+      <Filter>file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\ifile.h">
+      <Filter>file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\md5.h">
+      <Filter>file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\pak_def.h">
+      <Filter>file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\pak_loader.h">
+      <Filter>file</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\statis_info.h">
+      <Filter>statis_info</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\mutex.h">
+      <Filter>thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\thread.h">
+      <Filter>thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\sql_mgr.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\sql_stmt.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\simple_list.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\db_init.h">
+      <Filter>db</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\baselib\report.h">
+      <Filter>log</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>main</Filter>
+    </ClCompile>
+    <ClCompile Include="math_ex.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="weight_rand.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="data_manager.cpp">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="process_option.cpp">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="tabfile.cpp">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="tabfile_test.cpp">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="tl_config.cpp">
+      <Filter>config</Filter>
+    </ClCompile>
+    <ClCompile Include="lua_script.cpp">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="script_mgr.cpp">
+      <Filter>lua</Filter>
+    </ClCompile>
+    <ClCompile Include="simple_timer.cpp">
+      <Filter>timer</Filter>
+    </ClCompile>
+    <ClCompile Include="time_ex.cpp">
+      <Filter>timer</Filter>
+    </ClCompile>
+    <ClCompile Include="log.cpp">
+      <Filter>log</Filter>
+    </ClCompile>
+    <ClCompile Include="profile.cpp">
+      <Filter>log</Filter>
+    </ClCompile>
+    <ClCompile Include="btnod.cpp">
+      <Filter>btnod</Filter>
+    </ClCompile>
+    <ClCompile Include="btnod_test.cpp">
+      <Filter>btnod</Filter>
+    </ClCompile>
+    <ClCompile Include="rsa_sign.cpp">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string_ex.cpp">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="string_ex_test.cpp">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="utf8.cpp">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="share_mem.cpp">
+      <Filter>sharemem</Filter>
+    </ClCompile>
+    <ClCompile Include="share_mem_io.cpp">
+      <Filter>sharemem</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_check_data.cpp">
+      <Filter>toluapp\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_common.cpp">
+      <Filter>toluapp\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="script\tolua_tl_config.cpp">
+      <Filter>toluapp\generated files</Filter>
+    </ClCompile>
+    <ClCompile Include="circle_list.cpp">
+      <Filter>container</Filter>
+    </ClCompile>
+    <ClCompile Include="free_stack.cpp">
+      <Filter>container</Filter>
+    </ClCompile>
+    <ClCompile Include="asm.cpp">
+      <Filter>assembly</Filter>
+    </ClCompile>
+    <ClCompile Include="dump.cpp">
+      <Filter>dump</Filter>
+    </ClCompile>
+    <ClCompile Include="checkdata.cpp">
+      <Filter>checkdata</Filter>
+    </ClCompile>
+    <ClCompile Include="censored_word_list.cpp">
+      <Filter>trie</Filter>
+    </ClCompile>
+    <ClCompile Include="trie.cpp">
+      <Filter>trie</Filter>
+    </ClCompile>
+    <ClCompile Include="trie_test.cpp">
+      <Filter>trie</Filter>
+    </ClCompile>
+    <ClCompile Include="linux_compatible.cpp">
+      <Filter>linux</Filter>
+    </ClCompile>
+    <ClCompile Include="dir.cpp">
+      <Filter>file</Filter>
+    </ClCompile>
+    <ClCompile Include="hash.cpp">
+      <Filter>file</Filter>
+    </ClCompile>
+    <ClCompile Include="ifile.cpp">
+      <Filter>file</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.cpp">
+      <Filter>file</Filter>
+    </ClCompile>
+    <ClCompile Include="pak_loader.cpp">
+      <Filter>file</Filter>
+    </ClCompile>
+    <ClCompile Include="statis_info.cpp">
+      <Filter>statis_info</Filter>
+    </ClCompile>
+    <ClCompile Include="mutex.cpp">
+      <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="thread.cpp">
+      <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="sql_mgr.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="sql_stmt.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="db_init.cpp">
+      <Filter>db</Filter>
+    </ClCompile>
+    <ClCompile Include="report.cpp">
+      <Filter>log</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <toluapp Include="script\check_data.pkg">
+      <Filter>toluapp</Filter>
+    </toluapp>
+    <toluapp Include="script\common.pkg">
+      <Filter>toluapp</Filter>
+    </toluapp>
+    <toluapp Include="script\tl_config.pkg">
+      <Filter>toluapp</Filter>
+    </toluapp>
+  </ItemGroup>
+  <ItemGroup>
+    <MASM Include="code.asm">
+      <Filter>assembly</Filter>
+    </MASM>
+  </ItemGroup>
+</Project>

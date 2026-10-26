@@ -1,0 +1,625 @@
+LoadPackage("char_def.pkg")
+LoadPackage("spell.pkg")
+LoadPackage("attribute_def.pkg")
+
+Include("script/include/btnod.lua")
+
+---------------- event list ---------------------------
+
+on_init = { batSequencer };
+on_enter_fight = { batSequencer };
+on_wander = { batSequencer };
+on_fight_move = { batSequencer };
+on_cast_spell = { batSequencer };
+on_chase = { batSequencer };
+on_live_timer = { batSequencer };
+on_die = { batSequencer };
+
+---------------- internal function ---------------------------
+--- DO NOT use them outside this file
+
+
+---------------- primitive function --------------------------
+--- primitive functions do not depend on AI_DATA
+
+function __check_cd_timer(timer_type, timer_index, cd_time)
+    if cd_time == nil or cd_time == 0 then
+        return nil;
+    else
+        return { batCheckCDTimer, param = { timer_type, timer_index } };
+    end
+end
+
+function __set_cd_timer(timer_type, timer_index, cd_time)
+    if cd_time == nil or cd_time == 0 then
+        return nil;
+    else
+        return { batSetCDTimer, param = { timer_type, timer_index, cd_time } };
+    end
+end
+
+function __check_dice(chance)
+    if chance == RATE_MAX then
+        return nil;
+    else
+        return { batCheckDice, param = { boLT, chance } };
+    end
+end
+
+function __check_self_hp_percent(hp_percent)
+    if hp_percent == RATE_MAX then
+        return nil;
+    else
+        return { batCheckCharHp, param = { tarSelf, boLTE, hp_percent } };
+    end
+end
+
+function __check_target(target_type)
+    if target_type == tarAITarget or target_type == tarSelf then
+        return nil;    
+    else
+        return { batCheckTarget, param = { target_type } };
+    end
+end
+
+function __cast_spell(id, target_type, chance, cd_time, global_cd, timer_type, timer_index, hp_percent)
+	local result;
+
+    if hp_percent == nil then
+        hp_percent = RATE_MAX;
+    end
+    if timer_type == nil then
+        timer_type = COOLDOWN_SCRIPT_SPELL;
+    end
+    if timer_index == nil then
+        timer_index = id;
+    end
+    
+    if id == nil or id == 0 or chance == nil or chance == 0 or hp_percent == 0 then
+        return nil;
+    end
+    
+	if chance ~= RATE_MAX then
+		result = 
+		{ batSequencer,
+			{ batCheckCanCastSpell },
+			__check_target(target_type),
+			__check_self_hp_percent(hp_percent),
+			__check_cd_timer(COOLDOWN_AI, nastGlobalCDTimer, global_cd),
+			__check_cd_timer(timer_type, timer_index, cd_time),
+			__set_cd_timer(timer_type, timer_index, cd_time),
+			__check_dice(chance),
+			{ batCastSpellToTarget, param = { id, target_type } },
+			__set_cd_timer(COOLDOWN_AI, nastGlobalCDTimer, global_cd),
+			{ batWaitCastSpell },
+		};
+	else
+		result = 
+		{ batSequencer,
+			{ batCheckCanCastSpell },
+			__check_target(target_type),
+			__check_self_hp_percent(hp_percent),
+			__check_cd_timer(COOLDOWN_AI, nastGlobalCDTimer, global_cd),
+			__check_cd_timer(timer_type, timer_index, cd_time),
+			{ batCastSpellToTarget, param = { id, target_type } },
+			__set_cd_timer(timer_type, timer_index, cd_time),
+			{ batWaitCastSpell },
+			__set_cd_timer(COOLDOWN_AI, nastGlobalCDTimer, global_cd),
+		};
+	end
+
+    return result;
+end
+
+function __cast_init_spell(id, chance)
+    if id == nil or id == 0 or chance == nil or chance == 0 then
+        return nil;
+    else
+        return 
+        { batSequencer,
+            __check_dice(chance),
+            { batSyncCastSpellToTarget, param = { id, tarSelf } },
+        };
+    end
+   
+    return result;
+end
+
+function __add_aura(aura_id, target)
+    if aura_id == nil or aura_id == 0 then
+        return nil;
+    else
+        return { batAddAura, param = { target, aura_id } };
+    end
+end
+
+function __wander(range, interval, speed)
+    if range == nil or range == 0 or speed == nil or speed == 0 then
+        return nil;
+    else
+        return { batWander, param = { range, interval } };
+    end
+end
+
+function __check_live_timer(live_time, disappear_on_timeout)
+    if live_time == nil or live_time == 0 then
+        return nil;
+    elseif disappear_on_timeout then
+        return 
+            { batSequencer,
+                { batCheckCDTimer, param = { COOLDOWN_AI, nastLiveTimer } },
+				{ batSelector, 
+					'on_live_timer',
+					{ batSuicide, param = { false, true } },
+				},
+            };
+	else
+        return 
+            { batSequencer,
+                { batCheckCDTimer, param = { COOLDOWN_AI, nastLiveTimer } },
+				{ batSelector, 
+					'on_live_timer',
+					{ batSuicide, param = { false, false } },
+				},
+            };
+    end
+end
+
+function __get_valid_target(chase_range)
+    if chase_range == nil or chase_range == 0 then
+        return nil;
+    else
+        return 
+        { batSequencer,
+			{ batSelector,
+	            --{ batCheckCharOutOfHomeRange, param = { tarAITarget, chase_range } },
+                { batCheckDistance, param = { tarAITarget, boGT, chase_range } },                 
+	            { batCheckCharHp, param = { tarAITarget, boLTE, 0 } },
+			},
+            { batSelector,
+                { batGetTargetFromThreatList, param = { chase_range } },
+                { batGoHome },
+            },
+        };
+    end
+end
+
+function __check_out_of_range(chase_range)
+    if chase_range == nil or chase_range == 0 then
+        return nil;
+    else
+        return 
+        { batSequencer,
+            -- { batCheckCharOutOfHomeRange, param = { tarAITarget, chase_range } },
+            { batCheckDistance, param = { tarAITarget, boGT, chase_range } }, 
+            { batSelector,
+                { batGetTargetFromThreatList, param = { chase_range } },
+                { batGoHome },
+            },
+        };
+    end
+end
+
+function __check_target_die(chase_range)
+    if chase_range == nil or chase_range == 0 then
+        return nil;
+    else
+        return 
+        { batSequencer,
+            { batCheckCharHp, param = { tarAITarget, boLTE, 0 } },
+            { batSelector,
+                { batGetTargetFromThreatList, param = { chase_range } },
+                { batGoHome },
+            },
+        };
+    end
+end
+
+function __flee(hp_percent, chance, cd_time, duration, speed)
+    if hp_percent == nil or hp_percent == 0 or chance == nil or chance == 0 or speed == nil or speed == 0 then
+        return nil;
+    else
+        return 
+        { batSequencer,
+            { batCheckCharHp, param = { tarSelf, boLT, hp_percent } },
+            __check_cd_timer(COOLDOWN_AI, nastFleeTimer, cd_time),
+            __set_cd_timer(COOLDOWN_AI, nastFleeTimer, cd_time), 
+            __check_dice(chance),
+            { batFlee, param = { duration } },
+        };
+    end
+end
+
+function __issue_threat_signal(signal_count)
+    if signal_count == nil or signal_count == 0 or signal_count > 3 then
+        return nil;
+    else
+        return 
+        { batSequencer,
+            __check_cd_timer(COOLDOWN_AI, nastThreatSingalTimer, 2000),
+            __set_cd_timer(COOLDOWN_AI, nastThreatSingalTimer, 2000),
+            { batIssueSignal, param = { sigSpreadHate, 2000, signal_count } },
+        };
+    end
+end
+
+function __delay(time)
+    if time == nil or time == 0 then
+        return nil;
+    else
+        return { batWait, param = { time } }; 
+    end
+end
+
+function __change_target(chance, cd_time, chase_range, delay_time)
+    if chance == nil or chance == 0 or chase_range == nil or chase_range == 0 then
+        return nil;
+    else
+        return
+        { batSequencer,
+            __check_cd_timer(COOLDOWN_AI, nastChanceTargetTimer, cd_time),
+            __set_cd_timer(COOLDOWN_AI, nastChanceTargetTimer, cd_time),
+            __check_dice(chance),
+            { batGetTargetFromThreatList, param = { chase_range } },
+--            { batRotateTo, param = { tarAITarget, 0, 0, d.nRotateSpeed } },
+            __delay(delay_time),
+        };
+    end
+end
+
+function __step_around(chance, cd_time, speed, prefer_distance, chase_threshold)
+    if chance == nil or chance == 0 or speed == nil or speed == 0 then
+        return nil;
+    else
+        return
+        { batSequencer,
+            { batNot,
+                { batCheckNeedChase, param = { chase_threshold } },
+            },
+            __check_cd_timer(COOLDOWN_AI, nastStepAroundTimer, cd_time),
+            __set_cd_timer(COOLDOWN_AI, nastStepAroundTimer, cd_time),
+            __check_dice(chance),
+            { batStepAroundTarget, param = { prefer_distance, chase_threshold } },
+            __set_cd_timer(COOLDOWN_AI, nastWithdrawTimer, 2000),
+        };
+    end
+end
+
+function __fight_move(prefer_distance, withdraw_threshold, chase_threshold, speed, step_around_chance, step_around_cd_time)
+    if speed == nil or speed == 0 then
+        return nil;
+    else
+        return 
+        { batSequencer,
+            { batCheckCanMove },
+            { batCheckCharMoveState, param = { tarSelf, CMS_STAND } },
+            { batRotateTo, param = { tarAITarget, 0, 0, d.nRotateSpeed } },
+            { batCheckCharMoveState, param = { tarAITarget, CMS_STAND } },
+            { batSelector,
+                { batSequencer,
+                    { batSelector,
+                        { batCheckNeedWithdraw, param = { withdraw_threshold } },
+                        __set_cd_timer(COOLDOWN_AI, nastWithdrawTimer, 4000),
+                    },
+                    __check_cd_timer(COOLDOWN_AI, nastWithdrawTimer, 4000),
+                    { batWithdraw, param = { prefer_distance, chase_threshold} },
+                    __set_cd_timer(COOLDOWN_AI, nastWithdrawTimer, 4000),
+                    __set_cd_timer(COOLDOWN_AI, nastStepAroundTimer, 4000),
+                },
+                __step_around(step_around_chance, step_around_cd_time, speed, prefer_distance, chase_threshold),
+            },
+        };
+    end
+end
+
+function __chase(speed, prefer_distance, chase_threshold, chase_delay)
+    if speed == nil or speed == 0  then
+        return nil;
+    else
+        return
+        { batSequencer,
+            { batCheckNeedChase, param = { chase_threshold } },
+            { batSelector,
+                'on_chase',
+                _cast_template_spell(nastChaseSpell, tarAITarget, 0),
+                { batChase, param = { prefer_distance, chase_threshold, chase_delay } },            
+            },
+        };
+    end
+end
+
+function __scan_friend(range, template_id, scan_cd)
+    local resule =
+    { btSequencer,
+        { batCheckCDTimer, param = { COOLDOWN_AI, nastScanNearbyTimer, 0, 0 } },
+        { batSetScanFriendParam, param = { range, template_id, 0, 0 } },
+        { batSetCDTimer, param = { COOLDOWN_AI, nastScanNearbyTimer, scan_cd, 0 } },
+        { batScanNearby },
+    };
+
+    return resule;
+end
+
+function __scan_nearby()
+        return 
+        { batSequencer,
+            __check_cd_timer(COOLDOWN_AI, nastScanNearbyTimer, 1000),
+            __set_cd_timer(COOLDOWN_AI, nastScanNearbyTimer, 1000),
+            { batScanNearby },
+        }
+end
+
+
+---------------------- component function --------------------------
+--- component functions depend on AI_DATA
+--- please configurate AI_DATA fields correctly
+
+function _cast_template_spell(spell_type, target, global_cd)
+    return __cast_spell(d.nSpellID[spell_type], target, d.nSpellChance[spell_type], d.nSpellCDTime[spell_type], global_cd, 
+        COOLDOWN_AI, spell_type, d.nSelfHpPercent[spell_type]);
+end
+
+function _set_scan_param()
+    local result = { batParallel };
+
+    if d.nScanEnemyRange > 0 then
+        table.insert(result, { batSetScanEnemyParam, param = { d.nScanEnemyRange } });
+    end
+
+    if d.nScanFriendRange > 0 then
+        table.insert(result, { batSetScanFriendParam, param = { d.nScanFriendRange, d.nFriendlyNpcTemplateID } });
+    end
+
+    table.insert(result, { batSetScanCorpseParam, param = { d.nCorpseTemplateID, d.bFriendlyCorpse } });
+
+    return result;
+end
+
+function _set_follow_param()
+	if d.bFollow then
+		return { batSetFollowParam, param = { 0, 0, 0, 1} };
+	else
+		return nil;
+	end
+end
+
+function _cast_signal_target_spell()
+    if d.nSpellID[nastSignalTargetSpell] == 0 or d.nSpellChance[nastSignalTargetSpell] == 0 or 
+       d.nTargetSpellSignalType == sigInvalid or d.nTargetSpellSignalRange == 0 then
+        return nil;
+    else
+        return 
+        { batSequencer,
+            { batPickSignal, param = { d.nTargetSpellSignalType, d.nTargetSpellSignalRange } },
+            _cast_template_spell(nastSignalTargetSpell, tarSignalIssuerTarget, d.nGlobalCDTime),
+            { batSetTarget, param = { 0, tarSignalIssuerTarget } },
+        };
+    end
+end
+
+function _cast_signal_issuer_spell()
+    if d.nSpellID[nastSignalIssuerSpell] == 0 or d.nSpellChance[nastSignalIssuerSpell] == 0 or 
+       d.nIssuerSpellSignalType == sigInvalid or d.nIssuerSpellSignalRange == 0 then
+        return nil;
+    else
+        return
+        { batSequencer,
+            { batPickSignal, param = { d.nIssuerSpellSignalType, d.nIssuerSpellSignalRange } },
+            _cast_template_spell(nastSignalIssuerSpell, tarSignalIssuer, d.nGlobalCDTime),
+        };
+    end    
+end
+
+function _cast_corpse_spell()
+    if d.nSpellID[nastCorpseSpell] == 0 or d.nSpellChance[nastCorpseSpell] == 0 then
+        return nil;
+    else
+        return
+        { batSequencer,
+            { batCheckTarget, param = { tarCorpse } },
+            _cast_template_spell(nastCorpseSpell, tarCorpse, d.nGlobalCDTime),
+        };
+    end
+end
+
+function _cast_all_spell()
+    if d.nSpellID[nastNormalSpell4]      == 0 and d.nSpellChance[nastNormalSpell4]      == 0 and
+       d.nSpellID[nastNormalSpell3]      == 0 and d.nSpellChance[nastNormalSpell3]      == 0 and
+       d.nSpellID[nastSignalTargetSpell] == 0 and d.nSpellChance[nastSignalTargetSpell] == 0 and
+       d.nSpellID[nastSignalIssuerSpell] == 0 and d.nSpellChance[nastSignalIssuerSpell] == 0 and
+       d.nSpellID[nastCorpseSpell]       == 0 and d.nSpellChance[nastCorpseSpell]       == 0 and
+       d.nSpellID[nastHelpFriendSpell2]  == 0 and d.nSpellChance[nastHelpFriendSpell2]  == 0 and
+       d.nSpellID[nastHelpFriendSpell1]  == 0 and d.nSpellChance[nastHelpFriendSpell1]  == 0 and
+       d.nSpellID[nastNormalSpell2]      == 0 and d.nSpellChance[nastNormalSpell2]      == 0 and
+       d.nSpellID[nastNormalSpell1]      == 0 and d.nSpellChance[nastNormalSpell1]      == 0 then
+        return nil;
+    else
+        return
+        { batSequencer,
+           { batCheckCanCastSpell },
+           _scan_nearby(),
+           { batSelector,
+               _cast_template_spell(nastNormalSpell4, tarAITarget, d.nGlobalCDTime),
+               _cast_template_spell(nastNormalSpell3, tarAITarget, d.nGlobalCDTime),
+               _cast_signal_target_spell(),
+               _cast_signal_issuer_spell(),
+               _cast_corpse_spell(),
+               _cast_template_spell(nastHelpFriendSpell2, tarNearestFriend, d.nGlobalCDTime),
+               _cast_template_spell(nastHelpFriendSpell1, tarNearestFriend, d.nGlobalCDTime),
+               _cast_template_spell(nastNormalSpell2, tarAITarget, d.nGlobalCDTime),
+               _cast_template_spell(nastNormalSpell1, tarAITarget, d.nGlobalCDTime),
+           },
+        };
+    end
+end
+
+function _add_init_aura()
+    local result = 
+    { batParallel,
+        __add_aura(d.nInitAuraID[0], tarSelf),
+        __add_aura(d.nInitAuraID[1], tarSelf),
+        __add_aura(d.nInitAuraID[2], tarSelf),
+    };
+    
+    return result;
+end
+
+function _set_home()
+    if d.bPatrol or d.bFollow then
+        return { batSetHome };
+    else
+        return nil;
+    end
+end
+
+function _detect_enemy()
+    local scan_table = { batSelector };
+
+    if d.nScanEnemyRange > 0 then
+        table.insert(scan_table, 
+            { batSequencer,
+                { batScanEnemy, param = { d.nScanEnemyRange } },
+                { batAddTargetThreat, param = { 50 } },
+            }
+        );
+    end
+    
+    if d.nScanFriendRange > 0 then
+        table.insert(scan_table, 
+            { batSequencer,
+				{ batCheckCDTimer, param = { COOLDOWN_AI, nastThreatSingalTimer } },
+				{ batSetCDTimer, param = { COOLDOWN_AI, nastThreatSingalTimer, 1000 } },
+                { batPickSignal, param = { sigSpreadHate, d.nScanFriendRange } },
+                { batAddThreatListFromSignal, param = { 50 } },
+            }
+        );
+    end
+
+    result = 
+    { batSequencer,
+        { batParallel,
+            scan_table,
+        },
+        { batSequencer,
+			{ batCheckInCombat },
+			{ batParallel,
+                { batGetTargetFromThreatList, param = { d.nChaseRange } },
+                _cast_template_spell(nastEnterFightSpell, tarAITarget, 0),
+                __set_cd_timer(COOLDOWN_AI, nastNormalSpell2, d.nSpellCDTime[nastNormalSpell2]),
+                __set_cd_timer(COOLDOWN_AI, nastNormalSpell3, d.nSpellCDTime[nastNormalSpell3]),
+                __set_cd_timer(COOLDOWN_AI, nastNormalSpell4, d.nSpellCDTime[nastNormalSpell4]),
+                __set_cd_timer(COOLDOWN_AI, nastChaseSpell, d.nSpellCDTime[nastChaseSpell]),
+	            __set_cd_timer(COOLDOWN_AI, nastChanceTargetTimer, d.nChangeTargetCDTime),
+                _set_home(),
+                { batEnterFight },
+                'on_enter_fight',
+            },
+        },
+    }; 
+
+    return result;    
+end
+
+function _patrol()
+    if d.bPatrol == false or d.nWalkSpeed == 0 then
+        return nil;
+    else
+        return { batPatrol };
+    end
+end
+
+function _follow()
+    if d.bFollow == false or d.nWalkSpeed == 0 then
+        return nil;
+    else
+        return { batFollow };
+    end
+end
+
+function _scan_nearby()
+    if d.nSpellID[nastHelpFriendSpell1] == 0 and d.nSpellChance[nastHelpFriendSpell1] == 0 and
+       d.nSpellID[nastHelpFriendSpell2] == 0 and d.nSpellChance[nastHelpFriendSpell2] == 0 and
+       d.nSpellID[nastCorpseSpell] == 0 and d.nSpellChance[nastCorpseSpell] == 0 then
+        return nil;
+    else
+        return __scan_nearby();
+    end
+end
+
+---------------------- tree function --------------------------
+
+function _init_tree()
+    local result =
+    { batParallel,
+        'on_init',
+        _set_scan_param(),
+		_set_follow_param(),
+        __cast_init_spell(d.nSpellID[nastInitSpell1], d.nSpellChance[nastInitSpell1]),
+        __cast_init_spell(d.nSpellID[nastInitSpell2], d.nSpellChance[nastInitSpell2]),
+        __cast_init_spell(d.nSpellID[nastInitSpell3], d.nSpellChance[nastInitSpell3]),
+        _add_init_aura(),
+        __set_cd_timer(COOLDOWN_AI, nastLiveTimer, d.nLiveTime),
+    };
+    
+    return result;
+end
+
+function _idle_tree()
+    local result = 
+    { batSelector,
+        __check_live_timer(d.nLiveTime, d.bDisappearOnTimeout),
+        _detect_enemy(),
+        __cast_spell(d.nSpellID[nastIdleSpell], tarSelf, d.nSpellChance[nastIdleSpell], d.nSpellCDTime[nastIdleSpell], d.nGlobalCDTime),
+        'on_wander',
+        _patrol(),
+        _follow(),
+        __wander(d.nWanderRange, d.nWanderInterval, d.nWalkSpeed * 1000 / GAME_FPS),
+    };
+    
+    return result;
+end
+
+function _fight_tree()
+    local result = 
+    { batParallel,
+        __issue_threat_signal(d.nSpreadThreatCount),
+		{ batSelector,
+			__change_target(d.nChangeTargetChance, d.nChangeTargetCDTime, d.nChaseRange, d.nChangeTargetDelayTime),
+			__get_valid_target(d.nChaseRange),
+		},
+        { batSelector,
+            __check_live_timer(d.nLiveTime, d.bDisappearOnTimeout),
+            __flee(d.nFleeHpPercent, d.nFleeChance, 20000, d.nFleeDuration, d.nRunSpeed * 1000 / GAME_FPS),
+            'on_fight_move',
+            __fight_move(d.nPreferDistance, d.nWithdrawThreshold, d.nChaseThreshold, d.nRunSpeed * 1000 / GAME_FPS, d.nStepAroundChance, d.nStepAroundCDTime),
+            'on_cast_spell',
+            _cast_all_spell(),
+            __chase(d.nRunSpeed * 1000 / GAME_FPS, d.nPreferDistance, d.nChaseThreshold, d.nChaseDelayTime),
+        },
+    };
+    
+    return result;
+end
+
+function _die_tree()
+    if d.nSpellID[nastDeadSpell] == 0 or d.nSpellChance[nastDeadSpell] == 0  then
+		return
+        { batParallel,
+			'on_die',
+        };
+    else
+        return 
+        { batParallel,
+            { batInvincible, param = { true } },    
+            { batSyncBreakCast, param = { true } },
+            _cast_template_spell(nastDeadSpell, tarAITarget, 0),
+			'on_die',
+            { batInvincible, param = { false } },
+        };
+    end
+end
+
+evtAIInit = _init_tree();
+evtAIIdle = _idle_tree();
+evtAIFight = _fight_tree();
+evtAIDie = _die_tree();

@@ -1,0 +1,9 @@
+
+
+evtAIInit = 
+{ batSequencer, 
+		{ batSequencer,
+		    { batSuicide, param = { true } },
+	    },	
+};
+		

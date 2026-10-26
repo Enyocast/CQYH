@@ -1,0 +1,11 @@
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleCheckHasQuest , param = { 2090 } },
+	{ batCheckCDTimer, param = { COOLDOWN_AI, 0 } },
+	{ batCheckAura, param = { tarRole, 35050 } },
+	{ batSetCDTimer, param = { COOLDOWN_AI, 0, 5000 } },
+    { batPlayAction, param = { 1 } },
+    { batRoleSetQuestVariable, param = { 2090, 1, 0, 1 } },
+    --{ batWait, param = { 4000 } },
+	{ batSuicide },
+};

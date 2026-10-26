@@ -1,0 +1,11 @@
+CREATE TABLE `logdata_scene` (
+  `LogTime` datetime NOT NULL,
+  `AreaID` tinyint(1) NOT NULL,
+  `GroupID` tinyint(1) NOT NULL,
+  `SceneID` int(4) NOT NULL,
+  `TemplateID` int(4) NOT NULL,
+  `SceneLevel` tinyint(1) NOT NULL,
+  `SceneDifficulty` tinyint(1) NOT NULL,
+  `RoleID` int(4) NOT NULL,
+  `ActionType` varchar(20) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

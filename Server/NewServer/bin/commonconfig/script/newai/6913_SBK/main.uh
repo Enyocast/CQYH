@@ -1,0 +1,10 @@
+
+evtAIIdle  = 
+{ batSequencer,
+	{ batCheckSceneVariable , param={ boEQ, 5, 1 },
+	}, 
+	{ batPrint , param={ 444444 },
+    },
+	{ batSuicide },
+};
+

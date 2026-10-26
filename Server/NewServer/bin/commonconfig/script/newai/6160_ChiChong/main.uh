@@ -1,0 +1,35 @@
+evtAIInteract = 
+{ batSequencer,
+--[[	{ batSelector,
+
+		{ batSequencer,
+			{ batRoleCheckLevel , param = { boLT, 20 } },
+			{ batRoleOpenDialog, param = { 50142, 50000, 20, 0 } },	
+		 },
+
+		--检查次序
+		{ batSequencer, 
+			{ batRoleCheckDailyVariable, param = { 206 } },
+			{ batRoleOpenDialog, param = { 50131, 50000, 'get_reward_count(o)', 0 } },	
+			{ batRoleCheckInteractOption, param = { 1 } },
+
+			{ batSelector,
+				{ batSequencer, 
+					{ batCheckServerVariable, param = { boLT, esvtDefault, svtServerStartIndex, MAX_REWARD_COUNT } },
+					{ batRoleCheckDailyVariable, param = { 206 } },
+					{ batRoleUpdateDailyVariable, param = { 206, 0 } },
+					{ batSetServerVariable, param = { svtServerStartIndex, 0, 1 } },
+					{ add_exp },
+				 },
+				{ batSequencer, 
+					{ batCheckServerVariable, param = { boGTE, esvtDefault, svtServerStartIndex, MAX_REWARD_COUNT } },
+					{ batRoleOpenDialog, param = { 50133, 50000, 0, 0 } },	
+				},
+			},
+		},
+		--领取次数耗尽
+		{ batSequencer, 
+			{ batRoleOpenDialog, param = { 50152, 50000, 0, 0 } },	
+		},
+	},]]--
+}; 

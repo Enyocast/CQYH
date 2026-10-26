@@ -1,0 +1,136 @@
+evtAIInteract = 
+{ batSequencer,
+	{ batRoleOpenDialog, param = { strAI6148_1, 30000 } },
+	{ batSelector,	
+		{ batSequencer, 
+			{ batRoleCheckInteractOption, param = { 1 } },
+
+			{ batRoleOpenDialog, param = { strAI6148_2, 30000 } },
+
+			{ batRoleCheckInteractOption, param = { 1 } },
+
+			{ batSelector,
+				{ batSequencer,
+					{ batRoleCheckItemCount, param = { boLT,94001, 1 } },
+
+					{ batRoleOpenDialog, param = { strAI6148_3, 30000 } },
+				},
+
+				{ batSequencer,
+					{ batRoleCheckItemCount, param = { boGTE,94001, 1 } },
+
+					{ batRoleDelItem, param = { 94001, 1 } },
+
+					{ batRandom, param = {2500, 2500, 2500, 2500 },
+						{ batRandom, param = {2500, 2500, 2500, 2500 },
+							{ batRoleTeleport, param={ 19000,38800,28500, 156 },},
+
+							{ batRoleTeleport, param={ 19000,39400,28500, 156 },},
+
+							{ batRoleTeleport, param={ 18500,38800,28500, 156 },},
+
+							{ batRoleTeleport, param={ 18400,39100,28500, 156 },},
+						},
+						{ batRandom, param = {2500, 2500, 2500, 2500 },
+							{ batRoleTeleport, param={ 18200,37800,28500, 156 },},
+
+							{ batRoleTeleport, param={ 18300,36700,28500, 156 },},
+
+							{ batRoleTeleport, param={ 17700,36500,28500, 156 },},
+
+							{ batRoleTeleport, param={ 17500,36800,28500, 156 },},
+						},
+						{ batRandom, param = {2500, 2500, 2500, 2500 },
+							{ batRoleTeleport, param={ 17500,35600,28500, 156 },},
+
+							{ batRoleTeleport, param={ 16900,36200,28500, 156 },},
+
+							{ batRoleTeleport, param={ 16700,37000,28500, 156 },},
+
+							{ batRoleTeleport, param={ 16000,36300,28500, 156 },},
+						},
+						{ batRandom, param = {2500, 2500, 2500, 2500 },
+							{ batRoleTeleport, param={ 15700,36400,28500, 156 },},
+
+							{ batRoleTeleport, param={ 15900,35500,28500, 156 },},
+
+							{ batRoleTeleport, param={ 15200,36300,28500, 156 },},
+
+							{ batRoleTeleport, param={ 15300,37200,28500, 156 },},
+						},
+					},
+				},
+			},
+	    },
+		{ batSequencer,
+			{ batRoleCheckInteractOption, param = { 2 } },
+
+			{ batSelector,
+				{ batSequencer,
+					{ batRoleIsTeamLeader },
+
+					{ batRoleOpenDialog, param = { strAI6148_4, 30000 } },
+
+					{ batRoleCheckInteractOption, param = { 1 } },
+
+					{ batSelector,
+						{ batSequencer,
+							{ batRoleCheckItemCount, param = { boLT,94002, 1 } },
+
+							{ batRoleOpenDialog, param = { strAI6148_6, 30000 } },
+						},
+
+						{ batSequencer,
+							{ batRoleCheckItemCount, param = { boGTE,94002, 1 } },
+
+							{ batRoleDelItem, param = { 94002, 1 } },
+
+							{ batRandom, param = {2500, 2500, 2500, 2500 },
+								{ batRandom, param = {2500, 2500, 2500, 2500 },
+									{ batRoleTeamTeleport, param={ 19000,38800,28500, 156 },},
+
+									{ batRoleTeamTeleport, param={ 19000,39400,28500, 156 },},
+
+									{ batRoleTeamTeleport, param={ 18500,38800,28500, 156 },},
+
+									{ batRoleTeamTeleport, param={ 18400,39100,28500, 156 },},
+								},
+								{ batRandom, param = {2500, 2500, 2500, 2500 },
+									{ batRoleTeamTeleport, param={ 18200,37800,28500, 156 },},
+
+									{ batRoleTeamTeleport, param={ 18300,36700,28500, 156 },},
+
+									{ batRoleTeamTeleport, param={ 17700,36500,28500, 156 },},
+
+									{ batRoleTeamTeleport, param={ 17500,36800,28500, 156 },},
+								},
+								{ batRandom, param = {2500, 2500, 2500, 2500 },
+									{ batRoleTeamTeleport, param={ 17500,35600,28500, 156 },},
+
+									{ batRoleTeamTeleport, param={ 16900,36200,28500, 156 },},
+
+									{ batRoleTeamTeleport, param={ 16700,37000,28500, 156 },},
+
+									{ batRoleTeamTeleport, param={ 16000,36300,28500, 156 },},
+								},
+								{ batRandom, param = {2500, 2500, 2500, 2500 },
+									{ batRoleTeamTeleport, param={ 15700,36400,28500, 156 },},
+
+									{ batRoleTeamTeleport, param={ 15900,35500,28500, 156 },},
+
+									{ batRoleTeamTeleport, param={ 15200,36300,28500, 156 },},
+
+									{ batRoleTeamTeleport, param={ 15300,37200,28500, 156 },},
+								},
+							},
+						},
+					},
+				},
+				{ batSequencer,
+					{ batRoleOpenDialog, param = { strAI6148_5, 30000 } },
+				},
+			},
+	    },
+
+	},
+};

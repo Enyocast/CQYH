@@ -1,0 +1,24 @@
+
+// 1 - role.h
+1, 增加 字段
+2, 增加 函数
+
+// 2 - role.cpp
+1, CRole::CRole() 构造函数里, 写初始化字段, 必须写
+2, BOOL CRole::Init(UINT32 dwObjID, UINT32 dwSessionID) 初始化函数里, 写初始化字段, 必须写
+
+// 3 - role_db_def_v_3.h
+新增加的字段 写在哪个结构体里, 一般写在 ROLE_DB_MISC_DATA, 新增加的字段 按照字节计算, 并减小 INT32	nReserved[505]; 的数值
+
+// 4 - load_role_v_3.cpp
+函数 BOOL CRole::_LoadMisc_v_3(const char* pcData, UINT32 dwSize) 
+在这个函数里, 对新增加的字段赋值, 用于加载
+
+// 5 - save_role.cpp
+函数 BOOL CRole::_SaveMisc(char* pData, UINT32& rdwSize)
+在这个函数里, 对新增加的字段赋值, 用于保存
+
+
+
+
+

@@ -1,0 +1,14 @@
+[AutoUpdate]
+Version = 0.9.1.320
+DownURL = http://igwpre.autopatch.sdo.com/igwpre/AutoUpdate/AutoUpdate.0.9.1.320.zip
+Size    = 261434
+MD5     = fdcd6d2c2b5e9cbeac98ece5bc44ebce
+GUID    = {F9E17475-8B7B-4B0F-A48F-49AA63A5AF47}
+
+[FileList]
+AutoUpdate.dll = 406888,1013936836,03e54af47fedaff9cc9b3098828eee31
+Logo.bmp       = 58854,1000123372,5f68582ef698347b193ff928401d3cdc
+AutoUpdate.dat = 83,1014124373,b176802ed087c282189ac678de0a2448
+
+[Data]
+Signature = BhBGng4dq4gV7o1rUYnpopQ+X5OH+ipSQS35+9YJrOpqU85p/bjIY5DUsx3BgVs/kMMG9Fh1iVjh+k/VN9e4pg==

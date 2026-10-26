@@ -1,0 +1,16 @@
+evtAIInteract = 
+{ batSelector,
+	{batSequencer,	 
+		{ batRoleTeleport, param = { 25400, 23100, 4400,245} },
+	},
+
+};
+evtAIInit =
+{ batSequencer, 
+	{ batSetCDTimer , param = { COOLDOWN_AI , 1,300000 },},
+}
+evtAIIdle =
+{ batSequencer, 
+	{ batCheckCDTimer , param = { COOLDOWN_AI , 1 },},
+	{ batSuicide, param = { 1, false } },
+}

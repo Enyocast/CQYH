@@ -1,0 +1,165 @@
+$pfile "script/common.pkg"
+$pfile "script/scene_object.pkg"
+$#include "character.h"
+$#include "aura_instance.h"
+$#include "spell_instance.h"
+
+class CAuraInstance : public CAura
+{
+public:
+	inline UINT32 GetInstanceID(void);
+};
+
+class CCoolDown
+{
+	BOOL Add(INT32 nKey, INT32 nInterval);
+    void Reset(INT32 nKey);
+	BOOL CheckReady(INT32 nKey);
+    INT32 GetRemainFrm(INT32 nKey);
+    void Enable(BOOL bEnabled);
+};
+
+class CTargetScanner
+{
+public:
+	CTargetScanner(void);
+	~CTargetScanner(void);
+
+	inline INT64 GetTargetX(void);
+	inline INT64 GetTargetY(void);
+	inline INT64 GetTargetZ(void);
+};
+
+class CSpellInstance
+{
+public:
+	CSpellInstance(void);
+	virtual ~CSpellInstance(void);
+
+	inline CTargetScanner& GetScanner(void);
+};
+
+class CCharacter : public CSceneObject
+{
+public:
+
+	virtual BOOL JumpTo(INT64 llX, INT64 llY, INT64 llZ, INT32 nFaceDirection);
+	inline INT32 GetClass(void);
+	inline INT32 GetSex(void);
+	inline INT32 GetLevel(void);
+
+	virtual const TCHAR* GetName(void) = 0;
+	inline void SetClass(INT32 nClass);
+	inline void SetSex(INT32 nSex);
+	BOOL SetLevel(INT32 nLevel);
+	
+	inline INT32 GetAttr(INT32 eAttrType);
+    inline CAttrList& GetAttrList(void);
+    
+	void SetInCutScene(BOOL bInCutScene, INT32 nDurationFrm);
+
+	BOOL MoveTo(INT32 nDestX, INT32 nDestY);
+    virtual BOOL Die(INT32 nParam);
+	BOOL Revive(INT32 nParam, INT32 nHpPercent);
+    void RotateTo(INT32 nFaceDirection, INT32 nDurationFrm);
+	inline void SetCanRun(BOOL bCanRun);
+
+    inline INT32 GetMoveState(void);
+    inline void SetHome(INT32 nSceneID, INT32 nHomeX, INT32 nHomeY, INT32 nHomeZ);
+    
+    INT32 GetHomeX();
+    INT32 GetHomeY();
+    INT32 GetHomeZ();
+       
+	void CancelCast(void);
+    BOOL IsCasting(void);
+
+	virtual INT32 EquipRune(const RUNE_DATA* pRuneData, Item* poItem);
+	virtual BOOL UnEquipRune(const RUNE_DATA* pRuneData, Item* poItem);
+
+	CSpellSlot* GetSpellSlot(INT32 nIndex);
+    INT32 CastSpell(INT32 nSpellID, CCharacter* poTarget, INT64 nTargetX, INT64 nTargetY, INT64 nTargetZ);
+    BOOL PlayAction(UINT32 dwActionID);
+	inline CSpellInstance* GetCastingSpell(void);
+
+	INT32 GetHp(void);
+	void SetHp(INT32 nHp);
+	void ChangeHp(INT32 nValue, INT32 nReason);
+    
+	INT32 GetMp(void);
+	void ChangeMp(INT32 nValue);
+	
+    BOOL CanAttack(CCharacter* poChar);
+	ISpellBook& GetSpellBook(void);
+    
+	CAuraInstance* AppendAura(CAura* pAuraInfo, CCharacter* poCaster, UINT32 dwFromObjID, ExtraParam* pExParam, INT32 nNewDurationFrm, INT32 nNewStackCount, INT32 nSpellID, INT32 nSpellLevel);
+	
+    CAuraInstance* GetFirstAura(INT32 nAuraID);
+	void RemoveAura(CAuraInstance* pAura, BOOL bTrigOnRemove);
+	BOOL RemoveAuraByType(INT32 nType);
+	BOOL RemoveAuraBySubType(INT32 nSubType);
+    
+    BOOL IsDead(void);
+
+//    inline BOOL CheckFlag(UINT32 eBit);
+//    inline void SetFlag(UINT32 eBit);
+//    inline void ClearFlag(UINT32 eBit);
+//    inline void ResetFlag(void);
+
+	inline CFlagBits& GetFlag(void);
+	inline CFlagBits& GetExFlag(void);
+	inline CFlagBits& GetCCFlag(void);
+	
+	inline BOOL IncControlCount(INT32 nControlType);
+	inline BOOL DecControlCount(INT32 nControlType);
+	inline INT32 GetControlCount(INT32 nControlType);
+    
+    inline void SetLastCasterID(UINT32 dwID);
+	inline UINT32 GetLastCasterID();
+	inline UINT32 GetLastCasterTimer();
+
+    void SetLastTargetID(UINT32 dwObjID);
+    inline UINT32 GetLastTargetID(void);
+    inline UINT32 GetLastTargetTimer(void);
+
+	inline void SetDropOwnerID(UINT32 dwID);
+	inline UINT32 GetDropOwnerID(void);
+
+    virtual void SelectFocus(UINT32 dwTargetID);
+	inline UINT32 GetFocusID(void);
+	INT32 Say(UINT32 dwTargetID, UINT32 dwLocation, const char* pcszMessage);
+	BOOL SendMail(UINT32 dwRoleID, INT32 nMailTemplateID);
+	BOOL SendMail(UINT32 dwRoleID, INT32 nMailTemplateID, INT32 nItemID, INT32 nItemCount);
+	BOOL SetAIProcessor(UINT32 nAIID);
+	CAIProcessor* GetAIProcessor(void);
+
+	inline INT32 GetOriginalAiID(void);
+	inline void SetGlobalCDDelayFrame(INT32 nFrame);
+	inline INT32 GetGlobalCDDelayFrame(void);
+	
+    CCoolDown& GetCoolDown(void);
+
+	inline UINT32 GetHostID(void);
+
+	BOOL Mine(INT64 llDestX, INT64 llDestY);
+
+};
+
+
+class CFlagBits
+{
+public:
+	CFlagBits(void)
+	{
+		m_dwFlag = 0;
+	}
+
+	BOOL CheckFlag(UINT32 eBit);
+	void SetFlag(UINT32 eBit);
+	void ClearFlag(UINT32 eBit);
+	void ResetFlag(void);
+	BOOL FlagIncludeBits(UINT32 dwMask);
+	BOOL FlagNotIncludeBits(UINT32 dwMask);
+	UINT32 GetFlag(void);
+
+};

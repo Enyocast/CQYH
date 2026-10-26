@@ -1,0 +1,12 @@
+evtAIIdle =
+{ batSequencer,
+	{ batCheckSceneVariable , param={ boEQ, 1, 1 } },
+};
+evtAIDie =
+	{ batSequencer,
+        { batSequencer,
+        	{ batPlayAction, param= { 1 } },
+        	{ batSetSceneVariable, param= { 3 , 1 } },
+			{ batSpawnSingleNpc , param= { 6 } },
+		},
+	};

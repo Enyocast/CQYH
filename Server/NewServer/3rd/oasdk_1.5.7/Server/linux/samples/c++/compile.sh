@@ -1,0 +1,1 @@
+ g++ oasample.cpp -o ./mytest -L. -l libSDOA4Server.so -lpthread

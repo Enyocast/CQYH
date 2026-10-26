@@ -1,0 +1,32 @@
+on_init = 
+	{ batSequencer,
+	  { batSetAlwaysRun , param = { true } },
+	  { batSetCDTimer, param = { COOLDOWN_AI, 10, d.nParam[0], d.nParam[1] } },   --index 10 为召唤的用index, param 0  为最小时间   param 1 为最大时间 不可超过半小时 live的最长时间为半小时
+	};
+
+
+on_wander = 
+	{ batSequencer, 
+	  { batCheckCDTimer, param = { COOLDOWN_AI, 10 } },
+			{ batRandom, param = { 3000 , 3000 , 3000 }, 
+				{ batSequencer,
+						{ batSpawnNpc  , param = { 5301, 3181, 3105, 7000 } },
+						{ batSpawnNpc  , param = { 5302, 3181, 17768, 7000 } },
+						{ batSpawnNpc  , param = { 5302, 3181, 31525, 7000 } },
+						{ batSuicide, param = { false, false } },
+				},	
+				{ batSequencer,
+						{ batSpawnNpc  , param = { 5302, 3181, 3105, 7000 } },
+						{ batSpawnNpc  , param = { 5301, 3181, 17768, 7000 } },
+						{ batSpawnNpc  , param = { 5302, 3181, 31525, 7000 } },
+						{ batSuicide, param = { false, false } },
+				},	
+				{ batSequencer,
+						{ batSpawnNpc  , param = { 5302, 3181, 3105, 7000 } },
+						{ batSpawnNpc  , param = { 5302, 3181, 17768, 7000 } },
+						{ batSpawnNpc  , param = { 5301, 3181, 31525, 7000 } },
+						{ batSuicide, param = { false, false } },
+				},			
+			},	
+		
+	};

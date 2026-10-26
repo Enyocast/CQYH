@@ -1,0 +1,16 @@
+evtAIInteract = 
+{ batSequencer,
+    { batCheckSceneVariable, param = { boEQ, 3, 0 },},
+    { batRoleCheckQuestVariable , param={ boEQ, 2115, 1, 0},},
+    { batRoleOpenDialog, param = { 50312, 30000 },},
+    { batSelector,
+		{ batSequencer,
+    		{ batRoleCheckInteractOption, param = { 1 } },
+    		{ batSetSceneVariable, param = { 3, 1 },},
+    	},
+    	{ batSequencer, 
+			{ batRoleCheckInteractOption, param = { 2 } },
+			{ batReturnFail },
+    	},
+    },
+};

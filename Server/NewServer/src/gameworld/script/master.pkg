@@ -1,0 +1,25 @@
+$pfile "script/common.pkg"
+$hfile "../../../Common/define/master_def.h"
+$#include "master.h"
+
+class CMaster
+{
+	BOOL		IsTeacher();
+	BOOL		IsStudent();
+	
+	UINT8		GetStudentCount();
+	BOOL		IsStudentFull();
+
+	INT32   GetState() ;
+	UINT32  GetCD();
+
+	UINT32  GetStudentByIndex(INT32 nIndex);
+	inline UINT32 GetTeacherID();
+
+
+
+	BOOL    LuaSyncMasterExpToMS(CRole *poRole);
+	
+	
+
+};

@@ -1,0 +1,84 @@
+on_init = 
+	{ batSequencer, 
+	  { batSetCDTimer, param = { COOLDOWN_AI, 20, d.nParam[0] } },  --cd index 20为boss idle自杀配置用index param0   战斗中自杀用livetime
+	  { batSetAlwaysRun , param = { true } },
+	};
+
+on_wander = 
+	{ batSequencer, 
+		{ batCheckCDTimer, param = { COOLDOWN_AI, 20 } },
+		--{ batSay, param = { cctScreen, 50568, cltNormal } },
+		{ batSuicide, param = { false, false } },
+	};
+
+on_enter_fight = 
+{ batSequencer, 
+ { batSetCDTimer, param = { COOLDOWN_AI, 11, 1000 } },
+};
+
+evtAIFight =
+{ batParallel,
+	__issue_threat_signal(d.nSpreadThreatCount),
+	{ batRotateTo, param = { tarAITarget, 0, 0, d.nRotateSpeed } },
+	{ batSelector,
+		__change_target(d.nChangeTargetChance, d.nChangeTargetCDTime, d.nChaseRange, d.nChangeTargetDelayTime),
+		__get_valid_target(d.nChaseRange),
+	},
+	{ batSelector,
+		__check_live_timer(d.nLiveTime),
+		{ batSequencer,
+            -- { batCheckCharOutOfHomeRange, param = { tarAITarget, 768 } },
+            { batCheckDistance, param = { tarAITarget, boGT, 768 } },  
+            { batSelector,
+                { batGetTargetFromThreatList, param = { 768 } },
+				{ batSequencer,
+					{ batSyncCastSpellToTarget, param = { 5865, tarSelf } },
+					{ batGoHome },
+                },					
+            },
+        }; 
+        { batSequencer,
+            { batCheckCharHp, param = { tarAITarget, boLTE, 0 } },
+            { batSelector,
+                { batGetTargetFromThreatList, param = { 768 } },
+				{ batSequencer,
+					{ batSyncCastSpellToTarget, param = { 5865, tarSelf } },
+					{ batGoHome },
+               },	
+            },
+        };
+		__flee(d.nFleeHpPercent, d.nFleeChance, 20000, d.nFleeDuration, d.nRunSpeed * 1000 / GAME_FPS),
+		--'on_fight_move',
+		__fight_move(d.nPreferDistance, d.nWithdrawThreshold, d.nChaseThreshold, d.nRunSpeed * 1000 / GAME_FPS, d.nStepAroundChance, d.nStepAroundCDTime),
+		{ batSequencer,
+			{ batCheckCharHp , param = { tarSelf, boLTE, 5000 } },	
+		    { batCheckCDTimer, param = { COOLDOWN_AI, 11 } },
+			{ batSyncCastSpellToTarget, param = { 5915, tarSelf } },		
+			{ batSetCDTimer, param = { COOLDOWN_AI, 11, 900000 } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime } },
+	    },	
+		--'on_cast_spell',
+		_cast_all_spell(),
+		__chase(d.nRunSpeed * 1000 / GAME_FPS, d.nPreferDistance, d.nChaseThreshold, d.nChaseDelayTime),
+	},
+};
+--[[on_cast_spell = 
+{ batSequencer,
+	{ batCheckCanCastSpell },
+	__check_cd_timer(COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime),
+	{ batSelector, 
+		{ batSequencer,	
+		    { batCheckCDTimer, param = { COOLDOWN_AI, 10 } },
+			{ batSyncCastSpellToTarget, param = { 5913, tarSelf  } },		
+			{ batSetCDTimer, param = { COOLDOWN_AI, 10, 45000 } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime } },
+	    },	
+		{ batSequencer,
+		    { batCheckCDTimer, param = { COOLDOWN_AI, 11 } },
+			{ batSyncCastSpellToTarget, param = { 5914, tarSelf  } },		
+			{ batSetCDTimer, param = { COOLDOWN_AI, 11, 60000 } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime } },
+	    },	
+    },
+};]]--
+		

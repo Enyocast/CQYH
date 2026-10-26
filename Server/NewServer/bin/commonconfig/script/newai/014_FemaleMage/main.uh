@@ -1,0 +1,31 @@
+scan_dog_cd = 1000;
+
+fight_sub = 
+{ btSequencer,
+	{ btParallel,
+		_cast_template_spell(nastNormalSpell3, tarNearestEnemy);
+		_cast_template_spell(nastNormalSpell2, tarNearestEnemy);
+		_cast_template_spell(nastNormalSpell1, tarNearestEnemy);
+	},
+	{ btSequencer,
+		--__scan_friend(dog_distance, dog_id, scan_dog_cd);
+		__scan_friend(1500, 632, 1000);
+		__check_target(tarNearestFriend);
+		__cast_spell(5398, tarNearestFriend , 10000, scan_dog_cd);
+	},
+};
+
+evtAIFight = 
+{ batParallel,
+	__issue_threat_signal(d.nSpreadThreatCount),
+	__change_target(d.nChangeTargetChance, d.nChangeTargetCDTime, d.nChaseRange, d.nChangeTargetDelayTime),
+	{ batSelector,
+		__check_live_timer(d.nLiveTime),
+		__check_out_of_range(d.nChaseRange),    
+		__check_target_die(d.nChaseRange),
+		__flee(d.nFleeHpPercent, d.nFleeChance, 20000, d.nFleeDuration, d.nRunSpeed * 1000 / GAME_FPS),
+		__fight_move(d.nPreferDistance, d.nWithdrawThreshold, d.nChaseThreshold, d.nRunSpeed * 1000 / GAME_FPS, d.nStepAroundChance, d.nStepAroundCDTime),
+		fight_sub,
+		__chase(d.nRunSpeed * 1000 / GAME_FPS, d.nPreferDistance, d.nChaseThreshold, d.nChaseDelayTime),
+	},
+};

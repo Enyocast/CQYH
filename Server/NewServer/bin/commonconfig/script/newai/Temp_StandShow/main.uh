@@ -1,0 +1,62 @@
+function _random_action()
+    local action_table = {};
+    local count = 0;
+    if d.nParam[1] ~= 0 or d.nParam[4] ~= 0 then
+        count = count + 1;
+        table.insert(action_table,
+            { batParallel,
+                { batSay, param = { cctScreen, d.nParam[1], cltNormal } },
+                { batPlayAction, param = { d.nParam[4] } },
+            }
+        );
+    end
+    if d.nParam[2] ~= 0 or d.nParam[5] ~= 0 then
+        count = count + 1;
+        table.insert(action_table,
+            { batParallel,
+                { batSay, param = { cctScreen, d.nParam[2], cltNormal } },
+                { batPlayAction, param = { d.nParam[5] } },
+            }
+        );
+    end
+    if d.nParam[3] ~= 0 or d.nParam[6] ~= 0 then
+        count = count + 1;
+        table.insert(action_table,
+            { batParallel,
+                { batSay, param = { cctScreen, d.nParam[3], cltNormal } },
+                { batPlayAction, param = { d.nParam[6] } },
+            }
+        );
+    end
+
+    if count == 1 then
+        return action_table;
+    elseif count == 2 then
+        return 
+        { batRandom, param = { 1, 1 }, 
+            unpack(action_table)
+        };
+    elseif count == 3 then
+        return 
+        { batRandom, param = { 1, 1, 1 }, 
+            unpack(action_table)
+        };
+    else
+        return nil;
+    end
+end
+on_init =
+{ batSequencer,
+   { batSetCDTimer , param={ COOLDOWN_AI ,SAY_TEXT_CD_TIMER,d.nParam[0],d.nParam[0]+20000},
+    },
+};
+
+
+on_wander = 
+{ batSequencer,
+    { batCheckCDTimer, param={ COOLDOWN_AI , SAY_TEXT_CD_TIMER},
+    },
+    { batSetCDTimer , param={ COOLDOWN_AI ,SAY_TEXT_CD_TIMER,d.nParam[0],d.nParam[0]+20000},
+    },
+    _random_action(),
+};

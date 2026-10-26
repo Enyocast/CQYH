@@ -1,0 +1,16 @@
+on_init = 
+{ batParallel,
+	{ batSetScanEnemyParam, param = { d.nParam[0] } },
+};
+
+on_wander = 
+{ batSequencer,
+	{ batCheckCDTimer, param = { COOLDOWN_AI, nastCustom } },
+    { batSetCDTimer, param = { COOLDOWN_AI, nastCustom, d.nParam[3] } },
+	{ batScanEnemy },
+	{ batCheckDice, param = { boLT, d.nParam[1] } },
+    { batFlee, param = { d.nParam[2] } },
+    --{ batWait, param = { d.nParam[2] } },
+	{ batSetTarget, param = { 0 } },
+    { batSetCDTimer, param = { COOLDOWN_AI, nastCustom, d.nParam[3] } },
+};

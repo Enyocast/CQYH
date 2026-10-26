@@ -1,0 +1,98 @@
+
+--[[on_init =
+{ batSequencer,
+	__set_cd_timer(OPEN_DOOR_CD_TIMER, 60000), 
+	{ batSummonNpc , param={5270,0,0,90},
+	},
+	--{ batWait, param = { 100 } },
+	--{ batSyncCastSpellToTarget, param = { 6129, tarSelf } },
+};]]--
+
+
+
+on_wander = 
+{ batParallel,
+	{ batSequencer,
+		{ batCheckAura , param = { tarSelf, 59091 } },
+		{ batRemoveAura , param = { tarSelf, 59091 } },	 
+	},	
+};
+
+on_enter_fight =
+{ batSequencer, 
+  { batSetCDTimer, param = { COOLDOWN_AI, 10, 1000 } },
+  { batSetCDTimer, param = { COOLDOWN_AI, 11, 1000 } },
+};
+
+
+on_cast_spell = 
+{ batSequencer,
+	{ batCheckCanCastSpell },
+	__check_cd_timer(COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime),
+	{ batSelector, 
+		{ batSequencer,
+			{ batCheckCharHp , param = { tarSelf, boLTE, 5000 } },	
+		    { batCheckCDTimer, param = { COOLDOWN_AI, 10 } },
+			{ batSyncCastSpellToTarget, param = { 5909, tarSelf } },		
+			{ batSetCDTimer, param = { COOLDOWN_AI, 10, 900000 } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime } },
+	    },	
+    },
+};
+		
+
+-- on_fight_move = 
+-- { batSequencer,
+--     { batCheckAIVariable, param = { boEQ, APPEAR_STATE_AI_VAR_INDEX, 0 } },
+--     { batSetAIVariable, param = { APPEAR_STATE_AI_VAR_INDEX, 1 } },
+--     { batSyncRotateTo, param = { tarAITarget, 0, 125 } },
+--     { batWait, param = { 1000 } },
+--     { batPlayAction, param = { 2 } },
+--     { batWait, param = { 3000 } },
+--     { batRotateTo, param = { tarAITarget, 0, 0 } },
+--     { batSyncCastSpellToTargetPos, param = { 5618, tarAITarget, -90, 300} },
+--     { batSetCDTimer, param = { COOLDOWN_AI, SPELL_2_CD_TIMER, 4000 } },
+--     { batSetCDTimer, param = { COOLDOWN_AI, SPELL_3_CD_TIMER, 8000 } },
+--     { batSetCDTimer, param = { COOLDOWN_AI, SPELL_4_CD_TIMER, 15000 } },
+--     { batSetCDTimer, param = { COOLDOWN_AI, SPELL_5_CD_TIMER, 30000 } },
+-- };
+--[[on_enter_fight =
+{ batSequencer,
+	 __set_cd_timer(COOLDOWN_AI, nastNormalSpell1, d.nSpellCDTime[nastNormalSpell1]),   
+	{ batSetCDTimer, param = { COOLDOWN_AI, 10, 2500 } },
+};
+
+on_cast_spell = 
+{ batSequencer,
+	{ batCheckCanCastSpell },
+	__check_cd_timer(COOLDOWN_AI, nastGlobalCDTimer, d.nGlobalCDTime),
+	{ batSelector, 
+		{ batSequencer,
+			{ batCheckCharHp , param = { tarSelf, boLTE, 5000 } },	
+		    { batCheckCDTimer, param = { COOLDOWN_AI, 10 } },
+			{ batPlayAction , param = { 251 } },	
+			{ batSyncCastSpellToTarget, param = { 5909, tarAITarget } },		
+			{ batSyncCastSpellToTarget, param = { 5900, tarAITarget } },
+			__set_cd_timer(COOLDOWN_AI, nastNormalSpell1, d.nSpellCDTime[nastNormalSpell1]),
+			{ batSetCDTimer, param = { COOLDOWN_AI, SPELL_2_CD_TIMER, 10000, 10000 } },
+			{ batSetCDTimer, param = { COOLDOWN_AI, 10, 3600000 } },
+	    },
+	    { batSequencer,
+            { batCheckCharHp , param = { tarSelf, boLTE, 5000 } },
+		    { batCheckCDTimer, param = { COOLDOWN_AI, SPELL_2_CD_TIMER } },
+		    { batSetCDTimer, param = { COOLDOWN_AI, SPELL_2_CD_TIMER, 40000, 40000 } },
+			{ batPlayAction , param = { 252 } },
+		    { batSyncCastSpellToTarget, param = { 5896, tarSelf } },
+		    { batSetCDTimer, param = { COOLDOWN_AI, GLOBAL_CD_TIMER, 1500 } },
+	    },
+    },
+};]]--
+
+evtAIDie = 
+{ batSequencer,
+    ---{ batPrint , param = { 11111 } },
+	--{ batSummonDoodad , param = { 3491 } }, 
+	---{ batPrint , param = { 22222 } },
+	{ batOpenDoor, param = { 63 } },
+	{ batSetSceneVariable, param = { 14, 0 } },
+};

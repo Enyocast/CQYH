@@ -1,0 +1,11 @@
+$pfile "script/common.pkg"
+$hfile "./role_data.h"
+$#include "role_data_mgr.h"
+
+class CRoleDataMgr
+{
+    static CRoleDataMgr& GetInstance(void);
+
+    MS_ROLE_DATA* FindRole(UINT32 dwRoleID);
+	MS_ROLE_DATA* FindRoleByName(const char* pcszRoleName);
+};

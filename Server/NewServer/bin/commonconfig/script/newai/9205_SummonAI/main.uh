@@ -1,0 +1,16 @@
+evtAIInit =
+{ batParallel,
+	_set_scan_param(),
+	__cast_init_spell(d.nSpellID[nastInitSpell1], d.nSpellChance[nastInitSpell1]),
+	__cast_init_spell(d.nSpellID[nastInitSpell2], d.nSpellChance[nastInitSpell2]),
+	__cast_init_spell(d.nSpellID[nastInitSpell3], d.nSpellChance[nastInitSpell3]),
+	__add_aura(d.nInitAuraID[0], tarHost);
+	__add_aura(d.nInitAuraID[1], tarHost);
+	__add_aura(d.nInitAuraID[2], tarSelf);
+	__set_cd_timer(COOLDOWN_AI, nastLiveTimer, d.nLiveTime),
+};
+
+evtAIDie =
+{ batSelector,
+	{ batAddAura , param = { tarHost, 60281 } },
+};

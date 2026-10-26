@@ -1,0 +1,8 @@
+﻿
+evtAIInteract = 
+{ batParallel ,
+	{ batRoleSetRoleVariable, param = { 225, 0 } },	
+	{ batRoleOpenDialog, param = { 50162, 30000 } },
+	{ batRoleCheckInteractOption, param = { 1 } },	
+	{ batRoleSetRoleVariable, param = { 225, 1 } },				
+};

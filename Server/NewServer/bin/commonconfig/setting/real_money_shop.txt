@@ -1,0 +1,16 @@
+ItemID	ItemCount	Page	Flag	CurrentPrice	OriginalPrice	RenQi	ShowPos	ShowPic	HotIndex
+Both	Server	Server	Server	Server	Server	Server	Client	Client	Client
+421	1	1	1	300	300	1			
+80203	1	1	1	100	100	1			
+80201	1	1	1	100	100	1			
+80202	1	1	1	100	100	1			
+21001	1	1	1	200	200	1			
+21002	1	1	1	200	200	1			
+21003	1	1	1	200	200	1			
+801	1	1	1	300	300	1			
+1800015	1	1	1	300	300	1			
+80207	1	1	1	1000	1000	1			
+2000039	1	1	1	500	50	1			
+2201	1	1	1	50	50	1			
+2000030	1	1	1	50	50	1			
+99920022	1	1	1	100	100	1			
