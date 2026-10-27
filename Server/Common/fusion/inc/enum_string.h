@@ -1,6 +1,8 @@
 #ifndef _ENUM_STRING_H_
 #define _ENUM_STRING_H_
+
 
+#include <string>
 #include "lua_script.h"
 
 

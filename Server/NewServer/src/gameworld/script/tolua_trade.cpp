@@ -1,6 +1,6 @@
 /*
 ** Lua binding: trade
-** Generated automatically by tolua++-1.0.92 on 04/02/25 20:04:31.
+** Generated automatically by tolua++-1.0.92 on (timestamp omitted).
 */
 
 #include "stdafx.h"
@@ -8087,9 +8087,9 @@ static int tolua_trade_CRole_AddGameTimeCard00(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
-/* method: TellGameTimeCard of class  CRole */
-#ifndef TOLUA_DISABLE_tolua_trade_CRole_TellGameTimeCard00
-static int tolua_trade_CRole_TellGameTimeCard00(lua_State* tolua_S)
+/* method: NotifyRole_GameTimeCard of class  CRole */
+#ifndef TOLUA_DISABLE_tolua_trade_CRole_NotifyRole_GameTimeCard00
+static int tolua_trade_CRole_NotifyRole_GameTimeCard00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
  tolua_Error tolua_err;
@@ -8103,7 +8103,7 @@ static int tolua_trade_CRole_TellGameTimeCard00(lua_State* tolua_S)
  {
   CRole* self = (CRole*)  tolua_tousertype(tolua_S,1,0);
 #ifndef TOLUA_RELEASE
- if (!self) tolua_error(tolua_S,"invalid 'self' in function 'TellGameTimeCard'", NULL);
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'NotifyRole_GameTimeCard'", NULL);
 #endif
  {
   self->NotifyRole_GameTimeCard();
@@ -8112,7 +8112,207 @@ static int tolua_trade_CRole_TellGameTimeCard00(lua_State* tolua_S)
  return 0;
 #ifndef TOLUA_RELEASE
  tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'TellGameTimeCard'.",&tolua_err);
+ tolua_error(tolua_S,"#ferror in function 'NotifyRole_GameTimeCard'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetRuneRootCount of class  CRole */
+#ifndef TOLUA_DISABLE_tolua_trade_CRole_GetRuneRootCount00
+static int tolua_trade_CRole_GetRuneRootCount00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CRole",0,&tolua_err) ||
+ !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+ !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  CRole* self = (CRole*)  tolua_tousertype(tolua_S,1,0);
+  signed int nType = (( signed int)  tolua_tonumber(tolua_S,2,0));
+  signed int cls = (( signed int)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetRuneRootCount'", NULL);
+#endif
+ {
+  signed int tolua_ret = ( signed int)  self->GetRuneRootCount(nType,cls);
+ tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+ }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetRuneRootCount'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: IncRuneRootCount of class  CRole */
+#ifndef TOLUA_DISABLE_tolua_trade_CRole_IncRuneRootCount00
+static int tolua_trade_CRole_IncRuneRootCount00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CRole",0,&tolua_err) ||
+ !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+ !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  CRole* self = (CRole*)  tolua_tousertype(tolua_S,1,0);
+  signed int nType = (( signed int)  tolua_tonumber(tolua_S,2,0));
+  signed int cls = (( signed int)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'IncRuneRootCount'", NULL);
+#endif
+ {
+  self->IncRuneRootCount(nType,cls);
+ }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'IncRuneRootCount'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: NotifyRole_RuneRootCount of class  CRole */
+#ifndef TOLUA_DISABLE_tolua_trade_CRole_NotifyRole_RuneRootCount00
+static int tolua_trade_CRole_NotifyRole_RuneRootCount00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CRole",0,&tolua_err) ||
+ !tolua_isnumber(tolua_S,2,0,&tolua_err) ||
+ !tolua_isnumber(tolua_S,3,0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,4,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  CRole* self = (CRole*)  tolua_tousertype(tolua_S,1,0);
+  signed int nType = (( signed int)  tolua_tonumber(tolua_S,2,0));
+  signed int cls = (( signed int)  tolua_tonumber(tolua_S,3,0));
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'NotifyRole_RuneRootCount'", NULL);
+#endif
+ {
+  self->NotifyRole_RuneRootCount(nType,cls);
+ }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'NotifyRole_RuneRootCount'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: GetLuckRootCount of class  CRole */
+#ifndef TOLUA_DISABLE_tolua_trade_CRole_GetLuckRootCount00
+static int tolua_trade_CRole_GetLuckRootCount00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CRole",0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  CRole* self = (CRole*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'GetLuckRootCount'", NULL);
+#endif
+ {
+  signed int tolua_ret = ( signed int)  self->GetLuckRootCount();
+ tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+ }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'GetLuckRootCount'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: IncLuckRootCount of class  CRole */
+#ifndef TOLUA_DISABLE_tolua_trade_CRole_IncLuckRootCount00
+static int tolua_trade_CRole_IncLuckRootCount00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CRole",0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  CRole* self = (CRole*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'IncLuckRootCount'", NULL);
+#endif
+ {
+  self->IncLuckRootCount();
+ }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'IncLuckRootCount'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
+/* method: NotifyRole_LuckRootCount of class  CRole */
+#ifndef TOLUA_DISABLE_tolua_trade_CRole_NotifyRole_LuckRootCount00
+static int tolua_trade_CRole_NotifyRole_LuckRootCount00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isusertype(tolua_S,1,"CRole",0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  CRole* self = (CRole*)  tolua_tousertype(tolua_S,1,0);
+#ifndef TOLUA_RELEASE
+ if (!self) tolua_error(tolua_S,"invalid 'self' in function 'NotifyRole_LuckRootCount'", NULL);
+#endif
+ {
+  self->NotifyRole_LuckRootCount();
+ }
+ }
+ return 0;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'NotifyRole_LuckRootCount'.",&tolua_err);
  return 0;
 #endif
 }
@@ -9625,8 +9825,26 @@ TOLUA_API int tolua_trade_open (lua_State* tolua_S)
 #ifndef TOLUA_DISABLE_tolua_trade_CRole_AddGameTimeCard00
   tolua_function(tolua_S,"AddGameTimeCard",tolua_trade_CRole_AddGameTimeCard00);
 #endif //#ifndef TOLUA_DISABLE
-#ifndef TOLUA_DISABLE_tolua_trade_CRole_TellGameTimeCard00
-  tolua_function(tolua_S,"TellGameTimeCard",tolua_trade_CRole_TellGameTimeCard00);
+#ifndef TOLUA_DISABLE_tolua_trade_CRole_NotifyRole_GameTimeCard00
+  tolua_function(tolua_S,"NotifyRole_GameTimeCard",tolua_trade_CRole_NotifyRole_GameTimeCard00);
+#endif //#ifndef TOLUA_DISABLE
+#ifndef TOLUA_DISABLE_tolua_trade_CRole_GetRuneRootCount00
+  tolua_function(tolua_S,"GetRuneRootCount",tolua_trade_CRole_GetRuneRootCount00);
+#endif //#ifndef TOLUA_DISABLE
+#ifndef TOLUA_DISABLE_tolua_trade_CRole_IncRuneRootCount00
+  tolua_function(tolua_S,"IncRuneRootCount",tolua_trade_CRole_IncRuneRootCount00);
+#endif //#ifndef TOLUA_DISABLE
+#ifndef TOLUA_DISABLE_tolua_trade_CRole_NotifyRole_RuneRootCount00
+  tolua_function(tolua_S,"NotifyRole_RuneRootCount",tolua_trade_CRole_NotifyRole_RuneRootCount00);
+#endif //#ifndef TOLUA_DISABLE
+#ifndef TOLUA_DISABLE_tolua_trade_CRole_GetLuckRootCount00
+  tolua_function(tolua_S,"GetLuckRootCount",tolua_trade_CRole_GetLuckRootCount00);
+#endif //#ifndef TOLUA_DISABLE
+#ifndef TOLUA_DISABLE_tolua_trade_CRole_IncLuckRootCount00
+  tolua_function(tolua_S,"IncLuckRootCount",tolua_trade_CRole_IncLuckRootCount00);
+#endif //#ifndef TOLUA_DISABLE
+#ifndef TOLUA_DISABLE_tolua_trade_CRole_NotifyRole_LuckRootCount00
+  tolua_function(tolua_S,"NotifyRole_LuckRootCount",tolua_trade_CRole_NotifyRole_LuckRootCount00);
 #endif //#ifndef TOLUA_DISABLE
  tolua_endmodule(tolua_S);
  tolua_cclass(tolua_S,"CReputation","CReputation","",NULL);

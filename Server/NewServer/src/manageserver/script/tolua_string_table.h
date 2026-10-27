@@ -1,6 +1,6 @@
 /*
 ** Lua binding: string_table
-** Generated automatically by tolua++-1.0.92 on 04/04/25 13:58:16.
+** Generated automatically by tolua++-1.0.92 on (timestamp omitted).
 */
 
 /* Exported function */

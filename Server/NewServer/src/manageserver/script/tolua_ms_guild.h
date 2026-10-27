@@ -1,6 +1,6 @@
 /*
 ** Lua binding: ms_guild
-** Generated automatically by tolua++-1.0.92 on 05/30/18 13:59:45.
+** Generated automatically by tolua++-1.0.92 on (timestamp omitted).
 */
 
 /* Exported function */

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: internal_message
-** Generated automatically by tolua++-1.0.92 on 04/26/25 22:42:49.
+** Generated automatically by tolua++-1.0.92 on (timestamp omitted).
 */
 
 #include "stdafx.h"

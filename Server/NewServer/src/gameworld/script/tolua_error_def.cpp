@@ -1,6 +1,6 @@
 /*
 ** Lua binding: error_def
-** Generated automatically by tolua++-1.0.92 on 04/26/25 21:55:58.
+** Generated automatically by tolua++-1.0.92 on (timestamp omitted).
 */
 
 #include "stdafx.h"

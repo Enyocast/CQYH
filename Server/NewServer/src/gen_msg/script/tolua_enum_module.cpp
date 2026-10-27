@@ -1,6 +1,6 @@
 /*
 ** Lua binding: enum_module
-** Generated automatically by tolua++-1.0.92 on 02/11/26 14:42:31.
+** Generated automatically by tolua++-1.0.92 on (timestamp omitted).
 */
 
 #include "stdafx.h"

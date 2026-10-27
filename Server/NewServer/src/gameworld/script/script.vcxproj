@@ -117,9 +117,6 @@
     <lua_compiler Include="..\..\..\bin\commonconfig\script\btedit\main.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\check_data\check_data.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\create_role\main.lua" />
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\cs\cs_command_table.lua" />
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\cs\gs.lua" />
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\cs\ms.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\final_gm\final_gm_command_table.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\final_gm\gs.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\final_gm\ms.lua" />
@@ -137,13 +134,9 @@
     <lua_compiler Include="..\..\..\bin\commonconfig\script\ms_gm\gm_command.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\ms_gm\main.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\ms_gm\user_permission.lua" />
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_jump\main.lua" />
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_jump\main.uh" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_spell\main.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_spell\main.uh" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\default\main.lua" />
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\quest_dialog\main.lua" />
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\quest_dialog\main.uh" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\achievement.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\activity.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\auction.lua" />
@@ -160,8 +153,6 @@
     <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\team.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\title.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\vip.lua" />
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\stand_show\main.lua" />
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\stand_show\main.uh" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\sub_tree\sub_tree.lh" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\quest\main.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\read_data\main.lua" />
@@ -171,11 +162,7 @@
     <lua_compiler Include="..\..\..\bin\commonconfig\script\robot\util.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\CommonArena\main.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\CommonArena\main.uh" />
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\DesertDungeon01\main.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\ProgIsland\main.lua" />
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\SnowbergDungeon10\main.lua" />
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\SnowbergPublic01\main.lua" />
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\SnowbergPublic02\main.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\stringtable\main.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\stringtable\stringtable.lh" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\coverage\combat.lua" />
@@ -220,7 +207,6 @@
     <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\performance\test_login.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\script\test_case\test_case.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\setting\achievement.lua" />
-    <lua_compiler Include="..\..\..\bin\commonconfig\setting\ai.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\setting\air.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\setting\air_level.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\setting\attributes1.lua" />
@@ -238,7 +224,6 @@
     <lua_compiler Include="..\..\..\bin\commonconfig\setting\missile.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\setting\mount.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\setting\npc.lua" />
-    <lua_compiler Include="..\..\..\bin\commonconfig\setting\npc_pattern.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\setting\npc_relation.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\setting\quest.lua" />
     <lua_compiler Include="..\..\..\bin\commonconfig\setting\refine.lua" />

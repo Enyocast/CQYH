@@ -1,6 +1,6 @@
 /*
 ** Lua binding: common
-** Generated automatically by tolua++-1.0.92 on 11/08/18 22:50:55.
+** Generated automatically by tolua++-1.0.92 on (timestamp omitted).
 */
 
 #include "stdafx.h"

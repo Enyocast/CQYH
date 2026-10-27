@@ -123,22 +123,7 @@
     </Link>
     <PostBuildEvent>
       <Message>generate message size file</Message>
-      <Command>p4 edit ../../../Common/message/external_message_size.cpp
-"$(OutDir)$(ProjectName).exe" msg &gt;"../../../common/message/external_message_size.cpp"
-p4 edit ../../../Common/define/error_code_name.cpp
-"$(OutDir)$(ProjectName).exe" errcode &gt;"../../../common/define/error_code_name.cpp"
-p4 edit ../../../Client/UE3/Development/Src/MMOGame/Classes/ServerEnum.uc
-"$(OutDir)$(ProjectName).exe" enum &gt;"../../../client/ue3/development/src/mmogame/classes/ServerEnum.uc"
-p4 edit ../../../Client/UE3/MMOGame/Config/MMOBTNode.ini
-"$(OutDir)$(ProjectName).exe" btnode &gt;"../../../Client/UE3/MMOGame/Config/MMOBTNode.ini"
-p4 edit ../../../Client/UE3/MMOGame/Config/MMOBTEvent.ini
-"$(OutDir)$(ProjectName).exe" btevent &gt;"../../../Client/UE3/MMOGame/Config/MMOBTEvent.ini"
-p4 edit ../../../NewServer/bin/bteditor/MMOBTNode.ini
-"$(OutDir)$(ProjectName).exe" btnode &gt;"../../../NewServer/bin/bteditor/MMOBTNode.ini"
-p4 edit ../../../NewServer/bin/bteditor/MMOBTEvent.ini
-"$(OutDir)$(ProjectName).exe" btevent &gt;"../../../NewServer/bin/bteditor/MMOBTEvent.ini"
-
-</Command>
+      <Command>call "$(ProjectDir)post_build.cmd" "$(OutDir)$(ProjectName).exe" "$(GenMsgWriteClient)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -204,22 +189,7 @@ p4 edit ../../../NewServer/bin/bteditor/MMOBTEvent.ini
     </Link>
     <PostBuildEvent>
       <Message>generate message size file</Message>
-      <Command>p4 edit ../../../Common/message/external_message_size.cpp
-"$(OutDir)$(ProjectName).exe" msg &gt;"../../../common/message/external_message_size.cpp"
-p4 edit ../../../Common/define/error_code_name.cpp
-"$(OutDir)$(ProjectName).exe" errcode &gt;"../../../common/define/error_code_name.cpp"
-p4 edit ../../../Client/UE3/Development/Src/MMOGame/Classes/ServerEnum.uc
-"$(OutDir)$(ProjectName).exe" enum &gt;"../../../client/ue3/development/src/mmogame/classes/ServerEnum.uc"
-p4 edit ../../../Client/UE3/MMOGame/Config/MMOBTNode.ini
-"$(OutDir)$(ProjectName).exe" btnode &gt;"../../../Client/UE3/MMOGame/Config/MMOBTNode.ini"
-p4 edit ../../../Client/UE3/MMOGame/Config/MMOBTEvent.ini
-"$(OutDir)$(ProjectName).exe" btevent &gt;"../../../Client/UE3/MMOGame/Config/MMOBTEvent.ini"
-p4 edit ../../../NewServer/bin/bteditor/MMOBTNode.ini
-"$(OutDir)$(ProjectName).exe" btnode &gt;"../../../NewServer/bin/bteditor/MMOBTNode.ini"
-p4 edit ../../../NewServer/bin/bteditor/MMOBTEvent.ini
-"$(OutDir)$(ProjectName).exe" btevent &gt;"../../../NewServer/bin/bteditor/MMOBTEvent.ini"
-
-</Command>
+      <Command>call "$(ProjectDir)post_build.cmd" "$(OutDir)$(ProjectName).exe" "$(GenMsgWriteClient)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'">
@@ -253,22 +223,7 @@ p4 edit ../../../NewServer/bin/bteditor/MMOBTEvent.ini
     </Link>
     <PostBuildEvent>
       <Message>generate message size file</Message>
-      <Command>p4 edit ../../../Common/message/external_message_size.cpp
-"$(OutDir)$(ProjectName).exe" msg &gt;"../../../common/message/external_message_size.cpp"
-p4 edit ../../../Common/define/error_code_name.cpp
-"$(OutDir)$(ProjectName).exe" errcode &gt;"../../../common/define/error_code_name.cpp"
-p4 edit ../../../Client/UE3/Development/Src/MMOGame/Classes/ServerEnum.uc
-"$(OutDir)$(ProjectName).exe" enum &gt;"../../../client/ue3/development/src/mmogame/classes/ServerEnum.uc"
-p4 edit ../../../Client/UE3/MMOGame/Config/MMOBTNode.ini
-"$(OutDir)$(ProjectName).exe" btnode &gt;"../../../Client/UE3/MMOGame/Config/MMOBTNode.ini"
-p4 edit ../../../Client/UE3/MMOGame/Config/MMOBTEvent.ini
-"$(OutDir)$(ProjectName).exe" btevent &gt;"../../../Client/UE3/MMOGame/Config/MMOBTEvent.ini"
-p4 edit ../../../NewServer/bin/bteditor/MMOBTNode.ini
-"$(OutDir)$(ProjectName).exe" btnode &gt;"../../../NewServer/bin/bteditor/MMOBTNode.ini"
-p4 edit ../../../NewServer/bin/bteditor/MMOBTEvent.ini
-"$(OutDir)$(ProjectName).exe" btevent &gt;"../../../NewServer/bin/bteditor/MMOBTEvent.ini"
-
-</Command>
+      <Command>call "$(ProjectDir)post_build.cmd" "$(OutDir)$(ProjectName).exe" "$(GenMsgWriteClient)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

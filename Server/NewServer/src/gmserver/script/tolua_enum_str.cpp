@@ -1,6 +1,6 @@
 /*
 ** Lua binding: enum_str
-** Generated automatically by tolua++-1.0.92 on 04/02/25 20:05:20.
+** Generated automatically by tolua++-1.0.92 on (timestamp omitted).
 */
 
 #include "stdafx.h"
@@ -1163,6 +1163,10 @@ TOLUA_API int tolua_enum_str_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"ITEMLOG_RUNE_ADVANCE_CONFIRM",ITEMLOG_RUNE_ADVANCE_CONFIRM);
   tolua_constant(tolua_S,"ITEMLOG_POTION_GAMBLE",ITEMLOG_POTION_GAMBLE);
   tolua_constant(tolua_S,"ITEMLOG_SELL_RESOURCE_ITEM",ITEMLOG_SELL_RESOURCE_ITEM);
+  tolua_constant(tolua_S,"ITEMLOG_EQUIP_ADD_SOCKET",ITEMLOG_EQUIP_ADD_SOCKET);
+  tolua_constant(tolua_S,"ITEMLOG_EQUIP_SET_COLOR",ITEMLOG_EQUIP_SET_COLOR);
+  tolua_constant(tolua_S,"ITEMLOG_CHANGE_EUIQP_SOCKET_COLOR",ITEMLOG_CHANGE_EUIQP_SOCKET_COLOR);
+  tolua_constant(tolua_S,"ITEMLOG_ADD_DESTINY_WEAPON",ITEMLOG_ADD_DESTINY_WEAPON);
   tolua_constant(tolua_S,"ITEMLOG_TOTAL",ITEMLOG_TOTAL);
  tolua_endmodule(tolua_S);
  tolua_module(tolua_S,"EMoneyLog",0);
@@ -1255,6 +1259,10 @@ TOLUA_API int tolua_enum_str_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"MONEYLOG_ARENA_REFUND",MONEYLOG_ARENA_REFUND);
   tolua_constant(tolua_S,"MONEYLOG_ARENA_REWARD",MONEYLOG_ARENA_REWARD);
   tolua_constant(tolua_S,"MONEYLOG_SELL_RESOURCE_ITEM",MONEYLOG_SELL_RESOURCE_ITEM);
+  tolua_constant(tolua_S,"MONEYLOG_CUSTOM_ROLE_BUY_TIME",MONEYLOG_CUSTOM_ROLE_BUY_TIME);
+  tolua_constant(tolua_S,"MONEYLOG_EQUIP_LEVELUP_TAKE_OUT_IMMEDIATELY",MONEYLOG_EQUIP_LEVELUP_TAKE_OUT_IMMEDIATELY);
+  tolua_constant(tolua_S,"MONEYLOG_GM_CMD_SUB_MONEY_YB",MONEYLOG_GM_CMD_SUB_MONEY_YB);
+  tolua_constant(tolua_S,"MONEYLOG_GM_CMD_ADD_ITEM_YBD",MONEYLOG_GM_CMD_ADD_ITEM_YBD);
   tolua_constant(tolua_S,"MONEYLOG_BT_BEGIN",MONEYLOG_BT_BEGIN);
   tolua_constant(tolua_S,"MONEYLOG_BT_01",MONEYLOG_BT_01);
   tolua_constant(tolua_S,"MONEYLOG_BT_02",MONEYLOG_BT_02);
@@ -1367,6 +1375,9 @@ TOLUA_API int tolua_enum_str_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"ITEMSUBTYPE_EQUIP_NECKLACE",ITEMSUBTYPE_EQUIP_NECKLACE);
   tolua_constant(tolua_S,"ITEMSUBTYPE_EQUIP_RING",ITEMSUBTYPE_EQUIP_RING);
   tolua_constant(tolua_S,"ITEMSUBTYPE_EQUIP_BRACELET",ITEMSUBTYPE_EQUIP_BRACELET);
+  tolua_constant(tolua_S,"ITEMSUBTYPE_EQUIP_HONOR",ITEMSUBTYPE_EQUIP_HONOR);
+  tolua_constant(tolua_S,"ITEMSUBTYPE_EQUIP_JADE",ITEMSUBTYPE_EQUIP_JADE);
+  tolua_constant(tolua_S,"ITEMSUBTYPE_EQUIP_OFFHAND",ITEMSUBTYPE_EQUIP_OFFHAND);
   tolua_constant(tolua_S,"ITEMSUBTYPE_MATERIAL_REFINE",ITEMSUBTYPE_MATERIAL_REFINE);
   tolua_constant(tolua_S,"ITEMSUBTYPE_MATERIAL_COMPOSE",ITEMSUBTYPE_MATERIAL_COMPOSE);
   tolua_constant(tolua_S,"ITEMSUBTYPE_MATERIAL_WEAPON_LEVELUP",ITEMSUBTYPE_MATERIAL_WEAPON_LEVELUP);
@@ -1529,6 +1540,28 @@ TOLUA_API int tolua_enum_str_open (lua_State* tolua_S)
   tolua_constant(tolua_S,"SOCKET_PURPLE",SOCKET_PURPLE);
   tolua_constant(tolua_S,"SOCKET_COLORFUL",SOCKET_COLORFUL);
   tolua_constant(tolua_S,"SOCKET_TYPE_COUNT",SOCKET_TYPE_COUNT);
+ tolua_endmodule(tolua_S);
+ tolua_module(tolua_S,"ADD_SOCKET_ERROR_TYPE",0);
+ tolua_beginmodule(tolua_S,"ADD_SOCKET_ERROR_TYPE");
+  tolua_constant(tolua_S,"asetEquipIsNull",asetEquipIsNull);
+  tolua_constant(tolua_S,"asetEquipCantSocket",asetEquipCantSocket);
+  tolua_constant(tolua_S,"asetEquipCantNotBeAddSocket",asetEquipCantNotBeAddSocket);
+  tolua_constant(tolua_S,"asetEquipAddSocketSlotUnknown",asetEquipAddSocketSlotUnknown);
+  tolua_constant(tolua_S,"asetEquipNeedItemCount",asetEquipNeedItemCount);
+  tolua_constant(tolua_S,"asetEquipItemNotEnough",asetEquipItemNotEnough);
+  tolua_constant(tolua_S,"asetEquipAddSocketSuccess",asetEquipAddSocketSuccess);
+ tolua_endmodule(tolua_S);
+ tolua_module(tolua_S,"SET_SOCKET_COLOR_TYPE",0);
+ tolua_beginmodule(tolua_S,"SET_SOCKET_COLOR_TYPE");
+  tolua_constant(tolua_S,"ssctEquipIsNull",ssctEquipIsNull);
+  tolua_constant(tolua_S,"ssctEquipNoSocket1",ssctEquipNoSocket1);
+  tolua_constant(tolua_S,"ssctEquipNoSocket2",ssctEquipNoSocket2);
+  tolua_constant(tolua_S,"ssctEquipCantSetColor",ssctEquipCantSetColor);
+  tolua_constant(tolua_S,"ssctEquipSetColorError",ssctEquipSetColorError);
+  tolua_constant(tolua_S,"ssctEquipSetSlotError",ssctEquipSetSlotError);
+  tolua_constant(tolua_S,"ssctEquipNeedItemCount",ssctEquipNeedItemCount);
+  tolua_constant(tolua_S,"ssctEquipItemNotEnough",ssctEquipItemNotEnough);
+  tolua_constant(tolua_S,"ssctEquipSetSocketSuccess",ssctEquipSetSocketSuccess);
  tolua_endmodule(tolua_S);
  tolua_module(tolua_S,"EStallState",0);
  tolua_beginmodule(tolua_S,"EStallState");

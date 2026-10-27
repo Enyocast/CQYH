@@ -146,7 +146,7 @@ enum BT_ACTION_TYPE
 									///< @param p3 string param
                                     ///< @note target id may be role id, team id, guild id, channel id (#CHAT_CHANNEL_TYPE)
     batSetSceneVariable,            ///< set scene variable                         设置场景变量
-                                    ///< @param p0 variable index                   @参数p0变量索引
+                                    ///< @param p0 variable index
                                     ///< @param p1 absolute value (optional)        @参数p1绝对值（可选）
                                     ///< @param p2 relative value (optional)        @参数p2相对值（可选）
                                     ///< @note p1 is effective only when p2 is zero @注意：p1仅在p2为零时有效

@@ -1,6 +1,8 @@
 #ifndef _CHECK_DATA_H_
 #define _CHECK_DATA_H_
+
 
+#include <string>
 #include <map>
 
 using namespace std;

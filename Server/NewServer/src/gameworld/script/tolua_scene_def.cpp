@@ -1,6 +1,6 @@
 /*
 ** Lua binding: scene_def
-** Generated automatically by tolua++-1.0.92 on 04/02/25 20:04:31.
+** Generated automatically by tolua++-1.0.92 on (timestamp omitted).
 */
 
 #include "stdafx.h"
@@ -294,6 +294,35 @@ static int tolua_set_ENTER_POS_unsigned_bySide(lua_State* tolua_S)
 }
 #endif //#ifndef TOLUA_DISABLE
 
+/* function: I64_2_Double */
+#ifndef TOLUA_DISABLE_tolua_scene_def_I64_2_Double00
+static int tolua_scene_def_I64_2_Double00(lua_State* tolua_S)
+{
+#ifndef TOLUA_RELEASE
+ tolua_Error tolua_err;
+ if (
+ !tolua_isnumber(tolua_S,1,0,&tolua_err) ||
+ !tolua_isnoobj(tolua_S,2,&tolua_err)
+ )
+ goto tolua_lerror;
+ else
+#endif
+ {
+  signed int llPos = (( signed int)  tolua_tonumber(tolua_S,1,0));
+ {
+  double tolua_ret = (double)  I64_2_Double(llPos);
+ tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
+ }
+ }
+ return 1;
+#ifndef TOLUA_RELEASE
+ tolua_lerror:
+ tolua_error(tolua_S,"#ferror in function 'I64_2_Double'.",&tolua_err);
+ return 0;
+#endif
+}
+#endif //#ifndef TOLUA_DISABLE
+
 /* function: ConvertCoordS2N */
 #ifndef TOLUA_DISABLE_tolua_scene_def_ConvertCoordS2N00
 static int tolua_scene_def_ConvertCoordS2N00(lua_State* tolua_S)
@@ -347,35 +376,6 @@ static int tolua_scene_def_ConvertCoordN2S00(lua_State* tolua_S)
 #ifndef TOLUA_RELEASE
  tolua_lerror:
  tolua_error(tolua_S,"#ferror in function 'ConvertCoordN2S'.",&tolua_err);
- return 0;
-#endif
-}
-#endif //#ifndef TOLUA_DISABLE
-
-/* function: I64_2_Double */
-#ifndef TOLUA_DISABLE_tolua_scene_def_I64_2_Double00
-static int tolua_scene_def_I64_2_Double00(lua_State* tolua_S)
-{
-#ifndef TOLUA_RELEASE
- tolua_Error tolua_err;
- if (
- !tolua_isnumber(tolua_S,1,0,&tolua_err) ||
- !tolua_isnoobj(tolua_S,2,&tolua_err)
- )
- goto tolua_lerror;
- else
-#endif
- {
-  signed int llPos = (( signed int)  tolua_tonumber(tolua_S,1,0));
- {
-  double tolua_ret = (double)  I64_2_Double(llPos);
- tolua_pushnumber(tolua_S,(lua_Number)tolua_ret);
- }
- }
- return 1;
-#ifndef TOLUA_RELEASE
- tolua_lerror:
- tolua_error(tolua_S,"#ferror in function 'I64_2_Double'.",&tolua_err);
  return 0;
 #endif
 }
@@ -549,14 +549,14 @@ TOLUA_API int tolua_scene_def_open (lua_State* tolua_S)
   tolua_variable(tolua_S,"nSceneID",tolua_get_ENTER_POS_nSceneID,tolua_set_ENTER_POS_nSceneID);
   tolua_variable(tolua_S,"bySide",tolua_get_ENTER_POS_unsigned_bySide,tolua_set_ENTER_POS_unsigned_bySide);
  tolua_endmodule(tolua_S);
+#ifndef TOLUA_DISABLE_tolua_scene_def_I64_2_Double00
+ tolua_function(tolua_S,"I64_2_Double",tolua_scene_def_I64_2_Double00);
+#endif //#ifndef TOLUA_DISABLE
 #ifndef TOLUA_DISABLE_tolua_scene_def_ConvertCoordS2N00
  tolua_function(tolua_S,"ConvertCoordS2N",tolua_scene_def_ConvertCoordS2N00);
 #endif //#ifndef TOLUA_DISABLE
 #ifndef TOLUA_DISABLE_tolua_scene_def_ConvertCoordN2S00
  tolua_function(tolua_S,"ConvertCoordN2S",tolua_scene_def_ConvertCoordN2S00);
-#endif //#ifndef TOLUA_DISABLE
-#ifndef TOLUA_DISABLE_tolua_scene_def_I64_2_Double00
- tolua_function(tolua_S,"I64_2_Double",tolua_scene_def_I64_2_Double00);
 #endif //#ifndef TOLUA_DISABLE
 #ifndef TOLUA_DISABLE_tolua_scene_def_ConvertCoordO2N00
  tolua_function(tolua_S,"ConvertCoordO2N",tolua_scene_def_ConvertCoordO2N00);

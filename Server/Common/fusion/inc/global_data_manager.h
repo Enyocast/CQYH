@@ -1,6 +1,10 @@
 #ifndef _GLOBAL_DATA_MANAGER_H_
 #define _GLOBAL_DATA_MANAGER_H_
+
 
+#include <string>
+#include <list>
+#include <map>
 #include "thread.h"
 #include "circle_list.h"
 

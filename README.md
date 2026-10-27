@@ -94,7 +94,7 @@ Visual Studio and the DirectX SDK come from Microsoft. Everything else is hosted
 
 | Needed for | Dependency | Download |
 |---|---|---|
-| Server build | Visual Studio 2013 | Microsoft (not hosted) |
+| Server build | Visual Studio 2022 Windows SDK: 10.0 Platform Toolset: v143 | Microsoft (not hosted) |
 | Client build | Visual Studio 2010 + Service Pack 1, DirectX SDK (June 2010) | Microsoft (not hosted) |
 | Database | MySQL 5.5.62 (64-bit MSI) – the original notes also mention 5.1 | [`MySQL Install.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/MySQL%20Install.7z) |
 | Database tool | Navicat for MySQL 12.1 (64-bit) | [`Navicat Install.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/Navicat%20Install.7z) |

@@ -1,6 +1,6 @@
 /*
 ** Lua binding: attribute_def
-** Generated automatically by tolua++-1.0.92 on 11/19/25 14:23:39.
+** Generated automatically by tolua++-1.0.92 on (timestamp omitted).
 */
 
 #include "stdafx.h"

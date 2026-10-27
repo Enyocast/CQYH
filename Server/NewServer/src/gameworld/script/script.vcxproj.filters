@@ -312,29 +312,11 @@
     <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\default\main.lua">
       <Filter>ai\default</Filter>
     </lua_compiler>
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\stand_show\main.lua">
-      <Filter>ai\stand_show</Filter>
-    </lua_compiler>
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\stand_show\main.uh">
-      <Filter>ai\stand_show</Filter>
-    </lua_compiler>
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\quest_dialog\main.lua">
-      <Filter>ai\quest_dialog</Filter>
-    </lua_compiler>
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\quest_dialog\main.uh">
-      <Filter>ai\quest_dialog</Filter>
-    </lua_compiler>
     <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_spell\main.lua">
       <Filter>ai\click_spell</Filter>
     </lua_compiler>
     <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_spell\main.uh">
       <Filter>ai\click_spell</Filter>
-    </lua_compiler>
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_jump\main.lua">
-      <Filter>ai\click_jump</Filter>
-    </lua_compiler>
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\click_jump\main.uh">
-      <Filter>ai\click_jump</Filter>
     </lua_compiler>
     <lua_compiler Include="..\..\..\bin\commonconfig\script\create_role\main.lua">
       <Filter>create_role</Filter>
@@ -347,18 +329,6 @@
     </lua_compiler>
     <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\ProgIsland\main.lua">
       <Filter>scene\ProgIsland</Filter>
-    </lua_compiler>
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\DesertDungeon01\main.lua">
-      <Filter>scene\DesertDungeon01</Filter>
-    </lua_compiler>
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\SnowbergDungeon10\main.lua">
-      <Filter>scene\SnowbergDungeon10</Filter>
-    </lua_compiler>
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\SnowbergPublic01\main.lua">
-      <Filter>scene\SnowbergPublic01</Filter>
-    </lua_compiler>
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\SnowbergPublic02\main.lua">
-      <Filter>scene\SnowbergPublic02</Filter>
     </lua_compiler>
     <lua_compiler Include="..\..\..\bin\commonconfig\script\scene\CommonArena\main.lua">
       <Filter>scene\CommonArena</Filter>
@@ -373,9 +343,6 @@
       <Filter>include</Filter>
     </lua_compiler>
     <lua_compiler Include="..\..\..\bin\commonconfig\setting\achievement.lua">
-      <Filter>check_data</Filter>
-    </lua_compiler>
-    <lua_compiler Include="..\..\..\bin\commonconfig\setting\ai.lua">
       <Filter>check_data</Filter>
     </lua_compiler>
     <lua_compiler Include="..\..\..\bin\commonconfig\setting\air.lua">
@@ -430,9 +397,6 @@
       <Filter>check_data</Filter>
     </lua_compiler>
     <lua_compiler Include="..\..\..\bin\commonconfig\setting\npc.lua">
-      <Filter>check_data</Filter>
-    </lua_compiler>
-    <lua_compiler Include="..\..\..\bin\commonconfig\setting\npc_pattern.lua">
       <Filter>check_data</Filter>
     </lua_compiler>
     <lua_compiler Include="..\..\..\bin\commonconfig\setting\npc_relation.lua">
@@ -494,15 +458,6 @@
     </lua_compiler>
     <lua_compiler Include="..\..\..\bin\commonconfig\script\quest\main.lua">
       <Filter>quest</Filter>
-    </lua_compiler>
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\cs\cs_command_table.lua">
-      <Filter>cs</Filter>
-    </lua_compiler>
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\cs\gs.lua">
-      <Filter>cs</Filter>
-    </lua_compiler>
-    <lua_compiler Include="..\..\..\bin\commonconfig\script\cs\ms.lua">
-      <Filter>cs</Filter>
     </lua_compiler>
     <lua_compiler Include="..\..\..\bin\commonconfig\script\newai\robot\chat.lua">
       <Filter>robot\ai</Filter>

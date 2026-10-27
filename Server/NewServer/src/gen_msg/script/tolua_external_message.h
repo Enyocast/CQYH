@@ -1,6 +1,6 @@
 /*
 ** Lua binding: external_message
-** Generated automatically by tolua++-1.0.92 on 11/19/25 14:23:29.
+** Generated automatically by tolua++-1.0.92 on (timestamp omitted).
 */
 
 /* Exported function */

@@ -1,0 +1,8 @@
+<Project>
+  <!-- Imported automatically by MSBuild for every project under Server\. -->
+  <PropertyGroup>
+    <!-- Lua script that makes tolua++ output reproducible (no generation timestamp).
+         Used by the toluapp*.props custom build steps via: toluappc.exe -L "$(ToluaFixedDateScript)" -->
+    <ToluaFixedDateScript>$(MSBuildThisFileDirectory)tolua_fixed_date.lua</ToluaFixedDateScript>
+  </PropertyGroup>
+</Project>

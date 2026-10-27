@@ -1,6 +1,6 @@
 /*
 ** Lua binding: enum
-** Generated automatically by tolua++-1.0.92 on 11/08/18 22:41:34.
+** Generated automatically by tolua++-1.0.92 on (timestamp omitted).
 */
 
 #include "stdafx.h"

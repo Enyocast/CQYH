@@ -1,6 +1,6 @@
 /*
 ** Lua binding: variable
-** Generated automatically by tolua++-1.0.92 on 09/29/25 00:22:32.
+** Generated automatically by tolua++-1.0.92 on (timestamp omitted).
 */
 
 #include "stdafx.h"

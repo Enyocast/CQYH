@@ -1,6 +1,6 @@
 /*
 ** Lua binding: gm_def
-** Generated automatically by tolua++-1.0.92 on 02/11/26 14:43:15.
+** Generated automatically by tolua++-1.0.92 on (timestamp omitted).
 */
 
 /* Exported function */

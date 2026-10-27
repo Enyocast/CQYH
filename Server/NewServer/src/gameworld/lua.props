@@ -11,7 +11,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <lua_compiler>
-      <CommandLineTemplate>luac.exe -p -o %(RootDir)%(Directory)%(Filename).out %(RootDir)%(Directory)%(Filename)%(Extension)</CommandLineTemplate>
+      <CommandLineTemplate>"$(MSBuildThisFileDirectory)lua_check.cmd" "%(RootDir)%(Directory)%(Filename)%(Extension)"</CommandLineTemplate>
       <Outputs>%(RootDir)%(Directory)%(Filename).out</Outputs>
     </lua_compiler>
   </ItemDefinitionGroup>
