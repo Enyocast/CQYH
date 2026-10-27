@@ -53,6 +53,11 @@ namespace UnrealBuildTool
 			if( UseModernVisualStudio() )
 			{
 				Result += " /source-charset:gbk /execution-charset:gbk";
+
+				// VS2015+ makes function-local statics thread-safe by default. UE3 relies on re-entrant static initialisation
+				// (e.g. FReimportManager::Instance() is re-entered from the reimport factories' constructors while it is still
+				// constructing), which deadlocks in __Init_thread_wait under the thread-safe scheme and hangs engine startup.
+				Result += " /Zc:threadSafeInit-";
 			}
 
 			// Handle Common Language Runtime support (C++/CLI)

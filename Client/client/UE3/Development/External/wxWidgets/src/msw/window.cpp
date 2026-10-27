@@ -106,7 +106,8 @@
     #include <windowsx.h>
 #endif
 
-#if !defined __WXWINCE__ && !defined NEED_PBT_H
+// Recent Windows SDKs no longer ship pbt.h (its contents moved into winuser.h)
+#if !defined __WXWINCE__ && !defined NEED_PBT_H && (!defined(__has_include) || __has_include(<pbt.h>))
     #include <pbt.h>
 #endif
 

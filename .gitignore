@@ -1,0 +1,21 @@
+# Build/run logs and crash dumps (UnrealScript make, UE3 engine, wx build)
+*.log
+*.dmp
+Client/client/UE3/MMOGame/Logs/
+Client/client/UE3/Intermediate/MMOGameScript/
+
+# Per-user Visual Studio files
+*.vcxproj.user
+*.suo
+*.user
+
+# wxWidgets build output: objects/tlogs/pdbs in build\msw, and everything generated under lib\
+# (import libs, .exp/.pdb/.idb, generated setup.h/rcdefs.h). The few tracked placeholders in lib\ stay tracked.
+Client/client/UE3/Development/External/wxWidgets/build/msw/vc_*/
+Client/client/UE3/Development/External/wxWidgets/lib/vc_dll/
+Client/client/UE3/Development/External/wxWidgets/lib/vc_lib/
+
+# Linker/debug side files written next to the engine binaries
+Client/client/UE3/Binaries/Win32/*.map
+Client/client/UE3/Binaries/Win32/*.ilk
+Client/client/UE3/Binaries/Win32/*.exp
