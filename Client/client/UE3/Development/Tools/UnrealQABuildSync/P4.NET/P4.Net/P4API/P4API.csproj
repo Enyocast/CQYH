@@ -6,6 +6,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{4706B526-42F0-420E-9CF2-B0AB775C8E47}</ProjectGuid>
     <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>P4API</RootNamespace>
     <AssemblyName>P4API</AssemblyName>

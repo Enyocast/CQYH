@@ -462,6 +462,18 @@ namespace UnrealBuildTool
 		 */
 		public static void SetEnvironmentVariablesFromBatchFile(string BatchFileName)
 		{
+			SetEnvironmentVariablesFromBatchFile( BatchFileName, "" );
+		}
+
+		/**
+		 * Sets the environment variables from the passed in batch file, passing it command line arguments
+		 * (for example the target architecture for Visual Studio 2017+'s vcvarsall.bat).
+		 * 
+		 * @param	BatchFileName		Name of the batch file to parse
+		 * @param	BatchFileArguments	Arguments to pass to the batch file
+		 */
+		public static void SetEnvironmentVariablesFromBatchFile(string BatchFileName, string BatchFileArguments)
+		{
 			if( File.Exists( BatchFileName ) )
 			{
 				// Create a wrapper batch file that echoes environment variables to a text file
@@ -476,7 +488,7 @@ namespace UnrealBuildTool
 					var EnvReaderBatchFileContent = new List<string>();
 
 					// Run 'vcvars32.bat' (or similar x64 version) to set environment variables
-					EnvReaderBatchFileContent.Add( String.Format( "call \"{0}\"", BatchFileName ) );
+					EnvReaderBatchFileContent.Add( String.Format( "call \"{0}\" {1}", BatchFileName, BatchFileArguments ) );
 
 					// Pipe all environment variables to a file where we can read them in
 					EnvReaderBatchFileContent.Add( String.Format( "set >\"{0}\"", EnvOutputFileName ) );
@@ -525,6 +537,11 @@ namespace UnrealBuildTool
 				{
 					// Parse the environment variable name and value from the string ("name=value")
 					int EqualSignPos = EnvString.IndexOf( '=' );
+					if( EqualSignPos <= 0 )
+					{
+						// Hidden entries such as "=C:=C:\dir" (the current directory of a drive) have no usable name.
+						continue;
+					}
 					var EnvironmentVariableName = EnvString.Substring( 0, EqualSignPos );
 					var EnvironmentVariableValue = EnvString.Substring( EqualSignPos + 1 );
 

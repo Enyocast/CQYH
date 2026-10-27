@@ -782,6 +782,13 @@ namespace UnrealBuildTool
 			// Initialize environment variables required for spawned tools.
 			InitializeEnvironmentVariables( Platform );
 
+			// Visual Studio 2017+ keeps its tools under VC\Tools\MSVC\<version>\... rather than VC\bin. The environment set up by
+			// vcvarsall.bat has the correct host/target tools on the PATH, so just look them up there.
+			if( bUseModernVisualStudio )
+			{
+				return FindToolOnPath( ToolName );
+			}
+
 			// Out variable that is going to contain fully qualified path to executable upon return.
 			string VCToolPath = "";
 
@@ -857,6 +864,15 @@ namespace UnrealBuildTool
 			// Initialize environment variables required for spawned tools.
 			InitializeEnvironmentVariables(Platform);
 
+			if( bUseModernVisualStudio )
+			{
+				string ModernToolPath = Path.Combine( ModernVisualStudioInstallDir, "MSBuild\\Current\\Bin\\" + ToolName + ".exe" );
+				if( File.Exists( ModernToolPath ) )
+				{
+					return ModernToolPath;
+				}
+			}
+
 			string FrameworkDirectory = Environment.GetEnvironmentVariable("FrameworkDir");
 			string FrameworkVersion = Environment.GetEnvironmentVariable("FrameworkVersion");
 			if (FrameworkDirectory == null || FrameworkVersion == null)
@@ -874,6 +890,115 @@ namespace UnrealBuildTool
 		/** Whether we can execute 64 bit executables. E.g. the 64 bit linker might be installed on a 32 bit OS. */
 		static bool bSupports64bitExecutables = true;
 
+		/** Whether a Visual Studio 2017 or newer installation (e.g. 2022) is being used instead of Visual Studio 2010. */
+		static bool bUseModernVisualStudio = false;
+
+		/** Installation directory of the Visual Studio 2017+ installation in use, e.g. C:\Program Files\Microsoft Visual Studio\2022\Community */
+		static string ModernVisualStudioInstallDir = "";
+
+		/**
+		 * Runs vswhere.exe and returns the first reported installation that contains vcvarsall.bat, or an empty string.
+		 */
+		static string RunVsWhere( string VsWherePath, string Arguments )
+		{
+			try
+			{
+				var VsWhereProcess = new Process();
+				VsWhereProcess.StartInfo.FileName = VsWherePath;
+				VsWhereProcess.StartInfo.Arguments = Arguments;
+				VsWhereProcess.StartInfo.UseShellExecute = false;
+				VsWhereProcess.StartInfo.RedirectStandardOutput = true;
+				VsWhereProcess.StartInfo.CreateNoWindow = true;
+				VsWhereProcess.Start();
+				string Output = VsWhereProcess.StandardOutput.ReadToEnd();
+				VsWhereProcess.WaitForExit();
+
+				foreach( string Line in Output.Split( new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries ) )
+				{
+					string Candidate = Line.Trim();
+					if( File.Exists( Path.Combine( Candidate, "VC\\Auxiliary\\Build\\vcvarsall.bat" ) ) )
+					{
+						return Candidate;
+					}
+				}
+			}
+			catch( Exception )
+			{
+				// Fall through; the caller reports that no installation was found.
+			}
+			return "";
+		}
+
+		/**
+		 * Finds a Visual Studio 2017 or newer installation that has the C++ x86/x64 tools. Visual Studio 2022 is preferred;
+		 * set UE3_VS_INSTALL_DIR to pick a specific installation. Returns an empty string if none is found.
+		 */
+		static string FindModernVisualStudioInstallDir()
+		{
+			string Override = Environment.GetEnvironmentVariable( "UE3_VS_INSTALL_DIR" );
+			if( !String.IsNullOrEmpty( Override ) && File.Exists( Path.Combine( Override, "VC\\Auxiliary\\Build\\vcvarsall.bat" ) ) )
+			{
+				return Override;
+			}
+
+			string[] ProgramFilesDirs = { Environment.GetEnvironmentVariable( "ProgramFiles(x86)" ), Environment.GetEnvironmentVariable( "ProgramFiles" ) };
+			foreach( string ProgramFilesDir in ProgramFilesDirs )
+			{
+				if( String.IsNullOrEmpty( ProgramFilesDir ) )
+				{
+					continue;
+				}
+
+				string VsWherePath = Path.Combine( ProgramFilesDir, "Microsoft Visual Studio\\Installer\\vswhere.exe" );
+				if( !File.Exists( VsWherePath ) )
+				{
+					continue;
+				}
+
+				// Visual Studio 2022 (version 17) first, then the newest installation that has the C++ tools.
+				string CommonArguments = "-products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath";
+				string Result = RunVsWhere( VsWherePath, CommonArguments + " -version \"[17.0,18.0)\"" );
+				if( Result.Length == 0 )
+				{
+					Result = RunVsWhere( VsWherePath, CommonArguments + " -latest" );
+				}
+				if( Result.Length > 0 )
+				{
+					return Result;
+				}
+			}
+			return "";
+		}
+
+		/** Looks the tool up on the PATH that vcvarsall.bat set up (it puts the right host/target tools on it). */
+		static string FindToolOnPath( string ToolName )
+		{
+			string FileName = ToolName + ".exe";
+			string PathVariable = Environment.GetEnvironmentVariable( "PATH" );
+			if( PathVariable != null )
+			{
+				foreach( string Directory in PathVariable.Split( ';' ) )
+				{
+					if( Directory.Length == 0 )
+					{
+						continue;
+					}
+					try
+					{
+						string Candidate = Path.Combine( Directory.Trim(), FileName );
+						if( File.Exists( Candidate ) )
+						{
+							return Candidate;
+						}
+					}
+					catch( ArgumentException )
+					{
+						// Ignore PATH entries with invalid characters.
+					}
+				}
+			}
+			throw new BuildException( "Could not find {0} in the environment set up by Visual Studio ({1}). Make sure the 'Desktop development with C++' workload and a Windows 10/11 SDK are installed.", FileName, ModernVisualStudioInstallDir );
+		}
 		/** Installation folder of the Windows SDK, e.g. C:\Program Files\Microsoft SDKs\Windows\v6.0A\ */
 		static string WindowsSDKDir = "";
 
@@ -884,6 +1009,35 @@ namespace UnrealBuildTool
 		{
 			if( !bAreEnvironmentVariablesAlreadyInitialized )
 			{
+				// Prefer Visual Studio 2017 or newer (2022 first) unless told to use Visual Studio 2010 (set UE3_USE_VS2010=1).
+				if( String.IsNullOrEmpty( Environment.GetEnvironmentVariable( "UE3_USE_VS2010" ) ) )
+				{
+					ModernVisualStudioInstallDir = FindModernVisualStudioInstallDir();
+				}
+				if( ModernVisualStudioInstallDir.Length > 0 )
+				{
+					bUseModernVisualStudio = true;
+
+					// Determine 32 vs 64 bit. Worth noting that WOW64 will report x86.
+					bool bHostIs64Bit = Environment.GetEnvironmentVariable( "PROCESSOR_ARCHITECTURE" ) == "AMD64" || Environment.GetEnvironmentVariable( "PROCESSOR_ARCHITEW6432" ) == "AMD64";
+
+					// vcvarsall.bat sets up PATH/INCLUDE/LIB (including the Windows 10/11 SDK) for the requested host/target pair.
+					string TargetArchitecture;
+					if( Platform == CPPTargetPlatform.Win64 )
+					{
+						TargetArchitecture = bHostIs64Bit ? "amd64" : "x86_amd64";
+					}
+					else
+					{
+						TargetArchitecture = bHostIs64Bit ? "x64_x86" : "x86";
+					}
+					Utils.SetEnvironmentVariablesFromBatchFile( Path.Combine( ModernVisualStudioInstallDir, "VC\\Auxiliary\\Build\\vcvarsall.bat" ), TargetArchitecture );
+
+					WindowsSDKDir = Environment.GetEnvironmentVariable( "WindowsSdkDir" ) ?? "";
+					bSupports64bitExecutables = bHostIs64Bit;
+					bAreEnvironmentVariablesAlreadyInitialized = true;
+					return;
+				}
 				string VCVarsBatchFile = "";
 
 				// Grab path to Visual Studio binaries from the system environment

@@ -6,6 +6,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{E1566418-F6FA-4233-A89C-E05960D6E3CB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CISMonitorService</RootNamespace>
     <AssemblyName>CISMonitorService</AssemblyName>
