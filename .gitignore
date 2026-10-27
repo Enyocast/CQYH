@@ -22,3 +22,11 @@ Client/client/UE3/Binaries/Win32/*.exp
 
 # CMake build trees (Visual Studio / Ninja) of the server
 Server/build/
+
+# Client: generated or local-run output (not source)
+Client/client/UE3/Engine/Shaders/WorkingDirectory/
+Client/client/UE3/Development/Intermediate/
+Client/client/UE3/Development/Src/Intermediate/
+Client/client/UE3/Development/Src/UnrealBuildTool/obj/Debug/
+# written by the script compiler (make); regenerated, and only when the compile has zero warnings
+Client/client/UE3/MMOGame/Script/Manifest.txt
