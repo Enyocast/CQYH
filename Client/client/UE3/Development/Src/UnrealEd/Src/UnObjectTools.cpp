@@ -4264,7 +4264,7 @@ namespace ThumbnailTools
 		}
 
 		ENQUEUE_UNIQUE_RENDER_COMMAND(
-			BeginCommand,
+			EndSceneCommand,
 		{
 			RHIEndScene();
 		});

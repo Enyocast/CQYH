@@ -34,7 +34,7 @@ public:
 	DECLARE_SIMPLE_NOTIFY_PROPERTY_AND_VALUE( bool, IsSelected );
 
 	/** The status of the unit test */
-	DECLARE_SIMPLE_NOTIFY_PROPERTY_AND_VALUE( EUnitTestStatus^, Status );
+	DECLARE_SIMPLE_NOTIFY_PROPERTY_AND_VALUE( EUnitTestStatus, Status );
 
 	/** Simplified output from the text */
 	DECLARE_SIMPLE_NOTIFY_PROPERTY_AND_VALUE( String^, OutputText );

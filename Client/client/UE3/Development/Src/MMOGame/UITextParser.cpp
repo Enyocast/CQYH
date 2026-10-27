@@ -21,7 +21,7 @@
 
 #define WeaponTypeHelperMacro(s, n, i, count, singleLimit ) \
     if(types##s->bWeaponType##s##n)	\
-	{ret += MMOUI::ParseLocalizedPropertyPath( TEXT("Properties.EWeaponType."TEXT(#i)) ) + TEXT(" "); ++count; singleLimit = n; }
+	{ret += MMOUI::ParseLocalizedPropertyPath( TEXT("Properties.EWeaponType." TEXT(#i)) ) + TEXT(" "); ++count; singleLimit = n; }
 //{ret += Localize(TEXT("EWeaponType"), TEXT(#i), TEXT("Properties")) + TEXT(" "); ++count; singleLimit = n; }
 
 #define WeaponTypeHelperMacro2(s, n, i, count, singleLimit )	WeaponTypeHelperMacro(s, n, EWT_Weapon_##i, count, singleLimit )

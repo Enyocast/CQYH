@@ -24,7 +24,8 @@ namespace UnrealBuildTool
 			File.Delete(TempFileName);
 			using (FileStream ResponseFileStream = new FileStream(TempFileName, FileMode.Create, FileAccess.Write))
 			{
-				using (StreamWriter StreamWriter = new StreamWriter(ResponseFileStream))
+				// UTF-8 with a BOM: without it link.exe reads the file in the ANSI code page and mangles paths that contain non-ASCII characters.
+					using (StreamWriter StreamWriter = new StreamWriter(ResponseFileStream, new UTF8Encoding(true)))
 				{
 					foreach (string Line in Lines)
 					{

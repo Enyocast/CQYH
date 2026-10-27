@@ -156,6 +156,9 @@
     <ClCompile Include="Src\UnMath.cpp">
       <Filter>Src</Filter>
     </ClCompile>
+    <ClCompile Include="Src\ModernMSVCShims.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
     <ClCompile Include="Src\UnMathTest.cpp">
       <Filter>Src</Filter>
     </ClCompile>

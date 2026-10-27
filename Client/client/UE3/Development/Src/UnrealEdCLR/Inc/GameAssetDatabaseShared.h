@@ -177,7 +177,7 @@ ref struct MGameAssetJournalEntry
 		DebugStringBuilder->Append("\t");
 		DebugStringBuilder->Append(UserName);
 		DebugStringBuilder->Append("\t");
-		DebugStringBuilder->Append(Type);
+		DebugStringBuilder->Append((int)Type);
 		DebugStringBuilder->Append("\t");
 		DebugStringBuilder->Append(Tag);
 		DebugStringBuilder->Append("\t");

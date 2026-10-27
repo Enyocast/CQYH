@@ -152,6 +152,7 @@
     <ClCompile Include="Src\DlgServerUniqueIDSearch.cpp" />
     <ClCompile Include="Src\ExportAllObjectMTCommandlet.cpp" />
     <ClCompile Include="Src\ExportExcel.cpp" />
+    <ClCompile Include="Src\WxImageShims.cpp" />
     <ClCompile Include="Src\GM.cpp" />
     <ClCompile Include="Src\GMCommandPage.cpp" />
     <ClCompile Include="Src\GMExec.cpp" />

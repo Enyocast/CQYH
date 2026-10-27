@@ -95,7 +95,7 @@ Visual Studio and the DirectX SDK come from Microsoft. Everything else is hosted
 | Needed for | Dependency | Download |
 |---|---|---|
 | Server build | Visual Studio 2022 Windows SDK: 10.0 Platform Toolset: v143 | Microsoft (not hosted) |
-| Client build | Visual Studio 2010 + Service Pack 1, DirectX SDK (June 2010) | Microsoft (not hosted) |
+| Client build | Visual Studio 2022 Windows SDK: 10.0 Platform Toolset: v143 (workloads: Desktop development with C++, .NET desktop development with the .NET Framework 4.8 targeting pack), DirectX SDK (June 2010) | Microsoft (not hosted) |
 | Database | MySQL 5.5.62 (64-bit MSI) – the original notes also mention 5.1 | [`MySQL Install.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/MySQL%20Install.7z) |
 | Database tool | Navicat for MySQL 12.1 (64-bit) | [`Navicat Install.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/Navicat%20Install.7z) |
 | Client troubleshooting | DirectX repair tool (blank-screen and DirectX errors on old clients) | [`DirectX 4.2 Repair Tool.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/DirectX%204.2%20Repair%20Tool.7z) |
@@ -106,6 +106,29 @@ Visual Studio and the DirectX SDK come from Microsoft. Everything else is hosted
 - **Navicat** is commercial software and needs a valid licence; the official version is on the [Navicat website](https://www.navicat.com/en/products#navicat). Any MySQL client works if you prefer another.
 - **Legacy client problems:** if the DirectX SDK installer fails, uninstall the Microsoft Visual C++ redistributables (2005 to 2022), reinstall the SDK, then run the DirectX repair tool. The details are in `Documentation.7z`.
 - Packaged client builds, packaged server builds and the rest of the release are in the same folder.
+
+### Building the client with Visual Studio 2022
+
+Everything in `Client` opens and builds from Visual Studio 2022; Visual Studio 2010 is no longer required.
+
+**Build order: engine first, then the client scripts.**
+
+1. Open `UE3.sln` and build the engine (`MMOGame Win32` for a 32-bit client). This also produces `UnrealBuildTool` on the way and writes the game executable to `UE3\Binaries\Win32`.
+2. Then open `MMOGame.sln` and build it to compile the UnrealScript (`.uc` to `.u` packages in `UE3\MMOGame\Script`). It cannot run before step 1 because it needs the game executable; if none is found it stops with a message saying so.
+3. The cooked game content comes from [Client Assets](#client-assets-required-to-build-and-run-the-client), not from a build.
+
+- **`UE3.sln`** (in `client\UE3\Development\Src`) builds the engine and game executables. Its projects use toolset v143 and Windows SDK 10.0 and hand the actual compile to `UnrealBuildTool`, which now finds Visual Studio 2022 itself (via `vswhere` and `vcvarsall.bat`) instead of requiring Visual Studio 2010. `UnrealBuildTool` is built from source automatically the first time it is needed (`Targets\Build.bat`), so there is no separate step for it. Build the target you need, for example `MMOGame Win32` (output: `UE3\Binaries\Win32\MMOGame-Win32-<Configuration>.exe`).
+- **`MMOGame.sln`** is the UnrealScript project. The old `.ucproj` needed a Visual Studio 2010 extension, so it was replaced by `MMOGameScript.vcxproj`: it lists the `.uc` sources and its Build runs the UE3 script compiler (`MMOGame.exe make -auto -NOPAUSEONSUCCESS -full -DEMOMODE`) using the first `MMOGame.com` / `MMOGame.exe` it finds in `UE3\Binaries\Win32` or `Win64`. Visual Studio has no UnrealScript syntax highlighting; use an editor with an UnrealScript extension for that.
+- The C# projects target .NET Framework 4.8, because Visual Studio 2022 does not ship the 3.5 and 4.0 targeting packs.
+- The DirectX SDK (June 2010) is still required: `UnrealBuildTool` reads it through the `DXSDK_DIR` environment variable.
+- Environment variables: set `UE3_VS_INSTALL_DIR` to pick a specific Visual Studio installation, or `UE3_USE_VS2010=1` to fall back to the original Visual Studio 2010 toolchain.
+- **Status:** the engine and game (`MMOGame Win32`, Debug) compile and link with Visual Studio 2022 (v143).
+- **Third-party libraries are Visual Studio 2010 builds**, so a few things are done at build/link time rather than by rebuilding them:
+  - FBX import is left out of Visual Studio 2017+ builds (the bundled FBX SDK rejects newer compilers).
+  - `Core\Src\ModernMSVCShims.cpp` and `UnrealEd\Src\WxImageShims.cpp` redirect a few runtime functions the old libraries import (`__iob_func`, `std::_Container_base12`, the `wxImage` move operations) to equivalents.
+  - The linker rejects objects built with different `_MSC_VER` values, so the `/FAILIFMISMATCH:_MSC_VER=1600` marker inside some prebuilt `.lib` files (`recastd`, `squishd`, `FxSDKd`/`FxCGd`/`FxAnalysisd`, `nvTriStripD`, `NxTetraDebug`, `ConvexDecompositionDEBUG`) was changed to `1900`. These `.lib` files are part of **Client Assets**, so use the ones from the Client Assets download that carry this change.
+  - Other configurations (Release/Shipping, Win64) may need the same treatment for their library variants; the first link error names the library.
+
 ---
 ## 🔗 Quick Links
 

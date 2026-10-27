@@ -35,7 +35,7 @@ void CMessageHandler::Send_AuctionBuy(UINT32 id, INT64 price)
 	C2M_AUCTION_BUY msg;
 	msg.wMsg = c2m_auction_buy;
 	msg.dwAuctionID = id;
-	msg.llPrice = price;
+	msg.llBidPrice = price;
 	_Send(&msg, sizeof(msg));
 }
 

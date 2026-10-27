@@ -1310,6 +1310,58 @@ void DecomposeUCXMesh( const TArray<FVector>& CollisionVertices, const TArray<IN
 
 	
 
+#if !WITH_FBX
+// UnFbxImporter.h (which normally declares this) is only compiled when FBX support is enabled.
+struct ExistingStaticMeshData
+{
+	TArray<UMaterialInterface*>	ExistingElementMaterial;
+	TArray<UBOOL>				ExistingElementCollision;
+	TArray<UBOOL>				ExistingElementShadowCasting;
+
+	UBOOL						ExistingUseSimpleLineCollision;
+	UBOOL						ExistingUseSimpleBoxCollision;
+	UBOOL						ExistingUseSimpleRigidBodyCollision;
+	UBOOL						ExistingUseFullPrecisionUVs;
+	UBOOL						ExistingUsedForInstancing;
+	// [ NVCHANGE_BEGIN_JC - TESSELLATION
+	UBOOL						ExistingEnableCrackFreeSmoothNormals;
+	// NVCHANGE_END_JC - TESSELLATION ] 
+	// [ NVCHANGE_BEGIN_JC - TESSELLATION Dominant data in texture
+	UBOOL						ExistingEnableDominantDataTexture;
+	// NVCHANGE_END_JC - TESSELLATION Dominant data in texture ]
+	// [ NVCHANGE_BEGIN_JC - TESSELLATION PATCH
+	UBOOL						ExistingEnablePnAEN;
+	// NVCHANGE_END_JC - TESSELLATION PATCH ]
+	// [ NVCHANGE_BEGIN_JC - TESSELLATION LOD
+	FLOAT						ExistingDistToCamForFullTessFactor;
+	FLOAT						ExistingRadiusToFadeOutTessFactor;
+	FLOAT						ExistingMaterialTessFactor;
+	// NVCHANGE_END_JC - TESSELLATION LOD ]
+
+	UBOOL						ExistingUseMaximumStreamingTexelRatio;
+	UBOOL						ExistingPartitionForEdgeGeometry;
+	UBOOL						ExistingCanBecomeDynamic;
+	UBOOL						ExistingStripkDOPForConsole;
+
+	INT							ExistingLightMapResolution;
+	INT							ExistingLightMapCoordinateIndex;
+	INT							ExistingVertexPositionVersionNumber;
+
+	FRotator					ExistingThumbnailAngle;
+	FLOAT						ExistingThumbnailDistance;
+
+	UModel*						ExistingCollisionModel;
+	URB_BodySetup*				ExistingBodySetup;
+
+	FLOAT						ExistingStreamingDistanceMultiplier;
+	FLOAT						ExistingLODMaxRange;
+	FLOAT						ExistingLODDistanceRatio;
+
+	// A mapping of vertex positions to their color in the existing static mesh
+	TMap<FVector, FColor>		ExistingVertexColorData;
+};
+#endif // !WITH_FBX
+
 ExistingStaticMeshData* SaveExistingStaticMeshData(UStaticMesh* ExistingMesh)
 {
 	struct ExistingStaticMeshData* ExistingMeshDataPtr = NULL;

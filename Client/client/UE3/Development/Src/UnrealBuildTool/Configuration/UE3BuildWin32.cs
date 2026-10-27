@@ -28,6 +28,18 @@ namespace UnrealBuildTool
 			GlobalCPPEnvironment.Definitions.Add("_WIN32_WINNT=0x0502");
 			GlobalCPPEnvironment.Definitions.Add("WINVER=0x0502");
 
+			// The engine compiles everything with /Zp4 (see VCToolChain.cs), but the Windows 10 SDK headers check that structs use the
+			// default packing and fail to compile otherwise. This is the SDK's documented opt-out.
+			GlobalCPPEnvironment.Definitions.Add("WINDOWS_IGNORE_PACKING_MISMATCH=1");
+
+			// <hash_set>/<hash_map> (used by the MMO code) are an error on newer compilers unless this is defined.
+			GlobalCPPEnvironment.Definitions.Add("_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS=1");
+
+			// The prebuilt third party libraries were built with Visual Studio 2010. Its mismatch markers (_MSC_VER) would otherwise stop them linking.
+			GlobalCPPEnvironment.Definitions.Add("_ALLOW_MSC_VER_MISMATCH=1");
+			GlobalCPPEnvironment.Definitions.Add("_ALLOW_RUNTIME_LIBRARY_MISMATCH=1");
+			GlobalCPPEnvironment.Definitions.Add("_ALLOW_ITERATOR_DEBUG_LEVEL_MISMATCH=1");
+
 			// If compiling as a dll, set the relevant defines
 			if( BuildConfiguration.bCompileAsdll )
 			{
@@ -173,10 +185,17 @@ namespace UnrealBuildTool
 			FinalLinkEnvironment.ExcludedLibraries.Add("LIBCPMTD");
 			FinalLinkEnvironment.ExcludedLibraries.Add("LIBCPD");
 
+			// The prebuilt third party libraries (Visual Studio 2010 era) call printf/scanf style functions that newer runtimes only provide through this library.
+			if (VCToolChain.UseModernVisualStudio())
+			{
+				FinalLinkEnvironment.AdditionalLibraries.Add("legacy_stdio_definitions.lib");
+			}
+
 			// Add the library used for the delayed loading of DLLs.
 			FinalLinkEnvironment.AdditionalLibraries.Add( "delayimp.lib" );
 
-            if (UE3BuildConfiguration.bCompileFBX)
+            // The bundled FBX SDK is a Visual Studio 2010 build (and its headers reject newer compilers), so FBX import is left out of VS2017+ builds.
+			if (UE3BuildConfiguration.bCompileFBX && !VCToolChain.UseModernVisualStudio())
             {
                 // Compile and link with FBX.
                 GlobalCPPEnvironment.Definitions.Add("WITH_FBX=1");
@@ -786,6 +805,7 @@ namespace UnrealBuildTool
 					GlobalCPPEnvironment.FrameworkAssemblyDependencies.Add( "PresentationCore.dll" );
 					GlobalCPPEnvironment.FrameworkAssemblyDependencies.Add( "PresentationFramework.dll" );
 					GlobalCPPEnvironment.FrameworkAssemblyDependencies.Add( "WindowsBase.dll" );
+					GlobalCPPEnvironment.FrameworkAssemblyDependencies.Add( "System.Xaml.dll" );
 				}
 
 				// Add private assembly dependencies.  If any of these are changed, then CLR projects will

@@ -1052,7 +1052,7 @@ struct FSavePkg
 
 struct FSavePkgCompare
 {
-	bool operator()(const FSavePkg& lhs, const FSavePkg& rhs)
+	bool operator()(const FSavePkg& lhs, const FSavePkg& rhs) const
 	{
 		return lhs.Pkg < rhs.Pkg;
 	}

@@ -36,6 +36,12 @@ public:
 	{
 		 return (Data & Mask) != 0;
 	}
+	// The reference member makes the implicit copy assignment deleted on newer compilers; assigning a bit reference copies the bit value.
+	FORCEINLINE FBitReference& operator=(const FBitReference& Copy)
+	{
+		*this = (UBOOL)Copy;
+		return *this;
+	}
 	FORCEINLINE void operator=(const UBOOL NewValue)
 	{
 		if(NewValue)

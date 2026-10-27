@@ -1011,7 +1011,7 @@ class USkeletalMeshComponent : public UMeshComponent
 	class UMorphTarget* FindMorphTarget(FName MorphTargetName);
 	class UMorphNodeBase* FindMorphNode(FName InNodeName);
 
-	FORCEINLINE FMatrix	GetBoneMatrix(DWORD BoneIdx) const;
+	FMatrix	GetBoneMatrix(DWORD BoneIdx) const;
 
 	/**
 	 * returns the bone atom for the bone at the specified index

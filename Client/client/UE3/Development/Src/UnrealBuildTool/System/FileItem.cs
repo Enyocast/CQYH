@@ -168,15 +168,26 @@ namespace UnrealBuildTool
 			Directory.CreateDirectory(Path.GetDirectoryName(AbsolutePath));
 
 			// Only write the file if its contents have changed.
-			if (!File.Exists(AbsolutePath) || Utils.ReadAllText(AbsolutePath) != Contents)
+			if (!File.Exists(AbsolutePath) || Utils.ReadAllText(AbsolutePath) != Contents || !FileStartsWithUtf8Bom(AbsolutePath))
 			{
-				File.WriteAllText(AbsolutePath, Contents);
+				// UTF-8 with a BOM so the compiler reads paths containing non-ASCII characters correctly regardless of /source-charset.
+				File.WriteAllText(AbsolutePath, Contents, new System.Text.UTF8Encoding(true));
 			}
 
 			return GetItemByPath(AbsolutePath);
 		}
 
-		/** Deletes the file. */
+		/** Returns true if the file begins with a UTF-8 byte order mark. */
+			private static bool FileStartsWithUtf8Bom(string AbsolutePath)
+			{
+				using (FileStream Stream = File.OpenRead(AbsolutePath))
+				{
+					byte[] Head = new byte[3];
+					return Stream.Read(Head, 0, 3) == 3 && Head[0] == 0xEF && Head[1] == 0xBB && Head[2] == 0xBF;
+				}
+			}
+
+			/** Deletes the file. */
 		public void Delete()
 		{
 			Debug.Assert(_bExists);

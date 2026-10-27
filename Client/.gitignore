@@ -308,3 +308,8 @@
 *.usm
 *.wav
 *.zip
+
+# Visual Studio migration reports (written when a solution is opened in a newer Visual Studio)
+UpgradeLog*.htm
+UpgradeLog*.XML
+_UpgradeReport_Files/

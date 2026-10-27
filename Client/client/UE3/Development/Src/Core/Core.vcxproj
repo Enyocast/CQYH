@@ -191,6 +191,7 @@
     <ClCompile Include="Src\UnitTest.cpp" />
     <ClCompile Include="Src\UnLinker.cpp" />
     <ClCompile Include="Src\UnMath.cpp" />
+    <ClCompile Include="Src\ModernMSVCShims.cpp" />
     <ClCompile Include="Src\UnMathTest.cpp" />
     <ClCompile Include="Src\UnMem.cpp" />
     <ClCompile Include="Src\UnMisc.cpp" />

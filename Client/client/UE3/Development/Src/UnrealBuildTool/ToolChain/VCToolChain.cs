@@ -47,6 +47,14 @@ namespace UnrealBuildTool
 			// Disable "The file contains a character that cannot be represented in the current code page" warning for non-US windows.
 			Result += " /wd4819";
 
+			// Many source files contain GBK-encoded Chinese text (no BOM). The code was built on a Chinese-locale machine, where the
+			// default code page decodes it correctly; on other system languages the compiler would misread it. Pin the character
+			// sets so the build does not depend on the system language (files with a BOM are still read as UTF-8).
+			if( UseModernVisualStudio() )
+			{
+				Result += " /source-charset:gbk /execution-charset:gbk";
+			}
+
 			// Handle Common Language Runtime support (C++/CLI)
 			if( CompileEnvironment.CLRMode == CPPCLRMode.CLREnabled )
 			{
@@ -201,8 +209,13 @@ namespace UnrealBuildTool
 				Result += " /GR-";
 			}
 
-			// Treat warnings as errors.
-			Result += " /WX";
+			// Treat warnings as errors. The engine dates from 2012 and produces warnings with newer compilers (for example C4595 for
+			// its inline operator new), so this is only done for the original Visual Studio 2010 toolchain unless
+			// UE3_TREAT_WARNINGS_AS_ERRORS is set.
+			if( !UseModernVisualStudio() || !String.IsNullOrEmpty( Environment.GetEnvironmentVariable( "UE3_TREAT_WARNINGS_AS_ERRORS" ) ) )
+			{
+				Result += " /WX";
+			}
 
 			// Level 4 warnings.
 			Result += " /W4";
@@ -529,6 +542,12 @@ namespace UnrealBuildTool
 							);
 					FileArguments += string.Format(" /Fd\"{0}\"", PDBFile.AbsolutePath);
 
+					// Several cl.exe processes can share one PDB (the PCH ones); /FS serialises access through mspdbsrv on newer compilers.
+					if( UseModernVisualStudio() )
+					{
+						FileArguments += " /FS";
+					}
+
 					// Only use the PDB as an output file if we want PDBs and this particular action is
 					// the one that produces the PDB (as opposed to no debug info, where the above code
 					// is needed, but not the output PDB, or when multiple files share a single PDB, so
@@ -570,6 +589,24 @@ namespace UnrealBuildTool
 			return Result;
 		}
 
+		/**
+		 * rc.exe cannot open files whose paths contain characters outside the system code page (for example a Chinese folder name),
+		 * so with the newer toolchain paths below the working directory are passed relative to it.
+		 */
+		static string RelativeForResourceCompiler( string Path )
+		{
+			if( UseModernVisualStudio() && System.IO.Path.IsPathRooted( Path ) )
+			{
+				string WorkingDirectory = System.IO.Path.GetFullPath( "." ).TrimEnd( System.IO.Path.DirectorySeparatorChar ) + System.IO.Path.DirectorySeparatorChar;
+				string FullPath = System.IO.Path.GetFullPath( Path );
+				if( FullPath.StartsWith( WorkingDirectory, StringComparison.OrdinalIgnoreCase ) )
+				{
+					return FullPath.Substring( WorkingDirectory.Length );
+				}
+			}
+			return Path;
+		}
+
 		public static CPPOutput CompileRCFiles(CPPEnvironment Environment, List<FileItem> RCFiles)
 		{
 			CPPOutput Result = new CPPOutput();
@@ -597,7 +634,7 @@ namespace UnrealBuildTool
 				// Include paths.
 				foreach (string IncludePath in Environment.IncludePaths)
 				{
-					CompileAction.CommandArguments += string.Format(" /i \"{0}\"", IncludePath);
+					CompileAction.CommandArguments += string.Format(" /i \"{0}\"", RelativeForResourceCompiler(IncludePath));
 				}
 
 				// Preprocessor definitions.
@@ -614,12 +651,12 @@ namespace UnrealBuildTool
 						)
 					);
 				CompileAction.ProducedItems.Add(CompiledResourceFile);
-				CompileAction.CommandArguments += string.Format(" /fo \"{0}\"", CompiledResourceFile.AbsolutePath);
+				CompileAction.CommandArguments += string.Format(" /fo \"{0}\"", RelativeForResourceCompiler(CompiledResourceFile.AbsolutePath));
 				Result.ObjectFiles.Add(CompiledResourceFile);
 
 				// Add the RC file as a prerequisite of the action.
 				CompileAction.PrerequisiteItems.Add(RCFile);
-				CompileAction.CommandArguments += string.Format(" \"{0}\"", RCFile.AbsolutePath);
+				CompileAction.CommandArguments += string.Format(" \"{0}\"", RelativeForResourceCompiler(RCFile.AbsolutePath));
 
 				// Add the files included by the RC file as prerequisites of the action.
 				foreach (FileItem IncludedFile in Environment.GetIncludeDependencies(RCFile))
@@ -970,6 +1007,27 @@ namespace UnrealBuildTool
 			return "";
 		}
 
+		/** Whether the Visual Studio 2017+ detection has been done yet. */
+		static bool bModernVisualStudioDetected = false;
+
+		/**
+		 * Returns true if a Visual Studio 2017 or newer toolchain will be used (detected on first use). Set UE3_USE_VS2010=1 to
+		 * use the original Visual Studio 2010 toolchain instead.
+		 */
+		public static bool UseModernVisualStudio()
+		{
+			if( !bModernVisualStudioDetected )
+			{
+				ModernVisualStudioInstallDir = "";
+				if( String.IsNullOrEmpty( Environment.GetEnvironmentVariable( "UE3_USE_VS2010" ) ) )
+				{
+					ModernVisualStudioInstallDir = FindModernVisualStudioInstallDir();
+				}
+				bModernVisualStudioDetected = true;
+			}
+			return ModernVisualStudioInstallDir.Length > 0;
+		}
+
 		/** Looks the tool up on the PATH that vcvarsall.bat set up (it puts the right host/target tools on it). */
 		static string FindToolOnPath( string ToolName )
 		{
@@ -1010,11 +1068,7 @@ namespace UnrealBuildTool
 			if( !bAreEnvironmentVariablesAlreadyInitialized )
 			{
 				// Prefer Visual Studio 2017 or newer (2022 first) unless told to use Visual Studio 2010 (set UE3_USE_VS2010=1).
-				if( String.IsNullOrEmpty( Environment.GetEnvironmentVariable( "UE3_USE_VS2010" ) ) )
-				{
-					ModernVisualStudioInstallDir = FindModernVisualStudioInstallDir();
-				}
-				if( ModernVisualStudioInstallDir.Length > 0 )
+				if( UseModernVisualStudio() )
 				{
 					bUseModernVisualStudio = true;
 

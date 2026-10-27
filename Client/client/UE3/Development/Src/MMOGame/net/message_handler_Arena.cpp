@@ -5,6 +5,17 @@
 #include "MMOArenaManager.h"
 
 
+// The shared message headers no longer declare these two header-only messages (only their ids), so declare them here.
+namespace ExternalMessage
+{
+	struct C2M_ARENA_FUND : MESSAGE_HEADER
+	{
+	};
+	struct C2G_ARENA_REWARD : MESSAGE_HEADER
+	{
+	};
+}
+
 #define OfflineModeTest 0
 
 //====================================================================================================

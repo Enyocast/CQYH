@@ -499,7 +499,7 @@ void MMOAuctionManager::OnServer_AuctionFinish( M2C_AUCTION_FINISHED* msg )
 	}
 
 	// 竞拍成功，Failed/Buying列表中移除
-	if(msg->byAuctionStatus)
+	if(msg->bySuccess)
 	{
 		if(TryRemoveFromList(_auctionMyFailedAuctionItemList, msg->dwAuctionID))
 		{

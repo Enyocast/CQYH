@@ -2260,7 +2260,7 @@ void SceneConfigDataExcelImporter::PostInitData()
 	{
 		const FExportMap* srcDat = it->second;
 		FExportMap* expMap = UGlobalMapInfo::GetSingleton()->FindMapInfoPointer(srcDat->ServerID);
-		warnf(NAME_Error, TEXT("====== [UGlobalMapInfo::LOAD_SCENE[%d %s]") ,srcDat->ServerID, srcDat->MapName);
+		warnf(NAME_Error, TEXT("====== [UGlobalMapInfo::LOAD_SCENE[%d %s]") ,srcDat->ServerID, *srcDat->MapName);
 		if(expMap)
 		{
 			*expMap = *srcDat;

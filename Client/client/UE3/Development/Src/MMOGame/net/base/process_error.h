@@ -24,7 +24,7 @@
 	{																\
 		if (!(__condition__))										\
 		{															\
-            warnf(NAME_Error, TEXT("LOG_PROCESS_ERROR(")TEXT(#__condition__)TEXT(") at line %d in function %s() file \"%s\""), \
+            warnf(NAME_Error, TEXT("LOG_PROCESS_ERROR(") TEXT(#__condition__) TEXT(") at line %d in function %s() file \"%s\""), \
                 __LINE__, ANSI_TO_TCHAR(__FUNCTION__), ANSI_TO_TCHAR(__FILE__));                  \
 				appDebugBreak(); \
 			goto Exit0;												\
@@ -36,7 +36,7 @@
 	{																\
 		if (!(__condition__))										\
 		{															\
-        warnf(NAME_Error, TEXT("LOG_CHECK_ERROR(")TEXT(#__condition__)TEXT(") at line %d in function %s() file \"%s\""), \
+        warnf(NAME_Error, TEXT("LOG_CHECK_ERROR(") TEXT(#__condition__) TEXT(") at line %d in function %s() file \"%s\""), \
                 __LINE__, ANSI_TO_TCHAR(__FUNCTION__), ANSI_TO_TCHAR(__FILE__));                  \
 		}															\
 	} while (0)
@@ -57,7 +57,7 @@
 		if (!(__condition__))										\
 		{															\
 			nResult = __result__;									\
-            warnf(NAME_Error, TEXT("LOG_PROCESS_ERROR_RET_CODE(")TEXT(#__condition__)TEXT(") at line %d in function %s() file \"%s\""), \
+            warnf(NAME_Error, TEXT("LOG_PROCESS_ERROR_RET_CODE(") TEXT(#__condition__) TEXT(") at line %d in function %s() file \"%s\""), \
                 __LINE__, ANSI_TO_TCHAR(__FUNCTION__), ANSI_TO_TCHAR(__FILE__));                  \
 			goto Exit0;												\
 		}															\
@@ -70,7 +70,7 @@
 	{																\
 	if (!(__condition__))										\
 		{															\
-		warnf(NAME_Error, TEXT("LOG_CHECK_ERROR(")TEXT(#__condition__)TEXT(") at line %d in function %s() file \"%s\""), \
+		warnf(NAME_Error, TEXT("LOG_CHECK_ERROR(") TEXT(#__condition__) TEXT(") at line %d in function %s() file \"%s\""), \
 		__LINE__, ANSI_TO_TCHAR(__FUNCTION__), ANSI_TO_TCHAR(__FILE__));                  \
 		check(__condition__);	\
 		return 0;\
@@ -83,7 +83,7 @@
 	if (!(__condition__))										\
 		{															\
 		check(__condition__);	\
-		warnf(NAME_Error, TEXT("LOG_CHECK_ERROR(")TEXT(#__condition__)TEXT(") at line %d in function %s() file \"%s\""), \
+		warnf(NAME_Error, TEXT("LOG_CHECK_ERROR(") TEXT(#__condition__) TEXT(") at line %d in function %s() file \"%s\""), \
 		__LINE__, ANSI_TO_TCHAR(__FUNCTION__), ANSI_TO_TCHAR(__FILE__));                  \
 		return ;\
 		}															\

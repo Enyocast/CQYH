@@ -1059,6 +1059,9 @@
     <ClCompile Include="Src\ExportExcel.cpp">
       <Filter>ExportExcel</Filter>
     </ClCompile>
+    <ClCompile Include="Src\WxImageShims.cpp">
+      <Filter>ExportExcel</Filter>
+    </ClCompile>
     <ClCompile Include="Src\DlgServerUniqueIDSearch.cpp">
       <Filter>Src\Dialogs</Filter>
     </ClCompile>

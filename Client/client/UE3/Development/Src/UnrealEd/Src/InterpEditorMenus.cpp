@@ -5613,7 +5613,9 @@ WxMBInterpEdTrackMenu::WxMBInterpEdTrackMenu(WxInterpEd* InterpEd)
 		{
 			AppendSeparator();
 
+			#if WITH_FBX
 			Append (IDM_INTERP_TRACK_ExportAnimTrackFBX, *LocalizeUnrealEd("ExportAnimTrack"), TEXT( "" ));
+#endif
 		}
 		else if( Track->IsA(UInterpTrackMove::StaticClass()) )
 		{
