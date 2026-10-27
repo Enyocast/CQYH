@@ -48,8 +48,9 @@ public:
 	inline INT32 GetActualLevel(void);
 	inline INT32 GetActualRuneSlot(void);
 
-	inline INT32 GetLevel(void);
-	inline INT32 GetRuneSlot(void);
+	// not inline: these are defined in spell_set.cpp, so they have to be real (externally visible) functions
+	INT32 GetLevel(void);
+	INT32 GetRuneSlot(void);
 
 	inline INT32 GetRefCount(void);
 

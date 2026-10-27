@@ -61,7 +61,7 @@ BOOL _InitAsimov(void)
 {
     INT32 nRetCode = 0;
     CLuaScript* poScript = NULL;
-    IOCP_INIT_PARAM IocpInitParam;
+    ASIO_INIT_PARAM AsioInitParam;
 
     nRetCode = CLog::GetInstance().Init("Robot", 
         g_AsimovConfig.Log.nLogLevelMask, 
@@ -81,15 +81,15 @@ BOOL _InitAsimov(void)
         g_AsimovConfig.Net.nLargePacketCount);
     LOG_PROCESS_ERROR(nRetCode);
 
-    IocpInitParam.nMaxSessionCount = g_AsimovConfig.nMaxSessionCount;
-    IocpInitParam.nThreadCount = g_AsimovConfig.nWorkThreadCount;
-    IocpInitParam.pnMessageSizeList = g_nS2CMessageSize;
+    AsioInitParam.nMaxSessionCount = g_AsimovConfig.nMaxSessionCount;
+    AsioInitParam.nThreadCount = g_AsimovConfig.nWorkThreadCount;
+    AsioInitParam.pnMessageSizeList = g_nS2CMessageSize;
 
-	IocpInitParam.nMaxOperationPerLoop = g_AsimovConfig.Net.nMaxOperationPerLoop;
-	IocpInitParam.nRecvLoopBufferSize = g_AsimovConfig.Net.nRecvLoopBufferSize;
-	IocpInitParam.nSendLoopBufferSize = g_AsimovConfig.Net.nSendLoopBufferSize;
+	AsioInitParam.nMaxOperationPerLoop = g_AsimovConfig.Net.nMaxOperationPerLoop;
+	AsioInitParam.nRecvLoopBufferSize = g_AsimovConfig.Net.nRecvLoopBufferSize;
+	AsioInitParam.nSendLoopBufferSize = g_AsimovConfig.Net.nSendLoopBufferSize;
 
-    g_pNet = g_CreateNetInterface(netIocp, &g_PacketAllocator, &CAsimovMessageHandler::GetInstance(), &IocpInitParam);
+    g_pNet = g_CreateNetInterface(netAsio, &g_PacketAllocator, &CAsimovMessageHandler::GetInstance(), &AsioInitParam);
     LOG_PROCESS_ERROR(g_pNet);
 
     nRetCode = CAsimovMessageHandler::GetInstance().Init(g_pNet, &g_PacketAllocator);
@@ -177,7 +177,7 @@ BOOL _UnInitAsimov(void)
 
     if (g_pNet)
     {
-        nRetCode = g_DestroyNetInterface(netIocp, g_pNet);
+        nRetCode = g_DestroyNetInterface(netAsio, g_pNet);
         LOG_CHECK_ERROR(nRetCode);
         g_pNet = NULL;
     }

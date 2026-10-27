@@ -2349,8 +2349,9 @@ void CItemBag::LoseItemOnDeath(BOOL is_player)
             {
                 INT32 this_type_count = 0;
 
-                if (!items_to_be_dropped[i].empty())
-                    random_shuffle(items_to_be_dropped[i].begin(), items_to_be_dropped[i].end());
+                // std::random_shuffle was removed in C++17: Fisher-Yates with the game's own random generator
+                for (size_t k = items_to_be_dropped[i].size(); k > 1; k--)
+                    std::swap(items_to_be_dropped[i][k - 1], items_to_be_dropped[i][g_Random((UINT32)k)]);
 
                 for (std::vector<Item*>::iterator it = items_to_be_dropped[i].begin(); it != items_to_be_dropped[i].end(); it++)
                 {

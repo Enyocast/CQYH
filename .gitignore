@@ -19,3 +19,6 @@ Client/client/UE3/Development/External/wxWidgets/lib/vc_lib/
 Client/client/UE3/Binaries/Win32/*.map
 Client/client/UE3/Binaries/Win32/*.ilk
 Client/client/UE3/Binaries/Win32/*.exp
+
+# CMake build trees (Visual Studio / Ninja) of the server
+Server/build/

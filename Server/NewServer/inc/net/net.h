@@ -77,23 +77,23 @@ enum NET_TYPE
 
     netSimple,
     netShareMemory,
-    netEpoll,
-    netIocp,
 	netIntranet,
+    netAsio,        // asio based TCP transport for the client facing side (replaced the winsock IOCP and epoll transports)
 
     netTotal
 };
 
-struct IOCP_INIT_PARAM
+// Init parameter of the asio transport (netAsio).
+struct ASIO_INIT_PARAM
 {
-    INT32   nMaxSessionCount;
-    INT32   nThreadCount;
+    INT32   nMaxSessionCount;       // max. simultaneous sessions (accepted + connected)
+    INT32   nThreadCount;           // asio worker threads doing the socket I/O
 
-	INT32	nMaxOperationPerLoop;
-	INT32	nSendLoopBufferSize;
-	INT32	nRecvLoopBufferSize;
+    INT32   nMaxOperationPerLoop;   // max. packets delivered per session in one MainLoop()
+    INT32   nSendLoopBufferSize;    // per-session send ring buffer
+    INT32   nRecvLoopBufferSize;    // per-session receive ring buffer
 
-    INT32*  pnMessageSizeList;
+    INT32*  pnMessageSizeList;      // message size by message id (ExternalMessage::flex_message_size = variable)
 };
 
 struct SIMPLE_INIT_PARAM
@@ -104,17 +104,6 @@ struct SIMPLE_INIT_PARAM
 	INT32 nSendBufSize;
 	INT32 nRecvBufSize;
 	INT32 nPacketBufferSize;
-};
-
-struct EPOLL_INIT_PARAM
-{
-    INT32 nMaxAcceptor;
-    INT32 nMaxConnector;
-    INT32 nMaxSessionCount;
-    INT32 nSendBufSize;
-    INT32 nRecvBufSize;
-    INT32 nPacketBufferSize;
-    INT32*  pnMessageSizeList;
 };
 
 struct SHMEM_INIT_PARAM

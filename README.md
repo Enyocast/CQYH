@@ -67,16 +67,17 @@ Client/
 └── MsgBox.exe                           *GitIgnored*
 
 Server/
+├── CMakeLists.txt             Server build: CMake, C++23 (see Server/BUILD.md)
+├── cmake/                     Shared CMake modules (compiler flags, third-party libs, asio)
 ├── NewServer/
-│   ├── src/                   Server source (universe.sln): gameserver, gateserver, loginserver,
+│   ├── src/                   Server source (CMake): gameserver, gateserver, loginserver,
 │   │                          dbserver, gmserver, manageserver, nameserver, balanceserver, ...
 │   ├── bin/                   Runtime layout: commonconfig (game scripts and data tables),
 │   │                          start/stop scripts, configs
 │   ├── 3rd/                   Third-party libraries (MySQL, Lua, tolua++, zlib, oasdk, ...)
 │   ├── inc/, lib/             Shared headers and libraries
 │   ├── tools/                 gmtool, maintaintool, guardserver, certserver and other tools
-│   ├── test/                  Test projects
-│   └── build/                 Linux Makefile
+│   └── test/                  Test programs (asio_net: transport integration test)
 ├── Common/                    Shared protocol and data definitions (newest version)
 └── Common1/                   Alternative "new protocol" variant (not used by the build)
 ```
@@ -94,7 +95,7 @@ Visual Studio and the DirectX SDK come from Microsoft. Everything else is hosted
 
 | Needed for | Dependency | Download |
 |---|---|---|
-| Server build | Visual Studio 2022 Windows SDK: 10.0 Platform Toolset: v143 | Microsoft (not hosted) |
+| Server build | Visual Studio 2022 (CMake 3.25+ is bundled) Windows SDK: 10.0 Platform Toolset: v143 | Microsoft (not hosted) |
 | Client build | Visual Studio 2022 Windows SDK: 10.0 Platform Toolset: v143 (workloads: Desktop development with C++, .NET desktop development with the .NET Framework 4.8 targeting pack), DirectX SDK (June 2010) | Microsoft (not hosted) |
 | Database | MySQL 5.5.62 (64-bit MSI) – the original notes also mention 5.1 | [`MySQL Install.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/MySQL%20Install.7z) |
 | Database tool | Navicat for MySQL 12.1 (64-bit) | [`Navicat Install.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/Navicat%20Install.7z) |
@@ -128,6 +129,16 @@ Everything in `Client` opens and builds from Visual Studio 2022; Visual Studio 2
   - `Core\Src\ModernMSVCShims.cpp` and `UnrealEd\Src\WxImageShims.cpp` redirect a few runtime functions the old libraries import (`__iob_func`, `std::_Container_base12`, the `wxImage` move operations) to equivalents.
   - The linker rejects objects built with different `_MSC_VER` values, so the `/FAILIFMISMATCH:_MSC_VER=1600` marker inside some prebuilt `.lib` files (`recastd`, `squishd`, `FxSDKd`/`FxCGd`/`FxAnalysisd`, `nvTriStripD`, `NxTetraDebug`, `ConvexDecompositionDEBUG`) was changed to `1900`. These `.lib` files are part of **Client Assets**, so use the ones from the Client Assets download that carry this change.
   - Other configurations (Release/Shipping, Win64) may need the same treatment for their library variants; the first link error names the library.
+
+### Building the server with Visual Studio 2022
+
+The server builds with CMake (x64, C++23). The old makefiles and Visual Studio project files are gone.
+
+1. In the Server folder run `cmake --preset vs2022` (the CMake bundled with Visual Studio 2022 is fine). This generates **`Server\build\vs2022\CQYHServer.sln`**. The first configure downloads asio.
+2. Open `CQYHServer.sln` in Visual Studio 2022 and build the Debug or Release configuration. (Or use `File > Open > Folder...` on `Server` and pick the `vs2022` preset.)
+3. The executables are written to `NewServer\bin\<server>\` as `<server>64.exe` / `<server>64_d.exe`.
+
+The client-facing network layer (gateserver, balanceserver, mgateserver) uses asio. `ctest --preset vs2022-debug` runs its integration test. Options, what is not covered (asimov, bteditor, `tools`) and the GBK source-encoding note are in [`Server/BUILD.md`](Server/BUILD.md).
 
 ---
 ## 🔗 Quick Links

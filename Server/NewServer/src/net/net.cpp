@@ -1,10 +1,9 @@
 #include "stdafx.h"
 #include "net.h"
-#include "iocp.h"
 #include "share_mem_net.h"
 #include "simple_net.h"
-#include "epoll.h"
 #include "intranet.h"
+#include "asio_net.h"
 
 #ifdef WIN32
 #include <iphlpapi.h>
@@ -39,30 +38,6 @@ INet* g_CreateNetInterface(INT32 eNetType, IPacketAllocator* pPacketAllocator, I
 #endif
         }
         break;
-        case netEpoll:
-        {
-#if defined(__linux__)
-            Epoll::CNet* pNet = new Epoll::CNet();
-            LOG_PROCESS_ERROR(pNet);
-
-            pResult = pNet;
-
-            nRetCode = pNet->Init(pPacketAllocator, pNetEventHandler, pInitParam);
-            LOG_PROCESS_ERROR(nRetCode);
-#endif
-        }
-        break;
-        case netIocp:
-        {
-#if defined(WIN32)
-            pResult = new IOCP::CNet;
-            LOG_PROCESS_ERROR(pResult);
-
-            nRetCode = ((IOCP::CNet*)pResult)->Init(pPacketAllocator, pNetEventHandler, pInitParam);
-            LOG_PROCESS_ERROR(nRetCode);
-#endif //WIN32
-        }
-        break;
         case netIntranet:
         {
             Intranet::CNet* pNet = new Intranet::CNet();
@@ -73,6 +48,17 @@ INet* g_CreateNetInterface(INT32 eNetType, IPacketAllocator* pPacketAllocator, I
             nRetCode = pNet->Init(pPacketAllocator, pNetEventHandler, pInitParam);
             LOG_PROCESS_ERROR(nRetCode);
 
+        }
+        break;
+        case netAsio:
+        {
+            AsioNet::CNet* pNet = new AsioNet::CNet();
+            LOG_PROCESS_ERROR(pNet);
+
+            pResult = pNet;
+
+            nRetCode = pNet->Init(pPacketAllocator, pNetEventHandler, pInitParam);
+            LOG_PROCESS_ERROR(nRetCode);
         }
         break;
         default:
@@ -116,30 +102,6 @@ BOOL g_DestroyNetInterface(INT32 eNetType, INet* pNet)
 #endif //WIN32
         }
         break;
-        case netEpoll:
-        {
-#if defined(__linux__)
-            Epoll::CNet* pEpollNet = (Epoll::CNet*)pNet;
-            LOG_PROCESS_ERROR(pEpollNet);
-
-            nRetCode = pEpollNet->UnInit();
-            LOG_PROCESS_ERROR(nRetCode);
-            SAFE_DELETE(pEpollNet);
-#endif
-        }
-        break;
-        case netIocp:
-        {
-#if defined(WIN32)
-            IOCP::CNet* pIocp = (IOCP::CNet*)pNet;
-
-            nRetCode = pIocp->UnInit();
-            LOG_CHECK_ERROR(nRetCode);
-
-            SAFE_DELETE(pIocp);
-#endif //WIN32
-        }
-        break;
         case netIntranet:
         {
             Intranet::CNet* pIntranet = (Intranet::CNet*)pNet;
@@ -148,6 +110,16 @@ BOOL g_DestroyNetInterface(INT32 eNetType, INet* pNet)
             LOG_CHECK_ERROR(nRetCode);
 
             SAFE_DELETE(pIntranet);
+        }
+        break;
+        case netAsio:
+        {
+            AsioNet::CNet* pAsioNet = (AsioNet::CNet*)pNet;
+
+            nRetCode = pAsioNet->UnInit();
+            LOG_CHECK_ERROR(nRetCode);
+
+            SAFE_DELETE(pAsioNet);
         }
         break;
         default:

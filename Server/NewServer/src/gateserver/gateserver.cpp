@@ -47,8 +47,7 @@ CGateServer& CGateServer::GetInstance(void)
 BOOL CGateServer::Init(INetEventHandler* poInterMessageHandler, INetEventHandler* poExternalMessageHandler)
 {
     INT32 nRetCode = 0;
-    IOCP_INIT_PARAM IocpInitParam;
-    EPOLL_INIT_PARAM EpollInitParam;
+    ASIO_INIT_PARAM AsioInitParam;
     SIMPLE_INIT_PARAM SimpleInitParam;
 
     INTRANET_INIT_PARAM IntranetInitParam;
@@ -60,24 +59,13 @@ BOOL CGateServer::Init(INetEventHandler* poInterMessageHandler, INetEventHandler
     LOG_PROCESS_ERROR(nRetCode);
 
     // external - 外联网
-#if defined(WIN32)
-    IocpInitParam.nMaxSessionCount = g_ServerConfig.GT.nMaxClientSessionCount;
-    IocpInitParam.nThreadCount = g_ServerConfig.GT.nWorkThreadCount;
-    IocpInitParam.pnMessageSizeList = g_nC2SMessageSize;
-	IocpInitParam.nMaxOperationPerLoop = g_ServerConfig.GT.Net.nMaxOperationPerLoop;
-	IocpInitParam.nRecvLoopBufferSize = g_ServerConfig.GT.Net.nRecvLoopBufferSize;
-	IocpInitParam.nSendLoopBufferSize = g_ServerConfig.GT.Net.nSendLoopBufferSize;
-    m_pExternalNet = g_CreateNetInterface(netIocp, &m_PacketAllocator, poExternalMessageHandler, &IocpInitParam);
-#else
-    EpollInitParam.nMaxAcceptor = g_ServerConfig.GT.nMaxAcceptor;
-    EpollInitParam.nMaxConnector = g_ServerConfig.GT.nMaxConnector;
-    EpollInitParam.nMaxSessionCount = g_ServerConfig.GT.nMaxSessionCount;
-    EpollInitParam.nSendBufSize = g_ServerConfig.GT.nSendBufSize;
-    EpollInitParam.nRecvBufSize = g_ServerConfig.GT.nRecvBufSize;
-    EpollInitParam.nPacketBufferSize = g_ServerConfig.GT.nPacketBufferSize;
-    EpollInitParam.pnMessageSizeList = g_nC2SMessageSize;
-    m_pExternalNet = g_CreateNetInterface(netEpoll, &m_PacketAllocator, poExternalMessageHandler, &EpollInitParam);
-#endif
+    AsioInitParam.nMaxSessionCount = g_ServerConfig.GT.nMaxClientSessionCount;
+    AsioInitParam.nThreadCount = g_ServerConfig.GT.nWorkThreadCount;
+    AsioInitParam.pnMessageSizeList = g_nC2SMessageSize;
+	AsioInitParam.nMaxOperationPerLoop = g_ServerConfig.GT.Net.nMaxOperationPerLoop;
+	AsioInitParam.nRecvLoopBufferSize = g_ServerConfig.GT.Net.nRecvLoopBufferSize;
+	AsioInitParam.nSendLoopBufferSize = g_ServerConfig.GT.Net.nSendLoopBufferSize;
+    m_pExternalNet = g_CreateNetInterface(netAsio, &m_PacketAllocator, poExternalMessageHandler, &AsioInitParam);
     LOG_PROCESS_ERROR(m_pExternalNet);
 
     // internal - 内联网
@@ -184,11 +172,7 @@ BOOL CGateServer::UnInit(void)
 
     if (m_pExternalNet)
     {
-#if defined(WIN32)
-        nRetCode = g_DestroyNetInterface(netIocp, m_pExternalNet);
-#elif defined(__linux__)
-        nRetCode = g_DestroyNetInterface(netEpoll, m_pExternalNet);
-#endif
+        nRetCode = g_DestroyNetInterface(netAsio, m_pExternalNet);
         LOG_CHECK_ERROR(nRetCode);
         m_pExternalNet = NULL;
     }

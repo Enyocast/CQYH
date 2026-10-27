@@ -542,7 +542,9 @@ BOOL StartDumpThread(DUMP_CHECK_FUNC pDumpCheckFunc, BOOL bDumpHost, const char*
 	//DisableSetUnhandledExceptionFilter();
 	_set_purecall_handler(_crt_handler);
 	set_terminate(_crt_handler);
-	set_unexpected(_crt_handler);
+#if !defined(_MSVC_LANG) || (_MSVC_LANG < 201703L)
+	set_unexpected(_crt_handler);   // removed in C++17 (and never called by the MSVC runtime since VS2015)
+#endif
 	_set_invalid_parameter_handler(_invalid_param_handler);
 	//HookCreateThread();
 	timeBeginPeriod(1);

@@ -44,9 +44,8 @@ CBalanceServer& CBalanceServer::GetInstance(void)
 BOOL CBalanceServer::Init(INetEventHandler* poInterMessageHandler, INetEventHandler* poExternalMessageHandler)
 {
 	INT32 nRetCode = 0;
-    IOCP_INIT_PARAM IocpInitParam;
+    ASIO_INIT_PARAM AsioInitParam;
 	SIMPLE_INIT_PARAM SimpleInitParam;
-	EPOLL_INIT_PARAM EpollInitParam;
 
 	struct in_addr addr;
 	INTRANET_INIT_PARAM IntranetInitParam;
@@ -63,26 +62,15 @@ BOOL CBalanceServer::Init(INetEventHandler* poInterMessageHandler, INetEventHand
 	LOG_PROCESS_ERROR(nRetCode);
 
 	// external
-#if defined(WIN32)
-    IocpInitParam.nMaxSessionCount = g_ServerConfig.BS.nMaxClientSessionCount;
-    IocpInitParam.nThreadCount = g_ServerConfig.BS.nWorkThreadCount;
-    IocpInitParam.pnMessageSizeList = g_nC2SMessageSize;
+    AsioInitParam.nMaxSessionCount = g_ServerConfig.BS.nMaxClientSessionCount;
+    AsioInitParam.nThreadCount = g_ServerConfig.BS.nWorkThreadCount;
+    AsioInitParam.pnMessageSizeList = g_nC2SMessageSize;
 
-	IocpInitParam.nMaxOperationPerLoop = g_ServerConfig.BS.Net.nMaxOperationPerLoop;
-	IocpInitParam.nRecvLoopBufferSize = g_ServerConfig.BS.Net.nRecvLoopBufferSize;
-	IocpInitParam.nSendLoopBufferSize = g_ServerConfig.BS.Net.nSendLoopBufferSize;
+	AsioInitParam.nMaxOperationPerLoop = g_ServerConfig.BS.Net.nMaxOperationPerLoop;
+	AsioInitParam.nRecvLoopBufferSize = g_ServerConfig.BS.Net.nRecvLoopBufferSize;
+	AsioInitParam.nSendLoopBufferSize = g_ServerConfig.BS.Net.nSendLoopBufferSize;
 
-    m_pExternalNet = g_CreateNetInterface(netIocp, &m_PacketAllocator, poExternalMessageHandler, &IocpInitParam);
-#else
-    EpollInitParam.nMaxAcceptor = g_ServerConfig.BS.Net.nMaxAcceptor;
-    EpollInitParam.nMaxConnector = g_ServerConfig.BS.Net.nMaxConnector;
-    EpollInitParam.nMaxSessionCount = g_ServerConfig.BS.Net.nMaxSessionCount;
-    EpollInitParam.nSendBufSize = g_ServerConfig.BS.Net.nSendBufSize;
-    EpollInitParam.nRecvBufSize = g_ServerConfig.BS.Net.nRecvBufSize;
-    EpollInitParam.nPacketBufferSize = g_ServerConfig.BS.Net.nPacketBufferSize;
-    EpollInitParam.pnMessageSizeList = g_nC2SMessageSize;
-    m_pExternalNet = g_CreateNetInterface(netEpoll, &m_PacketAllocator, poExternalMessageHandler, &EpollInitParam);
-#endif
+    m_pExternalNet = g_CreateNetInterface(netAsio, &m_PacketAllocator, poExternalMessageHandler, &AsioInitParam);
 	LOG_PROCESS_ERROR(m_pExternalNet);
 
 	// internal
@@ -193,11 +181,7 @@ BOOL CBalanceServer::UnInit(void)
 
 	if (m_pExternalNet)
     {
-#if defined(WIN32)
-        nRetCode = g_DestroyNetInterface(netIocp, m_pExternalNet);
-#elif defined(__linux__)
-        nRetCode = g_DestroyNetInterface(netEpoll, m_pExternalNet);
-#endif
+        nRetCode = g_DestroyNetInterface(netAsio, m_pExternalNet);
 		LOG_CHECK_ERROR(nRetCode);
 		m_pExternalNet = NULL;
 	}
