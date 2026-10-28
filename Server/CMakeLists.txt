@@ -11,6 +11,8 @@ set(CQYH_SERVER_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)   # solution folders (the tools go into "Tools")
+
 include(CQYH)
 include(ThirdParty)
 include(Sol2)
@@ -28,6 +30,12 @@ foreach(server
         gameserver manageserver gmserver mgateserver mobileserver gen_msg)
     add_subdirectory(NewServer/src/${server})
 endforeach()
+
+# Tools (Visual Studio solution folder "Tools")
+option(CQYH_BUILD_TOOLS "Build the command line / GUI tools in NewServer/tools" ON)
+if(CQYH_BUILD_TOOLS)
+    add_subdirectory(NewServer/tools)
+endif()
 
 # Tests
 option(CQYH_BUILD_TESTS "Build the test programs (ctest)" ON)

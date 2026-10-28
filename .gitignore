@@ -21,7 +21,16 @@ Client/client/UE3/Binaries/Win32/*.ilk
 Client/client/UE3/Binaries/Win32/*.exp
 
 # CMake build trees (Visual Studio / Ninja) of the server
-Server/build/
+Server/build/*
+!Server/build/vs2022/
+# The generated Visual Studio solution/projects are tracked; local VS state and compiled output are not.
+Server/build/vs2022/.vs/
+Server/build/vs2022/**/x64/
+Server/build/vs2022/**/Debug/
+Server/build/vs2022/**/Release/
+Server/build/vs2022/**/RelWithDebInfo/
+Server/build/vs2022/**/MinSizeRel/
+Server/build/vs2022/**/*.dir/
 
 # Client: generated or local-run output (not source)
 Client/client/UE3/Engine/Shaders/WorkingDirectory/
@@ -30,3 +39,4 @@ Client/client/UE3/Development/Src/Intermediate/
 Client/client/UE3/Development/Src/UnrealBuildTool/obj/Debug/
 # written by the script compiler (make); regenerated, and only when the compile has zero warnings
 Client/client/UE3/MMOGame/Script/Manifest.txt
+/Server/NewServer/tools/account_logout/account_logout/.vs
