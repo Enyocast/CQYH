@@ -369,7 +369,7 @@ BOOL CProcessMgr::CloseProcess(UINT8 byType)
             }
             else if(itr->dwIP > 0)
 			{
-				//远程关闭
+				//Remote shutdown
 				CRI("CProcessMgr::CloseProcess itr->dwIP > 0");
 			}
 
@@ -569,7 +569,7 @@ BOOL CProcessMgr::CloseAllProcess()
 		}
 		else if (itr->dwIP > 0)
 		{
-			//远程关闭
+			//Remote shutdown
 			CRI("CProcessMgr::CloseAllProcess itr->dwIP > 0");
 		}
 

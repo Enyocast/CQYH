@@ -93,7 +93,7 @@ ServerConfig.GM_PWD = {
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_EXE_GM_STR] = {
-			szDescript = "lua gm语句执行权限",	-- 建议最高权限
+			szDescript = "lua gm语句执行权限",	-- Highest permission level recommended
 			nPermission = GM_PERMISSION_A,
 		},
 		[GM_CMD_LOAD_ROLE] = {

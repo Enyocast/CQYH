@@ -3,7 +3,7 @@
 	file:		delete_item.h
 	author:		Allan Tao
 	
-	purpose:	GM命令 删除道具
+	purpose:	GM command: delete item
 *********************************************************************/
 
 

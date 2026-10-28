@@ -326,7 +326,7 @@ void CExchangeHistoryUI::paintEvent(QPaintEvent *event)
         n1 = rd.nLow;
         n4 = rd.nHigh;
 
-        if (rd.nClose > rd.nOpen)       // 涨,红色
+        if (rd.nClose > rd.nOpen)       // Up, red
         {
             pen.setColor(QColor(255, 50, 50));
             pRc = &blackColor;
@@ -334,7 +334,7 @@ void CExchangeHistoryUI::paintEvent(QPaintEvent *event)
             n2 = rd.nOpen;
             n3 = rd.nClose;
         }
-        else if (rd.nClose < rd.nOpen)      // 跌, 绿色
+        else if (rd.nClose < rd.nOpen)      // Down, green
         {
             pen.setColor(QColor(84, 255, 255));
             pRc = &greenColor;

@@ -3,7 +3,7 @@
 	file:		group_select.h
 	author:		Allan Tao
 	
-	purpose:	GM 工具 区服选择界面
+	purpose:	GM tool server selection UI
 *********************************************************************/
 
 #ifndef GROUP_SELECT_H_

@@ -178,7 +178,7 @@ void WINAPI ServiceMain()
     LOG_PROCESS_ERROR(g_hServiceStatus);
 
     g_status.dwCurrentState = SERVICE_START_PENDING;
-    g_status.dwControlsAccepted = SERVICE_ACCEPT_STOP;//这个要使用，否则你不能控制
+    g_status.dwControlsAccepted = SERVICE_ACCEPT_STOP;//This must be used or the service cannot be controlled
 
     SetServiceStatus(g_hServiceStatus, &g_status);
 

@@ -3,7 +3,7 @@
 	file:		mail.h
 	author:		Allan Tao
 	
-	purpose:	GM命令 发送邮件
+	purpose:	GM command: send mail
 *********************************************************************/
 
 #ifndef MAIL_H_

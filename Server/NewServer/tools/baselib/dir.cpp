@@ -65,7 +65,7 @@ BOOL g_CreateDirectory(const char* dirName, BOOL bforce)
             bool bfirst = true;
             while(pos < end)
             {
-                //====检测第一段路径是否为盘符====
+                //==== Check whether the first path segment is a drive letter ====
                 if(bfirst)
                 {
                     bool isdrive = false;
@@ -87,9 +87,9 @@ BOOL g_CreateDirectory(const char* dirName, BOOL bforce)
                     }
                     bfirst = false;
                 }
-                //====检测第一段路径是否为盘符完毕====
+                //==== Finished checking the first path segment for a drive letter ====
 
-                //====如果此段路径不存在，创建目录====
+                //==== Create the directory if this path segment does not exist ====
                 if(!g_DirectoryExists(path))
                 {
 #if (defined(WIN32) || defined(WIN64))

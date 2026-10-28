@@ -3,7 +3,7 @@
 	file:		kick_user.h
 	author:		Allan Tao
 	
-	purpose:	GM命令 踢人,封号
+	purpose:	GM command: kick player and ban account
 *********************************************************************/
 
 #ifndef KICK_USER_H_

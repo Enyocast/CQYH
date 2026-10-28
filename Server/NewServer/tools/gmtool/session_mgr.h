@@ -26,7 +26,7 @@ struct GM_SESSION : BASE_LIST_NODE
     INT32               nConnectState;
     UINT32              dwSessionID;
 
-    GM_SVR_STATE    eState;             // todo_tq 这边state需要统一处理一次 Allan Tao[17.12.2013] 
+    GM_SVR_STATE    eState;             // todo_tq: state handling needs to be unified here. Allan Tao [17.12.2013]
     INT32           nSvrID;
     char            szGMName[33];
 };

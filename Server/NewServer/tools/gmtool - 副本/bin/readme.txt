@@ -13,12 +13,12 @@
 
 
 #version 15.1
-1. 修正了使用部分禁言，封号指令导致工具崩溃的bug
-2. 发布公告增加了返回值
+1. Fixed a crash caused by some mute and account-ban commands
+2. Added a return value when publishing announcements
 
 
 #version 14.1
-1. 公告细分对各个组的公告
-2. 重新实现了批量执行，现在只有 封号，禁言，踢人支持批量
-3. 调整封号，禁言的UI布局
-4. 取消了ID查询，支持直接通过角色名进行操作
+1. Added separate announcements for each group
+2. Reimplemented batch execution; only ban, mute and kick commands support it
+3. Adjusted the ban and mute UI layout
+4. Removed ID lookup and added direct operations by character name

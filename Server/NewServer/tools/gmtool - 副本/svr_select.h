@@ -3,7 +3,7 @@
 	file:		svr_select.h
 	author:		Allan Tao
 	
-	purpose:	区服选择 checkbox版本
+	purpose:	Server selection, checkbox version
 *********************************************************************/
 
 #ifndef _H_SVR_SELECT_H_

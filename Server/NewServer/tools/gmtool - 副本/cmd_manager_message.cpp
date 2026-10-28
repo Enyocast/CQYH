@@ -3,7 +3,7 @@
 	file:		cmd_manager_message.cpp
 	author:		Allan Tao
 	
-	purpose:	message 封装
+	purpose:	Message wrapper
 *********************************************************************/
 
 

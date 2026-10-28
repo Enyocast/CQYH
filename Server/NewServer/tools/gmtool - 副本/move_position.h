@@ -3,7 +3,7 @@
 	file:		move_position.h
 	author:		Allan Tao
 	
-	purpose:	GM 命令，移动位置
+	purpose:	GM command: move position
 *********************************************************************/
 
 #ifndef MOVE_POSITION_H_

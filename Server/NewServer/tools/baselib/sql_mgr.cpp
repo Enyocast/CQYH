@@ -624,7 +624,7 @@ BOOL CSqlMgr::_ParseSqlStmt(SQL_STMT_DATA* pSqlStmtData)
             if (bParamEscaped)
             {
                 pSqlStmtData->nParamType[pSqlStmtData->nParamCount] = MYSQL_TYPE_LONG_BLOB;
-                pSqlStmtData->nParamSize[pSqlStmtData->nParamCount] = atoi(pcszSql + 1);            // 还是使用原来的buffer的最大大小。超出概率很小
+                pSqlStmtData->nParamSize[pSqlStmtData->nParamCount] = atoi(pcszSql + 1);            // Keep the original buffer maximum size; exceeding it is unlikely
                 LOG_PROCESS_ERROR(pSqlStmtData->nParamSize[pSqlStmtData->nParamCount] > 0);
                 pSqlStmtData->nParamBufferSize += sizeof(UINT32) + pSqlStmtData->nParamSize[pSqlStmtData->nParamCount];
                 pSqlStmtData->nParamCount++;

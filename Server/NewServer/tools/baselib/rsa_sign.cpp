@@ -22,7 +22,7 @@
 //BOOL RSA_SignUp(RSA* pPrivateKey, const unsigned char* pContext, INT32 nContextSize, unsigned char* pSign, UINT32& nSignLength)
 //{	
 //	INT32 nRetCode = 0;
-//	unsigned char md[16] = {0}; // 保存摘要
+//	unsigned char md[16] = {0}; // Store the digest
 //
 //	MD5(pContext, nContextSize, md);
 //
@@ -37,7 +37,7 @@
 //BOOL RSA_Verify(RSA* pPuclicKey,  UCHAR* pContext, INT32 nContextSize,  UCHAR* pVerify, UINT32 nVerifyLength)
 //{
 //	INT32 nRetCode = 0;
-//	unsigned char md[16] = {0}; // 保存md加密后的摘要
+//	unsigned char md[16] = {0}; // Store the digest after md encryption
 //
 //	MD5(pContext, nContextSize, md);
 //

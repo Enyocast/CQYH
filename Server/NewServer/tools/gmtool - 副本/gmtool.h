@@ -3,7 +3,7 @@
 	file:		gmtool.h
 	author:		Allan Tao
 	
-	purpose:	GM工具主界面类
+	purpose:	GM tool main window class
 *********************************************************************/
 #ifndef GMTOOL_H
 #define GMTOOL_H
@@ -76,12 +76,12 @@ public slots:
     void UpdateSelectedServer(QTreeWidgetItem * item, int column);
 
     //////////////////////////////////////////////////////////////////////////
-    // tag 1: role相关
-    // tag 2: 封号，禁言，邮件
-    // tag 3: 公会操作
-    // tag 4: 活动相关，公告
-    // tag 5: 日志查询
-    // tag 6: 其他
+    // tag 1: character operations
+    // tag 2: account bans, chat mutes, mail
+    // tag 3: guild operations
+    // tag 4: activities and announcements
+    // tag 5: log queries
+    // tag 6: other
     //////////////////////////////////////////////////////////////////////////
 
     // tag 1

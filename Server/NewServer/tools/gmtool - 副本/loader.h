@@ -3,7 +3,7 @@
 	file:		loader.h
 	author:		Allan Tao
 	
-	purpose:	登陆界面类
+	purpose:	Login UI class
 *********************************************************************/
 #ifndef LOADER_H
 #define LOADER_H

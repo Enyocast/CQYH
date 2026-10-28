@@ -67,7 +67,7 @@ BOOL CRoleLogCheck::DoCheckLog(const char* pszDirectory, const char* pszDate1, c
 
 	_ReleaseLogCache();
 
-	// 加载 Money log文件 
+	// Load the money log file
 	if (NULL != pszDirectory2)
 	{
 		snprintf(szFileName, MAX_PATH, "%s\\Money_%s.txt", pszDirectory2, pszDate2);
@@ -82,7 +82,7 @@ BOOL CRoleLogCheck::DoCheckLog(const char* pszDirectory, const char* pszDate1, c
 	nRetCode = _LoadMoneyLog(szFileName, m_byFileIndex);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	// 加载 GM log文件 
+	// Load the GM log file
 	if (NULL != pszDirectory2)
 	{
 		snprintf(szFileName, MAX_PATH, "%s\\gmmoney_%s.txt", pszDirectory2, pszDate2);
@@ -97,7 +97,7 @@ BOOL CRoleLogCheck::DoCheckLog(const char* pszDirectory, const char* pszDate1, c
 	nRetCode = _LoadGMLog(szFileName, m_byFileIndex);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	// 加载 RoleLogout Basic log文件 
+	// Load the RoleLogout Basic log file
 	if (NULL != pszDirectory2)
 	{
 		snprintf(szFileName, MAX_PATH, "%s\\RoleLogout_Basic_%s.txt", pszDirectory2, pszDate2);
@@ -112,7 +112,7 @@ BOOL CRoleLogCheck::DoCheckLog(const char* pszDirectory, const char* pszDate1, c
 	nRetCode = _LoadBasicLog(szFileName, m_byFileIndex);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	//数据分析
+	//Analyze data
 	nRetCode = _CheckLog();
 	LOG_PROCESS_ERROR(nRetCode);
 
@@ -479,7 +479,7 @@ BOOL CRoleLogCheck::_CheckLog()
 			continue;
 		}
 
-		//忽略角色第一次logout之前的数据
+		//Ignore data before the character’s first logout
 		pLogoutLogNode = pLstLogoutData->Top();
 		LOG_PROCESS_ERROR(pLogoutLogNode);
 
@@ -585,7 +585,7 @@ BOOL CRoleLogCheck::_CheckLog()
 				}
 			}
 
-			//丢弃
+			//Discard
 			if (bTimeAtLastLogoutTime)
 			{
 				nDiscardLogoutDataCount += 1;

@@ -2,7 +2,7 @@
 #coding=utf8
 
 '''
-#九天服务器端程序自动编译脚本入口。
+# Entry point for the Jiutian server automated build script.
 '''
 
 import subprocess

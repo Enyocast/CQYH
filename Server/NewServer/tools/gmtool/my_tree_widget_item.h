@@ -3,7 +3,7 @@
 	file:		my_tree_widget_item.h
 	author:		Allan Tao
 	
-	purpose:	继承自QTreeWidgetItem
+	purpose:	Derived from QTreeWidgetItem
 *********************************************************************/
 
 #ifndef _H_MY_TREE_WIDGET_ITEM_H_

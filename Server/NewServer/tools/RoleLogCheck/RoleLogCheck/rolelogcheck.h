@@ -41,7 +41,7 @@
 
 
 
-//字符串参数 年-月-日 时:分:秒
+//String argument: year-month-day hour:minute:second
 time_t Str2Time(const char* szTime);
 time_t CustomizedStr2Time(const char* szTime);
 

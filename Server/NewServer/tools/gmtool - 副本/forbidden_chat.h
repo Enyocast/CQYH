@@ -3,7 +3,7 @@
 	file:		forbidden_chat.h
 	author:		Allan Tao
 	
-	purpose:	禁言界面类
+	purpose:	Chat restriction UI class
 *********************************************************************/
 
 #ifndef FORBIDDEN_CHAT_H_

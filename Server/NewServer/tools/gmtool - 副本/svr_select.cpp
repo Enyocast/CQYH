@@ -49,7 +49,7 @@
 //
 //            m_ppBox[nIndex]->setDisabled(FALSE);
 //
-//            //switch(pSvrData->nState)        // todo_tq 12  这边也有状态需要处理 Allan Tao[17.12.2013] 
+//            //switch(pSvrData->nState)        // todo_tq 12: state handling is also needed here. Allan Tao [17.12.2013]
 //            //{
 //            //case GM_SVR_STATE_DISCONNECT:
 //            //    {

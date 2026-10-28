@@ -250,7 +250,7 @@ void gmtool::Login()
 
                 nRetCode = CGMLog::GetInstance().Log("登陆服务器[%s]....", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
                 LOG_PROCESS_ERROR(nRetCode);
-                break;      // 每次只处理一个server Allan Tao[5.3.2014] 
+                break;      // Process only one server per iteration. Allan Tao [5.3.2014]
             }
         }
     }
@@ -288,7 +288,7 @@ void gmtool::Logout()
                 nRetCode = CGMLog::GetInstance().Log("登出服务器[%s]....", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
                 LOG_PROCESS_ERROR(nRetCode);
 
-                break;      // 每次只处理一个server Allan Tao[5.3.2014] 
+                break;      // Process only one server per iteration. Allan Tao [5.3.2014]
             }
         }
     }
@@ -1901,17 +1901,17 @@ BOOL gmtool::UpdateSvrNameColor(UINT32 dwSessionID, GM_SVR_STATE eState)
             
         }
         break;
-    case GM_SVR_STATE_REGISTERED:   // 黄
+    case GM_SVR_STATE_REGISTERED:   // Yellow
         {
             brush.setColor(QColor(200,200,0,255));
         }
         break;
-    case GM_SVR_STATE_LOGIN:        // 绿
+    case GM_SVR_STATE_LOGIN:        // Green
         {
             brush.setColor(QColor(0,255,0,255));
         }
         break;
-    case GM_SVR_STATE_DISCONNECT:       // 红
+    case GM_SVR_STATE_DISCONNECT:       // Red
         {
             brush.setColor(QColor(255,0,0,255));
         }

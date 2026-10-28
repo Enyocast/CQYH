@@ -3,7 +3,7 @@
 	file:		cmd_manager.cpp
 	author:		Allan Tao
 	
-	purpose:	命令管理器 UI层和逻辑层交互
+	purpose:	Command manager: interaction between UI and logic layers
 *********************************************************************/
 
 

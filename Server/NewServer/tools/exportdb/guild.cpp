@@ -149,7 +149,7 @@ BOOL YY_GUILD_DATA::Load(const char *pcData)
 
     LOG_PROCESS_ERROR(pcData);
     pcActualData = pcData + sizeof(UINT32);
-    pGuildData = (GUILD_DB_DATA *)pcActualData; // 加的4个字节，是在save blob的时候，插在头部的长度
+    pGuildData = (GUILD_DB_DATA *)pcActualData; // The four added bytes are the length prepended when saving the blob
 
     LOG_PROCESS_ERROR(pGuildData->dwLen >= 4 && pGuildData->dwLen < 60000);
     LOG_PROCESS_ERROR(pGuildData->dwCRC ==

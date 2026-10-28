@@ -2,14 +2,14 @@
 # !/usr/bin/env python
 # Filename: AutoBuild.py
 
-'子函数说明'
+'Function overview'
 
-' PrintHelpInfo()           显示命令行帮助信息'
-' CmdLine_Process()         命令行参数处理'
-' Get_New_Revision()        获取并存储最新的 revision 数值'
-' Merge_StringTable()       合并 StringTable'
-' Generate_HtmlFile()       分析批处理的输出 log 文件，并生成 html 文件'
-' Send_Mail()               将编译的结果以 HTML 邮件格式发送到指定的用户 '
+' PrintHelpInfo()           Display command-line help'
+' CmdLine_Process()         Process command-line arguments'
+' Get_New_Revision()        Retrieve and store the latest revision'
+' Merge_StringTable()       Merge StringTable'
+' Generate_HtmlFile()       Analyze batch output logs and generate HTML'
+' Send_Mail()               Email build results as HTML to the specified users '
 
 import os
 import string
@@ -19,7 +19,7 @@ import getopt
 import MySQLdb
 from StringTable import GenStringTable
 
-# 全局常量定义
+# Global constants
 ServerName = "BuildSvr"
 
 szLogFile = ""
@@ -111,14 +111,14 @@ szOldSrcRev = "0000"
 szOldDataRev = "0000"
 szOldGameDataRev = "0000"
 
-## 辅助函数定义
+## Helper functions
 def bprint( szString ):
     global szLogFile
     print(szString)
     if szLogFile != "":
         os.popen("ECHO " + szString + ">> " + szLogFile)
 
-## 显示帮助信息
+## Display help
 def PrintHelpInfo():
     HelpInfo  = '命令行格式 python.exe AutoBuild.py [--help] [--builder_type] [--base_version]\n'
     HelpInfo += '                                 [--code] [--data] [--gd] [--build_edition]\n\n'
@@ -154,7 +154,7 @@ def PrintHelpInfo():
     HelpInfo += '--gen_install_packet 是否生成客户端安装包 \n\n'
     print( HelpInfo )
 
-## 命令行参数处理
+## Process command-line arguments
 def CmdLine_Process():
     global BUILDER_TYPE
     global SVN_SRC_LOCATION
@@ -193,12 +193,12 @@ def CmdLine_Process():
             
             if localCmd == "--builder_type":
                 if localPara == "test":
-                    # 开发人员内部调试
+                    # Internal developer debugging
                     BUILDER_TYPE = "test"
                 else:
                     BUILDER_TYPE = ""
             elif localCmd == "--help":
-                # 如果用户要求显示帮助信息，则不执行任何其它操作
+                # Do nothing else if the user requests help
                 PrintHelpInfo()
                 os._exit(0)
             elif localCmd == "--base_version":
@@ -208,9 +208,9 @@ def CmdLine_Process():
                     print "基础版本参数错误"
                     os._exit(0)
             elif localCmd == "--code":
-                # 有关源代码
+                # Source code options
                 if localPara == "not":
-                    # 不编译
+                    # Do not build
                     SVN_SRC_LOCATION = ""
                     SVN_SRC_REV = ""
                 else:
@@ -251,9 +251,9 @@ def CmdLine_Process():
                     print "build_edition 选项不能为空"
                     os._exit(0)
             elif localCmd == "--data":
-                # 有关 Data
+                # Data options
                 if localPara == "not":
-                    # 不编译
+                    # Do not build
                     SVN_DATA_LOCATION = ""
                     SVN_DATA_REV = ""
                 else:
@@ -266,9 +266,9 @@ def CmdLine_Process():
                     if local_List_Para[1]:
                         SVN_DATA_REV = local_List_Para[1]
             elif localCmd == "--gd":
-                # 有关 GameData
+                # GameData options
                 if localPara == "not":
-                    # 不更新
+                    # Do not update
                     SVN_GD_LOCATION = ""
                     SVN_GD_REV = ""
                 else:
@@ -281,23 +281,23 @@ def CmdLine_Process():
                     if local_List_Para[1]:
                         SVN_GD_REV = local_List_Para[1]
             elif localCmd == "--gdc":
-                # 编译 GameData
+                # Build GameData
                 if localPara == "not":
-                    # 不编译
+                    # Do not build
                     IsGDC = False
                 else:
                     IsGDC = True
             elif localCmd == "--tgp":
                 if localPara == "not":
-                    # 不打包
+                    # Do not package
                     IsTgpData = False
                     IsTgpGd = False
                 elif localPara == "data":
-                    # 打包客户端 Data
+                    # Package client Data
                     IsTgpData = True
                     IsTgpGd = False
                 elif localPara == "gd":
-                    # 打包客户端 GameData
+                    # Package client GameData
                     IsTgpData = False
                     IsTgpGd = True
                 else:
@@ -309,7 +309,7 @@ def Init():
     global ServerName
     global ANCHOR_LIST
     
-    #   设置环境变量
+    #   Set environment variables
     os.environ['PATH'] = os.environ['PATH'] + ";\"C:\\Program Files\\CollabNet Subversion Client\\\""
     os.environ['PATH'] = os.environ['PATH'] + ";\"C:\\Program Files\\Xoreax\\IncrediBuild\\\""
     os.environ['PATH'] = os.environ['PATH'] + ";\"C:\\Program Files\\febooti Command line email\\\""
@@ -318,11 +318,11 @@ def Init():
     os.environ['PATH'] = os.environ['PATH'] + ";\"C:\\Program Files\\MySQL\\MySQL Server 5.1\\bin\\\""
     os.environ['PATH'] = os.environ['PATH'] + ";\"C:\\Program Files\\NSIS\\\""
     
-    # 创建Logs目录
+    # Create the Logs directory
     bprint("创建 Logs 目录")
     os.popen("If Not Exist Logs MD Logs")
 
-## 获取并存储最新的 revision 数值
+## Get and store the latest revision
 def Get_New_Revision():
     global BASE_VERSION
     global SVN_SRC_LOCATION
@@ -347,7 +347,7 @@ def Get_New_Revision():
     global szOldDataRev
     global szOldGameDataRev
 
-    # 获取 Source revision 数值
+    # Get the Source revision
     if SVN_SRC_LOCATION and SVN_SRC_REV:
         bprint("svn info " + SVN_SRC_LOCATION + " -r " + SVN_SRC_REV + " > svninfo.txt")
         os.popen("svn info " + SVN_SRC_LOCATION + " -r " + SVN_SRC_REV + " > svninfo.txt")
@@ -363,7 +363,7 @@ def Get_New_Revision():
         if (szSrcRev == "0000"):
             exit(0)
 
-    # 获取 Data 最新的 revision 数值
+    # Get the latest Data revision
     if SVN_DATA_LOCATION and SVN_DATA_REV:
         os.popen("svn info " + SVN_DATA_LOCATION + " -r " + SVN_DATA_REV + " > svninfo.txt")
         fh = open("svninfo.txt","r")
@@ -378,7 +378,7 @@ def Get_New_Revision():
         if (szDataRev == "0000"):
             exit(0)
 
-    # 获取 GD 最新的 revision 数值
+    # Get the latest GD revision
     if SVN_GD_LOCATION and SVN_GD_REV:
         os.popen("svn info " + SVN_GD_LOCATION + " -r " + SVN_GD_REV + " > svninfo.txt")
 
@@ -394,7 +394,7 @@ def Get_New_Revision():
         if (szGameDataRev == "0000"):
             exit(0)
 
-    # 获取上次的 revision 数值
+    # Get the previous revision
     try:
         rev = open("rev.dat","r")
         try:
@@ -413,7 +413,7 @@ def Get_New_Revision():
     bprint("获取上次的GameData版本：" + szOldGameDataRev)
 
     if SVN_SRC_REV and SVN_DATA_REV and SVN_GD_REV:
-        # 存储最新的 revision 数值
+        # Store the latest revision
         try:
             rev = open("rev.dat","w")
             try:
@@ -427,7 +427,7 @@ def Get_New_Revision():
             bprint("存储当前版本失败!")
 
     if SVN_SRC_REV or SVN_DATA_REV or SVN_GD_REV:
-        # 获取日期和时间
+        # Get the date and time
         tDate = datetime.datetime.now()
         szDate = tDate.strftime("%Y_%m_%d_%H_%M_%S")
         szDirName = szDate + "_" + szSrcRev + "_" + szDataRev + "_" + szGameDataRev
@@ -437,24 +437,24 @@ def Get_New_Revision():
         bprint( "log 文件是" + szLogFile)
         bprint( "html 文件是" + szHtmlFile)
 
-        #   创建版本目录
+        #   Create the version directory
         os.popen("IF NOT EXIST Build MD Build")
         os.popen("MD Build\\" + szDirName)
 
         if SVN_SRC_REV:
-            # 获取 Source 两个 revision 之间的修改历史并存入文件
+            # Save Source changes between the two revisions
             bprint("svn log " + SVN_SRC_LOCATION + " -r " + szOldSrcRev + ":" + SVN_SRC_REV + " > Logs\\" + szDirName + "_src_change_history.log")
             os.popen("svn log SourceCode -r " + szOldSrcRev + ":" + SVN_SRC_REV+ " > Logs\\" + szDirName + "_src_change_history.log")
             bprint("创建 Source 版本更新文件成功!")
 
         if SVN_DATA_REV:
-            # 获取 Data 两个 revision 之间的修改历史并存入文件
+            # Save Data changes between the two revisions
             bprint("svn log " + SVN_DATA_LOCATION + " -r " + szOldDataRev + ":" + SVN_DATA_REV + " > Logs\\" + szDirName + "_data_change_history.log")
             os.popen("svn log " + SVN_DATA_LOCATION + " -r " + szOldDataRev + ":" + SVN_DATA_REV+ " > Logs\\" + szDirName + "_data_change_history.log")
             bprint("创建 Data 版本更新文件成功!")
 
         if SVN_GD_REV:
-            # 获取 gd 两个 revision 之间的修改历史并存入文件
+            # Save GD changes between the two revisions
             bprint("svn log " + SVN_GD_LOCATION + " -r " + szOldGameDataRev + ":" + SVN_GD_REV + " > Logs\\" + szDirName + "_gamedata_change_history.log")
             os.popen("svn log " + SVN_GD_LOCATION + " -r " + szOldGameDataRev + ":" + SVN_GD_REV+ " > Logs\\" + szDirName + "_gamedata_change_history.log")
             bprint("创建 gd 版本更新文件成功!")
@@ -466,7 +466,7 @@ def IncreaseBuildNumber():
     global szHtmlFile
     global szDirName
 
-    # 插入Build数据库，获取Build Number
+    # Insert into the Build database and obtain a build number
     try:
         conn = MySQLdb.connect(host="192.168.10.5",user="root",passwd="root",db="build",charset="utf8") 
         try:
@@ -535,7 +535,7 @@ def IncreaseBuildNumber():
     szLogFile = szNewLogFile
     szHtmlFile = "Logs\\" + szDirName + ".html"
         
-## 从 SVN 更新 Data,gd
+## Update Data and GD from SVN
 def SvnUpdate():
     global szLogFile
     global szDirName
@@ -550,8 +550,8 @@ def SvnUpdate():
     global ANCHOR_LIST
 
     localAnchor_List_Insert_Position = 0
-    # 处理Data资源
-    # 更新Data目录
+    # Process Data resources
+    # Update the Data directory
     if SVN_DATA_LOCATION and SVN_DATA_REV:
         localDictData = { 'anchor': 'UPDATE_DATA','name': '从SVN更新Data数据','string': '从SVN更新Data数据...'}
         ANCHOR_LIST.append( localDictData )
@@ -563,10 +563,10 @@ def SvnUpdate():
             os.popen("svn switch " + SVN_DATA_LOCATION + " -r " + SVN_DATA_REV + " Build\\Data >> " + szLogFile)
 #        os.popen("svn revert Build\\Data -R >> " + szLogFile)
         bprint("成功获取Data数据！")
-    # 打包 Data 目录
+    # Package the Data directory
 
-    # 处理 GameData
-    # 从 SVN 获取 GameData
+    # Process GameData
+    # Get GameData from SVN
     if SVN_GD_LOCATION and SVN_GD_REV:
         localDictGd = {'anchor': 'GET_GAME_DATA','name': '从SVN获取GameData数据','string': '从SVN获取GameData数据...'}
         ANCHOR_LIST.append(localDictGd)
@@ -583,13 +583,13 @@ def SvnUpdate():
     os.system("Build\\MapPreprocessor.exe Build\\Data\\Terrain\\氏族领地 all Build\\" + szDirName + "\\GameData\\GameData")
     os.system("Build\\MapPreprocessor.exe Build\\Data\\Terrain\\婴儿岛 all Build\\" + szDirName + "\\GameData\\GameData")
     
-    # 编译代码
+    # Build code
     if SVN_SRC_LOCATION:
         localDictSource = { 'anchor': 'GET_SOURCE_CODE','name': '从SVN获取源代码','string': '从SVN更新源代码...'}
         ANCHOR_LIST.append(localDictSource)
         localAnchor_List_Insert_Position += 1
         bprint("从SVN更新源代码...")
-        # 删除源代码目录
+        # Remove the source directory
         bprint("删除源代码目录...")
         if BUILDER_TYPE != "test":
             os.popen("IF EXIST SourceCode RD SourceCode /s /q")
@@ -597,17 +597,17 @@ def SvnUpdate():
                 bprint("无法删除源代码目录！")
                 os._exit(0)
         bprint("删除源代码目录成功！")
-        # 从 SVN 获取源代码
+        # Get source code from SVN
         bprint("源代码所在SVN地址为: " + SVN_SRC_LOCATION)
         if BUILDER_TYPE != "test":
             print "svn co " + SVN_SRC_LOCATION + " -r " + SVN_SRC_REV + " SourceCode >> " + szLogFile
             os.popen("svn co " + SVN_SRC_LOCATION + " -r " + SVN_SRC_REV + " SourceCode >> " + szLogFile)
         bprint("成功获取源代码！")
 
-        # 增加Build Number
+        # Add the build number
         IncreaseBuildNumber()
 
-        # 编译所有指定的版本
+        # Build all specified configurations
         for e in BUILD_EDITION_LIST:
             bprint("正在编译 " + e['name'] + " 版本...")
             ANCHOR_LIST.insert(localAnchor_List_Insert_Position,{'anchor': e['name'], 'name': '编译' + e['name'], 'string': '正在编译 ' + e['name'] + ' 版本...'})
@@ -615,7 +615,7 @@ def SvnUpdate():
             if BUILDER_TYPE != "test":
                 os.popen(e['command'] + ' >> ' + szLogFile)
 
-## 处理服务端代码相关文件
+## Process server code files
 def Process_Server():
     global szDirName
     global SVN_SRC_REV
@@ -627,7 +627,7 @@ def Process_Server():
         localDictServer = { 'anchor': 'PROCESS_SERVER_FILES','name': '处理服务端相关文件','string': '正在处理服务端相关文件...'}
         ANCHOR_LIST.append(localDictServer)
         bprint("正在处理服务端相关文件...")
-        # 复制编译出的文件
+        # Copy built files
         os.system("MD \"Build\\" + szDirName + "\\ServerDebug\"")
         os.system("copy \"SourceCode\\Bin\\Debug\\FTSvrMain.exe\" \"Build\\" + szDirName + "\\ServerDebug\"")
 
@@ -637,7 +637,7 @@ def Process_Server():
         os.system("MD \"Build\\" + szDirName + "\\ServerFinal\"")
         os.system("copy \"SourceCode\\Bin\\Final Release\\FTSvrMain.exe\" \"Build\\" + szDirName + "\\ServerFinal\"")
 
-        # 复制相关动态链接库
+        # Copy related dynamic libraries
         os.system("copy \"SourceCode\\3rd\\MySQL\\lib\\debug\\libmysql.dll\" \"Build\\" + szDirName + "\\ServerDebug\"")
         os.system("copy \"SourceCode\\3rd\\zlib\\zlib1.dll\" \"Build\\" + szDirName + "\\ServerDebug\"")
         os.system("copy \"SourceCode\\3rd\\DirectX9\\Bin\\x86\\d3dx9d_36.dll\" \"Build\\" + szDirName + "\\ServerDebug\"")
@@ -662,38 +662,38 @@ def Process_Server():
         os.system("MD \"Build\\" + szDirName + "\\ServerFinal\\Microsoft.VC80.CRT\"")
         os.system("copy \"SourceCode\\3rd\\GMC\\Release\\Microsoft.VC80.CRT\\*.*\" \"Build\\" + szDirName + "\\ServerFinal\"")
 
-        # 生成服务端更新包 - Debug
+        # Create the Debug server update package
         os.system("md Build\\" + szDirName + "\\ServerDebug\\SQLUpdate")
         os.system("xcopy Build\\" + szDirName + "\\GameData\\*.* Build\\" + szDirName + "\\ServerDebug\\ /E/Y")
         os.system("xcopy SvrUpdate\\*.* Build\\" + szDirName + "\\ServerDebug /E/Y")
         os.system("del Build\\" + szDirName + "\\ServerDebug\\UpdateBishop.ini /Q")
         os.system("xcopy SourceCode\\SQL\\SQLUpdate\*.* Build\\" + szDirName + "\\ServerDebug\\SQLUpdate /E/Y")
 
-        localCurrDir = os.getcwd()              # 保存当前工作目录
-        os.chdir("Build\\" + szDirName + "\\ServerDebug")                 # 进入指定目录
+        localCurrDir = os.getcwd()              # Save the current working directory
+        os.chdir("Build\\" + szDirName + "\\ServerDebug")                 # Enter the specified directory
         os.system("FTSvrUpdate.exe make " + szVersion)
-        os.chdir(localCurrDir)                  # 返回原先工作目录
+        os.chdir(localCurrDir)                  # Return to the previous working directory
 
-        # 生成服务端更新包 - Final Release
+        # Create the Final Release server update package
         os.system("md Build\\" + szDirName + "\\ServerFinal\\SQLUpdate")
         os.system("xcopy Build\\" + szDirName + "\\GameData\\*.* Build\\" + szDirName + "\\ServerFinal\\ /E/Y")
         os.system("xcopy SvrUpdate\\*.* Build\\" + szDirName + "\\ServerFinal /E/Y")
         os.system("del Build\\" + szDirName + "\\ServerFinal\\UpdateBishop.ini /Q")
         os.system("xcopy SourceCode\\SQL\\SQLUpdate\*.* Build\\" + szDirName + "\\ServerFinal\\SQLUpdate /E/Y")
 
-        localCurrDir = os.getcwd()              # 保存当前工作目录
-        os.chdir("Build\\" + szDirName + "\\ServerFinal")                 # 进入指定目录
+        localCurrDir = os.getcwd()              # Save the current working directory
+        os.chdir("Build\\" + szDirName + "\\ServerFinal")                 # Enter the specified directory
         os.system("FTSvrUpdate.exe make " + szVersion)
-        os.chdir(localCurrDir)                  # 返回原先工作目录
+        os.chdir(localCurrDir)                  # Return to the previous working directory
 
 def GenerateServerMap():
-    localCurrDir = os.getcwd()              # 保存当前工作目录
-    os.chdir("MapGen")                 # 进入指定目录
+    localCurrDir = os.getcwd()              # Save the current working directory
+    os.chdir("MapGen")                 # Enter the specified directory
     bprint("TerrainForServer.exe ..\\Build\\" + szDirName + "\\GameData\\GameData ..\\Build\\Data ..\\Build\\" + szDirName + "\\GameData")
     os.system("TerrainForServer.exe ..\\Build\\" + szDirName + "\\GameData\\GameData ..\\Build\\Data ..\\Build\\" + szDirName + "\\GameData")
-    os.chdir(localCurrDir)                  # 返回原先工作目录
+    os.chdir(localCurrDir)                  # Return to the previous working directory
     
-## 从 2 号机获取数据库备份
+## Get the database backup from machine 2
 def BackupDatabase():
     global SVN_SRC_REV
     
@@ -731,7 +731,7 @@ def BackupDatabase():
     os.popen("Copy " + FTSVRLOG_DB_FILE + " Build\\" + szDirName + "\\DBBackup\\FTServerLog-MySQL.sql")
     os.popen("Copy " + KINGLOG_DB_FILE + " Build\\" + szDirName + "\\DBBackup\\KingFTLogDB-MySQL.sql")
 
-## 处理客户端代码相关文件
+## Process client code files
 def Process_Client():
     global szDirName
     global SVN_SRC_REV
@@ -748,7 +748,7 @@ def Process_Client():
             localDictClient = { 'anchor': 'PROCESS_CLIENT_FILES','name': '处理客户端相关文件','string': '正在处理客户端相关文件...'}
             ANCHOR_LIST.append(localDictClient)
             bprint("正在处理客户端相关文件...")
-            # 复制编译出的文件
+            # Copy built files
             os.system("MD \"Build\\" + szDirName + "\\ClientDebug\"")
             os.system("copy \"SourceCode\\Bin\\Debug\\Feitian2D.exe\" \"Build\\" + szDirName + "\\ClientDebug\"")
 
@@ -764,7 +764,7 @@ def Process_Client():
             if bAddShell:
                 os.system("UPX\\upx.exe --force --best --compress-icons=0 Build\\" + szDirName + "\\ClientFinal\\Feitian.exe")
 
-            # 复制相关动态链接库
+            # Copy related dynamic libraries
             os.system("copy \"SourceCode\\3rd\\fmodex\\*.dll\" \"Build\\" + szDirName + "\\ClientDebug\"")
             os.system("copy \"SourceCode\\3rd\\PhysX\\bin\\win32\\*.dll\" \"Build\\" + szDirName + "\\ClientDebug\"")
             os.system("copy \"SourceCode\\3rd\\zlib\\zlib1.dll\" \"Build\\" + szDirName + "\\ClientDebug\"")
@@ -798,7 +798,7 @@ def Process_Client():
         os.system("ECHO UpdateFolder=ft" + " >> Misc\\Launcher.ini")
         os.system("ECHO CurrentVersion=" + str(nBuildNumber) + " >> Misc\\Launcher.ini")
 
-        # 复制配置文件
+        # Copy configuration files
         os.system("copy Misc\\Launcher.exe Build\\" + szDirName + "\\ClientDebug\\")
         os.system("copy Misc\\Launcher.exe Build\\" + szDirName + "\\ClientRelease\\")
         os.system("copy Misc\\Launcher.exe Build\\" + szDirName + "\\ClientFinal\\")
@@ -811,59 +811,59 @@ def Process_Client():
         os.system("copy Misc\\CustomerSurvey.exe Build\\" + szDirName + "\\ClientRelease\\")
         os.system("copy Misc\\CustomerSurvey.exe Build\\" + szDirName + "\\ClientFinal\\")
 
-        # 建立程序目录的 data 目录
+        # Create the data directory under the program directory
         os.popen("md Build\\" + szDirName + "\\ClientFinal\\Data")
 
-        # 打包客户端 Data 资源
+        # Package client Data resources
         if SVN_DATA_REV and IsTgpData:
             bprint("打包Data资源")
-            localCurrDir = os.getcwd()      # 保存当前工作目录
-            os.chdir("Build")               # 进入指定目录
-            os.system("tgp.exe create Data")        # 打包 Data
+            localCurrDir = os.getcwd()      # Save the current working directory
+            os.chdir("Build")               # Enter the specified directory
+            os.system("tgp.exe create Data")        # Package Data
             if os.path.exists("Data.tgp"):
                 bprint("成功打包Data资源")
             else:
                 bprint("fatal error:打包Data资源失败!")
             os.system("move Data.tgp " + szDirName + "\\ClientFinal\\Data")
-            os.chdir(localCurrDir)          # 返回原先工作目录
+            os.chdir(localCurrDir)          # Return to the previous working directory
 
             ## copy empty patch file
             os.system("copy Misc\\Patch.tgp Build\\" + szDirName + "\\ClientFinal\\Data")
             
-        # 编译客户端 GameData 资源
+        # Build client GameData resources
         if SVN_GD_REV:
             if IsGDC:
                 bprint("调用GDC编译GameData资源")
                 os.system("copy SourceCode\\bin\\debug\\gdc.exe Build\\ /Y")
-                localCurrDir = os.getcwd()      # 保存当前工作目录
+                localCurrDir = os.getcwd()      # Save the current working directory
                 localGdcDir = "Build"
-                os.chdir(localGdcDir)           # 进入需要编译的本地 GameData 目录
-                os.system("gdc.exe " + szDirName + "\\GameData\\GameData")           # 执行编译 GameData 命令
+                os.chdir(localGdcDir)           # Enter the local GameData directory to build
+                os.system("gdc.exe " + szDirName + "\\GameData\\GameData")           # Run the GameData build command
                 os.system("move FTGameData.* " + szDirName + "\\GameData\\GameData");
-                os.chdir(localCurrDir)          # 返回原先工作目录
+                os.chdir(localCurrDir)          # Return to the previous working directory
                 os.system("move Build\\gdc.* " + szDirName + "\\GameData\\GameData")
                 bprint("成功编译GameData数据")
                 
             if IsTgpGd:
-                # 打包客户端 GameData
+                # Package client GameData
                 bprint("打包GameData资源")
-                localCurrDir = os.getcwd()              # 保存当前工作目录
+                localCurrDir = os.getcwd()              # Save the current working directory
                 localGdTgpDir = "Build\\" + szDirName + "\\GameData"
-                os.chdir(localGdTgpDir)                 # 进入指定目录
-                os.system("..\\..\\tgp.exe create GameData")    # 打包 GameData
+                os.chdir(localGdTgpDir)                 # Enter the specified directory
+                os.system("..\\..\\tgp.exe create GameData")    # Package GameData
                 if os.path.exists("GameData.tgp"):
                     bprint("成功打包GameData资源")
                 else:
                     bprint("fatal error:打包GameData资源失败!")
                 os.system("move GameData.tgp ..\\ClientFinal\\Data")
-                os.chdir(localCurrDir)                  # 返回原先工作目录
+                os.chdir(localCurrDir)                  # Return to the previous working directory
 
-## 调用 Nsis 自动生成安装包
+## Run NSIS to generate the installer
 def Nsis_Package():
     bprint("生成客户端安装包")
     os.popen("MD Build\\" + szDirName + "\\Install")
 
-    localCurrDir = os.getcwd()              # 保存当前工作目录
+    localCurrDir = os.getcwd()              # Save the current working directory
 
     os.chdir("Build\\" + szDirName + "\\ClientFinal")
     os.system("copy ..\\..\\..\\Misc\\feitian.nsi .")
@@ -873,7 +873,7 @@ def Nsis_Package():
     os.system("md 3rd")
     os.system("copy ..\\..\\..\\Misc\\3rd\\*.* 3rd\\")
 
-    # 更新安装包版本
+    # Update the installer version
     os.system("echo !define PRODUCT_VERSION \"" + BASE_VERSION + "." + str(nBuildNumber) + "\" > Version.nsh")
 
     os.system("makensis.exe feitian.nsi")
@@ -885,7 +885,7 @@ def Nsis_Package():
     os.system("del version.nsh")
     os.system("rd 3rd /s /q")
 
-    os.chdir(localCurrDir)                  # 返回原先工作目录
+    os.chdir(localCurrDir)                  # Return to the previous working directory
 
     if os.path.exists("Build\\" + szDirName + "\\Install\\FeiTianSetup.exe"):
         bprint("成功生成客户端安装包!")
@@ -893,7 +893,7 @@ def Nsis_Package():
         bprint("fatal error: 生成客户端安装包失败!")
 
                 
-## 合并 StringTable
+## Merge StringTable
 def Merge_StringTable():
     global szDirName
     global SVN_SRC_LOCATION
@@ -904,7 +904,7 @@ def Merge_StringTable():
     global ClientIsCompile
 
     if SVN_SRC_LOCATION and ClientIsCompile:
-        # SysStringTable-All.txt 是编译生成的，所以只有在编译了客户端源代码的情况下才有合并 StringTable 的必要
+        # SysStringTable-All.txt is generated by the build, so merge StringTable only when client source was built
         CODE_DEF_FILE = "SysStringTable-All.txt"
         DESIGN_DEF_FILE = "SysStringTable-Design.txt"
         RESULT_FILE = "SysStringTable.txt"
@@ -931,7 +931,7 @@ def Merge_StringTable():
 def SubmitToTrac():
     global szVersion
     
-    # 向 Trac 数据库增加版本号
+    # Add the version number to the Trac database
     try:
         conn = MySQLdb.connect(host="192.168.10.5",user="root",passwd="root",db="trac",charset="utf8") 
         try:
@@ -948,7 +948,7 @@ def SubmitToTrac():
     except Exception,ex:
         print Exception,":",ex
 
-## 分析批处理的输出log文件，并生成 html 文件
+## Analyze batch output logs and generate HTML
 def Generate_HtmlFile():
     global SVN_SRC_LOCATION
     global SVN_SRC_REV
@@ -1002,7 +1002,7 @@ def Generate_HtmlFile():
         bprint("生成HTML文件失败!")
         #os._exit(0)
 
-## 生成并发送邮件
+## Generate and send mail
 def Send_Mail():
     global BUILDER_TYPE
     global ServerName
@@ -1016,9 +1016,9 @@ def Send_Mail():
 
     localPassword = "feitian1!"
     
-    ## 测试版发送的邮件用户列表
+    ## Mail recipients for test builds
     TEST_MAILTO_LIST = ['zhujianqiu@tracegames.net']
-    ## 编译成功发送的邮件用户列表
+    ## Mail recipients for successful builds
     SUCC_MAILTO_LIST = ['alexjin@tracegames.net',
                         'lance@tracegames.net',
                         'lowieliang@tracegames.net',
@@ -1029,7 +1029,7 @@ def Send_Mail():
                         'caca@tracegames.net',
                         'zhujianqiu@tracegames.net'
                        ]
-    ## 编译失败发送的邮件用户列表
+    ## Mail recipients for failed builds
     FAIL_MAILTO_LIST = ['alexjin@tracegames.net',
                         'lowieliang@tracegames.net',
                         'wangjun@tracegames.net',
@@ -1111,57 +1111,57 @@ def Send_Mail():
         # os._exit(0)
 
 if __name__ == '__main__':
-    # 命令行参数处理
+    # Process command-line arguments
     CmdLine_Process()
 
-    # 初始化
+    # Initialize
     Init()
 '''
 if __name__ == '__main__':
-    # 命令行参数处理
+    # Process command-line arguments
     CmdLine_Process()
 
-    # 初始化
+    # Initialize
     Init()
 
-    # 版本控制
+    # Version control
 
-    # 获取并存储最新的 revision 数值
+    # Get and store the latest revision
     Get_New_Revision()
 
-    # 从 SVN 更新 Src,Data,gd
+    # Update Src, Data and GD from SVN
     SvnUpdate()
 
-    # 生成服务端地图
+    # Generate server maps
     GenerateServerMap()
 
-    # 处理服务端相关文件
+    # Process server files
     Process_Server()
 
-    # 从 2 号机获取数据库备份
+    # Get the database backup from machine 2
     BackupDatabase()
 
-    # 合并 StringTable
+    # Merge StringTable
     Merge_StringTable()
 
-    # 处理客户端相关文件
+    # Process client files
     Process_Client()
 
-    # 向Trac提交版本
+    # Submit the version to Trac
     SubmitToTrac()
     
-    # 生成独立安装包
+    # Create a standalone installer
     if IsInstall:
 	    Nsis_Package()
 
-    # 生成更新包
+    # Create an update package
 
-    # 收尾处理
+    # Finish processing
     bprint("正在进行收尾处理...")
     localDictEnd = {'anchor': 'END_OPERATION','name': '收尾处理','string': '正在进行收尾处理...'}
     ANCHOR_LIST.append(localDictEnd)
 
-    # 复制 PDB 文件
+    # Copy PDB files
     os.system("MD \"Build\\" + szDirName + "\\DebugPDB\"")
     os.system("copy \"SourceCode\\Bin\\Debug\\*.exe\" \"Build\\" + szDirName + "\\DebugPDB\"")
     os.system("copy \"SourceCode\\Bin\\Debug\\*.pdb\" \"Build\\" + szDirName + "\\DebugPDB\"")
@@ -1185,9 +1185,9 @@ if __name__ == '__main__':
 
     bprint("自动生成版本 " + szVersion + " 成功!")
 
-    # 分析批处理的输出 log 文件，并生成 html 文件
+    # Analyze batch output logs and generate HTML
     Generate_HtmlFile()
     
-    # 发送邮件
+    # Send mail
     Send_Mail()
 '''

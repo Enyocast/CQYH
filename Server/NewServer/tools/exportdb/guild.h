@@ -20,8 +20,8 @@ struct YY_GUILD_DB
 
     CHAR            szCreaterName[ROLE_NAME_LEN];
     UINT32          dwCreateTime;
-    CHAR            szAnnounce[GUILD_ANNOUNCE_LEN];         // 家族宣言
-    CHAR            szNotice[GUILD_NOTICE_LEN];             // 家族公告
+    CHAR            szAnnounce[GUILD_ANNOUNCE_LEN];         // Guild declaration
+    CHAR            szNotice[GUILD_NOTICE_LEN];             // Guild notice
     char            BlobBuffer[0];
 };
 #pragma pack(pop)
