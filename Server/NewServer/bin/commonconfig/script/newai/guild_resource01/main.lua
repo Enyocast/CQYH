@@ -18,10 +18,10 @@ g_GameWorld = CGameWorld:GetInstance();
 --g_DropGenerator = CDropGenerator:GetInstance();
 
 
--- 角色变量的index 190 记录的是增加的公会资源数量
+-- Character variable index 190 records the amount of guild resources added
 
 
--- 资源转换成多少贡献
+-- Contribution gained from resources
 function CalcContribute(res_count)
 	return res_count / 10;
 end
@@ -34,7 +34,7 @@ function GetItemCount(owner, itemid, bIncludeBank)
 	return count;
 end
 
--- 检查每日资源捐献上限
+-- Check the daily resource donation limit
 function CheckCanDonateRes(owner, res_type, res_count)
 	if res_count == 0 then
 		return brvFail;
@@ -53,7 +53,7 @@ function CheckCanDonateRes(owner, res_type, res_count)
 		return brvFail;
 	end
 
-	-- 检查上限
+	-- Check the limit
 	local final_res = role:GetRoleGuildData():CalculateResLimit(member.nPosition, res_count);
     if final_res < res_count then
 		return brvFail;
@@ -62,7 +62,7 @@ function CheckCanDonateRes(owner, res_type, res_count)
 	return brvSuccess;
 end
 
--- 增加公会粮食，有贡献
+-- Add guild food with contribution
 function GuildHerb(owner, res_count)
 	local processor = owner:GetAIProcessor();
 	local npc = Cast(processor:GetOwner(), 'CNpc');
@@ -73,7 +73,7 @@ function GuildHerb(owner, res_count)
 	local guild = CGuildMgr:GetInstance():FindGuild(role:GetGuildID());
 	local member = guild:GetMember(role:GetObjID());
 
-	-- 检查上限
+	-- Check the limit
 	local final_res = role:GetRoleGuildData():CalculateResLimit(member.nPosition, res_count);
     if final_res == 0 then
 		return brvFail;
@@ -81,14 +81,14 @@ function GuildHerb(owner, res_count)
 
 	local con_count = CalcContribute(final_res);
 
-	-- 增加 con_count 公会贡献点数
+	-- Add con_count guild contribution points
 	role:GetItemBag():AddMoney(MONEYTYPE_GUILD, con_count, MONEYLOG_INVALID, 0, 0);
 	SendMSToAddRes(role:GetObjID(), GUILD_ATTR_HERB, final_res);
 
 	return brvSuccess;
 end
 
--- 公会木材，有贡献
+-- Guild wood with contribution
 function GuildWood(owner, res_count)
 	local processor = owner:GetAIProcessor();
 	local npc = Cast(processor:GetOwner(), 'CNpc');
@@ -99,7 +99,7 @@ function GuildWood(owner, res_count)
 	local guild = CGuildMgr:GetInstance():FindGuild(role:GetGuildID());
 	local member = guild:GetMember(role:GetObjID());
 
-	-- 检查上限
+	-- Check the limit
 	local final_res = role:GetRoleGuildData():CalculateResLimit(member.nPosition, res_count);
     if final_res == 0 then
 		return brvFail;
@@ -112,7 +112,7 @@ function GuildWood(owner, res_count)
 	return brvSuccess;
 end
 
--- 公会石材，有贡献
+-- Guild stone with contribution
 function GuildCrystal(owner, res_count)
 	local processor = owner:GetAIProcessor();
 	local npc = Cast(processor:GetOwner(), 'CNpc');
@@ -123,7 +123,7 @@ function GuildCrystal(owner, res_count)
 	local guild = CGuildMgr:GetInstance():FindGuild(role:GetGuildID());
 	local member = guild:GetMember(role:GetObjID());
 
-	-- 检查上限
+	-- Check the limit
 	local final_res = role:GetRoleGuildData():CalculateResLimit(member.nPosition, res_count);
     if final_res == 0 then
 		return brvFail;
@@ -136,7 +136,7 @@ function GuildCrystal(owner, res_count)
 	return brvSuccess;
 end
 
--- 公会铁矿，有贡献
+-- Guild iron ore with contribution
 function GuildSilver(owner, res_count)
 	local processor = owner:GetAIProcessor();
 	local npc = Cast(processor:GetOwner(), 'CNpc');
@@ -147,7 +147,7 @@ function GuildSilver(owner, res_count)
 	local guild = CGuildMgr:GetInstance():FindGuild(role:GetGuildID());
 	local member = guild:GetMember(role:GetObjID());
 
-	-- 检查上限
+	-- Check the limit
 	local final_res = role:GetRoleGuildData():CalculateResLimit(member.nPosition, res_count);
     if final_res == 0 then
 		return brvFail;

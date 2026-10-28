@@ -1,4 +1,4 @@
---魔音岛
+--Demonic Sound Island
 evtAIIdle = 
 {batSequencer,
     { batCheckCDTimer, param = { COOLDOWN_AI, 1 } },

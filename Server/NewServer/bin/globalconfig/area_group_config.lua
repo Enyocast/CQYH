@@ -1,31 +1,31 @@
 ﻿function SetAreaGroupConfig()
--- 1区
+-- Region 1
 	if ServerConfig.Common.nAreaID == 1 then
--------------------光芒
+-------------------Guangmang
 		if ServerConfig.MS.nInitGroup == Group1 then
 			GameWorldConfig.nLevelLimit = 47;
 			GameWorldConfig.dwClientOption = 15
 
 
--------------------雷霆
+-------------------Leiting
 		elseif ServerConfig.MS.nInitGroup == Group2 then
 
-------------------烈焰
+------------------Lieyan
 		elseif ServerConfig.MS.nInitGroup == Group3 then
 			GameWorldConfig.nLevelLimit = 45;
 			GameWorldConfig.dwClientOption = 15
 
-------------------疾风
+------------------Jifeng
 		elseif ServerConfig.MS.nInitGroup == Group4 then
 			GameWorldConfig.nLevelLimit = 45;
 
 
------------------蜀山
+-----------------Shushan
 		elseif ServerConfig.MS.nInitGroup == Group5 then
 			GameWorldConfig.nLevelLimit = 45;
 
 
----------------- 流云
+---------------- Liuyun
 		elseif ServerConfig.MS.nInitGroup == Group6 then
 			GameWorldConfig.nLevelLimit = 45;
 		end

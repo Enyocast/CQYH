@@ -6,9 +6,9 @@
 			{ batRoleCheckInteractOption, param = { 1 } },
 			{batSelector,
 				{batSequencer,
-					{ batRoleCheckItemCount , param={ boGTE, 2800263, 2, 0} },--检测物品是否充足
-					{ batRoleDelItem , param={2800263, 2, 0, 2800263} },--检测物品是否充足
-					{ batSummonNpc , param={7702, 0, 0, 0} },--通过检测扣除成功后刷怪
+					{ batRoleCheckItemCount , param={ boGTE, 2800263, 2, 0} },--Check whether there are enough items
+					{ batRoleDelItem , param={2800263, 2, 0, 2800263} },--Check whether there are enough items
+					{ batSummonNpc , param={7702, 0, 0, 0} },--Spawn the monster after checks and deductions succeed
 					{ batSuicide, param = { false, false } },
 				},
 				{batSequencer,
@@ -20,9 +20,9 @@
 			{ batRoleCheckInteractOption, param = { 2 } },
 			{batSelector,
 				{batSequencer,
-					{ batRoleCheckItemCount , param={ boGTE, 2800264, 2, 0} },--检测物品是否充足
-					{ batRoleDelItem , param={2800264, 2, 0, 2800264} },--检测物品是否充足
-					{ batSummonNpc , param={7703, 0, 0, 0} },--通过检测扣除成功后刷怪
+					{ batRoleCheckItemCount , param={ boGTE, 2800264, 2, 0} },--Check whether there are enough items
+					{ batRoleDelItem , param={2800264, 2, 0, 2800264} },--Check whether there are enough items
+					{ batSummonNpc , param={7703, 0, 0, 0} },--Spawn the monster after checks and deductions succeed
 					{ batSuicide, param = { false, false } },
 				},
 				{batSequencer,
@@ -34,9 +34,9 @@
 			{ batRoleCheckInteractOption, param = { 3 } },
 			{batSelector,
 				{batSequencer,
-					{ batRoleCheckItemCount , param={ boGTE, 2800265, 2, 0} },--检测物品是否充足
-					{ batRoleDelItem , param={2800265, 2, 0, 2800265} },--检测物品是否充足
-					{ batSummonNpc , param={7704, 0, 0, 0} },--通过检测扣除成功后刷怪
+					{ batRoleCheckItemCount , param={ boGTE, 2800265, 2, 0} },--Check whether there are enough items
+					{ batRoleDelItem , param={2800265, 2, 0, 2800265} },--Check whether there are enough items
+					{ batSummonNpc , param={7704, 0, 0, 0} },--Spawn the monster after checks and deductions succeed
 					{ batSuicide, param = { false, false } },
 				},
 				{batSequencer,
@@ -48,9 +48,9 @@
 			{ batRoleCheckInteractOption, param = { 4 } },
 			{batSelector,
 				{batSequencer,
-					{ batRoleCheckItemCount , param={ boGTE, 2800266, 2, 0} },--检测物品是否充足
-					{ batRoleDelItem , param={2800266, 2, 0, 2800266} },--检测物品是否充足
-					{ batSummonNpc , param={7705, 0, 0, 0} },--通过检测扣除成功后刷怪
+					{ batRoleCheckItemCount , param={ boGTE, 2800266, 2, 0} },--Check whether there are enough items
+					{ batRoleDelItem , param={2800266, 2, 0, 2800266} },--Check whether there are enough items
+					{ batSummonNpc , param={7705, 0, 0, 0} },--Spawn the monster after checks and deductions succeed
 					{ batSuicide, param = { false, false } },
 				},
 				{batSequencer,
@@ -62,9 +62,9 @@
 			{ batRoleCheckInteractOption, param = { 5 } },
 			{batSelector,
 				{batSequencer,
-					{ batRoleCheckItemCount , param={ boGTE, 2800267, 2, 0} },--检测物品是否充足
-					{ batRoleDelItem , param={2800267, 2, 0, 2800267} },--检测物品是否充足
-					{ batSummonNpc , param={7706, 0, 0, 0} },--通过检测扣除成功后刷怪
+					{ batRoleCheckItemCount , param={ boGTE, 2800267, 2, 0} },--Check whether there are enough items
+					{ batRoleDelItem , param={2800267, 2, 0, 2800267} },--Check whether there are enough items
+					{ batSummonNpc , param={7706, 0, 0, 0} },--Spawn the monster after checks and deductions succeed
 					{ batSuicide, param = { false, false } },
 				},
 				{batSequencer,
@@ -76,9 +76,9 @@
 			{ batRoleCheckInteractOption, param = { 6 } },
 			{batSelector,
 				{batSequencer,
-					{ batRoleCheckItemCount , param={ boGTE, 2800268, 2, 0} },--检测物品是否充足
-					{ batRoleDelItem , param={2800268, 2, 0, 2800268} },--检测物品是否充足
-					{ batSummonNpc , param={7707, 0, 0, 0} },--通过检测扣除成功后刷怪
+					{ batRoleCheckItemCount , param={ boGTE, 2800268, 2, 0} },--Check whether there are enough items
+					{ batRoleDelItem , param={2800268, 2, 0, 2800268} },--Check whether there are enough items
+					{ batSummonNpc , param={7707, 0, 0, 0} },--Spawn the monster after checks and deductions succeed
 					{ batSuicide, param = { false, false } },
 				},
 				{batSequencer,
@@ -90,9 +90,9 @@
 			{ batRoleCheckInteractOption, param = { 7 } },
 			{batSelector,
 				{batSequencer,
-					{ batRoleCheckItemCount , param={ boGTE, 2800269, 2, 0} },--检测物品是否充足
-					{ batRoleDelItem , param={2800269, 2, 0, 2800269} },--检测物品是否充足
-					{ batSummonNpc , param={7708, 0, 0, 0} },--通过检测扣除成功后刷怪
+					{ batRoleCheckItemCount , param={ boGTE, 2800269, 2, 0} },--Check whether there are enough items
+					{ batRoleDelItem , param={2800269, 2, 0, 2800269} },--Check whether there are enough items
+					{ batSummonNpc , param={7708, 0, 0, 0} },--Spawn the monster after checks and deductions succeed
 					{ batSuicide, param = { false, false } },
 				},
 				{batSequencer,
@@ -104,9 +104,9 @@
 			{ batRoleCheckInteractOption, param = { 8 } },
 			{batSelector,
 				{batSequencer,
-					{ batRoleCheckItemCount , param={ boGTE, 2800270, 2, 0} },--检测物品是否充足
-					{ batRoleDelItem , param={2800270, 2, 0, 2800270} },--检测物品是否充足
-					{ batSummonNpc , param={7709, 0, 0, 0} },--通过检测扣除成功后刷怪
+					{ batRoleCheckItemCount , param={ boGTE, 2800270, 2, 0} },--Check whether there are enough items
+					{ batRoleDelItem , param={2800270, 2, 0, 2800270} },--Check whether there are enough items
+					{ batSummonNpc , param={7709, 0, 0, 0} },--Spawn the monster after checks and deductions succeed
 					{ batSuicide, param = { false, false } },
 				},
 				{batSequencer,
@@ -118,9 +118,9 @@
 			{ batRoleCheckInteractOption, param = { 9 } },
 			{batSelector,
 				{batSequencer,
-					{ batRoleCheckItemCount , param={ boGTE, 2800271, 2, 0} },--检测物品是否充足
-					{ batRoleDelItem , param={2800271, 2, 0, 2800271} },--检测物品是否充足
-					{ batSummonNpc , param={7710, 0, 0, 0} },--通过检测扣除成功后刷怪
+					{ batRoleCheckItemCount , param={ boGTE, 2800271, 2, 0} },--Check whether there are enough items
+					{ batRoleDelItem , param={2800271, 2, 0, 2800271} },--Check whether there are enough items
+					{ batSummonNpc , param={7710, 0, 0, 0} },--Spawn the monster after checks and deductions succeed
 					{ batSuicide, param = { false, false } },
 				},
 				{batSequencer,

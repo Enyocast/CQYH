@@ -168,63 +168,63 @@ function UpGuild(guild_name, finallevel)
 	end
 
 
-	-- 主殿
+	-- Main hall
 	level = guild:GetBuildingMaxLevelByType(GUILD_B_MAIN);
 	while level < finallevel do
 		guild:LuaUpdateBuilding(SelfRoleID, 'main01', GUILD_B_MAIN);
 		level = guild:GetBuildingMaxLevelByType(GUILD_B_MAIN);
 	end
 
-	-- 商会
+	-- Trading hall
 	level = guild:GetBuildingMaxLevelByType(GUILD_B_BUSINESS);
 	while level < finallevel do
 		guild:LuaUpdateBuilding(SelfRoleID, 'Shop01', GUILD_B_BUSINESS);
 		level = guild:GetBuildingMaxLevelByType(GUILD_B_BUSINESS);
 	end
 
-	-- 神坛
+	-- Altar
 	level = guild:GetBuildingMaxLevelByType(GUILD_B_DEITY);
 	while level < finallevel do
 		guild:LuaUpdateBuilding(SelfRoleID, 'God01', GUILD_B_DEITY);
 		level = guild:GetBuildingMaxLevelByType(GUILD_B_DEITY);
 	end
 
-	-- 居所
+	-- Residence
 	level = guild:GetBuildingMaxLevelByType(GUILD_B_HOUSE);
 	while level < finallevel do
 		guild:LuaUpdateBuilding(SelfRoleID, 'base901', GUILD_B_HOUSE);
 		level = guild:GetBuildingMaxLevelByType(GUILD_B_HOUSE);
 	end
 
-	-- 金库
+	-- Treasury
 	level = guild:GetBuildingMaxLevelByType(GUILD_B_STORAGE);
 	while level < finallevel do
 		guild:LuaUpdateBuilding(SelfRoleID, 'base902', GUILD_B_STORAGE);
 		level = guild:GetBuildingMaxLevelByType(GUILD_B_STORAGE);
 	end
 
-	-- 粮仓
+	-- Granary
 	level = guild:GetBuildingMaxLevelByType(GUILD_B_HERB_STORAGE);
 	while level < finallevel do
 		guild:LuaUpdateBuilding(SelfRoleID, 'base903', GUILD_B_HERB_STORAGE);
 		level = guild:GetBuildingMaxLevelByType(GUILD_B_HERB_STORAGE);
 	end
 
-	-- 木仓
+	-- Wood storehouse
 	level = guild:GetBuildingMaxLevelByType(GUILD_B_WOOD_STORAGE);
 	while level < finallevel do
 		guild:LuaUpdateBuilding(SelfRoleID, 'base904', GUILD_B_WOOD_STORAGE);
 		level = guild:GetBuildingMaxLevelByType(GUILD_B_WOOD_STORAGE);
 	end
 
-	-- 石仓
+	-- Stone storehouse
 	level = guild:GetBuildingMaxLevelByType(GUILD_B_CRYSTAL_STORAGE);
 	while level < finallevel do
 		guild:LuaUpdateBuilding(SelfRoleID, 'base905', GUILD_B_CRYSTAL_STORAGE);
 		level = guild:GetBuildingMaxLevelByType(GUILD_B_CRYSTAL_STORAGE);
 	end
 
-	-- 矿仓
+	-- Ore storehouse
 	level = guild:GetBuildingMaxLevelByType(GUILD_B_SILVER_STORAGE);
 	while level < finallevel do
 		guild:LuaUpdateBuilding(SelfRoleID, 'base906', GUILD_B_SILVER_STORAGE);

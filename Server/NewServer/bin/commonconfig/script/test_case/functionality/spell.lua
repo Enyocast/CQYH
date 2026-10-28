@@ -16,7 +16,7 @@ function TestCase.Spell.Formular()
 	local role_target;
 	local session_id_target;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -54,7 +54,7 @@ function TestCase.Spell.Charge()
     local msg;
     local session_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name, nil, clsWarrior);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -85,7 +85,7 @@ function TestCase.Spell.Missile()
     local msg;
     local user_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name, nil, clsWarrior);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -116,7 +116,7 @@ function TestCase.Spell.Spell_3000()
     local msg;
     local user_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name, nil, clsMage);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -148,7 +148,7 @@ function TestCase.Spell.Spell_3002()
     local msg;
     local user_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name, nil, clsMage);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -177,7 +177,7 @@ function TestCase.Spell.Spell_3005()
     local msg;
     local user_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name, nil, clsMage);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -204,7 +204,7 @@ function TestCase.Spell.ActivateRune()
     local msg;
     local user_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name, nil, clsMage);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -243,7 +243,7 @@ function TestCase.Spell.Spell_Archer()
     local msg;
     local user_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name, nil, clsArcher);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -270,7 +270,7 @@ function TestCase.Spell.Spell_Rogue()
     local msg;
     local user_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name, nil, clsRogue);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -297,7 +297,7 @@ function TestCase.Aura.Remain()
     local msg;
     local user_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name, nil, clsRogue);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -317,7 +317,7 @@ function TestCase.Aura.Stack()
     local msg;
     local user_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name, nil, clsRogue);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -357,7 +357,7 @@ function TestCase.Aura.Substitute()
     local msg;
     local user_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name, nil, clsRogue);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -389,7 +389,7 @@ function TestCase.Aura.Cover()
     local msg;
     local user_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name, nil, clsRogue);
     check(user, "failed to create user");
     check(role, "failed to create role");

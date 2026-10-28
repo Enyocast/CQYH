@@ -558,7 +558,7 @@ function TestGpk(name)
 end
 
 
--- 暂时屏蔽
+-- Temporarily disabled
 --function SceneInfo()
 --	local role = g_RoleMgr:FindOnlineRoleByRoleID(g_self_id);
 --	local nSceneTempID = role.pRoleData.nSceneTempID;
@@ -659,7 +659,7 @@ function SetWorldGambleCount(server_group, typeString, level, value)
 end
 
 
--- 暂时屏蔽
+-- Temporarily disabled
 --function SendRankListAward(nServerGroup, nRankListType, nStart, nEnd, nMailID, nMailCDTime)
 --	local nNodeCount = g_RankListMgr:GetMirrorRankNodeCount(nServerGroup, nRankListType);
 --	if nEnd > nNodeCount then

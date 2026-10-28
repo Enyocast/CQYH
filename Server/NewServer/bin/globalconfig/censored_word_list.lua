@@ -1,4 +1,4 @@
-﻿-----服务器屏蔽字黑名单
+﻿-----Server blocked-word blacklist
 GameWorldConfig.bFilterCensoredWord = false;
 GameWorldConfig.szCensoredWordList = 
 [[!

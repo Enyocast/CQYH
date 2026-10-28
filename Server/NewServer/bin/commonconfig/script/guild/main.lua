@@ -57,7 +57,7 @@ end
 --[[function GuildEndHint(AttackGuildID, DefenceGuildID)
 	local  pWarData;
 
-	-- 等待时间 s
+	-- Wait time in seconds
 	wait(30);
 
 	pWarData = g_MSGuildMgr:FindBattle(AttackGuildID, DefenceGuildID);
@@ -89,7 +89,7 @@ end
 ]]--
 
 
--- 创建公会时，公会建筑初始化
+-- Initialize guild buildings when the guild is created
 function InitGuildBuilding(guild_id)
 	local guild = g_MSGuildMgr:FindGuildByID(guild_id);
 	if guild == nil then
@@ -99,9 +99,9 @@ function InitGuildBuilding(guild_id)
 	print(g_GuildConfig.dwPalaceSceneTemplateID);
 
 	guild:LuaAddBuilding(g_GuildConfig.szBMainNameID, GUILD_B_MAIN, 1, 0);
-	-- 附带产生建筑
+	-- Create accompanying buildings
 
-	-- 其他建筑
+	-- Other buildings
 	guild:LuaAddBuilding(g_GuildConfig.szBBusinessNameID, GUILD_B_BUSINESS, 1, 0);
 	guild:LuaAddBuilding(g_GuildConfig.szBDeityNameID, GUILD_B_DEITY, 1, 0);
 	guild:LuaAddBuilding(g_GuildConfig.szBWonderNameID, GUILD_B_WONDER, 1, 0);
@@ -115,7 +115,7 @@ end
 
 
 
--- 计算资源扣减
+-- Calculate resource deductions
 function GuildChangeResource(npc_id, guild_id, res_type, change_type, count, reason, ctx_type)
 	local guild = g_MSGuildMgr:FindGuildByID(guild_id);
 
@@ -215,7 +215,7 @@ end
 ------------------------------------------------------------------------------------------------------------------------------
 ------------------------------------------------------------------------------------------------------------------------------
 
--- 公会等级衰减
+-- Guild level decay
 function WarResourceReduce(intruderGuildLevel, defenderGuildLevel)
 	local reduce = intruderGuildLevel - defenderGuildLevel;
 	if reduce > 0 then
@@ -409,7 +409,7 @@ end
 
 
 
--- 公会战结算
+-- Guild war settlement
 function GuildWarScore(defenderID, warDefenderResult)
 
     local       nMoney = 0;

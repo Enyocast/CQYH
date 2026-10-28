@@ -1,7 +1,7 @@
 on_wander =
 { batSequencer, 
 	--{ batSay, param = { cctScene, 40007, cltTvShow } },
-	--重复1次
+	--Repeat once
 		{ batSequencer,
 			{ batWait, param={WaitMin,WaitMax},
 			},
@@ -39,7 +39,7 @@ on_wander =
 				},		
 			},
 		},
-		--重复2次
+		--Repeat twice
 		{ batSequencer,
 			{ batWait, param={WaitMin,WaitMax},
 			},
@@ -77,7 +77,7 @@ on_wander =
 				},		
 			},
 		},
-	--2轮
+	--Round two
 		{ batSequencer,
 			{ batWait, param={ 600000 },
 			},
@@ -115,7 +115,7 @@ on_wander =
 				},		
 			},
 		},
-		--重复2次
+		--Repeat twice
 		{ batSequencer,
 			{ batWait, param={WaitMin,WaitMax},
 			},
@@ -153,7 +153,7 @@ on_wander =
 				},		
 			},
 		},
-		--3轮
+		--Round three
 			{ batSequencer,
 			{ batWait, param={ 600000 },
 			},
@@ -191,7 +191,7 @@ on_wander =
 				},		
 			},
 		},
-		--重复2次
+		--Repeat twice
 		{ batSequencer,
 			{ batWait, param={WaitMin,WaitMax},
 			},

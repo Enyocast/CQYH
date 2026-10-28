@@ -1,5 +1,5 @@
 
---function TestCase.Drop()   没有测试掉落的gm指令了
+--function TestCase.Drop()   There is no longer a GM command for testing drops
 function Drop()
     local user_name = "Drop" .. os.date("%H%M%S");
     local user;
@@ -8,17 +8,17 @@ function Drop()
     local msg;
     local session_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name, GROUP_ID, clsWarrior, cstMale, SERVER_PORT, 102);
     check(user, "failed to create user");
     check(role, "failed to create role");
 
     session_id = user:GetSessionID();
-    --用GM指令产生掉落
+    --Create a drop using a GM command
     ret = user:GMCommand("TestDrop(1)");
     check(ret, "failed to send gm command");
 
-    --检查掉落回包
+    --Check the drop response
     msg = recv_msg(5, session_id, protocol.g2c_sync_drop_list);
     check(msg, "failed to  recv g2c_sync_drop_list");
     check(msg.byIsNew==1, "failed to recv new drop");
@@ -27,25 +27,25 @@ function Drop()
 
     local dropid = msg.astDrops[0].dwDropID;
 
-    --拾取掉落
+    --Pick up the drop
     ret = user:PickUpItem(dropid);
     check(ret, "failed to send pick up item");
 
-    --应当收到物品变化的回包
+    --Expect an item-change response
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
     check(msg.stItem.nTemplateID==13, "failed to create correct item");
 
-    --应当收到掉落消失的回包
+    --Expect a drop-disappeared response
     msg = recv_msg(5, session_id, protocol.g2c_object_disappear);
     check(msg, "failed to recv g2c_object_disappear");
     check(msg.dwObjID==dropid, "failed to receive correct drop disappear msg");
 
-    --再用GM指令产生一次掉落
+    --Create another drop using a GM command
     ret = user:GMCommand("TestDrop(1)");
     check(ret, "failed to send gm command");
 
-    --检查掉落回包
+    --Check the drop response
     msg = recv_msg(5, session_id, protocol.g2c_sync_drop_list);
     check(msg, "failed to  recv g2c_sync_drop_list");
     check(msg.byIsNew==1, "failed to recv new drop");
@@ -54,16 +54,16 @@ function Drop()
     
     dropid = msg.astDrops[0].dwDropID;
 
-    --等5分钟掉落消失
+    --Wait five minutes for the drop to disappear
     msg = recv_msg(310, session_id, protocol.g2c_object_disappear);
     check(msg, "failed to recv g2c_object_disappear");
     check(msg.dwObjID==dropid, "failed to receive correct drop disappear msg");
 
-    --测试完成，登出
+    --Test complete; log out
     cleanup(user);
 end
 
---function TestCase.OperateDoodad()   那个doodad可能也没有了
+--function TestCase.OperateDoodad()   That doodad may no longer exist
 function OperateDoodad()
     local user_name = "Doodad" .. os.date("%Y%H%M%S");
     local user;
@@ -72,25 +72,25 @@ function OperateDoodad()
     local msg;
     local session_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
 
     session_id = user:GetSessionID();
 
-    --用GM指令召唤一个Doodad
+    --Spawn a doodad using a GM command
     ret = user:GMCommand("SummonDoodad(1)");
     check(ret, "failed to send gm command");
 
-    --检查召唤出的Doodad
+    --Check the spawned doodad
     msg = recv_msg(30, session_id, protocol.g2c_sync_doodad_list);
     check(msg, "failed to recv sync doodad list msg");
     check(msg.astAppearData[0].nTemplateID==1, "failed to recv correct doodad list");
 
     local doodad_id = msg.astAppearData[0].dwDoodadID;
 
-    --点Doodad
+    --Select the doodad
     ret = user:OperateDoodad(doodad_id);
     check(ret, "failed to operate doodad");
 
@@ -122,6 +122,6 @@ function OperateDoodad()
 	check(msg, "failed to recv g2c_object_disappear");
 	check(msg.dwObjID == doodad_id, "error doodad id");
 
-    --测试完成，登出
+    --Test complete; log out
     cleanup(user);
 end

@@ -8,12 +8,12 @@ function _TraversAllQuests()
     local ret;
     g_traversstatus = {};
 
-    local questcountmeanwhile = 1; -- 同时跑的任务数
+    local questcountmeanwhile = 1; -- Number of quests run concurrently
     local nquestcount = 0;
 	local runflag = true;
     g_queststatus = {};
 
-	-- 遍历所有任务
+	-- Traverse all quests
 	local quest_data = CDataManager_QUEST_DATA_:GetInstance():GetFirstData();
 
 	while(quest_data ~= nil) do
@@ -54,7 +54,7 @@ function _TraversSingleQuest(quest_data, nindex)
 	local nQuestIndex;
 	g_nQuestConfigCount = 0;
 
-	-- 测试不满足接任务条件情况
+	-- Test when quest acceptance requirements are not met
 	g_nQuestConfigCount = getquestacceptconfigcount(quest_data);
 	check(g_nQuestConfigCount ~= 0, "fail to check quest_data");
 
@@ -67,13 +67,13 @@ function _TraversSingleQuest(quest_data, nindex)
 
 	print("=============configurenum = "..g_nQuestConfigCount.."=================================");
 
-	-- 测试不满足交任务条件情况
+	-- Test when quest completion requirements are not met
 	for nQuestIndex = 1, g_nQuestConfigCount do
 		user_name = "Complete"..os.date("%H%M%S");
-		_CompleteQuest(user_name, quest_data, 0, 1, nQuestIndex, 1); -- 创造接任务成功条件,测交任务
+		_CompleteQuest(user_name, quest_data, 0, 1, nQuestIndex, 1); -- Create conditions for successful acceptance, then test completion
 	end
 
-	-- 测试满足接任务和交任务的条件下，重复任务的重复完成 (普通任务的重复接已经在_AcceptConditionIndex 中完成)
+	-- Test repeated completion of repeatable quests when acceptance and completion conditions are met (repeated acceptance of ordinary quests is tested in _AcceptConditionIndex)
 	if quest_data.nQuestID >= REPEAT_QUEST_START_ID and quest_data.nQuestID <= (REPEAT_QUEST_START_ID + MAX_REPEAT_QUEST_COUNT) then
 		user_name = "Quests"..os.date("%H%M%S");
 		user, role = startup(user_name, user_name);
@@ -94,7 +94,7 @@ end
 
 function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompletingTime, nAcceptType, nSrcID)
 
-	-- 配置项数目
+	-- Number of configuration entries
 	local nCount = 0;
 	local session_id = user:GetSessionID();
 
@@ -102,14 +102,14 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 	local tm = get_localtime_ex(g_gametime);
 	local gametime = g_gametime;
 
-	-- 冻结时间
+	-- Freeze time
 	user:GMCommand("g_oGameWorld:SetFreezeTime(true)");
 	wait(3);
 
-	-- 是否重复接任务
+	-- Whether to accept the quest again
 	nCount = nCount + 1;
 	if nCount == nIndex then
-		-- 使用GM命令设置此任务已经完成
+		-- Use a GM command to mark this quest completed
 		ret = user:GMCommand("CompleteQuest("..questdata.nQuestID..");");
 		wait(3);
 	    check(ret, "failed to CompleteQuest");
@@ -117,7 +117,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- 任务职业需求
+	-- Quest class requirement
 	if questdata.nClassLimit ~= 4 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -132,7 +132,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here 2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- 性别需求
+	-- Gender requirement
 	if questdata.nSexLimit ~= 0 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -151,16 +151,16 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here 3 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	 -- 关系需求
-	 -- 暂不作考虑
+	 -- Relationship requirement
+	 -- Not considered for now
 
-	-- 判断前置任务1,不满足前置任务能否完成当前任务(如果在测试重复接受任务时已经使用Meet满足过条件，此项pass)
+	-- Check prerequisite quest 1: whether the current quest can be completed without it (pass if Meet already satisfied it during the repeated acceptance test)
 	if questdata.nPreQuestID1 ~= 0 then
 		print("==========questdata.nPreQuestID1 = "..questdata.nPreQuestID1.."===================");
 		nCount = nCount + 1;
 		if nCount ~= nIndex and nIndex ~= 1 and nCompletingTime == 1 then
 
-			--	使用GM命令标志来设置完成标志
+			--	Use a GM command flag to set the completion flag
 			ret = user:GMCommand("CompleteQuest("..questdata.nPreQuestID1..");");
 			wait(3);
 	        check(ret, "failed to CompleteQuest");
@@ -170,13 +170,13 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 		end
 	end
 
-	-- 判断前置任务2,不满足前置任务能否完成当前任务(如果在测试重复接受任务时已经使用Meet满足过条件，此项pass)
+	-- Check prerequisite quest 2: whether the current quest can be completed without it (pass if Meet already satisfied it during the repeated acceptance test)
 	if questdata.nPreQuestID2 ~= 0 then
 		print("==========questdata.nPreQuestID2 = "..questdata.nPreQuestID2.."===================");
 		nCount = nCount + 1;
 		if nCount ~= nIndex and nIndex ~= 1 and nCompletingTime == 1 then
 
-			--	使用GM命令标志来设置完成标志
+			--	Use a GM command flag to set the completion flag
 			user:GMCommand("CompleteQuest("..questdata.nPreQuestID2..");");
 			wait(3);
 			print("==================successfully completed nPreQuestID2=="..questdata.nPreQuestID2.."==================================");
@@ -185,7 +185,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 		end
 	end
 
-	-- 开始任务的NPC ID
+	-- Starting quest NPC ID
 	if questdata.nStartNpcID ~= 0 then
 	  	print("@@@@@@@@@@@@@@@@@@@@@@@ come here nStartNpcID @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		nCount = nCount + 1;
@@ -204,7 +204,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 		end
 	end
 
-	-- 年限制
+	-- Year limit
 	if questdata.nYearLimit ~= 0 then
 	   	print("@@@@@@@@@@@@@@@@@@@@@@@ come here nYearLimit @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		nCount = nCount + 1;
@@ -223,7 +223,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 		end
 	end
 
-	-- 月限制
+	-- Month limit
 	if questdata.nMonthLimit ~= -1 then
 	   	print("@@@@@@@@@@@@@@@@@@@@@@@ come here nMonthLimit @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		nCount = nCount + 1;
@@ -234,16 +234,16 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 			print("==================unable to fullfil nMonthLimit====================================");
 		else
 			if tm.tm_mon ~= questdata.nMonthLimit then
-				if tm.tm_mon > questdata.nMonthLimit then  -- 现在的时间大于任务要求时间
+				if tm.tm_mon > questdata.nMonthLimit then  -- Current time is later than the quest requirement
 					gametime = gametime - ((tm.tm_mon + 1) - questdata.nMonthLimit)*31*24*3600;
-				else	-- 现在的时间小于任务要求时间,所以要多加一年
+				else	-- Current time is earlier than the quest requirement, so add one year
 					gametime = gametime - ((tm.tm_mon + 13) - questdata.nMonthLimit)*31*24*3600 + 365*24*3600;
 				end
 			end
 		end
 	end
 
-	-- 星期重复任务允许接受的开始时间
+	-- Acceptance start time for weekly repeatable quests
 	--if questdata.nStartWeekday ~= -1 then
 	--   	print("@@@@@@@@@@@@@@@@@@@@@@@ come here nStartWeekday @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 	--	local endweekday = (questdata.nStartWeekday + questdata.nWeekdayDuration) % 7;
@@ -263,7 +263,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 	--	end
 	--end
 
-	-- 月份重复任务允许接受的开始时间
+	-- Acceptance start time for monthly repeatable quests
 	--if questdata.nStartMonthday ~= 0 then
 	--   	print("@@@@@@@@@@@@@@@@@@@@@@@ come here nStartMonthday @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 	--	nCount = nCount + 1;
@@ -280,7 +280,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 	--	end
 	--end
 
-	-- 允许接受时间范围开始
+	-- Start of the allowed acceptance time range
 	--if questdata.dwAcceptStartTime ~= 0 then
 	--   	print("@@@@@@@@@@@@@@@@@@@@@@@ come here dwAcceptStartTime @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 	--	local daytime = gametime % 86400;
@@ -295,7 +295,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 	--	end
 	--end
 
-	-- 开始任务的Item ID
+	-- Starting quest item ID
 	if questdata.nStartItemID ~= 0 then
 	   	print("@@@@@@@@@@@@@@@@@@@@@@@ come here nStartItemID @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		nCount = nCount + 1;
@@ -306,7 +306,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 			msg = recv_msg(5, session_id, protocol.g2c_item_change);
 			check(msg, "failed to recv g2c_item_change");
 		else
-			-- 查找身上是否有此物品
+			-- Check whether the character has this item
 			local itembag = role:GetItemBag();
 			check(itembag, "failed to get itembag");
 
@@ -316,11 +316,11 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 		end
 	end
 
-	-- 任务最低等级需求
+	-- Minimum quest level requirement
 	if questdata.nMinLevelLimit ~= 0 then
 		print("@@@@@@@@@@@@@@@@@@@@@@@ come here 5 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		nCount = nCount + 1;
-		-- 在测试最高等级时，不受最低等级影响
+		-- Ignore the minimum level when testing the maximum
 		if nCount ~= nIndex - 1 then
 			if nCount ~= nIndex then
 				local exp = GetMaxExpByLevel(questdata.nMinLevelLimit);
@@ -334,13 +334,13 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 		end
 	end
 
-	 -- 任务最高等级需求
+	 -- Maximum quest level requirement
 	if questdata.nMaxLevelLimit ~= 0 then
 		nCount = nCount + 1;
 		local exp = GetMaxExpByLevel(questdata.nMaxLevelLimit + 1);
 		check(exp ~= nil, "fail to get exp by level");
 
-		-- 在测试最低等级时，不受最高等级影响
+		-- Ignore the maximum level when testing the minimum
 		if nCount ~= nIndex + 1 and nIndex ~= 0 then
 			if nCount ~= nIndex then
 				exp = exp - 2;
@@ -357,19 +357,19 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here 6 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- 这个需要additem 和 useitem, 暂且注释掉
-	-- 需求BUFF ID 和 LEVEL
+	-- This requires additem and useitem, so leave it commented out for now
+	-- Required buff ID and level
 	--if questdata.nBuffIDLimit ~= 0 then
 	--	nCount = nCount + 1;
 	--	if nCount ~= nIndex then
-	----		ret = role:CastSpellToSelf(109);	-- 109号技能，对应109号的buf,配对应buf时注意与quest_data.nBuffLevelLimit对应
+	----		ret = role:CastSpellToSelf(109);	-- Skill 109 corresponds to buff 109; ensure the configured buff matches quest_data.nBuffLevelLimit
 	--		check(ret, "fail to cast spell to myself");
 	--	else
 	--		print("==================unable to fullfil nBuffIDLimit====================================");
 	--	end
 	--end
 
-	-- 需求货币类型, 需求货币数量（不扣除）
+	-- Required currency type and amount (not deducted)
 	if questdata.nMoneyTypeLimit ~= 0 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -382,10 +382,10 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here 7 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- 需求Npc势力声望
+	-- Required NPC faction reputation
 	if questdata.nReputationForceID ~= -1 then
 
-		-- 需求最低声望(在测试需求最高声望时需要pass)
+		-- Minimum reputation requirement (must pass when testing the maximum)
 		if questdata.nReputationMinLimit ~= 0 then
 
 			print("==================questdata.nReputationMinLimit=="..questdata.nReputationMinLimit.."====================================");
@@ -405,7 +405,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 			wait(1);
 		end
 
-		-- 需求最高声望(在测试最低声望时需要pass)
+		-- Maximum reputation requirement (must pass when testing the minimum)
 		if questdata.nReputationMaxLimit ~= 0 then
 			nCount = nCount + 1;
 			if nCount ~= nIndex and nCount ~= nIndex + 1 then
@@ -424,8 +424,8 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here 8 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- 机器人在接受g2c_item_change时会甭，暂时把物品注掉
-	-- 身上道具需求
+	-- The bot crashes when receiving g2c_item_change; temporarily comment out the item
+	-- Required items carried
 	--for nItemIndex = 0, MAX_CONDITION_PER_QUEST - 1 do
 	--	if questdata.vecItemLimitID[nItemIndex] ~= 0 and questdata.vecItemLimitCnt[nItemIndex] ~= 0 then
 	--		nCount = nCount + 1;
@@ -443,7 +443,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here nLimitVarID1 = "..questdata.nLimitVarID1.."@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- 需求变量ID1, 需求变量值1（判断相等）接任务时只判断Role Scene, 不考虑Quest
+	-- Required variable ID 1 and value 1 (equality check); acceptance checks only Role and Scene, not Quest
 	if questdata.nLimitVarID1 ~= -1 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -466,7 +466,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here 9 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- 需求变量ID2, 需求变量值2（判断相等）接任务时只判断Role Scene, 不考虑Quest
+	-- Required variable ID 2 and value 2 (equality check); acceptance checks only Role and Scene, not Quest
 	if questdata.nLimitVarID2 ~= -1 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -488,7 +488,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here 10 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- 接任务获得货币类型
+	-- Currency type awarded upon quest acceptance
 	if questdata.nOfferMoneyType ~= 0 then
 		nCount = nCount + 1;
 		if nCount == nIndex then
@@ -509,7 +509,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 		check(ret, "fail to send accept quest");
 
 		if nIndex <= nCount then
-			-- 已经完成的次数超过允许完成的次数
+			-- The completion count exceeds the allowed count
 			if nIndex ~= 0 or (nCompletingTime > questdata.nMaxCompletedCount and questdata.nQuestID <= MAX_NORMAL_QUEST_COUNT) then
 				msg = recv_msg(30, session_id, protocol.g2c_error_notify);
 				check(msg.nErrCode ~= error_code.errSuccess, "failed to recv errSuccess");
@@ -528,7 +528,7 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
 	local msg;
 	local session_id = user:GetSessionID();
 
-	-- 任务职业需求
+	-- Quest class requirement
 	if quest_data.nClassLimit ~= 4 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -540,7 +540,7 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
 		end
 	end
 
-	-- 性别需求
+	-- Gender requirement
 	if quest_data.nSexLimit ~= 0 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -558,16 +558,16 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
 		end
 	end
 
-	-- 杀怪数检查(放在检查任务npc前面，防止由于释放技能，移动距离过大，导致与npc距离过大)
+	-- Check kill count before checking the quest NPC to avoid moving too far from the NPC while casting skills
 	for nNpcIndex = 0, MAX_CONDITION_PER_QUEST - 1 do
         if  quest_data.vecCheckKillNpcID[nNpcIndex] ~= 0 and quest_data.vecCheckKillNpcCnt[nNpcIndex] ~= 0 then
 			print("************* Quest is: "..quest_data.nQuestID.. "*******   quest_data.vecCheckKillNpcID[nNpcIndex] : " ..quest_data.vecCheckKillNpcID[nNpcIndex].."********quest_data.vecCheckKillNpcCnt[nNpcIndex] = "..quest_data.vecCheckKillNpcCnt[nNpcIndex].."******");
 			nCount = nCount + 1;
 			if nCount ~= nIndex then
 				for nNpcCount = 1, quest_data.vecCheckKillNpcCnt[nNpcIndex] + 4 do
-					-- 招怪, 杀怪
+					-- Spawn and kill monsters
 					local cmd = "local oNpc = SummonNpc(" ..quest_data.vecCheckKillNpcID[nNpcIndex].."); oNpc:SetHp(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ()); wait(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ());";
-					ret = user:GMCommand(cmd); -- 战士，野蛮冲撞
+					ret = user:GMCommand(cmd); -- Warrior: Barbaric Charge
 					wait(3);
 				end
 			else
@@ -576,7 +576,7 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
         end
     end
 
-	--任务结束的NPC ID
+	--Quest completion NPC ID
 	if quest_data.nFinishNpc ~= 0 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -590,9 +590,9 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
 			check(msg, "failed to summon npc");
 
 		else
-			-- 多数情况下，结束任务的npc会与开始任务的npc一致
-			-- 导致接任务时已经设置过interact npc，及时交任务时不设置npc  也能过
-			-- 因此测试结束npc 时，刷一个错误npcid
+			-- In most cases, the completion NPC is the same as the starting NPC
+			-- The interaction NPC set during acceptance can therefore allow completion even without setting it again
+			-- Therefore spawn an incorrect NPC ID when testing the completion NPC
 
 			local npcid = quest_data.nFinishNpc - 1;
 			user:GMCommand("SummonNpc(".. npcid ..")");
@@ -608,7 +608,7 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
 		end
 	end
 
-	-- 任务完成的BUF检查
+	-- Check buffs at quest completion
 	if quest_data.nCheckBuffID ~= 0 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex and quest_data.nCheckBuffID == 109 then
@@ -635,7 +635,7 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
         end
     end
 
-	-- 需求变量ID1, 需求变量值1（判断相等）需要判断 Role, Scene, Quest
+	-- Required variable ID 1 and value 1 (equality check); check Role, Scene and Quest
 	if quest_data.nCheckVarID1 ~= -1 then
 		nCount = nCount + 1;
 
@@ -658,7 +658,7 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
 		end
 	end
 
-	-- 需求变量ID2, 需求变量值2（判断相等）需要判断 Role, Scene, Quest
+	-- Required variable ID 2 and value 2 (equality check); check Role, Scene and Quest
 	if quest_data.nCheckVarID2 ~= -1 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -680,7 +680,7 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
 		end
 	end
 
-	-- 货币奖励类型, 货币奖励数量
+	-- Reward currency type and amount
 	if quest_data.nAwardMoneyType ~= 0 and quest_data.nAwardMoneyAmount ~= 0 then
 		nCount = nCount + 1;
 		if nCount == nIndex then
@@ -747,17 +747,17 @@ end
 
 function _MeetQuest()
     local user_name;
-    local questcountmeanwhile = 1; -- 同时跑的任务数
+    local questcountmeanwhile = 1; -- Number of quests run concurrently
     local nquestcount = 0;
 	local runflag = true;
 	local i;
 
-    g_queststatus = {}; -- 每个任务的状态
-    g_acceptstatus = {}; -- 检测接受任务时,每个index对应协程的状态
-    g_completestatus = {}; -- 检测交任务时,每个index对应协程的状态
-    g_traversstatus = {}; -- 检测遍历任务时,每个index对应协程的状态
+    g_queststatus = {}; -- Status of each quest
+    g_acceptstatus = {}; -- Coroutine status for each index when testing quest acceptance
+    g_completestatus = {}; -- Coroutine status for each index when testing quest completion
+    g_traversstatus = {}; -- Coroutine status for each index when testing quest traversal
 
-	-- 遍历所有任务
+	-- Traverse all quests
 	local quest_data = CDataManager_QUEST_DATA_:GetInstance():GetFirstData();
 
 	while(quest_data ~= nil) do
@@ -822,99 +822,99 @@ end
 
 function getquestacceptconfigcount(questdata)
 
-	-- 配置项数目
+	-- Number of configuration entries
 	local nCount = 0;
 
-	-- 是否重复接任务
+	-- Whether to accept the quest again
 	nCount = nCount + 1;
 
-	-- 任务职业需求
+	-- Quest class requirement
 	if questdata.nClassLimit ~= 4 then
 		nCount = nCount + 1;
 	end
 
-	-- 性别需求
+	-- Gender requirement
 	if questdata.nSexLimit ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	 -- 关系需求
-	 -- 暂不作考虑
+	 -- Relationship requirement
+	 -- Not considered for now
 
-	-- 判断前置任务1,不满足前置任务能否完成当前任务(如果在测试重复接受任务时已经使用Meet满足过条件，此项pass)
+	-- Check prerequisite quest 1: whether the current quest can be completed without it (pass if Meet already satisfied it during the repeated acceptance test)
 	if questdata.nPreQuestID1 ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- 判断前置任务2,不满足前置任务能否完成当前任务(如果在测试重复接受任务时已经使用Meet满足过条件，此项pass)
+	-- Check prerequisite quest 2: whether the current quest can be completed without it (pass if Meet already satisfied it during the repeated acceptance test)
 	if questdata.nPreQuestID2 ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- 开始任务的NPC ID
+	-- Starting quest NPC ID
 	if questdata.nStartNpcID ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- 开始任务的Item ID
+	-- Starting quest item ID
 	if questdata.nStartItemID ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- 任务最低等级需求
+	-- Minimum quest level requirement
 	if questdata.nMinLevelLimit ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	 -- 任务最高等级需求
+	 -- Maximum quest level requirement
 	if questdata.nMaxLevelLimit ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- 这个需要additem 和 useitem, 暂且注释掉
-	-- 需求BUFF ID 和 LEVEL
+	-- This requires additem and useitem, so leave it commented out for now
+	-- Required buff ID and level
 	--if questdata.nBuffIDLimit ~= 0 then
 	--	nCount = nCount + 1;
 	--end
 
-	-- 需求货币类型, 需求货币数量（不扣除）
+	-- Required currency type and amount (not deducted)
 	if questdata.nMoneyTypeLimit ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- 需求Npc势力声望
+	-- Required NPC faction reputation
 	if questdata.nReputationForceID ~= -1 then
 
-		-- 需求最低声望(在测试需求最高声望时需要pass)
+		-- Minimum reputation requirement (must pass when testing the maximum)
 		if questdata.nReputationMinLimit ~= 0 then
 			nCount = nCount + 1;
 		end
 
-		-- 需求最高声望(在测试最低声望时需要pass)
+		-- Maximum reputation requirement (must pass when testing the minimum)
 		if questdata.nReputationMaxLimit ~= 0 then
 			nCount = nCount + 1;
 		end
 	end
 
-	-- 机器人在接受g2c_item_change时会甭，暂时把物品注掉
-	-- 身上道具需求
+	-- The bot crashes when receiving g2c_item_change; temporarily comment out the item
+	-- Required items carried
 	--for nItemIndex = 0, MAX_CONDITION_PER_QUEST - 1 do
 	--	if questdata.vecItemLimitID[nItemIndex] ~= 0 and questdata.vecItemLimitCnt[nItemIndex] ~= 0 then
 	--		nCount = nCount + 1;
 	--  end
 	--end
 
-	-- 需求变量ID1, 需求变量值1（判断相等）接任务时只判断Role Scene, 不考虑Quest
+	-- Required variable ID 1 and value 1 (equality check); acceptance checks only Role and Scene, not Quest
 	if questdata.nLimitVarID1 ~= -1 then
 		nCount = nCount + 1;
 	end
 
-	-- 需求变量ID2, 需求变量值2（判断相等）接任务时只判断Role Scene, 不考虑Quest
+	-- Required variable ID 2 and value 2 (equality check); acceptance checks only Role and Scene, not Quest
 	if questdata.nLimitVarID2 ~= -1 then
 		nCount = nCount + 1;
 	end
 
-	-- 接任务获得货币类型
+	-- Currency type awarded upon quest acceptance
 	if questdata.nOfferMoneyType ~= 0 then
 		nCount = nCount + 1;
 	end

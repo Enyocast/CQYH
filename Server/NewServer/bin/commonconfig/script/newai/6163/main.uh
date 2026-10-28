@@ -6,11 +6,11 @@
 evtAIInteract = 
 { batSequencer,
 	{ batSelector,
-		{ batSequencer,--非领奖时间
+		{ batSequencer,--Outside the reward claim period
 			{ batCheckSceneVariable, param = { boLT, 1, 5 } },
 			{ batRoleOpenDialog, param = { 666543, 30000 } },
 		},
-		{ batSequencer,--领奖时间，但没有占领公会
+		{ batSequencer,--Reward claim period, but no guild occupies it
 			{ batCheckSceneVariable, param = { boGTE, 1, 5 } },
 			{ batCheckSceneVariable, param = { boEQ, 2, 0 } },
 			{ batRoleOpenDialog, param = { 666544, 30000 } },
@@ -20,15 +20,15 @@ evtAIInteract =
 			{ batCheckSceneVariable, param = { boNEQ, 2, 0 } },
 			{ batSelector,
 				{ batSequencer,
-					{ batRoleCheckGuild, param = { 'o:GetScene():GetVariable(2)' } },--本公会 开启2个选项
+					{ batRoleCheckGuild, param = { 'o:GetScene():GetVariable(2)' } },--Enable two options for this guild
 					{ batRoleOpenDialog, param = { 666545, 30000 } },
 					{ batSelector,
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 1 } }, --我要获得BUFF
+							{ batRoleCheckInteractOption, param = { 1 } }, --Obtain a buff
 							{ batRoleOpenDialog, param = { 666567, 30000 } },
 							{ batRoleCheckInteractOption, param = { 1 } },
 							{ batSelector,
-								--占领公会成员免费拿双BUFF
+								--Members of the occupying guild receive two buffs for free
 								{ batSequencer,
 									{ batRoleCheckDailyVariable, param = { 213 } },
 									{ batRoleCheckGuild, param = { 'o:GetScene():GetVariable(2)' } },
@@ -37,22 +37,22 @@ evtAIInteract =
 									{ batRoleUpdateDailyVariable, param = { 213, 0 } },
 									{ batRoleOpenDialog, param = { 666546, 30000 } },
 								},
-								--非占领公会成员付钱拿单buff
+								--Nonmembers pay for one buff
 --[[							{ batSequencer,
 									{ batRoleCheckDailyVariable, param = { 213 } },
 									{ batNot,
 										{ batRoleCheckGuild, param = { 'o:GetScene():GetVariable(2)' } },
 									},
 									{ batRoleOpenDialog, param = { 666547, 30000 } },
-									{ batRoleCheckInteractOption, param = { 1 } }, --确定上交15W获得BUFF
+									{ batRoleCheckInteractOption, param = { 1 } }, --Confirm paying 150,000 for the buff
 									{ batSelector,
-										--check玩家身上钱财，低于15W的穷逼滚犊子
+										--Check the player’s money; reject players with less than 150,000
 										{ batSequencer,
-											{ batRoleCheckMoney, param = { boLT, 1, 150000 } }, --确定上交15W获得BUFF
+											{ batRoleCheckMoney, param = { boLT, 1, 150000 } }, --Confirm paying 150,000 for the buff
 											{ batRoleOpenDialog, param = { 666548, 30000 } },
 										},
 										{ batSequencer,
-											{ batRoleCheckMoney, param = { boGTE, 1, 150000 } }, --确定上交15W获得BUFF
+											{ batRoleCheckMoney, param = { boGTE, 1, 150000 } }, --Confirm paying 150,000 for the buff
 											{ batRoleSubMoney , param={ tarRole,1, 150000 } },
 											{ batSetSceneVariable, param = { 3,0,150000 } },
 											{ batAddAura, param = { tarRole, 2517  } },
@@ -67,9 +67,9 @@ evtAIInteract =
 							},
 						},
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 2 } }, --长老以上职位领6个称号
+							{ batRoleCheckInteractOption, param = { 2 } }, --Elders and higher ranks can claim six titles
 							{ batSelector,
-								{ batSequencer,--满6个不可以领取
+								{ batSequencer,--Cannot claim if already holding six
 									{ batCheckSceneVariable, param = { boGTE, 4, 6 } },
 									{ batRoleOpenDialog, param = { 666549, 30000 } },
 								},
@@ -90,11 +90,11 @@ evtAIInteract =
 									{ batRoleOpenDialog, param = { 666568, 30000 } },
 								},
 
-								--占领公会
+								--Occupying guild
 								{ batSequencer,
 									{ batRoleCheckGuild, param = { 'o:GetScene():GetVariable(2)' } },							
 									{ batSelector,
-										--长老以上职位领6个称号
+										--Elders and higher ranks can claim six titles
 										{ batSequencer,
 											{ batRoleCheckGuild, param = { 'o:GetScene():GetVariable(2)' } },
 											{ batRoleCheckPosition, param = { boGTE, 3 } },
@@ -102,7 +102,7 @@ evtAIInteract =
 											{ batRoleAddTitle, param = { 99 } }, 
 											{ batRoleOpenDialog, param = { 666546, 30000 } },
 										},
-										--职位不够的滚犊子
+										--Reject insufficient rank
 										{ batSequencer,
 											{ batRoleCheckGuild, param = { 'o:GetScene():GetVariable(2)' } },
 											{ batRoleCheckPosition, param = { boLT, 3 } },
@@ -110,41 +110,41 @@ evtAIInteract =
 										},							
 									},
 								},
-								--非占领公会滚犊子
+								--Reject non-occupying guilds
 								{ batSequencer,
 									{ batRoleOpenDialog, param = { 666565, 30000 } },
 								},
 							},
 						},
 --[[					{ batSequencer,
-						{ batRoleCheckInteractOption, param = { 3 } }, --会长领钱
+						{ batRoleCheckInteractOption, param = { 3 } }, --Guild leader claims money
 							{ batRoleOpenDialog, param = { 666551, 30000 } },
 							{ batSelector,
-								--占领公会会长领钱选项
+								--Money claim option for the occupying guild leader
 								{ batSequencer,
 									{ batSelector,
-										{ batSequencer,---所有人都可以查钱
+										{ batSequencer,---Everyone can check the money
 											{ batRoleCheckInteractOption, param = { 1 } },
 											{ batRoleOpenDialog, param = { 666552,30000, 'o:GetScene():GetVariable(3)' } },
 										},
 										{ batSequencer,
 											{ batRoleCheckInteractOption, param = { 2 } },
 											{ batSelector,
-												{ batSequencer,--会长领钱
+												{ batSequencer,--Guild leader claims money
 													{ batRoleCheckGuild, param = { 'o:GetScene():GetVariable(2)' } },
 													{ batRoleCheckPosition, param = { boGTE, 2  } },
 													{ batRoleAddMoney, param = { tarRole, 1, 'o:GetScene():GetVariable(3)' } },
 													{ batSetSceneVariable, param = { 3,0 } },
 													{ batRoleOpenDialog, param = { 666546, 30000 } },
 												},
-											--非占领公会滚犊子
+											--Reject non-occupying guilds
 												{ batSequencer,
 													{ batNot,
 														{ batRoleCheckGuild, param = { 'o:GetScene():GetVariable(2)' } },
 													},
 													{ batRoleOpenDialog, param = { 666550, 30000 } },
 												},
-											--职位不够的滚犊子
+											--Reject insufficient rank
 												{ batSequencer,
 													{ batRoleCheckGuild, param = { 'o:GetScene():GetVariable(2)' } },
 													{ batRoleCheckPosition, param = { boLT, 2 } },
@@ -159,7 +159,7 @@ evtAIInteract =
 					},
 				},
 				{ batSequencer,
-					{ batRoleOpenDialog, param = { strAI6163_6_3, 30000 } },---非占领公会不能领取相关奖励
+					{ batRoleOpenDialog, param = { strAI6163_6_3, 30000 } },---Non-occupying guilds cannot claim these rewards
 				},
 			},
 		},
@@ -169,9 +169,9 @@ evtAIInteract =
 evtAIIdle = 
 { batSequencer,
 		{ batSelector,
-		--开始随机刷怪和喊话
+		--Start random monster spawns and announcements
 		{ batSequencer,
-			{ batSequencer,--1230刷一波
+			{ batSequencer,--Spawn a wave at 12:30
 				{ batSelector,
 					{ batCheckDateTime, param = { 0, 140000, 143000  } },
 				},
@@ -199,9 +199,9 @@ evtAIIdle =
 				},
 			},
 		},
-		--结束进入领奖时间
+		--End and enter the reward claim period
 		{ batSequencer,
-			{ batSequencer,--1430到1630的领奖时间
+			{ batSequencer,--Reward claim period from 14:30 to 16:30
 				{ batCheckDateTime, param = { 0, 143001, 163000  } },
 				{ batCheckSceneVariable, param = {boGT, 1, 0} },
 				{ batCheckSceneVariable, param = {boLT, 1, 5} },
@@ -209,9 +209,9 @@ evtAIIdle =
 				{ say_end_text },
 			},
 		},
-		--领奖时间完毕
+		--Reward claim period ends
 		{ batSequencer,
-			{ batSequencer,--1500到1600的领奖时间
+			{ batSequencer,--Reward claim period from 15:00 to 16:00
 				{ batCheckDateTime, param = { 0, 163001, 170000  } },
 				{ batCheckSceneVariable, param = {boNEQ, 1, 0} },
 				{ batSetSceneVariable, param = { 1, 0} },

@@ -6,21 +6,21 @@ local run_speed = 600;
 local chase_delay = 1000;
 
 local spell_common =
-{	-- 1 冲击矢_螺旋 箭上加持了螺旋的力量, 可以推动沿途的单位并造成多段的伤害
+{	-- 1. Spiral Impact Arrow: pushes units along its path and deals multiple hits
 	{ id = 5583, cd = 5000, chance = 10000, group = 1 },
-	-- 2 三叉戟 发射3支箭攻击直线内单位 
+	-- 2. Trident: fires three arrows at units in a straight line
 	{ id = 5879, cd = 2500, chance = 10000, group = 1 },
-	-- 3 紧急回避
+	-- 3. Emergency evade
 	{ id = 5589, cd = 1000, chance = 10000 },
-	-- 4 变色龙
+	-- 4. Chameleon
 	{ id = 5584, cd = 1000, chance = 10000 },
-	-- 5 炼狱 将目标踩倒在地，并追加多重射击。在变色龙状态下才会释放
+	-- 5. Purgatory: knocks the target down and follows with multiple shots; only used in Chameleon state
 	{ id = 5881, cd = 1000, chance = 10000 },
-	-- 6 紧急回避
+	-- 6. Emergency evade
 	{ id = 5884, cd = 1000, chance = 10000 },
-	-- 7 猎杀标记 标记目标，白色闪光对目标的伤害将提升，持续10秒
+	-- 7. Hunt Mark: marks the target, increasing White Flash damage against it for 10 seconds
 	{ id = 5586, cd = 12000, chance = 10000 },
-	-- 8 灵魂链接 与白色闪光分担伤害，持续20秒，CD28秒
+	-- 8. Soul Link: share damage with White Flash for 20 seconds; cooldown 28 seconds
 	{ id = 5587, cd = 15000, chance = 10000 },
 };
 

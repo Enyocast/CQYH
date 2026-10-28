@@ -22,7 +22,7 @@ local g_oGameWorld = CGameWorld:GetInstance();
 	end
 
 	if role then
-		--exp_reward_rate* A*玩家等级*(1/N)^0.1 exp_reward_rate :运营要控制的倍数 A：基数，初设1000 N：第几个来领取		
+		--exp_reward_rate * A * player level * (1/N)^0.1; exp_reward_rate is the operations-controlled multiplier, A is the base (initially 1000), and N is the claim order
 		local exp = exp_reward_rate * (role:GetLevel()) * ( 1 / (roleindex + 1) )^0.1 / 10;
 		role:AddExp(exp, false, true);
 		return brvSuccess;

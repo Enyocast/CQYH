@@ -86,13 +86,13 @@ evtGuildWarBegin =
 { batParallel,
 	{ batSequencer,
 		{ batCheckSceneVariable, param = { boEQ, 7, 0 } },
-		{ batSetSceneVariable, param = { 7, 1, 0 } },		-- 设置音效关闭
+		{ batSetSceneVariable, param = { 7, 1, 0 } },		-- Set sound effects off
 	},
 };
 
 evtGuildWarEnd =
 { batSequencer,
-	{ batSetSceneVariable, param = { 7, 0, 0 } },		-- 设置音效关闭
+	{ batSetSceneVariable, param = { 7, 0, 0 } },		-- Set sound effects off
     { batSceneRoleSetFaction, param={ RAW_FACTION },
     },
     { batSetReputationToFaction, param={ RAW_FACTION, REPUTATION_TYPE, 19999 },

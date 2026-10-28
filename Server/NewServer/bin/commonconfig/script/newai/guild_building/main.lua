@@ -67,9 +67,9 @@ Include("script/newai/guild_building/main.uh")
 --
 	--local guild = g_GuildMgr:FindGuild(scene:GetSceneID());
 --
-	---- 第一步 刷新宝箱 doodad
+	---- Step 1: spawn the treasure chest doodad
 	----local attack_user_num = scene:GetVariable(2);
-	--local defend_user_num = scene:GetVariable(1);	-- 这个公会变量是在scene的tree脚本里统计的
+	--local defend_user_num = scene:GetVariable(1);	-- This guild variable is calculated in the scene tree script
 --
 	--local pSpawnPoint = npc:GetSpawnPoint();
 	--local gs_building_data = guild:GetBuildingDataByNpcID(pSpawnPoint.qwNameID);
@@ -78,11 +78,11 @@ Include("script/newai/guild_building/main.uh")
 --
 	--local doodad_id = 0;
 	--if defend_user_num < (Max_guild_num / 3) then
-		--doodad_id = pBuildingData.dwFewMembersReward;		-- 小于三分之一
+		--doodad_id = pBuildingData.dwFewMembersReward;		-- Less than one third
 	--elseif defend_user_num < (Max_guild_num * 2 / 3) then
-		--doodad_id = pBuildingData.dwSomeMembersReward;		-- 大于三分之一小于三分之二
+		--doodad_id = pBuildingData.dwSomeMembersReward;		-- More than one third and less than two thirds
 	--else
-		--doodad_id = pBuildingData.dwManyMembersReward;		-- 大于三分之二
+		--doodad_id = pBuildingData.dwManyMembersReward;		-- More than two thirds
 	--end
 --
 	--local dwRoleID = get_ctx_role_id();
@@ -90,7 +90,7 @@ Include("script/newai/guild_building/main.uh")
 	--scene:SpawnDoodad(doodad_id, pRole:GetX(), pRole:GetY(), pRole:GetZ(), pRole:GetFaceDirection());
 --
 --
-	---- 第二步， 说话
+	---- Step 2: speak
 	--local war_data = g_GuildMgr:FindBattleByDefendGuildID(scene:GetSceneID());
 --
 	--pRole:Say(scene:GetSceneID(), pBuildingData.dwDefenderMsgID, cltLighting);
@@ -102,22 +102,22 @@ Include("script/newai/guild_building/main.uh")
 --function GetGBuildingTemplateData(owner)
 	--local processor = owner:GetAIProcessor();
 	--if nil == processor then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	--local npc = Cast(processor:GetOwner(), 'CNpc');
 	--if nil == npc then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	--local scene = npc:GetScene();
 	--if nil == scene then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	--local guild = g_GuildMgr:FindGuild(scene:GetSceneID());
 	--if guild == nil then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	--local p_spawn_point = npc:GetSpawnPoint();
@@ -145,26 +145,26 @@ Include("script/newai/guild_building/main.uh")
 --function GetDoodadTemplateID(owner)
 	--local processor = owner:GetAIProcessor();
 	--if nil == processor then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	--local npc = Cast(processor:GetOwner(), 'CNpc');
 	--if nil == npc then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	--local scene = npc:GetScene();
 	--if nil == scene then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	----local attack_user_num = scene:GetVariable(2);
-	--local defend_user_num = scene:GetVariable(1);	-- 这个公会变量是在scene的tree脚本里统计的
+	--local defend_user_num = scene:GetVariable(1);	-- This guild variable is calculated in the scene tree script
 --
 --
 	--local guild = g_GuildMgr:FindGuild(scene:GetSceneID());
 	--if guild == nil then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	--local pSpawnPoint = npc:GetSpawnPoint();
@@ -185,11 +185,11 @@ Include("script/newai/guild_building/main.uh")
 	--local Max_guild_num = guild:GetMaxMemberCount();
 --
 	--if defend_user_num < (Max_guild_num / 3) then
-		--return pBuildingData:dwFewMembersReward;		-- 小于三分之一
+		--return pBuildingData:dwFewMembersReward;		-- Less than one third
 	--elseif defend_user_num < (Max_guild_num * 2 / 3) then
-		--return pBuildingData:dwSomeMembersReward;		-- 大于三分之一小于三分之二
+		--return pBuildingData:dwSomeMembersReward;		-- More than one third and less than two thirds
 	--else
-		--return pBuildingData:dwManyMembersReward;		-- 大于三分之二
+		--return pBuildingData:dwManyMembersReward;		-- More than two thirds
 	--end
 --end
 --
@@ -217,22 +217,22 @@ Include("script/newai/guild_building/main.uh")
 --
 	--local processor = owner:GetAIProcessor();
 	--if nil == processor then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	--local npc = Cast(processor:GetOwner(), 'CNpc');
 	--if nil == npc then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	--local scene = npc:GetScene();
 	--if nil == scene then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	--local guild = g_GuildMgr:FindGuild(scene:GetSceneID());
 	--if guild == nil then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	--local pSpawnPoint = npc:GetSpawnPoint();
@@ -284,22 +284,22 @@ Include("script/newai/guild_building/main.uh")
 --
 	--local processor = owner:GetAIProcessor();
 	--if nil == processor then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	--local npc = Cast(processor:GetOwner(), 'CNpc');
 	--if nil == npc then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	--local scene = npc:GetScene();
 	--if nil == scene then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	--local guild = g_GuildMgr:FindGuild(scene:GetSceneID());
 	--if guild == nil then
-		--return 0;			-- 失败返回0，也可以普通的通用宝箱
+		--return 0;			-- Return 0 on failure; a normal common treasure chest can also be used
 	--end
 --
 	--local pSpawnPoint = npc:GetSpawnPoint();

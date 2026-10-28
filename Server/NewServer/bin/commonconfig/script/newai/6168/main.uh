@@ -2,7 +2,7 @@
 { batSequencer,
 	{ batRoleOpenDialog, param = { 666578, 30000 } },
 	{ batSelector,
---[[		{ batSequencer,--领取英雄帖
+--[[		{ batSequencer,--Claim a hero invitation
 			{ batRoleCheckInteractOption, param = { 1 } },
 			{ batRoleOpenDialog, param = { 666585, 30000 } },
 			{ batRoleCheckInteractOption, param = { 1 } },
@@ -10,7 +10,7 @@
 				{ batSequencer,
 					{ batRoleCheckLevel, param = { boGTE, 20 } },
 					{ batSelector,
-						{ batSequencer, --有每日CD
+						{ batSequencer, --Daily cooldown applies
 							{ batRoleCheckDailyVariable, param = { 223 } },
 							{ batSelector,
 								{ batSequencer,
@@ -25,7 +25,7 @@
 								},
 							},
 						},
-						{ batSequencer,--无每日CD
+						{ batSequencer,--No daily cooldown
 							{ batRoleOpenDialog, param = { 666581, 30000 } },
 						},
 					},
@@ -35,7 +35,7 @@
 				},
 			},
 		},--]]
-		{ batSequencer,--英雄帖换物品
+		{ batSequencer,--Exchange hero invitations for items
 			{ batRoleCheckInteractOption, param = { 1 } },
 			{ batRoleOpenDialog, param = { 666586, 30000 } },
 			{ batRoleCheckInteractOption, param = { 1 } },

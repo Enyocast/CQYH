@@ -9,14 +9,14 @@ evtAIInteract =
 				{ batSequencer,
 					{ batRoleCheckInteractOption, param = { 1 } },
 					{ batSelector,
-						{ batSequencer,	--检查
+						{ batSequencer,	--Check
 							{ batCheckServerVariable, param = { boEQ, esvtArena, avArenaIsOpen, 1 } },
 							{ batSelector,
 								{ batSequencer,
 									{ batRoleCheckLevel, param = { boGTE , 30 } },
 									{ batSelector,
 										{ batSequencer,
-											--检查是否具备足够的钱,有就扣钱进入队列
+											--Check funds; if sufficient, deduct money and enter the queue
 											{ batRoleCheckMoney , param = { boGTE , 1 , 20000 } },
 											{ batSelector,
 												{ batSequencer,
@@ -32,25 +32,25 @@ evtAIInteract =
 															{ batRoleJoinArena, },
 														},
 														{ batSequencer,
-															--提示没有已经在排队
+															--Report that the player is already queued
 															{ batRoleOpenDialog, param = { 50112 , 50000, 0, 0 } },
 														},
 													},
 												},
 												{ batSequencer,
-													--提示在队伍中
+													--Report that the player is in a team
 													{ batRoleOpenDialog, param = { 50113 , 50000, 0, 0 } },
 												},
 											},
 										},
 										{ batSequencer,
-											--提示没有足够的钱
+											--Report insufficient funds
 											{ batRoleOpenDialog, param = { 50108 , 50000, 0, 0 } },
 										},
 									},
 								},
 								{ batSequencer,
-									--提示没有达到30级
+									--Report that level 30 has not been reached
 									{ batRoleOpenDialog, param = { 50109 , 50000, 0, 0 } },
 								},
 							},
@@ -58,7 +58,7 @@ evtAIInteract =
 						{ batSequencer,
 							{ batRoleOpenDialog, param = { 50110 , 50000, 0, 0 } },
 						},
-					},	--检查结束
+					},	--Check complete
 				},
 				{ batSequencer,
 					{ batRoleCheckInteractOption, param = { 2 } },

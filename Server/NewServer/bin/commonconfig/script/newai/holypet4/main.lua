@@ -4,28 +4,28 @@ LoadPackage("character.pkg")
 LoadPackage("role.pkg")
 LoadPackage("npc.pkg")
 
---灵兽
+--Spirit beast
 --Include("script/newai/sub_tree/sub_tree.lh")
 Include("script/newai/sub_tree/pet_sub_tree.lua")
 
 -- spell, aura, last time
-local 	TRANSFORM_TO_DOG_AURA_ID = 60610;  -- 灵兽变化
-local 	TRANSFORM_TO_DOG_SPELL_ID = 6061;  -- [神兽(灵兽印)]进入战斗
+local 	TRANSFORM_TO_DOG_AURA_ID = 60610;  -- Spirit beast transformation
+local 	TRANSFORM_TO_DOG_SPELL_ID = 6061;  -- [Divine beast (spirit beast seal)] enter combat
 local 	TRANSFORM_TO_DOG_PERFORMANCE_TIME = 1063;
 
 local 	TRANSFORM_TO_MAN_WAIT_TIME = 60000;
-local 	TRANSFORM_TO_MAN_SPELL_ID = 6047;   -- [神兽(通用)]退出战斗
+local 	TRANSFORM_TO_MAN_SPELL_ID = 6047;   -- [Divine beast (common)] leave combat
 local 	TRANSFORM_TO_MAN_PERFORMANCE_TIME = 1750;
 
-local 	MAGE_PET_VIOLENT_SPELL_ID = 25411;  -- 诱惑成功的特效 (VIOLENT, 暴击?)
+local 	MAGE_PET_VIOLENT_SPELL_ID = 25411;  -- Effect for successful temptation (VIOLENT, critical hit?)
 
-local   HOLY_PET_HP_AURA_ID = 60461;  -- 神兽(通用)属性变化
+local   HOLY_PET_HP_AURA_ID = 60461;  -- Divine beast (common) attribute change
 
 -- cd
-local 	PET_TRANSFORM_TO_IDLE_STATE_CD = nastCustom;  -- PET转换为空闲状态CD
+local 	PET_TRANSFORM_TO_IDLE_STATE_CD = nastCustom;  -- Pet transition to idle state cooldown
 
 
--- 发现目标
+-- Target found
 on_pet_detect=
 { batSelector,
 	{ batCheckAura, param = { tarSelf, TRANSFORM_TO_DOG_AURA_ID} },
@@ -36,13 +36,13 @@ on_pet_detect=
 	},
 };
 
--- 进入空闲状态
+-- Enter idle state
 on_pet_enter_idle =
 { batParallel,
 	{ batSetCDTimer, param = { COOLDOWN_AI, PET_TRANSFORM_TO_IDLE_STATE_CD, TRANSFORM_TO_MAN_WAIT_TIME} },
 };
 
--- 空闲状态
+-- Idle state
 on_pet_idle =
 { batSequencer,
 	{ batCheckAura, param = { tarSelf, TRANSFORM_TO_DOG_AURA_ID} },

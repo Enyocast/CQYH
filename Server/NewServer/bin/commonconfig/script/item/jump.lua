@@ -1799,7 +1799,7 @@ JUMP_TABLE = {
 
 	[152] = {
 		sub_district = true,
-		--------------皇宫--------------------------------
+		--------------Palace--------------------------------
 		{	
 			lt = { 
 				x = 89600, 
@@ -1837,7 +1837,7 @@ JUMP_TABLE = {
 				{ x = 91968, y = 48600, z = 6144 },					
 			},
 		},
-		--------------书店--------------------------------
+		--------------Bookstore--------------------------------
 		{	
 			lt = { 
 				x = 43602, 
@@ -1860,7 +1860,7 @@ JUMP_TABLE = {
 				{ x = 45980, y = 114120, z = 4817 },				
 			},
 		},
-		--------------衣服店--------------------------------
+		--------------Clothing store--------------------------------
 		{	
 			lt = { 
 				x = 43600, 
@@ -1880,7 +1880,7 @@ JUMP_TABLE = {
 				{ x = 45619, y = 123914, z = 4817 },				
 			},
 		},
-		--------------药店--------------------------------
+		--------------Medicine shop--------------------------------
 		{	
 			lt = { 
 				x = 42863, 
@@ -1907,7 +1907,7 @@ JUMP_TABLE = {
 				{ x = 45071, y = 137842, z = 4817 },				
 			},
 		},
-		--------------仓库--------------------------------
+		--------------Warehouse--------------------------------
 		{	
 			lt = { 
 				x = 43142, 
@@ -1933,7 +1933,7 @@ JUMP_TABLE = {
 
 
 
-		--------------杂货店--------------------------------
+		--------------General store--------------------------------
 		{	
 			lt = { 
 				x = 43144, 
@@ -1954,7 +1954,7 @@ JUMP_TABLE = {
 		},
 
 
-		--------------牢房--------------------------------
+		--------------Prison cell--------------------------------
 		{	
 			lt = { 
 				x = 43149, 
@@ -1976,7 +1976,7 @@ JUMP_TABLE = {
 
 
 		},
-		--------------武器店--------------------------------
+		--------------Weapon shop--------------------------------
 		{	
 			lt = { 
 				x = 43463, 
@@ -1997,7 +1997,7 @@ JUMP_TABLE = {
 				},
 		},
 
-		--------------首饰店--------------------------------
+		--------------Jewelry shop--------------------------------
 		{	
 			lt = { 
 				x = 43463, 
@@ -5013,7 +5013,7 @@ function SabacJump(pItem, pRole)
 	end
 end
 
--- 幽冥海4层 跳转坐标
+-- Nether Sea level 4 teleport coordinates
 YMH4_POS = {
 	{ x = 125890560, y = 26428416, z = 6144000}, 
 	{ x = 124442624, y = 26862592, z = 6144000},
@@ -5023,18 +5023,18 @@ YMH4_POS = {
 	{ x = 126541824, y = 26717184, z = 6144000},
 };
 
--- 魔龙血域 跳转坐标
+-- Demon Dragon Blood Realm teleport coordinates
 MLXY_POS = {
 	{ x = 134938624, y = 42663936, z = 9633792}, 
 	{ x = 117997568, y = 46919680, z = 9633792}, 
 };
 
--- 魔虫窟 跳转坐标
+-- Demon Insect Cave teleport coordinates
 MCK_POS = {
 	{ x = 145984, y = 48448, z = 5392},  
 };
 
--- 魔虫窟
+-- Demon Insect Cave
 function MCKJump(pItem, pRole)
 	if pRole:GetLevel() < 20 then
 		return errItemTooLowLevel;
@@ -5049,7 +5049,7 @@ function MCKJump(pItem, pRole)
 	end
 end
 
--- 幽冥海4层
+-- Nether Sea level 4
 function YMH4Jump(pItem, pRole)
 	if pRole:GetLevel() < 20 then
 		return errItemTooLowLevel;
@@ -5065,7 +5065,7 @@ function YMH4Jump(pItem, pRole)
 	end
 end
 
--- 魔龙血域
+-- Demon Dragon Blood Realm
 function MLXYJump(pItem, pRole)
 	if pRole:GetLevel() < 40 then
 		return errItemTooLowLevel;
@@ -5081,7 +5081,7 @@ function MLXYJump(pItem, pRole)
 		end
 end
 
--- 幽冥海1层
+-- Nether Sea level 1
 function ymh1_teleport(pItem, pRole)
 	if pRole:GetLevel() < 20 then
 		return errItemTooLowLevel;

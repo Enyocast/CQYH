@@ -14,7 +14,7 @@ LoadPackage("title.pkg")
 local g_oGameWorld = CGameWorld:GetInstance();
 
 function Check_Yuanbao(owner)
-	-- 暂时改成, [扣除金币] 1万
+	-- Temporarily changed to deduct 10,000 gold
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	
 	local moneyret = role:GetItemBag():GetMoney(1);
@@ -26,7 +26,7 @@ function Check_Yuanbao(owner)
 	end
 	
 	
-    -- 默认代码, 需要[扣除元宝], 暂时屏蔽
+    -- Default code requires deducting ingots; temporarily disabled
 	-- local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	-- local username = role:GetUserName();
 	-- local yuanbao = role:GetItemBag():GetMoney(3);

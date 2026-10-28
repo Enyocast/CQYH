@@ -35,12 +35,12 @@ Include("setting/set.lua")
 Include("setting/attribute.lua")
 Include("setting/soul.lua")
 
--- 说明：type的类型有 number, string, link, object, union
--- number		表示不与其他表交互的数字数据项，若其count字段不为0则表明为数组,其max或者min字段如果没有则默认不查
--- string		表示不与其他表交互的字符数据项，若其count字段不为0则表明为数组,其maxlen字段表示最大的字符串长度
--- link			表示与其他表单交互的非结构体数据项，若其count字段不为0则表明为数组,其refertable表明与其交互表的名字,　referfield表示交互表对应的交互项
--- rule			表示此项的检验规则自己制定，rule项为表达式，只用带入数据查看是否满足
--- item			特种类型，表示此数据项必须要在item表或者equip表出现
+-- Type values include number, string, link, object, and union
+-- number: numeric field not referencing other tables; nonzero count denotes an array; omitted min/max bounds are not checked
+-- string: text field not referencing other tables; nonzero count denotes an array; maxlen specifies maximum length
+-- link: non-struct field referencing another table; nonzero count denotes an array; refertable names that table and referfield names its corresponding field
+-- rule: custom validation expression evaluated with the data
+-- item: special type requiring the value to appear in the item or equip table
 
 function check(Data)
 	local passcount = 0;
@@ -62,9 +62,9 @@ function check(Data)
 	local colcount = CCheckData:GetInstance():GetTabColCount(tabconfig);
 	ruletable = {};
 	
-	for row = 0, rowcount - 1 do	-- 遍历每一行
+	for row = 0, rowcount - 1 do	-- Iterate each row
 		local error = false;
-		for col = 0, colcount - 1 do	-- 遍历每一行
+		for col = 0, colcount - 1 do	-- Iterate each row
 		
 			local colname = CCheckData:GetInstance():GetColName(tabconfig, col);
 
@@ -99,35 +99,35 @@ end
 
 function check_data(tabconfig, v, tablename, fieldname, row)
 
-	if v.type == 'link' then	-- link类型单纯引用其他表格的某个字段
+	if v.type == 'link' then	-- A link references a field in another table
 		local data = CCheckData:GetInstance():GetNumber(tabconfig, fieldname, row);	
-		if v.invalidvalue == nil or data ~= v.invalidvalue then					--	如果是无效值, 则跳过
-			local object_data = GetDataFromTable( v.refertable, data, v.referfield)  	-- data[k] k的取值为nTemplateID,szName...
-			if object_data == nil then -- 说明对应的表没有配
+		if v.invalidvalue == nil or data ~= v.invalidvalue then					--	Skip invalid values
+			local object_data = GetDataFromTable( v.refertable, data, v.referfield)  	-- data[k], where k may be nTemplateID, szName, etc.
+			if object_data == nil then -- The corresponding table entry is not configured
 				CCheckData:GetInstance():PrintWrn('配置表'..tablename..'第'..row..'行字段'..fieldname..'所引用的值在配置表'..v.refertable..'的'..v.referfield..'字段中无法找到，请找'.._G[tablename..'_define'].owner..'修正');
 				return false;
 			end
 		end
 		
-	elseif v.type == 'number' then											-- number类型单纯为数字范围检查，不关联其他表格
+	elseif v.type == 'number' then											-- number checks numeric range without referencing other tables
 		local data = CCheckData:GetInstance():GetNumber(tabconfig, fieldname, row);
-		if v.invalidvalue == nil or data ~= v.invalidvalue then					--	如果是无效值, 则跳过
-			if v.min ~= nil and data < v.min then 								-- 说明所配数据超出范围
+		if v.invalidvalue == nil or data ~= v.invalidvalue then					--	Skip invalid values
+			if v.min ~= nil and data < v.min then 								-- Configured value is out of range
 				CCheckData:GetInstance():PrintWrn('配置表'..tablename..'第'..row..'行字段'..fieldname..'的数值小于了设定的最小值'..tostring(v.min)..'，请找'.._G[tablename..'_define'].owner..'修正');
 				return false;
 			end
-			if v.max ~= nil and data > v.max then 								-- 说明所配数据超出范围
+			if v.max ~= nil and data > v.max then 								-- Configured value is out of range
 				CCheckData:GetInstance():PrintWrn('配置表'..tablename..'第'..row..'行字段'..fieldname..'的数值大于了设定的最大值'..tostring(v.max)..'，请找'.._G[tablename..'_define'].owner..'修正');
 				return false;
 			end
 		end
-	elseif v.type == 'string' then											-- string 类型单纯为字符串长度检查，不关联其他表格
+	elseif v.type == 'string' then											-- string checks length without referencing other tables
 		local data = CCheckData:GetInstance():GetString(tabconfig, fieldname, row);
-		if v.maxlen ~= nil and string.len(data) > v.maxlen then											-- 说明所配数据超出长度
+		if v.maxlen ~= nil and string.len(data) > v.maxlen then											-- Configured value exceeds the length limit
 			CCheckData:GetInstance():PrintWrn('配置表'..tablename..'第'..row..'行字段'..fieldname..'的字符串长度大于了设定的最大值'..tostring(v.maxlen)..'，请找'.._G[tablename..'_define'].owner..'修正');
 			return false;
 		end
-	elseif v.type == 'item' then	-- item类型指定查询item表(referfield1)和equip(referfield2)表中至少有一出现
+	elseif v.type == 'item' then	-- item must appear in at least one of the item (referfield1) or equip (referfield2) tables
 		local data = CCheckData:GetInstance():GetNumber(tabconfig, fieldname, row);
 		
 		if data ~= v.default then
@@ -179,7 +179,7 @@ function check_data(tabconfig, v, tablename, fieldname, row)
 	return true;
 end
 
-function GetDataFromTable(tablename, value, tablefield, value1, tablefield1)	-- 每个DATA_MANAGER GetData()时的key不同,用此函数来在表格tablename的tablefield字段中查找是否有value值
+function GetDataFromTable(tablename, value, tablefield, value1, tablefield1)	-- Each DATA_MANAGER GetData() uses a different key; find value in the tablefield field of tablename
 
 	local tabconfig1 = CCheckData:GetInstance():GetDataByName(tablename);
 	
@@ -191,7 +191,7 @@ function GetDataFromTable(tablename, value, tablefield, value1, tablefield1)	-- 
 	local rowcount1 = CCheckData:GetInstance():GetTabRowCount(tabconfig1);
 	
 	if value1 then
-		for row1 = 0, rowcount1 - 1 do	-- 遍历每一行	
+		for row1 = 0, rowcount1 - 1 do	-- Iterate each row
 			if CCheckData:GetInstance():GetNumber(tabconfig1, tablefield1, row1) == value then
 				return true;
 			end
@@ -199,7 +199,7 @@ function GetDataFromTable(tablename, value, tablefield, value1, tablefield1)	-- 
 	end
 	
 	if  value then	
-		for row1 = 0, rowcount1 - 1 do	-- 遍历每一行
+		for row1 = 0, rowcount1 - 1 do	-- Iterate each row
 			if CCheckData:GetInstance():GetNumber(tabconfig1, tablefield, row1) == value then
 				return true;
 			end

@@ -1,10 +1,10 @@
 ﻿
 
--- 说明 - 嵌套对话
--- batRoleOpenDialog 打开窗口之后, 使用 batSelector 选择其中之一
--- 每一个选择都是一个 batSequencer, 不能全部写在一个 batSequencer 里面, 否则会合并成一个选项
--- 内层对话也要严格按照 batSelector => batSequencer 的逻辑
--- batSequencer 后面接 batRoleOpenDialog, 再接 batSelector => batSequencer
+-- Notes - nested dialogs
+-- After batRoleOpenDialog opens the window, use batSelector to choose an option
+-- Each choice needs its own batSequencer; putting all choices in one merges them
+-- Inner dialogs must also follow batSelector => batSequencer
+-- Follow batSequencer with batRoleOpenDialog, then batSelector => batSequencer
 
 
 evtAIInteract = 
@@ -12,7 +12,7 @@ evtAIInteract =
 	{ batRoleOpenDialog, param = { strAI6192_1, 30000, 0, 0 } },
 	{  batSelector, 
 		
-		-- <#SO:1>装备打孔<#SO/>
+		-- <#SO:1>Create equipment sockets<#SO/>
 		{ batSequencer,
 			{ batRoleCheckInteractOption, param = { 1 } }, 
 			{  batSelector, 
@@ -20,7 +20,7 @@ evtAIInteract =
 					{ batRoleOpenDialog, param = { strAI6192_11, 30000, 0, 0 } }, 
 					{  batSelector, 
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 11 } }, -- <#SO:11>头盔<#SO/>
+							{ batRoleCheckInteractOption, param = { 11 } }, -- <#SO:11>Helmet<#SO/>
 							{  batSelector, 
 								{ batSequencer,
 									{ AddSocket_TouKui },
@@ -29,7 +29,7 @@ evtAIInteract =
 						},
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 12 } }, -- <#SO:12>衣服<#SO/>
+							{ batRoleCheckInteractOption, param = { 12 } }, -- <#SO:12>Armor<#SO/>
 							{  batSelector, 
 								{ batSequencer,
 									{ AddSocket_YiFu },
@@ -38,7 +38,7 @@ evtAIInteract =
 						},
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 13 } }, -- <#SO:13>腰带<#SO/>
+							{ batRoleCheckInteractOption, param = { 13 } }, -- <#SO:13>Belt<#SO/>
 							{  batSelector, 
 								{ batSequencer,
 									{ AddSocket_YaoDai },
@@ -47,7 +47,7 @@ evtAIInteract =
 						},
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 14 } }, -- <#SO:14>鞋子<#SO/>
+							{ batRoleCheckInteractOption, param = { 14 } }, -- <#SO:14>Shoes<#SO/>
 							{  batSelector, 
 								{ batSequencer,
 									{ AddSocket_XieZi },
@@ -56,7 +56,7 @@ evtAIInteract =
 						},
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 15 } }, -- <#SO:15>护肩<#SO/>
+							{ batRoleCheckInteractOption, param = { 15 } }, -- <#SO:15>Shoulders<#SO/>
 							{  batSelector, 
 								{ batSequencer,
 									{ AddSocket_HuJian },
@@ -65,7 +65,7 @@ evtAIInteract =
 						},
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 16 } }, -- <#SO:16>护腕<#SO/>
+							{ batRoleCheckInteractOption, param = { 16 } }, -- <#SO:16>Bracers<#SO/>
 							{  batSelector, 
 								{ batSequencer,
 									{ AddSocket_HuWan },
@@ -74,7 +74,7 @@ evtAIInteract =
 						},
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 17 } }, -- <#SO:17>披风<#SO/>
+							{ batRoleCheckInteractOption, param = { 17 } }, -- <#SO:17>Cloak<#SO/>
 							{  batSelector, 
 								{ batSequencer,
 									{ AddSocket_PiFeng },
@@ -87,14 +87,14 @@ evtAIInteract =
 			},
 		},
 		
-		-- <#SO:2>雕色 - 第一孔位<#SO/>
+		-- <#SO:2>Color engraving - socket 1<#SO/>
 		{ batSequencer,
 			{ batRoleCheckInteractOption, param = { 2 } }, 
 			{  batSelector, 
 				{ batSequencer,
 					{ batRoleOpenDialog, param = { strAI6192_12, 30000, 0, 0 } }, 
 					{  batSelector, 
-						-- 第一孔位 - 头盔
+						-- Socket 1 - helmet
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 21 } }, 
 							{  batSelector, 
@@ -146,7 +146,7 @@ evtAIInteract =
 							},
 						},
 						
-						-- 第一孔位 - 衣服
+						-- Socket 1 - armor
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 22 } }, 
 							{  batSelector, 
@@ -198,7 +198,7 @@ evtAIInteract =
 							},
 						},
 						
-						-- 第一孔位 - 腰带
+						-- Socket 1 - belt
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 23 } }, 
 							{  batSelector, 
@@ -250,7 +250,7 @@ evtAIInteract =
 							},
 						},
 						
-						-- 第一孔位 - 鞋子
+						-- Socket 1 - shoes
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 24 } }, 
 							{  batSelector, 
@@ -302,7 +302,7 @@ evtAIInteract =
 							},
 						},
 						
-						-- 第一孔位 - 护肩
+						-- Socket 1 - shoulders
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 25 } }, 
 							{  batSelector, 
@@ -354,7 +354,7 @@ evtAIInteract =
 							},
 						},
 						
-						-- 第一孔位 - 护腕
+						-- Socket 1 - bracers
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 26 } }, 
 							{  batSelector, 
@@ -406,7 +406,7 @@ evtAIInteract =
 							},
 						},
 						
-						-- 第一孔位 - 披风
+						-- Socket 1 - cloak
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 27 } }, 
 							{  batSelector, 
@@ -463,14 +463,14 @@ evtAIInteract =
 			},
 		},
 
-		-- <#SO:3>雕色 - 第二孔位<#SO/>
+		-- <#SO:3>Color engraving - socket 2<#SO/>
 		{ batSequencer,
 			{ batRoleCheckInteractOption, param = { 3 } }, 
 			{  batSelector, 
 				{ batSequencer,
 					{ batRoleOpenDialog, param = { strAI6192_13, 30000, 0, 0 } }, 
 					{  batSelector, 
-						-- 第二孔位 - 头盔
+						-- Socket 2 - helmet
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 31 } }, 
 							{  batSelector, 
@@ -522,7 +522,7 @@ evtAIInteract =
 							},
 						},
 						
-						-- 第二孔位 - 衣服
+						-- Socket 2 - armor
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 32 } }, 
 							{  batSelector, 
@@ -574,7 +574,7 @@ evtAIInteract =
 							},
 						},
 						
-						-- 第二孔位 - 腰带
+						-- Socket 2 - belt
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 33 } }, 
 							{  batSelector, 
@@ -626,7 +626,7 @@ evtAIInteract =
 							},
 						},
 						
-						-- 第二孔位 - 鞋子
+						-- Socket 2 - shoes
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 34 } }, 
 							{  batSelector, 
@@ -678,7 +678,7 @@ evtAIInteract =
 							},
 						},
 						
-						-- 第二孔位 - 护肩
+						-- Socket 2 - shoulders
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 35 } }, 
 							{  batSelector, 
@@ -730,7 +730,7 @@ evtAIInteract =
 							},
 						},
 						
-						-- 第二孔位 - 护腕
+						-- Socket 2 - bracers
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 36 } }, 
 							{  batSelector, 
@@ -782,7 +782,7 @@ evtAIInteract =
 							},
 						},
 						
-						-- 第二孔位 - 披风
+						-- Socket 2 - cloak
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 37 } }, 
 							{  batSelector, 
@@ -838,7 +838,7 @@ evtAIInteract =
 			},
 		},
 		
-		-- <#SO:4>兑换物品<#SO/>
+		-- <#SO:4>Exchange items<#SO/>
 		{ batSequencer,
 			{ batRoleCheckInteractOption, param = { 4 } }, 
 			{  batSelector, 
@@ -846,55 +846,55 @@ evtAIInteract =
 					{ batRoleOpenDialog, param = { strAI6192_15, 30000, 0, 0 } }, 
 					{  batSelector, 
 					
-						-- <#SO:51>命运武器礼盒-100幸运币<#SO/>
+						-- <#SO:51>Destiny weapon gift box - 100 luck coins<#SO/>
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 51 } }, 
 							{  batSelector, 
 								{ batSequencer,
-									{ batRoleCheckItemCount, param = { boGTE, 91185, 100 } },  -- 91185-幸运币
+									{ batRoleCheckItemCount, param = { boGTE, 91185, 100 } },  -- 91185 - luck coin
 									{ batRoleDelItem, param = { 91185, 100 } },
-									{ batRoleAddItem, param = { 2000024, 1 } },  -- 2000024-命运武器礼盒
+									{ batRoleAddItem, param = { 2000024, 1 } },  -- 2000024 - Destiny weapon gift box
 								},
 							},
 						},
 						
-						-- <#SO:52>赤月护肩<#SO/>
+						-- <#SO:52>Red Moon shoulders<#SO/>
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 52 } }, 
 							{  batSelector, 
 								{ batSequencer,
 									{ batRoleOpenDialog, param = { strAI6192_16, 30000, 0, 0 } }, 
 									{  batSelector, 
-										-- <#SO:61>战士赤月护肩-100苍月锦<#SO/>
+										-- <#SO:61>Warrior Red Moon shoulders - 100 Cangyue brocade<#SO/>
 										{ batSequencer,
 											{ batRoleCheckInteractOption, param = { 61 } }, 
 											{  batSelector, 
 												{ batSequencer,
-													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005-苍月锦
+													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005 - Cangyue brocade
 													{ batRoleDelItem, param = { 111005, 100 } },
-													{ batRoleAddItem, param = { 99990512, 1 } },  -- 99990512-寒狼护肩
+													{ batRoleAddItem, param = { 99990512, 1 } },  -- 99990512 - Cold Wolf shoulders
 												},
 											},
 										},
-										-- <#SO:62>法师赤月护肩-100苍月锦<#SO/>
+										-- <#SO:62>Mage Red Moon shoulders - 100 Cangyue brocade<#SO/>
 										{ batSequencer,
 											{ batRoleCheckInteractOption, param = { 62 } }, 
 											{  batSelector, 
 												{ batSequencer,
-													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005-苍月锦
+													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005 - Cangyue brocade
 													{ batRoleDelItem, param = { 111005, 100 } },
-													{ batRoleAddItem, param = { 99990522, 1 } },  -- 99990522-火纹护肩
+													{ batRoleAddItem, param = { 99990522, 1 } },  -- 99990522 - Flame Pattern shoulders
 												},
 											},
 										},
-										-- <#SO:63>道士赤月护肩-100苍月锦<#SO/>
+										-- <#SO:63>Taoist Red Moon shoulders - 100 Cangyue brocade<#SO/>
 										{ batSequencer,
 											{ batRoleCheckInteractOption, param = { 63 } }, 
 											{  batSelector, 
 												{ batSequencer,
-													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005-苍月锦
+													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005 - Cangyue brocade
 													{ batRoleDelItem, param = { 111005, 100 } },
-													{ batRoleAddItem, param = { 99990532, 1 } },  -- 99990532-流云护肩
+													{ batRoleAddItem, param = { 99990532, 1 } },  -- 99990532 - Flowing Cloud shoulders
 												},
 											},
 										},
@@ -903,43 +903,43 @@ evtAIInteract =
 							},
 						},
 						
-						-- <#SO:53>赤月护腕<#SO/>
+						-- <#SO:53>Red Moon bracers<#SO/>
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 53 } }, 
 							{  batSelector, 
 								{ batSequencer,
 									{ batRoleOpenDialog, param = { strAI6192_17, 30000, 0, 0 } }, 
 									{  batSelector, 
-										-- <#SO:71>战士赤月护腕-100苍月锦<#SO/>
+										-- <#SO:71>Warrior Red Moon bracers - 100 Cangyue brocade<#SO/>
 										{ batSequencer,
 											{ batRoleCheckInteractOption, param = { 71 } }, 
 											{  batSelector, 
 												{ batSequencer,
-													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005-苍月锦
+													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005 - Cangyue brocade
 													{ batRoleDelItem, param = { 111005, 100 } },
-													{ batRoleAddItem, param = { 99990516, 1 } },  -- 99990516-寒狼护腕
+													{ batRoleAddItem, param = { 99990516, 1 } },  -- 99990516 - Cold Wolf bracers
 												},
 											},
 										},
-										-- <#SO:72>法师赤月护腕-100苍月锦<#SO/>
+										-- <#SO:72>Mage Red Moon bracers - 100 Cangyue brocade<#SO/>
 										{ batSequencer,
 											{ batRoleCheckInteractOption, param = { 72 } }, 
 											{  batSelector, 
 												{ batSequencer,
-													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005-苍月锦
+													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005 - Cangyue brocade
 													{ batRoleDelItem, param = { 111005, 100 } },
-													{ batRoleAddItem, param = { 99990526, 1 } },  -- 99990526-火纹护腕
+													{ batRoleAddItem, param = { 99990526, 1 } },  -- 99990526 - Flame Pattern bracers
 												},
 											},
 										},
-										-- <#SO:73>道士赤月护腕-100苍月锦<#SO/>
+										-- <#SO:73>Taoist Red Moon bracers - 100 Cangyue brocade<#SO/>
 										{ batSequencer,
 											{ batRoleCheckInteractOption, param = { 73 } }, 
 											{  batSelector, 
 												{ batSequencer,
-													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005-苍月锦
+													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005 - Cangyue brocade
 													{ batRoleDelItem, param = { 111005, 100 } },
-													{ batRoleAddItem, param = { 99990536, 1 } },  -- 99990536-流云护腕
+													{ batRoleAddItem, param = { 99990536, 1 } },  -- 99990536 - Flowing Cloud bracers
 												},
 											},
 										},
@@ -948,43 +948,43 @@ evtAIInteract =
 							},
 						},
 						
-						-- <#SO:54>三级披风<#SO/>
+						-- <#SO:54>Level 3 cloak<#SO/>
 						{ batSequencer,
 							{ batRoleCheckInteractOption, param = { 54 } }, 
 							{  batSelector, 
 								{ batSequencer,
 									{ batRoleOpenDialog, param = { strAI6192_18, 30000, 0, 0 } }, 
 									{  batSelector, 
-										-- <#SO:81>战士三级披风-100苍月锦<#SO/>
+										-- <#SO:81>Warrior level 3 cloak - 100 Cangyue brocade<#SO/>
 										{ batSequencer,
 											{ batRoleCheckInteractOption, param = { 81 } }, 
 											{  batSelector, 
 												{ batSequencer,
-													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005-苍月锦
+													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005 - Cangyue brocade
 													{ batRoleDelItem, param = { 111005, 100 } },
-													{ batRoleAddItem, param = { 99950013, 1 } },  -- 99950013-魔牙战麾·燃烧
+													{ batRoleAddItem, param = { 99950013, 1 } },  -- 99950013 - Demon Fang War Cloak: Burning
 												},
 											},
 										},
-										-- <#SO:82>法师三级披风-100苍月锦<#SO/>
+										-- <#SO:82>Mage level 3 cloak - 100 Cangyue brocade<#SO/>
 										{ batSequencer,
 											{ batRoleCheckInteractOption, param = { 82 } }, 
 											{  batSelector, 
 												{ batSequencer,
-													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005-苍月锦
+													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005 - Cangyue brocade
 													{ batRoleDelItem, param = { 111005, 100 } },
-													{ batRoleAddItem, param = { 99950023, 1 } },  -- 99950023-魔法斗篷·燃烧
+													{ batRoleAddItem, param = { 99950023, 1 } },  -- 99950023 - Magic Cloak: Burning
 												},
 											},
 										},
-										-- <#SO:83>道士三级披风-100苍月锦<#SO/>
+										-- <#SO:83>Taoist level 3 cloak - 100 Cangyue brocade<#SO/>
 										{ batSequencer,
 											{ batRoleCheckInteractOption, param = { 83 } }, 
 											{  batSelector, 
 												{ batSequencer,
-													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005-苍月锦
+													{ batRoleCheckItemCount, param = { boGTE, 111005, 100 } },  -- 111005 - Cangyue brocade
 													{ batRoleDelItem, param = { 111005, 100 } },
-													{ batRoleAddItem, param = { 99950033, 1 } },  -- 99950033-霜焰披风·燃烧
+													{ batRoleAddItem, param = { 99950033, 1 } },  -- 99950033 - Frostflame Cloak: Burning
 												},
 											},
 										},
@@ -998,7 +998,7 @@ evtAIInteract =
 			},
 		},
 		
-		-- <#SO:10>查询节点<#SO/>
+		-- <#SO:10>Query node<#SO/>
 		{ batSequencer,
 			{ batRoleCheckInteractOption, param = { 10 } }, 
 			{  batSelector, 
@@ -1014,7 +1014,7 @@ evtAIInteract =
 };
 
 
--- 找到一段代码 (判断角色背包里物品, 删除物品, 增加物品)
+-- Found code that checks the character inventory, removes items and adds items
 --[[
 { batRoleOpenDialog, param = { 666706, 5000,0, 0 } },	
 { batSelector,

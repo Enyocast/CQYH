@@ -4,8 +4,8 @@ LoadPackage("spirit_def.pkg");
 
 TestCase.Spirit = {};
 
-function TestCase.Spirit.Soul2Pts()	-- 魂转修炼点
-	-- 登陆
+function TestCase.Spirit.Soul2Pts()	-- Convert soul to cultivation points
+	-- Log in
     local user_name1 = "spirit1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
@@ -14,13 +14,13 @@ function TestCase.Spirit.Soul2Pts()	-- 魂转修炼点
    	local user1id = role1:GetObjID();
 	local user1sessionid = user1:GetSessionID();
 
-    ret = user1:ChangeSoul2Pts(false, true); --在线转化
+    ret = user1:ChangeSoul2Pts(false, true); --Online conversion
     check(ret, "fail to send changesoul2pts");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
     check(msg.nErrCode == error_code.errSpiritNotOpen, "failed to recv errSpiritNotOpen");
 
-    ret = user1:ChangeSoul2Pts(true, true); --立即转化
+    ret = user1:ChangeSoul2Pts(true, true); --Convert immediately
     check(ret, "fail to send changesoul2pts");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
@@ -31,42 +31,42 @@ function TestCase.Spirit.Soul2Pts()	-- 魂转修炼点
 
 	wait(1);
 
-    ret = user1:ChangeSoul2Pts(false, true); --在线转化
+    ret = user1:ChangeSoul2Pts(false, true); --Online conversion
     check(ret, "fail to send changesoul2pts");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
-    check(msg.nErrCode == error_code.errSpiritMoneyNotEnough, "failed to recv errSpiritMoneyNotEnough");	-- 魂不够
+    check(msg.nErrCode == error_code.errSpiritMoneyNotEnough, "failed to recv errSpiritMoneyNotEnough");	-- Insufficient soul
 
-    ret = user1:ChangeSoul2Pts(false, true); --在线转化
+    ret = user1:ChangeSoul2Pts(false, true); --Online conversion
     check(ret, "fail to send changesoul2pts");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
     check(msg.nErrCode == error_code.errSpiritMoneyNotEnough, "failed to recv errSpiritMoneyNotEnough");
 
-    -- 增加魂
+    -- Add soul
 
    	ret = user1:GMCommand("AddMoney(6, 10000, MONEYLOG_GM_COMMAND)");
 	check(ret, "failed to add money: soul");
 
 	wait(2);
 
-    ret = user1:ChangeSoul2Pts(false, true); --在线转化
+    ret = user1:ChangeSoul2Pts(false, true); --Online conversion
     check(ret, "fail to send changesoul2pts");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_exp_change);
     check(msg, "failed to recv g2c_spirit_exp_change");
 
-    ret = user1:ChangeSoul2Pts(false, true); --在线转化
+    ret = user1:ChangeSoul2Pts(false, true); --Online conversion
     check(ret, "fail to send changesoul2pts");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
-    check(msg.nErrCode == error_code.errSpiritChangeCDTime, "failed to recv errSpiritChangeCDTime");	-- 时间没到
+    check(msg.nErrCode == error_code.errSpiritChangeCDTime, "failed to recv errSpiritChangeCDTime");	-- Cooldown has not elapsed
 
     cleanup(user1);
 end
 
-function TestCase.Spirit.Air()	-- 气海
-	-- 登陆
+function TestCase.Spirit.Air()	-- Qi Sea
+	-- Log in
     local user_name1 = "spiritair1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
@@ -75,12 +75,12 @@ function TestCase.Spirit.Air()	-- 气海
    	local user1id = role1:GetObjID();
 	local user1sessionid = user1:GetSessionID();
 
-	-- 练气
+	-- Cultivate qi
     local ret = user1:SpiritAddAir(false);
     check(ret, "fail to add spirit air");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
-    check(msg.nErrCode == error_code.errSpiritLevel, "failed to recv errSpiritLevel");	-- 等级没到
+    check(msg.nErrCode == error_code.errSpiritLevel, "failed to recv errSpiritLevel");	-- Level requirement not met
 
     ret = user1:GMCommand("SetLevel(25)");
     check(ret, "exec GMCommand SetLevel error: user1");
@@ -91,95 +91,95 @@ function TestCase.Spirit.Air()	-- 气海
     check(ret, "fail to add spirit air");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
-    check(msg.nErrCode == error_code.errSpiritMoneyNotEnough, "failed to recv errSpiritMoneyNotEnough");	-- 魂不够
+    check(msg.nErrCode == error_code.errSpiritMoneyNotEnough, "failed to recv errSpiritMoneyNotEnough");	-- Insufficient soul
 
-    -- 增加修炼点
+    -- Add cultivation points
     ret = user1:GMCommand("AddPts(100000)");
     check(ret, "exec GMCommand SetLevel error: user1");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_exp_change);
     check(msg, "failed to recv g2c_spirit_exp_change");
 
-    -- 继续练气
+    -- Continue cultivating qi
     ret = user1:SpiritAddAir(false);
     check(ret, "fail to add spirit air");
 
    msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
    check(msg, "failed to recv g2c_spirit_air_change");
-   check(msg.nIndex == 0, "failed to recv g2c_spirit_air_change");	-- 出现在第0格
+   check(msg.nIndex == 0, "failed to recv g2c_spirit_air_change");	-- Appears in slot 0
 
-    -- 继续练气
+    -- Continue cultivating qi
     ret = user1:SpiritAddAir(false);
     check(ret, "fail to add spirit air");
 
    msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
    check(msg, "failed to recv g2c_spirit_air_change");
-   check(msg.nIndex == 1, "failed to recv g2c_spirit_air_change");	-- 出现在第1格
+   check(msg.nIndex == 1, "failed to recv g2c_spirit_air_change");	-- Appears in slot 1
 
-	-- 把气从第1格移到第0格
+	-- Move qi from slot 1 to slot 0
 	ret = user1:MoveAir(sasbtBag, 1, sasbtBag, 0);
 	check(ret, "failed to MoveAir");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
-    check(msg.nErrCode == error_code.errSpiritAirSlotNotEmpty, "failed to recv errSpiritAirSlotNotEmpty");	-- 气格子非空
+    check(msg.nErrCode == error_code.errSpiritAirSlotNotEmpty, "failed to recv errSpiritAirSlotNotEmpty");	-- Qi slot is not empty
 
-	-- 把气从第1格移到第2格
+	-- Move qi from slot 1 to slot 2
 	ret = user1:MoveAir(sasbtBag, 1, sasbtBag, 2);
 	check(ret, "failed to MoveAir");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
     check(msg, "failed to recv g2c_spirit_air_change");
 
-	-- 把气从第1格移到第3格
+	-- Move qi from slot 1 to slot 3
 	ret = user1:MoveAir(sasbtBag, 1, sasbtBag, 3);
 	check(ret, "failed to MoveAir");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
-    check(msg.nErrCode == error_code.errSpiritAirSlotEmpty, "failed to recv errSpiritAirSlotEmpty");	-- 气格子为空
+    check(msg.nErrCode == error_code.errSpiritAirSlotEmpty, "failed to recv errSpiritAirSlotEmpty");	-- Qi slot is empty
 
-	-- 把气从背包第二格防入仓库 -- sasbtBag : 0 sasbtStall : 1
+	-- Move qi from the second inventory slot into storage -- sasbtBag : 0 sasbtStall : 1
 	ret = user1:MoveAir(0, 2, 1, 0);
 	check(ret, "failed to MoveAir");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
     check(msg, "failed to recv g2c_spirit_air_change");
 
-	-- 把气从仓库放入背包第二格
+	-- Move qi from storage to the second inventory slot
 	--ret = user1:MoveAir(1, 0，0, 2);
 	--check(ret, "failed to MoveAir");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
     check(msg, "failed to recv g2c_spirit_air_change");
 
-	-- 把气从背包第二格装备到第0格
+	-- Equip qi from the second inventory slot in slot 0
 	ret = user1:MoveAir(sasbtBag, 2, sasbtEquip, 0);
 	check(ret, "failed to MoveAir");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
     check(msg, "failed to recv g2c_spirit_air_change");
 
-	-- 把气从第0格放到背包第二格
+	-- Move qi from slot 0 to the second inventory slot
 	--ret = user1:MoveAir(sasbtEquip, 0， sasbtBag, 2);
 	--check(ret, "failed to MoveAir");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
     check(msg, "failed to recv g2c_spirit_air_change");
 
-	-- 合成气
+	-- Combine qi
 	ret = user1:MergeAir(0);
 	check(ret, "failed to MergeAir");
 
    msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
    check(msg, "failed to recv g2c_spirit_air_change");
 
-	-- 买格子
+	-- Buy a slot
 	ret = user1:BuyAirSlot(sasbtBag);
 	check(ret, "failed to BuyAirSlot");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
-    check(msg.nErrCode == error_code.errNotEnoughMoney, "failed to recv errNotEnoughMoney");	-- 钱不够
+    check(msg.nErrCode == error_code.errNotEnoughMoney, "failed to recv errNotEnoughMoney");	-- Insufficient money
 
-	-- 增加钱
+	-- Add money
 	ret = user:GMCommand("AddMoney(2, 1000, MONEYLOG_GM_COMMAND)");
 	check(ret, "failed to add money");
 
@@ -205,7 +205,7 @@ function TestCase.Spirit.Air()	-- 气海
 
 end
 
-function TestCase.Spirit.Blood()	-- 天赋
+function TestCase.Spirit.Blood()	-- Talent
 
    local user_name1 = "spiritblood1"..os.date("%H%M%S");
    local user1, role1 = startup(user_name1, user_name1);
@@ -214,26 +214,26 @@ function TestCase.Spirit.Blood()	-- 天赋
 
    local user1sessionid = user1:GetSessionID();
 
-   -- 没到境界开启等级
+   -- Realm unlock level not reached
    local ret = user1:GMCommand("SetLevel(5)");
    check(ret, "exec GMCommand SetLevel error: user1");
 
    wait(1);
 
-   -- 刷新第1页
+   -- Refresh page 1
    ret = user1:BrushSlot(1, 1);
    check(ret, "failed to BuyAirSlot");
 
    local msg = recv_msg(5, user1sessionid, protocol.g2c_error_notify);
    check(msg == nil, "failed to test level");
 
-   -- 开启等级
+   -- Unlock level
    local ret = user1:GMCommand("SetLevel(10)");
    check(ret, "exec GMCommand SetLevel error: user1");
 
    wait(1);
 
-   -- 刷新第0页
+   -- Refresh page 0
    ret = user1:BrushSlot(1, 0);
    check(ret, "failed to BuyAirSlot");
 
@@ -252,20 +252,20 @@ function TestCase.Spirit.Blood()	-- 天赋
    msg = recv_msg(5, user1sessionid, protocol.g2c_error_notify);
    check(msg == nil, "failed to test slot index")
 
-   -- 刷新第1页,境界等级不够
+   -- Refresh page 1 with insufficient realm level
    ret = user1:BrushSlot(1, 2);
    check(ret, "failed to BuyAirSlot");
 
    msg = recv_msg(5, user1sessionid, protocol.g2c_error_notify);
    check(msg.nErrCode == error_code.errSpiritLevel, "failed to test page index2")
 
-   -- 提高境界等级
+   -- Increase realm level
    local ret = user1:GMCommand("SetSpiritLevel(20)");
    check(ret, "exec GMCommand SetLevel error: user1");
 
    wait(5);
 
-   -- 修炼点不够
+   -- Insufficient cultivation points
 
    ret = user1:BrushSlot(1, 2);
    check(ret, "failed to BuyAirSlot");
@@ -273,7 +273,7 @@ function TestCase.Spirit.Blood()	-- 天赋
    msg = recv_msg(5, user1sessionid, protocol.g2c_error_notify);
    check(msg.nErrCode == error_code.errNotEnoughMoney, "failed to test page index3")
 
-   -- 增加修炼点
+   -- Add cultivation points
    ret = user1:GMCommand("AddMoney 11 50000");
    check(ret, "exec GMCommand SetLevel error: user1");
 

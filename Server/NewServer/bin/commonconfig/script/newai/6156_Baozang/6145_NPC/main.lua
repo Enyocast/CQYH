@@ -16,7 +16,7 @@ Include("script/newai/sub_tree/sub_tree.lh");
 local g_oGameWorld = CGameWorld:GetInstance();
 
 
-function Option_one(title)--称号1兑换
+function Option_one(title)--Redeem title 1
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	role:GetItemBag():ChangeYuanbao(username,0,false,0,0);
@@ -39,7 +39,7 @@ function Option_one(title)--称号1兑换
 	
 end
 
-function Option_two(title)--称号2兑换
+function Option_two(title)--Redeem title 2
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	role:GetItemBag():ChangeYuanbao(username,0,false,0,0);
@@ -68,7 +68,7 @@ function Option_two(title)--称号2兑换
 end
 
 	
-function Option_three(owner)--称号3兑换
+function Option_three(owner)--Redeem title 3
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	role:GetItemBag():ChangeYuanbao(username,0,false,0,0);
@@ -95,7 +95,7 @@ function Option_three(owner)--称号3兑换
 	return brvSuccess;
 end
 	
-function Option_four(owner)--称号4兑换
+function Option_four(owner)--Redeem title 4
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	role:GetItemBag():ChangeYuanbao(username,0,false,0,0);
@@ -122,7 +122,7 @@ function Option_four(owner)--称号4兑换
 	return brvSuccess;
 end
 
-function Option_five(owner)--称号5兑换
+function Option_five(owner)--Redeem title 5
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	role:GetItemBag():ChangeYuanbao(username,0,false,0,0);
@@ -150,7 +150,7 @@ function Option_five(owner)--称号5兑换
 end
 
 
-function Option_six(owner)--称号6兑换
+function Option_six(owner)--Redeem title 6
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	role:GetItemBag():ChangeYuanbao(username,0,false,0,0);

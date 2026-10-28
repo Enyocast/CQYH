@@ -1,11 +1,11 @@
 evtAIInteract = 
 { batSequencer,
-	{ batRoleOpenDialog, param = { 666811, 50000, 'get_Total()', 'get_ABC()' } }, -- 这里仿照着一番赏的方式返回共传入2个参数，第一个参数为2位数 十位为屠龙 个位为斩月疾步印   第二个参数共4位数  1234  12为武器属性转移 34为项链幸运转移
+	{ batRoleOpenDialog, param = { 666811, 50000, 'get_Total()', 'get_ABC()' } }, -- Following the Ichiban prize pattern, pass two parameters: the first has two digits for Dragon Slayer and Zhanyue Swift Step Seal; the second has four digits, with the first two for weapon attribute transfer and the last two for necklace luck transfer
 	{ batSelector, 
 		{ batSequencer, 
-			{batRoleCheckInteractOption, param = { 1 } },--兑换屠龙
+			{batRoleCheckInteractOption, param = { 1 } },--Redeem Dragon Slayer
 			{batSelector,
-				{batSequencer,--下面是购买逻辑
+				{batSequencer,--Purchase logic follows
 					{ Buy_One },
 				},
 				{batSequencer,
@@ -14,9 +14,9 @@ evtAIInteract =
 			},
 		},
 		{ batSequencer, 
-			{batRoleCheckInteractOption, param = { 2 } },--兑换斩月疾步
+			{batRoleCheckInteractOption, param = { 2 } },--Redeem Zhanyue Swift Step
 			{batSelector,
-				{batSequencer,--下面是购买逻辑
+				{batSequencer,--Purchase logic follows
 					{ Buy_Two },
 				},
 				{batSequencer,
@@ -25,9 +25,9 @@ evtAIInteract =
 			},
 		},
 		{ batSequencer, 
-			{batRoleCheckInteractOption, param = { 3 } },--武器属性转移
+			{batRoleCheckInteractOption, param = { 3 } },--Transfer weapon attributes
 			{batSelector,
-				{batSequencer,--下面是购买逻辑
+				{batSequencer,--Purchase logic follows
 					{ Buy_Three },
 				},
 				{batSequencer,
@@ -36,9 +36,9 @@ evtAIInteract =
 			},
 		},
 		{ batSequencer, 
-			{batRoleCheckInteractOption, param = { 4 } },--项链幸运转移
+			{batRoleCheckInteractOption, param = { 4 } },--Transfer necklace luck
 			{batSelector,
-				{batSequencer,--下面是购买逻辑
+				{batSequencer,--Purchase logic follows
 					{ Buy_Four },
 				},
 				{batSequencer,
@@ -47,9 +47,9 @@ evtAIInteract =
 			},
 		},
 		{ batSequencer, 
-			{batRoleCheckInteractOption, param = { 5 } },--疗伤药礼盒
+			{batRoleCheckInteractOption, param = { 5 } },--Healing medicine gift box
 			{batSelector,
-				{batSequencer,--下面是购买逻辑
+				{batSequencer,--Purchase logic follows
 					{ Buy_Five },
 				},
 				{batSequencer,
@@ -58,9 +58,9 @@ evtAIInteract =
 			},
 		},
 		{ batSequencer, 
-			{batRoleCheckInteractOption, param = { 6 } },--幽冥海4传送卷
+			{batRoleCheckInteractOption, param = { 6 } },--Nether Sea 4 teleport scroll
 			{batSelector,
-				{batSequencer,--下面是购买逻辑
+				{batSequencer,--Purchase logic follows
 					{ Buy_Six },
 				},
 				{batSequencer,

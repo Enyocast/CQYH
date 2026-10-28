@@ -15,21 +15,21 @@ function main(oRole)
 	--oRole:GetItemBag():ChangeYuanbao(username,0,false,0,0);
 	--oRole:SetVariable(1009, 0);
 	--
-	----爵位称号上线全服提示
+	----Server-wide announcement when a titled noble logs in
 	--if oRole:GetTitle():FindTitle(57) then
-	--	oRole:GetItemBag():BroadCastInGroup(1000036);--essBroadCastTitle1 公爵
+	--	oRole:GetItemBag():BroadCastInGroup(1000036);--essBroadCastTitle1 Duke
 	--	oRole:GetTitle():DeleteTitle(57,1);
 	--end
 	--if oRole:GetTitle():FindTitle(56) then
-	--	oRole:GetItemBag():BroadCastInGroup(1000037);--essBroadCastTitle1 侯爵
+	--	oRole:GetItemBag():BroadCastInGroup(1000037);--essBroadCastTitle1 Marquis
 	--	oRole:GetTitle():DeleteTitle(56,1);
 	--end
 	--if oRole:GetTitle():FindTitle(55) then
-	--	oRole:GetItemBag():BroadCastInGroup(1000038);--essBroadCastTitle1 伯爵
+	--	oRole:GetItemBag():BroadCastInGroup(1000038);--essBroadCastTitle1 Earl
 	--	oRole:GetTitle():DeleteTitle(55,1);
 	--end
 	--if oRole:GetTitle():FindTitle(54) then
-	--	oRole:GetItemBag():BroadCastInGroup(1000039);--essBroadCastTitle1 子爵
+	--	oRole:GetItemBag():BroadCastInGroup(1000039);--essBroadCastTitle1 Viscount
 	--	oRole:GetTitle():DeleteTitle(54,1);
 	--end
 	--if oRole:GetTitle():FindTitle(53) then

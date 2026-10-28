@@ -1,5 +1,5 @@
 
--- A 胖妇女
+-- A: heavyset woman
 evtAIIdle = 
 { batSequencer,
     { batCheckCDTimer, param={ COOLDOWN_AI ,3},

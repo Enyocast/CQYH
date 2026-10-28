@@ -4,7 +4,7 @@ local boss_stage_2 = 2;
 local spell_stage_1 =
 {
 	{ id = 5590, cd = 3000, chance = 10000 },
-	{ id = 5589, cd = 5000, chance = 10000 },--射箭
+	{ id = 5589, cd = 5000, chance = 10000 },--Shoot arrows
 	{ id = 5582, cd = 10000, chance = 10000 },
 };
 

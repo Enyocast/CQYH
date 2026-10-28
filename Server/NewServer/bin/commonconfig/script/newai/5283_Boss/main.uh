@@ -1,6 +1,6 @@
 on_init = 
 	{ batSequencer, 
-		{ batSetCDTimer, param = { COOLDOWN_AI, 20, d.nParam[0] } },  --cd index 20为boss idle自杀配置用index param0   战斗中自杀用livetime
+		{ batSetCDTimer, param = { COOLDOWN_AI, 20, d.nParam[0] } },  --Cooldown index 20 configures boss idle suicide using param0; in-combat suicide uses livetime
 		{ batSetAlwaysRun , param = { true } },
 	};
 

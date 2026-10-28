@@ -9,7 +9,7 @@ evtAIInteract =
 				{ batSequencer, 
 					{ batRoleCheckInteractOption, param = { 1 } },
 					{ batSelector,
-						{ batSequencer,	--检查
+						{ batSequencer,	--Check
 							{ batCheckDateTime, param = { 0 , 210000 , 215900} },
 							--{ check_time },
 								{ batSelector,
@@ -17,7 +17,7 @@ evtAIInteract =
 										{ batRoleCheckLevel, param = { boGTE , 22 } },
 										{ batSelector,
 											{ batSequencer, 
-												--检查是否具备足够的钱,有就进入传送
+												--Check funds and teleport if sufficient
 												{ batRoleCheckMoney , param = { boGTE,1, 10000 } },
 												{ batRoleSubMoney , param = { tarRole,1, 10000 } },
 												{ batRoleSetRoleVariable , param = { 182 , 0 } },
@@ -42,13 +42,13 @@ evtAIInteract =
 												},
 											},
 											{ batSequencer, 
-												--提示没有足够的钱-10000金
+												--Report insufficient funds: 10,000 gold required
 												{ batRoleOpenDialog, param = { 666518, 50000, 0, 0 } },
 											},
 										},
 									},
 									{ batSequencer, 
-										--提示没有达到22级
+										--Report that level 22 has not been reached
 										{ batRoleOpenDialog, param = { 666519, 50000, 0, 0 } },
 									},		
 								},
@@ -60,7 +60,7 @@ evtAIInteract =
 					},	
 					
 					
-						--检查结束
+						--Check complete
 				},
 				{ batSequencer, 
 					{ batRoleCheckInteractOption, param = { 2 } },

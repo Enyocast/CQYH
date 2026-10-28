@@ -1,19 +1,19 @@
 SABAC_NPC_ID_LIST =
 {
-	{ server_id = 4, server_var_idx = svtSabacDoor },		--- ³ÇÃÅ
-	{ server_id = 1, server_var_idx = svtSabacWall1 },		--- »Ê¹¬Î÷Ç½
-	{ server_id = 2, server_var_idx = svtSabacWall2 },		--- »Ê¹¬¶«×óÇ½
-	{ server_id = 3, server_var_idx = svtSabacWall3 },		--- »Ê¹¬¶«ÓÒÇ½
-	{ server_id = 10, server_var_idx = svtSabacArcher1 },	--- ¹­¼ıÊÖ1
-	{ server_id = 11, server_var_idx = svtSabacArcher2 },	--- ¹­¼ıÊÖ2
-	{ server_id = 12, server_var_idx = svtSabacArcher3 },	--- ¹­¼ıÊÖ3
-	{ server_id = 14, server_var_idx = svtSabacArcher4 },	--- ¹­¼ıÊÖ4
-	{ server_id = 16, server_var_idx = svtSabacArcher5 },	--- ¹­¼ıÊÖ5
-	{ server_id = 21, server_var_idx = svtSabacArcher6 },	--- ¹­¼ıÊÖ6
-	{ server_id = 22, server_var_idx = svtSabacArcher7 },	--- ¹­¼ıÊÖ7
-	{ server_id = 23, server_var_idx = svtSabacArcher8 },	--- ¹­¼ıÊÖ8
-	{ server_id = 24, server_var_idx = svtSabacArcher9 },	--- ¹­¼ıÊÖ9
-	{ server_id = 25, server_var_idx = svtSabacArcher10 },	--- ¹­¼ıÊÖ10
-	{ server_id = 26, server_var_idx = svtSabacArcher11 },	--- ¹­¼ıÊÖ11
-	{ server_id = 27, server_var_idx = svtSabacArcher12 },	--- ¹­¼ıÊÖ12
+	{ server_id = 4, server_var_idx = svtSabacDoor },		--- City gate
+	{ server_id = 1, server_var_idx = svtSabacWall1 },		--- Palace west wall
+	{ server_id = 2, server_var_idx = svtSabacWall2 },		--- Palace east left wall
+	{ server_id = 3, server_var_idx = svtSabacWall3 },		--- Palace east right wall
+	{ server_id = 10, server_var_idx = svtSabacArcher1 },	--- Archer 1
+	{ server_id = 11, server_var_idx = svtSabacArcher2 },	--- Archer 2
+	{ server_id = 12, server_var_idx = svtSabacArcher3 },	--- Archer 3
+	{ server_id = 14, server_var_idx = svtSabacArcher4 },	--- Archer 4
+	{ server_id = 16, server_var_idx = svtSabacArcher5 },	--- Archer 5
+	{ server_id = 21, server_var_idx = svtSabacArcher6 },	--- Archer 6
+	{ server_id = 22, server_var_idx = svtSabacArcher7 },	--- Archer 7
+	{ server_id = 23, server_var_idx = svtSabacArcher8 },	--- Archer 8
+	{ server_id = 24, server_var_idx = svtSabacArcher9 },	--- Archer 9
+	{ server_id = 25, server_var_idx = svtSabacArcher10 },	--- Archer 10
+	{ server_id = 26, server_var_idx = svtSabacArcher11 },	--- Archer 11
+	{ server_id = 27, server_var_idx = svtSabacArcher12 },	--- Archer 12
 };

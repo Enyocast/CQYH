@@ -92,8 +92,8 @@ function performance_trade(owner)
 	local role = Cast(owner, 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
-	local npctemplateid = 8464; --比奇戒指店老板
-	local itemid = 99930001; --古铜戒指
+	local npctemplateid = 8464; --Bichon ring shop owner
+	local itemid = 99930001; --Bronze ring
 	local numbercount = 1;
 
 	if role:GetItemBag():GetMoney(MONEYTYPE_02) <= 10000 then
@@ -159,57 +159,57 @@ function performance_trade_with_role(user, targetuser, itemid)
 	if chance == 0 then
 		print("user "..user:GetUserName().."actively trade with role "..targetuser:GetUserName().." to give money ");
 
-		--user: 请求交易
+		--user: request trade
     		ret = user:AskTrade(targetrole:GetObjID());
     		check(ret, "trade: failed to ask trade");
 
-		--user1: 请求交易 state sync
+		--user1: request trade state sync
 		msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
 		check(msg, "trade: failed to recv g2c_trade_state_change");
 		check(msg.byTradeState == etsAsking, "trade: failed to recv g2c_trade_state_change etsAsking");
 
-		--user1: 收到交易状态改变 state sync
+		--user1: received trade state change state sync
 		msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
 		check(msg, "trade: failed to recv g2c_trade_state_change");
 		check(msg.byTradeState == etsBeingAsked, "trade: failed to recv g2c_trade_state_change etsBeingAsked");
 
-		--user1: 收到交易状态改变 target user accept 交易
+		--user1: received trade state change target user accepted the trade
 		msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
 		check(msg, "trade: failed to recv g2c_trade_state_change");
 		check(msg.byTradeState == etsTrading, "trade: failed to recv g2c_trade_state_change etsTrading");
 
 		wait(2);
 
-		--user: 出1000块钱
+		--user: offer 1,000
 		ret = user:SetTradeMoney(1000);
 		check(ret, "trade: failed to set trade money");
 
 		wait(2);
 
-		--user: 锁定
+		--user: lock
 		ret = user:LockTrade();
 		check(ret, "trade: failed to lock trade");
 
 		wait(2);
 
-		--user: 收到交易状态改变 target user 锁定
+		--user: received trade state change target user lock
 		msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
 		check(msg, "trade: failed to recv g2c_trade_state_change");
 
 		wait(2);
 
-		--user: 确认
+		--user: confirm
 		ret = user:ConfirmTrade();
 		check(ret, "trade: failed to lock trade");
 
 		wait(2);
 
-		--user: 收到交易状态改变 target user 确认
+		--user: received trade state change target user confirm
 		msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
 		check(msg, "trade: failed to recv g2c_trade_state_change");
 	
 	else
-		--targetuser: 请求交易 state sync
+		--targetuser: request trade state sync
 		msg = recv_msg(10, session_id1, protocol.g2c_trade_state_change);
 		check(msg, "trade: failed to recv g2c_trade_state_change");
 		check(msg.byTradeState == etsAsking, "trade: failed to recv g2c_trade_state_change etsAsking");
@@ -217,53 +217,53 @@ function performance_trade_with_role(user, targetuser, itemid)
 		local srcRoleID = msg.dwRoleID;
 		print("user "..user:GetUserName().."passively trade with role "..srcRoleID.." to get money ");
 
-		--targetuser: 收到交易状态改变
+		--targetuser: received trade state change
 		msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
 		check(msg, "failed to recv g2c_trade_state_change");
 		check(msg.byTradeState == etsBeingAsked, "failed to recv g2c_trade_state_change etsBeingAsked");
 
 		wait(2);
 
-		--targetuser: 接受交易
+		--targetuser: accept trade
 		ret = targetuser:AcceptTrade(srcRoleID);
 		check(ret, "trade: failed to accept trade");
 
-		--targetuser: 交易状态改变 target user accept 交易
+		--targetuser: trade state changed target user accepted the trade
 		msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
 		check(msg, "trade: failed to recv g2c_trade_state_change");
 		check(msg.byTradeState == etsTrading, "trade: failed to recv g2c_trade_state_change etsTrading");
 
 		wait(2);
 
-		--targetuser: 收到user出钱的消息
+		--targetuser: received notice of the user offering money
 		msg = recv_msg(5, session_id1, protocol.g2c_trade_set_money);
 		check(msg, "trade: failed to recv g2c_trade_set_money");
 
 		wait(2);
 
-		--targetuser: 收到交易状态改变 user 锁定
+		--targetuser: received trade state change user lock
 		msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
 		check(msg, "trade: failed to recv g2c_trade_state_change");
 
 		wait(2);
 
-		--targetuser: 锁定
+		--targetuser: lock
 		ret = targetuser:LockTrade();
 		check(ret, "trade: failed to lock trade");
 
-		--targetuser: 收到交易状态改变 user 确认
+		--targetuser: received trade state change user confirm
 		msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
 		check(msg, "trade: failed to recv g2c_trade_state_change");
 
 		wait(2);
 
-		--targetuser: 确认
+		--targetuser: confirm
 		ret = targetuser:ConfirmTrade();
 		check(ret, "trade: failed to lock trade");
 
 		wait(2);
 
-		--targetuser: 收到钱
+		--targetuser: received money
 		msg = recv_msg(5, session_id1, protocol.g2c_money_change);
 		check(msg, "trade: failed to recv g2c_money_change");
 		check(msg.nMoney == 1000, "trade: failed to recv correct money (user2)");

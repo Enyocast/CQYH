@@ -1,5 +1,5 @@
 
--- A 张屠夫
+-- A: Butcher Zhang
 evtAIIdle = 
 { batSequencer,
     { batCheckCDTimer, param={ COOLDOWN_AI ,3},

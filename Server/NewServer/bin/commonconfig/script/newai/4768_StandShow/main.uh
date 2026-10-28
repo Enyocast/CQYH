@@ -1,4 +1,4 @@
--- A 普通妇女
+-- A: ordinary woman
 evtAIIdle = 
 { batSelector,
     {batSequencer,

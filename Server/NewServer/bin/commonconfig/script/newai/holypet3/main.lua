@@ -4,7 +4,7 @@ LoadPackage("character.pkg")
 LoadPackage("role.pkg")
 LoadPackage("npc.pkg")
 
---血兽
+--Blood beast
 --Include("script/newai/sub_tree/sub_tree.lh")
 Include("script/newai/sub_tree/pet_sub_tree.lua")
 

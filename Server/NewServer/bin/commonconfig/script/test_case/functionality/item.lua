@@ -13,7 +13,7 @@ function TestCase.Item.Basic()
     local session_id;
     local item;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -22,11 +22,11 @@ function TestCase.Item.Basic()
 
     --local equip_data = CDataManager_EQUIP_DATA_:GetInstance():GetFirstData();
     --while equip_data do
-        ----用GM指令增加一件物品
+        ----Add an item using a GM command
         --ret = user:GMCommand("AddItem(" .. equip_data.m_nTemplateID .. ", 1)");
         --check(ret, "failed to send gm command");
 --
-        ----检查增加的物品确实是GM指令所加的
+        ----Check that the added item came from the GM command
         --msg = recv_msg(5, session_id, protocol.g2c_item_change);
         --check(msg, "failed to recv g2c_item_change");
 --
@@ -35,11 +35,11 @@ function TestCase.Item.Basic()
         --check(item, "failed to get item");
         --check(item.m_iteminfo.m_nTemplateID==equip_data.m_nTemplateID, "failed to get correct item");
 --
-        ----删除新加的物品
+        ----Remove the newly added item
         --ret = user:DeleteItem(3, 0, 1);
         --check(ret, "failed to send delete item msg");
 --
-        ----检查删除物品的回包
+        ----Check the remove-item response
         --msg = recv_msg(5, session_id, protocol.g2c_item_delete);
         --check(msg, "failed to recv g2c_item_delete");
         --check(msg.byConSlot == 3 and msg.byItemSlot == 0, "failed to delete correct item");
@@ -48,7 +48,7 @@ function TestCase.Item.Basic()
         --equip_data = CDataManager_EQUIP_DATA_:GetInstance():GetNextData();
     --end
 
-	-- 先删除一次要加的物品
+	-- First remove the item to be added
 	item = role:GetItemBag():GetItem(2,0);
 	if item then
 		print("begin send delete item msg");
@@ -56,11 +56,11 @@ function TestCase.Item.Basic()
 		check(ret, "failed to send delete item msg");
 	end
 
-    --用GM指令增加药水，下面的移动/拆分要用
+    --Add potions using a GM command for the move and split tests below
     ret = user:GMCommand("AddItem(123,10)");
     check(ret, "failed to send gm command");
 
-    --检查增加的物品确实是GM指令所加的
+    --Check that the added item came from the GM command
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
@@ -72,22 +72,22 @@ function TestCase.Item.Basic()
     --check(msg.stItem.nTemplateID==101, "failed to create correct item");
     --check(msg.stItem.nCurDur==10, "failed to create correct item");
 
-    --登出
+    --Log out
     cleanup(user);
     wait(5);
 
-    --再次登录
+    --Log in again
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
 
     session_id = user:GetSessionID();
 
-    --移动物品
+    --Move item
     ret = user:MoveItem(2, 0, 2, 1);
     check(ret, "failed to send move item msg");
 
-    --检查移动物品的回包
+    --Check the move-item response
     msg = recv_msg(5, session_id, protocol.g2c_item_swap);
     check(msg, "failed to recv g2c_item_swap");
     check(msg.wSrcConSlot==2 and
@@ -96,11 +96,11 @@ function TestCase.Item.Basic()
           msg.wDstItemSlot==1,
           "failed to get correct g2c_item_swap message");
 
-    --拆分物品
+    --Split item
     ret = user:SplitItem(2, 1, 2, 2, 5);
     check(ret, "failed to send split item msg");
 
-    --检查拆分物品的回包
+    --Check the split-item response
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
     --check(msg.stItem.nTemplateID==123 and
@@ -116,7 +116,7 @@ function TestCase.Item.Basic()
 	--msg.stItem.byConSlot==2 and
 	--msg.stItem.byItemSlot==2,
 	--"failed to recv correct g2c_item_change after splitting");
-	-- 新的检查方式,一次检查2个包
+	-- New check: inspect two packets at once
 	item = role:GetItemBag():GetItem(2,2);
     check(item, "failed to get item");
     check(item.m_iteminfo.m_nTemplateID == 123, "failed to get correct item");
@@ -127,11 +127,11 @@ function TestCase.Item.Basic()
     check(item.m_iteminfo.m_nTemplateID == 123, "failed to get correct item");
     check(item.m_iteminfo.m_shCurDur == 5, "item num error");
 
-    --堆叠物品
+    --Stack items
     ret = user:MoveItem(2, 2, 2, 1);
     check(ret, "failed to send move item msg");
 
-    --检查堆叠物品的回包
+    --Check the stack-item response
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
     item = role:GetItemBag():GetItem(2,1);
@@ -150,18 +150,18 @@ function TestCase.Item.Basic()
           msg.byItemSlot==2,
           "failed to recv correct g2c_item_delete after stacking");
 
-    --销毁物品
+    --Destroy item
     ret = user:DeleteItem(2,1,10);
     check(ret, "failed to send delete item msg");
 
-    --检查销毁物品的回包
+    --Check the destroy-item response
     msg = recv_msg(5, session_id, protocol.g2c_item_delete);
     check(msg, "failed to recv g2c_item_delete");
     check(msg.byConSlot==2 and
           msg.byItemSlot==1,
           "failed to recv correct g2c_item_delete after deleting");
 
-    --登出
+    --Log out
     cleanup(user);
 end
 
@@ -174,18 +174,18 @@ function TestCase.Item.RunScript()
     local msg;
     local session_id;
 
-	--登录
+	--Log in
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
 
     session_id = user:GetSessionID();
 
-   --用GM指令增加药水，下面的移动/拆分要用
+   --Add potions using a GM command for the move and split tests below
     ret = user:GMCommand("AddItem(101,1)");
     check(ret, "failed to send gm command");
 
-    --检查增加的物品确实是GM指令所加的
+    --Check that the added item came from the GM command
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
@@ -197,7 +197,7 @@ function TestCase.Item.RunScript()
 	wait(2);
 
 
-    --登出
+    --Log out
     cleanup(user);
 
 	wait(2);
@@ -209,7 +209,7 @@ function TestCase.Item.RunScript()
 	print("role-level:"..role:GetLevel());
 	check(currentLevel < role:GetLevel(), "use item failed");
 
-	--登出
+	--Log out
     cleanup(user);
 end
 
@@ -223,18 +223,18 @@ function TestCase.Item.Attribute()
     local msg;
     local session_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name);
 
     check(user, "failed to create user");
     check(role, "failed to create role");
     session_id = user:GetSessionID();
 
-    --用GM指令增加测试用武器
+    --Add a test weapon using a GM command
     ret = user:GMCommand("AddItem(190002,1)");
     check(ret, "failed to send gm command");
 
-    --检查增加的物品属性
+    --Check the added item attributes
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
     item = role:GetItemBag():GetItem(3,0);
@@ -245,11 +245,11 @@ function TestCase.Item.Attribute()
     --check(msg.stItem.byAttrCount>=8, "failed to create correct item");
     --check(msg.stItem.astAttrs[0].shParam>=95 and msg.stItem.astAttrs[0].shParam<=110, "failed to create correct item");
 
-    --装备
+    --Equip
     ret = user:MoveItem(3, 0, 0, 0);
     check(ret, "failed to send move item msg");
 
-    --登出
+    --Log out
     cleanup(user);
 end
 
@@ -261,7 +261,7 @@ function TestCase.Item.Shop()
     local msg;
     local session_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -269,11 +269,11 @@ function TestCase.Item.Shop()
     session_id = user:GetSessionID();
 
     wait(2);
-    --用GM指令召唤一个NPC
+    --Spawn an NPC using a GM command
     ret = user:GMCommand("SummonNpc(6003)");
     check(ret, "failed to send gm command");
 
-    --检查召唤出的NPC
+    --Check the spawned NPC
     msg = recv_msg(5, session_id, protocol.g2c_char_appear)
     check(msg, "Npc appear fail.")
     local diag_npc_id = msg.stAppearData.dwCharID
@@ -285,19 +285,19 @@ function TestCase.Item.Shop()
     --local diag_npc_id = get_npc_id_from_list(msg, 2001);
     --check(diag_npc_id ~= 0, "npc appear fail");
 
-    --点选NPC
+    --Select the NPC
     ret = user:InteractWithNpc(diag_npc_id);
     check(ret, "failed to interact with npc");
 
-    --购买商品
+    --Buy an item
     ret = user:BuyItem(3);
     check(ret, "failed to send buy item msg");
 
-    --检查回包
+    --Check the response
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-    --登出
+    --Log out
     cleanup(user);
 end
 
@@ -310,7 +310,7 @@ function TestCase.Item.Shop_2()
     local session_id;
 	local conSlot;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -319,7 +319,7 @@ function TestCase.Item.Shop_2()
 
     wait(2);
 
-		-- 清空包裹
+		-- Clear the inventory
 	item = role:GetItemBag():GetItem(2, 0);
 	while item do
 		--
@@ -354,11 +354,11 @@ function TestCase.Item.Shop_2()
 	local npc_list = {6002,6003,6006};
 
 	for i,npc_id in ipairs(npc_list) do
-		--用GM指令召唤一个NPC
+		--Spawn an NPC using a GM command
 		ret = user:GMCommand("SummonNpc("..npc_id..")");
 		check(ret, "failed to send gm command");
 
-		--检查召唤出的NPC
+		--Check the spawned NPC
 		msg = recv_msg(5, session_id, protocol.g2c_char_appear)
 		check(msg, "Npc appear fail.")
 		local diag_npc_id = msg.stAppearData.dwCharID
@@ -370,7 +370,7 @@ function TestCase.Item.Shop_2()
 		--local diag_npc_id = get_npc_id_from_list(msg, 2001);
 		--check(diag_npc_id ~= 0, "npc appear fail");
 
-		--点选NPC
+		--Select the NPC
 		ret = user:InteractWithNpc(diag_npc_id);
 		check(ret, "failed to interact with npc");
 
@@ -379,7 +379,7 @@ function TestCase.Item.Shop_2()
 		print(npc_data.nShopID);
 		local shop_data = CDataManager_SHOP_DATA_:GetInstance():GetData(npc_data.nShopID);
 
-		--用GM指令加钱
+		--Add money using a GM command
 		ret = user:GMCommand("AddMoney(1, 100000000, MONEYLOG_GM_COMMAND)");
 		check(ret, "failed to send gm command");
 		ret = user:GMCommand("AddMoney(3, 100000000, MONEYLOG_GM_COMMAND)");
@@ -394,11 +394,11 @@ function TestCase.Item.Shop_2()
 
 
 				print("deal item"..shop_data.m_ShopItem[i-1].m_nItemID);
-				--购买商品
+				--Buy an item
 				ret = user:BuyItem(i-1);
 				check(ret, "failed to send buy item msg");
 
-				--检查回包
+				--Check the response
 				msg = recv_msg(30, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_change");
 
@@ -410,15 +410,15 @@ function TestCase.Item.Shop_2()
 					end
 				end
 
-				-- 判断包裹位置
-				if item_data.m_byType == 3 then -- 材料
+				-- Check the inventory slot
+				if item_data.m_byType == 3 then -- Materials
 					conSlot = 4;
-				elseif item_data.m_byType == 9 then -- 任务
+				elseif item_data.m_byType == 9 then -- Quest
 					conSlot = 5;
 				elseif item_data.m_byType == 2 then
-					conSlot = 3;		-- 装备
+					conSlot = 3;		-- Equip
 				else
-					conSlot = 2;	-- 默认包裹
+					conSlot = 2;	-- Default inventory
 				end
 
 				print("item bag position"..conSlot);
@@ -435,7 +435,7 @@ function TestCase.Item.Shop_2()
 		wait(2);
 	end
 
-    --登出
+    --Log out
     cleanup(user);
 end
 
@@ -447,60 +447,60 @@ function TestCase.Item.Money()
     local msg;
     local session_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
 
     session_id = user:GetSessionID();
 
-    --用GM指令增加钱
+    --Add money using a GM command
     ret = user:GMCommand("SetMoney(0,1234)");
     check(ret, "failed to send gm command");
 
-    --检查增加的物品确实是GM指令所加的
+    --Check that the added item came from the GM command
     msg = recv_msg(5, session_id, protocol.g2c_money_change);
     check(msg, "failed to recv g2c_item_change");
     check(msg.nMoneyType==0, "failed to create correct money");
     check(msg.nMoney==1234, "failed to create correct money");
 
-    --用GM指令增加钱
+    --Add money using a GM command
     ret = user:GMCommand("SetMoney(1,1234)");
     check(ret, "failed to send gm command");
 
-    --检查增加的物品确实是GM指令所加的
+    --Check that the added item came from the GM command
     msg = recv_msg(5, session_id, protocol.g2c_money_change);
     check(msg, "failed to recv g2c_item_change");
     check(msg.nMoneyType==1, "failed to create correct money");
     check(msg.nMoney==1234, "failed to create correct money");
 
-    --用GM指令增加钱
+    --Add money using a GM command
     ret = user:GMCommand("SetMoney(2,1234)");
     check(ret, "failed to send gm command");
 
-    --检查增加的物品确实是GM指令所加的
+    --Check that the added item came from the GM command
     msg = recv_msg(5, session_id, protocol.g2c_money_change);
     check(msg, "failed to recv g2c_item_change");
     check(msg.nMoneyType==2, "failed to create correct money");
     check(msg.nMoney==1234, "failed to create correct money");
 
-    --用GM指令增加钱
+    --Add money using a GM command
     ret = user:GMCommand("SetMoney(3,1234)");
     check(ret, "failed to send gm command");
 
-    --检查增加的物品确实是GM指令所加的
+    --Check that the added item came from the GM command
     msg = recv_msg(5, session_id, protocol.g2c_money_change);
     check(msg, "failed to recv g2c_item_change");
     check(msg.nMoneyType==3, "failed to create correct money");
     check(msg.nMoney==1234, "failed to create correct money");
 
-    --登出
+    --Log out
     cleanup(user);
 end
 
 function TestCase.Item.Sign()
 
-    --登录
+    --Log in
 	local user_name1 = "SignItem" .. os.date("%H%M%S");
     user1, role1 = startup(user_name1, user_name1)
     check(user1, "failed to create user");
@@ -517,26 +517,26 @@ function TestCase.Item.Sign()
 	local user1id = role1:GetObjID();
 	local user2id = role2:GetObjID();
 
-	 --用GM指令增加一件物品
-    --ret = user1:GMCommand("AddItem(1000005,1)");  -- 开天
+	 --Add an item using a GM command
+    --ret = user1:GMCommand("AddItem(1000005,1)");  -- Heaven Splitter
     --check(ret, "failed to send gm command");
 
-    --检查增加的物品确实是GM指令所加的
+    --Check that the added item came from the GM command
     --local msg = recv_msg(5, usersessionid1, protocol.g2c_item_change);
     --check(msg, "failed to recv g2c_item_change");
 
-	--对装备进行签名
+	--Sign the equipment
 	ret = g_RobotMessageHandler:DoSignItem(role1, 0, 0);
 	check(ret, "fail to sign item");
 
-	--检查签名的回包
+	--Check the signature response
     msg = recv_msg(5, usersessionid1, protocol.g2c_sign_item);
     check(msg, "failed to recv g2c_sign_item");
 
 	ret = g_RobotMessageHandler:DoSayWithItem(role1, user_name2);
 	check(ret, "fail to say with item");
 
-	--检查聊天的回包
+	--Check the chat response
     msg = recv_msg(5, usersessionid2, protocol.m2c_chat_message);
 	check(msg, "fail to receive chat message");
 	local username = get_role_name_from_msmessage(msg);
@@ -544,7 +544,7 @@ function TestCase.Item.Sign()
 	check(username == user_name1, "fail to receive wrong target name");
 
 	local chatcontent = get_chat_content_from_msmessage(msg);
-	--验证签名
+	--Verify the signature
 	ret = user2:VerifyItem(user1id, chatcontent);
 	check(ret, "failed to verify rsa signup");
 end
@@ -612,7 +612,7 @@ function TestCase.Item.EquipCheck()
     local item;
 	local item2;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -623,14 +623,14 @@ function TestCase.Item.EquipCheck()
     while equip_data do
 		if equip_data.m_nTemplateID ~= 0 then
 			print("Equip begin ID: "..equip_data.m_nTemplateID);
-			-- 字段范围检测
+			-- Check field ranges
 			ItemFieldRangeCheck(equip_data);
 
-			--用GM指令增加一件物品
+			--Add an item using a GM command
 			ret = user:GMCommand("AddItem(" .. equip_data.m_nTemplateID .. ", 1)");
 			check(ret, "failed to send gm command");
 
-			--检查增加的物品确实是GM指令所加的
+			--Check that the added item came from the GM command
 			msg = recv_msg(5, session_id, protocol.g2c_item_change);
 			check(msg, "failed to recv g2c_item_change");
 
@@ -638,21 +638,21 @@ function TestCase.Item.EquipCheck()
 			check(item, "failed to get item");
 			check(item.m_iteminfo.m_nTemplateID==equip_data.m_nTemplateID,"failed to get correct item");
 
-			-- 检测绑定属性
+			-- Check the binding attribute
 			--if equip_data.m_byBindType == 3 then
 			--	print("bind type templateID "..equip_data.m_nTemplateID);
 			--	check(item.m_iteminfo.m_byBindType == 10,"item bind fail");
 			--end
 
-			-- 检测叠加属性
+			-- Check the stacking attribute
 			if equip_data.m_byDurType == 2 then
 				check(nil, "equip field DurType error");
 			else
-				--再加一个同样的物品
+				--Add another identical item
 				ret = user:GMCommand("AddItem(" .. equip_data.m_nTemplateID .. ", 1)");
 				check(ret, "failed to send gm command");
 
-				--检查增加的物品确实是GM指令所加的
+				--Check that the added item came from the GM command
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_change");
 
@@ -660,21 +660,21 @@ function TestCase.Item.EquipCheck()
 				check(item2, "failed to get item");
 				check(item2.m_iteminfo.m_nTemplateID==equip_data.m_nTemplateID,	"failed to get correct item");
 
-				--删除新加的物品
+				--Remove the newly added item
 				ret = user:DeleteItem(3, 1, 1);
 				check(ret, "failed to send delete item msg");
 
-				--检查删除物品的回包
+				--Check the remove-item response
 				msg = recv_msg(5, session_id, protocol.g2c_item_delete);
 				check(msg, "failed to recv g2c_item_delete");
 				check(msg.byConSlot == 3 and msg.byItemSlot == 1,"failed to delete correct item");
 			end
 
-			--删除新加的物品
+			--Remove the newly added item
 			ret = user:DeleteItem(3, 0, 1);
 			check(ret, "failed to send delete item msg");
 
-			--检查删除物品的回包
+			--Check the remove-item response
 			msg = recv_msg(5, session_id, protocol.g2c_item_delete);
 			check(msg, "failed to recv g2c_item_delete");
 			check(msg.byConSlot == 3 and msg.byItemSlot == 0,"failed to delete correct item");
@@ -687,7 +687,7 @@ function TestCase.Item.EquipCheck()
 
     end
 
-	--登出
+	--Log out
     cleanup(user);
 end
 
@@ -701,7 +701,7 @@ function TestCase.ItemCheck()
     local item;
 	local item2;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -712,67 +712,67 @@ function TestCase.ItemCheck()
     while item_data do
 		if item_data.m_nTemplateID > 100 then
 			print("Equip begin ID: "..item_data.m_nTemplateID);
-			-- 字段范围检测
+			-- Check field ranges
 			ItemFieldRangeCheck(item_data);
 
-			--用GM指令增加一件物品
+			--Add an item using a GM command
 			ret = user:GMCommand("AddItem(" .. item_data.m_nTemplateID .. ", 1)");
 			check(ret, "failed to send gm command");
 
-			--检查增加的物品确实是GM指令所加的
+			--Check that the added item came from the GM command
 			msg = recv_msg(5, session_id, protocol.g2c_item_change);
 			check(msg, "failed to recv g2c_item_change");
 
-			-- 判断包裹位置
-			local conSlot = 2;	-- 默认包裹
-			if item_data.m_byType == 3 then -- 材料
+			-- Check the inventory slot
+			local conSlot = 2;	-- Default inventory
+			if item_data.m_byType == 3 then -- Materials
 				conSlot = 4;
-			elseif item_data.m_byType == 9 then -- 任务
+			elseif item_data.m_byType == 9 then -- Quest
 				conSlot = 5;
 			end
 
-			-- 获取新增物品，开始检测逻辑
+			-- Get the added item and start checking
 			item = role:GetItemBag():GetItem(conSlot,0);
 			check(item, "failed to get item");
 			check(item.m_iteminfo.m_nTemplateID==item_data.m_nTemplateID,"failed to get correct item");
 
-			-- 检测绑定属性
+			-- Check the binding attribute
 			--if item_data.m_byBindType == 3 then
 			--	check(item.m_iteminfo.m_byBindType == 10,"item bind fail");
 			--end
 
-			-- 检测叠加属性
+			-- Check the stacking attribute
 			if item_data.m_byDurType == 2 and item_data.m_nDur ~= 1 then
-				-- 不到上限检测
+				-- Check below the limit
 				ret = user:GMCommand("AddItem(" .. item_data.m_nTemplateID..", "..item_data.m_nDur..")");
 				check(ret, "failed to send gm command");
-				-- 叠加数量过低
+				-- Stack count is too low
 				if item_data.m_nDur - 2 < 0 then
 					check(nil, "dur num error! type : 2 , num: " .. item_data.m_nDur);
 				end
 
-				--检查增加的物品确实是GM指令所加的
+				--Check that the added item came from the GM command
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_change");
 
-				-- 超过上限分格子检测
+				-- Check splitting into slots above the limit
 				item = role:GetItemBag():GetItem(conSlot,1);
 				check(item, "failed to get item");
 				check(item.m_iteminfo.m_nTemplateID==item_data.m_nTemplateID,"failed to get correct item");
 				print("dur num : "..item.m_iteminfo.m_shCurDur.." "..item_data.m_nDur);
 				check(item.m_iteminfo.m_shCurDur == item_data.m_nDur,"ItemDurNum error");
 
-				-- 第二个格子检测
+				-- Check the second slot
 				item2 = role:GetItemBag():GetItem(conSlot,0);
 				check(item2, "failed to get item");
 				check(item2.m_iteminfo.m_nTemplateID==item_data.m_nTemplateID,"failed to get correct item");
 				check(item2.m_iteminfo.m_shCurDur == 1,"ItemDurNum error");
 
-				--删除新加的物品
+				--Remove the newly added item
 				ret = user:DeleteItem(conSlot, 1, 2);
 				check(ret, "failed to send delete item msg");
 
-				--检查删除物品的回包
+				--Check the remove-item response
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_delete");
 
@@ -781,13 +781,13 @@ function TestCase.ItemCheck()
 				check(item2.m_iteminfo.m_nTemplateID==item_data.m_nTemplateID,"failed to get correct item");
 				check(item2.m_iteminfo.m_shCurDur == item_data.m_nDur - 2, "ItemDurNum error");
 
-				-- 合并，拆分检测
+				-- Check merging and splitting
 
-				-- 先拆分(其中包括堆叠)
+				-- First split (including stacking)
 				ret = user:SplitItem(conSlot, 1, conSlot, 0, 1);
 				check(ret, "failed to send split item msg");
 
-				--检查拆分物品的回包
+				--Check the split-item response
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_change");
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
@@ -804,11 +804,11 @@ function TestCase.ItemCheck()
 				check(item.m_iteminfo.m_nTemplateID == item_data.m_nTemplateID, "failed to get correct item");
 				check(item.m_iteminfo.m_shCurDur == 2, "item num error");
 
-				-- 再移动
+				-- Then move
 				ret = user:MoveItem(conSlot, 1, conSlot, 2);
 				check(ret, "failed to send move item msg");
 
-				--检查移动物品的回包
+				--Check the move-item response
 				msg = recv_msg(5, session_id, protocol.g2c_item_swap);
 				check(msg, "failed to recv g2c_item_swap");
 				check(msg.wSrcConSlot==conSlot and msg.wSrcItemSlot==1 and
@@ -829,10 +829,10 @@ function TestCase.ItemCheck()
 				print("temp show3: "..item.m_iteminfo.m_shCurDur.." "..item_data.m_nDur);
 				--
 
-				-- 最后合并
+				-- Finally merge
 				ret = user:MoveItem(conSlot, 2, conSlot, 0);
 				check(ret, "failed to send move item msg");
-				--检查堆叠物品的回包
+				--Check the stack-item response
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_change");
 
@@ -847,20 +847,20 @@ function TestCase.ItemCheck()
 				print("temp show55:"..item.m_iteminfo.m_shCurDur.." "..item_data.m_nDur);
 				check(item.m_iteminfo.m_shCurDur == item_data.m_nDur - 1, "item num error");
 
-				-- 清空现场
+				-- Clean up
 				ret = user:DeleteItem(conSlot, 0, item.m_iteminfo.m_shCurDur);
 				check(ret, "failed to send delete item msg");
 
-				--检查删除物品的回包
+				--Check the remove-item response
 				msg = recv_msg(5, session_id, protocol.g2c_item_delete);
 				check(msg, "failed to recv g2c_item_delete");
 				check(msg.byConSlot == conSlot and msg.byItemSlot == 0,"failed to delete correct item");
-			else	-- 无耐久，使用次数和装备耐久，应该都是不可叠加属性
-				--再加一个同样的物品
+			else	-- No durability: usage count and equipment durability should both be non-stackable attributes
+				--Add another identical item
 				ret = user:GMCommand("AddItem(" .. item_data.m_nTemplateID .. ", 1)");
 				check(ret, "failed to send gm command");
 
-				--检查增加的物品确实是GM指令所加的
+				--Check that the added item came from the GM command
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_change");
 
@@ -868,20 +868,20 @@ function TestCase.ItemCheck()
 				check(item2, "failed to get item");
 				check(item2.m_iteminfo.m_nTemplateID==item_data.m_nTemplateID,"failed to get correct item");
 
-				--删除新加的物品
+				--Remove the newly added item
 				ret = user:DeleteItem(conSlot, 1, 1);
 				check(ret, "failed to send delete item msg");
 
-				--检查删除物品的回包
+				--Check the remove-item response
 				msg = recv_msg(5, session_id, protocol.g2c_item_delete);
 				check(msg, "failed to recv g2c_item_delete");
 				check(msg.byConSlot == conSlot and msg.byItemSlot == 1,"failed to delete correct item");
 
-				--删除新加的物品
+				--Remove the newly added item
 				ret = user:DeleteItem(conSlot, 0, 1);
 				check(ret, "failed to send delete item msg");
 
-				--检查删除物品的回包
+				--Check the remove-item response
 				msg = recv_msg(5, session_id, protocol.g2c_item_delete);
 				check(msg, "failed to recv g2c_item_delete");
 				check(msg.byConSlot == conSlot and msg.byItemSlot == 0,"failed to delete correct item");
@@ -892,7 +892,7 @@ function TestCase.ItemCheck()
         item_data = CDataManager_ITEM_DATA_:GetInstance():GetNextData();
     end
 
-	--登出
+	--Log out
     cleanup(user);
 end
 
@@ -907,7 +907,7 @@ function TestCase.UseDicPKValue()
     local session_id;
     local item;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -918,7 +918,7 @@ function TestCase.UseDicPKValue()
 	ret = user:GMCommand("AddItem(100002, 1)");
 	check(ret, "failed to send gm command");
 
-	--检查增加的物品确实是GM指令所加的
+	--Check that the added item came from the GM command
 	msg = recv_msg(5, session_id, protocol.g2c_item_change);
 	check(msg, "failed to recv g2c_item_change");
 
@@ -929,7 +929,7 @@ function TestCase.UseDicPKValue()
 
 
 
-	--登出
+	--Log out
     cleanup(user);
 end
 
@@ -944,7 +944,7 @@ function TestCase.Item.Use()
     local item;
 	local conSlot;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -960,7 +960,7 @@ function TestCase.Item.Use()
 	ret = user:GMCommand("AddExp(2000000)");
 	check(ret, "failed to send gm command");
 
-	-- 清空包裹
+	-- Clear the inventory
 	item = role:GetItemBag():GetItem(2, 0);
 	while item do
 		--
@@ -994,21 +994,21 @@ function TestCase.Item.Use()
 
 	local item_data = CDataManager_ITEM_DATA_:GetInstance():GetFirstData();
 	while item_data do
-		-- 判断包裹位置
+		-- Check the inventory slot
 
-		if item_data.m_byType == 3 then -- 材料
+		if item_data.m_byType == 3 then -- Materials
 			conSlot = 4;
-		elseif item_data.m_byType == 9 then -- 任务
+		elseif item_data.m_byType == 9 then -- Quest
 			conSlot = 5;
 		else
-			conSlot = 2;	-- 默认包裹
+			conSlot = 2;	-- Default inventory
 		end
 
 		if item_data.m_nTemplateID >100 then
-			-- 可使用的物品
+			-- Usable item
 			if item_data.m_byType == 1 then
 
-				-- 选择职业
+				-- Select class
 				if item_data.m_byRequireClass > 0 then
 					user:GMCommand("SelfRole:SetClass("..((item_data.m_byRequireClass - 1)%4)..");");
 				end
@@ -1018,7 +1018,7 @@ function TestCase.Item.Use()
 					ret = user:GMCommand("AddItem(" .. item_data.m_nTemplateID .. ", 1)");
 					check(ret, "failed to send gm command");
 
-					--检查增加的物品确实是GM指令所加的
+					--Check that the added item came from the GM command
 					msg = recv_msg(5, session_id, protocol.g2c_item_change);
 					check(msg, "failed to recv g2c_item_change");
 
@@ -1048,10 +1048,10 @@ function TestCase.Item.Use()
 				elseif item_data.m_szScript ~= 0 then
 					print(item_data.m_szScript);
 					--check(nil, "script ~= 0");
-					-- 如果没有技能，就必然有脚本
+					-- If there is no skill, there must be a script
 				elseif item_data.m_szScript == 0 then
 					check(nil, "script:use item can not use");
-					-- 现在是允许的
+					-- Currently allowed
 				else
 					check(nil, "use item can not use");
 				end
@@ -1063,14 +1063,14 @@ function TestCase.Item.Use()
         item_data = CDataManager_ITEM_DATA_:GetInstance():GetNextData();
 	end
 
-	--登出
+	--Log out
     cleanup(user);
 end
 
 
 
 
--- 根据子类型获取装备部位
+-- Get the equipment slot by subtype
 function GetEquipPos(subType)
 	if subType == ITEMSUBTYPE_EQUIP_WEAPON then
 		return NES_MAIN_HAND;
@@ -1117,9 +1117,9 @@ function TestCase.Item.EquipItem()
     local msg;
     local session_id;
     local item;
-	local conSlot = 3;	-- 装备，没的选包裹
+	local conSlot = 3;	-- Equipment: no choice of inventory
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -1132,7 +1132,7 @@ function TestCase.Item.EquipItem()
 	ret = user:GMCommand("AddExp(2000000)");
 	check(ret, "failed to send gm command");
 
-	-- 清空包裹
+	-- Clear the inventory
 	item = role:GetItemBag():GetItem(3, 0);
 	while item do
 		--
@@ -1147,9 +1147,9 @@ function TestCase.Item.EquipItem()
 	local equip_data = CDataManager_EQUIP_DATA_:GetInstance():GetFirstData();
 	while equip_data do
 		if equip_data.m_nTemplateID >100 and equip_data.m_nTemplateID ~= 1999997 and equip_data.m_nTemplateID ~= 1999998 and equip_data.m_nTemplateID ~= 1999999 then
-			-- 可使用的物品
+			-- Usable item
 			if equip_data.m_byType == 2 then
-				-- 选择职业
+				-- Select class
 				if equip_data.m_byRequireClass == 4 then
 					user:GMCommand("SelfRole:SetClass(2);");
 				elseif equip_data.m_byRequireClass > 0 then
@@ -1160,12 +1160,12 @@ function TestCase.Item.EquipItem()
 				ret = user:GMCommand("AddItem(" .. equip_data.m_nTemplateID .. ", 1)");
 				check(ret, "failed to send gm command");
 
-				--检查增加的物品确实是GM指令所加的
+				--Check that the added item came from the GM command
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_change");
 
 				local dstItemSlot = GetEquipPos(equip_data.m_bySubType);
-				--堆叠物品
+				--Stack items
 				ret = user:MoveItem(3, 0, 0, dstItemSlot);
 				check(ret, "failed to send move item msg");
 
@@ -1177,7 +1177,7 @@ function TestCase.Item.EquipItem()
 					check(msg, "failed to recv g2c_sync_role_avatar");
 				end
 
-				-- 说不定有脱下来的...把之前脱下来的删了，再继续脱
+				-- There may be unequipped items; remove previously unequipped items before continuing
 				item = role:GetItemBag():GetItem(3, 0);
 				if item then
 					ret = user:DeleteItem(conSlot, 0, 1);
@@ -1204,7 +1204,7 @@ function TestCase.Item.EquipItem()
         equip_data = CDataManager_EQUIP_DATA_:GetInstance():GetNextData();
 	end
 
-	--登出
+	--Log out
     cleanup(user);
 end
 
@@ -1219,49 +1219,49 @@ function TestCase.Item.CD()
     local item;
 	local conSlot;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
 
 	session_id = user:GetSessionID();
 
-	--用GM指令增加测试物品
+	--Add a test item using a GM command
     ret = user:GMCommand("AddItem(99, 1)");
     check(ret, "failed to send gm command");
 
-    --检查物品回包
+    --Check the item response
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-	--使用
+	--Use
 	ret = role:GetItemBag():UseItem(2, 0, 99);
 	check(ret, "failed to use item");
 
-	--使用物品成功
+	--Item use succeeds
 	msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-	--再使用
+	--Use again
 	ret = role:GetItemBag():UseItem(2, 0, 99);
 	check(ret, "failed to use item");
 
-	--使用物品失败
+	--Item use fails
 	msg = recv_msg(5, session_id, protocol.g2c_error_notify);
 	check(msg, "failed to recv g2c_error_notify");
 	check(msg.nErrCode == error_code.errItemNotReady, "failed to recv correct err msg");
 
-	--等35秒后再次使用
+	--Wait 35 seconds, then use again
 	wait(35);
 
 	ret = role:GetItemBag():UseItem(2, 0, 99);
 	check(ret, "failed to use item");
 
-	--使用物品成功
+	--Item use succeeds
 	msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-	--登出
+	--Log out
     cleanup(user);
 end
 
@@ -1273,51 +1273,51 @@ function TestCase.Item.NovicePackage()
     local msg;
     local session_id;
 
-    --登录
+    --Log in
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
 
 	session_id = user:GetSessionID();
 
-	--用GM指令增加新手礼包
+	--Add a starter gift pack using a GM command
     ret = user:GMCommand("AddItem(1000011, 1)");
     check(ret, "failed to send gm command");
 
-    --检查物品回包
+    --Check the item response
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-	--使用
+	--Use
 	ret = role:GetItemBag():UseItem(2, 0, 1000011);
 	check(ret, "failed to use item");
 
-	--使用物品成功
+	--Item use succeeds
 	msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-    	--登出
+	--Log out
     cleanup(user);
 end
 
 function TestCase.Item.RoleLogoutDLSaveItem()
 	local user_name = "DLItem" .. os.date("%Y%H%M%S");
 
-	--登录
+	--Log in
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
     session_id = user:GetSessionID();
 
-	--用GM指令增加测试物品
+	--Add a test item using a GM command
     ret = user:GMCommand("AddItem(99, 1)");
     check(ret, "failed to send gm command");
 
-    --检查物品回包
+    --Check the item response
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-    --登出
+    --Log out
     cleanup(user);
 
 end
@@ -1326,7 +1326,7 @@ function TestCase.Item.TradeItem()
 	local user_name1 = "TradeItem17" .. os.date("%Y%H%M%S");
 	local user_name2 = "TradeItem18" .. os.date("%Y%H%M%S");
 
-	--登录
+	--Log in
     user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
     check(role1, "failed to create role");
@@ -1352,17 +1352,17 @@ function TestCase.Item.TradeItem()
 
 	wait(5);
 
-	--用GM指令增加测试物品
+	--Add a test item using a GM command
     ret = user1:GMCommand("AddItem(101, 1)");
     check(ret, "failed to send gm command");
 
-    --检查物品回包
+    --Check the item response
     msg = recv_msg(5, session_id1, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
     performance_trade_with_role(user1, user2, 101);
 
-    --登出
+    --Log out
     cleanup(user1);
     cleanup(user2);
 end
@@ -1381,75 +1381,75 @@ function performance_trade_with_role(user, targetuser, itemid)
     local session_id1 = user:GetSessionID();
     local session_id2 = targetuser:GetSessionID();
 
-	--user: 请求交易
+	--user: request trade
     ret = user:AskTrade(targetrole:GetObjID());
     check(ret, "failed to ask trade");
 
-    --targetuser: 收到交易状态改变
+    --targetuser: receive trade state change
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --targetuser: 接受交易
+    --targetuser: accept trade
     ret = targetuser:AcceptTrade(srcrole:GetObjID());
     check(ret, "failed to cancel trade");
 
-    --user1: 收到交易状态改变
+    --user1: receive trade state change
     msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user: 出1000块钱
+    --user: offer 1,000
     ret = user:SetTradeMoney(1000);
     check(ret, "failed to set trade money");
 
-    --targetuser: 收到user出钱的消息
+    --targetuser: receive the user money offer notification
     msg = recv_msg(5, session_id2, protocol.g2c_trade_set_money);
     check(msg, "failed to recv g2c_trade_set_money");
 
     wait(2);
 
-    --user: 锁定
+    --user: lock
     ret = user:LockTrade();
     check(ret, "failed to lock trade");
 
-    --targetuser: 收到交易状态改变
+    --targetuser: receive trade state change
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --targetuser: 锁定
+    --targetuser: lock
     ret = targetuser:LockTrade();
     check(ret, "failed to lock trade");
 
-    --user: 收到交易状态改变
+    --user: receive trade state change
     msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user: 确认
+    --user: confirm
     ret = user:ConfirmTrade();
     check(ret, "failed to lock trade");
 
-    --targetuser: 收到交易状态改变
+    --targetuser: receive trade state change
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --targetuser: 确认
+    --targetuser: confirm
     ret = targetuser:ConfirmTrade();
     check(ret, "failed to lock trade");
 
-    --user: 收到交易状态改变
+    --user: receive trade state change
     msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
-    --targetuser: 收到钱
+    --targetuser: receive money
     msg = recv_msg(5, session_id2, protocol.g2c_money_change);
     check(msg, "failed to recv g2c_money_change");
     check(msg.nMoney == 1000, "failed to recv correct money (user2)");
@@ -1472,7 +1472,7 @@ function TestCase.Item.TradeMoney()
 	local user_name1 = "TradeMoney47" .. os.date("%Y%H%M%S");
 	local user_name2 = "TradeMoney48" .. os.date("%Y%H%M%S");
 
-	--登录
+	--Log in
     user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
     check(role1, "failed to create role");
@@ -1496,7 +1496,7 @@ function TestCase.Item.TradeMoney()
 
 	wait(10);
 
-	-- 加钱
+	-- Add money
 
 	local ret = user1:GMCommand("AddMoney(1, 1000000, MONEYLOG_GM_COMMAND)");
 	check(ret, "failed to add money");
@@ -1506,7 +1506,7 @@ function TestCase.Item.TradeMoney()
 
 	wait(5);
 
-	-- 加魂
+	-- Add soul
 
 	ret = user1:GMCommand("AddMoney(5, 1000000, MONEYLOG_GM_COMMAND)");
 	check(ret, "failed to add money");
@@ -1516,7 +1516,7 @@ function TestCase.Item.TradeMoney()
 
 	wait(5);
 
-	-- 升等级
+	-- Increase level
 
 	local ret = user1:GMCommand("SetLevel(10)");
     check(ret, "exec GMCommand SetLevel error: user1");
@@ -1528,10 +1528,10 @@ function TestCase.Item.TradeMoney()
 
 	wait(1);
 
-	-- 境界每个人提升10次
+	-- Raise each character’s realm 10 times
 
 	for changecount = 1, 10 do
-	    ret = user1:ChangeSoul2Pts(true, true); --在线转化
+	    ret = user1:ChangeSoul2Pts(true, true); --Online conversion
 		check(ret, "fail to send changesoul2pts");
 
 	    msg = recv_msg(100, session_id1, protocol.g2c_spirit_exp_change);
@@ -1541,7 +1541,7 @@ function TestCase.Item.TradeMoney()
 	end
 
 	for changecount = 1, 10 do
-	    ret = user2:ChangeSoul2Pts(true, true); --在线转化
+	    ret = user2:ChangeSoul2Pts(true, true); --Online conversion
 		check(ret, "fail to send changesoul2pts");
 
 	    msg = recv_msg(100, session_id2, protocol.g2c_spirit_exp_change);
@@ -1550,75 +1550,75 @@ function TestCase.Item.TradeMoney()
 		wait(1);
 	end
 
-	--user1: 请求交易
+	--user1: request trade
     ret = user1:AskTrade(role2:GetObjID());
     check(ret, "failed to ask trade");
 
-    --user2: 收到交易状态改变
+    --user2: receive trade state change
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user2: 接受交易
+    --user2: accept trade
     ret = user2:AcceptTrade(role1:GetObjID());
     check(ret, "failed to accept trade");
 
-    --user1: 收到交易状态改变
+    --user1: receive trade state change
     msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user1: 出1000块钱
+    --user1: offer 1,000
     ret = user1:SetTradeMoney(1000);
     check(ret, "failed to set trade money");
 
-    --user2: 收到user1出钱的消息
+    --user2: receive user1 money offer notification
     msg = recv_msg(5, session_id2, protocol.g2c_trade_set_money);
     check(msg, "failed to recv g2c_trade_set_money");
 
     wait(2);
 
-    --user1: 锁定
+    --user1: lock
     ret = user1:LockTrade();
     check(ret, "failed to lock trade");
 
-    --user2: 收到交易状态改变
+    --user2: receive trade state change
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user2: 锁定
+    --user2: lock
     ret = user2:LockTrade();
     check(ret, "failed to lock trade");
 
-    --user1: 收到交易状态改变
+    --user1: receive trade state change
     msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user1: 确认
+    --user1: confirm
     ret = user1:ConfirmTrade();
     check(ret, "failed to lock trade");
 
-    --user2: 收到交易状态改变
+    --user2: receive trade state change
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user2: 确认
+    --user2: confirm
     ret = user2:ConfirmTrade();
     check(ret, "failed to lock trade");
 
-    --user: 收到交易状态改变
+    --user: receive trade state change
     msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
-    --targetuser: 收到钱
+    --targetuser: receive money
 
     msg = recv_msg(5, session_id2, protocol.g2c_money_change);
     check(msg, "failed to recv g2c_money_change");

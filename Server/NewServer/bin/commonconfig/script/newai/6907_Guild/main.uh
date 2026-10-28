@@ -5,25 +5,25 @@ evtAIInteract =
 		{ batRoleOpenDialog, param = { 50572, 50000, 0, 0 } },		
 	  	{ batSelector,
 			{ batSequencer,
-				--选择选项一
-				{ batRoleCheckInteractOption, param = { 1 } },   ---  获取温泉buff
+				--Select option one
+				{ batRoleCheckInteractOption, param = { 1 } },   ---  Obtain the hot spring buff
 				{ batSequencer,
 					{ batSelector,
-						{ batSequencer,                             ---check 是否在公会战中
+						{ batSequencer,                             ---Check whether a guild war is in progress
 							{ batGuildWarTime },
 							{ batRoleOpenDialog, param = { 50570, 50000, 0, 0 } },		
 							{ batSequencer,
 								{ batRoleCheckInteractOption, param = { 1 } },
 							},						 
 						},	
-						{ batSequencer,                             ---check 温泉活动是否开启
+						{ batSequencer,                             ---Check whether the hot spring event is active
 							{  batSelector,  
 								{ batSequencer,
 									{ batRoleCheckGuildActivity, param = { 3 } },	
 									--{ batSequencer,
 										{  batSelector, 
 											{ batSequencer,                            
-												{ batRoleCheckGuild },					--check 是否是公会成员
+												{ batRoleCheckGuild },					--Check guild membership
 												--{ batSequencer,
 												{  batSelector, 
 													{ batSequencer,   

@@ -13,10 +13,10 @@ function main(oRole)
 	local sex = oRole:GetSex();
 
 
-	--! 解锁基本技能Slot
+	--! Unlock basic spell slots
 	oRole:UnlockSpellSlot(qssNormalAtk);
-	oRole:UnlockSpellSlot(qssKey10); --原qssMouseL
-	oRole:UnlockSpellSlot(qssKey11); --原qssMouseR
+	oRole:UnlockSpellSlot(qssKey10); --Previously qssMouseL
+	oRole:UnlockSpellSlot(qssKey11); --Previously qssMouseR
 	oRole:UnlockSpellSlot(qssKey1);
 	oRole:UnlockSpellSlot(qssKey2);
 	oRole:UnlockSpellSlot(qssKey3);
@@ -31,7 +31,7 @@ function main(oRole)
 	oRole:UnlockSpellSlot(qssPassive2);
 	oRole:UnlockSpellSlot(qssPassive3);
 
-	--! 新手礼包
+	--! New-player gift pack
 	oRole:GetItemBag():AddItem(331, 1, ITEMLOG_CREATE_ROLE, 0, false);
 	oRole:GetItemBag():AddItem(331, 1, ITEMLOG_CREATE_ROLE, 0, false);
 	oRole:GetItemBag():AddItem(331, 1, ITEMLOG_CREATE_ROLE, 0, false);
@@ -39,21 +39,21 @@ function main(oRole)
 	oRole:GetItemBag():AddItem(331, 1, ITEMLOG_CREATE_ROLE, 0, false);
 
 	local b = os.time();
-	oRole:SetVariable(1006, b);    -- [老配置]里面没有这句代码, 不知道有啥作用
+	oRole:SetVariable(1006, b);    -- This line is absent from the old configuration; its purpose is unknown
 	
-	--! 初始免费飞鞋次数, [老配置]里这句代码是没注释的
+	--! Initial free quest-teleport count; this line was enabled in the old configuration
 	--oRole:GetAchievementList():SetVariable(avdQuestFlytoZone, 3);
 	
-	--! 各职业初始金
+	--! Starting gold by class
 	--oRole:GetItemBag():AddMoney(1, 10000, MONEYLOG_BIRTH, 0);
 
-	--! 初始任务
+	--! Starting quests
 	oRole:GetQuestList():Accept(1441);
 
-	--! 反外挂初始化
+	--! Initialize anti-cheat
 	oRole:SetAntiCheatLevel(2);
 
-	--! 测试用工具类技能
+	--! Utility spells for testing
 	--oRole:LearnSpell(5, 0, true);
 	--oRole:LearnSpell(6, 0, true);
 	--oRole:LearnSpell(7, 0, true);
@@ -61,83 +61,83 @@ function main(oRole)
 	--oRole:LearnSpell(9, 0, true);
 
 
-	--! 测试用, 后面删除
-	-- oRole:GetItemBag():AddMoney(1, 100000000, MONEYLOG_BIRTH, 0);    -- 金币 1000万
-	-- oRole:GetItemBag():AddMoney(3, 10000000, MONEYLOG_BIRTH, 0);    -- 元宝 10万
+	--! For testing; remove later
+	-- oRole:GetItemBag():AddMoney(1, 100000000, MONEYLOG_BIRTH, 0);    -- Gold: 10 million
+	-- oRole:GetItemBag():AddMoney(3, 10000000, MONEYLOG_BIRTH, 0);    -- Ingots: 100,000
 	
 
-	--! 配置人物
+	--! Configure character
 	if not IsInDevMode then
 
-		-- 战士角色配置
+		-- Warrior configuration
 		if class == clsWarrior then
 
 			oRole:SetLevel(1);
 
-			-- 战士主动技
+			-- Warrior active skills
 			oRole:LearnSpell(1030, 0, true);
 			oRole:EquipSpell(qssNormalAtk, 1030);
 
-			-- 左键替换技能
-			--oRole:LearnSpell(1430, 0, true); -- 攻杀效果
-			--oRole:LearnSpell(1431, 0, true); -- 刺杀效果
-			---oRole:LearnSpell(1440, 0, true); -- 刺杀效果2
-			--oRole:LearnSpell(1432, 0, true); -- 半月效果
-			--oRole:LearnSpell(1433, 0, true); -- 烈火效果
-			--oRole:LearnSpell(1434, 0, true); -- 逐日效果
-			-- 角色装备
-			if sex==1 then  --男 1
-				oRole:GetItemBag():EquipItemOnBirth(89980113, NES_BODY); -- 上衣
-			else		--女 2
-				oRole:GetItemBag():EquipItemOnBirth(89990113, NES_BODY); -- 上衣
+			-- Left-click replacement skills
+			--oRole:LearnSpell(1430, 0, true); -- Attack-and-kill effect
+			--oRole:LearnSpell(1431, 0, true); -- Assassination effect
+			---oRole:LearnSpell(1440, 0, true); -- Assassination effect 2
+			--oRole:LearnSpell(1432, 0, true); -- Half-moon effect
+			--oRole:LearnSpell(1433, 0, true); -- Blazing-fire effect
+			--oRole:LearnSpell(1434, 0, true); -- Sun-chasing effect
+			-- Character equipment
+			if sex==1 then  --Male 1
+				oRole:GetItemBag():EquipItemOnBirth(89980113, NES_BODY); -- Chest armor
+			else		--Female 2
+				oRole:GetItemBag():EquipItemOnBirth(89990113, NES_BODY); -- Chest armor
 			end
 
-		--	oRole:GetItemBag():EquipItemOnBirth(99800021, NES_MAIN_HAND); -- 并持短柄重型双手
-		  --  oRole:GetItemBag():EquipItemOnBirth(10111111, NES_HEAD); -- 头
-		  --  oRole:GetItemBag():EquipItemOnBirth(10111311, NES_BODY); -- 上衣
-		 --   oRole:GetItemBag():EquipItemOnBirth(10111411, NES_LEG); -- 腿
-		 --   oRole:GetItemBag():EquipItemOnBirth(10111511, NES_WAIST); -- 腰
-		 --   oRole:GetItemBag():EquipItemOnBirth(10111611, NES_ARM); -- 腕
-		 --   oRole:GetItemBag():EquipItemOnBirth(10111711, NES_FOOT); -- 鞋
+		--	oRole:GetItemBag():EquipItemOnBirth(99800021, NES_MAIN_HAND); -- Two-handed heavy short weapon
+		  --  oRole:GetItemBag():EquipItemOnBirth(10111111, NES_HEAD); -- Head
+		  --  oRole:GetItemBag():EquipItemOnBirth(10111311, NES_BODY); -- Chest armor
+		 --   oRole:GetItemBag():EquipItemOnBirth(10111411, NES_LEG); -- Legs
+		 --   oRole:GetItemBag():EquipItemOnBirth(10111511, NES_WAIST); -- Waist
+		 --   oRole:GetItemBag():EquipItemOnBirth(10111611, NES_ARM); -- Wrist
+		 --   oRole:GetItemBag():EquipItemOnBirth(10111711, NES_FOOT); -- Shoes
 
 
 
 
-			--背包
+			--Bag
 			oRole:GetItemBag():AddItem(89900001, 1, ITEMLOG_CREATE_ROLE, 0, false);
 
-		-- 法师角色配置
+		-- Mage configuration
 		elseif class == clsMage then
 
 			oRole:SetLevel(1);
 
-			--法师主动技
+			--Mage active skills
 			oRole:LearnSpell(2530, 0, true);
 			oRole:EquipSpell(qssNormalAtk, 2530);
 
 			oRole:GetItemBag():AddItem(89900001, 1, ITEMLOG_CREATE_ROLE, 0, false);
 
-			-- 角色装备
-			if sex==1 then  --男 1
-				oRole:GetItemBag():EquipItemOnBirth(89980113, NES_BODY); -- 上衣
-			else		--女 2
-				oRole:GetItemBag():EquipItemOnBirth(89990113, NES_BODY); -- 上衣
+			-- Character equipment
+			if sex==1 then  --Male 1
+				oRole:GetItemBag():EquipItemOnBirth(89980113, NES_BODY); -- Chest armor
+			else		--Female 2
+				oRole:GetItemBag():EquipItemOnBirth(89990113, NES_BODY); -- Chest armor
 			end
 
-		-- 道士角色配置
+		-- Taoist configuration
 		elseif class == clsTaoist then
 
 			oRole:SetLevel(1);
 
-			-- 道士主动技
-			oRole:LearnSpell(3000, 0, true); -- 普通攻
+			-- Taoist active skills
+			oRole:LearnSpell(3000, 0, true); -- Normal attack
 			oRole:EquipSpell(qssNormalAtk, 3000);
 
-			-- 角色装备
-			if sex==1 then  --男 1
-				oRole:GetItemBag():EquipItemOnBirth(89980113, NES_BODY); -- 上衣
-			else		--女 2
-				oRole:GetItemBag():EquipItemOnBirth(89990113, NES_BODY); -- 上衣
+			-- Character equipment
+			if sex==1 then  --Male 1
+				oRole:GetItemBag():EquipItemOnBirth(89980113, NES_BODY); -- Chest armor
+			else		--Female 2
+				oRole:GetItemBag():EquipItemOnBirth(89990113, NES_BODY); -- Chest armor
 			end
 
 			oRole:GetItemBag():AddItem(89900001, 1, ITEMLOG_CREATE_ROLE, 0, false);
@@ -146,27 +146,27 @@ function main(oRole)
 			--oRole:GetItemBag():AddItem(40014, 1, ITEMLOG_CREATE_ROLE, 0, false);
 			--oRole:GetItemBag():AddItem(40103, 1, ITEMLOG_CREATE_ROLE, 0, false);
 
-			--oRole:LearnSpell(3400, 0, true); -- 施毒后续
+			--oRole:LearnSpell(3400, 0, true); -- Poison follow-up
 
-		-- 刺客角色配置
+		-- Assassin configuration
 		elseif class == clsRogue then
 
 			oRole:SetLevel(1);
 
-			-- 刺客主动技
-			oRole:LearnSpell(1500, 0, true); -- 普通攻
-			oRole:EquipSpell(qssNormalAtk, 	1500);  -- 补偿机制
+			-- Assassin active skills
+			oRole:LearnSpell(1500, 0, true); -- Normal attack
+			oRole:EquipSpell(qssNormalAtk, 	1500);  -- Compensation mechanism
 
 			oRole:GetItemBag():AddItem(99800002, 1, ITEMLOG_CREATE_ROLE, 0, false);
 
-		-- 弓手角色配置
+		-- Archer configuration
 		elseif class == clsArcher then
 
 			oRole:SetLevel(1);
 
-			-- 弓手主动技
-			oRole:LearnSpell(2000, 0, true); -- 普通攻
-			oRole:EquipSpell(qssNormalAtk, 	2000);  -- 补偿机制
+			-- Archer active skills
+			oRole:LearnSpell(2000, 0, true); -- Normal attack
+			oRole:EquipSpell(qssNormalAtk, 	2000);  -- Compensation mechanism
 
 			oRole:GetItemBag():AddItem(99800003, 1, ITEMLOG_CREATE_ROLE, 0, false);
 		end

@@ -23,36 +23,36 @@ function GetCount_MoChongKu(owner)
 	return count;
 end
 
--- 判断玩家是否达到进入条件
+-- Check whether the player meets the entry requirements
 function CheckEnterCondition(owner)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	
-	-- 获取 进入次数
+	-- Get the entry count
 	local enter_count = role:GetVariable(1022);
 	
-	-- 获取 金币数量
+	-- Get the gold amount
 	local moneyret = role:GetItemBag():GetMoney(1);
 	
-	-- 判断 次数小于1 (每天1次), 金币大于10万
+	-- Require fewer than one entry (once per day) and more than 100,000 gold
 	if (enter_count < 1) and (moneyret >= 100000) then
 		return brvSuccess;
 	end
 	
-	-- 自己写的代码, 判断日期, 只能判断1次
+	-- Custom date check; can only check once
 	--[[
-	-- 获取上一次进入时间
+	-- Get the last entry time
 	local dwVarValue = role:GetVariable(232);
 	local dwOldDay = (dwVarValue + g_oGameWorld:GetTimeZone()) / 86400;
 	local dwToday = (g_oGameWorld:GetGameTime() + g_oGameWorld:GetTimeZone()) / 86400;
 	
-	-- 浮点转int
+	-- Convert float to int
 	local dwOldDayInt = math.floor(dwOldDay)
 	local dwTodayInt = math.floor(dwToday)
 	
-	-- 获取 金币数量
+	-- Get the gold amount
 	local moneyret = role:GetItemBag():GetMoney(1);
 	
-	-- 判断 最后一次日期
+	-- Check the last entry date
 	if (dwOldDayInt < dwTodayInt) and (moneyret >= 100000) then
 		return brvSuccess;
 	else
@@ -63,7 +63,7 @@ function CheckEnterCondition(owner)
 	return brvFail;
 end
 
--- 扣除相应的物资
+-- Deduct the required materials
 function SubItem(owner)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	
@@ -78,7 +78,7 @@ function SubItem(owner)
 	return brvFail;
 end
 
--- 增加魔虫窟次数
+-- Increment the Demon Insect Cave entry count
 function IncCount_MoChongKu(owner)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	
@@ -90,9 +90,9 @@ function IncCount_MoChongKu(owner)
 	return brvFail;
 end
 
--- 热血代码
+-- Re Xue code
 --[[
--- 获得当天总共进入的次数
+-- Get the total number of entries today
 function EnterCount(owner)
 
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
@@ -114,7 +114,7 @@ function EnterCount(owner)
 	return number;
 end
 
--- 获得当天VIP剩余次数
+-- Get remaining VIP entries today
 function GetVipCount(owner)
 
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
@@ -148,7 +148,7 @@ function GetVipCount(owner)
 	return a;
 end
 
---检测是否在队伍
+--Check whether the player is in a team
 function CheckTeam(owner)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local teamid = role:GetTeamID();
@@ -158,7 +158,7 @@ function CheckTeam(owner)
 	return brvFail;
 end
 
--- 检测VIP等级
+-- Check VIP level
 function checklevel(owner)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local level = role:GetVIPLevel();
@@ -176,7 +176,7 @@ function checklevel(owner)
 	end
 end
 
--- 根据VIP等级进行消耗判断
+-- Check the cost according to VIP level
 function getitemcount(owner)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local level = role:GetVIPLevel();

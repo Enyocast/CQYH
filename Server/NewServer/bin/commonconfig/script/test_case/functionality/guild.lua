@@ -85,7 +85,7 @@ function TestCase.Guild.GuildApply()
 	local guild_id = 0;
 	local app_role_table = {};
 	local user, role, session_id, user_name;
-	local applicant_num= 4;	-- 一级50个人，因为已经有帮主了，所以49个人申请
+	local applicant_num= 4;	-- Level 1 allows 50 members; with a guild leader already present, 49 apply
 
 	user, role, session_id, user_name = NewUser();
 
@@ -102,7 +102,7 @@ function TestCase.Guild.GuildApply()
 	end
 
 	check(1, "create user success");
-	-- 通过find取到guild id
+	-- Get the guild ID using find
 	guild_id = GetGuildIDByFind(app_role_table[1].role, app_role_table[1].session_id, guild_name);
 	print(guild_id);
 
@@ -766,7 +766,7 @@ function TestCase.Guild.TestFH()
 	end
 
 	check(1, "create user success");
-	-- 通过find取到guild id
+	-- Get the guild ID using find
 	--local guild_id = GetGuildIDByFind(role, session_id, guild_name);
 	--print(guild_id);
 	local guild_id = 1610612750;

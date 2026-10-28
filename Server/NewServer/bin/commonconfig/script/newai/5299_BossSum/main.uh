@@ -1,7 +1,7 @@
 on_init = 
 	{ batSequencer, 
 	  { batSetAlwaysRun , param = { true } },
-	  { batSetCDTimer, param = { COOLDOWN_AI, 10, d.nParam[0], d.nParam[1] } },   --index 10 为召唤的用index, param 0  为最小时间   param 1 为最大时间 不可超过半小时 live的最长时间为半小时 d.nParam[0]
+	  { batSetCDTimer, param = { COOLDOWN_AI, 10, d.nParam[0], d.nParam[1] } },   --Index 10 is for summons; param 0 is minimum time and param 1 maximum time, capped at half an hour; maximum lifetime is half an hour, d.nParam[0]
 	};
 
 

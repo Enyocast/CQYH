@@ -15,165 +15,165 @@ GLOBAL_CONFIG["GuildConfig"] = {
 	nGuildGuildWarTriggerPool	= 512,
 	--nGuildSaveItemBufferPool  = 32000,
 
-	-- 帮派创建需求物品类型ID
+	-- Item type ID required to create a guild
 	nCanCreateGuildItemTypeID = 80002,
-	-- 物品数量
+	-- Item quantity
     nCanCreateGuildItemNum = 1,
-	-- 创建需求金钱
+	-- Money required to create a guild
     nCanCreateGuildMoney = 50000,
-	-- 创建需求人物等级
+	-- Character level required to create a guild
     nCanCreateGuildLevel = 10,
-	-- 初始帮派金钱
+	-- Initial guild money
     nInitGuildMoney = 10000,
-	-- 初始木材
+	-- Initial wood
 	nWood = 10000,
-	-- 初始药草
+	-- Initial herbs
 	nHerb = 10000,
-	-- 初始水晶
+	-- Initial crystals
 	nCrystal = 10000,
-	-- 初始秘银
+	-- Initial mithril
 	nSilver = 10000,
 
-	-- 职位权限
+	-- Position permissions
 	nInitGuildPositionRight =	-- 7 = GUILD_POSITION_COUNT
 	{
 		[0] = 0,		-- none
-		[1] = 4095,		-- 帮主
-		[2] = 2047,		-- 副帮主
-		[3] = 255,		-- 长老
-		[4] = 15,		-- 殿主
-		[5] = 7,		-- 执事
-		[6] = 1,		-- 主簿
-		[7] = 0,		-- 帮众
+		[1] = 4095,		-- Guild leader
+		[2] = 2047,		-- Deputy guild leader
+		[3] = 255,		-- Elder
+		[4] = 15,		-- Hall master
+		[5] = 7,		-- Deacon
+		[6] = 1,		-- Registrar
+		[7] = 0,		-- Guild member
 	},
 
-	-- 仓库权限
+	-- Storage permissions
     nInitGuildStorageRight =		-- 7 = GUILD_POSITION_COUNT
 	{
-		[0] = 4095,		-- 帮主
-		[1] = 0,		-- 副帮主
-		[2] = 0,		-- 长老
-		[3] = 0,		-- 殿主
-		[4] = 0,		-- 执事
-		[5] = 0,		-- 主簿
-		[6] = 0,		-- 帮众
+		[0] = 4095,		-- Guild leader
+		[1] = 0,		-- Deputy guild leader
+		[2] = 0,		-- Elder
+		[3] = 0,		-- Hall master
+		[4] = 0,		-- Deacon
+		[5] = 0,		-- Registrar
+		[6] = 0,		-- Guild member
 	},
 
-	-- 帮派解散等级限制
+	-- Guild disband level limit
 	nGuildDisbandLevelLimit = 3,
 
-	-- 退出帮派cd时间，单位：秒
+	-- Guild leave cooldown in seconds
     dwReJoinGuildCD = 7200,
 
-	-- 帮派申请存在时间， 单位： 秒
+	-- Guild application lifetime in seconds
 	nGuildApplicationLastTime = 300,
 
-	-- 从帮派仓库取物品每次消耗金钱，默认是金钱类型1（即绑定金钱）
+	-- Cost per guild storage withdrawal, defaulting to currency type 1 (bound money)
 	nGuildPopItemComsumeMoney = 100,
 
 
 
 
-	-- 最多一次可领取的薪水上限
+	-- Maximum salary claim per withdrawal
 	nInitGuildMaxSalary = 10000,
 
-	-- 一次领取薪水占功勋的百分比
+	-- Percentage of merit claimed as salary per withdrawal
 	nGuildDrawSalaryPercent = 80,
 
-	-- 功勋获得周上限
+	-- Weekly merit gain limit
 	nGuildObtainMoneyLimitPerWeek = 10000,
 
-	-- 帮派发薪水的时间周期, (604800 为一周的秒数)
+	-- Guild salary interval (604800 seconds is one week)
 	--nDrawSalaryPeriod = 604800,
 	nDrawSalaryPeriod = 3600,
 
-	-- 每天获得帮派贡献上限
+	-- Daily guild contribution gain limit
 	nEarnMaxContributionPerDay = 10000,
-	-- 每周获得帮派贡献上限
+	-- Weekly guild contribution gain limit
 	nEarnMaxContributionPerWeek = 100000,
 
 
 
-	-- 联盟 消耗金钱
+	-- Alliance cost
 	nAllianceConsumeMoney =
 	{
-		[0] = 100,		-- 1天
-		[1] = 500,		-- 3天
-		[2] = 2000,		-- 7天
-		[3] = 10000,	-- 30天
+		[0] = 100,		-- 1 day
+		[1] = 500,		-- 3 days
+		[2] = 2000,		-- 7 days
+		[3] = 10000,	-- 30 days
 	},
 
-	-- 敌对消耗金钱
+	-- Enmity cost
 	nEnemyConsumeMoney =
 	{
-		[0] = 1000,		-- 1天
-		[1] = 5000,		-- 3天
-		[2] = 20000,	-- 7天
-		[3] = 100000,	-- 30天
+		[0] = 1000,		-- 1 day
+		[1] = 5000,		-- 3 days
+		[2] = 20000,	-- 7 days
+		[3] = 100000,	-- 30 days
 	},
 
-	-- 帮派联盟或者敌对持续时间，单位：秒数
+	-- Guild alliance or enmity duration in seconds
 	nGuildDiplomatLastTime =
 	{
-		[0] = 86400,		-- 1天
-		[1] = 259200,		-- 3天
+		[0] = 86400,		-- 1 day
+		[1] = 259200,		-- 3 days
 		[2] = 604800,		-- 7
 		[3] = 2592000,		-- 30
 	},
 
-	-- 联盟申请持续时间
+	-- Alliance application duration
 	nDiplomatAppLastTime = 300,
 
 
 
 
 
-	-- 取消建筑升级返回资源百分比
+	-- Resource refund percentage for canceling a building upgrade
 	nBuildingUpgradeRefundPercent = 50,
-	-- 取消buffer升级返回资源百分比
+	-- Resource refund percentage for canceling a buff upgrade
     nWelfareBufferUpgradeRefundPercent = 50,
-	-- 资源自动增长百分比
+	-- Automatic resource growth percentage
     nAddResourceInterval = 3600,
 
-	--帮派属地TEMPLATE ID
+	--Guild territory template ID
 	dwSceneTemplateID = 127,
-	-- 进入帮派属地坐标，朝向
+	-- Guild territory entry coordinates and facing
 	nEnterMapPosX = 51283,
 	nEnterMapPosY = 17682,
 	nEnterMapPosZ = 16288,
 	nEnterMapDirection = 1,
 
-	-- 进入公会属地的坐标 SERVER_POINT
+	-- Guild territory entry coordinates, SERVER_POINT
 	dwServerPoint = 14,
-	-- 公会战进入对方属地的坐标
+	-- Entry coordinates for the opposing territory during a guild war
 	dwTargetGuildServerPoint = 15,
 
-	-- 王城地图TEMPLATE ID
+	-- Royal city map template ID
 	dwPalaceSceneTemplateID = 101,
 
 
-	--帮派建筑
+	--Guild buildings
 	arrBuildingData = {
 		[0] = {nSvrUniqueID = 1, nLevel = 1},	-- none
-		[1] = {nSvrUniqueID = 28, nLevel = 1},	-- 主殿
-		[2] = {nSvrUniqueID = 8, nLevel = 1},	-- 演武堂
-		[3] = {nSvrUniqueID = 14, nLevel = 1},	-- 商会
-		--[3] = {nSvrUniqueID = 7, nLevel = 1},	-- 战事堂
-		[4] = {nSvrUniqueID = 33, nLevel = 1},	-- 聚贤馆
-		[5] = {nSvrUniqueID = 15, nLevel = 1},	-- 金库
-		[6] = {nSvrUniqueID = 39, nLevel = 1},	-- 军机处
-		[7] = {nSvrUniqueID = 12, nLevel = 1},	-- 图腾
-		[8] = {nSvrUniqueID = 23, nLevel = 1},	-- 农场
-		[9] = {nSvrUniqueID = 20, nLevel = 1},	-- 林场
-		[10] = {nSvrUniqueID = 16, nLevel = 1},	-- 石场
-		[11] = {nSvrUniqueID = 18, nLevel = 1},	-- 矿场
-		[12] = {nSvrUniqueID = 22, nLevel = 1},	-- 粮仓
-		[13] = {nSvrUniqueID = 21, nLevel = 1},	-- 木仓
-		[14] = {nSvrUniqueID = 17, nLevel = 1},	-- 石仓
-		[15] = {nSvrUniqueID = 19, nLevel = 1},	-- 矿仓
+		[1] = {nSvrUniqueID = 28, nLevel = 1},	-- Main hall
+		[2] = {nSvrUniqueID = 8, nLevel = 1},	-- Training hall
+		[3] = {nSvrUniqueID = 14, nLevel = 1},	-- Commerce hall
+		--[3] = {nSvrUniqueID = 7, nLevel = 1},	-- War hall
+		[4] = {nSvrUniqueID = 33, nLevel = 1},	-- Hall of Worthies
+		[5] = {nSvrUniqueID = 15, nLevel = 1},	-- Treasury
+		[6] = {nSvrUniqueID = 39, nLevel = 1},	-- War council
+		[7] = {nSvrUniqueID = 12, nLevel = 1},	-- Totem
+		[8] = {nSvrUniqueID = 23, nLevel = 1},	-- Farm
+		[9] = {nSvrUniqueID = 20, nLevel = 1},	-- Lumber yard
+		[10] = {nSvrUniqueID = 16, nLevel = 1},	-- Quarry
+		[11] = {nSvrUniqueID = 18, nLevel = 1},	-- Mine
+		[12] = {nSvrUniqueID = 22, nLevel = 1},	-- Granary
+		[13] = {nSvrUniqueID = 21, nLevel = 1},	-- Lumber storage
+		[14] = {nSvrUniqueID = 17, nLevel = 1},	-- Stone storage
+		[15] = {nSvrUniqueID = 19, nLevel = 1},	-- Ore storage
 	},
 
-	-- 改变王城或者帮派属地天气的条件, {金币，持续时间/秒}
+	-- Conditions to change royal city or guild territory weather: {gold, duration in seconds}
 	arrWeatherCondition = {
 		[0] = {nMoney = 9999999, nTime = 9999999}, -- invalid
 		[1] = {nMoney = 50000, nTime = 300},		-- 50000 money, 300 s
@@ -181,57 +181,57 @@ GLOBAL_CONFIG["GuildConfig"] = {
 		[3] = {nMoney = 200000, nTime = 1800},	-- 200000, 1800s
 	},
 
-	-- 帮派维护开始时刻
-	nRoutineConsumeTime = 4,		-- 每天4点开始
+	-- Guild maintenance start time
+	nRoutineConsumeTime = 4,		-- Starts daily at 04:00
 
-	-- 帮派副本薪水占副本扣除金币的百分比
+	-- Guild dungeon salary as a percentage of deducted dungeon gold
 	nGuildDungeonSalaryPercent = 50,
 
 
-	-- 公会战cd,单位：秒
+	-- Guild war cooldown in seconds
 	nGuildWarCD = 80000,
 
-	-- 每天宣战开始时间， 单位秒数， 比如每天下午1点=下午13点 = 3600*13
+	-- Daily war declaration start in seconds; for example 13:00 = 3600*13
 	nGuildDeclareBeginTime = 0,--64800,
 
-	-- 每天宣战结束时间， 单位秒数
+	-- Daily war declaration end in seconds
 	nGuildDeclareEndTime = 86400,--79200,
 
-	-- 家族战 可加入的最低公会等级
+	-- Minimum guild level to join a guild war
 	nGuildJoinWarLevelLimit = 1,--3,
 
-	-- 宣战需要资金
+	-- Funds required to declare war
 	nGuildDeclareWarMoney = 500000,
-	-- 公会战胜利,返还功勋
+	-- Return merit on guild war victory
 	nGuildWarPlunderOfSalary = 250000,
 
-	-- 帮派战宣战后等待时间（1分钟）
+	-- Wait after guild war declaration (1 minute)
 	nGuildWarWaitingTime = 60,
 
-	-- 帮派战最长持续时间（半小时）
+	-- Maximum guild war duration (half an hour)
 	nGuildWarLastedTimeLimit = 1800,
 
-	-- 和Scene的evt里面对应的， 那边是毫秒
+	-- Corresponds to the Scene event, where the unit is milliseconds
 	nGuildWarEndWaitingTimeLimit = 30,
 
-	-- 帮派战结束后等待传送时间, 已经挪到帮派属地的evtGuildWarEnd的tree里面， main.lua配置里
-	-- 请找策划妹子 平怡 更新。 那边的单位是毫秒
+	-- Post-war teleport wait moved to the guild territory evtGuildWarEnd tree in main.lua
+	-- Ask designer Ping Yi to update it; the unit there is milliseconds
 
-	-- 公会战结束，攻击方buffer, 无法移动，无法释放技能，buffer结束被传出地图
+	-- After a guild war, attackers cannot move or cast while the buff lasts and are teleported out when it expires
 	nGuildWarAttackEndAuraID = 4501,
 
-	-- 公会战结束，防守方buffer,无法移动， 无法释放技能，buffer结束不会被传出地图
+	-- After a guild war, defenders cannot move or cast while the buff lasts but are not teleported out on expiry
 	nGuildWarDefendEndAuraID = 4509,
 
 
-	-- 公会战胜利， 战利品占总量的百分比
+	-- Guild war victory spoils as a percentage of total resources
 	nGuildWarPlunderPercent = 30,
-	-- 公会战胜利，额外战利品百分比
+	-- Additional guild war victory spoils percentage
 	nGuildWarExtraPlunder = 50,
-	-- 公会战胜利后，下发薪水占宣战资金百分比
+	-- Salary paid after guild war victory as a percentage of declaration funds
 	nGuildWarSalaryPercent = 50,
 
-	-- 公会副本刷新时间, 凌晨4点的秒数
+	-- Guild dungeon refresh time: 04:00 expressed in seconds
 	nGuildDungeonUpdateTime = 14400,
 
 }

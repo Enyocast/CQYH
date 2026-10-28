@@ -11,7 +11,7 @@ affix_define = {
 		default = 0,
 		min = 1,
 	},
-	AffixID = {	-- 词缀ID
+	AffixID = {	-- Affix ID
 		type = 'number',
 		default = 0,
 		min = 1,

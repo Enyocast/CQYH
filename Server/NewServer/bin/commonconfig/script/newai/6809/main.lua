@@ -16,19 +16,19 @@ Include("script/include/btnod.lua")
 
 --[[
 nWeapon_Shengxing_Type ={}
-  --装备类型
+  --Equipment types
     {
-		[0] = ITEMSUBTYPE_EQUIP_WEAPON,		 --武器		 1		
-		[1] = ITEMSUBTYPE_EQUIP_HAT,		--帽子		2	  
-		[2] = ITEMSUBTYPE_EQUIP_SHOULDER_ARMOR,	--肩甲	3			  	
-		[3] = ITEMSUBTYPE_EQUIP_CHEST_ARMOR,	--胸甲	4		  	
-		[4] = ITEMSUBTYPE_EQUIP_WRIST_ARMOR, --护腕5
-		[5] = ITEMSUBTYPE_EQUIP_BELT,	--腰带			 6 		
-		[6] = ITEMSUBTYPE_EQUIP_SHOES,	--鞋子			7	  
-		[7] = ITEMSUBTYPE_EQUIP_CLOAK,	--披风			  8	
-		[8] = ITEMSUBTYPE_EQUIP_NECKLACE, --项链		9
-		[9] = ITEMSUBTYPE_EQUIP_RING,	--戒指			  	10
-		[10] = ITEMSUBTYPE_EQUIP_BRACELET,	--手镯	11
+		[0] = ITEMSUBTYPE_EQUIP_WEAPON,		 --weapon		 1
+		[1] = ITEMSUBTYPE_EQUIP_HAT,		--hat		2
+		[2] = ITEMSUBTYPE_EQUIP_SHOULDER_ARMOR,	--shoulder armor	3
+		[3] = ITEMSUBTYPE_EQUIP_CHEST_ARMOR,	--chest armor	4
+		[4] = ITEMSUBTYPE_EQUIP_WRIST_ARMOR, --bracers5
+		[5] = ITEMSUBTYPE_EQUIP_BELT,	--belt			 6
+		[6] = ITEMSUBTYPE_EQUIP_SHOES,	--shoes			7
+		[7] = ITEMSUBTYPE_EQUIP_CLOAK,	--cloak			  8
+		[8] = ITEMSUBTYPE_EQUIP_NECKLACE, --necklace		9
+		[9] = ITEMSUBTYPE_EQUIP_RING,	--ring			  	10
+		[10] = ITEMSUBTYPE_EQUIP_BRACELET,	--bracelet	11
     },]]--
 	
 
@@ -37,7 +37,7 @@ nWeapon_Shengxing_Type ={}
 
 local g_oGameWorld = CGameWorld:GetInstance();
 
-function Get_Jinbi(owner) --获取合成消耗的金币
+function Get_Jinbi(owner) --Get the gold cost of combining
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -82,7 +82,7 @@ function Get_Jinbi(owner) --获取合成消耗的金币
 
 end
 
-function Get_Yuanbao(owner) --获取合成消耗的元宝
+function Get_Yuanbao(owner) --Get the ingot cost of combining
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -203,7 +203,7 @@ function Change_Money(owner)
 		if VIP == 0 then			
 			role:GetItemBag(): AddItem(itemid_one +1,1,MONEYLOG_SHENGXING,0,false);
 		elseif qianghua == 0 and xingyun ==0 and mingwen1 ==0 and mingwen2 ==0 then
-			role:GetItemBag(): AddItem1(itemid_one +1,1,MONEYLOG_SHENGXING,0,false,weapon_two); --VIP继承
+			role:GetItemBag(): AddItem1(itemid_one +1,1,MONEYLOG_SHENGXING,0,false,weapon_two); --VIP inheritance
 		else
 			role:GetItemBag(): AddItem1(itemid_one +1,1,MONEYLOG_SHENGXING,0,false,weapon_one);		
 		end	
@@ -253,7 +253,7 @@ function Change_Money(owner)
 end
 
 
-function Check_Weapon_one(owner)  --炼狱武器	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_one(owner)  --Purgatory weapon	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -287,7 +287,7 @@ function Check_Weapon_one(owner)  --炼狱武器	--检测两件装备是否为�
 	end
 end
 
-function Check_Weapon_two(owner)  --炼狱帽子	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_two(owner)  --Purgatory hat	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -323,7 +323,7 @@ function Check_Weapon_two(owner)  --炼狱帽子	--检测两件装备是否为�
 	end
 end
 
-function Check_Weapon_three(owner)  --炼狱肩甲	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_three(owner)  --Purgatory shoulder armor	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -358,7 +358,7 @@ function Check_Weapon_three(owner)  --炼狱肩甲	--检测两件装备是否为
 	end
 end
 
-function Check_Weapon_four(owner)  --炼狱胸甲	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_four(owner)  --Purgatory chest armor	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -394,7 +394,7 @@ function Check_Weapon_four(owner)  --炼狱胸甲	--检测两件装备是否为�
 	end
 end
 
-function Check_Weapon_five(owner)  --炼狱护腕	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_five(owner)  --Purgatory bracers	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -429,7 +429,7 @@ function Check_Weapon_five(owner)  --炼狱护腕	--检测两件装备是否为�
 end
 
 
-function Check_Weapon_six(owner)  --炼狱腰带	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_six(owner)  --Purgatory belt	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -464,7 +464,7 @@ function Check_Weapon_six(owner)  --炼狱腰带	--检测两件装备是否为�
 end
 
 
-function Check_Weapon_seven(owner)  --炼狱鞋子	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_seven(owner)  --Purgatory shoes	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -499,7 +499,7 @@ function Check_Weapon_seven(owner)  --炼狱鞋子	--检测两件装备是否为
 end
 
 
-function Check_Weapon_eight(owner)  --炼狱披风	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_eight(owner)  --Purgatory cloak	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -534,7 +534,7 @@ function Check_Weapon_eight(owner)  --炼狱披风	--检测两件装备是否为
 end
 
 
-function Check_Weapon_nine(owner)  --炼狱项链	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_nine(owner)  --Purgatory necklace	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -569,7 +569,7 @@ function Check_Weapon_nine(owner)  --炼狱项链	--检测两件装备是否为�
 end
 
 
-function Check_Weapon_ten(owner)  --炼狱戒指	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_ten(owner)  --Purgatory ring	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -604,7 +604,7 @@ function Check_Weapon_ten(owner)  --炼狱戒指	--检测两件装备是否为�
 end
 
 
-function Check_Weapon_elven(owner)  --炼狱手镯	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_elven(owner)  --Purgatory bracelet	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -643,7 +643,7 @@ end
 
 
 
-function Check_Weapon_One(owner)  --裁决武器	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_One(owner)  --Judgment weapon	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -677,7 +677,7 @@ function Check_Weapon_One(owner)  --裁决武器	--检测两件装备是否为�
 	end
 end
 
-function Check_Weapon_Two(owner)  --裁决帽子	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_Two(owner)  --Judgment hat	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -711,7 +711,7 @@ function Check_Weapon_Two(owner)  --裁决帽子	--检测两件装备是否为�
 	end
 end
 
-function Check_Weapon_Three(owner)  --裁决肩甲	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_Three(owner)  --Judgment shoulder armor	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -745,7 +745,7 @@ function Check_Weapon_Three(owner)  --裁决肩甲	--检测两件装备是否为
 	end
 end
 
-function Check_Weapon_Four(owner)  --裁决胸甲	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_Four(owner)  --Judgment chest armor	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -779,7 +779,7 @@ function Check_Weapon_Four(owner)  --裁决胸甲	--检测两件装备是否为�
 	end
 end
 
-function Check_Weapon_Five(owner)  --裁决护腕	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_Five(owner)  --Judgment bracers	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -814,7 +814,7 @@ function Check_Weapon_Five(owner)  --裁决护腕	--检测两件装备是否为�
 end
 
 
-function Check_Weapon_Six(owner)  --裁决腰带	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_Six(owner)  --Judgment belt	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -849,7 +849,7 @@ function Check_Weapon_Six(owner)  --裁决腰带	--检测两件装备是否为�
 end
 
 
-function Check_Weapon_Seven(owner)  --裁决鞋子	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_Seven(owner)  --Judgment shoes	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -884,7 +884,7 @@ function Check_Weapon_Seven(owner)  --裁决鞋子	--检测两件装备是否为
 end
 
 
-function Check_Weapon_Eight(owner)  --裁决披风	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_Eight(owner)  --Judgment cloak	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -919,7 +919,7 @@ function Check_Weapon_Eight(owner)  --裁决披风	--检测两件装备是否为
 end
 
 
-function Check_Weapon_Nine(owner)  --裁决项链	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_Nine(owner)  --Judgment necklace	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -954,7 +954,7 @@ function Check_Weapon_Nine(owner)  --裁决项链	--检测两件装备是否为�
 end
 
 
-function Check_Weapon_Ten(owner)  --裁决戒指	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_Ten(owner)  --Judgment ring	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);
@@ -989,7 +989,7 @@ function Check_Weapon_Ten(owner)  --裁决戒指	--检测两件装备是否为�
 end
 
 
-function Check_Weapon_Elven(owner)  --裁决手镯	--检测两件装备是否为相同装备且均为可合成装备 若是，返回成功
+function Check_Weapon_Elven(owner)  --Judgment bracelet	--Check that both items are identical and can be combined; return success if so
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local weapon_one = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 0);
 	local weapon_two = role:GetItemBag():GetItem(CONSLOT_DEFAULT, 1);

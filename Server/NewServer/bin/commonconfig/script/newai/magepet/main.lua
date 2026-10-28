@@ -8,8 +8,8 @@ LoadPackage("npc.pkg")
 Include("script/newai/sub_tree/pet_sub_tree.lua")
 
 -- spell, aura, last time
-local 	MAGE_PET_VIOLENT_AURA_ID = 25411;  -- 狂暴
-local 	AURA_INHERIT_PET_LEVEL = 2511;     -- 叛变保护
+local 	MAGE_PET_VIOLENT_AURA_ID = 25411;  -- Berserk
+local 	AURA_INHERIT_PET_LEVEL = 2511;     -- Betrayal protection
 
 
 function MeetToGod(owner)

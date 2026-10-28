@@ -6,40 +6,40 @@ guild_dungeon_define = {
 		refertable = 'scene',
 		referfield = 'SceneID',
 	},
-	ConditionBuildingLvl = {	-- 开启地下城需求公会战事厅等级
+	ConditionBuildingLvl = {	-- Guild war hall level required to open the dungeon
 		type = 'link',
 		default = 0,
 		refertable = 'guild_building',
 		referfield = 'Level',
 	},
-	ConditionMoney = {	-- 需求金币
+	ConditionMoney = {	-- Gold required
 		type = 'number',
 		default = 0,
 		min = 1,
 		max = 6,
 	},
-	PosX = {			-- 跳转进副本的x坐标
+	PosX = {			-- Dungeon entry X coordinate
 		type = 'number',
 		default = 0,
 		min = 1,
 	},
-	PosY = {  			-- 跳转进副本的Y坐标
+	PosY = {  			-- Dungeon entry Y coordinate
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	PosZ = { 			-- 跳转进副本的Z坐标
+	PosZ = { 			-- Dungeon entry Z coordinate
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	Direction = {  		-- 跳转进副本的朝向,角度
+	Direction = {  		-- Dungeon entry facing angle
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
 
-	for i = 1,8 then		-- 掉落
+	for i = 1,8 then		-- Drops
 		guild_dungeon_define['DropChance'..i] = {
 			type = 'number',
 			default = 0,
@@ -52,13 +52,13 @@ guild_dungeon_define = {
 		};
 	end
 
-	BestTeammateNum = {  		-- 副本推荐人数
+	BestTeammateNum = {  		-- Recommended dungeon player count
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
 
-	for i = 1,8 then		-- 掉落
+	for i = 1,8 then		-- Drops
 		guild_dungeon_define['Award'..i] = {
 			type = 'number',
 			default = 0,

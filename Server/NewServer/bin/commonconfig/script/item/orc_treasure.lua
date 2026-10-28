@@ -1,6 +1,6 @@
 --map_name    map_id  x   y   z   rare_rate   rare_id role_lv exp_min exp_max gold_min    gold_max
---地图名 地图ID    坐标X 坐标Y 坐标Z 刷精英怪概率  刷精英怪ID  玩家开启等级    奖励经验Min 奖励经验Max 奖励金钱Min 奖励金钱Max
---15级以上才能使用。提示到指定的地图、指定坐标附近才能开启。高概率开出金币、钱和宝藏守护精英怪。各
+--Map name | map ID | X Y Z | elite spawn probability | elite NPC ID | player unlock level | reward experience min/max | reward money min/max
+--Usable above level 15. Must be opened near the indicated map coordinates. High chance of gold, money, and an elite treasure guardian. Each
 
 TREASURE_POS_TABLE = {
     {   map_name = "比奇省",   map_id = 143,   x = 496,    y = 893,    z = 433,    rare_rate = 10000,  rare_id = 2192,     role_lv = 15,   exp_min = 3000,     exp_max = 3000,     gold_min = 0,   gold_max = 0        }, 

@@ -10,12 +10,12 @@ evtAIInteract =
 					{ CheckEnterCondition },
 					{ batSelector,
 						{ batSequencer, 
-							{ SubItem },    -- 扣钱
-							{ batRoleTeleport, param = { 44717, 23205, 6000, 72 } },    -- 传入副本地图
+							{ SubItem },    -- Deduct money
+							{ batRoleTeleport, param = { 44717, 23205, 6000, 72 } },    -- Teleport into the dungeon
 							{ batRoleSetRoleVariable, param = { 1022, 0, 1 } },	
 							{ batRoleUpdateDailyVariable, param = { 232, 0 } },
 							
-							-- 记录时间
+							-- Record time
 							-- { batRoleSetRoleVariable, param = { 232, 'CGameWorld:GetInstance():GetGameTime()', 0 } },
 						},
 						{ batSequencer,
@@ -24,7 +24,7 @@ evtAIInteract =
 					},
 				},
 				{ batSequencer,
-					{ batRoleOpenDialog, param = { 50604, 30000 } },--这里应该是物品或者金币不足的判断
+					{ batRoleOpenDialog, param = { 50604, 30000 } },--This should check for insufficient items or gold
 				},
 			},
 		},
@@ -48,11 +48,11 @@ evtAIInteract =
 };
 
 
--- 原代码
+-- Original code
 --[[
 evtAIInteract = 
 { batSequencer,
-	{ batRoleOpenDialog, param = { 50601, 50000, 'EnterCount(o)', 'GetVipCount(o)' } },    -- 原代码
+	{ batRoleOpenDialog, param = { 50601, 50000, 'EnterCount(o)', 'GetVipCount(o)' } },    -- Original code
 	-- { batRoleOpenDialog, param = { 50601, 50000, 0, 0 } },
 	{ batSelector,
 		{ batSequencer, 
@@ -62,9 +62,9 @@ evtAIInteract =
 					{ CheckEnterCondition },
 					{ batSelector,
 						{ batSequencer, 
-							{ SubItem },    -- 扣钱
-							{ batRoleTeleport, param = { 44717, 23205, 6000, 72 } },    -- 传入副本地图
-							----记录进入的时间
+							{ SubItem },    -- Deduct money
+							{ batRoleTeleport, param = { 44717, 23205, 6000, 72 } },    -- Teleport into the dungeon
+							----Record entry time
 							{ batRoleSetRoleVariable, param = { 232, 'CGameWorld:GetInstance():GetGameTime()', 0 } },
 						},
 						{ batSequencer,
@@ -73,7 +73,7 @@ evtAIInteract =
 					},
 				},
 				{ batSequencer,
-					{ batRoleOpenDialog, param = { 50604, 30000 } },--这里应该是物品或者金币不足的判断
+					{ batRoleOpenDialog, param = { 50604, 30000 } },--This should check for insufficient items or gold
 				},
 			},
 		},

@@ -23,7 +23,7 @@ local collection_check_table =
 local rolevarible_value = 1;
 local opendialog_id = 1;
 
---收集字体活动
+--Character collection event
 function _item_collection(collection_reward,collection_check_table)
 	local _collection_table = 
 	{ batSelector,
@@ -106,7 +106,7 @@ evtAIInteract =
 													{ batRoleCheckItemCount , param={ boGTE, 1800033 , 10 } },
 														{batSelector,
 															{batSequencer,
-																{ batRoleCheckItemCount , param={ boGTE, 1800033 , 10 } },--沃玛教主	
+																{ batRoleCheckItemCount , param={ boGTE, 1800033 , 10 } },--Woma leader
 																{ batRoleDelItem , param={ 1800033 , 10 } },
 																{ batRoleAddItem , param={ 1800021 , 1  } },
 															},
@@ -160,7 +160,7 @@ evtAIInteract =
 													{ batRoleCheckItemCount , param={ boGTE, 1800033 , 20 } },
 														{batSelector,
 															{batSequencer,
-																{ batRoleCheckItemCount , param={ boGTE, 1800033 , 20 } },	--触龙神
+																{ batRoleCheckItemCount , param={ boGTE, 1800033 , 20 } },	--Dragon God
 																{ batRoleDelItem , param={ 1800033 , 20 } },
 																{ batRoleAddItem , param={ 1800027 , 1  } },
 															},
@@ -214,7 +214,7 @@ evtAIInteract =
 													{ batRoleCheckItemCount , param={ boGTE, 1800033 , 30 } },
 														{batSelector,
 															{batSequencer,
-																{ batRoleCheckItemCount , param={ boGTE, 1800033 , 30 } },	--虹魔教主
+																{ batRoleCheckItemCount , param={ boGTE, 1800033 , 30 } },	--Hongmo leader
 																{ batRoleDelItem , param={ 1800033 , 30 } },
 																{ batRoleAddItem , param={ 1800025 , 1  } },
 															},
@@ -268,7 +268,7 @@ evtAIInteract =
 													{ batRoleCheckItemCount , param={ boGTE, 1800033 , 40 } },
 														{batSelector,
 															{batSequencer,
-																{ batRoleCheckItemCount , param={ boGTE, 1800033 , 40 } },--祖玛教主	
+																{ batRoleCheckItemCount , param={ boGTE, 1800033 , 40 } },--Zuma leader
 																{ batRoleDelItem , param={ 1800033 , 40 } },
 																{ batRoleAddItem , param={ 1800023 , 1  } },
 															},
@@ -322,7 +322,7 @@ evtAIInteract =
 													{ batRoleCheckItemCount , param={ boGTE, 1800033 , 80 } },
 														{batSelector,
 															{batSequencer,
-																{ batRoleCheckItemCount , param={ boGTE, 1800033 , 80 } },--烈焰恶魔	
+																{ batRoleCheckItemCount , param={ boGTE, 1800033 , 80 } },--Flame demon
 																{ batRoleDelItem , param={ 1800033 , 80 } },
 																{ batRoleAddItem , param={ 1800029 , 1  } },
 															},
@@ -376,7 +376,7 @@ evtAIInteract =
 													{ batRoleCheckItemCount , param={ boGTE, 1800033 , 100 } },
 														{batSelector,
 															{batSequencer,
-																{ batRoleCheckItemCount , param={ boGTE, 1800033 , 100 } },	--赤月恶魔
+																{ batRoleCheckItemCount , param={ boGTE, 1800033 , 100 } },	--Red Moon demon
 																{ batRoleDelItem , param={ 1800033 , 100 } },
 																{ batRoleAddItem , param={ 1800031 , 1  } },
 															},
@@ -430,7 +430,7 @@ evtAIInteract =
 													{ batRoleCheckItemCount , param={ boGTE, 1800033 , 120 } },
 														{batSelector,
 															{batSequencer,
-																{ batRoleCheckItemCount , param={ boGTE, 1800033 , 120 } },	--魔龙教主
+																{ batRoleCheckItemCount , param={ boGTE, 1800033 , 120 } },	--Demon Dragon leader
 																{ batRoleDelItem , param={ 1800033 , 120 } },
 																{ batRoleAddItem , param={ 2800148 , 1  } },
 															},

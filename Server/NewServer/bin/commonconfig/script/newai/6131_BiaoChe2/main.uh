@@ -3,10 +3,10 @@ function check_escort_car_follow(owner)
 
 	local role = g_GameWorld:FindValidRole(owner:GetHostID());
 	if role == nil then
-		return brvFail;  --角色可能下线
+		return brvFail;  --The character may be offline
 	end
 
-	--判断距离：超过指定距离镖车不跟随
+	--Check distance: the cart does not follow beyond the specified distance
 	local distance = (role:GetX() - owner:GetX()) * (role:GetX() - owner:GetX()) 
         + (role:GetY() - owner:GetY()) * (role:GetY() - owner:GetY());
 
@@ -56,13 +56,13 @@ end
 on_live_timer = 
 { batSequencer,
 	{ escort_sucicide_notify },
-	{ batSuicide, param = { false, false } },         -- 如果第二个参数填true，会调用两次bfSuicide
+	{ batSuicide, param = { false, false } },         -- If the second argument is true, bfSuicide is called twice
 };
 
 function _idle_tree()
     local result = 
     { batSelector,
-        __check_live_timer(d.nLiveTime, d.bDisappearOnTimeout),  -- 这里d.bDisappearOnTimeout并不起作用
+        __check_live_timer(d.nLiveTime, d.bDisappearOnTimeout),  -- d.bDisappearOnTimeout has no effect here
 		{ check_escort_car_return },
 		{ batSequencer,
 			{ batCheckCDTimer, param = { COOLDOWN_AI, CHECK_ESCORT_DISTANCE_TIMER } },

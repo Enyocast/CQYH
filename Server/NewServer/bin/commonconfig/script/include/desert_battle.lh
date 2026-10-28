@@ -3,52 +3,52 @@ Include("script/stringtable/stringtable.lh")
 LoadPackage("chat_def.pkg")
 LoadPackage("char_def.pkg")
 
---双方阵营ID
+--Both faction IDs
 RED_FACTION = 1;
 BLUE_FACTION = 2;
 
---倒计时等阶段的场景变量ID
+--Scene variable ID for countdown and other stages
 BF_STATE_VAR_INDEX = 0;
 
---红方计分的场景变量ID
+--Scene variable ID for the red team score
 RED_SCORE_VAR_INDEX = 1;
---蓝方计分的场景变量ID
+--Scene variable ID for the blue team score
 BLUE_SCORE_VAR_INDEX = 2;
 
---红方夺旗计数的场景变量
+--Scene variable for red team flag captures
 RED_CAPUTRE_FLAG_VAR_INDEX = 3;
---蓝方夺旗计数的场景变量
+--Scene variable for blue team flag captures
 BLUE_CAPUTRE_FLAG_VAR_INDEX = 4;
 
 BF_START_TIME_VAR_INDEX =  5;
 
 
---场景事件对应的场景变量
+--Scene variables corresponding to scene events
 BF_EVENT_VAR_INDEX = 10;
 
---红旗BUFFID
+--Red flag buff ID
 RED_FLAG_BUFF_ID = 65000;
---蓝旗BUFFID
+--Blue flag buff ID
 BLUE_FLAG_BUFF_ID = 65001;
 
---逃跑BUFFID
+--Escape buff ID
 BF_ESC_BUFF_ID = 65002;
 
---战场胜利奖励金钱
+--Battlefield victory money reward
 BF_VICTORY_MONEY_AMOUNT = 300;
---战场平局奖励金钱
+--Battlefield draw money reward
 BF_DRAW_MONEY_AMOUNT = 100;
 
 
---杀人计分
+--Kill score
 KILL_ROLE_SCORE = 1;
---夺旗计分
+--Flag capture score
 CAPTURE_FLAG_SCORE = 100;
 
---胜利分数
+--Winning score
 VICTORY_SCORE = 300;
 
---最大时长
+--Maximum duration
 MAX_DURATION = 30 * 60 * 1000;
---关闭延时
+--Closing delay
 CLOSE_WAIT_DURATION = 2 * 60 * 1000;

@@ -1,7 +1,7 @@
 
 evtAIIdle = 
     {batSequencer,
-        --MOVE到M1
+        --Move to M1
         {batSyncMoveTo, param = {tarPosition ,62556,38533 },
         },
         --PlayAction & Say

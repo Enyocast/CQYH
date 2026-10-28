@@ -3,15 +3,15 @@ LoadPackage("scene.pkg");
 LoadPackage("chat_def.pkg");
 LoadPackage("id_def.pkg");
 ------------------------------------------------------------------------------------------------------
--- case覆盖npc的聊天和role的聊天，每个case要测5种聊天类型
+-- Cases cover NPC and role chat; each case tests five chat types
 
---对于role得聊天，不经过gs中转，直接发到ms的是：组队，私聊
---经过gs转发的是： 区域(region)，场景(scene)和全服广播(server)
+--Role team chat and private chat go directly to MS without GS forwarding
+--GS forwards region, scene, and server-wide chat
 
---对于npc的聊天，gs直接处理的是区域(region)，场景(scene)，其余的全部发往ms
+--GS handles NPC region and scene chat directly; all other NPC chat goes to MS
 
---聊天的类型为 Role Npc Doodad Missile Drop Guild Team Channel
---Channel 的类型为:System GM Scene Screen Server,
+--Chat types: Role, Npc, Doodad, Missile, Drop, Guild, Team, Channel
+--Channel types: System, GM, Scene, Screen, Server
 ------------------------------------------------------------------------------------------------------
 
 TestCase.Chat = {};
@@ -19,7 +19,7 @@ TestCase.Chat = {};
 TestString = "abcdefg1234567898765432123456789";
 function TestCase.Chat.RoleChat()
 
-    -- 登陆
+    -- Log in
     local user_name1 = "testgs1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
@@ -35,7 +35,7 @@ function TestCase.Chat.RoleChat()
 	local user1sessionid = user1:GetSessionID();	
 	local user2sessionid = user2:GetSessionID();
 
-	-- 秘聊
+	-- Private chat
     print("---------------------------------wisper---------------------------------------");	
 	targetid = user2id;
 	ret = role1:Say(targetid, TestString);
@@ -50,7 +50,7 @@ function TestCase.Chat.RoleChat()
 	username = get_role_name_from_msmessage(msg);
 	check(username == user_name1, "fail to receive msg from correct sender");
 
-    -- 场景
+    -- Scene
     print("---------------------------------scene---------------------------------------");
 	ret = user1:GMCommand("Jump(114, 0, 35763, 18876, 19503)");
 	check(ret, "failed to jump to scene");
@@ -71,7 +71,7 @@ function TestCase.Chat.RoleChat()
 	username = get_role_name_from_gsmsmessage(msg);
 	check(username == user_name1, "fail to receive msg from correct sender");
 
-	--区域
+	--Region
 	print("---------------------------------screen---------------------------------------");
 	targetid = cctScreen;
 	ret = role1:Say(targetid, TestString);
@@ -84,7 +84,7 @@ function TestCase.Chat.RoleChat()
 	username = get_role_name_from_gsmsmessage(msg);
 	check(username == user_name1, "fail to receive msg from correct sender");
 	
-	-- 组队
+	-- Team
     print("---------------------------------team---------------------------------------");	
 	local team_name = user_name1.."team";
 	
@@ -107,7 +107,7 @@ function TestCase.Chat.RoleChat()
 
 	wait(10);    -- chat interval
 
-	--全服广播
+	--Server-wide broadcast
     print("---------------------------------allserver---------------------------------------");	
 	local targetid = cctServer;
 	local ret = role1:Say(targetid, TestString);
@@ -122,14 +122,14 @@ function TestCase.Chat.RoleChat()
 
 	print("test complete");
 	
-	 --测试完成，登出
+	 --Test complete; log out
     cleanup(user1);
     cleanup(user2);
 end
 
 function TestCase.Chat.NpcChat()
 
-    -- 登陆
+    -- Log in
     local user_name1 = "testgs1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
@@ -162,7 +162,7 @@ function TestCase.Chat.NpcChat()
 	check(ret, "failed to jump to scene");
 	wait(10);
 
-	-- 组队
+	-- Team
 	print("---------team-----------------");	
 	local team_name = user_name1.."team";
 	
@@ -181,7 +181,7 @@ function TestCase.Chat.NpcChat()
 	check(msg.dwTargetID == targetid, "fail to receive msg with correct type");
 	check(msg.szMessage == TestString, "fail to receive correct msg content");
 	
-	-- 秘聊
+	-- Private chat
 	print("---------wisper-----------------");	
 	targetid = user2id;
 	summonnpc_and_say(user3, targetid, TestString);
@@ -191,7 +191,7 @@ function TestCase.Chat.NpcChat()
 	print(msg.szMessage);
 	check(msg.szMessage == TestString, "fail to receive correct msg content");
 	
-	--区域
+	--Region
 	print("---------screen-----------------");
 	local oScene = role1:GetScene();
     local sceneTempID = oScene:GetSceneTempID();		
@@ -204,18 +204,18 @@ function TestCase.Chat.NpcChat()
 	check(msg, "fail to recv chat_message");
 	check(msg.szMessage == TestString, "fail to receive correct msg content");
 	
-    -- 场景
+    -- Scene
 	print("---------scene-----------------");
 
 	targetid = cctScene;
-	--用GM指令产生NPC说话
+	--Make an NPC speak using a GM command
 	summonnpc_and_say(user3, targetid, TestString);
 	
 	msg = recv_msg(10, user2sessionid, protocol.g2c_chat_message);
 	check(msg, "fail to recv chat_message");
 	check(msg.szMessage == TestString, "fail to receive correct msg content");
 
-	--全服广播
+	--Server-wide broadcast
 	print("---------allserver-----------------");	
 	targetid = cctServer;
 	
@@ -224,7 +224,7 @@ function TestCase.Chat.NpcChat()
 	check(msg, "fail to recv chat_message");
 	check(msg.szMessage == TestString, "fail to receive correct msg content");
 
-	--测试完成，登出
+	--Test complete; log out
     cleanup(user1);
     cleanup(user2);
     cleanup(user3);
@@ -240,13 +240,13 @@ end
 
 
 ---------------------------------------------------------------------------------
---本Case负责不同场景和区域的交互聊天
---user1 2在同一区域，3 在同一场景的不同区域
---user 4 在与 1 2 3在不同的静态场景， user5与 1 2 3在不同的动态场景 
+--This case tests chat across scenes and regions
+--Users 1 and 2 are in the same region; user 3 is in another region of the same scene
+--User 4 is in a different static scene from users 1, 2 and 3; user 5 is in a different dynamic scene
 ---------------------------------------------------------------------------------
 function TestCase.Chat.MultiSceneChat()
 	    
-	-- 登陆
+	-- Log in
     local user_name1 = "testgs1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
@@ -283,9 +283,9 @@ function TestCase.Chat.MultiSceneChat()
 	local user4sessionid = user4:GetSessionID();
 	local user5sessionid = user5:GetSessionID();	
 		
-	-- 用户跳地图
-	--user1 2在同一区域，3 在同一场景的不同区域
-	--user 4 在与 1 2 3在不同的静态场景， user5与 1 2 3在不同的动态场景 
+	-- Users change maps
+	--Users 1 and 2 are in the same region; user 3 is in another region of the same scene
+	--User 4 is in a different static scene from users 1, 2 and 3; user 5 is in a different dynamic scene
 	ret = user1:GMCommand("Jump xsc");
 	check(ret, "failed to jump to scene");
 	
@@ -310,13 +310,13 @@ function TestCase.Chat.MultiSceneChat()
     msg = recv_msg(20, user5sessionid, protocol.g2c_leave_scene, user5sessionid, protocol.g2c_enter_scene, user5sessionid, protocol.g2c_char_appear);
     check(msg, "failed to  recv g2c_leave_scene");
 	
-	-- 区域
+	-- Region
     print("---------------------------------screen---------------------------------------");
 	local oScene = role1:GetScene();
     local sceneTempID = oScene:GetSceneTempID();
     local sceneID = oScene:GetSceneID();
 
-	-- 用户1说话, 2 能收到
+	-- User 1 speaks; user 2 receives it
 	local targetid = cctScreen;
 	ret =role1:Say(targetid, TestString);
 	check(ret, "failed to send scene chat message");
@@ -328,7 +328,7 @@ function TestCase.Chat.MultiSceneChat()
 	username = get_role_name_from_gsmsmessage(msg);
 	check(username == user_name1, "fail to receive msg from correct sender");
 	
-	-- 用户1说话, 3,4 5 收不到	
+	-- User 1 speaks; users 3, 4 and 5 do not receive it
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send scene chat message");
 	msg = recv_msg(10, user3sessionid, protocol.g2c_chat_message);
@@ -344,10 +344,10 @@ function TestCase.Chat.MultiSceneChat()
 	msg = recv_msg(10, user5sessionid, protocol.g2c_chat_message);
 	check(msg == nil, "fail to recv chat_message");
 	
-	--全服广播
+	--Server-wide broadcast
     print("---------------------------------allserver---------------------------------------");	
 	
-	-- 用户1 说话， 2 3 4 5都能收到
+	-- User 1 speaks; users 2, 3, 4 and 5 receive it
 	targetid = cctServer;
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send all server chat message");
@@ -366,15 +366,15 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 	
-	-- 秘聊
+	-- Private chat
     print("---------------------------------wisper---------------------------------------");	
 
-	-- 用户1对3说话
+	-- User 1 speaks to user 3
 	targetid = user3id;
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send wisper chat message");
 	
-	-- 用户3能收到
+	-- User 3 receives it
 	msg = recv_msg(10, user3sessionid, protocol.m2c_chat_message);
 	check(msg, "fail to recv chat_message");
 	--check(msg.dwTargetID == targetid, "fail to receive msg with correct type");
@@ -382,7 +382,7 @@ function TestCase.Chat.MultiSceneChat()
 	username = get_role_name_from_msmessage(msg);
 	check(username == user_name1, "fail to receive msg from correct sender");
 
-	-- 用户2 4 5收不到
+	-- Users 2, 4 and 5 do not receive it
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send wisper chat message");
 	retMsgInfo = recv_msg_and(10, user2sessionid, protocol.m2c_chat_message, user4sessionid, protocol.m2c_chat_message, user5sessionid, protocol.m2c_chat_message);
@@ -394,12 +394,12 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 	
-	-- 用户1对4说话
+	-- User 1 speaks to user 4
 	targetid = user4id;
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send wisper chat message");
 	
-	-- 用户4能收到
+	-- User 4 receives it
 	msg = recv_msg(10, user4sessionid, protocol.m2c_chat_message);
 	check(msg, "fail to recv chat_message");
 	
@@ -408,7 +408,7 @@ function TestCase.Chat.MultiSceneChat()
 	username = get_role_name_from_msmessage(msg);
 	check(username == user_name1, "fail to receive msg from correct sender");
 
-	-- 用户2 3 5收不到
+	-- Users 2, 3 and 5 do not receive it
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send wisper chat message");
 	
@@ -421,12 +421,12 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 	
-	-- 用户1对5说话
+	-- User 1 speaks to user 5
 	targetid = user5id;
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send wisper chat message");
 
-	-- 用户5能收到
+	-- User 5 receives it
 	msg = recv_msg(10, user5sessionid, protocol.m2c_chat_message);
 	check(msg, "fail to recv chat_message");
 	--check(msg.dwTargetID == targetid, "fail to receive msg with correct type");
@@ -435,7 +435,7 @@ function TestCase.Chat.MultiSceneChat()
 	check(username == user_name1, "fail to receive msg from correct sender");
 	
 	wait(30);
-	-- 用户2 3 4收不到
+	-- Users 2, 3 and 4 do not receive it
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send wisper chat message");
 	retMsgInfo = recv_msg_and(10, user2sessionid, protocol.m2c_chat_message, user3sessionid, protocol.m2c_chat_message, user4sessionid, protocol.m2c_chat_message);
@@ -447,10 +447,10 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 	
-	-- 场景
+	-- Scene
     print("---------------------------------scene---------------------------------------");
 
-	-- 用户1说话, 2 3能收到
+	-- User 1 speaks; users 2 and 3 receive it
 	targetid = cctScene;
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send scene chat message");
@@ -467,7 +467,7 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 	
-	-- 用户1说话, 4 5 收不到	
+	-- User 1 speaks; users 4 and 5 do not receive it
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send scene chat message");
 	
@@ -480,9 +480,9 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 
-	-- 组队
+	-- Team
 	print("---------------------------------team---------------------------------------");
-	-- 用户1 和 4 跨静态场景组队		
+	-- Users 1 and 4 form a team across static scenes
 	local team_name = user_name1.."team";
 	
     local teamid = CreateTeam(team_name, user1, role1);
@@ -494,7 +494,7 @@ function TestCase.Chat.MultiSceneChat()
 
 	targetid = teamid;
 	
-	-- 用户1 向队伍说话， 4 能收到
+	-- User 1 speaks to the team; user 4 receives it
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send team chat message");
 		
@@ -505,7 +505,7 @@ function TestCase.Chat.MultiSceneChat()
 	username = get_role_name_from_msmessage(msg);
 	check(username == user_name1, "fail to receive msg from correct sender");	
 
-	-- 用户2 3 5收不到
+	-- Users 2, 3 and 5 do not receive it
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send team chat message");	
 	retMsg = recv_msg_and(10, user2sessionid, protocol.m2c_chat_message, user3sessionid, protocol.m2c_chat_message, user5sessionid, protocol.m2c_chat_message);
@@ -517,13 +517,13 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 
-	-- 再邀请与1在统一场景的3加入队伍
+	-- Invite user 3, who is in the same scene as user 1, to the team
 	
 	InviteToTeam(user3, role3, user1, role1, 0);
 	retMsg = recv_msg_and(30, user1sessionid, protocol.m2c_team_add_member, user3sessionid, protocol.m2c_team_add_member, user4sessionid, protocol.m2c_team_join);
     check(retMsg, "failed to received m2c_team_add_member or m2c_team_join");
 
-	-- 用户1 向队伍说话，3 4 能收到
+	-- User 1 speaks to the team; users 3 and 4 receive it
 	ret = role1:Say(targetid, TestString);
 	retMsg = recv_msg_and(10, user3sessionid, protocol.m2c_chat_message, user4sessionid, protocol.m2c_chat_message);
 	check(retMsg, "fail to recv chat_message");
@@ -537,7 +537,7 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 	
-	-- 用户2 5收不到
+	-- Users 2 and 5 do not receive it
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send team chat message");	
 	retMsg = recv_msg_and(10, user2sessionid, protocol.m2c_chat_message, user5sessionid, protocol.m2c_chat_message);
@@ -549,7 +549,7 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end	
 	
-	-- 测试完成，登出
+	-- Test complete; log out
 	cleanup(user1);
     cleanup(user2);
     cleanup(user3);

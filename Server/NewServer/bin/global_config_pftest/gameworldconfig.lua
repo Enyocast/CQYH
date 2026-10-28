@@ -332,15 +332,15 @@ GLOBAL_CONFIG["GameWorldConfig"] = {
 
 		nWeeklyMoneyLimit = 
 		{
-			[0] = 0,		--深渊金币
-			[1] = 0,		--金币
+			[0] = 0,		--Abyss gold
+			[1] = 0,		--Gold
 			[2] = 0,
 			[3] = 0,
 			[4] = 0,
 			[5] = 0,
 			[6] = 0,
 			[7] = 0,
-			[8] = 1000000,		--战场点数
+			[8] = 1000000,		--Battlefield points
 			[9] = 0,
 		},
 

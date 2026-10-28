@@ -2,9 +2,9 @@ local gtnum = 2;
 local usernum = 10;
 
 ------------------------------------------------------------------------------------------------------
---case测试负载平衡服务器的调度算法
---依照已配gt server的数量，将session平均分配到gt上
---默认情况下是开2个gt测，如果要测多个gt的话需要修改gtnum
+--Test case for the load-balancing server scheduling algorithm
+--Distribute sessions evenly across the configured GT servers
+--By default, test with two GT servers; change gtnum to test more
 ------------------------------------------------------------------------------------------------------
 
 function TestCase.BalanceServer()
@@ -47,7 +47,7 @@ function TestCase.BalanceServer()
 	end
 	
 	
-	--测试完成，登出
+	--Test complete; log out
 	for i = 1,usernum do
 	   cleanup(user[i]);
     end

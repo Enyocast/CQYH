@@ -16,7 +16,7 @@ function RoleExp(owner)
 	local role_id = get_ctx_role_id();
 	local role = CGameWorld:GetInstance():FindRole(role_id);
 	local exp_a = 10 * math.pow(role:GetLevel(),2) + 250 * role:GetLevel() + 1500 ;
-	      -- 10*等级^2+250*等级+1500
+	      -- 10 * level^2 + 250 * level + 1500
 	local final_exp = 0;
 	
 	local r = math.random(1, 100);
@@ -49,10 +49,10 @@ function CheckEnterCondition(owner)
 	end
 end
 
-function Setv_1(owner) --经验场奇偶判断（经验场应该传入奇数）
+function Setv_1(owner) --Check parity for the experience session (which should receive an odd number)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local Time = role:GetVariable(1004);
-	local a =  math.fmod(Time,2); --时间戳取余
+	local a =  math.fmod(Time,2); --Take the timestamp remainder
 	if a == 1 then 
 		role:SetVariable(1004,Time);
 		return brvSuccess;
@@ -65,10 +65,10 @@ function Setv_1(owner) --经验场奇偶判断（经验场应该传入奇数）
 	print(c);
 end
 
-function Setv_2(owner)--元宝场奇偶判断（元宝场应该传入偶数）
+function Setv_2(owner)--Check parity for the ingot session (which should receive an even number)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local Time = role:GetVariable(1004);
-	local b =  math.fmod(Time,2); --时间戳取余
+	local b =  math.fmod(Time,2); --Take the timestamp remainder
 	if b == 0 then 
 		role:SetVariable(1004,Time);
 		return brvSuccess;

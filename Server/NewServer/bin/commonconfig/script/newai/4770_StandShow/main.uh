@@ -1,4 +1,4 @@
--- B 男青年
+-- B: young man
 evtAIIdle = 
 { batSelector,
     {batSequencer,

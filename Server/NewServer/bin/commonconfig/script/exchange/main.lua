@@ -2,10 +2,10 @@ LoadPackage("exchange.pkg");
 LoadPackage("online_role_data.pkg");
 LoadPackage("global_config.pkg")
 
--- 配置表
+-- Configuration table
 ConfigList = 
 {
---          最小比例     最大比例     最小盘口手数    单笔放弃上限       单笔放弃几率         最小刷新间隔          最大刷新间隔          是否允许撤单          是否使用平均下单间隔
+--          Minimum ratio | maximum ratio | minimum book quantity | maximum skipped quantity | skip probability | minimum refresh interval | maximum refresh interval | allow cancellation | use average order interval
 	[1] = { fMin = 0.55, fMax = 0.65, nMinCount = 10, nIgnoreCount = 10, fIgnoreChance = 0.1, nMinRefreshTime = 5,  nMaxRefreshTime = 10, bAllowRemove = false, bUseAvgDelay = true },
 	[2] = { fMin = 0.55, fMax = 0.65, nMinCount = 10, nIgnoreCount = 10, fIgnoreChance = 0.1, nMinRefreshTime = 6,  nMaxRefreshTime = 12, bAllowRemove = false, bUseAvgDelay = true },
 	[3] = { fMin = 0.55, fMax = 0.65, nMinCount = 10, nIgnoreCount = 10, fIgnoreChance = 0.1, nMinRefreshTime = 7,  nMaxRefreshTime = 13, bAllowRemove = false, bUseAvgDelay = false },
@@ -20,14 +20,14 @@ ConfigList =
 
 ActiveConfig = 
 {
-	-- 主动单比例
+	-- Aggressive order ratio
 	fMinOrderPercent = 0.1,
 	fMaxOrderPercent = 0.2,
-	-- 最小盘口比例
+	-- Minimum order-book ratio
 	fMin = 0.1,
-	-- 最大盘口比例
+	-- Maximum order-book ratio
 	fMax = 0.2,
-	-- 最小盘口手数
+	-- Minimum order-book quantity
 	nMinCount = 50,
 }
 
@@ -70,23 +70,23 @@ function CheckConfigList()
 end
 CheckConfigList();
 
--- 撮合前
+-- Before matching
 function BeforeMainLoop(nServerGroup)
 
 end
 
 function ProcessPrice(PriceInfo, PriceConfig, nServerGroup, nAverageDelay)
-	-- 低于系统最低限价，或者高于系统最低限价，则返回
+	-- Return if below the system minimum price or above the system minimum price
 	if PriceInfo.nPrice < g_nLowPriceLimit[nServerGroup] or PriceInfo.nPrice > g_nHighPriceLimit[nServerGroup] then
 		return
 	end
 	local fCountPercent = PriceInfo.nSystemHandCount / PriceInfo.nHandCount;
 	if fCountPercent > PriceConfig.fMax and PriceConfig.bAllowRemove then
-		-- 如果该档口的比例高于指定比例，且该档口允许撤单，则尝试撤单
+		-- If this price level exceeds the specified ratio and allows cancellation, try canceling an order
 		local OrderList = get_order_list(nServerGroup, eotSell, PriceInfo.nPrice);
 		local nMinCount = 100000000;
 		local szOrderID = nil;
-		-- 找到手数最少的系统单
+		-- Find the smallest system order
 		for i, v in ipairs(OrderList) do
 			if v.dwRoleID == 0 and v.nHandCount < nMinCount then
 				nMinCount = v.nHandCount;
@@ -94,7 +94,7 @@ function ProcessPrice(PriceInfo, PriceConfig, nServerGroup, nAverageDelay)
 			end
 		end
 		local fNewCountPercent = (PriceInfo.nSystemHandCount - nMinCount) / (PriceInfo.nHandCount - nMinCount);
-		-- 如果取消手数最少的系统单后，比例还高于该价位的最低比例，则取消该订单
+		-- Cancel the smallest system order if the ratio would remain above the minimum at that price
 --		if szOrderID and (fNewCountPercent >= PriceConfig.fMin or PriceInfo.nSystemHandCount == PriceInfo.nHandCount) then
 		if szOrderID and (fNewCountPercent >= PriceConfig.fMin) then
 			cancel_system_order(nServerGroup, szOrderID);
@@ -103,9 +103,9 @@ function ProcessPrice(PriceInfo, PriceConfig, nServerGroup, nAverageDelay)
 --			print('cannot remove system order price '..PriceInfo.nPrice..' count '..nMinCount..' group '..nServerGroup);
 		end
 	elseif fCountPercent <= PriceConfig.fMin then 
-		-- 如果该档口的比例低于指定比例
+		-- If this price level is below the specified ratio
 
-		-- 小于最小盘口数，则不加单
+		-- Do not add an order below the minimum book quantity
 		if PriceInfo.nHandCount < PriceConfig.nMinCount then
 --			print('price '..PriceInfo.nPrice..' has too few hand count to follow');
 			return
@@ -116,7 +116,7 @@ function ProcessPrice(PriceInfo, PriceConfig, nServerGroup, nAverageDelay)
 			return
 		end
 
-		-- 计算下单手数
+		-- Calculate order quantity
 		local nMinFollowCount = math.ceil(PriceInfo.nHandCount * PriceConfig.fMin - PriceInfo.nSystemHandCount);
 		if nMinFollowCount <= 0  then
 			nMinFollowCount = 0;
@@ -133,14 +133,14 @@ function ProcessPrice(PriceInfo, PriceConfig, nServerGroup, nAverageDelay)
 
 		local nFollowCount = math.random(nMinFollowCount, nMaxFollowCount);
 
-		-- 高于盘口最大系统单手数，则调整为最大系统单手数
+		-- Cap at the maximum system order quantity for the price level
 		if (nFollowCount + PriceInfo.nSystemHandCount) > g_nMaxCountPerPrice[nServerGroup] then
 			local nOldFollowCount = nFollowCount;
 			nFollowCount = (g_nMaxCountPerPrice[nServerGroup] - PriceInfo.nSystemHandCount) + math.random(0, 5);
 			print('reduced follow count from '..nOldFollowCount..' to '..nFollowCount..' by sys max count');
 		end
 
-		-- 高于系统最高单笔手数，则调整为最高单笔手数
+		-- Cap at the system maximum quantity per order
 		if nFollowCount > g_nMaxSingleCount[nServerGroup] then
 			print('reduced follow count from '..nFollowCount..' to '..g_nMaxSingleCount[nServerGroup]..' by single max count');
 			nFollowCount = g_nMaxSingleCount[nServerGroup] - math.random(0, 5);
@@ -148,7 +148,7 @@ function ProcessPrice(PriceInfo, PriceConfig, nServerGroup, nAverageDelay)
 
 		if nFollowCount > 0 then
 
-			-- 小于最大可忽略跟单数，则随机放弃跟单
+			-- Randomly skip follow-up orders below the maximum ignorable quantity
 			if nFollowCount < PriceConfig.nIgnoreCount then
 				if math.random() < PriceConfig.fIgnoreChance then
 					print('ignore price '..PriceInfo.nPrice..' count '..nFollowCount);
@@ -156,7 +156,7 @@ function ProcessPrice(PriceInfo, PriceConfig, nServerGroup, nAverageDelay)
 				end
 			end
 
-			-- 下单
+			-- Place order
 			local nResult = 0;
 			g_ExchangeMgr:AddSystemOrder(0, nServerGroup, PriceInfo.nPrice, nFollowCount, false, nResult);
 			print('added system order price '..PriceInfo.nPrice..' count '..nFollowCount..
@@ -178,39 +178,39 @@ function get_average_delay(nServerGroup, CurrentTime)
 	return math.ceil(ORDER_STAT_DURATION / nOrderTotal);
 end
 
--- 处理主动单
+-- Process aggressive orders
 function ProcessActiveOrder(nServerGroup, nAverageDelay)
 	local BuyPriceList = get_price_list(nServerGroup, eotBuy);
 
-	-- 没有买一的盘口，则不处理	
+	-- Do nothing if there is no best bid
 	if BuyPriceList[1] == nil then
 		print('no buy order');
 		return
 	end
 
-	-- 买一盘口手数小于最小单数，则不处理
+	-- Do nothing if the best bid quantity is below the minimum
 	if BuyPriceList[1].nHandCount < ActiveConfig.nMinCount then
 		print('too few buy order hand count');
 		return
 	end 
 
-	-- 低于系统最低限价，或者高于系统最低限价，则返回
+	-- Return if below the system minimum price or above the system minimum price
 	if BuyPriceList[1].nPrice < g_nLowPriceLimit[nServerGroup] or BuyPriceList[1].nPrice > g_nHighPriceLimit[nServerGroup] then
 		print('too low or too high price');
 		return
 	end
 
-	-- 随机本次盘口比例
+	-- Choose a random order-book ratio
 	local fPercent = math.random(ActiveConfig.fMin * 100, ActiveConfig.fMax * 100) / 100;
 	local nFollowCount = math.floor(BuyPriceList[1].nHandCount * fPercent);
 
-	-- 高于系统最高单笔手数，则调整为最高单笔手数
+	-- Cap at the system maximum quantity per order
 	if nFollowCount > g_nMaxSingleCount[nServerGroup] then
 		print('reduced active order count from '..nFollowCount..' to '..g_nMaxSingleCount[nServerGroup]..' by single max count');
 		nFollowCount = g_nMaxSingleCount[nServerGroup] - math.random(0, 5);
 	end
 
-	-- 高于主动单池的上限，则调整为上限
+	-- Cap at the aggressive-order pool limit
 	local fOrderPercent = math.random(ActiveConfig.fMinOrderPercent * 100, ActiveConfig.fMaxOrderPercent * 100) / 100;
 	local nMaxCount = math.floor(g_nActiveOrderCount[nServerGroup] * fOrderPercent);
 	if nMaxCount < nFollowCount then
@@ -218,13 +218,13 @@ function ProcessActiveOrder(nServerGroup, nAverageDelay)
 		nFollowCount = nMaxCount;
 	end
 
-	-- 从累计的玩家主动单池中扣除
+	-- Deduct from the accumulated player aggressive-order pool
 	g_nActiveOrderCount[nServerGroup] = g_nActiveOrderCount[nServerGroup] - math.floor(nFollowCount / fOrderPercent);
 	if g_nActiveOrderCount[nServerGroup] < 0 then
 		g_nActiveOrderCount[nServerGroup] = 0;
 	end
 
-	-- 下单
+	-- Place order
 	if nFollowCount > 0 then
 		local nResult = 0;
 		g_ExchangeMgr:AddSystemOrder(0, nServerGroup, BuyPriceList[1].nPrice, nFollowCount, false, nResult);
@@ -233,7 +233,7 @@ function ProcessActiveOrder(nServerGroup, nAverageDelay)
 	end
 end
 
--- 撮合后
+-- After matching
 function AfterMainLoop(nServerGroup)
 	local CurrentTime = os.time();
 	local PriceList = get_price_list(nServerGroup, eotSell);
@@ -270,7 +270,7 @@ function AfterMainLoop(nServerGroup)
 	end
 end
 
--- 用户下单后
+-- After a user places an order
 function OnUserAddOrder(nRoleID, nServerGroup, nOrderType, nPrice, nCount)
 	local CurrentTime = os.time();
 	if nOrderType == eotSell and nRoleID > 0 then
@@ -285,7 +285,7 @@ function OnUserAddOrder(nRoleID, nServerGroup, nOrderType, nPrice, nCount)
 	end
 end
 
--- 成交后
+-- After execution
 function OnUserMakeDeal(nServerGroup, nSellerID, dwSellOrderTime, nBuyerID, dwBuyOrderTime, nPrice, nCount)
 	local bActiveOrderEnabled = get_server_var(nServerGroup, esvtDefault, svtActiveOrderEnabled);
 	

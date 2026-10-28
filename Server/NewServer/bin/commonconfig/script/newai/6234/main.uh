@@ -22,12 +22,12 @@ evtAIInteract =
 						},
 					
 						{ batSequencer,
-							{ batRoleOpenDialog, param = { 666598, 30000 } },--这里应该是物品或者金币不足的判断
+							{ batRoleOpenDialog, param = { 666598, 30000 } },--This should check for insufficient items or gold
 						},
 					},
 				},
 				{ batSequencer,
-						{ batRoleOpenDialog, param = { 50603, 30000 } },--这里应该是你在队伍不能进入的反馈
+						{ batRoleOpenDialog, param = { 50603, 30000 } },--This should report that players in a team cannot enter
 				},	
 			},		
 		},
@@ -51,12 +51,12 @@ evtAIInteract =
 						},
 					
 						{ batSequencer,
-							{ batRoleOpenDialog, param = { 666598, 30000 } },--这里应该是物品或者金币不足的判断
+							{ batRoleOpenDialog, param = { 666598, 30000 } },--This should check for insufficient items or gold
 						},
 					},
 				},
 				{ batSequencer,
-						{ batRoleOpenDialog, param = { 50603, 30000 } },--这里应该是你在队伍不能进入的反馈
+						{ batRoleOpenDialog, param = { 50603, 30000 } },--This should report that players in a team cannot enter
 				},	
 			},		
 		},
@@ -80,12 +80,12 @@ evtAIInteract =
 						},
 					
 						{ batSequencer,
-							{ batRoleOpenDialog, param = { 666598, 30000 } },--这里应该是物品或者金币不足的判断
+							{ batRoleOpenDialog, param = { 666598, 30000 } },--This should check for insufficient items or gold
 						},
 					},
 				},
 				{ batSequencer,
-						{ batRoleOpenDialog, param = { 50603, 30000 } },--这里应该是你在队伍不能进入的反馈
+						{ batRoleOpenDialog, param = { 50603, 30000 } },--This should report that players in a team cannot enter
 				},	
 			},		
 		},
@@ -109,12 +109,12 @@ evtAIInteract =
 						},
 					
 						{ batSequencer,
-							{ batRoleOpenDialog, param = { 666598, 30000 } },--这里应该是物品或者金币不足的判断
+							{ batRoleOpenDialog, param = { 666598, 30000 } },--This should check for insufficient items or gold
 						},
 					},
 				},
 				{ batSequencer,
-						{ batRoleOpenDialog, param = { 50603, 30000 } },--这里应该是你在队伍不能进入的反馈
+						{ batRoleOpenDialog, param = { 50603, 30000 } },--This should report that players in a team cannot enter
 				},	
 			},		
 		},
@@ -138,12 +138,12 @@ evtAIInteract =
 						},
 					
 						{ batSequencer,
-							{ batRoleOpenDialog, param = { 666598, 30000 } },--这里应该是物品或者金币不足的判断
+							{ batRoleOpenDialog, param = { 666598, 30000 } },--This should check for insufficient items or gold
 						},
 					},
 				},
 				{ batSequencer,
-						{ batRoleOpenDialog, param = { 50603, 30000 } },--这里应该是你在队伍不能进入的反馈
+						{ batRoleOpenDialog, param = { 50603, 30000 } },--This should report that players in a team cannot enter
 				},	
 			},		
 		},
@@ -167,12 +167,12 @@ evtAIInteract =
 						},
 					
 						{ batSequencer,
-							{ batRoleOpenDialog, param = { 666598, 30000 } },--这里应该是物品或者金币不足的判断
+							{ batRoleOpenDialog, param = { 666598, 30000 } },--This should check for insufficient items or gold
 						},
 					},
 				},
 				{ batSequencer,
-						{ batRoleOpenDialog, param = { 50603, 30000 } },--这里应该是你在队伍不能进入的反馈
+						{ batRoleOpenDialog, param = { 50603, 30000 } },--This should report that players in a team cannot enter
 				},	
 			},		
 		},

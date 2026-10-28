@@ -2,16 +2,16 @@ evtAIDie =
 { batSelector,
 	{ batSequencer ,
 		{ batCheckSceneVariable, param={ boEQ,10, 10 } },
-		-- { batCheckSceneVariable , param={ boGTE, 9, 2000 } },    -- 原代码
-		{ batCheckSceneVariable , param={ boGTE, 9, 200 } },    -- 原代码
-		{ batSummonNpc , param={ 3119 } },    -- 刷新 尸王殿 地图
+		-- { batCheckSceneVariable , param={ boGTE, 9, 2000 } },    -- Original code
+		{ batCheckSceneVariable , param={ boGTE, 9, 200 } },    -- Original code
+		{ batSummonNpc , param={ 3119 } },    -- Spawn in the Corpse King Hall map
 		{ batSetSceneVariable , param={ 9, 0 } },
 		{ batSuicide, param = { 1, false } },
 	},
 	{ batSequencer ,
 		{ batCheckSceneVariable, param={ boEQ,10, 10 } },
-		-- { batCheckSceneVariable , param={ boLT, 9, 2000 } },    -- 原代码
-		{ batCheckSceneVariable , param={ boLT, 9, 200 } },    -- 原代码
+		-- { batCheckSceneVariable , param={ boLT, 9, 2000 } },    -- Original code
+		{ batCheckSceneVariable , param={ boLT, 9, 200 } },    -- Original code
 		{ batSetSceneVariable , param={ 9, 0, 1 } },
 		{ batSuicide, param = { 1, false } },
 	},

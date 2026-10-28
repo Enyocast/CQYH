@@ -1,4 +1,4 @@
--- A 张氏
+-- A: Zhang
 evtAIIdle = 
 { batSelector,
     {batSequencer,

@@ -2,7 +2,7 @@
 Include("script/stringtable/stringtable.lh")
 LoadPackage("chat_def.pkg")
 
---自定义变量
+--Custom variables
 
 SpawnId1 = 874;
 SpawnId2 = 874;

@@ -6,9 +6,9 @@ LoadPackage("chat_def.pkg")
 Include("script/include/btnod.lua")
 
 
---测试时间需求
---怪物攻城	9月25日	18:30	怪物攻城-沃玛教主	9月25日	19:30	怪物攻城-魔龙教主
---皇城战	9月25日	17:00	皇鲍刷新
+--Test schedule requirements
+--Monster siege: September 25 at 18:30, Woma leader; September 25 at 19:30, Demon Dragon leader
+--Imperial City battle: September 25 at 17:00, Huang Bao spawn
 
 
 -- SpawnDate_112 = 

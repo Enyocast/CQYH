@@ -16,7 +16,7 @@ evtAIInteract =
 				{batRoleCheckInteractOption, param = { 1 } },
 				{batSelector,
 					{batSequencer,
-						{ batRoleCheckMoney , param = { boGTE,1, 50000 } },--一捆疗伤药
+						{ batRoleCheckMoney , param = { boGTE,1, 50000 } },--A bundle of healing medicine
 						{ batSelector,
 							{ batSequencer,
 							{ batRoleCheckMoney , param = { boGTE,1, 50000 } },

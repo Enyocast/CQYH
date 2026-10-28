@@ -76,7 +76,7 @@ local pet_follow =
 		--{ batCheckCanMove, },
 		{ batSelector,
 			{ batJumpToHost, },
-			{ batSuicide, param = { false, false } },	-- 跳地图失败，就去死
+			{ batSuicide, param = { false, false } },	-- Die if the map transition fails
 		},
 	},
 };
@@ -136,7 +136,7 @@ function CheckTargetIsPet(owner)
 	return brvFail;
 end
 
--- 发现敌人
+-- Enemy found
 local pet_detect_enemy =
 { batSequencer,
 	{ batPetScanEnemy, param = { 60, 700, 64 } },
@@ -325,7 +325,7 @@ local pet_fight =
 		{ batSelector,
 			{ batSequencer,
 				{ batCheckAIVariable, param = { boEQ, PET_AI_CONTROL, psFight} },
-				'on_pet_cast_spell',  -- 释放技能
+				'on_pet_cast_spell',  -- Cast skill
 			},
 			--_pet_enter_idle(),
 		},
@@ -376,7 +376,7 @@ function _pet_fight_tree()
 		pet_chase,
 		{ batParallel,
 			{ batRotateTo, param = { tarAITarget, 0, 0, 360 } },
-			pet_fight,  -- 攻击
+			pet_fight,  -- Attack
 			pet_check_target_die,
 		},
 	--},
@@ -390,7 +390,7 @@ end
 function GetPetAttackSpeed(born_type, init_level)
 	local attack_speed = 8;
 	
-	-- 召唤神兽, 设置攻击速度
+	-- Summon divine beast and set attack speed
 	if born_type == petBornHoly then
 		attack_speed = (500 - init_level * 50) * GAME_FPS / 1000;
 	elseif born_type == petBornSkeleton then
@@ -405,7 +405,7 @@ end
 function GetPetWalkSpeed(born_type, init_level)
 	local walk_speed = 8;
 
-	-- 召唤骷髅, 设置攻击速度
+	-- Summon skeleton and set attack speed
 	if born_type == petBornHoly then
 		walk_speed = (500 - init_level * 30) * GAME_FPS / 1000;
 	elseif born_type == petBornSkeleton then

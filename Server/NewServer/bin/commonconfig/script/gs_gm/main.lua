@@ -403,76 +403,76 @@ MagRune = {25311,25321,25411,25412,25413,25414,25415,25416,25417,25441,25331,253
 TaoRune = {30021,30022,30011,30012,30013,30041,30042,30043,30045,30051,30052,30053,30054,30031,30032,30033,30091,30141,30063,30071,30111,30121,30081,30082,30083}
 
 TheWarriorEquipForLevel40 = {
-50910141, --剑盾
-50910241, --巨剑
-50910341, --双斧
-50911141, --头部
-50911241, --肩部
-50911341, --身体
-50911441, --腿部
-50911541, --腰部
-50911641, --手腕
-50911741, --脚
-50911841, --披风
-50952141, --手镯
-50952142, --手镯
-50952241, --项链
-50952341, --戒指
-50952342 --戒指
+50910141, --Sword and shield
+50910241, --Greatsword
+50910341, --Dual axes
+50911141, --Head
+50911241, --Shoulders
+50911341, --Body
+50911441, --Legs
+50911541, --Waist
+50911641, --Wrists
+50911741, --Feet
+50911841, --Cloak
+50952141, --Bracelet
+50952142, --Bracelet
+50952241, --Necklace
+50952341, --Ring
+50952342 --Ring
 }
 TheAssassinEquipForLevel40 = {
-50920141, --剑盾
-50920241, --巨剑
-50920341, --双斧
-50921141, --头部
-50921241, --肩部
-50921341, --身体
-50921441, --腿部
-50921541, --腰部
-50921641, --手腕
-50921741, --脚
-50921841, --披风
-50952141, --手镯
-50952142, --手镯
-50952241, --项链
-50952341, --戒指
-50952342 --戒指
+50920141, --Sword and shield
+50920241, --Greatsword
+50920341, --Dual axes
+50921141, --Head
+50921241, --Shoulders
+50921341, --Body
+50921441, --Legs
+50921541, --Waist
+50921641, --Wrists
+50921741, --Feet
+50921841, --Cloak
+50952141, --Bracelet
+50952142, --Bracelet
+50952241, --Necklace
+50952341, --Ring
+50952342 --Ring
 }
 TheArcherEquipForLevel40 = {
-50930141, --双弩
-50930241, --重弩
-50930341, --弓
-50931141, --头部
-50931241, --肩部
-50931341, --身体
-50931441, --腿部
-50931541, --腰部
-50931641, --手腕
-50931741, --脚
-50931841, --披风
-50952141, --手镯
-50952142, --手镯
-50952241, --项链
-50952341, --戒指
-50952342 --戒指
+50930141, --Dual crossbows
+50930241, --Heavy crossbow
+50930341, --Bow
+50931141, --Head
+50931241, --Shoulders
+50931341, --Body
+50931441, --Legs
+50931541, --Waist
+50931641, --Wrists
+50931741, --Feet
+50931841, --Cloak
+50952141, --Bracelet
+50952142, --Bracelet
+50952241, --Necklace
+50952341, --Ring
+50952342 --Ring
 }
 TheMageEquipForLevel40 = {
-50940141, --祭祀小刀
-50940241, --锤盾
-50940341, --法杖
-50941141, --头部
-50941241, --肩部
-50941341, --身体
-50941441, --腿部
-50941541, --腰部
-50941641, --手腕
-50941741, --脚
-50941841, --披风
-50952141, --手镯
-50952142, --手镯
-50952241, --项链
-50952341, --戒指
-50952342 --戒指
+50940141, --Ritual dagger
+50940241, --Hammer and shield
+50940341, --Staff
+50941141, --Head
+50941241, --Shoulders
+50941341, --Body
+50941441, --Legs
+50941541, --Waist
+50941641, --Wrists
+50941741, --Feet
+50941841, --Cloak
+50952141, --Bracelet
+50952142, --Bracelet
+50952241, --Necklace
+50952341, --Ring
+50952342 --Ring
 }
 TheClassEquipForLevel40 = {TheWarriorEquipForLevel40, TheMageEquipForLevel40, TheAssassinEquipForLevel40, TheArcherEquipForLevel40}
 TheBodyPartEnum=
@@ -495,9 +495,9 @@ NES_FINGER_R
 
 
 
--- 新增GM命令 begin
+-- Begin new GM commands
 
--- 刷物品
+-- Spawn items
 function AddItemToRole(ItemId, Count, RoleID)
     print("执行Lua函数 AddItemToRole(ItemId, Count, RoleID)");
 	
@@ -518,7 +518,7 @@ function AddItemToRole(ItemId, Count, RoleID)
 	end
 end
 
--- 增加货币
+-- Add currency
 function AddMoneyToRole(MoneyType, Count, RoleID)
     print("执行Lua函数 AddMoneyToRole(MoneyType, Count, RoleID)");
 	
@@ -529,7 +529,7 @@ function AddMoneyToRole(MoneyType, Count, RoleID)
 	end
 end
 
--- 扣除货币
+-- Deduct currency
 function SubMoneyToRole(MoneyType, Count, RoleID)
     print("执行Lua函数 SubMoneyToRole(MoneyType, Count, RoleID)");
 	
@@ -540,7 +540,7 @@ function SubMoneyToRole(MoneyType, Count, RoleID)
 	end
 end
 
--- 增加经验
+-- Add experience
 function AddExpToRole(n, RoleID)
 	print("执行Lua函数 AddExpToRole(n, RoleID)");
 	
@@ -551,7 +551,7 @@ function AddExpToRole(n, RoleID)
 	end
 end
 
--- 设置等级
+-- Set level
 function SetLevelToRole(n, RoleID)
 	print("执行Lua函数 SetLevelToRole(n, RoleID)");
 	
@@ -562,7 +562,7 @@ function SetLevelToRole(n, RoleID)
 	end
 end
 
--- 完成任务
+-- Complete quest
 function CompleteQuestToRole(questID, RoleID)
 	print("执行Lua函数 CompleteQuestToRole(questID, RoleID)");
 	
@@ -574,7 +574,7 @@ function CompleteQuestToRole(questID, RoleID)
 	end
 end
 
--- 接受任务
+-- Accept quest
 function AcceptQuestToRole(questID, RoleID)
 	print("执行Lua函数 AcceptQuestToRole(questID, RoleID)");
 	
@@ -586,7 +586,7 @@ function AcceptQuestToRole(questID, RoleID)
 	end
 end
 
--- 学习技能
+-- Learn skill
 function LearnSpellToRole(nID, nLevel, RoleID)
 	print("执行Lua函数 LearnSpellToRole(nID, nLevel, RoleID)");
 	
@@ -597,7 +597,7 @@ function LearnSpellToRole(nID, nLevel, RoleID)
 	end
 end
 
--- 删除技能
+-- Remove skill
 function RemoveSpellToRole(v, RoleID)
 	print("执行Lua函数 RemoveSpellToRole(v, RoleID)");
 	
@@ -608,7 +608,7 @@ function RemoveSpellToRole(v, RoleID)
 	end
 end
 
--- 增加称号
+-- Add title
 function AddTitleToRole(id, RoleID)
 	print("执行Lua函数 AddTitleToRole(id, RoleID)");
 	
@@ -619,7 +619,7 @@ function AddTitleToRole(id, RoleID)
 	end
 end
 
--- 删除称号
+-- Remove title
 function DeleteTitleToRole(id, delType, RoleID)
 	print("执行Lua函数 DeleteTitleToRole(id, delType, RoleID)");
 	
@@ -643,13 +643,13 @@ end
 function qfgg(location,message)
 	print("执行Lua函数 qfgg(location,message)");
 	
-	TargetRole:Say(cctGroup, cltLighting, message);    -- 全服所有人 顶部滚动蓝字, 聊天框黄字
-	-- TargetRole:Say(cctGroup, cltTvShow, message);    -- 全服所有人 屏幕中间黄字
+	TargetRole:Say(cctGroup, cltLighting, message);    -- All players on the server: scrolling blue text at the top and yellow text in chat
+	-- TargetRole:Say(cctGroup, cltTvShow, message);    -- All players on the server: yellow text in the middle of the screen
 	
 	print("GM命令 - 发送全服公告, 内容: ["..message.."]");
 end
 
--- 新增GM命令 end
+-- End new GM commands
 
 
 function GSID()
@@ -1503,23 +1503,23 @@ function EquipSpell(nSlotID, nSpellID)
 	TargetRole:EquipSpell(nSlotID, nSpellID);
 end
 
---[[vip命令 GM使用方法level代表装备的类型   
-month当level是0时他代表铭文编号，当level为除1以外的值时代表绿字属性编号
-0代表武器weapon 
-	这个时候使用month需要传入要添加的铭文，如果加入到m_wRune[0]槽则+100000传入，如果要加入到m_wRune[1]则+200000传入
-	如果传入的month小于100000代表给武器添加绿色属性
-1代表衣服body
-2代表背部BACK
-3代表头部head
-4代表肩部shoulder
-5代表护手arm
-6代表腰部waist
-7代表鞋子foot
-8代表项链neck
-9代表左戒指finger_L
-10代表右戒指finger_R
-11代表左手镯wrist_L
-12代表右手镯wrist_R
+--[[VIP command: for GM use, level represents the equipment type
+When level is 0, month represents the inscription ID; when level is any value other than 1, it represents the green attribute ID.
+0 means weapon
+	Pass the inscription to add in month: add 100000 for m_wRune[0] or 200000 for m_wRune[1].
+	A month value below 100000 adds a green attribute to the weapon.
+1 means body armor
+2 means back
+3 means head
+4 means shoulder
+5 means arm
+6 means waist
+7 means foot
+8 means neck
+9 means left ring (finger_L)
+10 means right ring (finger_R)
+11 means left bracelet (wrist_L)
+12 means right bracelet (wrist_R)
 ]]--
 function VIP (level, month)
 	local bag = TargetRole:GetItemBag();
@@ -1810,56 +1810,56 @@ function SKillTest(WeaponType)
 	SetLevel(60);
 
 	local WarriorEquip = {
-	10410121, --剑盾
-	10410221, --巨剑
-	10410321, --双斧
-	10411121, --头盔
-	10411221, --肩甲
-	10411321, --铠甲
-	10411421, --战腿
-	10411521, --护腰
-	10411621, --护腕
-	10411721, --战靴
-	10411821 --披风
+	10410121, --Sword and shield
+	10410221, --Greatsword
+	10410321, --Dual axes
+	10411121, --Helmet
+	10411221, --Shoulder armor
+	10411321, --Armor
+	10411421, --Leg armor
+	10411521, --Waist armor
+	10411621, --Bracers
+	10411721, --Combat boots
+	10411821 --Cloak
 	};
 	local AssassinEquip = {
-	10420121, --长枪
-	10420221, --匕首
-	10420321, --链刃
-	10421121, --头盔
-	10421221, --肩甲
-	10421321, --铠甲
-	10421421, --战腿
-	10421521, --护腰
-	10421621, --护腕
-	10421721, --战靴
-	10421821 --披风
+	10420121, --Spear
+	10420221, --Dagger
+	10420321, --Chain blade
+	10421121, --Helmet
+	10421221, --Shoulder armor
+	10421321, --Armor
+	10421421, --Leg armor
+	10421521, --Waist armor
+	10421621, --Bracers
+	10421721, --Combat boots
+	10421821 --Cloak
 	};
 	local ArcherEquip = {
-	10430121, --双弩
-	10430221, --重弩
-	10430321, --弓
-	10431121, --头盔
-	10431221, --肩甲
-	10431321, --铠甲
-	10431421, --战腿
-	10431521, --护腰
-	10431621, --护腕
-	10431721, --战靴
-	10431821 --披风
+	10430121, --Dual crossbows
+	10430221, --Heavy crossbow
+	10430321, --Bow
+	10431121, --Helmet
+	10431221, --Shoulder armor
+	10431321, --Armor
+	10431421, --Leg armor
+	10431521, --Waist armor
+	10431621, --Bracers
+	10431721, --Combat boots
+	10431821 --Cloak
 	};
 	local MageEquip = {
-	10440121, --法典
-	10440221, --法槌
-	10440321, --法杖
-	10441121, --头盔
-	10441221, --肩甲
-	10441321, --铠甲
-	10441421, --战腿
-	10441521, --护腰
-	10441621, --护腕
-	10441721, --战靴
-	10441821 --披风
+	10440121, --Spellbook
+	10440221, --Magic hammer
+	10440321, --Staff
+	10441121, --Helmet
+	10441221, --Shoulder armor
+	10441321, --Armor
+	10441421, --Leg armor
+	10441521, --Waist armor
+	10441621, --Bracers
+	10441721, --Combat boots
+	10441821 --Cloak
 	};
 	local EquipGroup = {WarriorEquip,MageEquip,AssassinEquip,ArcherEquip};
 	local bangleGroup   = {10452121,10452122,10452123,10452124};
@@ -2390,15 +2390,15 @@ function ChangeEquipment(Index, MatchType)
 	TargetRole:GetAttrList():AddAttrA(TargetRole, catBagWeightLmt, 500);
 
 	local WarriorEquip = {
-		--01套 10级
+		--Set 01, level 10
 		{
-			--男
+			--Male
 			{
 				{
-					99900005, --短剑
-					99990111, --青铜头盔
+					99900005, --Short sword
+					99990111, --Bronze helmet
 					0,
-					99980113, --布衣
+					99980113, --Cloth armor
 					0,
 					0,
 					0,
@@ -2406,20 +2406,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930004, --牛角戒指
-					99930004, --牛角戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930004, --Horn ring
+					99930004, --Horn ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900005, --短剑
-					99990111, --青铜头盔
+					99900005, --Short sword
+					99990111, --Bronze helmet
 					0,
-					99990113, --布衣
+					99990113, --Cloth armor
 					0,
 					0,
 					0,
@@ -2427,341 +2427,341 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930004, --牛角戒指
-					99930004, --牛角戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930004, --Horn ring
+					99930004, --Horn ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			}
 		},
-		--02套 15级
+		--Set 02, level 15
 		{
-			--男
+			--Male
 			{
 				{
-					99900010, --八荒
-					99990211, --魔法头盔
+					99900010, --Eight Wastes
+					99990211, --Magic helmet
 					0,
-					99980213, --轻型盔甲
+					99980213, --Light armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
+					99990317, --Cloth shoes
 					0
 				},
 				{
-					99930004, --牛角戒指
-					99930004, --牛角戒指
-					99920005, --黑色水晶项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930004, --Horn ring
+					99930004, --Horn ring
+					99920005, --Black crystal necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900010, --八荒
-					99990211, --魔法头盔
+					99900010, --Eight Wastes
+					99990211, --Magic helmet
 					0,
-					99990213, --轻型盔甲
+					99990213, --Light armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
+					99990317, --Cloth shoes
 					0
 				},
 				{
-					99930004, --牛角戒指
-					99930004, --牛角戒指
-					99920005, --黑色水晶项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930004, --Horn ring
+					99930004, --Horn ring
+					99920005, --Black crystal necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			}
 		},
-		--03套 20级
+		--Set 03, level 20
 		{
-			--男
+			--Male
 			{
 				{
-					99900034, --祈祷之刃
-					99990311, --骷髅头盔
+					99900034, --Blade of Prayer
+					99990311, --Skull helmet
 					0,
-					99980313, --中型盔甲
+					99980313, --Medium armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
+					99990317, --Cloth shoes
 					0
 				},
 				{
-					69900004, --君毅戒指
-					99930008, --黑色水晶戒指
-					99920011, --魔鬼项链
-					99940027, --魔力手镯
-					99940027  --魔力手镯
+					69900004, --Junyi ring
+					99930008, --Black crystal ring
+					99920011, --Devil necklace
+					99940027, --Magic bracelet
+					99940027  --Magic bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900034, --祈祷之刃
-					99990311, --骷髅头盔
+					99900034, --Blade of Prayer
+					99990311, --Skull helmet
 					0,
-					99990313, --中型盔甲
+					99990313, --Medium armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
+					99990317, --Cloth shoes
 					0
 				},
 				{
-					69900004, --君毅戒指
-					99930008, --黑色水晶戒指
-					99920011, --魔鬼项链
-					99940027, --魔力手镯
-					99940027  --魔力手镯
+					69900004, --Junyi ring
+					99930008, --Black crystal ring
+					99920011, --Devil necklace
+					99940027, --Magic bracelet
+					99940027  --Magic bracelet
 				}
 
 			}
 		},
-		--04套 26级
+		--Set 04, level 26
 		{
-			--男
+			--Male
 			{
 				{
-					99900019, --炼狱
-					99990511, --黑铁头盔
+					99900019, --Purgatory
+					99990511, --Black iron helmet
 					0,
-					99980513, --战神盔甲
+					99980513, --War God armor
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
+					99990417, --Deerskin boots
 					0
 				},
 				{
-					99930019, --力量戒指
-					99930019, --力量戒指
-					99920017, --绿色项链
-					99940012, --骑士手镯
-					99940012  --骑士手镯
+					99930019, --Strength ring
+					99930019, --Strength ring
+					99920017, --Green necklace
+					99940012, --Knight bracelet
+					99940012  --Knight bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900019, --炼狱
-					99990511, --黑铁头盔
+					99900019, --Purgatory
+					99990511, --Black iron helmet
 					0,
-					99990513, --战神盔甲
+					99990513, --War God armor
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
+					99990417, --Deerskin boots
 					0
 				},
 				{
-					99930019, --力量戒指
-					99930019, --力量戒指
-					99920017, --绿色项链
-					99940012, --骑士手镯
-					99940012  --骑士手镯
+					99930019, --Strength ring
+					99930019, --Strength ring
+					99920017, --Green necklace
+					99940012, --Knight bracelet
+					99940012  --Knight bracelet
 				}
 			}
 		},
-		--05套 30级
+		--Set 05, level 30
 		{
-			--男
+			--Male
 			{
 				{
-					99900022, --井中月
-					99990511, --黑铁头盔
+					99900022, --Moon in the Well
+					99990511, --Black iron helmet
 					0,
-					99980513, --战神盔甲
+					99980513, --War God armor
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
-					99950003, --龙之叹息·华美
+					99990417, --Deerskin boots
+					99950003, --Dragon Sigh: Splendid
 				},
 				{
-					99930019, --力量戒指
-					99930019, --力量戒指
-					99920017, --绿色项链
-					99940012, --骑士手镯
-					99940012  --骑士手镯
+					99930019, --Strength ring
+					99930019, --Strength ring
+					99920017, --Green necklace
+					99940012, --Knight bracelet
+					99940012  --Knight bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900022, --井中月
-					99990511, --黑铁头盔
+					99900022, --Moon in the Well
+					99990511, --Black iron helmet
 					0,
-					99990513, --战神盔甲
+					99990513, --War God armor
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
-					99950003, --龙之叹息·华美
+					99990417, --Deerskin boots
+					99950003, --Dragon Sigh: Splendid
 				},
 				{
-					99930019, --力量戒指
-					99930019, --力量戒指
-					99920017, --绿色项链
-					99940012, --骑士手镯
-					99940012  --骑士手镯
+					99930019, --Strength ring
+					99930019, --Strength ring
+					99920017, --Green necklace
+					99940012, --Knight bracelet
+					99940012  --Knight bracelet
 				}
 			}
 		},
-		--06套 35级
+		--Set 06, level 35
 		{
-			--男
+			--Male
 			{
 				{
-					99900022, --井中月
-					99990511, --黑铁头盔
+					99900022, --Moon in the Well
+					99990511, --Black iron helmet
 					0,
-					99980513, --战神盔甲
+					99980513, --War God armor
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
-					99950005, --龙之叹息·耀眼
+					99990417, --Deerskin boots
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930019, --力量戒指
-					99930019, --力量戒指
-					99920017, --绿色项链
-					99940012, --骑士手镯
-					99940012  --骑士手镯
+					99930019, --Strength ring
+					99930019, --Strength ring
+					99920017, --Green necklace
+					99940012, --Knight bracelet
+					99940012  --Knight bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900022, --井中月
-					99990511, --黑铁头盔
+					99900022, --Moon in the Well
+					99990511, --Black iron helmet
 					0,
-					99990513, --战神盔甲
+					99990513, --War God armor
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
-					99950005, --龙之叹息·耀眼
+					99990417, --Deerskin boots
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930019, --力量戒指
-					99930019, --力量戒指
-					99920017, --绿色项链
-					99940012, --骑士手镯
-					99940012  --骑士手镯
+					99930019, --Strength ring
+					99930019, --Strength ring
+					99920017, --Green necklace
+					99940012, --Knight bracelet
+					99940012  --Knight bracelet
 				}
 			}
 		},
-		--07套 40级
+		--Set 07, level 40
 		{
-			--男
+			--Male
 			{
 				{
-					99900025, --裁决
-					99990511, --黑铁头盔
+					99900025, --Judgment
+					99990511, --Black iron helmet
 					0,
-					99980513, --战神盔甲
+					99980513, --War God armor
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
-					99950005, --龙之叹息·耀眼
+					99990417, --Deerskin boots
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930019, --力量戒指
-					99930019, --力量戒指
-					99920017, --绿色项链
-					99940012, --骑士手镯
-					99940012  --骑士手镯
+					99930019, --Strength ring
+					99930019, --Strength ring
+					99920017, --Green necklace
+					99940012, --Knight bracelet
+					99940012  --Knight bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900025, --裁决
-					99990511, --黑铁头盔
+					99900025, --Judgment
+					99990511, --Black iron helmet
 					0,
-					99990513, --圣战宝甲
+					99990513, --Holy War armor
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
-					99950005, --龙之叹息·耀眼
+					99990417, --Deerskin boots
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930019, --力量戒指
-					99930019, --力量戒指
-					99920017, --绿色项链
-					99940012, --骑士手镯
-					99940012  --骑士手镯
+					99930019, --Strength ring
+					99930019, --Strength ring
+					99920017, --Green necklace
+					99940012, --Knight bracelet
+					99940012  --Knight bracelet
 				}
 			}
 		},
-		--08套 50级
+		--Set 08, level 50
 		{
-			--男
+			--Male
 			{
 				{
-					99900026, --屠龙
-					99990611, --圣战头盔
+					99900026, --Dragon Slayer
+					99990611, --Holy War helmet
 					0,
-					99980613, --天魔神甲
+					99980613, --Heavenly Demon armor
 					0,
-					99990515, --青铜腰带
+					99990515, --Bronze belt
 					0,
-					99990517, --紫绸靴
-					99950004, --天魔之怒
+					99990517, --Purple silk boots
+					99950004, --Heavenly Demon Fury
 				},
 				{
-					99930033, --圣战戒指
-					99930033, --圣战戒指
-					99920027, --圣战项链
-					99940024, --圣战手镯
-					99940024  --圣战手镯
+					99930033, --Holy War ring
+					99930033, --Holy War ring
+					99920027, --Holy War necklace
+					99940024, --Holy War bracelet
+					99940024  --Holy War bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900026, --屠龙
-					99990611, --圣战头盔
+					99900026, --Dragon Slayer
+					99990611, --Holy War helmet
 					0,
-					99990613, --圣战宝甲
+					99990613, --Holy War armor
 					0,
-					99990515, --青铜腰带
+					99990515, --Bronze belt
 					0,
-					99990517, --紫绸靴
-					99950004, --天魔之怒
+					99990517, --Purple silk boots
+					99950004, --Heavenly Demon Fury
 				},
 				{
-					99930033, --圣战戒指
-					99930033, --圣战戒指
-					99920027, --圣战项链
-					99940024, --圣战手镯
-					99940024  --圣战手镯
+					99930033, --Holy War ring
+					99930033, --Holy War ring
+					99920027, --Holy War necklace
+					99940024, --Holy War bracelet
+					99940024  --Holy War bracelet
 				}
 			}
 		}
 	};
 	local MageEquip = {
-		-- 01套 10级
+		-- Set 01, level 10
 		{
-			--男
+			--Male
 			{
 				{
-					99900003, --乌木剑
+					99900003, --Ebony sword
 					0,
 					0,
-					99980113, --布衣
+					99980113, --Cloth armor
 					0,
 					0,
 					0,
@@ -2769,361 +2769,361 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930003, --六角戒指
-					99930003, --六角戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930003, --Hexagonal ring
+					99930003, --Hexagonal ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900003, --乌木剑
-					0, 		  --法巾     99990121
-					0, 		  --软布护肩 99990122
-					99990113, --布衣     99980123  法袍 <传奇穿布衣>
-					0,  	  --99990124 布质护腿 <传奇没有>
-					0, 		  --银边束腰 99990125
-					0, 		  --细布护腕 99990126
-					0,		  --99990127 熟皮靴   <传奇没有>
-					0 		  --薄棉披风 99990128
+					99900003, --Ebony sword
+					0, 		  --Magic headscarf     99990121
+					0, 		  --Soft cloth shoulder armor 99990122
+					99990113, --Cloth armor     99980123  robe <cloth armor in Legend>
+					0,  	  --99990124 Cloth leggings <not in Legend>
+					0, 		  --Silver-trimmed belt 99990125
+					0, 		  --Fine cloth bracers 99990126
+					0,		  --99990127 Tanned leather boots <not in Legend>
+					0 		  --Thin cotton cloak 99990128
 				},
 				{
-					99930003, --六角戒指
-					99930003, --六角戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930003, --Hexagonal ring
+					99930003, --Hexagonal ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			}
 		},
-		-- 02套 15级
+		-- Set 02, level 15
 		{
-			--男
+			--Male
 			{
 				{
-					99900009, --海魂
-					99990221, --魔法头盔
+					99900009, --Sea Soul
+					99990221, --Magic helmet
 					0,
-					99980213, --轻型铠甲
+					99980213, --Light armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
+					99990317, --Cloth shoes
 					0
 				},
 				{
-					99930006, --生铁戒指
-					99930006, --生铁戒指
-					99920006, --白金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930006, --Cast iron ring
+					99930006, --Cast iron ring
+					99920006, --Platinum necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900009, --海魂
-					99990221, --魔法头盔
+					99900009, --Sea Soul
+					99990221, --Magic helmet
 					0,
-					99990213, --轻型铠甲
+					99990213, --Light armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
+					99990317, --Cloth shoes
 					0
 				},
 				{
-					99930006, --生铁戒指
-					99930006, --生铁戒指
-					99920006, --白金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930006, --Cast iron ring
+					99930006, --Cast iron ring
+					99920006, --Platinum necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			}
 		},
-		-- 03套 20级
+		-- Set 03, level 20
 		{
-			--男
+			--Male
 			{
 				{
-					99900013, --偃月
-					99990221, --魔法头盔
+					99900013, --Crescent Moon
+					99990221, --Magic helmet
 					0,
-					99980313, --中型铠甲
+					99980313, --Medium armor
 					0,
 					99990315,
 					0,
-					99990317, --布鞋
+					99990317, --Cloth shoes
 					0
 				},
 				{
-					99930009, --蛇眼戒指
-					99930009, --蛇眼戒指
-					99920010, --琥珀项链
-					99940008, --黑檀手镯
-					99940008  --黑檀手镯
+					99930009, --Snake eye ring
+					99930009, --Snake eye ring
+					99920010, --Amber necklace
+					99940008, --Ebony bracelet
+					99940008  --Ebony bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900013, --偃月
-					99990221, --魔法头盔
+					99900013, --Crescent Moon
+					99990221, --Magic helmet
 					0,
-					99990313, --中型铠甲
+					99990313, --Medium armor
 					0,
 					99990315,
 					0,
-					99990317, --布鞋
+					99990317, --Cloth shoes
 					0
 				},
 				{
-					99930009, --蛇眼戒指
-					99930009, --蛇眼戒指
-					99920010, --琥珀项链
-					99940008, --黑檀手镯
-					99940008  --黑檀手镯
+					99930009, --Snake eye ring
+					99930009, --Snake eye ring
+					99920010, --Amber necklace
+					99940008, --Ebony bracelet
+					99940008  --Ebony bracelet
 				}
 			}
 		},
-		-- 04套  25级
+		-- Set 04, level 25
 		{
-			--男
+			--Male
 			{
 				{
-					99900018, --魔杖
-					99910001, --记忆头盔
+					99900018, --Magic wand
+					99910001, --Memory helmet
 					0,
-					99980523, --恶魔长袍
+					99980523, --Demon robe
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
+					99990417, --Deerskin boots
 					0
 				},
 				{
-					99930020, --紫碧螺
-					99930020, --紫碧螺
-					99920019, --恶魔铃铛
-					99940016, --龙之手镯
-					99940016  --龙之手镯
+					99930020, --Purple Spiral
+					99930020, --Purple Spiral
+					99920019, --Demon bell
+					99940016, --Dragon bracelet
+					99940016  --Dragon bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900018, --魔杖
-					99910001, --记忆头盔
+					99900018, --Magic wand
+					99910001, --Memory helmet
 					0,
-					99990523, --恶魔长袍
+					99990523, --Demon robe
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
+					99990417, --Deerskin boots
 					0
 				},
 				{
-					99930020, --紫碧螺
-					99930020, --紫碧螺
-					99920019, --恶魔铃铛
-					99940016, --龙之手镯
-					99940016  --龙之手镯
+					99930020, --Purple Spiral
+					99930020, --Purple Spiral
+					99920019, --Demon bell
+					99940016, --Dragon bracelet
+					99940016  --Dragon bracelet
 				}
 			}
 		},
-		-- 05套  30级
+		-- Set 05, level 30
 		{
-			--男
+			--Male
 			{
 				{
-					99900023, --血饮
-					99910001, --记忆头盔
+					99900023, --Blood Drinker
+					99910001, --Memory helmet
 					0,
-					99980523, --恶魔长袍
+					99980523, --Demon robe
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
-					99950003, --龙之叹息·华美
+					99990417, --Deerskin boots
+					99950003, --Dragon Sigh: Splendid
 				},
 				{
-					99930020, --紫碧螺
-					99930020, --紫碧螺
-					99920019, --恶魔铃铛
-					99940016, --龙之手镯
-					99940016  --龙之手镯
+					99930020, --Purple Spiral
+					99930020, --Purple Spiral
+					99920019, --Demon bell
+					99940016, --Dragon bracelet
+					99940016  --Dragon bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900023, --血饮
-					99910001, --记忆头盔
+					99900023, --Blood Drinker
+					99910001, --Memory helmet
 					0,
-					99990523, --恶魔长袍
+					99990523, --Demon robe
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
-					99950003, --龙之叹息·华美
+					99990417, --Deerskin boots
+					99950003, --Dragon Sigh: Splendid
 				},
 				{
-					99930020, --紫碧螺
-					99930020, --紫碧螺
-					99920019, --恶魔铃铛
-					99940016, --龙之手镯
-					99940016  --龙之手镯
+					99930020, --Purple Spiral
+					99930020, --Purple Spiral
+					99920019, --Demon bell
+					99940016, --Dragon bracelet
+					99940016  --Dragon bracelet
 				}
 			}
 		},
-		-- 06套 35级
+		-- Set 06, level 35
 		{
-			--男
+			--Male
 			{
 				{
-					99900023, --血饮
-					99910001, --记忆头盔
+					99900023, --Blood Drinker
+					99910001, --Memory helmet
 					0,
-					99980523, --恶魔长袍
+					99980523, --Demon robe
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
-					99950005, --龙之叹息·耀眼
+					99990417, --Deerskin boots
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930020, --紫碧螺
-					99930020, --紫碧螺
-					99920019, --恶魔铃铛
-					99940016, --龙之手镯
-					99940016  --龙之手镯
+					99930020, --Purple Spiral
+					99930020, --Purple Spiral
+					99920019, --Demon bell
+					99940016, --Dragon bracelet
+					99940016  --Dragon bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900023, --血饮
-					99910001, --记忆头盔
+					99900023, --Blood Drinker
+					99910001, --Memory helmet
 					0,
-					99990523, --恶魔长袍
+					99990523, --Demon robe
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
-					99950005, --龙之叹息·耀眼
+					99990417, --Deerskin boots
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930020, --紫碧螺
-					99930020, --紫碧螺
-					99920019, --恶魔铃铛
-					99940016, --龙之手镯
-					99940016  --龙之手镯
+					99930020, --Purple Spiral
+					99930020, --Purple Spiral
+					99920019, --Demon bell
+					99940016, --Dragon bracelet
+					99940016  --Dragon bracelet
 				}
 			}
 		},
-		-- 07套 40级
+		-- Set 07, level 40
 		{
-			--男
+			--Male
 			{
 				{
-					99900028, --骨玉权杖
-					99910001, --记忆头盔
+					99900028, --Bone jade scepter
+					99910001, --Memory helmet
 					0,
-					99980523, --恶魔长袍
+					99980523, --Demon robe
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
-					99950005, --龙之叹息·耀眼
+					99990417, --Deerskin boots
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930020, --紫碧螺
-					99930020, --紫碧螺
-					99920019, --恶魔铃铛
-					99940016, --龙之手镯
-					99940016  --龙之手镯
+					99930020, --Purple Spiral
+					99930020, --Purple Spiral
+					99920019, --Demon bell
+					99940016, --Dragon bracelet
+					99940016  --Dragon bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900028, --骨玉权杖
-					99910001, --记忆头盔
+					99900028, --Bone jade scepter
+					99910001, --Memory helmet
 					0,
-					99990523, --恶魔长袍
+					99990523, --Demon robe
 					0,
-					99990415, --铁腰带
+					99990415, --Iron belt
 					0,
-					99990417, --鹿皮靴
-					99950005, --龙之叹息·耀眼
+					99990417, --Deerskin boots
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930020, --紫碧螺
-					99930020, --紫碧螺
-					99920019, --恶魔铃铛
-					99940016, --龙之手镯
-					99940016  --龙之手镯
+					99930020, --Purple Spiral
+					99930020, --Purple Spiral
+					99920019, --Demon bell
+					99940016, --Dragon bracelet
+					99940016  --Dragon bracelet
 				}
 			}
 		},
-		-- 08套 50级
+		-- Set 08, level 50
 		{
-			--男
+			--Male
 			{
 				{
-					99900029, --噬魂法杖
-					99990621, --法神头盔
+					99900029, --Soul Devouring staff
+					99990621, --Magic God helmet
 					0,
-					99980623, --法神披风
+					99980623, --Magic God cloak
 					0,
-					99990515, --青铜腰带
+					99990515, --Bronze belt
 					0,
-					99990517, --紫绸靴
-					99950005, --龙之叹息·耀眼
+					99990517, --Purple silk boots
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930034, --法神戒指
-					99930034, --法神戒指
-					99920028, --法神项链
-					99940025, --法神手镯
-					99940025  --法神手镯
+					99930034, --Magic God ring
+					99930034, --Magic God ring
+					99920028, --Magic God necklace
+					99940025, --Magic God bracelet
+					99940025  --Magic God bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900029, --噬魂法杖
-					99990621, --法神头盔
+					99900029, --Soul Devouring staff
+					99990621, --Magic God helmet
 					0,
-					99990623, --霓裳羽衣
+					99990623, --Feathered robe
 					0,
-					99990515, --青铜腰带
+					99990515, --Bronze belt
 					0,
-					99990517, --紫绸靴
-					99950005, --龙之叹息·耀眼
+					99990517, --Purple silk boots
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930034, --法神戒指
-					99930034, --法神戒指
-					99920028, --法神项链
-					99940025, --法神手镯
-					99940025  --法神手镯
+					99930034, --Magic God ring
+					99930034, --Magic God ring
+					99920028, --Magic God necklace
+					99940025, --Magic God bracelet
+					99940025  --Magic God bracelet
 				}
 			}
 		}
 	};
 	local TaoistEquip = {
-		--01套  10级
+		--Set 01, level 10
 		{
-			--男
+			--Male
 			{
 				{
-					99900005, --短剑
-					99990111, --青铜头盔
+					99900005, --Short sword
+					99990111, --Bronze helmet
 					0,
-					99980113, --布衣
+					99980113, --Cloth armor
 					0,
 					0,
 					0,
@@ -3131,20 +3131,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930002, --玻璃戒指
-					99930002, --玻璃戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930002, --Glass ring
+					99930002, --Glass ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900005, --短剑
-					99990111, --青铜头盔
+					99900005, --Short sword
+					99990111, --Bronze helmet
 					0,
-					99990113, --布衣
+					99990113, --Cloth armor
 					0,
 					0,
 					0,
@@ -3152,341 +3152,341 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930002, --玻璃戒指
-					99930002, --玻璃戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930002, --Glass ring
+					99930002, --Glass ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			}
 		},
-		--02套  15级
+		--Set 02, level 15
 		{
-			--男
+			--Male
 			{
 				{
-					99900011, --半月
-					99990211, --魔法头盔
+					99900011, --Half Moon
+					99990211, --Magic helmet
 					0,
-					99990213, --轻型铠甲
+					99990213, --Light armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
+					99990317, --Cloth shoes
 					0
 				},
 				{
-					99930002, --玻璃戒指
-					99930002, --玻璃戒指
-					99920007, --白色虎齿项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930002, --Glass ring
+					99930002, --Glass ring
+					99920007, --White tiger tooth necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900011, --半月
-					99990211, --魔法头盔
+					99900011, --Half Moon
+					99990211, --Magic helmet
 					0,
-					99990213, --轻型铠甲
+					99990213, --Light armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
+					99990317, --Cloth shoes
 					0
 				},
 				{
-					99930002, --玻璃戒指
-					99930002, --玻璃戒指
-					99920007, --白色虎齿项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930002, --Glass ring
+					99930002, --Glass ring
+					99920007, --White tiger tooth necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			}
 		},
-		--03套  20级
+		--Set 03, level 20
 		{
-			--男
+			--Male
 			{
 				{
-					99900015, --降魔
-					99990211, --魔法头盔
+					99900015, --Demon Subduer
+					99990211, --Magic helmet
 					0,
-					99980313, --中型盔甲
+					99980313, --Medium armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
+					99990317, --Cloth shoes
 					0
 				},
 				{
-					99930007, --珍珠戒指
-					99930007, --珍珠戒指
-					99920012, --凤凰明珠
-					99940007, --道士手镯
-					99940007  --道士手镯
+					99930007, --Pearl ring
+					99930007, --Pearl ring
+					99920012, --Phoenix pearl
+					99940007, --Taoist bracelet
+					99940007  --Taoist bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900015, --降魔
-					99990211, --魔法头盔
+					99900015, --Demon Subduer
+					99990211, --Magic helmet
 					0,
-					99990313, --中型盔甲
+					99990313, --Medium armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
+					99990317, --Cloth shoes
 					0
 				},
 				{
-					99930007, --珍珠戒指
-					99930007, --珍珠戒指
-					99920012, --凤凰明珠
-					99940007, --道士手镯
-					99940007  --道士手镯
+					99930007, --Pearl ring
+					99930007, --Pearl ring
+					99920012, --Phoenix pearl
+					99940007, --Taoist bracelet
+					99940007  --Taoist bracelet
 				}
 			}
 		},
-		--04套 25级
+		--Set 04, level 25
 		{
-			--男
+			--Male
 			{
 				{
-					99900024, --无极棍
-					99990411, --道士头盔
+					99900024, --Wuji staff
+					99990411, --Taoist helmet
 					0,
-					99980533, --幽灵战衣
+					99980533, --Ghost armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
+					99990317, --Cloth shoes
 					0
 				},
 				{
-					99930021, --泰坦戒指
-					99930021, --泰坦戒指
-					99920018, --灵魂项链
-					99940010, --三眼手镯
-					99940010  --三眼手镯
+					99930021, --Titan ring
+					99930021, --Titan ring
+					99920018, --Soul necklace
+					99940010, --Three-eye bracelet
+					99940010  --Three-eye bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900024, --无极棍
-					99990411, --道士头盔
+					99900024, --Wuji staff
+					99990411, --Taoist helmet
 					0,
-					99990533, --幽灵战衣
+					99990533, --Ghost armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
+					99990317, --Cloth shoes
 					0
 				},
 				{
-					99930021, --泰坦戒指
-					99930021, --泰坦戒指
-					99920018, --灵魂项链
-					99940010, --三眼手镯
-					99940010  --三眼手镯
+					99930021, --Titan ring
+					99930021, --Titan ring
+					99920018, --Soul necklace
+					99940010, --Three-eye bracelet
+					99940010  --Three-eye bracelet
 				}
 			}
 		},
-		--05套 30级
+		--Set 05, level 30
 		{
-			--男
+			--Male
 			{
 				{
-					99900024, --无极棍
-					99910001, --记忆头盔
+					99900024, --Wuji staff
+					99910001, --Memory helmet
 					0,
-					99980533, --幽灵战衣
+					99980533, --Ghost armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
-					99950003, --龙之叹息·华美
+					99990317, --Cloth shoes
+					99950003, --Dragon Sigh: Splendid
 				},
 				{
-					99930021, --泰坦戒指
-					99930021, --泰坦戒指
-					99920018, --灵魂项链
-					99940010, --三眼手镯
-					99940010  --三眼手镯
+					99930021, --Titan ring
+					99930021, --Titan ring
+					99920018, --Soul necklace
+					99940010, --Three-eye bracelet
+					99940010  --Three-eye bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900024, --无极棍
-					99910001, --记忆头盔
+					99900024, --Wuji staff
+					99910001, --Memory helmet
 					0,
-					99990533, --幽灵战衣
+					99990533, --Ghost armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
-					99950003, --龙之叹息·华美
+					99990317, --Cloth shoes
+					99950003, --Dragon Sigh: Splendid
 				},
 				{
-					99930021, --泰坦戒指
-					99930021, --泰坦戒指
-					99920018, --灵魂项链
-					99940010, --三眼手镯
-					99940010  --三眼手镯
+					99930021, --Titan ring
+					99930021, --Titan ring
+					99920018, --Soul necklace
+					99940010, --Three-eye bracelet
+					99940010  --Three-eye bracelet
 				}
 			}
 		},
-		--06套 35级
+		--Set 06, level 35
 		{
-			--男
+			--Male
 			{
 				{
-					99900024, --无极棍
-					99910001, --记忆头盔
+					99900024, --Wuji staff
+					99910001, --Memory helmet
 					0,
-					99980533, --幽灵战衣
+					99980533, --Ghost armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
-					99950005, --龙之叹息·耀眼
+					99990317, --Cloth shoes
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930021, --泰坦戒指
-					99930021, --泰坦戒指
-					99920018, --灵魂项链
-					99940010, --三眼手镯
-					99940010  --三眼手镯
+					99930021, --Titan ring
+					99930021, --Titan ring
+					99920018, --Soul necklace
+					99940010, --Three-eye bracelet
+					99940010  --Three-eye bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900024, --无极棍
-					99910001, --记忆头盔
+					99900024, --Wuji staff
+					99910001, --Memory helmet
 					0,
-					99990533, --幽灵战衣
+					99990533, --Ghost armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
-					99950005, --龙之叹息·耀眼
+					99990317, --Cloth shoes
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930021, --泰坦戒指
-					99930021, --泰坦戒指
-					99920018, --灵魂项链
-					99940010, --三眼手镯
-					99940010  --三眼手镯
+					99930021, --Titan ring
+					99930021, --Titan ring
+					99920018, --Soul necklace
+					99940010, --Three-eye bracelet
+					99940010  --Three-eye bracelet
 				}
 			}
 		},
-		--07套 40级
+		--Set 07, level 40
 		{
-			--男
+			--Male
 			{
 				{
-					99900027, --龙纹剑
-					99910001, --记忆头盔
+					99900027, --Dragon-pattern sword
+					99910001, --Memory helmet
 					0,
-					99980533, --幽灵战衣
+					99980533, --Ghost armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
-					99950005, --龙之叹息·耀眼
+					99990317, --Cloth shoes
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930021, --泰坦戒指
-					99930021, --泰坦戒指
-					99920018, --灵魂项链
-					99940010, --三眼手镯
-					99940010  --三眼手镯
+					99930021, --Titan ring
+					99930021, --Titan ring
+					99920018, --Soul necklace
+					99940010, --Three-eye bracelet
+					99940010  --Three-eye bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900027, --龙纹剑
-					99910001, --记忆头盔
+					99900027, --Dragon-pattern sword
+					99910001, --Memory helmet
 					0,
-					99990533, --幽灵战衣
+					99990533, --Ghost armor
 					0,
-					99990315, --兽皮腰带
+					99990315, --Hide belt
 					0,
-					99990317, --布鞋
-					99950005, --龙之叹息·耀眼
+					99990317, --Cloth shoes
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930021, --泰坦戒指
-					99930021, --泰坦戒指
-					99920018, --灵魂项链
-					99940010, --三眼手镯
-					99940010  --三眼手镯
+					99930021, --Titan ring
+					99930021, --Titan ring
+					99920018, --Soul necklace
+					99940010, --Three-eye bracelet
+					99940010  --Three-eye bracelet
 				}
 			}
 		},
-		--08套 50级
+		--Set 08, level 50
 		{
-			--男
+			--Male
 			{
 				{
-					99900031, --逍遥扇
-					99990631, --天尊头盔
+					99900031, --Free Spirit fan
+					99990631, --Heavenly Venerable helmet
 					0,
-					99980633, --天尊道袍
+					99980633, --Heavenly Venerable robe
 					0,
-					99990515, --青铜腰带
+					99990515, --Bronze belt
 					0,
-					99990517, --紫绸靴
-					99950005, --龙之叹息·耀眼
+					99990517, --Purple silk boots
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930035, --天尊戒指
-					99930035, --天尊戒指
-					99920029, --天尊项链
-					99940026, --天尊手镯
-					99940026  --天尊手镯
+					99930035, --Heavenly Venerable ring
+					99930035, --Heavenly Venerable ring
+					99920029, --Heavenly Venerable necklace
+					99940026, --Heavenly Venerable bracelet
+					99940026  --Heavenly Venerable bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900031, --逍遥扇
-					99990631, --天尊头盔
+					99900031, --Free Spirit fan
+					99990631, --Heavenly Venerable helmet
 					0,
-					99990633, --天师长袍
+					99990633, --Celestial Master robe
 					0,
-					99990515, --青铜腰带
+					99990515, --Bronze belt
 					0,
-					99990517, --紫绸靴
-					99950005, --龙之叹息·耀眼
+					99990517, --Purple silk boots
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930035, --天尊戒指
-					99930035, --天尊戒指
-					99920029, --天尊项链
-					99940026, --天尊手镯
-					99940026  --天尊手镯
+					99930035, --Heavenly Venerable ring
+					99930035, --Heavenly Venerable ring
+					99920029, --Heavenly Venerable necklace
+					99940026, --Heavenly Venerable bracelet
+					99940026  --Heavenly Venerable bracelet
 				}
 			}
 		}
 	};
 
 	local WarriorEquip_AVG = {
-		--01套 10级
+		--Set 01, level 10
 		{
-			--男
+			--Male
 			{
 				{
-					99900006, --铁剑
-					99990111, --青铜头盔
+					99900006, --Iron sword
+					99990111, --Bronze helmet
 					0,
-					99980113, --布衣
+					99980113, --Cloth armor
 					0,
 					0,
 					0,
@@ -3494,20 +3494,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930004, --牛角戒指
-					99930004, --牛角戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930004, --Horn ring
+					99930004, --Horn ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900006, --铁剑
-					99990111, --青铜头盔
+					99900006, --Iron sword
+					99990111, --Bronze helmet
 					0,
-					99990113, --布衣
+					99990113, --Cloth armor
 					0,
 					0,
 					0,
@@ -3515,23 +3515,23 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930004, --牛角戒指
-					99930004, --牛角戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930004, --Horn ring
+					99930004, --Horn ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			}
 		},
-		--02套 15级
+		--Set 02, level 15
 		{
-			--男
+			--Male
 			{
 				{
-					99900010, --八荒
-					99990211, --魔法头盔
+					99900010, --Eight Wastes
+					99990211, --Magic helmet
 					0,
-					99980213, --轻型盔甲
+					99980213, --Light armor
 					0,
 					0,
 					0,
@@ -3539,20 +3539,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930004, --牛角戒指
-					99930004, --牛角戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930004, --Horn ring
+					99930004, --Horn ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900010, --八荒
-					99990211, --魔法头盔
+					99900010, --Eight Wastes
+					99990211, --Magic helmet
 					0,
-					99990213, --轻型盔甲
+					99990213, --Light armor
 					0,
 					0,
 					0,
@@ -3560,23 +3560,23 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930004, --牛角戒指
-					99930004, --牛角戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930004, --Horn ring
+					99930004, --Horn ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			}
 		},
-		--03套 20级
+		--Set 03, level 20
 		{
-			--男
+			--Male
 			{
 				{
-					99900016, --斩马刀
-					99990211, --魔法头盔
+					99900016, --Horse-slaying blade
+					99990211, --Magic helmet
 					0,
-					99980313, --中型盔甲
+					99980313, --Medium armor
 					0,
 					0,
 					0,
@@ -3584,20 +3584,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930008, --黑色水晶戒指
-					99930008, --黑色水晶戒指
-					99920011, --魔鬼项链
-					99940027, --魔力手镯
-					99940027  --魔力手镯
+					99930008, --Black crystal ring
+					99930008, --Black crystal ring
+					99920011, --Devil necklace
+					99940027, --Magic bracelet
+					99940027  --Magic bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900016, --斩马刀
-					99990211, --魔法头盔
+					99900016, --Horse-slaying blade
+					99990211, --Magic helmet
 					0,
-					99990313, --中型盔甲
+					99990313, --Medium armor
 					0,
 					0,
 					0,
@@ -3605,24 +3605,24 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930008, --黑色水晶戒指
-					99930008, --黑色水晶戒指
-					99920011, --魔鬼项链
-					99940027, --魔力手镯
-					99940027  --魔力手镯
+					99930008, --Black crystal ring
+					99930008, --Black crystal ring
+					99920011, --Devil necklace
+					99940027, --Magic bracelet
+					99940027  --Magic bracelet
 				}
 
 			}
 		},
-		--04套 26级
+		--Set 04, level 26
 		{
-			--男
+			--Male
 			{
 				{
-					99900020, --凝霜
-					99990311, --骷髅头盔
+					99900020, --Frost
+					99990311, --Skull helmet
 					0,
-					99980413, --重盔甲
+					99980413, --Heavy armor
 					0,
 					0,
 					0,
@@ -3630,20 +3630,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930016, --珊瑚戒指
-					99930016, --珊瑚戒指
-					99920013, --蓝翡翠项链
-					99940019, --死神手套
-					99940019  --死神手套
+					99930016, --Coral ring
+					99930016, --Coral ring
+					99920013, --Blue jade necklace
+					99940019, --Death gloves
+					99940019  --Death gloves
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900020, --凝霜
-					99990311, --骷髅头盔
+					99900020, --Frost
+					99990311, --Skull helmet
 					0,
-					99990413, --重盔甲
+					99990413, --Heavy armor
 					0,
 					0,
 					0,
@@ -3651,113 +3651,113 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930016, --珊瑚戒指
-					99930016, --珊瑚戒指
-					99920013, --蓝翡翠项链
-					99940019, --死神手套
-					99940019  --死神手套
+					99930016, --Coral ring
+					99930016, --Coral ring
+					99920013, --Blue jade necklace
+					99940019, --Death gloves
+					99940019  --Death gloves
 				}
 			}
 		},
-		--05套 30级
+		--Set 05, level 30
 		{
-			--男
+			--Male
 			{
 				{
-					99900020, --凝霜
-					99990311, --骷髅头盔
+					99900020, --Frost
+					99990311, --Skull helmet
 					0,
-					99980413, --重盔甲
-					0,
-					0,
+					99980413, --Heavy armor
 					0,
 					0,
-					99950003, --龙之叹息·华美
+					0,
+					0,
+					99950003, --Dragon Sigh: Splendid
 				},
 				{
-					99930016, --珊瑚戒指
-					69900008, --老大戒指
-					99920013, --蓝翡翠项链
-					99940019, --死神手套
-					99940019  --死神手套
+					99930016, --Coral ring
+					69900008, --Boss ring
+					99920013, --Blue jade necklace
+					99940019, --Death gloves
+					99940019  --Death gloves
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900020, --凝霜
-					99990311, --骷髅头盔
+					99900020, --Frost
+					99990311, --Skull helmet
 					0,
-					99990413, --重盔甲
-					0,
-					0,
+					99990413, --Heavy armor
 					0,
 					0,
-					99950005, --龙之叹息·耀眼
+					0,
+					0,
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930016, --珊瑚戒指
-					69900008, --老大戒指
-					99920013, --蓝翡翠项链
-					99940019, --死神手套
-					99940019  --死神手套
+					99930016, --Coral ring
+					69900008, --Boss ring
+					99920013, --Blue jade necklace
+					99940019, --Death gloves
+					99940019  --Death gloves
 				}
 			}
 		},
-		--06套 35级
+		--Set 06, level 35
 		{
-			--男
+			--Male
 			{
 				{
-					99900020, --凝霜
-					99990311, --骷髅头盔
+					99900020, --Frost
+					99990311, --Skull helmet
 					0,
-					99980413, --重盔甲
-					0,
-					0,
+					99980413, --Heavy armor
 					0,
 					0,
-					99950003, --龙之叹息·华美
+					0,
+					0,
+					99950003, --Dragon Sigh: Splendid
 				},
 				{
-					99930018, --龙之戒指
-					69900008, --老大戒指
-					99920013, --蓝翡翠项链
-					99940019, --死神手套
-					99940019  --死神手套
+					99930018, --Dragon ring
+					69900008, --Boss ring
+					99920013, --Blue jade necklace
+					99940019, --Death gloves
+					99940019  --Death gloves
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900020, --凝霜
-					99990311, --骷髅头盔
+					99900020, --Frost
+					99990311, --Skull helmet
 					0,
-					99990413, --重盔甲
-					0,
-					0,
+					99990413, --Heavy armor
 					0,
 					0,
-					99950005, --龙之叹息·耀眼
+					0,
+					0,
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930018, --龙之戒指
-					69900008, --老大戒指
-					99920013, --蓝翡翠项链
-					99940019, --死神手套
-					99940019  --死神手套
+					99930018, --Dragon ring
+					69900008, --Boss ring
+					99920013, --Blue jade necklace
+					99940019, --Death gloves
+					99940019  --Death gloves
 				}
 			}
 		},
-		--07套 40级
+		--Set 07, level 40
 		{
-			--男
+			--Male
 			{
 				{
-					99900019, --炼狱
-					99990311, --骷髅头盔
+					99900019, --Purgatory
+					99990311, --Skull helmet
 					0,
-					99980413, --重盔甲
+					99980413, --Heavy armor
 					0,
 					0,
 					0,
@@ -3765,20 +3765,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930018, --龙之戒指
-					69900008, --老大戒指
-					69900009, --天龙项链
-					99940019, --死神手套
-					99940019  --死神手套
+					99930018, --Dragon ring
+					69900008, --Boss ring
+					69900009, --Heavenly Dragon necklace
+					99940019, --Death gloves
+					99940019  --Death gloves
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900022, --井中月
-					99990311, --骷髅头盔
+					99900022, --Moon in the Well
+					99990311, --Skull helmet
 					0,
-					99990413, --重盔甲
+					99990413, --Heavy armor
 					0,
 					0,
 					0,
@@ -3786,23 +3786,23 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930018, --龙之戒指
-					69900008, --老大戒指
-					69900009, --天龙项链
-					99940019, --死神手套
-					99940019  --死神手套
+					99930018, --Dragon ring
+					69900008, --Boss ring
+					69900009, --Heavenly Dragon necklace
+					99940019, --Death gloves
+					99940019  --Death gloves
 				}
 			}
 		},
-		--08套 50级
+		--Set 08, level 50
 		{
-			--男
+			--Male
 			{
 				{
-					99900019, --炼狱
-					99990311, --骷髅头盔
+					99900019, --Purgatory
+					99990311, --Skull helmet
 					0,
-					99980513, --战神盔甲
+					99980513, --War God armor
 					0,
 					0,
 					0,
@@ -3810,20 +3810,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930018, --龙之戒指
-					69900008, --老大戒指
-					69900009, --天龙项链
-					99940019, --死神手套
-					99940019  --死神手套
+					99930018, --Dragon ring
+					69900008, --Boss ring
+					69900009, --Heavenly Dragon necklace
+					99940019, --Death gloves
+					99940019  --Death gloves
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900019, --炼狱
-					99990311, --骷髅头盔
+					99900019, --Purgatory
+					99990311, --Skull helmet
 					0,
-					99990513, --战神盔甲
+					99990513, --War God armor
 					0,
 					0,
 					0,
@@ -3831,25 +3831,25 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930018, --龙之戒指
-					69900008, --老大戒指
-					69900009, --天龙项链
-					99940019, --死神手套
-					99940019  --死神手套
+					99930018, --Dragon ring
+					69900008, --Boss ring
+					69900009, --Heavenly Dragon necklace
+					99940019, --Death gloves
+					99940019  --Death gloves
 				}
 			}
 		}
 	};
 	local MageEquip_AVG = {
-		-- 01套 10级
+		-- Set 01, level 10
 		{
-			--男
+			--Male
 			{
 				{
-					99900003, --乌木剑
-					99990111, --青铜头盔
+					99900003, --Ebony sword
+					99990111, --Bronze helmet
 					0,
-					99980113, --布衣
+					99980113, --Cloth armor
 					0,
 					0,
 					0,
@@ -3857,20 +3857,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930003, --六角戒指
-					99930003, --六角戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930003, --Hexagonal ring
+					99930003, --Hexagonal ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900003, --乌木剑
-					99990111, --青铜头盔
+					99900003, --Ebony sword
+					99990111, --Bronze helmet
 					0,
-					99990113, --布衣
+					99990113, --Cloth armor
 					0,
 					0,
 					0,
@@ -3878,23 +3878,23 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930003, --六角戒指
-					99930003, --六角戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930003, --Hexagonal ring
+					99930003, --Hexagonal ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			}
 		},
-		-- 02套 15级
+		-- Set 02, level 15
 		{
-			--男
+			--Male
 			{
 				{
-					99900009, --海魂
-					99990221, --魔法头盔
+					99900009, --Sea Soul
+					99990221, --Magic helmet
 					0,
-					99980213, --轻型铠甲
+					99980213, --Light armor
 					0,
 					0,
 					0,
@@ -3902,20 +3902,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930003, --六角戒指
-					99930003, --六角戒指
-					99920004, --黑檀项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930003, --Hexagonal ring
+					99930003, --Hexagonal ring
+					99920004, --Ebony necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900009, --海魂
-					99990221, --魔法头盔
+					99900009, --Sea Soul
+					99990221, --Magic helmet
 					0,
-					99990213, --轻型铠甲
+					99990213, --Light armor
 					0,
 					0,
 					0,
@@ -3923,23 +3923,23 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930003, --六角戒指
-					99930003, --六角戒指
-					99920004, --黑檀项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930003, --Hexagonal ring
+					99930003, --Hexagonal ring
+					99920004, --Ebony necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			}
 		},
-		-- 03套 20级
+		-- Set 03, level 20
 		{
-			--男
+			--Male
 			{
 				{
-					99900013, --偃月
-					99990211, --魔法头盔
+					99900013, --Crescent Moon
+					99990211, --Magic helmet
 					0,
-					99980313, --中型盔甲
+					99980313, --Medium armor
 					0,
 					0,
 					0,
@@ -3947,20 +3947,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930009, --蛇眼戒指
-					99930009, --蛇眼戒指
-					99920006, --白金项链
-					99940008, --黑檀手镯
-					99940008  --黑檀手镯
+					99930009, --Snake eye ring
+					99930009, --Snake eye ring
+					99920006, --Platinum necklace
+					99940008, --Ebony bracelet
+					99940008  --Ebony bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900013, --偃月
-					99990211, --魔法头盔
+					99900013, --Crescent Moon
+					99990211, --Magic helmet
 					0,
-					99990313, --中型盔甲
+					99990313, --Medium armor
 					0,
 					0,
 					0,
@@ -3968,23 +3968,23 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930009, --蛇眼戒指
-					99930009, --蛇眼戒指
-					99920006, --白金项链
-					99940008, --黑檀手镯
-					99940008  --黑檀手镯
+					99930009, --Snake eye ring
+					99930009, --Snake eye ring
+					99920006, --Platinum necklace
+					99940008, --Ebony bracelet
+					99940008  --Ebony bracelet
 				}
 			}
 		},
-		-- 04套  25级
+		-- Set 04, level 25
 		{
-			--男
+			--Male
 			{
 				{
-					99900013, --偃月
-					99990411, --道士头盔
+					99900013, --Crescent Moon
+					99990411, --Taoist helmet
 					0,
-					99980423, --魔法长袍
+					99980423, --Magic robe
 					0,
 					0,
 					0,
@@ -3992,20 +3992,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930013, --降妖除魔戒指
-					99930013, --降妖除魔戒指
-					99920015, --放大镜
-					99940008, --黑檀手镯
-					99940008  --黑檀手镯
+					99930013, --Demon Slayer ring
+					99930013, --Demon Slayer ring
+					99920015, --Magnifying glass
+					99940008, --Ebony bracelet
+					99940008  --Ebony bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900013, --偃月
-					99990411, --道士头盔
+					99900013, --Crescent Moon
+					99990411, --Taoist helmet
 					0,
-					99990423, --魔法长袍
+					99990423, --Magic robe
 					0,
 					0,
 					0,
@@ -4013,205 +4013,205 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930013, --降妖除魔戒指
-					99930013, --降妖除魔戒指
-					99920015, --放大镜
-					99940008, --黑檀手镯
-					99940008  --黑檀手镯
+					99930013, --Demon Slayer ring
+					99930013, --Demon Slayer ring
+					99920015, --Magnifying glass
+					99940008, --Ebony bracelet
+					99940008  --Ebony bracelet
 				}
 			}
 		},
-		-- 05套  30级
+		-- Set 05, level 30
 		{
-			--男
+			--Male
 			{
 				{
-					69910042, --魔杖
-					99990411, --道士头盔
+					69910042, --Magic wand
+					99990411, --Taoist helmet
 					0,
-					99980423, --魔法长袍
-					0,
-					0,
+					99980423, --Magic robe
 					0,
 					0,
-					99950003, --龙之叹息·华美
+					0,
+					0,
+					99950003, --Dragon Sigh: Splendid
 				},
 				{
-					99930013, --降妖除魔戒指
-					69900006, --蟠龙戒指
-					99920015, --放大镜
-					99940008, --黑檀手镯
-					99940008  --黑檀手镯
+					99930013, --Demon Slayer ring
+					69900006, --Coiled Dragon ring
+					99920015, --Magnifying glass
+					99940008, --Ebony bracelet
+					99940008  --Ebony bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900018, --魔杖
-					99990411, --道士头盔
+					99900018, --Magic wand
+					99990411, --Taoist helmet
 					0,
-					99990423, --魔法长袍
-					0,
-					0,
+					99990423, --Magic robe
 					0,
 					0,
-					99950003, --龙之叹息·华美
+					0,
+					0,
+					99950003, --Dragon Sigh: Splendid
 				},
 				{
-					99930013, --降妖除魔戒指
-					69900008, --老大戒指
-					99920015, --放大镜
-					99940008, --黑檀手镯
-					99940008  --黑檀手镯
+					99930013, --Demon Slayer ring
+					69900008, --Boss ring
+					99920015, --Magnifying glass
+					99940008, --Ebony bracelet
+					99940008  --Ebony bracelet
 				}
 			}
 		},
-		-- 06套 35级
+		-- Set 06, level 35
 		{
-			--男
+			--Male
 			{
 				{
-					69910042, --血祭
-					99990411, --道士头盔
+					69910042, --Blood Sacrifice
+					99990411, --Taoist helmet
 					0,
-					99980423, --魔法长袍
-					0,
-					0,
+					99980423, --Magic robe
 					0,
 					0,
-					99950005, --龙之叹息·耀眼
+					0,
+					0,
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930017, --红宝石戒指
-					69900008, --老大戒指
-					99920015, --放大镜
-					99940008, --黑檀手镯
-					99940008  --黑檀手镯
+					99930017, --Ruby ring
+					69900008, --Boss ring
+					99920015, --Magnifying glass
+					99940008, --Ebony bracelet
+					99940008  --Ebony bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					69910042, --血祭
-					99990411, --道士头盔
+					69910042, --Blood Sacrifice
+					99990411, --Taoist helmet
 					0,
-					99990423, --魔法长袍
-					0,
-					0,
+					99990423, --Magic robe
 					0,
 					0,
-					99950005, --龙之叹息·耀眼
+					0,
+					0,
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930017, --红宝石戒指
-					69900008, --老大戒指
-					99920015, --放大镜
-					99940008, --黑檀手镯
-					99940008  --黑檀手镯
+					99930017, --Ruby ring
+					69900008, --Boss ring
+					99920015, --Magnifying glass
+					99940008, --Ebony bracelet
+					99940008  --Ebony bracelet
 				}
 			}
 		},
-		-- 07套 40级
+		-- Set 07, level 40
 		{
-			--男
+			--Male
 			{
 				{
-					99900018, --魔杖
-					99990411, --道士头盔
+					99900018, --Magic wand
+					99990411, --Taoist helmet
 					0,
-					99980423, --魔法长袍
-					0,
-					0,
+					99980423, --Magic robe
 					0,
 					0,
-					99950005, --龙之叹息·耀眼
+					0,
+					0,
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930017, --红宝石戒指
-					69900008, --老大戒指
-					69900009, --天龙项链
-					99940008, --黑檀手镯
-					99940008  --黑檀手镯
+					99930017, --Ruby ring
+					69900008, --Boss ring
+					69900009, --Heavenly Dragon necklace
+					99940008, --Ebony bracelet
+					99940008  --Ebony bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900018, --魔杖
-					99990411, --道士头盔
+					99900018, --Magic wand
+					99990411, --Taoist helmet
 					0,
-					99990423, --魔法长袍
-					0,
-					0,
+					99990423, --Magic robe
 					0,
 					0,
-					99950005, --龙之叹息·耀眼
+					0,
+					0,
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930017, --红宝石戒指
-					69900008, --老大戒指
-					69900009, --天龙项链
-					99940008, --黑檀手镯
-					99940008  --黑檀手镯
+					99930017, --Ruby ring
+					69900008, --Boss ring
+					69900009, --Heavenly Dragon necklace
+					99940008, --Ebony bracelet
+					99940008  --Ebony bracelet
 				}
 			}
 		},
-		-- 08套 50级
+		-- Set 08, level 50
 		{
-			--男
+			--Male
 			{
 				{
-					99900018, --魔杖
-					99990411, --道士头盔
+					99900018, --Magic wand
+					99990411, --Taoist helmet
 					0,
-					99980523, --恶魔长袍
-					0,
-					0,
+					99980523, --Demon robe
 					0,
 					0,
-					99950005, --龙之叹息·耀眼
+					0,
+					0,
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930017, --红宝石戒指
-					69900008, --老大戒指
-					69900009, --天龙项链
-					99940008, --黑檀手镯
-					99940008  --黑檀手镯
+					99930017, --Ruby ring
+					69900008, --Boss ring
+					69900009, --Heavenly Dragon necklace
+					99940008, --Ebony bracelet
+					99940008  --Ebony bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900018, --魔杖
-					99990411, --道士头盔
+					99900018, --Magic wand
+					99990411, --Taoist helmet
 					0,
-					99990523, --恶魔长袍
-					0,
-					0,
+					99990523, --Demon robe
 					0,
 					0,
-					99950005, --龙之叹息·耀眼
+					0,
+					0,
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930017, --红宝石戒指
-					69900008, --老大戒指
-					69900009, --天龙项链
-					99940008, --黑檀手镯
-					99940008  --黑檀手镯
+					99930017, --Ruby ring
+					69900008, --Boss ring
+					69900009, --Heavenly Dragon necklace
+					99940008, --Ebony bracelet
+					99940008  --Ebony bracelet
 				}
 			}
 		}
 	};
 	local TaoistEquip_AVG = {
-		--01套  10级
+		--Set 01, level 10
 		{
-			--男
+			--Male
 			{
 				{
-					99900006, --铁剑
-					99990111, --青铜头盔
+					99900006, --Iron sword
+					99990111, --Bronze helmet
 					0,
-					99980113, --布衣
+					99980113, --Cloth armor
 					0,
 					0,
 					0,
@@ -4219,20 +4219,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930004, --牛角戒指
-					99930004, --牛角戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930004, --Horn ring
+					99930004, --Horn ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900006, --铁剑
-					99990111, --青铜头盔
+					99900006, --Iron sword
+					99990111, --Bronze helmet
 					0,
-					99990113, --布衣
+					99990113, --Cloth armor
 					0,
 					0,
 					0,
@@ -4240,23 +4240,23 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930004, --牛角戒指
-					99930004, --牛角戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930004, --Horn ring
+					99930004, --Horn ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			}
 		},
-		--02套  15级
+		--Set 02, level 15
 		{
-			--男
+			--Male
 			{
 				{
-					99900011, --半月
-					99990211, --魔法头盔
+					99900011, --Half Moon
+					99990211, --Magic helmet
 					0,
-					99990213, --轻型铠甲
+					99990213, --Light armor
 					0,
 					0,
 					0,
@@ -4264,20 +4264,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930004, --牛角戒指
-					99930004, --牛角戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930004, --Horn ring
+					99930004, --Horn ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900011, --半月
-					99990211, --魔法头盔
+					99900011, --Half Moon
+					99990211, --Magic helmet
 					0,
-					99990213, --轻型铠甲
+					99990213, --Light armor
 					0,
 					0,
 					0,
@@ -4285,23 +4285,23 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930004, --牛角戒指
-					99930004, --牛角戒指
-					99920001, --金项链
-					99940004, --大手镯
-					99940004  --大手镯
+					99930004, --Horn ring
+					99930004, --Horn ring
+					99920001, --Gold necklace
+					99940004, --Large bracelet
+					99940004  --Large bracelet
 				}
 			}
 		},
-		--03套  20级
+		--Set 03, level 20
 		{
-			--男
+			--Male
 			{
 				{
-					99900015, --降魔
-					99990211, --魔法头盔
+					99900015, --Demon Subduer
+					99990211, --Magic helmet
 					0,
-					99980313, --中型盔甲
+					99980313, --Medium armor
 					0,
 					0,
 					0,
@@ -4309,20 +4309,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930007, --珍珠戒指
-					99930007, --珍珠戒指
-					99920012, --凤凰明珠
-					99940007, --道士手镯
-					99940007  --道士手镯
+					99930007, --Pearl ring
+					99930007, --Pearl ring
+					99920012, --Phoenix pearl
+					99940007, --Taoist bracelet
+					99940007  --Taoist bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900015, --降魔
-					99990211, --魔法头盔
+					99900015, --Demon Subduer
+					99990211, --Magic helmet
 					0,
-					99990313, --中型盔甲
+					99990313, --Medium armor
 					0,
 					0,
 					0,
@@ -4330,23 +4330,23 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930007, --珍珠戒指
-					99930007, --珍珠戒指
-					99920012, --凤凰明珠
-					99940007, --道士手镯
-					99940007  --道士手镯
+					99930007, --Pearl ring
+					99930007, --Pearl ring
+					99920012, --Phoenix pearl
+					99940007, --Taoist bracelet
+					99940007  --Taoist bracelet
 				}
 			}
 		},
-		--04套 25级
+		--Set 04, level 25
 		{
-			--男
+			--Male
 			{
 				{
-					99900015, --降魔
-					99990431, --道士头盔
+					99900015, --Demon Subduer
+					99990431, --Taoist helmet
 					0,
-					99980433, --灵魂战衣
+					99980433, --Soul armor
 					0,
 					0,
 					0,
@@ -4354,20 +4354,20 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930013, --降妖除魔戒指
-					99930013, --降妖除魔戒指
-					99920014, --竹笛
-					99940019, --死神手套
-					99940019  --死神手套
+					99930013, --Demon Slayer ring
+					99930013, --Demon Slayer ring
+					99920014, --Bamboo flute
+					99940019, --Death gloves
+					99940019  --Death gloves
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900015, --降魔
-					99990431, --道士头盔
+					99900015, --Demon Subduer
+					99990431, --Taoist helmet
 					0,
-					99990433, --灵魂战衣
+					99990433, --Soul armor
 					0,
 					0,
 					0,
@@ -4375,191 +4375,191 @@ function ChangeEquipment(Index, MatchType)
 					0
 				},
 				{
-					99930013, --降妖除魔戒指
-					99930013, --降妖除魔戒指
-					99920014, --竹笛
-					99940019, --死神手套
-					99940019  --死神手套
+					99930013, --Demon Slayer ring
+					99930013, --Demon Slayer ring
+					99920014, --Bamboo flute
+					99940019, --Death gloves
+					99940019  --Death gloves
 				}
 			}
 		},
-		--05套 30级
+		--Set 05, level 30
 		{
-			--男
+			--Male
 			{
 				{
-					99900015, --降魔
-					99990431, --道士头盔
+					99900015, --Demon Subduer
+					99990431, --Taoist helmet
 					0,
-					99980433, --灵魂战衣
-					0,
-					0,
+					99980433, --Soul armor
 					0,
 					0,
-					99950003, --龙之叹息·华美
+					0,
+					0,
+					99950003, --Dragon Sigh: Splendid
 				},
 				{
-					99930013, --降妖除魔戒指
-					69900006, --蟠龙戒指
-					99920014, --竹笛
-					99940019, --死神手套
-					99940019  --死神手套
+					99930013, --Demon Slayer ring
+					69900006, --Coiled Dragon ring
+					99920014, --Bamboo flute
+					99940019, --Death gloves
+					99940019  --Death gloves
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900015, --降魔
-					99990431, --道士头盔
+					99900015, --Demon Subduer
+					99990431, --Taoist helmet
 					0,
-					99990433, --灵魂战衣
-					0,
-					0,
+					99990433, --Soul armor
 					0,
 					0,
-					99950003, --龙之叹息·华美
+					0,
+					0,
+					99950003, --Dragon Sigh: Splendid
 				},
 				{
-					99930013, --降妖除魔戒指
-					69900006, --蟠龙戒指
-					99920014, --竹笛
-					99940007, --道士手镯
-					99940007  --道士手镯
+					99930013, --Demon Slayer ring
+					69900006, --Coiled Dragon ring
+					99920014, --Bamboo flute
+					99940007, --Taoist bracelet
+					99940007  --Taoist bracelet
 				}
 			}
 		},
-		--06套 35级
+		--Set 06, level 35
 		{
-			--男
+			--Male
 			{
 				{
-					99900015, --降魔
-					99990411, --道士头盔
+					99900015, --Demon Subduer
+					99990411, --Taoist helmet
 					0,
-					99980433, --灵魂战衣
-					0,
-					0,
+					99980433, --Soul armor
 					0,
 					0,
-					99950005, --龙之叹息·耀眼
+					0,
+					0,
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930014, --铂金戒指
-					69900008, --老大戒指
-					99920014, --竹笛
-					99940007, --道士手镯
-					99940007  --道士手镯
+					99930014, --Platinum ring
+					69900008, --Boss ring
+					99920014, --Bamboo flute
+					99940007, --Taoist bracelet
+					99940007  --Taoist bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900015, --降魔
-					99990411, --道士头盔
+					99900015, --Demon Subduer
+					99990411, --Taoist helmet
 					0,
-					99990433, --灵魂战衣
-					0,
-					0,
+					99990433, --Soul armor
 					0,
 					0,
-					99950005, --龙之叹息·耀眼
+					0,
+					0,
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930014, --铂金戒指
-					69900008, --老大戒指
-					99920014, --竹笛
-					99940007, --道士手镯
-					99940007  --道士手镯
+					99930014, --Platinum ring
+					69900008, --Boss ring
+					99920014, --Bamboo flute
+					99940007, --Taoist bracelet
+					99940007  --Taoist bracelet
 				}
 			}
 		},
-		--07套 40级
+		--Set 07, level 40
 		{
-			--男
+			--Male
 			{
 				{
-					99900021, --银蛇
-					99990411, --道士头盔
+					99900021, --Silver Serpent
+					99990411, --Taoist helmet
 					0,
-					99980433, --灵魂战衣
-					0,
-					0,
+					99980433, --Soul armor
 					0,
 					0,
-					99950005, --龙之叹息·耀眼
+					0,
+					0,
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930014, --铂金戒指
-					69900008, --老大戒指
-					69900009, --天龙项链
-					99940007, --道士手镯
-					99940007  --道士手镯
+					99930014, --Platinum ring
+					69900008, --Boss ring
+					69900009, --Heavenly Dragon necklace
+					99940007, --Taoist bracelet
+					99940007  --Taoist bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900021, --银蛇
-					99990411, --道士头盔
+					99900021, --Silver Serpent
+					99990411, --Taoist helmet
 					0,
-					99990433, --灵魂战衣
-					0,
-					0,
+					99990433, --Soul armor
 					0,
 					0,
-					99950005, --龙之叹息·耀眼
+					0,
+					0,
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930014, --铂金戒指
-					69900008, --老大戒指
-					69900009, --天龙项链
-					99940007, --道士手镯
-					99940007  --道士手镯
+					99930014, --Platinum ring
+					69900008, --Boss ring
+					69900009, --Heavenly Dragon necklace
+					99940007, --Taoist bracelet
+					99940007  --Taoist bracelet
 				}
 			}
 		},
-		--08套 50级
+		--Set 08, level 50
 		{
-			--男
+			--Male
 			{
 				{
-					99900021, --银蛇
-					99990411, --道士头盔
+					99900021, --Silver Serpent
+					99990411, --Taoist helmet
 					0,
-					99980533, --幽灵战衣
-					0,
-					0,
+					99980533, --Ghost armor
 					0,
 					0,
-					99950005, --龙之叹息·耀眼
+					0,
+					0,
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930014, --铂金戒指
-					69900008, --老大戒指
-					69900009, --天龙项链
-					99940007, --道士手镯
-					99940007  --道士手镯
+					99930014, --Platinum ring
+					69900008, --Boss ring
+					69900009, --Heavenly Dragon necklace
+					99940007, --Taoist bracelet
+					99940007  --Taoist bracelet
 				}
 			},
-			--女
+			--Female
 			{
 				{
-					99900021, --银蛇
-					99990411, --道士头盔
+					99900021, --Silver Serpent
+					99990411, --Taoist helmet
 					0,
-					99990533, --幽灵战衣
-					0,
-					0,
+					99990533, --Ghost armor
 					0,
 					0,
-					99950005, --龙之叹息·耀眼
+					0,
+					0,
+					99950005, --Dragon Sigh: Dazzling
 				},
 				{
-					99930014, --铂金戒指
-					69900008, --老大戒指
-					69900009, --天龙项链
-					99940007, --道士手镯
-					99940007  --道士手镯
+					99930014, --Platinum ring
+					69900008, --Boss ring
+					69900009, --Heavenly Dragon necklace
+					99940007, --Taoist bracelet
+					99940007  --Taoist bracelet
 				}
 			}
 		}
@@ -4581,50 +4581,50 @@ function ChangeEquipment(Index, MatchType)
 	FKeyTable[12] = qssKey11;
 
 	local WarriorSkillList = {};
-	WarriorSkillList[7] = 1031; -- 基础剑术
-	WarriorSkillList[19] = 1032; -- 攻杀剑术
-	WarriorSkillList[25] = 1033; -- 刺杀剑术
-	WarriorSkillList[28] = 1034; -- 半月弯刀
-	WarriorSkillList[30] = 1035; -- 野蛮冲撞
-	WarriorSkillList[35] = 1036; -- 烈火剑法
-	--WarriorSkillList[38] = 1037; -- 狮子吼
-	--WarriorSkillList[47] = 1038; -- 逐日剑法
+	WarriorSkillList[7] = 1031; -- Basic Swordsmanship
+	WarriorSkillList[19] = 1032; -- Attack Swordsmanship
+	WarriorSkillList[25] = 1033; -- Thrust Swordsmanship
+	WarriorSkillList[28] = 1034; -- Half Moon Slash
+	WarriorSkillList[30] = 1035; -- Barbaric Charge
+	WarriorSkillList[35] = 1036; -- Blazing Swordsmanship
+	--WarriorSkillList[38] = 1037; -- Lion Roar
+	--WarriorSkillList[47] = 1038; -- Sun Chasing Swordsmanship
 
 	local MageSkillList = {};
-	MageSkillList[7] = 2531; -- 火球术
-	MageSkillList[12] = 2532; -- 抗拒火环
-	MageSkillList[13] = 2541; -- 诱惑之光
-	MageSkillList[16] = 2544; -- 地狱火
-	MageSkillList[17] = 2533; -- 雷电术
-	MageSkillList[19] = 2538; -- 瞬息移动
-	MageSkillList[20] = 2549; -- 大火球
-	MageSkillList[22] = 2545; -- 爆裂火焰
-	MageSkillList[24] = 2534; -- 火墙
-	MageSkillList[26] = 2536; -- 疾光电影
-	MageSkillList[30] = 2546; -- 地狱雷光
-	MageSkillList[31] = 2535; -- 魔法盾
-	MageSkillList[32] = 2547; -- 圣言术
-	MageSkillList[35] = 2537; -- 冰咆哮
-	--MageSkillList[36] = 2550; -- 寒冰掌
-	--MageSkillList[38] = 2539; -- 灭天火
-	--MageSkillList[47] = 2540; -- 流星火雨
+	MageSkillList[7] = 2531; -- Fireball
+	MageSkillList[12] = 2532; -- Repelling Fire Ring
+	MageSkillList[13] = 2541; -- Light of Temptation
+	MageSkillList[16] = 2544; -- Hellfire
+	MageSkillList[17] = 2533; -- Lightning
+	MageSkillList[19] = 2538; -- Teleport
+	MageSkillList[20] = 2549; -- Greater Fireball
+	MageSkillList[22] = 2545; -- Exploding Flame
+	MageSkillList[24] = 2534; -- Fire Wall
+	MageSkillList[26] = 2536; -- Lightning Beam
+	MageSkillList[30] = 2546; -- Hell Lightning
+	MageSkillList[31] = 2535; -- Magic Shield
+	MageSkillList[32] = 2547; -- Holy Word
+	MageSkillList[35] = 2537; -- Ice Roar
+	--MageSkillList[36] = 2550; -- Ice Palm
+	--MageSkillList[38] = 2539; -- Heavenly Fire
+	--MageSkillList[47] = 2540; -- Meteor Shower
 
 	local TaoistSkillList = {};
-	TaoistSkillList[7] = 3002; -- 治愈术
-	TaoistSkillList[9] = 3001; -- 精神力战法
-	TaoistSkillList[14] = 3004; -- 施毒术
-	TaoistSkillList[18] = 3005; -- 灵魂火符
-	TaoistSkillList[19] = 3003; -- 召唤死灵
-	TaoistSkillList[20] = 3009; -- 隐身术
-	TaoistSkillList[21] = 3014; -- 集体隐身术
-	TaoistSkillList[22] = 3006; -- 幽灵盾
-	TaoistSkillList[25] = 3007; -- 神圣战甲术
-	TaoistSkillList[28] = 3011; -- 困魔阵
-	--TaoistSkillList[29] = 3018; -- 气功波
-	TaoistSkillList[33] = 3012; -- 群体治愈术
-	TaoistSkillList[35] = 3008; -- 召唤神兽
-	--TaoistSkillList[36] = 3015; -- 无极真气
-	--TaoistSkillList[47] = 3010; -- 噬血术
+	TaoistSkillList[7] = 3002; -- Heal
+	TaoistSkillList[9] = 3001; -- Spiritual Combat
+	TaoistSkillList[14] = 3004; -- Poison
+	TaoistSkillList[18] = 3005; -- Soul Fire Talisman
+	TaoistSkillList[19] = 3003; -- Summon Undead
+	TaoistSkillList[20] = 3009; -- Invisibility
+	TaoistSkillList[21] = 3014; -- Group Invisibility
+	TaoistSkillList[22] = 3006; -- Ghost Shield
+	TaoistSkillList[25] = 3007; -- Holy Armor
+	TaoistSkillList[28] = 3011; -- Demon Trap
+	--TaoistSkillList[29] = 3018; -- Qi Wave
+	TaoistSkillList[33] = 3012; -- Group Heal
+	TaoistSkillList[35] = 3008; -- Summon Divine Beast
+	--TaoistSkillList[36] = 3015; -- Wuji Energy
+	--TaoistSkillList[47] = 3010; -- Blood Drain
 
 	local WarriorSkillAutoEquipList = {};
 	WarriorSkillAutoEquipList[25] = {1033,1};
@@ -4756,7 +4756,7 @@ function ChangeEquipment(Index, MatchType)
 	TargetRole:GetAttrList():AddAttrA(TargetRole, catBagWeightLmt, -500);
 
 
-	--先卸载所有slot上的技能,对战士的攻杀剑法做特殊处理
+	--First remove skills from all slots; handle the warrior Attack Swordsmanship skill separately
 	--for i=1, #FKeyTable do
 		--TargetRole:EquipSpell(FKeyTable[i], 0);
 	--end

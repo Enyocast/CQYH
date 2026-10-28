@@ -1,10 +1,10 @@
 local spell_common =
 {
-	{ id = 5324, cd = 2500, chance = 10000, target = tarAITarget },        --人鱼弓手-射击
-	{ id = 5323, cd = 6000, chance = 8000, target = tarAITarget },         --人鱼弓手-挥打
-	{ id = 5325, cd = 12000, chance = 6000, target = tarAITarget },        --人鱼弓手-尖冰穿刺
-	{ id = 3515, cd = 20000, chance = 8000, target = tarAITarget },        --人鱼弓手-连续射击
-	{ id = 3516, cd = 30000, chance = 10000, target = tarSelf },           --人鱼弓手-寒霜加持
+	{ id = 5324, cd = 2500, chance = 10000, target = tarAITarget },        --Merman archer - shot
+	{ id = 5323, cd = 6000, chance = 8000, target = tarAITarget },         --Merman archer - strike
+	{ id = 5325, cd = 12000, chance = 6000, target = tarAITarget },        --Merman archer - ice spike pierce
+	{ id = 3515, cd = 20000, chance = 8000, target = tarAITarget },        --Merman archer - rapid fire
+	{ id = 3516, cd = 30000, chance = 10000, target = tarSelf },           --Merman archer - frost buff
 };
 
 on_enter_fight =

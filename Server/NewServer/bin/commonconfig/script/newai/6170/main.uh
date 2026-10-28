@@ -19,9 +19,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 1 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--幽灵项链·战    2800003 沃玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 200000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99920016 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--Ghost necklace - War; 2800003 Woma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 200000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99920016 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800003 , 1 } },
@@ -46,9 +46,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 2 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--龙之戒指·传    2800003 沃玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930018 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--Dragon ring - Chuan; 2800003 Woma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930018 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800003 , 1 } },
@@ -72,9 +72,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 3 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--龙之戒指·奇    2800003 沃玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930018 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--Dragon ring - Qi; 2800003 Woma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930018 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800003 , 1 } },
@@ -98,9 +98,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 4 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--幽灵手套·永    2800003 沃玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940020 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--Ghost gloves - Yong; 2800003 Woma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940020 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800003 , 1 } },
@@ -124,9 +124,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 5 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--幽灵手套·恒    2800003 沃玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940020 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--Ghost gloves - Heng; 2800003 Woma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940020 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800003 , 1 } },
@@ -160,9 +160,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 1 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--绿色项链·战    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99920017 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Green necklace - War; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99920017 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -186,9 +186,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 2 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--力量戒指·传    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930019 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Strength ring - Chuan; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930019 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -212,9 +212,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 3 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--力量戒指·奇    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930019 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Strength ring - Qi; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930019 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -238,9 +238,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 4 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--骑士手镯·永    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940012 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Knight bracelet - Yong; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940012 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -264,9 +264,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 5 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--骑士手镯·恒    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940012 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Knight bracelet - Heng; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940012 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -290,9 +290,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 6 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--阎罗手套·永    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940021 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Yama gloves - Yong; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940021 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -316,9 +316,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 7 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--阎罗手套·恒    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940021 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Yama gloves - Heng; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940021 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -352,9 +352,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 1 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--圣战项链·战    2800005 赤月解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 2000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99920027 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--Holy War necklace - War; 2800005 Red Moon unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 2000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99920027 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800005 , 1 } },
@@ -378,9 +378,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 2 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--圣战戒指·传    2800005 赤月解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930033 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--Holy War ring - Chuan; 2800005 Red Moon unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930033 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800005 , 1 } },
@@ -404,9 +404,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 3 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--圣战戒指·奇    2800005 赤月解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930033 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--Holy War ring - Qi; 2800005 Red Moon unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930033 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800005 , 1 } },
@@ -430,9 +430,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 4 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--圣战手镯·永    2800005 赤月解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940024 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--Holy War bracelet - Yong; 2800005 Red Moon unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940024 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800005 , 1 } },
@@ -456,9 +456,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 5 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--圣战手镯·恒    2800005 赤月解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940024 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--Holy War bracelet - Heng; 2800005 Red Moon unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940024 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800005 , 1 } },
@@ -492,9 +492,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 1 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--圣战项链·战    2800099 赤月百分百解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 2000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99920027 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--Holy War necklace - War; 2800099 Red Moon guaranteed unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 2000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99920027 , 1 } },--Check whether the equipment is present
 													{ batRoleDelItem , param={ 2800099 , 1 } },
 													{ batRoleDelItem , param={ 99920027 , 1 } },
 													{ batRoleSubMoney , param={ tarRole, 1 , 2000000, MONEYLOG_BT_04 } },
@@ -509,9 +509,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 2 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--圣战戒指·传    2800099 赤月百分百解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930033 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--Holy War ring - Chuan; 2800099 Red Moon guaranteed unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930033 , 1 } },--Check whether the equipment is present
 													{ batRoleDelItem , param={ 2800099 , 1 } },
 													{ batRoleDelItem , param={ 99930033 , 1 } },
 													{ batRoleSubMoney , param={ tarRole, 1 , 1000000, MONEYLOG_BT_04 } },
@@ -526,9 +526,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 3 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--圣战戒指·奇    2800099 赤月百分百解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930033 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--Holy War ring - Qi; 2800099 Red Moon guaranteed unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930033 , 1 } },--Check whether the equipment is present
 													{ batRoleDelItem , param={ 2800099 , 1 } },
 													{ batRoleDelItem , param={ 99930033 , 1 } },
 													{ batRoleSubMoney , param={ tarRole, 1 , 1000000, MONEYLOG_BT_04 } },
@@ -543,9 +543,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 4 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--圣战手镯·永    2800099 赤月百分百解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940024 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--Holy War bracelet - Yong; 2800099 Red Moon guaranteed unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940024 , 1 } },--Check whether the equipment is present
 													{ batRoleDelItem , param={ 2800099 , 1 } },
 													{ batRoleDelItem , param={ 99940024 , 1 } },
 													{ batRoleSubMoney , param={ tarRole, 1 , 1000000, MONEYLOG_BT_04 } },
@@ -560,9 +560,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 5 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--圣战手镯·恒    2800099 赤月百分百解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940024 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--Holy War bracelet - Heng; 2800099 Red Moon guaranteed unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940024 , 1 } },--Check whether the equipment is present
 													{ batRoleDelItem , param={ 2800099 , 1 } },
 													{ batRoleDelItem , param={ 99940024 , 1 } },
 													{ batRoleSubMoney , param={ tarRole, 1 , 1000000, MONEYLOG_BT_04 } },
@@ -597,9 +597,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 1 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--生命项链·法    2800003 沃玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 200000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99920020 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--Life necklace - Mage; 2800003 Woma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 200000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99920020 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800003 , 1 } },
@@ -624,9 +624,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 2 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--红宝石戒指·传    2800003 沃玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930017 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--Ruby ring - Chuan; 2800003 Woma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930017 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800003 , 1 } },
@@ -650,9 +650,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 3 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--红宝石戒指·奇    2800003 沃玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930017 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--Ruby ring - Qi; 2800003 Woma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930017 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800003 , 1 } },
@@ -676,9 +676,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 4 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--思贝尔手镯·永    2800003 沃玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940011 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--Sibei'er bracelet - Yong; 2800003 Woma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940011 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800003 , 1 } },
@@ -702,9 +702,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 5 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--思贝尔手镯·恒    2800003 沃玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940011 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--Sibei'er bracelet - Heng; 2800003 Woma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940011 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800003 , 1 } },
@@ -738,9 +738,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 1 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--恶魔铃铛·法    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99920019 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Demon bell - Mage; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99920019 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -764,9 +764,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 2 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--紫碧螺·传    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930020 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Purple Spiral - Chuan; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930020 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -790,9 +790,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 3 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--紫碧螺·奇    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930020 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Purple Spiral - Qi; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930020 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -816,9 +816,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 4 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--龙之手镯·永    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940016 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Dragon bracelet - Yong; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940016 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -842,9 +842,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 5 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--龙之手镯·恒    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940016 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Dragon bracelet - Heng; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940016 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -878,9 +878,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 1 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--法神项链·法    2800005 赤月解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 2000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99920028 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--Magic God necklace - Mage; 2800005 Red Moon unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 2000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99920028 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800005 , 1 } },
@@ -904,9 +904,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 2 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--法神戒指·传    2800005 赤月解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930034 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--Magic God ring - Chuan; 2800005 Red Moon unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930034 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800005 , 1 } },
@@ -930,9 +930,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 3 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--法神戒指·奇    2800005 赤月解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930034 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--Magic God ring - Qi; 2800005 Red Moon unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930034 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800005 , 1 } },
@@ -956,9 +956,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 4 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--法神手镯·永    2800005 赤月解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940025 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--Magic God bracelet - Yong; 2800005 Red Moon unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940025 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800005 , 1 } },
@@ -982,9 +982,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 5 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--法神手镯·恒    2800005 赤月解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940025 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--Magic God bracelet - Heng; 2800005 Red Moon unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940025 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800005 , 1 } },
@@ -1018,9 +1018,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 1 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--法神项链·法    2800099 赤月百分百解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 2000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99920028 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--Magic God necklace - Mage; 2800099 Red Moon guaranteed unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 2000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99920028 , 1 } },--Check whether the equipment is present
 													{ batRoleDelItem , param={ 2800099 , 1 } },
 													{ batRoleDelItem , param={ 99920028 , 1 } },
 													{ batRoleSubMoney , param={ tarRole, 1 , 2000000, MONEYLOG_BT_04 } },
@@ -1035,9 +1035,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 2 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--法神戒指·传    2800099 赤月百分百解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930034 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--Magic God ring - Chuan; 2800099 Red Moon guaranteed unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930034 , 1 } },--Check whether the equipment is present
 													{ batRoleDelItem , param={ 2800099 , 1 } },
 													{ batRoleDelItem , param={ 99930034 , 1 } },
 													{ batRoleSubMoney , param={ tarRole, 1 , 1000000, MONEYLOG_BT_04 } },
@@ -1052,9 +1052,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 3 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--法神戒指·奇    2800099 赤月百分百解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930034 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--Magic God ring - Qi; 2800099 Red Moon guaranteed unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930034 , 1 } },--Check whether the equipment is present
 													{ batRoleDelItem , param={ 2800099 , 1 } },
 													{ batRoleDelItem , param={ 99930034 , 1 } },
 													{ batRoleSubMoney , param={ tarRole, 1 , 1000000, MONEYLOG_BT_04 } },
@@ -1069,9 +1069,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 4 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--法神手镯·永    2800099 赤月百分百解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940025 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--Magic God bracelet - Yong; 2800099 Red Moon guaranteed unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940025 , 1 } },--Check whether the equipment is present
 													{ batRoleDelItem , param={ 2800099 , 1 } },
 													{ batRoleDelItem , param={ 99940025 , 1 } },
 													{ batRoleSubMoney , param={ tarRole, 1 , 1000000, MONEYLOG_BT_04 } },
@@ -1086,9 +1086,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 5 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--法神手镯·恒    2800099 赤月百分百解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940025 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--Magic God bracelet - Heng; 2800099 Red Moon guaranteed unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940025 , 1 } },--Check whether the equipment is present
 													{ batRoleDelItem , param={ 2800099 , 1 } },
 													{ batRoleDelItem , param={ 99940025 , 1 } },
 													{ batRoleSubMoney , param={ tarRole, 1 , 1000000, MONEYLOG_BT_04 } },
@@ -1123,9 +1123,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 1 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--天珠项链·道    2800003 沃玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 200000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99920021 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--Heavenly Bead necklace - Taoist; 2800003 Woma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 200000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99920021 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800003 , 1 } },
@@ -1150,9 +1150,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 2 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--铂金戒指·传    2800003 沃玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930014 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--Platinum ring - Chuan; 2800003 Woma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930014 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800003 , 1 } },
@@ -1176,9 +1176,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 3 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--铂金戒指·奇    2800003 沃玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930014 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--Platinum ring - Qi; 2800003 Woma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930014 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800003 , 1 } },
@@ -1202,9 +1202,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 4 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--心灵手镯·永    2800003 沃玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940015 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--Spirit bracelet - Yong; 2800003 Woma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940015 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800003 , 1 } },
@@ -1228,9 +1228,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 5 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--心灵手镯·恒    2800003 沃玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940015 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800003 , 1 } },--Spirit bracelet - Heng; 2800003 Woma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 100000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940015 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800003 , 1 } },
@@ -1264,9 +1264,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 1 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--灵魂项链·道    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99920018 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Soul necklace - Taoist; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99920018 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -1290,9 +1290,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 2 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--泰坦戒指·传    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930021 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Titan ring - Chuan; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930021 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -1316,9 +1316,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 3 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--泰坦戒指·奇    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930021 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Titan ring - Qi; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930021 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -1342,9 +1342,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 4 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--三眼手镯·永    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940010 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Three-eye bracelet - Yong; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940010 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -1368,9 +1368,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 5 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--三眼手镯·恒    2800004 祖玛解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940010 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800004 , 1 } },--Three-eye bracelet - Heng; 2800004 Zuma unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 500000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940010 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800004 , 1 } },
@@ -1404,9 +1404,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 1 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--天尊项链·道    2800005 赤月解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 2000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99920029 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--Heavenly Venerable necklace - Taoist; 2800005 Red Moon unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 2000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99920029 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800005 , 1 } },
@@ -1430,9 +1430,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 2 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--天尊戒指·传    2800005 赤月解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930035 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--Heavenly Venerable ring - Chuan; 2800005 Red Moon unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930035 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800005 , 1 } },
@@ -1456,9 +1456,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 3 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--天尊戒指·奇    2800005 赤月解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930035 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--Heavenly Venerable ring - Qi; 2800005 Red Moon unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930035 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800005 , 1 } },
@@ -1482,9 +1482,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 4 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--天尊手镯·永    2800005 赤月解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940026 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--Heavenly Venerable bracelet - Yong; 2800005 Red Moon unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940026 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800005 , 1 } },
@@ -1508,9 +1508,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 5 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--天尊手镯·恒    2800005 赤月解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940026 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800005 , 1 } },--Heavenly Venerable bracelet - Heng; 2800005 Red Moon unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940026 , 1 } },--Check whether the equipment is present
 													{ batRandom, param = { 3500 , 6500 },
 														{ batSequencer ,
 															{ batRoleDelItem , param={ 2800005 , 1 } },
@@ -1544,9 +1544,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 1 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--天尊项链·道    2800099 赤月百分百解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 2000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99920029 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--Heavenly Venerable necklace - Taoist; 2800099 Red Moon guaranteed unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 2000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99920029 , 1 } },--Check whether the equipment is present
 													{ batRoleDelItem , param={ 2800099 , 1 } },
 													{ batRoleDelItem , param={ 99920029 , 1 } },
 													{ batRoleSubMoney , param={ tarRole, 1 , 2000000, MONEYLOG_BT_04 } },
@@ -1561,9 +1561,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 2 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--天尊戒指·传    2800099 赤月百分百解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930035 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--Heavenly Venerable ring - Chuan; 2800099 Red Moon guaranteed unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930035 , 1 } },--Check whether the equipment is present
 													{ batRoleDelItem , param={ 2800099 , 1 } },
 													{ batRoleDelItem , param={ 99930035 , 1 } },
 													{ batRoleSubMoney , param={ tarRole, 1 , 1000000, MONEYLOG_BT_04 } },
@@ -1578,9 +1578,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 3 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--天尊戒指·奇    2800099 赤月百分百解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99930035 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--Heavenly Venerable ring - Qi; 2800099 Red Moon guaranteed unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99930035 , 1 } },--Check whether the equipment is present
 													{ batRoleDelItem , param={ 2800099 , 1 } },
 													{ batRoleDelItem , param={ 99930035 , 1 } },
 													{ batRoleSubMoney , param={ tarRole, 1 , 1000000, MONEYLOG_BT_04 } },
@@ -1595,9 +1595,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 4 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--天尊手镯·永    2800099 赤月百分百解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940026 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--Heavenly Venerable bracelet - Yong; 2800099 Red Moon guaranteed unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940026 , 1 } },--Check whether the equipment is present
 													{ batRoleDelItem , param={ 2800099 , 1 } },
 													{ batRoleDelItem , param={ 99940026 , 1 } },
 													{ batRoleSubMoney , param={ tarRole, 1 , 1000000, MONEYLOG_BT_04 } },
@@ -1612,9 +1612,9 @@ evtAIInteract =
 											{batRoleCheckInteractOption, param = { 5 } },
 											{batSelector,
 												{batSequencer, 
-													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--天尊手镯·恒    2800099 赤月百分百解封卷
-													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--检查钱
-													{ batRoleCheckItemCount , param={ boGTE, 99940026 , 1 } },--检查有没有装备
+													{ batRoleCheckItemCount , param={ boGTE, 2800099 , 1 } },--Heavenly Venerable bracelet - Heng; 2800099 Red Moon guaranteed unsealing scroll
+													{ batRoleCheckMoney , param={ boGTE, 1 , 1000000 } },--Check money
+													{ batRoleCheckItemCount , param={ boGTE, 99940026 , 1 } },--Check whether the equipment is present
 													{ batRoleDelItem , param={ 2800099 , 1 } },
 													{ batRoleDelItem , param={ 99940026 , 1 } },
 													{ batRoleSubMoney , param={ tarRole, 1 , 1000000, MONEYLOG_BT_04 } },

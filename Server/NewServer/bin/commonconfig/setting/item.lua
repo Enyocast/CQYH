@@ -6,13 +6,13 @@ item_define = {
 		default = 0,
 		min = 0,
 	},
-	Type = {								-- 	物品种类，最多有11种,ITEMTYPE_TOTAL
+	Type = {								-- 	Item type, up to 11 types; ITEMTYPE_TOTAL
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 11,
 	},
-	SubType = {								--  物品种类，最多有15种,ITEMSUBTYPE_EQUIP_AVATAR最大
+	SubType = {								--  Item subtype, up to 15 types; maximum ITEMSUBTYPE_EQUIP_AVATAR
 		type = 'number',
 		default = 0,
 		min = 0,
@@ -29,7 +29,7 @@ item_define = {
 		min = 0,
 		max = 15,
 	},
-	RequireGender = {						--  性别，最多有3种,cstTotal最大
+	RequireGender = {						--  Sex, up to 3 values; maximum cstTotal
 		type = 'number',
 		default = 0,
 		min = 0,
@@ -46,7 +46,7 @@ item_define = {
 		min = 0,
 		max = 99999,
 	},
-	Color = {								--  颜色，最多有7种,ITEMCOLOR_TOTAL最大
+	Color = {								--  Color, up to 7 values; maximum ITEMCOLOR_TOTAL
 		type = 'number',
 		default = 0,
 		min = 0,
@@ -58,7 +58,7 @@ item_define = {
 		min = 0,
 		max = 10,
 	},
-	DurType = {								-- 持久度类型，最多有3种,DURTYPE_USE最大
+	DurType = {								-- Durability type, up to 3 values; maximum DURTYPE_USE
 		type = 'number',
 		default = 0,
 		min = 0,

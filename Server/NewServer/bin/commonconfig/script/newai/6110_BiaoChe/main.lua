@@ -14,8 +14,8 @@ LoadPackage("quest_list.pkg");
 Include("script/newai/sub_tree/sub_tree.lh")
 Include("script/include/escort.lh")
 
-BROCAST_LOSE_ESCORT_TIMER = nastCustom + 1;                -- 镖车丢失通知定时器
-CHECK_ESCORT_DISTANCE_TIMER = nastCustom + 2;              -- 检测镖车距离定时器
+BROCAST_LOSE_ESCORT_TIMER = nastCustom + 1;                -- Escort cart lost notification timer
+CHECK_ESCORT_DISTANCE_TIMER = nastCustom + 2;              -- Escort cart distance check timer
 
 g_GameWorld = CGameWorld:GetInstance();
 

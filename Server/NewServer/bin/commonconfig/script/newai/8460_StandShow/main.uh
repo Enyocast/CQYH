@@ -1,5 +1,5 @@
 
--- A 王氏
+-- A: Wang
 evtAIIdle = 
 { batSelector,
     {batSequencer,

@@ -13,26 +13,26 @@ function main(oRole, oHero)
 
 	if class == clsWarrior then
 
-		-- 提供角色武器
-		oRole:GetItemBag():EquipHeroItemOnBirth(10110211, NES_MAIN_HAND); -- 并持短柄重型类(双手剑)
+		-- Provide character weapon
+		oRole:GetItemBag():EquipHeroItemOnBirth(10110211, NES_MAIN_HAND); -- Two-handed heavy short weapon (two-handed sword)
 
-		-- 刺客角色配置
+		-- Assassin configuration
 	elseif class == clsRogue then
 
-		-- 提供角色武器			
-		oRole:GetItemBag():EquipHeroItemOnBirth(10120211, NES_MAIN_HAND); -- 双持匕首
+		-- Provide character weapon
+		oRole:GetItemBag():EquipHeroItemOnBirth(10120211, NES_MAIN_HAND); -- Dual daggers
 
-		-- 弓手角色配置
+		-- Archer configuration
 	elseif class == clsArcher then
 
-		-- 提供角色武器	
-		oRole:GetItemBag():EquipHeroItemOnBirth(10130111, NES_MAIN_HAND); -- 双持弩
+		-- Provide character weapon
+		oRole:GetItemBag():EquipHeroItemOnBirth(10130111, NES_MAIN_HAND); -- Dual crossbows
 
-		-- 法师角色配置
+		-- Mage configuration
 	elseif class == clsMage then
 
-		-- 提供角色武器	
-		oRole:GetItemBag():EquipHeroItemOnBirth(10140311, NES_MAIN_HAND); -- 法杖类		
+		-- Provide character weapon
+		oRole:GetItemBag():EquipHeroItemOnBirth(10140311, NES_MAIN_HAND); -- Staff type
 
 	end
 

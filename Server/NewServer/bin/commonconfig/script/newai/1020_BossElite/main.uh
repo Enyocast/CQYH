@@ -1,11 +1,11 @@
 local spell_common =
 {
-	{ id = 3766, cd = 2500, chance = 10000, target = tarAITarget },         --邪恶钳虫-扑腾 : 微微跳起来扑腾一下身前的目标，会对中距离产生伤害并击退。
-	{ id = 3773, cd = 10000, chance = 10000, target = tarAITarget },        --邪恶钳虫-魔力释放 : 释放魔力堆积的能量。
-	{ id = 3769, cd = 15000, chance = 10000, target = tarAITarget },        --邪恶钳虫-恶臭气息 : 邪恶钳虫会抖动尾部，产生恶臭气息，污染一个区域，形成持续的瘴气。进入的单位会沉默一段时间。有一定几率,恶臭气息会漂移。
-	{ id = 3770, cd = 16000, chance = 10000, target = tarAITarget },        --邪恶钳虫-钳杀啮咬 : 长前置后，猛地向前咬出，抓住目标后会进行持续撕扯。并回复HP。
-	{ id = 3771, cd = 25000, chance = 7000, target = tarAITarget },         --邪恶钳虫-毒虫制造 : 向一个目标发射毒浆。使得其变成一只具有污染效果的单位，会持续队周围造成伤害，并导致中毒。
-	{ id = 3772, cd = 45000, chance = 10000, target = tarSelf },            --邪恶钳虫-坦克猛冲 : 钳虫加持了Buff，无法使用技能但可以移动。移动对周围产生余震。
+	{ id = 3766, cd = 2500, chance = 10000, target = tarAITarget },         --Evil Claw Worm - Flail: hops and strikes targets in front, damaging and knocking them back at medium range
+	{ id = 3773, cd = 10000, chance = 10000, target = tarAITarget },        --Evil Claw Worm - Magic Release: releases accumulated magical energy
+	{ id = 3769, cd = 15000, chance = 10000, target = tarAITarget },        --Evil Claw Worm - Foul Breath: shakes its tail to create a persistent contaminated area that silences entrants; the cloud may drift
+	{ id = 3770, cd = 16000, chance = 10000, target = tarAITarget },        --Evil Claw Worm - Crushing Bite: after a long wind-up, bites and repeatedly tears the target while recovering HP
+	{ id = 3771, cd = 25000, chance = 7000, target = tarAITarget },         --Evil Claw Worm - Poison Creation: fires venom at a target, causing it to continuously damage and poison nearby units
+	{ id = 3772, cd = 45000, chance = 10000, target = tarSelf },            --Evil Claw Worm - Tank Charge: receives a buff that prevents skill use but allows movement, causing nearby aftershocks
 };
 
 on_cast_spell =

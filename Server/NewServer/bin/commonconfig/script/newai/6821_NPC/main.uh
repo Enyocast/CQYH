@@ -1,7 +1,7 @@
 
 evtAIInteract = 
 		{ batSelector,
-			--检查是否具备足够的物品
+			--Check whether there are enough items
 			{ batSequencer, 
 				{ batRoleOpenDialog, param = { 50594, 50000, 0, 0 } },	
 				{ batSequencer, 

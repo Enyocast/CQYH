@@ -11,7 +11,7 @@ function TestCase.friend.Friend()
     local msg;
     local session_id1, session_id2;
 
-    --登录
+    --Log in
     user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user1");
     check(role1, "failed to create role1");
@@ -22,50 +22,50 @@ function TestCase.friend.Friend()
     check(role2, "failed to create role2");
     session_id2 = user2:GetSessionID();
 
-    --user1: 加user2为好友(以RoleID为根据)
+    --user1: add user2 as a friend by RoleID
     ret = user1:AddFriend(role2:GetObjID(), "");
     check(ret, "failed to add friend");
 
-    --user1: 收到加好友回复
+    --user1: receive the add-friend response
     msg = recv_msg(5, session_id1, protocol.m2c_friend_add);
     check(msg, "faield to recv m2c_friend_add");
     check(msg.dwRoleID == role2:GetObjID(), "failed to recv correct friend add msg");
     check(msg.szRoleName == user_name2, "failed to recv correct friend add msg");
 
-    --user1: 删掉好友user2
+    --user1: remove user2 from friends
     ret = user1:DelFriend(role2:GetObjID());
     check(ret, "failed to del friend");
 
-    --user1: 收到删好友回复
+    --user1: receive the remove-friend response
     msg = recv_msg(5, session_id1, protocol.m2c_friend_del);
     check(msg, "faield to recv m2c_friend_del");
     check(msg.dwRoleID == role2:GetObjID(), "failed to recv correct friend del msg");
 
-    --user1: 加user2为好友(以RoleName为根据)
+    --user1: add user2 as a friend by RoleName
     ret = user1:AddFriend(0, user_name2);
     check(ret, "failed to add friend");
 
-    --user1: 收到加好友回复
+    --user1: receive the add-friend response
     msg = recv_msg(5, session_id1, protocol.m2c_friend_add);
     check(msg, "faield to recv m2c_friend_add");
     check(msg.dwRoleID == role2:GetObjID(), "failed to recv correct friend add msg");
     check(msg.szRoleName == user_name2, "failed to recv correct friend add msg");
 
-    --user2: 收到被加好友回复
+    --user2: receive the added-as-friend response
     msg = recv_msg(5, session_id2, protocol.m2c_friend_added_by);
     check(msg, "faield to recv m2c_friend_added_by");
     check(msg.dwRoleID == role1:GetObjID(), "failed to recv correct friend add msg");
     check(msg.szRoleName == user_name1, "failed to recv correct friend add msg");
 
-    --user1: 改变好友分组
+    --user1: change the friend group
     ret = user1:ChangeFriendGroup(role2:GetObjID(), 3);
     check(ret, "failed to change friend group");
 
-    --user1: 删掉好友user2
+    --user1: remove user2 from friends
     ret = user1:DelFriend(role2:GetObjID());
     check(ret, "failed to del friend");
 
-    --登出
+    --Log out
     cleanup(user1);
     cleanup(user2);
 end
@@ -108,7 +108,7 @@ function TestCase.friend.ShieldList()
     local msg;
     local session_id1, session_id2;
 
-    --登录
+    --Log in
     user1, role1 = startup(user_name1, user_name1,1);
     check(user1, "failed to create user1");
     check(role1, "failed to create role1");
@@ -123,7 +123,7 @@ function TestCase.friend.ShieldList()
 	msg = recv_msg(50, session_id1, protocol.g2c_shield_ack);
 	check(msg, "failed to recv protocol.g2c_shield_ack");
 
-	--登出
+	--Log out
     cleanup(user1);
     cleanup(user2);
 
@@ -150,7 +150,7 @@ function TestCase.friend.PersonalEnemy()
     local msg;
     local session_id1, session_id2;
 
-    --登录
+    --Log in
     user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user1");
     check(role1, "failed to create role1");
@@ -167,7 +167,7 @@ function TestCase.friend.PersonalEnemy()
 	msg = recv_msg(50, session_id1, protocol.m2c_personal_enemy_add);
 	check(msg, "failed to recv protocol.m2c_personal_enemy_add");
 
-	--登出
+	--Log out
     cleanup(user1);
     cleanup(user2);
 

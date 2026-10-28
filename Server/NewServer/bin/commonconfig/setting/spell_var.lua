@@ -1,7 +1,7 @@
 
 spell_var_define = {
 	owner='张敬轩',
-	ID = {	--SPELL_NODE(spell_node.txt) 只关联SPELL_VAR, SPELL_VAR(spell_var.txt) 只关联 SPELL_ENTRY(spell.txt), SPELL_ENTRY 只关联 RUNE_ENTRY(rune.txt), RUNE_ENTRY 关联...
+	ID = {	--SPELL_NODE (spell_node.txt) references only SPELL_VAR; SPELL_VAR (spell_var.txt) references only SPELL_ENTRY (spell.txt); SPELL_ENTRY references only RUNE_ENTRY (rune.txt); RUNE_ENTRY references...
 		type = 'rule',
 		rule = [[
 			local tabconfig = CCheckData:GetInstance():GetDataByName("spell");

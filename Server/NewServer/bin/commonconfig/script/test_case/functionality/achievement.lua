@@ -7,7 +7,7 @@ LoadPackage("achievement_list.pkg");
 
 function TestCase.Achievement()
 
-    -- 登陆
+    -- Log in
     local user_name1 = "achievement1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
@@ -23,8 +23,8 @@ function TestCase.Achievement()
 	local user1sessionid = user1:GetSessionID();
 	local user2sessionid = user2:GetSessionID();
 
-	-- 成就1: 等级达到2级,获得ID为104的物品,身上金币超过1000
-	-- 成就2: 进入场景为102的地图, 完成任务ID为102的任务, 放弃任务超过10个
+	-- Achievement 1: reach level 2, obtain item 104, and carry more than 1,000 gold
+	-- Achievement 2: enter scene 102, complete quest 102, and abandon more than 10 quests
 
 	-- User1
 
@@ -103,7 +103,7 @@ function _achievement(achievement_data)
 
 	print("-------------start to _achievement----------");
 
-	-- 登陆
+	-- Log in
     local user_name = "achieve1"..achievement_data["nAchievementID"]..os.date("%H%M%S");
     local user, role = startup(user_name, user_name);
     check(user, "failed to create user");
@@ -130,7 +130,7 @@ function _achievement(achievement_data)
 		check(ret, "PreAchievementID2 fail");
 	end
 
-	-- 接受任务
+	-- Accept quest
 	ret = user:CompleteAchievement(achievement_data["nAchievementID"]);
 	check(ret, "CompleteAchievement : "..achievement_data["nAchievementID"].. "fail");
 
@@ -185,14 +185,14 @@ function complete_achievem(user1, role1, Type, value1, value2, value3)
 
 		msg = recv_msg(10, user1sessionid, protocol.g2c_item_change);
 		check(msg, "failed to receive g2c_item_change in type: adEquip");
-	elseif Type == adEquipColor then	-- 30004 精致的影武腰带 color 3
+	elseif Type == adEquipColor then	-- 30004 Refined Shadow Warrior Belt, color 3
 		print("-----adEquipColor--------");
 		ret = user1:GMCommand("AddItem(30004, 1)");
 		check(ret, "fail to adEquip")
 
 		msg = recv_msg(10, user1sessionid, protocol.g2c_item_change);
 		check(msg, "failed to receive g2c_item_change in type: adEquip");
-	elseif Type == adEquipBodyColor then -- 30004 精致的影武腰带 color 3
+	elseif Type == adEquipBodyColor then -- 30004 Refined Shadow Warrior Belt, color 3
 		print("-----adEquipBodyColor--------");
 		ret = user1:GMCommand("AddItem(30004, 1)");
 		check(ret, "fail to adEquip")
@@ -200,7 +200,7 @@ function complete_achievem(user1, role1, Type, value1, value2, value3)
 		msg = recv_msg(10, user1sessionid, protocol.g2c_item_change);
 		check(msg, "failed to receive g2c_item_change in type: adEquip");
 
-		ret = user1:MoveItem(0,0,0, 7); -- 装备到腰部
+		ret = user1:MoveItem(0,0,0, 7); -- Equip in the waist slot
 		check(ret, "fail to add move item")
 
 	elseif Type == adBankSlotCount then
@@ -244,7 +244,7 @@ function complete_achievem(user1, role1, Type, value1, value2, value3)
 		msg = recv_msg(10, user1sessionid, protocol.g2c_money_change);
 		check(msg, "failed to receive g2c_money_change in type: adTotalMoneyType_04");
 	elseif Type == adKillPlayerTotalCount then
-		-- 登陆
+		-- Log in
 		local user_name2 = "achievement2"..os.date("%H%M%S");
 		local user2, role2 = startup(user_name2, user_name2);
 		check(user2, "failed to create user");
@@ -279,7 +279,7 @@ function complete_achievem(user1, role1, Type, value1, value2, value3)
 
 		_CompleteQuestWithoutConditionIndex(user1, role1, quest_data, 0, nTime);
 	elseif Type == adCompleteQuestCount then
-		-- 遍历所有任务
+		-- Traverse all quests
 		local completecount = 0;
 
 		local quest_data = CDataManager_Quest_DATA_:GetInstance():GetFirstData();
@@ -308,7 +308,7 @@ function complete_achievem(user1, role1, Type, value1, value2, value3)
 		msg = recv_msg(10, user1sessionid, protocol.g2c_role_learn_spell);
 		check(msg, "failed to receive g2c_role_learn_spell in type: adLearnSpell");
 	elseif Type == adSpellCount then
-		local remaincout = value1 - 8;	-- 剩余spell 数量
+		local remaincout = value1 - 8;	-- Remaining spell count
 		local spell_data = CDataManager_SPELL_ENTRY_:GetInstance():GetFirstData();
 
 		while (spell_data and spell_data.m_nAttrTable["satClass"] and remaincount > 0) do
@@ -391,11 +391,11 @@ function complete_achievem(user1, role1, Type, value1, value2, value3)
 			check(user2, "failed to create user");
 			check(role2, "failed to create role");
 
-			--user1: 加user2为好友(以RoleID为根据)
+			--user1: add user2 as a friend by RoleID
 			ret = user1:AddFriend(role2:GetObjID(), "");
 			check(ret, "failed to add friend");
 
-			--user1: 收到加好友回复
+			--user1: receive the add-friend response
 			msg = recv_msg(5, session_id1, protocol.m2c_friend_add);
 			check(msg, "faield to recv m2c_friend_add");
 			check(msg.dwRoleID == role2:GetObjID(), "failed to recv correct friend add msg");
@@ -473,7 +473,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 		local totalpick = 0;
 
 		while (totalpic < value2) do
-			ret = user:GMCommand(cmd);		-- 战士，野蛮冲撞
+			ret = user:GMCommand(cmd);		-- Warrior: Barbaric Charge
 			wait(3);
 
 			msg = recv_msg(10, user1sessionid, protocol.g2c_pickup_money);
@@ -505,7 +505,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 	elseif (value1 == ervtRelieveMoneyTotal) then
 		local totalcost = 0;
 
-		ret = user:GMCommand("AddMoney("..MONEYTYPE_01..", 10000000, MONEYLOG_GM_COMMAND)");	-- 加钱
+		ret = user:GMCommand("AddMoney("..MONEYTYPE_01..", 10000000, MONEYLOG_GM_COMMAND)");	-- Add money
 		check(ret, "fail to adTotalMoneyType_01");
 
 		msg = recv_msg(10, user1sessionid, protocol.g2c_money_change);
@@ -513,11 +513,11 @@ function complete_variable(user, role, Type, value1, value2, value3)
 
 		while (totalcost < value2) do
 			for i = 1, 10 do
-				--用GM指令召唤一个NPC
+				--Spawn an NPC using a GM command
 				ret = user:GMCommand("SummonNpc(109)");
 				check(ret, "failed to send gm command");
 
-				--检查召唤出的NPC
+				--Check the spawned NPC
 				msg = recv_msg(5, session_id, protocol.g2c_char_appear)
 				check(msg, "Npc appear fail.")
 			end
@@ -531,31 +531,31 @@ function complete_variable(user, role, Type, value1, value2, value3)
 				wait(5);
 			end
 
-			ret = user:CastSpell(8001, role:GetObjID(), role:GetX(), role:GetY(), role:GetZ());	-- 假设花金币复活的技能ID为8001
+			ret = user:CastSpell(8001, role:GetObjID(), role:GetX(), role:GetY(), role:GetZ());	-- Assume the skill ID for gold-funded resurrection is 8001
 			check(ret, "failed to cast spell with type: ervtRelieveMoneyTotal");
 
 			msg = recv_msg(10, user1sessionid, protocol.g2c_char_revive);
 			check(msg, "failed to receive g2c_char_revive in type: ervtRelieveMoneyTotal");
 			wait(5);
 		end
-	elseif (value1 == ervtRepairMoneyTotal) then	-- 假设102为装备的ID, 假设是武器,因为是把主手上的装备拿下来 这个现在还没实现完,维修以后服务器暂时没扣钱
+	elseif (value1 == ervtRepairMoneyTotal) then	-- Assume equipment ID 102 is a weapon, since the main-hand item is removed. This is not fully implemented; the server does not yet deduct repair money.
 		ret = user:GMCommand("AddItem(102, 1)");
 		check(ret, "fail to adEquip")
 
 		msg = recv_msg(10, user1sessionid, protocol.g2c_item_change);
 		check(msg, "failed to receive g2c_item_change in type: adEquip");
 
-		--用GM指令召唤一个NPC
-		ret = user:GMCommand("SummonNpc(6003)");	-- 假设修理的npc的ID为6003
+		--Spawn an NPC using a GM command
+		ret = user:GMCommand("SummonNpc(6003)");	-- Assume the repair NPC ID is 6003
 		check(ret, "failed to send gm command");
 
-		--检查召唤出的NPC
+		--Check the spawned NPC
 		msg = recv_msg(5, session_id, protocol.g2c_char_appear)
 		check(msg, "Npc appear fail.")
 		local diag_npc_id = msg.stAppearData.dwCharID
 		check(diag_npc_id ~= 0, "Npc appear fail.")
 
-		--点选NPC
+		--Select the NPC
 		ret = user:InteractWithNpc(diag_npc_id);
 		check(ret, "failed to interact with npc");
 
@@ -579,24 +579,24 @@ function complete_variable(user, role, Type, value1, value2, value3)
 
 			wait(5);
 		end
-	elseif (value1 == ervtRepairMoneyMax) then	-- 假设102为装备的ID, 假设是武器,因为是把主手上的装备拿下来,维修以后服务器暂时没扣钱
+	elseif (value1 == ervtRepairMoneyMax) then	-- Assume equipment ID 102 is a weapon, since the main-hand item is removed; the server does not yet deduct repair money.
 		ret = user:GMCommand("AddItem(102, 1)");
 		check(ret, "fail to adEquip")
 
 		msg = recv_msg(10, user1sessionid, protocol.g2c_item_change);
 		check(msg, "failed to receive g2c_item_change in type: adEquip");
 
-		--用GM指令召唤一个NPC
-		ret = user:GMCommand("SummonNpc(6003)");	-- 假设修理的npc的ID为6003
+		--Spawn an NPC using a GM command
+		ret = user:GMCommand("SummonNpc(6003)");	-- Assume the repair NPC ID is 6003
 		check(ret, "failed to send gm command");
 
-		--检查召唤出的NPC
+		--Check the spawned NPC
 		msg = recv_msg(5, session_id, protocol.g2c_char_appear)
 		check(msg, "Npc appear fail.")
 		local diag_npc_id = msg.stAppearData.dwCharID
 		check(diag_npc_id ~= 0, "Npc appear fail.")
 
-		--点选NPC
+		--Select the NPC
 		ret = user:InteractWithNpc(diag_npc_id);
 		check(ret, "failed to interact with npc");
 
@@ -637,7 +637,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			wait(5);
 		end
 	elseif (value1 == ervtPVPKilledByPlayer) then
-		-- 登陆
+		-- Log in
 		local user_name2 = "achievement2"..os.date("%H%M%S");
 		local user2, role2 = startup(user_name2, user_name2);
 		check(user2, "failed to create user");
@@ -707,18 +707,18 @@ function complete_variable(user, role, Type, value1, value2, value3)
 		local cmd = "local oNpc = SummonNpc(101); oNpc:SetHp(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ()); wait(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ());";
 
 		for i = 1, value2 do
-		    ret = user:GMCommand(cmd);		-- 战士，野蛮冲撞
+		    ret = user:GMCommand(cmd);		-- Warrior: Barbaric Charge
 			wait(3);
 		end
 	elseif (value1 == ervtKillMonsterCount) then
 		local cmd = "local oNpc = SummonNpc(101); oNpc:SetHp(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ()); wait(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ());";
 
 		for i = 1, value2 do
-		    ret = user:GMCommand(cmd);		-- 战士，野蛮冲撞
+		    ret = user:GMCommand(cmd);		-- Warrior: Barbaric Charge
 			wait(3);
 		end
 	elseif (value1 == ervtKillWarriorCount) then
-		-- 登陆
+		-- Log in
 		local user_name2 = "achievement2"..os.date("%H%M%S");
 		local user2, role2 = startup(user_name2, user_name2);
 		check(user2, "failed to create user");
@@ -743,7 +743,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			wait(5);
 		end
 	elseif (value1 == ervtKillMageCount) then
-		-- 登陆
+		-- Log in
 		local user_name2 = "achievement2"..os.date("%H%M%S");
 		local user2, role2 = startup(user_name2, user_name2, nil, clsMage);
 		check(user2, "failed to create user");
@@ -768,7 +768,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			wait(5);
 		end
 	elseif (value1 == ervtKillRogueCount) then
-		-- 登陆
+		-- Log in
 		local user_name2 = "achievement2"..os.date("%H%M%S");
 		local user2, role2 = startup(user_name2, user_name2, nil, clsRogue);
 		check(user2, "failed to create user");
@@ -793,7 +793,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			wait(5);
 		end
 	elseif (value1 == ervtKillArcherCount) then
-		-- 登陆
+		-- Log in
 		local user_name2 = "achievement2"..os.date("%H%M%S");
 		local user2, role2 = startup(user_name2, user_name2, nil, clsArcher);
 		check(user2, "failed to create user");
@@ -827,7 +827,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 		    JumpToStartMap(user);
 		end
 	elseif (value1 == ervtCompleteMainQuestCount) then
-		-- 遍历所有任务
+		-- Traverse all quests
 		local i = 0;
 
 		local quest_data = CDataManager_Quest_DATA_:GetInstance():GetFirstData();
@@ -846,7 +846,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 
 		check(i >= value2, "fail to complete ervtCompleteMainQuestCount with Type: Variable");
 	elseif (value1 == ervtCompleteSubQuestCount) then
-		-- 遍历所有任务
+		-- Traverse all quests
 		local i = 0;
 
 		local quest_data = CDataManager_Quest_DATA_:GetInstance():GetFirstData();
@@ -865,7 +865,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 
 		check(i >= value2, "fail to complete ervtCompleteSubQuestCount with Type: Variable");
 	elseif (value1 == ervtCompleteHiddenQuestCount) then
-		-- 遍历所有任务
+		-- Traverse all quests
 		local i = 0;
 
 		local quest_data = CDataManager_Quest_DATA_:GetInstance():GetFirstData();
@@ -884,7 +884,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 
 		check(i >= value2, "fail to complete ervtCompleteHiddenQuestCount with Type: Variable");
 	elseif (value1 == ervtCompleteDailyQuestCount) then
-		-- 遍历所有任务
+		-- Traverse all quests
 		local i = 0;
 
 		local quest_data = CDataManager_Quest_DATA_:GetInstance():GetFirstData();
@@ -933,11 +933,11 @@ function complete_variable(user, role, Type, value1, value2, value3)
 		end
 	elseif (value1 == ervtMaxHPBeHit) then
 		for i = 1, 10 do
-			--用GM指令召唤一个NPC
+			--Spawn an NPC using a GM command
 			ret = user:GMCommand("SummonNpc(109)");
 			check(ret, "failed to send gm command");
 
-			--检查召唤出的NPC
+			--Check the spawned NPC
 			msg = recv_msg(5, session_id, protocol.g2c_char_appear)
 			check(msg, "Npc appear fail.")
 			local diag_npc_id = msg.stAppearData.dwCharID
@@ -955,7 +955,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 				maxvalue = msg.nvalue;
 			end
 		end
-	elseif (value1 == ervtUseChaseSpellCount) then -- 假设追击技能ID为102
+	elseif (value1 == ervtUseChaseSpellCount) then -- Assume the pursuit skill ID is 102
 		local cmd = "local oNpc = SummonNpc(109); oNpc:SetHp(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ()); wait(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ());";
 
 		for i = 1, value2 do
@@ -963,7 +963,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			check(ret, "fail to adEquip");
 			wait(5);
 		end
-	elseif (value1 == ervtUseCounterSpellCount) then	-- 假设反击技能ID为102
+	elseif (value1 == ervtUseCounterSpellCount) then	-- Assume the counterattack skill ID is 102
 		local cmd = "local oNpc = SummonNpc(109); oNpc:SetHp(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ()); wait(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ());";
 
 		for i = 1, value2 do
@@ -971,7 +971,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			check(ret, "fail to adEquip");
 			wait(5);
 		end
-	elseif (value1 == ervtUseTerminateSpellCount) then	-- 假设终结技能ID为102
+	elseif (value1 == ervtUseTerminateSpellCount) then	-- Assume the finishing skill ID is 102
 		local cmd = "local oNpc = SummonNpc(109); oNpc:SetHp(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ()); wait(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ());";
 
 		for i = 1, value2 do
@@ -979,7 +979,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			check(ret, "fail to adEquip");
 			wait(5);
 		end
-	elseif (value1 == ervtUseItemCount_Useable) then	-- 假设可消耗品的ID为102
+	elseif (value1 == ervtUseItemCount_Useable) then	-- Assume the consumable item ID is 102
 		for i = 1, value2 do
 			ret = user:GMCommand("AddItem(102, 1)");
 			check(ret, "fail to adEquip")
@@ -993,7 +993,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			msg = recv_msg(10, user1sessionid, protocol.g2c_item_delete);
 			check(msg, "failed to receive g2c_item_delete in type:ervtUseItem101CountadEquip");
 		end
-	elseif (value1 == ervtUseItemCount_SpellBoke) then	-- 假设可消耗品的ID为102
+	elseif (value1 == ervtUseItemCount_SpellBoke) then	-- Assume the consumable item ID is 102
 		for i = 1, value2 do
 			ret = user:GMCommand("AddItem(103, 1)");
 			check(ret, "fail to adEquip")
@@ -1041,7 +1041,7 @@ function _TraverseAchievements()
 	g_AchievementList = {};
 	local runflag = true;
 
-	-- 遍历所有成就
+	-- Traverse all achievements
 	local achievement_data = CDataManager_ACHIEVEMENT_DATA_:GetInstance():GetFirstData();
 	while(achievement_data ~= nil) do
 

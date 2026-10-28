@@ -1,17 +1,17 @@
-﻿--副本当前状态
+﻿--Current dungeon state
 DUNGEON_STAGE_VAR_INDEX = 1;
 
---副本初始化时长
+--Dungeon initialization duration
 DUNGEON_INIT_DURATION = 2 * 1000;
 
---副本结束后等待时长
+--Wait duration after the dungeon ends
 DUNGEON_FINISH_WAIT_DURATION = 5 * 1 * 1000;
 
---副本领奖时长
+--Dungeon reward claim duration
 DUNGEON_REWARD_WAIT_DURATION = 1 * 60 * 1000;
 
---副本结束后的等待时长,必须大于DUNGEON_FINISH_WAIT_DURATION+DUNGEON_REWARD_WAIT_DURATION.
+--Wait after the dungeon ends; must exceed DUNGEON_FINISH_WAIT_DURATION + DUNGEON_REWARD_WAIT_DURATION.
 DUNGEON_CLOSE_WAIT_DURATION = 2 * 60 * 1000;
 
---副本最大运行时长
+--Maximum dungeon duration
 DUNGEON_MAX_DURATION = 200 * 60 * 1000;

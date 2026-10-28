@@ -19,7 +19,7 @@ evtAIInteract =
 				{ batCheckAIVariable, param = { boGTE, 1 ,MAX_NPC_REWARD_COUNT } },
 				{ batRoleOpenDialog, param = { 50133, 50000, 0 , 0 } },	
 			},
-			--第1次领取
+			--First claim
 			{ batSequencer, 
 				{ batCheckAIVariable, param = { boLT, 1 ,MAX_NPC_REWARD_COUNT } },
 				{ batRoleCheckDailyVariable, param = { 203 } },
@@ -30,7 +30,7 @@ evtAIInteract =
 						{ batCheckAIVariable, param = { boLT, 1 ,MAX_NPC_REWARD_COUNT } },
 						{ batSelector,
 							{ batSequencer, 
-								--检查是否具备足够的钱,有就扣钱
+								--Check funds and deduct if sufficient
 								{ batRoleCheckMoney , param = { boGTE,1, 10000 } },
 								{ batRoleSubMoney , param = { tarRole,1, 10000, MONEYLOG_BT_12 } },
 								{ batRoleUpdateDailyVariable, param = { 203, 0 } },
@@ -39,7 +39,7 @@ evtAIInteract =
 								{ batRoleOpenDialog, param = { 50129, 50000, 'get_zongzi_num(o, 1, MAX_NPC_REWARD_COUNT)', 0 } },
 							},
 							{ batSequencer, 
-								--提示没有足够的钱
+								--Report insufficient funds
 								{ batRoleCheckMoney , param = { boLT,1, 10000 } },
 								{ batRoleOpenDialog, param = { 50138, 50000, 0, 0 } },
 							},
@@ -55,7 +55,7 @@ evtAIInteract =
 
 
 			},
-			--第2次领取
+			--Second claim
 			{ batSequencer, 
 				{ batCheckAIVariable, param = { boLT, 1 ,MAX_NPC_REWARD_COUNT } },
 				{ batRoleCheckDailyVariable, param = { 204 } },
@@ -66,7 +66,7 @@ evtAIInteract =
 						{ batCheckAIVariable, param = { boLT, 1 ,MAX_NPC_REWARD_COUNT } },
 						{ batSelector,
 							{ batSequencer, 
-								--检查是否具备足够的钱,有就扣钱
+								--Check funds and deduct if sufficient
 								{ batRoleCheckMoney , param = { boGTE,1, 10000 } },
 								{ batRoleSubMoney , param = { tarRole,1, 10000, MONEYLOG_BT_12 } },
 								{ batRoleUpdateDailyVariable, param = { 204, 0 } },
@@ -75,7 +75,7 @@ evtAIInteract =
 								{ batRoleOpenDialog, param = { 50129, 50000, 'get_zongzi_num(o, 1, MAX_NPC_REWARD_COUNT)', 0 } },
 							},
 							{ batSequencer, 
-								--提示没有足够的钱
+								--Report insufficient funds
 								{ batRoleCheckMoney , param = { boLT,1, 10000 } },
 								{ batRoleOpenDialog, param = { 50138, 50000, 0, 0 } },
 							},
@@ -88,7 +88,7 @@ evtAIInteract =
 					},
 				},
 			},
-			--第3次领取
+			--Third claim
 			{ batSequencer, 
 				{ batCheckAIVariable, param = { boLT, 1 ,MAX_NPC_REWARD_COUNT } },
 				{ batRoleCheckDailyVariable, param = { 205 } },
@@ -99,7 +99,7 @@ evtAIInteract =
 						{ batCheckAIVariable, param = { boLT, 1 ,MAX_NPC_REWARD_COUNT } },
 						{ batSelector,
 							{ batSequencer, 
-								--检查是否具备足够的钱,有就扣钱
+								--Check funds and deduct if sufficient
 								{ batRoleCheckMoney , param = { boGTE,1, 10000 } },
 								{ batRoleSubMoney , param = { tarRole,1, 10000, MONEYLOG_BT_12 } },
 								{ batRoleUpdateDailyVariable, param = { 205, 0 } },
@@ -108,7 +108,7 @@ evtAIInteract =
 								{ batRoleOpenDialog, param = { 50129, 50000, 'get_zongzi_num(o, 1, MAX_NPC_REWARD_COUNT)', 0 } },
 							},
 							{ batSequencer, 
-								--提示没有足够的钱
+								--Report insufficient funds
 								{ batRoleCheckMoney , param = { boLT,1, 10000 } },
 								{ batRoleOpenDialog, param = { 50138, 50000, 0, 0 } },
 							},
@@ -121,7 +121,7 @@ evtAIInteract =
 					},
 				},
 			},
-			--3次都领完了
+			--All three claims completed
 			{ batSelector, 
 				{ batRoleOpenDialog, param = { 50130, 50000, 0, 0 } },	
 			},

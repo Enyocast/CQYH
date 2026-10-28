@@ -15,13 +15,13 @@ guild_welfare_define = {
 		default = 0,
 		min = 1,
 	},
-	AuraID = {			-- 购买的buffer id
+	AuraID = {			-- Purchased buff ID
 		type = 'link',
 		default = 0,
 		refertable = 'aura',
 		referfield = 'ID',
 	},
-	Kind = {  			-- 福利buffer所属的组
+	Kind = {  			-- Welfare buff group
 		type = 'number',
 		default = 0,
 		min = 0,
@@ -31,64 +31,64 @@ guild_welfare_define = {
 		default = 0,
 		min = 0,
 	},
-	UpgradeTime = {		-- 升级需要时间， 单位：秒
+	UpgradeTime = {		-- Upgrade time in seconds
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	ConditionBuildingID = {	-- 升级前置公会建筑ID
+	ConditionBuildingID = {	-- Prerequisite guild building ID for upgrade
 		type = 'link',
 		default = 0,
 		refertable = 'guild_building',
 		referfield = 'ID',
 	},
-	ConditionBuildingLvl = {	-- 升级前置公会建筑等级
+	ConditionBuildingLvl = {	-- Prerequisite guild building level for upgrade
 		type = 'link',
 		default = 0,
 		refertable = 'guild_building',
 		referfield = 'Level',
 	},
-	PurchaseLevelRequirement = {  	-- 兑换buffer的角色等级需求
+	PurchaseLevelRequirement = {  	-- Character level required to redeem the buff
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	PurchaseMoneyConsumption = {  -- 兑换buffer的角色金钱需求
+	PurchaseMoneyConsumption = {  -- Character money required to redeem the buff
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	PurchaseGuildCurrencyConsumption = {  -- 兑换buffer的家族贡献需求
+	PurchaseGuildCurrencyConsumption = {  -- Guild contribution required to redeem the buff
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	PurchaseLimit = {  			-- 兑换次数限制
+	PurchaseLimit = {  			-- Redemption count limit
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	UpgradeMoneyConsumption = {  -- 升级金钱消耗
+	UpgradeMoneyConsumption = {  -- Money consumed by upgrade
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	UpgradeHerbConsumption = { -- 升级草药消耗
+	UpgradeHerbConsumption = { -- Herbs consumed by upgrade
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	UpgradeWoodConsumption = {  -- 升级木材消耗
+	UpgradeWoodConsumption = {  -- Wood consumed by upgrade
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	UpgradeCrystalConsumption = {  -- 升级水晶消耗
+	UpgradeCrystalConsumption = {  -- Crystals consumed by upgrade
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	UpgradeSilverConsumption = {  -- 升级秘银消耗
+	UpgradeSilverConsumption = {  -- Mithril consumed by upgrade
 		type = 'number',
 		default = 0,
 		min = 0,

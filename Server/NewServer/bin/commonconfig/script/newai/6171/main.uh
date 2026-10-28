@@ -4,20 +4,20 @@
 	{ batSequencer,
 		{ batRoleCheckInteractOption, param = { 1 } },
 		{ batSelector,
-			{ batSequencer,--等级不够
+			{ batSequencer,--Insufficient level
 				{ batRoleCheckLevel, param = { boLT, 35 } },
 				{ batRoleOpenDialog, param = { strAI6171_2, 30000 } },
 			},
-			{ batSequencer,--在线时间不够
+			{ batSequencer,--Insufficient online time
 				{ batRoleCheckLevel, param = { boGTE, 35 } },
 				{ batRoleCheckDailyOnlineTime, param = { boLT, 10800 } },
 				{ batRoleOpenDialog, param = { strAI6171_6, 30000 } },
 			},
-			{ batSequencer,--领取棉线或者兽皮
+			{ batSequencer,--Claim cotton thread or hide
 				{ batRoleCheckLevel, param = { boGTE, 35 } },
 				{ batRoleCheckDailyOnlineTime, param = { boGTE, 10800 } },
 				{ batSelector,
-					{ batSequencer, --有每日CD
+					{ batSequencer, --Daily cooldown applies
 						{ batRoleCheckDailyVariable, param = { 231 } },
 						{ batRoleOpenDialog, param = { strAI6171_4, 30000 } },
 						{ batSelector,
@@ -45,7 +45,7 @@
 							},
 						},
 					},
-					{ batSequencer,--无每日CD
+					{ batSequencer,--No daily cooldown
 						{ batRoleOpenDialog, param = { strAI6171_3, 30000 } },
 					},
 				},

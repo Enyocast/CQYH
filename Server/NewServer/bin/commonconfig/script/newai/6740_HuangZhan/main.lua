@@ -2,9 +2,9 @@ LoadPackage("chat_def.pkg")
 LoadPackage("global_config.pkg");
 Include("script/stringtable/stringtable.lh")
 
-DIALOG_STR1 = 2030;    -- 报名皇城争霸战
-DIALOG_STR2 = 2031;    -- 查看已报名公会
-DIALOG_STR3 = 2032;    -- 报名需要扣除5000金币
+DIALOG_STR1 = 2030;    -- Register for the Imperial City battle
+DIALOG_STR2 = 2031;    -- View registered guilds
+DIALOG_STR3 = 2032;    -- Registration costs 5,000 gold
 
 function check_sabac_disabled(owner)
 	if g_GWConfig.Sabac.bEnabled then

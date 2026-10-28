@@ -19,7 +19,7 @@ evtAIInteract =
 						{ batRoleCheckItemCount , param = { boGTE, 91101, 1, false } },		
 						{ batRoleOpenDialog, param = { 50116, 50000, 'get_role_var(o, 207)', 0 } },	
 
-							--选项1，兑换京东虚拟卡。  batRoleTemporaryCharge  ?
+							--Option 1: redeem a JD virtual card. batRoleTemporaryCharge?
 							{ batSequencer, 
 								{ batRoleCheckInteractOption, param = { 1 } },
 								{ batRoleDelItem, param = { 91101, 1 } },
@@ -42,7 +42,7 @@ evtAIInteract =
 						{ batRoleCheckItemCount , param = { boGTE, 91104, 1, false } },		
 						{ batRoleOpenDialog, param = { 50144, 50000, 'get_role_var(o, 212)', 0 } },	
 
-							--选项1，兑换京东虚拟卡。  batRoleTemporaryCharge  ?
+							--Option 1: redeem a JD virtual card. batRoleTemporaryCharge?
 							{ batSequencer, 
 								{ batRoleCheckInteractOption, param = { 1 } },
 								{ batRoleDelItem, param = { 91104, 1 } },
@@ -66,7 +66,7 @@ evtAIInteract =
 				{ batSelector,
 
 					{ batSequencer, 
-						--提示没有足够的钱
+						--Report insufficient funds
 						{ batRoleCheckMoney , param = { boLT,1, 2000 } },
 						{ batRoleOpenDialog, param = { 50138, 50000, 0, 0 } },
 					},				
@@ -92,7 +92,7 @@ evtAIInteract =
 					},
 
 					{ batSequencer, 
-						--检查是否具备足够的钱,有就扣钱
+						--Check funds and deduct if sufficient
 						{ batRoleCheckMoney , param = { boGTE,1, 2000 } },
 						{ batRoleCheckItemCount, param = { boGTE, 91021, 1 } }, 
 						{ batRoleCheckItemCount, param = { boGTE, 91022, 1 } }, 

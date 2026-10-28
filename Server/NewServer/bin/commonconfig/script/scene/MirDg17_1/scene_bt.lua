@@ -26,12 +26,12 @@ evtJJCBegin =
 { batParallel,
 	{ batSetSceneVariable, param = { AMVI_JJC_STATUS, ARENA_STAT_FIGHT, 0, 0 } },
 	{ batRemoveAuraAllScene, param = { 1043, 0 } },
-	--{ batSay, param = { cctScene, 50114, cltTvShow, 0 } },		-- 聊天
+	--{ batSay, param = { cctScene, 50114, cltTvShow, 0 } },		-- Chat
 	{ batSequencer,
 		{ batCheckSceneVariable, param = { boEQ, AMVI_JJC_ROLE_NUM, 1, 0 } },
-		-- 结算
+		-- Settlement
 		{ batSetSceneVariable, param = { AMVI_JJC_STATUS, ARENA_STAT_END, 0, 0 } },
-		{ batSay, param = { cctScene, 50115, cltTvShow, 0 } },		-- 聊天
+		{ batSay, param = { cctScene, 50115, cltTvShow, 0 } },		-- Chat
 		{ JJCEnd, param = { ET_ONLY_ONE_ROLE } },
 
 	},
@@ -73,7 +73,7 @@ evtEnterScene =
 	},
 
 	{ batRoleSetRoleVariable, param = { 195, 0, 1, 0 } },
-	-- 设置进入JJC次数
+	-- Set the arena entry count
 	{ batSequencer,
 		{ batRoleCheckRoleVariable, param = { boEQ, 195, 1 } },
 		{ batRoleSetRoleVariable, param = { 196, 0, 0, 0 } },
@@ -81,7 +81,7 @@ evtEnterScene =
 	},
 
 
-	-- 设置阵营等
+	-- Set the faction and related fields
 	{ batSelector,
 		{ batSequencer,
 			{ batCheckSceneVariable, param = { boEQ, AMVI_JJC_ROLE_NUM, 1, 0 } },
@@ -124,9 +124,9 @@ evtLeaveScene =
 		{ batSequencer,
 			{ batCheckSceneVariable, param = { boEQ, AMVI_JJC_STATUS, ARENA_STAT_FIGHT } },
 			{ batCheckSceneVariable, param = { boEQ, AMVI_JJC_ROLE_NUM, 1, 0 } },
-			-- 结算
+			-- Settlement
 			{ batSetSceneVariable, param = { AMVI_JJC_STATUS, ARENA_STAT_END, 0, 0 } },
-			{ batSay, param = { cctScene, 50115, cltTvShow, 0 } },		-- 聊天
+			{ batSay, param = { cctScene, 50115, cltTvShow, 0 } },		-- Chat
 			{ JJCEnd, param = { ET_LEAVE_SCENE } },
 
 		},
@@ -143,10 +143,10 @@ evtRoleDie =
 { batParallel,
 	{ batSequencer,
 		{ batCheckSceneVariable, param = { boEQ, AMVI_JJC_STATUS, ARENA_STAT_FIGHT } },
-		-- 先设置结束
+		-- Set the end state first
 		{ batSetSceneVariable, param = { AMVI_JJC_STATUS, ARENA_STAT_END, 0, 0 } },
-		{ batSay, param = { cctScene, 50115, cltTvShow, 0 } },    -- 聊天
-		-- 结算
+		{ batSay, param = { cctScene, 50115, cltTvShow, 0 } },    -- Chat
+		-- Settlement
 		{ JJCEnd, param = { ET_ROLE_DIE } },
 	},
 },
@@ -160,8 +160,8 @@ evtJJCEnd =
 	{ batSequencer,
 		{ batCheckSceneVariable, param = { boNEQ, AMVI_JJC_STATUS, ARENA_STAT_END } },
 		{ batSetSceneVariable, param = { AMVI_JJC_STATUS, ARENA_STAT_END, 0, 0 } },
-		{ batSay, param = { cctScene, 50115, cltTvShow, 0 } },		-- 聊天
-		-- 结算
+		{ batSay, param = { cctScene, 50115, cltTvShow, 0 } },		-- Chat
+		-- Settlement
 		{ JJCEnd, param = { ET_TIMEOUT } },
 	},
 	{ batSetSceneVariable, param = { AMVI_JJC_STATUS, ARENA_STAT_CLEAR, 0, 0 } },

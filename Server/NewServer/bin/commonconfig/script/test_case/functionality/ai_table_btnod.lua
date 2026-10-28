@@ -42,7 +42,7 @@ end
 
 function SummonNpcSetAI( user, role, nAIID )
     
-    local npc_tpl_id = 101;		-- AI 测试专用, alwaysRun
+    local npc_tpl_id = 101;		-- For AI tests only, alwaysRun
     local npc_data = CDataManager_NPC_DATA_:GetInstance():GetData( npc_tpl_id );
     check( npc_data, "fail to find npc data, id="..npc_tpl_id );
 
@@ -75,7 +75,7 @@ function until_stop(  user, role, npc  )
 	local npc_path = {};	
 	local role_path = {};
 	for i = 1, 10000 do
-		if( #npc_path > 2  -- 连续3次都没移动则认为npc追击已结束
+		if( #npc_path > 2  -- Treat the NPC pursuit as finished after three consecutive checks without movement
 		  and npc_path[#npc_path-2].x == npc:GetX()/POINT_PER_CM/100 
 		  and npc_path[#npc_path-2].y == npc:GetY()/POINT_PER_CM/100
 		  and role_path[#role_path-2].x == role:GetX()/POINT_PER_CM/100 
@@ -126,7 +126,7 @@ end
 function testAI( user, role, ai_data) 
 	local session_id = user:GetSessionID();
  
-    -- 召唤 monster with ai
+    -- Spawn a monster with AI
     local npc_id, npc, npc_data = SummonNpcSetAI( user, role, ai_data.nAIID );
 	log( "Summon Npc="..npc_id );
     local npc_homeX, npc_homeY = npc:GetX(), npc:GetY();
@@ -145,7 +145,7 @@ function testAI( user, role, ai_data)
 		",ai_data.nPreferDistanceOffset="..ai_data.nPreferDistanceOffset..
 		",max_offset="..max_offset );
 	
-	-- 技能
+	-- Skill
 --[[	
 	local spells = {};
 	for k,v in ipairs( ai_data.nSpellID ) do
@@ -164,7 +164,7 @@ function testAI( user, role, ai_data)
 --]]
 
 	
-    -- 逃跑至 monster gohome范围边缘以内,确认 monster 追击过来
+    -- Flee to just inside the monster go-home boundary and confirm it pursues
     local targetX, targetY = role:GetX(), role:GetY() + chase_range - max_offset;
     role:MoveTo( targetX, targetY  );	    
 	local role_speed = role:GetCurrentSpeed();
@@ -186,22 +186,22 @@ function testAI( user, role, ai_data)
 		log( "no need more test: scan_range="..scan_range );
 		return;
 	end	
-	-- 确认 monster 追击过来 
+	-- Confirm the monster pursues
 	local chase_distance = math.pow( role:GetX() - npc:GetX(), 2 ) + math.pow( role:GetY() - npc:GetY(), 2 );
 	local max_distance = math.pow( max_offset, 2 );
 	print( "chase_distance="..chase_distance..",max_distance="..max_distance);
 	check( chase_distance < max_distance, "npc chase fail when in range!"	);
 	log( "npc chase success when role in range!" );
     
-    -- 逃跑至 monster gohome范围边缘以外
+    -- Flee beyond the monster go-home boundary
     targetX, targetY = role:GetX(), role:GetY() + max_offset *2 + 100 * POINT_PER_CM;
     role:MoveTo( targetX, targetY  ); 
     log( "start to go out of range, target x="..targetX..", y="..targetY );
  
 	local disappear_id2 = until_stop( user, role, npc );  	
   	
-	-- 确认 monster 不再追击过来  	
-	-- npc disappear 说明 gohome了( 超出 region 了不一定能收到 appear 消息)	  		
+	-- Confirm the monster stops pursuing
+	-- NPC disappearance means it went home (an appear message may not be received outside the region)
 	local npc_distance = math.pow( npc:GetX() - npc_homeX, 2 ) + math.pow( npc:GetY() - npc_homeY, 2 );	
 	local max_distance = math.pow( chase_range, 2 );  
 	print( "out: npc_distance="..npc_distance..", max_distance="..max_distance );
@@ -218,7 +218,7 @@ function EnterInstanceAndTestAI( ai_data )
 		return ;
 	end	 
 	
-    -- 登陆
+    -- Log in
     local user_name1 = "test_ai_"..ai_data.nAIID.."_"..os.date("%H%M%S");
     --local user_name1 = "testgs1"..os.date("%H%M%S");
     local user, role = startup(user_name1, user_name1 );
@@ -227,7 +227,7 @@ function EnterInstanceAndTestAI( ai_data )
     g_role = role;
     log( "successfully enter game" );
     
-    -- jump 到 ProgIsland
+    -- Jump to ProgIsland
     prog_scene_id = 1;
     
     local cmd = "Jump("..prog_scene_id..", 0, 30000, 200 )";
@@ -237,12 +237,12 @@ function EnterInstanceAndTestAI( ai_data )
     log( "successfully enter instance id = "..prog_scene_id );
     wait(2);
  
-	-- 开始测试
+	-- Start the test
     print( "processing ai_data.nAIID = "..ai_data.nAIID ); 			        
     ret = testAI( user, role, ai_data);
     print( "== finished processing ai_data.nAIID="..ai_data.nAIID );    
     	
-    --测试完成，登出
+    --Test complete; log out
     cleanup(user);
 end
 
@@ -250,7 +250,7 @@ function TestCase.MonsterAIAll()
   
 	local data_mgr = CDataManager_AI_DATA_:GetInstance();
 	
-    -- 挨个测试 npc 数据
+    -- Test NPC data one by one
     local ai_data = data_mgr:GetFirstData(); 
     if 0 == ai_data.nAIID then  -- default config 
 		ai_data = data_mgr:GetNextData();
@@ -272,7 +272,7 @@ function TestCase.MonsterAIOne()
   
 	local data_mgr = CDataManager_AI_DATA_:GetInstance();
 	
-    -- 挨个测试 npc 数据
+    -- Test NPC data one by one
     local ai_data = data_mgr:GetData(90);   
 	check(ai_data, "failed to GetData ");
 

@@ -1,10 +1,10 @@
 ﻿local spell_common =
 {
-	{ id = 5660, cd = 3000, chance = 10000, target = tarAITarget },    --1.幽灵船：鲸鱼人头领 : 大范围的近战打击(把原来的两连击调整一下，随即左右，前方U形2-3层）
-	{ id = 5662, cd = 25000, chance = 10000, target = tarAITarget },   --2.幽灵船：鲸鱼人头领 : 高速移动的范围攻击，发动时物理和魔法防御力增加(7x7范围内伤害）
-	{ id = 5666, cd = 0, chance = 10000, target = tarAITarget },       --3.幽灵船：鲸鱼人头领 : 连续单体投技，单体高伤害，击破武器耐久(MaxGrid=5)
-	{ id = 5664, cd = 0, chance = 10000, target = tarAITarget },       --4.幽灵船：鲸鱼人头领 : 连续单体投技，单体高伤害，击破盔甲耐久(MaxGrid=5)
-	{ id = 5665, cd = 0, chance = 10000, target = tarAITarget },       --5.幽灵船：鲸鱼人头领 : 近距离AOE，造成魔法伤害，威力很高。分3段向前延展
+	{ id = 5660, cd = 3000, chance = 10000, target = tarAITarget },    --1. Ghost Ship whale-man leader: wide melee strike, adjusting the two-hit combo to random left/right strikes in a forward U-shaped area 2-3 cells deep
+	{ id = 5662, cd = 25000, chance = 10000, target = tarAITarget },   --2. Ghost Ship whale-man leader: fast-moving area attack; increases physical and magic defense while active and damages a 7x7 area
+	{ id = 5666, cd = 0, chance = 10000, target = tarAITarget },       --3. Ghost Ship whale-man leader: consecutive single-target throws, high damage and weapon durability damage (MaxGrid=5)
+	{ id = 5664, cd = 0, chance = 10000, target = tarAITarget },       --4. Ghost Ship whale-man leader: consecutive single-target throws, high damage and armor durability damage (MaxGrid=5)
+	{ id = 5665, cd = 0, chance = 10000, target = tarAITarget },       --5. Ghost Ship whale-man leader: powerful close-range magic AOE extending forward in three stages
 };
 
 

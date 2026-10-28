@@ -97,13 +97,13 @@ ServerConfig.MS = {
 	nLaunchServerReportInterval = 20000,
 };
 
--- 自定义配置
+-- Custom configuration
 ServerConfig.CC = {
-	-- 自定义 [GM命令]
+	-- Custom GM commands
 	-- bGmComandEnable = true,    -- 
-	bGmComandEnable = false,      -- GM命令开关 (=false, 则所有人都可以打命令)
+	bGmComandEnable = false,      -- GM command switch (false allows everyone to issue commands)
 	
-	-- GM角色名字
+	-- GM character names
 	GmRoleName = {
 	    szRoleName0 = "11",
 	    szRoleName1 = "22",
@@ -117,12 +117,12 @@ ServerConfig.CC = {
 	    szRoleName9 = "",
 	},
 	
-	-- 自定义 [Vip月卡]
+	-- Custom VIP monthly card
 	bCustomGameTimeCardEnable = false,    -- 
-	-- bCustomGameTimeCardEnable = true,        -- Vip月卡功能开关
-	nCustomFreeRoleLevel = 7,                -- 自由人物等级
+	-- bCustomGameTimeCardEnable = true,        -- VIP monthly-card feature switch
+	nCustomFreeRoleLevel = 7,                -- Free character level
 	
-	-- Vip月卡物品ID
+	-- VIP monthly-card item IDs
 	nCustomGameTimeCardTemplateID = {
 	    [0] = 2000001,
 	    [1] = 2000002,
@@ -136,20 +136,20 @@ ServerConfig.CC = {
 	    [9] = 0,
 	},
 	
-	-- 运2项链物品ID
+	-- Luck +2 necklace item IDs
 	nLuck2NecklaceItemID = {
-		[0] = 99920007,  -- 白色虎齿项链
-		[1] = 99920009,  -- 灯笼项链
+		[0] = 99920007,  -- White Tiger Tooth Necklace
+		[1] = 99920009,  -- Lantern Necklace
 		[2] = 0,
 		[3] = 0,
 		[4] = 0,
 	},
-	-- attribute.txt 配置中, "幸运1"属性的最大ID值
+	-- Maximum ID for the "Luck +1" attribute in attribute.txt
 	nMinLuck2AttributelID = 32041,
 	nMaxLuck2AttributelID = 32080,
-	-- 限制时间/数量
-	nItemDropLimitLuck2NecklaceDuration = 720,    -- 持续时间(小时)
-	nItemDropLimitLuck2NecklaceCount = 3,         -- 总数量
+	-- Limit duration / count
+	nItemDropLimitLuck2NecklaceDuration = 720,    -- Duration (hours)
+	nItemDropLimitLuck2NecklaceCount = 3,         -- Total count
 	
 	
 };

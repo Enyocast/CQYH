@@ -15,7 +15,7 @@ Include("script/newai/sub_tree/sub_tree.lh");
 local g_oGameWorld = CGameWorld:GetInstance();
 
 
-function CheckTeam(owner)--检测是否在队伍
+function CheckTeam(owner)--Check whether the player is in a team
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local teamid = role:GetTeamID();
 	if teamid == 0 then
@@ -24,7 +24,7 @@ function CheckTeam(owner)--检测是否在队伍
 	return brvFail;
 end
 
-function CheckEnterCondition(owner)--判断玩家是否达到进入条件
+function CheckEnterCondition(owner)--Check whether the player meets the entry requirements
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local free_slot_count = role:GetItemBag():GetFreeSlots(CONSLOT_DEFAULT);
 	if free_slot_count > 1 then
@@ -34,7 +34,7 @@ function CheckEnterCondition(owner)--判断玩家是否达到进入条件
 	end	
 end
 
-function SubItem_1(owner) --扣除相应的物资
+function SubItem_1(owner) --Deduct the required materials
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local yuanbao = role:GetItemBag():GetMoney(3);
@@ -57,7 +57,7 @@ function SubItem_1(owner) --扣除相应的物资
 
 end
 
-function SubItem_2(owner) --扣除相应的物资
+function SubItem_2(owner) --Deduct the required materials
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local yuanbao = role:GetItemBag():GetMoney(3);
@@ -80,7 +80,7 @@ function SubItem_2(owner) --扣除相应的物资
 
 end
 
-function SubItem_3(owner) --扣除相应的物资
+function SubItem_3(owner) --Deduct the required materials
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local yuanbao = role:GetItemBag():GetMoney(3);
@@ -103,7 +103,7 @@ function SubItem_3(owner) --扣除相应的物资
 
 end
 
-function SubItem_4(owner) --扣除相应的物资
+function SubItem_4(owner) --Deduct the required materials
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local yuanbao = role:GetItemBag():GetMoney(3);
@@ -126,7 +126,7 @@ function SubItem_4(owner) --扣除相应的物资
 
 end
 
-function SubItem_5(owner) --扣除相应的物资
+function SubItem_5(owner) --Deduct the required materials
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local yuanbao = role:GetItemBag():GetMoney(3);
@@ -149,7 +149,7 @@ function SubItem_5(owner) --扣除相应的物资
 
 end
 
-function SubItem_6(owner) --扣除相应的物资
+function SubItem_6(owner) --Deduct the required materials
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local yuanbao = role:GetItemBag():GetMoney(3);
@@ -172,7 +172,7 @@ function SubItem_6(owner) --扣除相应的物资
 
 end
 --[[
-function checklevel(owner) --检测VIP等级
+function checklevel(owner) --Check VIP level
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local level = role:GetVIPLevel();
 	local time1 = role:GetVariable(232);
@@ -189,7 +189,7 @@ function checklevel(owner) --检测VIP等级
 	end
 end
 
-function getitemcount(owner)--根据VIP等级进行消耗判断
+function getitemcount(owner)--Check the cost according to VIP level
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local level = role:GetVIPLevel();
 	local time1 = role:GetVariable(232);

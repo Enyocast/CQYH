@@ -1,124 +1,124 @@
 ﻿quest_define = {
 	owner='恽玉',
-	Index = {				--索引号
+	Index = {				--Index
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	QuestID = {				--任务编号
+	QuestID = {				--Quest ID
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	ResetType = {				-- 重复类型（周、日）重置任务类型，最大为qttTotal
+	ResetType = {				-- Recurring reset type (weekly or daily); maximum qttTotal
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 3,
 	},
-	ResetTime = {				--重置时间（周几重置）
+	ResetTime = {				--Reset time (day of the week)
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	ScriptName = {				--无效
+	ScriptName = {				--Invalid
 		type = 'string',
 		default = "Default",
 		maxlen = 256,
 	},
-	CanAbandon = {				--能否放弃
+	CanAbandon = {				--Whether abandonment is allowed
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 1,
 	},
-	CanShare = {				--能否共享
+	CanShare = {				--Whether sharing is allowed
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 1,
 	},
-	CanPublish = {				--不明
+	CanPublish = {				--Unknown
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 1,
 	}, 
-	QuestType = {				--任务类型
+	QuestType = {				--Quest type
 		type = 'number',
 		default = 0,
 		min = 0,
 	}, 
-	MaxCompleteCount = {				--最大完成次数
+	MaxCompleteCount = {				--Maximum completion count
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	ClassLimit = {				--任务职业限制
+	ClassLimit = {				--Quest class restriction
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 15,
 	},
-	SexLimit = {				-- 最大为cstTotal
+	SexLimit = {				-- Maximum cstTotal
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 4,
 	},
-	RelationLimit = {			-- 最大为qrtTotal
+	RelationLimit = {			-- Maximum qrtTotal
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 7,
 	},
-	PreQuestID1 = {				--前置任务ID1
+	PreQuestID1 = {				--Prerequisite quest ID 1
 		type = 'link',
 		default = 0,
 		refertable = 'quest',
 		referfield = 'QuestID',
 	},
-	PreQuestID2 = {				--前置任务ID2
+	PreQuestID2 = {				--Prerequisite quest ID 2
 		type = 'link',
 		default = 0,
 		refertable = 'quest',
 		referfield = 'QuestID',
 	},
-	StartNpcID = {				--开始NPC
+	StartNpcID = {				--Starting NPC
 		type = 'link',
 		default = 0,
 		refertable = 'npc',
 		referfield = 'TemplateID',
 	},
-	StartItemID = {				--接受任务道具限制
+	StartItemID = {				--Item requirement for quest acceptance
 		type = 'item',
 		default = 0,
 	},
-	StartZone = {				--无效
+	StartZone = {				--Invalid
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 1,
 	}, 
-	MinLevelLimit = {				--buff等级限制
+	MinLevelLimit = {				--Buff level restriction
 		type = 'link',
 		default = 1,
 		refertable = 'level',
 		referfield = 'Level',
 	},
-	MaxLevelLimit = {				--最大等级限制
+	MaxLevelLimit = {				--Maximum level restriction
 		type = 'link',
 		default = 99,
 		refertable = 'level',
 		referfield = 'Level',
 	},
-	BuffIDLimit = {				--最小等级限制
+	BuffIDLimit = {				--Minimum level restriction
 		type = 'link',
 		default = 0,
 		refertable = 'aura',
 		referfield = 'ID',
 	},
-	BuffLevelLimit = {				--BUff等级限制
+	BuffLevelLimit = {				--Buff level restriction
 		type = 'number',
 		default = 0,
 		min = 0,
@@ -129,12 +129,12 @@
 		min = -1,
 		max = 4,
 	},
-	MoneyAmountLimit = {				--货币数量限制
+	MoneyAmountLimit = {				--Currency amount restriction
 		type = 'number',
 		default = 0,
 		min = 0,
 	}, 
-	ReputationForceID = {				--声望类型限制
+	ReputationForceID = {				--Reputation type restriction
 		type = 'link',
 		default = 0,
 		invalidvalue = -1,
@@ -291,25 +291,25 @@
 	CheckKillNpcNav4 = {
 		type = 'string',
 	},
-	CheckKillNpcFly1 = {				--能否飞鞋
+	CheckKillNpcFly1 = {				--Whether quest teleport is allowed
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 1,
 	},
-	CheckKillNpcFly2 = {				--能否飞鞋
+	CheckKillNpcFly2 = {				--Whether quest teleport is allowed
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 1,
 	},
-	CheckKillNpcFly3 = {				--能否飞鞋
+	CheckKillNpcFly3 = {				--Whether quest teleport is allowed
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 1,
 	},
-	CheckKillNpcFly4 = {				--能否飞鞋
+	CheckKillNpcFly4 = {				--Whether quest teleport is allowed
 		type = 'number',
 		default = 0,
 		min = 0,
@@ -339,43 +339,43 @@
 	CheckItemNav4 = {
 		type = 'string',
 	},
-	CheckItemFly1 = {				--能否飞鞋
+	CheckItemFly1 = {				--Whether quest teleport is allowed
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 1,
 	},
-	CheckItemFly2 = {				--能否飞鞋
+	CheckItemFly2 = {				--Whether quest teleport is allowed
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 1,
 	},
-	CheckItemFly3 = {				--能否飞鞋
+	CheckItemFly3 = {				--Whether quest teleport is allowed
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 1,
 	},
-	CheckItemFly4 = {				--能否飞鞋
+	CheckItemFly4 = {				--Whether quest teleport is allowed
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 1,
 	},
-	AutoFinish = {				--能否放弃
+	AutoFinish = {				--Whether abandonment is allowed
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 1,
 	},
-	TalkNpcFly = {				--能否放弃
+	TalkNpcFly = {				--Whether abandonment is allowed
 		type = 'number',
 		default = 0,
 		min = 0,
 		max = 1,
 	},
-	StartNpcFly = {				--能否放弃
+	StartNpcFly = {				--Whether abandonment is allowed
 		type = 'number',
 		default = 0,
 		min = 0,

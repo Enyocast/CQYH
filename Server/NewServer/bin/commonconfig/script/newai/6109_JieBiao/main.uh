@@ -36,7 +36,7 @@ function escort_take_back_car(owner)
 
 	local role = CGameWorld:GetInstance():FindRole(get_ctx_role_id());
 	
-    -- ÉèÖÃïÚ³µ×ÔÉ±×´Ì¬
+    -- Set the escort cart suicide state
 	local escortCar = CGameWorld:GetInstance():FindNpc(role:GetVariable(VAR_ROLE_ESCORT_CAR_ID));
     if escortCar then
         escortCar:GetAIProcessor():SetBossState(1);

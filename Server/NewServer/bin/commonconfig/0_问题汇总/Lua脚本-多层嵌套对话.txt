@@ -1,13 +1,13 @@
 
 
-// 说明 - 嵌套对话
+// Notes - nested dialogs
 
-batRoleOpenDialog 打开窗口之后, 使用 batSelector 选择其中之一
+After batRoleOpenDialog opens the window, use batSelector to choose an option.
 
-每一个选择都是一个 batSequencer, 不能全部写在一个 batSequencer 里面, 否则会合并成一个选项
+Each choice must have its own batSequencer; placing them all in one batSequencer merges them into a single option.
 
-内层对话也要严格按照 batSelector => batSequencer 的逻辑
+Inner dialogs must also follow the batSelector => batSequencer structure.
 
-batSequencer 后面接 batRoleOpenDialog, 再接 batSelector => batSequencer
+Follow batSequencer with batRoleOpenDialog, then batSelector => batSequencer.
 
 

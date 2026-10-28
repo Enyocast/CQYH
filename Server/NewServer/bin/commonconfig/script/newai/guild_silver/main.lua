@@ -63,7 +63,7 @@ function BuildingDrop(owner)
 	print("drop silver count:"..res_count);
 
 	if res_count > 1000 then
-		-- 掉落大资源包
+		-- Drop a large resource pack
 		local times = 1000;
 
 		while times < res_count do
@@ -71,7 +71,7 @@ function BuildingDrop(owner)
 			times = times + 1000;
 		end
 	else
-		-- 掉落小包
+		-- Drop a small pack
 		local times = 100;
 
 		while times < res_count do

@@ -1,74 +1,74 @@
 ﻿GameWorldConfig = {
     szConfigPath = "commonconfig",
 
-	--- 所有距离单位是厘米
-	--- 所有时间单位是毫秒，最小精度62.5毫秒
-	--- 所有角度单位是度
-	--- 所有速度单位是毫秒
-	--- 所有几率都是万分率
+	--- All distances are in centimeters
+	--- All times are in milliseconds, with 62.5 ms minimum precision
+	--- All angles are in degrees
+	--- All speeds are in milliseconds
+	--- All probabilities are in ten-thousandths
 
-	--- 强制同步距离
+	--- Forced synchronization distance
     nForceSyncDistance = 512,
-	--- NPC交互距离
+	--- NPC interaction distance
     nNpcInteractDistance = 2048,
-	--- 紧急任务NPC交互距离
+	--- Emergency quest NPC interaction distance
 	nEmergencyNpcInteractDistance = 1024,
-	--- Doodad交互距离
+	--- Doodad interaction distance
     nDoodadOperateDistance = 512,
-	--- 队伍拾取权的有效距离
+	--- Effective distance for team loot rights
     nLootDistance = 9600,
-	--- 比较成就距离
+	--- Achievement comparison distance
     nCompareAchievementDistance = 2000,
 
-	--- 经验、魂值分享距离
+	--- Experience and soul sharing distance
     nExpShareDistance = 2000,
 
-	--- 等级上限/最高等级
+	--- Level cap / maximum level
 	nLevelLimit = 52,
 
-	--- 组队拍卖出价时间
+	--- Team auction bidding duration
 	nTeamAuctionTimeout = 120000,
-	--- 组队拍卖系统抽水比例(万分比的分子)
+	--- Team auction fee numerator (per ten thousand)
 	nTeamAuctionTax = 500;
 
-	--- 查询附近无队伍玩家和不满员队伍的最小间隔
+	--- Minimum interval for querying nearby solo players and teams with open slots
     nAdjacentDataTimeLimit = 4 * 1000,
-	--- 无加载跳转最大距离
+	--- Maximum transition distance without loading
 	nInstantJumpRange = 800000,
-	--- 最大场景加载等待时间
+	--- Maximum scene loading wait
     nSceneLoadTimeOut = 600 * 1000,
-	---每秒存储玩家数据数量
+	---Player data saves per second
     nSaveRoleCountPerSecond = 16,
-	--- 最小存储玩家数据间隔
+	--- Minimum interval between player data saves
     nSaveRoleMinTime = 60 * 1000,
-	--- 每10秒放入的排队玩家数量
+	--- Queued players admitted every 10 seconds
 	nLoginRoleCountPer10Second = 50,
-	--- 进入场景自动获取的BUFF ID
+	--- Buff ID automatically granted on entering a scene
     nEnterSceneBuffID = 2230,
-	--- 副本结束获取的BUFF ID
+	--- Buff ID granted when a dungeon ends
     nSceneFinishBuffID = 1042,
-	--- 拾取物品最小间隔时间
+	--- Minimum interval between item pickups
 	nLootTimeLimit = 250,
-	--- PK保护等级（含）
+	--- PvP protection level (inclusive)
     nPkProtectLevel = 7,
-	--- 获得PK值的几率
+	--- Chance of gaining PK points
     nGainPkValueChance = 7500,
-	--- 获得的PK值数量
+	--- PK points gained
     nGainPkValue = 50,
-	--- 黄名的最小PK值
+	--- Minimum PK points for yellow name
     nYellowNamePkValueLimit = 100,
-	--- 红名的最小PK值
+	--- Minimum PK points for red name
     nRedNamePkValueLimit = 300,
-	--- 灰名的持续时间
+	--- Gray-name duration
 	nGreyNameDuration = 60 * 1000,
-	--- 触发动态复活的NPC数量比例
+	--- NPC count ratio triggering dynamic respawn
 	nDynamicRespawnPercent = 5000,
-	--- 复活时间调整系数
+	--- Respawn time adjustment factor
 	nRespawnTimeRate = 10000,
-	--- 每日签到天数
+	--- Daily check-in days
 	nCheckInValidDays = 30,
 
-	--- 背包格子扩充价格
+	--- Bag slot expansion prices
 	nBagSlotCost =
 	{
 		[0]  = 2000,
@@ -104,7 +104,7 @@
 		[30] = 160000,
 		[31] = 170000,
 	},
-	--- 银行格子扩充价格
+	--- Bank slot expansion prices
 	nBankSlotCost =
 	{
 		[0]  = 2000,
@@ -164,7 +164,7 @@
 		[54] = 330000,
 		[55] = 340000,
 	},
-	--- 资源包裹扩充价格
+	--- Resource bag expansion prices
 	nResourceSlotCost =
 	{
 		[0]   = 10000,
@@ -354,38 +354,38 @@
 	},
 
 	nGMAuraID = 2516,                -- GM Buff
-	nWeaponOverWeightAuraID = 2505,  -- 腕力超重
-	nArmorOverWeightAuraID = 2506,   -- 装备超重
-	nBagOverWeightAuraID = 2507,     -- 背包超重
+	nWeaponOverWeightAuraID = 2505,  -- Weapon weight exceeded
+	nArmorOverWeightAuraID = 2506,   -- Armor weight exceeded
+	nBagOverWeightAuraID = 2507,     -- Bag weight exceeded
 
-	--发送邮件间隔(秒)
+	--Mail sending interval (seconds)
 	dwSendMailTimeInterval = 10,
 
-	--发送邮件花费
+	--Mail sending cost
 	nSendMailCost = 1000,
 
-	--- 被玩家杀死后，普通道具掉落几率
+	--- Normal item drop chance after death to a player
     nBagNormalItemDropRateByPlayer =
     {
 	    [0] = 3000,
 	    [1] = 3000,
 	    [2] = 10000
     },
-	--- 被玩家杀死后，贵重道具掉落几率
+	--- Valuable item drop chance after death to a player
     nBagExpensiveItemDropRateByPlayer =
     {
 	    [0] = 500,
 	    [1] = 1500,
 	    [2] = 3000
     },
-	--- 被非玩家杀死后，普通道具掉落几率
+	--- Normal item drop chance after death to a non-player
     nBagNormalItemDropRateByNonPlayer =
     {
 	    [0] = 1000,
 	    [1] = 2000,
 	    [2] = 4000
     },
-	--- 被非玩家杀死后，贵重道具掉落几率
+	--- Valuable item drop chance after death to a non-player
     nBagExpensiveItemDropRateByNonPlayer =
     {
 	    [0] = 500,
@@ -393,14 +393,14 @@
 	    [2] = 3000
     },
 	
-	--- 强化特效1对应的强化等级
+	--- Enhancement level for effect 1
     shRefineFxLevel1 = 5,
-	--- 强化特效2对应的强化等级
+	--- Enhancement level for effect 2
     shRefineFxLevel2 = 7,
 	
-	--- 摆摊交互距离
+	--- Stall interaction distance
     nStallDistance = 384,
-	--- 摆摊税率，万分比
+	--- Stall tax rate in ten-thousandths
 	nStallTax =
 	{
 		[0] = 500,
@@ -408,33 +408,33 @@
 		[2] = 2000
 	},
 
-	--首饰幸运修正概率，[0]代表碎裂概率，[1]代表+1概率，[2]代表+2概率，[3]代表+3概率
-	--幸运值=∑首饰战斗力*LuckModifier/10000,LuckModifier在装备表中配置
+	--Jewelry luck adjustment probabilities: [0] shatter, [1] +1, [2] +2, [3] +3
+	--Luck = sum of jewelry combat power * LuckModifier / 10000; LuckModifier is configured in the equipment table
 	nEquipLevelupLuckModifier =
 	{
-		[0] = {nModifier = {[0] = 0, [1] = 5000, [2] = 0, [3] = 0}},						--幸运值区间0~0.99
-		[1] = {nModifier = {[0] = 0, [1] = 10000, [2] = 0, [3] = 0}},						--幸运值区间1~1.99
-		[2] = {nModifier = {[0] = 0, [1] = 0, [2] = 10000, [3] = 0}},						--幸运值区间2~2.99
-		[3] = {nModifier = {[0] = 0, [1] = 0, [2] = 0, [3] = 10000}},						--幸运值区间3~3.99
-		[4] = {nModifier = {[0] = 0, [1] = 5000, [2] = 5000, [3] = 0}},						--幸运值区间4~4.99
-		[5] = {nModifier = {[0] = 0, [1] = 0, [2] = 5000, [3] = 5000}},						--幸运值区间5~5.99
-		[6] = {nModifier = {[0] = 10000, [1] = 0, [2] = 0, [3] = 0}},						--幸运值区间6+
+		[0] = {nModifier = {[0] = 0, [1] = 5000, [2] = 0, [3] = 0}},						--Luck range 0~0.99
+		[1] = {nModifier = {[0] = 0, [1] = 10000, [2] = 0, [3] = 0}},						--Luck range 1~1.99
+		[2] = {nModifier = {[0] = 0, [1] = 0, [2] = 10000, [3] = 0}},						--Luck range 2~2.99
+		[3] = {nModifier = {[0] = 0, [1] = 0, [2] = 0, [3] = 10000}},						--Luck range 3~3.99
+		[4] = {nModifier = {[0] = 0, [1] = 5000, [2] = 5000, [3] = 0}},						--Luck range 4~4.99
+		[5] = {nModifier = {[0] = 0, [1] = 0, [2] = 5000, [3] = 5000}},						--Luck range 5~5.99
+		[6] = {nModifier = {[0] = 10000, [1] = 0, [2] = 0, [3] = 0}},						--Luck range 6+
 	},
 	
-	--黑铁纯度修正概率，[0]代表-2概率，[1]代表-1概率，[2]代表不变概率，[3]代表+1概率
+	--Black iron purity adjustment probabilities: [0] -2, [1] -1, [2] unchanged, [3] +1
 	nEquipLevelupPurityModifier =
 	{
-		[0] = {nModifier = {[0] = 0, [1] = 0, [2] = 0, [3] = 0}},					  		--纯度区间0~9
-		[1] = {nModifier = {[0] = 10000, [1] = 0, [2] = 0, [3] = 0}},					  	--纯度区间10~19
-		[2] = {nModifier = {[0] = 0, [1] = 10000, [2] = 0, [3] = 0}},					  	--纯度区间20~29
-		[3] = {nModifier = {[0] = 0, [1] = 0, [2] = 10000, [3] = 0}},					  	--纯度区间30~39
-		[4] = {nModifier = {[0] = 0, [1] = 0, [2] = 0, [3] = 10000}},					  	--纯度区间40~49
-		[5] = {nModifier = {[0] = 2000, [1] = 2000, [2] = 2000, [3] = 2000}},				--纯度区间50+
+		[0] = {nModifier = {[0] = 0, [1] = 0, [2] = 0, [3] = 0}},					  		--Purity range 0~9
+		[1] = {nModifier = {[0] = 10000, [1] = 0, [2] = 0, [3] = 0}},					  	--Purity range 10~19
+		[2] = {nModifier = {[0] = 0, [1] = 10000, [2] = 0, [3] = 0}},					  	--Purity range 20~29
+		[3] = {nModifier = {[0] = 0, [1] = 0, [2] = 10000, [3] = 0}},					  	--Purity range 30~39
+		[4] = {nModifier = {[0] = 0, [1] = 0, [2] = 0, [3] = 10000}},					  	--Purity range 40~49
+		[5] = {nModifier = {[0] = 2000, [1] = 2000, [2] = 2000, [3] = 2000}},				--Purity range 50+
 	},
 
-	--- 神物行
+	--- Divine item event
 	nDiceTime = 60;
-	--神物行活动刷怪ID
+	--Monster spawn IDs for the divine item event
 	nDiceNpcID =
 	{
 		[0] = 3500,
@@ -450,7 +450,7 @@
 		[10] = 3510,
 		[11] = 3511
 	},
-	--神物行活动刷怪坐标
+	--Monster spawn positions for the divine item event
 	nDiceNpcPos = 
 	{
 		[0] = {nScene = 142, nX = 57600, nY = 47500, nZ = 5000, nRange = 0, nLiveTime = 3600},
@@ -460,10 +460,10 @@
 		[4] = {nScene = 148, nX = 67100, nY = 20700, nZ = 5000, nRange = 0, nLiveTime = 3600},
 		[5] = {nScene = 149, nX = 39100, nY = 39200, nZ = 5000, nRange = 0, nLiveTime = 3600}
 	},
-	--武器升级立即取回花费金币
+	--Gold cost to retrieve a weapon upgrade immediately
 	nEquipLevelupImmediateCost = 100000,
 
-	--- 仇恨消退时间（副本中永不消退）
+	--- Threat decay time (never decays in dungeons)
     nThreatFadeTime = 30000,
     nRageRecoveryParam = 150;
     nFearDist = 1000;
@@ -474,12 +474,12 @@
     nKnockBackDistance = 250;
     nKnockBackSpeed = 2000;
 
-	-- 对npc的伤害系数修正 x = x * nDmgToNpcParam1 / nDmgToNpcParam2
+	-- NPC damage coefficient adjustment: x = x * nDmgToNpcParam1 / nDmgToNpcParam2
 	nDmgToNpcParam1 = 6;
 	nDmgToNpcParam2 = 5;
 
 
-	-- HP/MP自然回复系数
+	-- Natural HP/MP recovery factors
 	nHpRecoveryParam = 75;
 	nMpRecoveryParam = 18;
 
@@ -494,7 +494,7 @@
 	nHpTapDig = -30;
 	nMpTapDig = -50;
 
-	-- HP/MP药物回复系数
+	-- Potion HP/MP recovery factors
 	nDrugCureParam1 = 10;
 	nDrugCureParam2 = 5;
 
@@ -502,11 +502,11 @@
 	nDrugCureTapMining = -2;
 	nDrugCureTapMin = 1;
 
-	-- HP/MP技能回复系数
+	-- Spell HP/MP recovery factors
 	nHpSpellCureMax = 300;
 	nHpSpellCure = 5;
 
-	-- 硬直参数
+	-- Stagger parameters
     nStiffParamA = 500;
     nStiffParamB = -8000;
     nStiffIntervalB = 16; -- in frame
@@ -529,7 +529,7 @@
 
 	nLastHurtResetTime = 7000;
 
-	--- 杀死各种品质的NPC所获得的声望值和最大声望值
+	--- Reputation gained and maximum reputation for killing NPCs of each quality
     AddReputation =
     {
 	    [1] = {		-- nqNormal1
@@ -566,7 +566,7 @@
 	    },
     },
 
-	--- 杀死各种品质的NPC所损失的声望值
+	--- Reputation lost for killing NPCs of each quality
     SubReputation =
     {
 	    [1] = -1,		--nqNormal1
@@ -733,10 +733,10 @@
 	    },
     },
 
-	-- 强制复活时间
+	-- Forced revival time
     nReviveTimeout = 5 * 60 * 1000;
 
-    -------复活延时时间 Min(nFreeReviveParam1, nFreeReviveParam2 x nKilledByPlayer)
+    -------Revival delay: Min(nFreeReviveParam1, nFreeReviveParam2 x nKilledByPlayer)
 
 	nReviveTimesResetTime = 180000;
 	nFreeReviveParam1 = 0;
@@ -785,7 +785,7 @@
 	    },
     },
 
-	-- 数组下标代表了已经跑的帧数
+	-- Array index represents frames already elapsed
 	MagHitRateToRunningTarget =
 	{
 		[0] = 7500,
@@ -802,7 +802,7 @@
 		[11] = 2500,
 		[12] = 2500,
 	},
-	--因为是额外命中率,所以属于Bonus判定,兼顾猫步特性,降低命中
+	--Extra hit chance uses the Bonus check; account for the cat-step trait by reducing hit chance
 	PhyHitRateToWalkingTarget =
 	{
 		[0] = 2500,
@@ -819,7 +819,7 @@
 		[11] = 0,
 		[12] = 0,
 	},
-	--因为是额外命中率,所以属于Bonus判定
+	--Extra hit chance uses the Bonus check
 	PhyHitRateToRunningTarget =
 	{
 		[0] = 7500,
@@ -837,27 +837,27 @@
 		[12] = 0,
 	},
 
-	--- 异常返回点
+	--- Fallback return point
     nErrorReturnSceneTempID = 145 ,
 	ErrorReturnPos = {x=31200, y=55200, z=5000},
 
-	--- 红名村
+	--- Red-name village
     nRedNameSceneTempID = 147,
 	RedNameReturnPos = {x=16350, y=36587, z=6456},
 
-	--- 默认复活点
+	--- Default respawn point
     nDefaultReviveSceneTempID = 142 ,
 	DefaultRevivePos = {x=25990, y=56905, z=4750},
 
     TeamDefaultName = '的队伍',
 
-	--- VIP待遇配置
+	--- VIP benefit configuration
     VIPData = {
-        [vlLevel0] = { --- 非VIP
-            nDecreasePkValuePer5Min = 1,		--- 每5分钟消退的仇恨值
-            nRewardQuestCount = 0,				--- 悬赏任务数量
-            nDailyFatigue = 100,				--- 每天获得的活力值
-            nDailyUseMoneyType01Percent = 0,	--- 每天绑金使用上限加成
+        [vlLevel0] = { --- Non-VIP
+            nDecreasePkValuePer5Min = 1,		--- Threat points that decay every 5 minutes
+            nRewardQuestCount = 0,				--- Bounty quest count
+            nDailyFatigue = 100,				--- Daily activity points gained
+            nDailyUseMoneyType01Percent = 0,	--- Daily bound-gold spending limit bonus
         },
         [vlLevel1] = {
             nDecreasePkValuePer5Min = 2,
@@ -879,7 +879,7 @@
         },
     },
 
-	--- 组队经验根据人数的单人缩减系数
+	--- Per-player team experience reduction factor by team size
     nTeamExpRate =
     {
         [1] = 10000,
@@ -903,7 +903,7 @@
         [19] = 29000,
         [20] = 30000,
     },
-	--- 等级差的经验加成比例
+	--- Experience bonus by level difference
     nLevelExpRate =
     {
         [0] = 5000,  --- NpcLevel - RoleLevel = -15
@@ -939,24 +939,24 @@
         [30] = 10000,  --- NpcLevel - RoleLevel = 15
     },
 
-	--- 师徒经验加成比例
+	--- Mentorship experience bonus
 	nTeacherExpRate = 1500,
 	nStudentExpRate = 5000,
 
-	--- 额外经验加成比例
+	--- Additional experience bonus
     nExtraExpRate = 10000,
 	
-	--- 全局经验加成比例
-    nGlobalExpRate = 200000,  -- 默认 10000
+	--- Global experience bonus
+    nGlobalExpRate = 200000,  -- Default 10000
 	
-	--- 经验惩罚比例
+	--- Experience penalty rate
 	nPunishExpRate = 5000,
-	--- 经验惩罚时长（秒）
+	--- Experience penalty duration (seconds)
 	nPunishExpDuration = 6000 * 60,
-	----限制等级以上不可打怪获取经验
+	----Characters above the level limit cannot gain experience from monsters
 	nKillNpcGetExp = 60;
 
-	--- 等级差额外双倍经验值加成系数
+	--- Additional double-experience factor by level difference
 	nLevelDiffExtraExpRate =
 	{
 		[0] = 10000,		[1] = 10000,		[2] = 10000,		[3] = 10000,		[4] = 10000,
@@ -982,7 +982,7 @@
 	},
 
 
-	--- 打低等级NPC的物品掉落调整比例
+	--- Item drop adjustment when attacking lower-level NPCs
     nDropChanceRate =
     {
         [0] = 10000,
@@ -1086,10 +1086,10 @@
         [98] = 4000,
         [99] = 4000
     },
-	--- 全局道具掉率比例
+	--- Global item drop rate
     nGlobalDropRate = 100000,
 
-	--- 免费小号等级
+	--- Free character level
 	nFreeRoleLevel = 16,
 	nFreeRoleTime = 86400,
 	nFreeRoleSceneID = 143,
@@ -1100,11 +1100,11 @@
 	nFreeModeCheckTimePeriod = 10,
 
 	--
-	-- 解除师徒关系的发起方的经验惩罚，万分比
+	-- Experience penalty for initiating mentorship termination, in ten-thousandths
 	nMasterRewardExpPunishRate = 5000,
-	-- 未拜师角色推送师傅的最高等级
+	-- Maximum level for recommending mentors to unmentored characters
 	nMasterFindTeacherLevelLimit = 15,
-	-- 师傅接受推送的cd, 秒
+	-- Mentor recommendation acceptance cooldown, seconds
     nMasterTwitterCD = 60,
 
 	-- master
@@ -1118,24 +1118,24 @@
 	nMasterGradGiftMailIDForS = 4060,
 	nMasterGradGiftMailIDForT = 4059,
 
-	-- 开除徒弟扣除名师值万分比
+	-- Mentor point deduction for dismissing a student, in ten-thousandths
 	nMasterFireStudentPercent = 10000000,
 
-	--出师师父经验系数
+	--Mentor graduation experience factor
 	nTeacherExpRewardRate = 900,
-	--出师徒弟经验系数
+	--Student graduation experience factor
 	nStudentExpRewardRate = 300,
-	--出师师父金币系数
+	--Mentor graduation gold factor
 	nTeacherExp2MoneyRate = 3333,
-	--出师徒弟金币系数
+	--Student graduation gold factor
 	nStudentExp2MoneyRate = 3333,
-	--练级道义值系数
+	--Leveling virtue point factor
 	nMoralRate = 1000,
-	--出师名师值值系数
+	--Graduation mentor-point factor
 	nMasterExpRate = 1000,
 
 
-	--- 副本评分相关参数
+	--- Dungeon rating parameters
 	DungeonScore = {
 	    nTimeScoreRate = { 0, 20000, 15000, 12000, 10000, 8000 },
 	    nAttackScoreRate = { 0, 3000, 5000, 7000, 9000, 10000 },
@@ -1148,7 +1148,7 @@
 	    nTotalScore = { 0, 5, 8, 11, 14, 16 },
 	},
 
-	--- 调试选项
+	--- Debug options
 	DebugOption = {
 	    debugai = false,
 	    bShowErrorDialog = true,
@@ -1166,33 +1166,33 @@
 		bActivityRewardEnabled =  true,
 	},
 
-	--- GPK系统配置
+	--- GPK system configuration
 	GpkPunishOption = {
-		-- 是否打开旁路系统
+		-- Whether to enable the bypass system
 		bEnableSidewayPunish = true,
-		-- 是否打开心跳包发送
+		-- Whether to send heartbeat packets
 		bEnableGpkKeepAlive = true,
-		-- 心跳包超时是否踢人
+		-- Whether to disconnect on heartbeat timeout
 		bEnableKeepAliveTimeoutKick = false,
-		-- 心跳包返回异常错误码4是否踢人
+		-- Whether to disconnect on heartbeat error code 4
 		bEnableKeepAliveReturn4Kick = false,
-		-- 抓人人数下限
+		-- Minimum number of players to arrest
 		nCatchMin = 300,
-		-- 抓人人数上限
+		-- Maximum number of players to arrest
 		nCatchMax = 700,
-		-- 抓人队列长度
+		-- Arrest queue length
 		nCatchDelayQueueLen = 600,
-		-- 抓人队列超时(秒)
+		-- Arrest queue timeout (seconds)
 		nCatchDelayTimeout = 600,
-		-- 客户端GPK漏报上限
+		-- Client GPK missed-report limit
 		nClientGpkLostMax = 5,
-		-- 客户端GPK漏报惩罚（金币池惩罚等级: 1, 2, 3）
+		-- Client GPK missed-report penalty (gold-pool penalty level: 1, 2, 3)
 		nClientGpkLostPunishType = 2,
-		-- 客户端GPK被踢上限
+		-- Client GPK disconnect limit
 		nClientGpkKickMax = 2,
-		-- 客户端GPK心跳包间隔时间（秒）
+		-- Client GPK heartbeat interval (seconds)
 		nKeepAliveInternal = 120,
-		-- 是否只在特定场景踢人
+		-- Whether to disconnect only in specific scenes
 		bOnlyKickInSpecialScene = true,
 	},
 
@@ -1232,7 +1232,7 @@
 		nActivityLastTime = 2400,
 	},
 
-	-- 反外挂拼图发放时间间隔(秒)
+	-- Anti-cheat puzzle issuance interval (seconds)
 	nAntiCheatInterval =
 	{
 		[0] = 15 * 60,
@@ -1243,7 +1243,7 @@
 		[5] = 90 * 60,
 	};
 
-	-- 反外挂惩罚时间
+	-- Anti-cheat penalty duration
 	nAntiCheatPunishTime =
 	{
 		[0] = 0,
@@ -1252,16 +1252,16 @@
 		[3] = 180 * 60,
 	};
 
-	-- 决定新角色拼图发放时间
+	-- Determine puzzle issuance time for new characters
 	nInitAntiCheatLevel = 5;
-	-- 拼图超时时间（秒）
+	-- Puzzle timeout (seconds)
 	nAntiCheatTimeout = 600;
-	-- 拼图发放间隔浮动比例
+	-- Puzzle issuance interval variation rate
 	nAntiCheatIntervalFloatPct = 2000;
-	-- 是否踢人
+	-- Whether to disconnect players
 	nAntiCheatKickRole = 1;
 
---------------沙巴克争霸战
+--------------Sabac battle
 
 	Sabac = {
 		bEnabled = true,
@@ -1274,34 +1274,34 @@
 		WarZone2RightBottom = {x=94727, y=49306, z=7935},
 
 
-----复活点
+----Respawn point
 		DefendRevivePos = {x=50152, y=47707, z=6373},
 		nAttackReviveSceneID = 147,
 		AttackRevivePos = {x=39442, y=55254, z=6612},
 		nOtherReviveSceneID = 147,
 		OtherRevivePos = {x=39442, y=55254, z=6612},
 
------开始结束时间
-		nStartTime = 2000,    -- 20点开始
-		nEndTime   = 2300,    -- 23点结束
-		nStartOccupyTime = 2010,      -- 20点10分 开始能占领皇宫
-		nErectStatusCost = 100000,    -- 雕像
-		nEnrollCost = 1000000,        -- 报名费 100万金币
-		nEnrollItemID = 90196,        -- 报名物品 祖玛头像
-		nEnrollItemCount = 1,         -- 报名物品数量
+-----Start and end time
+		nStartTime = 2000,    -- Starts at 20:00
+		nEndTime   = 2300,    -- Ends at 23:00
+		nStartOccupyTime = 2010,      -- Palace occupation becomes available at 20:10
+		nErectStatusCost = 100000,    -- Statue
+		nEnrollCost = 1000000,        -- Registration fee: 1,000,000 gold
+		nEnrollItemID = 90196,        -- Registration item: Zuma portrait
+		nEnrollItemCount = 1,         -- Registration item quantity
 
-----树立雕像金币
+----Gold required to erect a statue
 		nErectStatusCost = 100000,
 
-----胜利奖励
+----Victory rewards
 	--	nLeaderAwardItemID = 0,
 	--	nMemberAwardItemID = 0,
 
-------公告消息
+------Announcement messages
 		nAwardMailTitleStringID = 2013,
 		nAwardMailContentStringID = 2014,
 	},
------- 问卷调查
+------ Survey
 	Survey = {
 		[0] = {nMaxLevel = 100, 	szSurveyPath = 'http://wenjuan.sdo.com:9091/survey/survey?surveyId=13834'},
 		[1] = {nMaxLevel = 100, 	szSurveyPath = 'http://wenjuan.sdo.com:9091/survey/survey?surveyId=9439'},
@@ -1312,9 +1312,9 @@
 	nSceneBusyPercent = 6000,
 	nSceneFullPercent = 8000,
 
------ 公会淘汰时间, 秒, 最小周期是1天
+----- Guild expiry time in seconds; minimum period is one day
 	nWashoutDeletedGuildTime = 604800,
------ 师徒淘汰时间，秒，最小周期是1天
+----- Mentorship expiry time in seconds; minimum period is one day
 	nWashoutDeletedMasterTime = 604800,
 
 	nTeleportRingCDTime = 10000,
@@ -1322,11 +1322,11 @@
 	nMemoSuitCDTime = 180000,
 	szRecallFailMessage = "无法对%s使用天地合一功能",
 
------ 挖矿
+----- Mining
 	nMineInterval = 1438,
 	nMineMaxValue = 500000,
 	nMineCDTime = 20 * 60 * 1000,
-	nMineDropRate = 10000,  -- 暂时没使用
+	nMineDropRate = 10000,  -- Currently unused
 
 	ChatConfig = {
 		nNormalMsgInterval = 1000,
@@ -1335,10 +1335,10 @@
 		nTrumpetItemID = 2201,
 		nGroupChatLevel = 7,
 		nGroupChatCost = 1000;
-		nGlobalChatAwardInterval = 2000;	-- 新增 聊天违规减免间隔控制(毫秒)
-		nAutoForbidTime = 600;				-- 新增 自动禁言时间(秒)
-		nMaxFoulTimes = 10;					-- 新增 最大违规次数
-		bCanChatInSafeArea = true;			-- 新增 是否可在安全区聊天
+		nGlobalChatAwardInterval = 2000;	-- Added chat violation reduction interval (milliseconds)
+		nAutoForbidTime = 600;				-- Added automatic mute duration (seconds)
+		nMaxFoulTimes = 10;					-- Added maximum violation count
+		bCanChatInSafeArea = true;			-- Added setting for chat in safe areas
 	},
 
 	GpkPunishGoldPool = {
@@ -1356,9 +1356,9 @@
 	-- pet,unit: sec
 	nPetDisappearTime = 0,
 
-	-- exp_bottle经验瓶
-	nExpBottlePortion = 10000,  --储存比例
-	nExpBottleFactor = 4000,    --折损后储存比例
+	-- exp_bottle experience bottle
+	nExpBottlePortion = 10000,  --Storage rate
+	nExpBottleFactor = 4000,    --Storage rate after loss
 
 	-- low level
 	nRoleLowLevel = 17,
@@ -1378,69 +1378,69 @@
 	dwSpellBookGambleSuccessRate = 2000,
 	nSpellBookGambleItemCountBeforeDropGroup2 = 36000,
 
-	-- 每日好感度上限
+	-- Daily friendship point limit
 	nMaxIntimacyEveryday = 335,
-	-- 最大好感度，不超过65535
+	-- Maximum friendship points, not exceeding 65535
 	nMaxIntimacy = 10000,
-	-- 同队伍同场景好感度增加值
+	-- Friendship gained by teammates in the same scene
 	nTeamIntimacyValue = 2,
-	-- 队伍好感度刷新间隔，最小5分钟
+	-- Team friendship refresh interval, minimum 5 minutes
 	nUpdateTeamIntimacyInterval = 5 * 60 * 1000,
-	-- 聊天好感度增加值
+	-- Friendship gained from chat
 	nChatIntimacyValue = 1,
-	-- 聊天好感度刷新间隔
+	-- Chat friendship refresh interval
 	nUpdateChatIntimacyInterval = 12 * 60 * 1000,
-	-- 公会好感度增加值
+	-- Friendship gained from guild activity
 	nGuildIntimacyValue = 50,
-	-- 公会好感度刷新间隔，最小30分钟
+	-- Guild friendship refresh interval, minimum 30 minutes
 	nUpdateGuildIntimacyInterval = 1440 * 60 * 1000,
-	-- 交易需要好感度
+	-- Friendship required to trade
 	nTradeNeedIntimacyValue = 1000,
 
---------至尊拍卖行
+--------Premium auction house
 
-	--拍卖行是否开放
+	--Whether auction house is open
 	bAuctionOpen = true;
-	--拍卖行交易税（万分比）
+	--Auction transaction tax in ten-thousandths
 	nAuctionTax = 200,
-	--拍卖行吃保证金扣税（万分比）
+	--Tax on forfeited auction deposits in ten-thousandths
 	nAuctionDepositTax = 1000,
-	--最多拍卖物品
+	--Maximum auction listings
 	nMaxAuctionSellingItems = 5,
-	--最多竞标物品
+	--Maximum bids
 	nMaxAuctionBuyingItems = 5,
-	--最多已拍卖物品
+	--Maximum sold items
 	nMaxAuctionSoldItems = 100,
-	--最多已购买物品
+	--Maximum purchased items
 	nMaxAuctionBoughtItems = 100,
-	--3种拍卖时间长度（单位：小时）
+	--Three auction durations (hours)
 	nAuctionTimeInterval =
 	{
 		[0] = 6,
 		[1] = 12,
 		[2] = 24
 	},
-	--公开拍卖花费
+	--Public auction cost
 	nAuctionOpenCost = 1000000,
-	--邮件中金币冷却时间（单位：秒）
+	--Cooldown for gold in mail (seconds)
 	nAuctionMoneyCDTime = 86400,
-	--拍卖行防压秒时间（单位：秒）
+	--Auction anti-sniping window (seconds)
 	nAuctionFinishDelayTime = 120,
-	--拍卖行等待尾款时间（单位：小时）
+	--Auction balance payment deadline (hours)
 	nAuctionWaitForPaymentTime = 24,
 
-	--是否启用动态密码验证
+	--Whether to enable dynamic password verification
 	bNeedDynamicPasswordVerification = false,
-	--动态密码验证间隔(秒)
+	--Dynamic password verification interval (seconds)
 	nDynamicPasswordCheckInterval = 7200,
 
-	--换线等待时间
+	--Line-change wait time
 	nChangeLineDuration = 5 * 1000,
 
-	----客户端打开拍卖行按钮
+	----Client auction-house open button
 	dwClientOption = 7,
 	
-	-------安全区泡点，增加双倍经验值
+	-------Safe-area idle rewards: add double experience
 	ExtraExpPos1 = {
 		nSceneTempID = 143,
 		x = 62700,

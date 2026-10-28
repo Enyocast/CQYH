@@ -1,37 +1,37 @@
 ﻿
 evtAIInteract = 
 { batSequencer,
-	{ batRoleOpenDialog, param = { 666777, 30000, 0, 0 } }, --选择档位
+	{ batRoleOpenDialog, param = { 666777, 30000, 0, 0 } }, --Select tier
 	{  batSelector, 
 		{ batSequencer,
-		{ batRoleCheckInteractOption, param = { 1 } }, --炼狱
+		{ batRoleCheckInteractOption, param = { 1 } }, --Purgatory
 			{  batSelector, 
 				{ batSequencer,
-				{ batRoleOpenDialog, param = { 666778, 30000, 0, 0 } }, --选择部位
+				{ batRoleOpenDialog, param = { 666778, 30000, 0, 0 } }, --Select equipment slot
 					{  batSelector, 
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 1 } }, --炼狱武器
+							{ batRoleCheckInteractOption, param = { 1 } }, --Purgatory weapon
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_one},--检测两件武器是否一样
+															{Check_Weapon_one},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -49,28 +49,28 @@ evtAIInteract =
 						},
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 2 } }, --炼狱帽子
+							{ batRoleCheckInteractOption, param = { 2 } }, --Purgatory hat
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_two},--检测两件武器是否一样
+															{Check_Weapon_two},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -82,28 +82,28 @@ evtAIInteract =
 							
 						},
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 3 } }, --炼狱肩甲
+							{ batRoleCheckInteractOption, param = { 3 } }, --Purgatory shoulder armor
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_three},--检测两件武器是否一样
+															{Check_Weapon_three},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -116,28 +116,28 @@ evtAIInteract =
 						},
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 4 } }, --炼狱胸甲
+							{ batRoleCheckInteractOption, param = { 4 } }, --Purgatory chest armor
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_four},--检测两件武器是否一样
+															{Check_Weapon_four},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -149,63 +149,28 @@ evtAIInteract =
 						},
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 5 } }, --炼狱护腕
+							{ batRoleCheckInteractOption, param = { 5 } }, --Purgatory bracers
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_five},--检测两件武器是否一样
+															{Check_Weapon_five},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
-														},	
-													},																																											
-											},
-											
-										},
-									},
-
-								},
-							
-						},
-						
-						
-						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 6 } }, --炼狱腰带
-								{  batSelector, 
-									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
-										{  batSelector, 
-											{ batSequencer,
-												{ batRoleCheckInteractOption, param = { 1 } },						
-													{ batSelector,
-														{ batSequencer, 
-															{Check_Weapon_six},--检测两件武器是否一样
-															{ batSelector,
-																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
-																},
-																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
-																},	
-															},
-														},  
-														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -219,62 +184,28 @@ evtAIInteract =
 						
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 7 } }, --炼狱鞋子
+							{ batRoleCheckInteractOption, param = { 6 } }, --Purgatory belt
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_seven},--检测两件武器是否一样
+															{Check_Weapon_six},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
-														},	
-													},																																											
-											},
-											
-										},
-									},
-
-								},
-							
-						},
-						
-						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 8 } }, --炼狱披风
-								{  batSelector, 
-									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
-										{  batSelector, 
-											{ batSequencer,
-												{ batRoleCheckInteractOption, param = { 1 } },						
-													{ batSelector,
-														{ batSequencer, 
-															{Check_Weapon_eight},--检测两件武器是否一样
-															{ batSelector,
-																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
-																},
-																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
-																},	
-															},
-														},  
-														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -288,28 +219,97 @@ evtAIInteract =
 						
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 9 } }, --炼狱项链
+							{ batRoleCheckInteractOption, param = { 7 } }, --Purgatory shoes
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_nine},--检测两件武器是否一样
+															{Check_Weapon_seven},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 8 } }, --Purgatory cloak
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_eight},--Check whether the two weapons match
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 9 } }, --Purgatory necklace
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_nine},--Check whether the two weapons match
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -324,28 +324,28 @@ evtAIInteract =
 						
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 10 } }, --炼狱戒指
+							{ batRoleCheckInteractOption, param = { 10 } }, --Purgatory ring
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_ten},--检测两件武器是否一样
+															{Check_Weapon_ten},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -359,28 +359,28 @@ evtAIInteract =
 						
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 11 } }, --炼狱手镯
+							{ batRoleCheckInteractOption, param = { 11 } }, --Purgatory bracelet
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_elven},--检测两件武器是否一样
+															{Check_Weapon_elven},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -400,34 +400,34 @@ evtAIInteract =
 			
 			
 		{ batSequencer,
-		{ batRoleCheckInteractOption, param = { 2 } }, --裁决
+		{ batRoleCheckInteractOption, param = { 2 } }, --Judgment
 			{  batSelector, 
 				{ batSequencer,
-				{ batRoleOpenDialog, param = { 666778, 30000, 0, 0 } }, --选择部位
+				{ batRoleOpenDialog, param = { 666778, 30000, 0, 0 } }, --Select equipment slot
 					{  batSelector, 
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 1 } }, --裁决武器
+							{ batRoleCheckInteractOption, param = { 1 } }, --Judgment weapon
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_One},--检测两件武器是否一样
+															{Check_Weapon_One},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -440,28 +440,28 @@ evtAIInteract =
 						},
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 2 } }, --裁决帽子
+							{ batRoleCheckInteractOption, param = { 2 } }, --Judgment hat
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_Two},--检测两件武器是否一样
+															{Check_Weapon_Two},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -473,28 +473,28 @@ evtAIInteract =
 							
 						},
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 3 } }, --裁决肩甲
+							{ batRoleCheckInteractOption, param = { 3 } }, --Judgment shoulder armor
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_Three},--检测两件武器是否一样
+															{Check_Weapon_Three},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -507,28 +507,28 @@ evtAIInteract =
 						},
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 4 } }, --裁决胸甲
+							{ batRoleCheckInteractOption, param = { 4 } }, --Judgment chest armor
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_Four},--检测两件武器是否一样
+															{Check_Weapon_Four},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -540,63 +540,28 @@ evtAIInteract =
 						},
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 5 } }, --裁决护腕
+							{ batRoleCheckInteractOption, param = { 5 } }, --Judgment bracers
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_Five},--检测两件武器是否一样
+															{Check_Weapon_Five},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
-														},	
-													},																																											
-											},
-											
-										},
-									},
-
-								},
-							
-						},
-						
-						
-						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 6 } }, --裁决腰带
-								{  batSelector, 
-									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
-										{  batSelector, 
-											{ batSequencer,
-												{ batRoleCheckInteractOption, param = { 1 } },						
-													{ batSelector,
-														{ batSequencer, 
-															{Check_Weapon_Six},--检测两件武器是否一样
-															{ batSelector,
-																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
-																},
-																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
-																},	
-															},
-														},  
-														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -610,62 +575,28 @@ evtAIInteract =
 						
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 7 } }, --裁决鞋子
+							{ batRoleCheckInteractOption, param = { 6 } }, --Judgment belt
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_Seven},--检测两件武器是否一样
+															{Check_Weapon_Six},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
-														},	
-													},																																											
-											},
-											
-										},
-									},
-
-								},
-							
-						},
-						
-						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 8 } }, --裁决披风
-								{  batSelector, 
-									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
-										{  batSelector, 
-											{ batSequencer,
-												{ batRoleCheckInteractOption, param = { 1 } },						
-													{ batSelector,
-														{ batSequencer, 
-															{Check_Weapon_Eight},--检测两件武器是否一样
-															{ batSelector,
-																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
-																},
-																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
-																},	
-															},
-														},  
-														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -679,28 +610,97 @@ evtAIInteract =
 						
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 9 } }, --裁决项链
+							{ batRoleCheckInteractOption, param = { 7 } }, --Judgment shoes
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_Nine},--检测两件武器是否一样
+															{Check_Weapon_Seven},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 8 } }, --Judgment cloak
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_Eight},--Check whether the two weapons match
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
+														},	
+													},																																											
+											},
+											
+										},
+									},
+
+								},
+							
+						},
+						
+						
+						{ batSequencer,
+							{ batRoleCheckInteractOption, param = { 9 } }, --Judgment necklace
+								{  batSelector, 
+									{ batSequencer,
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
+										{  batSelector, 
+											{ batSequencer,
+												{ batRoleCheckInteractOption, param = { 1 } },						
+													{ batSelector,
+														{ batSequencer, 
+															{Check_Weapon_Nine},--Check whether the two weapons match
+															{ batSelector,
+																{ batSequencer,																	
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
+																},
+																{ batSequencer,
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
+																},	
+															},
+														},  
+														{ batSequencer,
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -715,28 +715,28 @@ evtAIInteract =
 						
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 10 } }, --裁决戒指
+							{ batRoleCheckInteractOption, param = { 10 } }, --Judgment ring
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_Ten},--检测两件武器是否一样
+															{Check_Weapon_Ten},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -750,28 +750,28 @@ evtAIInteract =
 						
 						
 						{ batSequencer,
-							{ batRoleCheckInteractOption, param = { 11 } }, --裁决手镯
+							{ batRoleCheckInteractOption, param = { 11 } }, --Judgment bracelet
 								{  batSelector, 
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --是否确定合成
+										{ batRoleOpenDialog, param = { 666780, 30000, 'Get_Jinbi(o)', 'Get_Yuanbao(o)' } }, --Confirm the combination
 										{  batSelector, 
 											{ batSequencer,
 												{ batRoleCheckInteractOption, param = { 1 } },						
 													{ batSelector,
 														{ batSequencer, 
-															{Check_Weapon_Elven},--检测两件武器是否一样
+															{Check_Weapon_Elven},--Check whether the two weapons match
 															{ batSelector,
 																{ batSequencer,																	
-																	{ Check_Money }, --检查金币和元宝是否满足
-																	{ Change_Money }, --删除装备，扣元宝或金币
+																	{ Check_Money }, --Check whether gold and ingots are sufficient
+																	{ Change_Money }, --Remove equipment and deduct ingots or gold
 																},
 																{ batSequencer,
-																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --金币或者元宝不足
+																	{ batRoleOpenDialog, param = { 666774, 30000 } },  --Insufficient gold or ingots
 																},	
 															},
 														},  
 														{ batSequencer,
-															{ batRoleOpenDialog, param = { 666776, 30000 } },  --金币或者元宝不足
+															{ batRoleOpenDialog, param = { 666776, 30000 } },  --Insufficient gold or ingots
 														},	
 													},																																											
 											},
@@ -812,31 +812,31 @@ evtAIInteract =
 	
 			--[[		
 				{ batSequencer,
-						{ batRoleCheckInteractOption, param = { 2 } }, --装备升品
+						{ batRoleCheckInteractOption, param = { 2 } }, --Upgrade equipment tier
 						{ batSelector,
 							{ batSequencer, 
-								{ Check_Weapon }, --检测两件武器是否一样
+								{ Check_Weapon }, --Check whether the two weapons match
 								{ batSelector,
 									{ batSequencer,
-										{ Check_Weapon10_S }, --检测两件武器是否为10星
+										{ Check_Weapon10_S }, --Check whether both weapons have 10 stars
 										{ batSelector,
 											{ batSequencer,
-												{ Check_Money_S }, --检查金币和元宝是否满足
-												{ Change_Money_S }, --删除装备，扣元宝或金币												
+												{ Check_Money_S }, --Check whether gold and ingots are sufficient
+												{ Change_Money_S }, --Remove equipment and deduct ingots or gold
 											},
 											{ batSequencer,
-												{ batRoleOpenDialog, param = { 666767, 30000 } },  --金币或者元宝不足
+												{ batRoleOpenDialog, param = { 666767, 30000 } },  --Insufficient gold or ingots
 											},	
 										},
 									},
 									{ batSequencer,
-										{ batRoleOpenDialog, param = { 666765, 30000 } },  --装备未达到最高星级，无法升档
+										{ batRoleOpenDialog, param = { 666765, 30000 } },  --Equipment has not reached the highest star level and cannot advance
 									},
 								},	
 											
 							},
 							{ batSequencer, 
-								{ batRoleOpenDialog, param = { 666766, 30000 } },  --请放入两件同样可升级的装备
+								{ batRoleOpenDialog, param = { 666766, 30000 } },  --Insert two identical upgradeable items
 							},
 							
 						},

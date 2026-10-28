@@ -17,7 +17,7 @@ function TestRecruit(role, user, session_id, byCount)
 	local recruitListCount = 0;
 	local ret;
 
-	-- 前置拉取
+	-- Initial fetch
 	g_RobotMessageHandler:DoMstGetRecruit(role);
 	msg = recv_msg(50, session_id, protocol.m2c_master_recruit_list);
 	check(msg, "failed to recv m2c_master_recruit_list");
@@ -28,14 +28,14 @@ function TestRecruit(role, user, session_id, byCount)
 	--end
 
 	print(recruitListCount);
-	-- 申请
+	-- Apply
 	g_RobotMessageHandler:DoMstApplyRecruit(role);
 	msg = recv_msg(50, session_id, protocol.m2c_master_recruit_ack);
 	check(msg, "failed to recv m2c_master_recruit_ack");
 	check(msg.dwType == 1, "m2c_master_recruit_ack value error");
 
 	wait(1);
-	-- 再次拉取，确认数量
+	-- Fetch again and check the count
 	g_RobotMessageHandler:DoMstGetRecruit(role);
 	msg = recv_msg(50, session_id, protocol.m2c_master_recruit_list);
 	check(msg, "failed to recv m2c_master_recruit_list");
@@ -43,13 +43,13 @@ function TestRecruit(role, user, session_id, byCount)
 	print(msg.byCount);
 	check(msg.byCount == recruitListCount + 1, "m2c_master_recruit_list value error");
 
-	-- 取消
+	-- Cancel
 	g_RobotMessageHandler:DoMstCancelRecruit(role);
 	msg = recv_msg(50, session_id, protocol.m2c_master_recruit_ack);
 	check(msg, "failed to recv m2c_master_recruit_ack");
 	check(msg.dwType == 2, "m2c_master_recruit_ack value error");
 
-	-- 再次拉取，确认数量
+	-- Fetch again and check the count
 	g_RobotMessageHandler:DoMstGetRecruit(role);
 	msg = recv_msg(50, session_id, protocol.m2c_master_recruit_list);
 	check(msg, "failed to recv m2c_master_recruit_list");
@@ -126,7 +126,7 @@ function TestRefuseAllApp(role, session_id, s_role, s_session_id)
     check(temp_role, "failed to create role");
 	local temp_session_id = temp_user:GetSessionID();
 
-	-- 再次申请
+	-- Apply again
 	TestSubmitApp(role, session_id, temp_role, temp_session_id);
 
 	g_RobotMessageHandler:DoMstRefuseStudApp(role, 0);
@@ -259,7 +259,7 @@ function TestCase.Master.MasterRecruit()
 		wait(1);
     end
 
-    -- 变成师傅
+    -- Become a master
     for i = 1, teacher_num, 1 do
 		BecomeMasterByMyself(teacher_user[i], teacher_role[i]);
 		wait(1);
@@ -267,7 +267,7 @@ function TestCase.Master.MasterRecruit()
 
 	wait(3);
 
-	-- 申请
+	-- Apply
 	for i = 1, teacher_num, 1 do
 		g_RobotMessageHandler:DoMstApplyRecruit(teacher_role[i]);
 		msg = recv_msg(10, teacher_session[i], protocol.m2c_master_recruit_ack);
@@ -417,12 +417,12 @@ function TestCase.Master.MasterBase()
     check(role, "failed to create role");
 	session_id = user:GetSessionID();
 
-	-- 变成师傅
+	-- Become a master
 	BecomeMasterByMyself(user, role);
 
 	wait(5);
 
-	-- 验证招徒列表
+	-- Verify the apprentice recruitment list
 	TestRecruit(role, user, session_id, 0);
 
 	wait(2);
@@ -433,39 +433,39 @@ function TestCase.Master.MasterBase()
     check(s_role, "failed to create role");
 	local s_session_id = s_user:GetSessionID();
 
-	-- 提交申请
+	-- Submit application
 	TestSubmitApp(role, session_id, s_role, s_session_id);
 
-	-- 取消申请
+	-- Cancel application
 	TestCancelApp(role, session_id, s_role, s_session_id);
 
-	-- 提交申请
+	-- Submit application
 	TestSubmitApp(role, session_id, s_role, s_session_id);
 
-	-- 拒绝申请
+	-- Reject application
 	TestRefuseApp(role, session_id, s_role, s_session_id);
 
-	-- 提交申请
+	-- Submit application
 	TestSubmitApp(role, session_id, s_role, s_session_id);
-	-- 拒绝所有
+	-- Reject all
 	TestRefuseAllApp(role, session_id, s_role, s_session_id);
 
-	-- 提交申请
+	-- Submit application
 	TestSubmitApp(role, session_id, s_role, s_session_id);
-	-- 同意拜师
+	-- Accept the apprenticeship
 	TestAgreeApp(role, session_id, s_role, s_session_id);
 
-	-- 恭喜升级
+	-- Congratulate on leveling up
 	ret = s_user:GMCommand("AddExp(3000)");
 	check(ret, "failed to send gm command");
 	wait(5);
 	TestCongLevelUp(role, session_id, s_role, s_session_id);
 
 
-	-- 主动叛师
+	-- Leave the master voluntarily
 	TestLeaveMaster(role, session_id, s_role, s_session_id);
 
-	-- 开除
+	-- Dismiss
 	--TestFireStudent(role, session_id, s_role, s_session_id);
 	--check(role:GetMaster():GetStudentCount() == 0, "student num error!");
 
@@ -503,7 +503,7 @@ function TestRecruitAdvanced(byCount)
 		wait(2);
 	end
 
-	-- 前置拉取
+	-- Initial fetch
 	g_RobotMessageHandler:DoMstGetRecruit(master_table[1].role);
 	msg = recv_msg(50, master_table[1].session_id, protocol.m2c_master_recruit_list);
 	check(msg, "failed to recv m2c_master_recruit_list");
@@ -515,7 +515,7 @@ function TestRecruitAdvanced(byCount)
 	end
 
 	for k,v in pairs(master_table) do
-		-- 变成师傅
+		-- Become a master
 		BecomeMasterByMyself(v.user, v.role);
 		wait(1);
 	end
@@ -526,13 +526,13 @@ function TestRecruitAdvanced(byCount)
 
 	print("--------------------".. recruitListCount);
 	for k,v in pairs(master_table) do
-		-- 申请
+		-- Apply
 		g_RobotMessageHandler:DoMstApplyRecruit(v.role);
 		msg = recv_msg(50, v.session_id, protocol.m2c_master_recruit_ack);
 		check(msg, "failed to recv m2c_master_recruit_ack");
 		check(msg.dwType == 1, "m2c_master_recruit_ack value error");
 
-		-- 再次拉取，确认数量
+		-- Fetch again and check the count
 		g_RobotMessageHandler:DoMstGetRecruit(v.role);
 		msg = recv_msg(50, v.session_id, protocol.m2c_master_recruit_list);
 		check(msg, "failed to recv m2c_master_recruit_list");
@@ -559,13 +559,13 @@ function TestRecruitAdvanced(byCount)
 	end
 
 
-	-- 取消
+	-- Cancel
 	--g_RobotMessageHandler:DoMstCancelRecruit(role);
 	--msg = recv_msg(50, session_id, protocol.m2c_master_recruit_ack);
 	--check(msg, "failed to recv m2c_master_recruit_ack");
 	--check(msg.dwType == 2, "m2c_master_recruit_ack value error");
 
-	-- 再次拉取，确认数量
+	-- Fetch again and check the count
 	--g_RobotMessageHandler:DoMstGetRecruit(role);
 	--msg = recv_msg(50, session_id, protocol.m2c_master_recruit_list);
 	--check(msg, "failed to recv m2c_master_recruit_list");
@@ -593,7 +593,7 @@ function SubmitAppAdvanced()
 	end
 
 	for k,v in pairs(master_table) do
-		-- 变成师傅
+		-- Become a master
 		BecomeMasterByMyself(v.user, v.role);
 		wait(1);
 	end
@@ -626,7 +626,7 @@ function SubmitAppAdvanced()
 		end
 	end
 
-	--1号学生需要取消一个，才能继续
+	--Student 1 must cancel one application before continuing
 	TestCancelApp(master_table[1].role, master_table[1].session_id, student_table[1].role, student_table[1].session_id);
 
 	wait(3);
@@ -765,7 +765,7 @@ function AgreeAllAppAdvanced()
 	end
 
 	for k,v in pairs(master_table) do
-		-- 变成师傅
+		-- Become a master
 		BecomeMasterByMyself(v.user, v.role);
 		wait(1);
 	end
@@ -861,18 +861,18 @@ function MasterWholeAdvanced()
 	end
 
 	for k,v in pairs(master_table) do
-		-- 变成师傅
+		-- Become a master
 		BecomeMasterByMyself(v.user, v.role);
 		wait(1);
 	end
 
-	-- 申请
+	-- Apply
 	print("student's application list");
 	for i = 1,3,1 do
 		SubmitApp(student_table[i].role, master_table[1].role, student_table[i].session_id, master_table[1].session_id);
 	end
 
-	-- 同意
+	-- Accept
 	for i = 1,3,1 do
 		AgreeApplication(student_table[i].role, student_table[i].session_id, master_table[1].role, master_table[1].session_id);
 	end
@@ -880,7 +880,7 @@ function MasterWholeAdvanced()
 	print(master_table[1].role:GetMaster():GetStudentCount());
 	check(master_table[1].role:GetMaster():GetStudentCount() == 3, "add student error!");
 
-	-- 升级出师
+	-- Level up and graduate
 	for i = 1, 3, 1 do
 		print("role:"..i);
 		ret = student_table[i].user:GMCommand("AddExp(30000000)");
@@ -969,12 +969,12 @@ function TestCase.Master.MasterAdvanced()
 
 --	local master_user, master_role, m_session_id = NewUser();
 
-	-- 变成师傅
+	-- Become a master
 	--BecomeMasterByMyself(master_user, master_role);
 
 
 
-	-- 手动testcase
+	-- Manual test case
 	MasterWholeAdvanced();
 end
 

@@ -20,7 +20,7 @@ on_cast_spell =
         },
        	{ batRandom, param = { 5000,5000 },
         --{ batSequencer,
-            -- -- 魅惑      
+            -- -- Charm
             -- { batSyncCastSpellToTarget , param={ 5566 , tarAITarget },
             -- },
         },
@@ -33,13 +33,13 @@ on_cast_spell =
         { batCheckCanCastSpell, 
         },
         { batRandom, param = { 6000,4000,4000 },
-	        -- 魔能法球       
+	        -- Magic orb
 	        { batSyncCastSpellToTarget, param={ 5571 , tarAITarget },
 	        },
-	        -- 暴雷轰       
+	        -- Thunder blast
 	        { batSyncCastSpellToTarget, param={ 5561 , tarAITarget },
 	        },
-	        -- 暴雷轰       
+	        -- Thunder blast
 	        { batSyncCastSpellToTarget, param={ 5561 , tarAITarget },
 	        },
     	},
@@ -52,49 +52,49 @@ on_cast_spell =
 	        },
 	      	{ batRandom, param = { 4000,6000 },
 	      		{batSequencer,
-		 			--极冻碎裂波
+					--Freezing shatter wave
 		            { batSyncCastSpellToTarget , param={ 5560 , tarAITarget },
 		            },
-			        -- 连续闪烁1 离开
+			        -- Consecutive blink 1: move away
 			        { batSyncCastSpellToTarget , param={ 5562 , tarAITarget },
 			        },
-			        -- 魔能法球       
+			        -- Magic orb
 		       		{ batSyncCastSpellToTarget, param={ 5571 , tarAITarget },
 		       		},
 		       		{ batWait, param={ 3000 }},
-		       		  -- 暴雷轰           
+				  -- Thunder blast
 		            { batSyncCastSpellToTarget , param={ 5561 , tarAITarget },
 		            },
 		       	},
 		       	{batSequencer,
-		 			--连续闪烁1 离开
+					--Consecutive blink 1: move away
 		            { batSyncCastSpellToTarget , param={ 5562 , tarAITarget },
 		            },
-		            -- 冰牢
+		            -- Ice prison
 		            { batSyncCastSpellToTarget, param={ 5564 , tarAITarget },
 		        	},
-		        	 -- 暴雷轰           
+			 -- Thunder blast
 		            { batSyncCastSpellToTarget , param={ 5561 , tarAITarget },
 		            },
 		            { batWait, param={ 1000 }},
-		             -- 暴雷轰           
+		             -- Thunder blast
 		            { batSyncCastSpellToTarget , param={ 5561 , tarAITarget },
 		            },
 		            { batWait, param={ 1000 }},
-		             -- 暴雷轰           
+		             -- Thunder blast
 		            { batSyncCastSpellToTarget , param={ 5561 , tarAITarget },
 		            },
 		            { batWait, param={ 1000 }},
-		             -- 暴雷轰           
+		             -- Thunder blast
 		            { batSyncCastSpellToTarget , param={ 5561 , tarAITarget },
 		            },
 		            { batWait, param={ 2000 }},
-					-- 魅惑 
+					-- Charm
 		            -- { batSyncCastSpellToTarget , param={ 5566 , tarAITarget },
             		-- },
 		       	},
 	      	},
-	        -- -- 连续闪烁2 靠近
+	        -- -- Consecutive blink 2: approach
 	        -- { batSyncCastSpellToTarget , param={ 5563 , tarAITarget },
 	        -- },
 	    },
@@ -106,7 +106,7 @@ on_cast_spell =
         },
         { batCheckCanCastSpell, 
         },
-         -- 招兵买马        
+         -- Recruit troops
         { batSyncCastSpellToTarget, param={ 5565 , tarAITarget },
         },
 	},

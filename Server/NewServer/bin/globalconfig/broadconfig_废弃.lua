@@ -1,5 +1,5 @@
--- 自定义, 新增加公告
-ServerConfig.BroadConfig = {};    -- 必须先初始化
+-- Custom additional announcements
+ServerConfig.BroadConfig = {};    -- Must be initialized first
 
 ServerConfig.BroadConfig[0] = {};
 ServerConfig.BroadConfig[0].szBroad = "公告0";
@@ -32,7 +32,7 @@ ServerConfig.BroadConfig[9] = {};
 ServerConfig.BroadConfig[9].szBroad = "公告9";
 
 
--- 待定
+-- To be determined
 -- ServerConfig.BroadConfig[10].szBroad = "公告10";
 -- ServerConfig.BroadConfig[11].szBroad = "公告11";
 -- ServerConfig.BroadConfig[12].szBroad = "公告12";

@@ -8,7 +8,7 @@ evtAIInteract =
     { batSetCDTimer , param={ COOLDOWN_AI , 1,10000},
     },
     { batRandom , param={4000,6000},
-        --失败
+        --Failure
         {batSequencer,
             
             { batPlayAction, param={ 2},
@@ -24,7 +24,7 @@ evtAIInteract =
             { batWait, param={5000},
             },
         },
-        -- 成功
+        -- Success
         {batSequencer,
             {batRoleSetQuestVariable , param = {2093,2,1}},
             { batPlayAction, param={ 1},

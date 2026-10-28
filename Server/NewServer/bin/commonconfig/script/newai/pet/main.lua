@@ -7,12 +7,12 @@ LoadPackage("npc.pkg")
 Include("script/newai/sub_tree/sub_tree.lh")
 
 -- spell, aura, last time
-local 	TRANSFORM_TO_DOG_AURA_ID = 60460;  -- 神兽变化
-local 	TRANSFORM_TO_DOG_SPELL_ID = 6046;  -- [神兽(普通)]进入战斗
+local 	TRANSFORM_TO_DOG_AURA_ID = 60460;  -- Divine beast transformation
+local 	TRANSFORM_TO_DOG_SPELL_ID = 6046;  -- [Divine beast (normal)] enter combat
 local 	TRANSFORM_TO_DOG_PERFORMANCE_TIME = 1063;
 
 local 	TRANSFORM_TO_MAN_WAIT_TIME = 60000;
-local 	TRANSFORM_TO_MAN_SPELL_ID = 6047;  -- [神兽(通用)]退出战斗
+local 	TRANSFORM_TO_MAN_SPELL_ID = 6047;  -- [Divine beast (common)] leave combat
 local 	TRANSFORM_TO_MAN_PERFORMANCE_TIME = 1750;
 
 local 	MAGE_PET_VIOLENT_SPELL_ID = 25411;

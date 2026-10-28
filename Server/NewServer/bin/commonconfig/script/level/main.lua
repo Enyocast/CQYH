@@ -20,19 +20,19 @@ SlotTable[58] = qssKey9;
 SlotTable[59] = qssKey10;
 SlotTable[60] = qssKey11;
 
---! 技能获取表
+--! Spell acquisition table
 local WarriorSkillGet = {};
-WarriorSkillGet[41] = 1031; -- 基础剑术
-WarriorSkillGet[42] = 1032; -- 攻杀剑术
-WarriorSkillGet[43] = 1033; -- 刺杀剑术
-WarriorSkillGet[44] = 1034; -- 半月弯刀
-WarriorSkillGet[45] = 1035; -- 野蛮冲撞
-WarriorSkillGet[46] = 1036; -- 烈火剑法
-WarriorSkillGet[47] = 1037; -- 狮子吼
-WarriorSkillGet[48] = 1038; -- 逐日剑法
-WarriorSkillGet[49] = 0--1039; -- 旋风斩
-WarriorSkillGet[50] = 0--1040; -- 暴怒
-WarriorSkillGet[51] = 0--1041; -- 盾墙
+WarriorSkillGet[41] = 1031; -- Basic Swordsmanship
+WarriorSkillGet[42] = 1032; -- Attack Swordsmanship
+WarriorSkillGet[43] = 1033; -- Assassination Swordsmanship
+WarriorSkillGet[44] = 1034; -- Half-Moon Slash
+WarriorSkillGet[45] = 1035; -- Savage Charge
+WarriorSkillGet[46] = 1036; -- Blazing Swordsmanship
+WarriorSkillGet[47] = 1037; -- Lion’s Roar
+WarriorSkillGet[48] = 1038; -- Sun-Chasing Swordsmanship
+WarriorSkillGet[49] = 0--1039; -- Whirlwind Slash
+WarriorSkillGet[50] = 0--1040; -- Fury
+WarriorSkillGet[51] = 0--1041; -- Shield Wall
 WarriorSkillGet[52] = 0;
 WarriorSkillGet[53] = 0;
 WarriorSkillGet[54] = 0;
@@ -44,46 +44,46 @@ WarriorSkillGet[59] = 0;
 WarriorSkillGet[60] = 0;
 
 local MageSkillGet = {};
-MageSkillGet[41] = 2531; -- 火球术
-MageSkillGet[42] = 2532; -- 抗拒火环
-MageSkillGet[43] = 2541; -- 诱惑之光
-MageSkillGet[44] = 2544; -- 地狱火
-MageSkillGet[45] = 2533; -- 雷电术
-MageSkillGet[46] = 2538; -- 瞬息移动
-MageSkillGet[47] = 2545; -- 爆裂火焰
-MageSkillGet[48] = 2534; -- 火墙
-MageSkillGet[49] = 2536; -- 疾光电影
-MageSkillGet[50] = 2546; -- 地狱雷光
-MageSkillGet[51] = 2535; -- 魔法盾
-MageSkillGet[52] = 2547; -- 圣言术
-MageSkillGet[53] = 2537; -- 冰咆哮
-MageSkillGet[54] = 2550; -- 寒冰掌
-MageSkillGet[55] = 2549; -- 大火球
-MageSkillGet[56] = 2539; -- 灭天火
-MageSkillGet[57] = 2540; -- 流星火雨
-MageSkillGet[58] = 0--2548; -- 月华
-MageSkillGet[59] = 0--2542; -- 吞魔盾
-MageSkillGet[60] = 0--2543; -- 魔力过载
+MageSkillGet[41] = 2531; -- Fireball
+MageSkillGet[42] = 2532; -- Repelling Fire Ring
+MageSkillGet[43] = 2541; -- Light of Seduction
+MageSkillGet[44] = 2544; -- Hellfire
+MageSkillGet[45] = 2533; -- Lightning
+MageSkillGet[46] = 2538; -- Teleport
+MageSkillGet[47] = 2545; -- Explosive Flame
+MageSkillGet[48] = 2534; -- Firewall
+MageSkillGet[49] = 2536; -- Lightning Beam
+MageSkillGet[50] = 2546; -- Hell Lightning
+MageSkillGet[51] = 2535; -- Magic Shield
+MageSkillGet[52] = 2547; -- Holy Word
+MageSkillGet[53] = 2537; -- Ice Roar
+MageSkillGet[54] = 2550; -- Ice Palm
+MageSkillGet[55] = 2549; -- Greater Fireball
+MageSkillGet[56] = 2539; -- Skyfire
+MageSkillGet[57] = 2540; -- Meteor Shower
+MageSkillGet[58] = 0--2548; -- Moonlight
+MageSkillGet[59] = 0--2542; -- Magic Devouring Shield
+MageSkillGet[60] = 0--2543; -- Magic Overload
 
 local TaoistSkillGet = {};
-TaoistSkillGet[41] = 3002; -- 治愈术
-TaoistSkillGet[42] = 3001; -- 精神力战法
-TaoistSkillGet[43] = 3004; -- 施毒术
-TaoistSkillGet[44] = 3005; -- 灵魂火符
-TaoistSkillGet[45] = 3003; -- 召唤死灵
-TaoistSkillGet[46] = 3009; -- 隐身术
-TaoistSkillGet[47] = 3014; -- 集体隐身术
-TaoistSkillGet[48] = 3006; -- 幽灵盾
-TaoistSkillGet[49] = 3007; -- 神圣战甲术
-TaoistSkillGet[50] = 3011; -- 困魔阵
-TaoistSkillGet[51] = 3018; -- 气功波
-TaoistSkillGet[52] = 3012; -- 群体治愈术
-TaoistSkillGet[53] = 3008; -- 召唤神兽
-TaoistSkillGet[54] = 3015; -- 无极真气
-TaoistSkillGet[55] = 3010; -- 噬血术
-TaoistSkillGet[56] = 0--3016; -- 画地为牢
-TaoistSkillGet[57] = 0--3017; -- 净化术
-TaoistSkillGet[58] = 0--3013; -- 护体术
+TaoistSkillGet[41] = 3002; -- Heal
+TaoistSkillGet[42] = 3001; -- Spirit Combat Technique
+TaoistSkillGet[43] = 3004; -- Poison
+TaoistSkillGet[44] = 3005; -- Soul Fire Talisman
+TaoistSkillGet[45] = 3003; -- Summon Undead
+TaoistSkillGet[46] = 3009; -- Invisibility
+TaoistSkillGet[47] = 3014; -- Group Invisibility
+TaoistSkillGet[48] = 3006; -- Ghost Shield
+TaoistSkillGet[49] = 3007; -- Holy Armor
+TaoistSkillGet[50] = 3011; -- Demon Trap
+TaoistSkillGet[51] = 3018; -- Qi Wave
+TaoistSkillGet[52] = 3012; -- Group Heal
+TaoistSkillGet[53] = 3008; -- Summon Divine Beast
+TaoistSkillGet[54] = 3015; -- Boundless Qi
+TaoistSkillGet[55] = 3010; -- Blood Drain
+TaoistSkillGet[56] = 0--3016; -- Confinement
+TaoistSkillGet[57] = 0--3017; -- Purification
+TaoistSkillGet[58] = 0--3013; -- Body Protection
 TaoistSkillGet[59] = 0;
 TaoistSkillGet[60] = 0;
 
@@ -134,7 +134,7 @@ ArcherSkillGet[60] = 0;
 
 local SkillTable = {WarriorSkillGet, MageSkillGet, RogueSkillGet, ArcherSkillGet, TaoistSkillGet};
 
---! 自动装配表
+--! Automatic equipment table
 local WarriorSkillAutoEquip = {}
 WarriorSkillAutoEquip[49] = 1033;
 WarriorSkillAutoEquip[50] = 1034;
@@ -209,7 +209,7 @@ ArcherSkillAutoEquip[60] = 0;
 local SkillEquipTable = {WarriorSkillAutoEquip, MageSkillAutoEquip, RougeSkillAutoEquip, ArcherSkillAutoEquip, TaoistSkillAutoEquip};
 
 
---! 升级执行逻辑
+--! Level-up logic
 function main(oRole, old_level, new_level)
 
 	--print("oldlevel: "..old_level..", newlevel: "..new_level);
@@ -227,10 +227,10 @@ function main(oRole, old_level, new_level)
 
 		local classinskill = class + 1
 
-		-- 升级功能
+		-- Level-up functionality
 		for next_level = old_level + 1, new_level do
 
-			-- 获得技能
+			-- Acquire spell
 			if SkillTable[classinskill][next_level] ~= nil then
 				if type(SkillTable[classinskill][next_level]) == "number" then
 					if SkillTable[classinskill][next_level] ~= 0 then
@@ -246,7 +246,7 @@ function main(oRole, old_level, new_level)
 			end
 
 
-			-- 自动装配技能
+			-- Automatically equip spells
 			if SkillEquipTable[classinskill][next_level] ~= nil then
 
 				if type(SkillEquipTable[classinskill][next_level]) == "number" then
@@ -277,9 +277,9 @@ function main(oRole, old_level, new_level)
 		end
 	end
 
----------根据玩家等级发邮件
+---------Send mail based on player level
 
-	--17级VIP验证by.xxp
+	--Level 17 VIP verification by xxp
 		--[[if new_level>= 17 then
 			if oRole:GetVIPLevel() < 1 then
 				oRole:SetLevel(16)
@@ -291,7 +291,7 @@ function main(oRole, old_level, new_level)
 
 
 
-	--问卷调查by.xxp
+	--Survey by xxp
 
 		if new_level== 17 then
 			if oRole:GetVIPLevel() < 1 then

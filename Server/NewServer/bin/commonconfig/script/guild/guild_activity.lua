@@ -10,16 +10,16 @@ g_MSGuildMgr = CMsGuildMgr:GetInstance();
 
 
 --------------------------------------------------------------------------------------
--- 功能：发送固定内容
--- 参数说明：
--- 第一参数，第二参数，第三参数， 固定拷贝即可
--- 第四参数, 公告对象：
---			guild_id:  对公会
---          cctGroup：全服
--- 第五参数，公告显示的位置
---			cltLighting: 走马灯
--- 			cltTvShow: 电视机
---          cltTrumpet: 喇叭
+-- Function: send fixed content
+-- Parameters:
+-- Copy the first three parameters unchanged
+-- Fourth parameter: announcement audience
+--			guild_id: guild audience
+--          cctGroup: entire server
+-- Fifth parameter: announcement display location
+--			cltLighting: scrolling announcement
+-- 			cltTvShow: screen announcement
+--          cltTrumpet: trumpet
 
 function TrySay(group_id, guild_level, lighting_id, targetID, location)
 	local text = "<#T:"..lighting_id..">";
@@ -29,16 +29,16 @@ end
 
 
 --------------------------------------------------------------------------------------
--- 功能：发送包括公会名在内的内容
--- 参数说明：
--- 第一参数，第二参数，第三参数，第四参数 固定拷贝即可
--- 第五参数, 公告对象：
---			guild_id:  对公会
---          cctGroup：全服
--- 第六参数，公告显示的位置
---			cltLighting: 走马灯
--- 			cltTvShow: 电视机
---          cltTrumpet: 喇叭
+-- Function: send content containing the guild name
+-- Parameters:
+-- Copy the first four parameters unchanged
+-- Fifth parameter: announcement audience
+--			guild_id: guild audience
+--          cctGroup: entire server
+-- Sixth parameter: announcement display location
+--			cltLighting: scrolling announcement
+-- 			cltTvShow: screen announcement
+--          cltTrumpet: trumpet
 
 function TrySayWithGuild(group_id, guild_id, guild_level, lighting_id, targetID, location)
 	local guild = g_MSGuildMgr:FindGuildByID(guild_id);
@@ -57,25 +57,25 @@ end
 
 -- common
 
----运镖
+---Escort
 function OpenActivity_1(group_id, guild_id, guild_level, lighting_id)
 	TrySayWithGuild(group_id, guild_id, guild_level, lighting_id, cctGroup, cltLighting);
 end
 
 
----妖兽
+---Demon beast
 function OpenActivity_2(group_id, guild_id, guild_level, lighting_id)
 	TrySay(group_id, guild_level, lighting_id, guild_id, cltLighting);
 end
 
 
----温泉
+---Hot spring
 function OpenActivity_3(group_id, guild_id, guild_level, lighting_id)
 	TrySay(group_id, guild_level, lighting_id, guild_id, cltLighting);
 end
 
 
----祈祷
+---Prayer
 function OpenActivity_4(group_id, guild_id, guild_level, lighting_id)
 	TrySay(group_id, guild_level, lighting_id, guild_id, cltLighting);
 end

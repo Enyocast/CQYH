@@ -12,7 +12,7 @@ Include("script/include/sabac.lh");
 
 local g_oGameWorld = CGameWorld:GetInstance();
 
--- 沙巴克
+-- Sabak
 function load_all_npc(scene)
 	local serverGroup = scene:GetServerGroup();
 
@@ -32,7 +32,7 @@ function load_all_npc(scene)
 		end
 	end
 
-	local npc = scene:FindNpc(28);    -- 默认写的"28", 没有这个ID的npc
+	local npc = scene:FindNpc(28);    -- The default specifies "28", but there is no NPC with that ID
 	
 	if npc ~= nil then
 		npc:SetAlwaysRun(true);

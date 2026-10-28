@@ -1,50 +1,50 @@
 
-ESCORT_ACTIVITY_ID = 1;                              -- 押镖活动id
-ESCORT_QUEST_ID = 2049;                              -- 押镖任务ID
-ESCORT_QUEST_CAN_COMPLETE_VAR_ID = 1;                -- 任务变量id 标记任务可完成
-ESCORT_QUEST_CAN_COMPLETE_VAR_VALUE = 1;             -- 任务变量值 标记任务可完成
+ESCORT_ACTIVITY_ID = 1;                              -- Escort activity ID
+ESCORT_QUEST_ID = 2049;                              -- Escort quest ID
+ESCORT_QUEST_CAN_COMPLETE_VAR_ID = 1;                -- Quest variable ID marking the quest as completable
+ESCORT_QUEST_CAN_COMPLETE_VAR_VALUE = 1;             -- Quest variable value marking the quest as completable
 
-VAR_ROLE_ESCORT_CAR_ID = 178;                        -- 角色镖车id变量
-VAR_ROLE_LAST_ESCORT_TIME = 179;                     -- 角色上次接镖时间变量
-VAR_ROLE_ESCORT_CAR_TEMP_ID = 184;                   -- 角色镖车模板id变量
-VAR_ROLE_ESCORT_BUSINESS_LEVEL = 186;                -- 角色接镖时的商会等级变量
-ESCORT_FOLLOW_Y_POS = -(1*GRID_WIDTH);               -- 镖车跟随的y轴位置（角色的前后格子数）
-ESCORT_RETURN_VALID_GRID_COUNT = 6;                  -- 还镖（镖车与交镖人）的有效格子距离
-ESCORT_CAR_VALID_FOLLOW_DISTANCE = 7 * GRID_WIDTH;   -- 镖车与角色的有效的距离
+VAR_ROLE_ESCORT_CAR_ID = 178;                        -- Character escort cart ID variable
+VAR_ROLE_LAST_ESCORT_TIME = 179;                     -- Character last escort acceptance time variable
+VAR_ROLE_ESCORT_CAR_TEMP_ID = 184;                   -- Character escort cart template ID variable
+VAR_ROLE_ESCORT_BUSINESS_LEVEL = 186;                -- Trading guild level when the character accepted the escort
+ESCORT_FOLLOW_Y_POS = -(1*GRID_WIDTH);               -- Escort cart follow position on the y-axis (grid cells ahead of or behind the character)
+ESCORT_RETURN_VALID_GRID_COUNT = 6;                  -- Valid grid distance between the escort cart and the receiving NPC
+ESCORT_CAR_VALID_FOLLOW_DISTANCE = 7 * GRID_WIDTH;   -- Valid follow distance between the cart and player
 
-BROCAST_LOSE_ESCORT_INTERVAL = 20000;                -- 镖车丢失通知时间间隔（单位/ms）
-CHECK_ESCORT_DISTANCE_INTERVAL = 1000;               -- 检测镖车与角色的距离时间间隔（单位/ms）
+BROCAST_LOSE_ESCORT_INTERVAL = 20000;                -- Escort cart lost notification interval (ms)
+CHECK_ESCORT_DISTANCE_INTERVAL = 1000;               -- Interval for checking the cart-to-player distance (ms)
 
-ESCORT_DIE_DROP_PILE_MONEY_COUNT = 2000;             -- 镖车被打破后每堆掉落金币的数量
-ESCORT_DIE_DROP_MAX_PILE_COUNT = 81;                 -- 镖车被打破后掉落金币最大堆数
-ESCORT_COEFF_PROP_LOW = 4000;                        -- 镖车系数万分比下限
-ESCORT_COEFF_PROP_UP = 6000;                         -- 镖车系数万分比上限
-ESCORT_ACCEPT_BASE_MONEY = 100000;                   -- 押镖基本押金费用
-ESCORT_ACCEPT_BASE_BG = 1000;                        -- 押镖基本帮贡费用
-ESCORT_ACCEPT_BASE_ITEM_SS = 1800001;                --押开启镖车所需的物品
-ESCORT_ACCEPT_BASE_ITEM_S = 1800002;                 --押开启镖车所需的物品
-ESCORT_ACCEPT_BASE_ITEM_A = 1800003;                 --押开启镖车所需的物品
+ESCORT_DIE_DROP_PILE_MONEY_COUNT = 2000;             -- Gold per pile dropped when the cart is destroyed
+ESCORT_DIE_DROP_MAX_PILE_COUNT = 81;                 -- Maximum gold piles dropped when the cart is destroyed
+ESCORT_COEFF_PROP_LOW = 4000;                        -- Minimum escort cart coefficient in ten-thousandths
+ESCORT_COEFF_PROP_UP = 6000;                         -- Maximum escort cart coefficient in ten-thousandths
+ESCORT_ACCEPT_BASE_MONEY = 100000;                   -- Base escort deposit
+ESCORT_ACCEPT_BASE_BG = 1000;                        -- Base escort guild contribution cost
+ESCORT_ACCEPT_BASE_ITEM_SS = 1800001;                --Item required to start the escort cart
+ESCORT_ACCEPT_BASE_ITEM_S = 1800002;                 --Item required to start the escort cart
+ESCORT_ACCEPT_BASE_ITEM_A = 1800003;                 --Item required to start the escort cart
 
-VAR_AI_ESCORT_NOT_GENERATE_DROP = 0;                 -- 镖车npc ai变量：die tree不产生掉落标记，1-不产生，0-产生
-VAR_AI_ESCORT_BUSINESS_LEVEL = 1;                    -- 镖车npc ai变量：商会等级
-VAR_AI_ESCORT_DEAD = 2;                              -- 镖车npc ai变量：镖车已死亡
-DO_GENERATE_DROP = 0;                                -- 产生掉落
-DO_NOT_GENERATE_DROP = 1;                            -- 不产生掉落
-ESCORT_NOT_DEAD = 0;                                 -- 镖车未死亡
-ESCORT_ALREADY_DEAD = 1;                             -- 镖车已死亡
+VAR_AI_ESCORT_NOT_GENERATE_DROP = 0;                 -- Escort NPC AI variable: suppress drops in the death tree; 1 suppresses, 0 generates
+VAR_AI_ESCORT_BUSINESS_LEVEL = 1;                    -- Escort NPC AI variable: trading guild level
+VAR_AI_ESCORT_DEAD = 2;                              -- Escort NPC AI variable: cart is dead
+DO_GENERATE_DROP = 0;                                -- Generate drops
+DO_NOT_GENERATE_DROP = 1;                            -- Do not generate drops
+ESCORT_NOT_DEAD = 0;                                 -- Escort cart is alive
+ESCORT_ALREADY_DEAD = 1;                             -- Escort cart is dead
 
 
 --
--- 生成镖车信息配置表
+-- Generate escort cart configuration
 --
--- id: 镖车模板id
--- 概率范围[1, 10000]，注意，所有项的概率上下限必须在[1, 10000]内
--- prop_low: 概率值下限（闭区间）
--- prop_up: 概率值下限（闭区间）
--- coeff: 镖车系数
--- accept_base_money_cost: 接镖基本金币费用
--- accept_base_bg_cost: 接镖基本帮贡费用
--- award_multi: 回馈倍数（押金的倍数）
+-- id: escort cart template ID
+-- Probability range [1, 10000]; all entry bounds must fall within this range
+-- prop_low: lower probability bound (inclusive)
+-- prop_up: lower probability bound (inclusive)
+-- coeff: escort cart coefficient
+-- accept_base_money_cost: base gold cost to accept an escort
+-- accept_base_bg_cost: base guild contribution cost to accept an escort
+-- award_multi: reward multiplier (multiple of the deposit)
 ESCORT_CAR_INFO_TABLE = 
 {
     {

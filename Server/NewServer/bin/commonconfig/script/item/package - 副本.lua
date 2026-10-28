@@ -2,11 +2,11 @@
 PACKAGE_TABLE = {
 --	{
 --		func = 'sampel_func',
---		maxitemcount = 2,    --包裹需要空格数
---		checkvariable = 145, --领取礼包时间所在的变量号
---		waittime = 1800,     --需要等待的时间，单位：秒
---		opentimesvariable = 152, --打开次数所在变量号
---		maxopentimes = 1,    可打开次数
+--		maxitemcount = 2,    --Required empty bag slots
+--		checkvariable = 145, --Variable ID holding gift claim time
+--		waittime = 1800,     --Required wait time in seconds
+--		opentimesvariable = 152, --Variable ID holding open count
+--		maxopentimes = 1,    Number of allowed openings
 --		{ itemid = 1, itemcount = 5, percent = 80 },
 --		{ itemid = 2, itemcount = 4, class = clsWarrior },
 --		{ itemid = 3, itemcount = 3, class = clsMage },
@@ -28,8 +28,8 @@ PACKAGE_TABLE = {
 --		{ questid = 1, varid = 0, varvalue = 1 },
 --		{ doodadid = 3283}, --doodad id
 --		{ pkvalue = 100, chance = 50 },
---		{ announce = '{role_name}使用了一个火炬！'}, --公告内容，"{*}"为需要替换的内容，新替换内容参考ANNOUNCE_REPL_STRING_FUNC_TABLE表定义
---		{ aura = 1 }, 获得一个aura
+--		{ announce = '{role_name}使用了一个火炬！'}, --Announcement text; "{*}" denotes replacements. See ANNOUNCE_REPL_STRING_FUNC_TABLE for replacement definitions
+--		{ aura = 1 }, Receive one aura
 --	},
 
 	{
@@ -60,7 +60,7 @@ PACKAGE_TABLE = {
 		--{ itemid = 10122, itemcount = 2 },
 
 
-		--绑定道具
+		--Bound item
 		--{ itemid = 382, itemcount = 1, bind = true },
 		{ itemid = 382, itemcount = 1 },
 		{ itemid = 382, itemcount = 1 },
@@ -272,7 +272,7 @@ PACKAGE_TABLE = {
 		{ itemid = 1030012, itemcount = 9 },
 
 	},
-------------徒弟被强制出师时徒弟获得的道具
+------------Items awarded to a student forced to graduate
 	{
 		func = 'OnUseMasterPackage110',
 		maxitemcount = 2,
@@ -281,7 +281,7 @@ PACKAGE_TABLE = {
 		{ itemid = 1030012, itemcount = 3 },
 
 	},
-------------徒弟正常出师时徒弟获得的道具
+------------Items awarded to a student upon normal graduation
 	{
 		func = 'OnUseMasterPackage111',
 		maxitemcount = 2,
@@ -363,7 +363,7 @@ PACKAGE_TABLE = {
 		{ itemid = 1350001, itemcount = 1 },
 	},
 
-------------徒弟出师时师傅获得的道具
+------------Items awarded to the mentor when a student graduates
 	{
 		func = 'OnUseMasterPackage210',
 		maxitemcount = 3,
@@ -373,7 +373,7 @@ PACKAGE_TABLE = {
 		{ itemid = 1350002, itemcount = 1 },
 	},
 
-------------药水包
+------------Potion pack
 	{
 		func = 'jcybao1',
 		maxitemcount = 6,
@@ -593,7 +593,7 @@ PACKAGE_TABLE = {
 
 	},
 
------------回城卷包-------------
+-----------Town portal scroll pack-------------
 
 	{
 		func = 'bqhcjb',
@@ -643,7 +643,7 @@ PACKAGE_TABLE = {
 
 
 
------------师徒礼包begin-------------
+-----------Mentorship gift packs begin-------------
 	{
 		func = 'OnUseMasterPackage1331501',
 		maxitemcount = 2,
@@ -906,7 +906,7 @@ PACKAGE_TABLE = {
 
 
 
---增加道义值
+--Increase virtue points
 
 	{
 		func = 'daoyishujuan1',
@@ -1310,7 +1310,7 @@ PACKAGE_TABLE = {
 
 
 
------------师徒礼包end---------------
+-----------Mentorship gift packs end---------------
 	{
 		func = 'OnUseQiYuPackage',
 		maxitemcount = 3,
@@ -1336,12 +1336,12 @@ PACKAGE_TABLE = {
 		{ itemid = 10521, itemcount = 1 },
 	},
 
----------------------------活动礼包--------------
+---------------------------Event gift pack--------------
 	{
 		func = 'ceshilihe1',
-		maxitemcount = 1,    --包裹需要空格数
-		checkvariable = 145, --领取礼包时间所在的变量号
-		waittime = 1800,     --需要等待的时间，单位：秒
+		maxitemcount = 1,    --Required empty bag slots
+		checkvariable = 145, --Variable ID holding gift claim time
+		waittime = 1800,     --Required wait time in seconds
 		{ moneytype = MONEYTYPE_02, moneyamount = 1000 },
 		{ itemid = 99980212, itemcount = 1, class = clsWarrior },
 		{ itemid = 99990222, itemcount = 1, class = clsMage },
@@ -1350,9 +1350,9 @@ PACKAGE_TABLE = {
 	},
 	{
 		func = 'ceshilihe2',
-		maxitemcount = 1,    --包裹需要空格数
-		checkvariable = 146, --领取礼包时间所在的变量号
-		waittime = 1800,     --需要等待的时间，单位：秒
+		maxitemcount = 1,    --Required empty bag slots
+		checkvariable = 146, --Variable ID holding gift claim time
+		waittime = 1800,     --Required wait time in seconds
 		{ moneytype = MONEYTYPE_02, moneyamount = 3000 },
 		{ itemid = 99980314, itemcount = 1, class = clsWarrior },
 		{ itemid = 99990324, itemcount = 1, class = clsMage },
@@ -1361,9 +1361,9 @@ PACKAGE_TABLE = {
 	},
 	{
 		func = 'ceshilihe3',
-		maxitemcount = 1,    --包裹需要空格数
-		checkvariable = 147, --领取礼包时间所在的变量号
-		waittime = 1800,     --需要等待的时间，单位：秒
+		maxitemcount = 1,    --Required empty bag slots
+		checkvariable = 147, --Variable ID holding gift claim time
+		waittime = 1800,     --Required wait time in seconds
 		{ moneytype = MONEYTYPE_02, moneyamount = 5000 },
 
 		{ itemid = 99980413, itemcount = 1, class = clsWarrior },
@@ -1373,9 +1373,9 @@ PACKAGE_TABLE = {
 	},
 	{
 		func = 'ceshilihe4',
-		maxitemcount = 1,    --包裹需要空格数
-		checkvariable = 148, --领取礼包时间所在的变量号
-		waittime = 1800,     --需要等待的时间，单位：秒
+		maxitemcount = 1,    --Required empty bag slots
+		checkvariable = 148, --Variable ID holding gift claim time
+		waittime = 1800,     --Required wait time in seconds
 		{ moneytype = MONEYTYPE_02, moneyamount = 7000 },
 
 		{ itemid = 99980416, itemcount = 1, class = clsWarrior },
@@ -1385,9 +1385,9 @@ PACKAGE_TABLE = {
 	},
 	{
 		func = 'ceshilihe5',
-		maxitemcount = 1,    --包裹需要空格数
-		checkvariable = 149, --领取礼包时间所在的变量号
-		waittime = 1800,     --需要等待的时间，单位：秒
+		maxitemcount = 1,    --Required empty bag slots
+		checkvariable = 149, --Variable ID holding gift claim time
+		waittime = 1800,     --Required wait time in seconds
 		{ moneytype = MONEYTYPE_02, moneyamount = 9000 },
 
 		{ itemid = 99980515, itemcount = 1, class = clsWarrior },
@@ -1398,9 +1398,9 @@ PACKAGE_TABLE = {
 
 	{
 		func = 'ceshilihe6',
-		maxitemcount = 1,    --包裹需要空格数
-		checkvariable = 150, --领取礼包时间所在的变量号
-		waittime = 1800,     --需要等待的时间，单位：秒
+		maxitemcount = 1,    --Required empty bag slots
+		checkvariable = 150, --Variable ID holding gift claim time
+		waittime = 1800,     --Required wait time in seconds
 		{ moneytype = MONEYTYPE_02, moneyamount = 11000},
 
 		{ itemid = 99980517, itemcount = 1, class = clsWarrior },
@@ -1411,9 +1411,9 @@ PACKAGE_TABLE = {
 
 	{
 		func = 'ceshilihe7',
-		maxitemcount = 1,    --包裹需要空格数
-		checkvariable = 151, --领取礼包时间所在的变量号
-		waittime = 1800,     --需要等待的时间，单位：秒
+		maxitemcount = 1,    --Required empty bag slots
+		checkvariable = 151, --Variable ID holding gift claim time
+		waittime = 1800,     --Required wait time in seconds
 		{ moneytype = MONEYTYPE_02, moneyamount = 13000 },
 
 		{ itemid = 99900030, itemcount = 1, class = clsWarrior },
@@ -1422,21 +1422,21 @@ PACKAGE_TABLE = {
 
 	},
 
-	----我爱传奇永恒礼包
+	----I Love Legend Eternal gift pack
 	{
 		func = 'woaicqyh',
-		maxitemcount = 2,    --包裹需要空格数
+		maxitemcount = 2,    --Required empty bag slots
 
 		{ itemid = 99990315, itemcount = 1 },
 		{ itemid = 99990317, itemcount = 1 },
 
 	},
 
-	------------------------公会扶持礼包
+	------------------------Guild support gift pack
 
 	{
 		func = 'GongHuiFuChi',
-		maxitemcount = 11,    --包裹需要空格数
+		maxitemcount = 11,    --Required empty bag slots
 		opentimesvariable = 208,
 		maxopentimes = 1,
 
@@ -1456,11 +1456,11 @@ PACKAGE_TABLE = {
 
 	},
 
-	------------------------属地升级礼包
+	------------------------Territory upgrade gift pack
 
 	{
 		func = 'ShuDiShengJi',
-		maxitemcount = 16,    --包裹需要空格数
+		maxitemcount = 16,    --Required empty bag slots
 		opentimesvariable = 209,
 		maxopentimes = 1,
 
@@ -1483,11 +1483,11 @@ PACKAGE_TABLE = {
 
 	},
 
-	------------------------礼品粽子
+	------------------------Gift rice dumpling
 
 	{
 		func = 'ZongZi',
-		maxitemcount = 4,    --包裹需要空格数
+		maxitemcount = 4,    --Required empty bag slots
 
 		{ itemid = 382, itemcount = 1, bind = true },
 		{ itemid = 383, itemcount = 1, percent = 50, bind = true },
@@ -1496,11 +1496,11 @@ PACKAGE_TABLE = {
 
 	},
 
-	------------------------荣归装备包
+	------------------------Homecoming equipment pack
 
 	{
 		func = 'RongGui1',
-		maxitemcount = 6,    --包裹需要空格数
+		maxitemcount = 6,    --Required empty bag slots
 
 		{ itemid = 69910041, itemcount = 1, class = clsWarrior, bind = true },
 		{ itemid = 69910042, itemcount = 1, class = clsMage, bind = true },
@@ -1522,11 +1522,11 @@ PACKAGE_TABLE = {
 		{ aura = 2531 },
 
 	},
-	------------------------14天英雄帖礼包
+	------------------------14-day hero invitation gift pack
 
 	{
 		func = '14YingXiongTie',
-		maxitemcount = 6,    --包裹需要空格数
+		maxitemcount = 6,    --Required empty bag slots
 
 		{ select = 
 			{
@@ -1543,11 +1543,11 @@ PACKAGE_TABLE = {
 		},
 	},
 
-	------------------------风云公会专属礼包
+	------------------------Fengyun guild-exclusive gift pack
 
 	{
 		func = 'FYGHZhuangShu',
-		maxitemcount = 6,    --包裹需要空格数
+		maxitemcount = 6,    --Required empty bag slots
 		opentimesvariable = 191,
 		maxopentimes = 1,
 
@@ -1561,11 +1561,11 @@ PACKAGE_TABLE = {
 
 	},
 
-	------------------------琅琊公会专属礼包
+	------------------------Langya guild-exclusive gift pack
 
 	{
 		func = 'LYGHZhuangShu',
-		maxitemcount = 6,    --包裹需要空格数
+		maxitemcount = 6,    --Required empty bag slots
 		opentimesvariable = 192,
 		maxopentimes = 1,
 
@@ -1579,11 +1579,11 @@ PACKAGE_TABLE = {
 
 	},
 
-	------------------------媒体礼包
+	------------------------Media gift pack
 
 	{
 		func = 'MeiTi1',
-		maxitemcount = 10,    --包裹需要空格数
+		maxitemcount = 10,    --Required empty bag slots
 		opentimesvariable = 193,
 		maxopentimes = 1,
 
@@ -1601,11 +1601,11 @@ PACKAGE_TABLE = {
 
 	},
 
-	------------------------支付宝礼包
+	------------------------Alipay gift pack
 
 	{
 		func = 'ZhiFuBao1',
-		maxitemcount = 5,    --包裹需要空格数
+		maxitemcount = 5,    --Required empty bag slots
 		opentimesvariable = 199,
 		maxopentimes = 1,
 
@@ -1617,11 +1617,11 @@ PACKAGE_TABLE = {
 
 	},
 
-	------------------------CJ活动礼包
+	------------------------CJ event gift pack
 
 	{
 		func = 'CJHuoDong1',
-		maxitemcount = 6,    --包裹需要空格数
+		maxitemcount = 6,    --Required empty bag slots
 		opentimesvariable = 200,
 		maxopentimes = 1,
 
@@ -1634,7 +1634,7 @@ PACKAGE_TABLE = {
 
 	},
 
-	------------------------各种公测的媒体或活动礼包
+	------------------------Open-beta media and event gift packs
 
 	{
 		func = '173TQGC',
@@ -1825,7 +1825,7 @@ PACKAGE_TABLE = {
 	},
 
 
-	------------------------英雄礼包
+	------------------------Hero gift pack
 	{
 		func = 'YingXiongBSD',
 		maxitemcount = 1,
@@ -1836,7 +1836,7 @@ PACKAGE_TABLE = {
 	},
 
 
-	------------------------沃玛号角礼包
+	------------------------Woma horn gift pack
 	{
 		func = 'HaoJiao',
 		maxitemcount = 1,
@@ -1845,7 +1845,7 @@ PACKAGE_TABLE = {
 	},
 
 
-	------------------问卷礼包
+	------------------Survey gift pack
 
 	{
 		func = 'wenjuan10',
@@ -1881,11 +1881,11 @@ PACKAGE_TABLE = {
 
 	},
 
-	------------------------问卷礼包，只给钱
+	------------------------Survey gift pack, money only
 
 	{
 		func = 'wenjuan0321',
-	--	maxitemcount = 7,    --包裹需要空格数
+	--	maxitemcount = 7,    --Required empty bag slots
 		opentimesvariable = 157,
 		maxopentimes = 1,
 		{ moneytype = MONEYTYPE_02, moneyamount = 20000 },
@@ -1893,7 +1893,7 @@ PACKAGE_TABLE = {
 	},
 
 
-	------------------------成长礼包
+	------------------------Progression gift pack
 
 	{
 		func = 'ZhanShiChengZhangLiBao1',
@@ -2101,7 +2101,7 @@ PACKAGE_TABLE = {
 
 	},
 
-	----------------------改版后师父赠送徒弟礼包
+	----------------------Revised mentor-to-student gift pack
 
 	{
 		func = 'Lv10HeXin',
@@ -2232,7 +2232,7 @@ PACKAGE_TABLE = {
 	},
 
 
-	------------------------签到礼包
+	------------------------Check-in gift pack
 
 	{
 		func = 'QianDaoJCY',
@@ -2353,7 +2353,7 @@ PACKAGE_TABLE = {
 
 	},
 
-	------------------------封测媒体礼包
+	------------------------Closed-beta media gift pack
 
 	{
 		func = '17173FC',
@@ -2401,7 +2401,7 @@ PACKAGE_TABLE = {
 
 	},
 
-	------------------------玛法传说经验礼包
+	------------------------Mafa Legend experience gift pack
 
 	{
 		func = 'MFCSJingYan1',
@@ -2459,7 +2459,7 @@ PACKAGE_TABLE = {
 	},
 
 
-	------------------------玛法传说金币礼包
+	------------------------Mafa Legend gold gift pack
 
 	{
 		func = 'MFCSJinBi1',
@@ -2517,7 +2517,7 @@ PACKAGE_TABLE = {
 	},
 
 
-	------------------------皇室宝库
+	------------------------Royal Treasury
 
 	{
 		func = 'HuangShiBaoXiang',
@@ -2557,7 +2557,7 @@ PACKAGE_TABLE = {
 	},
 
 
-	------------------------1级灵石盒
+	------------------------Level 1 soul stone box
 
 	{
 		func = 'LingShiHe1',
@@ -2576,7 +2576,7 @@ PACKAGE_TABLE = {
 
 	},
 
-	------------------------2级灵石盒
+	------------------------Level 2 soul stone box
 
 	{
 		func = 'LingShiHe2',
@@ -2616,7 +2616,7 @@ PACKAGE_TABLE = {
 		{ pkvalue = 5, chance = 50 },
 	},
 
-	------------------------备用礼包
+	------------------------Spare gift pack
 
 	{
 		func = 'GongHuiBY',
@@ -2667,7 +2667,7 @@ PACKAGE_TABLE = {
 
 	},
 
-	------------------------烟花和蛋糕
+	------------------------Fireworks and cake
 	{
 		func = 'FireWorksCake',
 		maxitemcount = 0,
@@ -2681,8 +2681,8 @@ PACKAGE_TABLE = {
 		{ doodadid = 3480},
 	},
 
-	------------------------签到礼包
-	------------------------中红包
+	------------------------Check-in gift pack
+	------------------------Medium red pack
 	{
 		func = 'QianDao1',
 		maxitemcount = 3,
@@ -2691,7 +2691,7 @@ PACKAGE_TABLE = {
 		{ itemid = 367, itemcount = 1, bind = true },
 	},
 
-	------------------------中蓝包
+	------------------------Medium blue pack
 	{
 		func = 'QianDao4',
 		maxitemcount = 3,
@@ -2700,7 +2700,7 @@ PACKAGE_TABLE = {
 		{ itemid = 377, itemcount = 1, bind = true },
 	},
 
-	------------------------神秘礼包
+	------------------------Mystery gift pack
 	{
 		func = 'QianDao5',
 		maxitemcount = 10,
@@ -2720,7 +2720,7 @@ PACKAGE_TABLE = {
 				
 	},
 
-	------------------------太阳水包
+	------------------------Sun water pack
 	{
 		func = 'QianDao6',
 		maxitemcount = 3,
@@ -2729,7 +2729,7 @@ PACKAGE_TABLE = {
 		{ itemid = 386, itemcount = 1, bind = true },
 	},
 
-	------------------------挖矿包
+	------------------------Mining pack
 	{
 		func = 'QianDao7',
 		maxitemcount = 2,
@@ -2738,7 +2738,7 @@ PACKAGE_TABLE = {
 		
 	},
 
-	------------------------神水
+	------------------------Divine water
 	{
 		func = 'QianDao8',
 		maxitemcount = 1,                
@@ -2748,7 +2748,7 @@ PACKAGE_TABLE = {
 		
 	},
 
-	------------------------大红包
+	------------------------Large red pack
 	{
 		func = 'QianDao10',
 		maxitemcount = 3,
@@ -2757,7 +2757,7 @@ PACKAGE_TABLE = {
 		{ itemid = 368, itemcount = 1, bind = true },
 	},
 
-	------------------------大蓝包
+	------------------------Large blue pack
 	{
 		func = 'QianDao11',
 		maxitemcount = 3,
@@ -2766,7 +2766,7 @@ PACKAGE_TABLE = {
 		{ itemid = 378, itemcount = 1, bind = true },
 	},
 
-	------------------------神水包
+	------------------------Divine water pack
 	{
 		func = 'QianDao13',
 		maxitemcount = 2,
@@ -2774,7 +2774,7 @@ PACKAGE_TABLE = {
 		{ itemid = 706, itemcount = 1, bind = true },		
 	},
 
-	------------------------铭文石
+	------------------------Inscription stone
 	{
 		func = 'QianDao22',
 		maxitemcount = 1,
@@ -2784,7 +2784,7 @@ PACKAGE_TABLE = {
 
 	},
 
-	------------------------黑铁矿石
+	------------------------Black iron ore
 	{
 		func = 'QianDao24',
 		maxitemcount = 5,
@@ -2796,8 +2796,8 @@ PACKAGE_TABLE = {
 	},
 
 
-	------------------------签到礼包附录
-	------------------------金币包
+	------------------------Check-in gift pack appendix
+	------------------------Gold pack
 	{
 		func = 'QianDao50',
 		maxitemcount = 0,
@@ -2805,7 +2805,7 @@ PACKAGE_TABLE = {
 	},
 
 
-	------------------------佣兵灵匣
+	------------------------Mercenary spirit box
 	{
 		func = 'YongBingLingXia',
 		maxitemcount = 0,
@@ -2813,7 +2813,7 @@ PACKAGE_TABLE = {
 	},
 
 
-	------------------------活跃礼包
+	------------------------Activity gift pack
 	{
 		func = 'HuoYue1',
 		maxitemcount = 2,

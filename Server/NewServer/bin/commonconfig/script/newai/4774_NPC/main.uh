@@ -1,4 +1,4 @@
---沙魔岭
+--Sand Demon Ridge
 evtAIIdle = 
 {batSequencer,
     { batCheckCDTimer, param = { COOLDOWN_AI, 1 } },

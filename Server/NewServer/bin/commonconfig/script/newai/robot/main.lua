@@ -163,7 +163,7 @@ ACTION_LIST = {
 	{ func_name = "UnShieldRole", cd_min = 600, cd_max = 1800 },
 
 --[[
-	-- master prot:  现在超过20级自动成为师傅，要求机器人初始等级不超过20级
+	-- master prot: players above level 20 automatically become masters; the bot must start at level 20 or below
 	{ func_name = "BeMaster", cd_min = 600, cd_max = 1800 },
 	{ func_name = "GetMasterInfo", cd_min = 600, cd_max = 1800 },
 	{ func_name = "GetMasterRecruitList", cd_min = 600, cd_max = 1800 },

@@ -1,4 +1,4 @@
---Á¶Ò©
+--Alchemy
 evtAIInteract = 
 { batSequencer,
 	{ batRoleOpenDialog, param = { 50166, 30000 } },

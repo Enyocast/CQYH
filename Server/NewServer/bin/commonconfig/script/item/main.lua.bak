@@ -1,4 +1,4 @@
-﻿LoadPackage("item_bag.pkg");
+LoadPackage("item_bag.pkg");
 LoadPackage("item.pkg");
 LoadPackage("role.pkg");
 LoadPackage("attr_list.pkg")
@@ -24,81 +24,81 @@ LoadPackage("rank_list_def.pkg");
 g_oGameWorld = CGameWorld:GetInstance();
 
 --[[
-function OnUseIncreaseLuck(pItem, pRole)  	祝福油逻辑
-function WeaponLevelUp(pItem, pRole)  		武器强化逻辑
-function WeaponLevelUp1(pItem, pRole)		武器强化5必上6
-function WeaponLevelUp2(pItem, pRole)		武器强化6必上7
-function TeXiuLi(pItem, pRole)				特修卷逻辑		已废弃使用，特修逻辑写在了源码中
-function TeXiuLi1(pItem, pRole)				披风解绑卷轴
-function xingyun100(pItem, pRole)			玛法之力100点
-function xingyun1(pItem, pRole)				玛法之力1点
-function xingyun2(pItem, pRole)				玛法之力2点
-function xingyun3(pItem, pRole)				玛法之力3点
-function yuanbao88(pItem, pRole)				5元元宝券
-function yuanbao5(pItem, pRole)				5元元宝券
-function yuanbao10(pItem, pRole)			10元元宝券
-function yuanbao50(pItem, pRole)			50元元宝券
-function yuanbao100(pItem, pRole)			100元元宝券
-function yuanbao500(pItem, pRole)			500元元宝券
-function yuanbao1000(pItem, pRole)			1000元元宝券
-function ZhiShenDan_40(pItem, pRole)		40级直升丹
-function OnUseIncreaseLuck1(pItem, pRole)	直接把武器变成+7幸运值 不上电视的
-function gongju1(pItem, pRole)				直接把武器变成+5幸运值	上电视的
-function gongju2(pItem, pRole)				直接把武器变成+6幸运值	上电视的
-function gongju3(pItem, pRole)				直接把武器变成+7幸运值	上电视的
+function OnUseIncreaseLuck(pItem, pRole)  	Blessing oil logic
+function WeaponLevelUp(pItem, pRole)  		Weapon enhancement logic
+function WeaponLevelUp1(pItem, pRole)		Guaranteed weapon enhancement from 5 to 6
+function WeaponLevelUp2(pItem, pRole)		Guaranteed weapon enhancement from 6 to 7
+function TeXiuLi(pItem, pRole)				Special repair scroll logic		Deprecated; special repair logic is implemented in source
+function TeXiuLi1(pItem, pRole)				Cloak unbinding scroll
+function xingyun100(pItem, pRole)			100 Mafa power points
+function xingyun1(pItem, pRole)				1 Mafa power point
+function xingyun2(pItem, pRole)				2 Mafa power points
+function xingyun3(pItem, pRole)				3 Mafa power points
+function yuanbao88(pItem, pRole)				5-yuan ingot voucher
+function yuanbao5(pItem, pRole)				5-yuan ingot voucher
+function yuanbao10(pItem, pRole)			10-yuan ingot voucher
+function yuanbao50(pItem, pRole)			50-yuan ingot voucher
+function yuanbao100(pItem, pRole)			100-yuan ingot voucher
+function yuanbao500(pItem, pRole)			500-yuan ingot voucher
+function yuanbao1000(pItem, pRole)			1000-yuan ingot voucher
+function ZhiShenDan_40(pItem, pRole)		Instant level 40 pill
+function OnUseIncreaseLuck1(pItem, pRole)	Set weapon luck to +7 without an announcement
+function gongju1(pItem, pRole)				Set weapon luck to +5 with an announcement
+function gongju2(pItem, pRole)				Set weapon luck to +6 with an announcement
+function gongju3(pItem, pRole)				Set weapon luck to +7 with an announcement
 function OnUseVip1(pItem, pRole)			VIP1
 function OnUseVip2(pItem, pRole)			VIP2
 function OnUseVip3(pItem, pRole)			VIP3
-function SmallJinBi(pItem, pRole)			小金币包23333金币
-function MidJinBi(pItem, pRole)				中金币包50000-200000 随机
-function BigJinBi(pItem, pRole)				大金币包500000-2000000 随机
-function chHeZi(pItem, pRole)				增加10000000经验
-function LiaoShangYao(pItem, pRole)			增加疗伤药包 无限版
-function ShengDanHeZi(pItem, pRole)			增加66666金币
-function ZhiShenDan(pItem, pRole)			35直升丹
-function DoubleJinYan10(pItem, pRole)		百分之10双倍经验丹
-function DoubleJinYan500(pItem, pRole)		500W双倍经验丹
-function woma_boss(pItem, pRole)			召唤沃玛教主全服提示版
-function woma_boss1(pItem, pRole)			召唤沃玛教主全服不提示版
-function zuma_boss(pItem, pRole)			召唤祖玛教主全服提示版
-function zuma_boss1(pItem, pRole)			召唤祖玛教主全服不提示版
-function hongmo_boss(pItem, pRole)			召唤虹魔教主全服提示版
-function hongmo_boss1(pItem, pRole)			召唤虹魔教主全服不提示版
-function chulongshen_boss(pItem, pRole)		召唤触龙神全服提示版
-function chulongshen_boss1(pItem, pRole)	召唤触龙神全服不提示版
-function lieyan_boss(pItem, pRole)			召唤烈焰恶魔全服提示版
-function lieyan_boss1(pItem, pRole)			召唤烈焰恶魔全服不提示版
-function chiyue_boss(pItem, pRole)			召唤赤月恶魔全服提示版
-function chiyue_boss1(pItem, pRole)			召唤赤月恶魔全服不提示版
-function molong_boss(pItem, pRole)			召唤魔龙教主全服提示版
-function molong_boss1(pItem, pRole)			召唤魔龙教主全服不提示版
-function zhuanyong1(pItem, pRole)			身上所有装备绑定（专用版本，专用绑定字段）
-function zhuanyong2(pItem, pRole)			身上所有装备解绑（专用版本，专用绑定字段）
-function zhuanyong3(pItem, pRole)			法师直身40并且学会所有技能并且是3级技能
-function zhuanyong4(pItem, pRole)			用于查询身上装备绑定情况
-function xingyun_boli(pItem, pRole)			把当前武器的幸运值剥离出来
-function xingyun_chuancheng(pItem, pRole)	把剥离的幸运值传承到当前武器上
-function qianghua_boli(pItem, pRole)		把当前武器的强化等级剥离出来
-function qianghua_chuancheng(pItem, pRole)	把剥离的强化等级传承到当前武器上
-function mingwen_boli(pItem, pRole)			把当前武器的铭文剥离出来
-function mingwen_chuancheng(pItem, pRole)	把剥离的铭文传承到当前武器上
-function xingyun_boli1(pItem, pRole)		--把当前项链的幸运值剥离出来
-function xingyun_chuancheng1(pItem, pRole)	--把剥离的幸运值传承到当前项链上  5000的运2项链
-function qifu(pItem, pRole)					--祈愿符逻辑，右键直接祈愿并公告给玩家当前节点
-function xinshou_zhulibao(pItem, pRole)  	 --新手充值礼包
-function tanshe_jiasubao(pItem, pRole)  	--弹射加速包
-function qianghua_gongjubao(pItem, pRole)   --强化工具包
-function zunxiang_libao(pItem, pRole)       --尊享礼包
-function shengjidan_35(pItem, pRole)    	--升级丹1
-function jingyan_kabao(pItem, pRole)   		--经验卡包
-function zhuangbei_xilian(pItem, pRole)			--装备洗练
-function xinyun_suipian(pItem, pRole)			--幸运碎片回收
-function yb_dousha				--豆沙月饼
-function yb_baiguo				--百果月饼
-function yb_lianrong			--莲蓉月饼
-function yb_xianrou				--鲜肉月饼
-function VIP_summonnpc			--VIP刷怪
-function PaoDian1  --泡点
+function SmallJinBi(pItem, pRole)			Small gold pack: 23,333 gold
+function MidJinBi(pItem, pRole)				Medium gold pack: random 50,000-200,000 gold
+function BigJinBi(pItem, pRole)				Large gold pack: random 500,000-2,000,000 gold
+function chHeZi(pItem, pRole)				Add 10,000,000 experience
+function LiaoShangYao(pItem, pRole)			Add an unlimited healing medicine pack
+function ShengDanHeZi(pItem, pRole)			Add 66,666 gold
+function ZhiShenDan(pItem, pRole)			Instant level 35 pill
+function DoubleJinYan10(pItem, pRole)		10 percent double-experience pill
+function DoubleJinYan500(pItem, pRole)		5 million double-experience pill
+function woma_boss(pItem, pRole)			Summon Woma leader with a server-wide announcement
+function woma_boss1(pItem, pRole)			Summon Woma leader without a server-wide announcement
+function zuma_boss(pItem, pRole)			Summon Zuma leader with a server-wide announcement
+function zuma_boss1(pItem, pRole)			Summon Zuma leader without a server-wide announcement
+function hongmo_boss(pItem, pRole)			Summon Hongmo leader with a server-wide announcement
+function hongmo_boss1(pItem, pRole)			Summon Hongmo leader without a server-wide announcement
+function chulongshen_boss(pItem, pRole)		Summon Dragon God with a server-wide announcement
+function chulongshen_boss1(pItem, pRole)	Summon Dragon God without a server-wide announcement
+function lieyan_boss(pItem, pRole)			Summon Flame demon with a server-wide announcement
+function lieyan_boss1(pItem, pRole)			Summon Flame demon without a server-wide announcement
+function chiyue_boss(pItem, pRole)			Summon Red Moon demon with a server-wide announcement
+function chiyue_boss1(pItem, pRole)			Summon Red Moon demon without a server-wide announcement
+function molong_boss(pItem, pRole)			Summon Demon Dragon leader with a server-wide announcement
+function molong_boss1(pItem, pRole)			Summon Demon Dragon leader without a server-wide announcement
+function zhuanyong1(pItem, pRole)			Bind all equipped items (dedicated version and binding field)
+function zhuanyong2(pItem, pRole)			Unbind all equipped items (dedicated version and binding field)
+function zhuanyong3(pItem, pRole)			Raise a mage directly to level 40 and teach all skills at level 3
+function zhuanyong4(pItem, pRole)			Check binding status of equipped items
+function xingyun_boli(pItem, pRole)			Extract luck from the current weapon
+function xingyun_chuancheng(pItem, pRole)	Transfer extracted luck to the current weapon
+function qianghua_boli(pItem, pRole)		Extract enhancement level from the current weapon
+function qianghua_chuancheng(pItem, pRole)	Transfer the extracted enhancement level to the current weapon
+function mingwen_boli(pItem, pRole)			Extract the inscription from the current weapon
+function mingwen_chuancheng(pItem, pRole)	Transfer the extracted inscription to the current weapon
+function xingyun_boli1(pItem, pRole)		--Extract luck from the current necklace
+function xingyun_chuancheng1(pItem, pRole)	--Transfer extracted luck to the current necklace; 5000-point Luck +2 necklace
+function qifu(pItem, pRole)					--Wish charm logic: right-click to wish and notify the player of the current node
+function xinshou_zhulibao(pItem, pRole)  	 --New-player recharge gift pack
+function tanshe_jiasubao(pItem, pRole)  	--Bounce acceleration pack
+function qianghua_gongjubao(pItem, pRole)   --Enhancement tool pack
+function zunxiang_libao(pItem, pRole)       --Premium gift pack
+function shengjidan_35(pItem, pRole)    	--Level-up pill 1
+function jingyan_kabao(pItem, pRole)   		--Experience card pack
+function zhuangbei_xilian(pItem, pRole)			--Equipment refinement
+function xinyun_suipian(pItem, pRole)			--Recycle luck fragments
+function yb_dousha				--Red bean mooncake
+function yb_baiguo				--Mixed-fruit mooncake
+function yb_lianrong			--Lotus paste mooncake
+function yb_xianrou				--Meat mooncake
+function VIP_summonnpc			--VIP monster spawning
+function PaoDian1  --Idle rewards
 function PaoDian2
 function PaoDian3
 function PaoDian4
@@ -112,7 +112,7 @@ function xianglian_zhuanyi
 
 ]]--
 
---使用后删除道具，用于某些任务物品
+--Delete the item after use; used for some quest items
 function Deleteitem(pItem, pRole)
 	return 1;  -- success
 end
@@ -122,7 +122,7 @@ function xinyun_suipian(pItem, pRole)
 	pRole:GetItemBag():ChangeYuanbao(username,100,true,0,0);
 	return errSuccess;
 end
-function yb_dousha(pItem, pRole)--豆沙月饼
+function yb_dousha(pItem, pRole)--Red bean mooncake
 	pRole:AddExp(81500, false,false);
 	local msg = "玩家"..pRole:GetName() .. "使用豆沙月饼获得100000经验值！"
 	local index = math.random(1,3);
@@ -133,7 +133,7 @@ function yb_dousha(pItem, pRole)--豆沙月饼
 	return errSuccess;	 
 end	
 
-function yb_baiguo(pItem, pRole)--百果月饼
+function yb_baiguo(pItem, pRole)--Mixed fruit mooncake
 	pRole:AddExp(81500, false,false);
 	local msg = "玩家"..pRole:GetName() .. "使用百果月饼获得81500金币！"
 	local index = math.random(1,5);
@@ -144,7 +144,7 @@ function yb_baiguo(pItem, pRole)--百果月饼
 	return errSuccess;
 end	
 
-function yb_lianrong(pItem, pRole)--莲蓉月饼
+function yb_lianrong(pItem, pRole)--Lotus paste mooncake
 	pRole:AddExp(81500, false,false);
 	local msg = "玩家"..pRole:GetName() .. "使用莲蓉月饼获得[元宝]*100！"
 	local username = pRole:GetUserName();
@@ -156,7 +156,7 @@ function yb_lianrong(pItem, pRole)--莲蓉月饼
 	return errSuccess;
 end	
 
-function yb_xianrou(pItem, pRole)--鲜肉月饼
+function yb_xianrou(pItem, pRole)--Fresh meat mooncake
 	pRole:AddExp(81500, false,false);
 	local msg = "玩家"..pRole:GetName() .. "使用鲜肉获得1000元宝！"
 	local msg1 = "玩家"..pRole:GetName() .. "使用鲜肉获得稀有物品猩红之月！"
@@ -204,7 +204,7 @@ function OnUseIncreaseLuck(pItem, pRole)
 
 	local factor = math.abs(equip_data.m_nFixAttr[1] - equip_data.m_nFixAttr[0]) / 5 + 0.5;
 	if (current_luck < 3 and math.random(factor+6) == 1) then
-		bag:IncreaseWeaponLuck(1);--增加幸运值
+		bag:IncreaseWeaponLuck(1);--Increase luck
 		return errSuccess;
 	end
 
@@ -259,8 +259,8 @@ function WeaponLevelUp(pItem, pRole)
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "您的武器已经强化到了目前的最高等级，无法再次强化！");
 		return errItemNoConsumeUse;
 	end
-	local count = bag:GetItemCount(2800064, false);--强化油
-	local count1 = bag:GetItemCount(2800065, false);--祖玛精华
+	local count = bag:GetItemCount(2800064, false);--Enhancement oil
+	local count1 = bag:GetItemCount(2800065, false);--Zuma essence
 	local money = bag:GetMoney(1);
 	if money < 100000 then
 		return errItemNotEnoughMoneytype02;
@@ -284,7 +284,7 @@ function WeaponLevelUp(pItem, pRole)
 	return result;
 end
 
-function WeaponLevelUp1(pItem, pRole)--5必上6
+function WeaponLevelUp1(pItem, pRole)--Guaranteed enhancement from 5 to 6
 	local bag = pRole:GetItemBag();
 	local weapon = bag:GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
 	if weapon == nil then
@@ -299,7 +299,7 @@ function WeaponLevelUp1(pItem, pRole)--5必上6
 	result = bag:WeaponLevelUp(200);
 	return result;
 end
-function WeaponLevelUp2(pItem, pRole)--6必上7
+function WeaponLevelUp2(pItem, pRole)--Guaranteed enhancement from 6 to 7
 	local bag = pRole:GetItemBag();
 	local weapon = bag:GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
 	if weapon == nil then
@@ -427,7 +427,7 @@ function TeXiuLi(pItem, pRole)
 	end
 	return errSuccess;
 end
-function TeXiuLi1(pItem, pRole)--披风解绑卷轴
+function TeXiuLi1(pItem, pRole)--Cloak unbinding scroll
 	local bag = pRole:GetItemBag();
 	local bank	= bag:GetItem(CONSLOT_EQUIPPED, NES_BACK);
 	if bank  == nil then
@@ -440,25 +440,25 @@ function TeXiuLi1(pItem, pRole)--披风解绑卷轴
 	end
 	return	errSuccess;
 end
-function xingyun100(pItem, pRole)--玛法之力100点
+function xingyun100(pItem, pRole)--100 Mafa power
 	local a = pRole:GetVariable(1023);
 	a = a + 100;
 	pRole:SetVariable(1023,a);
 	return errSuccess;
 end
-function xingyun1(pItem, pRole)--玛法之力1点
+function xingyun1(pItem, pRole)--1 Mafa power
 	local a = pRole:GetVariable(1023);
 	a = a + 1;
 	pRole:SetVariable(1023,a);
 	return errSuccess;
 end
-function xingyun2(pItem, pRole)--玛法之力2点
+function xingyun2(pItem, pRole)--2 Mafa power
 	local a = pRole:GetVariable(1023);
 	a = a + 2;
 	pRole:SetVariable(1023,a);
 	return errSuccess;
 end
-function xingyun3(pItem, pRole)--玛法之力3点
+function xingyun3(pItem, pRole)--3 Mafa power
 	local a = pRole:GetVariable(1023);
 	a = a + 3;
 	pRole:SetVariable(1023,a);
@@ -466,7 +466,7 @@ function xingyun3(pItem, pRole)--玛法之力3点
 end
 
 
-function yuanbao1(pItem, pRole)--元宝1
+function yuanbao1(pItem, pRole)--Yuanbao1
 	local username = pRole:GetUserName();
 	local ret = pRole:GetItemBag():ChangeYuanbao(username,100,true,1800058,1);
 	return errSuccess;
@@ -475,42 +475,42 @@ end
 
 
 
-function yuanbao88(pItem, pRole)--元宝88
+function yuanbao88(pItem, pRole)--Yuanbao88
 	local username = pRole:GetUserName();
 	local ret = pRole:GetItemBag():ChangeYuanbao(username,8800,true,1800058,1);
 	return errSuccess;
 end
-function yuanbao5(pItem, pRole)--元宝5
+function yuanbao5(pItem, pRole)--Yuanbao5
 	local username = pRole:GetUserName();
 	local ret = pRole:GetItemBag():ChangeYuanbao(username,500,true,2800081,1);
 	return errSuccess;
 end
-function yuanbao10(pItem, pRole)--元宝10
+function yuanbao10(pItem, pRole)--Yuanbao10
 	local username = pRole:GetUserName();
 	local ret = pRole:GetItemBag():ChangeYuanbao(username,1000,true,2800082,1);
 	return errSuccess;
 end
-function yuanbao50(pItem, pRole)--元宝50
+function yuanbao50(pItem, pRole)--Yuanbao50
 	local username = pRole:GetUserName();
 	local ret = pRole:GetItemBag():ChangeYuanbao(username,5000,true,2800083,1);
 	return errSuccess;
 end
-function yuanbao100(pItem, pRole)--元宝100
+function yuanbao100(pItem, pRole)--Yuanbao100
 	local username = pRole:GetUserName();
 	local ret = pRole:GetItemBag():ChangeYuanbao(username,10000,true,2800077,1);
 	return errSuccess;
 end
-function yuanbao500(pItem, pRole)--元宝500
+function yuanbao500(pItem, pRole)--Yuanbao500
 	local username = pRole:GetUserName();
 	local ret = pRole:GetItemBag():ChangeYuanbao(username,50000,true,2800084,1);
 	return errSuccess;
 end
-function yuanbao1000(pItem, pRole)--元宝1000
+function yuanbao1000(pItem, pRole)--Yuanbao1000
 	local username = pRole:GetUserName();
 	local ret = pRole:GetItemBag():ChangeYuanbao(username,100000,true,2800085,1);
 	return errSuccess;
 end
-function ZhiShenDan_40(pItem, pRole)--40级直升丹
+function ZhiShenDan_40(pItem, pRole)--Instant level 40 pill
 		if pRole:GetLevel() > 39 then
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "必须小于40级才能使用此物品");
 		return errItemNoConsumeUse;
@@ -612,7 +612,7 @@ end
 --vip
 function OnUseVip1(pItem, pRole)
 	pRole:GetScene():Say(pRole:GetObjID(), cltLighting, "恭喜您成为白银会员，你拥有白银特权，具体特权请前往NPC处查看！");
-    	return pRole:SubscribeVIP(1,31);--修改了VIP时间限制改成了1月by.xxp
+	return pRole:SubscribeVIP(1,31);--Changed the VIP duration limit to one month (xxp)
 end
 
 function OnUseVip2(pItem, pRole)
@@ -1361,7 +1361,7 @@ function zhuanyong3 (pItem, pRole)
 	return result;
 end
 
-function zhuanyong4(pItem, pRole)			--用于查询身上装备绑定情况
+function zhuanyong4(pItem, pRole)			--Check binding status of equipped items
 	local var = pRole:GetVariable(1016);	
 	if var == 1024 then
 		pRole:GetScene():Say(pRole:GetObjID(), cltNormal,"已帮定");
@@ -1372,7 +1372,7 @@ function zhuanyong4(pItem, pRole)			--用于查询身上装备绑定情况
 end
 
 
-function xingyun_boli(pItem, pRole)			--把当前武器的幸运值剥离出来
+function xingyun_boli(pItem, pRole)			--Extract luck from the current weapon
 	local bag = pRole:GetItemBag();
 	local weapon = bag:GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
 	if weapon == nil then
@@ -1395,7 +1395,7 @@ function xingyun_boli(pItem, pRole)			--把当前武器的幸运值剥离出来
 	return errSuccess;
 end
 
-function xingyun_chuancheng(pItem, pRole)	--把剥离的幸运值传承到当前武器上
+function xingyun_chuancheng(pItem, pRole)	--Transfer extracted luck to the current weapon
 	local bag = pRole:GetItemBag();
 	local weapon = bag:GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
 	if weapon == nil then
@@ -1419,7 +1419,7 @@ function xingyun_chuancheng(pItem, pRole)	--把剥离的幸运值传承到当前
 	return errSuccess;
 end
 
-function qianghua_boli(pItem, pRole)		--把当前武器的强化等级剥离出来
+function qianghua_boli(pItem, pRole)		--Extract enhancement level from the current weapon
 	local bag = pRole:GetItemBag();
 	local weapon = bag:GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
 	if weapon == nil then
@@ -1446,7 +1446,7 @@ function qianghua_boli(pItem, pRole)		--把当前武器的强化等级剥离出�
 	return errSuccess;
 end
 
-function qianghua_chuancheng(pItem, pRole)	--把剥离的强化等级传承到当前武器上
+function qianghua_chuancheng(pItem, pRole)	--Transfer extracted enhancement level to the current weapon
 	local bag = pRole:GetItemBag();
 	local weapon = bag:GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
 	if weapon == nil then
@@ -1463,7 +1463,7 @@ function qianghua_chuancheng(pItem, pRole)	--把剥离的强化等级传承到�
 	pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "武器强化传承成功。");
 	return errSuccess;
 end
-function mingwen_boli(pItem, pRole)			--把当前武器的铭文剥离出来
+function mingwen_boli(pItem, pRole)			--Extract inscription from the current weapon
 	local bag = pRole:GetItemBag();
 	local weapon = bag:GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
 	if weapon == nil then
@@ -1492,7 +1492,7 @@ function mingwen_boli(pItem, pRole)			--把当前武器的铭文剥离出来
 	return errSuccess;
 	
 end
-function mingwen_chuancheng(pItem, pRole)	--把剥离的铭文传承到当前武器上
+function mingwen_chuancheng(pItem, pRole)	--Transfer extracted inscription to the current weapon
 	local bag = pRole:GetItemBag();
 	local weapon = bag:GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
 	if weapon == nil then
@@ -1514,7 +1514,7 @@ function mingwen_chuancheng(pItem, pRole)	--把剥离的铭文传承到当前武
 	return errSuccess;
 end
 
-function xingyun_boli1(pItem, pRole)--把当前项链的幸运值剥离出来
+function xingyun_boli1(pItem, pRole)--Extract luck from the current necklace
 	local bag = pRole:GetItemBag();
 	local neck = bag:GetItem(CONSLOT_EQUIPPED, NES_NECK);
 	if neck == nil then
@@ -1546,7 +1546,7 @@ function xingyun_boli1(pItem, pRole)--把当前项链的幸运值剥离出来
 	return errSuccess;
 end
 
-function xingyun_chuancheng1(pItem, pRole)	--把剥离的幸运值传承到当前项链上  5000的运2项链
+function xingyun_chuancheng1(pItem, pRole)	--Transfer extracted luck to the current necklace (5,000, luck +2 necklace)
 	local bag = pRole:GetItemBag();
 	local neck = bag:GetItem(CONSLOT_EQUIPPED, NES_NECK);
 	if neck == nil then
@@ -1599,7 +1599,7 @@ function xingyun_chuancheng1(pItem, pRole)	--把剥离的幸运值传承到当�
 end
 
 
-function qifu(pItem, pRole)					--祈愿符逻辑，右键直接祈愿并公告给玩家当前节点
+function qifu(pItem, pRole)					--Wish token: right-click to wish and announce the player's current node
 	pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "活动已结束。");
 		return errItemNoConsumeUse;
 
@@ -1611,7 +1611,7 @@ function qifu(pItem, pRole)					--祈愿符逻辑，右键直接祈愿并公告�
 	return errItemNoConsumeUse;]]--
 end
 
-function zhuangbei_xilian(pItem, pRole)    --装备洗炼
+function zhuangbei_xilian(pItem, pRole)    --Equipment refinement
 	local username = pRole:GetUserName();
 		pRole:GetItemBag():ChangeYuanbao(username,0,false,0,0);	
 	local bag = pRole:GetItemBag();
@@ -1627,8 +1627,8 @@ function zhuangbei_xilian(pItem, pRole)    --装备洗炼
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "护手过于强大，不允许洗练");
 		return errItemNoConsumeUse;
 	end
-	local yuanbao = pRole:GetItemBag():GetMoney(3);--元宝
-	local count1 = bag:GetItemCount(2800075, false);--沃玛精华
+	local yuanbao = pRole:GetItemBag():GetMoney(3);--Yuanbao
+	local count1 = bag:GetItemCount(2800075, false);--Woma essence
 	if itemid == 199900018 or itemid == 199900019 or itemid == 199900021 then
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "此物品不能洗练回归系列装备。");
 		return errItemNoConsumeUse;
@@ -1657,7 +1657,7 @@ function zhuangbei_xilian(pItem, pRole)    --装备洗炼
 	return errSuccess;
 end
 
-function dakongshi(pItem, pRole)    --打孔石
+function dakongshi(pItem, pRole)    --Socketing stone
 	local username = pRole:GetUserName();
 	pRole:GetItemBag():ChangeYuanbao(username,0,false,0,0);	
 	local bag = pRole:GetItemBag();
@@ -1670,7 +1670,7 @@ function dakongshi(pItem, pRole)    --打孔石
 	local itemid = weapon.m_iteminfo.m_nTemplateID;
 	local bind = weapon.m_iteminfo.m_byBindType;
 	local dur = weapon.m_iteminfo.m_nMaxDur;
---	local yuanbao = pRole:GetItemBag():GetMoney(3);--元宝
+--	local yuanbao = pRole:GetItemBag():GetMoney(3);--Yuanbao
 
 	if weapon.m_iteminfo.m_nSoulID[0] ~= 0 or  weapon.m_iteminfo.m_nSoulID[1] ~= 0 or  weapon.m_iteminfo.m_nSoulID[2] ~= 0 then
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "请把宝石拆除后再使用此物品。");
@@ -1698,7 +1698,7 @@ function dakongshi(pItem, pRole)    --打孔石
 	return errSuccess;
 end
 
-function dakongshi_gonghui(pItem, pRole)    --公会打孔石
+function dakongshi_gonghui(pItem, pRole)    --Guild socketing stone
 	local username = pRole:GetUserName();
 	pRole:GetItemBag():ChangeYuanbao(username,0,false,0,0);	
 	local bag = pRole:GetItemBag();
@@ -1711,7 +1711,7 @@ function dakongshi_gonghui(pItem, pRole)    --公会打孔石
 	local itemid = weapon.m_iteminfo.m_nTemplateID;
 	local bind = weapon.m_iteminfo.m_byBindType;
 	local dur = weapon.m_iteminfo.m_nMaxDur;
---	local yuanbao = pRole:GetItemBag():GetMoney(3);--元宝
+--	local yuanbao = pRole:GetItemBag():GetMoney(3);--Yuanbao
 
 	if weapon.m_iteminfo.m_nSoulID[0] ~= 0 or  weapon.m_iteminfo.m_nSoulID[1] ~= 0 or  weapon.m_iteminfo.m_nSoulID[2] ~= 0 then
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "请把宝石拆除后再使用此物品。");
@@ -1739,7 +1739,7 @@ function dakongshi_gonghui(pItem, pRole)    --公会打孔石
 	return errSuccess;
 end
 
-function dakongshi_gaoji(pItem, pRole)    --高级打孔石
+function dakongshi_gaoji(pItem, pRole)    --Advanced socketing stone
 	local username = pRole:GetUserName();
 		pRole:GetItemBag():ChangeYuanbao(username,0,false,0,0);	
 	local bag = pRole:GetItemBag();
@@ -1754,7 +1754,7 @@ function dakongshi_gaoji(pItem, pRole)    --高级打孔石
 	local itemid = weapon.m_iteminfo.m_nTemplateID;
 	local bind = weapon.m_iteminfo.m_byBindType;
 	local dur = weapon.m_iteminfo.m_nMaxDur;
---	local yuanbao = pRole:GetItemBag():GetMoney(3);--元宝
+--	local yuanbao = pRole:GetItemBag():GetMoney(3);--Yuanbao
 	local socketcount = weapon.m_iteminfo.m_dwSocketCombination;
 
 	if weapon.m_iteminfo.m_nSoulID[0] ~= 0 or  weapon.m_iteminfo.m_nSoulID[1] ~= 0 or  weapon.m_iteminfo.m_nSoulID[2] ~= 0 then
@@ -1789,7 +1789,7 @@ function dakongshi_gaoji(pItem, pRole)    --高级打孔石
 	return errSuccess;
 end
 
-function zhuangbei_xilian2(pItem, pRole)    --装备洗炼2
+function zhuangbei_xilian2(pItem, pRole)    --Equipment refinement 2
 	local username = pRole:GetUserName();
 	pRole:GetItemBag():ChangeYuanbao(username,0,false,0,0);	
 	local bag = pRole:GetItemBag();
@@ -1804,8 +1804,8 @@ function zhuangbei_xilian2(pItem, pRole)    --装备洗炼2
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "只允许洗练最高级护手");
 		return errItemNoConsumeUse;
 	end
-	local yuanbao = pRole:GetItemBag():GetMoney(3);--元宝
-	local count1 = bag:GetItemCount(2800065, false);--沃玛精华
+	local yuanbao = pRole:GetItemBag():GetMoney(3);--Yuanbao
+	local count1 = bag:GetItemCount(2800065, false);--Woma essence
 	
 	if yuanbao < 1000 then
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "元宝不足。");
@@ -1861,7 +1861,7 @@ function zhuangbei_xilian2(pItem, pRole)    --装备洗炼2
 end
 
 
---充值礼包
+--Top-up gift pack
 
 function xinshou_zhulibao(pItem, pRole)
 	local username = pRole:GetUserName();
@@ -1938,7 +1938,7 @@ function zunxiang_libao(pItem, pRole)
 	return errSuccess;
 end
 
-function shengjidan_35(pItem, pRole)--升级丹1
+function shengjidan_35(pItem, pRole)--Level-up pill 1
 	local a = pRole:GetLevel()
 	if a > 34 then
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "必须小于35级才能使用此物品");
@@ -1949,12 +1949,12 @@ function shengjidan_35(pItem, pRole)--升级丹1
 	return errSuccess;	
 end
 
-function jingyan_kabao(pItem, pRole)--经验卡包
+function jingyan_kabao(pItem, pRole)--Experience card pack
 	local index = math.random(8,12);
 		pRole:GetItemBag():AddItem(2800044, index, ITEMLOG_REAL_MONEY_SHOP, 0, true);
 	return errSuccess;
 end
-function VIP_summonnpc(pItem, pRole)--VIP刷怪
+function VIP_summonnpc(pItem, pRole)--VIP monster spawn
 	local map = pRole:GetSceneTempID()
 	if map ~= 72 then
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "请移步魔虫窟再使用此物品.");	
@@ -2104,11 +2104,11 @@ function luandou_libao1(pItem, pRole)
 	local sex = pRole:GetSex();
 	if cls == clsWarrior then
 		if sex == 1 then 
-			pRole:GetItemBag():AddItem(599900018, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true); -- 上衣（男）
+			pRole:GetItemBag():AddItem(599900018, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true); -- Male top
 		else
-			pRole:GetItemBag():AddItem(599900019, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true);--上衣（女）
+			pRole:GetItemBag():AddItem(599900019, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true);--Female top
 		end;
-		pRole:GetItemBag():AddItem(599900001, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true); -- 并持短柄重型双手
+		pRole:GetItemBag():AddItem(599900001, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true); -- Dual-wielded short-handled heavy two-handed weapon
 		pRole:GetItemBag():AddItem(599900008, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true);
 		pRole:GetItemBag():AddItem(599900005, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true);
 		pRole:GetItemBag():AddItem(599900004, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true);
@@ -2139,11 +2139,11 @@ function luandou_libao1(pItem, pRole)
 		
 		elseif cls == clsMage then
 		if sex == 1 then 
-			pRole:GetItemBag():AddItem(599900020, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true); -- 上衣（男）
+			pRole:GetItemBag():AddItem(599900020, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true); -- Male top
 		else
-			pRole:GetItemBag():AddItem(599900021, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true);--上衣（女）
+			pRole:GetItemBag():AddItem(599900021, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true);--Female top
 		end;
-		pRole:GetItemBag():AddItem(599900003, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true); -- 并持短柄重型双手
+		pRole:GetItemBag():AddItem(599900003, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true); -- Dual-wielded short-handled heavy two-handed weapon
 		pRole:GetItemBag():AddItem(599900008, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true);
 		pRole:GetItemBag():AddItem(599900005, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true);
 		pRole:GetItemBag():AddItem(599900004, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true);
@@ -2182,11 +2182,11 @@ function luandou_libao1(pItem, pRole)
 		
 	elseif cls == clsTaoist then
 		if sex == 1 then 
-			pRole:GetItemBag():AddItem(599900022, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true); -- 上衣（男）
+			pRole:GetItemBag():AddItem(599900022, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true); -- Male top
 		else
-			pRole:GetItemBag():AddItem(599900023, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true);--上衣（女）
+			pRole:GetItemBag():AddItem(599900023, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true);--Female top
 		end;
-		pRole:GetItemBag():AddItem(599900002, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true); -- 并持短柄重型双手
+		pRole:GetItemBag():AddItem(599900002, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true); -- Dual-wielded short-handled heavy two-handed weapon
 		pRole:GetItemBag():AddItem(599900008, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true);
 		pRole:GetItemBag():AddItem(599900005, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true);
 		pRole:GetItemBag():AddItem(599900004, 1, ITEMLOG_REAL_MONEY_SHOP, 0, true);
@@ -2294,41 +2294,41 @@ function liaoshangyao_3(pItem,pRole)
 	return errSuccess;
 end
 
-function jingyan_ka1(pItem, pRole)--50W经验卡
+function jingyan_ka1(pItem, pRole)--500,000 experience card
 	pRole:AddExp(500000, false,false);
 	return errSuccess;
 end	
 
-function jinbi_ka50(pItem, pRole)--50W金币卡
+function jinbi_ka50(pItem, pRole)--500,000 gold card
 	pRole:GetItemBag():AddMoney(1, 500000, MONEYLOG_PACKAGE, 0,0);
 	return errSuccess;
 end	
 
-function	feixing(pItem, pRole)--飞星
+function	feixing(pItem, pRole)--Flying star
 	local username = pRole:GetUserName();
-	--第一个骰子
+	--First die
 	local  first = math.random(6);
-	--第二个骰子
+	--Second die
 	local  second = math.random(6);
-	--第三个骰子
+	--Third die
 	local  third = math.random(6);
 	
 	local sum = first * 100 + second * 10 + third;
 	pRole:SetVariable(1010,sum);
 	
 	if first == second and second == third then
-		pRole:GetItemBag():ChangeYuanbao(username,1000,true,2800224,1000);--豹子的返利
+		pRole:GetItemBag():ChangeYuanbao(username,1000,true,2800224,1000);--Three of a kind payout
 		local msg = first.." "..second.." "..third.."，三位一体，恭喜您获得1000元宝！";
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, msg);
 		local message = "恭喜玩家"..pRole:GetName().."喜中三位一体，获得大量元宝！";
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, msg);
 		pRole:Say(cctGroup, cltTvShow, message);
 	elseif sum == 123 or sum == 132 or sum == 213 or sum == 231 or sum == 312 or sum == 321 or sum == 456 or sum == 465 or sum == 546 or sum == 564 or sum == 645 or sum == 654 then
-		pRole:GetItemBag():ChangeYuanbao(username,400,true,2800224,400);--顺子的返利	 
+		pRole:GetItemBag():ChangeYuanbao(username,400,true,2800224,400);--Straight payout
 		local msg = first.." "..second.." "..third.."，三星连珠，恭喜您获得400元宝！";
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, msg);
 	elseif first == second or first == third or second == third then
-		pRole:GetItemBag():ChangeYuanbao(username,110,true,2800224,110);--对子的返利	 
+		pRole:GetItemBag():ChangeYuanbao(username,110,true,2800224,110);--Pair payout
 		local msg = first.." "..second.." "..third.."，双星吉祥，恭喜您获得110元宝！";
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, msg);
 	else
@@ -2353,10 +2353,10 @@ function chongji1_libao(pItem, pRole)
 	elseif b + 439200 >= a then 
 		pRole:GetItemBag():ChangeYuanbao(username,2500,true,2800273,1);
 	end
-	pRole:GetItemBag():AddItem(1800019, 1, ITEMLOG_SCRIPT, 0, true); -- 500W双倍经验丹
-	pRole:GetItemBag():AddItem(1800040, 2, ITEMLOG_SCRIPT, 0, true); --特修券
-	pRole:GetItemBag():AddItem(2800277, 5, ITEMLOG_SCRIPT, 0, true); --聚宝盆
-	pRole:GetItemBag():AddItem(2800190, 1, ITEMLOG_SCRIPT, 0, true); --聚灵匣(中)
+	pRole:GetItemBag():AddItem(1800019, 1, ITEMLOG_SCRIPT, 0, true); -- 5,000,000 double-experience pill
+	pRole:GetItemBag():AddItem(1800040, 2, ITEMLOG_SCRIPT, 0, true); --Special repair voucher
+	pRole:GetItemBag():AddItem(2800277, 5, ITEMLOG_SCRIPT, 0, true); --Treasure basin
+	pRole:GetItemBag():AddItem(2800190, 1, ITEMLOG_SCRIPT, 0, true); --Spirit box (medium)
 	
 	return errSuccess;	
 end
@@ -2376,9 +2376,9 @@ function chongji2_libao(pItem, pRole)
 	elseif b + 612000 >= a then 
 		pRole:GetItemBag():ChangeYuanbao(username,5000,true,2800274,1);
 	end
-	pRole:GetItemBag():AddItem(1800018, 1, ITEMLOG_SCRIPT, 0, true); -- 10%双倍经验丹
-	pRole:GetItemBag():AddItem(1800040, 2, ITEMLOG_SCRIPT, 0, true); --特修券
-	pRole:GetItemBag():AddItem(80003, 10, ITEMLOG_SCRIPT, 0, true); -- 祝福油
+	pRole:GetItemBag():AddItem(1800018, 1, ITEMLOG_SCRIPT, 0, true); -- 10% double-experience pill
+	pRole:GetItemBag():AddItem(1800040, 2, ITEMLOG_SCRIPT, 0, true); --Special repair voucher
+	pRole:GetItemBag():AddItem(80003, 10, ITEMLOG_SCRIPT, 0, true); -- Blessing oil
 	local cls = pRole:GetClass();
 	if cls == clsWarrior then
 		pRole:GetItemBag():AddItem(21001, 10, ITEMLOG_REAL_MONEY_SHOP, 0, true);
@@ -2387,7 +2387,7 @@ function chongji2_libao(pItem, pRole)
 	elseif cls == clsTaoist then
 		pRole:GetItemBag():AddItem(21003, 10, ITEMLOG_REAL_MONEY_SHOP, 0, true);
 	end
-	pRole:GetItemBag():AddItem(2800064, 1, ITEMLOG_SCRIPT, 0, true); --魔龙血
+	pRole:GetItemBag():AddItem(2800064, 1, ITEMLOG_SCRIPT, 0, true); --Demon dragon blood
 
 	return errSuccess;	
 end
@@ -2400,9 +2400,9 @@ function yueka1_libao(pItem, pRole)
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "您已拥有月卡，无法再开启礼包。");	
 		return errItemNoConsumeUse;
 	else
-		pRole:GetItemBag():AddItem(2800075, 10, ITEMLOG_SCRIPT, 0, true); --沃玛精华
-		pRole:GetItemBag():AddItem(2800044, 20, ITEMLOG_SCRIPT, 0, true);--经验卡
-		pRole:GetItemBag():AddMoney(1, 100000, MONEYLOG_PACKAGE, 0,0); --金币
+		pRole:GetItemBag():AddItem(2800075, 10, ITEMLOG_SCRIPT, 0, true); --Woma essence
+		pRole:GetItemBag():AddItem(2800044, 20, ITEMLOG_SCRIPT, 0, true);--Experience card
+		pRole:GetItemBag():AddMoney(1, 100000, MONEYLOG_PACKAGE, 0,0); --Gold
 		pRole:GetTitle():AddTitle(91);
 		pRole:GetScene():Say(pRole:GetObjID(), cltLighting, "恭喜您成打开88元月卡礼包，你拥有以下特权：金币交易税降低至5%，土城商店通用卖货，土城商店购买物品9.5折，签到奖励*2， 药品体力恢复加成10%");
 		return errSuccess;
@@ -2416,9 +2416,9 @@ function yueka2_libao(pItem, pRole)
 		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "您已拥有月卡，无法再开启礼包。");	
 		return errItemNoConsumeUse;
 	else
-		pRole:GetItemBag():AddItem(2800075, 30, ITEMLOG_SCRIPT, 0, true); --沃玛精华
-		pRole:GetItemBag():AddItem(2800044, 50, ITEMLOG_SCRIPT, 0, true);--经验卡
-		pRole:GetItemBag():AddMoney(1, 500000, MONEYLOG_PACKAGE, 0,0); --金币
+		pRole:GetItemBag():AddItem(2800075, 30, ITEMLOG_SCRIPT, 0, true); --Woma essence
+		pRole:GetItemBag():AddItem(2800044, 50, ITEMLOG_SCRIPT, 0, true);--Experience card
+		pRole:GetItemBag():AddMoney(1, 500000, MONEYLOG_PACKAGE, 0,0); --Gold
 		pRole:GetTitle():AddTitle(92);
 		pRole:GetScene():Say(pRole:GetObjID(), cltLighting, "恭喜您成打开188元月卡礼包，你拥有以下特权：金币交易税降低至3%，土城商店通用卖货，土城商店购买物品8.5折，签到奖励*2，药品体力恢复加成10%，攻速+1， 经验加成3%");
 		return errSuccess;
@@ -2488,13 +2488,13 @@ function gupiao(pItem, pRole)
 	return errSuccess;
 end
 
-function baoxiang_tulong(pItem, pRole)--屠龙宝箱
+function baoxiang_tulong(pItem, pRole)--Dragon-slaying chest
 	local index = math.random(20,30);
 		pRole:GetItemBag():AddItem(2800285, index, ITEMLOG_REAL_MONEY_SHOP, 0, false);
 	return errSuccess;
 end
 
-function juanbang(pItem, pRole)--捐榜
+function juanbang(pItem, pRole)--Donation leaderboard
 	local new_count = pRole:GetVariable(194) + 1;
 	pRole:SetVariable(194, new_count);
 	--pRole:SetVariable(1003, os.time());
@@ -2517,7 +2517,7 @@ function baoshi_hecheng(pItem, pRole)
 	local dengji_one = itemid_one % 10;
 	local dengji_two = itemid_two % 10;
 	
-	for i = 0,5 do --宝石是否能够合成判定
+	for i = 0,5 do --Check whether gems can be combined
 		if itemid_one == g_GWConfig.nBaoShi_PuTong[i] and itemid_two == g_GWConfig.nBaoShi_PuTong[i] then
 			rea = true;
 			break;
@@ -2545,7 +2545,7 @@ function baoshi_hecheng(pItem, pRole)
 	if index <= 2 then
 		pRole:GetItemBag():DeleteItemPos(CONSLOT_DEFAULT, 0, 1, MONEYLOG_SHENGXING, 0);
 		pRole:GetItemBag():DeleteItemPos(CONSLOT_DEFAULT, 1, 1, MONEYLOG_SHENGXING, 0);	
-		pRole:GetItemBag():AddItem(itemid_one+1, 1, ITEMLOG_SCRIPT, 0, true);--宝石合成
+		pRole:GetItemBag():AddItem(itemid_one+1, 1, ITEMLOG_SCRIPT, 0, true);--Combine gems
 		local msg = "合成成功，恭喜获得"..pRole:GetItemBag():GetItemName(itemid_one + 1).."!"
 			pRole:Say(pRole:GetObjID(), cltTvShow, msg);
 		return errSuccess;

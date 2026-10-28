@@ -1,4 +1,4 @@
---技能书重著
+--Rewrite skill book
 evtAIInteract = 
 { batSelector,
 			{ batSequencer,

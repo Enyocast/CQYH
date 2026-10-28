@@ -1,7 +1,7 @@
 
 on_wander = 
 { batSelector,
-    --{ batRoleCheckHasQuest, param={ 任务ID }},
+    --{ batRoleCheckHasQuest, param={ 任务ID }}, -- Quest ID placeholder
     {batSequencer,
         { batCheckSceneVariable, param={ boEQ , 1, 1 },
         },
@@ -33,40 +33,40 @@ on_wander =
         -- },
     },
 
-    -- 介绍出场双方
+    -- Introduce both sides
     {batSequencer,
         { batSelector,
-            {batSequencer,--介绍植物战士01
+            {batSequencer,--Introduce plant warrior 01
                 { batCheckSceneVariable, param={ boEQ , 1, 4 },
                 },
                 {batSay, param = { cctScreen, 50316, cltNormal } },
                 { batSetSceneVariable, param={1, 0 },},
             },
-            {batSequencer,--介绍植物战士02
+            {batSequencer,--Introduce plant warrior 02
                 { batCheckSceneVariable, param={ boEQ , 1, 5 },
                 },
                 {batSay, param = { cctScreen, 50317, cltNormal } },
                 { batSetSceneVariable, param={1, 0 },},
             },
-            {batSequencer,--介绍植物战士03
+            {batSequencer,--Introduce plant warrior 03
                 { batCheckSceneVariable, param={ boEQ , 1, 6 },
                 },
                 {batSay, param = { cctScreen, 50318, cltNormal } },
                 { batSetSceneVariable, param={1, 0 },},
             },
-            {batSequencer,--介绍僵尸战士01
+            {batSequencer,--Introduce zombie warrior 01
                 { batCheckSceneVariable, param={ boEQ , 1, 7 },
                 },
                 {batSay, param = { cctScreen, 50319, cltNormal } },
                 { batSetSceneVariable, param={1, 1 },},
             },
-            {batSequencer,--介绍僵尸战士02
+            {batSequencer,--Introduce zombie warrior 02
                 { batCheckSceneVariable, param={ boEQ , 1, 8 },
                 },
                 {batSay, param = { cctScreen, 50320, cltNormal } },
                 { batSetSceneVariable, param={1, 1 },},
             },
-            {batSequencer,--介绍僵尸战士03
+            {batSequencer,--Introduce zombie warrior 03
                 { batCheckSceneVariable, param={ boEQ , 1, 9 },
                 },
                 {batSay, param = { cctScreen, 50321, cltNormal } },
@@ -80,7 +80,7 @@ on_wander =
         { batWait, param={3000},
         },
     },
-    --宣布植物胜利
+    --Announce the plants’ victory
     {batSequencer,
         { batCheckSceneVariable, param={ boEQ , 6, 1 },
         },
@@ -102,7 +102,7 @@ on_wander =
         { batSetSceneVariable, param={6, 0 },
         },
        
-        {batSelector,--宣布最终结果
+        {batSelector,--Announce the final result
             {batSequencer,
                 { batCheckSceneVariable, param={boGTE  ,3, 3 },},
                 { batSelector,
@@ -131,7 +131,7 @@ on_wander =
         { batSetSceneVariable, param={2, 0 },}, 
         { batSetSceneVariable, param={ 8, 0 },}, 
     },
-    --宣布僵尸胜利
+    --Announce the zombies’ victory
     {batSequencer,
         { batCheckSceneVariable, param={ boEQ , 4, 1 },},
         { batMoveTo , param={ tarPosition, 46424,40166,650},},
@@ -151,7 +151,7 @@ on_wander =
         },
         { batSetSceneVariable, param={4, 0 },},
         
-        {batSelector,--宣布最终结果
+        {batSelector,--Announce the final result
             {batSequencer,
                 { batCheckSceneVariable, param={boGTE  ,3, 3 },},
                 { batSelector,
@@ -180,14 +180,14 @@ on_wander =
         { batSetSceneVariable, param={ 8, 0 },},
     },
 
-    --开场白
+    --Opening remarks
     {batSequencer,
 
         { batCheckCDTimer, param={ COOLDOWN_AI , 3},
         },
         { batSetCDTimer , param={ COOLDOWN_AI , 3,300000},
         },
-        --检测是否触碰了Trigger
+        --Check whether the trigger was touched
         { batCheckSceneVariable, param={ boEQ , 8, 1 },
         },
         { batWait, param={1000},

@@ -1334,7 +1334,7 @@ function TestCase.Team.TeamAuction()
 
 	wait(10);
 	
-    --msg = recv_msg(30, session_id2, protocol.g2c_sync_drop_list);	-- 这里至少会收到两个以上的掉落，其中有一个非金钱
+    --msg = recv_msg(30, session_id2, protocol.g2c_sync_drop_list);	-- At least two drops should be received here, including one non-money drop
     --check(msg, "failed to received g2c_sync_drop_list");
 
 	ret = g_RobotMessageHandler:DoPickUpItem(role2, 0, 1);
@@ -1395,7 +1395,7 @@ function TestCase.Team.TeamAuction()
     check(msg.dwRoleID == roleid1);
     check(msg.nItemID == itemid);    
     
-    -- 异常情况，拍卖完成继续出价
+    -- Error case: continue bidding after the auction ends
     --ret = g_RobotMessageHandler:DoTeamAuctionBid(role1, );
     --check(ret, "failed to send DoTeamAuctionBid");   
 end

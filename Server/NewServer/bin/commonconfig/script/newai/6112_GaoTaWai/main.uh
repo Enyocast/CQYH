@@ -14,12 +14,12 @@ evtAIInteract =
 							{ batRoleCheckDailyVariable, param = { 185 } },
 							{ batSelector,
 								{ batSequencer,
-									{ batCheckInTeam },    -- 检查角色是否有队伍
+									{ batCheckInTeam },    -- Check whether the character is in a team
 									{ batRoleOpenDialog, param = { 50080, 50000, 0, 0 } },
 								},
 								{ batSequencer,
-									{ batRoleTeleport, param = { 13286, 12706, 4400, 227 } },    -- 把角色传进地图
-									----记录进入的时间
+									{ batRoleTeleport, param = { 13286, 12706, 4400, 227 } },    -- Teleport the character into the map
+									----Record entry time
 									{ batRoleSetRoleVariable, param = { 218, 'CGameWorld:GetInstance():GetGameTime()', 0 } },
 								},
 							},

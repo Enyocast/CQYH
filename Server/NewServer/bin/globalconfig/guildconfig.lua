@@ -16,169 +16,169 @@ GuildConfig = {
 	nGuildFightingPool	= 128,
 	--nGuildSaveItemBufferPool  = 32000,
 	nGuildBuildingRevivePool = 128,
-	-- 帮派创建需求物品类型ID
+	-- Item type ID required to create a guild
 	nCanCreateGuildItemTypeID = 80002,
-	-- 物品数量
+	-- Item quantity
     nCanCreateGuildItemNum = 1,
-	-- 创建需求金钱
+	-- Money required to create a guild
     nCanCreateGuildMoney = 200000,
-	-- 创建需求人物等级
+	-- Character level required to create a guild
     nCanCreateGuildLevel = 17,
-	-- 加入公会最低等级
+	-- Minimum level to join a guild
 	nCanJoinGuildLevel = 17,
-	-- 初始帮派金钱
+	-- Initial guild money
     nInitGuildMoney = 100000,
-	-- 初始粮
+	-- Initial grain
 	nWood = 100000,
-	-- 初始木
+	-- Initial wood
 	nHerb = 100000,
-	-- 初始石
+	-- Initial stone
 	nCrystal = 100000,
-	-- 初始铁
+	-- Initial iron
 	nSilver = 100000,
 
-	-- 职位权限
+	-- Position permissions
 	nInitGuildPositionRight =	-- 7 = GUILD_POSITION_COUNT
 	{
 		[0] = 0,		-- none
-		[1] = 4095,		-- 帮主
-		[2] = 4095,		-- 副帮主
-		[3] = 495,		-- 长老
-		[4] = 15,		-- 监事
-		[5] = 3,		-- 执事
-		[6] = 1,		-- 主簿
-		[7] = 0,		-- 帮众
+		[1] = 4095,		-- Guild leader
+		[2] = 4095,		-- Deputy guild leader
+		[3] = 495,		-- Elder
+		[4] = 15,		-- Supervisor
+		[5] = 3,		-- Deacon
+		[6] = 1,		-- Registrar
+		[7] = 0,		-- Guild member
 	},
 
-	-- 仓库权限
+	-- Storage permissions
     nInitGuildStorageRight =		-- 7 = GUILD_POSITION_COUNT
 	{
-		[0] = 4095,		-- 帮主
-		[1] = 0,		-- 副帮主
-		[2] = 0,		-- 长老
-		[3] = 0,		-- 殿主
-		[4] = 0,		-- 执事
-		[5] = 0,		-- 主簿
-		[6] = 0,		-- 帮众
+		[0] = 4095,		-- Guild leader
+		[1] = 0,		-- Deputy guild leader
+		[2] = 0,		-- Elder
+		[3] = 0,		-- Hall master
+		[4] = 0,		-- Deacon
+		[5] = 0,		-- Registrar
+		[6] = 0,		-- Guild member
 	},
 
-	-- 帮派解散等级限制
+	-- Guild disband level limit
 	nGuildDisbandLevelLimit = 3,
 
-	-- 退出帮派cd时间，单位：秒
+	-- Guild leave cooldown in seconds
     dwReJoinGuildCD = 0,
 
-	-- 帮派申请存在时间， 单位： 秒
+	-- Guild application lifetime in seconds
 	nGuildApplicationLastTime = 300,
 
-	-- 从帮派仓库取物品每次消耗金钱，默认是金钱类型1（即绑定金钱）
+	-- Cost per guild storage withdrawal, defaulting to currency type 1 (bound money)
 	nGuildPopItemComsumeMoney = 0,
 
 
-	-- 最多一次可领取的薪水上限
+	-- Maximum salary claim per withdrawal
 	nInitGuildMaxSalary = 10000,
 
-	-- 一次领取薪水占功勋的百分比
+	-- Percentage of merit claimed as salary per withdrawal
 	nGuildDrawSalaryPercent = 80,
 
-	-- 功勋获得周上限
+	-- Weekly merit gain limit
 	nGuildObtainMoneyLimitPerWeek = 10000,
 
-	-- 帮派发薪水的时间周期, (604800 为一周的秒数)
+	-- Guild salary interval (604800 seconds is one week)
 	--nDrawSalaryPeriod = 604800,
 	nDrawSalaryPeriod = 3600,
 
-	-- 每天捐赠金币上限
+	-- Daily gold donation limit
 	nMaxDonateMoneyPerDay =
 	{
 		[0] = 1,
-		[1] = 100000000,		-- 帮主
-		[2] = 100000000,		-- 副
-		[3] = 100000000,		-- 长老
+		[1] = 100000000,		-- Guild leader
+		[2] = 100000000,		-- Deputy
+		[3] = 100000000,		-- Elder
 		[4] = 100000000,
 		[5] = 100000000,
 		[6] = 100000000,
-		[7] = 100000000,		-- 帮众
+		[7] = 100000000,		-- Guild member
 	},
-	-- 每天捐赠资源上限
+	-- Daily resource donation limit
 	nMaxDonateResPerDay =
 	{
 		[0] = 1,
-		[1] = 100000000,		-- 帮主
-		[2] = 100000000,		-- 副
-		[3] = 100000000,		-- 长老
+		[1] = 100000000,		-- Guild leader
+		[2] = 100000000,		-- Deputy
+		[3] = 100000000,		-- Elder
 		[4] = 100000000,
 		[5] = 100000000,
 		[6] = 100000000,
-		[7] = 100000000,		-- 帮众
+		[7] = 100000000,		-- Guild member
 	},
 
 
 
-	-- 联盟 消耗金钱
+	-- Alliance cost
 	nAllianceConsumeMoney =
 	{
-		[0] = 100000,		-- 1天
-		[1] = 200000,		-- 3天
-		[2] = 500000,		-- 7天
-		[3] = 1000000,		-- 30天
+		[0] = 100000,		-- 1 day
+		[1] = 200000,		-- 3 days
+		[2] = 500000,		-- 7 days
+		[3] = 1000000,		-- 30 days
 	},
 
-	-- 敌对消耗金钱
+	-- Enmity cost
 	nEnemyConsumeMoney =
 	{
-		[0] = 100000,		-- 1天
-		[1] = 200000,		-- 3天
-		[2] = 500000,		-- 7天
-		[3] = 1000000,		-- 30天
+		[0] = 100000,		-- 1 day
+		[1] = 200000,		-- 3 days
+		[2] = 500000,		-- 7 days
+		[3] = 1000000,		-- 30 days
 	},
 
-	-- 帮派联盟或者敌对持续时间，单位：秒数
+	-- Guild alliance or enmity duration in seconds
 	nGuildDiplomatLastTime =
 	{
-		[0] = 86400,		-- 1天
-		[1] = 259200,		-- 3天
+		[0] = 86400,		-- 1 day
+		[1] = 259200,		-- 3 days
 		[2] = 604800,		-- 7
 		[3] = 2592000,		-- 30
 	},
 
-	-- 联盟申请持续时间
+	-- Alliance application duration
 	nDiplomatAppLastTime = 300,
 
 
-	-- 取消建筑升级返回资源百分比
+	-- Resource refund percentage for canceling a building upgrade
 	nBuildingUpgradeRefundPercent = 50,
-	-- 删除建筑返还资源百分比
+	-- Resource refund percentage for deleting a building
 	nDelBuildingRefundPercent = 33,
-	-- 取消buffer升级返回资源百分比
+	-- Resource refund percentage for canceling a buff upgrade
     nWelfareBufferUpgradeRefundPercent = 50,
-	-- 资源自动增长百分比
+	-- Automatic resource growth percentage
     nAddResourceInterval = 3600,
 
-	--帮派属地TEMPLATE ID
+	--Guild territory template ID
 	dwSceneTemplateID = 127,
-	-- 进入帮派属地坐标，朝向
+	-- Guild territory entry coordinates and facing
 	nEnterMapPosX = 41355,
 	nEnterMapPosY = 50258,
 	nEnterMapPosZ = 7753,
 	nEnterMapDirection = 1,
 
-	-- 进入公会属地的坐标 SERVER_POINT
+	-- Guild territory entry coordinates, SERVER_POINT
 	dwServerPoint = 14,
-	-- 公会战进入对方属地的坐标
+	-- Entry coordinates for the opposing territory during a guild war
 	dwTargetGuildServerPoint = 3,
 
-	-- 王城地图TEMPLATE ID
+	-- Royal city map template ID
 	dwPalaceSceneTemplateID = 101,
 
 
-	--帮派建筑
+	--Guild buildings
 	szBMainNameID 		= "main01",
-	szBBusinessNameID	= "Shop01";		-- 商会
-	szBDeityNameID		= "God01";		-- 神坛
+	szBBusinessNameID	= "Shop01";		-- Commerce hall
+	szBDeityNameID		= "God01";		-- Shrine
 	szBWonderNameID		= "Gtot01";
 
-	-- 改变王城或者帮派属地天气的条件, {金币，持续时间/秒}
+	-- Conditions to change royal city or guild territory weather: {gold, duration in seconds}
 	arrWeatherCondition = {
 		[0] = {nMoney = 9999999, nTime = 9999999}, -- invalid
 		[1] = {nMoney = 50000, nTime = 300},		-- 50000 money, 300 s
@@ -186,10 +186,10 @@ GuildConfig = {
 		[3] = {nMoney = 200000, nTime = 1800},	-- 200000, 1800s
 	},
 
-	-- 帮派维护开始时刻
-	nRoutineConsumeTime = 4,		-- 每天4点开始
+	-- Guild maintenance start time
+	nRoutineConsumeTime = 4,		-- Starts daily at 04:00
 
-	-- 公会活动重置时间
+	-- Guild activity reset time
 	nGuildActivityResetHour = 4,
 
 	nGuildActivityBeginHour1 = 0,
@@ -199,15 +199,15 @@ GuildConfig = {
 
 
     ---------------------------- war ------------------------------------
-	-- 公会战被打保护时间，秒，从当天公会战开始时算起
+	-- Guild war defense protection duration in seconds, measured from the day’s war start
 	nGuildWarProtectionTime = 106200,
 
-	-- 公会宣战cd,单位：秒，从当天公会战开始时算起
+	-- War declaration cooldown in seconds, measured from the day’s war start
 	nGuildWarAttackCD = 106200,
 
 
 
-	-- 每天公会战开始时间， 单位秒数， 比如每天下午1点=下午13点 = 3600*13,下午6点30开始
+	-- Daily guild war start time in seconds; for example 13:00 = 3600*13; starts at 18:30
 	nGuildWarReadyHour = 18,
 	nGuildWarReadyMin = 20,
 
@@ -221,29 +221,29 @@ GuildConfig = {
 	nGuildWarEndMin = 30,
 
 
-	-- 每天宣战结束时间， 单位秒数, 下面必须和上面对应
+	-- Daily war declaration end time in seconds; entries below must match those above
 	nGuildWarBeginTime = 66600,
 	nGuildWarEndTime = 70200,--70200,
 
-	-- 家族战 指定公会战参战等级
+	-- Guild level required to participate in guild war
 	nGuildSpecifyWarLevelLimit = 5,--3,
 
-	-- 帮派战结束后等待传送时间, 已经挪到帮派属地的evtGuildWarEnd的tree里面， main.lua配置里
-	-- 请找策划妹子 平怡 更新。 那边的单位是毫秒
+	-- Post-war teleport wait moved to the guild territory evtGuildWarEnd tree in main.lua
+	-- Ask designer Ping Yi to update it; the unit there is milliseconds
 
-	-- 公会战结束，攻击方buffer, 无法移动，无法释放技能，buffer结束被传出地图
+	-- After a guild war, attackers cannot move or cast while the buff lasts and are teleported out when it expires
 	nGuildWarAttackEndAuraID = 2500,
 
-	-- 公会战结束，防守方buffer,无法移动， 无法释放技能，buffer结束不会被传出地图
+	-- After a guild war, defenders cannot move or cast while the buff lasts but are not teleported out on expiry
 	nGuildWarDefendEndAuraID = 2500,
 
 
-	-- 公会战胜利， 战利品占总量的万分比
+	-- Guild war victory spoils as a fraction of the total, in ten-thousandths
 	nGuildWarMoneyPlunderPercent = 3000,
 	nGuildWarResPlunderPercent = 3000,
 
 
-	-- 公会战胜利，额外战利品万分比
+	-- Additional guild war victory spoils, in ten-thousandths
 	nGuildWarMoneyPlunder = 5000,
 	nGuildWarResPlunder = 5000,
 
@@ -251,19 +251,19 @@ GuildConfig = {
 
 	--
 	----------------------------- match war -----------------------------
-	-- 匹配公会战最低等级限制
+	-- Minimum guild level for matched guild wars
 	nGuildMatchWarLevelLimit = 1,
 
-	-- 匹配公会战每日次数限制
+	-- Daily matched guild war limit
 	nGuildMatchWarCountLimit = 5,
 
-	-- 匹配战公会资金消耗
+	-- Guild fund cost for a matched war
 	nGuildMatchWarMoneyConsumption = 5000,
 
-	-- 匹配公会战活动 开始时间
+	-- Matched guild war event start time
 	nGuildMatchWarBeginTime = 0,
 
-	-- 匹配公会战活动 结束时间
+	-- Matched guild war event end time
 	nGuildMatchWarEndTime = 86400,
 
 
@@ -275,12 +275,12 @@ GuildConfig = {
 	---------------------------------------------------------------------
 
 
-	-- 帮派副本薪水占副本扣除金币的百分比
+	-- Guild dungeon salary as a percentage of deducted dungeon gold
 	nGuildDungeonSalaryPercent = 50,
-	-- 公会副本刷新时间, 凌晨4点的秒数
+	-- Guild dungeon refresh time: 04:00 expressed in seconds
 	nGuildDungeonUpdateTime = 14400,
 
-	-- 公会成员提供的繁荣度
+	-- Prosperity provided by guild members
 	nGuildMemberBaseProsperity = 3,
 
 

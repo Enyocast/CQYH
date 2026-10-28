@@ -1,4 +1,4 @@
---C 小男孩
+--C: young boy
 evtAIIdle = 
 { batSelector,
     {batSequencer,

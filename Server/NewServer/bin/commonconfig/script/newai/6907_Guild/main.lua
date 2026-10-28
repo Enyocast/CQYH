@@ -4,7 +4,7 @@ Include("script/newai/sub_tree/sub_tree.lh")
 LoadPackage("guild_def.pkg")
 LoadPackage("gameworld.pkg")
 
---[[    --check 时间
+--[[    --check time
 function check_time()
 	local t = os.date('*t');
 	if t.hour >= 17 and t.hour < 18 then

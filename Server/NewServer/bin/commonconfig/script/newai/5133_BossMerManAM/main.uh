@@ -4,15 +4,15 @@ local boss_stage_3 = 3;
 
 local spell_common =
 {
-	{ id = 5869, cd = 3500, chance = 10000, target = tarAITarget },   --1.鱼人法师首领-扇形冰刺 : 发出一个扇面的5根冰刺，发射有一定前摇
-	{ id = 5870, cd = 15000, chance = 10000, target = tarSelf },      --2.鱼人法师首领-法术否定 : 释放一个法球给自己，可抵挡除了虚空尖射，魔雷箭，初生火灵，极冻碎裂波以外的一次魔法。每隔一段时间自己生成。
-	{ id = 5871, cd = 20000, chance = 10000, target = tarAITarget },  --3.鱼人法师首领-能量失序 : 发出一道蓝色射线，反转一个目标的能量，并使其一段时间内无法回复。目标身上红蓝旋转
-	{ id = 5872, cd = 60000, chance = 10000, target = tarAITarget },  --4.鱼人法师首领-睡眠之歌 : 扭动身体，并开始歌唱。歌唱会形成一个大范围的AOE，将停止除自己外所有目标的行动力。睡眠状态受攻击会造成3倍伤害然后苏醒过来，苏醒后能量为0。
-	{ id = 5873, cd = 30000, chance = 10000, target = tarAITarget },  --5.鱼人法师首领-秘法之蛇 : 释放一个缓慢飞行但会连续撞击的法球，命中目标后会削弱目标50%攻击力和移动速度，同时提高自己25%攻击力，最多可打击5个不同目标。秘法之蛇释放后有概率立即释放海王之怒
-	{ id = 5874, cd = 0, chance = 10000, target = tarAITarget },      --6.鱼人法师首领-呼风唤雨 : 双手高举，并吟唱。身后出现巨大人鱼化身，然后化作光升上天空，将区域的天气变为下雨。
-	{ id = 5875, cd = 10000, chance = 10000, target = tarAITarget },  --7.鱼人法师首领-神力引爆 : 高抬手臂摇晃，间隔时间在空中暴开一个蓝色大范围光环，所有被人鱼弓手射中的角色都会被引爆一次。
-	{ id = 5876, cd = 30000, chance = 10000, target = tarSelf },      --8.鱼人法师首领-海王之赐 : 召唤一个图腾在自己身体周围，进行缓慢地进行范围性群体回复
-	{ id = 5877, cd = 30000, chance = 10000, target = tarAITarget },  --9.鱼人法师首领-海王之怒 : 秘法之蛇释放后，会连着释放。瞬移到平台中央，并开始进行施法。此时其本体不可移动，并出现一同施法的3个法师。击杀3个法师可阻止技能释放。如果阻止失败，以人鱼法师为中心，可以爆发一个强大的电环，造成重伤。
+	{ id = 5869, cd = 3500, chance = 10000, target = tarAITarget },   --1. Merman mage leader - Ice Fan: fires five ice spikes in a fan after a wind-up
+	{ id = 5870, cd = 15000, chance = 10000, target = tarSelf },      --2. Spell Negation: periodically creates an orb that blocks one spell except Void Spike, Magic Lightning Arrow, Newborn Fire Spirit and Freezing Shatter Wave
+	{ id = 5871, cd = 20000, chance = 10000, target = tarAITarget },  --3. Energy Disorder: fires a blue ray that reverses one target’s energy and prevents recovery temporarily; red and blue effects rotate around the target
+	{ id = 5872, cd = 60000, chance = 10000, target = tarAITarget },  --4. Sleep Song: sings a wide AOE that stops all other targets. An attack deals triple damage and wakes a sleeping target with zero energy.
+	{ id = 5873, cd = 30000, chance = 10000, target = tarAITarget },  --5. Arcane Serpent: fires a slow orb that repeatedly hits up to five targets, reducing their attack and movement speed by 50% and increasing the caster’s attack by 25%; may immediately trigger Sea King’s Wrath
+	{ id = 5874, cd = 0, chance = 10000, target = tarAITarget },      --6. Summon Rain: raises both hands and chants; a giant merman apparition rises as light and changes the area weather to rain
+	{ id = 5875, cd = 10000, chance = 10000, target = tarAITarget },  --7. Divine Detonation: raises and waves its arms, periodically creating a wide blue aura that detonates each character struck by a merman archer
+	{ id = 5876, cd = 30000, chance = 10000, target = tarSelf },      --8. Sea King’s Gift: summons a nearby totem that slowly heals a group in an area
+	{ id = 5877, cd = 30000, chance = 10000, target = tarAITarget },  --9. Sea King’s Wrath: follows Arcane Serpent. The boss teleports to the platform center and casts while immobilized with three mages; killing them interrupts the cast, otherwise a powerful electric ring deals heavy damage.
 };
 
 on_init =

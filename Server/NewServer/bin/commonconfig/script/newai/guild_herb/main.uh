@@ -9,7 +9,7 @@ evtAIDie =
 { batParallel,
 	{ batSetFlag, param = { cfBTDenyDie } },
 	{ batInvincible, param = { true } },
-	{ batSetAIVariable, param = { 0, 1, 0 } },--这里是把AI变量中索引为0的变量的值修改为1
+	{ batSetAIVariable, param = { 0, 1, 0 } },--Set AI variable 0 to 1
 	{ batChangeGuildResource, param = { GUILD_RES_DEC_PERCENT, GUILD_ATTR_HERB, 10, 1 } },
 	{ batSequencer,
 		{ batCheckAIVariable, param = { boEQ, 0, 2 } },

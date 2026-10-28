@@ -5,7 +5,7 @@ scene_define = {
 		default = 0,
 		min = 0,
 	},
-	Type = {			-- 场景类型，最多有6种，最大为estGuild
+	Type = {			-- Scene type, up to 6 types; maximum estGuild
 		type = 'number',
 		default = 1,
 		min = 0,

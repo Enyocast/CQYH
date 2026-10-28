@@ -1,6 +1,6 @@
 evtAIIdle = 
 { batSequencer,
-    --{ batRoleCheckHasQuest, param={ 任务ID }},
+    --{ batRoleCheckHasQuest, param={ 任务ID }}, -- Quest ID placeholder
     { batCheckCDTimer, param={ COOLDOWN_AI , 1,0,0},
     },
     { batCheckSceneVariable, param={ boEQ , 2, 1 },

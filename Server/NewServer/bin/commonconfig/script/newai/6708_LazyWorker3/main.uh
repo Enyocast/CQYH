@@ -8,7 +8,7 @@ evtAIInteract =
     { batSetCDTimer , param={ COOLDOWN_AI , 1,10000},
     },
     { batRandom , param={6000,4000},
-        --劝导失败
+        --Persuasion failed
         {batSequencer,
             { batRandom , param={1000,1000},
                 { batSay, param={ cctScreen, 50283, cltNormal },
@@ -19,7 +19,7 @@ evtAIInteract =
             { batPlayAction, param={ 2},
             },  
         },
-        -- 劝导成功
+        -- Persuasion succeeded
         {batSequencer,
             {batRoleSetQuestVariable , param = {2093,3,1}},  
             { batSay, param = { cctScreen, 50204, cltNormal } },

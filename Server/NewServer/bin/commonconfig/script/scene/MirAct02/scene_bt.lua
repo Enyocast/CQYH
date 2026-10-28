@@ -4,7 +4,7 @@ local SCENE_REWARD_MONEY_POOL_VAR = 1;
 local SCENE_BOSS_DIE_COUNT_VAR = 2;
 local SCENE_BOSS_COUNT_VAR = 3;
 
-local MONEY_COST_EACH_BOX = 10000; -- 可配置
+local MONEY_COST_EACH_BOX = 10000; -- Configurable
 local TICKET_COST = 20000;
 
 evtSceneInit =

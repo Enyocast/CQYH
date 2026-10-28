@@ -28,7 +28,7 @@ evtAIInteract =
 													},
 													{  batSelector, 
 															{ batSequencer,   
-																				--{ batRoleSetRoleVariable , param = { 193, 0 } },  测试用变量改变
+																				--{ batRoleSetRoleVariable , param = { 193, 0 } },  Change the variable for testing
 																--{ batPrint, param = { 11111 } },
 																--{ batRoleCheckDailyVariable, param = { 188 } },
 																{ batRoleCheckRoleVariable , param = { boLT , 193, 5 } },
@@ -111,23 +111,23 @@ evtAIInteract =
 																{ Setv_1 },	
 															},
 															{ batSequencer,
-																{ batRoleOpenDialog, param = { 666768, 30000 } },  --是否为周六
+																{ batRoleOpenDialog, param = { 666768, 30000 } },  --Check whether it is Saturday
 															},
 														},	
 												},
 												{ batSequencer,
-													{ batRoleOpenDialog, param = { 666767, 30000 } },  --是否拥有称号
+													{ batRoleOpenDialog, param = { 666767, 30000 } },  --Check whether the title is held
 												},	
 											},
 										},
 										{ batSequencer,
-											{ batRoleOpenDialog, param = { 666765, 30000 } },  --是否为沙巴克公会成员
+											{ batRoleOpenDialog, param = { 666765, 30000 } },  --Check membership in the Sabak guild
 										},
 									},	
 												
 								},
 								{ batSequencer, 
-									{ batRoleOpenDialog, param = { 666766, 30000 } },  --今日进入次数已达上线的判定
+									{ batRoleOpenDialog, param = { 666766, 30000 } },  --Check whether today’s entry limit has been reached
 								},
 								
 							},
@@ -152,23 +152,23 @@ evtAIInteract =
 																{ Setv_2 },	
 															},
 															{ batSequencer,
-																{ batRoleOpenDialog, param = { 666768, 30000 } },  --是否为周六
+																{ batRoleOpenDialog, param = { 666768, 30000 } },  --Check whether it is Saturday
 															},
 														},	
 												},
 												{ batSequencer,
-													{ batRoleOpenDialog, param = { 666767, 30000 } },  --是否拥有称号
+													{ batRoleOpenDialog, param = { 666767, 30000 } },  --Check whether the title is held
 												},	
 											},
 										},
 										{ batSequencer,
-											{ batRoleOpenDialog, param = { 666765, 30000 } },  --是否为沙巴克公会成员
+											{ batRoleOpenDialog, param = { 666765, 30000 } },  --Check membership in the Sabak guild
 										},
 									},	
 												
 								},
 								{ batSequencer, 
-									{ batRoleOpenDialog, param = { 666766, 30000 } },  --今日进入次数已达上线的判定
+									{ batRoleOpenDialog, param = { 666766, 30000 } },  --Check whether today’s entry limit has been reached
 								},
 								
 							},

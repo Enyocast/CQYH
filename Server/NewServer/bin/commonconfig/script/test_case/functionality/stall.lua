@@ -9,7 +9,7 @@ function TestCase.Stall()
     local msg;
     local session_id1, session_id2;
 
-    --登录
+    --Log in
     user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user1");
     check(role1, "failed to create role1");
@@ -20,7 +20,7 @@ function TestCase.Stall()
     check(role2, "failed to create role2");
     session_id2 = user2:GetSessionID();
 
-    --user1: 用GM指令增加药水并检查
+    --user1: add potions using a GM command and check them
     ret = user1:GMCommand("AddItem(101,10, ITEMLOG_GM_COMMAND)");
     check(ret, "failed to send gm command");
 
@@ -29,21 +29,21 @@ function TestCase.Stall()
     check(msg.stItem.nTemplateID==101, "failed to create correct item");
     check(msg.stItem.nCurDur==10, "failed to create correct item");
 
-    --user1: 准备摆摊
+    --user1: prepare the stall
     ret = user1:OpenStall();
     check(ret, "failed to send move item msg");
 
-    --user2: 收到附近有人摊位状态变化消息
+    --user2: receive a nearby stall state change notification
     msg = recv_msg(5, session_id2, protocol.g2c_stall_state_change);
     check(msg, "failed to recv g2c_stall_state_change");
     check(msg.dwRoleID==role1:GetObjID(), "failed to recv correct stall msg");
     check(msg.btStallState==essPreparing, "failed to recv correct stall msg");
 
-    --user1: 把药水上架，100/个，共5个
+    --user1: list five potions at 100 each
     ret = user1:AddStallItem(0, CONSLOT_DEFAULT, 0, 5, 100);
     check(ret, "failed to add stall item");
 
-    --user1: 收到上架回复
+    --user1: receive the listing response
     msg = recv_msg(5, session_id1, protocol.g2c_add_stall_item);
     check(msg, "failed to recv g2c_add_stall_item");
     check(msg.btStallSlot==0, "failed to recv correct add stall item msg");
@@ -52,21 +52,21 @@ function TestCase.Stall()
     check(msg.nItemCount==5, "failed to recv correct add stall item msg");
     check(msg.nPrice==100, "failed to recv correct add stall item msg");
 
-    --user1: 真正开张
+    --user1: open the stall
     ret = user1:RealOpenStall();
     check(ret, "failed to real open stall");
 
-    --user2: 收到附近有人摊位状态变化消息
+    --user2: receive a nearby stall state change notification
     msg = recv_msg(5, session_id2, protocol.g2c_stall_state_change);
     check(msg, "failed to recv g2c_stall_state_change");
     check(msg.dwRoleID==role1:GetObjID(), "failed to recv correct stall state change msg");
     check(msg.btStallState==essOpen, "failed to recv correct stall state change msg");
 
-    --user2: 查看摊位物品列表
+    --user2: view stall items
     ret = user2:ViewStallItem(role1:GetObjID());
     check(ret, "failed to view stall item");
 
-    --user2: 收到摊位物品列表回复
+    --user2: receive the stall item list
     msg = recv_msg(5, session_id2, protocol.g2c_view_stall_item);
     check(msg, "failed to recv g2c_view_stall_item");
     check(msg.dwRoleID==role1:GetObjID(), "failed to recv correct view stall item msg");
@@ -76,20 +76,20 @@ function TestCase.Stall()
     check(msg.stStallItem[0].nPrice==100, "failed to recv correct view stall item msg");
     local modifytime = msg.stStallItem[0].dwModifyTime;
 
-    --user2: 用GM指令给自己加点钱，等下要买东西
+    --user2: add money with a GM command for the purchase
     ret = user2:GMCommand("AddMoney(1, 1000, MONEYLOG_GM_COMMAND)");
     check(ret, "failed to send gm command");
 
-    --user2: 买摊位物品
+    --user2: buy a stall item
     ret = user2:BuyStallItem(role1:GetObjID(), 0, 1, modifytime);
     check(ret, "failed to buy stall item");
 
-    --user2: 收到物品增加消息
-    --user1: 收到物品减少消息
-    --user2: 收到钱减少消息
-    --user1: 收到钱增加消息
-    --user2: 收到购买摊位物品成功消息
-    --user1: 收到售出摊位物品成功消息
+    --user2: receive the item-added message
+    --user1: receive the item-removed message
+    --user2: receive the money deduction message
+    --user1: receive the money increase message
+    --user2: receive the successful stall purchase message
+    --user1: receive the successful stall sale message
     msg = recv_msg_and(10,
         session_id1, protocol.g2c_item_change,
         session_id2, protocol.g2c_item_change,
@@ -99,7 +99,7 @@ function TestCase.Stall()
         session_id2, protocol.g2c_buy_stall_item);
     check(msg, "failed to recv some msgs");
 
-    --登出
+    --Log out
     cleanup(user1);
     cleanup(user2);
 end

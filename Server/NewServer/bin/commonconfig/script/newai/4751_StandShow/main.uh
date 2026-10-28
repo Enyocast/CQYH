@@ -1,4 +1,4 @@
--- A 武大娘
+-- A: Aunt Wu
 evtAIIdle = 
 { batSelector,
     {batSequencer,

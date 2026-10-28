@@ -14,21 +14,21 @@ LoadPackage("char_def.pkg")
 
 
 
--- JJC 角色数量
+-- Arena character count
 ARENA_ROLE_NUM_INDEX = 1;
--- JJC 开始准备时间
+-- Arena preparation start time
 ARENA_START_TIME_INDEX = 2;
 -- JJC state
 ARENA_STATE_INDEX = 3;
--- 竞技场开门的场景变量
+-- Scene variable for opening the arena door
 ARENA_DOOR_TOGGLE_INDEX = 4;
 
 
 
 
--- JJC 第一个角色的角色roleid
+-- Role ID of the first arena character
 ARENA_FIRST_ROLE_INDEX = 11;
--- JJC 第二个角色的角色roleid
+-- Role ID of the second arena character
 ARENA_SECOND_ROLE_INDEX = 12;
 
 
@@ -47,17 +47,17 @@ ARENA_FACTION_FIRST = 1;
 ARENA_FACTION_SECOND = 2;
 
 
--- JJC 等待关闭地图时间
+-- Arena map closing wait time
 --ARENA_CLOSE_WAIT_DURATION = 120000;
 ARENA_CLOSE_WAIT_DURATION = 10000;
 
--- JJC 持续时间
+-- Arena duration
 ARENA_LAST_TIME = 600000;
 
--- 减益buff id
+-- Debuff ID
 ARENA_DEC_ROLE_ATTR_AURA_ID = 2150;
 
--- 增益buff id
+-- Buff ID
 ARENA_ADD_ROLE_ATTR_AURA_ID = 2050;
 
 

@@ -69,7 +69,7 @@ function save_role_id(scene)
 end
 
 
--- add_exp 同时也add活跃值ACT_Pts
+-- add_exp also adds activity points (ACT_Pts)
 function add_exp(scene, wave_id)
 	local roleID = scene:GetVariable(1);
 	local role = g_oGameWorld:FindValidRole(roleID);
@@ -81,7 +81,7 @@ function add_exp(scene, wave_id)
 		local apt = ACT_Pts_TABLE[wave_id];
 
 		role:AddExp(exp, false, true);
-		-- role:AddActivityPts(apt,aprYaoTa)    -- 默认代码, 增加活跃度, 缺少函数, 暂时屏蔽
+		-- role:AddActivityPts(apt,aprYaoTa)    -- Default code adds activity points; temporarily disabled because the function is missing
 
 		message = "恭喜你获得第["..wave_id.."]波经验：共计["..exp.."]经验值。"
 		scene:Say(cctScene, cltTvShow, message);

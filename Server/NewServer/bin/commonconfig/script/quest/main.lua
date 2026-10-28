@@ -35,7 +35,7 @@ function convert(pos)
 	pos.x, pos.y, pos.z = ConvertCoordO2N(pos.x, pos.y, pos.z);
 end
 
--- 取得一个基于当前玩家的相对坐标
+-- Get coordinates relative to the current player
 function _GetRelativeCoord(nSrcX, nSrcY, nFaceDirection, nOffsetX, nOffsetY)
 	local Direction = nFaceDirection * 2 * math.pi / MAX_DIRECTION_COUNT;
 	local nX = nSrcX + nOffsetX * math.sin(Direction) + nOffsetY * math.cos(Direction);
@@ -161,15 +161,15 @@ end
 
 
 
----------------------------边界�---------------------------
+---------------------------Boundary---------------------------
 
-function Qst1441Cinematic(cRole)     --触发过场动画1.2�
+function Qst1441Cinematic(cRole)     --Trigger cinematic 1.2
 	cRole:SetVariable(132, 1);
 	--cRole:SetInCutScene(true, 50 * GAME_FPS);
 end
 
 
-function Qst1445Cinematic(cRole)     --触发过场动画1.2�
+function Qst1445Cinematic(cRole)     --Trigger cinematic 1.2
 	local g_oGameWorld = CGameWorld:GetInstance();
 	local oScene = cRole:GetScene();
 
@@ -184,13 +184,13 @@ function Qst1445Cinematic(cRole)     --触发过场动画1.2�
 end
 
 
-function Qst1454Cinematic(cRole)     --触发过场动画1.3�
+function Qst1454Cinematic(cRole)     --Trigger cinematic 1.3
 	cRole:SetVariable(134, 1);
 	cRole:SetInCutScene(true, 33 * GAME_FPS);
 end
 
 
-function Qst1456AcceptCinematic(cRole)     --跳转回边界村
+function Qst1456AcceptCinematic(cRole)     --Return to Border Village
 	local g_oGameWorld = CGameWorld:GetInstance();
 	local oScene = cRole:GetScene();
 
@@ -202,7 +202,7 @@ function Qst1456AcceptCinematic(cRole)     --跳转回边界村
 	
 end
 
-function Qst1456CompleteCinematic(cRole)     --触发过场动画1.4�
+function Qst1456CompleteCinematic(cRole)     --Trigger cinematic 1.4
 	cRole:SetVariable(135, 1);
 	cRole:SetInCutScene(true, 50 * GAME_FPS);
 end
@@ -210,16 +210,16 @@ end
 
 ---------------------------------------------------------------
 
-function Qst1480Cinematic(cRole)     --触发过场动画2.1�
+function Qst1480Cinematic(cRole)     --Trigger cinematic 2.1
 	cRole:SetVariable(122, 1);
 	cRole:SetInCutScene(true, 55 * GAME_FPS);
-	--接任务改变场景变量
+	--Change scene variable on quest acceptance
 	local oScene = cRole:GetScene();
 	oScene:SetVariable(1, 2);
 end
 
-function Qst1481Cinematic(cRole)     --触发过场动画2.2�
-	-- cRole:SetVariable(123, 1);	--传送玩�43,70732,55859,43754
+function Qst1481Cinematic(cRole)     --Trigger cinematic 2.2
+	-- cRole:SetVariable(123, 1);	--Teleport player: 43,70732,55859,43754
 
 	local g_oGameWorld = CGameWorld:GetInstance();
 	local oScene = cRole:GetScene();
@@ -235,66 +235,66 @@ function Qst1481Cinematic(cRole)     --触发过场动画2.2�
 
 end
 
-function Qst1482Cinematic(cRole)     --触发过场动画2.3�
+function Qst1482Cinematic(cRole)     --Trigger cinematic 2.3
 	cRole:SetVariable(124, 1);
 	cRole:SetInCutScene(true, 39 * GAME_FPS);
 
 end
 
 
-function Qst1511Cinematic(cRole)     --触发过场动画2.3-b�
+function Qst1511Cinematic(cRole)     --Trigger cinematic 2.3-b
 	cRole:SetVariable(140, 1);
 	cRole:SetInCutScene(true, 45 * GAME_FPS);
 
 end
 
-function Qst1522Cinematic(cRole)     --触发过场动画2.4�
+function Qst1522Cinematic(cRole)     --Trigger cinematic 2.4
 	cRole:SetVariable(125, 1);
 	cRole:SetInCutScene(true, 36 * GAME_FPS);
 
 end
 
-function Qst1524Cinematic(cRole)     --触发过场动画2.5�
+function Qst1524Cinematic(cRole)     --Trigger cinematic 2.5
 	cRole:SetVariable(126, 1);
 	cRole:SetInCutScene(true, 20 * GAME_FPS);
 
 end
 
-function Qst1527Cinematic(cRole)     --触发过场动画2.6�
+function Qst1527Cinematic(cRole)     --Trigger cinematic 2.6
 	cRole:SetVariable(127, 1);
 	cRole:SetInCutScene(true, 29 * GAME_FPS);
 
 end
 
-function Qst1531Cinematic(cRole)     --开启开门的角色变量�
+function Qst1531Cinematic(cRole)     --Enable the character variable for opening the door
 	cRole:SetVariable(131, 1);
 
 end
 
 
-function Qst1532Cinematic(cRole)     --触发过场动画2.8�
+function Qst1532Cinematic(cRole)     --Trigger cinematic 2.8
 	cRole:SetVariable(128, 1);
-	cRole:SetVariable(131, 0);	--关闭开门的角色变量
+	cRole:SetVariable(131, 0);	--Clear the character variable for opening the door
 	cRole:SetInCutScene(true, 42 * GAME_FPS);
 
 end
 
 
------------------------------比奇新增�----------------------------------
-function Qst1510Cinematic(cRole)     --触发过场：1-2-4�
+-----------------------------New Bichon content----------------------------------
+function Qst1510Cinematic(cRole)     --Trigger cinematic 1-2-4
 	cRole:SetVariable(161, 1);
 	cRole:SetInCutScene(true, 86 * GAME_FPS);
 	local oScene = cRole:GetScene();
 	oScene:SetVariable(2, 1);
 end
------------------------------沃玛森林�----------------------------------
-function Qst1560Cinematic(cRole)     --触发过场：1-2-5�
+-----------------------------Woma Forest----------------------------------
+function Qst1560Cinematic(cRole)     --Trigger cinematic 1-2-5
 	cRole:SetVariable(162, 1);
 	cRole:SetInCutScene(true, 20 * GAME_FPS);
 
 end
 
-function Qst1561Cinematic(cRole)     --触发过场：1-2-6�
+function Qst1561Cinematic(cRole)     --Trigger cinematic 1-2-6
 	local g_oGameWorld = CGameWorld:GetInstance();
 	local oScene = cRole:GetScene();
 
@@ -308,68 +308,68 @@ function Qst1561Cinematic(cRole)     --触发过场：1-2-6�
 	cRole:SetInCutScene(true, 94 * GAME_FPS);
 
 end
------------------------------盟重�----------------------------------
-function Qst1645Cinematic(cRole)     --触发过场：2-1-1�
+-----------------------------Mengzhong----------------------------------
+function Qst1645Cinematic(cRole)     --Trigger cinematic 2-1-1
 	cRole:SetVariable(164, 1);
 	cRole:SetInCutScene(true, 21 * GAME_FPS);
 
 end
 
-function Qst1648Cinematic(cRole)     --触发过场：2-1-2�
+function Qst1648Cinematic(cRole)     --Trigger cinematic 2-1-2
 	cRole:SetVariable(165, 1);
 	cRole:SetInCutScene(true, 23 * GAME_FPS);
 
 end
------------------------------沃玛寺庙�----------------------------------
-function Qst1602Cinematic(cRole)     --触发过场：3-2-1�
+-----------------------------Woma Temple----------------------------------
+function Qst1602Cinematic(cRole)     --Trigger cinematic 3-2-1
 	cRole:SetVariable(166, 1);
 	cRole:SetInCutScene(true, 19 * GAME_FPS);
 
 end
 
-function Qst1605Cinematic(cRole)     --触发过场：3-2-2�
+function Qst1605Cinematic(cRole)     --Trigger cinematic 3-2-2
 	cRole:SetVariable(167, 1);
 	cRole:SetInCutScene(true, 28 * GAME_FPS);
 
 end
 
-function Qst1607Cinematic(cRole)     --触发过场：3-2-3�
+function Qst1607Cinematic(cRole)     --Trigger cinematic 3-2-3
 	cRole:SetVariable(168, 1);
 	cRole:SetInCutScene(true, 33 * GAME_FPS);
 
 end
------------------------------死亡峡谷�----------------------------------
-function Qst1656Cinematic(cRole)     --触发过场：4-1-1�
+-----------------------------Death Canyon----------------------------------
+function Qst1656Cinematic(cRole)     --Trigger cinematic 4-1-1
 	cRole:SetVariable(169, 1);
 	cRole:SetInCutScene(true, 19 * GAME_FPS);
 
 end
 
-function Qst1682Cinematic(cRole)     --触发过场：4-1-2�
+function Qst1682Cinematic(cRole)     --Trigger cinematic 4-1-2
 	cRole:SetVariable(170, 1);
 	cRole:SetInCutScene(true, 15 * GAME_FPS);
 
 end
 
-function Qst1684Cinematic(cRole)     --触发过场：4-1-3�
+function Qst1684Cinematic(cRole)     --Trigger cinematic 4-1-3
 	cRole:SetVariable(171, 1);
 	cRole:SetInCutScene(true, 29 * GAME_FPS);
 
 end
 
-function Qst1685Cinematic(cRole)     --触发过场：4-1-4�
+function Qst1685Cinematic(cRole)     --Trigger cinematic 4-1-4
 	cRole:SetVariable(172, 1);
 	cRole:SetInCutScene(true, 29 * GAME_FPS);
 
 end
------------------------------石墓�----------------------------------
-function Qst1654Cinematic(cRole)     --触发过场：4-2-1�
+-----------------------------Stone Tomb----------------------------------
+function Qst1654Cinematic(cRole)     --Trigger cinematic 4-2-1
 	cRole:SetVariable(173, 1);
 	cRole:SetInCutScene(true, 46 * GAME_FPS);
 
 end
 
-function Qst1720Cinematic(cRole)     --触发过场：4-2-2�
+function Qst1720Cinematic(cRole)     --Trigger cinematic 4-2-2
 	local g_oGameWorld = CGameWorld:GetInstance();
 	local oScene = cRole:GetScene();
 
@@ -383,33 +383,33 @@ function Qst1720Cinematic(cRole)     --触发过场：4-2-2�
 
 end
 
-function Qst1723Cinematic(cRole)     --触发过场：4-2-3�
+function Qst1723Cinematic(cRole)     --Trigger cinematic 4-2-3
 	cRole:SetVariable(175, 1);
 	cRole:SetInCutScene(true, 19 * GAME_FPS);
 
 end
 
-function Qst1726Cinematic(cRole)     --触发过场：4-2-4�
+function Qst1726Cinematic(cRole)     --Trigger cinematic 4-2-4
 	cRole:SetVariable(176, 1);
 	cRole:SetInCutScene(true, 39 * GAME_FPS);
 
 end
 
 
-function Qst1455Sence(cRole)     --完成1455�
+function Qst1455Sence(cRole)     --Complete quest 1455
 	cRole:SetVariable(177, 1);
 end
 
 
 
 
-function Qst1485Sence(cRole)     --改变场景143变量3�
+function Qst1485Sence(cRole)     --Change scene 143 variable 3
 	local oScene = cRole:GetScene();
 	oScene:SetVariable(3, 1);
 
 end
 
-function Qst1486Sence(cRole)     --改变场景144变量1�
+function Qst1486Sence(cRole)     --Change scene 144 variable 1
 	local oScene = cRole:GetScene();
 	oScene:SetVariable(1, 1);
 
@@ -454,13 +454,13 @@ function beforeAcceptQst_2049(cRole)
     local oldDay = 0;
 	local today = math.ceil((gametime + timezone) / 86400);
 	
-	--判断角色等级
+	--Check character level
 	local level = cRole:GetLevel();
     if level < 20 then
         return errGuildEscortLevelNotEnough;
     end
 	
-	--判断是否有公会
+	--Check guild membership
 	local guild = CGuildMgr:GetInstance():FindGuild(cRole:GetGuildID());
     if guild == nil then
         return errGuildNotMember;
@@ -471,7 +471,7 @@ function beforeAcceptQst_2049(cRole)
         return errGuildBuildingNpcIDError;
     end
 
-	--判断今天是否已经接过押镖任务
+	--Check whether an escort quest was already accepted today
 	local roleVariable = cRole:GetVariable(VAR_ROLE_LAST_ESCORT_TIME);
 	local oldAcceptDay = math.ceil((roleVariable + timezone) / 86400);
     if oldAcceptDay == today then
@@ -479,14 +479,14 @@ function beforeAcceptQst_2049(cRole)
     end
     local guildBusinessLevel = guildBuildingData.nLevel;
 
-    --公会是否开启押镖
+    --Check whether the guild has enabled escort
     local bEscortActivityOpen = guild:IsActivityOpen(ESCORT_ACTIVITY_ID);
     if not bEscortActivityOpen then
         return errGuildTodayNotOpenEscort;
     end
 
 	local car_info;
-	--镖书判断
+	--Check escort document
 	if cRole:GetItemBag():GetItemCount(ESCORT_ACCEPT_BASE_ITEM_A) > 0 then
 		    car_info = random_car_info(ESCORT_ACCEPT_BASE_ITEM_A);
 	elseif cRole:GetItemBag():GetItemCount(ESCORT_ACCEPT_BASE_ITEM_S) > 0 then
@@ -496,26 +496,26 @@ function beforeAcceptQst_2049(cRole)
 	else
 		return errGuildNoItem;
 	end
-    --预生成镖车模板id
+    --Preselect the escort cart template ID
 
     if not car_info then
         return errUnknownError;
     end
 
-    --金币判断
+    --Check gold
     local accept_money_cost = cal_accept_escort_cost(car_info.accept_base_money_cost, guildBusinessLevel);
     if cRole:GetItemBag():GetMoney(MONEYTYPE_02) < accept_money_cost then
         return errItemNotEnoughMoneytype02;
     end
 
-    --帮贡判断
+    --Check guild contribution
     local accept_bg_cost = cal_accept_escort_cost(car_info.accept_base_bg_cost, guildBusinessLevel);
     if cRole:GetItemBag():GetMoney(MONEYTYPE_GUILD) < accept_bg_cost then
         return errGuildNotEnoughContribution;
     end
 
 
-    -- 设置应生成的镖车模板id和接镖时商会等级
+    -- Set the cart template ID and commerce hall level at acceptance
 	cRole:SetVariable(VAR_ROLE_ESCORT_CAR_TEMP_ID, car_info.id);
 	cRole:SetVariable(VAR_ROLE_ESCORT_BUSINESS_LEVEL, guildBusinessLevel);
     
@@ -531,7 +531,7 @@ function afterAcceptQst_2049(cRole)
         return;
     end
 
-    --扣除押镖费用
+    --Deduct escort cost
     local accept_money_cost = cal_accept_escort_cost(car_info.accept_base_money_cost, guildBusinessLevel);
     local accept_bg_cost = cal_accept_escort_cost(car_info.accept_base_bg_cost, guildBusinessLevel);
     if errSuccess ~= cRole:GetItemBag():SubMoney(MONEYTYPE_02, accept_money_cost, MONEYLOG_ESCORT, 0, 0) then
@@ -547,7 +547,7 @@ function afterAcceptQst_2049(cRole)
         return;
     end
 
-    --生成镖车
+    --Spawn escort cart
 	local escort_car = cRole:GetScene():SpawnNpc(car_info.id, cRole:GetX(), cRole:GetY(), cRole:GetZ(), cRole:GetFaceDirection(), cRole:GetObjID(), NULL);
 	escort_car:GetAIProcessor():SetFollowParam(cRole:GetObjID(), 0, ESCORT_FOLLOW_Y_POS, FALSE);
     escort_car:SetAlwaysRun(true);
@@ -558,7 +558,7 @@ function afterAcceptQst_2049(cRole)
             .. ", accept_bg_cost=" .. accept_bg_cost .. ", car_info.accept_base_bg_cost=" .. car_info.accept_base_bg_cost 
             .. ", guildBusinessLevel=" .. guildBusinessLevel);
    
-    --设置变量
+    --Set variable
 	cRole:SetVariable(VAR_ROLE_LAST_ESCORT_TIME, CGameWorld:GetInstance():GetGameTime());
 	cRole:SetVariable(VAR_ROLE_ESCORT_CAR_ID, escort_car:GetObjID());
     
@@ -578,7 +578,7 @@ function afterCompleteQst_2049(cRole)
         return;
     end
     
-    -- 给奖励
+    -- Grant reward
 	local accept_money_cost = cal_accept_escort_cost(car_info.accept_base_money_cost, guildBusinessLevel);
 	local award_money = car_info.award_multi * accept_money_cost;
 

@@ -9,18 +9,18 @@ on_init =
 
 on_wander = 
 {batParallel ,
-    {batSequencer, --记录已战斗的回合数
+    {batSequencer, --Record the number of rounds fought
         { batCheckSceneVariable, param={ boEQ , 2, 1 },},
 
         { batSetSceneVariable, param={ 3, 0,1},},
         { batSetSceneVariable, param={ 2, 2 },},
     },
-    {batSequencer,--记录玩家（僵尸）赢得的回合数
+    {batSequencer,--Record the rounds won by the player (zombies)
         { batCheckSceneVariable, param={ boEQ , 4, 1 },},
         { batSetSceneVariable, param={ 5, 0,1},},
         { batCheckSceneVariable, param={ boEQ , 4, 0 },},
     },
-    {batSequencer,--记录植物赢得的回合数
+    {batSequencer,--Record the rounds won by plants
         { batCheckSceneVariable, param={ boEQ , 6, 1 },},
         { batSetSceneVariable, param={ 7, 0,1},},
         { batCheckSceneVariable, param={ boEQ , 6, 0 },},

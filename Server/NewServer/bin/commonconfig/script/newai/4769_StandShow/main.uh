@@ -1,4 +1,4 @@
--- B 老头
+-- B: old man
 evtAIIdle = 
 { batSequencer,
     { batCheckCDTimer, param={ COOLDOWN_AI ,3},

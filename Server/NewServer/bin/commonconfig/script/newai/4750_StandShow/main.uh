@@ -1,5 +1,5 @@
 
--- A 小潘
+-- A: Xiao Pan
 evtAIIdle = 
 { batSequencer,
     { batCheckCDTimer, param={ COOLDOWN_AI ,3},

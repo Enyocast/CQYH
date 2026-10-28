@@ -1,4 +1,4 @@
---具体技能配置
+--Skill configuration
 on_cast_spell = 
 { batSelector,
 	{ batSequencer,
@@ -7,13 +7,13 @@ on_cast_spell =
 			{ batSequencer,
 				{ batCheckCDTimer, param = { COOLDOWN_AI, 8 } },
 				{ batCheckCanCastSpell },
-				--死神的啄眼魔鸦 伸展两翼，朝身前区域释放暗影乌鸦冲击波，范围内所有目标被致盲2秒，同时附加流血伤害。
+				--Reaper - Eye-Pecking Raven: spreads its wings and fires a shadow raven shockwave forward, blinding targets for 2 seconds and inflicting bleeding
 				{ batSyncCastSpellToTarget, param = { 5722, tarAITarget } },
 				{ batWait, param={ 1000 }},
-				--死神的亡者形态 化为亡者形态对范围内目标进行一次穿刺打击，穿刺有吸血作用
+				--Reaper - Undead Form: transforms and strikes targets in range with a life-stealing pierce
 				{ batSyncCastSpellToTarget, param = { 5718, tarAITarget } },
 				{ batSyncCastSpellToTarget, param = { 5718, tarAITarget } },
-				--死神的死亡阴影 高速闪现到目标身后施展挑空攻击将目标原地击飞。
+				--Reaper - Death Shadow: blinks behind the target and launches it upward
 				{ batSyncCastSpellToTarget, param = { 5719, tarAITarget } },
 				{ batSetCDTimer, param = { COOLDOWN_AI, 8, 15000 } },
 			},	
@@ -22,11 +22,11 @@ on_cast_spell =
 				{ batCheckCanCastSpell },
 				{ batSyncCastSpellToTarget, param = { 5713, tarAITarget } },
 				{ batSyncCastSpellToTarget, param = { 5713, tarAITarget } },
-				--普通挥砍
+				--Normal slash
 				{ batWait, param={ 500 }},
 				{ batRandom, param = { 6000, 4000 },
 					{ batSyncCastSpellToTarget, param = { 5713, tarAITarget } },
-					--死神-生命虹吸	吸取周围目标的HP在原地形成血球，3秒后爆炸。
+					--Reaper - Life Siphon: drains nearby targets’ HP into a blood orb that explodes after 3 seconds
 					{ batSyncCastSpellToTarget, param = { 5715, tarAITarget } },
 				},
 				{ batSetCDTimer, param = { COOLDOWN_AI, 3, 2000 } },
@@ -37,30 +37,30 @@ on_cast_spell =
 		{ batCheckCharHp, param = { tarSelf,boLT,6000} },
 		{ batCheckCharHp, param = { tarSelf,boLT,3000} },
 		{ batSelector,
-			--死神的生命轮回  从地面召唤5只骷髅战士为死神战斗，持续20秒。每只骷髅在离死神4米范围内死亡时将为死神补充2%HP。
+			--Reaper - Life Cycle: summons five skeleton warriors for 20 seconds; each that dies within 4 meters restores 2% of the Reaper’s HP
 			{ batSequencer,
 				{ batCheckCDTimer, param = { COOLDOWN_AI, 14 } },
 				{ batCheckCanCastSpell },
-				--死神的死亡阴影 高速闪现到目标身后施展挑空攻击将目标原地击飞。
+				--Reaper - Death Shadow: blinks behind the target and launches it upward
 				{ batSyncCastSpellToTarget, param = { 5719, tarAITarget } },
-				--死神-收割	抛掷镰刀，在目标区域内形成持续的伤害
+				--Reaper - Harvest: throws a scythe, dealing sustained damage in the target area
 				{ batWait, param={ 1400 }},
 				{ batSyncCastSpellToTarget, param = { 5719, tarAITarget } },
 				{ batWait, param={ 1400 }},
 				{ batSyncCastSpellToTarget, param = { 5719, tarAITarget } },
-				--龙卷风
+				--Tornado
 				{ batSyncCastSpellToTarget, param = { 5714, tarAITarget } },
 				{ batSetCDTimer, param = { COOLDOWN_AI, 14, 12000 } },
 			},
 			{ batSequencer,
 				{ batCheckCDTimer, param = { COOLDOWN_AI, 4 } },
 				{ batCheckCanCastSpell },
-				--普通挥砍
+				--Normal slash
 				{ batSyncCastSpellToTarget, param = { 5713, tarAITarget } },
 				{ batWait, param={ 800 }},
 				{ batSyncCastSpellToTarget, param = { 5713, tarAITarget } },
 				{ batSyncCastSpellToTarget, param = { 5713, tarAITarget } },
-				--幽灵狂飙 从手部飞出大量的 幽灵攻击玩家
+				--Ghost Rush: releases many ghosts from the hands to attack players
 				{ batSyncCastSpellToTarget, param = { 5716, tarSelf } },
 				{ batSyncCastSpellToTarget, param = { 5717, tarAITarget } },
 				{ batWait, param={ 1000 }},
@@ -74,15 +74,15 @@ on_cast_spell =
 			{ batSequencer,
 				{ batCheckCDTimer, param = { COOLDOWN_AI, 17 } },
 				{ batCheckCanCastSpell },
-				--死神-灵魂穿刺	刺耳的尖啸声形成范围冲击波，站着不动的目标将立刻眩晕。不挣脱，则释放生命抽取(4-30)			
+				--Reaper - Soul Pierce: a shriek creates an area shockwave that immediately stuns stationary targets; if they do not break free, cast Life Drain (4-30)
 				{ batSyncCastSpellToTarget, param = {5458, tarAITarget } },
-				--龙卷风。
+				--Tornado.
 				{ batSyncCastSpellToTarget , param = { 5714, tarAITarget} },
 				{ batSyncCastSpellToTarget , param = { 5714, tarAITarget } },
 				{ batWait, param={ 1000}},
 				{ batSyncCastSpellToTarget , param = { 5714, tarAITarget } },
 				{ batSyncCastSpellToTarget , param = { 5714, tarAITarget } },
-				--黄泉引路 死神遁入暗影中形成暗影传送门，对范围内所有目标进行拖拽，过程中持续造成暗影能量伤害，拖拽到传送门的目标将直接被吞噬并爆炸，造成高伤害。
+				--Guide to the Underworld: the Reaper creates a shadow portal that pulls targets while dealing continuous shadow damage; targets reaching it are consumed and explode for heavy damage
 				{ batSyncCastSpellToTarget, param = { 5721, tarAITarget } },
 				{ batWait, param={ 3000}},
 				{ batSetCDTimer, param = { COOLDOWN_AI, 17, 15000 } },
@@ -100,7 +100,7 @@ on_cast_spell =
 			{ batSequencer,
 				{ batCheckCDTimer, param = { COOLDOWN_AI, 20 } },
 				{ batCheckCanCastSpell },
-				-- 死神的无辜者之障 环绕身体的幽灵护盾，每次被攻击有几率恐惧攻击者2秒。
+				-- Reaper - Barrier of the Innocent: a ghost shield has a chance to fear attackers for 2 seconds
 				{ batSyncCastSpellToTarget, param = { 5724, tarSelf } },
 				{ batSetCDTimer, param = { COOLDOWN_AI, 20, 20000 } },
 			},

@@ -1,11 +1,11 @@
 evtAIInteract = 
 { batSequencer,
-	{ batRoleOpenDialog, param = { 666801, 50000, 'get_Total()', 'get_ABC()' } },	-- 一番赏 这里修改get_power() 返还一番赏还剩余多少 如果可能的话顺便返回ABC三种大奖各还有多少个
+	{ batRoleOpenDialog, param = { 666801, 50000, 'get_Total()', 'get_ABC()' } },	-- Ichiban prize: change get_power() to return the remaining prizes and, if possible, counts for each of the A, B and C grand prizes
 	{ batSelector, 
 		{ batSequencer, 
-			{batRoleCheckInteractOption, param = { 1 } },--买一个
+			{batRoleCheckInteractOption, param = { 1 } },--Buy one
 			{batSelector,
-				{batSequencer,--下面是购买逻辑
+				{batSequencer,--Purchase logic follows
 					{ Buy_One },
 				},
 				{batSequencer,
@@ -14,9 +14,9 @@ evtAIInteract =
 			},
 		},
 		{ batSequencer, 
-			{batRoleCheckInteractOption, param = { 2 } },--买10个
+			{batRoleCheckInteractOption, param = { 2 } },--Buy 10
 			{batSelector,
-				{batSequencer,--下面是购买逻辑
+				{batSequencer,--Purchase logic follows
 					{ Buy_Ten },
 				},
 				{batSequencer,
@@ -25,9 +25,9 @@ evtAIInteract =
 			},
 		},
 		{ batSequencer, 
-			{batRoleCheckInteractOption, param = { 3 } },--领取W赏
+			{batRoleCheckInteractOption, param = { 3 } },--Claim the W prize
 			{batSelector,
-				{batSequencer,--下面是购买逻辑
+				{batSequencer,--Purchase logic follows
 					{ Get_Big },
 				},
 				{batSequencer,
@@ -41,7 +41,7 @@ evtAIInteract =
 evtAIIdle = 
 { batSelector,
 	{ batSequencer,
-		{ batWait, param = { 'get_wait_time()' } },	--等待到每日刷新时间
+		{ batWait, param = { 'get_wait_time()' } },	--Wait until the daily reset
 		{ EveryDayInit },
 	},
 };

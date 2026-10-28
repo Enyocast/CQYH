@@ -97,7 +97,7 @@ function _chuanqi_collection()
 			},	
 		},	
 		
-		--已经领取过
+		--Already claimed
 		{batSequencer,
 			{ batRoleOpenDialog, param = { 50122, 50000, 0, 0 } },
 		},		
@@ -152,7 +152,7 @@ function _chuanqiyongheng_collection()
 			},	
 		},	
 		
-		--已经领取过
+		--Already claimed
 		{batSequencer,
 			{ batRoleOpenDialog, param = { 50122, 50000, 0, 0 } },
 		},		
@@ -166,7 +166,7 @@ end
 
 evtAIInteract = 
 { batSelector,
-	--等级低于25
+	--Level below 25
 	{ batSequencer,
 		{ batCheckDate , param = { boLT,20160608, 000000 } },
 		{ batRoleOpenDialog, param = { 50140, 30000 } },
@@ -184,12 +184,12 @@ evtAIInteract =
 			{ batSequencer,
 				{ batRoleOpenDialog, param = { 50120, 50000, 0, 0 } },	
 				{ batSelector,
-					--收集传奇两字
+					--Collect the two Legend characters
 					{ batSequencer, 
 						{ batRoleCheckInteractOption, param = { 1 } },
 						_chuanqi_collection(),
 					},
-					--收集传奇永恒四字
+					--Collect the four Legend Eternal characters
 					{ batSequencer, 
 						{ batRoleCheckInteractOption, param = { 2 } },	
 						_chuanqiyongheng_collection(),

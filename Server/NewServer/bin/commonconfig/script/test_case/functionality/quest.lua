@@ -51,7 +51,7 @@ function TestCase.Quest.AcceptQuest()
     msg = recv_msg(30, session_id, protocol.g2c_error_notify);
     check(msg.nErrCode == error_code.errQuestNpcTooFar, "failed to recv errQuestNpcTooFar ");
 
-	-- no start npc 此项暂时没有配，先注掉
+	-- No start NPC: this is not configured yet, so leave it commented out
 	ret = user:GMCommand("SummonNpc(6009)");
 	check(ret, "failed to summon npc 6009");
 
@@ -244,51 +244,51 @@ end
 function getquestcompleteconfigcount(quest_data)
 	local nCount = 0;
 
-	-- 任务职业需求
+	-- Quest class requirement
 	if quest_data.nClassLimit ~= 4 then
 		nCount = nCount + 1;
 	end
 
-	-- 性别需求
+	-- Gender requirement
 	if quest_data.nSexLimit ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- 杀怪数检查(放在检查任务npc前面，防止由于释放技能，移动距离过大，导致与npc距离过大)
+	-- Check kill count before checking the quest NPC to avoid moving too far from it while casting skills
 	for nNpcIndex = 0, MAX_CONDITION_PER_QUEST - 1 do
         if  quest_data.vecCheckKillNpcID[nNpcIndex] ~= 0 and quest_data.vecCheckKillNpcCnt[nNpcIndex] ~= 0 then
 			nCount = nCount + 1;
         end
     end
 
-	--任务结束的NPC ID
+	--Quest completion NPC ID
 	if quest_data.nFinishNpc ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- 任务完成的BUF检查
+	-- Check buffs at quest completion
 	if quest_data.nCheckBuffID ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- 任务物品检查
+	-- Check quest items
     for nItemIndex = 0, MAX_CONDITION_PER_QUEST - 1 do
         if quest_data.vecCheckItemID[nItemIndex] ~= 0 then
             nCount = nCount + 1;
         end
     end
 
-	-- 需求变量ID1, 需求变量值1（判断相等）需要判断 Role, Scene, Quest
+	-- Required variable ID 1 and value 1 (equality check); check Role, Scene and Quest
 	if quest_data.nCheckVarID1 ~= -1 then
 		nCount = nCount + 1;
 	end
 
-	-- 需求变量ID2, 需求变量值2（判断相等）需要判断 Role, Scene, Quest
+	-- Required variable ID 2 and value 2 (equality check); check Role, Scene and Quest
 	if quest_data.nCheckVarID2 ~= -1 then
 		nCount = nCount + 1;
 	end
 
-	-- 货币奖励类型, 货币奖励数量
+	-- Reward currency type and amount
 	if quest_data.nAwardMoneyType ~= 0 and quest_data.nAwardMoneyAmount ~= 0 then
 		nCount = nCount + 1;
 	end
@@ -297,8 +297,8 @@ function getquestcompleteconfigcount(quest_data)
 end
 
 function TestCase.ShareQuest()
-	-- 10, 11配成共享任务，12, 13 配成非共享任务
-	--用户只接10 12, 不接11 13
+	-- Configure quests 10 and 11 as shareable and 12 and 13 as non-shareable
+	--The user accepts only quests 10 and 12, not 11 or 13
 	local msg;
 	local questdata;
 
@@ -314,18 +314,18 @@ function TestCase.ShareQuest()
 	check(role2, "fail to login");
 	local session_id2 = user2:GetSessionID();
 
-	-- 创造条件让1满足任务10
+	-- Create conditions for user 1 to meet quest 10 requirements
 	questdata = GetQuestByID(10);
 	check(questdata, "fail to get quest");
 	_AcceptQuestWithoutConditionIndex(user1, role1, questdata, 0, 1, qatNpc, 0);
 
-	-- 创造条件让1满足任务12
+	-- Create conditions for user 1 to meet quest 12 requirements
 	questdata = GetQuestByID(12);
 	check(questdata, "fail to get quest");
 	_AcceptQuestWithoutConditionIndex(user1, role1, questdata, 0, 1, qatNpc, 0);
 
 	print("--------------no team---------------------------------");
-	-- 没有队伍的时候共享
+	-- Share without a team
 	ret = user1:ShareQuest(10, qatShare);
 	check(ret, "fail to share quest");
 
@@ -333,13 +333,13 @@ function TestCase.ShareQuest()
     check(msg.nErrCode == error_code.errQuestNoShareTeam, "failed to recv errQuestNoShareTeam");
 
  	print("--------------create team---------------------------------");
-    -- 组队
+    -- Team
     local team_name = username1.."team";
     local teamid = CreateTeam(team_name, user1, role1);
     check(teamid, "failed to create team");
 
 	print("--------------create team success---------------------------------");
-    -- 队伍只有1个人时，申请共享任务
+    -- Request a shared quest when the team has only one member
     ret = user1:ShareQuest(10, qatShare);
 	check(ret, "fail to share quest");
 
@@ -347,12 +347,12 @@ function TestCase.ShareQuest()
     check(msg.nErrCode == error_code.errQuestShareUnavailable, "failed to recv errQuestShareUnavailable");
 
 	print("--------------enter team---------------------------------");
-    --加入队伍
+    --Join the team
    	InviteToTeam(user2, role2, user1, role1, 0);
 	local retMsg = recv_msg_and(30, session_id1, protocol.m2c_team_add_member, session_id2, protocol.m2c_team_join);
     check(retMsg, "failed to received m2c_team_add_member or m2c_team_join");
 
-    -- 队伍人数大于2时，申请共享接过的非共享任务
+    -- With more than two team members, request sharing of an accepted non-shareable quest
     ret = user1:ShareQuest(12, qatShare);
 	check(ret, "fail to share quest");
 
@@ -360,8 +360,8 @@ function TestCase.ShareQuest()
     check(msg.nErrCode == error_code.errQuestCannotShare, "failed to recv errQuestCannotShare");
 
 	print("--------------share no accepted quest---------------------------------");
-    -- 队伍人数大于2时，申请未接过的共享任务
-    --(此种情况服务器返回unknownerror,暂时不踢人，如果以后踢人的话，此消息收不到)
+    -- With more than two team members, request an unaccepted shareable quest
+    --(The server returns unknownerror and does not currently kick the player; if it does in future, this message will not arrive)
 
     ret = user1:ShareQuest(11, qatShare);
 	check(ret, "fail to share quest");
@@ -369,7 +369,7 @@ function TestCase.ShareQuest()
     msg = recv_msg(5, session_id1, protocol.g2c_error_notify);
 	check(msg.nErrCode == error_code.errQuestAlreadyCompleted, "failed to recv errUnknownError");
 
-	-- 创造条件让用户2满足接任务条件，申请接受共享任务ID
+	-- Make user 2 meet the acceptance requirements and request the shared quest ID
 	questdata = GetQuestByID(10);
 	_AcceptQuestWithoutConditionIndex(user2, role2, questdata, 0, -1, qatNpc, 0);
 
@@ -379,7 +379,7 @@ function TestCase.ShareQuest()
     msg = recv_msg(5, session_id2, protocol.g2c_share_quest);
     check(msg, "fail to recv share quest");
 
-	-- 用户2 确认任务
+	-- User 2 confirms the quest
 	ret = user2:AcceptQuest(msg.nQuestID, qatShare, msg.nSrcID)
 	check(ret, "fail to share quest ack");
 
@@ -387,7 +387,7 @@ function TestCase.ShareQuest()
     check(msg, "fail to recv share quest");
 
 	print("--------------jump scene--------------------------------");
-	-- 用户2跳场景
+	-- User 2 changes scene
 	ret = user2:GMCommand("Jump(102,0)");
 	check(ret, "failed to jump to scene");
 
@@ -401,7 +401,7 @@ function TestCase.ShareQuest()
      check(msg, "failed to  recv g2c_char_appear");
 
  	print("--------------not in the same scene--------------------------------");
-    -- 队伍人数大于2，但是不在同一场景， 检测能否收到共享任务
+    -- With more than two team members in different scenes, check whether the shared quest is received
 	ret = user1:ShareQuest(10, qatShare);
 	check(ret, "fail to share quest");
 
@@ -413,7 +413,7 @@ function TestCase.ShareQuest()
 end
 
 
-function TestCase.PublishQuest()				-- 师徒共享任务
+function TestCase.PublishQuest()				-- Master-apprentice shared quest
 
     local user_name1 = "Pub1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
@@ -425,42 +425,42 @@ function TestCase.PublishQuest()				-- 师徒共享任务
     local session_id2 = user2:GetSessionID();
 	local roleid2 = role2:GetObjID();
 
-	-- 拜师
+	-- Become an apprentice
 
-	-- 变成师傅
+	-- Become a master
 	BecomeMasterByMyself(user1, role1);
 	wait(5);
 
-	-- 提交申请
+	-- Submit application
 	TestSubmitApp(role1, session_id1, role2, session_id2);
 
-	-- 同意拜师
+	-- Accept the apprenticeship
 	TestAgreeApp(role1, session_id1, role2, session_id2);
 
 	local ret = user1:ShareQuest(203, qatPublish);
 	check(ret, "fail to publish quest");
 
-	-- 检查共享任务消息回包
+	-- Check the shared quest response
 	msg = recv_msg(5, session_id2, protocol.m2c_publish_quest);
 	check(msg, "failed to recv m2c_publish_quest");
 	check(msg.nQuestID == 203,"fail to recv correct quest id  ");
 	check(msg.dwMasterRoleID == roleid1,"fail to recv correct roleid  ");
 
-	-- 确认共享
+	-- Confirm sharing
 	ret = user2:ConfirmPublishQuest(203, roleid1);
 	check(ret, "fail to confirm quest");
 
-	-- 检查接任务的回包
+	-- Check the quest acceptance response
     msg = recv_msg(5, session_id2, protocol.g2c_accept_quest);
     check(msg, "failed to recv g2c_accept_quest");
 	check(msg.nQuestID == 203,"fail to recv correct quest id  ");
 
 end
 
--- 测试任务系统的新增任务类型和新增任务奖励类型
--- 包括：限时任务
--- 完成任务时奖励道具
--- 任务20为限时任务，完成以后奖励称号1
+-- Test new quest and reward types
+-- Includes timed quests
+-- Award items on quest completion
+-- Quest 20 is timed and awards title 1 on completion
 function TestCase.Quest.QuestTimeLimit()
 	local user_name1 = "QuestTime1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
@@ -474,14 +474,14 @@ function TestCase.Quest.QuestTimeLimit()
 
 	local ret, msg;
 
-	-- 用户1 确认延时25秒交任务
+	-- User 1 confirms, then waits 25 seconds before completing the quest
 	ret = user1:AcceptQuest(20, qatNpc, 0)
 	check(ret, "fail to send acceptquest");
 
     msg = recv_msg(5, session_id1, protocol.g2c_accept_quest);
     check(msg, "fail to recv accept quest");
 
-	wait(25);	-- 限时任务20秒
+	wait(25);	-- Quest time limit: 20 seconds
 
 	ret = user1:CompleteQuest(20, 0);
 	check(ret, "failed to complete quest");
@@ -489,14 +489,14 @@ function TestCase.Quest.QuestTimeLimit()
     msg = recv_msg(30, session_id1, protocol.g2c_error_notify);
     check(msg.nErrCode == error_code.errQuestTimeLimit, "failed to recv errUnknownError");
 
-	-- 用户2 确认延时15秒交任务
+	-- User 2 confirms, then waits 15 seconds before completing the quest
 	ret = user2:AcceptQuest(20, qatNpc, 0)
 	check(ret, "fail to send acceptquest");
 
     msg = recv_msg(5, session_id2, protocol.g2c_accept_quest);
     check(msg, "fail to recv accept quest");
 
-	wait(15);	-- 限时任务20秒
+	wait(15);	-- Quest time limit: 20 seconds
 
 	local ret = user2:CompleteQuest(20, 0);
 	check(ret, "failed to complete quest");
@@ -505,8 +505,8 @@ function TestCase.Quest.QuestTimeLimit()
     check(msg, "failed to recv g2c_complete_quest");
 end
 
--- 测试任务系统的新增任务类型和新增任务奖励类型
--- 任务21为谈话任务,完成以后增加300魂
+-- Test new quest and reward types
+-- Quest 21 is a conversation quest that awards 300 soul on completion
 function TestCase.Quest.QuestChat()
 	local user_name1 = "QuestChat"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
@@ -515,7 +515,7 @@ function TestCase.Quest.QuestChat()
 
 	local ret, msg;
 
-	-- 召唤npc
+	-- Spawn an NPC
 	ret = user1:GMCommand("SummonNpc(6085)");
 	check(ret, "failed to summon npc 6085");
 
@@ -537,7 +537,7 @@ function TestCase.Quest.QuestChat()
 
 	wait(3);
 
-	-- 交任务
+	-- Complete the quest
 	local ret = user1:CompleteQuest(21, 0);
 	check(ret, "failed to complete quest");
 
@@ -545,10 +545,10 @@ function TestCase.Quest.QuestChat()
     check(msg, "failed to recv g2c_complete_quest");
 end
 
--- 测试任务系统的新增任务类型和新增任务奖励类型
--- 包括：探索任务
--- 完成任务时奖励魂
--- 任务22为搜索任务，grid坐标为
+-- Test new quest and reward types
+-- Includes exploration quests
+-- Award soul on quest completion
+-- Quest 22 is a search quest; grid coordinates:
 function TestCase.Quest.QuestExplor()
 	local user_name1 = "QuestTime1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
@@ -557,7 +557,7 @@ function TestCase.Quest.QuestExplor()
 
 	local ret, msg;
 
-	-- 用户1 交任务
+	-- User 1 completes the quest
 	ret = user1:AcceptQuest(21, qatNpc, 0)
 	check(ret, "fail to send acceptquest");
 
@@ -587,7 +587,7 @@ function TestCase.Quest.QuestExplor()
 
      wait(3);
 
-	-- 交任务，收获魂
+	-- Complete the quest and receive soul
 	local ret = user2:CompleteQuest(21, 0);
 	check(ret, "failed to complete quest");
 
@@ -595,12 +595,12 @@ function TestCase.Quest.QuestExplor()
     check(msg, "failed to recv g2c_complete_quest");
 end
 
--- 测试任务系统的新增任务类型
--- 物品id为101，挂脚本,完成任务101
+-- Test new quest types
+-- Item ID 101 runs a script that completes quest 101
 
--- 测试任务系统的新增任务类型
--- 包括：引导任务
--- 任务23为客户端变量任务
+-- Test new quest types
+-- Includes tutorial quests
+-- Quest 23 is a client-variable quest
 function TestCase.Quest.QuestClientVar()
 	local user_name1 = "QuestClient1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
@@ -609,7 +609,7 @@ function TestCase.Quest.QuestClientVar()
 
 	local ret, msg;
 
-	-- 用户1 接任务
+	-- User 1 accepts the quest
 	ret = user1:AcceptQuest(23, qatNpc, 0)
 	check(ret, "fail to send acceptquest");
 
@@ -623,12 +623,12 @@ function TestCase.Quest.QuestClientVar()
     check(msg, "failed to recv g2c_error_notify");
     check(msg.nErrCode == error_code.errQuestLimitVar, "failed to recv errQuestLimitVar");
 
-	-- 0号变量为客户端变量
+	-- Variable 0 is a client variable
 	ret = user1:UpdateClientVariable(1,1);
 	check(ret, "failed to update client value");
 	wait(10);
 
-   	-- 1号变量为客户端变量
+	-- Variable 1 is a client variable
 	ret = user1:GMCommand("SetQV(23, 1, 1)");
 	check(ret, "failed to summon npc 6009");
 	wait(10);
@@ -636,7 +636,7 @@ function TestCase.Quest.QuestClientVar()
    	ret = user1:CompleteQuest(23, 0);
 	check(ret, "failed to complete quest");
 
-   	-- 收任务完成的消息
+	-- Receive the quest completion message
     msg = recv_msg(30, session_id1, protocol.g2c_complete_quest);
     check(msg, "failed to recv g2c_complete_quest");
     check(msg.nQuestID == 23, "failed to recv g2c_complete_quest");
@@ -680,10 +680,10 @@ function TestCase.Quest.TestDailyQuest()
 
 	wait(10);
 
-    --测试完成，登出
+    --Test complete; log out
     cleanup(user1);
 
-	--再次上线，测试数据的解包
+	--Log in again and test data unpacking
     user1, role1 = startup(user_name1, user_name1);
 
 	wait(10);
@@ -737,7 +737,7 @@ function TestCase.Quest.TestAward()
 
 	wait(2);
 
-    --ret = user1:SelectDialogOption(2);  -- 批次领奖
+    --ret = user1:SelectDialogOption(2);  -- Claim batch reward
 	--check(msg, "failed to Select Dialog Option");
 
 	--wait(10);
@@ -746,7 +746,7 @@ function TestCase.Quest.TestAward()
 	--check(msg, "failed to receive g2c_item_change");
     --check(msg.stItem.nTemplateID==3194, "failed to create correct item");
 
-    ret = user1:AwardUseNumber("131129171328494787900595075918");	   -- 推广码领奖
+    ret = user1:AwardUseNumber("131129171328494787900595075918");	   -- Claim promotion-code reward
 	check(msg, "failed to send AwardUseNumber");
 
 	wait(20);

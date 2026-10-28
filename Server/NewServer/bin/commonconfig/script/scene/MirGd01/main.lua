@@ -11,7 +11,7 @@ LoadPackage("role.pkg")
 LoadPackage("ai.pkg")
 
 
--- 公会温泉
+-- Guild hot spring
 
 -- attack
 GUILD_WAR_FACTION_A = 1;
@@ -30,13 +30,13 @@ WAIT_TO_TELEPORT_TIME = 30000;		-- ms
 DEITY_NPC_NAMEID = "Insc01";
 DEITY_NPC_ID_LIST =
 {
-	[0] = 6898;    -- 0级
-	[1] = 6899;    -- 1级
+	[0] = 6898;    -- Level 0
+	[1] = 6899;    -- Level 1
 	[2] = 6900;
 	[3] = 6901;
 	[4] = 6902;
 	[5] = 6903;
-	[6] = 6903;    -- 6级
+	[6] = 6903;    -- Level 6
 };
 
 

@@ -1,4 +1,4 @@
--- C 普通妇女
+-- C: ordinary woman
 evtAIIdle = 
 { batSequencer,
     { batCheckCDTimer, param={ COOLDOWN_AI ,3},

@@ -41,10 +41,10 @@ function _sign_check(rolevarible_value,opendialog_id)
 		{ batSequencer,
 			{ batRoleCheckRoleVariable, param = { boEQ, 141, rolevarible_value, 0 } },
 			{ batRoleAddItem, param = { sign_reward_table[plus_value], 1 } },
-			-------------------设置签到CD
-			----------------开关是否有日常的限制-----------------------
+			-------------------Set sign-in cooldown
+			----------------Toggle whether a daily limit applies-----------------------
 			{ batRoleUpdateDailyVariable, param = { 142, 0 } },
-			----------------开关是否有日常的限制-----------------------
+			----------------Toggle whether a daily limit applies-----------------------
 			{ batRoleSetRoleVariable , param = { 141, plus_value } },
 			{ record_online_time, param = {rolevarible_value} }
 ,
@@ -54,24 +54,24 @@ function _sign_check(rolevarible_value,opendialog_id)
 end
 
 
---签到活动
+--Sign-in event
 function _sign_in(sign_reward_table)
 	local sign_table = 
 	{ batSelector,
 		{ batSequencer,
-			-------------------检查签到CD
-			----------------开关是否有日常的限制-----------------------
+			-------------------Check sign-in cooldown
+			----------------Toggle whether a daily limit applies-----------------------
 			{ batRoleCheckDailyVariable, param = { 142 } },
-			----------------开关是否有日常的限制-----------------------
+			----------------Toggle whether a daily limit applies-----------------------
 			{ batRoleOpenDialog, param = { 479102, 50000, 0, 0 } },
 
 			{ batRoleCheckInteractOption, param = { 1 } },
 			{ batSelector,
-				--第一天
+				--First day
 				_sign_check(0,479103),
-				--第二天
+				--Second day
 				_sign_check(1,479104),
-				--以此类推
+				--And so on
 				_sign_check(2,479105),
 				_sign_check(3,479106),
 				_sign_check(4,479107),
@@ -93,7 +93,7 @@ function _sign_in(sign_reward_table)
 end
 
 
---收集字体活动
+--Character collection event
 function _item_collection(collection_reward,collection_check_table)
 	local _collection_table = 
 	{ batSelector,
@@ -141,12 +141,12 @@ end
 	--{ batRoleOpenDialog, param = { 479101, 50000, 0, 0 } },	
 
 	--{ batSelector,
-		--原选项1，进入签到领取测试答谢礼盒
+		--Original option 1: enter sign-in to claim the test thank-you gift box
 		--{ batSequencer, 
 			--{ batRoleCheckInteractOption, param = { 1 } },
 			--_sign_in(sign_reward_table),
 		--},
-		--选项1,进入“我爱传奇永恒”活动
+		--Option 1: enter the I Love Legend Eternal event
 		--{ batSequencer, 
 		--	{ batRoleCheckInteractOption, param = { 1 } },
 		--	_item_collection(collection_reward,collection_check_table),
@@ -162,7 +162,7 @@ evtAIInteract =
 		{ batRoleCheckItemCount , param = { boLT, 93001, 10, true } },		
 		{ batRoleOpenDialog, param = { 479101, 50000, 0, 0 } },	
 
-			--原选项1，兑换时间卡
+			--Original option 1: exchange a time card
 			{ batSequencer, 
 				{ batRoleCheckInteractOption, param = { 1 } },
 				{ batRoleTemporaryCharge },

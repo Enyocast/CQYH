@@ -6,8 +6,8 @@ TestCase.Ranklist = {};
 
 function TestCase.Ranklist.AddRanklist()
 
-	-- 登陆	
-	-- 用户1 2 5都登陆到ServerGroup1
+	-- Log in
+	-- Users 1, 2 and 5 log in to ServerGroup1
     local user_name1 = "ranklist1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
@@ -23,7 +23,7 @@ function TestCase.Ranklist.AddRanklist()
     check(user5, "failed to create user");
     check(role5, "failed to create role"); 
 
-	-- 用户3 4 6都登陆到ServerGroup2（默认）
+	-- Users 3, 4 and 6 log in to ServerGroup2 (default)
     local user_name3 = "ranklist3"..os.date("%H%M%S");
     local user3, role3 = startup(user_name3, user_name3);
     check(user3, "failed to create user");
@@ -53,7 +53,7 @@ function TestCase.Ranklist.AddRanklist()
 	local userid5 = role5:GetObjID();
 	local userid6 = role6:GetObjID();
 	
-    ---- 用户2 4都升到10级
+    ---- Users 2 and 4 reach level 10
     
    	local ret = user2:GMCommand("SetLevel(10)");
     check(ret, "exec GMCommand SetLevel error: user2");
@@ -63,11 +63,11 @@ function TestCase.Ranklist.AddRanklist()
 
 	wait(2);
 
-	-- 用户2 4 下线，刷新身上的排行榜
+	-- Users 2 and 4 log out, refreshing their ranking entries
     cleanup(user2);
     cleanup(user4);
 
-	-- 用户5 6都升到20级
+	-- Users 5 and 6 reach level 20
    	local ret = user5:GMCommand("SetLevel(20)");
     check(ret, "exec GMCommand SetLevel error: user5");
 	
@@ -76,13 +76,13 @@ function TestCase.Ranklist.AddRanklist()
 
 	wait(2);
 
-	-- 用户5 6 下线，刷新身上的排行榜
+	-- Users 5 and 6 log out, refreshing their ranking entries
     cleanup(user5);
     cleanup(user6);
 
 	wait(10);
 
-    -- 用户1 3询问等级排行榜情况
+    -- Users 1 and 3 query the level rankings
     ret = user1:QueryRanklist(0, 0); -- rlLevel
     check(ret, "fail to query ranklist");    
     
@@ -91,7 +91,7 @@ function TestCase.Ranklist.AddRanklist()
 	check(msg.nServerGroupID == 1, "wrong ServerGroupID in m2c_query_ranklist");
 	check(msg.nRanklistID == 0, "wrong nRanklistID in m2c_query_ranklist");    
     
-    -- 按照预计结果 排行榜中应该是5 20级排第一， 2 10级排第二（用户1由于未下线，排行榜中无他的位置）
+    -- Expected ranking: user 5 at level 20 is first, user 2 at level 10 is second; user 1 is absent because they have not logged out
 	check(msg.llKey[0] == userid5, "wrong llkey0 in m2c_query_ranklist");    
 	check(msg.llValue[0] == 20, "wrong llvalue0 in m2c_query_ranklist");		
 	
@@ -110,7 +110,7 @@ function TestCase.Ranklist.AddRanklist()
     local msg = recv_msg(30, session_id3, protocol.m2c_query_ranklist);
     check(msg, "failed to  recv m2c_query_ranklist");    
 	
-    -- 按照预计结果 排行榜中应该是6 20级排第一 ， 4 10级排第2（用户3由于未下线，排行榜中无他的位置）
+    -- Expected ranking: user 6 at level 20 is first, user 4 at level 10 is second; user 3 is absent because they have not logged out
 	check(msg.llKey[0] == userid6, "wrong llkey1 in m2c_query_ranklist");    
 	check(msg.llValue[0] == 20, "wrong llvalue1 in m2c_query_ranklist");		
 	
@@ -125,11 +125,11 @@ function TestCase.Ranklist.AddRanklist()
 end
 
 function TestCase.Ranklist.TestRankList()
-	-- 登陆
+	-- Log in
 	
 	local i, ret;
 	
-	-- 陆续登陆
+	-- Log in sequentially
 	
 	local user_name = {};
 	local user = {};
@@ -144,7 +144,7 @@ function TestCase.Ranklist.TestRankList()
 		check(role[i], "failed to create role index : "..i);
 	end
 
-	-- 纷纷升级
+	-- Level up
 	
 	for i = 1, 100 do
 		ret = user[i]:GMCommand("SetLevel(10)");
@@ -216,7 +216,7 @@ function TestCase.Ranklist.TestRankList()
 	
 	wait(1);
 
-	-- 纷纷下线, 刷新自己身上的排行榜
+	-- Log out, refreshing each user’s ranking entry
 	
 	for i = 1, 1000 do
 		cleanup(user[i]);	
@@ -228,7 +228,7 @@ function TestCase.Ranklist.TestRankList()
 
     local session_id1 = user1:GetSessionID();
 		
-	-- 1号用户查询排行榜信息
+	-- User 1 queries the rankings
 
     ret = user1:QueryRanklist(0, 0); -- rlLevel
     check(ret, "fail to query ranklist");    
@@ -238,7 +238,7 @@ function TestCase.Ranklist.TestRankList()
 	check(msg.nServerGroupID == 1, "wrong ServerGroupID in m2c_query_ranklist");
 	check(msg.nRanklistID == 0, "wrong nRanklistID in m2c_query_ranklist");    
     
-    -- 按照预计结果 排行榜中第0页全是55
+    -- Expected: all entries on ranking page 0 are level 55
     
     for ranklistindex = 0,9 do
 	   	check(msg.llValue[ranklistindex] == 55, "wrong llvalue0 in m2c_query_ranklist");		 
@@ -252,13 +252,13 @@ function TestCase.Ranklist.TestRankList()
 	check(msg.nServerGroupID == 1, "wrong ServerGroupID in m2c_query_ranklist");
 	check(msg.nRanklistID == 0, "wrong nRanklistID in m2c_query_ranklist");    
 	
-    -- 按照预计结果 排行榜中第99页应该是1
+    -- Expected: ranking page 99 contains level 1
 	
     for ranklistindex = 0,9 do
 	   	check(msg.llValue[ranklistindex] == 1, "wrong llvalue0 in m2c_query_ranklist");		 
     end
 	
-	-- 再上1个用户，升级到60级
+	-- Log in another user and raise them to level 60
 
 	username = "ranklist"..os.date("%H%M%S");	
 	user2, role2 = startup(user_name[i], user_name[i]);
@@ -268,7 +268,7 @@ function TestCase.Ranklist.TestRankList()
 	ret = user2:GMCommand("SetLevel(60)");
 	check(ret, "exec GMCommand SetLevel user");
 	
-	-- 1号用户查询排行榜信息
+	-- User 1 queries the rankings
 			
 	ret = user1:QueryRanklist(0, 0); -- rlLevel
     check(ret, "fail to query ranklist");    
@@ -280,7 +280,7 @@ function TestCase.Ranklist.TestRankList()
 		
 	userid2 = role2:GetObjID();
 	
-	-- 按照预计结果 排名第1的应该是2号用户 60级，其他9个都是55级
+	-- Expected: user 2 is first at level 60; the other nine are level 55
 	
 	check(msg.llKey[0] == userid2, "wrong llkey1 in m2c_query_ranklist");   	
    	check(msg.llValue[0] == 60, "wrong llvalue0 in m2c_query_ranklist");		 
@@ -289,14 +289,14 @@ function TestCase.Ranklist.TestRankList()
 	   	check(msg.llValue[ranklistindex] == 55, "wrong llvalue0 in m2c_query_ranklist");		 
     end
 	
-	-- 1号用户升级到65 下线刷新排行榜
+	-- Raise user 1 to level 65 and log out to refresh the rankings
 	
 	ret = user1:GMCommand("SetLevel(65)");
 	check(ret, "exec GMCommand SetLevel user");
 
     cleanup(user1);
 	
-	-- 用户2来查询排行榜，第一是user1 第二是user2
+	-- User 2 queries the rankings: user 1 is first and user 2 is second
 	check(msg.llKey[0] == userid1, "wrong llkey1 in m2c_query_ranklist");   	
    	check(msg.llValue[0] == 65, "wrong llvalue0 in m2c_query_ranklist");		 
 	

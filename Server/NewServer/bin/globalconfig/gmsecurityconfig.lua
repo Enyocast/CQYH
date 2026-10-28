@@ -155,7 +155,7 @@ ServerConfig.GM_PWD = {
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_EXE_GAME_CMD] = {
-			szDescript = "lua gm语句执行权限",	-- 建议最高权限
+			szDescript = "lua gm语句执行权限",	-- Highest permission level recommended
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_LOAD_ROLE] = {
@@ -179,7 +179,7 @@ ServerConfig.GM_PWD = {
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_FIX_ROLE] = {
-			szDescript = "修正角色数据",	-- 建议最高权限
+			szDescript = "修正角色数据",	-- Highest permission level recommended
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_LOAD_MAIL] = {

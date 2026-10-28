@@ -15,17 +15,17 @@ Include("script/include/btnod.lua")
 local g_oGameWorld = CGameWorld:GetInstance();
 
 
--------------------- 分割线
+-------------------- Separator
 
--- 打孔
+-- Create sockets
 function AddSocket(slot)
-	-- 11-头盔, 12-衣服, 13-腰带, 14-鞋子, 15-护肩, 16-护腕, 17-披风
+	-- 11-helmet, 12-armor, 13-belt, 14-shoes, 15-shoulders, 16-bracers, 17-cloak
 	local RoleObj = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	
-	-- 返回值
+	-- Return value
 	local nResult = RoleObj:GetItemBag():EquipAddSocket(slot);
 	
-	-- 判断返回值
+	-- Check the return value
 	if nResult == 1802 then
 		RoleObj:GetScene():Say(RoleObj:GetObjID(), cltTvShow, "物品不存在");
 		return brvFail;
@@ -103,19 +103,19 @@ function AddSocket_PiFeng()
 	return brvSuccess;
 end
 
--------------------- 分割线
+-------------------- Separator
 
 
--- 雕色
+-- Color engraving
 function SetSocketColor(slot, color)
-	-- [第1孔位] => 21-头盔, 22-衣服, 23-腰带, 24-鞋子, 25-护肩, 26-护腕, 27-披风
-	-- [第2孔位] => 31-头盔, 32-衣服, 33-腰带, 34-鞋子, 35-护肩, 36-护腕, 37-披风
+	-- [Socket 1] => 21-helmet, 22-armor, 23-belt, 24-shoes, 25-shoulders, 26-bracers, 27-cloak
+	-- [Socket 2] => 31-helmet, 32-armor, 33-belt, 34-shoes, 35-shoulders, 36-bracers, 37-cloak
 	local RoleObj = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	
-	-- 返回值
+	-- Return value
 	local nResult = RoleObj:GetItemBag():SetSocketColor(slot, color);
 
-	-- 判断返回值
+	-- Check the return value
 	if nResult == 1802 then
 		RoleObj:GetScene():Say(RoleObj:GetObjID(), cltTvShow, "物品不存在");
 		return brvFail;
@@ -166,10 +166,10 @@ function SetSocketColor(slot, color)
 end
 
 
--------------------- 分割线
+-------------------- Separator
 
 
--- 第1孔位 头盔
+-- Socket 1: helmet
 function SetSocketColorFirst_TouKui_Red()
 	SetSocketColor(21, 1);
 	return brvSuccess;
@@ -191,7 +191,7 @@ function SetSocketColorFirst_TouKui_Purple()
 	return brvSuccess;
 end
 
--- 第1孔位 衣服
+-- Socket 1: armor
 function SetSocketColorFirst_YiFu_Red()
 	SetSocketColor(22, 1);
 	return brvSuccess;
@@ -213,7 +213,7 @@ function SetSocketColorFirst_YiFu_Purple()
 	return brvSuccess;
 end
 
--- 第1孔位 腰带
+-- Socket 1: belt
 function SetSocketColorFirst_YaoDai_Red()
 	SetSocketColor(23, 1);
 	return brvSuccess;
@@ -235,7 +235,7 @@ function SetSocketColorFirst_YaoDai_Purple()
 	return brvSuccess;
 end
 
--- 第1孔位 鞋子
+-- Socket 1: shoes
 function SetSocketColorFirst_XieZi_Red()
 	SetSocketColor(24, 1);
 	return brvSuccess;
@@ -257,7 +257,7 @@ function SetSocketColorFirst_XieZi_Purple()
 	return brvSuccess;
 end
 
--- 第1孔位 护肩
+-- Socket 1: shoulders
 function SetSocketColorFirst_HuJian_Red()
 	SetSocketColor(25, 1);
 	return brvSuccess;
@@ -279,7 +279,7 @@ function SetSocketColorFirst_HuJian_Purple()
 	return brvSuccess;
 end
 
--- 第1孔位 护腕
+-- Socket 1: bracers
 function SetSocketColorFirst_HuWan_Red()
 	SetSocketColor(26, 1);
 	return brvSuccess;
@@ -301,7 +301,7 @@ function SetSocketColorFirst_HuWan_Purple()
 	return brvSuccess;
 end
 
--- 第1孔位 披风
+-- Socket 1: cloak
 function SetSocketColorFirst_PiFeng_Red()
 	SetSocketColor(27, 1);
 	return brvSuccess;
@@ -324,10 +324,10 @@ function SetSocketColorFirst_PiFeng_Purple()
 end
 
 
--------------------- 分割线
+-------------------- Separator
 
 
--- 第2孔位 头盔
+-- Socket 2: helmet
 function SetSocketColorSecond_TouKui_Red()
 	SetSocketColor(31, 1);
 	return brvSuccess;
@@ -349,7 +349,7 @@ function SetSocketColorSecond_TouKui_Purple()
 	return brvSuccess;
 end
 
--- 第2孔位 衣服
+-- Socket 2: armor
 function SetSocketColorSecond_YiFu_Red()
 	SetSocketColor(32, 1);
 	return brvSuccess;
@@ -371,7 +371,7 @@ function SetSocketColorSecond_YiFu_Purple()
 	return brvSuccess;
 end
 
--- 第2孔位 腰带
+-- Socket 2: belt
 function SetSocketColorSecond_YaoDai_Red()
 	SetSocketColor(33, 1);
 	return brvSuccess;
@@ -393,7 +393,7 @@ function SetSocketColorSecond_YaoDai_Purple()
 	return brvSuccess;
 end
 
--- 第2孔位 鞋子
+-- Socket 2: shoes
 function SetSocketColorSecond_XieZi_Red()
 	SetSocketColor(34, 1);
 	return brvSuccess;
@@ -415,7 +415,7 @@ function SetSocketColorSecond_XieZi_Purple()
 	return brvSuccess;
 end
 
--- 第2孔位 护肩
+-- Socket 2: shoulders
 function SetSocketColorSecond_HuJian_Red()
 	SetSocketColor(35, 1);
 	return brvSuccess;
@@ -437,7 +437,7 @@ function SetSocketColorSecond_HuJian_Purple()
 	return brvSuccess;
 end
 
--- 第2孔位 护腕
+-- Socket 2: bracers
 function SetSocketColorSecond_HuWan_Red()
 	SetSocketColor(36, 1);
 	return brvSuccess;
@@ -459,7 +459,7 @@ function SetSocketColorSecond_HuWan_Purple()
 	return brvSuccess;
 end
 
--- 第2孔位 披风
+-- Socket 2: cloak
 function SetSocketColorSecond_PiFeng_Red()
 	SetSocketColor(37, 1);
 	return brvSuccess;
@@ -482,9 +482,9 @@ function SetSocketColorSecond_PiFeng_Purple()
 end
 
 
--------------------- 分割线
+-------------------- Separator
 
--- 查询节点
+-- Query node
 function QueryRoleRootCount()
 	local roleObj = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	
@@ -518,11 +518,11 @@ function testDS()
 end
 
 
--------------------- 分割线
+-------------------- Separator
 
--- 默认代码
+-- Default code
 --[[
--- 雕色 普通
+-- Normal color engraving
 function DiaoSe_PuTong(owner)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
@@ -538,7 +538,7 @@ function DiaoSe_PuTong(owner)
 	
 	local id_one = item_one.m_iteminfo.m_nTemplateID;
 	
-	for i = 0,5 do --宝石是否能够雕色判定
+	for i = 0,5 do --Check whether the gem can be color engraved
 		if id_one == g_GWConfig.nBaoShi_PuTong[i]  then
 			rea = true;
 			break;
@@ -567,7 +567,7 @@ function DiaoSe_PuTong(owner)
 	return brvSuccess;
 end
 
--- 雕色 特殊
+-- Special color engraving
 function DiaoSe_TeShu(owner)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
@@ -582,7 +582,7 @@ function DiaoSe_TeShu(owner)
 	
 	local id_one = item_one.m_iteminfo.m_nTemplateID;
 	
-	for i = 0,8 do --宝石是否能够雕色判定
+	for i = 0,8 do --Check whether the gem can be color engraved
 		if id_one == g_GWConfig.nBaoShi_TeShu[i]  then
 			rea = true;
 			break;

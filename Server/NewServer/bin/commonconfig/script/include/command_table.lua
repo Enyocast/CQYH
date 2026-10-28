@@ -24,7 +24,7 @@ gm = {
 	},
 	
 	
-	-- 自己新增加的GM命令 begin
+	-- Custom GM commands begin
 	kick = {
 		GS_GM_COMMAND,
 		GM_COMMAND_PERMISSION_LVL_1,
@@ -115,10 +115,10 @@ gm = {
 		'qfgg',
 		'qfgg(location,message) : 发全服公告',
 	},
-	-- 自己新增加的GM命令 end
+	-- Custom GM commands end
 	
 	
-	-- 默认代码的GM命令
+	-- Default GM commands
 	summonnpc = {
 		GS_GM_COMMAND,
 		GM_COMMAND_PERMISSION_LVL_4,

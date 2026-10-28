@@ -5,27 +5,27 @@ local boss_stage_3 = 3;
 local spell_common =
 {
 	{ id = 5848, cd = 3000, chance = 10000 , target = tarAITarget},  
-	--1.连续撕咬目标。
+	--1. Bite the target repeatedly.
 	{ id = 5849, cd = 20000, chance = 10000 , target = tarAITarget}, 
-	--2.向前冲刺同时沿途单位将被踩倒在地。
+	--2. Charge forward, knocking units along the path down.
 	{ id = 5850, cd = 12000, chance = 6000 , target = tarAITarget},  
-	--3.叼住身前一个目标持续甩动后抛掷出去。
+	--3. Grab a target in front, shake it and throw it.
 	{ id = 5851, cd = 30000, chance = 10000 , target = tarAITarget}, 
-	--4.抬起前腿猛击地面产生环形的冲击波，同时冲击波会引爆周围的石笋产生爆炸伤害。
+	--4. Slam the ground, creating a circular shockwave that detonates nearby stalagmites.
 	{ id = 5852, cd = 20000, chance = 6000 , target = tarAITarget},  
-	--5.朝前方怒吼造成范围内目标进入恐惧状态。
+	--5. Roar forward, fearing targets in range.
 	{ id = 5853, cd = 30000, chance = 10000 , target = tarAITarget}, 
-	--6.抬起头大声吼叫，以自身为中心地面刺出多个石笋将最多8个目标围困。
+	--6. Roar and raise stalagmites around the boss, trapping up to eight targets.
 	{ id = 5854, cd = 16000, chance = 6000 , target = tarAITarget}, 	
-	--7.抬起前肢朝前重重践踏地面造成范围伤害，同时伤害区域内的目标将持续被减速。
+	--7. Stomp forward for area damage and continuously slow affected targets.
 	{ id = 5855, cd = 0, chance = 10000 , target = tarAITarget},     
-	--8.头顶的巨石水晶发出闪电扫射身前扇形区域内目标。
+	--8. Fire lightning from the head crystal over a forward fan-shaped area.
 	{ id = 5856, cd = 0, chance = 10000 , target = tarAITarget},     
-	--9.被动效果，被攻击时会一定几率造成石盔破坏效果，迸射尖刺进行反击，同时可对攻击者造成流血伤害。
+	--9. Passive: when attacked, may break stone armor and counter with spikes that inflict bleeding.
 	{ id = 5907, cd = 12000, chance = 6000 , target = tarAITarget},  
-	--10.抬起背部晃动身体，背部的石笋爆裂后施展360°范围的穿刺攻击。类似WAR3中玛维的匕首圆形投掷。	
+	--10. Burst the back stalagmites, then perform a 360-degree piercing attack like Maiev in Warcraft III.
 	{ id = 5908, cd = 15000, chance = 6000 , target = tarAITarget},	 
-	--11.抬起双腿后微微发力，然后猛然踩下地面，可将周围敌人顶到天空，并形成无法通过的区域。	
+	--11. Raise both legs and stomp to launch nearby enemies and create an impassable area.
 };
 
 fight_sub = 

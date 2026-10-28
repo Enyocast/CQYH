@@ -21,7 +21,7 @@ ServerConfig.DB = {
 
 	dwPort = 8501,
 
-	bUseIndependentDB = false,    -- 暂时写false
+	bUseIndependentDB = false,    -- Set to false for now
 
 	-- mysql db
 	szDBIPAddress = "127.0.0.1",

@@ -8,7 +8,7 @@ evtSceneInit =
         },
         { batSetSceneVariable, param={ ARENA_STAGE_VAR_INDEX, 1 },
         },
-		--60秒倒计时开始
+		--Start 60-second countdown
         { batSetSceneVariable, param={ ARENA_START_TIME_VAR_INDEX, 'CGameWorld:GetInstance():GetGameTime()' },
         },		
 			

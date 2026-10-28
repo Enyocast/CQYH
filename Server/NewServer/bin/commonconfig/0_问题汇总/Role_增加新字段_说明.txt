@@ -1,22 +1,22 @@
 
 // 1 - role.h
-1, 增加 字段
-2, 增加 函数
+1. Add the field.
+2. Add the functions.
 
 // 2 - role.cpp
-1, CRole::CRole() 构造函数里, 写初始化字段, 必须写
-2, BOOL CRole::Init(UINT32 dwObjID, UINT32 dwSessionID) 初始化函数里, 写初始化字段, 必须写
+1. Initialize the field in the CRole::CRole() constructor; this is required.
+2. Initialize the field in BOOL CRole::Init(UINT32 dwObjID, UINT32 dwSessionID); this is required.
 
 // 3 - role_db_def_v_3.h
-新增加的字段 写在哪个结构体里, 一般写在 ROLE_DB_MISC_DATA, 新增加的字段 按照字节计算, 并减小 INT32	nReserved[505]; 的数值
+Place the new field in the appropriate structure, usually ROLE_DB_MISC_DATA. Account for its size in bytes and reduce INT32	nReserved[505]; accordingly.
 
 // 4 - load_role_v_3.cpp
-函数 BOOL CRole::_LoadMisc_v_3(const char* pcData, UINT32 dwSize) 
-在这个函数里, 对新增加的字段赋值, 用于加载
+Function: BOOL CRole::_LoadMisc_v_3(const char* pcData, UINT32 dwSize)
+Assign the new field in this function to load it.
 
 // 5 - save_role.cpp
-函数 BOOL CRole::_SaveMisc(char* pData, UINT32& rdwSize)
-在这个函数里, 对新增加的字段赋值, 用于保存
+Function: BOOL CRole::_SaveMisc(char* pData, UINT32& rdwSize)
+Assign the new field in this function to save it.
 
 
 

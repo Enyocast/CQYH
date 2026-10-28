@@ -1,5 +1,5 @@
 
--- A 乞食者
+-- A: beggar
 evtAIIdle = 
 { batSequencer,
     { batCheckCDTimer, param={ COOLDOWN_AI ,3},

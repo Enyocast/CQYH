@@ -8,23 +8,23 @@
 evtAIInteract = 
 { batSelector,
 	{ batSequencer,
-		{ batRoleOpenDialog, param = { 50581, 50000, 0, 0 } },		--对话
+		{ batRoleOpenDialog, param = { 50581, 50000, 0, 0 } },		--Dialog
 		{ batSelector,
 			{ batSequencer,
 				{ batRoleCheckInteractOption, param = { 1 } },   
 				{ batSequencer,
-						{ batRoleOpenDialog, param = { 50592, 50000, 0, 0 } },		--对话
+						{ batRoleOpenDialog, param = { 50592, 50000, 0, 0 } },		--Dialog
 							{ batSelector,
 									{ batSequencer,
 										{ batRoleCheckInteractOption, param = { 1 } },   
 										{ batSelector,
 											{ batSequencer,
-												{ batCheckIntValue, param = { 'GetItemCount(o, 120001, false)', boGT, 0} },			-- 粮食
+												{ batCheckIntValue, param = { 'GetItemCount(o, 120001, false)', boGT, 0} },			-- Food
 												{ batSelector,
 													{ TryToDonateAllRes, param = { GUILD_ATTR_HERB, 120001, 1000 } },
 													{ batSequencer,		
 														{ batRoleOpenDialog, param = { 50588, 50000, 0, 0 } },		
-														{ batRoleCheckInteractOption, param = { 1 } },		-- 不能捐赠更多
+														{ batRoleCheckInteractOption, param = { 1 } },		-- Cannot donate more
 													},
 												},
 											},	
@@ -32,7 +32,7 @@ evtAIInteract =
 												{ batRoleOpenDialog, param = { 50584, 50000, 0, 0 } },		
 												{ batSequencer,
 													{ batRoleCheckInteractOption, param = { 1 } },
-												},											--- 你身上的物品不足
+												},											--- Insufficient items carried
 											},							
 										},	
 									},	
@@ -40,12 +40,12 @@ evtAIInteract =
 										{ batRoleCheckInteractOption, param = { 2 } },   
 										{ batSelector,
 											{ batSequencer,
-												{ batCheckIntValue, param = { 'GetItemCount(o, 120002, false)', boGT, 0} },			-- 木材
+												{ batCheckIntValue, param = { 'GetItemCount(o, 120002, false)', boGT, 0} },			-- Wood
 												{ batSelector,
 													{ TryToDonateAllRes, param = { GUILD_ATTR_WOOD, 120002, 1000 } },
 													{ batSequencer,		
 														{ batRoleOpenDialog, param = { 50589, 50000, 0, 0 } },		
-														{ batRoleCheckInteractOption, param = { 1 } },		-- 不能捐赠更多
+														{ batRoleCheckInteractOption, param = { 1 } },		-- Cannot donate more
 													},
 												},
 											},	
@@ -53,7 +53,7 @@ evtAIInteract =
 												{ batRoleOpenDialog, param = { 50584, 50000, 0, 0 } },		
 												{ batSequencer,
 													{ batRoleCheckInteractOption, param = { 1 } },
-												},											--- 你身上的物品不足
+												},											--- Insufficient items carried
 											},							
 										},	
 									},	
@@ -61,12 +61,12 @@ evtAIInteract =
 										{ batRoleCheckInteractOption, param = { 3 } },       
 										{ batSelector,
 											{ batSequencer,
-												{ batCheckIntValue, param = { 'GetItemCount(o, 120003, false)', boGT, 0} },			-- 石头
+												{ batCheckIntValue, param = { 'GetItemCount(o, 120003, false)', boGT, 0} },			-- Stone
 												{ batSelector,
 													{ TryToDonateAllRes, param = { GUILD_ATTR_CRYSTAL, 120003, 1000 } },
 													{ batSequencer,		
 														{ batRoleOpenDialog, param = { 50590, 50000, 0, 0 } },		
-														{ batRoleCheckInteractOption, param = { 1 } },		-- 不能捐赠更多
+														{ batRoleCheckInteractOption, param = { 1 } },		-- Cannot donate more
 													},
 												},
 											},	
@@ -74,7 +74,7 @@ evtAIInteract =
 												{ batRoleOpenDialog, param = { 50584, 50000, 0, 0 } },		
 												{ batSequencer,
 													{ batRoleCheckInteractOption, param = { 1 } },
-												},											--- 你身上的物品不足
+												},											--- Insufficient items carried
 											},							
 										},	
 									},	
@@ -82,12 +82,12 @@ evtAIInteract =
 										{ batRoleCheckInteractOption, param = { 4 } },   
 										{ batSelector,
 											{ batSequencer,
-												{ batCheckIntValue, param = { 'GetItemCount(o, 120004, false)', boGT, 0} },			-- 铁
+												{ batCheckIntValue, param = { 'GetItemCount(o, 120004, false)', boGT, 0} },			-- Iron
 												{ batSelector,
 													{ TryToDonateAllRes, param = { GUILD_ATTR_SILVER, 120004, 1000 } },
 													{ batSequencer,		
 														{ batRoleOpenDialog, param = { 50591, 50000, 0, 0 } },		
-														{ batRoleCheckInteractOption, param = { 1 } },		-- 不能捐赠更多
+														{ batRoleCheckInteractOption, param = { 1 } },		-- Cannot donate more
 													},
 												},
 											},	
@@ -95,7 +95,7 @@ evtAIInteract =
 												{ batRoleOpenDialog, param = { 50584, 50000, 0, 0 } },		
 												{ batSequencer,
 													{ batRoleCheckInteractOption, param = { 1 } },
-												},											--- 你身上的物品不足
+												},											--- Insufficient items carried
 											},								
 										},	
 									},	
@@ -108,45 +108,45 @@ evtAIInteract =
 				{ batSelector,
 					{ batSequencer,
 						{ batSelector,
-							{ batCheckIntValue, param = { 'GetItemCount(o, 120001, false)', boGT, 0} },			-- 粮食
-							{ batCheckIntValue, param = { 'GetItemCount(o, 120002, false)', boGT, 0} },			-- 木材
-							{ batCheckIntValue, param = { 'GetItemCount(o, 120003, false)', boGT, 0} },			-- 石头
-							{ batCheckIntValue, param = { 'GetItemCount(o, 120004, false)', boGT, 0} },			-- 铁
+							{ batCheckIntValue, param = { 'GetItemCount(o, 120001, false)', boGT, 0} },			-- Food
+							{ batCheckIntValue, param = { 'GetItemCount(o, 120002, false)', boGT, 0} },			-- Wood
+							{ batCheckIntValue, param = { 'GetItemCount(o, 120003, false)', boGT, 0} },			-- Stone
+							{ batCheckIntValue, param = { 'GetItemCount(o, 120004, false)', boGT, 0} },			-- Iron
 						},
 						{ batParallel,
 							{ batSelector,
 								{ TryToDonateAllRes, param = { GUILD_ATTR_HERB, 120001, 1000 } },
 								{ batSequencer,		
 									{ batRoleOpenDialog, param = { 50588, 50000, 0, 0 } },		
-									{ batRoleCheckInteractOption, param = { 1 } },		-- 不能捐赠更多
+									{ batRoleCheckInteractOption, param = { 1 } },		-- Cannot donate more
 								},
 							},
 							{ batSelector,
 								{ TryToDonateAllRes, param = { GUILD_ATTR_WOOD, 120002, 1000 } },
 								{ batSequencer,		
 									{ batRoleOpenDialog, param = { 50589, 50000, 0, 0 } },		
-									{ batRoleCheckInteractOption, param = { 1 } },		-- 不能捐赠更多
+									{ batRoleCheckInteractOption, param = { 1 } },		-- Cannot donate more
 								},
 							},
 							{ batSelector,
 								{ TryToDonateAllRes, param = { GUILD_ATTR_CRYSTAL, 120003, 1000 } },
 								{ batSequencer,		
 									{ batRoleOpenDialog, param = { 50590, 50000, 0, 0 } },		
-									{ batRoleCheckInteractOption, param = { 1 } },		-- 不能捐赠更多
+									{ batRoleCheckInteractOption, param = { 1 } },		-- Cannot donate more
 								},
 							},
 							{ batSelector,
 								{ TryToDonateAllRes, param = { GUILD_ATTR_SILVER, 120004, 1000 } },
 								{ batSequencer,		
 									{ batRoleOpenDialog, param = { 50591, 50000, 0, 0 } },		
-									{ batRoleCheckInteractOption, param = { 1 } },		-- 不能捐赠更多
+									{ batRoleCheckInteractOption, param = { 1 } },		-- Cannot donate more
 								},
 							},
 						},
 					},
 					{ batSequencer,
 						{ batRoleOpenDialog, param = { 50584, 50000, 0, 0 } },		
-						{ batRoleCheckInteractOption, param = { 1 } },									-- 你身上的物品不足
+						{ batRoleCheckInteractOption, param = { 1 } },									-- Insufficient items carried
 					},
 				},	
 			},	

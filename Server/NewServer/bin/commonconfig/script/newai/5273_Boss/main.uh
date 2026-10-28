@@ -1,6 +1,6 @@
 on_init = 
 	{ batSequencer, 
-	  { batSetCDTimer, param = { COOLDOWN_AI, 20, d.nParam[0] } },  --cd index 20为boss idle自杀配置用index param0   战斗中自杀用livetime
+	  { batSetCDTimer, param = { COOLDOWN_AI, 20, d.nParam[0] } },  --Cooldown index 20 configures boss idle suicide using param0; in-combat suicide uses livetime
 	  { batSetAlwaysRun , param = { true } },
 	};
 
@@ -13,9 +13,9 @@ on_wander =
 
 on_enter_fight = 
 { batSequencer, 
-	{ batSetCDTimer, param = { COOLDOWN_AI, 11, 1000 } },  --21 击退
-	{ batSetCDTimer, param = { COOLDOWN_AI, 12, 1000 } },  --22 灼烧
-	{ batSetCDTimer, param = { COOLDOWN_AI, 13, 1000 } },  --21 红毒
+	{ batSetCDTimer, param = { COOLDOWN_AI, 11, 1000 } },  --21 knockback
+	{ batSetCDTimer, param = { COOLDOWN_AI, 12, 1000 } },  --22 burning
+	{ batSetCDTimer, param = { COOLDOWN_AI, 13, 1000 } },  --21 red poison
 };
 
 on_cast_spell = 

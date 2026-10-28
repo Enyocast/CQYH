@@ -7,10 +7,10 @@ function check_escort_car_follow(owner)
 
 	local role = g_GameWorld:FindValidRole(owner:GetHostID());
 	if role == nil then
-		return brvFail;  --角色可能下线
+		return brvFail;  --The character may be offline
 	end
 
-	--判断距离：超过指定距离镖车不跟随
+	--Check distance: the cart does not follow beyond the specified distance
 	local distance = (role:GetX() - owner:GetX()) * (role:GetX() - owner:GetX()) 
         + (role:GetY() - owner:GetY()) * (role:GetY() - owner:GetY());
 
@@ -53,7 +53,7 @@ function check_give_up_quest(owner)
 
 	local role = g_GameWorld:FindValidRole(owner:GetHostID());
 	if role == nil then
-		return brvFail;  --角色可能下线
+		return brvFail;  --The character may be offline
 	end
 
 	local accepted_quest = role:GetQuestList():GetAcceptedQuest(ESCORT_QUEST_ID);
@@ -94,7 +94,7 @@ function escort_on_die(owner)
 		return brvSuccess;
 	end
 
-	-- 角色可能下线了
+	-- The character may have logged out
 	local role = g_GameWorld:FindValidRole(escortCar:GetHostID());
 	if role ~= nil then
 		role:ErrorCodeNotify(errGuildEscortCarBeenKilled, 0, 0);
@@ -170,7 +170,7 @@ on_live_timer =
 function _idle_tree()
     local result = 
     { batSelector,
-        __check_live_timer(d.nLiveTime, d.bDisappearOnTimeout),  -- 这里d.bDisappearOnTimeout并不起作用
+        __check_live_timer(d.nLiveTime, d.bDisappearOnTimeout),  -- d.bDisappearOnTimeout has no effect here
 		{ batSequencer,
 			{ batCheckCDTimer, param = { COOLDOWN_AI, CHECK_ESCORT_DISTANCE_TIMER } },
 			{ batSetCDTimer, param  = { COOLDOWN_AI, CHECK_ESCORT_DISTANCE_TIMER, CHECK_ESCORT_DISTANCE_INTERVAL } },

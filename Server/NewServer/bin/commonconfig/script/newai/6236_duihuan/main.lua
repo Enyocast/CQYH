@@ -17,7 +17,7 @@ local g_oGameWorld = CGameWorld:GetInstance();
 
 
 
-function Option_one1(owner)--雷霆衣男
+function Option_one1(owner)--Thunder armor (male)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113001,false);
@@ -71,7 +71,7 @@ function Option_one1(owner)--雷霆衣男
 	return brvSuccess;
 end
 
-function Option_one2(owner)--雷霆衣女
+function Option_one2(owner)--Thunder armor (female)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113009,false);
@@ -125,7 +125,7 @@ function Option_one2(owner)--雷霆衣女
 	return brvSuccess;
 end
 
-function Option_two1(owner)--烈焰衣男
+function Option_two1(owner)--Flame armor (male)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113017,false);
@@ -179,7 +179,7 @@ function Option_two1(owner)--烈焰衣男
 	return brvSuccess;
 end	
 
-function Option_two2(owner)--烈焰衣女
+function Option_two2(owner)--Flame armor (female)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113025,false);
@@ -232,7 +232,7 @@ function Option_two2(owner)--烈焰衣女
 	role:GetScene():Say(role:GetObjID(), cltTvShow, "兑换成功！");
 	return brvSuccess;
 end	
-function Option_three1(owner)--光芒衣男
+function Option_three1(owner)--Radiance armor (male)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113033,false);
@@ -286,7 +286,7 @@ function Option_three1(owner)--光芒衣男
 	return brvSuccess;
 end	
 
-function Option_three2(owner)--光芒衣女
+function Option_three2(owner)--Radiance armor (female)
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113041,false);
@@ -340,7 +340,7 @@ function Option_three2(owner)--光芒衣女
 	return brvSuccess;
 end	
 
-function Option_one3(owner)--雷霆项链
+function Option_one3(owner)--Thunder necklace
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113049,false);
@@ -374,7 +374,7 @@ function Option_one3(owner)--雷霆项链
 	return brvSuccess;
 end	
 
-function Option_two3(owner)--烈焰项链
+function Option_two3(owner)--Flame necklace
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113053,false);
@@ -408,7 +408,7 @@ function Option_two3(owner)--烈焰项链
 	return brvSuccess;
 end	
 
-function Option_three3(owner)--光芒项链
+function Option_three3(owner)--Radiance necklace
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113057,false);
@@ -442,7 +442,7 @@ function Option_three3(owner)--光芒项链
 	return brvSuccess;
 end	
 
-function Option_one4(owner)--雷霆戒指
+function Option_one4(owner)--Thunder ring
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113061,false);
@@ -476,7 +476,7 @@ function Option_one4(owner)--雷霆戒指
 	return brvSuccess;
 end	
 
-function Option_two4(owner)--烈焰戒指
+function Option_two4(owner)--Flame ring
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113065,false);
@@ -510,7 +510,7 @@ function Option_two4(owner)--烈焰戒指
 	return brvSuccess;
 end	
 
-function Option_three4(owner)--光芒戒指
+function Option_three4(owner)--Radiance ring
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113069,false);
@@ -544,7 +544,7 @@ function Option_three4(owner)--光芒戒指
 	return brvSuccess;
 end	
 
-function Option_one5(owner)--雷霆护腕
+function Option_one5(owner)--Thunder bracers
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113073,false);
@@ -578,7 +578,7 @@ function Option_one5(owner)--雷霆护腕
 	return brvSuccess;
 end	
 
-function Option_two5(owner)--烈焰护腕
+function Option_two5(owner)--Flame bracers
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113077,false);
@@ -612,7 +612,7 @@ function Option_two5(owner)--烈焰护腕
 	return brvSuccess;
 end	
 
-function Option_three5(owner)--光芒护腕
+function Option_three5(owner)--Radiance bracers
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113081,false);
@@ -646,7 +646,7 @@ function Option_three5(owner)--光芒护腕
 	return brvSuccess;
 end	
 
-function Option_one6(owner)--雷霆腰带
+function Option_one6(owner)--Thunder belt
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113085,false);
@@ -680,7 +680,7 @@ function Option_one6(owner)--雷霆腰带
 	return brvSuccess;
 end	
 
-function Option_two6(owner)--烈焰腰带
+function Option_two6(owner)--Flame belt
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113089,false);
@@ -714,7 +714,7 @@ function Option_two6(owner)--烈焰腰带
 	return brvSuccess;
 end	
 
-function Option_three6(owner)--光芒腰带
+function Option_three6(owner)--Radiance belt
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113093,false);
@@ -748,7 +748,7 @@ function Option_three6(owner)--光芒腰带
 	return brvSuccess;
 end	
 
-function Option_one7(owner)--雷霆鞋
+function Option_one7(owner)--Thunder shoes
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113097,false);
@@ -782,7 +782,7 @@ function Option_one7(owner)--雷霆鞋
 	return brvSuccess;
 end	
 
-function Option_two7(owner)--烈焰鞋
+function Option_two7(owner)--Flame shoes
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113101,false);
@@ -816,7 +816,7 @@ function Option_two7(owner)--烈焰鞋
 	return brvSuccess;
 end	
 
-function Option_three7(owner)--光芒鞋
+function Option_three7(owner)--Radiance shoes
 	local role = g_oGameWorld:FindValidRole(get_ctx_role_id());
 	local username = role:GetUserName();
 	local suipian1 = role:GetItemBag():GetItemCount(113105,false);

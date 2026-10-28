@@ -24,21 +24,21 @@ on_cast_spell =
         },
         { batRandom, param = { 5000,5000 },
             { batSequencer,
-                -- 兽王-普通攻击1 普通地左手挥打，20%几率击飞玩家           
+                -- Beast King - normal attack 1: left-hand strike with a 20% chance to knock the player back
                 { batSyncCastSpellToTarget , param={ 5500 , tarAITarget },
                 },
                 { batSyncCastSpellToTarget , param={ 5507 , tarAITarget },
                 },
             },
             { batSequencer,
-                -- 兽王-普通攻击2 普通地右手挥打，20%几率击飞玩家           
+                -- Beast King - normal attack 2: right-hand strike with a 20% chance to knock the player back
                 { batSyncCastSpellToTarget , paam={ 5507 , tarAITarget },
                 },
                 { batSyncCastSpellToTarget , param={ 5500 , tarAITarget },
                 },
             },
         },
-        -- 兽王-凶残冲撞  做出预备冲锋的动作，并快速做出一次奔驰冲撞。冲撞可造成巨大伤害，但有较长前摇时间并可移动躲避。冲撞会造成自己3秒的眩晕         
+        -- Beast King - Savage Charge: prepares then charges quickly for heavy damage; its long wind-up allows dodging, and the charge stuns the boss for 3 seconds
         { batSyncCastSpellToTarget, param={ 5505 , tarAITarget },
         },
     },
@@ -48,7 +48,7 @@ on_cast_spell =
         { batSetCDTimer, param={ COOLDOWN_AI , 5, 15000},
         },
         
-        -- 抓投压杀   
+        -- Grab and crush
         { batSyncCastSpellToTarget, param={ 5503 , tarAITarget },
         },
     },
@@ -59,12 +59,12 @@ on_cast_spell =
 		},
 		{ batCheckCanCastSpell, 
 		},
-        -- 兽王-灰烬球   受伤害到一定数值后，从身体里向外飞出一圈Missile。发出时身体有材质闪动的特效，配合动作。
+        -- Beast King - Ash Orbs: after taking enough damage, emits a ring of missiles with a flashing body effect
 		{ batSyncCastSpellToTarget, param={ 5508 , tarAITarget },
 		},
 		{ batWait, param={ 100 },
 		},
-        -- 兽王-裂地猛击  带发力前摇的强力砸地打击， 可将目标击飞或击晕         
+        -- Beast King - Earth Smash: a powerful wind-up ground strike that can knock back or stun targets
 		{ batSyncCastSpellToTarget, param={ 5504 , tarAITarget },
 		},
 	},
@@ -75,7 +75,7 @@ on_cast_spell =
         },
         { batCheckCanCastSpell, 
         },
-        --兽王-地动山摇   朝一个5米外的目标施放该技能,产生直线的冲击.同时对大范围内目标产生一次有提示的岩石打击            
+        --Beast King - Earthquake: casts at a target 5 meters away, creating a straight-line shock and a telegraphed rock strike over a wide area
         { batSyncCastSpellToTarget, param={ 5506 , tarAITarget },
         },
     },
@@ -88,12 +88,12 @@ on_cast_spell =
 		},
 		{ batCheckCanCastSpell, 
 		},
-        --兽王-低气压 后退半步（动作），猛趴下身体，对前方单位吸取气流，进行拉扯。
+        --Beast King - Low Pressure: steps back, drops down and pulls units in front with an air current
 		{ batSyncCastSpellToTarget, param={ 5501 , tarAITarget },
 		},
 		{ batWait, param={ 100 },
 		},
-        -- 兽王-裂地猛击  带发力前摇的强力砸地打击， 可将目标击飞或击晕         
+        -- Beast King - Earth Smash: a powerful wind-up ground strike that can knock back or stun targets
 		{ batSyncCastSpellToTarget, param={ 5504 , tarAITarget },
 		},
 	},	

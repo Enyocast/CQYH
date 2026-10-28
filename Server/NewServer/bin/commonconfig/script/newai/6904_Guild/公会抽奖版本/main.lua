@@ -71,13 +71,13 @@ function lottery(owner)
 			role:GetItemBag():AddItem(21003, 1, MONEYLOG_PACKAGE, 0, true);
 		end
 	elseif random_number < 900000 then
-		role:GetItemBag():AddItem(80003, 1, MONEYLOG_PACKAGE, 0, true);--祝福油
+		role:GetItemBag():AddItem(80003, 1, MONEYLOG_PACKAGE, 0, true);--Blessing oil
 	elseif random_number < 950000 then
-		role:GetItemBag():AddItem(1800040, 1, MONEYLOG_PACKAGE, 0, true);--特修卷
+		role:GetItemBag():AddItem(1800040, 1, MONEYLOG_PACKAGE, 0, true);--Special repair scroll
 	elseif random_number < 975000 then
-		role:GetItemBag():AddItem(2800341, 1, MONEYLOG_PACKAGE, 0, true);--普通宝石   这里需要做一个所有宝石随机出一个的礼包
+		role:GetItemBag():AddItem(2800341, 1, MONEYLOG_PACKAGE, 0, true);--Normal gem; create a gift pack that randomly awards one of all gems
 	else
-		role:GetItemBag():AddItem(2800340, 1, MONEYLOG_PACKAGE, 0, true);--冰裂狗残页  这里需要做一个冰裂狗随机出一个的礼包
+		role:GetItemBag():AddItem(2800340, 1, MONEYLOG_PACKAGE, 0, true);--Ice-splitting dog fragment; create a gift pack that randomly awards one fragment
 	end
 	--print("lottery end");
 	return brvSuccess;

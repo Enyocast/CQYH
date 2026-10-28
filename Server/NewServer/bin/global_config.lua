@@ -25,7 +25,7 @@ Include("globalconfig/area_config.lua");
 Include("globalconfig/gmsecurityconfig.lua");
 
 
--- 自定义配置, 自己新加配置
+-- Custom configuration additions
 
 Include("globalconfig/additional_spawn_npc.lua");
 
