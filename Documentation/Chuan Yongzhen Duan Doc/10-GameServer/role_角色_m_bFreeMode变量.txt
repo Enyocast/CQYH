@@ -1,0 +1,57 @@
+
+
+文件说明
+...
+
+
+//================================
+
+
+角色 m_bFreeMode 变量说明
+[=TRUE, 有功能限制]
+[=FALSE, 无功能限制]
+
+// 1 - 使用物品
+INT32 CItemBag::UseItem(UINT8 conslot, UINT8 itemslot)
+
+// 2 - 删除物品
+INT32 CItemBag::DeleteItem(UINT8 conslot, UINT8 itemslot, INT16 itemcount)
+
+// 3 - 摊位
+INT32 CStall::Open()
+
+// 4 - 交易
+INT32 CTrade::AskTrade(UINT32 dwRoleID)
+
+// 5 - 说话
+void CCliMessageHandler::OnChatMessage(CRole* poRole, const char* pData)
+
+// 6 - 打开NPC对话
+void CCliMessageHandler::OnInteractWithNpc(CRole* poRole, const char* pData)
+
+// 7 - 释放技能
+void CCliMessageHandler::OnCastSpellEx(CRole* poRole, const char* pData)
+
+// 8 - 增加经验
+INT64 CRole::AddExp(INT64 llExp, BOOL bByKillNpc, BOOL bDailyLimitExp)
+
+// 9 - 拾取物品
+INT32 CRole::PickUp(UINT32 dwDropID)
+
+
+//================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

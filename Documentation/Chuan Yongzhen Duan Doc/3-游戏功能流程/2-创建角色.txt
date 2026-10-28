@@ -1,0 +1,129 @@
+
+
+1, [客户端] 发包 [c2t_create_role] 申请创建角色
+
+
+// ====================
+
+
+2, [GT] 处理
+
+2.1) BOOL CExternalMessageHandler::OnCreateRole(CLIENT_SESSION* pSession, PACKET_BUFFER* pPacketBuffer, UINT32 dwSize)
+
+[GT] 转发给 [MS]
+2.2) BOOL CInternalMessageHandler::DoMSCheckNewName(UINT32 dwClientSessionID, const char* szName, const char* UserData, UINT32 dwUserDataLen)
+
+
+// ====================
+
+
+3, [MS] 转发给 [NS]
+
+void CMessageHandler::OnGTCheckNewName(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
+
+
+// ====================
+
+
+4, [NS] 处理
+
+1) void CNSMessageHandler::_OnNewName(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
+2) INT32 CNameServer::AddNewData(INT32 eType, INT32 nSessionID, UINT32 dwCliSessionID, const char* szName, const char* UserData)
+
+3) 主循环函数 内部返回结果
+{
+	3.1) BOOL CNameServer::MainLoop(void)
+	3.2) void CNSMessageHandler::DoNewNameResult(INT32 nSessionID, UINT32 dwCliSessionID, INT32 nErrCode, INT32 eType, UINT32 dwNewID, const char* szNewName, const char* UserData)
+	
+	[NS] 转发给 [MS]
+	3.3) void CNSMessageHandler::_DoNewNameResult(ISocketSession* pSocketSession, UINT32 dwCliSessionID, INT32 nErrCode, INT32 eType, UINT32 dwNewID, const char* szNewName, const char* UserData)
+}
+
+
+// ====================
+
+
+5, [MS] 处理
+
+1) void CMessageHandler::OnNSNewNameResult(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
+
+[MS] 转发给 [GT]
+2) BOOL CMessageHandler::DoGTCheckNewName(UINT32 dwClientSessionID, INT32 nErrCode, UINT32 dwID, const char* szName, const char* UserData, UINT32 dwUserDataLen)
+
+
+// ====================
+
+
+6, [GT] 处理
+
+1) void CInternalMessageHandler::OnMSCheckNewName(ISocketSession* pSocketSession, PACKET_BUFFER* pPacketBuffer, UINT32 dwSize)
+
+// 创建成功 [GT] 转发给 [DB]
+2) BOOL CInternalMessageHandler::DoDBCreateRole(UINT32 dwSessionID, UINT32 dwRoleID, CHAR szRoleName[], UINT8 bySex, UINT8 byClass, UINT8 byHairType, UINT8 byHairColor, UINT8 byFaceType, UINT8 bySkinColor)
+
+// 创建失败
+2) void CExternalMessageHandler::DoErrorNotify(UINT32 dwSessionID, INT32 nErrorCode, INT32 nParam1, INT32 nParam2)
+
+
+// ====================
+
+
+7, [DB] 处理
+
+存到 dbserver.m_threads 数组中
+1) void CDBMessageHandler::OnGTCreateRole(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
+
+2) VOID CDBWorkerThread::ThrdProc()
+在 [DB] 中, 线程回调函数中 case CDBRole::DB_TASK_CREATE_ROLE: 
+存到 bRet = m_FinishedRoleDbTaskList.Push(dbrole);
+
+创建人物
+3) INT32 CDBWorkerThread::CreateRole(CDBRole* dbrole)
+
+4) BOOL CDBCreateRole::DoCreateRole(UINT8 byGroupID, UINT32 roleid, char* rolename, char* username, char* base_data_buf, UINT32 base_data_buf_len, char* role_data_buf, UINT32 role_data_buf_len)
+
+在 [DB] 主循环中 case CDBRole::DB_TASK_CREATE_ROLE:
+5) BOOL CDBServer::MainLoop(void)
+
+6) void CDBRole::OnCreateRole()
+
+[DB] 转发给 [MS]
+7) BOOL CDBMessageHandler::DoMSCreateRole(CDBUser* dbuser, void* pBaseData)
+
+
+// ====================
+
+
+8, [MS] 处理
+
+1) void CMessageHandler::OnDBCreateRole(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
+
+[MS] 转发给 [DB]
+2) BOOL CMessageHandler::DoDBCreateRoleAck(INT32 dwClientSessionID, CHAR szBaseData[])
+
+
+// ====================
+
+
+9, [DB] 处理
+
+1) void CDBMessageHandler::OnMSCreateRoleAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
+
+[DB] 转发给 [GT]
+2) BOOL CDBMessageHandler::DoGTCreateRoleAck(UINT32 dwClientSessionID, INT32 nErrCode, void* pBaseData)
+
+
+// ====================
+
+
+10, [GT] 处理
+
+1) void CInternalMessageHandler::OnDBCreateRoleAck(ISocketSession* pSocketSession, PACKET_BUFFER* pPacketBuffer, UINT32 dwSize)
+
+最终 t2c_create_role_ack
+2) void CExternalMessageHandler::DoCreateRoleAck(UINT32 dwSessionID, CHAR BaseData[])
+
+
+// ====================
+
+

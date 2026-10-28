@@ -1,0 +1,308 @@
+class UEquip : public UItem
+{
+public:
+    //## BEGIN PROPS Equip
+    class AMMOActor* BaseActor;
+    TArrayNoInit<class UEquipMesh*> MeshListTemplate_M_DEPRECATED;
+    TArrayNoInit<class UEquipMesh*> MeshListTemplate_F_DEPRECATED;
+private:
+    class UEquipAppearence* EquipAppearenceTemplate;
+public:
+    FStringNoInit EquipAppearenceTemplate_Str;
+private:
+    class UEquipAppearence* AdvancedEquipAppearenceTemplate;
+public:
+    FStringNoInit AdvancedEquipAppearenceTemplate_Str;
+    TArrayNoInit<class UEquipMesh*> MeshList;
+    INT MaxRefineLevel;
+    struct FFixAttr FixAttrbutes;
+    BITFIELD NeedIdentify:1;
+    BITFIELD CanRepair:1;
+    BITFIELD IsIconSame:1;
+    INT MaxRuneCount;
+    INT SocketCount;
+    INT RepairCost;
+    INT RepairCostSpecial;
+    INT IdentifyCost;
+    INT RandomizeCost;
+    INT RequireMaxPhyAtk;
+    INT RequireMaxMagAtk;
+    INT RequireMaxTaoAtk;
+    //## END PROPS Equip
+
+    virtual void Init(BYTE pc,BYTE gt,UBOOL useAdvancedApperance);
+    virtual UBOOL IsWeapon();
+    virtual UBOOL IsEquip();
+    class UEquipAppearence* GetEquipAppearenceTemplate();
+    class UEquipAppearence* GetAdvancedEquipAppearenceTemplate();
+    virtual UBOOL OnTakeOn(class AMMOActor* Target,UBOOL UseAdvancedAppearence);
+    virtual UBOOL OnTakeOff(class AMMOActor* Target);
+    void SetSilhouette(UBOOL show,FVector sc);
+    virtual FString GetIconName(INT nState=0);
+    virtual FString GetIconNamePostfixBy(INT actorClass);
+    UBOOL HasAdditiveAttributes() const;
+    DECLARE_FUNCTION(execGetEquipAppearenceTemplate)
+    {
+        P_FINISH;
+        *(class UEquipAppearence**)Result=this->GetEquipAppearenceTemplate();
+    }
+    DECLARE_FUNCTION(execGetAdvancedEquipAppearenceTemplate)
+    {
+        P_FINISH;
+        *(class UEquipAppearence**)Result=this->GetAdvancedEquipAppearenceTemplate();
+    }
+    DECLARE_FUNCTION(execSetSilhouette)
+    {
+        P_GET_UBOOL(show);
+        P_GET_STRUCT(FVector,sc);
+        P_FINISH;
+        this->SetSilhouette(show,sc);
+    }
+    DECLARE_FUNCTION(execGetIconNamePostfixBy)
+    {
+        P_GET_INT(actorClass);
+        P_FINISH;
+        *(FString*)Result=this->GetIconNamePostfixBy(actorClass);
+    }
+    DECLARE_FUNCTION(execHasAdditiveAttributes)
+    {
+        P_FINISH;
+        *(UBOOL*)Result=this->HasAdditiveAttributes();
+    }
+    DECLARE_CLASS(UEquip,UItem,0,MMOGame)
+    #include "UEquip.h"
+};
+
+
+struct ItemInfo
+{
+    UINT64 m_llGuid;
+    INT32 m_nTemplateID;
+    UINT8 m_byConSlot;
+    UINT8 m_byItemSlot;
+    INT32 m_nCurDur;
+    INT32 m_nMaxDur;
+    UINT8 m_byBindType;
+	UINT8 m_Exclusive;
+
+    //以下属性仅限装备
+    //是否已鉴定
+    UINT8 m_byIdentified;
+    //随机属性
+    UINT16 m_wRandomAttrID[MAX_RANDOM_ATTR_COUNT];
+    //强化等级
+    UINT16 m_wRefineLevel; //To Be Deleted...
+    //签名
+    UINT32 m_dwRoleID;
+	UINT32 m_dwCostMoney;
+
+    //以下属性仅限武器
+    //幸运值
+    INT8 m_byLuck;
+	//武器升级
+	UINT8 m_byLevelupPhyPoint;
+	UINT8 m_byLevelupMagPoint;
+	UINT8 m_byLevelupTaoPoint;
+    //铸魂
+    UINT16 m_wRune[MAX_RUNE_COUNT];
+
+    //以下属性仅限防具
+    //融灵
+    UINT32 m_dwSocketCombination;
+    INT32 m_nSoulID[MAX_SOCKET_COUNT];
+
+    ItemInfo()
+    {
+        memset(this, 0, sizeof(ItemInfo));
+    }
+
+    UINT8 GetSocketType(UINT8 socketindex) const
+    {
+        switch (socketindex)
+        {
+        case 0: return (m_dwSocketCombination & 0x000000FF);
+        case 1: return (m_dwSocketCombination & 0x0000FF00) >> 8;
+        case 2: return (m_dwSocketCombination & 0x00FF0000) >> 16;
+        default: return SOCKET_NONE;
+        }
+    }
+	// 当前堆叠数量
+	INT GetCurStackCount(const UItem* pkTemp) const
+	{
+		if(pkTemp&&pkTemp->ItemDuration == E_DURTYPE_STACK)
+		{
+			return m_nCurDur;
+		}
+		return 1;
+	}
+    template<typename T>
+    void ReadBuf(T& t, UINT32& s, const char* pData)
+    {
+        memcpy(&t, pData+s, sizeof(T));
+        s += sizeof(T);
+    }
+
+    static const UINT32 HAS_IDENTIFIED      = 0x1;
+    static const UINT32 HAS_RANDOM_ATTR_0   = 0x2;
+    static const UINT32 HAS_RANDOM_ATTR_1   = 0x4;
+    static const UINT32 HAS_RANDOM_ATTR_2   = 0x8;
+    static const UINT32 HAS_RANDOM_ATTR_3   = 0x10;
+    static const UINT32 HAS_RUNE0           = 0x20;
+    static const UINT32 HAS_RUNE1           = 0x40;
+    static const UINT32 HAS_RUNE2           = 0x80;
+    static const UINT32 HAS_RUNE3           = 0x100;
+    static const UINT32 HAS_RUNE4           = 0x200;
+    static const UINT32 HAS_RUNE5           = 0x400;
+    static const UINT32 HAS_LUCK            = 0x800;
+	static const UINT32 HAS_LEVELUP         = 0x1000;
+	static const UINT32 HAS_SOCKETS         = 0x2000;
+	static const UINT32 HAS_SOUL0           = 0x4000;
+	static const UINT32 HAS_SOUL1           = 0x8000;
+	static const UINT32 HAS_SOUL2           = 0x10000;
+	static const UINT32 HAS_ROLEID          = 0x20000;
+	static const UINT32 HAS_COST_MONEY      = 0x40000;
+
+    UINT32 Load(const char* pData)
+    {
+		UINT8 itemver = 0;
+        UINT32 bufsize = 0;
+        UINT32 field_bits = 0;
+        memset(this, 0, sizeof(ItemInfo));
+
+		ReadBuf(itemver, bufsize, pData);
+		if (itemver != 3)
+		{
+			warnf(NAME_Error, TEXT("客户端与服务器的道具数据结构版本不匹配 服务器版本号: %d, 客户端版本号: 3"), itemver);
+		}
+
+        ReadBuf(m_llGuid, bufsize, pData);
+        ReadBuf(m_nTemplateID, bufsize, pData);
+        ReadBuf(m_byConSlot, bufsize, pData);
+        ReadBuf(m_byItemSlot, bufsize, pData);
+        ReadBuf(m_nCurDur, bufsize, pData);
+        ReadBuf(m_nMaxDur, bufsize, pData);
+        ReadBuf(m_byBindType, bufsize, pData);
+
+        ReadBuf(field_bits, bufsize, pData);
+
+        if (field_bits & HAS_IDENTIFIED)
+        {
+            ReadBuf(m_byIdentified, bufsize, pData);
+        }
+
+        if (field_bits & HAS_RANDOM_ATTR_0)
+        {
+            ReadBuf(m_wRandomAttrID[0], bufsize, pData);
+        }
+
+        if (field_bits & HAS_RANDOM_ATTR_1)
+        {
+            ReadBuf(m_wRandomAttrID[1], bufsize, pData);
+        }
+
+        if (field_bits & HAS_RANDOM_ATTR_2)
+        {
+            ReadBuf(m_wRandomAttrID[2], bufsize, pData);
+        }
+
+        if (field_bits & HAS_RANDOM_ATTR_3)
+        {
+            ReadBuf(m_wRandomAttrID[3], bufsize, pData);
+        }
+
+        if (field_bits & HAS_RUNE0)
+        {
+            ReadBuf(m_wRune[0], bufsize, pData);
+        }
+
+        if (field_bits & HAS_RUNE1)
+        {
+            ReadBuf(m_wRune[1], bufsize, pData);
+        }
+
+        if (field_bits & HAS_RUNE2)
+        {
+            ReadBuf(m_wRune[2], bufsize, pData);
+        }
+
+        if (field_bits & HAS_RUNE3)
+        {
+            ReadBuf(m_wRune[3], bufsize, pData);
+        }
+
+        if (field_bits & HAS_RUNE4)
+        {
+            ReadBuf(m_wRune[4], bufsize, pData);
+        }
+
+        if (field_bits & HAS_RUNE5)
+        {
+            ReadBuf(m_wRune[5], bufsize, pData);
+        }
+
+        if (field_bits & HAS_LUCK)
+        {
+            ReadBuf(m_byLuck, bufsize, pData);
+        }
+
+		if (field_bits & HAS_LEVELUP)
+		{
+			UINT8 useless;
+			ReadBuf(useless, bufsize, pData);
+			ReadBuf(m_byLevelupPhyPoint, bufsize, pData);
+			ReadBuf(m_byLevelupMagPoint, bufsize, pData);
+			ReadBuf(m_byLevelupTaoPoint, bufsize, pData);
+			ReadBuf(useless, bufsize, pData);
+			ReadBuf(useless, bufsize, pData);
+		}
+
+        if (field_bits & HAS_SOCKETS)
+        {
+            ReadBuf(m_dwSocketCombination, bufsize, pData);
+        }
+
+        if (field_bits & HAS_SOUL0)
+        {
+            ReadBuf(m_nSoulID[0], bufsize, pData);
+        }
+
+        if (field_bits & HAS_SOUL1)
+        {
+            ReadBuf(m_nSoulID[1], bufsize, pData);
+        }
+
+        if (field_bits & HAS_SOUL2)
+        {
+            ReadBuf(m_nSoulID[2], bufsize, pData);
+        }
+
+        if (field_bits & HAS_ROLEID)
+        {
+            ReadBuf(m_dwRoleID, bufsize, pData);
+        }
+
+		if (field_bits & HAS_COST_MONEY)
+		{
+			ReadBuf(m_dwCostMoney, bufsize, pData);
+		}
+
+        return bufsize;
+    }
+
+	INT GetPotential(INT ClassID) const
+	{
+		INT PotentialWidget[SOCKET_COLORFUL+1] = {0,100,100,50,50,100,200};
+		INT Potential=0;
+		for(INT i=0;i<3;i++){
+			SOCKET_TYPE tp = (SOCKET_TYPE)GetSocketType(i);
+			if(tp==SOCKET_RED)			Potential+=100;
+			else if(tp==SOCKET_YELLOW)	Potential+=100;
+			else if(tp==SOCKET_BLUE)	Potential+=50;
+			else if(tp==SOCKET_GREEN)	Potential+=50;
+			else if(tp==SOCKET_PURPLE)	Potential+=100;
+			else if(tp==SOCKET_COLORFUL)Potential+=200;
+			else						Potential+=0;
+		}
+		return Potential;
+	}
+};

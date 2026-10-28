@@ -1,0 +1,279 @@
+
+=====================
+
+// OnPrepare - 触发节点 1645
+
+// Root Node - 1645
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 58  // 判断标志
+    nXType_0    => 0
+    szParam_0   => 19
+    nXType_1    => 0
+    szParam_1   => 0
+    nXType_2    => 0
+    szParam_2   => 0
+
+    // True Return Node - 1648
+    {
+        Parent_Node => 1645
+        Type        => Char  // 判断概率
+        Key         => 39
+        nXType_0    => 2
+        szParam_0   => X2
+        nXType_1    => 0
+        szParam_1   => 0
+        nXType_2    => 0
+        szParam_2   => 0
+
+        // True Return Node - 1646
+        {
+            Parent_Node => 1648
+            Type        => Char
+            Key         => 27  // 释放子技能 30081
+            nXType_0    => 0
+            szParam_0   => 30081
+            nXType_1    => 0
+            szParam_1   => 0
+            nXType_2    => 0
+            szParam_2   => 0
+
+            // Next Node - 1652
+            {
+                Parent_Node => 1646
+                Type        => Char
+                Key         => 69  // 增加光环 30080
+                nXType_0    => 0
+                szParam_0   => 30080
+                nXType_1    => 0
+                szParam_1   => 0
+                nXType_2    => 0
+                szParam_2   => 0
+            }
+        }
+
+        // False Return Node - 1647
+        {
+            Parent_Node => 1648
+            Type        => Char
+            Key         => 27  // 释放子技能 30082
+            nXType_0    => 0
+            szParam_0   => 30082
+            nXType_1    => 0
+            szParam_1   => 0
+            nXType_2    => 0
+            szParam_2   => 0
+        }
+    }
+
+    // False Return Node - 1649
+    {
+        Parent_Node => 1645
+        Type        => Char
+        Key         => 39  // 判断概率
+        nXType_0    => 1
+        szParam_0   => X1
+        nXType_1    => 0
+        szParam_1   => 0
+        nXType_2    => 0
+        szParam_2   => 0
+
+        // True Return Node - 1650
+        {
+            Parent_Node => 1649
+            Type        => Char
+            Key         => 27  // 释放子技能 30081
+            nXType_0    => 0
+            szParam_0   => 30081
+            nXType_1    => 0
+            szParam_1   => 0
+            nXType_2    => 0
+            szParam_2   => 0
+
+            // Next Node - 1653
+            {
+                Parent_Node => 1650
+                Type        => Char
+                Key         => 69  // 增加光环 30080
+                nXType_0    => 0
+                szParam_0   => 30080
+                nXType_1    => 0
+                szParam_1   => 0
+                nXType_2    => 0
+                szParam_2   => 0
+            }
+        }
+
+        // False Return Node - 1651
+        {
+            Parent_Node => 1649
+            Type        => Char
+            Key         => 27  // 释放子技能 30082
+            nXType_0    => 0
+            szParam_0   => 30082
+            nXType_1    => 0
+            szParam_1   => 0
+            nXType_2    => 0
+            szParam_2   => 0
+        }
+    }
+}
+
+=====================
+
+// OnCast - 触发节点 1632
+
+// Root Node - 1632
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 190  // 判断宠物数量
+    nXType_0    => 0
+    szParam_0   => 2
+    nXType_1    => 0
+    szParam_1   => 45
+    nXType_2    => 0
+    szParam_2   => 0
+
+    // True Return Node - 1633
+    {
+        Parent_Node => 1632
+        Type        => Char
+        Key         => 58  // 判断标志
+        nXType_0    => 0
+        szParam_0   => 6
+        nXType_1    => 0
+        szParam_1   => 0
+        nXType_2    => 0
+        szParam_2   => 0
+
+        // True Return Node - 1638
+        {
+            Parent_Node => 1633
+            Type        => Char
+            Key         => 226  // 判断铭文 30083-灵兽印
+            nXType_0    => 0
+            szParam_0   => 3008
+            nXType_1    => 0
+            szParam_1   => 3
+            nXType_2    => 0
+            szParam_2   => 0
+
+            // True Return Node - 1634
+            {
+                Parent_Node => 1638
+                Type        => Char
+                Key         => 175  // 召唤宠物 9299-道士神兽(灵兽印)
+                nXType_0    => 0
+                szParam_0   => 9299
+                nXType_1    => 0
+                szParam_1   => 6
+                nXType_2    => 0
+                szParam_2   => 32
+
+                // True Return Node - 1635
+                {
+                    Parent_Node => 1634
+                    Type        => Char
+                    Key         => 188  // 增加技能经验
+                    nXType_0    => 0
+                    szParam_0   => 3008
+                    nXType_1    => 0
+                    szParam_1   => 0
+                    nXType_2    => 0
+                    szParam_2   => 0
+                }
+            }
+
+            // False Return Node - 1639
+            {
+                Parent_Node => 1638
+                Type        => Char
+                Key         => 175  // 召唤宠物 9291-普通神兽
+                nXType_0    => 0
+                szParam_0   => 9291
+                nXType_1    => 0
+                szParam_1   => 1
+                nXType_2    => 0
+                szParam_2   => 32
+
+                // True Return Node - 1640
+                {
+                    Parent_Node => 1639
+                    Type        => Char
+                    Key         => 188  // 增加技能经验
+                    nXType_0    => 0
+                    szParam_0   => 3008
+                    nXType_1    => 0
+                    szParam_1   => 0
+                    nXType_2    => 0
+                    szParam_2   => 0
+                }
+            }
+        }
+
+        // False Return Node - 1636
+        {
+            Parent_Node => 1633
+            Type        => Char
+            Key         => 175  // 召唤宠物 9291-普通神兽
+            nXType_0    => 0
+            szParam_0   => 9291
+            nXType_1    => 0
+            szParam_1   => 1
+            nXType_2    => 0
+            szParam_2   => 32
+
+            // True Return Node - 1637
+            {
+                Parent_Node => 1636
+                Type        => Char
+                Key         => 188  // 增加技能经验
+                nXType_0    => 0
+                szParam_0   => 3008
+                nXType_1    => 0
+                szParam_1   => 0
+                nXType_2    => 0
+                szParam_2   => 0
+            }
+        }
+    }
+}
+
+=====================
+
+
+// 30081-流水技能号197-召唤一只神兽，神兽攻击时会变身
+
+// 30082-流水技能号198-召唤一只神兽，神兽攻击时会变身
+
+
+=====================
+
+
+// 光环 30080
+
+// OnAppendID - 触发节点 1654
+
+// Root Node - 1654
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 59
+    nXType_0    => 0
+    szParam_0   => 6
+    nXType_1    => 0
+    szParam_1   => 0
+    nXType_2    => 0
+    szParam_2   => 0
+}
+
+
+
+
+
+
+
+
+

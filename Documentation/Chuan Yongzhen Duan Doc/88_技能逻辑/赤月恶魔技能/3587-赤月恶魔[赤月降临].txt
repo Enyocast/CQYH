@@ -1,0 +1,349 @@
+
+=====================
+
+// OnPrepare - 触发节点 3182
+
+// Root Node - 3182
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 252  // new CMissile 对象
+    nXType_0    => 0
+    szParam_0   => 35870
+    nXType_1    => 0
+    szParam_1   => 0
+    nXType_2    => 0
+    szParam_2   => 0
+}
+
+=====================
+
+// OnCast - 触发节点 3202
+
+// Root Node - 3202
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 252
+    nXType_0    => 0
+    szParam_0   => 35870
+    nXType_1    => 0
+    szParam_1   => -10
+    nXType_2    => 0
+    szParam_2   => -10
+
+    // Next Node - 3203
+    {
+        Parent_Node => 3202
+        Type        => Char
+        Key         => 252
+        nXType_0    => 0
+        szParam_0   => 35870
+        nXType_1    => 0
+        szParam_1   => -5
+        nXType_2    => 0
+        szParam_2   => -10
+
+        // Next Node - 3204
+        {
+            Parent_Node => 3203
+            Type        => Char
+            Key         => 252
+            nXType_0    => 0
+            szParam_0   => 35870
+            nXType_1    => 0
+            szParam_1   => 0
+            nXType_2    => 0
+            szParam_2   => -10
+
+            // Next Node - 3205
+            {
+                Parent_Node => 3204
+                Type        => Char
+                Key         => 252
+                nXType_0    => 0
+                szParam_0   => 35870
+                nXType_1    => 0
+                szParam_1   => 5
+                nXType_2    => 0
+                szParam_2   => -10
+
+                // Next Node - 3206
+                {
+                    Parent_Node => 3205
+                    Type        => Char
+                    Key         => 252
+                    nXType_0    => 0
+                    szParam_0   => 35870
+                    nXType_1    => 0
+                    szParam_1   => 10
+                    nXType_2    => 0
+                    szParam_2   => -10
+                }
+            }
+        }
+    }
+}
+
+=====================
+
+// OnExCast1 - 触发节点 3183
+
+// Root Node - 3183
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 252
+    nXType_0    => 0
+    szParam_0   => 35870
+    nXType_1    => 0
+    szParam_1   => -10
+    nXType_2    => 0
+    szParam_2   => 10
+
+    // Next Node - 3184
+    {
+        Parent_Node => 3183
+        Type        => Char
+        Key         => 252
+        nXType_0    => 0
+        szParam_0   => 35870
+        nXType_1    => 0
+        szParam_1   => -5
+        nXType_2    => 0
+        szParam_2   => 10
+
+        // Next Node - 3185
+        {
+            Parent_Node => 3184
+            Type        => Char
+            Key         => 252
+            nXType_0    => 0
+            szParam_0   => 35870
+            nXType_1    => 0
+            szParam_1   => 0
+            nXType_2    => 0
+            szParam_2   => 10
+
+            // Next Node - 3186
+            {
+                Parent_Node => 3185
+                Type        => Char
+                Key         => 252
+                nXType_0    => 0
+                szParam_0   => 35870
+                nXType_1    => 0
+                szParam_1   => 5
+                nXType_2    => 0
+                szParam_2   => 10
+
+                // Next Node - 3187
+                {
+                    Parent_Node => 3186
+                    Type        => Char
+                    Key         => 252
+                    nXType_0    => 0
+                    szParam_0   => 35870
+                    nXType_1    => 0
+                    szParam_1   => 10
+                    nXType_2    => 0
+                    szParam_2   => 10
+                }
+            }
+        }
+    }
+}
+
+=====================
+
+// OnExCast2 - 触发节点 3188
+
+// Root Node - 3188
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 252
+    nXType_0    => 0
+    szParam_0   => 35870
+    nXType_1    => 0
+    szParam_1   => -10
+    nXType_2    => 0
+    szParam_2   => 5
+
+    // Next Node - 3189
+    {
+        Parent_Node => 3188
+        Type        => Char
+        Key         => 252
+        nXType_0    => 0
+        szParam_0   => 35870
+        nXType_1    => 0
+        szParam_1   => -5
+        nXType_2    => 0
+        szParam_2   => 5
+
+        // Next Node - 3190
+        {
+            Parent_Node => 3189
+            Type        => Char
+            Key         => 252
+            nXType_0    => 0
+            szParam_0   => 35870
+            nXType_1    => 0
+            szParam_1   => 0
+            nXType_2    => 0
+            szParam_2   => 5
+
+            // Next Node - 3191
+            {
+                Parent_Node => 3190
+                Type        => Char
+                Key         => 252
+                nXType_0    => 0
+                szParam_0   => 35870
+                nXType_1    => 0
+                szParam_1   => 5
+                nXType_2    => 0
+                szParam_2   => 5
+
+                // Next Node - 3192
+                {
+                    Parent_Node => 3191
+                    Type        => Char
+                    Key         => 252
+                    nXType_0    => 0
+                    szParam_0   => 35870
+                    nXType_1    => 0
+                    szParam_1   => 10
+                    nXType_2    => 0
+                    szParam_2   => 5
+                }
+            }
+        }
+    }
+}
+
+=====================
+
+// OnExCast3 - 触发节点 3193
+
+// Root Node - 3193
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 252
+    nXType_0    => 0
+    szParam_0   => 35870
+    nXType_1    => 0
+    szParam_1   => -10
+    nXType_2    => 0
+    szParam_2   => 0
+
+    // Next Node - 3194
+    {
+        Parent_Node => 3193
+        Type        => Char
+        Key         => 252
+        nXType_0    => 0
+        szParam_0   => 35870
+        nXType_1    => 0
+        szParam_1   => -5
+        nXType_2    => 0
+        szParam_2   => 0
+
+        // Next Node - 3195
+        {
+            Parent_Node => 3194
+            Type        => Char
+            Key         => 252
+            nXType_0    => 0
+            szParam_0   => 35870
+            nXType_1    => 0
+            szParam_1   => 5
+            nXType_2    => 0
+            szParam_2   => 0
+
+            // Next Node - 3196
+            {
+                Parent_Node => 3195
+                Type        => Char
+                Key         => 252
+                nXType_0    => 0
+                szParam_0   => 35870
+                nXType_1    => 0
+                szParam_1   => 10
+                nXType_2    => 0
+                szParam_2   => 0
+            }
+        }
+    }
+}
+
+=====================
+
+// OnExCast4 - 触发节点 3197
+
+// Root Node - 3197
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 252
+    nXType_0    => 0
+    szParam_0   => 35870
+    nXType_1    => 0
+    szParam_1   => -10
+    nXType_2    => 0
+    szParam_2   => -5
+
+    // Next Node - 3198
+    {
+        Parent_Node => 3197
+        Type        => Char
+        Key         => 252
+        nXType_0    => 0
+        szParam_0   => 35870
+        nXType_1    => 0
+        szParam_1   => -5
+        nXType_2    => 0
+        szParam_2   => -5
+
+        // Next Node - 3199
+        {
+            Parent_Node => 3198
+            Type        => Char
+            Key         => 252
+            nXType_0    => 0
+            szParam_0   => 35870
+            nXType_1    => 0
+            szParam_1   => 0
+            nXType_2    => 0
+            szParam_2   => -5
+
+            // Next Node - 3200
+            {
+                Parent_Node => 3199
+                Type        => Char
+                Key         => 252
+                nXType_0    => 0
+                szParam_0   => 35870
+                nXType_1    => 0
+                szParam_1   => 5
+                nXType_2    => 0
+                szParam_2   => -5
+
+                // Next Node - 3201
+                {
+                    Parent_Node => 3200
+                    Type        => Char
+                    Key         => 252
+                    nXType_0    => 0
+                    szParam_0   => 35870
+                    nXType_1    => 0
+                    szParam_1   => 10
+                    nXType_2    => 0
+                    szParam_2   => -5
+                }
+            }
+        }
+    }
+}

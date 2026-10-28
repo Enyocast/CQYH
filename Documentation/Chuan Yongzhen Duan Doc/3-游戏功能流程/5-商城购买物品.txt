@@ -1,0 +1,63 @@
+
+
+1, 客户端 发包 [c2m_real_money_buy] 商城购买物品
+
+
+// ====================
+
+
+2, [MS] 处理
+
+void CMessageHandler::OnClientRealMoneyBuy(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
+
+INT32 CRealMoneyShop::Buy(MS_ONLINE_ROLE_DATA* pOnlineRole, INT32 nItemID, INT32 nItemCount, char* szRoleName)
+
+BOOL COABillMgr::DoCharge(MS_ONLINE_ROLE_DATA* pstOnlineRole, INT32 nMoney, INT32 nItemID, INT32 nItemCount, const char* szRoleName)
+发给 财务服务端
+
+
+// ====================
+
+
+3, [MS] 处理
+
+BOOL COABillMgr::MainLoop()
+
+void CRealMoneyShop::OnCharge(INT32 nResult, UINT32 dwRoleID, INT32 nItemID, INT32 nItemCount, char* szRoleName)
+
+
+// ====================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

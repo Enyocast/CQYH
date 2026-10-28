@@ -1,0 +1,51 @@
+
+=====================
+
+// OnCast - 触发节点 3290
+
+// Root Node - 3290
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 69  // 添加光环 40101
+    nXType_0    => 0
+    szParam_0   => 40101
+    nXType_1    => 0
+    szParam_1   => 0
+    nXType_2    => 0
+    szParam_2   => 0
+}
+
+=====================
+
+// OnAppendID - 触发节点 443
+
+// Root Node - 443
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 14  // 触发事件
+    nXType_0    => 0
+    szParam_0   => meoOnBulletHitAsCaster
+    nXType_1    => 0
+    szParam_1   => 444  // 触发节点
+    nXType_2    => 0
+    szParam_2   => 0
+}
+
+=====================
+
+// nIndex - 触发节点 444
+
+// Root Node - 444
+{
+    Parent_Node => 0
+    Type        => Bullet
+    Key         => 123
+    nXType_0    => 1
+    szParam_0   => X1
+    nXType_1    => 2
+    szParam_1   => X2
+    nXType_2    => 0
+    szParam_2   => 0
+}

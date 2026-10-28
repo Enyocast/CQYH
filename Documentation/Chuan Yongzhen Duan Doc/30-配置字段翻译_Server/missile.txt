@@ -1,0 +1,34 @@
+Index                      => 索引
+PackageFolder              => 资源包文件夹
+LockType                   => 锁定类型
+MoveType                   => 移动类型
+RangeType                  => 范围类型
+Speed                      => 速度
+LifeTime                   => 存在时间
+MaxCollisionCount          => 最大碰撞数量
+MaxTargetCountPerCollision => 最大目标碰撞数量 / 单次碰撞最大目标数
+RangeParam1                => 范围参数1
+RangeParam2                => 范围参数2
+RangeParam3                => 范围参数3
+OffsetDirection            => 偏移方向
+OffsetDistance             => 偏移距离
+HOffsetGrids               => 水平偏移格子数
+VOffsetGrids               => 垂直偏移格子数
+Delay                      => 延迟时间
+Interval                   => 间隔时间
+Height                     => 高度
+NotMultiEffeect            => 没有多重影响       / 无多重效果
+NotHitLastTarget           => 不需要最后攻击目标 / 不攻击最后目标
+ID                         => 标识符ID
+OnCollisionID              => 碰撞触发节点
+OnRemoveID                 => 移除触发节点
+OnInitID                   => 初始化触发节点
+OnCreateID                 => 创建触发节点
+OnTimeupID                 => 定时节点 / 超时（存在时间结束）时触发的效果ID
+OnCharEnterID              => 角色进入触发节点
+OnCharLeaveID              => 角色离开触发节点
+
+
+
+
+

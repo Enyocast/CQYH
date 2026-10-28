@@ -1,0 +1,318 @@
+
+
+E:\cqyh\_AutoBuild\Source\08.Prog_CQ_S1\Common1
+
+
+// =====================================
+
+Common 和 Common1 这段不一样, 以谁的为主?
+
+// 文件
+E:\cqyh\_AutoBuild\Source\08.Prog_CQ_S1\Common1\fusion\inc\mail_template_data.h
+
+// 缺少
+mtiAuctionFeeReturning,
+
+// =====================================
+
+message_handler_gs.cpp
+
+严重性	代码	说明	项目	文件	行	禁止显示状态	详细信息
+错误	C2039	“nFreeRoleLevel”: 不是“SERVER_CONFIG::MS_CONFIG”的成员	manageserver	E:\cqyh\_AutoBuild\Source\08.Prog_CQ_S1\NewServer\src\manageserver\message_handler_gs.cpp	517		
+
+// =====================================
+
+// py文件中, 打开2个ini文件, 是这个文件没有了吗
+update_p4_editor.py
+update_p4_with_label.py
+
+DefaultEditorVer.ini
+DefaultVer.ini
+
+// =====================================
+
+// g2c_message.h
+g2c_arena_sync_data
+
+// c2g_message.h
+c2g_arena_join_season
+
+// game_world_config.h
+struct GAME_WORLD_CONFIG    // 结构不一样
+
+
+有几个地方 "// 暂时屏蔽", 最后新增2个字段
+INT32       nFreeRoleLevel;
+INT32       nFreeModeCheckTimePeriod;
+
+// =====================================
+
+
+// 给客户端调用
+// 这2个字段 应该写在 c2m_message.h 文件里才对
+// 目前写在 m2c_message.h 文件
+struct GUILD_WAR_RECORD_INFO
+{
+	UINT32      dwBeginDayTime;
+	UINT32      dwIntruderID;
+	UINT32      dwDefenderID;
+	UINT8       byWarRes;
+};
+
+// 给客户端调用
+struct M2C_GUILD_WAR_RECORD : FLEX_MESSAGE_HEADER
+{
+	UINT16      wCount;
+	GUILD_WAR_RECORD_INFO   info[0];
+};
+
+// =====================================
+
+
+struct AUCTION_ITEM_INFO
+
+struct M2C_AUCTION_QUERY : FLEX_MESSAGE_HEADER
+
+
+// =====================================
+
+#include "drop_group_data.h"
+
+READ_INT("DropLimitType", m_nDropLimitType);
+READ_INT("CheckDropLimit", m_bCheckDropLimit);
+
+
+// =====================================
+
+
+// 新增代码, 根据服务端代码新增2个字段
+//INT32       nFreeRoleLevel;
+//INT32       nFreeModeCheckTimePeriod;
+
+
+// =====================================
+
+
+READ_INT("SpellCommonAttribute.IsMixEffect", m_nAttrTable[satIsMixEffect]);
+READ_INT("SpellCommonAttribute.MixEffectPhyRate", m_nAttrTable[satMixEffectPhyRate]);
+READ_INT("SpellCommonAttribute.MixEffectMagRate", m_nAttrTable[satMixEffectMagRate]);
+
+
+// =====================================
+
+#define _CRT_RAND_S
+
+
+// =====================================
+
+
+MMOUITeamSet
+
+
+// =====================================
+
+
+// 编译报错
+{
+	2>LINK : warning LNK4199: 已忽略 /DELAYLOAD:d3d11.dll；未找到来自 d3d11.dll 的导入
+	2>LINK : warning LNK4199: 已忽略 /DELAYLOAD:dxgi.dll；未找到来自 dxgi.dll 的导入
+	2>LINK : warning LNK4199: 已忽略 /DELAYLOAD:opengl32.dll；未找到来自 opengl32.dll 的导入
+
+	2>Unity_CurveEdEtAl.cpp.obj : error LNK2019: 无法解析的外部符号 
+
+	"private: void __thiscall FEditorCameraController::UpdatePosition(class FCameraControllerUserImpulseData const &,float,float,class FVector const &,class FVector &)"
+	(?UpdatePosition@FEditorCameraController@@AAEXABVFCameraControllerUserImpulseData@@MMABVFVector@@AAV3@@Z)，
+
+	该符号在函数 "public: void __thiscall FEditorCameraController::UpdateSimulation(class FCameraControllerUserImpulseData const &,float,unsigned int,float,class FVector &,class FVector &,float &)"
+	(?UpdateSimulation@FEditorCameraController@@QAEXABVFCameraControllerUserImpulseData@@MIMAAVFVector@@1AAM@Z) 中被引用
+
+	2>E:\cqyh-new\client\UE3\Binaries\Win32\MMOGame-Win32-Debug.exe : fatal error LNK1120: 1 个无法解析的外部命令
+}
+
+
+// 解决办法
+{
+	// 1, 在 CameraController.cpp 文件中找到 FEditorCameraController::UpdatePosition 函数
+	// 如果发生报错, 这个函数代码 可能是被屏蔽了, 变成了乱码, 把下面代码复制进去
+	
+	/**
+	 * Updates the camera position.  Called every frame by UpdateSimulation.
+	 *
+	 * @param	UserImpulse				User impulse data for the current frame
+	 * @param	DeltaTime				Time interval
+	 * @param	MovementSpeedScale		Additional movement accel/speed scale
+	 * @param	CameraEuler				Current camera rotation
+	 * @param	InOutCameraPosition		[in, out] Camera position
+	 */
+	void FEditorCameraController::UpdatePosition( const FCameraControllerUserImpulseData& UserImpulse, const FLOAT DeltaTime, const FLOAT MovementSpeedScale, const FVector& CameraEuler, FVector& InOutCameraPosition )
+	{
+		// Compute local impulse
+		FVector LocalSpaceImpulse;
+		{
+			// NOTE: Forward/back and right/left impulse are applied in local space, but up/down impulse is
+			//		 applied in world space.  This is because it feels more intuitive to always move straight
+			//		 up or down with those controls.
+			LocalSpaceImpulse =
+				FVector( UserImpulse.MoveForwardBackwardImpulse,		// Local space forward/back
+						 UserImpulse.MoveRightLeftImpulse,				// Local space right/left
+						 0.0f );										// Local space up/down
+		}
+
+
+		// Compute world space acceleration
+		FVector WorldSpaceAcceleration;
+		{
+			// Compute camera orientation, then rotate our local space impulse to world space
+			const FQuat CameraOrientation = FQuat::MakeFromEuler( CameraEuler );
+			FVector WorldSpaceImpulse = CameraOrientation.RotateVector( LocalSpaceImpulse );
+
+			// Accumulate any world space impulse we may have
+			// NOTE: Up/down impulse is applied in world space.  See above comments for more info.
+			WorldSpaceImpulse +=
+				FVector( 0.0f,											// World space forward/back
+						 0.0f,											// World space right/left
+						 UserImpulse.MoveUpDownImpulse );				// World space up/down
+
+			// Cap impulse by normalizing, but only if our magnitude is greater than 1.0
+			//if( WorldSpaceImpulse.SizeSquared() > 1.0f )
+			{
+				//WorldSpaceImpulse = WorldSpaceImpulse.UnsafeNormal();
+			}
+
+			// Compute world space acceleration
+			WorldSpaceAcceleration = WorldSpaceImpulse * Config.MovementAccelerationRate * MovementSpeedScale;
+		}
+
+
+		if( Config.bUsePhysicsBasedMovement )
+		{
+			// Accelerate the movement velocity
+			MovementVelocity += WorldSpaceAcceleration * DeltaTime;
+
+
+			// Apply damping
+			{
+				const FLOAT DampingFactor = Clamp( Config.MovementVelocityDampingAmount * DeltaTime, 0.0f, 0.75f );
+
+				// Decelerate
+				MovementVelocity += -MovementVelocity * DampingFactor;
+			}
+		}
+		else
+		{
+			// No physics, so just use the acceleration as our velocity
+			MovementVelocity = WorldSpaceAcceleration;
+		}
+
+
+		// Constrain maximum movement speed
+		if( MovementVelocity.Size() > Config.MaximumMovementSpeed * MovementSpeedScale )
+		{
+			MovementVelocity = MovementVelocity.UnsafeNormal() * Config.MaximumMovementSpeed * MovementSpeedScale;
+		}
+
+
+		// Clamp velocity to a reasonably small number
+		if( MovementVelocity.Size() < KINDA_SMALL_NUMBER )
+		{
+			MovementVelocity = FVector( 0.0f, 0.0f, 0.0f );
+		}
+
+
+		// Update camera position
+		InOutCameraPosition += MovementVelocity * DeltaTime;
+	}
+}
+
+
+// =====================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

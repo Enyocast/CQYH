@@ -1,0 +1,18 @@
+
+// 1 - 文档缩写说明
+
+[GuardServer]   ---- [GD]
+[NameServer]    ---- [NS]
+
+[ManageServer]  ---- [MS]
+[DbServer]      ---- [DB]
+[BalanceServer] ---- [BS]
+[LoginServer]   ---- [LS]
+[GateServer]    ---- [GT]
+[GameServer]    ---- [GS]
+
+// ====================
+
+
+
+

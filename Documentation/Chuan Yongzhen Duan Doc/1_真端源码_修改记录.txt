@@ -1,0 +1,64 @@
+
+说明
+这个文档里记录修改源码的东西, 源码冲突/修改/记录某些文件写某些特殊东西
+
+// =====================================
+
+item_data.h
+
+修改 struct ITEM_DATA; 和 struct EQUIP_DATA
+现在直接使用 热血端里的 item.txt 和 item_armor.txt 文件
+
+在 struct ITEM_DATA; 中去掉这些字段, 在编译时 tolua_data_manager.cpp 文件中会报错
+提示 缺少刚才去掉的字段, 不知道为啥, 只能手动屏蔽 才能正常编译, 
+按理说这个文件是自动生成的才对, 每次都会自动修改才对, 不知道为啥没有自动生成, 没有 自动重新修改
+
+猜测, 可能是之前有这些字段, 在下面 有这些字段关联函数, 每次编译只会新增, 不会移除
+所以只能手动把这些字段相关联的东西删掉才行
+
+// 去掉的字段
+UINT8 m_byLog;
+UINT8 m_byStat;
+UINT8 m_bPkDrop;
+UINT8 m_bTeamAuction;       //是否可以组队拍卖
+UINT8 m_byCanStorage;
+UINT8 m_byDropBroadcast;
+UINT8 m_bySocketCountMin;
+UINT8 m_bySocketCountMax;
+UINT8 m_byUseInArena;
+INT32 m_nClearGambleCount;
+INT32 m_nDropFromServerStart;
+INT32 m_nDropGroupID;
+INT32 m_nDropLimitDuration[3];
+INT32 m_nDropLimitCount[3];
+INT32 m_nHandbookType;
+INT32 m_nHandbookIndex;
+INT32 m_nPlayerDropTime;
+INT32 m_nTradeOverWeight;
+
+// =====================================
+
+attribute.txt
+
+这些装备 缺少关联的属性
+40400001 40400002 59900003 59900004 59900005 59900006 59900007 59900008 59900009 59900010 59900011 59900012 59900013 59900014 59900015 59900016 59900101 59900102 59900103 59900104 59900105 59900106 59900107 59910001 59910002 59910003 59910004 59910005 59910006 59910007 59910008 59910009 59910010 59910011 59910012 59990201 59990202 59990203 59990207 59990208 59990209 59990301 59990302 59990303 59990307 59990308 59990309 99999104 99999105 99999112 99999114 99999118
+
+缺少 200066 200068 200070 200072 200074 200075 200076 200093
+
+// =====================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

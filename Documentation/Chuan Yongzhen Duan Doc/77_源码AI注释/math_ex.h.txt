@@ -1,0 +1,352 @@
+#ifndef _MATH_EX_H_
+#define _MATH_EX_H_
+
+#include <math.h>
+
+// 定义常量
+#define MAX_SQUARE				(65536)                  // 最大平方值，用于开方表
+#define MAX_CLIENT_DIRECTION_COUNT  (65536)              // 客户端方向数量
+#define MAX_DIRECTION_COUNT		(1024 * 8)               // 最大方向数（8192）
+#define MAX_DIRECTION_DISTANCE	(1024)                   // 最大方向距离
+#define MAX_RANK_SCORE_VALUE	(3200)                   // 最大排名分数
+#define LUCK_LIMIT	(9)                                 // 运气上限
+
+// 8方向枚举
+enum DIRECTION_8_TYPE
+{
+	DT_EAST,          // 东
+	DT_SOUTH_EAST,    // 东南
+	DT_SOUTH,         // 南
+	DT_SOUTH_WEST,    // 西南
+	DT_WEST,          // 西
+	DT_NORTH_WEST,    // 西北
+	DT_NORTH,         // 北
+	DT_NORTH_EAST,    // 东北
+
+	DT_DIRECTION_8_COUNT // 方向总数
+};
+
+// 数学表格结构，预计算各种数学值
+struct MATH_TABLE
+{
+    INT32   nDirectionTable[MAX_DIRECTION_DISTANCE * 2][MAX_DIRECTION_DISTANCE * 2]; // 方向查询表
+    INT32   nSinTable[MAX_DIRECTION_COUNT];        // 正弦表
+    INT32   nCosTable[MAX_DIRECTION_COUNT];        // 余弦表
+    INT32   nSinSquareTable[MAX_DIRECTION_COUNT/4]; // 正弦平方表
+    UINT16  wSqrtTable[MAX_SQUARE];                // 开方表
+    INT32	nAdjacentX[DT_DIRECTION_8_COUNT];      // 相邻X偏移
+    INT32	nAdjacentY[DT_DIRECTION_8_COUNT];      // 相邻Y偏移
+    INT32	nAdjList[DT_DIRECTION_8_COUNT][6];     // 相邻方向列表
+};
+
+extern MATH_TABLE  g_MathTable; // 全局数学表
+
+#define PI		(3.1415927) // 圆周率
+
+// 计算二维距离平方（避免开方，提高性能）
+inline INT64 g_GetDistance2D(INT64 llSrcX, INT64 llSrcY, INT64 llDestX, INT64 llDestY)
+{
+	return (llSrcX - llDestX) * (llSrcX - llDestX) + (llSrcY - llDestY) * (llSrcY - llDestY);
+}
+
+// 计算三维距离平方
+inline INT64 g_GetDistance3D(INT64 llSrcX, INT64 llSrcY, INT64 llSrcZ, INT64 llDestX, INT64 llDestY, INT64 llDestZ)
+{
+	return (llSrcX - llDestX) * (llSrcX - llDestX) + (llSrcY - llDestY) * (llSrcY - llDestY) + 
+		(llSrcZ - llDestZ) * (llSrcZ - llDestZ);
+}
+
+// 全局相邻方向偏移数组
+extern INT32 g_nAdjacentX[DT_DIRECTION_8_COUNT];
+extern INT32 g_nAdjacentY[DT_DIRECTION_8_COUNT];
+extern INT32 g_nAdjList[DT_DIRECTION_8_COUNT][6];
+
+// 根据两点坐标获取方向（使用预计算表）
+inline INT32 g_GetDirection(INT64 llSrcX, INT64 llSrcY, INT64 llDestX, INT64 llDestY)
+{
+	INT64 llDistanceX = llDestX - llSrcX;
+	INT64 llDistanceY = llDestY - llSrcY;
+
+	// 若距离过大，则等比例缩小至查询表范围内
+	while (llDistanceX >= MAX_DIRECTION_DISTANCE ||
+		llDistanceX < -MAX_DIRECTION_DISTANCE ||
+		llDistanceY >= MAX_DIRECTION_DISTANCE ||
+		llDistanceY < -MAX_DIRECTION_DISTANCE)
+	{
+		llDistanceX /= 2;
+		llDistanceY /= 2;
+	}
+
+	return g_MathTable.nDirectionTable[llDistanceX + MAX_DIRECTION_DISTANCE][llDistanceY + MAX_DIRECTION_DISTANCE];
+}
+
+// 标准化方向值（确保在 [0, MAX_DIRECTION_COUNT) 范围内）
+inline INT32 NormalizeDirection(INT32 nDirection)
+{
+	return (nDirection + MAX_DIRECTION_COUNT) % MAX_DIRECTION_COUNT;
+}
+
+// 将方向转换为8方向
+inline INT32 ConvertToDir8(INT32 nDirection)
+{
+    return ((nDirection + (MAX_DIRECTION_COUNT / 16)) / (MAX_DIRECTION_COUNT / 8)) % 8;
+}
+
+// 标准化8方向值
+inline INT32 NormalizeDirection8(INT32 nDirection)
+{
+	return (nDirection + 8) % 8;
+}
+
+// 取绝对值模板函数
+template <typename T>
+inline T g_Abs(T Value)
+{
+	return Value < 0 ? -Value : Value;
+}
+
+// 计算两个8方向之间的偏移量
+inline INT32 OffsetDirection8(INT32 nDirection1, INT32 nDirection2)
+{
+	INT32 nDirection8 = NormalizeDirection8(g_Abs(nDirection1 - nDirection2));
+	return nDirection8 < 4 ? nDirection8 : 8 - nDirection8;
+}
+
+// 根据网格坐标获取镜像8方向
+inline INT32 g_GetMirDirection8(INT32 nSrcGridX, INT32 nSrcGridY, INT32 nDstGridX, INT32 nDstGridY)
+{
+	// 判断X、Y方向上的相对位置
+	INT32 nFlagX = 0, nFlagY = 0;
+
+	if (nSrcGridX < nDstGridX)
+		nFlagX = 1;
+	else if (nSrcGridX == nDstGridX)
+		nFlagX = 0;
+	else
+		nFlagX = -1;
+
+	// 特殊情况下忽略X偏移
+	if (g_Abs(nSrcGridY - nDstGridY) > 2 && (nDstGridX - 1) <= nSrcGridX && (nDstGridX + 1) >= nSrcGridX)
+		nFlagX = 0;
+
+	if (nSrcGridY < nDstGridY)
+		nFlagY = 1;
+	else if (nSrcGridY == nDstGridY)
+		nFlagY = 0;
+	else
+		nFlagY = -1;
+
+	// 特殊情况下忽略Y偏移
+	if (g_Abs(nSrcGridX - nDstGridX) > 2 && (nDstGridY - 1) < nSrcGridY && (nDstGridY + 1) >= nSrcGridY)
+		nFlagY = 0;
+
+	// 根据偏移量返回8方向
+	if (nFlagX == 0)
+	{
+		if (nFlagY >= 0)
+			return DT_SOUTH;
+		else
+			return DT_NORTH;
+	}
+	else if (nFlagY == 0)
+	{
+		if (nFlagX >= 0)
+			return DT_EAST;
+		else
+			return DT_WEST;
+	}
+	else
+	{
+		if (nFlagX >= 0)
+		{
+			if (nFlagY >= 0)
+				return DT_SOUTH_EAST;
+			else
+				return DT_NORTH_EAST;
+		}
+		else
+		{
+			if (nFlagY >= 0)
+				return DT_SOUTH_WEST;
+			else
+				return DT_NORTH_WEST;
+		}
+	}
+
+	return DT_EAST; // 默认返回东
+}
+
+#define SIN_COS_NUMBER	(16384) // 用于三角函数的精度控制
+
+// 获取正弦值（查表）
+inline INT64 g_Sin(INT32 nDirection)
+{
+	return (INT64)g_MathTable.nSinTable[nDirection % MAX_DIRECTION_COUNT];
+}
+
+// 获取余弦值（查表）
+inline INT64 g_Cos(INT32 nDirection)
+{
+	return (INT64)g_MathTable.nCosTable[nDirection % MAX_DIRECTION_COUNT];
+}
+
+// 根据正弦平方值获取角度（查表）
+INT32 g_GetAngle(INT32 nSinSquare);
+
+// 获取平方根（查表）
+inline UINT16 g_Sqrt(UINT16 wNumber)
+{
+	return g_MathTable.wSqrtTable[wNumber];
+}
+
+// 标志位管理类
+class CFlagBits
+{
+public:
+	CFlagBits(void) { m_dwFlag = 0; }
+
+	inline BOOL CheckFlag(UINT32 eBit);          // 检查某一位是否被设置
+	inline void SetFlag(UINT32 eBit);            // 设置某一位
+	inline void ClearFlag(UINT32 eBit);          // 清除某一位
+	inline void ResetFlag(void);                 // 重置所有标志位
+	inline BOOL FlagIncludeBits(UINT32 dwMask);  // 判断是否包含某些位
+	inline BOOL FlagNotIncludeBits(UINT32 dwMask); // 判断是否不包含某些位
+	inline UINT32 GetFlag(void);                 // 获取当前标志位
+
+private:
+	UINT32 m_dwFlag; // 标志位存储
+};
+
+// 随机数生成器种子
+extern UINT32 g_dwRandSeed;
+
+// 生成 [0, dwRange-1] 的随机数
+inline UINT32 g_Random(UINT32 dwRange)
+{
+	PROCESS_ERROR(dwRange > 0);
+
+	g_dwRandSeed = (UINT32)(g_dwRandSeed * 0x08088405) + 1; // LCG算法
+	return (UINT32)((g_dwRandSeed * (UINT64)dwRange) >> 32);
+Exit0:
+    return 0;
+}
+
+// 生成 [dwMin, dwMax-1] 的随机数
+inline UINT32 g_Random(UINT32 dwMin, UINT32 dwMax)
+{
+	PROCESS_ERROR(dwMin < dwMax);
+	return dwMin + g_Random(dwMax - dwMin);
+Exit0:
+	return dwMin;
+}
+
+// 多次尝试随机，返回连续成功的次数
+inline UINT32 g_RandomEx(INT32 nCount, INT32 nRate)
+{
+	UINT32 dwResult = 0;
+	for (INT32 nIndex = 0; nIndex < nCount; nIndex++)
+	{
+		if (g_Random(nRate) == 0)
+			dwResult++;
+		else
+			break;
+	}
+	return dwResult;
+}
+
+// 返回最大值
+template <typename T>
+inline T g_Max(const T Left, const T Right)
+{
+	return Left >= Right ? Left : Right;
+}
+
+// 返回最小值
+template <typename T>
+inline T g_Min(const T& Left, const T& Right)
+{
+	return Left < Right ? Left : Right;
+}
+
+// 判断点是否在立方体内
+inline BOOL g_PointInCube(INT32 px, INT32 py, INT32 pz, INT32 ltx, INT32 lty, INT32 ltz, INT32 rbx, INT32 rby, INT32 rbz)
+{
+	if (px >= ltx && px <= rbx && py >= lty && py <= rby && pz >= ltz && pz <= rbz)
+		return TRUE;
+	return FALSE;
+}
+
+// 四舍五入除法
+inline INT32 round_div(INT32 dividend, INT32 divisor)
+{
+	INT32 quotient = dividend / divisor;
+	INT32 remainder = dividend % divisor;
+	if (remainder * 2 < divisor)
+		return quotient;
+	else if (remainder * 2 > divisor)
+		return quotient + 1;
+	else
+		return (quotient + 1) & (~1); // 向偶数取整
+}
+
+// 运气影响的计算函数
+inline INT32 LuckGo(INT32 nInput, INT32 nLuck, INT32 nParamE)
+{
+	INT32 nOutput = nInput;
+	INT32 nLuckRand1 = g_Random(0, LUCK_LIMIT + 1 - g_Min(nLuck, LUCK_LIMIT));
+	INT32 nLuckRand2 = g_Random(0, LUCK_LIMIT + 1 - g_Max(-nLuck, 0));
+
+	if (nLuck == 0)
+	{
+		nOutput += g_Random(0, nParamE + 1);
+	}
+	else if (nLuck > 0)
+	{
+		if (nLuckRand1 == 0)
+			nOutput += g_Random(0, nParamE + 1);
+		else
+			nOutput += nParamE;
+	}
+	else
+	{
+		if (nLuckRand2 != 0)
+			nOutput += g_Random(0, nParamE + 1);
+	}
+
+	return nOutput;
+}
+
+// 简单加密/解密偏移量
+#define SHIFTPOS (47)
+
+// 简单加密函数（字符偏移）
+inline BOOL SimpleEncrypt(char*& szBuff, INT32 nBuffLen)
+{
+	for (INT32 i = 0; i < nBuffLen; ++i)
+	{
+		LOG_PROCESS_ERROR(szBuff[i] >= ' ' && szBuff[i] <= '~'); // 只处理可见ASCII字符
+		szBuff[i] = (szBuff[i] - ' ' + SHIFTPOS ) % ('~' - ' ' + 1) + ' ';
+	}
+	return TRUE;
+Exit0:
+	return FALSE;
+}
+
+// 简单解密函数
+inline BOOL SimpleDecrypt(char*& szBuff, INT32 nBuffLen)
+{
+	for (INT32 i = 0; i < nBuffLen; ++i)
+	{
+		LOG_PROCESS_ERROR(szBuff[i] >= ' ' && szBuff[i] <= '~');
+		szBuff[i] = (szBuff[i] - ' ' - SHIFTPOS) % ('~' - ' ' + 1) + ' ';
+	}
+	return TRUE;
+Exit0:
+	return FALSE;
+}
+
+// 初始化/反初始化数学模块
+BOOL InitMathEx(const char* pcData);
+BOOL UnInitMathEx(void);
+
+#endif	// _MATH_EX_H_

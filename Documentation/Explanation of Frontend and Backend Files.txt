@@ -1,0 +1,207 @@
+First, completely extract the 222g compressed file provided by the seller.
+
+// Common files, 3 folders
+
+[Common]
+
+[Common - Copy]
+
+[Common1]
+
+According to the seller,
+
+The [Common] folder uses the [old version protocol], which is also the default common file.
+
+The [Common1] folder contains the [new version protocol].
+
+The [Common - Copy] folder, I personally deduce, is a backup of the [old version protocol] folder.
+
+// Server-side - Source Code Description
+
+1. There is only one copy of the [server-side] source code: [NewServer\src]
+
+2. According to the seller, this server is the [new version], which has fixed the trading platform function.
+
+By default, only the function names have been changed, but the [Common] common files have not yet modified the protocol and some data structures.
+
+3. The remaining functions are the same as the old version, with no difference.
+
+4. The server source code wants to be [downgraded]. I personally deduce that... Simply disable the newly added features.
+
+5. With the new features disabled, newly added structures are no longer needed, and the protocol doesn't need to be changed.
+
+6. Some enumeration types have redefinition conflicts and missing declarations. These can be copied from [Common1].
+
+7. In my tests, release mode can compile 15 programs.
+
+8. In debug mode, 14 programs can be compiled. One [gen_msg.exe] fails to compile, but this doesn't affect server-side operation.
+
+// Client - Source Code Explanation
+
+1. There are 3 copies of the [client] source code:
+
+[client\UE3\Development\Src]
+
+[client\UE3\Development\Src0]
+
+[client\UE3\Development\Src1]
+
+2. In my tests, the default client source code [client\UE3\Development\Src] uses the [older protocol].
+
+3. In my tests, the folder... [client\UE3\Development\Src1] is [New Version Protocol]
+
+4. A comparison reveals no significant differences between [Src0] and [Src1], other than the inclusion of some additional code related to Shanda (盛大) interfaces.
+
+4. The default client source code located at [client\UE3\Development\Src] is intended for use with the default [Common] files.
+
+5. Open the default source code, locate the file [GlobalMapInfo.cpp], and comment out the `warnf...` statement on line 2263 (otherwise, a compilation error will occur). Once this is done, you can proceed directly to compilation.
+
+6. The client can be compiled in either [Debug] or [Shipping] mode; note that [Shipping] mode is equivalent to [Release] mode.
+
+7. Compiling in [Shipping] mode may trigger an error indicating a missing `.manifest` file. To resolve this, take the four files found in the [manifest files] folder and place them into [client\UE3\Development\Src\Launch\Resources].
+
+The 222GB archive provided by the seller presents a rather frustrating situation:
+The default [client] is an older version, while the default [server] is a newer version.
+
+Option 1: Keep the client as is and downgrade the server.
+Option 2: Upgrade the client and the server, and merge the [Common] and [Common1] directories.
+
+Plan for Merging and Upgrading Shared Files
+
+Using `[Common1]` as the primary reference, copy any missing or modified protocols, as well as any missing structures, from `[Common1]` into `[Common]`.
+
+I have already prepared a merged version, which you can find in the file `[6-Cqyh_前后端-新协议.7z]`.
+
+This archive contains the server source code, client source code, and the `[Common]` files.
+
+Note that the "client source code" included here is actually the source code from `[client\UE3\Development\Src1]`.
+
+1. First, I merged the `[Common]` files.
+2. I then updated the server source code—adding/modifying protocols and structures—until the entire server application compiled successfully.
+3. For the client source code, I initially tried using the default `[client\UE3\Development\Src]` as the base, copying code over from `[client\UE3\Development\Src1]`. However, as the number of required changes grew—eventually involving extensive modifications to the underlying Unreal Engine code—I abandoned this approach.
+
+I then attempted to compile the `[src1]` source code directly. It produced only a single error (see `// [src1] source code, compilation error` below). Once I resolved that error, the code compiled successfully.
+
+However, a new issue arose: after launching the updated server and integrating the client (compiled from `[src1]`) into an existing client installation, the game window fails to appear. Checking the Task Manager reveals that the process flashes into existence and then immediately terminates. I am not sure where the problem lies.
+
+Contents of the `[开始游戏.bat]` (Start Game) file:
+{
+start MMOGame-Win32-Shipping.exe -sdo -ip=1,1,127.0.0.1,8701,127.0.0.1,8701,传奇永恒1区
+
+(Followed by command-line arguments, starting with `-sdo`) -ip=1,1,127.0.0.1,8701,127.0.0.1,8701,Legend of Mir Forever Server 1]
+}
+
+
+The attempt with the new version has failed. I intend to use the default [src] client source code and "downgrade" the default server source code to match—pending further testing...
+
+
+// [src1] Source code, compilation errors:
+{
+2>LINK : warning LNK4199: /DELAYLOAD:d3d11.dll ignored; no imports found from d3d11.dll
+2>LINK : warning LNK4199: /DELAYLOAD:dxgi.dll ignored; no imports found from dxgi.dll
+2>LINK : warning LNK4199: /DELAYLOAD:opengl32.dll ignored; no imports found from opengl32.dll
+
+2>Unity_CurveEdEtAl.cpp.obj : error LNK2019: unresolved external symbol
+
+"private: void __thiscall FEditorCameraController::UpdatePosition(class FCameraControllerUserImpulseData const &,float,float,class FVector const &,class FVector &)"
+(?UpdatePosition@FEditorCameraController@@AAEXABVFCameraControllerUserImpulseData@@MMABVFVector@@AAV3@@Z),
+
+referenced in function "public: void __thiscall FEditorCameraController::UpdateSimulation(class FCameraControllerUserImpulseData const &,float,unsigned int,float,class FVector &,class FVector &,float &)"
+(?UpdateSimulation@FEditorCameraController@@QAEXABVFCameraControllerUserImpulseData@@MIMAAVFVector@@1AAM@Z)
+
+2>E:\cqyh-new\client\UE3\Binaries\Win32\MMOGame-Win32-Debug.exe : fatal error LNK1120: 1 unresolved external symbol
+}
+
+// Solution
+{
+// 1. Locate the FEditorCameraController::UpdatePosition function in the CameraController.cpp file.
+// If you encounter errors, it is possible that the code for this function has been corrupted or rendered as garbled text; replace it by pasting in the code below.	
+	/**
+	 * Updates the camera position.  Called every frame by UpdateSimulation.
+	 *
+	 * @param	UserImpulse				User impulse data for the current frame
+	 * @param	DeltaTime				Time interval
+	 * @param	MovementSpeedScale		Additional movement accel/speed scale
+	 * @param	CameraEuler				Current camera rotation
+	 * @param	InOutCameraPosition		[in, out] Camera position
+	 */
+	void FEditorCameraController::UpdatePosition( const FCameraControllerUserImpulseData& UserImpulse, const FLOAT DeltaTime, const FLOAT MovementSpeedScale, const FVector& CameraEuler, FVector& InOutCameraPosition )
+	{
+		// Compute local impulse
+		FVector LocalSpaceImpulse;
+		{
+			// NOTE: Forward/back and right/left impulse are applied in local space, but up/down impulse is
+			//		 applied in world space.  This is because it feels more intuitive to always move straight
+			//		 up or down with those controls.
+			LocalSpaceImpulse =
+				FVector( UserImpulse.MoveForwardBackwardImpulse,		// Local space forward/back
+						 UserImpulse.MoveRightLeftImpulse,				// Local space right/left
+						 0.0f );										// Local space up/down
+		}
+
+
+		// Compute world space acceleration
+		FVector WorldSpaceAcceleration;
+		{
+			// Compute camera orientation, then rotate our local space impulse to world space
+			const FQuat CameraOrientation = FQuat::MakeFromEuler( CameraEuler );
+			FVector WorldSpaceImpulse = CameraOrientation.RotateVector( LocalSpaceImpulse );
+
+			// Accumulate any world space impulse we may have
+			// NOTE: Up/down impulse is applied in world space.  See above comments for more info.
+			WorldSpaceImpulse +=
+				FVector( 0.0f,											// World space forward/back
+						 0.0f,											// World space right/left
+						 UserImpulse.MoveUpDownImpulse );				// World space up/down
+
+			// Cap impulse by normalizing, but only if our magnitude is greater than 1.0
+			//if( WorldSpaceImpulse.SizeSquared() > 1.0f )
+			{
+				//WorldSpaceImpulse = WorldSpaceImpulse.UnsafeNormal();
+			}
+
+			// Compute world space acceleration
+			WorldSpaceAcceleration = WorldSpaceImpulse * Config.MovementAccelerationRate * MovementSpeedScale;
+		}
+
+
+		if( Config.bUsePhysicsBasedMovement )
+		{
+			// Accelerate the movement velocity
+			MovementVelocity += WorldSpaceAcceleration * DeltaTime;
+
+
+			// Apply damping
+			{
+				const FLOAT DampingFactor = Clamp( Config.MovementVelocityDampingAmount * DeltaTime, 0.0f, 0.75f );
+
+				// Decelerate
+				MovementVelocity += -MovementVelocity * DampingFactor;
+			}
+		}
+		else
+		{
+			// No physics, so just use the acceleration as our velocity
+			MovementVelocity = WorldSpaceAcceleration;
+		}
+
+
+		// Constrain maximum movement speed
+		if( MovementVelocity.Size() > Config.MaximumMovementSpeed * MovementSpeedScale )
+		{
+			MovementVelocity = MovementVelocity.UnsafeNormal() * Config.MaximumMovementSpeed * MovementSpeedScale;
+		}
+
+
+		// Clamp velocity to a reasonably small number
+		if( MovementVelocity.Size() < KINDA_SMALL_NUMBER )
+		{
+			MovementVelocity = FVector( 0.0f, 0.0f, 0.0f );
+		}
+
+
+		// Update camera position
+		InOutCameraPosition += MovementVelocity * DeltaTime;
+	}
+}
+

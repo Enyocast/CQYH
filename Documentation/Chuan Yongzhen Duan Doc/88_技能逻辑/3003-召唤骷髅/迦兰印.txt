@@ -1,0 +1,289 @@
+
+=====================
+
+// OnCast - 触发节点 1138
+
+// Root Node - 1138
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 190  // 判断宠物数量
+    nXType_0    => 0
+    szParam_0   => 2
+    nXType_1    => 0
+    szParam_1   => 35
+    nXType_2    => 0
+    szParam_2   => 0
+
+    // True Return Node - 1141
+    {
+        Parent_Node => 1138
+        Type        => Char
+        Key         => 58  // 判断标志
+        nXType_0    => 0
+        szParam_0   => 24
+        nXType_1    => 0
+        szParam_1   => 0
+        nXType_2    => 0
+        szParam_2   => 0
+
+        // True Return Node - 1142
+        {
+            Parent_Node => 1141
+            Type        => Char
+            Key         => 39  // 判断概率
+            nXType_0    => 1
+            szParam_0   => X1
+            nXType_1    => 0
+            szParam_1   => 0
+            nXType_2    => 0
+            szParam_2   => 0
+
+            // True Return Node - 1152
+            {
+                Parent_Node => 1142
+                Type        => Char
+                Key         => 226  // 判断铭文 30032-迦兰印
+                nXType_0    => 0
+                szParam_0   => 3003
+                nXType_1    => 0
+                szParam_1   => 2
+                nXType_2    => 0
+                szParam_2   => 0
+
+                // True Return Node - 1143
+                {
+                    Parent_Node => 1152
+                    Type        => Char
+                    Key         => 176  // 召唤宠物 9293-道士骷髅(骷髅刺客)
+                    nXType_0    => 0
+                    szParam_0   => 9293
+                    nXType_1    => 0
+                    szParam_1   => 7    // 类型 7
+                    nXType_2    => 0
+                    szParam_2   => 16
+
+                    // True Return Node - 1144
+                    {
+                        Parent_Node => 1143
+                        Type        => Char
+                        Key         => 188  // 增加技能经验
+                        nXType_0    => 0
+                        szParam_0   => 3003
+                        nXType_1    => 0
+                        szParam_1   => 0
+                        nXType_2    => 0
+                        szParam_2   => 0
+
+                        // Next Node - 1147
+                        {
+                            Parent_Node => 1144
+                            Type        => Char
+                            Key         => 27  // 释放子技能 30030
+                            nXType_0    => 0
+                            szParam_0   => 30030
+                            nXType_1    => 0
+                            szParam_1   => 0
+                            nXType_2    => 0
+                            szParam_2   => 0
+                        }
+                    }
+                }
+
+                // False Return Node - 1153
+                {
+                    Parent_Node => 1152
+                    Type        => Char
+                    Key         => 176  // 召唤宠物 9290-普通骷髅
+                    nXType_0    => 0
+                    szParam_0   => 9290
+                    nXType_1    => 0
+                    szParam_1   => 2
+                    nXType_2    => 0
+                    szParam_2   => 16
+
+                    // True Return Node - 1154
+                    {
+                        Parent_Node => 1153
+                        Type        => Char
+                        Key         => 188  // 增加技能经验
+                        nXType_0    => 0
+                        szParam_0   => 3003
+                        nXType_1    => 0
+                        szParam_1   => 0
+                        nXType_2    => 0
+                        szParam_2   => 0
+                    }
+                }
+            }
+
+            // False Return Node - 1145
+            {
+                Parent_Node => 1142
+                Type        => Char
+                Key         => 176  // 召唤宠物 9290-普通骷髅
+                nXType_0    => 0
+                szParam_0   => 9290
+                nXType_1    => 0
+                szParam_1   => 2
+                nXType_2    => 0
+                szParam_2   => 16
+
+                // True Return Node - 1146
+                {
+                    Parent_Node => 1145
+                    Type        => Char
+                    Key         => 188  // 增加技能经验
+                    nXType_0    => 0
+                    szParam_0   => 3003
+                    nXType_1    => 0
+                    szParam_1   => 0
+                    nXType_2    => 0
+                    szParam_2   => 0
+                }
+            }
+        }
+
+        // False Return Node - 1139
+        {
+            Parent_Node => 1141
+            Type        => Char
+            Key         => 39  // 判断概率
+            nXType_0    => 2
+            szParam_0   => X2
+            nXType_1    => 0
+            szParam_1   => 0
+            nXType_2    => 0
+            szParam_2   => 0
+
+            // True Return Node - 1155
+            {
+                Parent_Node => 1139
+                Type        => Char
+                Key         => 226  // 判断铭文 30032-迦兰印
+                nXType_0    => 0
+                szParam_0   => 3003
+                nXType_1    => 0
+                szParam_1   => 2
+                nXType_2    => 0
+                szParam_2   => 0
+
+                // True Return Node - 1140
+                {
+                    Parent_Node => 1155
+                    Type        => Char
+                    Key         => 176  // 召唤宠物 9293-道士骷髅(骷髅刺客)
+                    nXType_0    => 0
+                    szParam_0   => 9293
+                    nXType_1    => 0
+                    szParam_1   => 7    // 类型 7
+                    nXType_2    => 0
+                    szParam_2   => 16
+
+                    // True Return Node - 1148
+                    {
+                        Parent_Node => 1140
+                        Type        => Char
+                        Key         => 188  // 增加技能经验
+                        nXType_0    => 0
+                        szParam_0   => 3003
+                        nXType_1    => 0
+                        szParam_1   => 0
+                        nXType_2    => 0
+                        szParam_2   => 0
+
+                        // Next Node - 1149
+                        {
+                            Parent_Node => 1148
+                            Type        => Char
+                            Key         => 27  // 释放子技能 30030
+                            nXType_0    => 0
+                            szParam_0   => 30030
+                            nXType_1    => 0
+                            szParam_1   => 0
+                            nXType_2    => 0
+                            szParam_2   => 0
+                        }
+                    }
+                }
+
+                // False Return Node - 1156
+                {
+                    Parent_Node => 1155
+                    Type        => Char
+                    Key         => 176  // 召唤宠物 9290-普通骷髅
+                    nXType_0    => 0
+                    szParam_0   => 9290
+                    nXType_1    => 0
+                    szParam_1   => 2
+                    nXType_2    => 0
+                    szParam_2   => 16
+
+                    // True Return Node - 1157
+                    {
+                        Parent_Node => 1156
+                        Type        => Char
+                        Key         => 188  // 增加技能经验
+                        nXType_0    => 0
+                        szParam_0   => 3003
+                        nXType_1    => 0
+                        szParam_1   => 0
+                        nXType_2    => 0
+                        szParam_2   => 0
+                    }
+                }
+            }
+
+            // False Return Node - 1150
+            {
+                Parent_Node => 1139
+                Type        => Char
+                Key         => 176  // 召唤宠物 9290-普通骷髅
+                nXType_0    => 0
+                szParam_0   => 9290
+                nXType_1    => 0
+                szParam_1   => 2
+                nXType_2    => 0
+                szParam_2   => 16
+
+                // True Return Node - 1151
+                {
+                    Parent_Node => 1150
+                    Type        => Char
+                    Key         => 188  // 增加技能经验
+                    nXType_0    => 0
+                    szParam_0   => 3003
+                    nXType_1    => 0
+                    szParam_1   => 0
+                    nXType_2    => 0
+                    szParam_2   => 0
+                }
+            }
+        }
+    }
+}
+
+
+=====================
+
+
+// 30030-流水技能号177-召唤骷髅熟练度增加
+
+
+// OnCast - 触发节点 1106
+
+// Root Node - 1106
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 188
+    nXType_0    => 0
+    szParam_0   => 3003
+    nXType_1    => 0
+    szParam_1   => 1
+    nXType_2    => 0
+    szParam_2   => 0
+}
+
+
+=====================

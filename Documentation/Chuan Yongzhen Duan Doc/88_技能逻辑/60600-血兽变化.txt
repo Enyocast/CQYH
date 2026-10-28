@@ -1,0 +1,17 @@
+
+=====================
+
+// OnAppendID - 触发节点 3463
+
+// Root Node - 3463
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 59
+    nXType_0    => 0
+    szParam_0   => 6
+    nXType_1    => 0
+    szParam_1   => 0
+    nXType_2    => 0
+    szParam_2   => 0
+}

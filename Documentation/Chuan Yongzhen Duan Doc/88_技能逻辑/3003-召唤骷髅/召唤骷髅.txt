@@ -1,0 +1,43 @@
+
+=====================
+
+// OnCast - 触发节点 1134
+
+// Root Node - 1134
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 190  // 判断宠物数量
+    nXType_0    => 0
+    szParam_0   => 2
+    nXType_1    => 0
+    szParam_1   => 35
+    nXType_2    => 0
+    szParam_2   => 0
+
+    // True Return Node - 1136
+    {
+        Parent_Node => 1134
+        Type        => Char
+        Key         => 176  // 召唤宠物 9290-普通骷髅
+        nXType_0    => 0
+        szParam_0   => 9290
+        nXType_1    => 0
+        szParam_1   => 2
+        nXType_2    => 0
+        szParam_2   => 16
+
+        // True Return Node - 1135
+        {
+            Parent_Node => 1136
+            Type        => Char
+            Key         => 188  // 增加技能经验
+            nXType_0    => 0
+            szParam_0   => 3003
+            nXType_1    => 0
+            szParam_1   => 0
+            nXType_2    => 0
+            szParam_2   => 0
+        }
+    }
+}

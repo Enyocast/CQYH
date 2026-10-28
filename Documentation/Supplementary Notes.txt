@@ -1,0 +1,12 @@
+//The following is a summary of [Seller] chat history
+
+1, File [Seller’s compiled file\SVN.zip]
+This file is a set of svn, and the seller said there is also some source code in it.
+I don’t know how to build svn, I haven’t opened it myself.
+
+2. File [Seller’s files\win environment]
+There is the [MySQL 5.1] installation package and the [certserver.exe] program provided by him.
+
+3. File [Seller’s files\backend virtual machine.zip]
+He said that there is a server in this virtual machine, which can be run directly locally. With the [Easy Language Gateway.zip] in the folder, it can be used as a stand-alone game.
+I have never opened this virtual machine. I don’t know exactly what happened. I am worried that the Yi language program is poisonous, so I dare not open it.

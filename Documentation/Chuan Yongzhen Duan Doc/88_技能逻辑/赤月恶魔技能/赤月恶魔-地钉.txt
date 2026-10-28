@@ -1,0 +1,42 @@
+ApplyGlobalNode 3290
+Execute Function - ModifierChar_069
+ApplyGlobalNode 443
+Execute Function - ModifierChar_014
+role 断情七绝斩 executed gm command SummonNpc(5306);
+
+ApplyGlobalNode 3133
+Execute Function - ModifierChar_252
+
+ApplyGlobalNode 3656
+Execute Function - ModifierMissile_020
+
+nFalseRetNode 3657
+Execute Function - ModifierMissile_001
+
+ApplyGlobalNode 103
+Execute Function - ModifierChar_070
+
+nNextNode 104
+Execute Function - ModifierChar_006
+
+
+// 陷阱 触发的伤害节点
+// 真正触发伤害的是 5769-赤月恶魔等级压制
+ApplyGlobalNode 444
+Execute Function - ModifierBullet_123
+
+nParam1 = 32
+nParam2 = 10000
+nParam3 = 0
+
+
+nX = nX * g_Max(nParam1 - target->GetLevel(), 1) * nParam2 / RATE_MAX + g_Max(nParam1 - target->GetLevel(), 1) * nParam3;
+
+nX = nX * g_Max(32 - 45, 1) * 10000 / 10000 + g_Max(32 - 45, 1) * 0;
+		target->GetLevel()	45	int
+
+
+
+
+
+

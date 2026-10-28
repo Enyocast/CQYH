@@ -1,0 +1,73 @@
+
+=====================
+
+// TargetCheckNode - 触发节点 3207
+
+// Root Node - 3207
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 150  // 判断 目标是不是宠物
+    nXType_0    => 0
+    szParam_0   => 0
+    nXType_1    => 0
+    szParam_1   => 0
+    nXType_2    => 0
+    szParam_2   => 0
+
+    // True Return Node - 3208
+    {
+        Parent_Node => 3207
+        Type        => Char
+        Key         => 147  // 判断光环 60520
+        nXType_0    => 0
+        szParam_0   => 60520
+        nXType_1    => 0
+        szParam_1   => -1
+        nXType_2    => 0
+        szParam_2   => -1
+
+        // True Return Node - 3209
+        {
+            Parent_Node => 3208
+            Type        => Char
+            Key         => 147  // 判断光环 60600
+            nXType_0    => 0
+            szParam_0   => 60600
+            nXType_1    => 0
+            szParam_1   => -1
+            nXType_2    => 0
+            szParam_2   => -1
+        }
+    }
+}
+
+=====================
+
+// OnCast - 触发节点 3214
+
+// Root Node - 3214
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 70  // 锁定目标 LockTarget
+    nXType_0    => 0
+    szParam_0   => 0
+    nXType_1    => 0
+    szParam_1   => 0
+    nXType_2    => 0
+    szParam_2   => 0
+
+    // Next Node - 3215
+    {
+        Parent_Node => 3214
+        Type        => Char
+        Key         => 10  // 添加光环 35870
+        nXType_0    => 0
+        szParam_0   => 35870
+        nXType_1    => 0
+        szParam_1   => 0
+        nXType_2    => 1
+        szParam_2   => X1
+    }
+}

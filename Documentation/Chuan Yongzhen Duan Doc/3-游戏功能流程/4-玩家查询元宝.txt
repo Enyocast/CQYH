@@ -1,0 +1,55 @@
+
+
+1, 客户端 发包 [c2m_check_real_money] 申请查询元宝
+
+
+// ====================
+
+
+2, [MS] 处理
+
+void CMessageHandler::OnClientCheckRealMoney(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
+
+[MS] 转发给 [GS]
+BOOL CMessageHandler::DoGSQueryYuanBao(INT32 dwGSSessionID, UINT32 dwCliSessionID, UINT32 dwRoleID)
+
+
+// ====================
+
+
+3, [GS] 处理
+
+void CGSMessageHandler::OnMSQueryRealMoneyRole(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
+
+[GS] 转发给 [MS]
+BOOL CGSMessageHandler::DoMSQueryRealMoneyRole(UINT32 dwClientSessionID, UINT32 dwRoleID, INT64 llRealMoney)
+
+
+// ====================
+
+
+4, [MS] 处理
+
+void CMessageHandler::OnGSQueryRealMoneyAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
+
+[MS] 发给 客户端
+BOOL CMessageHandler::DoClientSyncRealMoney(UINT32 dwClientSessionID, INT32 nBalance)
+
+
+// ====================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

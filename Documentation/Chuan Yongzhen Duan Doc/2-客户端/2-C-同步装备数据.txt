@@ -1,0 +1,63 @@
+void CMessageHandler::Parse_g2c_sync_role_equip_data(const char* buf, UINT32 size)
+{
+	G2C_SYNC_ROLE_EQUIP_DATA* msg = (G2C_SYNC_ROLE_EQUIP_DATA*)buf;
+	if(!msg)
+	{
+		return;
+	}
+
+	// modified by zhangrui05
+	//INT crc = appMemCrc( msg , size );
+	INT crc = crc32(0, (const Bytef*)msg, sizeof(G2C_SYNC_ROLE_EQUIP_DATA));
+
+	MMOPlayerInfoManager::getSingleton().showInfoByRankList(msg->dwRoleID);
+	//体格强化信息在先，因为装备信息后才会消息去刷新界面
+	MMOPlayerInfoManager::getSingleton().UpdatePlayerRefineInfo( msg->dwRoleID , msg->awRefineLevels );
+	MMOPlayerInfoManager::getSingleton().UpdatePlayerEquipInfo( msg->dwRoleID , msg->byItemCount , msg->acItems , crc );
+	
+}
+
+void MMOPlayerInfoManager::UpdatePlayerRefineInfo( INT roleId , UINT16* level )
+{
+	PlayerDetailInfo* playerInfo = FindPlayerDetailInfo( roleId );
+
+	if( playerInfo )
+	{
+		appMemcpy( playerInfo->RefineLevels , level , sizeof(playerInfo->RefineLevels) );
+	}
+	//和装备消息一起来，等装备通知界面一起更新
+}
+
+void MMOPlayerInfoManager::UpdatePlayerEquipInfo( INT roleId , INT equipNum , char* equipData , INT crc )
+{
+	PlayerDetailInfo* playerInfo = FindPlayerDetailInfo( roleId );
+
+	INT BuffSize = 0;
+
+	if( playerInfo )
+	{
+		//先清空
+		appMemzero( playerInfo->EquipList , sizeof( playerInfo->EquipList ) );
+		
+		for ( int i = 0; i < equipNum ; ++i )
+		{
+			ItemInfo iteminfo;
+			INT buflen = iteminfo.Load( equipData + BuffSize );
+			iteminfo.m_byConSlot = E_CONSLOT_PROFILE;
+			BuffSize += buflen;
+
+			
+			appMemcpy( &playerInfo->EquipList[ iteminfo.m_byItemSlot ] , &iteminfo , sizeof(ItemInfo) );
+			//playerInfo->EquipList[ iteminfo.m_byItemSlot ] = iteminfo;
+
+			MMOPowerManager::getSingleton().UpdateEquipPower( &playerInfo->EquipList[ iteminfo.m_byItemSlot ] );
+
+		}
+		playerInfo->EquipCRC = crc;
+	}
+
+	MMOGameEvent_OneInt evt( GameEvent_PlayerDetailInfoEquipChange , roleId );
+	MMOUI::PostGameEvent( &evt );
+}
+
+

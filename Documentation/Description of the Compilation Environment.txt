@@ -1,0 +1,16 @@
+// Server-side
+
+1. Install VS2013
+
+// Client-side
+
+1. Install VS2010 (Professional or Ultimate edition; I used the Professional edition)
+2. Install the VS2010 SP1 patch/service pack
+
+3. Install DXSDK_Jun10.exe
+{
+// If the installation fails, open [Control Panel > Programs and Features]
+
+Locate all [Microsoft Visual C++] components—from 2005 through 2022—and uninstall them.
+Then, reinstall DXSDK_Jun10.exe and use a DirectX repair tool to fix any remaining issues.
+}

@@ -1,0 +1,185 @@
+
+=====================
+
+// OnExCast1 - 触发节点 1614
+
+// Root Node - 1614
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 190  // 判断宠物数量
+    nXType_0    => 0
+    szParam_0   => 2
+    nXType_1    => 0
+    szParam_1   => 45
+    nXType_2    => 0
+    szParam_2   => 0
+
+    // True Return Node - 1617
+    {
+        Parent_Node => 1614
+        Type        => Char
+        Key         => 226  // 判断铭文 30081-圣兽印
+        nXType_0    => 0
+        szParam_0   => 3008
+        nXType_1    => 0
+        szParam_1   => 1
+        nXType_2    => 0
+        szParam_2   => 0
+
+        // True Return Node - 1615
+        {
+            Parent_Node => 1617
+            Type        => Char
+            Key         => 175  // 召唤宠物 9298-道士神兽(铭文1)
+            nXType_0    => 0
+            szParam_0   => 9298
+            nXType_1    => 0
+            szParam_1   => 5
+            nXType_2    => 0
+            szParam_2   => 32
+
+            // True Return Node - 1616
+            {
+                Parent_Node => 1615
+                Type        => Char
+                Key         => 188  // 增加技能经验
+                nXType_0    => 0
+                szParam_0   => 3008
+                nXType_1    => 0
+                szParam_1   => 0
+                nXType_2    => 0
+                szParam_2   => 0
+            }
+
+            // Next Node - 1625
+            {
+                Parent_Node => 1615
+                Type        => Char
+                Key         => 39  // 判断概率
+                nXType_0    => 0
+                szParam_0   => 0
+                nXType_1    => 0
+                szParam_1   => 0
+                nXType_2    => 0
+                szParam_2   => 0
+
+                // True Return Node - 1620
+                {
+                    Parent_Node => 1625
+                    Type        => Char
+                    Key         => 226  // 判断铭文 30041-凌波印
+                    nXType_0    => 0
+                    szParam_0   => 3004
+                    nXType_1    => 0
+                    szParam_1   => 1
+                    nXType_2    => 0
+                    szParam_2   => 0
+
+                    // True Return Node - 1621
+                    {
+                        Parent_Node => 1620
+                        Type        => Char
+                        Key         => 259  // 锁定目标
+                        nXType_0    => 0
+                        szParam_0   => 0
+                        nXType_1    => 0
+                        szParam_1   => 0
+                        nXType_2    => 0
+                        szParam_2   => 0
+
+                        // Next Node - 1622
+                        {
+                            Parent_Node => 1621
+                            Type        => Char
+                            Key         => 9  // 增加光环 60630
+                            nXType_0    => 0
+                            szParam_0   => 60630
+                            nXType_1    => 0
+                            szParam_1   => 0
+                            nXType_2    => 0
+                            szParam_2   => 0
+                        }
+                    }
+
+                    // False Return Node - 1623
+                    {
+                        Parent_Node => 1620
+                        Type        => Char
+                        Key         => 226  // 判断铭文 30033-偷天印
+                        nXType_0    => 0
+                        szParam_0   => 3003
+                        nXType_1    => 0
+                        szParam_1   => 3
+                        nXType_2    => 0
+                        szParam_2   => 0
+
+                        // Next Node - 1624
+                        {
+                            Parent_Node => 1623
+                            Type        => Char
+                            Key         => 9  // 增加光环 60630
+                            nXType_0    => 0
+                            szParam_0   => 60630
+                            nXType_1    => 0
+                            szParam_1   => 0
+                            nXType_2    => 0
+                            szParam_2   => 0
+                        }
+                    }
+                }
+            }
+        }
+
+        // False Return Node - 1618
+        {
+            Parent_Node => 1617
+            Type        => Char
+            Key         => 175  // 召唤宠物 9291-普通神兽
+            nXType_0    => 0
+            szParam_0   => 9291
+            nXType_1    => 0
+            szParam_1   => 1
+            nXType_2    => 0
+            szParam_2   => 32
+
+            // True Return Node - 1619
+            {
+                Parent_Node => 1618
+                Type        => Char
+                Key         => 188  // 增加技能经验
+                nXType_0    => 0
+                szParam_0   => 3008
+                nXType_1    => 0
+                szParam_1   => 0
+                nXType_2    => 0
+                szParam_2   => 0
+            }
+        }
+    }
+}
+
+
+=====================
+
+
+// 光环 60630
+
+
+// OnAppendID - 触发节点 3610
+
+// Root Node - 3610
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 14
+    nXType_0    => 0
+    szParam_0   => meoOnCharCastSuccess
+    nXType_1    => 0
+    szParam_1   => 3597
+    nXType_2    => 0
+    szParam_2   => 0
+}
+
+
+=====================

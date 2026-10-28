@@ -1,0 +1,60 @@
+
+=====================
+
+// OnCast - 触发节点 103
+
+// Root Node - 103
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 70  // 锁定目标 LockTarget
+    nXType_0    => 0
+    szParam_0   => 0
+    nXType_1    => 0
+    szParam_1   => 0
+    nXType_2    => 0
+    szParam_2   => 0
+
+    // Next Node - 104
+    {
+        Parent_Node => 103
+        Type        => Char
+        Key         => 6  // DoBullet
+        nXType_0    => 0
+        szParam_0   => 0
+        nXType_1    => 0
+        szParam_1   => 0
+        nXType_2    => 0
+        szParam_2   => 0
+    }
+}
+
+=====================
+
+// AfterEffect - 触发节点 637
+
+// Root Node - 637
+{
+    Parent_Node => 0
+    Type        => Bullet
+    Key         => 104  // 判断 PROCESS_SUCCESS(poBullet->GetEffectValue() <= nParam1);
+    nXType_0    => 0
+    szParam_0   => 0
+    nXType_1    => 0
+    szParam_1   => 0
+    nXType_2    => 0
+    szParam_2   => 0
+
+    // True Return Node - 638
+    {
+        Parent_Node => 637
+        Type        => Bullet
+        Key         => 138
+        nXType_0    => 0
+        szParam_0   => -1
+        nXType_1    => 0
+        szParam_1   => 0
+        nXType_2    => 0
+        szParam_2   => 0
+    }
+}

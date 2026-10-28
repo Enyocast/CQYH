@@ -1,0 +1,229 @@
+// 阶段1：程序启动初始化
+{
+	1. main() 或 WinMain()
+	
+	2. CGateServer::Init()
+	   - 2.1 m_pExternalNet = g_CreateNetInterface(netIocp, ...)
+	   - 2.2 CNet::Init()  // 初始化IOCP网络
+		 - 2.2.1 创建IOCP完成端口 (CreateIoCompletionPort)
+		 - 2.2.2 启动IOCP工作线程 (CreateThread, _IocpThreadFunc)
+	   - 2.3 创建外部监听器 (m_pClientSocketAcceptor = m_pExternalNet->CreateAcceptor())
+	   - 2.4 CSocketAcceptor::Open()  // 开始监听客户端连接
+	   - 2.5 创建内部监听器 (m_pGSSocketAcceptor = m_pInternalNet->CreateAcceptor())
+	
+	3. 进入主循环
+}
+
+
+// 阶段2：接受新客户端连接
+{
+	1. CNet::MainLoop() 被循环调用
+	2. 在MainLoop开头，补充AcceptEx操作：
+	   for (每个Acceptor) {
+		   pSocketAcceptor->CreateAcceptSocket();  // ⭐️ 预投递AcceptEx
+	   }
+
+	3. CSocketAcceptor::CreateAcceptSocket()
+	   - 3.1 创建CSocketSession对象
+	   - 3.2 初始化Session (CSocketSession::Init)
+	   - 3.3 发起异步AcceptEx操作
+
+	4. 客户端连接到达，AcceptEx完成
+	5. IOCP工作线程收到通知：
+	   DWORD WINAPI CNet::_IocpThreadFunc()
+		 - case ioAccept: 
+		   pSocketAcceptor->OnAccept(bOperateResult, pSocketSession)
+
+	6. CSocketAcceptor::OnAccept()
+	   - 6.1 更新Accept上下文
+	   - 6.2 将新socket关联到IOCP
+	   - 6.3 通知主线程：m_pNet->PushSessionToMainThread(pSocketSession)
+
+	7. 主线程在MainLoop的后半部分处理：
+	   STACK_NODE* pStackNode = m_SessionStack.Pop()
+	   while (pStackNode) {
+		   switch (pSocketSession->GetState()) {
+			   case ssAccepted:  // 处理新接受的连接
+				   - 设置状态为ssNormal
+				   - 加入会话列表
+				   - 调用事件处理器OnAccepted
+				   - 开始异步接收：pSocketSession->StartRecv()
+		   }
+	   }
+}
+
+
+// 阶段3：客户端数据交互
+{
+	1. 客户端发送数据到达
+	2. IOCP工作线程处理接收完成：
+	   case ioRecv:
+		   pThis->_OnRecv(bOperateResult, pSocketSession, dwIoSize)
+
+	3. CNet::_OnRecv()
+	   - 3.1 调用 CSocketSession::CompleteRecv(nIoSize)
+	   - 3.2 CompleteRecv更新接收缓冲区，发起下一次接收
+
+	4. 主线程处理接收到的数据：
+	   BOOL CNet::MainLoop()
+		 - case ssNormal:
+			 while (pSocketSession->Recv() > 0)  // 处理完整消息
+			 pSocketSession->TrySend(qwCurrentTick)  // 触发发送
+
+	5. CSocketSession::Recv()
+	   - 5.1 从循环缓冲区解析消息
+	   - 5.2 调用事件处理器：m_pNet->GetEventHandler()->OnRecv()
+
+	6. 应用程序发送数据：
+	   pSocketSession->Send(pPacketBuffer, nSize, nOffset)
+	   - 6.1 数据拷贝到发送循环缓冲区
+	   - 6.2 可能触发立即发送或等待TrySend
+}
+
+
+// ====================
+
+
+// 时间线
+{
+	T0: 主线程调用 StartRecv() → CompleteRecv(0) → WSARecv() → 立即返回
+	T1: 主线程继续执行MainLoop中的其他任务
+	T2: 客户端发送数据到达网卡
+	T3: 操作系统将数据拷贝到 m_pRecvLoopBuffer 指定位置
+	T4: IOCP工作线程收到完成通知
+	T5: 工作线程调用 _OnRecv() → CompleteRecv(实际字节数)
+	T6: CompleteRecv中再次调用WSARecv()，建立下一次接收
+	T7: 主线程在下一个MainLoop循环中处理接收到的数据
+}
+
+
+// ====================
+
+
+// 终极梳理逻辑
+
+
+// 1. 两个线程的完美分工
+{
+	// 工作线程（IOCP线程）
+	{
+		// 职责：纯I/O操作，数据搬运工
+		DWORD WINAPI CNet::_IocpThreadFunc(void* pParam)
+		{
+			// 等待操作系统通知（阻塞在这里是正常的，这是专用I/O线程）
+			GetQueuedCompletionStatus(m_hIOCP, ...);
+			
+			switch (操作类型) {
+			case ioRecv:  // 数据到达通知
+				CompleteRecv(nIoSize);  // 更新缓冲区，发起下一次接收
+				break;
+			case ioSend:  // 发送完成通知  
+				CompleteSend(nIoSize);  // 更新发送状态，可能继续发送
+				break;
+			}
+		}
+	}
+	
+	// 主线程（业务线程）
+	{
+		// 职责：业务逻辑处理，永不阻塞
+		BOOL CNet::MainLoop(void)
+		{
+			// 遍历所有会话
+			for (每个会话) {
+				if (状态 == ssNormal) {
+					// 处理已接收的完整消息
+					while (Recv() > 0) {
+						// 解析协议，调用业务处理器
+					}
+					// 尝试触发发送
+					TrySend(currentTime);
+				}
+			}
+		}
+	}
+}
+
+
+// 2. 异步协作的关键特性
+{
+	// 真正的非阻塞
+	{
+		工作线程：只在有I/O事件时被唤醒，其他时间休眠
+		主线程：永远在运行业务逻辑，永不等待I/O
+	}
+	
+	// 零拷贝高效 (没有中间的内存拷贝！)
+	网络数据 → 操作系统内核 → 直接写入循环缓冲区 → 主线程处理
+	
+	// 无锁设计
+	通过循环缓冲区的Head/Rear索引实现无锁同步
+	工作线程只写Rear，主线程只写Head
+	通过volatile确保内存可见性
+}
+
+
+// 3. 完整的数据处理流水线
+{
+	// 接收流水线
+	阶段1: [工作线程] 数据到达 → 更新Rear → 发起下一接收
+	阶段2: [主线程] 检查缓冲区 → 解析完整消息 → 业务处理 → 更新Head
+	
+	// 发送流水线
+	阶段1: [主线程] 业务逻辑 → 数据存入发送缓冲区 → 可能触发发送
+	阶段2: [工作线程] 发送完成通知 → 更新Head → 可能继续发送
+}
+
+
+// 4. 协议处理的正确理解
+{
+	// 在 CSocketSession::Recv() 中的协议解析
+	{
+		INT32 CSocketSession::Recv(void)
+		{
+			// 1. 检查是否有足够数据读取消息头
+			if (nRecvDataSize < sizeof(MESSAGE_HEADER)) return 0;
+			
+			// 2. 解析消息ID和长度
+			wMsgID = ...;  // 从缓冲区解析消息ID
+			nSize = ...;   // 从协议定义或消息头获取消息长度
+			
+			// 3. 检查是否有完整消息
+			if (nRecvDataSize < nSize) return 0;
+			
+			// 4. 拷贝完整消息并处理
+			memcpy(pPacketBuffer, ...);  // 从循环缓冲区拷贝完整消息
+			m_pNet->GetEventHandler()->OnRecv(...);  // 交给业务层
+			
+			return nMessageSize;
+		}
+	}
+}
+
+
+// 为什么这种设计如此高效？
+{
+	// 对比传统同步模型
+	{
+		// 传统方式（一个连接一个线程）
+		while (true) {
+			data = recv(socket);     // 阻塞等待数据
+			process(data);           // 处理数据
+			send(response);          // 发送响应
+		}
+		// 问题：线程大量时间在等待I/O，CPU利用率低
+	}
+	
+	// IOCP异步模型
+	{
+		// IOCP方式（少量线程处理大量连接）
+		工作线程：专门处理I/O事件（高效的数据搬运）
+		主线程：专门处理业务逻辑（高效的CPU利用）
+		// 优势：各司其职，资源利用率最大化
+	}
+}
+
+
+// ====================
+
+

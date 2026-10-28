@@ -1,0 +1,76 @@
+
+
+item_def.h 文件
+
+enum CONTAINER_SLOT
+{
+    CONSLOT_EQUIPPED,       ///< 0, 已装备物品
+    CONSLOT_DEFAULT,        ///< 1, 默认包裹
+    CONSLOT_BANK,           ///< 2, 银行
+    CONSLOT_HERO_EQUIPPED,  ///< 3, 英雄已装备物品
+    CONSLOT_HERO_EQUIPMENT, ///< 4, 英雄包裹
+    CONSLOT_DEPOSIT,        ///< 5, 储值栏
+    CONSLOT_RECOVER,        ///< 6, 自动恢复栏
+    CONSLOT_RESOURCE,       ///< 7, 资源包
+    CONSLOT_COUNT,
+
+    ///<  client only
+    CONSLOT_P2P_MY,         ///< p2p交易我的栏位
+    CONSLOT_P2P_TG,         ///< p2p交易对方的栏位
+    CONSLOT_STALL_SETTING,  ///< 
+    CONSLOT_STALL_BUY,      ///< 
+    CONSLOT_PROFILE,        ///< 查看他人信息
+    CONSLOT_GUILD_BANK,		///< 公会仓库
+
+    ///<  server only
+    CONSLOT_WEAPON_LEVEL_UP = 100,///< 炼刀
+};
+
+static const UINT8 INIT_CONTAINER_SIZE[CONSLOT_COUNT] = { NES_TOTAL, 32, 16, NES_TOTAL, 64, DEPOSIT_ITEM_SLOT_TOTAL, 1, 32 };
+
+数组 INIT_CONTAINER_SIZE 对应的下标, 就是对应的容器数量
+
+
+// ==========
+
+
+// 初始化流程
+
+
+当创建人物之后, 第一次进入游戏里, 走这个函数 加载数据
+BOOL CRole::Load(const char* pcData, UINT32 dwSize)
+{
+	// 在这里判断人物等级, 初始化新角色 _InitNewRole
+	if (GetLevel() == 0)
+	{
+		nRetCode = _InitNewRole();
+		LOG_PROCESS_ERROR(nRetCode);
+	}
+}
+
+BOOL CRole::_InitNewRole(void)
+{
+	// 初始化背包, 走这里
+	m_ItemBag.Clear();
+}
+
+void CItemBag::Clear()
+{
+	// 在这里 对角色的所有容器做初始化
+	for (INT32 i = 0; i < CONSLOT_COUNT; i++)
+	{
+		m_con_sizes[i] = INIT_CONTAINER_SIZE[i];
+	}
+}
+
+
+// ==========
+
+
+
+
+
+
+
+
+

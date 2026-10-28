@@ -1,0 +1,34 @@
+
+
+
+// 一共 3个文件
+E:\cqyh-new-test\NewServer\bin\commonconfig\script\newai\4014\main.uh
+E:\cqyh-new-test\NewServer\bin\commonconfig\script\newai\4015\main.uh
+E:\cqyh-new-test\NewServer\bin\commonconfig\script\newai\901_ReviveZombie\main.uh
+
+
+// ====================
+
+
+// 判断 [场景变量ID] == 9, [场景变量数值] 是否大于2000
+{ batCheckSceneVariable , param={ boGTE, 9, 2000 } },
+
+
+// 这3个文件, 当 [场景变量数值] 小于2000 则增加数值
+{ batSetSceneVariable , param={ 9, 0, 1 } },
+
+
+当[场景变量数值]满足条件时, 当前是 >= 2000, 
+并且是打死怪物 [4014-和尚僵尸4], 才能刷新 [尸王殿] 出来, 打别的怪物不刷新
+
+
+// ====================
+
+
+
+
+
+
+
+
+

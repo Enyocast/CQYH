@@ -1,0 +1,27 @@
+**Path**
+```text
+E:\08.Prog_CQ_S1\Client\UE3\Binaries\Win32
+```
+
+**Launch Tool**
+```text
+E:\08.Prog_CQ_S1\DevLauncher.exe
+```
+
+---
+
+// ========== Divider Line
+
+1. Use the old version to extract the files.
+
+2. Replace all files in the path above with the files from `Win32-修改编译好.rar` (**Win32 – Modified and Compiled.rar**).
+
+3. Open the launch tool and click the **Release** button to start the client.
+
+---
+
+// ========== Divider Line
+
+**Client Source Code**
+
+Replace the `ScaleformEngine.cpp` file in the client source code and recompile.

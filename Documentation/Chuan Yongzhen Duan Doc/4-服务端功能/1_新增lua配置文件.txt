@@ -1,0 +1,72 @@
+
+
+路径 "bin\globalconfig"
+
+
+// ====================
+
+
+1, 在路径中 新增加文件
+例如 "bin\globalconfig\broadconfig.lua"
+
+
+2, 打开服务端项目, 添加文件
+[项目] script => [文件夹] config => 右键 "添加-现有项", 添加刚才的文件 "broadconfig.lua"
+
+
+3, 在文件中 新增加结构体声明
+在 "server_config.h" 文件, struct SERVER_CONFIG 结构体中, 新增加 子结构体
+
+// 例如
+struct SERVER_CONFIG
+{
+    //...
+	// 自定义新增公告配置
+	struct BRODA_CONFIG
+	{
+		char szBroad[256];
+	};
+	BRODA_CONFIG BroadConfig[10];
+}
+
+
+4, 重新编译全部程序, 会自动生成 tolua文件, 
+
+
+5, 启动服务端, 下断点测试
+在 "global_config.cpp" 文件 中, 函数 BOOL LoadGlobalConfig(const char* pcszFileName)
+
+// 加载代码 下断点, 执行之后 找到对应结构体, 看是否加载成功
+nRetCode = oScript.CallFunction("LoadFile", "os", &g_ServerConfig, "SERVER_CONFIG", "ServerConfig");
+LOG_PROCESS_ERROR(nRetCode);
+
+
+// ====================
+
+
+在本例中, 新增加的是 结构体数组
+
+在 "broadconfig.lua" 文件中, 要给数组先初始化才行, 然后再赋值, 否则就读不到数据
+
+-- 新增代码
+{
+	ServerConfig.BroadConfig = {};
+
+	ServerConfig.BroadConfig[0] = {};
+	ServerConfig.BroadConfig[0].szBroad = "公告0";
+
+	ServerConfig.BroadConfig[1] = {};
+	ServerConfig.BroadConfig[1].szBroad = "公告1";
+}
+
+解释
+代码 ServerConfig.BroadConfig = {}; 是给 BRODA_CONFIG BroadConfig[10]; 初始化
+
+代码 ServerConfig.BroadConfig[0] = {}; 是给 BroadConfig数组中 下标0的数据 char szBroad[256]; 做初始化
+
+以此类推, 可以新增很多数据
+
+
+
+
+

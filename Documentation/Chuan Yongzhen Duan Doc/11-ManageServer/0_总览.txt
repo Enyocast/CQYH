@@ -1,0 +1,29 @@
+
+
+// 文件 manageserver.cpp
+
+
+// db数据库版本
+#define CURRENT_DB_VERSION	(8)
+
+数据库 表[version], 字段[id], 数据[all] 这一行, 字段[number]的数值 与 CURRENT_DB_VERSION 做判断
+
+如果数值不一样, MS就启动不起来
+
+
+========================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

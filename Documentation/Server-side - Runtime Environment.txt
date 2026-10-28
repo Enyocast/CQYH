@@ -1,0 +1,34 @@
+// Server-side - Preparation
+
+1. Install MySQL 5.1.
+2. Locate the `certserver.exe` program (file size: 99.5 KB / 101,888 bytes) and place it in any directory; ensure the file path contains no Chinese characters.
+3. Execute the `server.reg` registry file.
+4. In the Registry Editor, navigate to the following path: `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\services\certification server`.
+5. Update the path to `C:\CQYH_SERVER\certserver.exe`, ensuring the file location matches the path specified.
+6. Restart your computer after making these changes, and verify that the "certification server" service is in a "Running" state.
+
+// Server-side - Configuration Guide
+
+1. Server-side - Base directory: `[NewServer]`
+2. Server-side - Source code directory: `[NewServer\src]`
+3. Server-side - Compiled program directory: `[NewServer\bin]`
+4. Server-side - [Name Server] source code: `[NewServer\src\nameserver]`
+5. Server-side - Global configuration directory: `[NewServer\bin\globalconfig]`
+6. To change the server IP: Edit `commonconfig.lua`, update the IP variable `szCertServerAddr` and the port variable `dwCSPort`.
+7. To configure the server database: Edit `dbconfig.lua`.
+8. In `mmconfig.lua`, update the IP variable `szAddress`.
+9. For the [Name Server] configuration file (`nameserver.ini`), update the `ip` entry under the `[net]` section, as well as the entries under the `[db]` section (ensure they match the settings in `dbconfig.lua`).
+
+// Server-side - Startup Instructions
+
+1. Place the compiled `nameserver.exe` into the `[NewServer\bin]` directory, alongside `nameserver.ini`.
+2. Launch `nameserver.exe`.
+
+3. Open the file `guard_d.bat`.
+{
+Common commands (for detailed command information, refer to the source code at `[NewServer\tools\guardserver]`)
+1. [start ar] - Start the server application (release mode)
+2, [start a]  - Start the server application (debug mode)
+3, [close]   ​​ - Shut down all applications immediately, without saving data
+4, [stop]     - Save data first, then shut down all applications
+}

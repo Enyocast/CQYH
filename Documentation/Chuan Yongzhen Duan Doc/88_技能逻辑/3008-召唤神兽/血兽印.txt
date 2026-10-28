@@ -1,0 +1,82 @@
+
+=====================
+
+// OnCast - 触发节点 1626
+
+// Root Node - 1626
+{
+    Parent_Node => 0
+    Type        => Char
+    Key         => 190  // 判断宠物数量
+    nXType_0    => 0
+    szParam_0   => 2
+    nXType_1    => 0
+    szParam_1   => 45
+    nXType_2    => 0
+    szParam_2   => 0
+
+    // True Return Node - 1629
+    {
+        Parent_Node => 1626
+        Type        => Char
+        Key         => 226  // 判断铭文 30082-血兽印
+        nXType_0    => 0
+        szParam_0   => 3008
+        nXType_1    => 0
+        szParam_1   => 2
+        nXType_2    => 0
+        szParam_2   => 0
+
+        // True Return Node - 1627
+        {
+            Parent_Node => 1629
+            Type        => Char
+            Key         => 175  // 召唤宠物 9300-道士神兽(血兽)
+            nXType_0    => 0
+            szParam_0   => 9300
+            nXType_1    => 0
+            szParam_1   => 9
+            nXType_2    => 0
+            szParam_2   => 32
+
+            // True Return Node - 1628
+            {
+                Parent_Node => 1627
+                Type        => Char
+                Key         => 188  // 增加技能经验
+                nXType_0    => 0
+                szParam_0   => 3008
+                nXType_1    => 0
+                szParam_1   => 0
+                nXType_2    => 0
+                szParam_2   => 0
+            }
+        }
+
+        // False Return Node - 1630
+        {
+            Parent_Node => 1629
+            Type        => Char
+            Key         => 175  // 召唤宠物 9291-普通神兽
+            nXType_0    => 0
+            szParam_0   => 9291
+            nXType_1    => 0
+            szParam_1   => 1
+            nXType_2    => 0
+            szParam_2   => 32
+
+            // True Return Node - 1631
+            {
+                Parent_Node => 1630
+                Type        => Char
+                Key         => 188  // 增加技能经验
+                nXType_0    => 0
+                szParam_0   => 3008
+                nXType_1    => 0
+                szParam_1   => 0
+                nXType_2    => 0
+                szParam_2   => 0
+            }
+        }
+    }
+}

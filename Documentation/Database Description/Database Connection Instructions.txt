@@ -1,0 +1,3 @@
+Configure the database IP address, port, database name, and other settings in this file:
+
+NewServer\bin\globalconfig\dbconfig.lua
