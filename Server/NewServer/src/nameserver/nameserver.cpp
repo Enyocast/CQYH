@@ -19,7 +19,7 @@ const char* g_szTableName[ntTotal] =
     "guild",
 };
 
-// 长度(ROLE_NAME_LEN) (GUILD_NAME_LEN)
+// Length (ROLE_NAME_LEN) (GUILD_NAME_LEN)
 const char* g_szCreateTable[ntTotal] =
 {
     "CREATE TABLE IF NOT EXISTS `role` ( `RoleID` int(4) unsigned NOT NULL AUTO_INCREMENT, `RoleName` varchar(25) NOT NULL, PRIMARY KEY(`RoleID`) ) ENGINE = MyISAM DEFAULT CHARSET = utf8 ",
@@ -110,16 +110,16 @@ void CNameServer::_ThrdWork(void)
 
     pQuery->nErrCode = errNsNameDBSysErr;
 
-    // 默认代码
+    // Default code
     //sprintf(szSql, "insert into %s (name) values ('%s');", g_szTableName[pQuery->eType], pQuery->szName);
     //nRetCode = mysql_query(m_sql, szSql);
     //LOG_PROCESS_ERROR(nRetCode == 0);
     //dwRetID = mysql_insert_id(m_sql);
     //LOG_PROCESS_ERROR(dwRetID > 0);
 
-    // 自己新增代码
+    // Custom added code
     
-    // 准备 SQL 语句, 根据类型区分 [角色名字/公会名字]
+    // Prepare the SQL statement for the type [character name/guild name]
     switch (pQuery->eType)
     {
         case 0:
@@ -134,55 +134,55 @@ void CNameServer::_ThrdWork(void)
             LOG_PROCESS_ERROR(false);
     }
 
-    // 执行 SQL 语句
+    // Execute the SQL statement
     nRetCode = mysql_query(m_sql, szSql);
     LOG_PROCESS_ERROR(nRetCode == 0);
 
-    // 获取结果集
+    // Get the result set
     MYSQL_RES* result = mysql_store_result(m_sql);
     LOG_PROCESS_ERROR(result);
 
-    // 读取结果
+    // Read the result
     MYSQL_ROW row = mysql_fetch_row(result);
     LOG_PROCESS_ERROR(row);
 
-    // 表中已经有数据了, 就直接获取数值
+    // If the table already contains data, get the value directly
     if (*row)
     {
-        // 当前id最大值+1
+        // Current maximum ID + 1
         dwRetID = (UINT32)atoi(row[0]) + 1;
     }
-    // 表中没有数据, 直接读 row[0] 就会崩溃, 因此先判断一轮
+    // Reading row[0] on an empty table would crash, so check first
     else
     {
-        // 准备 SQL 语句, 查询表中有多少行数据
+        // Prepare an SQL statement to count table rows
         char szSqlTotalRows[1024] = { 0 };
         sprintf(szSqlTotalRows, "SELECT COUNT(*) AS TotalRows FROM %s;", g_szTableName[pQuery->eType]);
 
-        // 执行 SQL 语句
+        // Execute the SQL statement
         nRetCode = mysql_query(m_sql, szSqlTotalRows);
         LOG_PROCESS_ERROR(nRetCode == 0);
 
-        // 获取结果集
+        // Get the result set
         MYSQL_RES* resultTotalRows = mysql_store_result(m_sql);
         LOG_PROCESS_ERROR(resultTotalRows);
 
-        // 读取结果
+        // Read the result
         MYSQL_ROW rowTotalRows = mysql_fetch_row(resultTotalRows);
         LOG_PROCESS_ERROR(rowTotalRows);
 
-        // 当表中一行数据都没有时, 说明当前是第一条数据
+        // If the table is empty, this is the first record
         if (atoi(rowTotalRows[0]) == 0)
         {
             dwRetID = 1;
         }
 
-        // 释放结果集
+        // Release the result set
         mysql_free_result(resultTotalRows);
         resultTotalRows = NULL;
     }
 
-    // 释放结果集
+    // Release the result set
     mysql_free_result(result);
     result = NULL;
 
@@ -341,10 +341,10 @@ BOOL CNameServer::_LoadData(void)
     {
         char szSql[1024] = { 0 };
 
-        // 默认代码
+        // Default code
         //sprintf(szSql, "select id, name from %s;", g_szTableName[i]);
 
-        // 查询 角色表/公会表, 字段名不一样
+        // Query the character or guild table; field names differ
         switch (i)
         {
             case ntRoleName:
@@ -381,7 +381,7 @@ Exit0:
     return FALSE;
 }
 
-// 添加新数据, 检查是否有重复数据
+// Add new data and check for duplicates
 INT32 CNameServer::AddNewData(INT32 eType, INT32 nSessionID, UINT32 dwCliSessionID, const char* szName, const char* UserData)
 {
     INT32 nResult = errNsNameUnknown;
@@ -393,13 +393,13 @@ INT32 CNameServer::AddNewData(INT32 eType, INT32 nSessionID, UINT32 dwCliSession
     LOG_PROCESS_ERROR(eType > ntInvalid && eType < ntTotal);
     LOG_PROCESS_ERROR(strlen(szName) > 0);
 
-    // 当前已有的名字里是否有重名
+    // Check existing names for duplicates
     {
         TNameMap::iterator itr = m_NameMap[eType].find(szName);
         PROCESS_ERROR_RET_CODE(itr == m_NameMap[eType].end(), errNsNameDuplicated);
     }
 
-    // 当前锁定的名字里是否有重名
+    // Check locked names for duplicates
     {
         TLockNameSet::iterator itr = m_LockNameSet[eType].find(szName);
         PROCESS_ERROR_RET_CODE(itr == m_LockNameSet[eType].end(), errNsNameDuplicated);
@@ -543,27 +543,27 @@ BOOL g_bStop = FALSE;
 SERVICE_STATUS_HANDLE g_hServiceStatus;
 SERVICE_STATUS g_status;
 NS_CONFIG g_NSConfig;
-char g_szConfigName[] = { 0 };    // nameserver.ini 文件路径
+char g_szConfigName[] = { 0 };    // Path to nameserver.ini
 
-// 初始化配置路径
+// Initialize the configuration path
 void InitConfigPath() 
 {
     char szExePath[MAX_PATH] = { 0 };
 
-    // 获取当前程序的绝对路径（如 E:\cqyh-new2\NewServer\bin\nameserver64_d.exe）
+    // Get the executable’s absolute path (e.g. E:\cqyh-new2\NewServer\bin\nameserver64_d.exe)
     GetModuleFileName(NULL, szExePath, MAX_PATH);
 
-    // 提取程序所在目录（E:\cqyh-new2\NewServer\bin\）
+    // Extract the executable directory (E:\cqyh-new2\NewServer\bin\)
     char* pLastSlash = strrchr(szExePath, '\\');
     if (pLastSlash != NULL) {
-        *pLastSlash = '\0'; // 截断文件名，保留目录
+        *pLastSlash = '\0'; // Remove the file name, retaining the directory
     }
 
-    // 拼接成 .ini 文件的完整路径
+    // Construct the full .ini file path
     snprintf(g_szConfigName, MAX_PATH, "%s\\nameserver.ini", szExePath);
 }
 
-// 这里有问题, 路径正确, 但是读取不出来数据, 因此设定一个默认值了
+// The path is correct but data cannot be read here, so a default value is set
 void ReadConfig(void)
 {
     ::GetPrivateProfileString("net", "ip", "127.0.0.1", g_NSConfig.net_config.ip, COMMON_NAME_LEN, g_szConfigName);

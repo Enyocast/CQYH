@@ -43,19 +43,19 @@ VOID CMessageHandler::OnGTEnterGate(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize,
 		INF("user[%s] repeat Login, old user sessionID<%08X> state %d, new user[%s], new user sessionID<%08x>", 
             pOldUser->szUserName, dwOldClientSessionID, pOldUser->eState, pMsg->szUserName, pMsg->dwClientSessionID );
 
-        // 账号重复登录被踢下线
+        // Disconnected due to duplicate account login
 		nRetCode = DoErrorNotify(pOldUser->dwCliSessionID, errLoginRepeatKicked, 0, 0);
 		LOG_PROCESS_ERROR(nRetCode);
 
         KICK_USER(pOldUser->dwCliSessionID, ktImmediately);
 
-        // 账号重复登录
+        // Duplicate account login
         nRetCode = DoGTEnterGateAck(pMsg->dwClientSessionID, errLoginRepeat);
         LOG_PROCESS_ERROR(nRetCode);
     }
     else
     {
-        // 玩家被锁定，请稍后再试
+        // Player is locked; try again later
 		if (CGMManager::GetInstance().IsUserLocked(pMsg->szUserName))
 		{
 			nRetCode = DoGTEnterGateAck(pMsg->dwClientSessionID, errLoginLocked);
@@ -129,8 +129,8 @@ VOID CMessageHandler::OnGTQueryScene(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize
     MS_ROLE_DATA        *pRoleData = NULL;
 	INT32				nServerGroupID = GET_GROUP_INDEX_FROM_SESSION_ID(pMsg->dwClientSessionID);
 
-    // 找不到user是有bug
-    // 状态不对也是bug
+    // A missing user indicates a bug
+    // An invalid state also indicates a bug
     poUser = CUserMgr::GetInstance().FindUserBySessionID(pMsg->dwClientSessionID);
     LOG_PROCESS_ERROR(poUser);
     LOG_PROCESS_ERROR(poUser->eState == USER_STATE_QUEUEFINISHED);
@@ -138,19 +138,19 @@ VOID CMessageHandler::OnGTQueryScene(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize
     pRoleData = CRoleDataMgr::GetInstance().FindRole(pMsg->dwRoleID);
     LOG_PROCESS_ERROR(pRoleData);
 
-    // 检测gm 冻结角色
+    // Check whether GM froze the character
 	if (pRoleData->dwLoginFrozenTime > CManageServer::GetInstance().GetGameTime())
     {
         nRetCode = CMessageHandler::GetInstance().DoGTQuerySceneAck(pMsg->dwClientSessionID, pMsg->dwRoleID, 0, errLoginRoleFrozen, pRoleData->dwLoginFrozenTime, 0);
         LOG_CHECK_ERROR(nRetCode);
     }
-    // 预创建角色
+    // Pre-create character
 	else if (g_ServerConfig.GroupConfig[nServerGroupID].bPrecreateRole)
 	{
         nRetCode = CMessageHandler::GetInstance().DoGTQuerySceneAck(pMsg->dwClientSessionID, pMsg->dwRoleID, 0, errLoginPrecreate, 0, 0);
 		LOG_CHECK_ERROR(nRetCode);
 	}
-    // 启用月卡功能, 判断时间
+    // If monthly cards are enabled, check the time
     else if (g_ServerConfig.MS.bTimeCardEnabled && poUser->nTimeLeft < 0)
     {
         nRetCode = CMessageHandler::GetInstance().DoGTQuerySceneAck(pMsg->dwClientSessionID, pMsg->dwRoleID, 0, errLoginTimeUnknown, 0, 0);
@@ -163,7 +163,7 @@ VOID CMessageHandler::OnGTQueryScene(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize
 
 		poUser->dwCurRoleID = pMsg->dwRoleID;
 
-		pstOnlineRole = COnlineRoleDataMgr::GetInstance().NewOnlineRole(poUser);  // 新连接的客户
+		pstOnlineRole = COnlineRoleDataMgr::GetInstance().NewOnlineRole(poUser);  // Newly connected client
 		LOG_PROCESS_ERROR(pstOnlineRole);
 
 		pcSceneData = CDataManager<SCENE_DATA>::GetInstance().GetData(pMsg->nSceneTempID);
@@ -237,7 +237,7 @@ VOID CMessageHandler::OnGTClientShutDown(PACKET_BUFFER* pPacketBuffer, UINT32 dw
     T2M_CLIENT_SHUTDOWN* pMsg = (T2M_CLIENT_SHUTDOWN*)pPacketBuffer;
     LOG_PROCESS_ERROR(pMsg);
 
-    // 找不到User是合理异常
+    // A missing user is an expected exception
     poUser = CUserMgr::GetInstance().FindUserBySessionID(pMsg->dwClientSessionID);
     PROCESS_ERROR(poUser);
 
@@ -286,7 +286,7 @@ VOID CMessageHandler::OnGTChangeGSAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSiz
     MS_USER* poUser = NULL;
     MS_ONLINE_ROLE_DATA* pstOnlineRole = NULL;
 
-    // 找不到user和状态不对都是有BUG
+    // A missing user or invalid state indicates a bug
     poUser = CUserMgr::GetInstance().FindUserBySessionID(pMsg->dwClientSessionID);
     LOG_PROCESS_ERROR(poUser);
     LOG_PROCESS_ERROR(poUser->eState == USER_STATE_JUMP_ENTER_TARGET);

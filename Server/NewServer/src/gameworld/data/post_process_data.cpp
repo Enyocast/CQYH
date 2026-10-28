@@ -448,7 +448,7 @@ BOOL g_ProcessSpellVar(SPELL_VAR* pData, BOOL bInit)
 
         e->m_bInited = TRUE;
 
-        // 默认代码
+        // Default code
         for (INT32 i = 0; i < MAX_EX_PARAM_COUNT; i++)
         {
             t->SetX(i, pData->m_nX[i]);
@@ -699,7 +699,7 @@ BOOL g_ProcessAchievementData(ACHIEVEMENT_DATA* pData, BOOL bInit)
 
             switch (pData->vecAchievementType[nIndex])
             {
-                case adKillNpcIDCount:				// 玩家杀死指定ID怪物
+                case adKillNpcIDCount:				// Player kills a monster with the specified ID
                 {
                     LOG_PROCESS_ERROR(pData->vecAchievementValue1[nIndex] >= 0 && pData->vecAchievementValue1[nIndex] < MAX_ROLE_VARIABLE_COUNT);
 
@@ -727,7 +727,7 @@ BOOL g_ProcessAchievementData(ACHIEVEMENT_DATA* pData, BOOL bInit)
 
                     break;
                 }
-                case adKilledByNpcIDCount:			// 指定ID怪物杀死玩家
+                case adKilledByNpcIDCount:			// Monster with the specified ID kills the player
                 {
                     LOG_PROCESS_ERROR(pData->vecAchievementValue1[nIndex] >= 0 && pData->vecAchievementValue1[nIndex] < MAX_ROLE_VARIABLE_COUNT);
 
@@ -738,7 +738,7 @@ BOOL g_ProcessAchievementData(ACHIEVEMENT_DATA* pData, BOOL bInit)
 
                     break;
                 }
-                case adUseItemIDCount:						// 使用指定ID物品						
+                case adUseItemIDCount:						// Use the item with the specified ID
                 {
                     LOG_PROCESS_ERROR(pData->vecAchievementValue1[nIndex] >= 0 && pData->vecAchievementValue1[nIndex] < MAX_ROLE_VARIABLE_COUNT);
 

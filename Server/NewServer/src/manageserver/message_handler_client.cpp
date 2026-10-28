@@ -58,7 +58,7 @@ void CMessageHandler::OnGTClientMsg(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize,
 
     pUser = CUserMgr::GetInstance().FindUserBySessionID(pMsg->dwClientSessionID);
     LOG_PROCESS_ERROR(pUser);
-    LOG_PROCESS_ERROR(pUser->eState == USER_STATE_INGAME);  // 状态不对是合理状况
+    LOG_PROCESS_ERROR(pUser->eState == USER_STATE_INGAME);  // An invalid state is an expected condition
 
     pstOnlineRole = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(pUser->dwCurRoleID);
     LOG_PROCESS_ERROR(pstOnlineRole);
@@ -124,7 +124,7 @@ Exit0:
     return;
 }
 
-// ===== 组队加入 (双方任意一人有队伍, 都走这里)
+// ===== Join team (used when either party already has a team)
 void CMessageHandler::OnClientTeamJoin(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nRetCode = 0;
@@ -153,7 +153,7 @@ void CMessageHandler::OnClientTeamJoin(PACKET_BUFFER* pPacketBuffer, UINT32 dwSi
     LOG_PROCESS_ERROR(pstTgtOnlineRole->pRoleData);
     PROCESS_ERROR_RET_CODE(pstTgtOnlineRole->stBattleQueue.byQueue == qsNotInQueue, errTeamInBattleQueue);
 
-    // 自己组队自己, 不知道咋触发的, 暂时先不管
+    // Self-team request; trigger is unknown, so ignore it for now
     if (pstOnlineRole->pRoleData->dwRoleID == pMsg->dwTargetRoleID)
     {
         UINT32 dwNewTeamID = 0;
@@ -239,7 +239,7 @@ Exit0:
     return;
 }
 
-// 退队
+// Leave team
 void CMessageHandler::OnClientTeamLeave(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nRetCode = 0;
@@ -356,7 +356,7 @@ Exit0:
     return;
 }
 
-// 组队回答
+// Team response
 void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nRetCode = 0;
@@ -391,10 +391,10 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
     pstOnlineRole->dwWaitReqRoleID = 0;
     PROCESS_ERROR_RET_CODE(pstRequstRole->stBattleQueue.byQueue == qsNotInQueue, errTeamInBattleQueue);
 
-    // 我拒绝组队
+    // I decline the team request
     if (pMsg->byAnswerResult == etarDisAgree)
     {
-        // 拒绝邀请
+        // Decline invitation
         if (pMsg->byAnswerType == etatInvite)
         {
             CMessageHandler::GetInstance().DoErrorNotify(pstOnlineRole->dwCliSessionID, errTeamRefusedInvitation,
@@ -403,7 +403,7 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
             CMessageHandler::GetInstance().DoErrorNotify(pstRequstRole->dwCliSessionID, errTeamInvitationRefused,
                 pstOnlineRole->pRoleData->dwRoleID, pstRequstRole->pRoleData->dwRoleID);
         }
-        // 拒绝主动申请
+        // Decline an application
         else if (pMsg->byAnswerType == etatEnter)
         {
             CMessageHandler::GetInstance().DoErrorNotify(pstOnlineRole->dwCliSessionID, errTeamRefusedApplication,
@@ -415,14 +415,14 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         PROCESS_SUCCESS(TRUE);
     }
 
-    // 下面就是接受组队了
+    // The following handles accepting the team request
     pstRequstUser = pstRequstRole->pUser;
     PROCESS_ERROR_RET_CODE(pstRequstUser->eState == USER_STATE_INGAME, errTeamOffLine);
 
     PROCESS_ERROR_RET_CODE(pstRequstRole->pRoleData->dwTeamID == 0 ||
         pstOnlineRole->pRoleData->dwTeamID == 0, errTeamAlreadyInTeam);
 
-    // 我没队伍, 对方没队伍, 那就创建一个队伍
+    // If neither party has a team, create one
     if (pstOnlineRole->pRoleData->dwTeamID == 0 && pstRequstRole->pRoleData->dwTeamID == 0)
     {
         UINT32 dwNewTeamID = 0;
@@ -432,17 +432,17 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         poTeam = CTeamMgr::GetInstance().New(dwNewTeamID);
         LOG_PROCESS_ERROR(poTeam);
 
-        // 新增代码, 获取 [组队模式]
+        // Additional code: get team mode
         UINT8 byAssignType = pstOnlineRole->m_TeamInvite[pMsg->dwAnswerRequestRoleID];
 
         nRetCode = poTeam->Init(GET_GROUP_INDEX_FROM_SESSION_ID(pstOnlineRole->dwCliSessionID),
-            //dwNewTeamID, pstRequstRole->pRoleData->szRoleName, 11, etaFreeForAll, ITEMCOLOR_WHITE);    // 原代码, 默认[自由拾取]
-            dwNewTeamID, pstRequstRole->pRoleData->szRoleName, 11, byAssignType, ITEMCOLOR_WHITE);       // 新代码, 设置[组队模式]
+            //dwNewTeamID, pstRequstRole->pRoleData->szRoleName, 11, etaFreeForAll, ITEMCOLOR_WHITE);    // Original code: default to free-for-all loot
+            dwNewTeamID, pstRequstRole->pRoleData->szRoleName, 11, byAssignType, ITEMCOLOR_WHITE);       // New code: set team mode
         LOG_PROCESS_ERROR(nRetCode);
 
-        poTeam->AddMember(pstRequstRole->pRoleData->dwRoleID);    // 新队伍 把对方加进去
-        poTeam->AddMember(pstOnlineRole->pRoleData->dwRoleID);    // 新队伍 把我加进去
-        poTeam->SetLeader(pstRequstRole->pRoleData->dwRoleID);    // 对方是队长
+        poTeam->AddMember(pstRequstRole->pRoleData->dwRoleID);    // Add the other player to the new team
+        poTeam->AddMember(pstOnlineRole->pRoleData->dwRoleID);    // Add this player to the new team
+        poTeam->SetLeader(pstRequstRole->pRoleData->dwRoleID);    // The other player is team leader
 
         nRetCode = DoClientTeamJoin(pstRequstRole->dwCliSessionID, poTeam);
         LOG_CHECK_ERROR(nRetCode);
@@ -453,10 +453,10 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         nRetCode = DoGSTeamNew(poTeam);
         LOG_PROCESS_ERROR(nRetCode);
 
-        // 新代码, 能走到这里说明组队成功, 清除数据
+        // New code: reaching here means team formation succeeded; clear data
         pstOnlineRole->m_TeamInvite.clear();
 
-        // 记录日志
+        // Write log
         nRetCode = DoDLCreateTeam(CManageServer::GetInstance().GetGameTime(),
             pstRequstRole->pRoleData->byGroup, pstRequstRole->pRoleData->dwRoleID, dwNewTeamID);
         LOG_CHECK_ERROR(nRetCode);
@@ -466,7 +466,7 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
             poTeam->GetLeader(), poTeam->GetMemberCount());
         LOG_CHECK_ERROR(nRetCode);
     }
-    // 对方有队伍, 我没队伍
+    // The other player has a team; this player does not
     else if (pstRequstRole->pRoleData->dwTeamID > 0)
     {
         poTeam = CTeamMgr::GetInstance().Find(pstRequstRole->pRoleData->dwTeamID);
@@ -475,7 +475,7 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         PROCESS_ERROR_RET_CODE(poTeam->GetLeader() == pstRequstRole->pRoleData->dwRoleID, errTeamNotLeader);
         PROCESS_ERROR_RET_CODE(poTeam->GetMemberCount() < poTeam->GetMemberSizeLimit(), errTeamFull);
 
-        nRetCode = poTeam->AddMember(pstOnlineRole->pRoleData->dwRoleID);    // 把我加进去
+        nRetCode = poTeam->AddMember(pstOnlineRole->pRoleData->dwRoleID);    // Add this player
         LOG_PROCESS_ERROR(nRetCode);
 
         nRetCode = DoClientTeamJoin(pstOnlineRole->dwCliSessionID, poTeam);
@@ -491,7 +491,7 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
             pstOnlineRole->pRoleData->dwRoleID, poTeam->GetTeamID(), poTeam->GetLeader(), poTeam->GetMemberCount());
         LOG_CHECK_ERROR(nRetCode);
     }
-    // 我已经有队伍, 对方申请加入我的队伍, 我做出回应
+    // This player has a team and responds to the other player’s join request
     else
     {
         poTeam = CTeamMgr::GetInstance().Find(pstOnlineRole->pRoleData->dwTeamID);
@@ -534,7 +534,7 @@ Exit0:
     return;
 }
 
-// 修改队伍信息
+// Update team information
 void CMessageHandler::OnClientTeamChangeInfo(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nRetCode = 0;
@@ -563,7 +563,7 @@ void CMessageHandler::OnClientTeamChangeInfo(PACKET_BUFFER* pPacketBuffer, UINT3
     LOG_PROCESS_ERROR(pMsg->byAssignType < etaTotal);
     LOG_PROCESS_ERROR(pMsg->byItemAuctionColorLimit< ITEMCOLOR_TOTAL && pMsg->byItemAuctionColorLimit > ITEMCOLOR_INVALID);
 
-    poTeam->SetMemberSizeLimit(pMsg->nTeamMemberLimit);    // 这句代码 默认是注释的, 暂时打开试试
+    poTeam->SetMemberSizeLimit(pMsg->nTeamMemberLimit);    // This line is disabled by default; enable it temporarily for testing
     poTeam->SetLeader(pMsg->dwLeadID);
     poTeam->SetAssignType(pMsg->byAssignType);
     poTeam->SetTeamName(pMsg->szTeamName);
@@ -673,7 +673,7 @@ Exit0:
     return;
 }
 
-// 查询队伍信息
+// Query team information
 void CMessageHandler::OnClientTeamQuery(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     CTeam* poTeam = NULL;
@@ -681,19 +681,19 @@ void CMessageHandler::OnClientTeamQuery(PACKET_BUFFER* pPacketBuffer, UINT32 dwS
 
     C2M_TEAM_QUERY* pMsg = (C2M_TEAM_QUERY*)pPacketBuffer;
 
-    // 获取 对方对象指针
+    // Get the other player object pointer
     targetrole = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(pMsg->dwTargetRoleID);
     LOG_PROCESS_ERROR(targetrole);
 
-    // 获取 对方队伍对象指针
+    // Get the other player’s team pointer
     poTeam = CTeamMgr::GetInstance().Find(targetrole->pRoleData->dwTeamID);
 
-    // 对方没队伍
+    // The other player has no team
     if (poTeam == NULL)
     {
         DoClientTeamSyncTeamInfo(0, "", ITEMCOLOR_WHITE, 0, pstOnlineRole);
     }
-    // 对方有队伍
+    // The other player has a team
     else
     {
         DoClientTeamSyncTeamInfo(poTeam->GetTeamID(), poTeam->GetTeamName(), poTeam->GetAuctionItemColorLimit(), poTeam->GetLeader(), pstOnlineRole);
@@ -703,7 +703,7 @@ Exit0:
     return;
 }
 
-// 邀请组队 (双方都没队伍, 走这里)
+// Invite to team (used when neither party has a team)
 void CMessageHandler::OnClientTeamInvite(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nRetCode = 0;
@@ -724,19 +724,19 @@ void CMessageHandler::OnClientTeamInvite(PACKET_BUFFER* pPacketBuffer, UINT32 dw
 
     LOG_PROCESS_ERROR_RET_CODE(!pstReqUser->bFreeMode, errFreeMode);
 
-    // 获取 当前对象信息
+    // Get current player information
     pstOnlineRole = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(pstReqUser->dwCurRoleID);
     LOG_PROCESS_ERROR(pstOnlineRole);
     LOG_PROCESS_ERROR(pstOnlineRole->pRoleData);
     PROCESS_ERROR_RET_CODE(pstOnlineRole->stBattleQueue.byQueue == qsNotInQueue, errTeamInBattleQueue);
 
-    // 获取 目标对象信息
+    // Get target player information
     pstTgtOnlineRole = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(pMsg->dwTargetRoleID);
     PROCESS_ERROR_RET_CODE(pstTgtOnlineRole, errTeamOffLine);
     LOG_PROCESS_ERROR(pstTgtOnlineRole->pRoleData);
     PROCESS_ERROR_RET_CODE(pstTgtOnlineRole->stBattleQueue.byQueue == qsNotInQueue, errTeamInBattleQueue);
 
-    // 自己组队
+    // Team with self
     if (pstOnlineRole->pRoleData->dwRoleID == pMsg->dwTargetRoleID)
     {
         UINT32 dwNewTeamID = 0;
@@ -763,7 +763,7 @@ void CMessageHandler::OnClientTeamInvite(PACKET_BUFFER* pPacketBuffer, UINT32 dw
             pstOnlineRole->pRoleData->dwRoleID, dwNewTeamID);
         LOG_CHECK_ERROR(nRetCode);
     }
-    // 邀请别人一起组队, 双方都不在队伍中
+    // Invite another player when neither is in a team
     else
     {
         UINT32 dwTeamID = INVALID_OBJECT_ID;
@@ -782,7 +782,7 @@ void CMessageHandler::OnClientTeamInvite(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         
         pstTgtOnlineRole->dwJoinTeamRoleID[MAX_JOIN_TEAM_ROLE_COUNT - 1] = pstOnlineRole->pRoleData->dwRoleID;
 
-        // 新增代码, 邀请别人组队, 用于记录[队伍模式]
+        // Additional code: record team mode when inviting another player
         pstTgtOnlineRole->m_TeamInvite[pstOnlineRole->pRoleData->dwRoleID] = pMsg->byAssignType;
 
         nRetCode = DoClientTeamAnswer(pstTgtOnlineRole->dwCliSessionID, eAnswerType, pstOnlineRole->pRoleData->dwRoleID, pstOnlineRole->pRoleData->szRoleName);
@@ -802,9 +802,9 @@ Exit0:
         DoErrorNotify(pstOnlineRole->dwCliSessionID, nResult, 0, 0);
     return;
 }
-// ===== 组队 end
+// ===== Team end
 
-// 好友
+// Friends
 void CMessageHandler::OnClientFriendAdd(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nResult = errSuccess;
@@ -1103,7 +1103,7 @@ void CMessageHandler::OnClientPersonalEnemyAdd(PACKET_BUFFER* pPacketBuffer, UIN
     LOG_PROCESS_ERROR(pstOnlineRole->pRoleData);
     LOG_PROCESS_ERROR(IsValidGroup(pstOnlineRole->pRoleData->byGroup));
 
-    // todo is friend 如果是我关注的人，那么就不计入仇人 Allan Tao
+    // TODO is friend: do not count a followed player as an enemy. Allan Tao
     PROCESS_ERROR_RET_CODE(pstOnlineRole->m_friends.find(pMsg->dwRoleID) == pstOnlineRole->m_friends.end(), errFriendAlreadyExists);
 
     // check same
@@ -1284,7 +1284,7 @@ void CMessageHandler::OnClientChatMessage(PACKET_BUFFER* pPacketBuffer, UINT32 d
             }
 
             nRetCode = DoClientChatMessage(pstOnlineRole->pRoleData->szRoleName, poTargetRole->pRoleData->dwRoleID,
-                pstOnlineRole->pRoleData->dwRoleID, cltNormal, pMsg->szMessage, 0, pstOnlineRole->nGMLevel > 0); //此发送消息同时发回给发送方一份
+                pstOnlineRole->pRoleData->dwRoleID, cltNormal, pMsg->szMessage, 0, pstOnlineRole->nGMLevel > 0); //This message is also sent back to the sender
             LOG_PROCESS_ERROR_RET_CODE(nRetCode, errChatServiceUnavaible);
 
             nRetCode = DoDLChatMessage(CManageServer::GetInstance().GetGameTime(),
@@ -1465,7 +1465,7 @@ Exit0:
     return FALSE;
 }
 
-// ===== 组队 begin
+// ===== Team begin
 BOOL CMessageHandler::DoClientTeamJoin(UINT32 dwClientSessionID, CTeam* poTeam)
 {
     INT32 nRetCode = 0;
@@ -1817,7 +1817,7 @@ Exit0:
         m_pPacketAllocator->Free((PACKET_BUFFER*)pMsg);
     return FALSE;
 }
-// ===== 组队 end
+// ===== Team end
 
 BOOL CMessageHandler::DoClientSelfInfo(MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
@@ -2480,7 +2480,7 @@ BOOL CMessageHandler::DoClientMailListRecv(UINT32 dwClientSessionID, CBaseList& 
 
         pMsg->wMailCount++;
 
-        //判断越界
+        //Check bounds
         if (pMsg->wMailCount >= dwMaxMailCount)
             break;
     }
@@ -2730,7 +2730,7 @@ Exit0:
     return FALSE;
 }
 
-// ===== 至尊交易行 Auction begin
+// ===== Premium auction begin
 BOOL CMessageHandler::DoClientAuctionSearchResult(UINT32 dwClientSessionID, ExternalMessage::FLEX_MESSAGE_HEADER* pMsg)
 {
     INT32 nRetCode = 0;
@@ -2774,10 +2774,10 @@ BOOL CMessageHandler::DoClientAuctionQuery(UINT32 dwClientSessionID, Auction* pA
         pMsg->bySellerLevel = pSellerRole->byLevel;
         pMsg->bySellerClass = pSellerRole->byClass;
 
-        // 出售者 名字
+        // Seller name
         strxcpy(pMsg->szSellerName, pSellerRole->szRoleName, ROLE_NAME_LEN);
 
-        // 出售者 公会名字
+        // Seller guild name
         pGuild = CMsGuildMgr::GetInstance().FindGuildByID(pSellerRole->dwGuildID);
         if (pGuild)
         {
@@ -3021,9 +3021,9 @@ Exit0:
         m_pPacketAllocator->Free((PACKET_BUFFER*)pMsg);
     return FALSE;
 }
-// ===== 至尊交易行 Auction end
+// ===== Premium auction end
 
-// ===== 金币交易行 Exchange begin
+// ===== Gold exchange begin
 BOOL CMessageHandler::DoClientExchangeAddOrder(UINT32 dwClientSessionID, Order* pOrder)
 {
     INT32 nRetCode = 0;
@@ -3219,7 +3219,7 @@ Exit0:
         m_pPacketAllocator->Free((PACKET_BUFFER*)pMsg);
     return FALSE;
 }
-// ===== 金币交易行 Exchange end
+// ===== Gold exchange end
 
 BOOL CMessageHandler::DoClientSyncRealMoney(UINT32 dwClientSessionID, INT32 nBalance)
 {
@@ -3742,7 +3742,7 @@ Exit0:
     return;
 }
 
-// ===== 至尊交易行 Auction begin
+// ===== Premium auction begin
 void CMessageHandler::OnClientAuctionSearchType(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nRetCode = 0;
@@ -3866,7 +3866,7 @@ void CMessageHandler::OnClientAuctionBuy(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         return;
     }
 
-    // 获取 Auction对象
+    // Get the Auction object
     auction = CAuctionMgr::GetInstance().GetAuction(pMsg->dwAuctionID);
     if (auction == NULL)
     {
@@ -3874,44 +3874,44 @@ void CMessageHandler::OnClientAuctionBuy(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         return;
     }
 
-    // 判断 出价是否超过当前最高的价格
+    // Check whether the bid exceeds the current highest price
     if (pMsg->llBidPrice < auction->GetNextPrice())
     {
         DoErrorNotify(pstOnlineRole->dwCliSessionID, errAuctionBuyingPriceLow, 0, 0);
         return;
     }
 
-    // 判断 是否为"一口价", 变量 llBidPrice 是出价, 如果小于"一口价"的价格, 就是 "竞拍价"
+    // Determine whether this is a buyout: llBidPrice is a bid if below the buyout price
     if (auction->m_llBuyoutPrice && pMsg->llBidPrice >= auction->m_llBuyoutPrice)
     {
         buying_out = TRUE;
     }
 
-    // 不是一口价购买, 判断该玩家参与拍卖的订单, 是否超过订单最大数量
+    // For a non-buyout bid, check whether the player exceeds the auction order limit
     if (!buying_out && CAuctionMgr::GetInstance().GetBuyingAuctions(pstOnlineRole->pRoleData->dwRoleID).size() >= g_GWConfig.nMaxAuctionBuyingItems)
     {
         DoErrorNotify(pstOnlineRole->dwCliSessionID, errAuctionBuyingFull, 0, 0);
         return;
     }
 
-    // 判断 购买者 和 出售者, 是否为同一个人
+    // Check whether buyer and seller are the same player
     if (auction->m_dwSellerRoleID == pstOnlineRole->pRoleData->dwRoleID)
     {
         DoErrorNotify(pstOnlineRole->dwCliSessionID, errAuctionSellerCannotBuy, 0, 0);
         return;
     }
 
-    // 判断 如果不是一口价购买, 并且 当前竞拍出价最高的人, 是该玩家本人, 则不可重复竞拍
+    // For non-buyout bids, the current highest bidder cannot bid again
     if (!buying_out && auction->m_dwBuyerRoleID == pstOnlineRole->pRoleData->dwRoleID)
     {
         DoErrorNotify(pstOnlineRole->dwCliSessionID, errAuctionBuyerCannotBuy, 0, 0);
         return;
     }
 
-    // 发给GS扣保证金, "一口价"或"竞拍", 这里都是只扣 [保证金], 最后再付尾款
-    // 做好区分 是"一口价", 还是"竞拍", 因为这个出价 会直接修改 Auction对象, 也会影响客户端显示
+    // Ask GS to deduct the deposit for either buyout or bidding; the balance is paid later
+    // Distinguish buyout from bidding: the price updates the Auction object and affects client display
 
-    // 不是"一口价", 并且 也没交过保证金, 则扣保证金 (这种情况, 是该玩家第一次操作这个订单, 只是出价竞拍, 不是一口价买)
+    // For a first bid without an existing deposit, deduct the deposit
     if (!buying_out && !CAuctionMgr::GetInstance().IsBidder(pMsg->dwAuctionID, pstOnlineRole->pRoleData->dwRoleID))
     {
         byBuyType = EAuctionBuyType::eabtBid;
@@ -3920,7 +3920,7 @@ void CMessageHandler::OnClientAuctionBuy(PACKET_BUFFER* pPacketBuffer, UINT32 dw
 
         pstOnlineRole->pRoleData->eAuctionQueryStatus = MS_ROLE_DATA::eqsGsAuctionBuy;
     }
-    // 是"一口价", 并且 也没交过保证金, 则扣保证金 (这种情况, 是该玩家第一次操作这个订单, 上来直接就一口价买了)
+    // For a first-action buyout without an existing deposit, deduct the deposit
     else if (buying_out == TRUE && !CAuctionMgr::GetInstance().IsBidder(pMsg->dwAuctionID, pstOnlineRole->pRoleData->dwRoleID))
     {
         byBuyType = EAuctionBuyType::eabtBuyout;
@@ -3931,8 +3931,8 @@ void CMessageHandler::OnClientAuctionBuy(PACKET_BUFFER* pPacketBuffer, UINT32 dw
     }
     else
     {
-        // 是"一口价", 但是之前已经交过保证金, 说明是多次操作这个订单, 现在直接以一口价买了
-        // 现在就不用扣保证金了, 直接更新订单状态, 结束订单, 让该玩家付尾款
+        // For a buyout after a previous deposit, the player has already acted on this order
+        // Do not deduct another deposit; update and close the order, then charge the balance
 
         role = CRoleDataMgr::GetInstance().FindRole(pstOnlineRole->pRoleData->dwRoleID);
         pOnlineRole = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(pstOnlineRole->pRoleData->dwRoleID);
@@ -3967,15 +3967,15 @@ void CMessageHandler::OnClientAuctionListMyBuying(PACKET_BUFFER* pPacketBuffer, 
 
 void CMessageHandler::OnClientAuctionPayLeftMoney(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
-    // 能走到这一步, 说明已经到最后一步[付尾款]了, 并且当前玩家是最终出价者, 并且已经扣除了 [保证金]
+    // At balance payment, the current player is the final bidder and the deposit has already been deducted
     INT32 nRetCode = 0;
     Auction* auction = NULL;
     C2M_AUCTION_PAY_LEFT_MONEY* pMsg = (C2M_AUCTION_PAY_LEFT_MONEY*)pPacketBuffer;
 
-    // 获取 自己购买物品的列表
+    // Get the player’s purchased item list
     const CAuctionMgr::AUCTION_LIST& auction_list = CAuctionMgr::GetInstance().GetBuyingAuctions(pstOnlineRole->pRoleData->dwRoleID);
 
-    // 判断列表中 是否有对应的订单ID
+    // Check the list for the corresponding order ID
     for (const auto it : auction_list)
     {
         if (it->m_dwAuctionID == pMsg->dwAuctionID)
@@ -3988,31 +3988,31 @@ void CMessageHandler::OnClientAuctionPayLeftMoney(PACKET_BUFFER* pPacketBuffer, 
 
     UINT32 dwCurTime = CManageServer::GetInstance().GetGameTime();
 
-    // 超过时间了, 就是竞拍结束, 到时间了, 以订单价格为主 (扣钱都是扣差价, 要扣掉保证金)
+    // After expiry, the auction is complete: use the order price and charge the difference after the deposit
     if (auction->m_dwFinishTime <= dwCurTime)
     {
         INT64 diffPrice = auction->m_llPrice - auction->m_llDepositPrice;
-        diffPrice = (diffPrice < 0) ? 0 : diffPrice;    // 判断计算结果 是否小于0
+        diffPrice = (diffPrice < 0) ? 0 : diffPrice;    // Check whether the calculated result is below zero
         nRetCode = DoGSAuctionPay(pstOnlineRole->dwGSSessionID, pstOnlineRole->pRoleData->dwRoleID, pMsg->dwAuctionID, diffPrice);
         LOG_PROCESS_ERROR(nRetCode);
     }
-    // 没超过时间就要付款, 说明订单价格达到一口价了
+    // Payment before expiry means the order reached the buyout price
     else
     {
         INT64 diffPrice = auction->m_llBuyoutPrice - auction->m_llDepositPrice;
-        diffPrice = (diffPrice < 0) ? 0 : diffPrice;    // 判断计算结果 是否小于0
+        diffPrice = (diffPrice < 0) ? 0 : diffPrice;    // Check whether the calculated result is below zero
         nRetCode = DoGSAuctionPay(pstOnlineRole->dwGSSessionID, pstOnlineRole->pRoleData->dwRoleID, pMsg->dwAuctionID, diffPrice);
         LOG_PROCESS_ERROR(nRetCode);
     }
 
 
 Exit0:
-    // 红字提示 该订单不存在啥的...
+    // Display a red warning if the order does not exist, etc.
     return;
 }
-// ===== 至尊交易行 Auction end
+// ===== Premium auction end
 
-// ===== 金币交易行 Exchange begin
+// ===== Gold exchange begin
 void CMessageHandler::OnClientExchangeAddOrder(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nRetCode = 0;
@@ -4027,9 +4027,9 @@ void CMessageHandler::OnClientExchangeAddOrder(PACKET_BUFFER* pPacketBuffer, UIN
     LOG_PROCESS_ERROR(!pstOnlineRole->pUser->bFreeMode);
     LOG_PROCESS_ERROR(pstOnlineRole->pRoleData->byLevel >= g_GWConfig.nRoleLowLevel);
     LOG_PROCESS_ERROR(pMsg->byOrderType == eotBuy || pMsg->byOrderType == eotSell);
-    LOG_PROCESS_ERROR(pMsg->nItemID == MONEYTYPE_02);//目前只可以买卖金币
+    LOG_PROCESS_ERROR(pMsg->nItemID == MONEYTYPE_02);//Currently only gold can be bought or sold
     LOG_PROCESS_ERROR(pMsg->nCount > 0);
-    LOG_PROCESS_ERROR(pMsg->nPrice > 1);//必须大于1，因为收税至少1，净收入0会被平台拒绝
+    LOG_PROCESS_ERROR(pMsg->nPrice > 1);//Must exceed 1: tax is at least 1 and the platform rejects zero net proceeds
     LOG_PROCESS_ERROR(pMsg->byOrderType == eotSell || (INT64)pMsg->nPrice * (INT64)pMsg->nCount * 10000LL <= (INT64)MAX_MONEY);
 
     if (pMsg->byOrderType == eotBuy && CExchangeMgr::GetInstance().GetOrders(pMsg->byOrderType, pstOnlineRole->pRoleData->dwRoleID).size() >= MAX_EXCHANGE_BUYING_ORDERS)
@@ -4043,11 +4043,11 @@ void CMessageHandler::OnClientExchangeAddOrder(PACKET_BUFFER* pPacketBuffer, UIN
         return;
     }
 
-    // TODO: 检查价格，涨停板跌停板
+    // TODO: check price and upper/lower trading limits
 
     if (pMsg->byOrderType == eotBuy)
     {
-        // 买金币出点券
+        // Spend vouchers to buy gold
         if (!g_ServerConfig.MS.bOABillingEnable)
         {
             DoErrorNotify(pstOnlineRole->dwCliSessionID, errRealMoneyShopNotOpen, 0, 0);
@@ -4061,7 +4061,7 @@ void CMessageHandler::OnClientExchangeAddOrder(PACKET_BUFFER* pPacketBuffer, UIN
     }
     else
     {
-        // 卖金币收点券
+        // Receive vouchers for selling gold
         nRetCode = DoGSExchangeAddOrder(pstOnlineRole->dwGSSessionID, pstOnlineRole->pRoleData->dwRoleID, MONEYTYPE_02, pMsg->nCount * 10000,
             pMsg->byOrderType, pMsg->nPrice, pMsg->nCount);
         LOG_PROCESS_ERROR(nRetCode);
@@ -4141,12 +4141,12 @@ void CMessageHandler::OnClientExchangeListMyLogs(PACKET_BUFFER* pPacketBuffer, U
 Exit0:
     return;
 }
-// ===== 金币交易行 Exchange end
+// ===== Gold exchange end
 
-// 查询元宝, MS 发给 GS
+// Query ingots: MS sends to GS
 void CMessageHandler::OnClientCheckRealMoney(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
-    // 默认代码
+    // Default code
     //if (g_ServerConfig.MS.bOABillingEnable)
     //{
     //    COABillMgr::GetInstance().DoQueryAccount(pstOnlineRole->pUser);
@@ -4156,13 +4156,13 @@ void CMessageHandler::OnClientCheckRealMoney(PACKET_BUFFER* pPacketBuffer, UINT3
     //    DoErrorNotify(pstOnlineRole->dwCliSessionID, errRealMoneyShopNotOpen, 0, 0);
     //}
 
-    // 自己加代码
+    // Custom code
     DoGSQueryYuanBao(pstOnlineRole->dwGSSessionID, pstOnlineRole->dwCliSessionID, pstOnlineRole->pRoleData->dwRoleID);
 }
 
 void CMessageHandler::OnClientCheckRealMoneyShopData(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
-    // 默认代码
+    // Default code
 //    C2M_CHECK_REAL_MONEY_SHOP_DATA* pMsg = (C2M_CHECK_REAL_MONEY_SHOP_DATA*)pPacketBuffer;
 //    M2C_SYNC_REAL_MONEY_SHOP_DATA* pResponse = NULL;
 //    INT32 nRetCode = 0;
@@ -4187,7 +4187,7 @@ void CMessageHandler::OnClientCheckRealMoneyShopData(PACKET_BUFFER* pPacketBuffe
 //    if (pResponse)
 //        m_pPacketAllocator->Free((PACKET_BUFFER*)pResponse);
 
-    // 自己改代码
+    // Custom code
     C2M_CHECK_REAL_MONEY_SHOP_DATA* pMsg = (C2M_CHECK_REAL_MONEY_SHOP_DATA*)pPacketBuffer;
     M2C_SYNC_REAL_MONEY_SHOP_DATA* pResponse = NULL;
     INT32 nRetCode = 0;
@@ -4208,7 +4208,7 @@ Exit0:
 
 void CMessageHandler::OnClientRealMoneyBuy(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
-    // 默认代码
+    // Default code
     //if (g_ServerConfig.MS.bOABillingEnable)
     //{
     //    C2M_REAL_MONEY_BUY* pMsg = (C2M_REAL_MONEY_BUY*)pPacketBuffer;
@@ -4237,7 +4237,7 @@ void CMessageHandler::OnClientSaleInfo(PACKET_BUFFER* pPacketBuffer, UINT32 dwSi
     DoClientSaleInfo(pstOnlineRole->dwCliSessionID);
 }
 
-// GM命令
+// GM command
 void CMessageHandler::OnClientGMCommand(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     BOOL bRet = FALSE;
@@ -4250,14 +4250,14 @@ void CMessageHandler::OnClientGMCommand(PACKET_BUFFER* pPacketBuffer, UINT32 dwS
     LOG_PROCESS_ERROR(pstOnlineRole->pUser);
     LOG_PROCESS_ERROR(pstOnlineRole->pRoleData);
 
-    // 新加代码, 判断是否开启GM命令, 判断GM角色名字 (=FALSE, 则所有人都可以打命令)
+    // Additional code: check whether GM commands are enabled and check GM character names (FALSE lets anyone issue commands)
     if (g_ServerConfig.CC.bGmComandEnable == TRUE)
     {
         bRet = g_GM_CheckRoleName(pstOnlineRole->pRoleData->szRoleName);
         LOG_PROCESS_ERROR(bRet);
     }
 
-    // 测试代码
+    // Test code
     //UINT32 size = CDataManager<EQUIP_DATA>::GetInstance().GetDataSize();
     //WRN("EQUIP_DATA size %d", size);
     //const EQUIP_DATA* pcNpcData = CDataManager<EQUIP_DATA>::GetInstance().GetFirstData();
@@ -4319,25 +4319,25 @@ Exit0:
     return;
 }
 
-// 购买点卡
+// Purchase a time card
 void CMessageHandler::OnClientBuyTime(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
-    // 客户端UI里输入 "1", 封包参数 pMsg->dwBuyTimeCost 是 "100", 客户端里会自动乘以100 再发封包
+    // If the client UI enters 1, pMsg->dwBuyTimeCost is 100: the client multiplies by 100 before sending
     C2M_BUY_TIME* pMsg = (C2M_BUY_TIME*)pPacketBuffer;
     LOG_PROCESS_ERROR(pMsg->dwBuyTimeCost > 0 && pMsg->dwBuyTimeCost <= 10000000);
     LOG_PROCESS_ERROR(pMsg->dwBuyTimeCost % 100 == 0);
 
-    // 默认代码
+    // Default code
     //COABillMgr::GetInstance().DoBuyTime(pstOnlineRole, pMsg->dwBuyTimeCost, pMsg->dwBuyTimeCost / 100 * 6000, FALSE);
 
-    // 自己改代码, 不使用默认的点卡系统
+    // Custom code: do not use the default time-card system
     DoGSCustomRoleBuyTime(pstOnlineRole->dwGSSessionID, pstOnlineRole->dwCliSessionID, pstOnlineRole->pRoleData->dwRoleID, pMsg->dwBuyTimeCost);
 
 Exit0:
     return;
 }
 
-// 允许天地合一
+// Allow heaven-and-earth unity
 void CMessageHandler::OnClientChangeRecallState(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nResult = errUnknownError;

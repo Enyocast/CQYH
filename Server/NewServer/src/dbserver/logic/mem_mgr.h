@@ -31,11 +31,11 @@ public:
     BOOL Init(UINT32 dwMemCount);
     BOOL UnInit();
 
-    void Push(DB_ROLE_DATA* pData);     //工作线程归还
-    DB_ROLE_DATA* Pop(void);            //主线程拿
+    void Push(DB_ROLE_DATA* pData);     //Returned by worker thread
+    DB_ROLE_DATA* Pop(void);            //Acquired by main thread
 
 private:
-    CFreeStack m_FreeStack; //主线程从这里拿空闲的内存，工作线程把空闲的内存放到这里
+    CFreeStack m_FreeStack; //Main thread acquires free memory here; worker thread returns free memory here
     MemPtr m_memptr;
 };
 

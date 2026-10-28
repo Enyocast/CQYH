@@ -3,7 +3,7 @@
 	file:		guild_storage.h
 	author:		Allan Tao
 	
-	purpose:	帮派仓库
+	purpose:	Guild storage
 *********************************************************************/
 
 #ifndef _H_MS_GUILD_STORAGE_H_

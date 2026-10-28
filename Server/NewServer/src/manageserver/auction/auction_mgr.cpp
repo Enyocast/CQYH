@@ -49,27 +49,27 @@ INT64 Auction::GetNextPrice() const
 
 void Auction::Finish()
 {
-    // 一共3个情况走这个函数, 1-超时了, 2-主动取消订单, 3-正常拍卖
+    // This function handles three cases: timeout, voluntary cancellation, and normal auction completion
     BOOL bRet = FALSE;
 
-    // 出售者
+    // Seller
     MS_ROLE_DATA* seller_role = CRoleDataMgr::GetInstance().FindRole(m_dwSellerRoleID);
     LOG_PROCESS_ERROR(seller_role);
 
-    // 购买者 - 这里不能写了, 因为主动取消订单, 也是走这个函数, 主动取消的话, 就没有购买者了, 放在下面写
+    // Do not resolve the buyer here: voluntary cancellation also uses this function and has no buyer
     //MS_ROLE_DATA* buyer_role = CRoleDataMgr::GetInstance().FindRole(m_dwBuyerRoleID);
     //LOG_PROCESS_ERROR(buyer_role);
 
-    // 判断订单状态
+    // Check order status
     LOG_PROCESS_ERROR(m_byAuctionStatus == easEffective);
 
     BOOL is_expire = (m_dwFinishTime <= CManageServer::GetInstance().GetGameTime());
     m_dwFinishTime = CManageServer::GetInstance().GetGameTime();
 
-    // 如果 正常拍卖, 在函数 BidItem 里面, 会向 m_deposit_map 中添加数据, 因此这里必定有数据 不为空
+    // For a normal auction, BidItem adds an entry to m_deposit_map, so it must be nonempty here
     CAuctionMgr::AUCTION_DEPOSIT_MAP& dmap = CAuctionMgr::GetInstance().m_deposit_map[m_dwAuctionID];
 
-    // 为空, 没有出价数据, 超时/主动取消
+    // Empty: no bids, due to timeout or voluntary cancellation
     if (dmap.empty())
     {
         LOG_PROCESS_ERROR(m_dwBuyerRoleID == 0);
@@ -100,7 +100,7 @@ void Auction::Finish()
         {
             CAuctionMgr::GetInstance()._UpDateAuction(this, easExpired);
 
-            // 抄代码, 日志功能 暂时屏蔽
+            // Copied code; logging is temporarily disabled
             //bRet = CMessageHandler::GetInstance().DoDLAuction(m_byGroupID, m_dwSellerRoleID, 0, m_dwAuctionID, "Expire",
             //    0, 0, 0, 0, m_iteminfo.m_nTemplateID, m_iteminfo.m_llGuid);
             //LOG_PROCESS_ERROR(bRet);
@@ -109,7 +109,7 @@ void Auction::Finish()
         {
             CAuctionMgr::GetInstance()._UpDateAuction(this, easCanceled);
 
-            // 抄代码, 日志功能 暂时屏蔽
+            // Copied code; logging is temporarily disabled
             //bRet = CMessageHandler::GetInstance().DoDLAuction(m_byGroupID, m_dwSellerRoleID, 0, m_dwAuctionID, "Cancel",
             //    0, 0, 0, 0, m_iteminfo.m_nTemplateID, m_iteminfo.m_llGuid);
             //LOG_PROCESS_ERROR(bRet);
@@ -117,20 +117,20 @@ void Auction::Finish()
 
         CAuctionMgr::GetInstance().m_role_selling_auction_list[m_dwSellerRoleID].remove(this);
     }
-    // 不为空, 有人出过出价, 正常拍卖
+    // Nonempty: someone bid, so process a normal auction
     else
     {
         LOG_CHECK_ERROR(m_dwBuyerRoleID != 0);
 
         std::list<UINT32> allbidder;
 
-        // 整理一共多少人出过价, 获取所有 RoleID
+        // Collect the RoleIDs of everyone who bid
         for (CAuctionMgr::AUCTION_DEPOSIT_MAP::const_iterator it = dmap.begin(); it != dmap.end(); ++it)
         {
             allbidder.push_back(it->first);
         }
 
-        // 除了购买者本人, 删除其他人的保证金数据, 并退还保证金
+        // Remove and refund deposits for all bidders except the buyer
         for (std::list<UINT32>::const_iterator it = allbidder.begin(); it != allbidder.end(); ++it)
         {
             CAuctionMgr::GetInstance().DelDeposit(this, *it);
@@ -141,7 +141,7 @@ void Auction::Finish()
             }
         }
 
-        // 自己改代码
+        // Custom code
         //for (const auto it : allbidder)
         //{
         //    CAuctionMgr::GetInstance().DelDeposit(this, it);
@@ -153,7 +153,7 @@ void Auction::Finish()
         //    }
         //}
 
-        // 发邮件
+        // Send mail
         if (seller_role)
         {
             const MAIL_TEMPLATE_DATA* seller_mail = NULL;
@@ -181,15 +181,15 @@ void Auction::Finish()
             LOG_PROCESS_ERROR(bRet);
         }
 
-        LOG_PROCESS_ERROR(dmap.empty());    // 正常这里应该为空了
+        LOG_PROCESS_ERROR(dmap.empty());    // This should now be empty
 
-        // 删除 订单保证金数据
+        // Delete order deposit data
         CAuctionMgr::GetInstance().m_deposit_map.erase(m_dwAuctionID);
 
-        // 更新 订单状态, 等待付尾款
+        // Update order state to await balance payment
         CAuctionMgr::GetInstance()._UpDateAuction(this, easWaitForPayment);
 
-        // 抄代码, 日志功能 暂时屏蔽
+        // Copied code; logging is temporarily disabled
         //bRet = CMessageHandler::GetInstance().DoDLAuction(m_byGroupID, m_dwSellerRoleID, m_dwBuyerRoleID, m_dwAuctionID, "Win",
         //    m_llPrice, 0, 0, 0, m_iteminfo.m_nTemplateID, m_iteminfo.m_llGuid);
         //LOG_PROCESS_ERROR(bRet);
@@ -263,7 +263,7 @@ void Auction::FinishWaitForPayment()
 
     CAuctionMgr::GetInstance()._UpDateAuction(this, easPaymentExpired);
 
-    // 抄代码, 日志功能 暂时屏蔽
+    // Copied code; logging is temporarily disabled
     //bRet = CMessageHandler::GetInstance().DoDLAuction(m_byGroupID, m_dwSellerRoleID, m_dwBuyerRoleID, m_dwAuctionID, "PaymentExpire",
     //    0, 0, 0, 0, m_iteminfo.m_nTemplateID, m_iteminfo.m_llGuid);
     //LOG_PROCESS_ERROR(bRet);
@@ -290,8 +290,8 @@ CAuctionMgr CAuctionMgr::ms_Instance;
 
 UINT32 CAuctionMgr::_GetAuctionID(INT32 nGroupID)
 {
-    // auctionid 生成规则
-    // 前8个bit 组号, 后24个bit 从1开始自增长
+    // Auction ID generation
+    // First 8 bits: group number; remaining 24 bits: sequence starting at 1
     UINT32 auctionid = 0;
     LOG_PROCESS_ERROR(IsValidGroup(nGroupID));
 
@@ -509,7 +509,7 @@ INT32 CAuctionMgr::AddItem(MS_ROLE_DATA* role, ItemInfo& iteminfo, UINT8 bytimet
 
     actual_buf_len = auction->m_iteminfo.Save(item_buf);
 
-    // 把物品数据信息 组合成字符串, 暂时屏蔽
+    // Combine item data into a string; temporarily disabled
     //auction->m_iteminfo.SaveString(item_detail, 1024);
 
     bRet = CManageServer::GetInstance().GetSqlMgr().AsyncExecSqlStmt(msqlInsertAuction, NULL, NULL, "ucudududlllududucucbs",
@@ -519,7 +519,7 @@ INT32 CAuctionMgr::AddItem(MS_ROLE_DATA* role, ItemInfo& iteminfo, UINT8 bytimet
         item_buf, actual_buf_len, item_detail);
     LOG_PROCESS_ERROR(bRet);
 
-    // 抄代码, 日志功能 暂时屏蔽
+    // Copied code; logging is temporarily disabled
     //bRet = CManageServer::GetInstance().DoDLAuction(role->byGroup, role->dwRoleID, 0, auction->m_dwAuctionID, "Sell",
     //    price, buyoutprice, depositprice, timetype, iteminfo.m_nTemplateID, iteminfo.m_llGuid);
     //LOG_PROCESS_ERROR(bRet);
@@ -611,14 +611,14 @@ INT32 CAuctionMgr::BidItem(MS_ROLE_DATA* role, UINT32 auctionid, INT64 price)
         return errSuccess;
     }
 
-    // 判断出价的人, 是否在 保证金列表里, 如果不在就添加进去, 无论是 直接"一口价" 或 多次"竞拍"都判断 都添加
+    // Add the bidder to the deposit list if absent, for both buyout and repeated bids
     if (!IsBidder(auctionid, role->dwRoleID))
     {
         AddDeposit(auction, role->dwRoleID);
         m_role_buying_auction_list[role->dwRoleID].push_back(auction);
     }
 
-    // 抄代码, 日志功能 暂时屏蔽
+    // Copied code; logging is temporarily disabled
     //bRet = CMessageHandler::GetInstance().DoDLAuction(auction->m_byGroupID, auction->m_dwSellerRoleID, role->dwRoleID, auction->m_dwAuctionID,
     //    "Bid", price, 0, 0, 0, auction->m_iteminfo.m_nTemplateID, auction->m_iteminfo.m_llGuid);
     //LOG_PROCESS_ERROR(bRet);
@@ -658,12 +658,12 @@ INT32 CAuctionMgr::BidItem(MS_ROLE_DATA* role, UINT32 auctionid, INT64 price)
         auction->m_dwBuyerRoleID = role->dwRoleID;
         auction->m_llPrice = price;
 
-        // 出价 >= 一口价, 这个拍卖就直接结束
+        // If the bid reaches the buyout price, end the auction immediately
         if (auction->m_llBuyoutPrice && auction->m_llPrice >= auction->m_llBuyoutPrice)
         {
             auction->Finish();
         }
-        // 出价 < 一口价, 说明是竞拍, 开始更新数据
+        // If the bid is below the buyout price, update auction data
         else
         {
             if (auction->m_dwFinishTime < CManageServer::GetInstance().GetGameTime() + g_GWConfig.nAuctionFinishDelayTime)
@@ -731,18 +731,18 @@ INT32 CAuctionMgr::PaidLeftMoney(Auction* auction)
     buyer_mail = CDataManager<MAIL_TEMPLATE_DATA>::GetInstance().GetData(mtiAuctionSuccessBuyer);
     LOG_PROCESS_ERROR(buyer_mail);
 
-    // 给购买者发邮件
+    // Send mail to the buyer
     snprintf(mail_subject_buyer, MAIL_SUBJECT_LEN, buyer_mail->m_szMailSubject, auction->m_iteminfo.m_nTemplateID);
     snprintf(mail_content_buyer, MAIL_CONTENT_LEN, buyer_mail->m_szMailContent, auction->m_llPrice);
     bRet = CMailMgr::GetInstance().SendSystemMailWithBufferAttach(buyer_role, mail_subject_buyer, mail_content_buyer, attachbuffer, attachlen);
     LOG_PROCESS_ERROR(bRet);
 
-    // 物品在邮件中的cd时间, 等到cd时间了, 才能提取
+    // The mailed item can be claimed after its cooldown expires
     mail_cd = g_GWConfig.nAuctionMoneyCDTime - (CManageServer::GetInstance().GetGameTime() - auction->m_dwFinishTime);
     if (mail_cd < 0)
         mail_cd = 0;
 
-    // 计算税率 和 最终金额, 给出售者发邮件
+    // Calculate tax and final amount, then mail the seller
     tax = GetAuctionTax(auction->m_llPrice);
     snprintf(mail_subject_seller, MAIL_SUBJECT_LEN, seller_mail->m_szMailSubject, auction->m_iteminfo.m_nTemplateID);
     snprintf(mail_content_seller, MAIL_CONTENT_LEN, seller_mail->m_szMailContent, auction->m_llPrice - tax, tax);
@@ -761,29 +761,29 @@ INT32 CAuctionMgr::PaidLeftMoney(Auction* auction)
         LOG_PROCESS_ERROR(bRet);
     }
 
-    // 购买者 在 Selling列表 中删除, 添加到 Sold列表
+    // Remove the buyer from Selling and add to Sold
     m_role_selling_auction_list[auction->m_dwSellerRoleID].remove(auction);
     _AddSoldAuction(auction->m_dwSellerRoleID, auction);
 
-    // 购买者 在 Buying列表 中删除, 添加到 Bought列表
+    // Remove the buyer from Buying and add to Bought
     m_role_buying_auction_list[auction->m_dwBuyerRoleID].remove(auction);
     _AddBoughtAuction(auction->m_dwBuyerRoleID, auction);
 
     _UpDateAuction(auction, easFinished);
 
-    // 抄代码, 日志功能 暂时屏蔽
+    // Copied code; logging is temporarily disabled
     //bRet = CMessageHandler::GetInstance().DoDLAuction(auction->m_byGroupID, auction->m_dwSellerRoleID, auction->m_dwBuyerRoleID, auction->m_dwAuctionID,
     //    "PaidLeftMoney", 0, 0, 0, 0, auction->m_iteminfo.m_nTemplateID, auction->m_iteminfo.m_llGuid);
     //LOG_PROCESS_ERROR(bRet);
 
-    // 出售者
+    // Seller
     pOnlineRoleSeller = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(auction->m_dwSellerRoleID);
     if (pOnlineRoleSeller)
     {
         CMessageHandler::GetInstance().DoClientAuctionFinished(pOnlineRoleSeller->dwCliSessionID, auction->m_dwAuctionID, easFinished);
     }
 
-    // 购买者
+    // Buyer
     pOnlineRoleBuyer = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(auction->m_dwBuyerRoleID);
     if (pOnlineRoleBuyer)
     {

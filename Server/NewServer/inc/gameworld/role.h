@@ -542,23 +542,23 @@ private:
 	/************************************************************************/
 
 
-	// 新增代码, 自己新增加 函数
+	// Additional custom functions
 public:
-	UINT32 GetGameTimeCard_UINT32();	       // 获取当前点卡到期时间 (秒数)
-	void AddGameTimeCard(UINT32 seconds);	   // 增加点卡时间 (秒数)
-	void NotifyRole_GameTimeCard();			   // 发送私聊 通知剩余时间
-	BOOL GetGameTimeCard_HaveTime();           // 获取到点是否过期
+	UINT32 GetGameTimeCard_UINT32();	       // Get the current time-card expiration time (seconds)
+	void AddGameTimeCard(UINT32 seconds);	   // Add time-card duration (seconds)
+	void NotifyRole_GameTimeCard();			   // Send a private message with remaining time
+	BOOL GetGameTimeCard_HaveTime();           // Check whether the time card has expired
 
-	INT32 GetRuneItemHighResult();			                // 获取-高级铭文洗练结果
-	void SetRuneItemHighResult(INT32 RuneID);               // 修改-高级铭文洗练结果
-	INT32 GetRuneRootCount(INT32 nType, INT32 cls);         // 获取-铭文节点数值
-	void IncRuneRootCount(INT32 nType, INT32 cls);          // 增加-铭文节点数值
-	void NotifyRole_RuneRootCount(INT32 nType, INT32 cls);  // 发送私聊 通知铭文节点数值
+	INT32 GetRuneItemHighResult();			                // Get advanced inscription refinement result
+	void SetRuneItemHighResult(INT32 RuneID);               // Set advanced inscription refinement result
+	INT32 GetRuneRootCount(INT32 nType, INT32 cls);         // Get inscription node value
+	void IncRuneRootCount(INT32 nType, INT32 cls);          // Increment inscription node value
+	void NotifyRole_RuneRootCount(INT32 nType, INT32 cls);  // Send a private message with the inscription node value
 
-	void ResetLuckRootCount();          // 清零-祝福油节点数值
-	INT32 GetLuckRootCount();           // 获取-祝福油节点数值
-	void IncLuckRootCount();	        // 增加-祝福油节点数值
-	void NotifyRole_LuckRootCount();    // 发送私聊 通知祝福油节点数值
+	void ResetLuckRootCount();          // Reset blessing oil node value
+	INT32 GetLuckRootCount();           // Get blessing oil node value
+	void IncLuckRootCount();	        // Increment blessing oil node value
+	void NotifyRole_LuckRootCount();    // Send a private message with the blessing oil node value
 
 protected:
     void _On1SecMainLoop(void);
@@ -597,7 +597,7 @@ private:
     char                m_szUserName[USER_NAME_LEN];
 	ERoleState          m_eState;
     UINT8               m_eFcmState;
-    BOOL                m_bFreeMode;    // (=TRUE, 有功能限制) (=FALSE, 无功能限制)
+    BOOL                m_bFreeMode;    // (TRUE = features restricted; FALSE = no restrictions)
     BOOL                m_bInJump;
     BOOL                m_bInLogin;
 	UINT32				m_dwJumpRandomNumber;
@@ -651,7 +651,7 @@ private:
 	INT32				m_nPkMode;
 	INT32				m_dwPkValue;
 	INT32				m_nComboKill;
-	INT32			    m_nGreyNameFrame;  // 灰名帧数
+	INT32			    m_nGreyNameFrame;  // Gray-name frame count
 
     CProMails           m_ProMails;
 	CItemBag            m_ItemBag;
@@ -802,19 +802,19 @@ private:
     BOOL            m_bDoingSubTime;
 
 
-	// 新增代码, 自己新增加 变量
+	// Additional custom variables
 private:
-	UINT32	        m_dwGameTimeCard;         // 点卡时间(剩余秒数)
-	BOOL            m_bDoTellGameTimeCard;    // 通知玩家点卡到期, 只通知一次
-	BOOL            m_bHaveTime;              // 是否到期
-	INT32           m_dwRuneID;               // 高级铭文洗练结果
-	INT32           m_nRuneNormal_Warrior;    // 普通铭文洗练节点
+	UINT32	        m_dwGameTimeCard;         // Time-card balance (seconds remaining)
+	BOOL            m_bDoTellGameTimeCard;    // Notify the player once when the time card expires
+	BOOL            m_bHaveTime;              // Whether expired
+	INT32           m_dwRuneID;               // Advanced inscription refinement result
+	INT32           m_nRuneNormal_Warrior;    // Normal inscription refinement node
 	INT32           m_nRuneNormal_Mage;
 	INT32           m_nRuneNormal_Taoist;
-	INT32           m_nRuneAdvanced_Warrior;  // 高级铭文洗练节点
+	INT32           m_nRuneAdvanced_Warrior;  // Advanced inscription refinement node
 	INT32           m_nRuneAdvanced_Mage;
 	INT32           m_nRuneAdvanced_Taoist;
-	INT32           m_nLuckRootCount;         // 祝福油节点
+	INT32           m_nLuckRootCount;         // Blessing oil node
 	
 
 private:

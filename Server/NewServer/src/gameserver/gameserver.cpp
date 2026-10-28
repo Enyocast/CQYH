@@ -127,11 +127,11 @@ BOOL CGameServer::Init(INetEventHandler* poNetEventHandler)
 	nRetCode = m_PacketAllocator.Init(g_ServerConfig.GS.Net.nSmallPacketCount, g_ServerConfig.GS.Net.nLargePacketCount);
 	LOG_PROCESS_ERROR(nRetCode);
 
-    // 初始化 - 数学
+    // Initialize mathematics
     nRetCode = _InitMathTable();
     LOG_PROCESS_ERROR(nRetCode);
 
-    // 内联网
+    // Internal network
 #if defined(WIN32)
     IntranetInitParam.nMaxAcceptor = g_ServerConfig.GS.Net.nMaxAcceptor;
     IntranetInitParam.nMaxConnector = g_ServerConfig.GS.Net.nMaxConnector;
@@ -242,14 +242,14 @@ BOOL CGameServer::MainLoop(void)
 		if (!rGameWorld.IsFreezeTime())
 			rGameWorld.SetGameTime((UINT32)time(NULL));
 		
-		rGameWorld.MainLoop();    // 主循环
+		rGameWorld.MainLoop();    // Main loop
 
-		nRetCode = CGSSessionMgr::GetInstance().MainLoop();  // 内联网判断是否掉线
+		nRetCode = CGSSessionMgr::GetInstance().MainLoop();  // Internal network checks for disconnects
 		LOG_PROCESS_ERROR(nRetCode);
 	}
 
     LOG_PROCESS_ERROR(m_poNet);
-    nRetCode = m_poNet->MainLoop();    // 网络循环
+    nRetCode = m_poNet->MainLoop();    // Network loop
     LOG_PROCESS_ERROR(nRetCode);
 
 #ifndef _FINAL
@@ -297,7 +297,7 @@ bool CGameServer::CKickAllRole::operator()(UINT32 dwRoleID, CRole* poRole)
 
     poRole->SetState(rsWaitUnlockRoleData);
 
-    // 找不到Scene是有严重BUG
+    // A missing scene indicates a serious bug
     CScene* poScene = poRole->GetScene();
     LOG_CHECK_ERROR(poScene);
 
@@ -348,22 +348,22 @@ BOOL _InitServer(void)
 	nRetCode = CheckDiskRemainCapacity();
 	LOG_PROCESS_ERROR(nRetCode);
 
-    // 初始化 - 创建内联网
+    // Initialize: create internal network
 	nRetCode = rGameServer.Init(&rGSMessageHandler);
 	LOG_PROCESS_ERROR(nRetCode);
 
-    // 初始化 - 内联网函数
+    // Initialize internal network functions
 	nRetCode = rGSMessageHandler.Init(rGameServer.GetNetInterface(), rGameServer.GetPacketAllocator(), rGameServer.GetMessageNotifier());
 	LOG_PROCESS_ERROR(nRetCode);
 
-    // 初始化 - 各种SESSION字段
+    // Initialize session fields
 	nRetCode = CGSSessionMgr::GetInstance().Init(rGameServer.GetNetInterface());
 	LOG_PROCESS_ERROR(nRetCode);
 
     //INF("---- Test Sleep 1 ----");
     //Sleep(1000 * 10000);
 
-    // 初始化服务端, 加载配置
+    // Initialize the server and load configuration
     nRetCode = g_InitGameWorldLib(GetTickCountEx(), rGameServer.GetMessageNotifier(), rGameServer.GetPacketAllocator());
     LOG_PROCESS_ERROR(nRetCode);
 

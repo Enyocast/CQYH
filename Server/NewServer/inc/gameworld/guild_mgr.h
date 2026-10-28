@@ -3,7 +3,7 @@
 	file:		guild_mgr.h
 	author:		Allan Tao
 	
-	purpose:	gs 帮派管理类
+	purpose:	GS guild management class
 *********************************************************************/
 
 #ifndef _H_GS_GUILD_MGR_H_
@@ -41,7 +41,7 @@ public:
     BOOL    DelWarRelation(UINT32 dwIntruderID, UINT32 dwDefenderID);
 
 public:
-    // 敌对的表示可以互相pk，无pk值
+    // Enemies can fight each other without gaining PK points
     BOOL    IsHostile(UINT32 dwGuildID, UINT32 dwTargetGuildID);
     BOOL    IsFriendly(UINT32 dwGuildID, UINT32 dwTargetGuildID);
 

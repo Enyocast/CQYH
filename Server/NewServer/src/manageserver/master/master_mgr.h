@@ -3,7 +3,7 @@
 	file:		master_mgr.h
 	author:		Allan Tao
 	
-	purpose:	师徒管理器
+	purpose:	Master-apprentice manager
 *********************************************************************/
 
 

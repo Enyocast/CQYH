@@ -24,9 +24,9 @@ public:
     BOOL DelFromSessionIDMap(CDBUser* dbuser);
     CDBUser* GetDBUserBySessionID(UINT32 dwSessionID);
 
-    CDBUser* Pop();                  //申请一个空闲的DBUser对象，主线程调用
-    BOOL Pop(CDBUser* dbuser);       //申请一个指定的DBRole对象，主线程调用
-    void Push(CDBUser* dbuser);      //归还一个用完的DBUser对象，主线程调用
+    CDBUser* Pop();                  //Acquire a free DBUser object; called by the main thread
+    BOOL Pop(CDBUser* dbuser);       //Acquire a specified DBRole object; called by the main thread
+    void Push(CDBUser* dbuser);      //Return a used DBUser object; called by the main thread
 
 private:
 

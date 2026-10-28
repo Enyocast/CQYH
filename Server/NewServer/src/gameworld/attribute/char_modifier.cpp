@@ -8750,11 +8750,11 @@ INT32 ModifierChar_235(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
 
     if (nParam3 <= 0)
     {
-        // 默认代码
+        // Default code
         nRate = nParam1 * poNpc->GetPetLevel() + nParam2;
         PROCESS_SUCCESS(g_Random(0, RATE_MAX) > nRate);
 
-        // 这里是获取主人对象 - 暂时屏蔽
+        // Get the owner object here - temporarily disabled
         {
             //host = CGameWorld::GetInstance().FindValidCharacter(poChar->GetHostID());
             //if (host)
@@ -8782,11 +8782,11 @@ INT32 ModifierChar_235(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
             //    case 9: nRate += 5000; break;
             //    }
             //
-            //    // 默认代码, 灵兽每级3%概率, 7级就是21%
+            //    // Default code: spirit beast chance is 3% per level, or 21% at level 7
             //    nRate += nParam1 * poNpc->GetPetLevel() + nParam2;
             //    PROCESS_SUCCESS(g_Random(0, RATE_MAX) > nRate);
             //
-            //    // 抄来的代码, 根据诱惑神水触发的
+            //    // Copied code triggered by the charm potion
             //    //poAura = host->GetFirstAura(45780);
             //    //if (poAura)
             //    //{
@@ -8794,14 +8794,14 @@ INT32 ModifierChar_235(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
             //    //}
             //    //else
             //    //{
-            //    //    // 默认代码, 灵兽每级3%概率, 7级就是21%
+            //    //    // Default code: spirit beast chance is 3% per level, or 21% at level 7
             //    //    nRate = nParam1 * poNpc->GetPetLevel() + nParam2;
             //    //    PROCESS_SUCCESS(g_Random(0, RATE_MAX) > nRate);
             //    //}
             //}
             //else
             //{
-            //    // 默认代码
+            //    // Default code
             //    nRate = nParam1 * poNpc->GetPetLevel() + nParam2;
             //    PROCESS_SUCCESS(g_Random(0, RATE_MAX) > nRate);
             //}
@@ -9354,7 +9354,7 @@ Exit0:
     return mrcError;
 }
 
-// 自己新增加的函数, 有的函数内容不知道该咋写, 暂时先留空
+// Custom functions; some implementations are unknown and left empty for now
 INT32 ModifierChar_251(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32 nParam2, INT32 nParam3, void* pExParam)
 {
     //WRN("Execute Function - %s", __FUNCTION__);
@@ -9555,17 +9555,17 @@ INT32 ModifierChar_257(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
     CCharacter* poChar = static_cast<CCharacter*>(poTarget);
     LOG_PROCESS_ERROR(poChar);
 
-    //LOG_PROCESS_ERROR(!bIsRollingBack);    // IDA代码里没有, 我自己加的
+    //LOG_PROCESS_ERROR(!bIsRollingBack);    // Not present in the IDA output; added locally
 
     LOG_PROCESS_ERROR(poChar->GetObjType() == otRole);
 
     if (!bIsRollingBack)
     {
-        //poChar->SetSceneExpRate(v7, 0);    // 我的代码里没有这个函数 CRole::SetSceneExpRate
+        //poChar->SetSceneExpRate(v7, 0);    // CRole::SetSceneExpRate is not present in this code
     }
     else
     {
-        //poChar->SetSceneExpRate(v7, nParam2);    // 我的代码里没有这个函数 CRole::SetSceneExpRate
+        //poChar->SetSceneExpRate(v7, nParam2);    // CRole::SetSceneExpRate is not present in this code
     }
 
     return mrcTrue;
@@ -9585,7 +9585,7 @@ INT32 ModifierChar_258(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
     CCharacter* poChar = static_cast<CCharacter*>(poTarget);
     LOG_PROCESS_ERROR(poChar);
 
-    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDA代码里没有, 我自己加的
+    LOG_PROCESS_ERROR(!bIsRollingBack);    // Not present in the IDA output; added locally
 
     LOG_PROCESS_ERROR(poChar->GetObjType() == otRole);
 
@@ -9636,7 +9636,7 @@ INT32 ModifierChar_259(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
     CCharacter* poChar = static_cast<CCharacter*>(poTarget);
     LOG_PROCESS_ERROR(poChar);
 
-    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDA代码里没有, 我自己加的
+    LOG_PROCESS_ERROR(!bIsRollingBack);    // Not present in the IDA output; added locally
 
     spell = poChar->GetPendingSpell();
     LOG_PROCESS_ERROR(spell);
@@ -9653,7 +9653,7 @@ INT32 ModifierChar_259(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
             {
                 v17 = g_GetDistance3D(poRole->GetX(), poRole->GetY(), poRole->GetZ(), poNpc->GetX(), poNpc->GetY(), poNpc->GetZ());
 
-                // -1 不知道 是啥枚举值, 暂时先根据IDA生成的代码写
+                // Unknown enum value for -1; follow the IDA output for now
                 if (v17 < -1 && v17 < v18 * v18)
                 {
                     v19 = v17;
@@ -9674,7 +9674,7 @@ Exit0:
     return mrcError;
 }
 
-// 有未知函数
+// Contains an unknown function
 INT32 ModifierChar_260(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32 nParam2, INT32 nParam3, void* pExParam)
 {
     //WRN("Execute Function - %s", __FUNCTION__);
@@ -9682,9 +9682,9 @@ INT32 ModifierChar_260(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
     CCharacter* poChar = static_cast<CCharacter*>(poTarget);
     LOG_PROCESS_ERROR(poChar);
 
-    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDA代码里没有, 我自己加的
+    LOG_PROCESS_ERROR(!bIsRollingBack);    // Not present in the IDA output; added locally
 
-    //poChar->未知函数(nParam1);
+    //poChar->未知函数(nParam1); // Unknown function placeholder
 
     return mrcTrue;
 Exit1:
@@ -9693,7 +9693,7 @@ Exit0:
     return mrcError;
 }
 
-// 有未知函数
+// Contains an unknown function
 INT32 ModifierChar_261(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32 nParam2, INT32 nParam3, void* pExParam)
 {
     //WRN("Execute Function - %s", __FUNCTION__);
@@ -9701,13 +9701,13 @@ INT32 ModifierChar_261(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
     CCharacter* poChar = static_cast<CCharacter*>(poTarget);
     LOG_PROCESS_ERROR(poChar);
 
-    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDA代码里没有, 我自己加的
+    LOG_PROCESS_ERROR(!bIsRollingBack);    // Not present in the IDA output; added locally
 
     for (INT32 i = 0; i < 3; ++i)
     {
         if ((nParam1 & (1 << i)) != 0)
         {
-            //poChar->未知函数(i);
+            //poChar->未知函数(i); // Unknown function placeholder
         }
     }
 
@@ -9727,7 +9727,7 @@ INT32 ModifierChar_262(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
     CCharacter* poChar = static_cast<CCharacter*>(poTarget);
     LOG_PROCESS_ERROR(poChar);
 
-    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDA代码里没有, 我自己加的
+    LOG_PROCESS_ERROR(!bIsRollingBack);    // Not present in the IDA output; added locally
 
     LOG_PROCESS_ERROR(poChar->GetObjType() == otRole);
 
@@ -9753,7 +9753,7 @@ INT32 ModifierChar_263(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
     CCharacter* poChar = static_cast<CCharacter*>(poTarget);
     LOG_PROCESS_ERROR(poChar);
 
-    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDA代码里没有, 我自己加的
+    LOG_PROCESS_ERROR(!bIsRollingBack);    // Not present in the IDA output; added locally
 
     LOG_PROCESS_ERROR(poChar->GetObjType() == otRole);
 
@@ -9776,12 +9776,12 @@ Exit0:
 ModifierFunc g_CharModifier[cmiCount] =
 {
     { NULL, FALSE },
-    { ModifierChar_A, TRUE },	  // 改变自身的走路或者跑步速度 1参为改变的类型(具体数值)
-    { ModifierChar_B, TRUE },	  // 改变自身的一些属性(具体数值)
-    { ModifierChar_003, TRUE },	  // 改变自身的一些属性(百分比)  通过光环的 GetEffectPct() 函数获得百分比数值
-    { ModifierChar_004, TRUE },	  // 改变自身的走路或者跑步速度 1参为改变的类型(百分比) 通过光环的 GetEffectPct() 函数获得百分比数值
-    { ModifierChar_005, FALSE },  // 施加某种伤害给当前释放的技能所能影响的目标
-    { ModifierChar_006, FALSE },  // 施加某种伤害给当前释放技能的所能影响的区域
+    { ModifierChar_A, TRUE },	  // Change walk or run speed; parameter 1 specifies the change type (absolute value)
+    { ModifierChar_B, TRUE },	  // Change selected attributes by an absolute value
+    { ModifierChar_003, TRUE },	  // Change selected attributes by the percentage returned by the aura’s GetEffectPct()
+    { ModifierChar_004, TRUE },	  // Change walk or run speed; parameter 1 specifies the change type (percentage from the aura’s GetEffectPct())
+    { ModifierChar_005, FALSE },  // Apply damage to targets affected by the current spell
+    { ModifierChar_006, FALSE },  // Apply damage to the area affected by the current spell
     { ModifierChar_007, FALSE },
     { ModifierChar_008, FALSE },
     { ModifierChar_009, FALSE },
@@ -10027,7 +10027,7 @@ ModifierFunc g_CharModifier[cmiCount] =
     { ModifierChar_249, FALSE },
     { ModifierChar_250, FALSE },
 
-    // 补充函数
+    // Additional functions
     { ModifierChar_251, FALSE },
     { ModifierChar_252, FALSE },
     { ModifierChar_253, FALSE },

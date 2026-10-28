@@ -322,37 +322,37 @@ wchar_to_utf8(const wchar_t *in, size_t insize, char *out, size_t outsize,
 	return (total);
 }
 
-// char字符串 转成 utf8的 char字符串
+// Convert a char string to a UTF-8 char string
 char* char_to_utf8(char* str_mb)
 {
-	// 获取宽字符字符串长度（包括NULL终止符）
+	// Get the wide string length including the null terminator
 	int len_wcs = MultiByteToWideChar(CP_ACP, 0, str_mb, -1, NULL, 0);
 
-	// 申请宽字符字符串空间
+	// Allocate space for the wide string
 	wchar_t* str_wcs = new wchar_t[len_wcs];
 
-	// 转换为宽字符字符串
+	// Convert to a wide string
 	MultiByteToWideChar(CP_ACP, 0, str_mb, -1, str_wcs, len_wcs);
 
-	// 获取UTF-8字符串长度（包括NULL终止符）
+	// Get the UTF-8 string length including the null terminator
 	int len_utf8 = WideCharToMultiByte(CP_UTF8, 0, str_wcs, -1, NULL, 0, NULL, NULL);
 
-	// 申请UTF-8字符串空间
+	// Allocate space for the UTF-8 string
 	char* str_utf8 = new char[len_utf8];
 
-	// 转换为UTF-8字符串
+	// Convert to a UTF-8 string
 	WideCharToMultiByte(CP_UTF8, 0, str_wcs, -1, str_utf8, len_utf8, NULL, NULL);
 
-	delete[] str_wcs; // 释放宽字符字符串空间
+	delete[] str_wcs; // Free the wide string buffer
 
-	// 正常来说 这个也是需要delete的, 但是想把结果作为返回值, 那么在函数里就不能delete
-	// 只能在外面利用完返回值之后, 再delete
+	// Normally this also needs delete, but it cannot be deleted here because it is returned
+	// Delete it externally after using the return value
 	// delete[] str_utf8;
 
 	return str_utf8;
 }
 
-// UTF-8 转 ANSI
+// Convert UTF-8 to ANSI
 char* utf8_to_char(const char* str_utf8)
 {
 	if (str_utf8 == NULL) return NULL;
@@ -376,14 +376,14 @@ char* utf8_to_char(const char* str_utf8)
 
 	delete[] str_wcs;
 
-	// 正常来说 这个也是需要delete的, 但是想把结果作为返回值, 那么在函数里就不能delete
-	// 只能在外面利用完返回值之后, 再delete
+	// Normally this also needs delete, but it cannot be deleted here because it is returned
+	// Delete it externally after using the return value
 	// delete[] str_mb;
 
 	return str_mb;
 }
 
-// 辅助函数：释放内存
+// Helper function: free memory
 void free_converted_string(char* str)
 {
 	if (str) {

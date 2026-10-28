@@ -1230,7 +1230,7 @@ INT32 ModifierBullet_040(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT
     CBullet* poBullet = static_cast<CBullet*>(poTarget);
     LOG_PROCESS_ERROR(poBullet);
 
-    // 根据IDA反编译的代码 补充进来的, 暂时先屏蔽
+    // Added from IDA-decompiled code; temporarily disabled
     //LOG_PROCESS_ERROR(nParam1 > 0);
 
     eSpellAtkType = poBullet->GetSpellAttr(satAttackType);
@@ -2622,15 +2622,15 @@ INT32 ModifierBullet_086(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT
     caster = CGameWorld::GetInstance().FindValidCharacter(poBullet->GetCasterID());
     LOG_PROCESS_ERROR(caster);
 
-    // 判断 诱惑神水
+    // Check for charm potion
     poAura = caster->GetFirstAura(45780);
     if (poAura)
     {
-        return mrcTrue;  // 有诱惑神水Buff, 直接成功
+        return mrcTrue;  // Succeed immediately when the charm potion buff is present
     }
     else
     {
-        // 默认代码 - 没有诱惑神水Buff, 正常概率
+        // Default code: normal probability without the charm potion buff
         if (g_Random(0, nParam1) == nParam2)
             return mrcTrue;
     }
@@ -2805,21 +2805,21 @@ INT32 ModifierBullet_092(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT
     caster = CGameWorld::GetInstance().FindValidCharacter(poBullet->GetCasterID());
     LOG_PROCESS_ERROR(caster);
 
-    // 判断 诱惑神水
+    // Check for charm potion
     poAura = caster->GetFirstAura(45780);
     if (poAura)
     {
-        // 有诱惑神水Buff, 提高概率
+        // Increase probability when the charm potion buff is present
         nRoleDiff = caster->GetLevel() + nParam1 + nParam2 * poBullet->GetSpellLevel();
         nNpcLevelDiff = target->GetLevel() + nParam3;
         if (nRoleDiff > nNpcLevelDiff)
         {
-            return g_Random(0, 3) == 1;  // 33.33% 概率 (0,1,2)
+            return g_Random(0, 3) == 1;  // 33.33% probability (0, 1, 2)
         }
     }
     else
     {
-        // 默认代码 - 没有诱惑神水Buff, 正常概率
+        // Default code: normal probability without the charm potion buff
         if (g_Random(0, caster->GetLevel() + nParam1 + nParam2 * poBullet->GetSpellLevel()) > target->GetLevel() + nParam3)
             return mrcTrue;
     }
@@ -2855,15 +2855,15 @@ INT32 ModifierBullet_093(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT
     caster = CGameWorld::GetInstance().FindValidCharacter(poBullet->GetCasterID());
     LOG_PROCESS_ERROR(caster);
 
-    // 判断 诱惑神水
+    // Check for charm potion
     poAura = caster->GetFirstAura(45780);
     if (poAura)
     {
-        return mrcTrue;  // 有诱惑神水Buff, 直接成功
+        return mrcTrue;  // Succeed immediately when the charm potion buff is present
     }
     else
     {
-        // 默认代码 - 没有诱惑神水Buff, 正常概率
+        // Default code: normal probability without the charm potion buff
         if (g_Random(0, nA) == nParam2)
             return mrcTrue;
     }
@@ -4150,7 +4150,7 @@ Exit0:
     return mrcError;
 }
 
-// 自己新增加的函数, 有的函数内容不知道该咋写, 暂时先留空
+// Custom functions; some implementations are unknown and left empty for now
 INT32 ModifierBullet_129(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32 nParam2, INT32 nParam3, void* pExParam)
 {
     //WRN("Execute Function - %s", __FUNCTION__);
@@ -4166,11 +4166,11 @@ INT32 ModifierBullet_129(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT
     target = poBullet->GetTarget();
     LOG_PROCESS_ERROR(target);
 
-    // 这里是获取主人对象
+    // Get the owner object here
     host = CGameWorld::GetInstance().FindValidCharacter(target->GetHostID());
     PROCESS_ERROR(host);
 
-    // 判断 [主人状态] 是否为[挖矿]
+    // Check whether the owner is mining
     if (host->GetMoveState() == CMS_MINE)
     {
         return mrcTrue;
@@ -4463,7 +4463,7 @@ Exit0:
     return mrcError;
 }
 
-// 未知函数 - 赤月恶魔会触发这个
+// Unknown function - triggered by the Chiyue Demon
 INT32 ModifierBullet_138(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32 nParam2, INT32 nParam3, void* pExParam)
 {
     //WRN("Execute Function - %s", __FUNCTION__);
@@ -4479,8 +4479,8 @@ INT32 ModifierBullet_138(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT
     target = poBullet->GetTarget();
     LOG_PROCESS_ERROR(target);
 
-    // 疾光电影-无铭文, 要走这个函数
-    //target->未知函数(nParam1);    // 在IDA中 没找到这个函数, 可能是他新加的函数, 暂时先屏蔽
+    // Jiguang Dianying without an inscription should use this function
+    //target->未知函数(nParam1);    // Function not found in IDA; it may have been added later, so it is temporarily disabled
 
     return mrcTrue;
 Exit1:
@@ -4492,75 +4492,75 @@ Exit0:
 ModifierFunc g_BulletModifier[bmiCount] =
 {
     { NULL, FALSE },
-    { ModifierBullet_001, FALSE },  // Attack,								   基础攻击计算（物理/魔法伤害计算）
-    { ModifierBullet_002, FALSE },  // Roll,								   随机骰子判定（暴击、闪避、命中率等）
-    { ModifierBullet_003, FALSE },  // TargetKnockBack,						   击退目标（强制位移）
-    { ModifierBullet_004, FALSE },  // AppendAuraToTarget,					   给目标附加状态（Buff/Debuff）
-    { ModifierBullet_005, FALSE },  // ModifyAttackByRage,					   根据怒气值调整攻击（战士类技能）
-    { ModifierBullet_006, FALSE },  // AppendAuraToCaster,					   给施法者附加状态（增益效果）
-    { ModifierBullet_007, FALSE },  // CheckAttackType,						   检查攻击类型（物理/魔法/真实伤害等）
-    { ModifierBullet_008, FALSE },  // ModifyEffect,						   修改技能效果（动态调整数值）
-    { ModifierBullet_009, FALSE },  // CheckTargetDying,					   检查目标是否濒死（HP低于阈值？）
-    { ModifierBullet_010, FALSE },  // SetTargetHp,							   直接设置目标HP（秒杀/治疗到固定值）
-    { ModifierBullet_011, FALSE },  // ModifyEffectAccordingToMaxHp,		   修改技能效果根据最大HP
-    { ModifierBullet_012, FALSE },  // CastSubSpellFromCasterToTarget,		   施放子技能（从施法者→目标）
-    { ModifierBullet_013, FALSE },  // IsRollResultLessThanTargetAttribute,    判定结果是否小于目标属性
-    { ModifierBullet_014, FALSE },  // RecordCasterToTargetSpellSlot,		   记录施法者到目标技能卡槽
-    { ModifierBullet_015, FALSE },  // CheckRoundTableResult,				   检查回合制结果（如先攻/闪避/格挡）
-    { ModifierBullet_016, FALSE },  // SetTargetFlagBit,					   设置目标标记位（如“沉默”“眩晕”）
-    { ModifierBullet_017, FALSE },  // SetCasterFlagBit,					   设置施法者标记位（如“无敌”“隐身”）
-    { ModifierBullet_018, FALSE },  // CheckMpByPercent,					   按百分比检查MP（蓝量是否足够）
-    { ModifierBullet_019, FALSE },  // CheckMpByValue,						   按固定值检查MP（是否≥X MP）
-    { ModifierBullet_020, FALSE },  // ModifierCost,						   修改花费? 不确定
-    { ModifierBullet_021, FALSE },  // Leech,								   吸血/吸蓝效果（生命偷取）
-    { ModifierBullet_022, FALSE },  // CheckTargetType,						   检查目标类型（玩家/NPC/BOSS/友军等）
-    { ModifierBullet_023, FALSE },  // IsTargetFaceToCaster,				   检查目标是否面向施法者（背刺/格挡机制）
-    { ModifierBullet_024, FALSE },  // CheckRemainCooldown,					   检查剩余冷却时间（CD是否转好）
-    { ModifierBullet_025, FALSE },  // ReduceCooldown,						   减少冷却时间（刷新/加速CD）
-    { ModifierBullet_026, FALSE },  // CheckCasterWeaponType,				   检查施法者武器类型（剑/法杖/弓等）
-    { ModifierBullet_027, FALSE },  // ModifyEffectByRemainMp,				   根据剩余MP调整效果（蓝量越高伤害越高）
-    { ModifierBullet_028, FALSE },  // DamageReflect,						   伤害反弹（反伤机制）
-    { ModifierBullet_029, FALSE },  // CheckTargetDistance,					   检查目标距离（是否在技能范围内）
-    { ModifierBullet_030, FALSE },  // CheckTargetExFlag,					   检查目标额外标记（自定义状态）
-    { ModifierBullet_031, FALSE },  // ModifyX1ByTargetHp,					   修改X1根据目标HP
-    { ModifierBullet_032, FALSE },  // CheckHealBullet,						   检查治愈子弹 不确定
-    { ModifierBullet_033, FALSE },  // ChangeTargetMp,						   改变目标MP（吸蓝/回蓝）
-    { ModifierBullet_034, FALSE },  // RemoveTargetAura,					   移除目标状态（驱散Debuff）
-    { ModifierBullet_035, FALSE },  // CheckTargetHp,						   检查目标HP（是否满足条件，如>50%）
-    { ModifierBullet_036, FALSE },  // CheckSpellAndRune,					   检查技能与符文（符文强化效果）
-    { ModifierBullet_037, FALSE },  // CastSubSpellFromCasterToCaster,		   施放子技能（自身→自身）
-    { ModifierBullet_038, FALSE },  // CastSubSpellFromTargetToTarget,		   施放子技能（从施法者→目标）
-    { ModifierBullet_039, FALSE },  // CastSubSpellFromTargetToCaster,		   施放子技能（目标→目标）
-    { ModifierBullet_040, FALSE },  // ModifyEffectByUsedMp,				   根据已消耗MP调整效果（类似“法力燃烧”机制）
-    { ModifierBullet_041, FALSE },  // CommonStiff,							   普通刚性? 不确定
-    { ModifierBullet_042, FALSE },  // RemoveCasterAura,					   移除施法者状态（清除Buff）
-    { ModifierBullet_043, FALSE },  // CheckCasterExFlag,					   检查施法者额外标记
-    { ModifierBullet_044, FALSE },  // CheckTargetIsBoss,					   检查目标是否为BOSS（特殊机制）
-    { ModifierBullet_045, FALSE },  // ForceChangeRoundTableResult,			   强制修改回合结果（必定命中/闪避）
-    { ModifierBullet_046, FALSE },  // CheckSpellCost,						   检查技能消耗（MP/HP/物品等）
-    { ModifierBullet_047, FALSE },  // CheckCasterHp,						   检查施法者HP（是否满足施法条件）
-    { ModifierBullet_048, FALSE },  // CheckCasterAura,						   检查施法者是否有某状态
-    { ModifierBullet_049, FALSE },  // ModifyEffectPctByDistance,			   根据距离调整效果百分比（远程衰减/近战增强）
-    { ModifierBullet_050, FALSE },  // CheckTargetCanbeThrown,				   检查目标是否可被投掷（击飞/抓取判定）
-    { ModifierBullet_051, FALSE },  // CheckWeather,						   检查天气（某些技能受天气影响）
-    { ModifierBullet_052, FALSE },  // CheckLevel,							   检查等级（是否达到技能要求）
-    { ModifierBullet_053, FALSE },  // MoveTargetToSpellTargetPos,			   将目标移动到技能目标位置（传送/拉拽）
-    { ModifierBullet_054, FALSE },  // CheckTargetMp,						   检查目标MP
-    { ModifierBullet_055, FALSE },  // CheckIsDaytime,						   检查是否为白天（昼夜机制）
-    { ModifierBullet_056, FALSE },  // ConvertToCasterHp,					   将伤害/治疗转换为施法者HP（吸血/转换）
-    { ModifierBullet_057, FALSE },  // ModifyEffectByHpMax,					   根据最大HP调整效果（百分比伤害/治疗）
-    { ModifierBullet_058, FALSE },  // ReduceTargetAura,					   减少目标状态层数/时间（如Dot）
-    { ModifierBullet_059, FALSE },  // ModifySpellAtrr,						   修改技能属性
-    { ModifierBullet_060, FALSE },  // DamageShare,							   伤害分摊（团队分担伤害）
-    { ModifierBullet_061, FALSE },  // CheckElementaryType,					   检查元素类型（火/冰/雷等相克）
-    { ModifierBullet_062, FALSE },  // TriggerEventRootSpellCD: Caster,		   施法者: 触发事件根部技能CD
-    { ModifierBullet_063, FALSE },  // TriggerEventRootSpellCD: Target,		   目标: 触发事件根部技能CD
-    { ModifierBullet_064, FALSE },  // CheckSpellFlag,						   检查技能标记（如“是否可打断”）
-    { ModifierBullet_065, FALSE },  // ReduceTargetAuraStack,				   减少目标状态叠加层数
-    { ModifierBullet_066, FALSE },  // FinishAuraImmidiately,				   立即结束光环
-    { ModifierBullet_067, FALSE },  // TargetTurnToCaster,                     目标转施法者
-    { ModifierBullet_068, FALSE },  // AddTargetHp,                            增肌目标HP
-    { ModifierBullet_069, FALSE },  // CheckTargetAura,                        检查目标光环
+    { ModifierBullet_001, FALSE },  // Attack,								   Basic attack calculation (physical or magic damage)
+    { ModifierBullet_002, FALSE },  // Roll,								   Random roll (critical hit, dodge, hit chance, etc.)
+    { ModifierBullet_003, FALSE },  // TargetKnockBack,						   Knock back the target (forced movement)
+    { ModifierBullet_004, FALSE },  // AppendAuraToTarget,					   Apply a status to the target (buff or debuff)
+    { ModifierBullet_005, FALSE },  // ModifyAttackByRage,					   Adjust attack based on rage (warrior skills)
+    { ModifierBullet_006, FALSE },  // AppendAuraToCaster,					   Apply a status to the caster (buff)
+    { ModifierBullet_007, FALSE },  // CheckAttackType,						   Check attack type (physical, magic, true damage, etc.)
+    { ModifierBullet_008, FALSE },  // ModifyEffect,						   Modify the spell effect (adjust values dynamically)
+    { ModifierBullet_009, FALSE },  // CheckTargetDying,					   Check whether the target is near death (HP below a threshold?)
+    { ModifierBullet_010, FALSE },  // SetTargetHp,							   Set target HP directly (instant kill or fixed healing)
+    { ModifierBullet_011, FALSE },  // ModifyEffectAccordingToMaxHp,		   Modify spell effect based on maximum HP
+    { ModifierBullet_012, FALSE },  // CastSubSpellFromCasterToTarget,		   Cast a sub-spell from caster to target
+    { ModifierBullet_013, FALSE },  // IsRollResultLessThanTargetAttribute,    Check whether the roll result is below the target attribute
+    { ModifierBullet_014, FALSE },  // RecordCasterToTargetSpellSlot,		   Record the caster-to-target spell slot
+    { ModifierBullet_015, FALSE },  // CheckRoundTableResult,				   Check the round-table result (such as initiative, dodge, or block)
+    { ModifierBullet_016, FALSE },  // SetTargetFlagBit,					   Set a target flag bit (such as silence or stun)
+    { ModifierBullet_017, FALSE },  // SetCasterFlagBit,					   Set a caster flag bit (such as invincibility or invisibility)
+    { ModifierBullet_018, FALSE },  // CheckMpByPercent,					   Check MP by percentage
+    { ModifierBullet_019, FALSE },  // CheckMpByValue,						   Check MP by fixed value (at least X MP)
+    { ModifierBullet_020, FALSE },  // ModifierCost,						   Modify cost? Uncertain
+    { ModifierBullet_021, FALSE },  // Leech,								   Life or mana leech
+    { ModifierBullet_022, FALSE },  // CheckTargetType,						   Check target type (player, NPC, boss, ally, etc.)
+    { ModifierBullet_023, FALSE },  // IsTargetFaceToCaster,				   Check whether target faces caster (backstab / block mechanics)
+    { ModifierBullet_024, FALSE },  // CheckRemainCooldown,					   Check remaining cooldown
+    { ModifierBullet_025, FALSE },  // ReduceCooldown,						   Reduce cooldown (refresh or accelerate)
+    { ModifierBullet_026, FALSE },  // CheckCasterWeaponType,				   Check caster weapon type (sword, staff, bow, etc.)
+    { ModifierBullet_027, FALSE },  // ModifyEffectByRemainMp,				   Adjust effect based on remaining MP (more MP means more damage)
+    { ModifierBullet_028, FALSE },  // DamageReflect,						   Reflect damage
+    { ModifierBullet_029, FALSE },  // CheckTargetDistance,					   Check target distance against spell range
+    { ModifierBullet_030, FALSE },  // CheckTargetExFlag,					   Check target extra flags (custom status)
+    { ModifierBullet_031, FALSE },  // ModifyX1ByTargetHp,					   Modify X1 based on target HP
+    { ModifierBullet_032, FALSE },  // CheckHealBullet,						   Check healing bullet; uncertain
+    { ModifierBullet_033, FALSE },  // ChangeTargetMp,						   Change target MP (drain or restore)
+    { ModifierBullet_034, FALSE },  // RemoveTargetAura,					   Remove a target status (dispel debuff)
+    { ModifierBullet_035, FALSE },  // CheckTargetHp,						   Check target HP against a condition (such as >50%)
+    { ModifierBullet_036, FALSE },  // CheckSpellAndRune,					   Check spell and rune (rune enhancement)
+    { ModifierBullet_037, FALSE },  // CastSubSpellFromCasterToCaster,		   Cast a sub-spell from self to self
+    { ModifierBullet_038, FALSE },  // CastSubSpellFromTargetToTarget,		   Cast a sub-spell from caster to target
+    { ModifierBullet_039, FALSE },  // CastSubSpellFromTargetToCaster,		   Cast a sub-spell from target to target
+    { ModifierBullet_040, FALSE },  // ModifyEffectByUsedMp,				   Adjust effect based on MP spent (similar to mana burn)
+    { ModifierBullet_041, FALSE },  // CommonStiff,							   Normal stiffness? Uncertain
+    { ModifierBullet_042, FALSE },  // RemoveCasterAura,					   Remove a caster status (clear buff)
+    { ModifierBullet_043, FALSE },  // CheckCasterExFlag,					   Check caster extra flags
+    { ModifierBullet_044, FALSE },  // CheckTargetIsBoss,					   Check whether target is a boss
+    { ModifierBullet_045, FALSE },  // ForceChangeRoundTableResult,			   Force the round-table result (guaranteed hit or dodge)
+    { ModifierBullet_046, FALSE },  // CheckSpellCost,						   Check spell cost (MP, HP, items, etc.)
+    { ModifierBullet_047, FALSE },  // CheckCasterHp,						   Check caster HP against casting requirements
+    { ModifierBullet_048, FALSE },  // CheckCasterAura,						   Check whether caster has a status
+    { ModifierBullet_049, FALSE },  // ModifyEffectPctByDistance,			   Adjust effect percentage by distance (ranged falloff / melee bonus)
+    { ModifierBullet_050, FALSE },  // CheckTargetCanbeThrown,				   Check whether target can be thrown (knockback / grab)
+    { ModifierBullet_051, FALSE },  // CheckWeather,						   Check weather (some spells depend on weather)
+    { ModifierBullet_052, FALSE },  // CheckLevel,							   Check level against spell requirements
+    { ModifierBullet_053, FALSE },  // MoveTargetToSpellTargetPos,			   Move target to spell target position (teleport / pull)
+    { ModifierBullet_054, FALSE },  // CheckTargetMp,						   Check target MP
+    { ModifierBullet_055, FALSE },  // CheckIsDaytime,						   Check whether it is daytime (day/night mechanic)
+    { ModifierBullet_056, FALSE },  // ConvertToCasterHp,					   Convert damage / healing to caster HP (leech / conversion)
+    { ModifierBullet_057, FALSE },  // ModifyEffectByHpMax,					   Adjust effect based on maximum HP (percentage damage / healing)
+    { ModifierBullet_058, FALSE },  // ReduceTargetAura,					   Reduce target status stacks or duration (such as a damage-over-time effect)
+    { ModifierBullet_059, FALSE },  // ModifySpellAtrr,						   Modify spell attributes
+    { ModifierBullet_060, FALSE },  // DamageShare,							   Share damage among team members
+    { ModifierBullet_061, FALSE },  // CheckElementaryType,					   Check elemental type (fire, ice, lightning interactions, etc.)
+    { ModifierBullet_062, FALSE },  // TriggerEventRootSpellCD: Caster,		   Caster: trigger the root spell cooldown event
+    { ModifierBullet_063, FALSE },  // TriggerEventRootSpellCD: Target,		   Target: trigger the root spell cooldown event
+    { ModifierBullet_064, FALSE },  // CheckSpellFlag,						   Check spell flags (such as whether interruption is allowed)
+    { ModifierBullet_065, FALSE },  // ReduceTargetAuraStack,				   Reduce target status stacks
+    { ModifierBullet_066, FALSE },  // FinishAuraImmidiately,				   End the aura immediately
+    { ModifierBullet_067, FALSE },  // TargetTurnToCaster,                     Turn target toward caster
+    { ModifierBullet_068, FALSE },  // AddTargetHp,                            Increase target HP
+    { ModifierBullet_069, FALSE },  // CheckTargetAura,                        Check target aura
     { ModifierBullet_070, FALSE },
     { ModifierBullet_071, FALSE },
     { ModifierBullet_072, FALSE },
@@ -4621,7 +4621,7 @@ ModifierFunc g_BulletModifier[bmiCount] =
     { ModifierBullet_127, FALSE },
     { ModifierBullet_128, FALSE },
 
-    // 自己新增加的
+    // Custom additions
     { ModifierBullet_129, FALSE },
     { ModifierBullet_130, FALSE },
     { ModifierBullet_131, FALSE },

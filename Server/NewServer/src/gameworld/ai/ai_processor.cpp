@@ -648,7 +648,7 @@ BOOL CAIProcessor::Follow(void)
         }
         else if (m_poOwner->GetObjType() == otNpc)
 		{
-			//不跟随跳转场景
+			//Do not follow across scene transitions
 			PROCESS_ERROR(FALSE);
             //nRetCode = CGameWorld::GetInstance().JumpTo((CNpc*)m_poOwner, poHost->GetScene()->GetSceneTempID(),
             //    poHost->GetScene()->GetSceneID(), poHost->GetX(), poHost->GetY(), poHost->GetZ(), poHost->GetFaceDirection());
@@ -1333,7 +1333,7 @@ inline BOOL CAIProcessor::CScanNearby::operator()(CCharacter* poChar)
 		if (m_poAIProcessor->GetOwner()->CanAttack(poChar))
 		{
 			PROCESS_ERROR(!poChar->GetCCFlag().CheckFlag(cclInvincible));
-            PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, 陷阱怪
+            PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, Trap monster
 
 			if (poChar->GetObjType() == otRole)
 			{
@@ -1436,7 +1436,7 @@ BOOL CAIProcessor::CScanEnemy::operator()(CCharacter* poChar)
 
 	PROCESS_ERROR(!poChar->IsDead());
 	PROCESS_ERROR(!poChar->GetCCFlag().CheckFlag(cclInvincible));
-    PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, 陷阱怪
+    PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, Trap monster
 
 	if (poChar->GetCCFlag().CheckFlag(cclInvisible) && !m_poAIProcessor->IgnoreInvisible())
 	{
@@ -1483,7 +1483,7 @@ BOOL CAIProcessor::CScanRedName::operator()(CCharacter* poChar)
 
 	PROCESS_ERROR(!poChar->IsDead());
 	PROCESS_ERROR(!poChar->GetCCFlag().CheckFlag(cclInvincible));
-    PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, 陷阱怪
+    PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, Trap monster
 
 	llDistance = m_poAIProcessor->GetOwner()->GetDistance3D(poChar);
 	PROCESS_ERROR(llDistance < m_llNearestEnemyDistance);
@@ -1531,7 +1531,7 @@ BOOL CAIProcessor::CScanSabacEnemy::operator()(CCharacter* poChar)
 
 	PROCESS_ERROR(!poChar->IsDead());
 	PROCESS_ERROR(!poChar->GetCCFlag().CheckFlag(cclInvincible));
-    PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, 陷阱怪
+    PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, Trap monster
 
 	if (poChar->GetCCFlag().CheckFlag(cclInvisible) && !m_poAIProcessor->IgnoreInvisible())
 	{
@@ -1720,7 +1720,7 @@ BOOL CAIProcessor::PetScanEnemy(INT32 nLevel, INT64 llDistance, INT32 nspellEffe
         CCharacter* poTargetChar = CGameWorld::GetInstance().FindValidCharacter(((THREAT_NODE*)pNode)->dwCharID);
         if (poTargetChar == NULL)
             continue;
-        if (poTargetChar->GetObjID() != m_poOwner->GetObjID())      // 为了让主人攻击宠物的时候，宠物能进入战斗状态。 在idle tree 上这个action之后有判目标是否是主人
+        if (poTargetChar->GetObjID() != m_poOwner->GetObjID())      // Allow a pet to enter combat when its owner attacks it. The idle tree checks whether the target is the owner after this action
         {
             if (poTargetChar->GetObjType() != otNpc)
                 continue;
@@ -1788,7 +1788,7 @@ BOOL CAIProcessor::PetScanEnemy(INT32 nLevel, INT64 llDistance, INT32 nspellEffe
         if (nRetCode == FALSE)
             continue;
 
-        if (((CNpc*)poTargetChar)->GetNpcData() && ((CNpc*)poTargetChar)->GetNpcData()->bCounterInvisible == FALSE)    // 策划说的远程怪标签...
+        if (((CNpc*)poTargetChar)->GetNpcData() && ((CNpc*)poTargetChar)->GetNpcData()->bCounterInvisible == FALSE)    // Ranged-monster tag described by design...
         {
             dwTargetID = poTargetChar->GetObjID();
             continue;

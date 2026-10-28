@@ -101,11 +101,11 @@ private:
 	INT32 m_nLevel;
 	INT32 m_nExp;
 
-	UINT32 m_dwNextExp2PtsTime;				// 下次转化时间(自然转换)
+	UINT32 m_dwNextExp2PtsTime;				// Next conversion time (natural conversion)
 
-	UINT32 m_dwDailyUseMoneyChangeCount;	// 每天使用金币转换次数
-	UINT32 m_dwNextScanTimer;				// 下次扫描时间(用于每日重置)
-	INT32  m_nTotalMoneyCost;				// 魂转修炼点消耗金币
+	UINT32 m_dwDailyUseMoneyChangeCount;	// Daily conversion count using gold
+	UINT32 m_dwNextScanTimer;				// Next scan time (used for daily reset)
+	INT32  m_nTotalMoneyCost;				// Gold spent converting soul to cultivation points
 	/************************** airsea **********************************************/
 
 	CAir  m_BagContainer[MAX_AIRSEA_BAG_CONTAINER_SIZE];
@@ -116,7 +116,7 @@ private:
 	INT32 m_nStallContainerSize;
 	INT32 m_nEquipContainerSize;
 
-	INT32 m_nProductAirLevel;		// 练气等级
+	INT32 m_nProductAirLevel;		// Qi cultivation level
 
 	/************************** bloodsea **********************************************/
 	INT32 m_nBloodSlot[MAX_BLOODSEA_PAGE][MAX_BLOODSEA_SLOT_PER_PAGE];

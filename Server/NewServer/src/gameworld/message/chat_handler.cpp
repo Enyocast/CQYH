@@ -42,10 +42,10 @@ void CCliMessageHandler::OnChatMessage(CRole* poRole, const char* pData)
 		PROCESS_ERROR_RET_CODE(!pcSceneData->bCannotGroupChat, errChatSceneForbidden);
 		switch (pMsg->byLocation)
 		{
-		case cltNormal:    // 世界
+		case cltNormal:    // World
 			PROCESS_ERROR_RET_CODE(CGameWorld::GetInstance().GetGameFrame() > poRole->GetGroupChatTimer(), errChatTooFrequent);
 
-			//世界频道去掉次数限制，增加等级和金币消耗限制
+			//Remove the world-channel message limit and add level and gold cost requirements
 			PROCESS_ERROR_RET_CODE(poRole->GetLevel() >= g_GWConfig.ChatConfig.nGroupChatLevel, errChatLevelTooLow);
 			PROCESS_ERROR_RET_CODE(poRole->GetItemBag()->GetMoney(MONEYTYPE_02) >= g_GWConfig.ChatConfig.nGroupChatCost, errChatMoneyNotEnough);
 
@@ -55,7 +55,7 @@ void CCliMessageHandler::OnChatMessage(CRole* poRole, const char* pData)
 			poRole->SetGroupChatTimer(CGameWorld::GetInstance().GetGameFrame() + CONVERT_TIME(g_GWConfig.ChatConfig.nGroupMsgInterval));
 
 			break;
-		case cltTrumpet:    // 喇叭
+		case cltTrumpet:    // Trumpet
 			if (g_GWConfig.ChatConfig.nTrumpetItemID > 0)
 			{
 				nRetCode = poRole->GetItemBag()->DeleteItemId(g_GWConfig.ChatConfig.nTrumpetItemID, 1, ITEMLOG_TRUMPET, FALSE, 0);

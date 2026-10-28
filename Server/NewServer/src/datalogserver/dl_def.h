@@ -89,52 +89,52 @@ enum DL_LOG_MODULE_TYPE
 {
 	dlmtInvalid = -1,
 
-	dlmtItem,								// 道具流转
-	dlmtChat,								// 聊天
-	dlmtQuest,								// 任务
-	dlmtAchievement,						// 成就
-	dlmtLevelUp,							// 升级
-	dlmtDie,								// 死亡
-	dlmtScene,								// 场景创建销毁
-	dlmtConSlot,							// 包裹格子
-	dlmtRoleLogout_basic,					// 角色下线基本信息
-	//dlmtRoleLogout_friend,					// 角色下线好友信息
-	//dlmtRoleLogout_master,					// 角色下线师徒信息
-	dlmtRoleLogout_itembag_default,			// 角色下线默认包裹信息
-	dlmtRoleLogout_itembag_equipped,		// 角色下线已装备信息
-	dlmtLogin,								// 账号登陆登出
-	//dlmtGmCommand,							// GM命令
-	dlmtSubMoney,							// 金币交易记录
-	dlmtTeam,								// 组队
-	dlmtRolePosition,						// 玩家位置信息
-	dlmtClientHardwareInfo,					// 玩家硬件信息
-	dlmtClientFpsInfo,						// 玩家显示器帧数信息
-	dlmtSpellEffect,						// 技能释放
-	dlmtCastSpell,							// 释放技能
-	dlmtLearnSpell,							// 释放技能
-    dlmtGuildEvent,                         // 公会事件
-    dlmtGuildChest,                         // 公会资金
-    dlmtGuildNumStat,                       // 公会统计
-    dlmtGuildMoneyStat,                     // 公会统计
-    dlmtGuildRiceStat,                      // 公会统计
-    dlmtGuildWoodStat,                      // 公会统计
-    dlmtGuildStoneStat,                     // 公会统计
-    dlmtGuildMetalStat,                     // 公会统计
-    dlmtGuildBuildingStat,                  // 公会统计
-    dlmtBillingRequest,                     // 计费请求
-    dlmtBillingResult,                      // 计费结果
-    dlmtRuneItem,                           // 洗铭文
-    dlmtChangeItem,                         // 物品改变
+	dlmtItem,								// Item transfers
+	dlmtChat,								// Chat
+	dlmtQuest,								// Quest
+	dlmtAchievement,						// Achievement
+	dlmtLevelUp,							// Level-up
+	dlmtDie,								// Death
+	dlmtScene,								// Scene creation and destruction
+	dlmtConSlot,							// Bag slots
+	dlmtRoleLogout_basic,					// Basic character information on logout
+	//dlmtRoleLogout_friend,					// Friend information on logout
+	//dlmtRoleLogout_master,					// Mentorship information on logout
+	dlmtRoleLogout_itembag_default,			// Default bag information on logout
+	dlmtRoleLogout_itembag_equipped,		// Equipped item information on logout
+	dlmtLogin,								// Account login and logout
+	//dlmtGmCommand,							// GM command
+	dlmtSubMoney,							// Gold transaction records
+	dlmtTeam,								// Team
+	dlmtRolePosition,						// Player position information
+	dlmtClientHardwareInfo,					// Player hardware information
+	dlmtClientFpsInfo,						// Player display frame-rate information
+	dlmtSpellEffect,						// Spell casting
+	dlmtCastSpell,							// Cast spell
+	dlmtLearnSpell,							// Cast spell
+    dlmtGuildEvent,                         // Guild event
+    dlmtGuildChest,                         // Guild funds
+    dlmtGuildNumStat,                       // Guild statistics
+    dlmtGuildMoneyStat,                     // Guild statistics
+    dlmtGuildRiceStat,                      // Guild statistics
+    dlmtGuildWoodStat,                      // Guild statistics
+    dlmtGuildStoneStat,                     // Guild statistics
+    dlmtGuildMetalStat,                     // Guild statistics
+    dlmtGuildBuildingStat,                  // Guild statistics
+    dlmtBillingRequest,                     // Billing request
+    dlmtBillingResult,                      // Billing result
+    dlmtRuneItem,                           // Inscription refinement
+    dlmtChangeItem,                         // Item change
 
-    dlmtStatRealMoney,                      // 统计：消耗点券
-    dlmtStatQuestComplete,                  // 统计：任务完成
-    dlmtStatNpcDie,                         // 统计：NPC死亡
-    dlmtStatNpcMoney,                       // 统计：NPC掉落金币
-    dlmtStatMoney,                          // 统计：货币
-    dlmtStatMomentaryKillNpc,               // 统计：
-    dlmtStatConsecutiveKillNpc,             // 统计：
-    dlmtStatItem,                           // 物品产出消耗数量
-	dlmtAntiCheat,							// 反外挂
+    dlmtStatRealMoney,                      // Statistics: vouchers spent
+    dlmtStatQuestComplete,                  // Statistics: quests completed
+    dlmtStatNpcDie,                         // Statistics: NPC deaths
+    dlmtStatNpcMoney,                       // Statistics: NPC gold drops
+    dlmtStatMoney,                          // Statistics: currency
+    dlmtStatMomentaryKillNpc,               // Statistics:
+    dlmtStatConsecutiveKillNpc,             // Statistics:
+    dlmtStatItem,                           // Item production and consumption counts
+	dlmtAntiCheat,							// Anti-cheat
 
 	dlmtTotal
 };

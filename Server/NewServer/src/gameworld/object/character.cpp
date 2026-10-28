@@ -540,7 +540,7 @@ BOOL CCharacter::MoveLoop(void)
     case CMS_MOVE:
         _OnMove();
         break;
-    case CMS_MINE:  // 持续挖矿中
+    case CMS_MINE:  // Mining in progress
         _OnMine();
         break;
     case CMS_DASH:
@@ -714,7 +714,7 @@ Exit0:
 BOOL CCharacter::RunTo(INT64 llDestX, INT64 llDestY)
 {
     PROCESS_ERROR(CanActiveMove());
-    PROCESS_ERROR(m_nCurrentHp >= MIN_HP_WHILE_RUNNING);  // 10点血量以下, 就不能跑了
+    PROCESS_ERROR(m_nCurrentHp >= MIN_HP_WHILE_RUNNING);  // Cannot run below 10 HP
     PROCESS_ERROR(!GetCCFlag().CheckFlag(cclSlowed));
     PROCESS_ERROR(m_nRunTimer < CGameWorld::GetInstance().GetGameFrame());
     LOG_PROCESS_ERROR(m_llDestX == 0 && m_llDestY == 0);
@@ -763,7 +763,7 @@ BOOL CCharacter::Mine(INT64 llDestX, INT64 llDestY)
     m_llDestY = llDestY / GRID_WIDTH * GRID_WIDTH + GRID_WIDTH / 2;
     m_eMoveState = CMS_MINE;
 
-    // 计算挖矿间隔
+    // Calculate mining interval
     nMineInterval = g_GWConfig.nMineInterval - g_Min(813, g_Min(375, m_nLevel * 14) + 60 * m_AttrList.GetAttr(catAtkSpeed)) +
         m_AttrList.GetAttr(catExtraHardTime);
 
@@ -926,16 +926,16 @@ BOOL CCharacter::Die(INT32 nParam)
 #endif
 
     ClearGridCharRef();
-    m_ThreatList.Clear();    // 清空仇恨列表
+    m_ThreatList.Clear();    // Clear threat list
     m_eMoveState = CMS_DIE;
 
 #ifndef _ROBOT
-    _LeaveCombat();    // 脱战
+    _LeaveCombat();    // Leave combat
 
     if (m_poAIProcessor != NULL)
         m_poAIProcessor->SetTargetID(0);
 
-    // 发送死亡封包
+    // Send death packet
     nRetCode = CCliMessageHandler::GetInstance().DoCharDie(this, nParam);
     LOG_CHECK_ERROR(nRetCode);
 
@@ -1021,7 +1021,7 @@ void CCharacter::_OnWalk(void)
         INT32 nDestDirection8 = ConvertToDir8(g_GetDirection(m_llX, m_llY, m_llDestX, m_llDestY));
         SetFaceDirection(nDestDirection8 * (MAX_DIRECTION_COUNT / DT_DIRECTION_8_COUNT));
 
-        // 计算朝向的目的坐标
+        // Calculate destination coordinates in the facing direction
         INT64 llDestX = m_llX + g_nAdjacentX[nDestDirection8] * GRID_WIDTH;
         INT64 llDestY = m_llY + g_nAdjacentY[nDestDirection8] * GRID_WIDTH;
 
@@ -1067,11 +1067,11 @@ void CCharacter::_OnRun(void)
         INT64 llDestX = m_llX + g_nAdjacentX[nDestDirection8] * GRID_WIDTH;
         INT64 llDestY = m_llY + g_nAdjacentY[nDestDirection8] * GRID_WIDTH;
 
-        nRetCode = _GridMove(llDestX, llDestY);  // 函数里面修改 m_llX, m_llY
+        nRetCode = _GridMove(llDestX, llDestY);  // The function updates m_llX and m_llY
         PROCESS_ERROR(nRetCode);
         PROCESS_ERROR(m_eMoveState == CMS_RUN);
 
-        llDestX = m_llX + g_nAdjacentX[nDestDirection8] * GRID_WIDTH;  // 朝着目标方向, 再走一步
+        llDestX = m_llX + g_nAdjacentX[nDestDirection8] * GRID_WIDTH;  // Take another step toward the target
         llDestY = m_llY + g_nAdjacentY[nDestDirection8] * GRID_WIDTH;
 
         _GridMove(llDestX, llDestY);
@@ -1086,7 +1086,7 @@ void CCharacter::_OnRun(void)
         nRetCode = CCliMessageHandler::GetInstance().DoCharRun(this);
         LOG_CHECK_ERROR(nRetCode);
 
-        CheckMissileTag();  // 判断是否踩到陷阱
+        CheckMissileTag();  // Check whether a trap was stepped on
 #endif	// _ROBOT
     }
 
@@ -1286,29 +1286,29 @@ void CCharacter::_OnMine(void)
         pcSceneData = m_poScene->GetSceneData();
         LOG_PROCESS_ERROR(pcSceneData);
 
-        // 扣除锄头耐久
+        // Deduct pickaxe durability
         if (pcSceneData->nMineItemID1 > 0)
         {
-            // 99900007-鹤嘴锄
+            // 99900007 - pickaxe
             nRetCode = poRole->GetItemBag()->LoseMineDur(pcSceneData->nMineItemID1);
             if (!nRetCode)
             {
                 PROCESS_ERROR(pcSceneData->nMineItemID2 > 0);
 
-                // 99900041-玄铁锄
+                // 99900041 - dark iron pickaxe
                 nRetCode = poRole->GetItemBag()->LoseMineDur(pcSceneData->nMineItemID2);
                 PROCESS_ERROR(nRetCode);
             }
         }
 
-        // 获取当前坐标点数据
+        // Get data for the current coordinates
         nRetCode = m_poScene->GetLowerGrid(m_llDestX, m_llDestY, m_llZ, pcZoneData, pcGridData);
         LOG_PROCESS_ERROR(nRetCode);
 
-        // 判断当前坐标点, 是不是矿点
+        // Check whether the current coordinates are a mining point
         if (pcGridData && pcGridData->bMine)
         {
-            // 判断当前采集点坐标, 是不是最后一次采集的坐标
+            // Check whether this gathering point matches the previous one
             INT32 nMinePos = ((m_llX / GRID_WIDTH) << 16) | (m_llY / GRID_WIDTH);
             if (nMinePos != m_nLastMinePos)
             {
@@ -1319,20 +1319,20 @@ void CCharacter::_OnMine(void)
             if (m_nMineCDTimer <= CGameWorld::GetInstance().GetGameFrame())
             {
                 INT32 nRate = g_GWConfig.nGlobalDropRate;
-                nRate = nRate * poRole->GetFcmRate() / RATE_MAX;  // 判断防沉迷, 减少一半概率
-                nRate = nRate * poRole->GetItemBag()->GetChanceByGoldPool() / RATE_MAX;  // 使用 疲劳值, 计算概率
+                nRate = nRate * poRole->GetFcmRate() / RATE_MAX;  // Apply anti-addiction restriction, halving the chance
+                nRate = nRate * poRole->GetItemBag()->GetChanceByGoldPool() / RATE_MAX;  // Calculate chance using fatigue
 
                 for (INT32 nIndex = 0; nIndex < MAX_MINE_DROP_GROUP; nIndex++)
                 {
-                    // 判断概率, 是否挖出东西
+                    // Roll to determine whether something was mined
                     DropContent content = { 0 };
                     nRetCode = CDropGenerator::GetInstance().GenerateDropContentFromDropChanceData(
                         //poRole->GetServerGroup(), pcSceneData->MineDrop + nIndex, content, nRate);
-                        poRole->GetServerGroup(), pcSceneData->MineDrop[1] + nIndex, content, nRate);    // 暂时固定使用 下标[1]
+                        poRole->GetServerGroup(), pcSceneData->MineDrop[1] + nIndex, content, nRate);    // For now, always use index [1]
                     if (!nRetCode)
                         continue;
 
-                    // 挖出货币
+                    // Mine currency
                     if (content.m_type == DropContent::DROP_MONEY)
                     {
                         nRetCode = poRole->GetItemBag()->AddMoney(content.m_money.moneytype, content.m_money.count, MONEYLOG_MINE, 0);
@@ -1343,7 +1343,7 @@ void CCharacter::_OnMine(void)
                                 poRole->GetItemBag()->SubGoldPool(content.m_money.count);
                         }
                     }
-                    // 挖出物品
+                    // Mine an item
                     else if (content.m_type == DropContent::DROP_ITEM)
                     {
                         nRetCode = poRole->GetItemBag()->AddItem(content.m_item, ITEMLOG_MINE, 0);
@@ -1372,10 +1372,10 @@ void CCharacter::_OnMine(void)
             }
 
             //if (g_Random(RATE_MAX) < pcSceneData->nMineDoodadChance)
-            if (g_Random(RATE_MAX) < pcSceneData->nMineDoodadChance[1])    // 暂时固定使用 下标[1]
+            if (g_Random(RATE_MAX) < pcSceneData->nMineDoodadChance[1])    // For now, always use index [1]
             {
                 //CDoodad* poDoodad = m_poScene->SpawnDoodad(pcSceneData->nMineDoodadID, m_llX, m_llY, m_llZ, m_nFaceDirection, NULL);
-                CDoodad* poDoodad = m_poScene->SpawnDoodad(pcSceneData->nMineDoodadID[1], m_llX, m_llY, m_llZ, m_nFaceDirection, NULL);    // 暂时固定使用 下标[1]
+                CDoodad* poDoodad = m_poScene->SpawnDoodad(pcSceneData->nMineDoodadID[1], m_llX, m_llY, m_llZ, m_nFaceDirection, NULL);    // For now, always use index [1]
                 LOG_CHECK_ERROR(poDoodad);
             }
         }

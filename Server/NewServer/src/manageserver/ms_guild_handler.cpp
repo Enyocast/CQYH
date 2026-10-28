@@ -3,7 +3,7 @@
     file:		ms_guild_handler.cpp
     author:		Allan Tao
 
-    purpose:	guild 相关 client 协议
+    purpose:	Guild-related client protocol
 *********************************************************************/
 
 #include "stdafx.h"
@@ -1179,7 +1179,7 @@ BOOL CMessageHandler::DoClientGuildPushItemAck(UINT32 dwClientSessionID, INT32 n
 
     pMsg = (M2C_GUILD_PUSH_ITEM_ACK*)m_pPacketAllocator->Alloc(MAX_MESSAGE_SIZE);
     LOG_PROCESS_ERROR(pMsg);
-    LOG_PROCESS_ERROR(nItemSize < MAX_MESSAGE_SIZE / 2);    // 一个道具不可能有这么长
+    LOG_PROCESS_ERROR(nItemSize < MAX_MESSAGE_SIZE / 2);    // An item cannot be this large
 
     pMsg->wMsg = m2c_guild_push_item_ack;
     pMsg->byStorageConSlot = nConSlot;
@@ -1913,7 +1913,7 @@ Exit0:
     return FALSE;
 }
 
-// 树立雕像
+// Erect statue
 BOOL CMessageHandler::DoClientErectStatue(INT32 nServerGroup, UINT32 dwCliSessionID)
 {
     INT32 nRetCode = 0;
@@ -1971,7 +1971,7 @@ Exit0:
     return FALSE;
 }
 
-// 沙巴克成员进入游戏
+// Sabac member enters the game
 BOOL CMessageHandler::DoClientSabacWinnerLogin(MS_ONLINE_ROLE_DATA* pOnlineRoleData)
 {
     INT32 nRetCode = 0;
@@ -2008,7 +2008,7 @@ void CMessageHandler::OnClientGuildQueryName(PACKET_BUFFER* pPacketBuffer, UINT3
 
     poMsGuild = CMsGuildMgr::GetInstance().FindGuildByID(pMsg->dwGuildID);
     LOG_PROCESS_ERROR_RET_CODE(poMsGuild, errGuildQueryFailed);
-    LOG_PROCESS_ERROR_RET_CODE(poMsGuild->GetSvrGroup() == pstOnlineRole->pRoleData->byGroup, errGuildQueryFailed); // todo 如果有跨服地图再说
+    LOG_PROCESS_ERROR_RET_CODE(poMsGuild->GetSvrGroup() == pstOnlineRole->pRoleData->byGroup, errGuildQueryFailed); // TODO: revisit if cross-server maps are added
 
     nRetCode = DoClientGuildQueryName(pstOnlineRole->dwCliSessionID, poMsGuild, pMsg->dwCRC);
     LOG_CHECK_ERROR(nRetCode);
@@ -2255,7 +2255,7 @@ void CMessageHandler::OnClientRevertGuildInvitation(PACKET_BUFFER* pPacketBuffer
 
     if (GUILD_REVERT_REFUSE == pMsg->byResult)
     {
-        pstOnlineRole->dwGuildInviterID = 0;    // 只要操作了，不管是同意还是拒绝，都应该取消他的被邀请记录 Allan Tao[22.4.2013] 
+        pstOnlineRole->dwGuildInviterID = 0;    // Clear the invitation record after either accepting or rejecting. Allan Tao [22.4.2013]
 
         pInviterRoleData = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(pMsg->dwRoleID);
         if (pInviterRoleData)
@@ -3116,7 +3116,7 @@ void CMessageHandler::OnClientGuildActivity(PACKET_BUFFER* pPacketBuffer, UINT32
     nRetCode = poGuild->AddGuildChestEvent(GUILD_CHEST_ACTIVITY, pstOnlineRole->pRoleData->dwRoleID, pMsg->nActivityID, GUILD_ATTR_SILVER, pData->nConsumeSilver);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildAddChestEventFailed);
 
-    { // 调用脚本，发送lighting，tvshow等
+    { // Call script to send lighting, tvshow, etc.
         char        szScriptFuncName[64] = { 0 };
         snprintf(szScriptFuncName, 64, "OpenActivity_%d", pMsg->nActivityID);
 

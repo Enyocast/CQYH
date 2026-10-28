@@ -39,9 +39,9 @@ public:
     enum DropState
     {
         DS_INVALID,
-        DS_PROTECT, // 保护期，有拾取权的角色可拾取
-        DS_PUBLIC,  // 保护期结束，任何人都可以拾取
-        DS_PLAYER   // 玩家丢弃，任何人都可以拾取
+        DS_PROTECT, // Protected period: eligible characters may loot
+        DS_PUBLIC,  // Protection expired: anyone may loot
+        DS_PLAYER   // Player-discarded item: anyone may loot
     };
 
     BOOL Init(UINT32 dwObjID, const DropContent& content, DropState drop_state);
@@ -59,7 +59,7 @@ public:
 
 private:
     DropState m_state;
-    INT64 m_state_frame;    //是哪一帧进入当前状态的
+    INT64 m_state_frame;    //Frame when the current state began
     void _SetState(DropState estate, INT64 frame = 0);
 
     std::set<UINT32> m_owners;

@@ -212,7 +212,7 @@ INT32 CMasterMgr::CreateMasterRelation(MS_ONLINE_ROLE_DATA &teacher, MS_ONLINE_R
     nRetCode = CMasterMgr::GetInstance().DelSolo(student.pRoleData->byGroup, student.pRoleData->dwRoleID);
     LOG_CHECK_ERROR(nRetCode);
 
-    // 去除同门恭喜
+    // Remove congratulations between fellow students
     //for (INT32 nIndex = 0; nIndex < pTeacherData->byStudNum; ++nIndex)
     //{
     //    if (pTeacherData->arrStudentID[nIndex] != student.pRoleData->dwRoleID)
@@ -230,7 +230,7 @@ INT32 CMasterMgr::CreateMasterRelation(MS_ONLINE_ROLE_DATA &teacher, MS_ONLINE_R
     LOG_CHECK_ERROR(bRet);
 
     // construct memory
-    // 徒弟不能再恭喜师傅
+    // Student can no longer congratulate the mentor
     //AddCZ(teacher.pRoleData->byGroup, teacher.pRoleData->dwRoleID, student.pRoleData->dwRoleID, teacher.pRoleData->byLevel);
     AddCZ(teacher.pRoleData->byGroup, student.pRoleData->dwRoleID, teacher.pRoleData->dwRoleID, student.pRoleData->byLevel);
     
@@ -309,13 +309,13 @@ INT32 CMasterMgr::DelMasterRelation(UINT32 dwTeacherID, MS_ROLE_DATA &student, B
     pTeacherData->arrStudentID[nIndex] = pTeacherData->arrStudentID[pTeacherData->byStudNum - 1];
     --pTeacherData->byStudNum;
 
-    // 去除徒弟恭喜师傅
+    // Remove student-to-mentor congratulations
     //nRetCode = DelCZ(dwTeacherID, student.dwRoleID);
     //LOG_CHECK_ERROR(nRetCode);
     nRetCode = DelCZ(student.dwRoleID, dwTeacherID);
     LOG_CHECK_ERROR(nRetCode);
 
-    // 去除同门恭喜
+    // Remove congratulations between fellow students
     //for (INT32 i = 0; i < pTeacherData->byStudNum; ++i)
     //{
     //    if (pTeacherData->arrStudentID[i] != student.dwRoleID)
@@ -1317,7 +1317,7 @@ BOOL MasterRoleLogin(MS_ONLINE_ROLE_DATA &onlineRoleData)
     if (onlineRoleData.pRoleData->byLevel >= STUD_LEVEL_LOWER_LIMIT && onlineRoleData.pRoleData->byLevel < GRADUATE_LEVEL)
     {
         nRetCode = CMasterMgr::GetInstance().AddSolo(onlineRoleData.pRoleData->byGroup, onlineRoleData.pRoleData->dwRoleID);
-        //LOG_CHECK_ERROR(nRetCode);  可能已经是徒弟，在里面判断返回，正常逻辑
+        //LOG_CHECK_ERROR(nRetCode);  The player may already be a student; the internal check returns as normal
     }
 
     nRetCode = CMasterMgr::GetInstance().IsMaster(onlineRoleData.pRoleData->dwRoleID);

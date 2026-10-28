@@ -36,7 +36,7 @@ void CCliMessageHandler::OnCastSpellEx(CRole* poRole, const char* pData)
 
 	PROCESS_ERROR_RET_CODE(!poRole->IsFreeMode(), errFreeMode);
 
-	// 修改自己的朝向, 转向目标
+	// Turn to face the target
 	if (pMsg->byRotateToTarget)
 	{
 		INT32 nNewDirection = g_GetDirection(poRole->GetX(), poRole->GetY(), nTargetX, nTargetY);
@@ -56,7 +56,7 @@ void CCliMessageHandler::OnCastSpellEx(CRole* poRole, const char* pData)
 		}
 	}
 
-	// 获取技能对象
+	// Get the spell object
 	poSpellSet = poRole->GetSpellBook().GetSpellSet(pMsg->wSpellID);
 
 	PROCESS_ERROR_RET_CODE(poSpellSet != NULL, errSpellNotExists);
@@ -68,8 +68,8 @@ void CCliMessageHandler::OnCastSpellEx(CRole* poRole, const char* pData)
 	LOG_PROCESS_ERROR(poSpell);
 
 	{
-		// whether or not canceling current spell - 是否取消当前技能
-		CSpellInstance* poCastingSpell = poRole->GetCastingSpell();    // 获取当前正在释放中的技能对象
+		// Whether to cancel the current spell
+		CSpellInstance* poCastingSpell = poRole->GetCastingSpell();    // Get the currently casting spell
 		if (poCastingSpell != NULL)
 		{
 			PROCESS_ERROR_RET_CODE(poCastingSpell->GetID() != poSpell->GetID(), errSpellCasting);

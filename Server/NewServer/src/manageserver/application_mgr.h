@@ -3,8 +3,8 @@
 	file:		application_mgr.h
 	author:		Allan Tao
 	
-	purpose:	各种application的管理(各app_node的节点暂时由外面管理
-                    后期可以挪到这边用factory管理起来)
+	purpose:	Application management(app_node nodes are currently managed externally
+                    and may later be managed here with a factory)
 *********************************************************************/
 
 #ifndef _H_APPLICATION_MGR_H_

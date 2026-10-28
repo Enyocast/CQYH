@@ -51,7 +51,7 @@ INT32 CCIRCLE_QUEST_MGR::AddCircleQuest(QUEST_DATA* pQuest)
 		if (!m_Circle_Quest_ID_List[pQuest->nCircleID][nIndex].empty())
 		{
 			const QUEST_DATA* pQuestBegin = CDataManager<QUEST_DATA>::GetInstance().GetData(*(m_Circle_Quest_ID_List[pQuest->nCircleID][nIndex].begin()));
-			PROCESS_SUCCESS(!pQuestBegin);	// 找不到为合理,因为设置key在最后
+			PROCESS_SUCCESS(!pQuestBegin);	// Not found is expected because the key is set last
 
 			if(pQuest->nStartNpcID != pQuestBegin->nStartNpcID)
 			{

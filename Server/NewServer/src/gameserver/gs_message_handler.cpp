@@ -392,7 +392,7 @@ BOOL CGSMessageHandler::Init(INet* pNet, IPacketAllocator* pPacketAllocator, IMe
 
 	m_MessageFuncList[m2g_drop_limit] = &CGSMessageHandler::OnMSDropLimit;
 
-	// auction 交易行
+	// Auction exchange
 	m_MessageFuncList[m2g_auction_sell] = &CGSMessageHandler::OnMSAuctionSell;
 	m_MessageFuncList[m2g_auction_buy] = &CGSMessageHandler::OnMSAuctionBuy;
 	m_MessageFuncList[m2g_auction_pay] = &CGSMessageHandler::OnMSAuctionPay;
@@ -424,7 +424,7 @@ BOOL CGSMessageHandler::Init(INet* pNet, IPacketAllocator* pPacketAllocator, IMe
 
     m_MessageFuncList[m2g_add_exercise_time] = &CGSMessageHandler::OnMSAddExerciseTime;
 
-	// 下面新加代码
+	// Additional code follows
 	m_MessageFuncList[m2g_query_real_money_req] = &CGSMessageHandler::OnMSQueryRealMoneyRole;
 	m_MessageFuncList[m2g_real_money_buy_success] = &CGSMessageHandler::OnMSRealMoneyBuySuccess;
     m_MessageFuncList[m2g_role_real_money_shop_buy_item_req] = &CGSMessageHandler::OnMSRoleRealMoneyShopBuyItemReq;
@@ -1410,7 +1410,7 @@ void CGSMessageHandler::OnMSClose(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, I
 	INF("GS %d is closing", CGSSessionMgr::GetInstance().GetSelfSessionID());
 }
 
-// 进入游戏, new Role 对象
+// Enter game; create a Role object
 void CGSMessageHandler::OnMSPreEnterGS(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
 	INT32 nRetCode = 0;
@@ -1480,14 +1480,14 @@ Exit0:
 	return;
 }
 
-// 人物上线, 进入游戏 同步各种数据
+// Character logs in and enters the game; synchronize data
 void CGSMessageHandler::OnMSEnterGSAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
 	INT32 nRetCode = 0;
 	M2G_ENTER_GS_ACK* pMsg = (M2G_ENTER_GS_ACK*)pPacketBuffer;
 	CRole* poRole = NULL;
 
-	// 必然能找到Role，否则有BUG
+	// The role must exist; otherwise there is a bug
 	poRole = CGSSessionMgr::GetInstance().FindRoleBySessionID(pMsg->dwClientSessionID);
 	LOG_PROCESS_ERROR(poRole);
 	LOG_PROCESS_ERROR(poRole->GetState() == rsWaitMSApprove);
@@ -1623,8 +1623,8 @@ void CGSMessageHandler::OnMSEnterGSAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSi
 	CCliMessageHandler::GetInstance().DoGpkDynCode(poRole);
 #endif
 
-	// 新增代码
-	poRole->NotifyRole_GameTimeCard();    // 角色上线, 通知点卡时间
+	// Additional code
+	poRole->NotifyRole_GameTimeCard();    // Notify the character of time-card balance on login
 
 	poRole->SetState(rsWaitClientLoad);
 	poRole->SetLoadingSceneEndFrame(CGameWorld::GetInstance().GetGameFrame() + (g_GWConfig.nSceneLoadTimeOut * GAME_FPS / 1000));
@@ -1645,7 +1645,7 @@ void CGSMessageHandler::OnMSLeaveGS(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize,
 	M2G_LEAVE_GS* pMsg = (M2G_LEAVE_GS*)pPacketBuffer;
 	CRole* poRole = NULL;
 
-	// 找不到Role为合理异常，预进场景失败就会找不到
+	// A missing role is expected if pre-entry to the scene failed
 	poRole = CGSSessionMgr::GetInstance().FindRoleBySessionID(pMsg->dwClientSessionID);
 	PROCESS_ERROR(poRole);
 
@@ -2179,7 +2179,7 @@ void CGSMessageHandler::OnMSMstSyncState(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         if (pMsg->nState == MASTER_BECOME_TEACHER)
         {
             poRole->GetMaster().SetState(MASTER_TEACHER);
-            poRole->GetMaster().SetTwitter(FALSE);      // 默认关闭 "接受徒弟推送"
+            poRole->GetMaster().SetTwitter(FALSE);      // Disable "receive student notifications" by default
         }
     }
 
@@ -3459,7 +3459,7 @@ void CGSMessageHandler::OnMSGuildWarEnd(PACKET_BUFFER* pPacketBuffer, UINT32 dwS
     poScene = CGameWorld::GetInstance().FindScene(MakeSceneObjID(g_GuildConfig.dwSceneTemplateID, pMsg->dwDefenderID));
     PROCESS_ERROR(poScene);
 
-    // 陈凯说，现在不用锁定了。结束了也随便他们杀
+    // Chen Kai said locking is no longer needed; after it ends, allow them to kill freely
     //nRetCode = GuildWarLockRole(poScene);
     //LOG_PROCESS_ERROR(nRetCode);
 
@@ -4155,7 +4155,7 @@ Exit0:
 	return;
 }
 
-// 玩家查询元宝
+// Player queries ingots
 void CGSMessageHandler::OnMSQueryRealMoneyRole(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
 	INT64 llRealMoney = 0;
@@ -4485,7 +4485,7 @@ void CGSMessageHandler::OnMSAddExerciseTime(PACKET_BUFFER *pPacketBuffer, UINT32
     }
 }
 
-// 玩家购买商城物品
+// Player purchases a cash-shop item
 void CGSMessageHandler::OnMSRoleRealMoneyShopBuyItemReq(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
 	INT32 nResult = errNotEnoughMoney;
@@ -4494,25 +4494,25 @@ void CGSMessageHandler::OnMSRoleRealMoneyShopBuyItemReq(PACKET_BUFFER* pPacketBu
 	CRole* poRole = CGameWorld::GetInstance().FindValidRole(pMsg->dwRoleID);
 	if (poRole)
 	{
-		// 这里需要补充, 扣钱之前 先计算空余格子是否足够, 要考虑多种情况, 比如铭文石一组20个, 买100个就要5个格子
+		// TODO: before charging, check available slots for all cases; e.g. 100 inscription stones at 20 per stack require 5 slots
 		//...
 
 		nResult = poRole->GetItemBag()->SubMoney(MONEYTYPE_04, pMsg->nTotalCost, MONEYLOG_REAL_MONEY_SHOP, 0);
 		if (nResult == errSuccess)
 		{
-			// 扣元宝成功, 发放物品, 同步元宝数量
+			// On successful ingot deduction, grant items and synchronize the balance
 			DoMSRoleRealMoneyShopBuyItemAck(pMsg->dwCliSessionID, 0, pMsg->dwRoleID, pMsg->nItemID, pMsg->nItemCount, pMsg->szRoleName);
 			DoMSQueryRealMoneyRole(pMsg->dwCliSessionID, pMsg->dwRoleID, poRole->GetItemBag()->GetMoney(MONEYTYPE_04));
 		}
 		else
 		{
-			// 扣元宝失败
+			// Ingot deduction failed
 			poRole->ErrorCodeNotify(errNotEnoughMoney, 0, 0);
 		}
 	}
 }
 
-// 玩家购买点卡
+// Player purchases a time card
 void CGSMessageHandler::OnMSCustomRoleBuyTimeReq(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
 	INT32 nResult = errNotEnoughMoney;
@@ -4524,7 +4524,7 @@ void CGSMessageHandler::OnMSCustomRoleBuyTimeReq(PACKET_BUFFER* pPacketBuffer, U
 		nResult = poRole->GetItemBag()->SubMoney(MONEYTYPE_04, pMsg->dwBuyTimeCost, MONEYLOG_CUSTOM_ROLE_BUY_TIME, 0);
 		if (nResult == errSuccess)
 		{
-			UINT32 dwBuySeconds = (pMsg->dwBuyTimeCost / 100) * 6000;    // 价格 [1.00元宝 = 6000秒]
+			UINT32 dwBuySeconds = (pMsg->dwBuyTimeCost / 100) * 6000;    // Price: 1.00 ingot = 6000 seconds
 			poRole->AddGameTimeCard(dwBuySeconds);
 		}
 		else
@@ -4566,13 +4566,13 @@ void CGSMessageHandler::OnDBLoadLockRoleDataAck(PACKET_BUFFER* pPacketBuffer, UI
 	CRole* poRole = NULL;
 	CLuaScript* poScript = NULL;
 
-	//找不到是合理异常
+	//Not found is an expected exception
 	poRole = CGSSessionMgr::GetInstance().FindRoleBySessionID(pMsg->dwClientSessionID);
 	PROCESS_ERROR(poRole);
 	LOG_PROCESS_ERROR(poRole->GetState() == rsWaitRoleData);
 	LOG_PROCESS_ERROR(poRole->GetObjID() == pMsg->dwRoleID);
 
-	nRetCode = poRole->Load(pMsg->RoleData, pMsg->dwDataSize);  // 加载角色数据
+	nRetCode = poRole->Load(pMsg->RoleData, pMsg->dwDataSize);  // Load character data
 	LOG_PROCESS_ERROR(nRetCode);
 
 	poScript = CScriptMgr::GetInstance().FindScript(LOAD_ROLE_SCRIPT_NAME);
@@ -4606,7 +4606,7 @@ void CGSMessageHandler::OnDBUnlockRoleDataAck(PACKET_BUFFER* pPacketBuffer, UINT
 	BOOL bNormal = TRUE;
 
 	LOG_CHECK_ERROR(pMsg->nError == errSuccess);
-	//不可能找不到，找不到有严重BUG
+	//Must be found; otherwise there is a serious bug
 	poRole = CGSSessionMgr::GetInstance().FindRoleBySessionID(pMsg->dwClientSessionID);
 	LOG_PROCESS_ERROR(poRole);
 	LOG_CHECK_ERROR(poRole->GetObjID() == pMsg->dwRoleID);
@@ -4635,7 +4635,7 @@ void CGSMessageHandler::OnDBLoadLockRoleDataFailAck(PACKET_BUFFER* pPacketBuffer
 	D2G_LOAD_LOCK_ROLE_DATA_FAIL_ACK* pMsg = (D2G_LOAD_LOCK_ROLE_DATA_FAIL_ACK*)pPacketBuffer;
 	CRole* poRole = NULL;
 
-	//找不到是合理异常
+	//Not found is an expected exception
 	poRole = CGSSessionMgr::GetInstance().FindRoleBySessionID(pMsg->dwClientSessionID);
 	PROCESS_ERROR(poRole);
 	LOG_PROCESS_ERROR(poRole->GetState() == rsWaitRoleData);
@@ -4668,20 +4668,20 @@ void CGSMessageHandler::OnGTRegisterAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwS
 	INF("GS %d registered to GT %d", CGSSessionMgr::GetInstance().GetSelfSessionID(), pMsg->dwGTSessionID);
 }
 
-// 进入游戏 加载数据
+// Load data when entering the game
 void CGSMessageHandler::OnGTRoleEnter(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
 	INT32 nRetCode = 0;
 	T2G_ROLE_ENTER* pMsg = (T2G_ROLE_ENTER*)pPacketBuffer;
 	CRole* poRole = NULL;
 
-	//找不到是合理异常
+	//Not found is an expected exception
 	poRole = CGSSessionMgr::GetInstance().FindRoleBySessionID(pMsg->dwClientSessionID);
 	PROCESS_ERROR(poRole);
 	LOG_PROCESS_ERROR(poRole->GetState() == rsPreEntered);
 	LOG_PROCESS_ERROR(poRole->GetObjID() == pMsg->dwRoleID);
 
-	nRetCode = DoDBLoadLockRoleData(pMsg->dwClientSessionID, pMsg->dwRoleID);  // 加载角色数据
+	nRetCode = DoDBLoadLockRoleData(pMsg->dwClientSessionID, pMsg->dwRoleID);  // Load character data
 	LOG_PROCESS_ERROR(nRetCode);
 
 	poRole->SetState(rsWaitRoleData);

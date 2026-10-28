@@ -304,7 +304,7 @@ BOOL CRobotMessageHandler::Init(IRobotMessageNotifier* poNotifier, IPacketAlloca
 	m_RobotMessageFuncList[g2c_hire_hero] = &CRobotMessageHandler::OnHireHero;
 	m_RobotMessageFuncList[g2c_hero_level_up] = &CRobotMessageHandler::OnHeroLevelUp;
 
-	// 铸魂
+	// Soul forging
 	m_RobotMessageFuncList[g2c_rune_item] = &CRobotMessageHandler::OnRuneItem;
 
 	// vip
@@ -1250,16 +1250,16 @@ void CRobotMessageHandler::OnItemChange(CRole* poRole, const char* pData)
 	UINT32 itemlen = iteminfo.Load(pMsg->acItem);
 	LOG_PROCESS_ERROR(itemlen > 0);
 
-	//成就相关处理
+	//Achievement processing
 	item = poRole->GetItemBag()->GetItem(iteminfo.m_byConSlot, iteminfo.m_byItemSlot);
 	pNewItemTemplate = GetItemData(iteminfo.m_nTemplateID);
 	LOG_PROCESS_ERROR(pNewItemTemplate);
 	if (item == NULL)
 	{
-		//item为NULL，
+		//Item is NULL,
 		bNewAddItem = TRUE;
 
-		//luck增加判断
+		//Check luck increase
 		if (iteminfo.m_byLuck > 0)
 		{
 			bItemLuckChange = TRUE;
@@ -1273,13 +1273,13 @@ void CRobotMessageHandler::OnItemChange(CRole* poRole, const char* pData)
 	}
 	else
 	{
-		//luck增加判断
+		//Check luck increase
 		if (iteminfo.m_byLuck != item->m_iteminfo.m_byLuck)
 		{
 			bItemLuckChange = TRUE;
 		}
 
-		//新增物品判断
+		//Check new item
 		if (item->m_iteminfo.m_nCurDur < iteminfo.m_nCurDur)
 		{
 			bNewAddItem = TRUE;
@@ -1289,7 +1289,7 @@ void CRobotMessageHandler::OnItemChange(CRole* poRole, const char* pData)
 			}
 		}
 
-		//检测装备品质改变
+		//Check equipment quality change
 		pOldItemTemplate = GetItemData(item->m_iteminfo.m_nTemplateID);
 		LOG_PROCESS_ERROR(pOldItemTemplate);
 		if ((pOldItemTemplate->m_byColor != pNewItemTemplate->m_byColor) 
@@ -6130,7 +6130,7 @@ void CRobotMessageHandler::OnSpiritAirChange(CRole* pRole, const char* pData)
 
 	G2C_SPIRIT_AIR_CHANGE* pMsg = (G2C_SPIRIT_AIR_CHANGE*)pData;
 
-	//检测气息背包获得新气息
+	//Check for newly acquired qi in the qi bag
 	pAir = pRole->GetSpirit().GetAir(sasbtBag, pMsg->nIndex);
 	if ((NULL == pAir || pAir->nTemplateID != pMsg->nAirID) && sasbtBag == pMsg->nBagType)
 	{

@@ -3,7 +3,7 @@ created:	7:4:2013   15:23
 file:		ms_guild_mgr.cpp
 author:		Allan Tao
 
-purpose:	帮会相关逻辑，帮派list及排序查询逻辑
+purpose:	Guild logic, including guild lists and sorted queries
 *********************************************************************/
 
 #include "stdafx.h"
@@ -342,7 +342,7 @@ BOOL CMsGuildMgr::Init()
     nRetCode = m_UpgradeTriggerPool.Init(g_GuildConfig.nGuildUpgradeTriggerPool);
     LOG_PROCESS_ERROR(nRetCode);
 
-    // todo_tq 公会战，pool数量
+    // todo_tq: guild war pool count
     nRetCode = m_GuildWarPool.Init(g_GuildConfig.nGuildGuildWarPool);
     LOG_PROCESS_ERROR(nRetCode);
 
@@ -472,7 +472,7 @@ BOOL CMsGuildMgr::LoadGuild(GUILD_DB& db_data)
     LOG_PROCESS_ERROR(poMsGuild->Load(db_data));
 
     // other construct
-    // 构造有序guild list
+    // Build a sorted guild list
     nRetCode = InsertGuildIntoLvlRank(poMsGuild);
     LOG_PROCESS_ERROR(nRetCode);
 
@@ -573,14 +573,14 @@ BOOL CMsGuildMgr::MainLoop()
 
 	// global timer
 
-	// 30秒定时器
+	// 30-second timer
 	if ( 0 == dwCurrentTime % 30 )
 	{
 
-		// 1分钟定时器
+		// 1-minute timer
 		if ( 0 == dwCurrentTime % 60)
 		{
-            // 10分钟定时器 Allan Tao[8.5.2013] 
+            // 10-minute timer. Allan Tao [8.5.2013]
 			if ( 0 == dwCurrentTime % 600 )
 			{
                 // one hour
@@ -1247,7 +1247,7 @@ INT32 CMsGuildMgr::CreateGuild(MS_ONLINE_ROLE_DATA &onlineRoleData, const char *
     poMsGuild = FindGuildByName(pcszGuildName);      // to be optimized
     LOG_PROCESS_ERROR(poMsGuild);
 
-    // 构造有序guild list
+    // Build a sorted guild list
     nRetCode = InsertGuildIntoLvlRank(poMsGuild);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildInternalError);
 
@@ -1376,7 +1376,7 @@ Exit0:
 //        G_GUILD_APPLICANTION_DATA   *pAppData = NULL;
 //        pAppData = (G_GUILD_APPLICANTION_DATA*)((char *)pNext - (char *)(&((G_GUILD_APPLICANTION_DATA*)0)->m_roleAppListNode));
 //
-//        if (pAppData->dwEndTime < dwCurrentTime + dwCheckTime)   // 未来 dwCheckTime 秒之内的全部删除
+//        if (pAppData->dwEndTime < dwCurrentTime + dwCheckTime)   // Delete all entries within the next dwCheckTime seconds
 //        {
 //            BASE_LIST_NODE *pOldNext = pNext;
 //            pNext = pNext->pNext;
@@ -1400,7 +1400,7 @@ Exit0:
 //                LOG_CHECK_ERROR(nRetCode);
 //            }
 //        }
-//        else    // 按时间来说，是递增队列 Allan Tao[8.5.2013] 
+//        else    // The queue is ordered by increasing time. Allan Tao [8.5.2013]
 //            break;
 //    }
 //

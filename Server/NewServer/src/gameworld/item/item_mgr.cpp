@@ -11,11 +11,11 @@
 
 UINT64 CreateItemGuid()
 {
-    //ItemGuid共8字节，从左至右说明：
-    //1-4:  时间
-    //5:    大区ID
+    //ItemGuid is 8 bytes, laid out from left to right:
+    //1-4:  Time
+    //5:    Region ID
     //6:    GameServer ID
-    //7-8:  流水号
+    //7-8:  Sequence number
 
     static UINT16 item_seed = 0;
     static UINT64 last_game_time = 0;
@@ -127,7 +127,7 @@ Item* CItemMgr::GenerateItem(const ITEM_DATA* itemdata, INT32 nItemCount, BOOL b
     }
     item->m_iteminfo.m_byBindType = itemdata->m_byBindType;
 
-    // 生成 随机属性/孔位
+    // Generate random attributes / sockets
     if (itemdata->m_byType == ITEMTYPE_EQUIP)
     {
         const EQUIP_DATA* equipdata = (const EQUIP_DATA*)itemdata;
@@ -136,10 +136,10 @@ Item* CItemMgr::GenerateItem(const ITEM_DATA* itemdata, INT32 nItemCount, BOOL b
 
         if (equipdata->m_byIdentified)
         {
-            GenerateRandomAttributes(item);  // 随机属性
+            GenerateRandomAttributes(item);  // Random attributes
         }
 
-        // 孔位, 暂时屏蔽
+        // Sockets are temporarily disabled
         //_GenerateSockets(item->m_iteminfo, equipdata->m_nSocketChance, equipdata->m_bySocketCountMin, equipdata->m_bySocketCountMax, equipdata->m_nColorSocketRate);
     }
 
@@ -214,13 +214,13 @@ BOOL CItemMgr::DestroyItem(Item* item)
     return bRet;
 }
 
-// 生成 随机孔位
+// Generate random sockets
 void CItemMgr::_GenerateSockets(ItemInfo& iteminfo, INT32 chance, UINT8 countmin, UINT8 countmax, INT32 colorrate)
 {
-    //随机孔的个数，0-count
-    //随机孔的颜色（不包含彩色孔，其他颜色概率平均）
-    //由装备模板数据决定彩色孔出现的概率，出现则将最后一个孔修改为彩色孔
-    //因此，如果第一次随机到0个孔，则彩色孔也不会出现
+    //Random socket count, 0-count
+    //Random socket colors (excluding multicolor sockets; other colors are equally likely)
+    //Equipment template data determines the chance of a multicolor socket; if selected, convert the last socket
+    //Therefore, if the initial random count is zero, no multicolor socket can appear
 
     UINT32 temp_socket_type = SOCKET_NONE;
     INT32 actual_socket_count = 0;
@@ -229,8 +229,8 @@ void CItemMgr::_GenerateSockets(ItemInfo& iteminfo, INT32 chance, UINT8 countmin
 
     LOG_PROCESS_ERROR(chance >= 0 && chance <= RATE_MAX);
 
-    //if (g_Random(RATE_MAX) >= chance)    // 默认代码 (概率高)
-    if (g_Random(RATE_MAX) < chance)    // 修改代码 (概率低)
+    //if (g_Random(RATE_MAX) >= chance)    // Default code (high probability)
+    if (g_Random(RATE_MAX) < chance)    // Modified code (low probability)
         return;
 
     LOG_PROCESS_ERROR(countmin <= countmax);
@@ -260,21 +260,21 @@ Exit0:
     return;
 }
 
-// 生成 随机属性
+// Generate random attributes
 void CItemMgr::GenerateRandomAttributes(Item* item, INT32 modifyrate/* = RATE_MAX*/, INT32 nServerGroup/* = 0*/)
 {
     const EQUIP_DATA* equip_data = (const EQUIP_DATA*)item->m_pTemplate;
     INT32 attr_count = 0;
 
-    // 计算概率
-    //INT32 final_rate = (INT32)((INT64)equip_data->m_nRandomAttributeChance * modifyrate / RATE_MAX);  默认代码
-    INT32 final_rate = equip_data->m_nRandomAttributeChance;  // 修改代码, 去掉计算
+    // Calculate probability
+    //INT32 final_rate = (INT32)((INT64)equip_data->m_nRandomAttributeChance * modifyrate / RATE_MAX);  Default code
+    INT32 final_rate = equip_data->m_nRandomAttributeChance;  // Modified code: remove the calculation
 
-    // 默认代码
+    // Default code
     if (g_Random(RATE_MAX) >= final_rate)
         return;
 
-    // 判断 运2项链产出限制
+    // Check the Luck +2 necklace drop limit
     BOOL bIsLuck2Equip = FALSE;
     BOOL bIsLuck2NecklaceLimit = FALSE;
     if (equip_data->m_bySubType == ITEMSUBTYPE_EQUIP_NECKLACE)
@@ -294,7 +294,7 @@ void CItemMgr::GenerateRandomAttributes(Item* item, INT32 modifyrate/* = RATE_MA
         }
     }
 
-    // 不是 [运2项链物品] 或者 是 [运2项链物品, 但是还没达到限制数量], 还是走默认代码流程 不变
+    // For non-Luck +2 necklaces, or Luck +2 necklaces below the limit, use the unchanged default flow
     if (bIsLuck2NecklaceLimit == FALSE)
     {
         for (INT32 i = 0; i < MAX_RANDOM_ATTR_COUNT; i++)
@@ -315,7 +315,7 @@ void CItemMgr::GenerateRandomAttributes(Item* item, INT32 modifyrate/* = RATE_MA
 
                         item->m_iteminfo.m_wRandomAttrID[attr_count++] = tmpRandomAttrID;
 
-                        // 是项链, 并且是运2属性, 则增加变量
+                        // If this is a necklace with the Luck +2 attribute, increment the variable
                         if (equip_data->m_bySubType == ITEMSUBTYPE_EQUIP_NECKLACE &&
                             tmpRandomAttrID >= g_ServerConfig.CC.nMinLuck2AttributelID && 
                             tmpRandomAttrID <= g_ServerConfig.CC.nMaxLuck2AttributelID)
@@ -333,7 +333,7 @@ void CItemMgr::GenerateRandomAttributes(Item* item, INT32 modifyrate/* = RATE_MA
             }
         }
     }
-    // 是 [运2项链物品] , 并且达到限制数量了, 只有[运2项链物品] 才会走这里
+    // Only Luck +2 necklaces that have reached the limit enter this branch
     else
     {
         for (INT32 i = 0; i < MAX_RANDOM_ATTR_COUNT; i++)
@@ -350,10 +350,10 @@ void CItemMgr::GenerateRandomAttributes(Item* item, INT32 modifyrate/* = RATE_MA
                 {
                     if (random_number < pool->m_PoolData[j].m_nWeight)
                     {
-                        // 随机一个属性ID
+                        // Choose a random attribute ID
                         UINT16 tmpRandomAttrID = g_Random(pool->m_PoolData[j].m_nAttributeIDMin, pool->m_PoolData[j].m_nAttributeIDMax + 1);
 
-                        // 如果是 [运2属性] 则直接跳过, 否则 赋值属性
+                        // Skip the Luck +2 attribute; otherwise assign the attribute
                         if (tmpRandomAttrID >= g_ServerConfig.CC.nMinLuck2AttributelID && tmpRandomAttrID <= g_ServerConfig.CC.nMaxLuck2AttributelID)
                         {
                             random_number -= pool->m_PoolData[j].m_nWeight;
@@ -373,7 +373,7 @@ void CItemMgr::GenerateRandomAttributes(Item* item, INT32 modifyrate/* = RATE_MA
         }
     }
 
-    // 默认代码
+    // Default code
     //for (INT32 i = 0; i < MAX_RANDOM_ATTR_COUNT; i++)
     //{
     //    if (equip_data->m_nAttributePoolID[i] && g_Random(RATE_MAX) < equip_data->m_nAttributePoolChance[i])
@@ -421,7 +421,7 @@ BOOL CItemMgr::RegisterRuneData(const RUNE_DATA* data)
     {
         LOG_PROCESS_ERROR(data->dwWeight > 0);
         //LOG_PROCESS_ERROR(data->dwWeight <= 1000000);
-        LOG_PROCESS_ERROR(data->dwWeight[0][0] <= 1000000);    // 暂时固定使用 下标[0][0]
+        LOG_PROCESS_ERROR(data->dwWeight[0][0] <= 1000000);    // For now, always use index [0][0]
         LOG_PROCESS_ERROR(CSpellConfig::GetInstance().FindSpellTemplate(data->nSpellID, 0, 0));
         LOG_PROCESS_ERROR(data->nClass >= clsPlayerBegin && data->nClass < clsPlayerEnd);
 
@@ -434,11 +434,11 @@ Exit0:
     return FALSE;
 }
 
-// 普通铭文洗练
+// Normal inscription refinement
 INT32 CItemMgr::GenerateRandomRuneData(INT32 nServerGroup, Item* item, INT32 cls, INT32 level, INT32 runegroup)
 {
-    UINT16* p_this_random_rune_id = NULL;  // 当前要洗练的铭文
-    UINT16* p_another_rune_id = NULL;      // 另一个要保留的铭文
+    UINT16* p_this_random_rune_id = NULL;  // Inscription currently being refined
+    UINT16* p_another_rune_id = NULL;      // Other inscription to preserve
     const RUNE_DATA* another_rune_data = NULL;
     const EQUIP_DATA* equip_data = NULL;
 
@@ -447,14 +447,14 @@ INT32 CItemMgr::GenerateRandomRuneData(INT32 nServerGroup, Item* item, INT32 cls
 
     equip_data = (const EQUIP_DATA*)item->m_pTemplate;
 
-    // 默认代码
+    // Default code
     {
-        // 随机洗哪个卡槽, 判断 开启第二卡槽是否有数值, 并且当前消费数量 是否已经大于 m_dwSecondRuneCost, 都是判断 1200 次
+        // Randomly choose the slot to refine; check whether slot 2 has an unlock value and spending exceeds m_dwSecondRuneCost (both use a 1200-attempt threshold)
         //if (item->m_iteminfo.m_wRune[1] || (item->m_iteminfo.m_dwCostMoney >= equip_data->m_dwSecondRuneCostMax))
         //{
         //    if (g_Random(2) == 0)
         //    {
-        //        p_this_random_rune_id = &item->m_iteminfo.m_wRune[0];  // 指针
+        //        p_this_random_rune_id = &item->m_iteminfo.m_wRune[0];  // Pointer
         //        p_another_rune_id = &item->m_iteminfo.m_wRune[1];
         //        another_rune_data = CDataManager<RUNE_DATA>::GetInstance().GetData(*p_another_rune_id);
         //    }
@@ -471,28 +471,28 @@ INT32 CItemMgr::GenerateRandomRuneData(INT32 nServerGroup, Item* item, INT32 cls
         //}
     }
 
-    // 自己改的代码
+    // Custom code
     {
-        // 有卡槽1, 有卡槽2, 同时满足开双卡槽条件, 洗[卡槽1]
-        if (item->m_iteminfo.m_wRune[0] > 0 &&                                    // 有卡槽1
-            item->m_iteminfo.m_wRune[1] > 0 &&                                    // 有卡槽2
-            equip_data->m_dwSecondRuneCostMax > 0 &&                              // 开启卡槽2有条件
-            item->m_iteminfo.m_dwCostMoney >= equip_data->m_dwSecondRuneCostMax)  // 满足开双卡槽条件
+        // If both slots exist and the second-slot condition is met, refine slot 1
+        if (item->m_iteminfo.m_wRune[0] > 0 &&                                    // Slot 1 exists
+            item->m_iteminfo.m_wRune[1] > 0 &&                                    // Slot 2 exists
+            equip_data->m_dwSecondRuneCostMax > 0 &&                              // Slot 2 has an unlock condition
+            item->m_iteminfo.m_dwCostMoney >= equip_data->m_dwSecondRuneCostMax)  // Second-slot unlock condition is met
         {
-            p_this_random_rune_id = &item->m_iteminfo.m_wRune[0];  // 指针
+            p_this_random_rune_id = &item->m_iteminfo.m_wRune[0];  // Pointer
             p_another_rune_id = &item->m_iteminfo.m_wRune[1];
             another_rune_data = CDataManager<RUNE_DATA>::GetInstance().GetData(*p_another_rune_id);
         }
-        // 有卡槽1, 同时满足开双卡槽条件, 洗[卡槽2]
-        else if (item->m_iteminfo.m_wRune[0] > 0 &&                               // 有卡槽1
-            equip_data->m_dwSecondRuneCostMax > 0 &&                              // 开启卡槽2有条件
-            item->m_iteminfo.m_dwCostMoney >= equip_data->m_dwSecondRuneCostMax)  // 满足开双卡槽条件
+        // If slot 1 exists and the second-slot condition is met, refine slot 2
+        else if (item->m_iteminfo.m_wRune[0] > 0 &&                               // Slot 1 exists
+            equip_data->m_dwSecondRuneCostMax > 0 &&                              // Slot 2 has an unlock condition
+            item->m_iteminfo.m_dwCostMoney >= equip_data->m_dwSecondRuneCostMax)  // Second-slot unlock condition is met
         {
-            p_this_random_rune_id = &item->m_iteminfo.m_wRune[1];  // 指针
+            p_this_random_rune_id = &item->m_iteminfo.m_wRune[1];  // Pointer
             p_another_rune_id = &item->m_iteminfo.m_wRune[0];
             another_rune_data = CDataManager<RUNE_DATA>::GetInstance().GetData(*p_another_rune_id);
         }
-        // 没有铭文, 洗[卡槽1]
+        // If there is no inscription, refine slot 1
         else
         {
             p_this_random_rune_id = &item->m_iteminfo.m_wRune[0];
@@ -500,18 +500,18 @@ INT32 CItemMgr::GenerateRandomRuneData(INT32 nServerGroup, Item* item, INT32 cls
     }
 
 
-    // 循环10次
+    // Repeat 10 times
     for (INT32 loop_times = 0; loop_times < 10; loop_times++)
     {
-        // 生成一个对应职业的铭文
+        // Generate an inscription for the class
         UINT16 temp_rune_id = _GenerateRuneID(cls, level, runegroup);
         LOG_PROCESS_ERROR(temp_rune_id);
 
-        // 获取铭文模板
+        // Get the inscription template
         const RUNE_DATA* temp_rune_data = CDataManager<RUNE_DATA>::GetInstance().GetData(temp_rune_id);
         LOG_PROCESS_ERROR(temp_rune_data);
 
-        // 查询铭文洗练限制
+        // Check inscription refinement restrictions
         INT32 rune_count = CGameWorld::GetInstance().GetServerVariable(nServerGroup, MakeServerKey(esvtRune, temp_rune_id));
         if (temp_rune_data->nDropLimitCount && rune_count >= temp_rune_data->nDropLimitCount)
         {
@@ -522,7 +522,7 @@ INT32 CItemMgr::GenerateRandomRuneData(INT32 nServerGroup, Item* item, INT32 cls
         if (another_rune_data == NULL ||
             (temp_rune_data->nSpellID != another_rune_data->nSpellID))
         {
-            *p_this_random_rune_id = temp_rune_id;  // 赋值, 修改卡槽里的铭文
+            *p_this_random_rune_id = temp_rune_id;  // Assign the new inscription to the slot
             return temp_rune_id;
         }
     }
@@ -535,7 +535,7 @@ Exit0:
 
 INT32 CItemMgr::GenerateRandomRuneDataAdvanced(INT32 nServerGroup, Item* item, INT32 cls, INT32 level, INT32 runegroup)
 {
-    UINT16* p_another_rune_id = NULL;      // 另一个要保留的铭文
+    UINT16* p_another_rune_id = NULL;      // Other inscription to preserve
     const RUNE_DATA* another_rune_data = NULL;
     const EQUIP_DATA* equip_data = NULL;
 
@@ -544,31 +544,31 @@ INT32 CItemMgr::GenerateRandomRuneDataAdvanced(INT32 nServerGroup, Item* item, I
 
     equip_data = (const EQUIP_DATA*)item->m_pTemplate;
 
-    // 判断, 当前装备是否开启第二卡槽
+    // Check whether the equipment has unlocked slot 2
     if (item->m_iteminfo.m_wRune[1] > 0 || 
         item->m_iteminfo.m_dwCostMoney >= equip_data->m_dwSecondRuneCostMax)
     {
-        // 固定洗第二卡槽, 获取第一卡槽的铭文信息
+        // Refine slot 2 and retrieve slot 1 inscription information
         p_another_rune_id = &item->m_iteminfo.m_wRune[0];
         another_rune_data = CDataManager<RUNE_DATA>::GetInstance().GetData(*p_another_rune_id);
     }
     else
     {
-        return 0;  // 按理说没开2个卡槽的武器, 客户端不让发包的, 强行发包肯定是调Call了
+        return 0;  // The client should not send this packet for a weapon without two slots; a forced packet implies a direct call
     }
 
-    // 循环10次
+    // Repeat 10 times
     for (INT32 loop_times = 0; loop_times < 10; loop_times++)
     {
-        // 生成一个对应职业的铭文
+        // Generate an inscription for the class
         UINT16 temp_rune_id = _GenerateRuneID(cls, level, runegroup);
         LOG_PROCESS_ERROR(temp_rune_id);
 
-        // 获取铭文模板
+        // Get the inscription template
         const RUNE_DATA* temp_rune_data = CDataManager<RUNE_DATA>::GetInstance().GetData(temp_rune_id);
         LOG_PROCESS_ERROR(temp_rune_data);
 
-        // 查询铭文洗练限制
+        // Check inscription refinement restrictions
         INT32 rune_count = CGameWorld::GetInstance().GetServerVariable(nServerGroup, MakeServerKey(esvtRune, temp_rune_id));
         if (temp_rune_data->nDropLimitCount && rune_count >= temp_rune_data->nDropLimitCount)
         {
@@ -579,7 +579,7 @@ INT32 CItemMgr::GenerateRandomRuneDataAdvanced(INT32 nServerGroup, Item* item, I
         if (another_rune_data == NULL ||
             (temp_rune_data->nSpellID != another_rune_data->nSpellID))
         {
-            return temp_rune_id;  // // 高级洗练, 先不修改铭文数据, 只把结果返回
+            return temp_rune_id;  // // Advanced refinement: return the result without changing inscription data yet
         }
     }
 
@@ -589,7 +589,7 @@ Exit0:
     return 0;
 }
 
-// 参数 (职业, Vip等级, 铭文分组)
+// Parameters: class, VIP level, inscription group
 UINT16 CItemMgr::_GenerateRuneID(INT32 cls, INT32 level, INT32 runegroup)
 {
     UINT32 random_number;
@@ -598,7 +598,7 @@ UINT16 CItemMgr::_GenerateRuneID(INT32 cls, INT32 level, INT32 runegroup)
 
     LOG_PROCESS_ERROR(cls >= 0 && cls <clsPlayerTotal);
 
-    // 根据职业, 计算权重总和
+    // Calculate total weight for the class
     for (std::vector<const RUNE_DATA*>::iterator it = m_vec_rune_data[cls].begin(); it != m_vec_rune_data[cls].end(); ++it)
     {
         const RUNE_DATA* data = *it;
@@ -606,23 +606,23 @@ UINT16 CItemMgr::_GenerateRuneID(INT32 cls, INT32 level, INT32 runegroup)
         {
             temp_vec_rune_data.push_back(data);
             //weight += data->dwWeight;
-            weight += data->dwWeight[0][0];    // 暂时固定使用 下标[0][0]
+            weight += data->dwWeight[0][0];    // For now, always use index [0][0]
         }
     }
     LOG_PROCESS_ERROR(!temp_vec_rune_data.empty());
 
-    // 随机权重数值
+    // Choose a random weight
     random_number = g_Random(weight);
 
-    // 权重算法
+    // Weighted selection
     for (INT32 i = 0; i < temp_vec_rune_data.size(); i++)
     {
         //if (random_number < temp_vec_rune_data[i]->dwWeight)
-        if (random_number < temp_vec_rune_data[i]->dwWeight[0][0])    // 暂时固定使用 下标[0][0]
+        if (random_number < temp_vec_rune_data[i]->dwWeight[0][0])    // For now, always use index [0][0]
             return (UINT16)temp_vec_rune_data[i]->nRuneID;
 
         //random_number -= temp_vec_rune_data[i]->dwWeight;
-        random_number -= temp_vec_rune_data[i]->dwWeight[0][0];    // 暂时固定使用 下标[0][0]
+        random_number -= temp_vec_rune_data[i]->dwWeight[0][0];    // For now, always use index [0][0]
     }
 
     LOG_PROCESS_ERROR(FALSE);
@@ -632,9 +632,9 @@ Exit0:
 }
 
 
-// ========== 下面全是自己新增加的代码 begin
+// ========== Custom code begins
 
-// 判断装备是不是运2项链装备
+// Check whether the item is a Luck +2 necklace
 BOOL CItemMgr::CheckEquipIsLuck2Item(INT32 itemID)
 {
     for (const auto id : g_ServerConfig.CC.nLuck2NecklaceItemID)
@@ -647,7 +647,7 @@ BOOL CItemMgr::CheckEquipIsLuck2Item(INT32 itemID)
     return FALSE;
 }
 
-// 自己新加函数, 专门用于运2
+// Custom function specifically for Luck +2
 Item* CItemMgr::GenerateItem(INT32 nServerGroup, const ITEM_DATA* itemdata, INT32 nItemCount, BOOL bRandomDur)
 {
     Item* item = NULL;
@@ -708,7 +708,7 @@ Item* CItemMgr::GenerateItem(INT32 nServerGroup, const ITEM_DATA* itemdata, INT3
     }
     item->m_iteminfo.m_byBindType = itemdata->m_byBindType;
 
-    // 生成 随机属性/孔位
+    // Generate random attributes / sockets
     if (itemdata->m_byType == ITEMTYPE_EQUIP)
     {
         const EQUIP_DATA* equipdata = (const EQUIP_DATA*)itemdata;
@@ -733,4 +733,4 @@ Exit0:
     return NULL;
 }
 
-// ========== 下面全是自己新增加的代码 end
+// ========== Custom code ends

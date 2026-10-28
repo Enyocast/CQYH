@@ -743,26 +743,26 @@ Exit0:
 ModifierFunc g_MissileModifier[mmiCount] = 
 {
 	{ NULL, FALSE }, 
-	{ ModifierMissile_001, FALSE },  // CastSubSpellToCurPos					 在当前位置施放子技能（如范围爆炸）
-	{ ModifierMissile_002, FALSE },  // BulletToEachTarget					     向每个目标发射投射物（多重锁定）
-	{ ModifierMissile_003, FALSE },  // JustAddCollisionCount					 仅增加碰撞计数（记录命中次数）
-	{ ModifierMissile_004, FALSE },  // RotateTo								 旋转至目标方向（调整投射物飞行角度）
-	{ ModifierMissile_005, FALSE },  // CoverParam1WithTargetPt				     用目标点覆盖参数1（动态调整弹道）
-	{ ModifierMissile_006, FALSE },  // ReduceMaxCollisionCountIfCollision	     碰撞后减少最大碰撞次数（如穿透递减）
-	{ ModifierMissile_007, FALSE },  // LockNearestTargetInSector				 锁定扇形区域内最近目标（如近战横扫）
-	{ ModifierMissile_008, FALSE },  // LockNearestTargetInCircle				 锁定圆形范围内最近目标（AOE技能）
-	{ ModifierMissile_009, FALSE },  // CheckOwnerMovementStateAndDeleteSelf     检测所有者移动状态并自我销毁（如角色停止时消失）
-	{ ModifierMissile_010, FALSE },  // CheckOwnerExFlag						 检查所有者额外标记（如“无敌”状态是否影响投射物）
-	{ ModifierMissile_011, FALSE },  // AddEffectByRemainCollisionCount		     根据剩余碰撞次数添加效果（如穿透后伤害增强）
-	{ ModifierMissile_012, FALSE },  // DeleteSelf							     自我销毁（投射物生命周期结束）
-	{ ModifierMissile_013, FALSE },  // TurnToCaster							 转向施法者（如仇恨吸引/镜头跟随）
-	{ ModifierMissile_014, FALSE },  // ModifyMissileAttr						 修改投射物属性（速度/伤害/方向等）
-	{ ModifierMissile_015, FALSE },  // RemoveSameMissile						 移除相同类型的投射物（避免重复效果）
-	{ ModifierMissile_016, FALSE },  // RemoveSameMissile						 移除相同类型的投射物（避免重复效果）
-	{ ModifierMissile_017, FALSE },  // RemoveSameMissile						 移除相同类型的投射物（避免重复效果）
-	{ ModifierMissile_018, FALSE },  // RemoveSameMissile						 移除相同类型的投射物（避免重复效果）
-	{ ModifierMissile_019, FALSE },  // RemoveSameMissile						 移除相同类型的投射物（避免重复效果）
-	{ ModifierMissile_020, FALSE },  // RemoveSameMissile						 移除相同类型的投射物（避免重复效果）
-	{ ModifierMissile_021, FALSE },  // RemoveSameMissile						 移除相同类型的投射物（避免重复效果）
-	{ ModifierMissile_022, FALSE },  // RemoveSameMissile						 移除相同类型的投射物（避免重复效果）
+	{ ModifierMissile_001, FALSE },  // CastSubSpellToCurPos					 Cast a sub-spell at the current position (such as an area explosion)
+	{ ModifierMissile_002, FALSE },  // BulletToEachTarget					     Fire a projectile at each target (multiple locks)
+	{ ModifierMissile_003, FALSE },  // JustAddCollisionCount					 Only increment the collision count (record hits)
+	{ ModifierMissile_004, FALSE },  // RotateTo								 Rotate toward the target (adjust projectile trajectory)
+	{ ModifierMissile_005, FALSE },  // CoverParam1WithTargetPt				     Replace parameter 1 with the target point (adjust trajectory dynamically)
+	{ ModifierMissile_006, FALSE },  // ReduceMaxCollisionCountIfCollision	     Reduce the maximum collision count after a collision (such as diminishing penetration)
+	{ ModifierMissile_007, FALSE },  // LockNearestTargetInSector				 Lock the nearest target in a sector (such as a melee sweep)
+	{ ModifierMissile_008, FALSE },  // LockNearestTargetInCircle				 Lock the nearest target in a circular area (area-of-effect spell)
+	{ ModifierMissile_009, FALSE },  // CheckOwnerMovementStateAndDeleteSelf     Check owner movement and destroy itself (such as disappearing when the character stops)
+	{ ModifierMissile_010, FALSE },  // CheckOwnerExFlag						 Check owner extra flags (such as whether invincibility affects the projectile)
+	{ ModifierMissile_011, FALSE },  // AddEffectByRemainCollisionCount		     Add an effect based on remaining collisions (such as increased damage after penetration)
+	{ ModifierMissile_012, FALSE },  // DeleteSelf							     Destroy itself (projectile lifetime ends)
+	{ ModifierMissile_013, FALSE },  // TurnToCaster							 Turn toward the caster (such as aggro attraction or camera follow)
+	{ ModifierMissile_014, FALSE },  // ModifyMissileAttr						 Modify projectile attributes (speed, damage, direction, etc.)
+	{ ModifierMissile_015, FALSE },  // RemoveSameMissile						 Remove projectiles of the same type (avoid duplicate effects)
+	{ ModifierMissile_016, FALSE },  // RemoveSameMissile						 Remove projectiles of the same type (avoid duplicate effects)
+	{ ModifierMissile_017, FALSE },  // RemoveSameMissile						 Remove projectiles of the same type (avoid duplicate effects)
+	{ ModifierMissile_018, FALSE },  // RemoveSameMissile						 Remove projectiles of the same type (avoid duplicate effects)
+	{ ModifierMissile_019, FALSE },  // RemoveSameMissile						 Remove projectiles of the same type (avoid duplicate effects)
+	{ ModifierMissile_020, FALSE },  // RemoveSameMissile						 Remove projectiles of the same type (avoid duplicate effects)
+	{ ModifierMissile_021, FALSE },  // RemoveSameMissile						 Remove projectiles of the same type (avoid duplicate effects)
+	{ ModifierMissile_022, FALSE },  // RemoveSameMissile						 Remove projectiles of the same type (avoid duplicate effects)
 };

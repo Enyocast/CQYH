@@ -24,7 +24,7 @@ const DROP_CHANCE_DATA* CGamble::GetDropChangeData(const GAMBLE_DATA* data)
 {
 	BOOL world_group_activated = FALSE;
 	
-	// 暂时屏蔽
+	// Temporarily disabled
 	/*
 	LOG_PROCESS_ERROR(data);
 	LOG_PROCESS_ERROR(data->nGambleType >= 0 && data->nGambleType < egtTotal);

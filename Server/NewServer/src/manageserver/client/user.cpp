@@ -29,7 +29,7 @@ void MS_USER::SetFreeMode(BOOL fm)
     {
         if (fm)
         {
-            // 离开队伍，代码复制于：CMessageHandler::OnClientTeamLeave
+            // Leave the team; code copied from CMessageHandler::OnClientTeamLeave
             CTeam* poTeam = CTeamMgr::GetInstance().Find(role->pRoleData->dwTeamID);
             if (poTeam)
             {
@@ -86,7 +86,7 @@ void MS_USER::SetFreeMode(BOOL fm)
                 nRetCode = CMessageHandler::GetInstance().DoGSTeamRemoveMember(role->pRoleData->dwRoleID, poTeam);
                 LOG_CHECK_ERROR(nRetCode);
             }
-            // 离开队伍结束
+            // End of team leave
         }
 
         CMessageHandler::GetInstance().DoGSFreeMode(role->dwGSSessionID, dwCurRoleID, fm);

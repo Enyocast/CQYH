@@ -4,7 +4,7 @@
 #include "role_def.h"
 #include "quest_def.h"
 
-#define MAX_DAILY_QUEST_GROUP_COUNT (MAX_ROLE_LEVEL/5)	// 等级段数量
+#define MAX_DAILY_QUEST_GROUP_COUNT (MAX_ROLE_LEVEL/5)	// Number of level brackets
 
 struct QUEST_DATA;
 

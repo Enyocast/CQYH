@@ -24,9 +24,9 @@ struct ACCEPTED_QUEST
 struct CIRCLE_QUEST
 {
 	INT32	nQuestID;
-	INT32	nCompleteCount;			// 跑环总次数
-	INT32	nCircleNumber;			// 当前环数
-	UINT32	nLastCompleteTime;		// 上次完成时间
+	INT32	nCompleteCount;			// Total cycle quest rounds
+	INT32	nCircleNumber;			// Current cycle number
+	UINT32	nLastCompleteTime;		// Last completion time
 };
 
 class CQuestList
@@ -144,19 +144,19 @@ private:
 
 	/******************** reward quest  *************************/
 
-	UINT64	m_qwRewardQuest;					// 身上目前的日常任务,按位用
-	UINT64	m_qwRewardAccepted;					// 身上的任务是否已接
-	UINT64  m_qwRewardCompleted;				// 身上的任务是否已完成
-	INT32	m_nRewardIndex;						// 目前任务所在的index(每5级为一个index)
+	UINT64	m_qwRewardQuest;					// Current daily quests, stored as bits
+	UINT64	m_qwRewardAccepted;					// Whether current quests have been accepted
+	UINT64  m_qwRewardCompleted;				// Whether current quests are complete
+	INT32	m_nRewardIndex;						// Current quest index (one index per five levels)
 
-	INT32	m_dwRewardBoughtTime;				// 已购买突破完成任务上限次数
-	INT32	m_nRewardQuestRemainCompleteTime;	// 每人每天的剩余次数
-	UINT32	m_dwRewardQuestBrushCDTime;			// 刷新的cd时间
-	UINT32	m_nRewardCompleteCount;				// 今日完成次数
+	INT32	m_dwRewardBoughtTime;				// Purchased increases to the quest completion limit
+	INT32	m_nRewardQuestRemainCompleteTime;	// Remaining attempts per player per day
+	UINT32	m_dwRewardQuestBrushCDTime;			// Refresh cooldown
+	UINT32	m_nRewardCompleteCount;				// Completions today
 
-	INT32	m_nDailyRewwardBoughtTime;			// 今日已购买突破完成任务上限次数(用于限制购买总次数)
+	INT32	m_nDailyRewwardBoughtTime;			// Completion-limit increases purchased today (used to cap purchases)
 
-	ACCEPTED_QUEST_LIST	m_AcceptedQuest;		// 用于日常任务一键完成，过期未完成的任务
+	ACCEPTED_QUEST_LIST	m_AcceptedQuest;		// Expired unfinished quests for one-click daily quest completion
 
 	UINT32	m_dwLastCompleteEmergencyQuestTime;
 	INT32	m_nCompleteEmergencyQuestCount;

@@ -534,7 +534,7 @@ BOOL COABillMgr::DoUnfreezeCurrency(UINT32 dwRoleID, const char* szBillingOrderI
     pMsg->SetValue("groupId", role->byGroup);
 
     m_poOABill->GetGUID(szTempString);
-    pMsg->SetValue("sessionId", szTempString); //程钦辉说，计费不验证sessionID，因此填32位随机数
+    pMsg->SetValue("sessionId", szTempString); //Cheng Qinhui said billing does not validate sessionID, so use a random 32-digit value
 
     pMsg->SetValue("orderId", szBillingOrderID);
     pMsg->SetValue("confirm", 2);
@@ -625,7 +625,7 @@ BOOL COABillMgr::DoConfirmFrozenCurrency(UINT64 qwBuyingOrderID, UINT64 qwSellin
     pMsg->SetValue("groupId", role->byGroup);
 
     m_poOABill->GetGUID(szTempString);
-    pMsg->SetValue("sessionId", szTempString); //程钦辉说，计费不验证sessionID，因此填32位随机数
+    pMsg->SetValue("sessionId", szTempString); //Cheng Qinhui said billing does not validate sessionID, so use a random 32-digit value
 
     pMsg->SetValue("orderId", szBillingOrderID);
     pMsg->SetValue("confirm", 1);
@@ -728,7 +728,7 @@ BOOL COABillMgr::DoTransferCurrency(UINT64 qwBuyingOrderID, UINT64 qwSellingOrde
     pMsg->SetValue("groupIdSrc", buyer->byGroup);
 
     m_poOABill->GetGUID(szTempString);
-    pMsg->SetValue("sessionId", szTempString); //程钦辉说，计费不验证sessionID，因此填32位随机数
+    pMsg->SetValue("sessionId", szTempString); //Cheng Qinhui said billing does not validate sessionID, so use a random 32-digit value
     pMsg->SetValue("orderId", szBillingOrderID);
     pMsg->SetValue("appTradeType", 8);
     pMsg->SetValue("couplingType", 2);
@@ -822,7 +822,7 @@ BOOL COABillMgr::DoQueryTime(MS_USER* pstUser)
     pMsg->SetValue("groupId", GET_GROUP_INDEX_FROM_SESSION_ID(pstUser->dwCliSessionID));
     //pMsg->SetValue("pgt", pstUser->szPGT);
 
-    strxcpy(szTempString, pstUser->szOASessionID, 32);//计费要求截断成32字节长度
+    strxcpy(szTempString, pstUser->szOASessionID, 32);//Billing requires truncation to 32 bytes
     pMsg->SetValue("sessionId", szTempString);
 
     time(&cur_time);
@@ -885,7 +885,7 @@ BOOL COABillMgr::DoSubTime(MS_ONLINE_ROLE_DATA* pstOnlineRole, UINT32 dwBeginTim
 
     m_poOABill->GetGUID(szUniqueID);
     pMsg->SetValue("uniqueId", szUniqueID);
-    pMsg->SetValue("sessionId", szUniqueID);//计费要求sessionid都是数字
+    pMsg->SetValue("sessionId", szUniqueID);//Billing requires a numeric session ID
 
     pMsg->SetValue("userId", pstOnlineRole->pRoleData->szUserName);
     pMsg->SetValue("userIdType", 2);
@@ -1240,7 +1240,7 @@ int SNDACALLBACK BillingCallback(EMsgDirection eMsgType, unsigned int dwRpcId, i
         }
         else
         {
-            if (nResult != -106114 && nResult != -106908) //余额不足就不记了，否则太多了
+            if (nResult != -106114 && nResult != -106908) //Do not log insufficient balance errors; otherwise there would be too many
             {
                 char* szFailReason = NULL;
                 pMsg->GetValue("failReason", &szFailReason);
@@ -1274,7 +1274,7 @@ int SNDACALLBACK BillingCallback(EMsgDirection eMsgType, unsigned int dwRpcId, i
         }
         else
         {
-            if (nResult != -106114 && nResult != -106908) //余额不足就不记了，否则太多了
+            if (nResult != -106114 && nResult != -106908) //Do not log insufficient balance errors; otherwise there would be too many
             {
                 char* szFailReason = NULL;
                 pMsg->GetValue("failReason", &szFailReason);
@@ -1333,7 +1333,7 @@ int SNDACALLBACK NotifyCallback(EMsgDirection eMsgType, unsigned int dwRpcId, in
         WRN("UnProcessed bl3-notify Msg: %s", pMsg->GetMsgName());
     }
 
-    // 接收到通知后要有响应
+    // Acknowledge the notification
     pMsg->GetValue("uniqueId", &szUniqueID);
     pResMsg = sdoCreateMsg(E_RESPONSE, pMsg->GetMsgName());
     pResMsg->SetValue("resultCode", 0);

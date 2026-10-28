@@ -45,7 +45,7 @@ struct CLIENT_SESSION : BASE_SESSION
 	UINT8               bConnected;
 	UINT8				byShutDownType;
 	UINT8				byServerGroup;
-	UINT8               bAdult;            // 成年
+	UINT8               bAdult;            // Adult
 	UINT32              dwSessionID;
 	UINT32              dwGSSessionID;
 	INT32               eState;

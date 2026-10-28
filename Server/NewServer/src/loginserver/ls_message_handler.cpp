@@ -429,7 +429,7 @@ Exit0:
     return FALSE;
 }
 
-// LS 发给 MS, 让MS在数据库里查询账号密码
+// LS asks MS to query account credentials in the database
 BOOL CLSMessageHandler::DoMsLoginQueryReq(UINT32 dwClientSessionID, CHAR* szUserName, CHAR* szPassword)
 {
     INT32 nRetCode = 0;
@@ -473,7 +473,7 @@ Exit0:
     return FALSE;
 }
 
-// 客户登录应答
+// Client login response
 BOOL CLSMessageHandler::DoGTLoginAck(UINT32 dwClientSessionID, INT32 nErrorCode, 
                                      CHAR* szOASessionID, CHAR* szUserName, CHAR* szPGT, UINT8 bAdult,
                                      UINT16 wInfoLen, BYTE* abyInfo)
@@ -626,7 +626,7 @@ void CLSMessageHandler::OnMSClose(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, I
     INF("LS is closing");
 }
 
-// MS 返回查询账号密码数据结果
+// MS returns the account credential query result
 void CLSMessageHandler::OnMSLoginQueryAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
     INT32 nResult = errLoginAuthFailed;
@@ -672,7 +672,7 @@ Exit0:
 
 void CLSMessageHandler::OnGTLoginReq(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
-    // 默认代码
+    // Default code
     /*
     INT32 nResult = errLoginAuthFailed;
     INT32 nRetCode = 0;
@@ -706,7 +706,7 @@ Exit0:
     INT32 nRetCode = 0;
     T2L_LOGIN_REQ* pMsg = (T2L_LOGIN_REQ*)pPacketBuffer;
 
-    // 登录验证, 发给MS 去数据库里查询账号
+    // For login authentication, ask MS to query the account in the database
     nRetCode = CLSMessageHandler::GetInstance().DoMsLoginQueryReq(pMsg->dwClientSessionID, pMsg->szUserName, pMsg->szPassword);
     LOG_CHECK_ERROR(nRetCode);
 
@@ -719,7 +719,7 @@ Exit0:
 }
 
 /************************************************************************/
-// From MG (手机端)
+// From MG (mobile client)
 void CLSMessageHandler::OnMGRegister(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
 	INT32 nRetCode = 0;

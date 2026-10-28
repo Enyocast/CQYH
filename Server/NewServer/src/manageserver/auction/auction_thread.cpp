@@ -316,7 +316,7 @@ void CAuctionThread::ThrdProc()
                             else
                                 auction->m_nItemCount = 1;
 
-                            // 不一样
+                            // Different
                             auction->m_llSinglePrice = auction->m_auction.m_llPrice / auction->m_nItemCount;
                             auction->m_llBuyoutSinglePrice = auction->m_auction.m_llBuyoutPrice / auction->m_nItemCount;
 

@@ -127,24 +127,24 @@ BOOL CAwardManager::SendAwardReq(MS_ONLINE_ROLE_DATA* pOnlineUserData, INT32 nAw
 	stAwardReqMsg.msgBody.areaId = htonl(m_cltinfo.areaId);		
 	stAwardReqMsg.msgBody.hostId = htonl(m_cltinfo.hostId);		
 
-	m_pRmGetSotsUniqueId(stAwardReqMsg.msgBody.orderId, 33);		// 获得唯一业务流水号
+	m_pRmGetSotsUniqueId(stAwardReqMsg.msgBody.orderId, 33);		// Obtain a unique business transaction ID
 
 	switch (nAwardType)
 	{
 	case eratAwardReq_Survey:
 		{
-			stAwardReqMsg.msgBody.awardType = htonl(1);													// 数据中心接口规定type为1	
+			stAwardReqMsg.msgBody.awardType = htonl(1);													// The data center interface requires type 1
 
-			strxcpy(stAwardReqMsg.msgBody.batchId, pAwardNumber, MAX_BATCHID_LEN);						// 批次号
+			strxcpy(stAwardReqMsg.msgBody.batchId, pAwardNumber, MAX_BATCHID_LEN);						// Batch ID
 			strxcpy(stAwardReqMsg.msgBody.awardNum, "0", MAX_ORDERID_LEN);			
 		}
 		break;
 	case eratAwardReq_AwardNumber:
 		{
-			stAwardReqMsg.msgBody.awardType = htonl(3);													// 数据中心接口规定type为3
+			stAwardReqMsg.msgBody.awardType = htonl(3);													// The data center interface requires type 3
 			strxcpy(stAwardReqMsg.msgBody.batchId, "0", MAX_BATCHID_LEN);
 
-			strxcpy(stAwardReqMsg.msgBody.awardNum, pAwardNumber, MAX_ORDERID_LEN);						// 推广码	
+			strxcpy(stAwardReqMsg.msgBody.awardNum, pAwardNumber, MAX_ORDERID_LEN);						// Promotion code
 		}
 		break;
 	default:
@@ -157,7 +157,7 @@ BOOL CAwardManager::SendAwardReq(MS_ONLINE_ROLE_DATA* pOnlineUserData, INT32 nAw
 
 	/******************* user data *********************/
 
-	stAwardReqMsg.msgBody.uidType = htonl(2);																		// 盛大通行证账号类型， 1为字符账号，2为数字账号
+	stAwardReqMsg.msgBody.uidType = htonl(2);																		// Shanda Passport account type: 1 = string account, 2 = numeric account
 	strxcpy(stAwardReqMsg.msgBody.userId, (LPCTSTR)pOnlineUserData->pUser->szUserName, MAX_ORDERID_LEN);			
 	strxcpy(stAwardReqMsg.msgBody.roleName, (LPCTSTR)pOnlineUserData->pRoleData->szRoleName, MAX_ORDERID_LEN);			
 	strxcpy(stAwardReqMsg.msgBody.roleProperty, "0", MAX_PROFESSION_LEN);			
@@ -411,15 +411,15 @@ void CallBackFunction(ULONG handle, char* pServiceName, char *pData, INT32 lengt
 		}
 		return;
 	}
-	else if (strcmp(pServiceName, SVCAWARDITEM) == 0)   // 领奖反馈 
+	else if (strcmp(pServiceName, SVCAWARDITEM) == 0)   // Reward claim response
 	{
         _OnAwardItem(pData, length);
 	}
-	else if (strcmp(pServiceName, SVCSENDITEM) == 0)    // 道具下发
+	else if (strcmp(pServiceName, SVCSENDITEM) == 0)    // Item delivery
 	{
 		_OnSendItem(pData, length);
 	}
-	else if (strcmp(pServiceName, SVCPD) == 0)          // 个性化领奖接口
+	else if (strcmp(pServiceName, SVCPD) == 0)          // Personalized reward claim interface
 	{
 		LOG_PROCESS_ERROR(FALSE);
 	}

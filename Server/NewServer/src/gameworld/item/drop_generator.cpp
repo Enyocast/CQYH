@@ -109,13 +109,13 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
     INT32 loop_times = bBigDrop ? 10 : 1;
 
     std::list<CRole*> gold_pool_list;
-    INT32 gold_pool_rate = RATE_MAX;     // 金币池缩减率
+    INT32 gold_pool_rate = RATE_MAX;     // Gold pool reduction rate
 
     std::list<CRole*> owner_list;
-    INT32 level_diff_rate = RATE_MAX;    // 打低等级NPC的物品掉落调整比例, 计算等级差[爆率缩减]
-    INT32 fcm_rate = RATE_MAX;           // 防沉迷缩减率
+    INT32 level_diff_rate = RATE_MAX;    // Item drop adjustment for lower-level NPCs, based on level difference
+    INT32 fcm_rate = RATE_MAX;           // Anti-addiction reduction rate
 
-    INT32 final_rate = RATE_MAX;         // 最终概率
+    INT32 final_rate = RATE_MAX;         // Final probability
     const static INT64 llMaxLootDistance = (g_GWConfig.nLootDistance * POINT_PER_CM) * (g_GWConfig.nLootDistance * POINT_PER_CM);
 
     LOG_PROCESS_ERROR(chances);
@@ -135,7 +135,7 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
     {
         pTeam = CGameWorld::GetInstance().FindTeam(pOwnerRole->GetTeamID());
 
-        // 组队
+        // Team
         if (pTeam && pOwnerRole->GetLevel() > g_GWConfig.nFreeRoleLevel)
         {
             gold_pool_rate = 0;
@@ -156,14 +156,14 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
             else
                 gold_pool_rate = RATE_MAX;
         }
-        // 个人
+        // Individual
         else
         {
             gold_pool_list.push_back(pOwnerRole);
             gold_pool_rate = pOwnerRole->GetItemBag()->GetChanceByGoldPool();
         }
 
-        // 组队 - 计算等级差[爆率缩减]
+        // Team - calculate level-difference drop reduction
         if (pTeam)
         {
             INT32 total_role_level = 0;
@@ -197,7 +197,7 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
                 level_diff_rate = g_GWConfig.nDropChanceRate[level_diff];
             }
         }
-        // 个人
+        // Individual
         else
         {
             owner_list.push_back(pOwnerRole);
@@ -219,13 +219,13 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
 
     memset(drops, 0, sizeof(drops));
 
-    // 计算最终概率
+    // Calculate final probability
     if (!bUniqueOrBoss)
         final_rate = level_diff_rate;
     final_rate = final_rate * gold_pool_rate / RATE_MAX;
     final_rate = final_rate * fcm_rate / RATE_MAX;
-    //final_rate = final_rate * g_GWConfig.nGlobalDropRate / RATE_MAX;  // 默认代码 gameworldconfig.lua 文件中 写的是 100000
-    final_rate = final_rate * 10000 / RATE_MAX;  // 现在固定写成 10000
+    //final_rate = final_rate * g_GWConfig.nGlobalDropRate / RATE_MAX;  // Default code: gameworldconfig.lua specifies 100000
+    final_rate = final_rate * 10000 / RATE_MAX;  // Currently fixed at 10000
 
     for (INT32 i = 0; i < loop_times; i++)
     {
@@ -254,7 +254,7 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
         {
             CDrop* drop = drops[i];
 
-            // 修改 金币池数值
+            // Update the gold pool
             if (!gold_pool_list.empty())
             {
                 INT32 sub_gold = 0;
@@ -270,7 +270,7 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
                 }
             }
 
-            // 添加 有拾取权的角色
+            // Add characters eligible to loot
             if (!owner_list.empty())
             {
                 for (std::list<CRole*>::iterator it = owner_list.begin(); it != owner_list.end(); ++it)
@@ -279,11 +279,11 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
                 }
             }
 
-            // 在地图中添加 地面物品对象
+            // Add a ground item object to the map
             bRet = scene->AddDrop(drop, llX, llY, llZ, srcid);
             LOG_CHECK_ERROR(bRet);
 
-            // 添加失败 就删除对象
+            // Delete the object if insertion fails
             if (!bRet)
             {
                 bRet = drop->UnInit();
@@ -354,7 +354,7 @@ BOOL CDropGenerator::GenerateDropContentFromDropGroupData(INT32 nServerGroup, co
 
                 content.m_type = DropContent::DROP_ITEM;
 
-                // 判断 是不是项链
+                // Check whether it is a necklace
                 if (data->m_DropData[i].m_pItemData->m_bySubType == ITEMSUBTYPE_EQUIP_NECKLACE)
                 {
                     content.m_item = CItemMgr::GetInstance().GenerateItem(nServerGroup, data->m_DropData[i].m_pItemData, itemcount, data->m_bRandomDur);
@@ -470,10 +470,10 @@ Exit0:
 	return NULL;
 }
 
-// 检查掉落限制
+// Check drop limit
 BOOL CDropGenerator::_CheckDropLimit(INT32 nServerGroup, INT32 itemid, INT32 itemcount)
 {
-    // 获取 物品 [itemid], 当前全服限制数量
+    // Get the current server-wide limit for itemid
     INT32 drop_count = CGameWorld::GetInstance().GetServerVariable(nServerGroup, MakeServerKey(esvtItemDropLimitType0, itemid));
 
     const ITEM_DATA* data = GetItemData(itemid);
@@ -482,18 +482,18 @@ BOOL CDropGenerator::_CheckDropLimit(INT32 nServerGroup, INT32 itemid, INT32 ite
     if (data->m_nDropLimitCount[0] == 0)
         return TRUE;
 
-    // 判断数量 是否超标
+    // Check whether the quantity exceeds the limit
     if (drop_count >= data->m_nDropLimitCount[0])
     {
         INF("Drop Limit Exceeded: ServerGroup:%d, ItemID:%d, CurItemCount:%d", nServerGroup, itemid, drop_count);
         return FALSE;
     }
-    // 没超标
+    // Below the limit
     else
     {
         INT32 inc_count = data->m_byDurType == DURTYPE_STACK ? itemcount : 1;
 
-        // 发给MS, 增加限制数量
+        // Tell MS to increase the limited count
         CGameWorld::GetInstance().SetServerVariable(nServerGroup, MakeServerKey(esvtItemDropLimitType0, itemid), FALSE, inc_count);
 
         return TRUE;

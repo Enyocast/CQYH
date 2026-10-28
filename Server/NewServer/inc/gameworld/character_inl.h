@@ -542,7 +542,7 @@ inline INT32 CCharacter::GetPendingItemSlot(void)
 	return m_nPendingItemSlot;
 }
 
-// 死亡=TRUE, 存活=FALSE
+// Dead = TRUE, alive = FALSE
 inline BOOL CCharacter::IsDead(void)
 {
 	return m_eMoveState == CMS_DIE;

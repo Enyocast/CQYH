@@ -28,7 +28,7 @@ public:
     INT32 GenerateRandomRuneData(INT32 nServerGroup, Item* item, INT32 cls, INT32 level, INT32 runegroup);
     INT32 GenerateRandomRuneDataAdvanced(INT32 nServerGroup, Item* item, INT32 cls, INT32 level, INT32 runegroup);
 
-    // 自定义新增代码
+    // Additional custom code
     BOOL CheckEquipIsLuck2Item(INT32 itemID);
     Item* GenerateItem(INT32 nServerGroup, const ITEM_DATA* itemdata, INT32 nItemCount, BOOL bRandomDur = FALSE);
     //void GenerateRandomAttributes(INT32 nServerGroup, Item* item, INT32 modifyrate = RATE_MAX);

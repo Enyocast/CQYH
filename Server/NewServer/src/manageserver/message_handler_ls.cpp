@@ -53,7 +53,7 @@ void CMessageHandler::OnLSCloseAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, 
     INF("LS is closed");
 }
 
-// 回调函数
+// Callback function
 BOOL _LoginQuery(std::list<void*>& ResultList, void* pUserData)
 {
     if (!ResultList.empty())
@@ -67,10 +67,10 @@ void CMessageHandler::OnLSLoginQueryReq(PACKET_BUFFER* pPacketBuffer, UINT32 dwS
     BOOL bRet = FALSE;
     L2M_LOGIN_QUERY_REQ* pMsg = (L2M_LOGIN_QUERY_REQ*)pPacketBuffer;
 
-    // MS 利用数据库查询 账号密码 是否有对应的数据
+    // MS queries the database for matching account credentials
     bRet = CManageServer::GetInstance().GetSqlMgr().SyncExecSqlStmt(mysqlSelectLoginQuery, _LoginQuery, NULL, "ss", pMsg->szUserName, pMsg->szPassword);
 
-    // 成功 = 1, 失败 = 0
+    // Success = 1, failure = 0
     if (bRet == TRUE)
     {
         DoLSLoginQueryAck(pMsg->dwClientSessionID, 1, pMsg->szUserName);

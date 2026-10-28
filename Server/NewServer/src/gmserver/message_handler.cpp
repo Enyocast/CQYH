@@ -630,7 +630,7 @@ void CMessageHandler::OnMSRegister(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, 
     pMSSession->eState = egmssNormal;
 
 
-    // ms 在这上线，应该带上自己的db相关的数据库。 这样。临时上线的ms，在离线后gmserver才能找到它的db Allan Tao[20.12.2013] 
+    // MS should provide its database information when coming online so gmserver can find the database after a temporary MS goes offline. Allan Tao [20.12.2013]
 
     //nRetCode = CMSMgr::GetInstance().RegisterMS(pMSSession->dwSessionID, pMsg->szName);
     //LOG_PROCESS_ERROR(nRetCode);
@@ -1035,7 +1035,7 @@ void CMessageHandler::OnMSDelMail(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, I
     }
     else if (pMailInfo->ma.byAttachType == ATTACHTYPE_BUFFER)
     {
-        LOG_PROCESS_ERROR(FALSE);       // todo 现在木有直接是buffer的邮件了。 拍卖行已经木有功能了
+        LOG_PROCESS_ERROR(FALSE);       // TODO: mail no longer uses direct buffers; the auction house functionality is gone
         ItemInfo    itemInfo;
         INT32 nLength = itemInfo.Load(pMailInfo->ma.buffer);
         INT32   nDumpLength = 0;

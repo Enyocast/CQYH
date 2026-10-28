@@ -115,7 +115,7 @@ BOOL CKernel::MainLoop()
             }
 
             nRetCode = CPermissionMgr::GetInstance().CheckExecutePermission((*old_iter)->eCmdType, pTLUser->GetPermission());
-            if (nRetCode == FALSE)  // 默认代码是 "=", 应该是写错了, 现在改成 "=="
+            if (nRetCode == FALSE)  // Default code used "="; it appears to have been a mistake and was changed to "=="
             {
                 CMessageHandler::GetInstance().DoTLErrorStr(pTLUser->GetSessionID(), "权限不够");
                 pCmd = *old_iter;

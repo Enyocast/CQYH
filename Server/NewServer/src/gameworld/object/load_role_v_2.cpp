@@ -117,7 +117,7 @@ BOOL CRole::_Load_v_2(const char* pcData, UINT32 dwSize)
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
 		case rbtMisc:
-			nRetCode = _LoadMisc_v_2(pcBlockData, dwBlockSize);    // V2 抄代码
+			nRetCode = _LoadMisc_v_2(pcBlockData, dwBlockSize);    // V2 copied code
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
 		case rbtArena:
@@ -148,7 +148,7 @@ BOOL CRole::_Load_v_2(const char* pcData, UINT32 dwSize)
 			nRetCode = m_ItemBag.LoadBlackMarketCooldown_v_1(pcBlockData, dwBlockSize);
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
-		case rbtGamble:    // 新增代码
+		case rbtGamble:    // Additional code
 			nRetCode = m_Gamble.Load_v_1(pcBlockData, dwBlockSize);
 			break;
 		default:
@@ -167,7 +167,7 @@ Exit0:
 	return FALSE;
 }
 
-// 新增函数 抄代码
+// Additional function copied from existing code
 BOOL CGamble::Load_v_1(const char* pcData, UINT32 dwSize)
 {
 	Clear();
@@ -230,7 +230,7 @@ BOOL CRole::_LoadMisc_v_2(const char* pcData, UINT32 dwSize)
 	{
 		//INT32 nTimeDiff = (INT32)pcMiscData->dwNextFreeReviveTime - (INT32)CGameWorld::GetInstance().GetGameTime();
 		//m_nNextFreeReviveFrm = nTimeDiff * GAME_FPS + CGameWorld::GetInstance().GetGameFrame();
-		//m_dwNextFreeReviveTime = pcMiscData->dwNextFreeReviveTime;    // 暂时屏蔽
+		//m_dwNextFreeReviveTime = pcMiscData->dwNextFreeReviveTime;    // Temporarily disabled
 	}
 
 	{
@@ -262,7 +262,7 @@ BOOL CRole::_LoadMisc_v_2(const char* pcData, UINT32 dwSize)
 	if (m_nJigsawRemainTime <= 0)
 		StartAntiCheat();
 	
-	// 暂时屏蔽
+	// Temporarily disabled
 	/*
 	m_dwChatRecoverTime = pcMiscData->dwChatRecoverTime;
 	m_nChatFoulTimes = pcMiscData->nChatFoulTimes;

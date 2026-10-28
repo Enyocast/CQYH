@@ -122,18 +122,18 @@ public:
 	BOOL UseMoneyType01Only(BOOL bValue);
 	BOOL CheckNpcShopData(UINT32 dwCrc);
 
-	// 融灵
+	// Spirit fusion
 	//        c2g_upgrade_soul,
 	//        c2g_add_soul,
 	//        c2g_remove_soul,
 	//
-	//        // 铸魂
+	//        // Soul forging
 	//        c2g_rune_open_slot,
 	//        c2g_rune_close_slot,
 	//        c2g_rune_add,
 	//        c2g_rune_remove,
 	//
-	//        // 装备分解合成
+	//        // Equipment dismantling and combining
 	//        c2g_decompose,
 	//        c2g_compose,
 

@@ -7,12 +7,12 @@
 
 enum BT_OPERATOR
 {
-    boLT,   ///< less than                 少于
-    boLTE,  ///< less than or equal to     小于或等于
-    boGT,   ///< greater than              大于
-    boGTE,  ///< greater than or equal to  大于或等于
-    boEQ,   ///< equal to                  等于
-    boNEQ,  ///< not equal to              不等于
+    boLT,   ///< less than
+    boLTE,  ///< less than or equal to
+    boGT,   ///< greater than
+    boGTE,  ///< greater than or equal to
+    boEQ,   ///< equal to
+    boNEQ,  ///< not equal to
 };
 
 enum BT_TARGET_TYPE
@@ -59,31 +59,31 @@ enum BT_ACTION_TYPE
     batInvalid  = btInvalid,        ///< invalid action
                                     ///< @note do not use this action
 
-                                    ///< 选择器，如果任何子节点返回true，则立即返回true；否则，返回false
+                                    ///< Selector: return true immediately if any child returns true; otherwise return false
     batSelector = btSelector,       ///< selector, if any child node returns true, it returns true immediately; otherwise, it returns false
 
-                                    ///< 序列器，如果任何子节点返回false，则立即返回false；否则，它将返回true
+                                    ///< Sequence: return false immediately if any child returns false; otherwise return true
     batSequencer= btSequencer,      ///< sequencer, if any child node returns false, it returns false immediately; otherwise, it returns true
 
-                                    ///< 并行，无论其子节点返回什么，它总是返回true
+                                    ///< Parallel: always returns true regardless of child results
     batParallel = btParallel,       ///< parallel, it always returns true whatever its child nodes return
 
-                                    ///< 只有一个子节点；如果其子节点返回true，则返回false；否则，它将返回true
+                                    ///< One child only: invert the child’s result
     batNot      = btNot,            ///< only one child node; if its child node returns true, it returns false; otherwise, it returns true
 
-                                    ///< 调试节点仅供程序员使用，注意：只允许一个子节点
+                                    ///< Debug node for programmers only; permits one child
     batDebug    = btDebug,          ///< debug node for programmer only, note: just one child allowed
 
-                                    ///< 随机选择一个子节点，最多4个子节点
+                                    ///< Randomly select one child, up to four children
     batRandom   = btRandom,         ///< btRandom choose a child node, 4 children at most
                                     ///< @param p0 child0 weight
                                     ///< @param p1 child1 weight
                                     ///< @param p2 child2 weight
                                     ///< @param p3 child3 weight
                                     
-                                    ///< 反复选择子节点，注意：只允许一个子节点
+                                    ///< Repeatedly select the child; permits one child
     batRepeat   = btRepeat,         ///< repeatly choose the only child, note: just one child allowed
-                                    ///< @param p0 repeat times (at most BT_REPEAT_MAX_TIMES 16)  // 重复次数, 最多16
+                                    ///< @param p0 repeat times (at most BT_REPEAT_MAX_TIMES 16)  // repeat count, at most 16
 
     batBegin = btUserDefine,        ///< the beginning of user defined action in game world
 
@@ -143,11 +143,11 @@ enum BT_ACTION_TYPE
                                     ///< @param p2 #CHAT_LOCATION_TYPE
 									///< @param p3 string param
                                     ///< @note target id may be role id, team id, guild id, channel id (#CHAT_CHANNEL_TYPE)
-    batSetSceneVariable,            ///< set scene variable                         设置场景变量
+    batSetSceneVariable,            ///< set scene variable                         set scene variable
                                     ///< @param p0 variable index
-                                    ///< @param p1 absolute value (optional)        @参数p1绝对值（可选）
-                                    ///< @param p2 relative value (optional)        @参数p2相对值（可选）
-                                    ///< @note p1 is effective only when p2 is zero @注意：p1仅在p2为零时有效
+                                    ///< @param p1 absolute value (optional)
+                                    ///< @param p2 relative value (optional)
+                                    ///< @note p1 is effective only when p2 is zero
                                     ///< @see #batCheckSceneVariable, #batCompareSceneVariable
     batSetServerVariable,           ///< set server variable
                                     ///< @param p0 variable index
@@ -522,13 +522,13 @@ enum BT_ACTION_TYPE
                                     ///< @param p1 #BT_OPERATOR
                                     ///< @param p2 distance (cm)
 
-                                    ///< 检查ai所有者的cd时间
+                                    ///< Check the AI owner’s cooldown
     batCheckCDTimer,                ///< check ai owner's cd timer
                                     ///< @param p0 #COOLDOWN_TYPE
                                     ///< @param p1 cd timer index [0, 65535]
                                     ///< @see #batSetCDTimer
 
-                                    ///< 检查 processor 的变量
+                                    ///< Check a processor variable
     batCheckAIVariable,             ///< check ai processor's variable
                                     ///< @param p0 #BT_OPERATOR
                                     ///< @param p1 variable index [0, #MAX_AI_VARIABLE_COUNT)
@@ -651,10 +651,10 @@ enum BT_ACTION_TYPE
                                     ///< @see #batWithdraw
     batCheckCanMove,                ///< check if can move
 
-                                    ///< 检查是否可以施法（不考虑CD时间）
+                                    ///< Check whether casting is allowed (ignoring cooldown)
     batCheckCanCastSpell,           ///< check if can cast spell (without regard to CD time)
 
-                                    ///< 对目标施展指定法术
+                                    ///< Cast the specified spell on the target
     batCastSpellToTarget,           ///< cast specified spell to target
                                     ///< @param p0 spell id
                                     ///< @param p1 #BT_TARGET_TYPE
@@ -709,7 +709,7 @@ enum BT_ACTION_TYPE
 	batWaitCastSpell,				///< wait until casting spell ends
 	batSyncBreakCast,				///
 
-                                    ///< 向当前区域发出特定信号
+                                    ///< Send a specific signal to the current region
     batIssueSignal,                 ///< issue a specific signal to current region
                                     ///< @param p0 #SIGNAL_TYPE
                                     ///< @param p1 signal TTL (unit: ms)
@@ -717,7 +717,7 @@ enum BT_ACTION_TYPE
                                     ///< @param p3 signal param (default 0)
                                     ///< @see batPickSignal
 
-                                    ///< 尝试在特定距离内拾取特定信号，记录下来并减少停留时间
+                                    ///< Try to pick up a signal within a specified distance, record it, and reduce wait time
     batPickSignal,                  ///< try to pick a specific signal in a specific distance, record it and reduce remain times.
                                     ///< @param p0 #SIGNAL_TYPE
                                     ///< @param p1 distance(unit: cm)
@@ -725,21 +725,21 @@ enum BT_ACTION_TYPE
                                     ///< @param p3 signal param value
 									///< @see batIssueSignal
 
-                                    ///< 改变 tarAITarget 从 Signal Issuer 的 tarAITarget
+                                    ///< Set tarAITarget from the signal issuer’s tarAITarget
     batGetTargetFromSignal,         ///< change tarAITarget from Signal Issuer's tarAITarget
-                                    ///< @note must invoke batPickSignal first  // 注意必须先调用batPickSignal
+                                    ///< @note must invoke batPickSignal first  // batPickSignal must be called first
 
-                                    ///< 设置巡逻参数
+                                    ///< Set patrol parameters
     batSetPatrolParam,              ///< set patrol parameters
                                     ///< @param p0 path id
                                     ///< @param p1 #PATROL_STYLE
                                     ///< @see #batPatrol
 
-                                    ///< 根据给定路径
+                                    ///< Follow the given path
     batPatrol,                      ///< patrol in accordance with a given path (a origin server point whose dwNameID just like "p3.1")
                                     ///< @see #batSetPatrolParam
 
-                                    ///< 获取信号发布者的tarAITarget，并将其添加到威胁列表中
+                                    ///< Get the signal issuer’s tarAITarget and add it to the threat list
     batAddThreatListFromSignal,     ///< get signal issuer's tarAITarget, and add it to threat list
                                     ///< @param p0 threat value of tarAITarget
                                     ///< @note must invoke batPickSignal first, usually used to respond signal sigSpreadHate

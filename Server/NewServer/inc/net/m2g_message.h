@@ -138,7 +138,7 @@ namespace InternalMessage
         m2g_take_role,
         m2g_arrest_role,
 
-        // 商城购买成功
+        // Store purchase succeeded
         m2g_query_real_money_req,
         m2g_real_money_buy_success,
 
@@ -165,9 +165,9 @@ namespace InternalMessage
         // exercise
         m2g_add_exercise_time,
 
-        // 自己新增代码
+        // Custom added code
         m2g_role_real_money_shop_buy_item_req,
-        m2g_custom_role_buy_time,    // 自定义购买点卡
+        m2g_custom_role_buy_time,    // Custom prepaid-card purchase
 
         m2g_end = m2g_message_end
     };
@@ -532,7 +532,7 @@ namespace InternalMessage
         UINT32		dwSabacEnrollTime[MAX_SABAC_ENROLL_COUNT];
         UINT8		bySabacOccupied;
         UINT8		byServerGroup;
-        G_B_DATA    arrBData[0];       // todo_tq 暂时这样，之后想办法改成变长包把 Allan Tao[19.3.2014] 
+        G_B_DATA    arrBData[0];       // todo_tq: keep this for now; later convert it to a variable-length packet. Allan Tao [19.3.2014]
     };
 
     struct M2G_GUILD_SYNC_ATTR_NTF : MESSAGE_HEADER

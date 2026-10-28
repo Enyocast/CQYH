@@ -3,7 +3,7 @@
 	file:		guild_mgr.cpp
 	author:		Allan Tao
 	
-	purpose:	gs 帮派管理类
+	purpose:	GS guild management class
 *********************************************************************/
 
 #include "stdafx.h"

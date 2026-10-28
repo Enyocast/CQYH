@@ -290,7 +290,7 @@ BOOL LoadRole(CMD_ROLE_DATA_BASE *pRoleCmd, INT32 &nLength, char *pData)
                         pItemSlot->wRune[i] = pItem->m_iteminfo.m_wRune[i];
                     }
                 }
-                else // 防具
+                else // Armor
                 {
                     pItemSlot->dwSocketCombination = pItem->m_iteminfo.m_dwSocketCombination;
                     for (INT32 i = 0; i < 3; ++i)

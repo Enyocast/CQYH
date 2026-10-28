@@ -56,7 +56,7 @@ BOOL CDrop::UnInit()
 
 BOOL CDrop::MainLoop()
 {
-    //保护期2分钟，公共期2分钟，然后消失
+    //Protected for 2 minutes, public for 2 minutes, then disappears
     switch (m_state)
     {
     case DS_PROTECT:
@@ -142,7 +142,7 @@ INT32 CDrop::OnPickUp(CRole* pRole)
         return errDropBindied;
     }
 
-    // 拾取物品
+    // Pick up item
     if (m_content.m_type == DropContent::DROP_ITEM)
     {
 		CTeamInGS* pTeam = NULL;
@@ -153,23 +153,23 @@ INT32 CDrop::OnPickUp(CRole* pRole)
 			LOG_PROCESS_ERROR(pTeam);
 		}
 
-        // 触发组队拍卖
+        // Trigger team auction
 		if (pTeam && pTeam->CanBeAddedtoBidAuction(m_content.m_item) && m_state == DS_PROTECT)
 		{
 			nRetCode = pTeam->AddAuctionItem(this);
 			LOG_PROCESS_ERROR(nRetCode);
 		}
-        // 直接拾取进背包
+        // Pick up directly into the bag
 		else
 		{
 	        nRetCode = pRole->GetItemBag()->AddItem(m_content.m_item, ITEMLOG_LOOT, 0);
  			LOG_PROCESS_ERROR(nRetCode);
  		}
     }
-    // 拾取货币
+    // Pick up currency
     else
     {
-        // 新增代码, 判断角色点卡是否过期 (有点卡, [金币]双倍收益) (暂时屏蔽)
+        // Additional code: check whether the character’s time card has expired (active card doubles gold rewards); temporarily disabled
         {
 //            if (m_content.m_money.moneytype == MONEYTYPE_02)
 //            {
@@ -182,7 +182,7 @@ INT32 CDrop::OnPickUp(CRole* pRole)
 //                CCliMessageHandler::GetInstance().DoPickUpMoney(pRole, m_content.m_money.moneytype, nAddCount);
 //#endif
 //            }
-//            // 别的货币正常
+//            // Other currencies are handled normally
 //            else
 //            {
 //                pRole->GetItemBag()->AddMoney(m_content.m_money.moneytype, m_content.m_money.count, MONEYLOG_LOOT, 0);
@@ -195,7 +195,7 @@ INT32 CDrop::OnPickUp(CRole* pRole)
 //            }
         }
 
-        // 原代码, 正常拾取货币
+        // Original code: pick up currency normally
         {
             pRole->GetItemBag()->AddMoney(m_content.m_money.moneytype, m_content.m_money.count, MONEYLOG_LOOT, 0);
 

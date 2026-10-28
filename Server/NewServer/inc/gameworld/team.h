@@ -32,13 +32,13 @@ struct TeamMember
 //
 //struct GS_TEAM_AUCTION_ITEM : BASE_LIST_NODE
 //{
-//	UINT32	dwCanBidRoleID[MAX_TEAM_MEMBER_COUNT];			//有权拍卖的
-//	UINT32	dwCanRewardMoneyRoleID[MAX_TEAM_MEMBER_COUNT];	//有权分钱的
+//	UINT32	dwCanBidRoleID[MAX_TEAM_MEMBER_COUNT];			//Eligible to bid
+//	UINT32	dwCanRewardMoneyRoleID[MAX_TEAM_MEMBER_COUNT];	//Eligible to share proceeds
 //	UINT32	dwCanRewardMoneyRoleCount;
-//	UINT32	dwAbandonRoleID[MAX_TEAM_MEMBER_COUNT];			// 放弃拍卖的
+//	UINT32	dwAbandonRoleID[MAX_TEAM_MEMBER_COUNT];			// Auction passed
 //	UINT32	dwAbandonRoleCount;
 //	Item*	pItem;
-//	UINT32	nIndex;											// 拍卖序号
+//	UINT32	nIndex;											// Auction index
 //};
 
 struct TeamAuctionItem
@@ -156,9 +156,9 @@ private:
 	// team auction 
 //	typedef std::vector<GS_TEAM_AUCTION_ITEM> VecTeamAuctionContainer;
 //	typedef VecTeamAuctionContainer::iterator IterVecTeamAuctionContainer;
-//	VecTeamAuctionContainer	m_VecTeamAuctionContainer;	// 管理拍卖物品
+//	VecTeamAuctionContainer	m_VecTeamAuctionContainer;	// Manage auction items
 //
-//	CObjectPool<GS_TEAM_AUCTION_BID_MEMBER>	m_BidMumberPool; // 管理出价者，维护有序
+//	CObjectPool<GS_TEAM_AUCTION_BID_MEMBER>	m_BidMumberPool; // Manage bidders in sorted order
 //	CBaseList m_BidMemberList;
 
 	typedef std::list<TeamAuctionItem*> TAuctionItemList;

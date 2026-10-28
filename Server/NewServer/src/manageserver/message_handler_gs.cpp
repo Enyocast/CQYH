@@ -81,7 +81,7 @@ void CMessageHandler::OnGSCreateSceneAck(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         for (std::list<UINT32>::iterator itr = pDestSceneInfo->WaitUserList.begin(); itr != pDestSceneInfo->WaitUserList.end(); ++itr)
         {
             MS_USER* poUser = CUserMgr::GetInstance().FindUserBySessionID(*itr);
-            if (poUser == NULL) //  下线了
+            if (poUser == NULL) //  Offline
                 continue;
 
             MS_ONLINE_ROLE_DATA* pOnlineRole = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(poUser->dwCurRoleID);
@@ -129,7 +129,7 @@ void CMessageHandler::OnGSCreateSceneAck(PACKET_BUFFER* pPacketBuffer, UINT32 dw
             itr != pDestSceneInfo->WaitUserList.end(); ++itr)
         {
             MS_USER* poUser = CUserMgr::GetInstance().FindUserBySessionID(*itr);
-            if (poUser == NULL) //  下线了
+            if (poUser == NULL) //  Offline
                 continue;
 
             MS_ONLINE_ROLE_DATA* pOnlineRole = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(poUser->dwCurRoleID);
@@ -277,7 +277,7 @@ void CMessageHandler::OnGSQueryScene(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize
     LOG_PROCESS_ERROR(pGSSession);
     dwGSSessionID = pGSSession->dwSessionID;
 
-    // user必然能找到，状态有可能不对
+    // The user must exist, but the state may be invalid
     poUser = CUserMgr::GetInstance().FindUserBySessionID(pMsg->dwClientSessionID);
     LOG_PROCESS_ERROR_RET_CODE(poUser, errCritical);
     PROCESS_ERROR(poUser->eState == USER_STATE_INGAME);
@@ -471,7 +471,7 @@ void CMessageHandler::OnGSEnterGS(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, I
     LOG_PROCESS_ERROR(pGSSession);
     dwGSSessionID = pGSSession->dwSessionID;
 
-    // 必然可以找到User，否则有BUG
+    // The user must exist; otherwise there is a bug
     poUser = CUserMgr::GetInstance().FindUserBySessionID(pMsg->dwClientSessionID);
     LOG_PROCESS_ERROR(poUser);
     PROCESS_ERROR(poUser->eState == USER_STATE_LOGIN_GSREADY || poUser->eState == USER_STATE_JUMP_GSREADY);
@@ -493,18 +493,18 @@ void CMessageHandler::OnGSEnterGS(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, I
     pOnlineRole->dwMasterCD = pMsg->dwMasterCD;
     pOnlineRole->pRoleData->dwJoinGuildCD = pMsg->dwGuildCD;
     pOnlineRole->nGMLevel = pMsg->byGMLevel;
-    pOnlineRole->pRoleData->nLastLoginTime = 0;     // 上线状态，置0 Allan Tao[9.6.2013] 
+    pOnlineRole->pRoleData->nLastLoginTime = 0;     // Online state: set to 0. Allan Tao [9.6.2013]
     pOnlineRole->bTwitter = pMsg->byTwitter;
     pOnlineRole->dwBeDeterminedRoleID = 0;
     pOnlineRole->dwMasterTwitterCD = pMsg->dwMasterTwitterCD;
 
     if (poUser->eState == USER_STATE_LOGIN_GSREADY)
     {
-        nRetCode = _DoLoginSyncInfo(pOnlineRole);  // 同步角色 队伍/公会/邮件/好友/师徒/沙巴克/雕像信息
+        nRetCode = _DoLoginSyncInfo(pOnlineRole);  // Synchronize character team, guild, mail, friends, mentorship, Sabac, and statue information
         LOG_PROCESS_ERROR(nRetCode);
     }
 
-    nRetCode = _DoLoadOrSyncInfo(pOnlineRole);  // 同步角色 特殊社交 公会禁言时间/师徒信息
+    nRetCode = _DoLoadOrSyncInfo(pOnlineRole);  // Synchronize special social information: guild mute time and mentorship
     LOG_CHECK_ERROR(nRetCode);
 
     nRetCode = DoGSEnterGSAck(dwGSSessionID, pMsg->dwClientSessionID, pMsg->dwRoleID);
@@ -553,7 +553,7 @@ void CMessageHandler::OnGSLeaveGSAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize
     SGSSession* poGSSession = (SGSSession*)pSocketSession->GetUserData();
     LOG_PROCESS_ERROR(poGSSession);
 
-    // user必然存在，否则有BUG
+    // The user must exist; otherwise there is a bug
     poUser = CUserMgr::GetInstance().FindUserBySessionID(pMsg->dwClientSessionID);
     LOG_PROCESS_ERROR(poUser);
 
@@ -994,7 +994,7 @@ void CMessageHandler::OnGSChatMessage(PACKET_BUFFER* pPacketBuffer, UINT32 dwSiz
                 pMsg->szMessage, pMsg->byServerGroupID, pMsg->bGM);
             LOG_PROCESS_ERROR_RET_CODE(nRetCode, errChatServiceUnavaible);
         }
-        // 公告
+        // Announcement
         else
         {
             nRetCode = DoClientChatMessage(pMsg->szName, pMsg->dwSourceID, pMsg->dwTargetID, pMsg->byLocation,
@@ -1876,10 +1876,10 @@ Exit0:
 }
 
 
-// todo guild war end 考虑之后重构把他放到lua里面让策划去搞 Allan Tao[11.11.2013]
+// TODO guild war end: consider moving this to Lua for designers during a future refactor. Allan Tao [11.11.2013]
 //void CMessageHandler::OnGSGuildBattleScore(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 //{
-//    // todo_tq 上一个版本的公会战结算
+//    // todo_tq: previous version of guild war settlement
 //	INT32       nRetCode = 0;
 //	INT32       nResult = errUnknownError;
 //	MS_GUILD_WAR_DATA   *pWarData = NULL;
@@ -2658,10 +2658,10 @@ void CMessageHandler::OnGSAgreeTeacherAppAck(PACKET_BUFFER* pPacketBuffer, UINT3
 
 
     nRetCode = MasterCancelRecvApp(*pstOnlineRole, pOnlineTeacher->pRoleData->dwRoleID);
-    PROCESS_ERROR_RET_CODE(nRetCode, errMasterNoTeacherApp);            // todo_tq 这个地方去掉log是因为取消申请的时候没有通知对方
+    PROCESS_ERROR_RET_CODE(nRetCode, errMasterNoTeacherApp);            // todo_tq: logging was removed here because canceling the application does not notify the other party
 
     nRetCode = MasterCancelSendApp(*pOnlineTeacher, pstOnlineRole->pRoleData->dwRoleID);
-    PROCESS_ERROR_RET_CODE(nRetCode, errMasterNoTeacherApp);            // todo_tq 这个地方去掉log是因为取消申请的时候没有通知对方
+    PROCESS_ERROR_RET_CODE(nRetCode, errMasterNoTeacherApp);            // todo_tq: logging was removed here because canceling the application does not notify the other party
 
     nRetCode = CMasterMgr::GetInstance().CreateMasterRelation(*pOnlineTeacher, *pstOnlineRole);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode == errSuccess, nRetCode);
@@ -3072,7 +3072,7 @@ Exit0:
 
 void CMessageHandler::OnGSAuctionBuy(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
-    // 能走到这一步, 说明 肯定是扣款成功了
+    // Reaching this point means the debit succeeded
     G2M_AUCTION_BUY* pMsg = (G2M_AUCTION_BUY*)pPacketBuffer;
 
     MS_ROLE_DATA* role = CRoleDataMgr::GetInstance().FindRole(pMsg->dwRoleID);
@@ -3110,7 +3110,7 @@ Exit0:
 
 void CMessageHandler::OnGSAuctionPay(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
-    // 能走到这一步 [付尾款], 说明 肯定是扣款成功了
+    // Reaching the balance-payment step means the debit succeeded
     Auction* auction = NULL;
     G2M_AUCTION_PAY* pMsg = (G2M_AUCTION_PAY*)pPacketBuffer;
 
@@ -3544,26 +3544,26 @@ Exit0:
     return;
 }
 
-// 玩家查询元宝
+// Player queries ingots
 void CMessageHandler::OnGSQueryRealMoneyAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
     G2M_QUERY_REAL_MONEY_ACK* pMsg = (G2M_QUERY_REAL_MONEY_ACK*)pPacketBuffer;
     CMessageHandler::GetInstance().DoClientSyncRealMoney(pMsg->dwCliSessionID, pMsg->llRealMoney);
 }
 
-// 玩家购买商城物品
+// Player purchases cash-shop items
 void CMessageHandler::OnGSRoleRealMoneyShopBuyItemAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
     G2M_ROLE_REAL_MONEY_SHOP_BUY_ACK* pMsg = (G2M_ROLE_REAL_MONEY_SHOP_BUY_ACK*)pPacketBuffer;
 
     if (pMsg->nResult == 0)
     {
-        // 购买成功
+        // Purchase succeeded
         CRealMoneyShop::GetInstance().OnCharge(pMsg->nResult, pMsg->dwRoleID, pMsg->nItemID, pMsg->nItemCount, pMsg->szRoleName);
     }
 }
 
-// ========== 下面全是 DoGS 函数 ==========
+// ========== DoGS functions follow ==========
 
 BOOL CMessageHandler::DoGSRegisterAck(UINT32 dwGSSessionID)
 {
@@ -6069,7 +6069,7 @@ Exit0:
     return FALSE;
 }
 
-// ===== 下面全是自己新加代码 =====
+// ===== Custom code follows =====
 
 BOOL CMessageHandler::DoGSQueryYuanBao(INT32 dwGSSessionID, UINT32 dwCliSessionID, UINT32 dwRoleID)
 {
@@ -6093,7 +6093,7 @@ Exit0:
     return FALSE;
 }
 
-// 玩家购买商城物品
+// Player purchases cash-shop items
 BOOL CMessageHandler::DoGSRoleRealMoneyShopBuyItemReq(INT32 dwGSSessionID, UINT32 dwCliSessionID, CHAR* pcszRoleName, UINT32 dwRoleID, INT32 nTotalCost, INT32 nItemID, INT32 nItemCount)
 {
     INT32 nRetCode = 0;
@@ -6120,7 +6120,7 @@ Exit0:
     return FALSE;
 }
 
-// 玩家购买点卡
+// Player purchases a time card
 BOOL CMessageHandler::DoGSCustomRoleBuyTime(INT32 dwGSSessionID, UINT32 dwCliSessionID, UINT32 dwRoleID, UINT32 dwBuyTimeCost)
 {
     INT32 nRetCode = 0;

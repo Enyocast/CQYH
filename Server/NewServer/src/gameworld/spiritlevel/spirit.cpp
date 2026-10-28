@@ -175,7 +175,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 	LOG_PROCESS_ERROR_RET_CODE((m_pOwner->GetItemBag()->GetMoney(MONEYTYPE_SOUL_PTS) >= pSpiritData->nSoulCost), errSpiritMoneyNotEnough); 
 	LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetLevel() >= SPIRIT_OPEN_LEVEL, errSpiritNotOpen);
 
-	if (bUseMoney)																														// 立即转化
+	if (bUseMoney)																														// Convert immediately
 	{
 		INT32 nMinuteTime = 0;
 		INT32 nMoneyCost = 0;
@@ -183,7 +183,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 
 		LOG_PROCESS_ERROR_RET_CODE(m_dwDailyUseMoneyChangeCount < pSpiritData->nDailyExp2PtsMaxCount, errSpiritExp2PtsMaxCount);
 
-		// 每日次数加成
+		// Daily attempt bonus
 		for (INT32 nIndex = 1; nIndex <= MAX_EXP2PTS_LEVEL; nIndex++)
 		{
 			pSpiritChangeData = CDataManager<SPIRIT_CHANGE_DATA>::GetInstance().GetData(nIndex);
@@ -202,7 +202,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 		{
 			nMinuteTime = (m_dwNextExp2PtsTime - dwCurrentTime)%60 ? ((m_dwNextExp2PtsTime - dwCurrentTime)/60 + 1) : (m_dwNextExp2PtsTime - dwCurrentTime )/60;
 
-			// 根据境界等级和今日次数加成来算钱
+			// Calculate cost based on spirit level and today’s attempt bonus
 			if (nMinuteTime > 0)
 			{
 				nMoneyCost = (INT64)nMinuteTime * pSpiritData->nMoneyCostOneShot * (10000 + nDailyTimeAddtional) / 10000;
@@ -225,7 +225,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 			nDisCount = pSpiritData->nVipOnlineChangeDiscount[m_pOwner->GetVIPLevel() - vlLevel1] + 100;
 		}
 	}
-	else if (!bIsOnline)																												// 离线转化
+	else if (!bIsOnline)																												// Offline conversion
 	{	
 		INT32 nDuration = 0;
 		
@@ -238,7 +238,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 
 		nDisCount = pSpiritData->nOfflineChangeDiscount[m_pOwner->GetVIPLevel() - vlLevel1] * (nDuration + 1);
 	}
-	else																																// 在线转化
+	else																																// Online conversion
 	{
 		if (m_dwNextExp2PtsTime > dwCurrentTime)
 		{
@@ -278,7 +278,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 
 		m_pOwner->GetAchievementList().AddVariable(avdSpiritLevelUP, 1);
 
-		// 升级完成后修改身上属性
+		// Update equipped attributes after leveling up
 
 		for (INT32 nIndex = 0; nIndex < MAX_SPIRIT_NODE_PER_LEVEL; nIndex++)
 		{
@@ -292,7 +292,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 		pSpiritData = CDataManager<SPIRIT_DATA>::GetInstance().GetData(m_nLevel);
 		LOG_PROCESS_ERROR(pSpiritData);
 
-		for (INT32 nIndex = 0; nIndex < MAX_SPIRIT_NODE_PER_LEVEL; nIndex++)		// 每个境界等级对应的属性
+		for (INT32 nIndex = 0; nIndex < MAX_SPIRIT_NODE_PER_LEVEL; nIndex++)		// Attributes corresponding to each spirit level
 		{
 			if (pSpiritData->nAttrTemplateNodeID[nIndex])
 			{
@@ -301,7 +301,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 			}
 		}
 
-		if (pSpiritData->nBroadcastStringID)						// 需要电视机广播
+		if (pSpiritData->nBroadcastStringID)						// Screen announcement required
 		{
 			const char* pcszMessage = NULL;
 			char szMessage[256];
@@ -368,7 +368,7 @@ INT32 CSpirit::ProductAir(INT32 nIndex)
 	const AIR_LEVEL_DATA* pAirLevel = NULL;
 
 	LOG_PROCESS_ERROR(m_pOwner);
-	LOG_PROCESS_ERROR(_GetProductAirLevel(nIndex));											// 是否此级已经亮了
+	LOG_PROCESS_ERROR(_GetProductAirLevel(nIndex));											// Whether this level is already active
 	LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetLevel() >= SPIRIT_OPEN_LEVEL, errSpiritLevel);
 	LOG_PROCESS_ERROR(nIndex >= 0 && nIndex < MAX_AIR_PROCEDURE);
 
@@ -380,7 +380,7 @@ INT32 CSpirit::ProductAir(INT32 nIndex)
 
 	if (nIndex < MAX_AIR_PROCEDURE)
 	{
-		for (INT32 nDropIndex = 0; nDropIndex < MAX_DROP_AIR_COUNT; nDropIndex++)			//　气掉落
+		for (INT32 nDropIndex = 0; nDropIndex < MAX_DROP_AIR_COUNT; nDropIndex++)			//　Qi drop
 		{
 			nNum += pAirLevel->nDropAirRate[nDropIndex];
 
@@ -422,20 +422,20 @@ INT32 CSpirit::ProductAir(INT32 nIndex)
 		
 		if (nIndex > 0)
 		{
-			_ClearProductAirLevel(nIndex);				// 本级按钮先变暗
+			_ClearProductAirLevel(nIndex);				// First dim the button for this level
 		}
 
-		if (nRandNum <= pAirLevel->nNextLevelRate && m_nLevel >= pAirLevel->nSpiritLevelLimit)	// 练气阶段提升
+		if (nRandNum <= pAirLevel->nNextLevelRate && m_nLevel >= pAirLevel->nSpiritLevelLimit)	// Advance qi cultivation stage
 		{
 			SetProductAirLevel(nIndex+1);
 		}
 	}
 	else
 	{
-		_ClearProductAirLevel(nIndex);				// 本级按钮先变暗
+		_ClearProductAirLevel(nIndex);				// First dim the button for this level
 	}
 
-	if (pAirLevel->nDropMoneyCount != 0)			// 万法之气
+	if (pAirLevel->nDropMoneyCount != 0)			// Arcane qi
 	{
 		nResult = m_pOwner->GetItemBag()->AddMoney(MONEYTYPE_AIR, pAirLevel->nDropMoneyCount, MONEYLOG_SPIRIT_ADDAIR, 0);
 		PROCESS_ERROR_RET_CODE(nResult == errSuccess, nResult);
@@ -612,7 +612,7 @@ INT32 CSpirit::MoveAir(INT32 nSrcType, INT32 nSrcIndex, INT32 nTarType, INT32 nT
 		break;
 	case sasbtEquip:
 		{
-			pAir = CDataManager<AIR_DATA>::GetInstance().GetData(m_EquipContainer[nSrcIndex].nTemplateID);	// 脱装备
+			pAir = CDataManager<AIR_DATA>::GetInstance().GetData(m_EquipContainer[nSrcIndex].nTemplateID);	// Remove equipment attributes
 			LOG_PROCESS_ERROR(pAir);
 
 			nTargetAirID = m_EquipContainer[nSrcIndex].nTemplateID;
@@ -660,12 +660,12 @@ INT32 CSpirit::MoveAir(INT32 nSrcType, INT32 nSrcIndex, INT32 nTarType, INT32 nT
 		break;
 	case sasbtEquip:
 		{
-			if (m_EquipContainer[nTarIndex].nTemplateID)						// 如果已经装备了气，那么先回滚掉属性
+			if (m_EquipContainer[nTarIndex].nTemplateID)						// If qi is already equipped, first roll back its attributes
 			{
 				pAir = CDataManager<AIR_DATA>::GetInstance().GetData(m_EquipContainer[nTarIndex].nTemplateID);
 				LOG_PROCESS_ERROR(pAir);
 
-				for (INT32 nIndex = 0; nIndex < MAX_ATTR_PER_NODE; nIndex++)		// 脱装备
+				for (INT32 nIndex = 0; nIndex < MAX_ATTR_PER_NODE; nIndex++)		// Remove equipment attributes
 				{
 					if (pAir->nNodeID[nIndex])
 					{
@@ -684,7 +684,7 @@ INT32 CSpirit::MoveAir(INT32 nSrcType, INT32 nSrcIndex, INT32 nTarType, INT32 nT
 			pAir = CDataManager<AIR_DATA>::GetInstance().GetData(m_EquipContainer[nTarIndex].nTemplateID);
 			LOG_PROCESS_ERROR(pAir);
 
-			for (INT32 nIndex = 0; nIndex < MAX_ATTR_PER_NODE; nIndex++)		// 穿装备
+			for (INT32 nIndex = 0; nIndex < MAX_ATTR_PER_NODE; nIndex++)		// Apply equipment attributes
 			{
 				if (pAir->nNodeID[nIndex])
 				{
@@ -725,7 +725,7 @@ INT32 CSpirit::MoveAir(INT32 nSrcType, INT32 nSrcIndex, INT32 nTarType, INT32 nT
 				pAir = CDataManager<AIR_DATA>::GetInstance().GetData(nSrcAirID);
 				LOG_PROCESS_ERROR(pAir);
 
-				for (INT32 nIndex = 0; nIndex < MAX_ATTR_PER_NODE; nIndex++)		// 脱装备
+				for (INT32 nIndex = 0; nIndex < MAX_ATTR_PER_NODE; nIndex++)		// Remove equipment attributes
 				{
 					if (pAir->nNodeID[nIndex])
 					{
@@ -989,7 +989,7 @@ INT32 CSpirit::SetBlood(INT32 nPage, INT32 nSlot, INT32 nNewNumber)
 	LOG_PROCESS_ERROR(nSlot >= 0 && nSlot < MAX_BLOODSEA_SLOT_PER_PAGE);
 	LOG_PROCESS_ERROR(nNewNumber > 0 && nNewNumber <= MAX_BLOODSEA_SLOT_NUMBER);
 
-	// 脱
+	// Remove
 
 	pPreBlood = CDataManager<BLOOD_DATA>::GetInstance().GetData(MAKE_BLOOD_KEY(nPage+1, nSlot+1, m_nBloodSlot[nPage][nSlot]));
 	pNextBlood = CDataManager<BLOOD_DATA>::GetInstance().GetData(MAKE_BLOOD_KEY(nPage+1, nSlot+1, nNewNumber));
@@ -997,7 +997,7 @@ INT32 CSpirit::SetBlood(INT32 nPage, INT32 nSlot, INT32 nNewNumber)
 
 	if (pPreBlood)
 	{
-		for (INT32 nIndex = 0; nIndex < MAX_BLOODSEA_ATTR_PER_SLOT; nIndex++)		// 脱装备
+		for (INT32 nIndex = 0; nIndex < MAX_BLOODSEA_ATTR_PER_SLOT; nIndex++)		// Remove equipment attributes
 		{
 			if (pPreBlood->nNodeID[nIndex])
 			{
@@ -1009,9 +1009,9 @@ INT32 CSpirit::SetBlood(INT32 nPage, INT32 nSlot, INT32 nNewNumber)
 
 	m_nBloodSlot[nPage][nSlot] = pNextBlood->nNumber;
 
-	// 穿
+	// Equip
 
-	for (INT32 nIndex = 0; nIndex < MAX_BLOODSEA_ATTR_PER_SLOT; nIndex++)		// 脱装备
+	for (INT32 nIndex = 0; nIndex < MAX_BLOODSEA_ATTR_PER_SLOT; nIndex++)		// Remove equipment attributes
 	{
 		if (pNextBlood->nNodeID[nIndex])
 		{
@@ -1064,8 +1064,8 @@ INT32 CSpirit::BrushBloodSlot(INT32 nPage, INT32 nSlot)
 		}
 	}
 
-	LOG_PROCESS_ERROR_RET_CODE(m_nLevel >= pNextBlood->nLevelLimit, errSpiritBloodSlotLevel);														// 开启等级
-	LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetItemBag()->GetMoney(MONEYTYPE_SPELL_PTS) >= pNextBlood->nSpiritPtsCost, errSpiritSpellPts);				// 修炼点数量
+	LOG_PROCESS_ERROR_RET_CODE(m_nLevel >= pNextBlood->nLevelLimit, errSpiritBloodSlotLevel);														// Unlock level
+	LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetItemBag()->GetMoney(MONEYTYPE_SPELL_PTS) >= pNextBlood->nSpiritPtsCost, errSpiritSpellPts);				// Cultivation point amount
 
 	nResult = m_pOwner->GetItemBag()->SubMoney(MONEYTYPE_SPELL_PTS, pNextBlood->nSpiritPtsCost, MONEYLOG_SPIRIT_BLOOD, 0);
 	LOG_PROCESS_ERROR(nResult == errSuccess);
@@ -1129,7 +1129,7 @@ Exit0:
 	return nAirIndex;
 }
 
-INT32 CSpirit::_MergeAir(INT32 nSrcCon, INT32 nTarCon)			// Src 吸收 Tar
+INT32 CSpirit::_MergeAir(INT32 nSrcCon, INT32 nTarCon)			// Source absorbs target
 {
 	INT32 nRetCode = 0;
 	const AIR_DATA* pAir = NULL;
@@ -1147,7 +1147,7 @@ INT32 CSpirit::_MergeAir(INT32 nSrcCon, INT32 nTarCon)			// Src 吸收 Tar
 		m_BagContainer[nSrcCon].nExp = INT_MAX;
 	}
 
-	m_BagContainer[nTarCon].nExp = 0;								// 被吸收
+	m_BagContainer[nTarCon].nExp = 0;								// Absorbed
 	m_BagContainer[nTarCon].nTemplateID = 0;
 
 #ifndef _ROBOT
@@ -1165,7 +1165,7 @@ INT32 CSpirit::_MergeAir(INT32 nSrcCon, INT32 nTarCon)			// Src 吸收 Tar
 		LOG_PROCESS_ERROR(pNextAir);
 		LOG_PROCESS_ERROR(pNextAir->nNextLevelExp > 0);
 
-		m_BagContainer[nSrcCon].nTemplateID = pNextAir->nAirID;	// 升级以后变成了新的气
+		m_BagContainer[nSrcCon].nTemplateID = pNextAir->nAirID;	// After leveling up, it becomes a new qi
 
 #ifndef _ROBOT
 		nRetCode = CCliMessageHandler::GetInstance().DoSpiritAirChange(m_pOwner, sasbtBag, nSrcCon, m_BagContainer[nSrcCon].nTemplateID, m_BagContainer[nSrcCon].nExp);
@@ -1189,7 +1189,7 @@ INT32 CSpirit::_CanBrush(INT32 nPage, INT32 nSlot)
 
 	LOG_PROCESS_ERROR_RET_CODE(IsBloodOpen(nPage) == TRUE, errSpiritBloodNotOpen);
 
-	if (nSlot != BLOODSEA_SLOT_INIT_SLOT)	// 保证上一级开启
+	if (nSlot != BLOODSEA_SLOT_INIT_SLOT)	// Ensure the previous level is unlocked
 	{
 		LOG_PROCESS_ERROR(m_nBloodSlot[nPage][nSlot-1] != 0);
 	}

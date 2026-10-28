@@ -85,13 +85,13 @@ public:
 	INT16 GetItemCount(INT32 itemid, BOOL includebank = FALSE) const;
 	UINT32 GetFreeSlots(UINT8 conslot);
 
-	//转移物品所有权给他人
+	//Transfer item ownership to another player
 	INT32 TransferItemTo(CItemBag* dstbag, Item* item, INT16 itemcount, EItemLog reason);
 
 	void OnDisArm();
 	void OnDisArmFinish();
 
-	//攻击和被攻击时调用，扣耐久度
+	//Called on attacking or being attacked to deduct durability
     void LoseWeaponDur();
 	BOOL LoseMineDur(INT32 nItemID);
     void LoseArmorDur(INT32 damage);
@@ -101,25 +101,25 @@ public:
 	void LoseHeroArmorDur();
     void LoseHeroAllDur(INT32 nPercent, EItemLog reason);
 
-	//获取武器类型
+	//Get weapon type
 	UINT8 GetWeaponType();
 	UINT8 GetHeroWeaponType();
 
 	void GetAppearance(INT32 nAvatar[]);
 	void GetHeroAppearance(INT32 nAvatar[]);
 
-	//给新手穿默认装备，仅供新手创建的脚本调用
+	//Equip default gear for a new player; only called by the new-player creation script
 	BOOL EquipItemOnBirth(INT32 itemid, UINT8 itemslot);
 
-	//给英雄穿默认装备，仅供英雄创建的脚本调用
+	//Equip default gear for a hero; only called by the hero creation script
 	BOOL EquipHeroItemOnBirth(INT32 itemid, UINT8 itemslot);
 
-	//货币
+	//Currency
 	void SetUseMoneytype01Only(UINT8 use) { m_use_moneytype01_only = use; }
 	UINT8 GetUseMoneytype01Only() const { return m_use_moneytype01_only; }
-	//获取可用货币
+	//Get available currency
 	INT64 GetMoney(INT32 moneytype, BOOL use_moneytype01_only = FALSE) const;
-	//获取实际货币数量
+	//Get actual currency amount
 	INT64 GetMoneyInfo(INT32 moneytype);
 	void GetMoneyAllInfo(
 		INT64 allMoneys[],
@@ -136,7 +136,7 @@ public:
 	INT32 AddMoney(INT32 moneytype, INT32 nCount, EMoneyLog reason, UINT32 dwSourceID);
 	INT32 SubMoney(INT32 moneytype, INT32 nCount, EMoneyLog reason, UINT32 dwTargetID);
 
-	//注意：SetMoney仅供GM使用
+	//Note: SetMoney is for GM use only
 	INT32 SetMoney(INT32 moneytype, INT32 nCount);
 
     void AddGoldPool(INT32 money);
@@ -144,30 +144,30 @@ public:
     INT32 GetGoldPool() const;
     INT32 GetChanceByGoldPool() const;
 
-	//买格子
+	//Buy slots
 	INT32 BuySlots(UINT8 conslot, UINT8 slotcount);
 
-	//融灵
+	//Soul fusion
 	INT32 UpgradeSoul(UINT8 targetconslot, UINT8 targetitemslot, UINT8 srccount, UINT8 srcconslot[], UINT8 srcitemslot[]);
 	INT32 AddSoul(UINT8 equipconslot, UINT8 equipitemslot, UINT8 socketindex, UINT8 soulconslot, UINT8 soulitemslot);
 	INT32 RemoveSoul(UINT8 conslot, UINT8 itemslot, UINT8 socketindex);
 
-	//铸魂 - 普通铭文洗练
+	//Soul forging - normal inscription refinement
 	INT32 RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid);
 
-	// 高级铭文洗练
+	// Advanced inscription refinement
 	INT32 RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid);
 
-	// 确认高级洗练
+	// Confirm advanced refinement
 	INT32 RuneItemConfirm(UINT8 conslot, UINT8 itemslot);
 
-    //装备升级
+    //Equipment upgrade
     INT32 WeaponLevelUpPutIn();
     INT32 WeaponLevelUpTakeOut();
 	INT32 WeaponLevelUpTakeOutImmediately();
     void OnPhyAttack();
 
-	//分解合成
+	//Decomposition and crafting
 	INT32 Decompose(UINT8 conslot, UINT8 itemslot);
 	INT32 Compose(INT32 formulaid);
 
@@ -177,36 +177,36 @@ public:
 
 	UINT32 GetUsedSlotCount(UINT8 conslot);
 
-	//PK掉装备
+	//Equipment drops on PvP death
 	void LoseItemOnDeath(BOOL is_player);
     void DestroyItemOnDeath();
 
-	//整理背包
+	//Organize bag
 	INT32 OrganizeBag(UINT8 conslot);
 
-	//幸运值
+	//Luck value
 	void SetWeaponLuck(INT8 v);
 	void IncreaseWeaponLuck(INT8 v);
 	void DecreaseWeaponLuck();
 
-	//套装
+	//Equipment set
 	INT32 GetSetItemCountBefore(const SET_DATA* data, INT32 itemid, UINT8 itemslot);
     INT32 GetSetItemCountAfter(const SET_DATA* data);
 
-	//强化激活效果
+	//Enhancement activation effect
 	UINT8 GetRefineFx();
 
-	//战斗力
+	//Combat power
 	INT32 GetPow();
 
-    //传奇功能，供李星佳的修改器调用
+    //Legend feature called by Li Xingjia’s editor
     UINT8 SearchDefaultContainer(INT32 itemid, INT16 dur) const;
     UINT8 SearchDefaultContainer(UINT8 itemtype, UINT8 itemsubtype, INT16 dur) const;
     BOOL LoseItemDur(INT32 itemid, INT16 dur, EItemLog reason);
     BOOL LoseItemDur(UINT8 conslot, UINT8 itemslot, INT16 dur, EItemLog reason);
     BOOL LoseItemDur(UINT8 conslot, UINT8 itemslot, INT32 itemid, INT16 dur, EItemLog reason);
 
-    //黑市
+    //Black market
     struct BMRoleLimitInfo
     {
         INT32 nCount;
@@ -225,7 +225,7 @@ public:
 	INT32 GambleAdvance(INT32 nGambleType, INT32 nGambleLevel);
 	INT32 SpellBookGamble();
 
-	// ========== 自己新增代码 begin
+	// ========== Custom code begins
 
 	BOOL CheckTemplateIDIsTimeCard(INT32 nTemplateID);
 	INT32 RuneTest(INT32 nRuneID);
@@ -234,13 +234,13 @@ public:
 	INT32 SetSocketColor(INT32 nIndex, INT32 nColor);
 	INT32 GetSetSocketColorCost(int id, int column);
 
-	// 命运礼盒
+	// Destiny gift box
 	INT32 AddDestinyWeapon(INT32 nItemID, INT32 nLevel);
 
-	// 装备升级到指定顶级
+	// Upgrade equipment to the specified maximum level
 	INT32 EquipLevelUpToSpecifiedLevel(Item* item, INT32 nLevel);
 
-	// ========== 自己新增代码 end
+	// ========== Custom code ends
 
 #ifdef _ROBOT
 	void SetContainerSize(UINT8 conslot, UINT8 consize);
@@ -285,7 +285,7 @@ private:
 	//for iteration
 	std::list<const Item*> m_allitem;
 
-	//货币
+	//Currency
 	INT64 m_moneys[MONEYTYPE_COUNT];
 	INT64 m_moneys_limit[MONEYTYPE_COUNT];
 
@@ -305,10 +305,10 @@ private:
 
     INT32 m_gold_pool;
 
-	//回购
+	//Buyback
 	std::list<Item*> m_soldlist;
 
-	//上次整理时间
+	//Last organization time
 	UINT32 m_dwLastOrganizeTime;
 
 	//for randomize item
@@ -319,32 +319,32 @@ private:
 	UINT32 m_dwDeathCountFromFirst;
 	UINT32 m_dwLastDeathTime;
 
-    //炼刀
+    //Weapon upgrade
     UINT32 m_dwWeaponLevelUpStartTime;
     Item* m_WeaponItem;
     INT32 m_nWeaponDur;
     INT32 m_nWeaponPhy, m_nWeaponMag, m_nWeaponTao;
     UINT8 m_byMailNotified;
 
-    //超重减速
+    //Overweight movement penalty
     CAuraInstance* m_pWeaponAura;
     CAuraInstance* m_pArmorAura;
     CAuraInstance* m_pBagAura;
 
-    //黑市限购数量及冷却
+    //Black-market purchase limits and cooldowns
     std::map<INT32, BMRoleLimitInfo> m_black_market_limit_map;
     std::map<INT32, UINT32> m_black_market_cooldown_map;
 
-    //今日使用经验瓶次数
+    //Experience bottles used today
     INT32 m_nExpBottleTimes;
 
 
-	// ========== 自己新增代码 begin
+	// ========== Custom code begins
 
 	
 
 
-	// ========== 自己新增代码 end
+	// ========== Custom code ends
 
 
 };

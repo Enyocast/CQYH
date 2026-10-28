@@ -22,9 +22,9 @@
 /* UINT32    ud                                                         */
 /* INT64     l                                                          */
 /* UINT64    ul                                                         */
-/* string    s       长度不含0                                           */
+/* string    s       length excludes the null terminator                                           */
 /* blob	     b                                                          */
-/* time_t    t       需要先显示转换成time_t传入                           */
+/* time_t    t       explicitly convert to time_t before passing                           */
 /* zip blob  z                                                          */
 /************************************************************************/
 

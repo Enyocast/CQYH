@@ -2,7 +2,7 @@
 #include "npc.h"
 
 #include "utf8.h"
-#include <tchar.h>  // 添加这个头文件
+#include <tchar.h>  // Add this header
 
 #include "id_def.h"
 #include "role_def.h"
@@ -365,7 +365,7 @@ BOOL CNpc::_DistributeRegionBonus(CRole* poRole, CTeamInGS* poTeam, CRole* poKil
     LOG_PROCESS_ERROR(m_pNpcData->nExpRate >= 0 && m_pNpcData->nExpRate <= 200000);
     LOG_PROCESS_ERROR(m_pNpcData->nSoulRate >= 0 && m_pNpcData->nSoulRate <= 200000);
 
-    // 增加经验
+    // Add experience
     if (m_pNpcData->bProfit)
     {
         // traverse team members
@@ -481,7 +481,7 @@ BOOL CNpc::_DistributeRegionBonus(CRole* poRole, CTeamInGS* poTeam, CRole* poKil
         }
     }
 
-    // reputation 声望
+    // Reputation
     if (m_pNpcData->bReduceReputation)
     {
         poRole->GetReputation().ModifyValue(m_pNpcData->nForceID, g_GWConfig.SubReputation[m_nQuality]);
@@ -553,7 +553,7 @@ BOOL CNpc::Die(INT32 nParam)
     LOG_PROCESS_ERROR(m_eMoveState != CMS_DIE);
     PROCESS_SUCCESS(m_oFlag.CheckFlag(cfBTDenyDie));
 
-    // 死亡脚本。
+    // Death script.
 #ifndef _ROBOT
     if (m_poAIProcessor && m_poAIProcessor->GetFightState() != afsDying)
     {
@@ -566,26 +566,26 @@ BOOL CNpc::Die(INT32 nParam)
 
     PROCESS_ERROR(m_eMoveState != CMS_DIE);
 
-    // 执行上层基类 死亡函数
+    // Execute the base class death handler
     nRetCode = CCharacter::Die(nParam);
     LOG_PROCESS_ERROR(nRetCode);
 
-    // 怪物状态
+    // Monster state
     m_nNpcState = npcCorpse;
 
-    // 怪物时间
+    // Monster time
     m_nNpcTimer = CGameWorld::GetInstance().GetGameFrame() + m_pNpcData->nCorpseTime;
 
-    // 血量
+    // HP
     m_nPetHpRestore = 0;
 
-    // 判断 直接击杀者
+    // Determine the immediate killer
     if (m_dwDropOwnerID)
         poDirectKiller = CGameWorld::GetInstance().FindValidCharacter(m_dwDropOwnerID);
     if (poDirectKiller == NULL && m_dwLastCasterID)
         poDirectKiller = CGameWorld::GetInstance().FindValidCharacter(m_dwLastCasterID);
 
-    // 判断 最终击杀者
+    // Determine the final killer
     if (poDirectKiller)
     {
         if (poDirectKiller->GetObjType() == otNpc)
@@ -606,7 +606,7 @@ BOOL CNpc::Die(INT32 nParam)
             poKiller = (CRole*)poDirectKiller;
     }
 
-    // 增加 经验/声望/完成任务/地图变量 (例如 击杀x个怪物之后, 刷某个BOSS出来)
+    // Add experience and reputation, complete quests, and update map variables (e.g. spawn a boss after X kills)
     if (poKiller && m_bGenerateDrop)
     {
         if (poKiller->GetTeamID() != INVALID_OBJECT_ID)
@@ -633,11 +633,11 @@ BOOL CNpc::Die(INT32 nParam)
         }
         else
         {
-            // 发放区域奖励
+            // Grant region rewards
             nRetCode = _DistributeRegionBonus(poKiller, NULL, poKiller);
             LOG_CHECK_ERROR(nRetCode);
 
-            // 分配场景奖励
+            // Distribute scene rewards
             nRetCode = _DistributeSceneBonus(poKiller, NULL);
             LOG_CHECK_ERROR(nRetCode);
         }
@@ -650,7 +650,7 @@ BOOL CNpc::Die(INT32 nParam)
         CAdventure::GetInstance().OnKillNpc(poKiller, this);
     }
 
-    // Boss被击杀, 发全服公告
+    // Announce a boss kill server-wide
     if (poKiller)
     {
         if (this->GetQuality() == nqBoss)
@@ -661,21 +661,21 @@ BOOL CNpc::Die(INT32 nParam)
             char* strAnsiBossName = utf8_to_char(strBossName.c_str());
             char* strAnsiRoleName = utf8_to_char(strRoleName.c_str());
 
-            // "[沃玛教主]被玩家[阿达]击败!"
+            // Example: "[Woma Leader] was defeated by player [Ada]!"
             char strMsg[128] = { 0 };
             snprintf(strMsg, sizeof(strMsg), "[%s]被玩家[%s]击败!", strAnsiBossName, strAnsiRoleName);
 
             char* str_utf8 = char_to_utf8(strMsg);
             Say(cctServer, cltTvShow, str_utf8);
 
-            free_converted_string(strAnsiBossName);  // 释放内存
+            free_converted_string(strAnsiBossName);  // Free memory
             free_converted_string(strAnsiRoleName);
             free_converted_string(str_utf8);
         }
     }
 
 #ifndef _ROBOT
-    // 怪物死亡之后, 执行脚本
+    // Execute the script after the monster dies
     if (m_pSpawnPoint)
     {
         CLuaScript* pScript = m_poScene->GetStaticData()->GetScript();
@@ -698,7 +698,7 @@ BOOL CNpc::Die(INT32 nParam)
         }
     }
 
-    //产生掉落
+    //Generate drops
     if (m_pNpcData->bProfit &&
         m_bGenerateDrop &&
         m_poScene->GetState() == edstRuning &&
@@ -717,7 +717,7 @@ BOOL CNpc::Die(INT32 nParam)
         }
     }
 
-    // 判断 怪物最终目标ID (暂时不知道干啥用的)
+    // Check the monster’s final target ID (purpose currently unknown)
     if (m_poScene->CheckTargetID(m_pNpcData->nTemplateID))
     {
         //m_poScene->UpdateTarget(esttKillBoss);
@@ -741,7 +741,7 @@ BOOL CNpc::Die(INT32 nParam)
         }
     }
 
-    // 判断 怪物不是自杀, 则保存日志
+    // Save a log if the monster did not kill itself
     if (nParam != cdrSuicide)
     {
         nRetCode = CCliMessageHandler::GetInstance().DoDLNpcDie(m_poScene->GetServerGroup(),
@@ -775,7 +775,7 @@ BOOL CNpc::_NpcLoop(void)
         break;
     case npcAlive:
         break;
-    case npcCorpse:    // 尸体
+    case npcCorpse:    // Corpse
         if (m_nNpcTimer < CGameWorld::GetInstance().GetGameFrame())
         {
             LOG_PROCESS_ERROR(m_pNpcData);
@@ -793,7 +793,7 @@ BOOL CNpc::_NpcLoop(void)
                 LOG_PROCESS_ERROR(m_poScene->GetSceneData());
                 LOG_PROCESS_ERROR(m_poScene->GetStaticData());
 
-                // 复活间隔
+                // Respawn interval
                 if (m_pSpawnPoint->nMinRespawnTime == 0 && m_pSpawnPoint->nMaxRespawnTime == 0)
                     nRespawnTime = g_Random(m_pNpcData->nMinRespawnTime, m_pNpcData->nMaxRespawnTime);
                 else
@@ -818,13 +818,13 @@ BOOL CNpc::_NpcLoop(void)
                     }
                 }
 
-                // 重新计算 复活时间
+                // Recalculate respawn time
                 if (m_nQuality <= nqNormal5)
                     m_nNpcTimer = m_nSpawnFrame + nRespawnTime;
                 else
                     m_nNpcTimer = CGameWorld::GetInstance().GetGameFrame() + nRespawnTime;
 
-                // 对象状态
+                // Object state
                 m_nNpcState = npcRespawn;
 
                 nRetCode = m_poScene->AddNpcToRespawnList(this);

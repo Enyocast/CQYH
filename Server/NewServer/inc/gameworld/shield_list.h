@@ -3,7 +3,7 @@
 	file:		shield_list.h
 	author:		Allan Tao
 	
-	purpose:	黑名单
+	purpose:	Block list
 *********************************************************************/
 
 

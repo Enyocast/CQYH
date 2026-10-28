@@ -75,7 +75,7 @@ struct MS_ONLINE_ROLE_DATA : public BASE_LIST_NODE
     typedef std::list<UINT32>   PERSONAL_ENEMY_LIST;    
     PERSONAL_ENEMY_LIST m_personalEnemy;// fifo
 
-    // 仇人的反面，杀过的人
+    // Opposite of enemies: players this character has killed
     typedef std::set<UINT32>   PE_KILL_LIST;
     PE_KILL_LIST        m_KillList;
 

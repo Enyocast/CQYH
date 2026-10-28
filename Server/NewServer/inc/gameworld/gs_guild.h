@@ -90,7 +90,7 @@ public:
     GS_G_B_DATA*    NextUpgradeBuilding();
 
 
-    // todo_tq 联盟敌对关系，考虑是不是放在mgr里面， 目前看来用双BaseList或者单BaseList是不划算的，或者有查询障碍的 Allan Tao[14.11.2013] 
+    // todo_tq: consider placing alliance/enmity relations in the manager; one or two BaseLists appear inefficient or difficult to query. Allan Tao [14.11.2013]
     BOOL    AddAlliance(UINT32 dwTargetID);
     BOOL    DelAlliance(UINT32 dwTargetID);
     BOOL    IsAlliance(UINT32 dwTargetID);

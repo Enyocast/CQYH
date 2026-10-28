@@ -13,7 +13,7 @@
 #include "modifier_tree.h"
 #include "message_handler.h"
 
-// 默认代码
+// Default code
 //#include "role_db_def_v_1.h"
 //using namespace ROLE_DB_DEF_V_1;
 
@@ -27,7 +27,7 @@ BOOL CRole::_Load_v_1(const char* pcData, UINT32 dwSize)
 	UINT32 dwRealDataSize = 0;
 
 	LOG_PROCESS_ERROR(pcData);
-	//LOG_PROCESS_ERROR(pRoleData->dwVersion == 1);    // 默认代码, 暂时改成3
+	//LOG_PROCESS_ERROR(pRoleData->dwVersion == 1);    // Default code, temporarily changed to 3
 	LOG_PROCESS_ERROR(pRoleData->dwVersion == 3);
 	LOG_PROCESS_ERROR(pRoleData->BlockTable[rbtBase].dwStartOffset == 0);
 
@@ -163,7 +163,7 @@ BOOL CRole::_Load_v_1(const char* pcData, UINT32 dwSize)
 			nRetCode = m_ItemBag.LoadBlackMarketCooldown_v_1(pcBlockData, dwBlockSize);
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
-		case rbtGamble:    // 等待补充
+		case rbtGamble:    // Awaiting implementation
 			break;
 		default:
 			LOG_PROCESS_ERROR(FALSE);
@@ -349,10 +349,10 @@ BOOL CRole::_LoadHero_v_1(const char* pcData, UINT32 dwSize)
 	INT32 nRetCode = 0;
 	INT32 nType = 0;
 
-	// 默认代码
+	// Default code
     //ROLE_DB_DEF_V_1::ROLE_HERO_DATA* pData = (ROLE_DB_DEF_V_1::ROLE_HERO_DATA*)pcData;
 
-	// 自己改代码
+	// Custom code
     ROLE_DB_DEF_V_3::ROLE_HERO_DATA* pData = (ROLE_DB_DEF_V_3::ROLE_HERO_DATA*)pcData;
 
 	if (pData->dwID != 0)
@@ -532,7 +532,7 @@ BOOL CItemBag::Load_v_1(const char* pcData, UINT32 dwSize)
 
 	LOG_PROCESS_ERROR(buflen == pItemData->dwItemInfoBufLen);
 
-	//计算强化激活属性
+	//Calculate enhancement-activated attributes
 	{
 		const REFINE_ATTR_DATA* cur_data = NULL;
 		UINT16 cur_min_level = MAX_REFINE_LEVEL;
@@ -751,7 +751,7 @@ BOOL CSpirit::Load_v_1(const char* pData, UINT32 dwSize)
 	pSpiritLevel = CDataManager<SPIRIT_DATA>::GetInstance().GetData(m_nLevel);
 	LOG_PROCESS_ERROR(pSpiritLevel);
 
-	for (INT32 nIndex = 0; nIndex < MAX_SPIRIT_NODE_PER_LEVEL; nIndex++)		// 每个境界等级对应的属性
+	for (INT32 nIndex = 0; nIndex < MAX_SPIRIT_NODE_PER_LEVEL; nIndex++)		// Attributes for each spirit level
 	{
 		if (pSpiritLevel->nAttrTemplateNodeID[nIndex])
 		{
@@ -790,7 +790,7 @@ BOOL CSpirit::Load_v_1(const char* pData, UINT32 dwSize)
 			const AIR_DATA* pAir = CDataManager<AIR_DATA>::GetInstance().GetData(m_EquipContainer[nIndex].nTemplateID);
 			LOG_PROCESS_ERROR(pAir);
 
-			for (INT32 nArmIndex = 0; nArmIndex < MAX_ATTR_PER_NODE; nArmIndex++)		// 穿装备
+			for (INT32 nArmIndex = 0; nArmIndex < MAX_ATTR_PER_NODE; nArmIndex++)		// Equip item
 			{
 				if (pAir->nNodeID[nArmIndex])
 				{
@@ -816,7 +816,7 @@ BOOL CSpirit::Load_v_1(const char* pData, UINT32 dwSize)
 				const BLOOD_DATA* pBlood = CDataManager<BLOOD_DATA>::GetInstance().GetData(MAKE_BLOOD_KEY(nPage + 1, nIndex + 1, m_nBloodSlot[nPage][nIndex]));
 				LOG_PROCESS_ERROR(pBlood);
 
-				for (INT32 nAttrIndex = 0; nAttrIndex < MAX_BLOODSEA_ATTR_PER_SLOT; nAttrIndex++)		// 穿装备
+				for (INT32 nAttrIndex = 0; nAttrIndex < MAX_BLOODSEA_ATTR_PER_SLOT; nAttrIndex++)		// Equip item
 				{
 					if (pBlood->nNodeID[nAttrIndex])
 					{

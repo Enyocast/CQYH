@@ -43,7 +43,7 @@ BOOL CRole::Load(const char* pcData, UINT32 dwSize)
 	if (pRoleData->dwVersion < ROLE_DB_DATA_CURRENT_VERSION)
 		INF("load old role %d db data %d %d", m_dwObjID, pRoleData->dwVersion, pRoleData->dwLen);
 
-	// 默认代码, 这里改成强制读取下标0的函数
+	// Default code changed to force use of the function at index 0
 	nRetCode = (this->*s_LoadFuncList[pRoleData->dwVersion])(pcData, dwSize);
 	LOG_PROCESS_ERROR(nRetCode);
 
@@ -103,7 +103,7 @@ BOOL CRole::_LoadBaseData(const char* pcData, UINT32 dwSize)
 	nRetCode = ConvertToBaseDataCurrentVersion(&BaseData, pcData, dwSize);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	// 默认代码, 暂时屏蔽
+	// Default code, temporarily disabled
 	LOG_PROCESS_ERROR(BaseData.byVersion == ROLE_DB_BASE_DATA_CURRENT_VERSION);
 
 	m_dwCreateTime = BaseData.dwCreateTime;

@@ -79,11 +79,11 @@ void CStatistic::OnKillNpc(CRole* poRole, CNpc* poNpc)
 	LOG_PROCESS_ERROR(poNpc);
 	LOG_PROCESS_ERROR(poNpc->GetNpcData());
 
-	// 统计杀怪数量
+	// Count monster kills
 
 	poRole->GetAchievementList().AddVariable(avdKillNpcTotalCount, 1);
 
-	// 统计杀死指定ID怪物
+	// Count kills of a monster with the specified ID
 
 	if (poNpc->GetNpcData()->nBeKilledVarIndex >= 0 && poNpc->GetNpcData()->nBeKilledVarIndex < MAX_ROLE_VARIABLE_COUNT)
 	{
@@ -123,8 +123,8 @@ void CStatistic::OnKilledByPlayer(CRole* poKiller, CRole* poVictim)
 	LOG_PROCESS_ERROR(poKiller);
 	LOG_PROCESS_ERROR(poVictim);
 
-	// 杀人者统计
-	switch (poVictim->GetClass())	// 统计杀死各职业玩家数量
+	// Killer statistics
+	switch (poVictim->GetClass())	// Count player kills by class
 	{
 	case clsWarrior:
 		poKiller->GetAchievementList().AddVariable(avdKillWarriorCount, 1);
@@ -145,13 +145,13 @@ void CStatistic::OnKilledByPlayer(CRole* poKiller, CRole* poVictim)
 		break;
 	}
 
-	if (poVictim->GetPkValue() > ACHIEVEMENT_PK_VALUE)	// 统计杀死指定善恶值玩家
+	if (poVictim->GetPkValue() > ACHIEVEMENT_PK_VALUE)	// Count kills of players with the specified good/evil value
 	{
 		poKiller->GetAchievementList().AddVariable(avdKillPkValuePlayerCount, 1);
 	}
 
-	// 被杀者统计
-	poVictim->GetAchievementList().AddVariable(avdPVPKilledByPlayer, 1);	// 统计pvp被玩家所杀													
+	// Victim statistics
+	poVictim->GetAchievementList().AddVariable(avdPVPKilledByPlayer, 1);	// Count PvP deaths caused by players
 
 	return;
 Exit0:
@@ -171,7 +171,7 @@ void CStatistic::OnKillWithNoGuilty(CRole* poKiller)
 	if (pScene->GetSceneData()->nType != estBattleField &&
 		pScene->GetSceneData()->nType != estArena)
 	{
-		poKiller->GetAchievementList().AddVariable(avdKillWithNoGuilty, 1);		// 完成一次没有pk值的pvp击杀
+		poKiller->GetAchievementList().AddVariable(avdKillWithNoGuilty, 1);		// Complete a PvP kill without gaining PK points
 	}
 
 	return;
@@ -189,44 +189,44 @@ void CStatistic::OnCompleteQuest(CRole* poRole, const QUEST_DATA* pQuest)
 	case qtTrunk:
 	case qtBranch:
 		{
-			poRole->GetAchievementList().AddVariable(avdCompleteStoryQuestCount, 1);		// 统计剧情任务
+			poRole->GetAchievementList().AddVariable(avdCompleteStoryQuestCount, 1);		// Count story quests
 		}
 		break;
 	case qtReward:
 		{
-			poRole->GetAchievementList().AddVariable(avdCompleteRewardQuestCount, 1);		// 统计悬赏任务
-			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// 统计普通任务
+			poRole->GetAchievementList().AddVariable(avdCompleteRewardQuestCount, 1);		// Count bounty quests
+			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// Count normal quests
 		}
 		break;
 	case qtCircle:  
 		{
-			poRole->GetAchievementList().AddVariable(avdCompleteCircleQuestCount, 1);		// 统计环任务
-			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// 统计普通任务
+			poRole->GetAchievementList().AddVariable(avdCompleteCircleQuestCount, 1);		// Count cycle quests
+			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// Count normal quests
 		}
 		break;
 	case qtEmegency:
 		{
-			poRole->GetAchievementList().AddVariable(avdCompleteEmegencyQuestCount, 1);		// 统计紧急任务
-			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// 统计普通任务
+			poRole->GetAchievementList().AddVariable(avdCompleteEmegencyQuestCount, 1);		// Count emergency quests
+			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// Count normal quests
 		}
 		break;
 	case qtDaily:
 	case qtActivity: 
 	case qtGuild:
 		{
-			poRole->GetAchievementList().AddVariable(avdCompleteGuildQuest, 1);				// 统计公会任务
+			poRole->GetAchievementList().AddVariable(avdCompleteGuildQuest, 1);				// Count guild quests
 		}
 		break;
 	case qtMaster:   
 	case qtWedding:  
 	case qtAdventure:
 		{
-			poRole->GetAchievementList().AddVariable(avdCompleteAdventureQuest, 1);			// 统计奇遇任务
+			poRole->GetAchievementList().AddVariable(avdCompleteAdventureQuest, 1);			// Count adventure quests
 		}
 		break;	
 	case qtGuide:
 		{
-			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// 统计普通任务
+			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// Count normal quests
 		}
 		break;
 	default:
@@ -236,7 +236,7 @@ void CStatistic::OnCompleteQuest(CRole* poRole, const QUEST_DATA* pQuest)
 		break;
 	}
 
-	poRole->GetAchievementList().AddVariable(avdCompleteQuestTotalCount, 1);				// 完成任务的总量
+	poRole->GetAchievementList().AddVariable(avdCompleteQuestTotalCount, 1);				// Total quest completions
 
 	return;
 Exit0:
@@ -251,19 +251,19 @@ void CStatistic::OnHurt(CRole* poVictim, CCharacter* poDealer, INT32 nEffectValu
 	LOG_PROCESS_ERROR(poVictim);
 	LOG_PROCESS_ERROR(poDealer);
 
-	// 被攻击者统计
+	// Victim statistics
 
-	if (poVictim->GetAchievementList().GetVariable(avdMaxHPBeHit) > nEffectValue)		// 受到的最高伤害
+	if (poVictim->GetAchievementList().GetVariable(avdMaxHPBeHit) > nEffectValue)		// Maximum damage received
 	{
 		poVictim->GetAchievementList().SetVariable(avdMaxHPBeHit, nEffectValue);
 	}
 
-	// 攻击者统计
+	// Attacker statistics
 
 	poRole = CGameWorld::GetInstance().FindValidRole(poDealer->GetObjID());
 	PROCESS_ERROR(poRole);
 
-	if (poRole->GetAchievementList().GetVariable(avdMaxHPHit) > nEffectValue)		//打出的最高伤害
+	if (poRole->GetAchievementList().GetVariable(avdMaxHPHit) > nEffectValue)		//Maximum damage dealt
 	{
 		poRole->GetAchievementList().SetVariable(avdMaxHPHit, nEffectValue);
 	}
@@ -279,13 +279,13 @@ void CStatistic::OnUseItem(CRole* poRole, Item* pItem)
 	LOG_PROCESS_ERROR(pItem);
 	LOG_PROCESS_ERROR(pItem->m_pTemplate);
 
-	// 统计指定ID使用，使用人物变量
+	// Count uses of the specified ID using a character variable
 	if ((pItem->m_pTemplate->m_nVarIndex > 0) && (pItem->m_pTemplate->m_nVarIndex  < MAX_ROLE_VARIABLE_COUNT))
 	{
 		poRole->AddVariable(pItem->m_pTemplate->m_nVarIndex, 1);
 	}
 
-	// 统计指定类型使用
+	// Count uses of the specified type
 	switch (pItem->m_pTemplate->m_byType)
 	{
 	case ITEMTYPE_USABLE:
@@ -316,10 +316,10 @@ void CStatistic::OnKilledByNpc(CRole* poRole, CNpc* poNpc)
 	LOG_PROCESS_ERROR(poNpc);
 	LOG_PROCESS_ERROR(poNpc->GetNpcData());
 
-	// 统计pvp被怪物所杀
+	// Count PvP deaths caused by monsters
 	poRole->GetAchievementList().AddVariable(avdPVPKilledByNpc, 1);
 
-	// 统计被指定ID怪物所杀
+	// Count deaths caused by a monster with the specified ID
 	if (poNpc->GetNpcData()->nKillPlayerVarIndex >= 0 && poNpc->GetNpcData()->nKillPlayerVarIndex < MAX_ROLE_VARIABLE_COUNT)
 	{
 		poRole->AddVariable(poNpc->GetNpcData()->nKillPlayerVarIndex, 1);

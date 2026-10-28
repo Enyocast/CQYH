@@ -248,7 +248,7 @@ Exit0:
     return FALSE;
 }
 
-// 加载npc
+// Load NPCs
 BOOL CScene::_LoadNpc(void)
 {
     INT32 nRetCode = 0;
@@ -852,7 +852,7 @@ BOOL CScene::MainLoop(void)
     _CheckDLRecordRoleBegin(CGameWorld::GetInstance().GetGameFrame());
 #endif	// _ROBOT
 
-    // 当前地图对象, 所有 Region
+    // All regions in the current map
     UINT32* pdwValidRegionList = m_poStaticData->GetValidRegionList();
     while (*pdwValidRegionList)
     {
@@ -882,7 +882,7 @@ BOOL CScene::MainLoop(void)
 
 #ifndef _ROBOT
 
-    // Npc自杀, 删除Npc对象
+    // NPC suicide: delete the NPC object
     {
         NPC_LIVE_TIMER_LIST::iterator it = m_LiveTimerList.begin();
 
@@ -906,7 +906,7 @@ BOOL CScene::MainLoop(void)
         }
     }
 
-    // Npc复活
+    // NPC respawn
     pNode = m_lstRespawnNpc.Head().pNext;
     while (pNode != &m_lstRespawnNpc.Rear())
     {
@@ -950,7 +950,7 @@ BOOL CScene::MainLoop(void)
         pNode = pNextNode;
     }
 
-    // 行为树
+    // Behavior tree
     pNode = m_lstBTCtx.Head().pNext;
     while (pNode != &m_lstBTCtx.Rear())
     {
@@ -963,7 +963,7 @@ BOOL CScene::MainLoop(void)
         pNode = pNextNode;
     }
 
-    // 地图销毁, 把人传出去
+    // Teleport players out when the map is destroyed
     if (m_nState == edstClosing && m_nClosingFrame < CGameWorld::GetInstance().GetGameFrame())
     {
         nRetCode = TraverseRole(m_TraverseRoleOnDestroy);
@@ -1002,7 +1002,7 @@ BOOL CScene::MainLoop(void)
 
     _CheckDLRecordRoleEnd();
 
-    // 沙巴克
+    // Sabac
     if ((m_nSceneTempID + m_nSceneID) % GAME_FPS == CGameWorld::GetInstance().GetGameFrame() % GAME_FPS &&
         m_nSceneTempID == g_GWConfig.Sabac.nSceneTempID)
         _OnSabacMainLoop();
@@ -1764,8 +1764,8 @@ Exit0:
 
 BOOL CScene::AddDrop(CDrop* poDrop, INT64 llX, INT64 llY, INT64 llZ, UINT32 dwSrcID)
 {
-    //尝试找到合适的掉落位置并掉落
-    //如果找不到，则删除掉落并返回FALSE
+    //Try to find a suitable position and spawn the drop
+    //If none is found, delete the drop and return FALSE
 
     INT32 nRetCode = 0;
     INT32 nRegionX = 0;
@@ -2081,7 +2081,7 @@ Exit0:
     return NULL;
 }
 
-// 刷新npc
+// Spawn NPCs
 CNpc* CScene::SpawnNpc(INT32 nTemplateID, INT64 llX, INT64 llY, INT64 llZ, INT32 nFaceDirection, UINT32 dwHostID, const NPC_SPAWN_POINT* pcSpawnPoint)
 {
     CNpc* poNpc = NULL;
@@ -2089,14 +2089,14 @@ CNpc* CScene::SpawnNpc(INT32 nTemplateID, INT64 llX, INT64 llY, INT64 llZ, INT32
     const NPC_DATA* pNpcData = NULL;
     CAIProcessor* poAIProcessor = NULL;
 
-    // 新代码 - 用于屏蔽某些npc, 这里直接跳过就不刷新了, 以后改成配置表
+    // New code: skip certain NPCs so they do not spawn; move this to configuration later
     if (this->m_nSceneTempID == 143 || this->m_nSceneTempID == 147)
     {
         switch (nTemplateID)
         {
-        case 6171:	  // 公测特使01
-        case 6160:	  // 玛法特使
-        case 6168:    // 荣归特使
+        case 6171:	  // Open Beta Envoy 01
+        case 6160:	  // Mafa Envoy
+        case 6168:    // Homecoming Envoy
             return NULL;
         default:
             break;
@@ -2727,7 +2727,7 @@ Exit0:
     return TRUE;
 }
 
-// 判断是不是障碍点?
+// Check whether this is an obstacle point?
 BOOL CScene::IsObstacled(INT64 llSrcX, INT64 llSrcY, INT64 llSrcZ, INT64 llDstX, INT64 llDstY, INT64 llDstZ, BOOL bCheckBlockMove)
 {
     INT32 nRetCode = 0;

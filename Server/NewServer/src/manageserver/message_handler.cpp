@@ -637,7 +637,7 @@ BOOL CMessageHandler::Init(INet* pNet, IPacketAllocator* pPacketAllocator, ISock
     // drop limit
     m_InternalMessageFuncList[g2m_drop_limit] = &CMessageHandler::OnGSDropLimit;
 
-    // auction 交易行
+    // Auction exchange
     m_InternalMessageFuncList[g2m_auction_sell] = &CMessageHandler::OnGSAuctionSell;
     m_InternalMessageFuncList[g2m_auction_buy] = &CMessageHandler::OnGSAuctionBuy;
     m_InternalMessageFuncList[g2m_auction_pay] = &CMessageHandler::OnGSAuctionPay;
@@ -676,9 +676,9 @@ BOOL CMessageHandler::Init(INet* pNet, IPacketAllocator* pPacketAllocator, ISock
 
     m_InternalMessageFuncList[g2m_temporary_charge] = &CMessageHandler::OnGSTemporaryCharge;
 
-    // 玩家查询元宝
+    // Player queries ingots
     m_InternalMessageFuncList[g2m_query_real_money_ack] = &CMessageHandler::OnGSQueryRealMoneyAck;
-    // 玩家购买商城物品
+    // Player purchases cash-shop items
     m_InternalMessageFuncList[g2m_role_rela_money_shop_buy_item_ack] = &CMessageHandler::OnGSRoleRealMoneyShopBuyItemAck;
 
 
@@ -780,7 +780,7 @@ BOOL CMessageHandler::Init(INet* pNet, IPacketAllocator* pPacketAllocator, ISock
     m_ExternalMessageFuncList[ExternalMessage::c2m_guild_cancel_building_upgrade] = &CMessageHandler::OnClientGuildCancelBuildingUpgrade;
     //m_ExternalMessageFuncList[ExternalMessage::c2m_guild_del_building] = &CMessageHandler::OnClientGuildDelBuilding;
     //m_ExternalMessageFuncList[ExternalMessage::c2m_guild_get_dungeon_list] = &CMessageHandler::OnClientGuildGetDungeonList;
-    //m_ExternalMessageFuncList[ExternalMessage::c2m_guild_declare_war] = &CMessageHandler::OnClientGuildDeclareWar;            // todo 关闭公会战功能
+    //m_ExternalMessageFuncList[ExternalMessage::c2m_guild_declare_war] = &CMessageHandler::OnClientGuildDeclareWar;            // TODO: disable guild wars
     m_ExternalMessageFuncList[ExternalMessage::c2m_guild_achievement] = &CMessageHandler::OnClientGuildAchievement;
     m_ExternalMessageFuncList[ExternalMessage::c2m_guild_activity] = &CMessageHandler::OnClientGuildActivity;
 
@@ -1713,7 +1713,7 @@ Exit0:
     return FALSE;
 }
 
-// 单人公告
+// Announcement to one player
 BOOL CMessageHandler::_BroadcastGTClient(UINT32 dwGTSessionID, UINT32 dwClientSessionList[], INT32 nSessionCount, PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, INT32 nOffset)
 {
     INT32 nRetCode = 0;
@@ -1742,7 +1742,7 @@ Exit0:
     return FALSE;
 }
 
-// 全区公告
+// Region-wide announcement
 BOOL CMessageHandler::_BroadcastGroupClient(UINT8 byGroupID, PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, INT32 nOffset)
 {
     INT32 nRetCode;
@@ -1778,7 +1778,7 @@ Exit0:
     return FALSE;
 }
 
-// 全服全区
+// All servers and regions
 BOOL CMessageHandler::_BroadcastAllClient(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, INT32 nOffset)
 {
     INT32 nRetCode;
@@ -3634,7 +3634,7 @@ void CMessageHandler::_KickUser(UINT32 dwClientSessionID, INT32 eKickType,
     INT32 nRetCode = 0;
     MS_USER* poUser = NULL;
 
-    // 找不到User是合理异常
+    // A missing user is an expected exception
     poUser = CUserMgr::GetInstance().FindUserBySessionID(dwClientSessionID);
     LOG_PROCESS_ERROR(poUser);
     PROCESS_ERROR(!poUser->bKicked);
@@ -4233,7 +4233,7 @@ BOOL CMessageHandler::_DoLoginSyncInfo(MS_ONLINE_ROLE_DATA* pstRoleData)
 
     if (pstRoleData->pRoleData->dwGuildID != 0)
     {
-        // 同步公会信息/公会信息公告
+        // Synchronize guild information and announcements
         nRetCode = CMsGuildMgr::GetInstance().SyncGuildDataToClient(pstRoleData, pstRoleData->pRoleData->dwGuildID);
         LOG_CHECK_ERROR(nRetCode);
 

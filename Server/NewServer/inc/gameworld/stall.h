@@ -59,12 +59,12 @@ public:
 
 private:
     INT64 _GetTotalPrice() const;
-    //摊位数据，不存盘
+    //Stall data, not persisted
     EStallState m_state;
     char		m_szStallName[STALL_NAME_LEN];
     Goods		m_goods;
 
-    //摊位升级到期时间，存盘
+    //Stall upgrade expiration time, persisted
     UINT32 m_dwUpgradeExpireTime;
 
     CRole* m_pOwner;

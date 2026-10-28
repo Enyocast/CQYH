@@ -32,7 +32,7 @@ namespace GUILD_DEF_VER_2
 		UINT32	dwStartOffset;
 	};
 
-	struct GUILD_DB_DATA  // 大约52531
+	struct GUILD_DB_DATA  // Approximately 52531
 	{
 		UINT32	dwLen;		// including length dword
 		UINT32	dwCRC;		// calculate from version

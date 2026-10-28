@@ -164,7 +164,7 @@ void CInternalMessageHandler::OnDisconnected(ISocketSession* pSocketSession, BOO
 	PROCESS_ERROR(pBaseSession);
 
 	LOG_PROCESS_ERROR(pSocketSession);
-	LOG_PROCESS_ERROR(pSocketSession == pBaseSession->pSocketSession);  // 必须检查  
+	LOG_PROCESS_ERROR(pSocketSession == pBaseSession->pSocketSession);  // Must be checked
 	pBaseSession->pSocketSession = NULL;
 
 	switch (pBaseSession->byType)
@@ -426,7 +426,7 @@ inline void CInternalMessageHandler::_CheckReady(void)
 
 	if (rSessionMgr.GetDBSession().bConnected &&
 		rSessionMgr.GetLSSession().bConnected &&
-		rSessionMgr.GetServerState() == sgsInitializing)	//注意: 如果 ms配置的 gt数量小于guard启动的gt数量,可能ms已经发送过 allready,gt这里状态已经变成allready
+		rSessionMgr.GetServerState() == sgsInitializing)	//Note: if MS configures fewer GT instances than guard starts, MS may already have sent allready and this GT may already be in that state
 	{
 		nRetCode = DoMSReady();
 		LOG_CHECK_ERROR(nRetCode);
@@ -713,7 +713,7 @@ BOOL CInternalMessageHandler::DoMSQueryScene(UINT32 dwSessionID, UINT32 dwRoleID
 		if (pSession->RoleList[nIndex].dwRoleID == dwRoleID)
 			break;
 	}
-	// 没找到是外挂，或者客户端有BUG
+	// Not found: possible cheating attempt or client bug
 	LOG_PROCESS_ERROR(nIndex < pSession->byRoleCount);
 
 	pMsg->wMsg = t2m_query_scene;
@@ -1156,8 +1156,8 @@ void CInternalMessageHandler::OnMSEnterGateAck(ISocketSession* pSocketSession, P
 	INT32 nRetCode = 0;
 	M2T_ENTER_GATE* pMsg = (M2T_ENTER_GATE*)pPacketBuffer;
 
-	// 此处找不到session属于合理异常
-	// 状态不对必然有BUG
+	// A missing session here is an expected exception
+	// An invalid state indicates a bug
 	CLIENT_SESSION* pSession = CGTSessionMgr::GetInstance().FindClientSession(pMsg->dwSessionID);
 	PROCESS_ERROR(pSession);
 
@@ -1599,7 +1599,7 @@ void CInternalMessageHandler::OnLSLoginAck(ISocketSession* pSocketSession, PACKE
 	L2T_LOGIN_ACK* pMsg = (L2T_LOGIN_ACK*)pPacketBuffer;
 	CLIENT_SESSION* pSession = NULL;
 
-	// 此处找不到session属于合理异常, 状态不对必然有BUG
+	// A missing session here is expected; an invalid state indicates a bug
 	pSession = CGTSessionMgr::GetInstance().FindClientSession(pMsg->dwClientSessionID);
 	PROCESS_ERROR(pSession);
 	LOG_PROCESS_ERROR(pSession->eState == cssLSAuthing);
@@ -1611,7 +1611,7 @@ void CInternalMessageHandler::OnLSLoginAck(ISocketSession* pSocketSession, PACKE
 	strxcpy(pSession->szPGT, pMsg->szPGT, OA_PGT_FIELD_LEN);
 	pSession->bAdult = pMsg->bAdult;
 
-	// 暂时屏蔽 白名单
+	// Temporarily disable the allowlist
 	//for (INT32 nIndex = 1; nIndex < sizeof(g_ServerConfig.Common.UserWhiteList) / sizeof(g_ServerConfig.Common.UserWhiteList[0]); nIndex++)
 	//{
 	//	if (g_ServerConfig.Common.UserWhiteList[nIndex].szUserName[0] == 0)
@@ -1638,7 +1638,7 @@ void CInternalMessageHandler::OnLSLoginAck(ISocketSession* pSocketSession, PACKE
 		PROCESS_ERROR_RET_CODE(pSession->bUserWhiteList, errLoginServerNotReady);
 	}
 
-	// 发送给MS
+	// Send to MS
 	nRetCode = DoMSEnterGate(pMsg->dwClientSessionID);
 	LOG_PROCESS_ERROR(nRetCode);
 
@@ -1685,8 +1685,8 @@ void CInternalMessageHandler::OnDBSyncRoleList(ISocketSession* pSocketSession, P
 	D2T_SYNC_ROLE_LIST* pMsg = (D2T_SYNC_ROLE_LIST*)pPacketBuffer;
 	CLIENT_SESSION* pSession = NULL;
 
-	// 此处找不到session为合理异常
-	// 状态不对表示有BUG
+	// A missing session here is an expected exception
+	// An invalid state indicates a bug
 	pSession = CGTSessionMgr::GetInstance().FindClientSession(pMsg->dwClientSessionID);
 	PROCESS_ERROR(pSession);
 	LOG_PROCESS_ERROR(pSession->eState == cssAuthed);
@@ -1747,8 +1747,8 @@ void CInternalMessageHandler::OnDBCreateRoleAck(ISocketSession* pSocketSession, 
 	D2T_CREATE_ROLE_ACK* pMsg = (D2T_CREATE_ROLE_ACK*)pPacketBuffer;
 	ROLE_DB_BASE_DATA* pBaseData = NULL;
 
-	// 此处找不到session属于合理异常
-	// 状态不对可能是外挂在做尝试，可能是客户端或服务端有BUG
+	// A missing session here is an expected exception
+	// An invalid state may indicate a cheating attempt or a client or server bug
 	CLIENT_SESSION* pSession = CGTSessionMgr::GetInstance().FindClientSession(pMsg->dwClientSessionID);
 	PROCESS_ERROR(pSession);
 	LOG_PROCESS_ERROR(pSession->eState == cssCreatingRole);
@@ -1756,7 +1756,7 @@ void CInternalMessageHandler::OnDBCreateRoleAck(ISocketSession* pSocketSession, 
 	pSession->qwTimer = GetTickCountEx() + g_ServerConfig.GT.nRoleOperateTimeout;
 	if (pMsg->nErrCode == errSuccess)
 	{
-		// 此处数量不对是有BUG
+		// An incorrect count here indicates a bug
 		pBaseData = (ROLE_DB_BASE_DATA*)pMsg->BaseData;
 		LOG_PROCESS_ERROR(pSession->byRoleCount < MAX_ROLE_PER_USER);
 
@@ -1809,8 +1809,8 @@ void CInternalMessageHandler::OnDBDeleteRoleAck(ISocketSession* pSocketSession, 
 	INT32 nRetCode = 0;
 	D2T_DELETE_ROLE_ACK* pMsg = (D2T_DELETE_ROLE_ACK*)pPacketBuffer;
 
-	// 此处找不到session属于合理异常
-	// 状态不对可能是外挂在做尝试，可能是客户端或服务端有BUG
+	// A missing session here is an expected exception
+	// An invalid state may indicate a cheating attempt or a client or server bug
 	CLIENT_SESSION* pSession = CGTSessionMgr::GetInstance().FindClientSession(pMsg->dwClientSessionID);
 	PROCESS_ERROR(pSession);
 	LOG_PROCESS_ERROR(pSession->eState == cssDeletingRole);
@@ -1858,8 +1858,8 @@ void CInternalMessageHandler::OnDBUnDeleteRoleAck(ISocketSession* pSocketSession
 	INT32 nRetCode = 0;
 	D2T_UNDELETE_ROLE_ACK* pMsg = (D2T_UNDELETE_ROLE_ACK*)pPacketBuffer;
 
-	// 此处找不到session属于合理异常
-	// 状态不对可能是外挂在做尝试，可能是客户端或服务端有BUG
+	// A missing session here is an expected exception
+	// An invalid state may indicate a cheating attempt or a client or server bug
 	CLIENT_SESSION* pSession = CGTSessionMgr::GetInstance().FindClientSession(pMsg->dwClientSessionID);
 	PROCESS_ERROR(pSession);
 	LOG_PROCESS_ERROR(pSession->eState == cssDeletingRole);
@@ -1907,8 +1907,8 @@ void CInternalMessageHandler::OnDBForeverDeleteRoleAck(ISocketSession* pSocketSe
     INT32 nRetCode = 0;
     D2T_FOREVER_DELETE_ROLE_ACK* pMsg = (D2T_FOREVER_DELETE_ROLE_ACK*)pPacketBuffer;
 
-    // 此处找不到session属于合理异常
-    // 状态不对可能是外挂在做尝试，可能是客户端或服务端有BUG
+    // A missing session here is an expected exception
+    // An invalid state may indicate a cheating attempt or a client or server bug
     CLIENT_SESSION* pSession = CGTSessionMgr::GetInstance().FindClientSession(pMsg->dwClientSessionID);
     PROCESS_ERROR(pSession);
     LOG_PROCESS_ERROR(pSession->eState == cssDeletingRole);

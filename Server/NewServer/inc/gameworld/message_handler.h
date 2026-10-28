@@ -243,7 +243,7 @@ public:
 	BOOL DoSendRemoveSoulResult(CRole* poRole, UINT8 byResult);
     BOOL DoSendRuneItem(CRole* poRole, UINT8 byResult);
 
-	// 高级铭文洗练, 确认高级洗练
+	// Advanced inscription refinement and confirmation
 	BOOL DoSendRuneItemAdvance(CRole* poRole, UINT8 byResult, UINT16 wRuneA, UINT16 wRuneB);
 	BOOL DoSendRuneItemConfirm(CRole* poRole, UINT8 byResult);
 
@@ -696,7 +696,7 @@ private:
     void OnBlackMarketCooldownInfo(CRole* poRole, const char* pData);
     void OnBlackMarketBuy(CRole* poRole, const char* pData);
 
-	// 重铸 c2g_potion_gamble
+	// Reforge c2g_potion_gamble
     void OnGamble(CRole* poRole, const char* pData);
     void OnPotionGamble(CRole* poRole, const char* pData);
     void OnGambleAdvance(CRole* poRole, const char* pData);
@@ -848,20 +848,20 @@ private:
 	// shield list
 	void OnUnShieldRole(CRole *poRole, const char *pData);
 
-	// 融灵
+	// Soul fusion
 	void OnUpgradeSoul(CRole *poRole, const char *pData);
 	void OnAddSoul(CRole *poRole, const char *pData);
 	void OnRemoveSoul(CRole *poRole, const char *pData);
 
-    // 铸魂
+    // Soul forging
     void OnRuneItem(CRole *poRole, const char *pData);
 
-    // 装备升级
+    // Equipment upgrade
     void OnWeaponLevelUpPutIn(CRole *poRole, const char *pData);
     void OnWeaponLevelUpTakeOut(CRole *poRole, const char *pData);
 	void OnWeaponLevelUpTakeOutImmediately(CRole* poRole, const char* pData);
 
-    // 分结合成
+    // Decomposition and crafting
     void OnDecompose(CRole *poRole, const char *pData);
     void OnCompose(CRole *poRole, const char *pData);
 
@@ -894,13 +894,13 @@ private:
 	// anti-cheat
 	void OnJigsawAnswer(CRole* poRole, const char *pData);
 
-	// 技能书重著
+	// Spellbook reforging
 	void OnSpellBookGamble(CRole* poRole, const char* pData);
 
 	// c2g_arena_reward
 	void OnArenaReward(CRole* poRole, const char* pData);
 
-	// 高级铭文洗练, 确认高级洗练
+	// Advanced inscription refinement and confirmation
 	void OnRuneItemAdvance(CRole* poRole, const char* pData);
 	void OnRuneItemConfirm(CRole* poRole, const char* pData);
 

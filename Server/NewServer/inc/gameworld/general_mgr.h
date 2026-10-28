@@ -1,7 +1,7 @@
 //////////////////////////////////////////////////////////////////////////
 //  Allan Tao[10.10.2014] 
-// 用于asimov的一般数据存放
-// 1. 存放performance case 用的 随机获取一个本服角色
+// General data storage for asimov
+// 1. Store data for performance cases: randomly select a character on this server
 //////////////////////////////////////////////////////////////////////////
 
 #ifndef _H_GENERAL_MGR_H_

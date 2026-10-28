@@ -3,7 +3,7 @@
 	file:		ms_guild.h
 	author:		Allan Tao
 	
-	purpose:	帮派
+	purpose:	Guild
 *********************************************************************/
 
 
@@ -154,8 +154,8 @@ struct GUILD_DB
 
 	CHAR            szCreaterName[ROLE_NAME_LEN];
 	UINT32          dwCreateTime;
-	CHAR            szAnnounce[GUILD_ANNOUNCE_LEN];         // 家族宣言
-	CHAR            szNotice[GUILD_NOTICE_LEN];             // 家族公告
+	CHAR            szAnnounce[GUILD_ANNOUNCE_LEN];         // Guild announcement
+	CHAR            szNotice[GUILD_NOTICE_LEN];             // Guild notice
 	char            BlobBuffer[0];
 };
 #pragma pack(pop)
@@ -235,7 +235,7 @@ public:
     BOOL    AddGuildEvent(INT32 nType, UINT32 param1, UINT32 param2, UINT32 param3, UINT32 param4);
     BOOL    AddGuildChestEvent(INT32 nType, UINT32 param1, UINT32 param2, UINT32 param3, UINT32 param4);
 
-    // 只发给会长，副会长
+    // Send only to the guild leader and deputy leader
     BOOL    BroadcastMail(INT32 nMailTemplateID);
     BOOL    BroadcastMail(const char *pcszTitle, const char *pcszContent);
 
@@ -518,8 +518,8 @@ private:
     INT32           m_nState;
     UINT32          m_dwRoutineConsumeTime;
 
-    CHAR            m_szAnnounce[GUILD_ANNOUNCE_LEN];        // 家族宣言
-    CHAR            m_szNotice[GUILD_NOTICE_LEN];         // 家族公告
+    CHAR            m_szAnnounce[GUILD_ANNOUNCE_LEN];        // Guild announcement
+    CHAR            m_szNotice[GUILD_NOTICE_LEN];         // Guild notice
 
     UINT16          m_wStorageRight[GUILD_POSITION_COUNT];
 
@@ -547,7 +547,7 @@ private:
     CBaseList       m_History;
     CBaseList       m_ChestHistory;
 
-    // 帮派排序
+    // Guild sorting
     BASE_LIST_NODE      m_NodeSortByLvl;
     BASE_LIST_NODE      m_LadderNode;
 

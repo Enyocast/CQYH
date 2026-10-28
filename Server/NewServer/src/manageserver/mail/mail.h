@@ -14,7 +14,7 @@ struct SimpleAttach
 };
 struct MailAttach
 {
-    UINT8 byAttachLocked;   //是否被锁定。客户端发出取附件请求后，MS先锁定附件，更新数据库锁定状态，然后告诉GS附件信息，GS加成功后再通知MS
+    UINT8 byAttachLocked;   //Whether locked. After the client requests an attachment, MS locks it and updates the database, then sends its data to GS; GS notifies MS after adding it successfully
     UINT8 byAttachType;
     UINT8 byAttachLen;
     union

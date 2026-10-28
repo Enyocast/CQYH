@@ -93,7 +93,7 @@ CDBRole* CDBRoleMgr::Pop()
         LOG_PROCESS_ERROR(dbrole->m_dbuser);
         dbrole->m_dbuser->RemoveRole(dbrole, FALSE);
 
-        //RemoveRole会把dbrole归还到freerolelist中，这里再把它取出来
+        //RemoveRole returns dbrole to freerolelist; retrieve it again here
         BOOL bRet = CBaseList::Remove(dbrole);
         LOG_PROCESS_ERROR(bRet);
     }

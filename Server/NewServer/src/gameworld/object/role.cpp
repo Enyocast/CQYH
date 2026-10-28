@@ -192,7 +192,7 @@ CRole::CRole()
     m_bUserWhiteList = FALSE;
     m_dwIpAddr = 0;
 
-    // 新增代码, 自己新增加
+    // Additional custom code
     m_dwGameTimeCard = 0;
     m_bDoTellGameTimeCard = FALSE;
     m_bHaveTime = TRUE;
@@ -413,7 +413,7 @@ BOOL CRole::Init(UINT32 dwObjID, UINT32 dwSessionID)
 
 #endif  // _ROBOT
 
-    // 新增代码, 自己新增加
+    // Additional custom code
     m_dwGameTimeCard = 0;
     m_bDoTellGameTimeCard = FALSE;
     m_bHaveTime = TRUE;
@@ -496,7 +496,7 @@ BOOL CRole::UnInit(void)
     nRetCode = CCharacter::UnInit();
     LOG_CHECK_ERROR(nRetCode);
 
-    // 新增代码, 自己新增加
+    // Additional custom code
     m_dwGameTimeCard = 0;
 
     return TRUE;
@@ -679,15 +679,15 @@ void CRole::_CheckInteractBT(void)
 }
 
 
-// ==================== 自己新增加代码 Begin
+// ==================== Custom code begins
 
-// 获取当前点卡到期时间 (秒数)
+// Get the current time-card expiration time (seconds)
 UINT32 CRole::GetGameTimeCard_UINT32()
 {
     return m_dwGameTimeCard;
 }
 
-// 增加点卡时间 (秒数)
+// Add time-card duration (seconds)
 void CRole::AddGameTimeCard(UINT32 seconds)
 {
     if (g_ServerConfig.CC.bCustomGameTimeCardEnable == false)
@@ -697,22 +697,22 @@ void CRole::AddGameTimeCard(UINT32 seconds)
 
     UINT32 dwnowTime = CGameWorld::GetInstance().GetGameTime();
     
-    // 过期了
+    // Expired
     if (dwnowTime > m_dwGameTimeCard)
     {
         m_dwGameTimeCard = dwnowTime + seconds;
     }
-    // 没过期
+    // Not expired
     else
     {
         m_dwGameTimeCard += seconds;
     }
 
-    SetFreeMode(FALSE);    // 只要吃点卡, 就修改 m_bFreeMode 标志
+    SetFreeMode(FALSE);    // Update m_bFreeMode whenever a time card is consumed
     NotifyRole_GameTimeCard();
 }
 
-// 给玩家发送私聊 通知剩余时间
+// Send a private message informing the player of remaining time
 void CRole::NotifyRole_GameTimeCard()
 {
     if (g_ServerConfig.CC.bCustomGameTimeCardEnable == false)
@@ -725,7 +725,7 @@ void CRole::NotifyRole_GameTimeCard()
 
     UINT32 dwnowTime = CGameWorld::GetInstance().GetGameTime();
 
-    // 过期了
+    // Expired
     if (dwnowTime > m_dwGameTimeCard)
     {
         m_bHaveTime = TRUE;
@@ -737,7 +737,7 @@ void CRole::NotifyRole_GameTimeCard()
         Say(GetObjID(), cltNormal, str_utf8);
         delete[] str_utf8;
     }
-    // 没过期
+    // Not expired
     else
     {
         m_bHaveTime = FALSE;
@@ -751,28 +751,28 @@ void CRole::NotifyRole_GameTimeCard()
     }
 }
 
-// 获取到点是否过期
+// Check whether the time card has expired
 BOOL CRole::GetGameTimeCard_HaveTime()
 {
     return m_bHaveTime;
 }
 
-// 获取-高级铭文洗练结果
+// Get advanced inscription refinement result
 INT32 CRole::GetRuneItemHighResult()
 {
     return m_dwRuneID;
 }
 
-// 修改-高级铭文洗练结果
+// Set advanced inscription refinement result
 void CRole::SetRuneItemHighResult(INT32 RuneID)
 {
     m_dwRuneID = RuneID;
 }
 
-// 获取-铭文节点数值
+// Get inscription node value
 INT32 CRole::GetRuneRootCount(INT32 nType, INT32 cls)
 {
-    // 普通
+    // Normal
     if (nType == rrrNormal)
     {
         switch (cls)
@@ -785,7 +785,7 @@ INT32 CRole::GetRuneRootCount(INT32 nType, INT32 cls)
             return m_nRuneNormal_Taoist;
         }
     }
-    // 高级
+    // Advanced
     else if (nType == rrrAdvanced)
     {
         switch (cls)
@@ -801,10 +801,10 @@ INT32 CRole::GetRuneRootCount(INT32 nType, INT32 cls)
     return 0;
 }
 
-// 增加-铭文节点数值
+// Increment inscription node value
 void CRole::IncRuneRootCount(INT32 nType, INT32 cls)
 {
-    // 普通
+    // Normal
     if (nType == rrrNormal)
     {
         switch (cls)
@@ -835,7 +835,7 @@ void CRole::IncRuneRootCount(INT32 nType, INT32 cls)
         }
         }
     }
-    // 高级
+    // Advanced
     else if (nType == rrrAdvanced)
     {
         switch (cls)
@@ -868,13 +868,13 @@ void CRole::IncRuneRootCount(INT32 nType, INT32 cls)
     }
 }
 
-// 发送私聊 通知铭文节点数值
+// Send a private message with the inscription node value
 void CRole::NotifyRole_RuneRootCount(INT32 nType, INT32 cls)
 {
     char strMsg[128] = { 0 };
     char* str_utf8 = "";
 
-    // 普通
+    // Normal
     if (nType == rrrNormal)
     {
         const char* str1 = "[普通铭文洗练]-";
@@ -904,7 +904,7 @@ void CRole::NotifyRole_RuneRootCount(INT32 nType, INT32 cls)
         }
         }
     }
-    // 高级
+    // Advanced
     else if (nType == rrrAdvanced)
     {
         const char* str1 = "[高级铭文洗练]-";
@@ -944,19 +944,19 @@ void CRole::ResetLuckRootCount()
     m_nLuckRootCount = 0;
 }
 
-// 获取祝福油节点数值
+// Get blessing oil node value
 INT32 CRole::GetLuckRootCount()
 {
     return m_nLuckRootCount;
 }
 
-// 增加-祝福油节点数值
+// Increment blessing oil node value
 void CRole::IncLuckRootCount()
 {
     m_nLuckRootCount += 1;
 }
 
-// 发送私聊 通知祝福油节点数值
+// Send a private message with the blessing oil node value
 void CRole::NotifyRole_LuckRootCount()
 {
     char strMsg[128] = { 0 };
@@ -968,7 +968,7 @@ void CRole::NotifyRole_LuckRootCount()
     delete[] str_utf8;
 }
 
-// ==================== 自己新增加代码 end
+// ==================== Custom code ends
 
 void CRole::_On1SecMainLoop(void)
 {
@@ -998,16 +998,16 @@ void CRole::_On1SecMainLoop(void)
     if (!IsDead())
         m_ItemBag.MainLoop();
 
-    // 新增代码 - 点卡系统是否到期
-    if (g_ServerConfig.CC.bCustomGameTimeCardEnable == TRUE && // 开启 自定义点卡功能
-        dwCurTime > m_dwGameTimeCard &&                        // 点卡过期
-        IsFreeMode() == FALSE &&                               // m_bFreeMode 标志 == FALSE
-        GetLevel() > g_ServerConfig.CC.nCustomFreeRoleLevel)   // 当前等级 超过[自由人物等级]
+    // Additional code - check time-card expiration
+    if (g_ServerConfig.CC.bCustomGameTimeCardEnable == TRUE && // Custom time-card feature enabled
+        dwCurTime > m_dwGameTimeCard &&                        // Time card expired
+        IsFreeMode() == FALSE &&                               // m_bFreeMode flag == FALSE
+        GetLevel() > g_ServerConfig.CC.nCustomFreeRoleLevel)   // Current level exceeds the free character level
     {
-        // 暂时屏蔽, 当前改成 有点卡时间,拾取金币是双倍
-        //SetFreeMode(TRUE);    // 点卡过期, 才会修改 m_bFreeMode 标志
+        // Temporarily disabled; an active time card currently doubles picked-up gold
+        //SetFreeMode(TRUE);    // Only update m_bFreeMode when the time card expires
 
-        // 告诉玩家到期了
+        // Tell the player the time card expired
         if (m_bDoTellGameTimeCard == FALSE)
         {
             NotifyRole_GameTimeCard();
@@ -1016,7 +1016,7 @@ void CRole::_On1SecMainLoop(void)
         }
     }
 
-    // 默认代码 - 判断原生点卡系统, 到期了就跳转地图
+    // Default code - check the original time-card system and change maps on expiry
     //if (IsFreeMode() && GetState() == rsPlaying && GetSceneTempID() != g_ServerConfig.MS.nFreeRoleSceneID && GetSceneTempID() != g_GWConfig.ArrestConfig.nSceneTempID)
     //    CGameWorld::GetInstance().JumpTo(this, g_ServerConfig.MS.nFreeRoleSceneID, 0,
     //    g_ServerConfig.MS.nFreeRoleScenePosX, g_ServerConfig.MS.nFreeRoleScenePosY,
@@ -1432,8 +1432,8 @@ BOOL CRole::_GridMove(INT64 llDestX, INT64 llDestY)
         m_pcGrid = pcDestGrid;
         m_pcZone = pcDestZone;
 
-        pOldGridInstance = m_pGridInstance;  // 把当前m_pGridInstance, 赋值给 Old 老的对象
-        m_pGridInstance = pGridInstance;     // 把新pGridInstance, 赋值给当前m_pGridInstance对象
+        pOldGridInstance = m_pGridInstance;  // Save the current m_pGridInstance as the old object
+        m_pGridInstance = pGridInstance;     // Assign the new pGridInstance to m_pGridInstance
 
         nRetCode = SetGridCharRef();
         LOG_CHECK_ERROR(nRetCode);
@@ -1444,7 +1444,7 @@ BOOL CRole::_GridMove(INT64 llDestX, INT64 llDestY)
             LOG_PROCESS_ERROR(nRetCode);
         }
 
-        // 判断体积
+        // Check volume
         nRetCode = CheckVolume();
         LOG_CHECK_ERROR(nRetCode);
 
@@ -2354,7 +2354,7 @@ void CRole::SetScene(CScene* poScene)
     CCharacter::SetScene(poScene);
 }
 
-// 拾取物品
+// Pick up item
 INT32 CRole::PickUp(UINT32 dwDropID)
 {
     INT32 nResult = errUnknownError;
@@ -2855,7 +2855,7 @@ BOOL CRole::SetLevel(INT32 nNewLevel)
 
     CLuaScript* poScript = NULL;
 
-    nRetCode = CCharacter::SetLevel(nNewLevel);  // 更新属性
+    nRetCode = CCharacter::SetLevel(nNewLevel);  // Update attributes
     LOG_PROCESS_ERROR(nRetCode);
 
     poScript = CScriptMgr::GetInstance().FindScript(ROLE_LEVEL_SCRIPT_NAME);
@@ -3045,7 +3045,7 @@ BOOL CRole::Die(INT32 nParam)
 
     if (poKiller)
     {
-        // 被其他玩家击杀
+        // Killed by another player
         if (poKiller->GetObjType() == otRole)
         {
             CRole* poKillerRole = (CRole*)poKiller;
@@ -3088,7 +3088,7 @@ BOOL CRole::Die(INT32 nParam)
 
                     if (GetPkValue() < 100)
                     {
-                        //poKillerRole->GetItemBag()->DecreaseWeaponLuck();  // 暂时屏蔽, 改成 杀人不掉武器耐久
+                        //poKillerRole->GetItemBag()->DecreaseWeaponLuck();  // Temporarily disabled; player kills no longer reduce weapon durability
                     }
                 }
                 else
@@ -3133,7 +3133,7 @@ BOOL CRole::Die(INT32 nParam)
                 poKillerRole->GetLevel(), poKillerRole->GetClass(), GetX() / POINT_PER_CM, GetY() / POINT_PER_CM, GetZ() / POINT_PER_CM);
             LOG_CHECK_ERROR(nRetCode);
         }
-        // 被怪物击杀
+        // Killed by a monster
         else if (poKiller->GetObjType() == otNpc)
         {
             CNpc* poKillerNpc = (CNpc*)poKiller;
@@ -4324,7 +4324,7 @@ BOOL CRole::_InitNewRole(void)
     m_Friend.Clear();
     m_Title.clear();
 
-    // 执行 lua脚本 "script/create_role/main.lua"
+    // Execute Lua script "script/create_role/main.lua"
     poScript = CScriptMgr::GetInstance().FindScript(CREATE_ROLE_SCRIPT_NAME);
     LOG_PROCESS_ERROR(poScript);
 
@@ -4914,12 +4914,12 @@ INT32 CRole::OnKillNpc(CNpc* pNpc, INT32 nExp)
     LOG_PROCESS_ERROR(pNpc);
     LOG_PROCESS_ERROR(pNpc->GetNpcData());
 
-    //consecutive kill - 连续击杀
+    //Consecutive kills
     m_nConsecutiveKillNpcCount++;
     m_nConsecutiveKillNpcExp += nExp;
     m_nConsecutiveKillNpcFrame = CGameWorld::GetInstance().GetGameFrame() + MAX_CONSECUTIVE_KILL_NPC_FRAME;
 
-    // momentary kill - 瞬间击杀
+    // Momentary kills
     m_nMomentaryKillNpcCount[MOMENTARY_KILL_NPC_TIEM - 1]++;
     m_nMomentaryKillNpcExp[MOMENTARY_KILL_NPC_TIEM - 1] += nExp;
 

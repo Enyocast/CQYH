@@ -84,7 +84,7 @@ BOOL CModifierTree::Reload(void)
     for (INT32 i = 1; i < m_nExtraNodeCount; i++)
         m_FreeNodeList.push_back(i);
 
-    // 下标 i, 就是节点下标
+    // Index i is the node index
     for (INT32 i = 0; i < m_nGlobalNodeCount && !pFile->Eof(); i++)
     {
         MODIFIER_FILE_NODE_NEW FileNode;
@@ -101,10 +101,10 @@ BOOL CModifierTree::Reload(void)
 
         m_pstrNameList[i] = FileNode.szObjName;
 
-        // 修改节点数据
+        // Modify node data
         switch (i)
         {
-        // 默认
+        // Default
         default:
         {
             for (INT32 j = 0; j < MODIFIER_PARAM_COUNT; j++)
@@ -133,7 +133,7 @@ BOOL CModifierTree::Reload(void)
             break;
         }
 
-        // 召唤骷髅/神兽, 最大召唤数量2改1
+        // Summon skeleton / divine beast: change the maximum summon count from 2 to 1
         case 1134:
         case 1100:
         case 1138:
@@ -144,32 +144,32 @@ BOOL CModifierTree::Reload(void)
         case 1632:
         {
             m_pData[i].Param[0].nXType = FileNode.Param[0].nXType;
-            m_pData[i].Param[0].nParam = 1;  // 控制道士召唤物数量
+            m_pData[i].Param[0].nParam = 1;  // Control the Taoist summon count
 
             m_pData[i].Param[1].nXType = FileNode.Param[1].nXType;
-            m_pData[i].Param[1].nParam = 1;  // 这个参数没啥用
+            m_pData[i].Param[1].nParam = 1;  // This parameter is not very useful
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
             m_pData[i].Param[2].nParam = 0;
             break;
         }
 
-        // 召唤骷髅-迦兰印, 额外属性类型 7 => 4, 和君王印一样
+        // Summon skeleton - Jialan inscription: change extra attribute type from 7 to 4, matching the monarch inscription
         case 1152:
         case 1155:
         {
             m_pData[i].Param[0].nXType = FileNode.Param[0].nXType;
-            m_pData[i].Param[0].nParam = 3003;  // 技能ID
+            m_pData[i].Param[0].nParam = 3003;  // Spell ID
 
             m_pData[i].Param[1].nXType = FileNode.Param[1].nXType;
-            m_pData[i].Param[1].nParam = 2;  // 额外属性类型
+            m_pData[i].Param[1].nParam = 2;  // Extra attribute type
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
             m_pData[i].Param[2].nParam = 0;
             break;
         }
 
-        // 恶灵攻击宠物, 按百分比掉血 (3500 => 1000)
+        // Evil spirit attacks a pet: percentage HP loss (3500 => 1000)
         case 2954:
         {
             m_pData[i].Param[0].nXType = FileNode.Param[0].nXType;
@@ -179,7 +179,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 67;  // 这个参数没啥用
+            m_pData[i].Param[2].nParam = 67;  // This parameter is not very useful
             break;
         }
         case 2956:
@@ -191,7 +191,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 60;  // 这个参数没啥用
+            m_pData[i].Param[2].nParam = 60;  // This parameter is not very useful
             break;
         }
         case 2957:
@@ -203,7 +203,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 54;  // 这个参数没啥用
+            m_pData[i].Param[2].nParam = 54;  // This parameter is not very useful
             break;
         }
         case 2988:
@@ -215,7 +215,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 64;  // 这个参数没啥用
+            m_pData[i].Param[2].nParam = 64;  // This parameter is not very useful
             break;
         }
         case 2989:
@@ -227,7 +227,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 62;  // 这个参数没啥用
+            m_pData[i].Param[2].nParam = 62;  // This parameter is not very useful
             break;
         }
         case 2992:
@@ -239,7 +239,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 57;  // 这个参数没啥用
+            m_pData[i].Param[2].nParam = 57;  // This parameter is not very useful
             break;
         }
         case 2993:
@@ -251,7 +251,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 55;  // 这个参数没啥用
+            m_pData[i].Param[2].nParam = 55;  // This parameter is not very useful
             break;
         }
         case 2996:
@@ -263,7 +263,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 51;  // 这个参数没啥用
+            m_pData[i].Param[2].nParam = 51;  // This parameter is not very useful
             break;
         }
         case 2997:
@@ -275,13 +275,13 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 48;  // 这个参数没啥用
+            m_pData[i].Param[2].nParam = 48;  // This parameter is not very useful
             break;
         }
         }
 
 
-        // 默认代码
+        // Default code
         //for(INT32 j = 0; j < MODIFIER_PARAM_COUNT; j++)
         //{
         //	m_pData[i].Param[j].nXType = FileNode.Param[j].nXType;
@@ -416,17 +416,17 @@ BOOL CModifierTree::_CheckNode(INT32 nRootIndex, INT32 nIndex, INT32 nType)
     LOG_PROCESS_ERROR(m_pData[nIndex].nFalseRetNode != nRootIndex);
     LOG_PROCESS_ERROR(m_pData[nIndex].nNextNode != nRootIndex);
 
-    // 根函数
+    // Root function
     pRootFunc = GetModifierFunction(m_pData[nRootIndex].nType, m_pData[nRootIndex].nKey);
     LOG_PROCESS_ERROR(pRootFunc);
 
-    // 子函数
+    // Sub-function
     pFunc = GetModifierFunction(m_pData[nIndex].nType, m_pData[nIndex].nKey);
     LOG_PROCESS_ERROR(pFunc);
 
     m_nDepth++;
 
-    // 条件节点
+    // Condition node
     nRetCode = _CheckConditionNode(nRootIndex, m_pData[nIndex].nTrueRetNode, nType);
     LOG_PROCESS_ERROR(nRetCode);
 

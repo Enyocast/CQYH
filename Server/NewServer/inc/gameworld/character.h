@@ -500,11 +500,11 @@ protected:
 	INT32	m_eMoveState;
 	INT32	m_nMoveSpeed;
 	BOOL	m_bCanRun;
-	INT32	m_nMoveTimer;         // 移动间隔
-	INT32	m_nWalkTimer;         // 行走间隔
-	INT32	m_nRunTimer;          // 跑动间隔
-	INT32   m_nPassiveMoveTimer;  // 被动移动间隔
-	INT32	m_nMineTimer;         // 挖矿间隔
+	INT32	m_nMoveTimer;         // Movement interval
+	INT32	m_nWalkTimer;         // Walking interval
+	INT32	m_nRunTimer;          // Running interval
+	INT32   m_nPassiveMoveTimer;  // Passive movement interval
+	INT32	m_nMineTimer;         // Mining interval
 	INT32	m_nFearDirection;
 	INT32   m_nVolumeID;
 

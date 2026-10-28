@@ -823,7 +823,7 @@ BOOL CMessageHandler::DoClientMasterInfo(UINT32 dwClientSessionID, UINT32 dwRole
             pMsg->arrInfo[pMsg->byStudentNum].byLevel = pRole->byLevel;
             pMsg->arrInfo[pMsg->byStudentNum].dwStudentID = pRole->dwRoleID;
 
-            // 如果是老师，则找恭喜等级下发
+            // For a mentor, find and send the congratulation level
             if (dwRoleID == data.dwRoleID)
             {
                 nCZ = CMasterMgr::GetInstance().GetCZ(pRole->dwRoleID, dwRoleID);

@@ -6,14 +6,14 @@
 #include "openssl/obj_mac.h"
 #include "openssl/md5.h"
 
-/*解决方案sudrsa模拟使用rsakey对buffer进行加解密，本解决方案测试了四种不同的方法*/
-/*1.使用公钥加密，用私钥解密*/
-/*2.使用私钥加密，用公钥解密*/
-/*3.使用私钥签名，用公钥验证*/
-/*4.ASN1_OCTET_STRING类型的签名和验证*/
+/*The sudrsa solution simulates RSA key encryption and decryption of a buffer and tests four methods*/
+/*1. Encrypt with the public key and decrypt with the private key*/
+/*2. Encrypt with the private key and decrypt with the public key*/
+/*3. Sign with the private key and verify with the public key*/
+/*4. Sign and verify using ASN1_OCTET_STRING*/
 
 
-UINT32	dwTargetID = 12345; // 明文前填充内容，可为任意内容
+UINT32	dwTargetID = 12345; // Content prepended to plaintext; may be arbitrary
 				
 UINT32  dwAttr[] = {123,234,345,456,567,123,234,345,456,567,123,234,345,\
 					456,567,123,234,345,456,567,123,234,345,456,567,123,234,345,456,567,123,234,\
@@ -29,16 +29,16 @@ int main(int argc, char *argv[])
  	INT32 nSize = 0;
 	INT32 nAttrCount =  sizeof(dwAttr) / sizeof(dwAttr[0]);
 
-	UINT32 dwBuffer[1024] = {0};		//	用于存储构造的字符串 
-	unsigned char md[16] = {0};			// 暂时存放摘要明文
+	UINT32 dwBuffer[1024] = {0};		//	Store the constructed string
+	unsigned char md[16] = {0};			// Temporarily store the plaintext digest
 
- 	unsigned char uszEnc[1024] = {0};	// 暂时存放签名后的摘要
-	UINT32  nBufferLength = 0;			// 暂时存放签名验证摘要的长度
+	unsigned char uszEnc[1024] = {0};	// Temporarily store the signed digest
+	UINT32  nBufferLength = 0;			// Temporarily store the length of the signature verification digest
 
 	nRetCode = CLog::GetInstance().Init( "RSATest", lltAll, lotConsole | lotFile, TRUE, 0 );
 	LOG_PROCESS_ERROR(nRetCode);
 	
-	/*-----------------------使用私钥签名，用公钥验证------------------------------------------*/
+	/*-----------------------Sign with the private key and verify with the public key------------------------------------------*/
 
 	PROFILE_START();
 
@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 		pKey->p = NULL;
 		pKey->q = NULL;
 		pKey->d = NULL;
-		p q d 抹去以后，签名时不成功，但是验证时成功
+		After clearing p, q and d, signing fails but verification succeeds
 	*/
 
 	nRetCode = RSA_sign(NID_md5, md, sizeof(md) , uszEnc, &nBufferLength, pKey);
@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
 		pKey->blinding = NULL;
 		pKey->p = NULL;
 		pKey->mt_blinding = NULL;
-		验证以上内容跟签名 验证 加密
+		Check the above fields against signing, verification and encryption
 	*/
 
 	/*
@@ -95,11 +95,11 @@ int main(int argc, char *argv[])
 		pKey->meth->name = NULL;
 		pKey->meth->app_data = NULL;
 		pKey->e = NULL;
-		验证 n  meth和 e 在解密的时候不能抹去
+		Verify that n, meth and e cannot be cleared during decryption
 	*/
 
 
-	// 重新生成一个空钥匙，将n e 拷贝过来
+	// Create a new empty key and copy n and e into it
 	RSA* pPublicKey = RSA_new();
 
 	pPublicKey->n = (BIGNUM*)malloc(sizeof(BIGNUM));
@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
 	PROFILE_END();
 
 
- 	/*-------------------------------------使用公钥加密，用私解密-------------------------------------------------*/
+	/*-------------------------------------Encrypt with the public key and decrypt with the private key-------------------------------------------------*/
 
 	INT32 nEncLen = 0;
 	INT32 nDecLen = 0;
@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
  	PROFILE_END();
  
  
-	/*---------------------------------------使用私钥加密，用公钥解密---------------------------------------*/
+	/*---------------------------------------Encrypt with the private key and decrypt with the public key---------------------------------------*/
 
  	PROFILE_START();
  
@@ -174,7 +174,7 @@ int main(int argc, char *argv[])
  	PROFILE_END();
  
 
-	/*-----------------------------ASN1_OCTET_STRING类型的签名和验证-------------------------------------------*/
+	/*-----------------------------Sign and verify using ASN1_OCTET_STRING-------------------------------------------*/
 
  	PROFILE_START();
  

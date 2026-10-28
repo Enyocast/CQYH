@@ -244,11 +244,11 @@ BOOL CManageServer::_MainLoop(void)
 		m_dwNextDailyTime = ((m_dwCurrentTime + m_nTimeZone - DAILY_TRIGGER_TIME) / 86400 + 1) * 86400 - m_nTimeZone + DAILY_TRIGGER_TIME;
 	}
 
-    // 定时器
+    // Timer
     nRetCode = CTimerMgr::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
-    // 定时器触发
+    // Timer trigger
     nRetCode = CTimeTrigger::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
@@ -256,11 +256,11 @@ BOOL CManageServer::_MainLoop(void)
     nRetCode = CApplicationMgr::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
-    // 交易行
+    // Exchange
     nRetCode = CAuctionMgr::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
-    // 掉落物品
+    // Item drops
     nRetCode = CMsDropMgr::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
@@ -276,7 +276,7 @@ BOOL CManageServer::_MainLoop(void)
     nRetCode = CPreSaveList::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
-    // 充值接口
+    // Recharge interface
     if (g_ServerConfig.MS.bOABillingEnable ||
         g_ServerConfig.MS.bTimeCardEnabled ||
         g_ServerConfig.MS.bMonthCardEnabled)
@@ -285,14 +285,14 @@ BOOL CManageServer::_MainLoop(void)
         LOG_CHECK_ERROR(nRetCode);
     }
 
-    // 防沉迷
+    // Anti-addiction
     if (g_ServerConfig.MS.bFcmEnable)
     {
         nRetCode = CFcmMgr::GetInstance().MainLoop();
         LOG_CHECK_ERROR(nRetCode);
     }
 
-    // 登录排队
+    // Login queue
 	if (CManageServer::GetInstance().GetGameFrame() % (PROCESS_QUEUE_INTERVAL * GAME_FPS / MAX_SERVER_GROUP_COUNT) == 0)
 	{
 		INT32 nServerGroup = CManageServer::GetInstance().GetGameFrame() % (PROCESS_QUEUE_INTERVAL * GAME_FPS);
@@ -301,11 +301,11 @@ BOOL CManageServer::_MainLoop(void)
 			CUserMgr::GetInstance().ProcessQueue(nServerGroup);
 	}
 
-    // 全局数据
+    // Global data
     nRetCode = CGlobalDataManager::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
-    // 黑市
+    // Black market
     nRetCode = CMSBlackMarketMgr::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
@@ -378,7 +378,7 @@ void CManageServer::_On1MinMainLoop(void)
     CServerVar& var = CServerVar::GetInstance();
     UINT32 cur_time = CManageServer::GetInstance().GetGameTime();
 
-    // 初始化 掉落物品/装备/铭文洗练/运2项链限制
+    // Initialize item drop, equipment, inscription refinement, and Luck +2 necklace limits
     if (!init_list)
     {
         const ITEM_DATA* item_data;
@@ -413,7 +413,7 @@ void CManageServer::_On1MinMainLoop(void)
             rune_data = CDataManager<RUNE_DATA>::GetInstance().GetNextData();
         }
 
-        // 自己新加代码, 判断运2项链产出
+        // Custom code: check Luck +2 necklace production
         if (g_ServerConfig.CC.nMinLuck2AttributelID > 0 && 
             g_ServerConfig.CC.nMaxLuck2AttributelID > 0 &&
             g_ServerConfig.CC.nItemDropLimitLuck2NecklaceDuration > 0 && 
@@ -428,7 +428,7 @@ void CManageServer::_On1MinMainLoop(void)
         init_list = TRUE;
     }
 
-    // 刷新 掉落物品/装备/铭文洗练限制
+    // Refresh item drop, equipment, and inscription refinement limits
     for (INT32 group = 0; group < MAX_SERVER_GROUP_COUNT; group++)
     {
         if (IsValidGroup(group))
@@ -453,7 +453,7 @@ void CManageServer::_On1MinMainLoop(void)
                 }
             }
 
-            // 运2项链限制
+            // Luck +2 necklace limit
             for (INT_PAIR_LIST::iterator it = Luck2Necklace_list.begin(); it != Luck2Necklace_list.end(); ++it)
             {
                 INT32 last_refresh_time = var.GetVariable(group, MakeServerKey(esvtItemDropLimitLuck2NecklaceRefreshTime, it->first));
@@ -466,7 +466,7 @@ void CManageServer::_On1MinMainLoop(void)
         }
     }
 
-    // 运2项链限制
+    // Luck +2 necklace limit
     //for (INT_PAIR_LIST::iterator it = Luck2Necklace_list.begin(); it != Luck2Necklace_list.end(); ++it)
     //{
     //    INT32 last_refresh_time = var.GetVariable(g_ServerConfig.CC.nItemDropLimitLuck2NecklaceServerGroup, MakeServerKey(esvtItemDropLimitLuck2NecklaceRefreshTime, it->first));
@@ -496,14 +496,14 @@ void CManageServer::_OnDailyMainLoop(void)
 		m_bUpdateLastRank = FALSE;
 	m_nUpdateLastRankType = rlBegin;
 
-    // 修改 GameWorld 全局变量
+    // Modify GameWorld global variables
     CServerVar& var = CServerVar::GetInstance();
     for (INT32 group = 0; group < MAX_SERVER_GROUP_COUNT; group++)
     {
         if (IsValidGroup(group))
         {
-            // 例子
-            //var.SetVariable(group, MakeServerKey(esvtDestinyWeaponCount, 2000024), 0);  // 2000024-命运武器礼盒, 次数清0
+            // Example
+            //var.SetVariable(group, MakeServerKey(esvtDestinyWeaponCount, 2000024), 0);  // 2000024 - destiny weapon gift box; reset count to zero
         }
     }
 
@@ -592,7 +592,7 @@ BOOL CManageServer::Init(INetEventHandler* poNetEventHandler)
     nRetCode = _InitMathTable();
     LOG_PROCESS_ERROR(nRetCode);
 
-    // internal - 内联网
+    // Internal network
 #if defined(WIN32)
     IntranetInitParam.nMaxAcceptor = g_ServerConfig.MS.Net.nMaxAcceptor;
     IntranetInitParam.nMaxConnector = g_ServerConfig.MS.Net.nMaxConnector;
@@ -707,7 +707,7 @@ BOOL CManageServer::Open(void)
 
 	INF("opened MM listen port at %s:%d", g_ServerConfig.MS.szAddress, g_ServerConfig.MS.dwMMPort);
 
-    // Monitor for role number - 监控角色数量
+    // Monitor character count
 	m_pMonitorForRoleNumberAcceptor = m_pNet->CreateAcceptor();
 	LOG_PROCESS_ERROR(m_pMonitorForRoleNumberAcceptor);
 
@@ -1242,7 +1242,7 @@ BOOL _InitServer(void)
 	nRetCode = CheckDiskRemainCapacity();
 	LOG_PROCESS_ERROR(nRetCode);
 
-    // 创建内联网
+    // Create internal network
     nRetCode = rManageServer.Init(&rMessageHandler);
     LOG_PROCESS_ERROR(nRetCode);
 
@@ -1399,7 +1399,7 @@ BOOL _InitServer(void)
 	nRetCode = CBattleQueueMgr::GetInstance().Init();
 	LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CAuctionMgr::GetInstance().Init(4, 1024);    // 默认代码 (4个线程, 最多1024个竞拍对象)
+    nRetCode = CAuctionMgr::GetInstance().Init(4, 1024);    // Default code: 4 threads, at most 1024 auction objects
     LOG_PROCESS_ERROR(nRetCode);
 
     nRetCode = CApplicationMgr::GetInstance().Init();
@@ -1440,15 +1440,15 @@ BOOL _InitServer(void)
     signal(SIGBREAK, _signal_handler);
 #endif  // _WIN32
 
-    // 创建内联网, 互相连接上 - open network port after finish preparing
+    // Create and connect the internal network - open the network port after preparation
     nRetCode = rManageServer.Open();
     LOG_PROCESS_ERROR(nRetCode);
 
-    // 初始化 - 各种 Session 字段
+    // Initialize session fields
     nRetCode = CMSSessionMgr::GetInstance().Init(rManageServer.GetNetInterface());
     LOG_PROCESS_ERROR(nRetCode);
 
-    // 初始化 - 各种函数
+    // Initialize functions
     nRetCode = rMessageHandler.Init(rManageServer.GetNetInterface(), rManageServer.GetPacketAllocator(), 
         rManageServer.GetGTSocketAcceptor(), rManageServer.GetGSSocketAcceptor(), rManageServer.GetLSSocketAcceptor(), 
         rManageServer.GetDBSocketAcceptor(),rManageServer.GetBSSocketAcceptor(), rManageServer.GetDLSocketAcceptor(),
@@ -1656,7 +1656,7 @@ INT32 main(INT32 argc, TCHAR** argv)
     SetWindowPos(GetConsoleWindow(), HWND_TOP, 500, 0, 0, 0, SWP_NOSIZE);
 #endif
 
-    // 暂时添加, 调试代码
+    // Temporarily added debug code
     //Sleep(1000 * 10);
 
 	nRetCode = g_OpenPakFolder(DEFAULT_PAK_PATH);

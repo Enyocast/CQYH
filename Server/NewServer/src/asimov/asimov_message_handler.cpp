@@ -72,7 +72,7 @@ void CAsimovMessageHandler::OnRecv(ISocketSession* pSocketSession, PACKET_BUFFER
 
     if (pHeader->wMsg >= g2c_message_begin && pHeader->wMsg < m2c_message_end)
     {
-		if (poUser->GetPlayingRole()) // 如果已经下线了，就忽略包。 可能已经下线，才收到服务器的包 Allan Tao[5.6.2013] 
+		if (poUser->GetPlayingRole()) // Ignore the packet if already offline; a server packet may arrive after logout. Allan Tao [5.6.2013]
         {			
 			CRobotMessageHandler::GetInstance().OnRecv(poUser->GetPlayingRole(), (const char*)pPacketBuffer);
         }
@@ -209,7 +209,7 @@ void CAsimovMessageHandler::OnGSErrorNotify(CUser* poUser, PACKET_BUFFER* pPacke
 void CAsimovMessageHandler::OnLoginAck(CUser* poUser, PACKET_BUFFER* pPacketBuffer, UINT32 dwSize)
 {
     T2C_LOGIN_ACK* pMsg = (T2C_LOGIN_ACK*)pPacketBuffer;
-    //暂时无验证不通过
+    //For now there are no validation failures
 
 	poUser->SetEncryptCode(pMsg->byEncryptCode);
 

@@ -13,11 +13,11 @@ struct Order
     UINT8 m_byOrderStatus;
     UINT32 m_dwRoleID;
     INT32 m_nPrice;
-    INT32 m_nCount;         //用户提交的总手数，真正有效的手数是下面的CurCount，此Count仅用于客户端显示用
-    INT32 m_nCurCount;      //当前剩余手数
+    INT32 m_nCount;         //Total quantity submitted by the user; CurCount is the effective quantity, while Count is only for client display
+    INT32 m_nCurCount;      //Current remaining quantity
     INT32 m_nCurMoney;
 
-    INT32 m_nBillingCount;  //由于计费平台并非先到先处理，因此必须等到所有的tranfer的回复后才可以unfreeze，此变量仅记录平台中Freeze的笔数，大部分情况下此数值应等同于CurCount
+    INT32 m_nBillingCount;  //Billing requests may complete out of order, so unfreeze only after all transfer replies; this tracks frozen transactions and normally equals CurCount
     char m_szBillingOrderID[OA_BILLING_ORDER_ID_LEN];
 };
 

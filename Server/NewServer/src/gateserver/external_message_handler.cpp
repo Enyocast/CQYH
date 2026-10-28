@@ -161,7 +161,7 @@ void CExternalMessageHandler::OnRecv(ISocketSession* pSocketSession, PACKET_BUFF
 	pSession = (CLIENT_SESSION*)pSocketSession->GetUserData();
 	LOG_PROCESS_ERROR(pSession);
 
-	// 解密
+	// Decrypt
 	if (pSession->byEncryptCode)
 	{
 		for (INT32 nIndex = sizeof(FLEX_MESSAGE_HEADER); nIndex < dwSize; nIndex++)
@@ -170,7 +170,7 @@ void CExternalMessageHandler::OnRecv(ISocketSession* pSocketSession, PACKET_BUFF
 		}
 	}
 
-	// 跟就封包ID, 决定把数据发送给gs/ms/ls
+	// Route data to GS, MS, or LS based on the packet ID
 	if (pHeader->wMsg > c2g_message_begin && pHeader->wMsg < ExternalMessage::c2g_message_end)
 	{
 		LOG_PROCESS_ERROR(pSession->eState == cssPlaying);
@@ -396,7 +396,7 @@ BOOL CExternalMessageHandler::Send(UINT32 dwSessionID, PACKET_BUFFER* pPacketBuf
 		LOG_PROCESS_ERROR(FALSE);
 	}
 
-	// 加密
+	// Encrypt
 	if (pSession->byEncryptCode)
 	{
 		for (INT32 nIndex = nOffset + sizeof(FLEX_MESSAGE_HEADER); nIndex < dwSize + nOffset; nIndex++)
@@ -460,12 +460,12 @@ void CExternalMessageHandler::DoLoginAck(UINT32 dwSessionID)
 
 	strxcpy(pMsg->szUserName, pSession->szUserName, USER_NAME_LEN);
 
-	//memset(pMsg->szUserPassword, 0, USER_PASSWORD_LEN);    // 默认代码
-	strxcpy(pMsg->szUserPassword, pSession->szPassword, USER_PASSWORD_LEN);    // 自己改代码
+	//memset(pMsg->szUserPassword, 0, USER_PASSWORD_LEN);    // Default code
+	strxcpy(pMsg->szUserPassword, pSession->szPassword, USER_PASSWORD_LEN);    // Custom code
 
 	pMsg->bAdult = pSession->bAdult;
 	pMsg->byEncryptCode = g_ServerConfig.GT.nEncryptCode;
-	pMsg->dwClientOption = g_GWConfig.dwClientOption;    // 以前是 gtconfig.lua 文件, 现在是 gameworldconfig.lua 文件
+	pMsg->dwClientOption = g_GWConfig.dwClientOption;    // Previously gtconfig.lua; now gameworldconfig.lua
 	memcpy(pMsg->szMessageSize, s_MessageSizeBuffer, s_nMessageSizeBufferSize);
 
 	nRetCode = Send(dwSessionID, (PACKET_BUFFER*)pMsg, pMsg->wSize);
@@ -700,15 +700,15 @@ BOOL CExternalMessageHandler::OnLoginReq(CLIENT_SESSION* pSession, PACKET_BUFFER
 
 	LOG_PROCESS_ERROR(pSession->eState == cssUnAuthed);
 
-	// 字符串结尾写0
+	// Write a null terminator
 	pMsg->szUserName[USER_NAME_LEN - 1] = 0;
 	pMsg->szPassword[USER_PASSWORD_LEN - 1] = 0;
 
-	// 字符串中大写转小写
+	// Convert uppercase letters to lowercase
 	_strlwr(pMsg->szUserName);
 	_strlwr(pMsg->szPassword);
 
-	// 拷贝
+	// Copy
 	strxcpy(pSession->szUserName, pMsg->szUserName, USER_NAME_LEN);
 	strxcpy(pSession->szPassword, pMsg->szPassword, USER_PASSWORD_LEN);
 
@@ -765,7 +765,7 @@ BOOL CExternalMessageHandler::OnSelectRole(CLIENT_SESSION* pSession, PACKET_BUFF
 	C2T_SELECT_ROLE* pMsg = (C2T_SELECT_ROLE*)pPacketBuffer;
 	INT32 nIndex = 0;
 
-	// 此处状态不对可判定外挂在做尝试，或者客户端有BUG
+	// An invalid state here may indicate a cheating attempt or a client bug
 	LOG_PROCESS_ERROR(pSession->eState == cssRoleOperating);
 
 	LOG_PROCESS_ERROR(pSession->byRoleCount > 0);
@@ -775,7 +775,7 @@ BOOL CExternalMessageHandler::OnSelectRole(CLIENT_SESSION* pSession, PACKET_BUFF
 		if (pSession->RoleList[nIndex].dwRoleID == pMsg->dwRoleID)
 			break;
 	}
-	// 没找到是外挂，或者客户端有BUG
+	// Not found: possible cheating attempt or client bug
 	LOG_PROCESS_ERROR(nIndex < pSession->byRoleCount);
 	LOG_PROCESS_ERROR(pSession->RoleList[nIndex].byDeleted == 0);
 
@@ -802,7 +802,7 @@ BOOL CExternalMessageHandler::OnCreateRole(CLIENT_SESSION* pSession, PACKET_BUFF
 	CreateRoleParam p;
 	C2T_CREATE_ROLE* pMsg = (C2T_CREATE_ROLE*)pPacketBuffer;
 
-	// 此处状态不对可判定外挂在做尝试，或者客户端有BUG
+	// An invalid state here may indicate a cheating attempt or a client bug
 	LOG_PROCESS_ERROR(pSession->eState == cssRoleOperating);
 
 	LOG_PROCESS_ERROR(strlen(pMsg->szRoleName) > 0);
@@ -887,7 +887,7 @@ BOOL CExternalMessageHandler::OnDeleteRole(CLIENT_SESSION* pSession, PACKET_BUFF
 	INT32 nIndex = 0;
 	INT32 nDeletedRoles = 0;
 
-	// 此处状态不对可判定外挂在做尝试，或者客户端有BUG
+	// An invalid state here may indicate a cheating attempt or a client bug
 	LOG_PROCESS_ERROR(pSession->eState == cssRoleOperating);
 
 	LOG_PROCESS_ERROR(pSession->byRoleCount > 0);
@@ -897,7 +897,7 @@ BOOL CExternalMessageHandler::OnDeleteRole(CLIENT_SESSION* pSession, PACKET_BUFF
 		if (pSession->RoleList[nIndex].dwRoleID == pMsg->dwRoleID)
 			break;
 	}
-	// 没找到是外挂，或者客户端有BUG
+	// Not found: possible cheating attempt or client bug
 	LOG_PROCESS_ERROR(nIndex < pSession->byRoleCount);
 	LOG_PROCESS_ERROR(pSession->RoleList[nIndex].byDeleted == 0);
 
@@ -928,7 +928,7 @@ BOOL CExternalMessageHandler::OnUnDeleteRole(CLIENT_SESSION* pSession, PACKET_BU
 	INT32 nIndex = 0;
 	INT32 nUsableRoles = 0;
 
-	// 此处状态不对可判定外挂在做尝试，或者客户端有BUG
+	// An invalid state here may indicate a cheating attempt or a client bug
 	LOG_PROCESS_ERROR(pSession->eState == cssRoleOperating);
 
 	LOG_PROCESS_ERROR(pSession->byRoleCount > 0);
@@ -938,7 +938,7 @@ BOOL CExternalMessageHandler::OnUnDeleteRole(CLIENT_SESSION* pSession, PACKET_BU
 		if (pSession->RoleList[nIndex].dwRoleID == pMsg->dwRoleID)
 			break;
 	}
-	// 没找到是外挂，或者客户端有BUG
+	// Not found: possible cheating attempt or client bug
 	LOG_PROCESS_ERROR(nIndex < pSession->byRoleCount);
 	LOG_PROCESS_ERROR(pSession->RoleList[nIndex].byDeleted == 1);
 
@@ -968,7 +968,7 @@ BOOL CExternalMessageHandler::OnForeverDeleteRole(CLIENT_SESSION* pSession, PACK
 	C2T_FOREVER_DELETE_ROLE* pMsg = (C2T_FOREVER_DELETE_ROLE*)pPacketBuffer;
 	INT32 nIndex = 0;
 
-	// 此处状态不对可判定外挂在做尝试，或者客户端有BUG
+	// An invalid state here may indicate a cheating attempt or a client bug
 	LOG_PROCESS_ERROR(pSession->eState == cssRoleOperating);
 
 	LOG_PROCESS_ERROR(pSession->byRoleCount > 0);
@@ -978,7 +978,7 @@ BOOL CExternalMessageHandler::OnForeverDeleteRole(CLIENT_SESSION* pSession, PACK
 		if (pSession->RoleList[nIndex].dwRoleID == pMsg->dwRoleID)
 			break;
 	}
-	// 没找到是外挂，或者客户端有BUG
+	// Not found: possible cheating attempt or client bug
 	LOG_PROCESS_ERROR(nIndex < pSession->byRoleCount);
 	LOG_PROCESS_ERROR(pSession->RoleList[nIndex].byDeleted == 1);
 

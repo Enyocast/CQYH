@@ -4,7 +4,7 @@
 #define BTNOD_DEBUG 1
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// BTNod 子节点容器
+// BTNod child node container
 enum
 {
 	MAX_BT_CHILD_COUNT = 64,
@@ -14,7 +14,7 @@ enum
     BT_REPEAT_MAX_TIMES = 32,
 };
 
-// 行为树节点可能返回的状态
+// Possible behavior tree node statuses
 enum BT_RETURN_VALUE 
 {
     brvError = -1,

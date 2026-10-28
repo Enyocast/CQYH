@@ -620,7 +620,7 @@ Exit0:
     return 0;
 }
 
-// Lua函数表 G表
+// Lua function table G
 LUA_FUNC g_LuaScriptFuncTable[] =
 {
     { "clear_string_table",         lua_clear_string_table },

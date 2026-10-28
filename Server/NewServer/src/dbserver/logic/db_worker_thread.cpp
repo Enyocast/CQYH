@@ -401,7 +401,7 @@ VOID CDBWorkerThread::ThrdProc()
                 bRet = m_FinishedRoleDbTaskList.Push(dbrole);
                 LOG_CHECK_ERROR(bRet);
                 break;
-            case CDBRole::DB_TASK_CREATE_ROLE:    // 创建角色
+            case CDBRole::DB_TASK_CREATE_ROLE:    // Create character
                 nRet = CreateRole(dbrole);
                 LOG_CHECK_ERROR(nRet == errSuccess);
                 dbrole->m_nResult = nRet;

@@ -45,7 +45,7 @@ CTargetScanner::DoodadSelectFunc CTargetScanner::m_DoodadSelectFuncs[] =
     &CTargetScanner::_DoodadGridUSelector,		 // 10
     &CTargetScanner::_DoodadGridSingleSelector,  // 11
 
-    // 这里可能缺少3个函数 12 13 14
+    // Three functions may be missing here: 12, 13, and 14
     //...
 };
 
@@ -445,7 +445,7 @@ Exit0:
 }
 
 
-// ==================== 分割线
+// ==================== Separator
 
 inline BOOL CheckPos(INT64 x, INT64 y, INT64 start_x, INT64 start_y, INT64 end_x, INT64 end_y)
 {
@@ -841,7 +841,7 @@ BOOL CTargetScanner::_GridMultiLineSelector(CCharacter* obj, INT64& llRangeSq)
 
     for (INT32 i = 0; i < m_nParam2; i++)
     {
-        // 里面会计算, 修改 llTargetX, llTargetY
+        // This calculates and modifies llTargetX and llTargetY
         GetOffsetedPos(m_llCenterX, m_llCenterY, m_nDirection, v27[i], 0, llTargetX, llTargetY);
 
         llTgGridX = llTargetX / GRID_WIDTH;
@@ -871,8 +871,8 @@ BOOL CTargetScanner::_GridMultiLineSelector(CCharacter* obj, INT64& llRangeSq)
 
     if (nDirection8 % 2)
     {
-        // "3072" 这个数值, 是从ida反编译抄过来的, 到底啥意思没懂
-        // 应该是转换方向 加的固定数值, 研究其它调整方向的代码, 研究计算方向相关的公式
+        // The value 3072 was copied from IDA decompilation; its meaning is unclear
+        // Probably a fixed direction-conversion offset; investigate other direction-adjustment code and formulas
         dir_1 = NormalizeDirection(m_nDirection + 3072);  
 
         v25 = ConvertToDir8(dir_1);
@@ -882,7 +882,7 @@ BOOL CTargetScanner::_GridMultiLineSelector(CCharacter* obj, INT64& llRangeSq)
 
         for (INT32 i = 0; i < m_nParam2 - 1; i++)
         {
-            // 里面会计算, 修改 llTargetX, llTargetY
+            // This calculates and modifies llTargetX and llTargetY
             GetOffsetedPos(v30, v33, m_nDirection, v26[i], 0, llTargetX, llTargetY);
 
             llTgGridX = llTargetX / GRID_WIDTH;
@@ -913,7 +913,7 @@ Exit0:
 }
 
 
-// ==================== 分割线
+// ==================== Separator
 
 INT64 CTargetScanner::CheckTarget(CCharacter* poCaster, CCharacter* poTarget)
 {

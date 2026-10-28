@@ -565,7 +565,7 @@ void CGameWorld::Reload(const char* pcszModule)
 		nRetCode = LoadGlobalConfig(g_szGlobalConfigFileName);
         LOG_CHECK_ERROR(nRetCode);
 		
-		// 暂时屏蔽 - 修正数值函数
+		// Temporarily disable the value correction function
         //CheckConfig();
 
         nRetCode = CGlobalDataManager::GetInstance().ReloadAllData(FALSE);
@@ -1360,7 +1360,7 @@ INT32 CGameWorld::SendItemToRole(UINT32 dwRoleID, INT32 nMailTemplateID, Item* p
 #endif
 
 Exit0:
-    //TODO: 由于外部没有妥善的错误处理机制，所以不管是否成功，都在这里DestroyItem，以防内存泄露
+    //TODO: External error handling is inadequate, so call DestroyItem here regardless of success to prevent leaks
     if (pItem)
     {
         BOOL bItemRet = CItemMgr::GetInstance().DestroyItem(pItem);
@@ -1414,7 +1414,7 @@ BOOL CGameWorld::SendItemMail(UINT32 dwRoleID, INT32 nMailTemplateID, Item* pIte
 	}
 
 Exit0:
-    //TODO: 由于外部没有妥善的错误处理机制，所以不管是否成功，都在这里DestroyItem，以防内存泄露
+    //TODO: External error handling is inadequate, so call DestroyItem here regardless of success to prevent leaks
     if (pItem)
     {
         BOOL bItemRet = CItemMgr::GetInstance().DestroyItem(pItem);
@@ -1447,7 +1447,7 @@ BOOL CGameWorld::SendItemMail(UINT32 dwRoleID, INT32 nMailTemplateID, Item* pIte
 	}
 
 Exit0:
-    //TODO: 由于外部没有妥善的错误处理机制，所以不管是否成功，都在这里DestroyItem，以防内存泄露
+    //TODO: External error handling is inadequate, so call DestroyItem here regardless of success to prevent leaks
     if (pItem)
     {
         BOOL bItemRet = CItemMgr::GetInstance().DestroyItem(pItem);
@@ -1506,7 +1506,7 @@ Exit0:
 
 /************************************************************************/
 
-// 初始化服务端, 加载配置
+// Initialize the server and load configuration
 BOOL _InitWorldData()
 {
 	//INF("---- Test Sleep 1 ----");
@@ -1636,7 +1636,7 @@ BOOL _InitWorldData()
     nRetCode = CDropManager::GetInstance().Init();
     LOG_PROCESS_ERROR(nRetCode);
 
-	// 任务
+	// Quests
 	nRetCode = CDataManager<QUEST_DATA>::GetInstance().Init(QUEST_FILE_NAME, szFilePath, g_ProcessQuestData);
 	LOG_PROCESS_ERROR(nRetCode);
 
@@ -1658,7 +1658,7 @@ BOOL _InitWorldData()
 	nRetCode = CDataManager<LEVEL_DAMAGE_MOD_DATA>::GetInstance().Init(LEVEL_DAMAGE_MOD_FILE_NAME, szFilePath, NULL);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	// 成就
+	// Achievements
     nRetCode = CDataManager<ACHIEVEMENT_DATA>::GetInstance().Init(ACHIEVEMENT_FILE_NAME, szFilePath, g_ProcessAchievementData);
 	LOG_PROCESS_ERROR(nRetCode);
 
@@ -1680,7 +1680,7 @@ BOOL _InitWorldData()
 	nRetCode = CDataManager<SPIRIT_SLOT_DATA>::GetInstance().Init(SPIRIT_SLOT_FILE_NAME, szFilePath, NULL);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	// circle 任务
+	// Cycle quests
 	nRetCode = CDataManager<CIRCLE_REWARD_DATA>::GetInstance().Init(QUEST_REWARD_FILE_NAME, szFilePath, NULL);
 	LOG_PROCESS_ERROR(nRetCode);
 
@@ -1732,11 +1732,11 @@ BOOL _InitWorldData()
     nRetCode = CDataManager<PET_DATA>::GetInstance().Init(PET_DATA_FILE_NAME, szFilePath, NULL);
     LOG_PROCESS_ERROR(nRetCode);
 	
-	// 杀怪成就
+	// Monster-kill achievements
 	nRetCode = CDataManager<KILL_NPC_QUEST_DATA>::GetInstance().Init(KILL_NPC_QUEST_FILE_NAME, szFilePath, g_ProcessKillNpcQuestData);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	// 公会成就
+	// Guild achievements
     nRetCode = CDataManager<GUILD_ACHIEVEMENT>::GetInstance().Init(GUILD_ACHIEVEMENT_NAME, szFilePath, NULL);
     LOG_PROCESS_ERROR(nRetCode);
 
@@ -2223,7 +2223,7 @@ BOOL g_InitGameWorldLib(UINT64 qwStartTime, void* poMessageNotifier, IPacketAllo
     nRetCode = _InitScript();
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = _InitWorldData();  // 加载txt配置文件
+    nRetCode = _InitWorldData();  // Load text configuration files
     LOG_PROCESS_ERROR(nRetCode);
 
     // 3
@@ -2236,7 +2236,7 @@ BOOL g_InitGameWorldLib(UINT64 qwStartTime, void* poMessageNotifier, IPacketAllo
     nRetCode = CBTManager::GetInstance().Init();
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CSceneFileMgr::GetInstance().Init();  // 地图
+    nRetCode = CSceneFileMgr::GetInstance().Init();  // Map
     LOG_PROCESS_ERROR(nRetCode);
 
     nRetCode = CAIManager::GetInstance().Init();

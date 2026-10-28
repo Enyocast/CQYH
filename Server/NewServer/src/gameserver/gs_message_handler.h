@@ -59,7 +59,7 @@ public:
 
     BOOL DoMSQueryRealMoneyRole(UINT32 dwClientSessionID, UINT32 dwRoleID, INT64 llRealMoney);
 
-    // 玩家购买商城物品
+    // Player purchases a cash-shop item
     BOOL DoMSRoleRealMoneyShopBuyItemAck(UINT32 dwClientSessionID, INT32 nResult, UINT32 dwRoleID, INT32 nItemID, INT32 nItemCount, CHAR* pcszRoleName);
 
     /************************************************************************/
@@ -237,21 +237,21 @@ private:
     void OnMSAddExerciseTime(PACKET_BUFFER *pPacketBuffer, UINT32 dwSize, ISocketSession *pSocketSession);
 
 
-    // ========== 下面是自己新加代码 begin
+    // ========== Custom code begins
 
-    // 玩家查询元宝
+    // Player queries ingots
     void OnMSQueryRealMoneyRole(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession);
 
-    // 商城购物成功
+    // Cash-shop purchase succeeded
     void OnMSRealMoneyBuySuccess(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession);
 
-    // 玩家购买商城物品
+    // Player purchases a cash-shop item
     void OnMSRoleRealMoneyShopBuyItemReq(PACKET_BUFFER *pPacketBuffer, UINT32 dwSize, ISocketSession *pSocketSession);
 
-    // 玩家购买点卡
+    // Player purchases a time card
     void OnMSCustomRoleBuyTimeReq(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession);
 
-    // ========== 下面是自己新加代码 end
+    // ========== Custom code ends
 
     /************************************************************************/
     // From DB

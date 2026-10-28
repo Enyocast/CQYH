@@ -3,7 +3,7 @@
 	file:		gm_manager.h
 	author:		Allan Tao
 	
-	purpose:	lock user name 管理类
+	purpose:	Locked user name management class
 *********************************************************************/
 
 #ifndef _H_GM_MANAGER_H_

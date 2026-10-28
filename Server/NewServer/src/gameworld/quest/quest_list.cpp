@@ -153,7 +153,7 @@ INT32 CQuestList::CanAccept(const QUEST_DATA* pQuestData, INT32 nAcceptType, INT
 
 		pCircleQuestData =  CDataManager<CIRCLE_QUEST_DATA>::GetInstance().GetData(MAKE_CIRCLE_QUEST_KEY(pQuestData->nCircleID, 
 			(m_stCircleQuest[pQuestData->nCircleID-1].nCompleteCount+1), m_pOwner->GetLevel()));
-		LOG_PROCESS_ERROR_RET_CODE(pCircleQuestData, errQuestCircleDailyComplete);			// 找不到说明今天该环已经做满了
+		LOG_PROCESS_ERROR_RET_CODE(pCircleQuestData, errQuestCircleDailyComplete);			// If not found, today’s cycle limit has been reached
 
 		LOG_PROCESS_ERROR(pQuestData->nQuestID == m_stCircleQuest[pQuestData->nCircleID-1].nQuestID);
 		LOG_PROCESS_ERROR(m_stCircleQuest[pQuestData->nCircleID-1].nCompleteCount < pCircleQuestData->nMaxCirclePerDay);
@@ -394,7 +394,7 @@ INT32 CQuestList::CanAccept(const QUEST_DATA* pQuestData, INT32 nAcceptType, INT
 		LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetItemBag()->GetFreeSlots(CONSLOT_DEFAULT) > 1, errQuestItemBagFull);
 	}
 
-	// 调用脚本
+	// Call script
 	if ( '\0' != pQuestData->szBeforeAcceptScriptName[0])
 	{
 		INT32 nRetCode = 0;
@@ -504,7 +504,7 @@ INT32 CQuestList::Accept(INT32 nQuestID)
 		}
 	}
 
-	// 调用脚本
+	// Call script
 	if ( '\0' != pQuestData->szAfterAcceptScriptName[0])
 	{
 		INT32 nRetCode = 0;
@@ -754,7 +754,7 @@ INT32 CQuestList::CanComplete(INT32 nQuestID)
 
 	PROCESS_ERROR_RET_CODE(dwRewardDefaultItemCount <= m_pOwner->GetItemBag()->GetFreeSlots(CONSLOT_DEFAULT), errQuestItemBagFull);
 
-	// 调用脚本
+	// Call script
 	if ( '\0' != pQuestData->szBeforeCompleteScriptName[0])
 	{
 		INT32 nRetCode = 0;
@@ -847,7 +847,7 @@ INT32 CQuestList::Complete(INT32 nQuestID, INT32 nSelectedAwardIdx)
 		LOG_PROCESS_ERROR(it != m_AcceptedNormalQuestList.end());
 	}
 
-	// 调用脚本
+	// Call script
 	if ( '\0' != pQuestData->szAfterCompleteScriptName[0])
 	{
 		CLuaScript* poScript = CScriptMgr::GetInstance().FindScript(QUEST_SCRIPT_NAME);
@@ -1088,7 +1088,7 @@ INT32 CQuestList::Abandon(INT32 nQuestID)
 	pQuestData = CDataManager<QUEST_DATA>::GetInstance().GetData(nQuestID);
 	LOG_PROCESS_ERROR(pQuestData);
 
-	// 调用脚本
+	// Call script
 	if ( '\0' != pQuestData->szAbandonScriptName[0])
 	{
 		CLuaScript* poScript = CScriptMgr::GetInstance().FindScript(QUEST_SCRIPT_NAME);
@@ -1153,7 +1153,7 @@ INT32 CQuestList::Abandon(INT32 nQuestID)
 		}
 	}
 
-	// 如果为回收道具任务，清掉标志
+	// Clear the flag for an item recycling quest
 
 	for (INT32 nCheckVarIndex = 0; nCheckVarIndex < MAX_CHECK_VAR_COUNT; nCheckVarIndex++)
 	{
@@ -1697,7 +1697,7 @@ BOOL CQuestList::_CheckVariable(const ACCEPTED_QUEST* pAcceptedQuest, INT32 nVar
 	case vtClient:
 		{
 			// modified by zhangrui05
-			// 为了节省使用Client变量, 客户端将ECVT_Quest号变量按位存储，nValue代表位数，所以这里的判定需按位来判定
+			// To conserve client variables, the client stores ECVT_Quest variables as bits; nValue identifies the bit, so check it bitwise
 			PROCESS_ERROR((m_pOwner->GetClientVariable(nIndex) & (1 << nValue)) > 0);
 		}
 		break;
@@ -1916,7 +1916,7 @@ INT32 CQuestList::GenerateRewardQuest(void)
 	m_qwRewardAccepted = 0;
 	m_qwRewardCompleted = 0;
 
-	// 考虑到升级导致index对不上的情况，从aceepeted quest里面拿到接了未完成的数量
+	// Account for level-up changing the index by counting accepted but incomplete quests
 	for (Iter = m_AcceptedNormalQuestList.begin(); Iter != m_AcceptedNormalQuestList.end(); Iter++)
 	{
 		const QUEST_DATA* pQuestData = CDataManager<QUEST_DATA>::GetInstance().GetData(Iter->nQuestID);
@@ -1934,7 +1934,7 @@ INT32 CQuestList::GenerateRewardQuest(void)
 		}
 	}
 	
-	if (m_nRewardIndex != m_pOwner->GetLevel()/5) // 更新index
+	if (m_nRewardIndex != m_pOwner->GetLevel()/5) // Update index
 	{
 		memset(&m_qwRewardAccepted, 0, sizeof(m_qwRewardAccepted));
 		m_nRewardIndex = m_pOwner->GetLevel()/5;
@@ -1942,7 +1942,7 @@ INT32 CQuestList::GenerateRewardQuest(void)
 
 	while (nQuestCount < MAX_REWARD_QUEST_COUNT_PER_ROLE)
 	{
-		INT32 nIndex = CDailyQuestMgr::GetInstance().GetRandomQuestIndex(m_nRewardIndex);		//错误说明这一级已经没有悬赏任务了
+		INT32 nIndex = CDailyQuestMgr::GetInstance().GetRandomQuestIndex(m_nRewardIndex);		//An error means no bounty quests remain for this level
 		PROCESS_ERROR(nIndex>=0 && nIndex<MAX_REWARD_QUEST_COUNT_PER_GROUP);
 
 		if (!(m_qwRewardQuest & ((UINT64)1<<nIndex)) && !(m_qwRewardAccepted & ((UINT64)1<<nIndex)))

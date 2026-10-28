@@ -58,7 +58,7 @@ BOOL CGateServer::Init(INetEventHandler* poInterMessageHandler, INetEventHandler
     nRetCode = m_PacketAllocator.Init(g_ServerConfig.GT.Net.nSmallPacketCount, g_ServerConfig.GT.Net.nLargePacketCount);
     LOG_PROCESS_ERROR(nRetCode);
 
-    // external - 外联网
+    // External network
     AsioInitParam.nMaxSessionCount = g_ServerConfig.GT.nMaxClientSessionCount;
     AsioInitParam.nThreadCount = g_ServerConfig.GT.nWorkThreadCount;
     AsioInitParam.pnMessageSizeList = g_nC2SMessageSize;
@@ -68,7 +68,7 @@ BOOL CGateServer::Init(INetEventHandler* poInterMessageHandler, INetEventHandler
     m_pExternalNet = g_CreateNetInterface(netAsio, &m_PacketAllocator, poExternalMessageHandler, &AsioInitParam);
     LOG_PROCESS_ERROR(m_pExternalNet);
 
-    // internal - 内联网
+    // Internal network
 #if defined(WIN32)
     IntranetInitParam.nMaxAcceptor = g_ServerConfig.GT.Net.nMaxAcceptor;
     IntranetInitParam.nMaxConnector = g_ServerConfig.GT.Net.nMaxConnector;
@@ -96,7 +96,7 @@ BOOL CGateServer::Init(INetEventHandler* poInterMessageHandler, INetEventHandler
 		if (m_dwExternalAddr[m_nExternalAddrCount] == 0)
 			break;
 
-        // 外联网 - 创建Acceptor
+        // External network - create acceptor
 		m_pClientSocketAcceptor[m_nExternalAddrCount] = m_pExternalNet->CreateAcceptor();
 		LOG_PROCESS_ERROR(m_pClientSocketAcceptor[m_nExternalAddrCount]);
 
@@ -122,7 +122,7 @@ BOOL CGateServer::Init(INetEventHandler* poInterMessageHandler, INetEventHandler
 	m_dwInternalAddr = GetIp(g_ServerConfig.Common.szIntranetAddr, g_ServerConfig.Common.szIntranetMask, TRUE, 0);
 	LOG_PROCESS_ERROR(m_dwInternalAddr);
 
-    // 创建共享内存
+    // Create shared memory
     m_dwInternalPort = g_ServerConfig.GT.dwStartInternalPort;
 	nRetCode = m_pGSSocketAcceptor->Open(m_dwInternalAddr, m_dwInternalPort);
     while(!nRetCode)
@@ -208,10 +208,10 @@ BOOL CGateServer::MainLoop(void)
 		s_qwLastSessionTick = qwCurrentTick;
 	}
 
-    nRetCode = m_pInternalNet->MainLoop();    // 内联网
+    nRetCode = m_pInternalNet->MainLoop();    // Internal network
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = m_pExternalNet->MainLoop();    // 外联网
+    nRetCode = m_pExternalNet->MainLoop();    // External network
     LOG_PROCESS_ERROR(nRetCode);
 
 	UINT64 qwEndTick = GetTickCountEx();
@@ -283,19 +283,19 @@ BOOL _InitServer(void)
 	INF("initializing gate server %d.%d.%d", MAJOR_VERSION, MINOR_VERSION, BUILD_NUMBER);
 #endif	// _FINAL
 
-    // 创建网络 - 内联网/外联网
+    // Create internal and external networks
     nRetCode = CGateServer::GetInstance().Init(&rInternalMessageHandler, &rExternalMessageHandler);
     LOG_PROCESS_ERROR(nRetCode);
 
-    // 外联网 - 初始化信息
+    // Initialize external network information
     nRetCode = rExternalMessageHandler.Init(rGateServer.GetExternalNet(), rGateServer.GetPacketAllocator());
     LOG_PROCESS_ERROR(nRetCode);
 
-    // 内联网 - 初始化信息
+    // Initialize internal network information
     nRetCode = rInternalMessageHandler.Init(rGateServer.GetInternalNet(), rGateServer.GetPacketAllocator());
     LOG_PROCESS_ERROR(nRetCode);
 
-    // 初始化 - 各种SESSION字段
+    // Initialize session fields
     nRetCode = CGTSessionMgr::GetInstance().Init(rGateServer.GetExternalNet(), rGateServer.GetInternalNet());
     LOG_PROCESS_ERROR(nRetCode);
 

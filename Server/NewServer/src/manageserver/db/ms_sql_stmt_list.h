@@ -93,7 +93,7 @@ enum MS_SQL_STMT_ID
 	mysqlUpdateGroup,
 	mysqlDeleteGroup,
 
-    mysqlSelectLoginQuery,    // 客户登录, 查询账号密码
+    mysqlSelectLoginQuery,    // Client login: query account credentials
 
     msqlSelectAuctionDeposit,
     msqlInserAuctionDeposit,

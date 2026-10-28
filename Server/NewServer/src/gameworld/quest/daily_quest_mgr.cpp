@@ -110,7 +110,7 @@ BOOL CDailyQuestMgr::_AddDailyQuest(INT32 nIndex, INT32 nQuestID)
 	LOG_PROCESS_ERROR(nIndex >= 0 && nIndex < MAX_DAILY_QUEST_GROUP_COUNT);
 
 	nQuestCount = m_DailyQuestGroupSize[nIndex];
-	LOG_PROCESS_ERROR(nQuestCount < MAX_REWARD_QUEST_COUNT_PER_GROUP);	// 目前每个等级段最多只允许维护64个任务
+	LOG_PROCESS_ERROR(nQuestCount < MAX_REWARD_QUEST_COUNT_PER_GROUP);	// At most 64 quests are currently maintained per level bracket
 
 	m_DailyQuestGroup[nIndex][nQuestCount] = nQuestID;
 	m_DailyQuestGroupSize[nIndex]++;

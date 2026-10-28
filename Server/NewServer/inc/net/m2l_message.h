@@ -25,7 +25,7 @@ namespace InternalMessage
     struct M2L_LOGIN_QUERY_ACK : MESSAGE_HEADER
     {
         UINT32 dwClientSessionID;
-        UINT32 dwError;    // 成功 = 1, 失败 = 0
+        UINT32 dwError;    // Success = 1, failure = 0
         char   szUserName[USER_NAME_LEN];
     };
 

@@ -211,7 +211,7 @@ BOOL CTeam::SelectLeader(BOOL bLeaveTeam)
     }
     
     PROCESS_SUCCESS(bLeaveTeam == FALSE);
-    //离开队伍时必须移交队长
+    //Transfer leadership before leaving the team
     for (INT32 nIndex = 0; nIndex < m_nMemberSizeLimit; nIndex++)
     {
         if (m_dwMemberIDList[nIndex] == 0)

@@ -33,7 +33,7 @@ using namespace ExternalMessage;
 
 #ifndef _ROBOT
 
-// 公会
+// Guild
 void CCliMessageHandler::OnGuildCreate(CRole *poRole, const char *pData)
 {
     INT32       nResult = errUnknownError;

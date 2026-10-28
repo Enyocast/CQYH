@@ -506,7 +506,7 @@ inline BOOL _CheckGrid(const GRID_DATA* pcGrid, INT32 nCenterZ)
     return FALSE;
 }
 
-// 获取可用坐标, 原点坐标(nCenterX,nCenterY,nCenterZ), 范围 nMaxRange, 获取数量 nPosCount
+// Find available positions around (nCenterX, nCenterY, nCenterZ), within nMaxRange, returning nPosCount positions
 INT32 CSceneStaticData::GetNearestAvailablePos(INT32 nCenterX, INT32 nCenterY, INT32 nCenterZ,
     INT32 nMaxRange, INT32 nPosCount, INT32 nPos[][3])
 {
@@ -725,8 +725,8 @@ inline INT64 _CheckPos(NAV_VERTEX_DATA* pPoint, NAV_VERTEX_DATA* pLeftPoint, NAV
     return ((yr - yl) * xp + (xl - xr) * yp + (xr * yl - xl * yr));
 }
 
-// 查找路线, 起点坐标(nSrcX, nSrcY, nSrcZ), 目的坐标(nDestX, nDestY, nDestZ)
-// rnResultSize => 路线坐标数量, pnResult => 坐标路线点
+// Find a route from (nSrcX, nSrcY, nSrcZ) to (nDestX, nDestY, nDestZ)
+// rnResultSize: number of route positions; pnResult: route points
 BOOL CSceneStaticData::FindPath(INT32 nSrcX, INT32 nSrcY, INT32 nSrcZ, UINT16 wSrcEdge,
     INT32 nDestX, INT32 nDestY, INT32 nDestZ, UINT16 wDestEdge,
     INT32& rnResultSize, INT32* pnResult)
@@ -1175,7 +1175,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
     auto addNewNpc = m_vecAddSpawnNpcs.find(pSceneData->nSceneID);
     auto blockNpc = m_mapBlockNpc.find(pSceneData->nSceneID);
 
-    // 有新增加的怪物
+    // Additional monsters exist
     if (addNewNpc != m_vecAddSpawnNpcs.end())
     {
         std::vector<ADD_NPC_SPAWN_POINT> vecData = addNewNpc->second;
@@ -1194,7 +1194,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
 
         pSceneStaticData->m_nSingleNpcCount = 0;
 
-        // 计算 pSceneStaticData->m_nSingleNpcCount
+        // Calculate pSceneStaticData->m_nSingleNpcCount
         for (INT32 nIndex = 0; nIndex < pHeader->nNpcCount; nIndex++)
         {
             NPC_SINGLE_SPAWN& rSingleNpc = pHeader->NpcTable[nIndex];
@@ -1216,23 +1216,23 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
         pSceneStaticData->m_dwMemorySize += sizeof(NPC_SPAWN_POINT) * pSceneStaticData->m_nSingleNpcCount;
         memset(pSceneStaticData->m_pSingleNpcTable, 0, sizeof(NPC_SPAWN_POINT) * pSceneStaticData->m_nSingleNpcCount);
 
-        // 自定义配置里的Npc
+        // NPCs from custom configuration
         for (INT32 nIndex = 0; nIndex < pHeader->nNpcCount; nIndex++)
         {
             NPC_SINGLE_SPAWN& rSingleNpc = pHeader->NpcTable[nIndex];
             NPC_SPAWN_POINT& rPoint = pSceneStaticData->m_pSingleNpcTable[rSingleNpc.nID];
 
-            // 屏蔽Npc (因为是自定义配置里的Npc, 所以不想刷的Npc肯定不会写, 这里就不做判断了)
+            // NPC filtering is unnecessary for custom configuration: unwanted NPCs should not be listed
             //...
 
             rPoint.qwNameID = rSingleNpc.qwNameID;                   // npcID
-            rPoint.nX = rSingleNpc.nX;                               // 坐标X
-            rPoint.nY = rSingleNpc.nY;                               // 坐标Y
-            rPoint.nZ = rSingleNpc.nZ;                               // 坐标Z
-            rPoint.nRange = (INT32)rSingleNpc.wRange * POINT_PER_CM; // 范围
-            rPoint.nDirection = rSingleNpc.wDirection;               // 方向
+            rPoint.nX = rSingleNpc.nX;                               // X coordinate
+            rPoint.nY = rSingleNpc.nY;                               // Y coordinate
+            rPoint.nZ = rSingleNpc.nZ;                               // Z coordinate
+            rPoint.nRange = (INT32)rSingleNpc.wRange * POINT_PER_CM; // Range
+            rPoint.nDirection = rSingleNpc.wDirection;               // Direction
 
-            // 方向不对的npc
+            // NPC with invalid direction
             if (rPoint.nDirection < 0 || rPoint.nDirection >= MAX_DIRECTION_COUNT)
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1243,7 +1243,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 m_nErrorCount++;
             }
 
-            // 没有的npc
+            // NPC not found
             if (CDataManager<NPC_DATA>::GetInstance().GetData(rSingleNpc.nNpcTemplateID) == NULL)
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1255,32 +1255,32 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 m_nErrorCount++;
             }
 
-            // 添加怪物
+            // Add monster
             rPoint.RandNpc.Add(rSingleNpc.nNpcTemplateID, 1);
 
-            rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // 等级偏移?
+            rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // Level offset?
             rPoint.nAIID = rSingleNpc.nAIID;                                   // AIID
-            rPoint.nQuality = rSingleNpc.byQuality;                            // 质量类型
-            rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // 最小回复时间
-            rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // 最大回复时间
-            rPoint.nSpawnTime = CONVERT_TIME(rSingleNpc.nSpawnTime);           // 刷新时间
-            rPoint.nReviveTime = CONVERT_TIME(rSingleNpc.nReviveTime);         // 复活时间
-            rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // 血量
-            rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // 蓝量
-            rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // 能否掉落物品
+            rPoint.nQuality = rSingleNpc.byQuality;                            // Quality type
+            rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // Minimum respawn time
+            rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // Maximum respawn time
+            rPoint.nSpawnTime = CONVERT_TIME(rSingleNpc.nSpawnTime);           // Spawn time
+            rPoint.nReviveTime = CONVERT_TIME(rSingleNpc.nReviveTime);         // Revival time
+            rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // HP
+            rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // MP
+            rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // Whether items can drop
 
-            rPoint.nPatrolPathID = rSingleNpc.nPatrolPathID;   // 巡逻路线ID
-            rPoint.nPatrolStyle = rSingleNpc.nPatrolStyle;     // 巡逻风格
-            rPoint.nFollowHostID = rSingleNpc.nFollowHostID;   // 跟随ID?
-            rPoint.nFollowOffsetX = rSingleNpc.nFollowOffsetX; // 跟随偏移X
-            rPoint.nFollowOffsetY = rSingleNpc.nFollowOffsetY; // 跟随偏移Y
+            rPoint.nPatrolPathID = rSingleNpc.nPatrolPathID;   // Patrol path ID
+            rPoint.nPatrolStyle = rSingleNpc.nPatrolStyle;     // Patrol style
+            rPoint.nFollowHostID = rSingleNpc.nFollowHostID;   // Follow ID?
+            rPoint.nFollowOffsetX = rSingleNpc.nFollowOffsetX; // Follow X offset
+            rPoint.nFollowOffsetY = rSingleNpc.nFollowOffsetY; // Follow Y offset
 
-            rPoint.bAutoSpawn = rSingleNpc.IsAutoSpawn;        // 自动刷新?
-            rPoint.bAutoRespawn = rSingleNpc.IsAutoReSpawn;    // 自动回复?
-            rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // 分组ID
-            rPoint.nID = rSingleNpc.nID;                       // 数组中的下标?
+            rPoint.bAutoSpawn = rSingleNpc.IsAutoSpawn;        // Automatic spawn?
+            rPoint.bAutoRespawn = rSingleNpc.IsAutoReSpawn;    // Automatic respawn?
+            rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // Group IDs
+            rPoint.nID = rSingleNpc.nID;                       // Index in array?
 
-            // load BT - 加载脚本行为树
+            // Load BT - load the scripted behavior tree
             rPoint.pDeadBTRoot = NULL;
             snprintf(szBTTreeName, sizeof(szBTTreeName), "%s_%d", g_BTEventName[evtSingleNpcDie], rPoint.nID);
             if (pSceneStaticData->m_pScript && pSceneStaticData->m_pScript->IsTableExist(szBTTreeName))
@@ -1293,7 +1293,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 }
             }
 
-            // 添加到 pSceneStaticData->m_mapSingleNpc
+            // Add to pSceneStaticData->m_mapSingleNpc
             if (rPoint.qwNameID > 0)
             {
                 InsRet = pSceneStaticData->m_mapSingleNpc.insert(std::make_pair(rPoint.qwNameID, &rPoint));
@@ -1315,7 +1315,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
 
             // s_mapNpcCount[rSingleNpc.nNpcTemplateID]++;
 
-            // 判断网格坐标
+            // Check grid coordinates
             if (!pSceneStaticData->CheckGrid(rPoint.nX, rPoint.nY, rPoint.nZ + GRID_WIDTH))
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1332,19 +1332,19 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
 #endif
         }
 
-        // 新增加的怪物
+        // Newly added monsters
         for (ADD_NPC_SPAWN_POINT& rSingleNpc : vecData)
         {
             NPC_SPAWN_POINT& rPoint = pSceneStaticData->m_pSingleNpcTable[rSingleNpc.nID];
 
             rPoint.qwNameID = 0;                   // npcID
-            rPoint.nX = rSingleNpc.nX;                               // 坐标X
-            rPoint.nY = rSingleNpc.nY;                               // 坐标Y
-            rPoint.nZ = rSingleNpc.nZ;                               // 坐标Z
-            rPoint.nRange = rSingleNpc.nRange; // 范围
-            rPoint.nDirection = rSingleNpc.nDirection;               // 方向
+            rPoint.nX = rSingleNpc.nX;                               // X coordinate
+            rPoint.nY = rSingleNpc.nY;                               // Y coordinate
+            rPoint.nZ = rSingleNpc.nZ;                               // Z coordinate
+            rPoint.nRange = rSingleNpc.nRange; // Range
+            rPoint.nDirection = rSingleNpc.nDirection;               // Direction
 
-            // 方向不对的npc
+            // NPC with invalid direction
             if (rPoint.nDirection < 0 || rPoint.nDirection >= MAX_DIRECTION_COUNT)
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1355,7 +1355,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 m_nErrorCount++;
             }
 
-            // 没有的npc
+            // NPC not found
             if (CDataManager<NPC_DATA>::GetInstance().GetData(rSingleNpc.nTemplateID) == NULL)
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1369,29 +1369,29 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
 
             rPoint.RandNpc.Add(rSingleNpc.nTemplateID, 1);
 
-            rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // 等级偏移?
+            rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // Level offset?
             rPoint.nAIID = 0;                                   // AIID
-            rPoint.nQuality = rSingleNpc.nQuality;                            // 质量类型
-            rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // 最小回复时间
-            rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // 最大回复时间
-            rPoint.nSpawnTime = 0;           // 刷新时间
-            rPoint.nReviveTime = 0;           // 复活时间
-            rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // 血量
-            rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // 蓝量
-            rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // 能否掉落物品
+            rPoint.nQuality = rSingleNpc.nQuality;                            // Quality type
+            rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // Minimum respawn time
+            rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // Maximum respawn time
+            rPoint.nSpawnTime = 0;           // Spawn time
+            rPoint.nReviveTime = 0;           // Revival time
+            rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // HP
+            rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // MP
+            rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // Whether items can drop
 
-            rPoint.nPatrolPathID = 0;  // 巡逻路线ID
-            rPoint.nPatrolStyle = 0;  // 巡逻风格
-            rPoint.nFollowHostID = 0;  // 跟随ID?
-            rPoint.nFollowOffsetX = 0;  // 跟随偏移X
-            rPoint.nFollowOffsetY = 0;  // 跟随偏移Y
+            rPoint.nPatrolPathID = 0;  // Patrol path ID
+            rPoint.nPatrolStyle = 0;  // Patrol style
+            rPoint.nFollowHostID = 0;  // Follow ID?
+            rPoint.nFollowOffsetX = 0;  // Follow X offset
+            rPoint.nFollowOffsetY = 0;  // Follow Y offset
 
-            rPoint.bAutoSpawn = rSingleNpc.bAutoSpawn;        // 自动刷新?
-            rPoint.bAutoRespawn = rSingleNpc.bAutoRespawn;    // 自动回复?
-            rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // 分组ID
-            rPoint.nID = rSingleNpc.nID;                       // 数组中的下标?
+            rPoint.bAutoSpawn = rSingleNpc.bAutoSpawn;        // Automatic spawn?
+            rPoint.bAutoRespawn = rSingleNpc.bAutoRespawn;    // Automatic respawn?
+            rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // Group IDs
+            rPoint.nID = rSingleNpc.nID;                       // Index in array?
 
-            // load BT - 加载脚本行为树
+            // Load BT - load the scripted behavior tree
             rPoint.pDeadBTRoot = NULL;
             snprintf(szBTTreeName, sizeof(szBTTreeName), "%s_%d", g_BTEventName[evtSingleNpcDie], rPoint.nID);
             if (pSceneStaticData->m_pScript && pSceneStaticData->m_pScript->IsTableExist(szBTTreeName))
@@ -1404,7 +1404,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 }
             }
 
-            // 添加到 pSceneStaticData->m_mapSingleNpc
+            // Add to pSceneStaticData->m_mapSingleNpc
             if (rPoint.qwNameID > 0)
             {
                 InsRet = pSceneStaticData->m_mapSingleNpc.insert(std::make_pair(rPoint.qwNameID, &rPoint));
@@ -1426,7 +1426,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
 
             // s_mapNpcCount[rSingleNpc.nNpcTemplateID]++;
 
-            // 判断网格坐标
+            // Check grid coordinates
             if (!pSceneStaticData->CheckGrid(rPoint.nX, rPoint.nY, rPoint.nZ + GRID_WIDTH))
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1444,7 +1444,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
         }
 
     }
-    // 原代码 - 没有新增加的怪物
+    // Original code - no additional monsters
     else
     {
         INT32 nRetCode = 0;
@@ -1480,7 +1480,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
             NPC_SINGLE_SPAWN& rSingleNpc = pHeader->NpcTable[nIndex];
             NPC_SPAWN_POINT& rPoint = pSceneStaticData->m_pSingleNpcTable[rSingleNpc.nID];
 
-            // 有屏蔽的Npc
+            // Some NPCs are blocked
             if (blockNpc != m_mapBlockNpc.end())
             {
                 auto find_block_npc = blockNpc->second.find(rSingleNpc.nNpcTemplateID);
@@ -1489,13 +1489,13 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
             }
 
             rPoint.qwNameID = rSingleNpc.qwNameID;                   // npcID
-            rPoint.nX = rSingleNpc.nX;                               // 坐标X
-            rPoint.nY = rSingleNpc.nY;                               // 坐标Y
-            rPoint.nZ = rSingleNpc.nZ;                               // 坐标Z
-            rPoint.nRange = (INT32)rSingleNpc.wRange * POINT_PER_CM; // 范围
-            rPoint.nDirection = rSingleNpc.wDirection;               // 方向
+            rPoint.nX = rSingleNpc.nX;                               // X coordinate
+            rPoint.nY = rSingleNpc.nY;                               // Y coordinate
+            rPoint.nZ = rSingleNpc.nZ;                               // Z coordinate
+            rPoint.nRange = (INT32)rSingleNpc.wRange * POINT_PER_CM; // Range
+            rPoint.nDirection = rSingleNpc.wDirection;               // Direction
 
-            // 方向不对的npc
+            // NPC with invalid direction
             if (rPoint.nDirection < 0 || rPoint.nDirection >= MAX_DIRECTION_COUNT)
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1506,7 +1506,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 m_nErrorCount++;
             }
 
-            // 没有的npc
+            // NPC not found
             if (CDataManager<NPC_DATA>::GetInstance().GetData(rSingleNpc.nNpcTemplateID) == NULL)
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1520,29 +1520,29 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
 
             rPoint.RandNpc.Add(rSingleNpc.nNpcTemplateID, 1);
 
-            rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // 等级偏移?
+            rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // Level offset?
             rPoint.nAIID = rSingleNpc.nAIID;                                   // AIID
-            rPoint.nQuality = rSingleNpc.byQuality;                            // 质量类型
-            rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // 最小回复时间
-            rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // 最大回复时间
-            rPoint.nSpawnTime = CONVERT_TIME(rSingleNpc.nSpawnTime);           // 刷新时间
-            rPoint.nReviveTime = CONVERT_TIME(rSingleNpc.nReviveTime);         // 复活时间
-            rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // 血量
-            rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // 蓝量
-            rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // 能否掉落物品
+            rPoint.nQuality = rSingleNpc.byQuality;                            // Quality type
+            rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // Minimum respawn time
+            rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // Maximum respawn time
+            rPoint.nSpawnTime = CONVERT_TIME(rSingleNpc.nSpawnTime);           // Spawn time
+            rPoint.nReviveTime = CONVERT_TIME(rSingleNpc.nReviveTime);         // Revival time
+            rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // HP
+            rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // MP
+            rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // Whether items can drop
 
-            rPoint.nPatrolPathID = rSingleNpc.nPatrolPathID;   // 巡逻路线ID
-            rPoint.nPatrolStyle = rSingleNpc.nPatrolStyle;     // 巡逻风格
-            rPoint.nFollowHostID = rSingleNpc.nFollowHostID;   // 跟随ID?
-            rPoint.nFollowOffsetX = rSingleNpc.nFollowOffsetX; // 跟随偏移X
-            rPoint.nFollowOffsetY = rSingleNpc.nFollowOffsetY; // 跟随偏移Y
+            rPoint.nPatrolPathID = rSingleNpc.nPatrolPathID;   // Patrol path ID
+            rPoint.nPatrolStyle = rSingleNpc.nPatrolStyle;     // Patrol style
+            rPoint.nFollowHostID = rSingleNpc.nFollowHostID;   // Follow ID?
+            rPoint.nFollowOffsetX = rSingleNpc.nFollowOffsetX; // Follow X offset
+            rPoint.nFollowOffsetY = rSingleNpc.nFollowOffsetY; // Follow Y offset
 
-            rPoint.bAutoSpawn = rSingleNpc.IsAutoSpawn;        // 自动刷新?
-            rPoint.bAutoRespawn = rSingleNpc.IsAutoReSpawn;    // 自动回复?
-            rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // 分组ID
-            rPoint.nID = rSingleNpc.nID;                       // 数组中的下标?
+            rPoint.bAutoSpawn = rSingleNpc.IsAutoSpawn;        // Automatic spawn?
+            rPoint.bAutoRespawn = rSingleNpc.IsAutoReSpawn;    // Automatic respawn?
+            rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // Group IDs
+            rPoint.nID = rSingleNpc.nID;                       // Index in array?
 
-            // load BT - 加载脚本行为树
+            // Load BT - load the scripted behavior tree
             rPoint.pDeadBTRoot = NULL;
             snprintf(szBTTreeName, sizeof(szBTTreeName), "%s_%d", g_BTEventName[evtSingleNpcDie], rPoint.nID);
             if (pSceneStaticData->m_pScript && pSceneStaticData->m_pScript->IsTableExist(szBTTreeName))
@@ -1555,7 +1555,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 }
             }
 
-            // 添加到 pSceneStaticData->m_mapSingleNpc
+            // Add to pSceneStaticData->m_mapSingleNpc
             if (rPoint.qwNameID > 0)
             {
                 InsRet = pSceneStaticData->m_mapSingleNpc.insert(std::make_pair(rPoint.qwNameID, &rPoint));
@@ -1577,7 +1577,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
 
             // s_mapNpcCount[rSingleNpc.nNpcTemplateID]++;
 
-            // 判断网格坐标
+            // Check grid coordinates
             if (!pSceneStaticData->CheckGrid(rPoint.nX, rPoint.nY, rPoint.nZ + GRID_WIDTH))
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1589,7 +1589,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 m_nErrorCount++;
             }
 
-            // 自己增加测试代码
+            // Locally added test code
             //auto it = setNpcID.find(rSingleNpc.nNpcTemplateID);
             //if (it != setNpcID.end())
             //{
@@ -1619,7 +1619,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
         }
     }
 
-    // 原代码
+    // Original code
     //    INT32 nRetCode = 0;
     //    char szScript[256] = { 0 };
     //    char szBTTreeName[256] = { 0 };
@@ -1654,13 +1654,13 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
     //        NPC_SPAWN_POINT& rPoint = pSceneStaticData->m_pSingleNpcTable[rSingleNpc.nID];
     //
     //        rPoint.qwNameID = rSingleNpc.qwNameID;                   // npcID
-    //        rPoint.nX = rSingleNpc.nX;                               // 坐标X
-    //        rPoint.nY = rSingleNpc.nY;                               // 坐标Y
-    //        rPoint.nZ = rSingleNpc.nZ;                               // 坐标Z
-    //        rPoint.nRange = (INT32)rSingleNpc.wRange * POINT_PER_CM; // 范围
-    //        rPoint.nDirection = rSingleNpc.wDirection;               // 方向
+    //        rPoint.nX = rSingleNpc.nX;                               // X coordinate
+    //        rPoint.nY = rSingleNpc.nY;                               // Y coordinate
+    //        rPoint.nZ = rSingleNpc.nZ;                               // Z coordinate
+    //        rPoint.nRange = (INT32)rSingleNpc.wRange * POINT_PER_CM; // Range
+    //        rPoint.nDirection = rSingleNpc.wDirection;               // Direction
     //
-    //        // 方向不对的npc
+    //        // NPC with invalid direction
     //        if (rPoint.nDirection < 0 || rPoint.nDirection >= MAX_DIRECTION_COUNT)
     //        {
     //            INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1671,7 +1671,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
     //            m_nErrorCount++;
     //        }
     //
-    //        // 没有的npc
+    //        // NPC not found
     //        if (CDataManager<NPC_DATA>::GetInstance().GetData(rSingleNpc.nNpcTemplateID) == NULL)
     //        {
     //            INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1685,29 +1685,29 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
     //
     //        rPoint.RandNpc.Add(rSingleNpc.nNpcTemplateID, 1);
     //
-    //        rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // 等级偏移?
+    //        rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // Level offset?
     //        rPoint.nAIID = rSingleNpc.nAIID;                                   // AIID
-    //        rPoint.nQuality = rSingleNpc.byQuality;                            // 质量类型
-    //        rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // 最小回复时间
-    //        rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // 最大回复时间
-    //        rPoint.nSpawnTime = CONVERT_TIME(rSingleNpc.nSpawnTime);           // 刷新时间
-    //        rPoint.nReviveTime = CONVERT_TIME(rSingleNpc.nReviveTime);         // 复活时间
-    //        rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // 血量
-    //        rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // 蓝量
-    //        rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // 能否掉落物品
+    //        rPoint.nQuality = rSingleNpc.byQuality;                            // Quality type
+    //        rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // Minimum respawn time
+    //        rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // Maximum respawn time
+    //        rPoint.nSpawnTime = CONVERT_TIME(rSingleNpc.nSpawnTime);           // Spawn time
+    //        rPoint.nReviveTime = CONVERT_TIME(rSingleNpc.nReviveTime);         // Revival time
+    //        rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // HP
+    //        rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // MP
+    //        rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // Whether items can drop
     //
-    //        rPoint.nPatrolPathID = rSingleNpc.nPatrolPathID;   // 巡逻路线ID
-    //        rPoint.nPatrolStyle = rSingleNpc.nPatrolStyle;     // 巡逻风格
-    //        rPoint.nFollowHostID = rSingleNpc.nFollowHostID;   // 跟随ID?
-    //        rPoint.nFollowOffsetX = rSingleNpc.nFollowOffsetX; // 跟随偏移X
-    //        rPoint.nFollowOffsetY = rSingleNpc.nFollowOffsetY; // 跟随偏移Y
+    //        rPoint.nPatrolPathID = rSingleNpc.nPatrolPathID;   // Patrol path ID
+    //        rPoint.nPatrolStyle = rSingleNpc.nPatrolStyle;     // Patrol style
+    //        rPoint.nFollowHostID = rSingleNpc.nFollowHostID;   // Follow ID?
+    //        rPoint.nFollowOffsetX = rSingleNpc.nFollowOffsetX; // Follow X offset
+    //        rPoint.nFollowOffsetY = rSingleNpc.nFollowOffsetY; // Follow Y offset
     //
-    //        rPoint.bAutoSpawn = rSingleNpc.IsAutoSpawn;        // 自动刷新?
-    //        rPoint.bAutoRespawn = rSingleNpc.IsAutoReSpawn;    // 自动回复?
-    //        rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // 分组ID
-    //        rPoint.nID = rSingleNpc.nID;                       // 数组中的下标?
+    //        rPoint.bAutoSpawn = rSingleNpc.IsAutoSpawn;        // Automatic spawn?
+    //        rPoint.bAutoRespawn = rSingleNpc.IsAutoReSpawn;    // Automatic respawn?
+    //        rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // Group IDs
+    //        rPoint.nID = rSingleNpc.nID;                       // Index in array?
     //
-    //        // load BT - 加载脚本行为树
+    //        // Load BT - load the scripted behavior tree
     //        rPoint.pDeadBTRoot = NULL;
     //        snprintf(szBTTreeName, sizeof(szBTTreeName), "%s_%d", g_BTEventName[evtSingleNpcDie], rPoint.nID);
     //        if (pSceneStaticData->m_pScript && pSceneStaticData->m_pScript->IsTableExist(szBTTreeName))
@@ -1720,7 +1720,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
     //            }
     //        }
     //
-    //        // 添加到 pSceneStaticData->m_mapSingleNpc
+    //        // Add to pSceneStaticData->m_mapSingleNpc
     //        if (rPoint.qwNameID > 0)
     //        {
     //            InsRet = pSceneStaticData->m_mapSingleNpc.insert(std::make_pair(rPoint.qwNameID, &rPoint));
@@ -1742,7 +1742,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
     //
     //        // s_mapNpcCount[rSingleNpc.nNpcTemplateID]++;
     //
-    //        // 判断网格坐标
+    //        // Check grid coordinates
     //        if (!pSceneStaticData->CheckGrid(rPoint.nX, rPoint.nY, rPoint.nZ + GRID_WIDTH))
     //        {
     //            INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1787,7 +1787,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
     pSceneStaticData->m_nNpcLargeGroupCount = 0;
     pSceneStaticData->m_nNpcMediumGroupCount = 0;
 
-    // 计算 m_nNpcLargeGroupCount, m_nNpcMediumGroupCount
+    // Calculate m_nNpcLargeGroupCount and m_nNpcMediumGroupCount
     for (INT32 nLargeGroupIndex = 0; nLargeGroupIndex < pHeader->nLargeGroupCount; nLargeGroupIndex++)
     {
         NPC_SPAWN_LARGE_GROUP* pLargeGroupData = (NPC_SPAWN_LARGE_GROUP*)pData;
@@ -1807,7 +1807,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
 
             LOG_PROCESS_ERROR(pMediumGroupData->nID >= 0 && pMediumGroupData->nID < MAX_NPC_MEDIUM_GROUP_COUNT);
 
-            // 核心这一句代码, 赋值
+            // Key assignment
             if (pSceneStaticData->m_nNpcMediumGroupCount < pMediumGroupData->nID)
                 pSceneStaticData->m_nNpcMediumGroupCount = pMediumGroupData->nID;
 
@@ -1834,25 +1834,25 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
     LOG_PROCESS_ERROR(pSceneStaticData->m_nNpcLargeGroupCount < MAX_NPC_LARGE_GROUP_COUNT);
     LOG_PROCESS_ERROR(pSceneStaticData->m_nNpcMediumGroupCount < MAX_NPC_MEDIUM_GROUP_COUNT);
 
-    // 大分组 new
+    // Allocate large groups
     pSceneStaticData->m_pNpcLargeGroupTable = new NPC_LARGE_SPAWN_GROUP[pSceneStaticData->m_nNpcLargeGroupCount];
     LOG_PROCESS_ERROR(pSceneStaticData->m_pNpcLargeGroupTable);
-    // 大分组 清零
+    // Zero large groups
     pSceneStaticData->m_dwMemorySize += sizeof(NPC_LARGE_SPAWN_GROUP) * pSceneStaticData->m_nNpcLargeGroupCount;
     memset(pSceneStaticData->m_pNpcLargeGroupTable, 0, sizeof(NPC_LARGE_SPAWN_GROUP) * pSceneStaticData->m_nNpcLargeGroupCount);
 
-    // 中分组 new
+    // Allocate medium groups
     pSceneStaticData->m_pNpcMediumGroupTable = new NPC_MEDIUM_SPAWN_GROUP[pSceneStaticData->m_nNpcMediumGroupCount];
     LOG_PROCESS_ERROR(pSceneStaticData->m_pNpcMediumGroupTable);
-    // 中分组 清零
+    // Zero medium groups
     pSceneStaticData->m_dwMemorySize += sizeof(NPC_MEDIUM_SPAWN_GROUP) * pSceneStaticData->m_nNpcMediumGroupCount;
     memset(pSceneStaticData->m_pNpcMediumGroupTable, 0, sizeof(NPC_MEDIUM_SPAWN_GROUP) * pSceneStaticData->m_nNpcMediumGroupCount);
 
-    // 再次从头开始循环?
+    // Loop from the start again?
     pData = pOriginalData + sizeof(NPC_SPAWN_DATA_HEADER);
     for (INT32 nLargeGroupIndex = 0; nLargeGroupIndex < pHeader->nLargeGroupCount; nLargeGroupIndex++)
     {
-        // 大分组
+        // Large group
         NPC_SPAWN_LARGE_GROUP* pLargeGroupData = (NPC_SPAWN_LARGE_GROUP*)pData;
         pData += sizeof(NPC_SPAWN_LARGE_GROUP);
 
@@ -1881,7 +1881,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
 
         pLargeGroup->nMediumGroupCount = 0;
 
-        // 中分组
+        // Medium group
         LOG_PROCESS_ERROR(pLargeGroupData->nMediumGroupCount < MAX_NPC_MEDIUM_GROUP_PER_LARGE_GROUP);
         for (INT32 nMediumGroupIndex = 0; nMediumGroupIndex < pLargeGroupData->nMediumGroupCount; nMediumGroupIndex++)
         {
@@ -1918,7 +1918,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
 
             pMediumGroup->nSmallGroupCount = 0;
 
-            // 小分组
+            // Small group
             LOG_PROCESS_ERROR(pMediumGroupData->nSmallGroupCount < MAX_NPC_SMALL_GROUP_PER_MEDIUM_GROUP);
             for (INT32 nSmallGroupID = 0; nSmallGroupID < pMediumGroupData->nSmallGroupCount; nSmallGroupID++)
             {
@@ -1940,7 +1940,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
                 pSmallGroup->nPointCount = 0;
                 pSmallGroup->bDynamicRespawnTime = pSmallGroupData->bDynamicRespawnTime;
 
-                // 遍历小分组
+                // Iterate small groups
                 for (INT32 nPointIndex = 0; nPointIndex < pSmallGroupData->nPointCount; nPointIndex++)
                 {
                     NPC_SPAWN_POINT_DATA* pPointData = (NPC_SPAWN_POINT_DATA*)pData;
@@ -1988,7 +1988,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
 
                     for (INT32 nNpcIndex = 0; nNpcIndex < MAX_NPC_TEMPLATE_COUNT; nNpcIndex++)
                     {
-                        // 有屏蔽的Npc
+                        // Some NPCs are blocked
                         if (blockNpc != m_mapBlockNpc.end())
                         {
                             auto find_block_npc = blockNpc->second.find(pPointData->NpcList[nNpcIndex].nTemplateID);
@@ -1998,7 +1998,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
 
                         if (pPointData->NpcList[nNpcIndex].nTemplateID > 0 && pPointData->NpcList[nNpcIndex].nWeight > 0)
                         {
-                            // 判断 怪物是否存在
+                            // Check whether the monster exists
                             if (CDataManager<NPC_DATA>::GetInstance().GetData(pPointData->NpcList[nNpcIndex].nTemplateID) == NULL)
                             {
                                 INT32 nX = pSpawnPoint->nX / POINT_PER_CM;
@@ -2012,7 +2012,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
                                 m_nErrorCount++;
                             }
 
-                            // 判断 添加是否成功
+                            // Check whether insertion succeeded
                             nRetCode = pSpawnPoint->RandNpc.Add(pPointData->NpcList[nNpcIndex].nTemplateID, pPointData->NpcList[nNpcIndex].nWeight);
                             if (!nRetCode)
                             {
@@ -2027,7 +2027,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
                                 m_nErrorCount++;
                             }
 
-                            // 自己增加测试代码
+                            // Locally added test code
                             //auto it = setNpcID.find(pPointData->NpcList[nNpcIndex].nTemplateID);
                             //if (it != setNpcID.end())
                             //{
@@ -2317,7 +2317,7 @@ Exit0:
     return FALSE;
 }
 
-// 加载 teleports.bin
+// Load teleports.bin
 BOOL CSceneFileMgr::_LoadTeleport()
 {
     INT32 nRetCode = 0;
@@ -2382,7 +2382,7 @@ Exit0:
     return FALSE;
 }
 
-// 加载 teleport_platforms.bin
+// Load teleport_platforms.bin
 BOOL CSceneFileMgr::_LoadTeleportPlatforms(void)
 {
     INT32 nRetCode = 0;
@@ -2437,7 +2437,7 @@ Exit0:
     return FALSE;
 }
 
-// 区域 phx
+// Zone phx
 BOOL CSceneFileMgr::_LoadPhyxData(const SCENE_DATA* pSceneData, CSceneStaticData* pSceneStaticData, char* pData, INT32 nSize)
 {
     INT32 nRetCode = 0;
@@ -2495,27 +2495,27 @@ BOOL CSceneFileMgr::_LoadPhyxData(const SCENE_DATA* pSceneData, CSceneStaticData
         pSceneStaticData->m_dwSceneArea += pZoneData->nGridCount;
     }
 
-    // AI分析
-    // 逻辑区域（Region）的行数和列数
-    // 场景由多个 Zone（小区域）组成，每个 Zone 的大小为 ZONE_WIDTH。
-    // Region 是更大的逻辑划分单位，大小为 REGION_WIDTH（通常是 ZONE_WIDTH 的整数倍）。
-    // REGION_WIDTH / ZONE_WIDTH 表示一个 Region 包含多少个 Zone。
-    // m_nMaxZoneX 是场景的 Zone 列数，除以每 Region 的 Zone 列数，得到 Region 列数（+1 处理边界余数）。
-    // 同理可得 nRegionHeight（Region 行数）。
+    // AI analysis
+    // Rows and columns of logical regions
+    // A scene contains multiple zones, each ZONE_WIDTH units wide.
+    // A region is a larger logical unit of size REGION_WIDTH, usually a multiple of ZONE_WIDTH.
+    // REGION_WIDTH / ZONE_WIDTH is the number of zones along one region dimension.
+    // Divide the scene zone column count m_nMaxZoneX by zones per region to obtain region columns (+1 handles the remainder).
+    // nRegionHeight (region rows) is calculated similarly.
     INT32 nRegionWidth = pSceneStaticData->m_nMaxZoneX / (REGION_WIDTH / ZONE_WIDTH) + 1;
     LOG_PROCESS_ERROR(nRegionWidth < (1 << 16));
     INT32 nRegionHeight = pSceneStaticData->m_nMaxZoneY / (REGION_WIDTH / ZONE_WIDTH) + 1;
     LOG_PROCESS_ERROR(nRegionHeight < (1 << 16));
 
-    // AI分析
-    // 统计场景中 有效区域（Valid Region）的数量
-    // 有效区域定义: 若一个 Region 内存在至少一个 可行走的网格(bOutOfPoly == 0), 则该 Region 有效
-    // 检查每个网格是否可行走, 通过 GetGroundGrid 获取地面网格数据。若网格的 bOutOfPoly 为 0，标记该 Region 为有效。
-    // 1 - 循环上限：REGION_WIDTH / GRID_WIDTH
-    // 物理意义: 每个 Region(逻辑区域) 的尺寸为 REGION_WIDTH，而每个 Grid(网格) 的尺寸为 GRID_WIDTH
-    // 因此，一个 Region 在 X/Y 方向上包含的网格数为 "网格数 = REGION_WIDTH / GRID_WIDTH"
-    // 实际计算 "16 = 2097152 / 131072", 则 每个 Region 在 X/Y 方向各包含 16 个网格，总共有 256 个网格需要遍历
-    // 2 - 条件 !bValidRegion, 一旦在 Region 内找到 至少一个可行走网格（bOutOfPoly == 0），立即标记该 Region 为有效，并 提前退出循环。
+    // AI analysis
+    // Count valid regions in the scene
+    // A region is valid if it contains at least one walkable grid (bOutOfPoly == 0).
+    // Use GetGroundGrid to check walkability; mark the region valid if a grid has bOutOfPoly == 0.
+    // 1 - Loop bound: REGION_WIDTH / GRID_WIDTH
+    // Each region has size REGION_WIDTH, and each grid has size GRID_WIDTH.
+    // Therefore the number of grids per region along X or Y is REGION_WIDTH / GRID_WIDTH.
+    // For 16 = 2097152 / 131072, each region has 16 grids along each axis, or 256 grids to scan.
+    // 2 - The !bValidRegion condition exits early once a walkable grid marks the region valid.
     pSceneStaticData->m_dwValidRegion = 0;
     UINT32 dwValid_GRID_DATA = 0;
     for (INT32 nRegionX = 0; nRegionX < nRegionWidth; nRegionX++)
@@ -2553,14 +2553,14 @@ BOOL CSceneFileMgr::_LoadPhyxData(const SCENE_DATA* pSceneData, CSceneStaticData
 
     pSceneStaticData->m_pdwValidRegionList = new UINT32[pSceneStaticData->m_dwValidRegion + 1];
 
-    // AI分析
-    // 填充 m_pdwValidRegionList
-    // 关键代码 pSceneStaticData->m_pdwValidRegionList[nRegionIndex++] = nRegionX << 16 | nRegionY;
-    // 将 nRegionX 左移 16 位，高位存储 X 坐标；nRegionY 存储在低 16 位。
-    // 结果是一个 32 位整数，同时包含 X 和 Y 坐标。
-    // 这样设计的意义是 "高效存储与读取"
-    // INT32 decodedX = encodedValue >> 16;  // 解码 X
-    // INT32 decodedY = encodedValue & 0xFFFF; // 解码 Y
+    // AI analysis
+    // Populate m_pdwValidRegionList
+    // Key assignment: pSceneStaticData->m_pdwValidRegionList[nRegionIndex++] = nRegionX << 16 | nRegionY;
+    // Shift nRegionX left 16 bits for the high half; store nRegionY in the low 16 bits.
+    // The result is a 32-bit integer containing both X and Y.
+    // This provides efficient storage and retrieval.
+    // INT32 decodedX = encodedValue >> 16;  // Decode X
+    // INT32 decodedY = encodedValue & 0xFFFF; // Decode Y
     INT32 nRegionIndex = 0;
     for (INT32 nRegionX = 0; nRegionX < nRegionWidth; nRegionX++)
     {
@@ -2606,7 +2606,7 @@ Exit0:
     return FALSE;
 }
 
-// 地形 nav
+// Terrain nav
 BOOL CSceneFileMgr::_LoadNavData(const SCENE_DATA* pSceneData, CSceneStaticData* pSceneStaticData, char* pData, INT32 nSize)
 {
     INT32 nRetCode = 0;
@@ -2616,12 +2616,12 @@ BOOL CSceneFileMgr::_LoadNavData(const SCENE_DATA* pSceneData, CSceneStaticData*
     LOG_PROCESS_ERROR(pHeader->dwTag == SCENE_NAV_FILE_TAG);
     LOG_PROCESS_ERROR(pHeader->dwVersion == SCENE_NAV_FILE_VERSION || pHeader->dwVersion == 2);
 
-    // 顶点
+    // Vertices
     pSceneStaticData->m_NavVertexData = new NAV_VERTEX_DATA[pHeader->wVertexCount + 2];
     LOG_PROCESS_ERROR(pSceneStaticData->m_NavVertexData);
     pSceneStaticData->m_dwMemorySize += sizeof(NAV_VERTEX_DATA) * (pHeader->wVertexCount + 2);
 
-    // 边
+    // Edges
     pSceneStaticData->m_NavEdgeData = new NAV_EDGE_DATA[pHeader->wEdgeCount];
     LOG_PROCESS_ERROR(pSceneStaticData->m_NavEdgeData);
     pSceneStaticData->m_dwMemorySize += sizeof(NAV_EDGE_DATA) * pHeader->wEdgeCount;
@@ -2654,7 +2654,7 @@ Exit0:
     return FALSE;
 }
 
-// 加载 phx/nav/scn
+// Load phx/nav/scn
 BOOL CSceneFileMgr::CTraverseSceneData::operator()(const SCENE_DATA* pSceneData)
 {
     BOOL bResult = FALSE;
@@ -2675,7 +2675,7 @@ BOOL CSceneFileMgr::CTraverseSceneData::operator()(const SCENE_DATA* pSceneData)
     nRetCode = pSceneStaticData->Init();
     LOG_PROCESS_ERROR(nRetCode);
 
-    // 加载场景 script
+    // Load scene script
 #ifndef	_ROBOT
     snprintf(szFileName, PATH_LEN, "%s/%s/%s/main.lua", CGameWorld::GetInstance().GetConfigPath(),
         SCENE_SCRIPT_FOLDER, pSceneData->szConfigName);
@@ -2711,7 +2711,7 @@ BOOL CSceneFileMgr::CTraverseSceneData::operator()(const SCENE_DATA* pSceneData)
     }
 #endif
 
-    // 加载 phx
+    // Load phx
     snprintf(szFileName, PATH_LEN, "%s/%s/%s/%s.%s", CGameWorld::GetInstance().GetConfigPath(), SCENE_FILE_FOLDER,
         pSceneData->szConfigName, pSceneData->szConfigName, SCENE_PHYX_FILE_EXT_NAME);
 
@@ -2735,7 +2735,7 @@ BOOL CSceneFileMgr::CTraverseSceneData::operator()(const SCENE_DATA* pSceneData)
         pFile = NULL;
     }
 
-    // 加载 nav
+    // Load nav
     snprintf(szFileName, PATH_LEN, "%s/%s/%s/%s.%s", CGameWorld::GetInstance().GetConfigPath(), SCENE_FILE_FOLDER,
         pSceneData->szConfigName, pSceneData->szConfigName, SCENE_NAV_FILE_EXT_NAME);
 
@@ -2759,7 +2759,7 @@ BOOL CSceneFileMgr::CTraverseSceneData::operator()(const SCENE_DATA* pSceneData)
         SAFE_DELETE_ARRAY(pData);
     }
 
-    // 加载 scn
+    // Load scn
     snprintf(szFileName, PATH_LEN, "%s/%s/%s/%s.%s", CGameWorld::GetInstance().GetConfigPath(),
         SCENE_FILE_FOLDER, pSceneData->szConfigName, pSceneData->szConfigName, SCENE_FILE_EXT_NAME);
 
@@ -2872,10 +2872,10 @@ BOOL CSceneFileMgr::Init(void)
     TraverseSceneData.pThis = this;
     m_nLoadedCount = 0;
 
-    // 额外添加[刷新/屏蔽]Npc
+    // Add extra NPC spawns / blocks
     Init_AdditionalProcessNpcs();
 
-    // 里面执行重载函数 BOOL CSceneFileMgr::CTraverseSceneData::operator()(const SCENE_DATA* pSceneData)
+    // Calls BOOL CSceneFileMgr::CTraverseSceneData::operator()(const SCENE_DATA* pSceneData)
     nRetCode = rDataMgr.Traverse(TraverseSceneData);
     LOG_CHECK_ERROR(nRetCode);
 
@@ -2893,11 +2893,11 @@ BOOL CSceneFileMgr::Init(void)
         g_AppendErrorMsg("场景数据文件中有---%d---个场景读取失败\n", rDataMgr.GetDataCount() - m_nLoadedCount);
     }
 
-    // 加载 teleports.bin
+    // Load teleports.bin
     nRetCode = _LoadTeleport();
     LOG_CHECK_ERROR(nRetCode);
 
-    // 加载 teleport_platforms.bin
+    // Load teleport_platforms.bin
     memset(m_lstTeleportPlatforms, 0, sizeof(m_lstTeleportPlatforms));
     nRetCode = _LoadTeleportPlatforms();
     LOG_CHECK_ERROR(nRetCode);
@@ -2974,14 +2974,14 @@ const NPC_POSITION* CSceneFileMgr::GetNpcPosition(INT32 nTemplateID) const
         return &it->second;
 }
 
-// 额外添加[刷新/屏蔽]Npc
+// Add extra NPC spawns / blocks
 void CSceneFileMgr::Init_AdditionalProcessNpcs()
 {
-    // 额外添加刷新Npc
+    // Add extra NPC spawns
     {
         m_vecAddSpawnNpcs.clear();
 
-        // 例子代码
+        // Example code
         {
             //INT32 nMapID_1 = 142;
             //ADD_NPC_SPAWN_POINT Npc_001;
@@ -3001,14 +3001,14 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //Npc_001.bCanDropItem = 1;
             //Npc_001.bAutoSpawn = 1;
             //Npc_001.bAutoRespawn = 1;
-            //Npc_001.nSmallGroupID = Npc_001.nMediumGroupID = Npc_001.nLargeGroupID = -1;  // 分组ID
+            //Npc_001.nSmallGroupID = Npc_001.nMediumGroupID = Npc_001.nLargeGroupID = -1;  // Group IDs
             //
             //std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
             //vecMap_1.push_back(Npc_001);
             //m_vecAddSpawnNpcs.insert(std::make_pair(nMapID_1, vecMap_1));
         }
 
-        // 146 沃玛寺庙1 - 3150,3151
+        // 146 Woma Temple1 - 3150,3151
         {
             INT32 nMapID_1 = 146;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3075,7 +3075,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 155 沃玛寺庙2 - 3150,3151
+        // 155 Woma Temple2 - 3150,3151
         {
             INT32 nMapID_1 = 155;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3142,7 +3142,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 148 死亡峡谷1 - 3220,3214
+        // 148 Death Canyon1 - 3220,3214
         {
             INT32 nMapID_1 = 148;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3209,7 +3209,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 201 死亡峡谷2 - 3220,3214
+        // 201 Death Canyon2 - 3220,3214
         {
             INT32 nMapID_1 = 201;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3276,7 +3276,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 157 死亡峡谷3 - 3217,3213
+        // 157 Death Canyon3 - 3217,3213
         {
             INT32 nMapID_1 = 157;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3343,7 +3343,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 158 死亡峡谷5 - 3217,3213
+        // 158 Death Canyon5 - 3217,3213
         {
             INT32 nMapID_1 = 158;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3410,7 +3410,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 203 死亡峡谷6 - 1020
+        // 203 Death Canyon6 - 1020
         {
             INT32 nMapID_1 = 203;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3477,7 +3477,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 149 石墓1 - 1045,1046
+        // 149 Stone Tomb1 - 1045,1046
         {
             INT32 nMapID_1 = 149;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3544,7 +3544,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 159 石墓2 - 1045,1046
+        // 159 Stone Tomb2 - 1045,1046
         {
             INT32 nMapID_1 = 159;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3611,7 +3611,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 160 石墓3 - 1048,1049
+        // 160 Stone Tomb3 - 1048,1049
         {
             INT32 nMapID_1 = 160;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3678,7 +3678,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 161 石墓4 - 1048,1049
+        // 161 Stone Tomb4 - 1048,1049
         {
             INT32 nMapID_1 = 161;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3745,7 +3745,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 162 石墓5 - 1047,1050
+        // 162 Stone Tomb5 - 1047,1050
         {
             INT32 nMapID_1 = 162;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3812,7 +3812,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 164 虹魔教坛 - 1047,1050
+        // 164 Hongmo Altar - 1047,1050
         {
             INT32 nMapID_1 = 164;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3879,7 +3879,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 180 祖玛寺庙1 - 1086,1087
+        // 180 Zuma Temple1 - 1086,1087
         {
             INT32 nMapID_1 = 180;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3946,7 +3946,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 167 祖玛寺庙2 - 1086,1087
+        // 167 Zuma Temple2 - 1086,1087
         {
             INT32 nMapID_1 = 167;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4013,7 +4013,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 168 祖玛寺庙3 - 1090,3300
+        // 168 Zuma Temple3 - 1090,3300
         {
             INT32 nMapID_1 = 168;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4080,7 +4080,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 169 祖玛寺庙4 - 1090,3300
+        // 169 Zuma Temple4 - 1090,3300
         {
             INT32 nMapID_1 = 169;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4147,7 +4147,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 170 祖玛寺庙5 - 3301,3302
+        // 170 Zuma Temple5 - 3301,3302
         {
             INT32 nMapID_1 = 170;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4214,7 +4214,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 172 祖玛大厅 - 3300
+        // 172 Zuma Hall - 3300
         {
             INT32 nMapID_1 = 172;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4256,7 +4256,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 188 赤月峡谷北入口 - 1103,1104
+        // 188 Chiyue Canyon North Entrance - 1103,1104
         {
             INT32 nMapID_1 = 188;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4323,7 +4323,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 189 赤月峡谷南入口 - 1103,1104
+        // 189 Chiyue Canyon South Entrance - 1103,1104
         {
             INT32 nMapID_1 = 189;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4390,7 +4390,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 190 赤月峡谷东入口 - 1106,1107
+        // 190 Chiyue Canyon East Entrance - 1106,1107
         {
             INT32 nMapID_1 = 190;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4457,7 +4457,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 191 赤月峡谷广场 - 1106,1107
+        // 191 Chiyue Canyon Square - 1106,1107
         {
             INT32 nMapID_1 = 191;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4524,7 +4524,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 193 左回廊 - 1105,1108
+        // 193 Left Corridor - 1105,1108
         {
             INT32 nMapID_1 = 193;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4591,7 +4591,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 194 右回廊 - 1105,1108
+        // 194 Right Corridor - 1105,1108
         {
             INT32 nMapID_1 = 194;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4658,7 +4658,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 195 抉择之地 - 1097
+        // 195 Land of Choice - 1097
         {
             INT32 nMapID_1 = 195;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4725,7 +4725,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 196 山谷秘道1 - 1097
+        // 196 Valley Secret Passage1 - 1097
         {
             INT32 nMapID_1 = 196;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4767,7 +4767,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 197 山谷秘道2 - 1097
+        // 197 Valley Secret Passage2 - 1097
         {
             INT32 nMapID_1 = 197;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4809,7 +4809,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 187 丛林迷宫 - 1105,1108
+        // 187 Jungle Maze - 1105,1108
         {
             INT32 nMapID_1 = 187;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4876,7 +4876,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 223 幽冥海1 - 2175
+        // 223 Nether Sea1 - 2175
         {
             INT32 nMapID_1 = 223;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4943,7 +4943,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 224 幽冥海2 - 2106, 2115
+        // 224 Nether Sea2 - 2106, 2115
         {
             INT32 nMapID_1 = 224;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -5010,7 +5010,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 225 幽冥海3 - 2117, 2118
+        // 225 Nether Sea3 - 2117, 2118
         {
             INT32 nMapID_1 = 225;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -5077,7 +5077,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 226 幽冥海4 - 2117, 2118
+        // 226 Nether Sea4 - 2117, 2118
         {
             INT32 nMapID_1 = 226;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -5145,20 +5145,20 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
         }
     }
 
-    // 额外屏蔽Npc
+    // Block additional NPCs
     {
-        m_mapBlockNpc[143] = { 6128, 6101 };  // 143-比奇省       => 6128-江湖侠客, 6101-皇室宝库传送员
-        m_mapBlockNpc[147] = { 6128, 6101 };  // 147-盟重省       => 6128-江湖侠客, 6101-皇室宝库传送员
-        m_mapBlockNpc[207] = { 3118 };  // 207-尸王殿       => 3118-雷术鬼尸
-        m_mapBlockNpc[156] = {  953 };  // 156-沃玛寺庙3层  => 953-毒针魔战士
-        m_mapBlockNpc[203] = { 3227 };  // 203-死亡峡谷6层  => 3227-摄魂跳跳蜂
-        m_mapBlockNpc[164] = { 3248 };  //  35-虹魔教坛     => 3248-白野猪暴徒
-        m_mapBlockNpc[172] = { 1078 };  // 172-祖玛大厅     => 1078-邪箭弓手
-        m_mapBlockNpc[173] = { 1078 };  // 173-祖玛教主之家 => 1078-邪箭弓手
-        m_mapBlockNpc[197] = { 1102 };  // 197-山谷秘道     => 1102-猎魔蜘蛛01
-        m_mapBlockNpc[244] = { 1142 };  // 244-魔龙血域     => 1142-魔龙鬼射01
-        m_mapBlockNpc[66]  = {  329 };  //  66-牛魔寺庙大厅 => 329-黑暗祭司
-        m_mapBlockNpc[55]  = {  306 };  //  55-骨魔洞五层   => 306-碎颅弓箭手
+        m_mapBlockNpc[143] = { 6128, 6101 };  // 143-Bichon Province       => 6128-Wandering Swordsman, 6101-Royal Treasury Teleporter
+        m_mapBlockNpc[147] = { 6128, 6101 };  // 147-Mengzhong Province       => 6128-Wandering Swordsman, 6101-Royal Treasury Teleporter
+        m_mapBlockNpc[207] = { 3118 };  // 207-Corpse King Hall       => 3118-Lightning Ghost Corpse
+        m_mapBlockNpc[156] = {  953 };  // 156-Woma Temple floor 3  => 953-Poison Needle Demon Warrior
+        m_mapBlockNpc[203] = { 3227 };  // 203-Death Canyon floor 6  => 3227-Soul-Stealing Jumping Bee
+        m_mapBlockNpc[164] = { 3248 };  //  35-Hongmo Altar     => 3248-White Boar Thug
+        m_mapBlockNpc[172] = { 1078 };  // 172-Zuma Hall     => 1078-Evil Arrow Archer
+        m_mapBlockNpc[173] = { 1078 };  // 173-Zuma Leader’s House => 1078-Evil Arrow Archer
+        m_mapBlockNpc[197] = { 1102 };  // 197-Valley Secret Passage     => 1102-Demon-Hunting Spider01
+        m_mapBlockNpc[244] = { 1142 };  // 244-Demon Dragon Blood Domain     => 1142-Demon Dragon Ghost Archer01
+        m_mapBlockNpc[66]  = {  329 };  //  66-Bull Demon Temple Hall => 329-Dark Priest
+        m_mapBlockNpc[55]  = {  306 };  //  55-Bone Demon Cave, floor 5   => 306-Skull-Crushing Archer
     }
 
 }

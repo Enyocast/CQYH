@@ -1,4 +1,4 @@
-// 默认代码
+// Default code
 #include "stdafx.h"
 #include "role.h"
 #include "server_config.h"
@@ -13,7 +13,7 @@
 #include "modifier_tree.h"
 #include "message_handler.h"
 
-// 抄代码
+// Copied code
 //#include "stdafx.h"
 //#include "role.h"
 //#include "item_bag.h"
@@ -25,7 +25,7 @@
 #include "role_db_def_v_3.h"
 using namespace ROLE_DB_DEF_V_3;
 
-// 玩家登录计算属性
+// Calculate player attributes on login
 BOOL CRole::_Load_v_3(const char* pcData, UINT32 dwSize)
 {
 	INT32 nRetCode = 0;
@@ -61,7 +61,7 @@ BOOL CRole::_Load_v_3(const char* pcData, UINT32 dwSize)
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
 		case rbtItem:
-			nRetCode = m_ItemBag.Load_v_2(pcBlockData, dwBlockSize);    // V2 新增代码
+			nRetCode = m_ItemBag.Load_v_2(pcBlockData, dwBlockSize);    // V2 additional code
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
 		case rbtSpell:
@@ -137,7 +137,7 @@ BOOL CRole::_Load_v_3(const char* pcData, UINT32 dwSize)
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
 		case rbtMisc:
-			nRetCode = _LoadMisc_v_3(pcBlockData, dwBlockSize);    // V3 新增代码
+			nRetCode = _LoadMisc_v_3(pcBlockData, dwBlockSize);    // V3 additional code
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
 		case rbtArena:
@@ -168,7 +168,7 @@ BOOL CRole::_Load_v_3(const char* pcData, UINT32 dwSize)
 			nRetCode = m_ItemBag.LoadBlackMarketCooldown_v_1(pcBlockData, dwBlockSize);
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
-		case rbtGamble:    // 补充
+		case rbtGamble:    // Additional code
 			nRetCode = m_Gamble.Load_v_1(pcBlockData, dwBlockSize);
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
@@ -188,9 +188,9 @@ Exit0:
 	return FALSE;
 }
 
-// ========== 抄的代码 begin ==========
+// ========== Copied code begins ==========
 
-// 找函数 m_pOwner->GetFixRoleCallback()
+// Find function m_pOwner->GetFixRoleCallback()
 BOOL CItemBag::Load_v_2(const char* pcData, UINT32 dwSize)
 {
 	const ROLE_DB_ITEM_DATA* pItemData = (const ROLE_DB_ITEM_DATA*)pcData;
@@ -220,7 +220,7 @@ BOOL CItemBag::Load_v_2(const char* pcData, UINT32 dwSize)
 
 	m_con_sizes[CONSLOT_DEFAULT] = pItemData->byDefaultSlotSize;
 	m_con_sizes[CONSLOT_BANK] = pItemData->byBankSlotSize;
-	m_con_sizes[CONSLOT_RESOURCE] = pItemData->byResourceSlotSize;    // 新增代码
+	m_con_sizes[CONSLOT_RESOURCE] = pItemData->byResourceSlotSize;    // Additional code
 	
 	m_dwWeaponLevelUpStartTime = pItemData->dwWeaponLevelUpStartTime;
 	m_nWeaponDur = pItemData->nWeaponDur;
@@ -243,7 +243,7 @@ BOOL CItemBag::Load_v_2(const char* pcData, UINT32 dwSize)
 		}
 		else
 		{
-			// 抄的代码 - 暂时屏蔽
+			// Copied code - temporarily disabled
 			//if (m_pOwner->GetFixRoleCallback())
 			//{
 			//	if (iteminfo.m_byConSlot >= CONSLOT_COUNT ||
@@ -299,7 +299,7 @@ BOOL CItemBag::Load_v_2(const char* pcData, UINT32 dwSize)
 
 	LOG_PROCESS_ERROR(buflen == pItemData->dwItemInfoBufLen);
 
-	//计算强化激活属性
+	//Calculate enhancement-activated attributes
 	{
 		const REFINE_ATTR_DATA* cur_data = NULL;
 		UINT16 cur_min_level = MAX_REFINE_LEVEL;
@@ -309,7 +309,7 @@ BOOL CItemBag::Load_v_2(const char* pcData, UINT32 dwSize)
 				cur_min_level = m_refine_levels[i];
 		}
 
-		// 暂时屏蔽
+		// Temporarily disabled
 		cur_data = CDataManager<REFINE_ATTR_DATA>::GetInstance().GetData(REFINE_ATTR_DATA::MakeKey(cur_min_level, m_pOwner->GetClass(), NES_TOTAL));
 		if (cur_data)
 		{
@@ -318,9 +318,9 @@ BOOL CItemBag::Load_v_2(const char* pcData, UINT32 dwSize)
 		}
 	}
 	
-	// 魔血石, 回复道具
+	// Magic blood stone, recovery item
 	{
-		// 暂时屏蔽
+		// Temporarily disabled
 		//Item* RecoverItem = GetItem(CONSLOT_RECOVER, 0);
 		//if (RecoverItem && RecoverItem->m_pTemplate->m_nTemplateID >= 2800265 && RecoverItem->m_pTemplate->m_nTemplateID <= 2800272)
 		//{
@@ -390,11 +390,11 @@ BOOL CRole::_LoadMisc_v_3(const char* pcData, UINT32 dwSize)
 	m_nKilledByPlayer = pcMiscData->nKilledByPlayer;
 
 	{
-		// 暂时用 默认代码
+		// Temporarily use default code
 		INT32 nTimeDiff = (INT32)pcMiscData->dwNextFreeReviveTime - (INT32)CGameWorld::GetInstance().GetGameTime();
 		m_nNextFreeReviveFrm = nTimeDiff * GAME_FPS + CGameWorld::GetInstance().GetGameFrame();
 
-		// 暂时屏蔽
+		// Temporarily disabled
 		//m_dwNextFreeReviveTime = pcMiscData->dwNextFreeReviveTime;
 	}
 
@@ -427,7 +427,7 @@ BOOL CRole::_LoadMisc_v_3(const char* pcData, UINT32 dwSize)
 	if (m_nJigsawRemainTime <= 0)
 		StartAntiCheat();
 	
-	// 暂时屏蔽
+	// Temporarily disabled
 	/*
 	m_dwChatRecoverTime = pcMiscData->dwChatRecoverTime;
 	m_nChatFoulTimes = pcMiscData->nChatFoulTimes;
@@ -447,7 +447,7 @@ BOOL CRole::_LoadMisc_v_3(const char* pcData, UINT32 dwSize)
 	m_dwPKProtect = pcMiscData->dwPKProtect;
 	*/
 
-	// 新增代码
+	// Additional code
 	m_dwGameTimeCard = pcMiscData->dwGameTimeCard;
 	m_nRuneNormal_Warrior   = pcMiscData->nRuneNormal_Warrior;
 	m_nRuneNormal_Mage      = pcMiscData->nRuneNormal_Mage;
@@ -463,5 +463,5 @@ BOOL CRole::_LoadMisc_v_3(const char* pcData, UINT32 dwSize)
 }
 
 
-// ========== 抄的代码 end ==========
+// ========== Copied code ends ==========
 

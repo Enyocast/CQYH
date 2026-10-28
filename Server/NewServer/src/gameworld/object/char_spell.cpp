@@ -483,7 +483,7 @@ INT32 CCharacter::CastInstantSpell(CSceneObject* poFromObj, CSpell* poSpell, CCh
 	if(poFromObj->GetObjType() != otMissile)
 		TrigEvent(meoOnCharCastSuccess, &inst);
 
-	// 冷却
+	// Cooldown
 	{
 		INT32 nCoolDownFrm = inst.GetSelfCoolDownFrm();
 		// self cooldown
@@ -582,7 +582,7 @@ void CCharacter::_CastSpell(CSpellInstance* poSpell, INT32& nCastTime)
 
 	nInterval = poSpell->GetIntervalFrm();
 
-	// 技能准备类型
+	// Spell preparation type
 	switch(poSpell->GetAttr(satPrepareType))
 	{
 	case spptChanneled:
@@ -713,7 +713,7 @@ void CCharacter::_ClearAfterDie(void)
 		poBullet->SetRemoveFlag(TRUE);
 	}
 
-	// remove all negative auras: 删除所有负面Buff
+	// Remove all negative auras
 
 //	for(INT32 i = auetNone; i < auetTotal; i++)
 //	{
@@ -1477,15 +1477,15 @@ CAuraInstance* CCharacter::AppendAura(CAura* poAuraInfo, CCharacter* poCaster, U
 
 	nGroup = poAuraInfo->GetAttr(aatGroup);
 
-	// 获取对象属性列表
+	// Get the object’s attribute list
 	aura = m_AuraList.BeginAura(eEffectType);
 
 	while((aura = m_AuraList.NextAura(eEffectType, aura)) != NULL)
 	{
-		// 如果 属性列表中, 已经存在相同ID的属性
+		// If the attribute list already contains an attribute with the same ID
 		if(aura->GetID() == poAuraInfo->GetID())
 		{
-			// 如果 释放对象 等于 目标对象
+			// If the caster is the target
 			if(aura->GetCasterID() == poCaster->GetObjID())
 			{
 				poExistAura1 = aura;
@@ -1495,10 +1495,10 @@ CAuraInstance* CCharacter::AppendAura(CAura* poAuraInfo, CCharacter* poCaster, U
 				poExistAura2 = aura;
 			}
 		}
-		// 如果 属性列表中, 没有这个ID的属性
+		// If the attribute list does not contain this ID
 		else if(aura->GetAttr(aatType) == eEffectType)
 		{
-			// 如果 释放对象 等于 目标对象
+			// If the caster is the target
 			if(aura->GetCasterID() == poCaster->GetObjID())
 			{
 				poExistAura3 = aura;

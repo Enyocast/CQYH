@@ -3,7 +3,7 @@
 	file:		application_mgr.cpp
 	author:		Allan Tao
 	
-	purpose:	各种application的管理
+	purpose:	Application management
 *********************************************************************/
 
 #include "stdafx.h"

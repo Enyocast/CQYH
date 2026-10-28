@@ -459,7 +459,7 @@ private:
 	void OnHireHero(CRole* pRole, const char* pData);
 	void OnHeroLevelUp(CRole* pRole, const char* pData);
 
-	// 铸魂
+	// Soul forging
 	void OnRuneItem(CRole* pRole, const char* pData);
 
 	// vip

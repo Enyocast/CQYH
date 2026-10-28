@@ -27,7 +27,7 @@ BOOL CRole::CheckDBDataLength(void)
     ROLE_GUILD_AURA_RECORD  RoleGuildAuraRecord;
 	ROLE_DB_MISC_DATA MiscData;
 	ROLE_DB_MASTER_DATA MasterData;
-	ROLE_DB_GAMBLE_DATA GambleData;    // 抄代码, 新增
+	ROLE_DB_GAMBLE_DATA GambleData;    // Added from copied code
 
 	LOG_PROCESS_ERROR(sizeof(BaseData.szRoleName) == sizeof(BaseData.szRoleName[0]) * ROLE_NAME_LEN);
 	LOG_PROCESS_ERROR(sizeof(BaseData.szUserName) == sizeof(BaseData.szUserName[0]) * USER_NAME_LEN);
@@ -97,7 +97,7 @@ BOOL CRole::CheckDBDataLength(void)
 
 	LOG_PROCESS_ERROR(sizeof(MasterData.TeacherReward) == sizeof(MasterData.TeacherReward[0]) * MAX_STUDENT_NUM);
 
-	// 抄代码, 新增
+	// Added from copied code
 	LOG_PROCESS_ERROR(sizeof(GambleData.dwValue[0]) == sizeof(GambleData.dwValue[0][0]) * GAMBLE_LEVEL_COUNT);
 	LOG_PROCESS_ERROR(sizeof(GambleData.dwValue) == sizeof(GambleData.dwValue[0]) * egtTotal);
 
@@ -211,7 +211,7 @@ BOOL CRole::Save(char* pData, UINT32& rdwSize)
         case rbtBlackMarketCooldown:
             nRetCode = m_ItemBag.SaveBlackMarketCooldown(&pRoleData->RoleData[dwBlockOffSet], dwBlockSize);
             break;
-		case rbtGamble:    // 待补充代码
+		case rbtGamble:    // Code still to be added
 			break;
 		default:
 			LOG_PROCESS_ERROR(FALSE);
@@ -523,7 +523,7 @@ BOOL CRole::_SaveMisc(char* pData, UINT32& rdwSize)
 //	pMiscData->dwJigsawTimeoutTime = m_dwJigsawTimeoutTime;
 	pMiscData->dwJigsawSn = m_dwJigsawSn;
 
-	// 新增代码
+	// Additional code
 	pMiscData->dwGameTimeCard = m_dwGameTimeCard;
 	pMiscData->nRuneNormal_Warrior   = m_nRuneNormal_Warrior  ;
 	pMiscData->nRuneNormal_Mage      = m_nRuneNormal_Mage     ;

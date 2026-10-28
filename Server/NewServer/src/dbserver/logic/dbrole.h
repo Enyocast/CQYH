@@ -30,8 +30,8 @@ public:
     UINT32 m_dwRoleID;
     UINT32 m_dwDeleteTime;
 
-    CCircleList m_MemList;      //所有用过的内存列表
-    DB_ROLE_DATA* m_pCurMem;    //当前有效的内存
+    CCircleList m_MemList;      //List of all previously used memory
+    DB_ROLE_DATA* m_pCurMem;    //Currently active memory
     BOOL ClearCache(BOOL include_current);
 
     enum DB_TASK
@@ -49,21 +49,21 @@ public:
 
     enum LOCK_STATE
     {
-        LOCK_STATE_INVALID,                 //无有效数据，默认状态，创建角色前，创建角色失败后，属于此状态
-        LOCK_STATE_UNLOCKED,                //含有效数据，创建角色成功后，上锁前/解锁后，属于此状态
-        LOCK_STATE_LOCKING,                 //正在上锁，包括从数据库中读取数据也属于这一状态
-        LOCK_STATE_LOCKED,                  //已上锁，角色正在游戏中
-        LOCK_STATE_UNLOCKING,               //正在解锁
-        LOCK_STATE_LOCKING_AND_UNLOCKING,   //正在上锁时遭遇解锁请求
-        LOCK_STATE_UNLOCKING_AND_LOCKING    //正在解锁时遭遇上锁请求
+        LOCK_STATE_INVALID,                 //No valid data: default state before character creation or after a creation failure
+        LOCK_STATE_UNLOCKED,                //Contains valid data: state after character creation and before locking or after unlocking
+        LOCK_STATE_LOCKING,                 //Locking in progress, including reading data from the database
+        LOCK_STATE_LOCKED,                  //Locked; character is in the game
+        LOCK_STATE_UNLOCKING,               //Unlocking in progress
+        LOCK_STATE_LOCKING_AND_UNLOCKING,   //Unlock requested while locking
+        LOCK_STATE_UNLOCKING_AND_LOCKING    //Lock requested while unlocking
     };
     LOCK_STATE m_lockstate;
 
-    //以下数据用于读取完成后发送回包
-    INT32 m_nResult;                //数据库操作结果成功或失败
-    UINT32 m_dwGSSessionID;         //请求数据的服务器的session id，用于发送回复
+    //The following data is used to send a reply after reading completes
+    INT32 m_nResult;                //Database operation result: success or failure
+    UINT32 m_dwGSSessionID;         //Session ID of the server requesting the data, used for the reply
 
-    //以下数据用于创建新角色
+    //The following data is used to create a character
     struct CreateRoleParam
     {
         CHAR szUserName[USER_NAME_LEN];
@@ -77,7 +77,7 @@ public:
     };
     CreateRoleParam m_CreateRoleParam;
 
-    //以下数据用于工作线程存盘时排序
+    //The following data is used for sorting when the worker thread saves
     UINT64 m_qwLastSaveTime;
 
     CDBUser* m_dbuser;

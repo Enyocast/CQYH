@@ -3,7 +3,7 @@
 	file:		time_washout_mgr.h
 	author:		Allan Tao
 	
-	purpose:	时间定时淘汰，用于各种记录申请
+	purpose:	Timed expiration for various application records
 *********************************************************************/
 
 
@@ -59,8 +59,8 @@ private:
     static CTimeWashoutMgr  m_Instance;
 
 private:
-    // 因为现在时间类型少，就用最简单的方式来做 Allan Tao[7.6.2013] 
-    // 暂定只有24小时一种 Allan Tao[7.6.2013] 
+    // Use the simplest approach because there are currently few time types. Allan Tao [7.6.2013]
+    // For now, only the 24-hour type is supported. Allan Tao [7.6.2013]
     WASHOUT_BASE    *m_pTimerHeader[1];
 
 

@@ -3,7 +3,7 @@
 	file:		time_washout_mgr.cpp
 	author:		Allan Tao
 	
-	purpose:	时间定时淘汰，用于各种记录申请
+	purpose:	Timed expiration for various application records
 *********************************************************************/
 
 #include "stdafx.h"

@@ -8,7 +8,7 @@
 
 #include "error_def.h"
 #include "string_def.h"
-#include "ai_processor.h"	// 具体功能实现在 CAIProcessor 中
+#include "ai_processor.h"	// The actual behavior is implemented in CAIProcessor
 #include "game_world.h"		// FindValidCharacter, GetString
 #include "bt_manager.h"     // ms_ActionFuncList
 #include "spell_config.h"
@@ -908,7 +908,7 @@ INT32 bfPetChangeFightTarget(BTCustomCtx* pCtx, INT32 nParam[])
             if (poTarget->GetFlag().CheckFlag(cfNeverBeHit) == TRUE)
                 continue;
 
-            if (((CNpc*)poTarget)->GetNpcData() && ((CNpc*)poTarget)->GetNpcData()->bCounterInvisible == FALSE)    // 策划说的远程怪标签...
+            if (((CNpc*)poTarget)->GetNpcData() && ((CNpc*)poTarget)->GetNpcData()->bCounterInvisible == FALSE)    // Ranged-monster tag described by design...
             {
                 dwTargetID = poTarget->GetObjID();
                 continue;
@@ -1394,7 +1394,7 @@ INT32 bfChangeGuildResource(BTCustomCtx* pCtx, INT32 nParam[])
     LOG_PROCESS_ERROR(poNpc->GetScene());
 
     pCtx->eRunningType = brtWaitMSGuildData;
-    pCtx->nWaitFrame = CGameWorld::GetInstance().GetGameFrame() + CONVERT_TIME(5000);   // 3秒超时
+    pCtx->nWaitFrame = CGameWorld::GetInstance().GetGameFrame() + CONVERT_TIME(5000);   // 3-second timeout
 
 #ifndef _ROBOT
     nRetCode = CCliMessageHandler::GetInstance().DoMSNpcChangeGuildRes(poNpc->GetObjID(), poNpc->GetScene()->GetSceneID(), nChangeType, nResourceType, nCount, GUILD_CHEST_BUILDING_DAMAGE, nCtxType);
@@ -5471,7 +5471,7 @@ INT32 bfGuildEndWar(BTCustomCtx *pCtx, INT32 nParam[])
     LOG_PROCESS_ERROR(nRetCode);
 #endif
 
-    // 陈凯说，现在不用锁定了。结束了也随便他们杀
+    // Chen Kai said locking is no longer needed; after it ends, allow them to kill freely
     //nRetCode = GuildWarLockRole(poScene);
     //LOG_PROCESS_ERROR(nRetCode);
 

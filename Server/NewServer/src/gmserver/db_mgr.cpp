@@ -106,7 +106,7 @@ BOOL CDBMgr::Init()
         g_GMSlaverStmtList, sSqlTotal, 2);
     LOG_PROCESS_ERROR(nRetCode);
 
-    // 默认代码 暂时屏蔽
+    // Default code temporarily disabled
     //nRetCode = GetLogDataSqlMgr().Init(
     //    m_DBLogData.szServerAddr,
     //    m_DBLogData.szLoginName,
@@ -607,7 +607,7 @@ BOOL CDBMgr::QueryLog(CMD_DATA_BASE *pCmd)
     LOG_PROCESS_ERROR(pCmdID);
     *pCmdID = pCmd->dwSerialID;
 
-    // 默认代码 暂时屏蔽
+    // Default code temporarily disabled
     /*
     switch (pCmdLog->nLogType)
     {

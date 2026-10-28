@@ -704,11 +704,11 @@ namespace SimpleNet
 		LOG_PROCESS_ERROR(nRetCode == 0);
 
 #if defined(WIN32)
-		// 作用：设置套接字的非阻塞模式
-		// FIONBIO：操作类型，表示设置非阻塞 I/O
-		// dwNonBlock = 1：启用非阻塞模式
-		// 非阻塞模式下，recv/send 等函数立即返回，不会阻塞线程。若操作无法立即完成，返回错误码（如 WSAEWOULDBLOCK）
-		// 典型用途：用于异步 I/O 或多路复用模型（如 select、epoll），避免线程阻塞
+		// Purpose: set the socket to nonblocking mode
+		// FIONBIO: operation that sets nonblocking I/O
+		// dwNonBlock = 1 enables nonblocking mode
+		// In nonblocking mode, recv/send return immediately without blocking; incomplete operations report an error such as WSAEWOULDBLOCK
+		// Typically used with asynchronous I/O or multiplexing (such as select or epoll) to avoid blocking the thread
 		nRetCode = ioctlsocket(nSocketFD, FIONBIO, (u_long*)&dwNonBlock);
 #elif defined(__linux__)
 		//nRetCode = ioctl(nSocketFD, FIONBIO, (u_long*)&dwNonBlock);
@@ -720,22 +720,22 @@ namespace SimpleNet
 #endif
 		LOG_PROCESS_ERROR(nRetCode == 0);
 
-		// 设置 [接收缓冲区大小]
+		// Set receive buffer size
 		nRetCode = setsockopt(nSocketFD, SOL_SOCKET, SO_RCVBUF, (char*)&(m_oInitParam.nRecvBufSize), sizeof(m_oInitParam.nRecvBufSize));
 		LOG_CHECK_ERROR(!nRetCode);
 
-		// 设置 [发送缓冲区大小]
+		// Set send buffer size
 		nRetCode = setsockopt(nSocketFD, SOL_SOCKET, SO_SNDBUF, (char*)&(m_oInitParam.nSendBufSize), sizeof(m_oInitParam.nSendBufSize));
 		LOG_CHECK_ERROR(!nRetCode);
 
-		// 关闭行为控制 (l_onoff：非零表示启用 SO_LINGER) (l_linger：等待时间（秒）)
-		// 若 l_onoff != 0 且 l_linger > 0：关闭时会阻塞，直到数据发送完毕或超时。
-		// 若 l_onoff = 0：直接关闭，丢弃未发送数据。
+		// Control close behavior (nonzero l_onoff enables SO_LINGER; l_linger is the wait in seconds)
+		// If l_onoff != 0 and l_linger > 0, close blocks until data is sent or the timeout expires.
+		// If l_onoff = 0, close immediately and discard unsent data.
 		nRetCode = setsockopt(nSocketFD, SOL_SOCKET, SO_LINGER, (char*)&(stLinger), sizeof(stLinger));
 		LOG_CHECK_ERROR(!nRetCode);
 
-		// 禁用 Nagle 算法 (参数：nOption = 1 表示禁用)
-		// 意义：Nagle 算法会合并小数据包以减少网络拥塞，但增加延迟。禁用后（TCP_NODELAY=1），数据立即发送，适用于实时性要求高的场景（如游戏、实时通信）。
+		// Disable Nagle’s algorithm (nOption = 1 disables it)
+		// Nagle’s algorithm combines small packets to reduce congestion at the cost of latency. TCP_NODELAY=1 sends data immediately for latency-sensitive uses such as games and real-time communication.
 		nRetCode = setsockopt(nSocketFD, IPPROTO_TCP, TCP_NODELAY, (char*)&nOption, sizeof(nOption));
 		LOG_PROCESS_ERROR(nRetCode != SOCKET_ERROR);
 

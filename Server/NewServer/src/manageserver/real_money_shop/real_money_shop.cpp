@@ -107,10 +107,10 @@ INT32 CRealMoneyShop::Buy(MS_ONLINE_ROLE_DATA* pOnlineRole, INT32 nItemID, INT32
     if (strlen(szRoleName) > 0 && CRoleDataMgr::GetInstance().FindRoleByName(szRoleName) == NULL)
         return errRealMoneyShopFriendNotFound;
 
-    // 默认代码
+    // Default code
     //COABillMgr::GetInstance().DoCharge(pOnlineRole, total_cost, nItemID, nItemCount, szRoleName);
 
-    // 自己改代码, 发给GS扣元宝
+    // Custom code: ask GS to deduct ingots
     bRet = CMessageHandler::GetInstance().DoGSRoleRealMoneyShopBuyItemReq(pOnlineRole->dwGSSessionID, pOnlineRole->dwCliSessionID,szRoleName, pOnlineRole->pRoleData->dwRoleID, total_cost, nItemID, nItemCount);
     LOG_PROCESS_ERROR(bRet);
 
@@ -137,7 +137,7 @@ void CRealMoneyShop::OnCharge(INT32 nResult, UINT32 dwRoleID, INT32 nItemID, INT
         LOG_PROCESS_ERROR(shop_data);
         LOG_PROCESS_ERROR(buyer_role);
 
-        //如果是金币，记日志
+        //Log gold transactions
         if (nItemID == MONEYTYPE_02)
         {
             nRetCode = CMessageHandler::GetInstance().DoDLRealMoney2Money02(CManageServer::GetInstance().GetGameTime(),
@@ -177,13 +177,13 @@ void CRealMoneyShop::OnCharge(INT32 nResult, UINT32 dwRoleID, INT32 nItemID, INT
 
         if (online_target_role)
         {
-            //如果在线，尝试发到GS直接进包
+            //If online, try sending to GS for direct delivery to the bag
             BOOL bRet = CMessageHandler::GetInstance().DoGSRealMoneyBuySuccess(online_target_role->dwGSSessionID, online_target_role->pRoleData->dwRoleID, nItemID, shop_data->m_shItemCount, nItemCount, shop_data->m_nOriginalPrice, giver_role_name, dwRoleID);
             LOG_PROCESS_ERROR(bRet);
         }
         else
         {
-            //如果不在线，发邮件
+            //If offline, send mail
             BOOL bRet;
             char mail_subject[MAIL_SUBJECT_LEN];
             char mail_content[MAIL_CONTENT_LEN];

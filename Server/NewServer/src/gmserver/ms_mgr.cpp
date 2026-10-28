@@ -77,7 +77,7 @@
 //
 //    //if (nIndex == g_GMConfig.MSList.nSvrNum)
 //    //{
-//    //    // todo_tq 临时上线的ms，给他分配独立的ip Allan Tao[20.12.2013] 
+//    //    // todo_tq: assign a separate IP to temporarily online MS instances. Allan Tao [20.12.2013]
 //    //}
 //
 //
@@ -92,7 +92,7 @@
 //{
 //    LOG_PROCESS_ERROR(dwSessionID < MAX_MS_SESSION_COUNT);
 //
-//    // todo_tq  init 和 uninit Allan Tao[20.12.2013] 
+//    // todo_tq: init and uninit. Allan Tao [20.12.2013]
 //    m_listMSData[dwSessionID].nState = MS_STATE_OFFLINE;
 //    m_listMSData[dwSessionID].dwSvrID = 0;
 //

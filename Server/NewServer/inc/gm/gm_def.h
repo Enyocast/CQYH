@@ -3,7 +3,7 @@
 	file:		gm_def.h
 	author:		Allan Tao
 	
-	purpose:	gmserver和gmtool共用头文件
+	purpose:	Header shared by gmserver and gmtool
 *********************************************************************/
 
 
@@ -155,31 +155,31 @@ struct GM_ROLE_ITEM_SLOT
 
     UINT8       byBindType;
 
-    //以下属性仅限装备
-    //是否已鉴定
+    //The following attributes apply only to equipment
+    //Whether identified
     UINT8       byIdentified;
-    //随机属性
+    //Random attributes
     UINT16      wRandomAttrID[4];
-    //签名
+    //Signature
     UINT32      dwRoleID;
-    //已消费金币
+    //Gold spent
     UINT32      dwCostMoney;
 
-    //以下属性仅限武器
-    //幸运值
+    //The following attributes apply only to weapons
+    //Luck
     INT8        byLuck;
-    //武器升级
+    //Weapon upgrade
     UINT8       byLevelupTimes;
     UINT8       byLevelupPhyPoint;
     UINT8       byLevelupMagPoint;
     UINT8       byLevelupTaoPoint;
     UINT8       byLevelupTypeHidden;
     UINT8       byLevelupPointHidden;
-    //铸魂
+    //Soul forging
     UINT16      wRune[6];
 
-    //以下属性仅限防具
-    //融灵
+    //The following attributes apply only to armor
+    //Spirit fusion
     UINT32      dwSocketCombination;
     INT32       nSoulID[3];
 
@@ -258,7 +258,7 @@ struct DUNGEON_LOG_DATA
 // exchange
 
 #define MAX_EXCHANGE_LOG_NUM            (1024)
-#define MAX_EXCHANGE_HISTORY_NUM        (768)        // 往前数32天的记录，每小时一条，刚好768
+#define MAX_EXCHANGE_HISTORY_NUM        (768)        // Records for the previous 32 days, one per hour, totaling 768
 #define MAX_EXCHANGE_BUFFER_SIZE        (0xFFFF)
 
 struct GM_EXCHANGE_PRICE_LOG

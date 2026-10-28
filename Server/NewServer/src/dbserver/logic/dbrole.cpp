@@ -247,7 +247,7 @@ void CDBRole::OnLoadRole()
     }
     else
     {
-        //数据库读取失败
+        //Database read failed
         m_lockstate = LOCK_STATE_INVALID;
         m_dbuser->RemoveRole(this, FALSE);
         LOG_PROCESS_ERROR(FALSE);

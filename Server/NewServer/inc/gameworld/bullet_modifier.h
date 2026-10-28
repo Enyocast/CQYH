@@ -135,7 +135,7 @@ enum BULLET_MODIFIER_INDEX
 	bmi_127,		///< @line		,
 	bmi_128,		///< @line		,
 
-	// 下面是自己新增加的代码, 不知道对应啥函数
+	// Additional custom code follows; corresponding functions are unknown
 	bmi_129,		///< @line		,
 	bmi_130,		///< @line		,
 	bmi_131,		///< @line		,

@@ -254,19 +254,19 @@ BOOL CCliMessageHandler::Init(IMessageNotifier* poNotifier, IPacketAllocator* po
 
     REGISTER_MESSAGE(c2g_unshield,                  	&CCliMessageHandler::OnUnShieldRole,        TRUE);
 
-    // 融灵 - 打孔/镶嵌宝石/移除宝石
+    // Soul fusion - create sockets / insert gems / remove gems
     REGISTER_MESSAGE(c2g_upgrade_soul,              	&CCliMessageHandler::OnUpgradeSoul,         TRUE);
     REGISTER_MESSAGE(c2g_add_soul,                  	&CCliMessageHandler::OnAddSoul,             TRUE);
     REGISTER_MESSAGE(c2g_remove_soul,               	&CCliMessageHandler::OnRemoveSoul,          TRUE);
 
-    // 铸魂 - 普通铭文洗练
+    // Soul forging - normal inscription refinement
     REGISTER_MESSAGE(c2g_rune_item,                     &CCliMessageHandler::OnRuneItem,            TRUE);
 
-    // 装备升级
+    // Equipment upgrade
     REGISTER_MESSAGE(c2g_weapon_level_up_put_in,        &CCliMessageHandler::OnWeaponLevelUpPutIn,  TRUE);
     REGISTER_MESSAGE(c2g_weapon_level_up_take_out,      &CCliMessageHandler::OnWeaponLevelUpTakeOut,TRUE);
 
-    // 分结合成
+    // Decomposition and crafting
     REGISTER_MESSAGE(c2g_decompose,              	    &CCliMessageHandler::OnDecompose,           TRUE);
     REGISTER_MESSAGE(c2g_compose,              	        &CCliMessageHandler::OnCompose,             TRUE);
 
@@ -308,7 +308,7 @@ BOOL CCliMessageHandler::Init(IMessageNotifier* poNotifier, IPacketAllocator* po
 	REGISTER_MESSAGE(c2g_leave_guild,                   &CCliMessageHandler::OnLeavelGuild, TRUE);
 	REGISTER_MESSAGE(c2g_query_guild_war_record,        &CCliMessageHandler::OnQueryGuildWarRecord, TRUE);
 
-	// 铭文高级洗练, 确认高级洗练
+	// Advanced inscription refinement and confirmation
 	REGISTER_MESSAGE(c2g_rune_item_advance,             &CCliMessageHandler::OnRuneItemAdvance, TRUE);
 	REGISTER_MESSAGE(c2g_rune_item_advance_confirm,     &CCliMessageHandler::OnRuneItemConfirm, TRUE);
 
@@ -947,7 +947,7 @@ BOOL CCliMessageHandler::DoSyncGameDataBegin(CRole* poRole)
     pMsg->dwVIPTime[vlLevel3] = poRole->GetVIPTime(vlLevel3);
 	pMsg->dwServerTime = CGameWorld::GetInstance().GetGameTime();
 	pMsg->dwServerStartTime = g_ServerConfig.GroupConfig[poRole->GetServerGroup()].dwStartDate;
-	pMsg->wMaxLevel = g_GWConfig.nLevelLimit;    // 设置游戏最高等级
+	pMsg->wMaxLevel = g_GWConfig.nLevelLimit;    // Set the maximum game level
 
 	pMsg->dwHeroID = 0;
 	pMsg->byHeroClass = clsInvalid;

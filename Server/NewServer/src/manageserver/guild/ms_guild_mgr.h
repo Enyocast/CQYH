@@ -3,7 +3,7 @@
 	file:		ms_guild_mgr.h
 	author:		Allan Tao
 	
-	purpose:	帮会相关逻辑，帮派list及排序查询逻辑
+	purpose:	Guild logic, including guild lists and sorted queries
 *********************************************************************/
 
 #ifndef _H_MS_GUILD_MGR_H_
@@ -62,7 +62,7 @@ public:
     BOOL    DelEnemy(INT32 dwGuildID, INT32 dwEnemyID);
 
     //////////////////////////////////////////////////////////////////////////
-    // 假定time升序往后插
+    // Assume times are inserted in ascending order
     BOOL    AddWarData(INT32 nGroupID, UINT32 dwIntruderID, UINT32 dwDefenderID, UINT32 dwTime);
     BOOL    DeclareWar(INT32 nGroupID, UINT32 dwIntruderID, UINT32 dwDefenderID);
 

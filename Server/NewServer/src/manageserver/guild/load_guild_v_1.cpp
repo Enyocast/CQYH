@@ -241,7 +241,7 @@ BOOL CMsGuild::LoadDiplomat_v1(const char *pcData, UINT32 dwSize)
     LOG_PROCESS_ERROR(GUILD_MAX_ALLIANCE_NUM >= pDiplomat->byAllianceNum);
     LOG_PROCESS_ERROR(GUILD_MAX_ENEMY_NUM >= pDiplomat->byEnemyNum);
 
-    //m_dwActiveEnemy = pDiplomat->dwActiveEnemy;       v5 版本删掉了m_dwActiveEnemy这个字段
+    //m_dwActiveEnemy = pDiplomat->dwActiveEnemy;       Version 5 removed the m_dwActiveEnemy field
     m_dwRevengeGuildID = pDiplomat->dwRevengeGuildID;
     m_dwAimID = pDiplomat->dwAimID;
     m_dwAttackCD = pDiplomat->dwAttackCD;

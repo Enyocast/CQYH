@@ -41,11 +41,11 @@ public:
     void OnCreateRole(CUser* poUser, CRole* poRole, BOOL bSuccess);
     void OnDeleteRole(CUser* poUser, UINT32 dwRoleID, BOOL bSuccess);
 
-    // 更新显示游戏中玩家角色列表信息。
+    // Update the displayed list of player characters in the game.
     void UpdateRoleTable(CRole * poRole);
     void RemovePlayingRole(CRole * poRole);
 
-    // 从UI获取用户输入信息。
+    // Get user input from the UI.
     BOOL requireParam(const CHAR * pcszName, CHAR * pszVal, INT32 nLen);
 
     void setCaseStatus(const char* pcszCaseName, const char* pcszMessage);

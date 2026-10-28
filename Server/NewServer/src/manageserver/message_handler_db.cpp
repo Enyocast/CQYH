@@ -129,7 +129,7 @@ void CMessageHandler::OnDBCanDeleteRole(PACKET_BUFFER* pPacketBuffer, UINT32 dwS
     D2M_CAN_DELETE_ROLE* pMsg = (D2M_CAN_DELETE_ROLE*)pPacketBuffer;
     MS_ROLE_DATA* pstRoleData = NULL;
 
-    // 找不到代码有BUG
+    // Not found indicates a code bug
     pstRoleData = CRoleDataMgr::GetInstance().FindRole(pMsg->dwRoleID);
     LOG_PROCESS_ERROR(pstRoleData != NULL);
 
@@ -250,7 +250,7 @@ void CMessageHandler::OnDBDeleteRole(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize
     D2M_DELETE_ROLE* pMsg = (D2M_DELETE_ROLE*)pPacketBuffer;
     MS_ROLE_DATA* pstRoleData = NULL;
 
-    // 找不到代码有BUG
+    // Not found indicates a code bug
     pstRoleData = CRoleDataMgr::GetInstance().FindRole(pMsg->dwRoleID);
     LOG_PROCESS_ERROR(pstRoleData != NULL);
 
@@ -274,7 +274,7 @@ void CMessageHandler::OnDBLeaveDBAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize
     MS_USER* poUser = NULL;
     MS_ONLINE_ROLE_DATA* pstOnlineRole = NULL;
 
-    // user必然存在
+    // The user must exist
     poUser = CUserMgr::GetInstance().FindUserBySessionID(pMsg->dwClientSessionID);
     LOG_PROCESS_ERROR(poUser);
 

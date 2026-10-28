@@ -833,7 +833,7 @@ INT32 CAchievementsList::_CheckEquipBagSlotCount(INT32 nCount)
 
 	m_pOwner->GetItemBag()->GetContainerSizes(abySizes);
 
-	//TODO: CONSLOT_EQUIPMENT已经没有了，这个成就怎么办？
+	//TODO: CONSLOT_EQUIPMENT no longer exists; what should happen to this achievement?
     //return ((abySizes[CONSLOT_EQUIPMENT]>= nCount) ? errSuccess :  errAchievementEquipBagSlotCount);
 
 Exit0:
@@ -850,7 +850,7 @@ INT32 CAchievementsList::_CheckMaterialBagSlotCount(INT32 nCount)
 
 	m_pOwner->GetItemBag()->GetContainerSizes(abySizes);
 
-    //TODO: CONSLOT_MATERIAL已经没有了，这个成就怎么办？
+    //TODO: CONSLOT_MATERIAL no longer exists; what should happen to this achievement?
 	//return ((abySizes[CONSLOT_MATERIAL]>= nCount) ? errSuccess :  errAchievementMaterialBagSlotCount);
 
 Exit0:
@@ -1337,13 +1337,13 @@ void CAchievementsList::RobotCompletedCheck(INT16 nCondType, INT16 nSubType)
 	pAchievementIds = CAchievementIndexData::GetInstance().GetAchievementIds(nCondType, nSubType);
 	LOG_PROCESS_ERROR(NULL != pAchievementIds);
 
-	//数据记录
+	//Data record
 	RobotAchievementCheckLog(TRUE, nCondType, nSubType, 0, FALSE);
 
 	LOG_PROCESS_ERROR(pAchievementIds[0] < ACHIEVEMENT_MAX);
 	for (UINT16 wCount = 1; wCount <= pAchievementIds[0]; ++wCount)
 	{
-		//数据记录
+		//Data record
 		RobotAchievementCheckLog(FALSE, 0, 0, pAchievementIds[wCount], TRUE);
 
 		if (_IsCompleted(pAchievementIds[wCount])){ continue; }

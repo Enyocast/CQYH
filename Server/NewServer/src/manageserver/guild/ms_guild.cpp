@@ -202,8 +202,8 @@ BOOL CMsGuild::Load(GUILD_DB& db_data)
     LOG_PROCESS_ERROR(nRetCode);
 
     //////////////////////////////////////////////////////////////////////////
-    // todo_tq 暂时注释 redmine 23026
-    // todo_tq 暂时放在这 Allan Tao[17.4.2014] 
+    // todo_tq: temporarily commented out, Redmine 23026
+    // todo_tq: temporarily placed here. Allan Tao [17.4.2014]
     //_CalculateOfflineData();
     //////////////////////////////////////////////////////////////////////////
 
@@ -719,7 +719,7 @@ BOOL CMsGuild::MainLoop(UINT32 dwCurrentTime)
     INT32       nResult = errGuildFailed;
     INT32       nIncrementValue = 0;
 
-    UINT32      dwTick = m_dwID + dwCurrentTime;  // 帮派timer 5秒一次，错开记时 Allan Tao[8.5.2013] 
+    UINT32      dwTick = m_dwID + dwCurrentTime;  // Guild timer runs every 5 seconds with staggered timing. Allan Tao [8.5.2013]
     if ( dwTick % 5 == 0 )
     {
         // 60 sec timer
@@ -729,7 +729,7 @@ BOOL CMsGuild::MainLoop(UINT32 dwCurrentTime)
             LOG_CHECK_ERROR(nRetCode);
         }
 
-        // 2015.12.6 版本不需要此功能 redmine 23026
+        // The 2015.12.6 version does not need this feature, Redmine 23026
         //if (dwTick % g_GuildConfig.nAddResourceInterval == 0 && m_dwCalculateResourceTime < dwTick / 3600)
         //{
         //    nIncrementValue = GetResourceIncrement(GUILD_B_WOOD);
@@ -809,7 +809,7 @@ BOOL CMsGuild::MainLoop(UINT32 dwCurrentTime)
             }
         }
 
-		//if ((dwCurrentTime%86400 >= GUILD_UPDATE_RANKLIST_STARTTIME) && (dwCurrentTime%86400 <= GUILD_UPDATE_RANKLIST_ENDIME))				// 每天凌晨4点开始的2分钟内刷新本帮会排行榜数据
+		//if ((dwCurrentTime%86400 >= GUILD_UPDATE_RANKLIST_STARTTIME) && (dwCurrentTime%86400 <= GUILD_UPDATE_RANKLIST_ENDIME))				// Refresh this guild’s ranking data within two minutes starting at 4 a.m. daily
 		//{
 		//	if (m_dwID%1023 == dwCurrentTime%1023)
 		//	{
@@ -922,7 +922,7 @@ INT32 CMsGuild::RefuseRoleApply(UINT32 dwRoleID, MS_ONLINE_ROLE_DATA &onlineRole
     LOG_PROCESS_ERROR_RET_CODE(_IsInGuildAppList(dwRoleID), errGuildAppNotExist);
 
     pRoleData = CRoleDataMgr::GetInstance().FindRole(dwRoleID);
-    if (pRoleData)      // 删号等
+    if (pRoleData)      // Character deletion, etc.
     {
         --pRoleData->byApplicationCount;
     }
@@ -978,7 +978,7 @@ INT32 CMsGuild::AgreeRoleApply(UINT32 dwInviterID, UINT32 dwRoleID)
     LOG_PROCESS_ERROR_RET_CODE(g_GuildConfig.nInitGuildPositionRight[poMsGuildMember->GetPosition()] & G_POS_RIGHT_RECRUIT, errGuildNoRight);
 
     pRoleData = CRoleDataMgr::GetInstance().FindRole(dwRoleID);
-    LOG_PROCESS_ERROR_RET_CODE(pRoleData, errGuildRoleNotExist);    // 删号等
+    LOG_PROCESS_ERROR_RET_CODE(pRoleData, errGuildRoleNotExist);    // Character deletion, etc.
     PROCESS_ERROR_RET_CODE(pRoleData->dwJoinGuildCD < CManageServer::GetInstance().GetGameTime(), errGuildJoinCD);
     PROCESS_ERROR_RET_CODE(pRoleData->byLevel >= g_GuildConfig.nCanJoinGuildLevel, errGuildJoinGuildLevelLimit);
     PROCESS_ERROR_RET_CODE(0 == pRoleData->dwGuildID, errGuildAlreadyJoin);
@@ -1039,7 +1039,7 @@ INT32 CMsGuild::InviteToJoinGuild(MS_ONLINE_ROLE_DATA &onlineRoleData, const cha
 
     pTargetOnlineRole->dwGuildInviterID = onlineRoleData.pRoleData->dwRoleID;
 
-    // 发送邀请
+    // Send invitation
     nRetCode = CMessageHandler::GetInstance().DoClientBeInvitedToJoinGuild(pTargetOnlineRole->dwCliSessionID, onlineRoleData.pRoleData->dwRoleID, 
         onlineRoleData.pRoleData->szRoleName, m_szGuildName);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildMsgError);
@@ -1062,7 +1062,7 @@ INT32 CMsGuild::AgreeToJoinGuild(UINT32 dwInviterID, MS_ONLINE_ROLE_DATA &online
     MS_GUILD_WAR_DATA   *pWarData = NULL;
     pInviterRoleData = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(dwInviterID);
 
-    onlineRoleData.dwGuildInviterID = 0;    // 只要操作了，不管是同意还是拒绝，都应该取消他的被邀请记录 Allan Tao[22.4.2013] 
+    onlineRoleData.dwGuildInviterID = 0;    // Clear the invitation record after either acceptance or rejection. Allan Tao [22.4.2013]
 
     poMsGuildMember = GetMember(dwInviterID);
     LOG_PROCESS_ERROR_RET_CODE(poMsGuildMember, errGuildNotMember);
@@ -1319,12 +1319,12 @@ INT32 CMsGuild::ForbidChat(MS_ONLINE_ROLE_DATA &onlineRoleData, INT32 nOperation
     LOG_PROCESS_ERROR_RET_CODE(poMsTargetGuildMember, errGuildNotMember);
 
     LOG_PROCESS_ERROR_RET_CODE(poMsTargetGuildMember->GetPosition() < GUILD_POSITION_TOTAL, errGuildPositionError);
-    LOG_PROCESS_ERROR_RET_CODE(poMsTargetGuildMember->GetPosition() >= poMsGuildMember->GetPosition(), errGuildPositionLow);   // 职位值越小，权力越大 Allan Tao[23.4.2013] 
+    LOG_PROCESS_ERROR_RET_CODE(poMsTargetGuildMember->GetPosition() >= poMsGuildMember->GetPosition(), errGuildPositionLow);   // Lower position values grant greater authority. Allan Tao [23.4.2013]
     
 
     if (GUILD_CHAT_FORBID == nOperation )
     {
-        // todo_tq 11 考虑 Allan Tao[19.11.2013] 
+        // todo_tq 11: consider this. Allan Tao [19.11.2013]
         byFlag = poMsTargetGuildMember->GetFlag();
         byFlag |= GUILD_FLAG_IS_CHAT_FORBIDDEN;
         nRetCode = poMsTargetGuildMember->SetFlag(byFlag);
@@ -1588,7 +1588,7 @@ INT32 CMsGuild::PrePushItem(MS_ONLINE_ROLE_DATA &onlineRoleData, INT32 nSourceCo
     LOG_PROCESS_ERROR_RET_CODE(poMsGuildMember, errGuildNotFind);
 
     LOG_PROCESS_ERROR_RET_CODE(poMsGuildMember->GetPosition() > GUILD_POSITION_NONE && poMsGuildMember->GetPosition() < GUILD_POSITION_TOTAL, errGuildPositionError);
-    // todo_tq 11 这个地方莫名的用position减了个1的数组下标， 找时间处理之 Allan Tao[19.11.2013] 
+    // todo_tq 11: this unexpectedly uses position minus one as an array index; investigate later. Allan Tao [19.11.2013]
     PROCESS_ERROR_RET_CODE(m_wStorageRight[poMsGuildMember->GetPosition()-1] & (1 << (nConSlot + 6)), errGuildNoRight);
 
 
@@ -2381,7 +2381,7 @@ INT32 CMsGuild::AddMember(MS_ROLE_DATA* pRoleData, INT32 nPosition)
             nRetCode = CMessageHandler::GetInstance().DoClientGetGuildDataNtf(pOnlineRoleData->dwCliSessionID, this, pLeaderRole->szRoleName);
             LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildMsgError);
 
-            // todo_tq 公会战期间新入成员
+            // todo_tq: members joining during a guild war
             //pWarData = CMsGuildMgr::GetInstance().FindBattleByAttack(GetID());
             //if (pWarData)
             //{
@@ -3724,7 +3724,7 @@ BOOL CMsGuild::_DiplomatWashOut( UINT32 dwCurrentTime, UINT32 dwCheckTime )
     LOG_PROCESS_ERROR(m_nAllianceNum <= GUILD_MAX_ALLIANCE_NUM);
     LOG_PROCESS_ERROR(m_nEnemyNum <= GUILD_MAX_ENEMY_NUM);
 
-    // 联盟，敌对帮派淘汰
+    // Expire allied and enemy guilds
     for (INT32 i = 0; i < m_nAllianceNum; ++i)
     {
         if (m_arrAlliance[i].dwEndTime > dwCurrentTime + dwCheckTime)
@@ -3765,7 +3765,7 @@ INT32 CMsGuild::_LeaveGuild(INT32 nLeaveType, UINT32 dwRoleID)
 
     LOG_PROCESS_ERROR_RET_CODE(m_dwLeaderID != dwRoleID, errUnknownError);
 
-    // todo_tq guild 例如在帮派地图等等的判断，传送逻辑 Allan Tao[15.4.2013] 
+    // todo_tq guild: check guild maps and related teleport logic. Allan Tao [15.4.2013]
 
     pRoleData = CRoleDataMgr::GetInstance().FindRole(dwRoleID);
     if (pRoleData)
@@ -3884,7 +3884,7 @@ INT32 CMsGuild::_DiplomatEnemy(MS_ONLINE_ROLE_DATA &onlineRoleData, CMsGuild *pM
         pMsTargetGuild->GetLevel(), (UINT8)pMsTargetGuild->m_memberList.size(), pMsTargetGuild->m_szGuildName);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildMsgError);
 
-    // 放在后面是因为不然客户端拿不到对方帮派的名字，通过id
+    // Place this later so the client can resolve the other guild’s name by ID
     nRetCode = AddGuildEvent(GUILD_HE_TYPE_ENEMY, m_dwID, pMsTargetGuild->m_dwID, 0, 0);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildAddEventFailed);
 
@@ -3966,7 +3966,7 @@ INT32 CMsGuild::_AgreeApplyAlliance(MS_ONLINE_ROLE_DATA &onlineRoleData, CMsGuil
         GetLevel(), (UINT8)m_memberList.size(), m_szGuildName);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildMsgError);
 
-    // 放在后面是因为不然客户端拿不到对方帮派的名字，通过id
+    // Place this later so the client can resolve the other guild’s name by ID
     nRetCode = AddGuildEvent(GUILD_HE_TYPE_UNION, m_dwID, pApplicantGuild->m_dwID, 0, 0);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildAddEventFailed);
 

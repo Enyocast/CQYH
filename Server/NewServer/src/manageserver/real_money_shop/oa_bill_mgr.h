@@ -13,12 +13,12 @@ struct MS_ONLINE_ROLE_DATA;
 enum TimeBillingType
 {
     etbtInvalid,
-    etbtForceOffline,       //1：强制下线
-    etbtKeepOnline,         //2：持续在线
-    etbtPlayerGoOffline,    //3：主动下线
-    etbtSupplementary,      //4：补充扣费
-    etbtTimeUp,             //5：账户余额临界点
-    etbtChangeScene,        //6：切换地图
+    etbtForceOffline,       //1: force logout
+    etbtKeepOnline,         //2: remain online
+    etbtPlayerGoOffline,    //3: voluntary logout
+    etbtSupplementary,      //4: supplementary charge
+    etbtTimeUp,             //5: account balance threshold
+    etbtChangeScene,        //6: change map
     etbtTotal
 };
 

@@ -7,18 +7,18 @@
 
 struct	CIRCLE_QUEST_DATA 
 {
-	INT32		nCircleID;													// 环号
-	INT32		nGroupID;													// 组ID
+	INT32		nCircleID;													// Cycle number
+	INT32		nGroupID;													// Group ID
 
-	INT32		nMaxCirclePerDay;											// 每日最大完成次数
-	INT32		nMaxQuestPerNum;											// 每次最大环数
+	INT32		nMaxCirclePerDay;											// Maximum daily completions
+	INT32		nMaxQuestPerNum;											// Maximum rounds per attempt
 
-	// 决定奖励组
-	INT32		nCircleNum;													// 次数
-	INT32		nLevel;														// 等级
-	INT32		nRewardGroupID[MAX_QUEST_PER_CIRCLE];						// 奖励组ID
+	// Determine reward group
+	INT32		nCircleNum;													// Count
+	INT32		nLevel;														// Level
+	INT32		nRewardGroupID[MAX_QUEST_PER_CIRCLE];						// Reward group ID
 
-	INT32		nResetTime;													// 每个环的重置时间
+	INT32		nResetTime;													// Reset time for each cycle
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, CIRCLE_QUEST_DATA* pData, 
 		CTabFile * pTabConfig, INT32 nRow);
@@ -26,8 +26,8 @@ struct	CIRCLE_QUEST_DATA
 
 struct	CIRCLE_REWARD_DATA
 {
-	// 基本数据
-	INT32		nRewardGroupID;										// 环任务奖励组ID
+	// Basic data
+	INT32		nRewardGroupID;										// Cycle quest reward group ID
 
 	QUEST_REWARD_DATA stQuestRewardData;
 

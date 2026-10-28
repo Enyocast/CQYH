@@ -107,7 +107,7 @@ BOOL CTitle::AddTitle(UINT8 titleTemplateID)
 
     TITLE   data;
     TITLE_MAP::iterator iter;
-    // todo_tq 性能可优化，map的insert部分 Allan Tao[18:2:2013] 
+    // todo_tq: the map insertion could be optimized. Allan Tao [18:2:2013]
     const TITLE_TEMPLATE *pType = GetTitleTemplate(titleTemplateID);
     LOG_PROCESS_ERROR(pType);
 

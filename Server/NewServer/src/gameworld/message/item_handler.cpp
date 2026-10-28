@@ -22,7 +22,7 @@
 
 using namespace ExternalMessage;
 
-// ==================== 下面全是 c2g收包 On函数
+// ==================== Client-to-game packet receive handlers follow
 
 void CCliMessageHandler::OnUseItem(CRole* pRole, const char* pData)
 {
@@ -377,7 +377,7 @@ void CCliMessageHandler::OnRemoveSoul(CRole* poRole, const char* pData)
     }
 }
 
-// 铸魂 - 普通铭文洗练
+// Soul forging - normal inscription refinement
 void CCliMessageHandler::OnRuneItem(CRole* poRole, const char* pData)
 {
     C2G_RUNE_ITEM* pMsg = (C2G_RUNE_ITEM*)pData;
@@ -389,7 +389,7 @@ void CCliMessageHandler::OnRuneItem(CRole* poRole, const char* pData)
     }
 }
 
-// 升级武器
+// Upgrade weapon
 void CCliMessageHandler::OnWeaponLevelUpPutIn(CRole* poRole, const char* pData)
 {
     INT32 err = poRole->GetItemBag()->WeaponLevelUpPutIn();
@@ -398,7 +398,7 @@ void CCliMessageHandler::OnWeaponLevelUpPutIn(CRole* poRole, const char* pData)
         poRole->ErrorCodeNotify(err, 0, 0);
     }
 }
-// 取回武器
+// Retrieve weapon
 void CCliMessageHandler::OnWeaponLevelUpTakeOut(CRole* poRole, const char* pData)
 {
     INT32 err = poRole->GetItemBag()->WeaponLevelUpTakeOut();
@@ -407,7 +407,7 @@ void CCliMessageHandler::OnWeaponLevelUpTakeOut(CRole* poRole, const char* pData
         poRole->ErrorCodeNotify(err, 0, 0);
     }
 }
-// 立即取回
+// Retrieve immediately
 void CCliMessageHandler::OnWeaponLevelUpTakeOutImmediately(CRole* poRole, const char* pData)
 {
     INT32 err = poRole->GetItemBag()->WeaponLevelUpTakeOutImmediately();
@@ -502,7 +502,7 @@ void CCliMessageHandler::OnBlackMarketBuy(CRole* poRole, const char* pData)
     }
 }
 
-// 装备重铸
+// Equipment reforging
 void CCliMessageHandler::OnGamble(CRole* poRole, const char* pData)
 {
     C2G_GAMBLE* pMsg = (C2G_GAMBLE*)pData;
@@ -527,7 +527,7 @@ void CCliMessageHandler::OnGambleAdvance(CRole* poRole, const char* pData)
     }
 }
 
-// 历练兑换经验
+// Exchange training for experience
 void CCliMessageHandler::OnExerciseInfo(CRole* poRole, const char* pData)
 {
     INT32 nResult = errItemUnknown;
@@ -629,7 +629,7 @@ Exit0:
     DoErrorCodeNotify(poRole, nResult, 0, 0);
 }
 
-// 铭文高级洗练
+// Advanced inscription refinement
 void CCliMessageHandler::OnRuneItemAdvance(CRole* poRole, const char* pData)
 {
     C2G_RUNE_ITEM_ADVANCE* pMsg = (C2G_RUNE_ITEM_ADVANCE*)pData;
@@ -641,7 +641,7 @@ void CCliMessageHandler::OnRuneItemAdvance(CRole* poRole, const char* pData)
     }
 }
 
-// 确认高级洗练
+// Confirm advanced refinement
 void CCliMessageHandler::OnRuneItemConfirm(CRole* poRole, const char* pData)
 {
     C2G_RUNE_ITEM_ADVANCE_CONFIRM* pMsg = (C2G_RUNE_ITEM_ADVANCE_CONFIRM*)pData;
@@ -657,10 +657,10 @@ void CCliMessageHandler::OnSellResourceItem(CRole* poRole, const char* pData)
 {
 }
 
-// 技能书重著
+// Spellbook reforging
 void CCliMessageHandler::OnSpellBookGamble(CRole* poRole, const char* pData)
 {
-    // 暂时 屏蔽功能
+    // Temporarily disable the feature
     //poRole->ErrorCodeNotify(errNpcNoSuchFunction, 0, 0);
 
     INT32 err = poRole->GetItemBag()->SpellBookGamble();
@@ -670,7 +670,7 @@ void CCliMessageHandler::OnSpellBookGamble(CRole* poRole, const char* pData)
     }
 }
 
-// ==================== 下面全是 g2c发包 Do函数
+// ==================== Game-to-client packet send functions follow
 
 BOOL CCliMessageHandler::DoSyncRefineLevels(CRole* pRole)
 {
@@ -740,7 +740,7 @@ BOOL CCliMessageHandler::DoSyncRealMoney(CRole* pRole)
     LOG_PROCESS_ERROR(pMsg);
 
     pMsg->wMsg = m2c_sync_real_money;
-    pMsg->nBalance = 1000000;    // 应该写 pRole->m_dwRealMoney 要新加字段
+    pMsg->nBalance = 1000000;    // Should use pRole->m_dwRealMoney; a new field is needed
 
     nRetCode = m_poNotifier->SendToUser(pRole->GetSessionID(), (PACKET_BUFFER*)pMsg, sizeof(M2C_SYNC_REAL_MONEY));
     LOG_PROCESS_ERROR(nRetCode);
@@ -1329,7 +1329,7 @@ Exit0:
     return FALSE;
 }
 
-// 高级铭文洗练
+// Advanced inscription refinement
 BOOL CCliMessageHandler::DoSendRuneItemAdvance(CRole* poRole, UINT8 byResult, UINT16 wRuneA, UINT16 wRuneB)
 {
     INT32 nRetCode = 0;
@@ -1351,7 +1351,7 @@ Exit0:
     return FALSE;
 }
 
-// 确认高级洗练
+// Confirm advanced refinement
 BOOL CCliMessageHandler::DoSendRuneItemConfirm(CRole* poRole, UINT8 byResult)
 {
     INT32 nRetCode = 0;
@@ -1978,11 +1978,11 @@ BOOL CCliMessageHandler::DoMSAuctionSell(INT32 nResult, UINT32 dwRoleID, UINT8 b
     {
         memset(pMsg->acItem, 0, dwItemInfoSize);
 
-        // 自己改代码
+        // Custom code
         dwSize += dwItemInfoSize;
         memcpy_s(pMsg->acItem, dwItemInfoSize, szItemInfo, dwItemInfoSize);
 
-        // 默认代码
+        // Default code
         //LOG_PROCESS_ERROR(item);
         //dwSize += item->m_iteminfo.Save(pMsg->acItem);
     }

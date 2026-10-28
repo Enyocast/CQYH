@@ -17,36 +17,36 @@ struct ItemInfo
     INT32 m_nCurDur;
     INT32 m_nMaxDur;
     UINT8 m_byBindType;
-    UINT8 m_Exclusive;    // 客户端里有这个字段, 不知道干啥用的, 也没有调用
+    UINT8 m_Exclusive;    // The client has this field, but its purpose is unknown and it is not used
 
-    //以下属性仅限装备
-    //是否已鉴定
+    //The following attributes apply only to equipment
+    //Whether identified
     UINT8 m_byIdentified;
-    //随机属性
+    //Random attributes
     UINT16 m_wRandomAttrID[MAX_RANDOM_ATTR_COUNT];
-    //签名
+    //Signature
     UINT32 m_dwRoleID;
-    //已消费金币
+    //Gold spent
     UINT32 m_dwCostMoney;
 
-    //以下属性仅限武器
-    INT8 m_byLuck;  //幸运值
+    //The following attributes apply only to weapons
+    INT8 m_byLuck;  //Luck value
 
-    //武器升级
-    UINT8 m_byLevelupTimes;        // 武器升级次数
-    UINT8 m_byLevelupPhyPoint;     // 攻击点数
-    UINT8 m_byLevelupMagPoint;     // 魔法点数
-    UINT8 m_byLevelupTaoPoint;     // 道术点数
-    UINT8 m_byLevelupTypeHidden;   // 隐藏点数类型
-    UINT8 m_byLevelupPointHidden;  // 隐藏点数数值
+    //Weapon upgrade
+    UINT8 m_byLevelupTimes;        // Weapon upgrade count
+    UINT8 m_byLevelupPhyPoint;     // Attack points
+    UINT8 m_byLevelupMagPoint;     // Magic points
+    UINT8 m_byLevelupTaoPoint;     // Tao points
+    UINT8 m_byLevelupTypeHidden;   // Hidden point type
+    UINT8 m_byLevelupPointHidden;  // Hidden point value
 
-    //铭文
+    //Inscription
     UINT16 m_wRune[MAX_RUNE_COUNT];
 
-    //以下属性仅限防具
-    //融灵
-    UINT32 m_dwSocketCombination;       // 孔位颜色
-    INT32 m_nSoulID[MAX_SOCKET_COUNT];  // 孔位镶嵌灵石
+    //The following attributes apply only to armor
+    //Soul fusion
+    UINT32 m_dwSocketCombination;       // Socket colors
+    INT32 m_nSoulID[MAX_SOCKET_COUNT];  // Soul stones inserted into sockets
 
     ItemInfo()
     {
@@ -622,7 +622,7 @@ struct Item
 
     void SetPos(UINT8 conslot, UINT8 itemslot);
 
-    //如果是装备替换，必须先脱再穿！
+    //When replacing equipment, unequip before equipping the replacement!
     void OnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot);
     void OnUnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot);
 
@@ -638,7 +638,7 @@ struct Item
     ItemInfo m_iteminfo;
     BOOL m_bAttrEffective;
 
-    //调试功能
+    //Debug function
     BOOL SetAttribute(INT32 index, UINT16 attrid);
     BOOL SetSocketColor(INT32 index, UINT8 color);
     BOOL SetSoul(INT32 index, INT32 soulid);

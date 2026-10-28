@@ -9,7 +9,7 @@
 
 #define   USERID_SPILITTER                    _SDT("~^")
 
-// 错误类型枚举定义
+// Error type enumeration
 enum ECenterServerErrors
 {
     CS_NO_ERROR=0,
@@ -18,17 +18,17 @@ enum ECenterServerErrors
     CS_USER_FAILED_LOGIN,
     CS_SYSTEM_FAILED
 };
-// Center Server相关定义
+// Center Server definitions
 enum ESubscriptState
 {
 	CANCELED_SUBSCRIPTED=0,
 	SUBSCRIPTED,
 };
 
-//  订阅类型
+//  Subscription type
 enum ESubscriptType
 {
-	SUBSCRIPT_BYTYPE=0,//  订阅的是类型服务器，则m_dwSubscriptID指向的是服务器的类型；
+	SUBSCRIPT_BYTYPE=0,//  When subscribing by server type, m_dwSubscriptID identifies the server type;
 };
 
 #endif

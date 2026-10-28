@@ -3,7 +3,7 @@
 	file:		guild_storage.cpp
 	author:		Allan Tao
 	
-	purpose:	帮派仓库
+	purpose:	Guild storage
 *********************************************************************/
 
 #include "stdafx.h"

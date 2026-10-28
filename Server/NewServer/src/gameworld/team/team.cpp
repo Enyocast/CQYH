@@ -76,11 +76,11 @@ INT32 CTeamInGS::Mainloop(void)
 
 	PROCESS_SUCCESS(m_AuctionItemList.empty());
 
-	// 获取第一个数据
+	// Get the first entry
 	poAuctionItem = *(m_AuctionItemList.begin());
 	LOG_PROCESS_ERROR(poAuctionItem);
 
-	// 如果没有开始拍卖, 则开始拍卖
+	// Start the auction if it has not begun
 	if (!poAuctionItem->bInBidding)
 	{
 #ifndef _ROBOT
@@ -97,9 +97,9 @@ INT32 CTeamInGS::Mainloop(void)
 			poAuctionItem->dwEndFrm = CGameWorld::GetInstance().GetGameFrame() + CONVERT_TIME(g_GWConfig.nTeamAuctionTimeout);
 	}
 
-	// [到时间了] 或者 [没有能投标的角色了] (说明全员放弃了), 则直接结束拍卖
-	//if (poAuctionItem->dwEndFrm <= CGameWorld::GetInstance().GetGameFrame()    // 原代码 只判断时间
-	if (poAuctionItem->dwEndFrm <= CGameWorld::GetInstance().GetGameFrame() ||   // 新代码 判断时间 + 判断可以出价角色数量
+	// End the auction when time expires or no characters can bid (everyone has passed)
+	//if (poAuctionItem->dwEndFrm <= CGameWorld::GetInstance().GetGameFrame()    // Original code checks only the time
+	if (poAuctionItem->dwEndFrm <= CGameWorld::GetInstance().GetGameFrame() ||   // New code checks both time and the number of eligible bidders
 		poAuctionItem->BidRoleList.empty() == TRUE)
 	{
 		UINT32 dwTax = 0;
@@ -176,7 +176,7 @@ INT32 CTeamInGS::Mainloop(void)
 		LOG_CHECK_ERROR(nRetCode);
 #endif
 
-		// 弹出第一个数据
+		// Remove the first entry
 		m_AuctionItemList.pop_front();
 		CGameWorld::GetInstance().DelTeamAutionItem(poAuctionItem);
 	}
@@ -277,7 +277,7 @@ BOOL CTeamInGS::AddAuctionItem(CDrop* poDrop)
 	poAuctionItem->RewardRoleList.clear();
 	poAuctionItem->dwWinnerID = 0;
 	poAuctionItem->poItem = poDrop->m_content.m_item;
-	poAuctionItem->dwIndex = m_dwAuctionItemIndex++;    // 计算拍卖序号, 从1开始
+	poAuctionItem->dwIndex = m_dwAuctionItemIndex++;    // Assign the auction index, starting at 1
 	poAuctionItem->poScene = poDrop->GetScene();
 	poAuctionItem->bInBidding = FALSE;
 	poAuctionItem->dwEndFrm = 0;

@@ -35,10 +35,10 @@ size_t		utf8_to_wchar(const char *in, size_t insize, wchar_t *out,
 size_t		wchar_to_utf8(const wchar_t *in, size_t insize, char *out,
 		    size_t outsize, int flags);
 
-// 新增代码
-char* char_to_utf8(char* str_mb);            // ANSI的char字符串 转成 utf8的char字符串
-char* utf8_to_char(const char* str_utf8);    // utf8的char字符串 转成 ANSI的char字符串
-void free_converted_string(char* str);       // 辅助函数：释放内存
+// New code
+char* char_to_utf8(char* str_mb);            // Convert an ANSI char string to UTF-8
+char* utf8_to_char(const char* str_utf8);    // Convert a UTF-8 char string to ANSI
+void free_converted_string(char* str);       // Helper function: free memory
 
 inline size_t utf8_2_utf16(const char* pcszSrc, size_t uSrcLen, wchar_t* pszDest, size_t uDestLen)
 {

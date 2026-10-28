@@ -23,9 +23,9 @@ CMailMgr CMailMgr::ms_Instance;
 
 UINT32 CMailMgr::_GetMailID(INT32 nGroupID)
 {
-    //mailid 生成规则：
-    //前8个bit：组号
-    //后24个bit：从1开始自增长
+    //Mail ID generation:
+    //First 8 bits: group number
+    //Last 24 bits: sequence starting at 1
     UINT32 mailid = 0;
 
     LOG_PROCESS_ERROR(IsValidGroup(nGroupID));
@@ -577,11 +577,11 @@ INT64 CMailMgr::PrintMemoryStat(void)
 }
 
 
-//读取每封邮件，检查AttachLocked字段是否为1
-//为0表示正常状态，继续下一封邮件
-//为1表示附件处理过程中出现异常，须读取role表中对应玩家的ProcessedMails内容
-//如果已处理该邮件，则更新邮件的AttachLocked为0，并且删除附件。
-//如果未处理该邮件，则更新邮件的AttachLocked为0，并且不删除附件。
+//Read each message and check whether AttachLocked is 1
+//0 means normal; continue to the next message
+//1 means attachment processing failed; read the player’s ProcessedMails from the role table
+//If the mail was processed, set AttachLocked to 0 and delete the attachment.
+//If the mail was not processed, set AttachLocked to 0 and retain the attachment.
 BOOL CMailMgr::_Load(std::list<void*>& rResult, void* pUserData)
 {
     BOOL bRet = FALSE;

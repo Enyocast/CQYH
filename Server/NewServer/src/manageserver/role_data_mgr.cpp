@@ -155,15 +155,15 @@ BOOL CRoleDataMgr::_LoadGM(std::list<void*>& rResult, void* pUserData)
 
         LOG_PROCESS_ERROR(IsValidGroup(pLoadResult->bySvrGroup));
 
-        // 默认代码
+        // Default code
         //nType = pLoadResult->qwID;
         //dwRoleID = pLoadResult->qwID >> 32;
         //dwTime = pLoadResult->dwTime;
 
-        // 自己改代码
-        nType = GM_RECORD_FREEZE_ROLE;  // 固定冻结角色
-        dwRoleID = pLoadResult->qwID;   // 数据库 gm表, ID字段 直接写角色ID
-        dwTime = pLoadResult->dwTime;   // 封禁时间
+        // Custom code
+        nType = GM_RECORD_FREEZE_ROLE;  // Always freeze the character
+        dwRoleID = pLoadResult->qwID;   // Write the character ID directly to the ID field of the database gm table
+        dwTime = pLoadResult->dwTime;   // Ban duration
 
         //dwTime = (dwTime == 0 ? 0xFFFFFFFF : dwTime);
 

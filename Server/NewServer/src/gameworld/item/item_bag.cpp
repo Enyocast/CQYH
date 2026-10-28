@@ -146,7 +146,7 @@ BOOL CItemBag::MainLoop()
     BOOL check_mp = FALSE;
     BOOL item_change = FALSE;
 
-    // 获取战具对象指针
+    // Get the off-hand equipment object pointer
     Item* item = GetItem(CONSLOT_RECOVER, 0);
     if (item)
     {
@@ -231,7 +231,7 @@ BOOL CItemBag::MainLoop()
         }
     }
 
-    // 判断 是否有武器正在升级中
+    // Check whether a weapon upgrade is in progress
     if (m_WeaponItem && !m_byMailNotified &&
         CGameWorld::GetInstance().GetGameTime() - m_dwWeaponLevelUpStartTime >= WEAPON_LEVEL_UP_TIME)
     {
@@ -422,7 +422,7 @@ INT32 CItemBag::AddItem(INT32 itemid, INT32 itemcount, EItemLog reason, UINT64 u
     LOG_PROCESS_ERROR(item);
     LOG_PROCESS_ERROR(item->m_pTemplate);
 
-    // 商店货不给随机属性
+    // Shop items do not receive random attributes
     if (reason == ITEMLOG_SHOP && item->m_pTemplate->m_byType == ITEMTYPE_EQUIP)
     {
         for (INT32 i = 0; i < MAX_RANDOM_ATTR_COUNT; i++)
@@ -507,7 +507,7 @@ INT32 CItemBag::UseItem(UINT8 conslot, UINT8 itemslot)
     LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetMoveState() != CMS_STALL, errItemStall);
     LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);
     LOG_PROCESS_ERROR_RET_CODE(_CheckValidItemPos(conslot, itemslot), errItemInvalidPos);
-    //LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->IsFreeMode(), errFreeMode);    // 默认代码, 放下面判断
+    //LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->IsFreeMode(), errFreeMode);    // Default code; check below
 
     it = m_cons[conslot].find(itemslot);
     if (it == m_cons[conslot].end())
@@ -515,7 +515,7 @@ INT32 CItemBag::UseItem(UINT8 conslot, UINT8 itemslot)
 
     item = it->second;
 
-    // 新增代码 (暂时屏蔽) - 如果开启点卡功能, 当使用点卡道具时, 不判断 m_bFreeMode标志
+    // Additional code (temporarily disabled): when time cards are enabled, do not check m_bFreeMode when using a time card item
     //if (g_ServerConfig.MS.bCustomGameTimeCardEnable == TRUE &&
     //    m_pOwner->GetLevel() > g_ServerConfig.MS.nCustomFreeRoleLevel && 
     //    CheckTemplateIDIsTimeCard(item->m_pTemplate->m_nTemplateID) == FALSE)
@@ -548,7 +548,7 @@ INT32 CItemBag::UseItem(UINT8 conslot, UINT8 itemslot)
         LOG_PROCESS_ERROR_RET_CODE(item->m_pTemplate->m_byUseInArena, errItemCannotUseInArena);
     }
 
-    // 脚本 script
+    // Script
     if ('\0' != item->m_pTemplate->m_szScript[0])
     {
         INT32 nUseItemRtn = errSuccess;
@@ -565,12 +565,12 @@ INT32 CItemBag::UseItem(UINT8 conslot, UINT8 itemslot)
         return nUseItemRtn;
     }
 
-    // 判断类型
+    // Check type
     switch (item->m_pTemplate->m_byType)
     {
     case ITEMTYPE_USABLE:
     {
-        // 自己新增代码 - 处理新物品
+        // Custom code - handle new items
         switch (item->m_pTemplate->m_nTemplateID)
         {
         default:
@@ -732,14 +732,14 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
     LOG_PROCESS_ERROR_RET_CODE(_CheckValidItemPos(dstconslot, dstitemslot), errItemInvalidPos);
     LOG_PROCESS_ERROR_RET_CODE(!_SrcDstSame(srcconslot, srcitemslot, dstconslot, dstitemslot), errItemInvalidPos);
 
-    srcitem = GetItem(srcconslot, srcitemslot);    // 原始物品
-    dstitem = GetItem(dstconslot, dstitemslot);    // 目标物品
+    srcitem = GetItem(srcconslot, srcitemslot);    // Source item
+    dstitem = GetItem(dstconslot, dstitemslot);    // Destination item
 
-    // 判断 - 原始物品 是否为空
+    // Check whether the source item is null
     if (srcitem == NULL)
         return errItemNotFound;
 
-    // 判断 - (原始位置 == 主背包 1, 目标位置 == 装备栏 0)
+    // Check: source is main bag 1, destination is equipment slots 0
     if (srcconslot == CONSLOT_DEFAULT && dstconslot == CONSLOT_EQUIPPED)
     {
         //Equip
@@ -778,7 +778,7 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return nResult;
     }
 
-    // 判断 - (原始位置 == 装备栏 0, 目标位置 == 主背包 1)
+    // Check: source is equipment slots 0, destination is main bag 1
     if (srcconslot == CONSLOT_EQUIPPED && dstconslot == CONSLOT_DEFAULT)
     {
         //UnEquip
@@ -817,27 +817,27 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return nResult;
     }
 
-    // 判断 - (原始位置 == 主背包 1, 目标位置 == 资源包 7)
+    // Check: source is main bag 1, destination is resource bag 7
     if (srcconslot == CONSLOT_DEFAULT && dstconslot == CONSLOT_RESOURCE)
     {
-        // 只能放入 [矿石/配方] 物品
+        // Only ore / recipe items may be placed here
         if (srcitem->m_pTemplate->m_byType == ITEMTYPE_MATERIAL || srcitem->m_pTemplate->m_byType == ITEMTYPE_FORMULA)
         {
             return _MoveItem(srcconslot, srcitemslot, dstconslot, dstitemslot);
         }
     }
 
-    // 判断 - (原始位置 == 资源包 7, 目标位置 == 主背包 1)
+    // Check: source is resource bag 7, destination is main bag 1
     if (srcconslot == CONSLOT_RESOURCE && dstconslot == CONSLOT_DEFAULT)
     {
-        // 只能取出 [矿石/配方] 物品
+        // Only ore / recipe items may be removed
         if (srcitem->m_pTemplate->m_byType == ITEMTYPE_MATERIAL || srcitem->m_pTemplate->m_byType == ITEMTYPE_FORMULA)
         {
             return _MoveItem(srcconslot, srcitemslot, dstconslot, dstitemslot);
         }
     }
 
-    // 判断 - (原始位置 == 英雄背包 4 或者 原始位置 == 主背包 1, 目标位置 == 英雄装备栏 3)
+    // Check: source is hero bag 4 or main bag 1, destination is hero equipment slots 3
     if ((srcconslot == CONSLOT_HERO_EQUIPMENT || srcconslot == CONSLOT_DEFAULT) && dstconslot == CONSLOT_HERO_EQUIPPED)
     {
         CHero* poHero = m_pOwner->GetHero();
@@ -871,7 +871,7 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return nResult;
     }
 
-    // 判断 - (原始位置 == 英雄装备栏 3, 目标位置 == 英雄背包 4 或者 目标位置 == 主背包 1)
+    // Check: source is hero equipment slots 3, destination is hero bag 4 or main bag 1
     if (srcconslot == CONSLOT_HERO_EQUIPPED && (dstconslot == CONSLOT_HERO_EQUIPMENT || dstconslot == CONSLOT_DEFAULT))
     {
         CHero* poHero = m_pOwner->GetHero();
@@ -906,7 +906,7 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return nResult;
     }
 
-    // 判断 - (原始位置 == 装备栏 0, 目标位置 == 装备栏 0)
+    // Check: source and destination are equipment slots 0
     if (srcconslot == CONSLOT_EQUIPPED && dstconslot == CONSLOT_EQUIPPED)
     {
         //Swap Equip
@@ -918,7 +918,7 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return _MoveItem(srcconslot, srcitemslot, dstconslot, dstitemslot);
     }
 
-    // 判断 - (原始位置 == 主背包 1, 目标位置 == 储值栏 5)
+    // Check: source is main bag 1, destination is stored-value slots 5
     if (srcconslot == CONSLOT_DEFAULT && dstconslot == CONSLOT_DEPOSIT)
     {
         if (!_CorrectDepositSlot(srcitem, dstitemslot))
@@ -930,7 +930,7 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return _MoveItem(srcconslot, srcitemslot, dstconslot, dstitemslot);
     }
 
-    // 判断 - (原始位置 == 储值栏 5, 目标位置 == 主背包 1)
+    // Check: source is stored-value slots 5, destination is main bag 1
     if (srcconslot == CONSLOT_DEPOSIT && dstconslot == CONSLOT_DEFAULT)
     {
         if (dstitem && !_CorrectDepositSlot(dstitem, srcitemslot))
@@ -942,7 +942,7 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return _MoveItem(srcconslot, srcitemslot, dstconslot, dstitemslot);
     }
 
-    // 判断 - (原始位置 == 主背包 1, 目标位置 == 自动恢复栏 6)
+    // Check: source is main bag 1, destination is automatic recovery slots 6
     if (srcconslot == CONSLOT_DEFAULT && dstconslot == CONSLOT_RECOVER)
     {
         if (srcitem->m_pTemplate->m_byType != ITEMTYPE_RECOVER)
@@ -951,7 +951,7 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return _MoveItem(srcconslot, srcitemslot, dstconslot, dstitemslot);
     }
 
-    // 判断 - (原始位置 == 自动恢复栏 6, 目标位置 == 主背包 1)
+    // Check: source is automatic recovery slots 6, destination is main bag 1
     if (srcconslot == CONSLOT_RECOVER && dstconslot == CONSLOT_DEFAULT)
     {
         if (dstitem && dstitem->m_pTemplate->m_byType != ITEMTYPE_RECOVER)
@@ -960,14 +960,14 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return _MoveItem(srcconslot, srcitemslot, dstconslot, dstitemslot);
     }
 
-    // 判断 - (原始位置 == 仓库 2, 目标位置 == 主背包 1)
+    // Check: source is storage 2, destination is main bag 1
     if (srcconslot == CONSLOT_BANK && dstconslot == CONSLOT_DEFAULT)
     {
         if (_GetBagWeight() + srcitem->GetWeight() - (dstitem ? dstitem->GetWeight() : 0) > m_pOwner->GetAttr(catBagWeightLmt))
             return errItemBagTooHeavy;
     }
 
-    // 判断 - (原始位置 == 主背包 1, 目标位置 == 仓库 2)
+    // Check: source is main bag 1, destination is storage 2
     if (srcconslot == CONSLOT_DEFAULT && dstconslot == CONSLOT_BANK &&
         dstitem &&
         !(srcitem->m_pTemplate == dstitem->m_pTemplate && srcitem->m_iteminfo.m_byBindType == dstitem->m_iteminfo.m_byBindType))
@@ -976,11 +976,11 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
             return errItemBagTooHeavy;
     }
 
-    // 判断 - (目标位置 != 仓库 2, 目标位置 != 主背包 1)
+    // Check: destination is neither storage 2 nor main bag 1
     if (dstconslot != CONSLOT_BANK && dstconslot != CONSLOT_DEFAULT)
         return errItemTypeMismatch;
 
-    // 判断 - (原始位置 != 仓库 2, 原始位置 != 主背包 1)
+    // Check: source is neither storage 2 nor main bag 1
     if (srcconslot != CONSLOT_BANK && srcconslot != CONSLOT_DEFAULT)
         return errItemTypeMismatch;
 
@@ -1033,7 +1033,7 @@ INT32 CItemBag::SplitItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot,
     {
         UINT32 real_count = 0;
 
-        //移到已有物品上
+        //Move onto an existing item
         if (srcitem->m_pTemplate != dstitem->m_pTemplate ||
             dstitem->m_iteminfo.m_nCurDur >= dstitem->m_pTemplate->m_nDur)
         {
@@ -1079,7 +1079,7 @@ INT32 CItemBag::SplitItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot,
     }
     else
     {
-        //移到空处
+        //Move to an empty slot
         Item* newitem = CItemMgr::GetInstance().CopyItem(srcitem);
         LOG_PROCESS_ERROR(newitem);
         srcitem->m_iteminfo.m_nCurDur -= itemcount;
@@ -1122,7 +1122,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// 丢弃物品
+// Discard item
 INT32 CItemBag::DeleteItem(UINT8 conslot, UINT8 itemslot, INT16 itemcount)
 {
 #ifdef _ROBOT
@@ -1215,7 +1215,7 @@ INT32 CItemBag::SellItem(UINT8 conslot, UINT8 itemslot, INT32 shoptypesell)
     LOG_PROCESS_ERROR_RET_CODE(item->m_pTemplate->m_byCanSell, errItemCannotSell);
     LOG_PROCESS_ERROR_RET_CODE(item->m_iteminfo.m_dwRoleID == 0, errItemAlreadySigned);
 
-    // 屏蔽商店类型, 任何商店都能卖东西
+    // Ignore shop type; items can be sold to any shop
     LOG_PROCESS_ERROR_RET_CODE(item->m_pTemplate->m_nShopTypeSell == 0 || shoptypesell == 0 || item->m_pTemplate->m_nShopTypeSell == shoptypesell, errShopTypeSell);
 
     sellprice = _GetSellPrice(item);
@@ -1430,7 +1430,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// 鉴定物品?
+// Identify item?
 INT32 CItemBag::IdentifyItem(UINT8 conslot, UINT8 itemslot)
 {
 #ifdef _ROBOT
@@ -1544,7 +1544,7 @@ INT32 CItemBag::ConfirmRandomizeItem()
 
     INT32 nResult = errItemUnknown;
     Item* item = NULL;
-    INT32 require_money = 100;//临时性，100块
+    INT32 require_money = 100;//Temporary: 100
 
     LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetMoveState() != CMS_STALL, errItemStall);
     LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);
@@ -1614,7 +1614,7 @@ INT32 CItemBag::Refine(UINT8 refineslot, UINT8 addequip, UINT8 conslot, UINT8 it
     if (GetMoney(MONEYTYPE_01) < refine_data->m_nCost)
         return errItemNotEnoughMoneytype01;
 
-    //删物品删钱
+    //Remove item and deduct money
     if (addequip)
     {
         DeleteItemPos(conslot, itemslot, 1, ITEMLOG_REFINE_ITEM, 0);
@@ -1623,7 +1623,7 @@ INT32 CItemBag::Refine(UINT8 refineslot, UINT8 addequip, UINT8 conslot, UINT8 it
 
     SubMoney(MONEYTYPE_01, refine_data->m_nCost, MONEYLOG_REFINE_ITEM, 0);
 
-    //计算强化成功率
+    //Calculate enhancement success rate
     refine_success_rate = refine_data->m_dwSuccessRate;
     if (addequip)
     {
@@ -1631,14 +1631,14 @@ INT32 CItemBag::Refine(UINT8 refineslot, UINT8 addequip, UINT8 conslot, UINT8 it
     }
     if (g_Random(10000) >= refine_success_rate)
     {
-        //失败。。。
+        //Failed...
         CCliMessageHandler::GetInstance().DoSendRefineResult(m_pOwner, refineslot, 0, m_refine_levels[refineslot]);
         return errSuccess;
     }
 
     SetRefineLevel(refineslot, m_refine_levels[refineslot] + 1);
 
-    //全服广播
+    //Server-wide announcement
     if (refine_data->m_nBroadCast)
     {
         char szBroadcast[1024];
@@ -1658,12 +1658,12 @@ INT32 CItemBag::Refine(UINT8 refineslot, UINT8 addequip, UINT8 conslot, UINT8 it
 
     CAdventure::GetInstance().OnRefineEquip(m_pOwner);
 
-    m_pOwner->GetAchievementList().AddVariable(avdTotalRefineTime, 1);	// 装备强化总次数
+    m_pOwner->GetAchievementList().AddVariable(avdTotalRefineTime, 1);	// Total equipment enhancement attempts
 
     return errSuccess;
 
 Exit0:
-    m_pOwner->GetAchievementList().AddVariable(avdRefineFailTime, 1);	// 强化失败次数
+    m_pOwner->GetAchievementList().AddVariable(avdRefineFailTime, 1);	// Failed enhancement attempts
 
     return nResult;
 
@@ -1679,7 +1679,7 @@ void CItemBag::SetRefineLevel(UINT8 refineslot, UINT16 level)
     if (m_refine_levels[refineslot] == level)
         return;
 
-    //如果强化部位存在已装备的物品，则需要计算新的属性
+    //Recalculate attributes if an item is equipped in the enhanced slot
     if (equipped_item && equipped_item->m_pTemplate->m_byType == ITEMTYPE_EQUIP && equipped_item->m_iteminfo.m_nCurDur > 0 && m_refine_levels[refineslot] > 0)
     {
         const REFINE_ATTR_DATA* refine_attr_data = CDataManager<REFINE_ATTR_DATA>::GetInstance().GetData(REFINE_ATTR_DATA::MakeKey(m_refine_levels[refineslot], m_pOwner->GetClass(), refineslot));
@@ -1714,7 +1714,7 @@ void CItemBag::SetRefineLevel(UINT8 refineslot, UINT16 level)
             cur_min_level = m_refine_levels[i];
     }
 
-    //计算强化激活属性
+    //Calculate enhancement-activated attributes
     if (old_min_level != cur_min_level)
     {
         const REFINE_ATTR_DATA* old_data = CDataManager<REFINE_ATTR_DATA>::GetInstance().GetData(REFINE_ATTR_DATA::MakeKey(old_min_level, m_pOwner->GetClass(), NES_TOTAL));
@@ -1792,7 +1792,7 @@ INT32 CItemBag::AuctionSell(UINT8 conslot, UINT8 itemslot, UINT8 byAuctionTimeTy
     char szItemInfo[256] = { 0 };
     Item* item = GetItem(conslot, itemslot);
 
-    // 默认代码 判断vip等级
+    // Default code: check VIP level
     //if (m_pOwner->GetVIPLevel() < vlLevel3)
     //{
     //	CNpc* npc = CGameWorld::GetInstance().FindNpc(m_pOwner->GetInteractNpc());
@@ -1811,27 +1811,27 @@ INT32 CItemBag::AuctionSell(UINT8 conslot, UINT8 itemslot, UINT8 byAuctionTimeTy
     LOG_PROCESS_ERROR_RET_CODE(item->m_pTemplate->m_bAuction, errItemCannotAuction);
     LOG_PROCESS_ERROR_RET_CODE(item->m_iteminfo.m_byBindType != BINDTYPE_BINDED, errItemBinded);
     LOG_PROCESS_ERROR_RET_CODE(llprice >= item->m_pTemplate->m_nDefaultAuctionPrice, errAuctionSellingPriceLow);
-    LOG_PROCESS_ERROR_RET_CODE(byAuctionTimeType < MAX_AUCTION_TIME_INTERVAL_TYPE, errAuctionUnknown);    // 时间类型不对
+    LOG_PROCESS_ERROR_RET_CODE(byAuctionTimeType < MAX_AUCTION_TIME_INTERVAL_TYPE, errAuctionUnknown);    // Invalid time type
     LOG_PROCESS_ERROR(item->m_pTemplate->m_nAuctionFee);
     LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_02) >= item->m_pTemplate->m_nAuctionFee[byAuctionTimeType], errItemNotEnoughMoneytype02);
 
-    // 扣钱 手续费
+    // Deduct the fee
     nRetCode = SubMoney(MONEYTYPE_02, item->m_pTemplate->m_nAuctionFee[byAuctionTimeType], MONEYLOG_AUCTION_SELL_COST, 0);
     LOG_PROCESS_ERROR(nRetCode == errSuccess);
 
-    // 删除物品之前, 先保存 item->m_iteminfo 的数据, 在 DeleteItemPos 中, 会销毁 item 指针对象
+    // Save item->m_iteminfo before deleting the item; DeleteItemPos destroys the pointed-to object
     dwItemInfoSize = item->m_iteminfo.Save(szItemInfo);
 
-    // 删除物品
+    // Delete item
     nRetCode = DeleteItemPos(conslot, itemslot,
         item->m_pTemplate->m_byDurType == DURTYPE_STACK ? item->m_iteminfo.m_nCurDur : 1,
         ITEMLOG_AUCTION_SELL, 0);
     LOG_PROCESS_ERROR(nRetCode == errSuccess);
 
-    // 添加玩家变量
+    // Add player variable
     m_pOwner->GetAchievementList().AddVariable(avdAuctionSellCount, 1);
 
-    // 发包给MS
+    // Send packet to MS
     CCliMessageHandler::GetInstance().DoMSAuctionSell(errSuccess, m_pOwner->GetObjID(), byAuctionTimeType, byOpen, llprice, llbuyoutPrice, llDepositePrice, szItemInfo, dwItemInfoSize);
 
     return errSuccess;
@@ -1851,7 +1851,7 @@ INT32 CItemBag::AuctionBuy(UINT32 auctionid, INT64 llBidPrice, INT64 llAuctionPr
     INT32 nRetCode = 0;
     INT32 nResult = errItemUnknown;
 
-    // 默认代码 判断vip等级
+    // Default code: check VIP level
     //if (m_pOwner->GetVIPLevel() < vlLevel3)
     //{
     //	CNpc* npc = CGameWorld::GetInstance().FindNpc(m_pOwner->GetInteractNpc());
@@ -1867,13 +1867,13 @@ INT32 CItemBag::AuctionBuy(UINT32 auctionid, INT64 llBidPrice, INT64 llAuctionPr
     LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetMoveState() != CMS_STALL, errItemStall);
     LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);
 
-    // 无论是 "一口价" 或 "竞拍", 都是只扣保证金
+    // For both buyout and bidding, deduct only the deposit
     LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_02) >= llDepositPrice, errItemNotEnoughMoneytype02);
 
-    // 扣钱, 保证金
+    // Deduct the deposit
     SubMoney(MONEYTYPE_02, llDepositPrice, MONEYLOG_AUCTION_DEPOSIT_COST, 0);
 
-    // 根据出价类型, 发送的价格变量不一样, 会直接影响 Auction对象 和 客户端显示
+    // The price field sent depends on bid type and directly affects the Auction object and client display
     if (byBuyType == EAuctionBuyType::eabtBuyout)
     {
         CCliMessageHandler::GetInstance().DoMSAuctionBuy(errSuccess, m_pOwner->GetObjID(), auctionid, llAuctionPrice);
@@ -1900,7 +1900,7 @@ INT32 CItemBag::AuctionPay(UINT32 auctionid, INT64 llprice)
     INT32 nRetCode = 0;
     INT32 nResult = errItemUnknown;
 
-    // 默认代码 判断vip等级
+    // Default code: check VIP level
     //if (m_pOwner->GetVIPLevel() < vlLevel3)
     //{
     //	CNpc* npc = CGameWorld::GetInstance().FindNpc(m_pOwner->GetInteractNpc());
@@ -1916,7 +1916,7 @@ INT32 CItemBag::AuctionPay(UINT32 auctionid, INT64 llprice)
     //LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);
     LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_02) >= llprice, errItemNotEnoughMoneytype02);
 
-    // 扣钱 "一口价" 或 "竞拍"
+    // Deduct buyout or bid amount
     SubMoney(MONEYTYPE_02, llprice, MONEYLOG_AUCTION_LEFT_MONEY, 0);
 
     CCliMessageHandler::GetInstance().DoMSAuctionPay(errSuccess, m_pOwner->GetObjID(), auctionid, llprice);
@@ -2135,7 +2135,7 @@ INT32 CItemBag::DeleteItemId(INT32 itemid, INT16 itemcount, EItemLog reason, BOO
 
 INT32 CItemBag::RemoveItem(UINT8 conslot, UINT8 itemslot, EItemLog reason)
 {
-    // 此方法仅供trade调用，可以删除物品而不删除对象，因为对象还要给另外一个玩家
+    // Only trade may call this method: remove the item without destroying the object because it is transferred to another player
     INT32 nResult = errItemUnknown;
     INT32 nRetCode = 0;
     Item* item = GetItem(conslot, itemslot);
@@ -2231,7 +2231,7 @@ void CItemBag::LoseItemOnDeath(BOOL is_player)
     Item* drop_items[256];
     INT32 total_drop_count = 0;
 
-    //以下分别是包内普通物品，包内贵重物品，已装备物品的最多掉落数量和被选掉落物品，具体掉落概率还需要根据物品不同而变化
+    //The following values specify maximum drop counts and selected drops for ordinary inventory items, valuable inventory items, and equipped items; actual drop chances vary by item
     std::vector<Item*> items_to_be_dropped[3];
 
     UINT8 name_color = m_pOwner->GetNameColor();
@@ -2250,7 +2250,7 @@ void CItemBag::LoseItemOnDeath(BOOL is_player)
 
     if (m_dwDeathCountFromFirst >= 50)
     {
-        //如果玩家角色在10分钟内PK死亡超过50次，则玩家身上和背包内受到白名单保护的道具中随机掉落一个。
+        //If a player dies in PvP more than 50 times in 10 minutes, randomly drop one allowlist-protected item from equipment or inventory.
         std::vector<Item*> protected_items;
 
         for (ConIt it = m_cons[CONSLOT_DEFAULT].begin(); it != m_cons[CONSLOT_DEFAULT].end(); it++)
@@ -2289,7 +2289,7 @@ void CItemBag::LoseItemOnDeath(BOOL is_player)
 
     if (m_dwLastDeathTime && m_dwLastDeathTime + pk_drop_data->m_nProtectTime / GAME_FPS >= CGameWorld::GetInstance().GetGameTime())
     {
-        //保护时间内免掉落一次
+        //Prevent one drop during the protection period
         m_dwLastDeathTime = 0;
     }
     else
@@ -2619,7 +2619,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// 设置-武器幸运数值 (不是增加, 是直接赋值)
+// Set weapon luck directly (not an increment)
 void CItemBag::SetWeaponLuck(INT8 v)
 {
 #ifndef _ROBOT
@@ -2650,7 +2650,7 @@ void CItemBag::SetWeaponLuck(INT8 v)
         }
     }
 
-    // 新增代码 - 清零-祝福油节点
+    // Additional code - reset blessing oil node
     m_pOwner->ResetLuckRootCount();
     m_pOwner->NotifyRole_LuckRootCount();
 
@@ -2660,7 +2660,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// 增加-武器幸运数值 (传入负数, 是扣数值)
+// Increase weapon luck (a negative value decreases it)
 void CItemBag::IncreaseWeaponLuck(INT8 v)
 {
 #ifndef _ROBOT
@@ -2689,7 +2689,7 @@ void CItemBag::IncreaseWeaponLuck(INT8 v)
         }
     }
 
-    // 新增代码 - 增加祝福油节点
+    // Additional code - increment blessing oil node
     m_pOwner->IncLuckRootCount();
     m_pOwner->NotifyRole_LuckRootCount();
 
@@ -2702,7 +2702,7 @@ Exit0:
 void CItemBag::DecreaseWeaponLuck()
 {
 #ifndef _ROBOT
-    //若被击杀玩家的PK值小于100，则有20%的几率降低一点幸运值。
+    //If the killed player has fewer than 100 PvP points, there is a 20% chance of losing one luck point.
     Item* item = GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
     if (item && item->m_iteminfo.m_byLuck > -9 && g_Random(100) < 20)
     {
@@ -3159,7 +3159,7 @@ INT32 CItemBag::AddMoney(INT32 moneytype, INT32 nCount, EMoneyLog reason, UINT32
     }
 
     //redmine #23983
-    //余力烨：金币的直接交易，摆摊获得，组队拍卖获得，邮件不计入每日及每周获取上限
+    //Yu Liye: gold obtained by direct trade, stalls, team auctions, or mail does not count toward daily and weekly gain limits
     if (!(moneytype == MONEYTYPE_02 &&
         (reason == MONEYLOG_PLAYER_TRADE ||
             reason == MONEYLOG_PLAYER_STALL ||
@@ -3391,7 +3391,7 @@ INT32 CItemBag::BuySlots(UINT8 conslot, UINT8 slotcount)
     LOG_PROCESS_ERROR(slotcount > 0);
     LOG_PROCESS_ERROR(m_con_sizes[conslot] + slotcount <= MAX_CONTAINER_SIZE[conslot]);
 
-    // 判断背包类型 (默认背包/仓库/资源背包)
+    // Check bag type (default bag / storage / resource bag)
     switch (conslot)
     {
     default:
@@ -3484,7 +3484,7 @@ INT32 CItemBag::UpgradeSoul(UINT8 targetconslot, UINT8 targetitemslot, UINT8 src
     next_level_soul_data = CDataManager<SOUL_DATA>::GetInstance().GetData(target_soul_data->m_nUpgradeSoulID);
     LOG_PROCESS_ERROR(next_level_soul_data && next_level_soul_data->m_nPriceValue);
 
-    //整理输入，有可能几个材料是堆在同一格里的
+    //Normalize input; multiple materials may be stacked in the same slot
     memset(src_soul, 0, sizeof(src_soul));
     memset(src_soul_data, 0, sizeof(src_soul_data));
     memset(src_soul_count, 0, sizeof(src_soul_count));
@@ -3526,7 +3526,7 @@ INT32 CItemBag::UpgradeSoul(UINT8 targetconslot, UINT8 targetitemslot, UINT8 src
         LOG_PROCESS_ERROR_RET_CODE(GetFreeSlots(CONSLOT_DEFAULT) > 0, errItemBagFull);
     }
 
-    //删材料
+    //Remove materials
     for (UINT8 i = 0; i < real_src_count; i++)
     {
         INT32 ret = DeleteItemPos(src_soul[i]->m_iteminfo.m_byConSlot, src_soul[i]->m_iteminfo.m_byItemSlot, src_soul_count[i],
@@ -3534,7 +3534,7 @@ INT32 CItemBag::UpgradeSoul(UINT8 targetconslot, UINT8 targetitemslot, UINT8 src
         LOG_CHECK_ERROR(ret == errSuccess);
     }
 
-    //随机
+    //Random
     upgrade_success = g_Random(next_level_soul_data->m_nPriceValue) < total_price_value;
     if (upgrade_success)
     {
@@ -3555,7 +3555,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// 镶嵌灵石
+// Insert soul stone
 INT32 CItemBag::AddSoul(UINT8 equipconslot, UINT8 equipitemslot, UINT8 socketindex, UINT8 soulconslot, UINT8 soulitemslot)
 {
 #ifdef _ROBOT
@@ -3588,24 +3588,24 @@ INT32 CItemBag::AddSoul(UINT8 equipconslot, UINT8 equipitemslot, UINT8 socketind
     LOG_PROCESS_ERROR_RET_CODE(target_equip, errItemNotFound);
     LOG_PROCESS_ERROR_RET_CODE(soul, errItemNotFound);
     LOG_PROCESS_ERROR_RET_CODE(equipconslot != CONSLOT_EQUIPPED && equipconslot != CONSLOT_HERO_EQUIPPED, errItemEquipped);
-    LOG_PROCESS_ERROR(socketindex < MAX_SOCKET_COUNT);//最多插3个
-    LOG_PROCESS_ERROR_RET_CODE(soul->m_pTemplate->m_byType == ITEMTYPE_SOUL, errItemCannotAddSoul);//必须用灵魂来插
-    LOG_PROCESS_ERROR_RET_CODE(target_equip->m_pTemplate->m_byType == ITEMTYPE_EQUIP, errItemCannotAddSoul);//只能插在装备上
+    LOG_PROCESS_ERROR(socketindex < MAX_SOCKET_COUNT);//At most 3 may be inserted
+    LOG_PROCESS_ERROR_RET_CODE(soul->m_pTemplate->m_byType == ITEMTYPE_SOUL, errItemCannotAddSoul);//The inserted item must be a soul
+    LOG_PROCESS_ERROR_RET_CODE(target_equip->m_pTemplate->m_byType == ITEMTYPE_EQUIP, errItemCannotAddSoul);//Can only be inserted into equipment
 
     target_socket_type = target_equip->m_iteminfo.GetSocketType(socketindex);
-    LOG_PROCESS_ERROR(target_socket_type != SOCKET_NONE);//有孔才能插
+    LOG_PROCESS_ERROR(target_socket_type != SOCKET_NONE);//A socket is required
     LOG_PROCESS_ERROR_RET_CODE(target_equip->m_iteminfo.m_nSoulID[socketindex] == 0, errItemAlreadySocketed);
 
     soul_data = CDataManager<SOUL_DATA>::GetInstance().GetData(soul->m_iteminfo.m_nTemplateID);
     LOG_PROCESS_ERROR(soul_data);
     if (target_socket_type != SOCKET_COLORFUL)
     {
-        //如果不是彩色孔，则颜色必须匹配
+        //Colors must match unless the socket is multicolor
         LOG_PROCESS_ERROR_RET_CODE(target_socket_type == soul_data->m_nMatchSocket, errItemSocketNotMatch);
     }
-    //LOG_PROCESS_ERROR(target_equip->m_pTemplate->m_byRequireLevel >= soul_data->m_nSoulLevel);//灵魂有等级需求，需大于装备需求等级
+    //LOG_PROCESS_ERROR(target_equip->m_pTemplate->m_byRequireLevel >= soul_data->m_nSoulLevel);//Soul level requirement must exceed the equipment level requirement
 
-    //满足了所有条件，那就插进去吧
+    //Insert once all conditions are met
     DeleteItemPos(soulconslot, soulitemslot, 1, ITEMLOG_INSERT_SOUL, 0);
 
     target_equip->m_iteminfo.m_nSoulID[socketindex] = soul_data->m_nTemplateID;
@@ -3632,7 +3632,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// 拆除灵石
+// Remove soul stone
 INT32 CItemBag::RemoveSoul(UINT8 conslot, UINT8 itemslot, UINT8 socketindex)
 {
 #ifdef _ROBOT
@@ -3696,7 +3696,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// 普通铭文洗练
+// Normal inscription refinement
 INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
 {
 #ifdef _ROBOT
@@ -3738,7 +3738,7 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
         LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_GUILD) >= GUILD_RUNE_COST, errGuildNotEnoughContribution);
     }
 
-    // 获取节点数值
+    // Get node value
     if (itemid == RUNE_ITEMID_WARRIOR_1)
         nRuneRootCount = m_pOwner->GetRuneRootCount(rrrNormal, clsWarrior);
     else if (itemid == RUNE_ITEMID_MAGE_1)
@@ -3746,7 +3746,7 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
     else if (itemid == RUNE_ITEMID_TAOIST_1)
         nRuneRootCount = m_pOwner->GetRuneRootCount(rrrNormal, clsTaoist);
 
-    // 达到节点 2500
+    // Reached node 2500
     if (nRuneRootCount >= RUNE_ROOT_NORMAL)
     {
         if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
@@ -3754,17 +3754,17 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
 
         if (itemid == RUNE_ITEMID_WARRIOR_1)
         {
-            nRuneID = RUNE_ROOT_NORMAL_Warrior;  // 斩月印
+            nRuneID = RUNE_ROOT_NORMAL_Warrior;  // Moon Slash inscription
             m_pOwner->IncRuneRootCount(rrrNormal, clsWarrior);
         }
         else if (itemid == RUNE_ITEMID_MAGE_1)
         {
-            nRuneID = RUNE_ROOT_NORMAL_Mage;  // 雷咒印
+            nRuneID = RUNE_ROOT_NORMAL_Mage;  // Lightning Spell inscription
             m_pOwner->IncRuneRootCount(rrrNormal, clsMage);
         }
         else if (itemid == RUNE_ITEMID_TAOIST_1)
         {
-            nRuneID = RUNE_ROOT_NORMAL_Taoist;  // 圣兽印
+            nRuneID = RUNE_ROOT_NORMAL_Taoist;  // Sacred Beast inscription
             m_pOwner->IncRuneRootCount(rrrNormal, clsTaoist);
         }
         else
@@ -3772,23 +3772,23 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
             LOG_PROCESS_ERROR(FALSE);
         }
 
-        // 固定卡槽1
+        // Use slot 1
         weapon->m_iteminfo.m_wRune[0] = nRuneID;
 
         if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
             weapon->OnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
     }
-    // 没到节点
+    // Node threshold not reached
     else
     {
-        // 普通洗练
+        // Normal refinement
         if (itemid == RUNE_ITEMID_WARRIOR_1 || itemid == RUNE_ITEMID_MAGE_1 || itemid == RUNE_ITEMID_TAOIST_1)
         {
-            // 脱装备
+            // Unequip item
             if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
                 weapon->OnUnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
 
-            // 三职业铭文
+            // Inscriptions for three classes
             if (itemid == RUNE_ITEMID_WARRIOR_1)
             {
                 nRuneID = CItemMgr::GetInstance().GenerateRandomRuneData(m_pOwner->GetServerGroup(), weapon, clsWarrior, m_pOwner->GetLevel(), runegroup);
@@ -3805,11 +3805,11 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
                 m_pOwner->IncRuneRootCount(rrrNormal, clsTaoist);
             }
 
-            // 穿装备
+            // Equip item
             if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
                 weapon->OnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
         }
-        // 新手教程, 固定铭文
+        // New-player tutorial: fixed inscription
         else if (itemid == RUNE_ITEMID_WARRIOR_2 || itemid == RUNE_ITEMID_MAGE_2 || itemid == RUNE_ITEMID_TAOIST_2)
         {
             if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
@@ -3833,24 +3833,24 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
         }
     }
 
-    // 删除物品
+    // Delete item
     DeleteItemId(itemid, 1, ITEMLOG_RUNE, FALSE, 0);
 
-    // 扣钱
+    // Deduct money
     SubMoney(MONEYTYPE_02, RUNE_ITEM_COST, MONEYLOG_RUNE, 0);
     weapon->m_iteminfo.m_dwCostMoney += RUNE_ITEM_COST;
 
-    // 判断 当前场景是不是行会地图
+    // Check whether the current scene is a guild map
     if (m_pOwner->GetScene()->GetSceneID() == m_pOwner->GetGuildID())
     {
         SubMoney(MONEYTYPE_GUILD, GUILD_RUNE_COST, MONEYLOG_INVALID, 0);
     }
 
-    // 根据铭文ID, 获取铭文模板
+    // Get the inscription template by ID
     pcRuneData = CDataManager<RUNE_DATA>::GetInstance().GetData(nRuneID);
     if (pcRuneData)
     {
-        // 发公告
+        // Send announcement
         if (pcRuneData->nBroadCast)
         {
             char szBroadcast[1024];
@@ -3868,15 +3868,15 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
             m_pOwner->Say(cctGroup, cltTvShow, szBroadcast);
         }
 
-        // 同步百晓生
+        // Synchronize Baixiaosheng
         if (pcRuneData->nHandbookType != 0)
             m_pOwner->GetAchievementList().ActivateHandbook(pcRuneData->nHandbookType, pcRuneData->nHandbookIndex);
     }
 
-    // 发包同步装备数据
+    // Send packet to synchronize equipment data
     CCliMessageHandler::GetInstance().DoSendItemChange(m_pOwner, weapon);
 
-    // 记录日志 - 装备洗练
+    // Log equipment refinement
     if (weapon->m_pTemplate->m_byLog)
     {
         CCliMessageHandler::GetInstance().DoDLChangeItem(
@@ -3886,10 +3886,10 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
             weapon->m_iteminfo);
     }
 
-    // 发包同步洗练
+    // Send packet to synchronize refinement
     CCliMessageHandler::GetInstance().DoSendRuneItem(m_pOwner, errSuccess);
 
-    // 记录日志 - 铭文物品改变
+    // Log inscription item change
     CCliMessageHandler::GetInstance().DoDLRuneItem(
         m_pOwner->GetObjID(),
         m_pOwner->GetServerGroup(),
@@ -3898,7 +3898,7 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
         itemid,
         nRuneID);
 
-    // 给玩家发送通知节点信息
+    // Notify the player of node information
     {
         if (itemid == RUNE_ITEMID_WARRIOR_1)
         {
@@ -3922,7 +3922,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// 高级铭文洗练
+// Advanced inscription refinement
 INT32 CItemBag::RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid)
 {
 #ifdef _ROBOT
@@ -3943,18 +3943,18 @@ INT32 CItemBag::RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid)
     LOG_PROCESS_ERROR_RET_CODE(weapon, errItemNotFound);
     LOG_PROCESS_ERROR_RET_CODE(weapon->m_pTemplate->m_byType == ITEMTYPE_EQUIP, errItemRuneError);
     LOG_PROCESS_ERROR_RET_CODE(weapon->m_pTemplate->m_bySubType == ITEMSUBTYPE_EQUIP_WEAPON, errItemRuneError);
-    LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_02) >= RUNE_ITEM_COST_HIGH, errItemNotEnoughMoneytype02);  // 高级洗练 10万金币
+    LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_02) >= RUNE_ITEM_COST_HIGH, errItemNotEnoughMoneytype02);  // Advanced refinement costs 100,000 gold
     LOG_PROCESS_ERROR_RET_CODE(GetItemCount(itemid) >= 1, errItemRuneNotEnoughMaterial);
     if (m_pOwner->GetScene()->GetSceneID() == m_pOwner->GetGuildID())
     {
         LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_GUILD) >= GUILD_RUNE_COST, errGuildNotEnoughContribution);
     }
 
-    // 两个卡槽, 如果第二卡槽为0, 那就是没有铭文, 就不能洗
+    // With two slots, a zero in slot 2 means no inscription is present and refinement is unavailable
     if (weapon->m_iteminfo.m_wRune[1] == 0)
         return nResult;
 
-    // 获取节点数值
+    // Get node value
     if (itemid == RUNE_ITEMID_WARRIOR_1)
         nRuneRootCount = m_pOwner->GetRuneRootCount(rrrAdvanced, clsWarrior);
     else if (itemid == RUNE_ITEMID_MAGE_1)
@@ -3962,7 +3962,7 @@ INT32 CItemBag::RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid)
     else if (itemid == RUNE_ITEMID_TAOIST_1)
         nRuneRootCount = m_pOwner->GetRuneRootCount(rrrAdvanced, clsTaoist);
 
-    // 节点达到 500
+    // Node reaches 500
     if (nRuneRootCount >= RUNE_ROOT_ADVANCED)
     {
         if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
@@ -3970,17 +3970,17 @@ INT32 CItemBag::RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid)
 
         if (itemid == RUNE_ITEMID_WARRIOR_1)
         {
-            nRuneID = RUNE_ROOT_ADVANCED_Warrior;  // 神躯印
+            nRuneID = RUNE_ROOT_ADVANCED_Warrior;  // Divine Body inscription
             m_pOwner->IncRuneRootCount(rrrAdvanced, clsWarrior);
         }
         else if (itemid == RUNE_ITEMID_MAGE_1)
         {
-            nRuneID = RUNE_ROOT_ADVANCED_Mage;  // 火雨印
+            nRuneID = RUNE_ROOT_ADVANCED_Mage;  // Fire Rain inscription
             m_pOwner->IncRuneRootCount(rrrAdvanced, clsMage);
         }
         else if (itemid == RUNE_ITEMID_TAOIST_1)
         {
-            nRuneID = RUNE_ROOT_ADVANCED_Taoist;  // 夺魂印
+            nRuneID = RUNE_ROOT_ADVANCED_Taoist;  // Soul Reaping inscription
             m_pOwner->IncRuneRootCount(rrrAdvanced, clsTaoist);
         }
         else
@@ -3988,13 +3988,13 @@ INT32 CItemBag::RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid)
             LOG_PROCESS_ERROR(FALSE);
         }
 
-        // 固定卡槽2
+        // Use slot 2
         weapon->m_iteminfo.m_wRune[1] = nRuneID;
 
         if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
             weapon->OnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
     }
-    // 没到节点
+    // Node threshold not reached
     else
     {
         if (itemid == RUNE_ITEMID_WARRIOR_1 || itemid == RUNE_ITEMID_MAGE_1 || itemid == RUNE_ITEMID_TAOIST_1)
@@ -4021,29 +4021,29 @@ INT32 CItemBag::RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid)
         }
     }
 
-    // 删除物品
+    // Delete item
     DeleteItemId(itemid, 1, ITEMLOG_RUNE, FALSE, 0);
 
-    // 扣钱
+    // Deduct money
     SubMoney(MONEYTYPE_02, RUNE_ITEM_COST_HIGH, MONEYLOG_RUNE, 0);
     weapon->m_iteminfo.m_dwCostMoney += RUNE_ITEM_COST_HIGH;
 
-    // 判断 当前场景是不是行会地图
+    // Check whether the current scene is a guild map
     if (m_pOwner->GetScene()->GetSceneID() == m_pOwner->GetGuildID())
     {
         SubMoney(MONEYTYPE_GUILD, GUILD_RUNE_COST, MONEYLOG_INVALID, 0);
     }
 
-    // 高级洗练结果, 保存到临时字段上
+    // Save advanced refinement result in a temporary field
     m_pOwner->SetRuneItemHighResult(nRuneID);
 
-    // 发包同步 - 高级洗练结果
+    // Send packet to synchronize advanced refinement result
     CCliMessageHandler::GetInstance().DoSendRuneItemAdvance(m_pOwner, errSuccess, weapon->m_iteminfo.m_wRune[0], nRuneID);
 
-    // 记录日志
+    // Write log
     if (weapon->m_pTemplate->m_byLog)
     {
-        // 铭文物品改变
+        // Inscription item changed
         CCliMessageHandler::GetInstance().DoDLRuneItem(
             m_pOwner->GetObjID(),
             m_pOwner->GetServerGroup(),
@@ -4053,7 +4053,7 @@ INT32 CItemBag::RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid)
             nRuneID);
     }
 
-    // 给玩家发送通知节点信息
+    // Notify the player of node information
     {
         if (itemid == RUNE_ITEMID_WARRIOR_1)
         {
@@ -4077,7 +4077,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// 确认高级洗练
+// Confirm advanced refinement
 INT32 CItemBag::RuneItemConfirm(UINT8 conslot, UINT8 itemslot)
 {
     INT32 nResult = errItemUnknown;
@@ -4093,30 +4093,30 @@ INT32 CItemBag::RuneItemConfirm(UINT8 conslot, UINT8 itemslot)
 
     equip_data = (const EQUIP_DATA*)weapon->m_pTemplate;
 
-    // 脱装备
+    // Unequip item
     if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
         weapon->OnUnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
 
-    // 覆盖铭文属性 - 固定修改第二卡槽
+    // Replace inscription attributes in slot 2
     if (weapon->m_iteminfo.m_wRune[1] || (weapon->m_iteminfo.m_dwCostMoney >= equip_data->m_dwSecondRuneCostMax))
     {
         weapon->m_iteminfo.m_wRune[1] = m_pOwner->GetRuneItemHighResult();
     }
 
-    // 穿装备
+    // Equip item
     if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
         weapon->OnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
 
-    // 发包同步 - 装备数据
+    // Send packet to synchronize equipment data
     CCliMessageHandler::GetInstance().DoSendItemChange(m_pOwner, weapon);
 
-    // 发包同步 - 确认洗练
+    // Send packet to synchronize refinement confirmation
     CCliMessageHandler::GetInstance().DoSendRuneItemConfirm(m_pOwner, errSuccess);
 
-    // 记录日志
+    // Write log
     if (weapon->m_pTemplate->m_byLog)
     {
-        // 装备数据, 发生改变
+        // Equipment data changed
         CCliMessageHandler::GetInstance().DoDLChangeItem(
             m_pOwner->GetServerGroup(),
             m_pOwner->GetObjID(),
@@ -4130,52 +4130,52 @@ Exit0:
     return nResult;
 }
 
-// 测试铭文 - 参数 铭文ID (例如: 10314)
+// Test inscription - parameter: inscription ID (e.g. 10314)
 INT32 CItemBag::RuneTest(INT32 nRuneID)
 {
     INT32 nResult = errItemUnknown;
 
-    // 默认当前佩戴的武器
+    // Use the currently equipped weapon by default
     Item* weapon = GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
     LOG_PROCESS_ERROR_RET_CODE(weapon, errItemNotFound);
 
-    // 移除当前装备属性
+    // Remove current equipment attributes
     weapon->OnUnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
 
-    // 铭文赋值
+    // Assign inscription
     weapon->m_iteminfo.m_wRune[0] = nRuneID;
 
-    // 添加当前装备属性
+    // Add current equipment attributes
     weapon->OnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
 
-    // 发包同步装备数据
+    // Send packet to synchronize equipment data
     CCliMessageHandler::GetInstance().DoSendItemChange(m_pOwner, weapon);
 
-    // 发包同步洗练
+    // Send packet to synchronize refinement
     CCliMessageHandler::GetInstance().DoSendRuneItem(m_pOwner, errSuccess);
 
 Exit0:
     return nResult;
 }
 
-// 打孔
+// Create socket
 INT32 CItemBag::EquipAddSocket(INT32 nIndex)
 {
-    INT32 nItemID = 91115;  // 91115-打孔石
+    INT32 nItemID = 91115;  // 91115 - socket stone
     Item* pEquip = NULL;
     INT32 nEquipSlot = -1;
     const EQUIP_DATA* equip_data = NULL;
 
     if (m_pOwner->IsDead() == TRUE)
-        return errItemRoleDead;  // 角色处于死亡状态中
+        return errItemRoleDead;  // Character is dead
 
     if (m_pOwner->GetMoveState() == CMS_STALL)
-        return errItemStall;  // 当前正在摆摊中
+        return errItemStall;  // Currently operating a stall
 
     if (m_pOwner->GetTrade()->IsTrading())
-        return errItemTrading;  // 当前正在交易中
+        return errItemTrading;  // Currently trading
 
-    // 11-头盔, 12-衣服, 13-腰带, 14-鞋子, 15-护肩, 16-护腕, 17-披风
+    // 11 helmet, 12 armor, 13 belt, 14 shoes, 15 shoulders, 16 bracers, 17 cloak
     switch (nIndex)
     {
     case 11: nEquipSlot = NES_HEAD;     break;
@@ -4189,13 +4189,13 @@ INT32 CItemBag::EquipAddSocket(INT32 nIndex)
 
     pEquip = GetItem(CONSLOT_EQUIPPED, nEquipSlot);
     if (pEquip == NULL)
-        return asetEquipIsNull;  // 装备不存在
+        return asetEquipIsNull;  // Equipment does not exist
 
     equip_data = (const EQUIP_DATA*)pEquip->m_pTemplate;
     if (equip_data->m_byCanSocket != 1)
-        return asetEquipCantSocket;  // 该装备不能打孔
+        return asetEquipCantSocket;  // Equipment cannot receive sockets
 
-    // 获取该装备当前孔位数量
+    // Get current equipment socket count
     INT32 nSocketCount = 0;
     UINT8 bySocket_0 = (pEquip->m_iteminfo.m_dwSocketCombination >> 0) & 0xFF;
     UINT8 bySocket_1 = (pEquip->m_iteminfo.m_dwSocketCombination >> 8) & 0xFF;
@@ -4204,43 +4204,43 @@ INT32 CItemBag::EquipAddSocket(INT32 nIndex)
     if (bySocket_1 != 0)
         nSocketCount += 1;
 
-    // 判断该装备最大孔位数量
+    // Check maximum equipment socket count
     if (nSocketCount >= equip_data->m_bySocketCountMaxNew)
-        return asetEquipCantNotBeAddSocket;  // 该装备无法再继续打孔
+        return asetEquipCantNotBeAddSocket;  // Equipment cannot receive another socket
 
-    // 判断 打第几个孔
+    // Determine which socket to create
     INT32 nSocketSlot = 0;
     if (bySocket_0 == 0 && bySocket_1 == 0)
         nSocketSlot = 0;
     if (bySocket_0 != 0 && bySocket_1 == 0)
         nSocketSlot = 1;
     if (nSocketSlot != 0 && nSocketSlot != 1)
-        return asetEquipAddSocketSlotUnknown;  // 打孔位置未知错误
+        return asetEquipAddSocketSlotUnknown;  // Unknown socket position error
 
-    // 查找对应的材料数量
+    // Find required material count
     INT32 nNeedItemCount = 0;
     if (nSocketSlot == 0)
         nNeedItemCount = equip_data->m_byFirstSocketCost;
     if (nSocketSlot == 1)
         nNeedItemCount = equip_data->m_bySecondSocketCost;
     if (nNeedItemCount == 0)
-        return asetEquipNeedItemCount;  // 获取打孔材料消耗数量错误
+        return asetEquipNeedItemCount;  // Failed to obtain socket material cost
 
-    // 获取背包里当前材料数量
+    // Get current material count in bag
     INT32 nNowItemCount = GetItemCount(nItemID);
     if (nNowItemCount < nNeedItemCount)
-        return asetEquipItemNotEnough;  // 打孔材料数量不够
+        return asetEquipItemNotEnough;  // Insufficient socket materials
 
-    // 删除物品, 扣除材料
+    // Delete item and consume materials
     DeleteItemId(nItemID, nNeedItemCount, ITEMLOG_EQUIP_ADD_SOCKET, FALSE, 0);
 
-    // 修改孔位颜色, 打孔默认都是黄色
+    // Set socket color; new sockets default to yellow
     pEquip->m_iteminfo.m_dwSocketCombination |= SOCKET_YELLOW << (nSocketSlot * 8);
 
-    // 发包同步装备数据
+    // Send packet to synchronize equipment data
     CCliMessageHandler::GetInstance().DoSendItemChange(m_pOwner, pEquip);
 
-    // 记录日志 - 装备洗练
+    // Log equipment refinement
     if (pEquip->m_pTemplate->m_byLog)
     {
         CCliMessageHandler::GetInstance().DoDLChangeItem(
@@ -4249,7 +4249,7 @@ INT32 CItemBag::EquipAddSocket(INT32 nIndex)
             ITEMLOG_EQUIP_ADD_SOCKET,
             pEquip->m_iteminfo);
 
-        // 记录日志 - 物品孔位改变 (后期仿照这个函数参数, 新增加一个日志函数)
+        // Log socket changes (later add a log function modeled on these parameters)
         //CCliMessageHandler::GetInstance().DoDLRuneItem(
         //    m_pOwner->GetObjID(),
         //    m_pOwner->GetServerGroup(),
@@ -4262,31 +4262,31 @@ INT32 CItemBag::EquipAddSocket(INT32 nIndex)
     return errSuccess;
 }
 
-// 雕色
+// Engrave color
 INT32 CItemBag::SetSocketColor(INT32 nIndex, INT32 nTargetColor)
 {
-    INT32 nItemID = 91116;  // 91116-雕色石
+    INT32 nItemID = 91116;  // 91116 - color engraving stone
     Item* pEquip = NULL;
     INT32 nEquipSlot = -1;
     const EQUIP_DATA* equip_data = NULL;
 
-    INT32 nCheckSlotColor = SOCKET_NONE;  // 判断另一个孔位
-    INT32 nTargetSlot = -1;  // 目标孔位下标
+    INT32 nCheckSlotColor = SOCKET_NONE;  // Check the other socket
+    INT32 nTargetSlot = -1;  // Target socket index
 
     if (nTargetColor < SOCKET_RED || nTargetColor > SOCKET_PURPLE)
-        return ssctEquipSetColorError;  // 雕色颜色错误
+        return ssctEquipSetColorError;  // Invalid engraving color
 
     if (m_pOwner->IsDead() == TRUE)
-        return errItemRoleDead;  // 角色处于死亡状态中
+        return errItemRoleDead;  // Character is dead
 
     if (m_pOwner->GetMoveState() == CMS_STALL)
-        return errItemStall;  // 当前正在摆摊中
+        return errItemStall;  // Currently operating a stall
 
     if (m_pOwner->GetTrade()->IsTrading())
-        return errItemTrading;  // 当前正在交易中
+        return errItemTrading;  // Currently trading
 
-    // [第1孔位] => 21-头盔, 22-衣服, 23-腰带, 24-鞋子, 25-护肩, 26-护腕, 27-披风
-    // [第2孔位] => 31-头盔, 32-衣服, 33-腰带, 34-鞋子, 35-护肩, 36-护腕, 37-披风
+    // Socket 1: 21 helmet, 22 armor, 23 belt, 24 shoes, 25 shoulders, 26 bracers, 27 cloak
+    // Socket 2: 31 helmet, 32 armor, 33 belt, 34 shoes, 35 shoulders, 36 bracers, 37 cloak
     switch (nIndex)
     {
     case 21:
@@ -4321,44 +4321,44 @@ INT32 CItemBag::SetSocketColor(INT32 nIndex, INT32 nTargetColor)
 
     pEquip = GetItem(CONSLOT_EQUIPPED, nEquipSlot);
     if (pEquip == NULL)
-        return ssctEquipIsNull;  // 装备不存在
+        return ssctEquipIsNull;  // Equipment does not exist
 
     equip_data = (const EQUIP_DATA*)pEquip->m_pTemplate;
     if (equip_data->m_byCanSocket != 1)
-        return ssctEquipCantSetColor;  // 装备不能雕色
+        return ssctEquipCantSetColor;  // Equipment cannot be color-engraved
 
     UINT8 bySocketColor_0 = (pEquip->m_iteminfo.m_dwSocketCombination >> 0) & 0xFF;
     UINT8 bySocketColor_1 = (pEquip->m_iteminfo.m_dwSocketCombination >> 8) & 0xFF;
 
-    // 获取 消耗材料数量
+    // Get required material count
     INT32 nNeedItemCount = 0;
 
-    // 给第1孔位雕色
+    // Engrave socket 1
     if (nIndex >= 21 && nIndex <= 27)
     {
         if (bySocketColor_0 == SOCKET_NONE)
-            return ssctEquipNoSocket1;  // 目标孔位1不存在
+            return ssctEquipNoSocket1;  // Target socket 1 does not exist
 
-        // 判断 第2孔位
+        // Check socket 2
         if (bySocketColor_1 == SOCKET_NONE)
-            nCheckSlotColor = SOCKET_YELLOW;    // 按黄色判断
+            nCheckSlotColor = SOCKET_YELLOW;    // Treat as yellow
         else
-            nCheckSlotColor = bySocketColor_1;  // 第2孔位 存在
+            nCheckSlotColor = bySocketColor_1;  // Socket 2 exists
 
         nTargetSlot = 0;
 
         nNeedItemCount = GetSetSocketColorCost(nTargetColor, nCheckSlotColor);
     }
-    // 给第2孔位雕色
+    // Engrave socket 2
     else if (nIndex >= 31 && nIndex <= 37)
     {
         if (bySocketColor_0 == SOCKET_NONE)
-            return ssctEquipNoSocket1;  // 目标孔位1不存在
+            return ssctEquipNoSocket1;  // Target socket 1 does not exist
 
         if (bySocketColor_1 == SOCKET_NONE)
-            return ssctEquipNoSocket2;  // 目标孔位2不存在
+            return ssctEquipNoSocket2;  // Target socket 2 does not exist
 
-        nCheckSlotColor = bySocketColor_0;   // 判断 第1孔位颜色
+        nCheckSlotColor = bySocketColor_0;   // Check socket 1 color
 
         nTargetSlot = 1;
 
@@ -4366,29 +4366,29 @@ INT32 CItemBag::SetSocketColor(INT32 nIndex, INT32 nTargetColor)
     }
 
     if (nNeedItemCount == 0)
-        return ssctEquipNeedItemCount;  // 获取打孔材料消耗数量错误
+        return ssctEquipNeedItemCount;  // Failed to obtain socket material cost
     if (nTargetSlot == -1)
-        return ssctEquipSetSlotError;  // 目标孔位错误
+        return ssctEquipSetSlotError;  // Invalid target socket
 
-    // 获取背包里当前材料数量
+    // Get current material count in bag
     INT32 nNowItemCount = GetItemCount(nItemID);
     if (nNowItemCount < nNeedItemCount)
-        return ssctEquipItemNotEnough;  // 雕色材料数量不够
+        return ssctEquipItemNotEnough;  // Insufficient engraving materials
 
     WRN("Slot now 0-[%d], 1-[%d], nColor %d, nTargetSlot %d, nNeedItemCount %d",
         bySocketColor_0, bySocketColor_1, nTargetColor, nTargetSlot, nNeedItemCount);
 
-    // 删除物品, 扣除材料
+    // Delete item and consume materials
     DeleteItemId(nItemID, nNeedItemCount, ITEMLOG_EQUIP_SET_COLOR, FALSE, 0);
 
-    // 修改孔位颜色 (注意不能无脑 [|=], 这样只会叠加数值, 需要先清除, 再写入)
-    pEquip->m_iteminfo.m_dwSocketCombination &= ~(0xFF << (nTargetSlot * 8));  // 先清除原数值
-    pEquip->m_iteminfo.m_dwSocketCombination |= nTargetColor << (nTargetSlot * 8);   // 再把新数值写入
+    // Change socket color: clear the old value before writing; blindly using |= would combine values
+    pEquip->m_iteminfo.m_dwSocketCombination &= ~(0xFF << (nTargetSlot * 8));  // First clear the old value
+    pEquip->m_iteminfo.m_dwSocketCombination |= nTargetColor << (nTargetSlot * 8);   // Then write the new value
 
-    // 发包同步装备数据
+    // Send packet to synchronize equipment data
     CCliMessageHandler::GetInstance().DoSendItemChange(m_pOwner, pEquip);
 
-    // 记录日志 - 装备洗练
+    // Log equipment refinement
     if (pEquip->m_pTemplate->m_byLog)
     {
         CCliMessageHandler::GetInstance().DoDLChangeItem(
@@ -4397,7 +4397,7 @@ INT32 CItemBag::SetSocketColor(INT32 nIndex, INT32 nTargetColor)
             ITEMLOG_EQUIP_SET_COLOR,
             pEquip->m_iteminfo);
 
-        // 记录日志 - 物品雕色改变 (后期仿照这个函数参数, 新增加一个日志函数)
+        // Log item color changes (later add a log function modeled on these parameters)
         //CCliMessageHandler::GetInstance().DoDLRuneItem(
         //    m_pOwner->GetObjID(),
         //    m_pOwner->GetServerGroup(),
@@ -4414,15 +4414,15 @@ INT32 CItemBag::GetSetSocketColorCost(int targetID, int CheckID)
 {
     const static std::vector<std::vector<int>> vecSetSocketColor =
     {
-        // 列号 下标0是ID列 不计入, 下标1-5 分别对应 红1/黄2/蓝3/绿3/紫5
-        // 修改数据, 把 红绿蓝 改成一样的消耗
+        // Column 0 is the ID and is excluded; columns 1-5 correspond to red 1 / yellow 2 / blue 3 / green 3 / purple 5
+        // Change data so red, green, and blue have the same cost
         { 1, 235, 50, 70,  135, 55 },     // ID=1, SOCKET_RED
         { 2, 10,  10, 10,  10,  10 },     // ID=2, SOCKET_YELLOW
         { 3, 60,  50, 235,  85,  45 },    // ID=3, SOCKET_BLUE
         { 4, 160, 50, 120, 235, 75 },     // ID=4, SOCKET_GREEN
         { 5, 40,  10, 40,  35,  35 },     // ID=5, SOCKET_PURPLE
 
-        // 原版数据
+        // Original data
         //{ 1, 110, 25, 70,  135, 55 },    // ID=1, SOCKET_RED
         //{ 2, 10,  10, 10,  10,  10 },    // ID=2, SOCKET_YELLOW
         //{ 3, 60,  15, 70,  85,  45 },    // ID=3, SOCKET_BLUE
@@ -4430,27 +4430,27 @@ INT32 CItemBag::GetSetSocketColorCost(int targetID, int CheckID)
         //{ 5, 40,  10, 40,  35,  35 },    // ID=5, SOCKET_PURPLE
     };
 
-    // 先按行ID找 通过目标颜色数值 找到对应的行, 再按列 找到当前颜色数值的列, 交汇点就是消耗数值
-    // 原版例子
-    // 假设 当前2个孔都是[黄色], 想把其中一个 改成[蓝色]
-    // 现在2个孔位 [1黄1黄], 目标颜色行 [蓝色]是第3行, 当前孔位颜色 [黄色]是第2列, 交汇点数值是 15
-    // 现在2个孔位 [1黄1蓝], 再继续把[黄色]孔 改成[绿色], 目标颜色行 [绿色]是第4行, 当前孔位颜色 [黄色]是第2列, 交汇点数值是 50
-    // 现在2个孔位 [1绿1蓝], 再继续把[蓝色]孔 改成[红色], 目标颜色行 [红色]是第1行, 当前孔位颜色 [蓝色]是第3列, 交汇点数值是 70
+    // Find the row by target color ID and the column by current color; their intersection is the cost
+    // Original example
+    // Suppose both sockets are yellow and one should become blue
+    // With two yellow sockets, target blue is row 3 and current yellow is column 2; the cost is 15
+    // With yellow and blue sockets, changing yellow to green uses row 4 and column 2; the cost is 50
+    // With green and blue sockets, changing blue to red uses row 1 and column 3; the cost is 70
     for (const auto& row : vecSetSocketColor)
     {
-        if (row[0] == targetID) // 每行的第一个元素是ID
+        if (row[0] == targetID) // The first element of each row is the ID
         {
             if (CheckID >= 1 && CheckID < row.size())
             {
-                return row[CheckID];  // 直接返回对应列的值
+                return row[CheckID];  // Return the value in the corresponding column
             }
             break;
         }
     }
-    return 0;  // 未找到
+    return 0;  // Not found
 }
 
-// 获得命运武器
+// Obtain destiny weapon
 INT32 CItemBag::AddDestinyWeapon(INT32 nItemID, INT32 nLevel)
 {
     INT32 nResult = errItemUnknown;
@@ -4466,7 +4466,7 @@ INT32 CItemBag::AddDestinyWeapon(INT32 nItemID, INT32 nLevel)
         LOG_CHECK_ERROR(bItemRet);
     }
 
-    // 升级武器
+    // Upgrade weapon
     if (nLevel > 0)
     {
         nResult = EquipLevelUpToSpecifiedLevel(item, nLevel);
@@ -4476,23 +4476,23 @@ Exit0:
     return nResult;
 }
 
-// 装备升级到指定顶级
+// Upgrade equipment to the specified maximum level
 INT32 CItemBag::EquipLevelUpToSpecifiedLevel(Item* item, INT32 nLevel)
 {
     INT32 nResult = errItemUnknown;
 
     LOG_PROCESS_ERROR(item);
-    LOG_PROCESS_ERROR(item->m_pTemplate->m_byType == ITEMTYPE_EQUIP);  // 必须是装备类型
+    LOG_PROCESS_ERROR(item->m_pTemplate->m_byType == ITEMTYPE_EQUIP);  // Must be an equipment item
 
     switch (item->m_pTemplate->m_nTemplateID)
     {
-    case 99900030:  // 命运之刃
+    case 99900030:  // Destiny Blade
         item->m_iteminfo.m_byLevelupPhyPoint = nLevel;
         break;
-    case 99900046:  // 命运之杖
+    case 99900046:  // Destiny Staff
         item->m_iteminfo.m_byLevelupMagPoint = nLevel;
         break;
-    case 99900047:  // 命运之幡
+    case 99900047:  // Destiny Banner
         item->m_iteminfo.m_byLevelupTaoPoint = nLevel;
         break;
     }
@@ -4520,7 +4520,7 @@ Exit0:
     return nResult;
 }
 
-// 升级武器
+// Upgrade weapon
 INT32 CItemBag::WeaponLevelUpPutIn()
 {
 #ifdef _ROBOT
@@ -4530,9 +4530,9 @@ INT32 CItemBag::WeaponLevelUpPutIn()
 
     INT32 nResult = errItemUnknown;
     INT32 dur_list[64];     //MAX_CONTAINER_SIZE[CONSLOT_DEFAULT]
-    INT32 nItemCount = 0;   //黑铁总数
-    INT32 CCount = 0;       //黑铁的有效计数
-    INT32 nDura = 0;        // 黑铁矿石总纯度
+    INT32 nItemCount = 0;   //Total black iron count
+    INT32 CCount = 0;       //Effective black iron count
+    INT32 nDura = 0;        // Total black iron ore purity
     INT32 nPhyMin = 0;
     INT32 nPhyMax = 0;
     INT32 nMagMin = 0;
@@ -4543,45 +4543,45 @@ INT32 CItemBag::WeaponLevelUpPutIn()
     Item* weapon = GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
 
     CNpc* npc = CGameWorld::GetInstance().FindNpc(m_pOwner->GetInteractNpc());
-    PROCESS_ERROR_RET_CODE(npc, errNpcNotFound);  // NPC未找到
+    PROCESS_ERROR_RET_CODE(npc, errNpcNotFound);  // NPC not found
 
     nResult = m_pOwner->CanInteract(npc);
     PROCESS_ERROR(nResult == errSuccess);
 
-    LOG_PROCESS_ERROR_RET_CODE(npc->GetNpcData()->bInteractWeaponLevelUpPutIn, errNpcNoSuchFunction);   // Npc没有此功能
-    LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetMoveState() != CMS_STALL, errItemStall);                    // 摆摊中
-    LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);                     // 交易中
-    LOG_PROCESS_ERROR_RET_CODE(weapon, errItemNotFound);                                                // 物品不存在
-    LOG_PROCESS_ERROR_RET_CODE(weapon->m_iteminfo.m_nMaxDur > 2 * EQUIP_DUR_MULTIPLIER, errItemDurLow); // 耐久度过低
+    LOG_PROCESS_ERROR_RET_CODE(npc->GetNpcData()->bInteractWeaponLevelUpPutIn, errNpcNoSuchFunction);   // NPC does not provide this function
+    LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetMoveState() != CMS_STALL, errItemStall);                    // Operating a stall
+    LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);                     // Trading
+    LOG_PROCESS_ERROR_RET_CODE(weapon, errItemNotFound);                                                // Item does not exist
+    LOG_PROCESS_ERROR_RET_CODE(weapon->m_iteminfo.m_nMaxDur > 2 * EQUIP_DUR_MULTIPLIER, errItemDurLow); // Durability is too low
     LOG_PROCESS_ERROR_RET_CODE(weapon->m_pTemplate->m_byType == ITEMTYPE_EQUIP &&                       // 
-        weapon->m_pTemplate->m_bySubType == ITEMSUBTYPE_EQUIP_WEAPON, errItemCannotLevelup);            // 不可升级
+        weapon->m_pTemplate->m_bySubType == ITEMSUBTYPE_EQUIP_WEAPON, errItemCannotLevelup);            // Cannot upgrade
 
-    LOG_PROCESS_ERROR_RET_CODE(m_WeaponItem == NULL, errItemLevelUpInProcess);  // 炼刀中
+    LOG_PROCESS_ERROR_RET_CODE(m_WeaponItem == NULL, errItemLevelUpInProcess);  // Weapon upgrade in progress
 
-    // 未鉴定
+    // Unidentified
     if (weapon->m_iteminfo.m_byIdentified == IDENTIFY_TYPE_NO)
         nResult = errItemNotIdentified;
 
-    // 已鉴定，等待试刀
+    // Identified; awaiting weapon trial
     if (weapon->m_iteminfo.m_byIdentified == IDENTIFY_TYPE_LEVEL_UP)
         nResult = errItemWeaponNotTried;
 
-    // 已鉴定
+    // Identified
     LOG_PROCESS_ERROR(weapon->m_iteminfo.m_byIdentified == IDENTIFY_TYPE_YES);
 
-    // 金币不足 10000
+    // Less than 10000 gold
     LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_02) >= WEAPON_LEVEL_UP_COST, errItemNotEnoughMoneytype02);
 
-    // 没有黑铁 - 至少要1个黑铁
+    // Missing black iron - at least one is required
     LOG_PROCESS_ERROR_RET_CODE(
         SearchDefaultContainer(ITEMTYPE_MATERIAL, ITEMSUBTYPE_MATERIAL_WEAPON_LEVELUP, 1) != INVALID_ITEM_SLOT, errItemNotEnoughBlackIron);
 
-    //计算开始，以下内容从舒工提供代码翻译而来
+    //Begin calculations translated from code provided by engineer Shu
     for (ConIt it = m_cons[CONSLOT_DEFAULT].begin(); it != m_cons[CONSLOT_DEFAULT].end();)
     {
         Item* item = it->second;
 
-        //黑铁
+        //Black iron
         if (item->m_pTemplate->m_byType == ITEMTYPE_MATERIAL &&
             item->m_pTemplate->m_bySubType == ITEMSUBTYPE_MATERIAL_WEAPON_LEVELUP)
         {
@@ -4594,7 +4594,7 @@ INT32 CItemBag::WeaponLevelUpPutIn()
 
             m_cons[CONSLOT_DEFAULT].erase(it++);
         }
-        //首饰
+        //Jewelry
         else if (item->m_pTemplate->m_byType == ITEMTYPE_EQUIP)
         {
             if (item->m_pTemplate->m_bySubType == ITEMSUBTYPE_EQUIP_NECKLACE ||
@@ -4658,11 +4658,11 @@ INT32 CItemBag::WeaponLevelUpPutIn()
 
     LOG_PROCESS_ERROR(nItemCount > 0);
 
-    // 判断黑铁数量
+    // Check black iron count
     if (nItemCount > 5)
     {
-        // 把黑铁矿石 按纯度排序, 从大到小 
-        // (原代码是 std::greater<UINT16>(), 现在修改 UINT16 => INT32)
+        // Sort black iron ore by purity, descending
+        // (Original code used std::greater<UINT16>(); UINT16 was changed to INT32)
         std::sort(dur_list, dur_list + nItemCount, std::greater<INT32>());
         nItemCount = 6;
         CCount = 5;
@@ -4672,19 +4672,19 @@ INT32 CItemBag::WeaponLevelUpPutIn()
         CCount = nItemCount;
     }
 
-    // 只取纯度前6个矿石
+    // Use only the six highest-purity ores
     for (INT32 i = 0; i < nItemCount; i++)
     {
         nDura += dur_list[i];
     }
 
-    //注：原始算式：Round(CCount + CCount * ((nDura / nItemCount) / 5.0));
+    //Note: original formula: Round(CCount + CCount * ((nDura / nItemCount) / 5.0));
     m_nWeaponDur = round_div(CCount * nItemCount * 5 + CCount * nDura, nItemCount * 5);
     m_nWeaponPhy = round_div(nPhyMin, 5) + nPhyMin + round_div(nPhyMax, 3);
     m_nWeaponMag = round_div(nMagMin, 5) + nMagMin + round_div(nMagMax, 3);
     m_nWeaponTao = round_div(nTaoMin, 5) + nTaoMin + round_div(nTaoMax, 3);
 
-    //计算到此结束
+    //End of calculations
 #ifdef _DEBUG
     char debug_string[1024];
     snprintf(debug_string, 1024, "PutIn: dur=%d, phy=%d, mag=%d, tao=%d",
@@ -4692,15 +4692,15 @@ INT32 CItemBag::WeaponLevelUpPutIn()
     m_pOwner->Say(cctScreen, cltNormal, debug_string);
 #endif
 
-    // 扣钱
+    // Deduct money
     SubMoney(MONEYTYPE_02, WEAPON_LEVEL_UP_COST, MONEYLOG_EQUIP_LEVELUP, 0);
     weapon->m_iteminfo.m_dwCostMoney += WEAPON_LEVEL_UP_COST;
 
-    // 删除武器, 但是不删除对象
+    // Remove weapon without destroying the object
     nResult = RemoveItem(CONSLOT_EQUIPPED, NES_MAIN_HAND, ITEMLOG_EQUIP_LEVELUP);
     LOG_CHECK_ERROR(nResult == errSuccess);
 
-    // 设置pos
+    // Set position
     weapon->SetPos(CONSLOT_WEAPON_LEVEL_UP, 0);
 
     m_WeaponItem = weapon;
@@ -4729,7 +4729,7 @@ Exit0:
 #endif
 }
 
-// 取回武器 (等2小时)
+// Retrieve weapon (wait 2 hours)
 INT32 CItemBag::WeaponLevelUpTakeOut()
 {
 #ifdef _ROBOT
@@ -4746,19 +4746,19 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
     nResult = m_pOwner->CanInteract(npc);
     PROCESS_ERROR(nResult == errSuccess);
 
-    LOG_PROCESS_ERROR_RET_CODE(npc->GetNpcData()->bInteractWeaponLevelUpTakeOut, errNpcNoSuchFunction); // Npc没有此功能
-    LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetMoveState() != CMS_STALL, errItemStall);                    // 摆摊中
-    LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);                     // 交易中
-    PROCESS_ERROR_RET_CODE(m_WeaponItem, errItemNoLevelUp);                                             // 没有正在炼刀的武器
+    LOG_PROCESS_ERROR_RET_CODE(npc->GetNpcData()->bInteractWeaponLevelUpTakeOut, errNpcNoSuchFunction); // NPC does not provide this function
+    LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetMoveState() != CMS_STALL, errItemStall);                    // Operating a stall
+    LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);                     // Trading
+    PROCESS_ERROR_RET_CODE(m_WeaponItem, errItemNoLevelUp);                                             // No weapon upgrade is in progress
 
     LOG_PROCESS_ERROR(m_WeaponItem->m_pTemplate->m_byType == ITEMTYPE_EQUIP &&                          // 
         m_WeaponItem->m_pTemplate->m_bySubType == ITEMSUBTYPE_EQUIP_WEAPON);                            // 
 
-    LOG_PROCESS_ERROR(m_WeaponItem->m_iteminfo.m_byIdentified == IDENTIFY_TYPE_YES);                    // 已鉴定
+    LOG_PROCESS_ERROR(m_WeaponItem->m_iteminfo.m_byIdentified == IDENTIFY_TYPE_YES);                    // Identified
 
-    PROCESS_ERROR_RET_CODE(GetFreeSlots(CONSLOT_DEFAULT) > 0, errItemBagFull);                          // 包裹已满
+    PROCESS_ERROR_RET_CODE(GetFreeSlots(CONSLOT_DEFAULT) > 0, errItemBagFull);                          // Bag is full
 
-    // 时间还没到
+    // The required time has not elapsed
     if (CGameWorld::GetInstance().GetGameTime() - m_dwWeaponLevelUpStartTime < WEAPON_LEVEL_UP_TIME)
     {
 #ifndef _ROBOT
@@ -4768,12 +4768,12 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
         return errSuccess;
     }
 
-    // 计算开始，以下内容从舒工提供代码翻译而来
+    // Begin calculations translated from code provided by engineer Shu
     {
-        // 计算耐久度 - 新代码
+        // Calculate durability - new code
         if (m_nWeaponDur >= 0 && m_nWeaponDur <= 8)
         {
-            // 低纯度惩罚区 - 直接扣除 4点最大耐久
+            // Low-purity penalty: deduct 4 maximum durability
             if (m_WeaponItem->m_iteminfo.m_nMaxDur > 4 * EQUIP_DUR_MULTIPLIER)
                 m_WeaponItem->m_iteminfo.m_nMaxDur -= 4 * EQUIP_DUR_MULTIPLIER;
             else
@@ -4784,7 +4784,7 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
         }
         else if (m_nWeaponDur >= 9 && m_nWeaponDur <= 15)
         {
-            // 中低等纯度区 - 概率性小幅度损失 3点最大耐久
+            // Medium-low purity: chance to lose 3 maximum durability
             if (g_Random(m_nWeaponDur) < 6)
             {
                 if (m_WeaponItem->m_iteminfo.m_nMaxDur > 3 * EQUIP_DUR_MULTIPLIER)
@@ -4796,7 +4796,7 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
         }
         else if (m_nWeaponDur >= 16 && m_nWeaponDur <= 24)
         {
-            // 中等纯度区 - 概率性小幅度损失 2点最大耐久
+            // Medium purity: chance to lose 2 maximum durability
             if (g_Random(m_nWeaponDur) < 6)
             {
                 if (m_WeaponItem->m_iteminfo.m_nMaxDur > 2 * EQUIP_DUR_MULTIPLIER)
@@ -4808,7 +4808,7 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
         }
         else if (m_nWeaponDur >= 25 && m_nWeaponDur <= 29)
         {
-            // 高纯度区 - 概率性小幅度损失 1点最大耐久
+            // High purity: chance to lose 1 maximum durability
             if (g_Random(m_nWeaponDur) < 6)
             {
                 if (m_WeaponItem->m_iteminfo.m_nMaxDur > 1 * EQUIP_DUR_MULTIPLIER)
@@ -4820,10 +4820,10 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
         }
         else if (m_nWeaponDur >= 30 && m_nWeaponDur <= 255)
         {
-            // 极高纯度区 - 完全不损失耐久 (6个纯度26 或者 6个纯度25)
+            // Very high purity: no durability loss (six ores of purity 26 or six of purity 25)
         }
 
-        // 计算耐久度 - 原版默认代码, 设计的数值区间不合理
+        // Calculate durability - original code; the configured value ranges are unreasonable
         //if (m_nWeaponDur >= 0 && m_nWeaponDur <= 8)
         //{
         //    if (m_WeaponItem->m_iteminfo.m_nMaxDur > 3 * EQUIP_DUR_MULTIPLIER)
@@ -4866,8 +4866,8 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
         //}
     }
 
-    //计算增加的属性
-    //注：下面这段代码有问题，AbilCode 其实根本没起作用，本着连bug也要一致的指导思想，直接照抄未作修改
+    //Calculate added attributes
+    //Note: the following code is flawed: AbilCode has no effect. It was copied unchanged to preserve even the original bug.
     m_WeaponItem->m_iteminfo.m_byIdentified = IDENTIFY_TYPE_LEVEL_UP;
 
     if (m_WeaponItem->m_iteminfo.m_byLevelupTimes < 255)
@@ -4878,8 +4878,8 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
 
     if ((m_nWeaponPhy >= m_nWeaponMag && m_nWeaponPhy >= m_nWeaponTao) || AbilCode == 0)
     {
-        //factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // 原代码不合理
-        factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // 新代码 - 把幸运单独拿出来加
+        //factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // The original code is unreasonable
+        factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // New code - add luck separately
         if (g_Random(130) < factor)
         {
             m_WeaponItem->m_iteminfo.m_byLevelupTypeHidden = 1;
@@ -4893,8 +4893,8 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
 
     if ((m_nWeaponMag >= m_nWeaponPhy && m_nWeaponMag >= m_nWeaponTao) || AbilCode == 1)
     {
-        //factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // 原代码不合理
-        factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // 新代码 - 把幸运单独拿出来加
+        //factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // The original code is unreasonable
+        factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // New code - add luck separately
         if (g_Random(130) < factor)
         {
             m_WeaponItem->m_iteminfo.m_byLevelupTypeHidden = 2;
@@ -4908,8 +4908,8 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
 
     if ((m_nWeaponPhy >= m_nWeaponMag && m_nWeaponTao >= m_nWeaponPhy) || AbilCode == 2)
     {
-        //factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // 原代码不合理
-        factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // 新代码 - 把幸运单独拿出来加
+        //factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // The original code is unreasonable
+        factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // New code - add luck separately
         if (g_Random(130) < factor)
         {
             m_WeaponItem->m_iteminfo.m_byLevelupTypeHidden = 3;
@@ -4920,7 +4920,7 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
                 m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 3;
         }
     }
-    //计算到此结束
+    //End of calculations
 
 #ifdef _DEBUG
 #ifndef _ROBOT
@@ -4959,7 +4959,7 @@ Exit0:
 #endif
 }
 
-// 立即取回 (花费10万金币)
+// Retrieve immediately (costs 100,000 gold)
 INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
 {
 #ifdef _ROBOT
@@ -4985,16 +4985,16 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
     LOG_PROCESS_ERROR(m_WeaponItem->m_iteminfo.m_byIdentified == IDENTIFY_TYPE_YES);
     PROCESS_ERROR_RET_CODE(GetFreeSlots(CONSLOT_DEFAULT) > 0, errItemBagFull);
 
-    // 扣除金币
+    // Deduct gold
     nResult = SubMoney(MONEYTYPE_02, 100000, MONEYLOG_EQUIP_LEVELUP_TAKE_OUT_IMMEDIATELY, 0);
     LOG_PROCESS_ERROR(nResult == errSuccess);
 
-    // 计算开始，以下内容从舒工提供代码翻译而来
+    // Begin calculations translated from code provided by engineer Shu
     {
-        // 计算耐久度 - 新代码
+        // Calculate durability - new code
         if (m_nWeaponDur >= 0 && m_nWeaponDur <= 8)
         {
-            // 低纯度惩罚区 - 直接扣除 4点最大耐久
+            // Low-purity penalty: deduct 4 maximum durability
             if (m_WeaponItem->m_iteminfo.m_nMaxDur > 4 * EQUIP_DUR_MULTIPLIER)
                 m_WeaponItem->m_iteminfo.m_nMaxDur -= 4 * EQUIP_DUR_MULTIPLIER;
             else
@@ -5005,7 +5005,7 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
         }
         else if (m_nWeaponDur >= 9 && m_nWeaponDur <= 15)
         {
-            // 中低等纯度区 - 概率性小幅度损失 3点最大耐久
+            // Medium-low purity: chance to lose 3 maximum durability
             if (g_Random(m_nWeaponDur) < 6)
             {
                 if (m_WeaponItem->m_iteminfo.m_nMaxDur > 3 * EQUIP_DUR_MULTIPLIER)
@@ -5017,7 +5017,7 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
         }
         else if (m_nWeaponDur >= 16 && m_nWeaponDur <= 24)
         {
-            // 中等纯度区 - 概率性小幅度损失 2点最大耐久
+            // Medium purity: chance to lose 2 maximum durability
             if (g_Random(m_nWeaponDur) < 6)
             {
                 if (m_WeaponItem->m_iteminfo.m_nMaxDur > 2 * EQUIP_DUR_MULTIPLIER)
@@ -5029,7 +5029,7 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
         }
         else if (m_nWeaponDur >= 25 && m_nWeaponDur <= 29)
         {
-            // 高纯度区 - 概率性小幅度损失 1点最大耐久
+            // High purity: chance to lose 1 maximum durability
             if (g_Random(m_nWeaponDur) < 6)
             {
                 if (m_WeaponItem->m_iteminfo.m_nMaxDur > 1 * EQUIP_DUR_MULTIPLIER)
@@ -5041,10 +5041,10 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
         }
         else if (m_nWeaponDur >= 30 && m_nWeaponDur <= 255)
         {
-            // 极高纯度区 - 完全不损失耐久 (6个纯度26 或者 6个纯度25)
+            // Very high purity: no durability loss (six ores of purity 26 or six of purity 25)
         }
 
-        // 计算耐久度 - 原版默认代码, 设计的数值区间不合理
+        // Calculate durability - original code; the configured value ranges are unreasonable
         //if (m_nWeaponDur >= 0 && m_nWeaponDur <= 8)
         //{
         //    if (m_WeaponItem->m_iteminfo.m_nMaxDur > 3 * EQUIP_DUR_MULTIPLIER)
@@ -5087,27 +5087,27 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
         //}
     }
 
-    //计算增加的属性
-    //注：下面这段代码有问题，AbilCode其实根本没起作用，本着连bug也要一致的指导思想，直接照抄未作修改
+    //Calculate added attributes
+    //Note: the following code is flawed: AbilCode has no effect. It was copied unchanged to preserve even the original bug.
     m_WeaponItem->m_iteminfo.m_byIdentified = IDENTIFY_TYPE_LEVEL_UP;
     if (m_WeaponItem->m_iteminfo.m_byLevelupTimes < 255)
         m_WeaponItem->m_iteminfo.m_byLevelupTimes++;
 
-    // 3种属性相同, 就随机一种
+    // If all three attributes are equal, choose one randomly
     if (m_nWeaponPhy == m_nWeaponMag && m_nWeaponPhy == m_nWeaponTao)
         AbilCode = g_Random(3);
 
-    // 攻击属性, 同时大于 魔法/道术
+    // Attack exceeds both magic and Tao attributes
     if ((m_nWeaponPhy >= m_nWeaponMag && m_nWeaponPhy >= m_nWeaponTao) || AbilCode == 0)
     {
-        //factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // 原代码不合理
-        factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // 新代码 - 把幸运单独拿出来加
+        //factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // The original code is unreasonable
+        factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // New code - add luck separately
         if (g_Random(130) < factor)
         {
             m_WeaponItem->m_iteminfo.m_byLevelupTypeHidden = 1;
             m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 1;
 
-            // 判断 是否增加隐藏属性
+            // Check whether to add a hidden attribute
             if (factor > 63 && g_Random(30) == 0)
                 m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 2;
             if (factor > 79 && g_Random(200) == 0)
@@ -5115,17 +5115,17 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
         }
     }
 
-    // 魔法属性, 同时大于 攻击/道术
+    // Magic exceeds both attack and Tao attributes
     if ((m_nWeaponMag >= m_nWeaponPhy && m_nWeaponMag >= m_nWeaponTao) || AbilCode == 1)
     {
-        //factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // 原代码不合理
-        factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // 新代码 - 把幸运单独拿出来加
+        //factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // The original code is unreasonable
+        factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // New code - add luck separately
         if (g_Random(130) < factor)
         {
             m_WeaponItem->m_iteminfo.m_byLevelupTypeHidden = 2;
             m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 1;
 
-            // 判断 是否增加隐藏属性
+            // Check whether to add a hidden attribute
             if (factor > 63 && g_Random(30) == 0)
                 m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 2;
             if (factor > 79 && g_Random(200) == 0)
@@ -5133,24 +5133,24 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
         }
     }
 
-    // 道术属性 (攻击 > 魔法 && 道术 > 攻击)
+    // Tao attribute (attack > magic and Tao > attack)
     if ((m_nWeaponPhy >= m_nWeaponMag && m_nWeaponTao >= m_nWeaponPhy) || AbilCode == 2)
     {
-        //factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // 原代码不合理
-        factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // 新代码 - 把幸运单独拿出来加
+        //factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // The original code is unreasonable
+        factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // New code - add luck separately
         if (g_Random(130) < factor)
         {
             m_WeaponItem->m_iteminfo.m_byLevelupTypeHidden = 3;
             m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 1;
 
-            // 判断 是否增加隐藏属性
+            // Check whether to add a hidden attribute
             if (factor > 63 && g_Random(30) == 0)
                 m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 2;
             if (factor > 79 && g_Random(200) == 0)
                 m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 3;
         }
     }
-    //计算到此结束
+    //End of calculations
 
 #ifdef _DEBUG
 #ifndef _ROBOT
@@ -5189,22 +5189,22 @@ Exit0:
 #endif
 }
 
-// 试刀
+// Test weapon
 void CItemBag::OnPhyAttack()
 {
     Item* weapon = GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
 
     if (weapon && weapon->m_iteminfo.m_byIdentified == IDENTIFY_TYPE_LEVEL_UP)
     {
-        // 计算 升级点数总和
+        // Calculate total upgrade points
         INT32 nTotalPoint = weapon->m_iteminfo.m_byLevelupPhyPoint + weapon->m_iteminfo.m_byLevelupMagPoint + weapon->m_iteminfo.m_byLevelupTaoPoint;
 
-        // 点数总和 最大为7, 隐藏属性点 1-3点, 没有隐藏点 就是升级失败
+        // Maximum total is 7 points; hidden attributes contribute 1-3 points; no hidden points means upgrade failure
         if (nTotalPoint >= 7 ||
             weapon->m_iteminfo.m_byLevelupTypeHidden < 1 ||
             weapon->m_iteminfo.m_byLevelupTypeHidden > 3)
         {
-            // 升级失败 删除物品数据
+            // Upgrade failed: delete item data
             DeleteItemPos(CONSLOT_EQUIPPED, NES_MAIN_HAND, 1, ITEMLOG_EQUIP_LEVELUP_FAILED, 0);
 
 #ifndef _ROBOT
@@ -5216,7 +5216,7 @@ void CItemBag::OnPhyAttack()
         if (weapon->m_iteminfo.m_nCurDur > 0)
             weapon->OnUnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
 
-        // 升级点数
+        // Upgrade points
         switch (weapon->m_iteminfo.m_byLevelupTypeHidden)
         {
         case 1:
@@ -5232,7 +5232,7 @@ void CItemBag::OnPhyAttack()
             LOG_PROCESS_ERROR(FALSE);
         }
 
-        // 穿上装备
+        // Equip item
         if (weapon->m_iteminfo.m_nCurDur > 0)
             weapon->OnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
 
@@ -5259,7 +5259,7 @@ Exit0:
     return;
 }
 
-// 分解
+// Decompose
 INT32 CItemBag::Decompose(UINT8 conslot, UINT8 itemslot)
 {
 #ifdef _ROBOT
@@ -5330,7 +5330,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// 合成
+// Craft
 INT32 CItemBag::Compose(INT32 formulaid)
 {
 #ifdef _ROBOT
@@ -5393,7 +5393,7 @@ INT32 CItemBag::Compose(INT32 formulaid)
 
     CStatistic::GetInstance().OnComposeItem(m_pOwner, item_data->m_byColor, 1);
 
-    //全服广播
+    //Server-wide announcement
     if (co_data->m_nBroadCast)
     {
         char szBroadcast[1024];
@@ -5548,14 +5548,14 @@ INT32 CItemBag::GetPow()
         Item* item = it->second;
         const EQUIP_DATA* equip_data = (const EQUIP_DATA*)item->m_pTemplate;
 
-        //装备本身的战斗力
+        //Equipment base combat power
         p += _GetPow(item);
 
-        //套装计数，后面统一计算套装属性的战斗力
+        //Count set pieces; set attribute power is calculated later
         if (equip_data->m_SetData)
             set_count[equip_data->m_SetData]++;
 
-        //强化的战斗力
+        //Enhancement combat power
         equip_slot = it->first;
         LOG_PROCESS_ERROR(equip_slot < NES_TOTAL);
         if (m_refine_levels[equip_slot])
@@ -5579,7 +5579,7 @@ INT32 CItemBag::GetPow()
         }
     }
 
-    //统一计算套装战斗力
+    //Calculate set combat power together
     for (std::map<const SET_DATA*, INT32>::iterator it = set_count.begin(); it != set_count.end(); it++)
     {
         const SET_DATA* set_data = it->first;
@@ -5878,7 +5878,7 @@ Exit0:
     return nResult;
 }
 
-// 应该已经废弃了
+// Probably deprecated
 INT32 CItemBag::Gamble(UINT8 equiptype)
 {
     INT32 nResult = errItemUnknown;
@@ -5954,7 +5954,7 @@ Exit0:
     return nResult;
 }
 
-// 装备重铸
+// Equipment reforging
 INT32 CItemBag::GambleAdvance(INT32 nGambleType, INT32 nGambleLevel)
 {
     INT32 nResult = errItemUnknown;
@@ -6100,7 +6100,7 @@ Exit0:
     return nResult;
 }
 
-// 技能书重著
+// Spellbook reforging
 INT32 CItemBag::SpellBookGamble()
 {
     INT32 nResult = errItemUnknown;
@@ -6200,7 +6200,7 @@ INT32 CItemBag::AddItemToContainer(Item* item, UINT8 conslot, EItemLog reason, U
 
     if (item->m_pTemplate->m_byDurType == DURTYPE_STACK)
     {
-        //如果物品可堆叠，则尝试堆叠到相同物品上
+        //If stackable, try to stack the item with an identical item
         for (ConIt it = container.begin(); it != container.end(); ++it)
         {
             Item* olditem = it->second;
@@ -6249,7 +6249,7 @@ INT32 CItemBag::AddItemToContainer(Item* item, UINT8 conslot, EItemLog reason, U
 
     if (nResult != errSuccess)
     {
-        //不可堆叠，则寻找空位子放入
+        //If not stackable, find an empty slot
         UINT8 itemslot = 0;
         BOOL found = FALSE;
         for (ConIt it = container.begin(); it != container.end(); ++it)
@@ -6267,11 +6267,11 @@ INT32 CItemBag::AddItemToContainer(Item* item, UINT8 conslot, EItemLog reason, U
             container.insert(Container::value_type(itemslot, item));
             item->SetPos(conslot, itemslot);
 
-            // 拾取绑定
+            // Bind on pickup
             if (item->m_iteminfo.m_byBindType == BINDTYPE_BOP)
                 item->m_iteminfo.m_byBindType = BINDTYPE_BINDED;
 
-            // 交易绑定
+            // Bind on trade
             if (item->m_iteminfo.m_byBindType == BINDTYPE_BOT && reason == ITEMLOG_PLAYER_TRADE)
                 item->m_iteminfo.m_byBindType = BINDTYPE_BINDED;
 
@@ -6491,7 +6491,7 @@ INT32 CItemBag::_MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot,
     Item* dstitem = NULL;
     if (dstit == m_cons[dstconslot].end())
     {
-        //物品移向空格
+        //Move item to an empty slot
 #ifndef _ROBOT
         CCliMessageHandler::GetInstance().DoSendItemSwap(m_pOwner, srcconslot, srcitemslot, dstconslot, dstitemslot);
 #endif // _ROBOT
@@ -6501,13 +6501,13 @@ INT32 CItemBag::_MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot,
     }
     else
     {
-        //物品移向另一物品
+        //Move item onto another item
         dstitem = dstit->second;
         if (srcitem->m_pTemplate->m_byDurType == DURTYPE_STACK &&
             srcitem->m_pTemplate == dstitem->m_pTemplate &&
             srcitem->m_iteminfo.m_byBindType == dstitem->m_iteminfo.m_byBindType)
         {
-            //堆叠
+            //Stack
             if (srcitem->m_iteminfo.m_nCurDur + dstitem->m_iteminfo.m_nCurDur <= srcitem->m_pTemplate->m_nDur)
             {
                 dstitem->m_iteminfo.m_nCurDur += srcitem->m_iteminfo.m_nCurDur;
@@ -6581,7 +6581,7 @@ INT32 CItemBag::_MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot,
         }
         else
         {
-            //交换
+            //Swap
 #ifndef _ROBOT
             CCliMessageHandler::GetInstance().DoSendItemSwap(m_pOwner, srcconslot, srcitemslot, dstconslot, dstitemslot);
 #endif // _ROBOT
@@ -6817,7 +6817,7 @@ INT32 CItemBag::_GetSellPrice(const Item* item) const
     }
     else if (item->m_pTemplate->m_byDurType == DURTYPE_EQUIP)
     {
-        //随机属性
+        //Random attributes
         for (INT32 i = 0; i < MAX_RANDOM_ATTR_COUNT; i++)
         {
             if (item->m_iteminfo.m_wRandomAttrID[i])
@@ -6828,7 +6828,7 @@ INT32 CItemBag::_GetSellPrice(const Item* item) const
             }
         }
 
-        //融灵属性
+        //Soul fusion attributes
         for (INT32 i = 0; i < MAX_SOCKET_COUNT; i++)
         {
             if (item->m_iteminfo.m_nSoulID[i])
@@ -6847,22 +6847,22 @@ INT32 CItemBag::_GetSellPrice(const Item* item) const
             }
         }
 
-        //铸魂属性
+        //Soul forging attributes
         for (INT32 i = 0; i < MAX_RUNE_COUNT; i++)
         {
             if (item->m_iteminfo.m_wRune[i])
                 sell_price += RUNE_SELL_PRICE;
         }
 
-        //幸运、诅咒
+        //Luck and curse
         sell_price += abs(item->m_iteminfo.m_byLuck);
 
-        //升级属性
+        //Upgrade attributes
         sell_price += item->m_iteminfo.m_byLevelupPhyPoint * 100;
         sell_price += item->m_iteminfo.m_byLevelupMagPoint * 100;
         sell_price += item->m_iteminfo.m_byLevelupTaoPoint * 100;
 
-        //卖店价=（满耐久卖店价*90%）*（当前耐久/最大耐久）+满耐久卖店价*10%
+        //Shop sale price = (full-durability price * 90%) * (current durability / maximum durability) + full-durability price * 10%
         sell_price = ((INT64)sell_price * 9 * item->m_iteminfo.m_nCurDur / item->m_pTemplate->m_nDur + sell_price) / 10;
     }
 

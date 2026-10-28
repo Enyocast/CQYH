@@ -18,9 +18,9 @@ public:
     BOOL DelDBRole(CDBRole* dbrole);
     CDBRole* GetDBRoleByID(UINT32 dwRoleID);
 
-    CDBRole* Pop(void);             //申请一个空闲的DBRole对象，主线程调用
-    BOOL Pop(CDBRole* dbrole);      //申请一个指定的DBRole对象，主线程调用
-    BOOL Push(CDBRole* dbrole);     //归还一个用完的DBRole对象，主线程调用
+    CDBRole* Pop(void);             //Acquire a free DBRole object; called by the main thread
+    BOOL Pop(CDBRole* dbrole);      //Acquire a specified DBRole object; called by the main thread
+    BOOL Push(CDBRole* dbrole);     //Return a used DBRole object; called by the main thread
 
 private:
     CBaseList m_freerolelist;
