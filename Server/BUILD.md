@@ -40,7 +40,9 @@ the old projects did. Pass `-DCQYH_OUTPUT_TO_BIN=OFF` to keep them in the build 
 * `nameserver` is not built by default (`-DCQYH_BUILD_NAMESERVER=ON`): it was never in the old solution and does not
   compile (`nameserver.h` uses `std::string` without including it).
 * Not migrated: `NewServer/src/asimov` (Qt robot client), `bteditor`, `gameworld/script/script.vcxproj` (the Lua
-  bytecode compiler step) and everything under `NewServer/tools` still have their own project files.
+  bytecode compiler step) still have their own project files. `NewServer/tools` is built by CMake too
+  (`NewServer/tools/CMakeLists.txt`, solution folder `Tools`); use `CQYHServer.sln`, not the old per-tool `.sln`s.
+  `gmtool`/`maintaintool` need Qt5 (`-DCMAKE_PREFIX_PATH=...`), otherwise they are listed but not built.
 * Source files use UTF-8. MSVC emits narrow string literals using GBK for compatibility with the legacy server.
 
 ## Lua bindings

@@ -20,7 +20,7 @@ It contains the cooked game content (`.upk`, `.udk`, `.pak`, `.bik` videos, the 
 
 Without the assets you can read and edit the source, but you cannot build or run the client.
 
-The same folder also hosts the other files from this release: packaged client builds, packaged server builds, tool installers and `Documentation.7z` (setup and compile notes, database files, design documents).
+The same folder also hosts the other files from this release: packaged client builds, packaged server builds and tool installers. The setup and compile notes, database files and design documents are in this repository, in the [`Documentation`](Documentation) folder.
 
 ## Repository layout
 
@@ -76,7 +76,7 @@ Server/
 │   │                          start/stop scripts, configs
 │   ├── 3rd/                   Third-party libraries (MySQL, Lua, sol2, zlib, oasdk, ...)
 │   ├── inc/, lib/             Shared headers and libraries
-│   ├── tools/                 gmtool, maintaintool, guardserver, certserver and other tools
+│   ├── tools/                 gmtool, maintaintool, guardserver, certserver and other tools (CMake, built from the same solution)
 │   └── test/                  Test programs (asio_net: transport integration test)
 ├── Common/                    Shared protocol and data definitions (newest version)
 └── Common1/                   Alternative "new protocol" variant (not used by the build)
@@ -101,11 +101,11 @@ Visual Studio and the DirectX SDK come from Microsoft. Everything else is hosted
 | Database tool | Navicat for MySQL 12.1 (64-bit) | [`Navicat Install.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/Navicat%20Install.7z) |
 | Client troubleshooting | DirectX repair tool (blank-screen and DirectX errors on old clients) | [`DirectX 4.2 Repair Tool.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/DirectX%204.2%20Repair%20Tool.7z) |
 | Dev environment | Python 2.7.8, Perforce P4V, XAMPP 1.8.3 | [`Dev Tools Install.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/Dev%20Tools%20Install.7z) |
-| Setup and compile notes | Build, database and runtime guides, SQL files, design documents | [`Documentation.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/Documentation.7z) |
+| Setup and compile notes | Build, database and runtime guides, SQL files, design documents | [`Documentation/`](Documentation) folder in this repository |
 
 - **MySQL:** use the [modern schema and matching data](Database/mysql-modern/README.md) with the rebuilt server. The archived MySQL 5.1/5.5 installers and original database dumps belong to the historical release.
 - **Navicat** is commercial software and needs a valid licence; the official version is on the [Navicat website](https://www.navicat.com/en/products#navicat). Any MySQL client works if you prefer another.
-- **Legacy client problems:** if the DirectX SDK installer fails, uninstall the Microsoft Visual C++ redistributables (2005 to 2022), reinstall the SDK, then run the DirectX repair tool. The details are in `Documentation.7z`.
+- **Legacy client problems:** if the DirectX SDK installer fails, uninstall the Microsoft Visual C++ redistributables (2005 to 2022), reinstall the SDK, then run the DirectX repair tool. The details are in the [`Documentation`](Documentation) folder.
 - Packaged client builds, packaged server builds and the rest of the release are in the same folder.
 
 ### Building the client with Visual Studio 2022
@@ -156,13 +156,18 @@ The editor that is known to work is the **prebuilt 2025 "Win32 - Modified and Co
 - Do not commit regenerated `*Classes.h` files (see the build notes above).
 ### Building the server with Visual Studio 2022
 
-The server builds with CMake (x64, C++23). The old makefiles and Visual Studio project files are gone.
+The servers **and the tools** build with CMake (x64, C++23) from one solution, **`Server\build\vs2022\CQYHServer.sln`**. Build everything from that solution. The old makefiles, the old per-project `.vcxproj` files and the per-tool `.sln` files (`gmtool.sln`, `guardserver.sln`, ...) are gone or stale and no longer work, because the libraries they referenced were removed.
 
-1. In the Server folder run `cmake --preset vs2022` (the CMake bundled with Visual Studio 2022 is fine). This generates **`Server\build\vs2022\CQYHServer.sln`**. The first configure downloads asio.
+1. In the Server folder run `cmake --preset vs2022` (the CMake bundled with Visual Studio 2022 is fine). This generates (or refreshes) `CQYHServer.sln`. The first configure downloads asio.
 2. Open `CQYHServer.sln` in Visual Studio 2022 and build the Debug or Release configuration. (Or use `File > Open > Folder...` on `Server` and pick the `vs2022` preset.)
-3. The executables are written to `NewServer\bin\<server>\` as `<server>64.exe` / `<server>64_d.exe`.
+3. The executables are written to `NewServer\bin\<project>\` as `<name>64.exe` / `<name>64_d.exe`.
 
-The client-facing network layer (gateserver, balanceserver, mgateserver) uses asio. `ctest --preset vs2022-debug` runs its integration test. Options, what is not covered (asimov, bteditor, `tools`) and the GBK source-encoding note are in [`Server/BUILD.md`](Server/BUILD.md).
+The solution groups the projects into folders: `Servers`, `Tools`, `Tests` and `Dependencies` (`Libraries` for baselib, fusion, net and gameworld; `ThirdParty` for Lua and zlib).
+
+- The tools (`guardserver`, `exportdb`, `certserver`, `pak`, ...) are in the `Tools` folder. `gmtool` and `maintaintool` need Qt5: they are listed but excluded from the build until you configure with `-DCMAKE_PREFIX_PATH=<your Qt5 install>`. `encrypt` and `PosLog` need the MFC component of Visual Studio.
+- `Server\build\vs2022` is committed so the solution can be opened straight away, but it contains absolute paths from the machine that generated it. After cloning to another location, delete `build\vs2022\CMakeCache.txt` and run `cmake --preset vs2022` again. Add a source file to the matching `CMakeLists.txt` and re-run that command; do not edit the generated `.sln` or `.vcxproj` files, because they are overwritten.
+
+The client-facing network layer (gateserver, balanceserver, mgateserver) uses asio. `ctest --preset vs2022-debug` runs its integration test. Options, what is not covered (asimov, bteditor) and the GBK source-encoding note are in [`Server/BUILD.md`](Server/BUILD.md).
 
 ---
 ## 🔗 Quick Links
