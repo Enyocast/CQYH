@@ -1,11 +1,13 @@
-# Pre-built third-party libraries that live in NewServer/3rd (there is no source for them in the repo).
+# Third-party libraries that live in NewServer/3rd.
 #
 # Windows : lib/win64 import/static libs (+ the DLLs that go with the import libs)
-# Linux   : lib/linux64 libraries where the repo has them; zlib comes from the system.
+# Linux   : lib/linux64 libraries where the repo has them.
+# Lua and zlib are built from their bundled sources on all platforms.
 # A missing Linux library only fails when something links against it.
 
 set(_3rd "${CQYH_SERVER_DIR}/NewServer/3rd")
 include(Lua)
+include(Zlib)
 
 # Debug/Release selection for imported libs; RelWithDebInfo/MinSizeRel use the Release one.
 function(_cqyh_imported name kind)
@@ -29,10 +31,6 @@ function(_cqyh_imported name kind)
 endfunction()
 
 if(WIN32)
-
-    _cqyh_imported(zlib STATIC
-        RELEASE "${_3rd}/zlib/lib/win64/zlib.lib"
-        DEBUG   "${_3rd}/zlib/lib/win64/zlib_d.lib")
 
     # Oracle ships one C API client for both Debug and Release applications.
     _cqyh_imported(mysql SHARED
@@ -60,7 +58,6 @@ if(WIN32)
     target_link_libraries(cqyh_syslibs INTERFACE ws2_32 iphlpapi winmm dbghelp psapi)
     add_library(cqyh::syslibs ALIAS cqyh_syslibs)
 else()
-    find_package(ZLIB)
     add_library(cqyh_syslibs INTERFACE)
     target_link_libraries(cqyh_syslibs INTERFACE pthread dl rt)
     add_library(cqyh::syslibs ALIAS cqyh_syslibs)
@@ -72,10 +69,6 @@ else()
         RELEASE "${_3rd}/gpk/Redist/Debug/Server/64-Centos. 6.x/libGPKitSvr.a"
         DEBUG   "${_3rd}/gpk/Redist/Debug/Server/64-Centos. 6.x/libGPKitSvr.a")
 
-    add_library(cqyh::zlib INTERFACE IMPORTED GLOBAL)
-    if(ZLIB_FOUND)
-        target_link_libraries(cqyh::zlib INTERFACE ZLIB::ZLIB)
-    endif()
     # sdobase / fcm are Windows-only SDKs (the Linux build of manageserver/loginserver never used them)
     add_library(cqyh::sdobase INTERFACE IMPORTED GLOBAL)
     add_library(cqyh::fcm INTERFACE IMPORTED GLOBAL)

@@ -29,8 +29,6 @@ function(cqyh_target_defaults tgt)
 
     if(MSVC)
         # Same switches as the old projects: no buffer security checks (/GS-), no RTTI (/GR-).
-        # (The old Release projects also asked for /GL + /LTCG; that cannot work with the pre-built zlib
-        # libraries, which carry intermediate code from an older compiler, so it is not used here.)
         # /std:c++latest turns on /permissive- (strict conformance). The code base relies on non-conforming but
         # long-accepted MSVC behaviour (goto Exit0 jumping over initializations, ...), so switch it back off.
         target_compile_options(${tgt} PRIVATE

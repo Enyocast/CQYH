@@ -68,7 +68,7 @@ if(MSVC)
 endif()
 
 
-# Propagate the matching C API headers and runtime to users of baselib.
-target_link_libraries(baselib PUBLIC cqyh::mysql)
+# Propagate the matching MySQL and zlib headers and libraries to users of baselib.
+target_link_libraries(baselib PUBLIC cqyh::mysql cqyh::zlib)
 
 target_link_libraries(baselib PUBLIC cqyh::sol2)

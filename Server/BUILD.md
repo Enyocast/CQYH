@@ -28,6 +28,10 @@ the old projects did. Pass `-DCQYH_OUTPUT_TO_BIN=OFF` to keep them in the build 
 * sol2 v3.3.1 is vendored in `NewServer/3rd/sol2` alongside the other third-party libraries. The build uses these
   local headers directly; it does not download sol2. Lua 5.1 is compiled from the bundled `3rd/lua/src` sources
   with the server's toolchain, so the old Lua DLLs and their Visual C++ 2013 Debug runtime are unnecessary.
+* zlib 1.3.2 is vendored in `NewServer/3rd/zlib` and compiled as the static `cqyh::zlib` library on Windows
+  and Linux. No system zlib or prebuilt zlib library is needed. See its `README.md` for provenance and the
+  separate legacy tool build. `ctest -R zlib --output-on-failure` runs the upstream API tests and verifies
+  compatibility with compressed data produced by the former zlib 1.2.7.
 * `-DCQYH_CXX_STANDARD=17|20|23` selects the language standard (default 23). The legacy code needs MSVC's
   `/permissive` mode; that is set in `cmake/CQYH.cmake`.
 * The source lists in the `CMakeLists.txt` files are explicit. A new `.cpp` has to be added there.
