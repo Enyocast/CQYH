@@ -3,7 +3,7 @@
 	file:		move_position.h
 	author:		Allan Tao
 	
-	purpose:	GM ÃüÁî£¬ÒÆ¶¯Î»ÖÃ
+	purpose:	GM å‘½ä»¤ï¼Œç§»åŠ¨ä½ç½®
 *********************************************************************/
 
 #ifndef MOVE_POSITION_H_

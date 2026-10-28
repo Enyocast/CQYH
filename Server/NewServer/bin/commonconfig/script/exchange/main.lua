@@ -2,10 +2,10 @@ LoadPackage("exchange.pkg");
 LoadPackage("online_role_data.pkg");
 LoadPackage("global_config.pkg")
 
--- ÅäÖÃ±í
+-- é…ç½®è¡¨
 ConfigList = 
 {
---          ×îĞ¡±ÈÀı     ×î´ó±ÈÀı     ×îĞ¡ÅÌ¿ÚÊÖÊı    µ¥±Ê·ÅÆúÉÏÏŞ       µ¥±Ê·ÅÆú¼¸ÂÊ         ×îĞ¡Ë¢ĞÂ¼ä¸ô          ×î´óË¢ĞÂ¼ä¸ô          ÊÇ·ñÔÊĞí³·µ¥          ÊÇ·ñÊ¹ÓÃÆ½¾ùÏÂµ¥¼ä¸ô
+--          æœ€å°æ¯”ä¾‹     æœ€å¤§æ¯”ä¾‹     æœ€å°ç›˜å£æ‰‹æ•°    å•ç¬”æ”¾å¼ƒä¸Šé™       å•ç¬”æ”¾å¼ƒå‡ ç‡         æœ€å°åˆ·æ–°é—´éš”          æœ€å¤§åˆ·æ–°é—´éš”          æ˜¯å¦å…è®¸æ’¤å•          æ˜¯å¦ä½¿ç”¨å¹³å‡ä¸‹å•é—´éš”
 	[1] = { fMin = 0.55, fMax = 0.65, nMinCount = 10, nIgnoreCount = 10, fIgnoreChance = 0.1, nMinRefreshTime = 5,  nMaxRefreshTime = 10, bAllowRemove = false, bUseAvgDelay = true },
 	[2] = { fMin = 0.55, fMax = 0.65, nMinCount = 10, nIgnoreCount = 10, fIgnoreChance = 0.1, nMinRefreshTime = 6,  nMaxRefreshTime = 12, bAllowRemove = false, bUseAvgDelay = true },
 	[3] = { fMin = 0.55, fMax = 0.65, nMinCount = 10, nIgnoreCount = 10, fIgnoreChance = 0.1, nMinRefreshTime = 7,  nMaxRefreshTime = 13, bAllowRemove = false, bUseAvgDelay = false },
@@ -20,14 +20,14 @@ ConfigList =
 
 ActiveConfig = 
 {
-	-- Ö÷¶¯µ¥±ÈÀı
+	-- ä¸»åŠ¨å•æ¯”ä¾‹
 	fMinOrderPercent = 0.1,
 	fMaxOrderPercent = 0.2,
-	-- ×îĞ¡ÅÌ¿Ú±ÈÀı
+	-- æœ€å°ç›˜å£æ¯”ä¾‹
 	fMin = 0.1,
-	-- ×î´óÅÌ¿Ú±ÈÀı
+	-- æœ€å¤§ç›˜å£æ¯”ä¾‹
 	fMax = 0.2,
-	-- ×îĞ¡ÅÌ¿ÚÊÖÊı
+	-- æœ€å°ç›˜å£æ‰‹æ•°
 	nMinCount = 50,
 }
 
@@ -70,23 +70,23 @@ function CheckConfigList()
 end
 CheckConfigList();
 
--- ´éºÏÇ°
+-- æ’®åˆå‰
 function BeforeMainLoop(nServerGroup)
 
 end
 
 function ProcessPrice(PriceInfo, PriceConfig, nServerGroup, nAverageDelay)
-	-- µÍÓÚÏµÍ³×îµÍÏŞ¼Û£¬»òÕß¸ßÓÚÏµÍ³×îµÍÏŞ¼Û£¬Ôò·µ»Ø
+	-- ä½äºç³»ç»Ÿæœ€ä½é™ä»·ï¼Œæˆ–è€…é«˜äºç³»ç»Ÿæœ€ä½é™ä»·ï¼Œåˆ™è¿”å›
 	if PriceInfo.nPrice < g_nLowPriceLimit[nServerGroup] or PriceInfo.nPrice > g_nHighPriceLimit[nServerGroup] then
 		return
 	end
 	local fCountPercent = PriceInfo.nSystemHandCount / PriceInfo.nHandCount;
 	if fCountPercent > PriceConfig.fMax and PriceConfig.bAllowRemove then
-		-- Èç¹û¸Ãµµ¿ÚµÄ±ÈÀı¸ßÓÚÖ¸¶¨±ÈÀı£¬ÇÒ¸Ãµµ¿ÚÔÊĞí³·µ¥£¬Ôò³¢ÊÔ³·µ¥
+		-- å¦‚æœè¯¥æ¡£å£çš„æ¯”ä¾‹é«˜äºæŒ‡å®šæ¯”ä¾‹ï¼Œä¸”è¯¥æ¡£å£å…è®¸æ’¤å•ï¼Œåˆ™å°è¯•æ’¤å•
 		local OrderList = get_order_list(nServerGroup, eotSell, PriceInfo.nPrice);
 		local nMinCount = 100000000;
 		local szOrderID = nil;
-		-- ÕÒµ½ÊÖÊı×îÉÙµÄÏµÍ³µ¥
+		-- æ‰¾åˆ°æ‰‹æ•°æœ€å°‘çš„ç³»ç»Ÿå•
 		for i, v in ipairs(OrderList) do
 			if v.dwRoleID == 0 and v.nHandCount < nMinCount then
 				nMinCount = v.nHandCount;
@@ -94,7 +94,7 @@ function ProcessPrice(PriceInfo, PriceConfig, nServerGroup, nAverageDelay)
 			end
 		end
 		local fNewCountPercent = (PriceInfo.nSystemHandCount - nMinCount) / (PriceInfo.nHandCount - nMinCount);
-		-- Èç¹ûÈ¡ÏûÊÖÊı×îÉÙµÄÏµÍ³µ¥ºó£¬±ÈÀı»¹¸ßÓÚ¸Ã¼ÛÎ»µÄ×îµÍ±ÈÀı£¬ÔòÈ¡Ïû¸Ã¶©µ¥
+		-- å¦‚æœå–æ¶ˆæ‰‹æ•°æœ€å°‘çš„ç³»ç»Ÿå•åï¼Œæ¯”ä¾‹è¿˜é«˜äºè¯¥ä»·ä½çš„æœ€ä½æ¯”ä¾‹ï¼Œåˆ™å–æ¶ˆè¯¥è®¢å•
 --		if szOrderID and (fNewCountPercent >= PriceConfig.fMin or PriceInfo.nSystemHandCount == PriceInfo.nHandCount) then
 		if szOrderID and (fNewCountPercent >= PriceConfig.fMin) then
 			cancel_system_order(nServerGroup, szOrderID);
@@ -103,9 +103,9 @@ function ProcessPrice(PriceInfo, PriceConfig, nServerGroup, nAverageDelay)
 --			print('cannot remove system order price '..PriceInfo.nPrice..' count '..nMinCount..' group '..nServerGroup);
 		end
 	elseif fCountPercent <= PriceConfig.fMin then 
-		-- Èç¹û¸Ãµµ¿ÚµÄ±ÈÀıµÍÓÚÖ¸¶¨±ÈÀı
+		-- å¦‚æœè¯¥æ¡£å£çš„æ¯”ä¾‹ä½äºæŒ‡å®šæ¯”ä¾‹
 
-		-- Ğ¡ÓÚ×îĞ¡ÅÌ¿ÚÊı£¬Ôò²»¼Óµ¥
+		-- å°äºæœ€å°ç›˜å£æ•°ï¼Œåˆ™ä¸åŠ å•
 		if PriceInfo.nHandCount < PriceConfig.nMinCount then
 --			print('price '..PriceInfo.nPrice..' has too few hand count to follow');
 			return
@@ -116,7 +116,7 @@ function ProcessPrice(PriceInfo, PriceConfig, nServerGroup, nAverageDelay)
 			return
 		end
 
-		-- ¼ÆËãÏÂµ¥ÊÖÊı
+		-- è®¡ç®—ä¸‹å•æ‰‹æ•°
 		local nMinFollowCount = math.ceil(PriceInfo.nHandCount * PriceConfig.fMin - PriceInfo.nSystemHandCount);
 		if nMinFollowCount <= 0  then
 			nMinFollowCount = 0;
@@ -133,14 +133,14 @@ function ProcessPrice(PriceInfo, PriceConfig, nServerGroup, nAverageDelay)
 
 		local nFollowCount = math.random(nMinFollowCount, nMaxFollowCount);
 
-		-- ¸ßÓÚÅÌ¿Ú×î´óÏµÍ³µ¥ÊÖÊı£¬Ôòµ÷ÕûÎª×î´óÏµÍ³µ¥ÊÖÊı
+		-- é«˜äºç›˜å£æœ€å¤§ç³»ç»Ÿå•æ‰‹æ•°ï¼Œåˆ™è°ƒæ•´ä¸ºæœ€å¤§ç³»ç»Ÿå•æ‰‹æ•°
 		if (nFollowCount + PriceInfo.nSystemHandCount) > g_nMaxCountPerPrice[nServerGroup] then
 			local nOldFollowCount = nFollowCount;
 			nFollowCount = (g_nMaxCountPerPrice[nServerGroup] - PriceInfo.nSystemHandCount) + math.random(0, 5);
 			print('reduced follow count from '..nOldFollowCount..' to '..nFollowCount..' by sys max count');
 		end
 
-		-- ¸ßÓÚÏµÍ³×î¸ßµ¥±ÊÊÖÊı£¬Ôòµ÷ÕûÎª×î¸ßµ¥±ÊÊÖÊı
+		-- é«˜äºç³»ç»Ÿæœ€é«˜å•ç¬”æ‰‹æ•°ï¼Œåˆ™è°ƒæ•´ä¸ºæœ€é«˜å•ç¬”æ‰‹æ•°
 		if nFollowCount > g_nMaxSingleCount[nServerGroup] then
 			print('reduced follow count from '..nFollowCount..' to '..g_nMaxSingleCount[nServerGroup]..' by single max count');
 			nFollowCount = g_nMaxSingleCount[nServerGroup] - math.random(0, 5);
@@ -148,7 +148,7 @@ function ProcessPrice(PriceInfo, PriceConfig, nServerGroup, nAverageDelay)
 
 		if nFollowCount > 0 then
 
-			-- Ğ¡ÓÚ×î´ó¿ÉºöÂÔ¸úµ¥Êı£¬ÔòËæ»ú·ÅÆú¸úµ¥
+			-- å°äºæœ€å¤§å¯å¿½ç•¥è·Ÿå•æ•°ï¼Œåˆ™éšæœºæ”¾å¼ƒè·Ÿå•
 			if nFollowCount < PriceConfig.nIgnoreCount then
 				if math.random() < PriceConfig.fIgnoreChance then
 					print('ignore price '..PriceInfo.nPrice..' count '..nFollowCount);
@@ -156,7 +156,7 @@ function ProcessPrice(PriceInfo, PriceConfig, nServerGroup, nAverageDelay)
 				end
 			end
 
-			-- ÏÂµ¥
+			-- ä¸‹å•
 			local nResult = 0;
 			g_ExchangeMgr:AddSystemOrder(0, nServerGroup, PriceInfo.nPrice, nFollowCount, false, nResult);
 			print('added system order price '..PriceInfo.nPrice..' count '..nFollowCount..
@@ -178,39 +178,39 @@ function get_average_delay(nServerGroup, CurrentTime)
 	return math.ceil(ORDER_STAT_DURATION / nOrderTotal);
 end
 
--- ´¦ÀíÖ÷¶¯µ¥
+-- å¤„ç†ä¸»åŠ¨å•
 function ProcessActiveOrder(nServerGroup, nAverageDelay)
 	local BuyPriceList = get_price_list(nServerGroup, eotBuy);
 
-	-- Ã»ÓĞÂòÒ»µÄÅÌ¿Ú£¬Ôò²»´¦Àí	
+	-- æ²¡æœ‰ä¹°ä¸€çš„ç›˜å£ï¼Œåˆ™ä¸å¤„ç†	
 	if BuyPriceList[1] == nil then
 		print('no buy order');
 		return
 	end
 
-	-- ÂòÒ»ÅÌ¿ÚÊÖÊıĞ¡ÓÚ×îĞ¡µ¥Êı£¬Ôò²»´¦Àí
+	-- ä¹°ä¸€ç›˜å£æ‰‹æ•°å°äºæœ€å°å•æ•°ï¼Œåˆ™ä¸å¤„ç†
 	if BuyPriceList[1].nHandCount < ActiveConfig.nMinCount then
 		print('too few buy order hand count');
 		return
 	end 
 
-	-- µÍÓÚÏµÍ³×îµÍÏŞ¼Û£¬»òÕß¸ßÓÚÏµÍ³×îµÍÏŞ¼Û£¬Ôò·µ»Ø
+	-- ä½äºç³»ç»Ÿæœ€ä½é™ä»·ï¼Œæˆ–è€…é«˜äºç³»ç»Ÿæœ€ä½é™ä»·ï¼Œåˆ™è¿”å›
 	if BuyPriceList[1].nPrice < g_nLowPriceLimit[nServerGroup] or BuyPriceList[1].nPrice > g_nHighPriceLimit[nServerGroup] then
 		print('too low or too high price');
 		return
 	end
 
-	-- Ëæ»ú±¾´ÎÅÌ¿Ú±ÈÀı
+	-- éšæœºæœ¬æ¬¡ç›˜å£æ¯”ä¾‹
 	local fPercent = math.random(ActiveConfig.fMin * 100, ActiveConfig.fMax * 100) / 100;
 	local nFollowCount = math.floor(BuyPriceList[1].nHandCount * fPercent);
 
-	-- ¸ßÓÚÏµÍ³×î¸ßµ¥±ÊÊÖÊı£¬Ôòµ÷ÕûÎª×î¸ßµ¥±ÊÊÖÊı
+	-- é«˜äºç³»ç»Ÿæœ€é«˜å•ç¬”æ‰‹æ•°ï¼Œåˆ™è°ƒæ•´ä¸ºæœ€é«˜å•ç¬”æ‰‹æ•°
 	if nFollowCount > g_nMaxSingleCount[nServerGroup] then
 		print('reduced active order count from '..nFollowCount..' to '..g_nMaxSingleCount[nServerGroup]..' by single max count');
 		nFollowCount = g_nMaxSingleCount[nServerGroup] - math.random(0, 5);
 	end
 
-	-- ¸ßÓÚÖ÷¶¯µ¥³ØµÄÉÏÏŞ£¬Ôòµ÷ÕûÎªÉÏÏŞ
+	-- é«˜äºä¸»åŠ¨å•æ± çš„ä¸Šé™ï¼Œåˆ™è°ƒæ•´ä¸ºä¸Šé™
 	local fOrderPercent = math.random(ActiveConfig.fMinOrderPercent * 100, ActiveConfig.fMaxOrderPercent * 100) / 100;
 	local nMaxCount = math.floor(g_nActiveOrderCount[nServerGroup] * fOrderPercent);
 	if nMaxCount < nFollowCount then
@@ -218,13 +218,13 @@ function ProcessActiveOrder(nServerGroup, nAverageDelay)
 		nFollowCount = nMaxCount;
 	end
 
-	-- ´ÓÀÛ¼ÆµÄÍæ¼ÒÖ÷¶¯µ¥³ØÖĞ¿Û³ı
+	-- ä»ç´¯è®¡çš„ç©å®¶ä¸»åŠ¨å•æ± ä¸­æ‰£é™¤
 	g_nActiveOrderCount[nServerGroup] = g_nActiveOrderCount[nServerGroup] - math.floor(nFollowCount / fOrderPercent);
 	if g_nActiveOrderCount[nServerGroup] < 0 then
 		g_nActiveOrderCount[nServerGroup] = 0;
 	end
 
-	-- ÏÂµ¥
+	-- ä¸‹å•
 	if nFollowCount > 0 then
 		local nResult = 0;
 		g_ExchangeMgr:AddSystemOrder(0, nServerGroup, BuyPriceList[1].nPrice, nFollowCount, false, nResult);
@@ -233,7 +233,7 @@ function ProcessActiveOrder(nServerGroup, nAverageDelay)
 	end
 end
 
--- ´éºÏºó
+-- æ’®åˆå
 function AfterMainLoop(nServerGroup)
 	local CurrentTime = os.time();
 	local PriceList = get_price_list(nServerGroup, eotSell);
@@ -270,7 +270,7 @@ function AfterMainLoop(nServerGroup)
 	end
 end
 
--- ÓÃ»§ÏÂµ¥ºó
+-- ç”¨æˆ·ä¸‹å•å
 function OnUserAddOrder(nRoleID, nServerGroup, nOrderType, nPrice, nCount)
 	local CurrentTime = os.time();
 	if nOrderType == eotSell and nRoleID > 0 then
@@ -285,7 +285,7 @@ function OnUserAddOrder(nRoleID, nServerGroup, nOrderType, nPrice, nCount)
 	end
 end
 
--- ³É½»ºó
+-- æˆäº¤å
 function OnUserMakeDeal(nServerGroup, nSellerID, dwSellOrderTime, nBuyerID, dwBuyOrderTime, nPrice, nCount)
 	local bActiveOrderEnabled = get_server_var(nServerGroup, esvtDefault, svtActiveOrderEnabled);
 	

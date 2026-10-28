@@ -1,4 +1,4 @@
-// oasample.cpp : ¶¨Òå¿ØÖÆÌ¨Ó¦ÓÃ³ÌĞòµÄÈë¿Úµã¡£
+// oasample.cpp : å®šä¹‰æ§åˆ¶å°åº”ç”¨ç¨‹åºçš„å…¥å£ç‚¹ã€‚
 //
 
 #include "stdafx.h"
@@ -20,14 +20,14 @@
  
 char g_szBuf[1024]; 
  
-//ÈÏÖ¤Àà----ÈÏÖ¤»Øµ÷º¯Êı 
+//è®¤è¯ç±»----è®¤è¯å›è°ƒå‡½æ•° 
 int SNDACALLBACK  MyCallBackFuc(int nMsgType, unsigned long nUniqueId, ISDOAMsg *pMsg) 
 { 
     printf("Result1 is:%s\nResult2 is:%s\nReturn is:%d\nuniqueId is:%d\n",
  
-            pMsg->GetValue("SNDAID"),    //»ñµÃÊı×ÖÕÊºÅ
+            pMsg->GetValue("SNDAID"),    //è·å¾—æ•°å­—å¸å·
  
-            pMsg->GetValue("IDCARD"),    //»ñµÃÉí·İÖ¤ºÅÂë
+            pMsg->GetValue("IDCARD"),    //è·å¾—èº«ä»½è¯å·ç 
  
             nMsgType,
  
@@ -38,17 +38,17 @@ int SNDACALLBACK  MyCallBackFuc(int nMsgType, unsigned long nUniqueId, ISDOAMsg 
     return 0; 
 } 
 
-//¶©µ¥´¦ÀíÀà---»Øµ÷º¯ÊıÌåÄÚ´¦Àí 
+//è®¢å•å¤„ç†ç±»---å›è°ƒå‡½æ•°ä½“å†…å¤„ç† 
 int SNDACALLBACK MsgHandle(int msgType, ISDOAMsg *req, ISDOAMsg *res) 
 { 
     static int i = 0; 
-    //ÏûÏ¢ÀàĞÍ 
+    //æ¶ˆæ¯ç±»å‹ 
     switch (msgType) 
     { 
-      //Í¨ÖªÏûÏ¢(°üº¬µÀ¾ß·¢»õÏûÏ¢,µãÈ¯¼ÄÊÛÏûÏ¢, µãÈ¯¹ºÂòÏûÏ¢,Íæ¼Ò½»Ò×ÏûÏ¢) 
+      //é€šçŸ¥æ¶ˆæ¯(åŒ…å«é“å…·å‘è´§æ¶ˆæ¯,ç‚¹åˆ¸å¯„å”®æ¶ˆæ¯, ç‚¹åˆ¸è´­ä¹°æ¶ˆæ¯,ç©å®¶äº¤æ˜“æ¶ˆæ¯) 
       case SDOA_ITEM_SEND_REQUEST: 
       { 
-        //Í¨ÖªÏûÏ¢º¬ÓĞÒÔÏÂ²ÎÊı£º Èç¹û²ÎÊı²»´æÔÚ£¬ÔòGetValue·µ»ØNULL 
+        //é€šçŸ¥æ¶ˆæ¯å«æœ‰ä»¥ä¸‹å‚æ•°ï¼š å¦‚æœå‚æ•°ä¸å­˜åœ¨ï¼Œåˆ™GetValueè¿”å›NULL 
         printf("orderid=%s\n",    req->GetValue("orderId")); 
         printf("payStatus=%s\n",  req->GetValue("payStatus")); 
         printf("sendTimes=%s\n",  req->GetValue("sendTimes")); 
@@ -59,10 +59,10 @@ int SNDACALLBACK MsgHandle(int msgType, ISDOAMsg *req, ISDOAMsg *res)
         printf("indication=%s\n", req->GetValue("indication")); 
         printf("payErrorMsg=%s\n",req->GetValue("payErrorMsg")); 
  
-        //ÓÎÏ·ÉÌ³Ç·şÎñÆ÷ÒµÎñ´¦Àí´úÂë 
+        //æ¸¸æˆå•†åŸæœåŠ¡å™¨ä¸šåŠ¡å¤„ç†ä»£ç  
  
  
-        //ÒµÎñ´¦ÀíÍê³Éºó£¬ÏìÓ¦ÏûÏ¢±ØĞëÉèÖÃÒÔÏÂ²ÎÊı 
+        //ä¸šåŠ¡å¤„ç†å®Œæˆåï¼Œå“åº”æ¶ˆæ¯å¿…é¡»è®¾ç½®ä»¥ä¸‹å‚æ•° 
         i++; 
         char descMsg[256], appendix[256]; 
         printf(descMsg,  "descMsg-%d",  i); 
@@ -75,11 +75,11 @@ int SNDACALLBACK MsgHandle(int msgType, ISDOAMsg *req, ISDOAMsg *res)
       } 
       break; 
  
-      //³äÖµÍ¨ÖªÏûÏ¢ 
+      //å……å€¼é€šçŸ¥æ¶ˆæ¯ 
 	
       case SDOA_DEPOSIT_REQUEST: 
       { 
-        // Èç¹û²ÎÊı²»´æÔÚ£¬ÔòGetValue·µ»ØNULL 
+        // å¦‚æœå‚æ•°ä¸å­˜åœ¨ï¼Œåˆ™GetValueè¿”å›NULL 
         printf("appId=%s\n",     req->GetValue("appId")); 
         printf("areaId=%s\n",    req->GetValue("areaId")); 
         printf("groupId=%s\n",   req->GetValue("groupId")); 
@@ -89,10 +89,10 @@ int SNDACALLBACK MsgHandle(int msgType, ISDOAMsg *req, ISDOAMsg *res)
         printf("callTime=%s\n",  req->GetValue("callTime")); 
         printf("indication=%s\n",req->GetValue("indication")); 
  
-        //ÓÎÏ·ÉÌ³Ç·şÎñÆ÷ÒµÎñ´¦Àí´úÂë 
+        //æ¸¸æˆå•†åŸæœåŠ¡å™¨ä¸šåŠ¡å¤„ç†ä»£ç  
  
  
-        //ÒµÎñ´¦ÀíÍê³Éºó£¬ÏìÓ¦ÏûÏ¢±ØĞëÉèÖÃÒÔÏÂ²ÎÊı 
+        //ä¸šåŠ¡å¤„ç†å®Œæˆåï¼Œå“åº”æ¶ˆæ¯å¿…é¡»è®¾ç½®ä»¥ä¸‹å‚æ•° 
         i++; 
         char descMsg[256], appendix[256]; 
         printf(descMsg,  "descMsg-%d",  i); 
@@ -113,144 +113,144 @@ int SNDACALLBACK MsgHandle(int msgType, ISDOAMsg *req, ISDOAMsg *res)
 
 int main(int argc, char* argv[])
 {
-    int nMsgType = 1;		   //×é¼şÏûÏ¢ÀàĞÍ
-	  int nOrderMsgType = 1;	   //¶©µ¥ÏûÏ¢ÀàĞÍ£¬¾ßÌå¶©µ¥ÏûÏ¢ÀàĞÍ£¬ÓÎÏ··şÎñ¶ËÅĞ¶Ï
+    int nMsgType = 1;		   //ç»„ä»¶æ¶ˆæ¯ç±»å‹
+	  int nOrderMsgType = 1;	   //è®¢å•æ¶ˆæ¯ç±»å‹ï¼Œå…·ä½“è®¢å•æ¶ˆæ¯ç±»å‹ï¼Œæ¸¸æˆæœåŠ¡ç«¯åˆ¤æ–­
 
-	  //ÈÏÖ¤½Ó¿ÚÊ¹ÓÃ·¶Àı´úÂë
+	  //è®¤è¯æ¥å£ä½¿ç”¨èŒƒä¾‹ä»£ç 
     if(nMsgType == 1) 
     { 
          
-		// ´ËtokenÊÇÓÉÓÎÏ·¿Í»§¶Ë´«¸øÓÎÏ··şÎñÆ÷, ÓÎÏ··şÎñ¶Ë½«µ÷ÓÃÊ¢´ó·şÎñ¶Ë×é¼ş½Ó¿Ú¶Ôtoken½øĞĞÑéÖ¤
+		// æ­¤tokenæ˜¯ç”±æ¸¸æˆå®¢æˆ·ç«¯ä¼ ç»™æ¸¸æˆæœåŠ¡å™¨, æ¸¸æˆæœåŠ¡ç«¯å°†è°ƒç”¨ç››å¤§æœåŠ¡ç«¯ç»„ä»¶æ¥å£å¯¹tokenè¿›è¡ŒéªŒè¯
         char szToken[] = "mhTmur5RDmybh7Cd2g9+oOUHuhzJWNTMI7ahrmMEwX1Tfr74XcD4c7dRDCRrzTb \
                           O67wboBJZT5DnbBqsNC42jf+PBDWDv7gHRU8BmLZ59egaA41YIctQw9TNgLXaM7kuNT\A0QjcwRjE1MkI5MUE1QThFMzBDNzc2MDQxRDI3OUY="; 
  
-        //´´½¨µÇÂ½ÈÏÖ¤¶ÔÏóÊµÀı 
+        //åˆ›å»ºç™»é™†è®¤è¯å¯¹è±¡å®ä¾‹ 
         ISDOAUserInfoAuthen* ptr = sdoaCreateUserInfoAuthen(); 
         memset(g_szBuf,0,1024); 
  
-        //ÈÏÖ¤½Ó¿Ú³õÊ¼»¯ 
+        //è®¤è¯æ¥å£åˆå§‹åŒ– 
         ptr->Initialize("./sdoa4server.ini", MyCallBackFuc); 
  
-        //»ñÈ¡ÈÏÖ¤½á¹û 
+        //è·å–è®¤è¯ç»“æœ 
         int b = ptr->AsyncGetUserInfo(szToken,"61.172.247.235",0); 
         if( b == 0 ) 
         { 
 
-		    //ÓÎÏ··şÎñÆ÷¶Ë´¦ÀíÈÏÖ¤½á¹û£»
+		    //æ¸¸æˆæœåŠ¡å™¨ç«¯å¤„ç†è®¤è¯ç»“æœï¼›
         } 
         else 
         { 
             printf("NOK"); 
-			//ÓÎÏ··şÎñÆ÷¶Ë´¦ÀíÈÏÖ¤Ê§°ÜÇé¿ö
+			//æ¸¸æˆæœåŠ¡å™¨ç«¯å¤„ç†è®¤è¯å¤±è´¥æƒ…å†µ
         } 
 		::Sleep(20); 
         printf("sleep over"); 
 
-		//ÊÍ·Å×ÊÔ´ 
+		//é‡Šæ”¾èµ„æº 
 		ptr->Release(); 
     } 
 
-	///¶©µ¥´¦ÀíÀàÊ¹ÓÃ·¶Àı´úÂë 
+	///è®¢å•å¤„ç†ç±»ä½¿ç”¨èŒƒä¾‹ä»£ç  
     if(nMsgType == 2) 
 	{
-		//´´½¨¶©µ¥´¦Àí¶ÔÏóÊµÀı 
+		//åˆ›å»ºè®¢å•å¤„ç†å¯¹è±¡å®ä¾‹ 
 		ISDOAOrderHandler* pOrderHandle = sdoaCreateOrderHandler(); 
 	 
-		//³õÊ¼»¯È«¸¶Í¨¿Í»§¶Ë/ 
+		//åˆå§‹åŒ–å…¨ä»˜é€šå®¢æˆ·ç«¯/ 
 		pOrderHandle->Initialize("sdoa4server.ini", MsgHandle); 
 	 
-		//Éú³ÉÎ¨Ò»¶©µ¥ºÅÂë º¯ÊıÄÚÉú³É ,¶©µ¥ºÅÂëÓÎÏ··şÎñ¶ËĞèÒª±£´æ
+		//ç”Ÿæˆå”¯ä¸€è®¢å•å·ç  å‡½æ•°å†…ç”Ÿæˆ ,è®¢å•å·ç æ¸¸æˆæœåŠ¡ç«¯éœ€è¦ä¿å­˜
 		char szId[33]; 
 		pOrderHandle->GetUniqueId(szId); 
 		printf("qftGetUniqueId = %s\n", szId); 
 	 
 	 
-		//´´½¨¶©µ¥ĞÅÏ¢ 
+		//åˆ›å»ºè®¢å•ä¿¡æ¯ 
 		ULONG obj = pOrderHandle->CreateOrderInfo(1); 
 		if (obj == 0) 
 			return false;
 
-		//¶©µ¥ÏûÏ¢µÄ²ÎÊıÖµÓĞ²¿·ÖÓÉ¿Í»§¶Ë×ªÈë(ÈçµÀ¾ßÏà¹ØĞÅÏ¢),·şÎñ¶Ë»ñÈ¡²¢´«µİ¸ø·şÎñ¶ËµÄ¹¦ÄÜº¯Êı£»¶©µ¥ºÅÂëÔòÓÉ·şÎñ¶Ë³ÌĞòµ÷ÓÃ·şÎñ¶Ë×é¼şÉú³É¡£
+		//è®¢å•æ¶ˆæ¯çš„å‚æ•°å€¼æœ‰éƒ¨åˆ†ç”±å®¢æˆ·ç«¯è½¬å…¥(å¦‚é“å…·ç›¸å…³ä¿¡æ¯),æœåŠ¡ç«¯è·å–å¹¶ä¼ é€’ç»™æœåŠ¡ç«¯çš„åŠŸèƒ½å‡½æ•°ï¼›è®¢å•å·ç åˆ™ç”±æœåŠ¡ç«¯ç¨‹åºè°ƒç”¨æœåŠ¡ç«¯ç»„ä»¶ç”Ÿæˆã€‚
 	    switch(nOrderMsgType)
 		{
-			case 1: //µãÈ¯¹ºÂòµÀ¾ßÏûÏ¢£¬²»Í¬ÏûÏ¢ÀàĞÍ£¬ĞèÒª´«Èë²»Í¬µÄ¹Ø¼ü×Ö£¬ÒÔ¼°¼üÖµ(Ö÷ÒªÎª¶©µ¥µÄÏà¹ØĞÅÏ¢)£¬¾ßÌå²Î¿´ËµÃ÷ÎÄµµ
+			case 1: //ç‚¹åˆ¸è´­ä¹°é“å…·æ¶ˆæ¯ï¼Œä¸åŒæ¶ˆæ¯ç±»å‹ï¼Œéœ€è¦ä¼ å…¥ä¸åŒçš„å…³é”®å­—ï¼Œä»¥åŠé”®å€¼(ä¸»è¦ä¸ºè®¢å•çš„ç›¸å…³ä¿¡æ¯)ï¼Œå…·ä½“å‚çœ‹è¯´æ˜æ–‡æ¡£
 
-				pOrderHandle->SetOrderInfoValue(obj , "orderId",   szId);                     //¶¨µ¥ºÅ ·şÎñ¶ËĞèÒª±£´æÏÂÀ´
-				pOrderHandle->SetOrderInfoValue(obj , "userId",    "98009999");				  //ÓÃ»§id
-				pOrderHandle->SetOrderInfoValue(obj , "payType",   "3");                      //¸¶·ÑÓÎÏ·±ÒÀàĞÍ ±ÈÈçÊ¢´óµãÈ¯ 3
-				pOrderHandle->SetOrderInfoValue(obj , "amount",    "32");                     //Ö§¸¶µÄ×Ü¶î
+				pOrderHandle->SetOrderInfoValue(obj , "orderId",   szId);                     //å®šå•å· æœåŠ¡ç«¯éœ€è¦ä¿å­˜ä¸‹æ¥
+				pOrderHandle->SetOrderInfoValue(obj , "userId",    "98009999");				  //ç”¨æˆ·id
+				pOrderHandle->SetOrderInfoValue(obj , "payType",   "3");                      //ä»˜è´¹æ¸¸æˆå¸ç±»å‹ æ¯”å¦‚ç››å¤§ç‚¹åˆ¸ 3
+				pOrderHandle->SetOrderInfoValue(obj , "amount",    "32");                     //æ”¯ä»˜çš„æ€»é¢
 	
 
-				pOrderHandle->SetOrderInfoValue(obj , "goodsNum",  "2");                      //¹ºÂòµÀ¾ßÖÖÀà
-				pOrderHandle->SetOrderInfoValue(obj , "goodsInfo", "1098,1,10#1099,1,22");    //µÀ¾ßÏêÏ¸ĞÅÏ¢(ÌîĞ´ÓÃÀ´¶Ò»»µãÈ¯µÄµÀ¾ßĞÅÏ¢)
-			  pOrderHandle->SetOrderInfoValue(obj , "sessionId", "320000000000000000000000"); //»á»°id Ä¿Ç°ÌîÁã
+				pOrderHandle->SetOrderInfoValue(obj , "goodsNum",  "2");                      //è´­ä¹°é“å…·ç§ç±»
+				pOrderHandle->SetOrderInfoValue(obj , "goodsInfo", "1098,1,10#1099,1,22");    //é“å…·è¯¦ç»†ä¿¡æ¯(å¡«å†™ç”¨æ¥å…‘æ¢ç‚¹åˆ¸çš„é“å…·ä¿¡æ¯)
+			  pOrderHandle->SetOrderInfoValue(obj , "sessionId", "320000000000000000000000"); //ä¼šè¯id ç›®å‰å¡«é›¶
 				pOrderHandle->SetOrderInfoValue(obj , "indication","0"); 
 				break;
 
-			case 3: //¼ÄÊÛµãÈ¯  ĞèÒª´«ÈëµÄ²ÎÊıÁĞ±í,ÕâĞ©¹ºÂòĞÅÏ¢ÓÎÏ··şÎñÆ÷¶ËĞèÒª±£´æ£¬ÓÈÆäÊÇ¶©µ¥ºÅÂë
+			case 3: //å¯„å”®ç‚¹åˆ¸  éœ€è¦ä¼ å…¥çš„å‚æ•°åˆ—è¡¨,è¿™äº›è´­ä¹°ä¿¡æ¯æ¸¸æˆæœåŠ¡å™¨ç«¯éœ€è¦ä¿å­˜ï¼Œå°¤å…¶æ˜¯è®¢å•å·ç 
 
-				pOrderHandle->SetOrderInfoValue(obj , "orderId",   szId);                       //¶¨µ¥ºÅ ·şÎñ¶ËĞèÒª±£´æÏÂÀ´
-				pOrderHandle->SetOrderInfoValue(obj , "userId",    "98009999");                 //ÓÃ»§id
-				pOrderHandle->SetOrderInfoValue(obj , "payType",   "3");						//¸¶·ÑÓÎÏ·±ÒÀàĞÍ ±ÈÈçÊ¢´óµãÈ¯ 3
-				pOrderHandle->SetOrderInfoValue(obj , "amount",    "30");                       //Ö§¸¶µÄ×Ü¶î
+				pOrderHandle->SetOrderInfoValue(obj , "orderId",   szId);                       //å®šå•å· æœåŠ¡ç«¯éœ€è¦ä¿å­˜ä¸‹æ¥
+				pOrderHandle->SetOrderInfoValue(obj , "userId",    "98009999");                 //ç”¨æˆ·id
+				pOrderHandle->SetOrderInfoValue(obj , "payType",   "3");						//ä»˜è´¹æ¸¸æˆå¸ç±»å‹ æ¯”å¦‚ç››å¤§ç‚¹åˆ¸ 3
+				pOrderHandle->SetOrderInfoValue(obj , "amount",    "30");                       //æ”¯ä»˜çš„æ€»é¢
 
-				pOrderHandle->SetOrderInfoValue(obj , "confirm",   "1");                        //¼ÄÊÛ²Ù×÷ÀàĞÍ
-				pOrderHandle->SetOrderInfoValue(obj , "sessionId", "0");                        //»á»°id Ä¿Ç°ÌîÁã
-				pOrderHandle->SetOrderInfoValue(obj , "goodsNum",  "1");						//¹ºÂòµÀ¾ßÖÖÀà
-				pOrderHandle->SetOrderInfoValue(obj , "goodInfo",  "1,999999,30");              //µÀ¾ßÏêÏ¸ĞÅÏ¢(ÌîĞ´¼ÄÊÛµÄµãÈ¯ĞÅÏ¢ itemidÎª999999
+				pOrderHandle->SetOrderInfoValue(obj , "confirm",   "1");                        //å¯„å”®æ“ä½œç±»å‹
+				pOrderHandle->SetOrderInfoValue(obj , "sessionId", "0");                        //ä¼šè¯id ç›®å‰å¡«é›¶
+				pOrderHandle->SetOrderInfoValue(obj , "goodsNum",  "1");						//è´­ä¹°é“å…·ç§ç±»
+				pOrderHandle->SetOrderInfoValue(obj , "goodInfo",  "1,999999,30");              //é“å…·è¯¦ç»†ä¿¡æ¯(å¡«å†™å¯„å”®çš„ç‚¹åˆ¸ä¿¡æ¯ itemidä¸º999999
 
-				pOrderHandle->SetOrderInfoValue(obj , "indication","0");                        //¸½¼ÓÖ¸Áî
+				pOrderHandle->SetOrderInfoValue(obj , "indication","0");                        //é™„åŠ æŒ‡ä»¤
 				break;		
 		    
-			case 4: //¹ºÂòµãÈ¯  ĞèÒª´«ÈëµÄ²ÎÊıÁĞ±í,ÕâĞ©¹ºÂòĞÅÏ¢ÓÎÏ··şÎñÆ÷¶ËĞèÒª±£´æ£¬ÓÈÆäÊÇ¶©µ¥ºÅÂë
+			case 4: //è´­ä¹°ç‚¹åˆ¸  éœ€è¦ä¼ å…¥çš„å‚æ•°åˆ—è¡¨,è¿™äº›è´­ä¹°ä¿¡æ¯æ¸¸æˆæœåŠ¡å™¨ç«¯éœ€è¦ä¿å­˜ï¼Œå°¤å…¶æ˜¯è®¢å•å·ç 
 
-				pOrderHandle->SetOrderInfoValue(obj , "orderId",          szId);							  //¶¨µ¥ºÅ ·şÎñ¶ËĞèÒª±£´æÏÂÀ´
-				pOrderHandle->SetOrderInfoValue(obj ,  "userId",          "98009999");						  //ÓÃ»§id
-				pOrderHandle->SetOrderInfoValue(obj ,  "payType",         "3");								  //¸¶·ÑÓÎÏ·±ÒÀàĞÍ ±ÈÈçÊ¢´óµãÈ¯ 3
-				pOrderHandle->SetOrderInfoValue(obj ,  "amount",          "60");							  //Ö§¸¶µÄ×Ü¶î
+				pOrderHandle->SetOrderInfoValue(obj , "orderId",          szId);							  //å®šå•å· æœåŠ¡ç«¯éœ€è¦ä¿å­˜ä¸‹æ¥
+				pOrderHandle->SetOrderInfoValue(obj ,  "userId",          "98009999");						  //ç”¨æˆ·id
+				pOrderHandle->SetOrderInfoValue(obj ,  "payType",         "3");								  //ä»˜è´¹æ¸¸æˆå¸ç±»å‹ æ¯”å¦‚ç››å¤§ç‚¹åˆ¸ 3
+				pOrderHandle->SetOrderInfoValue(obj ,  "amount",          "60");							  //æ”¯ä»˜çš„æ€»é¢
 
-				pOrderHandle->SetOrderInfoValue(obj ,  "sessionId",       "0");								  //»á»°id Ä¿Ç°ÌîÁã
-				pOrderHandle->SetOrderInfoValue(obj ,  "goodsNum",        "1");                               //¹ºÂòµÀ¾ßÖÖÀà
-				pOrderHandle->SetOrderInfoValue(obj ,  "goodInfo",        "1,109001,30#1,109002,30");         //µÀ¾ßÏêÏ¸ĞÅÏ¢(ÌîĞ´ÓÃÀ´¶Ò»»µãÈ¯µÄµÀ¾ßĞÅÏ¢)
-				pOrderHandle->SetOrderInfoValue(obj ,  "indication",      "0");                               //¸½¼ÓÖ¸Áî
+				pOrderHandle->SetOrderInfoValue(obj ,  "sessionId",       "0");								  //ä¼šè¯id ç›®å‰å¡«é›¶
+				pOrderHandle->SetOrderInfoValue(obj ,  "goodsNum",        "1");                               //è´­ä¹°é“å…·ç§ç±»
+				pOrderHandle->SetOrderInfoValue(obj ,  "goodInfo",        "1,109001,30#1,109002,30");         //é“å…·è¯¦ç»†ä¿¡æ¯(å¡«å†™ç”¨æ¥å…‘æ¢ç‚¹åˆ¸çš„é“å…·ä¿¡æ¯)
+				pOrderHandle->SetOrderInfoValue(obj ,  "indication",      "0");                               //é™„åŠ æŒ‡ä»¤
 
-				pOrderHandle->SetOrderInfoValue(obj ,  "orderidRelation", "1000020090312090000000000090999"); //¹ØÁª¶©µ¥ºÅÂë(ÌîĞ´¼ÄÊÛµãÈ¯Éú³ÉµÄ¶©µ¥ºÅÂë)
-				pOrderHandle->SetOrderInfoValue(obj ,  "userIdDest",      "98006666");					      //¹ºÂòµãÈ¯µÄÕÊºÅ
-				pOrderHandle->SetOrderInfoValue(obj ,  "feeDest",         "1");								  //¹ºÂòµãÈ¯Íæ¼ÒÖ§¸¶µÄ½É·ÑÊıÄ¿
-				pOrderHandle->SetOrderInfoValue(obj ,  "userIdSrc",       "98009999");                        //³öÊÛµãÈ¯ÕËºÅ
+				pOrderHandle->SetOrderInfoValue(obj ,  "orderidRelation", "1000020090312090000000000090999"); //å…³è”è®¢å•å·ç (å¡«å†™å¯„å”®ç‚¹åˆ¸ç”Ÿæˆçš„è®¢å•å·ç )
+				pOrderHandle->SetOrderInfoValue(obj ,  "userIdDest",      "98006666");					      //è´­ä¹°ç‚¹åˆ¸çš„å¸å·
+				pOrderHandle->SetOrderInfoValue(obj ,  "feeDest",         "1");								  //è´­ä¹°ç‚¹åˆ¸ç©å®¶æ”¯ä»˜çš„ç¼´è´¹æ•°ç›®
+				pOrderHandle->SetOrderInfoValue(obj ,  "userIdSrc",       "98009999");                        //å‡ºå”®ç‚¹åˆ¸è´¦å·
 
-				pOrderHandle->SetOrderInfoValue(obj ,  "feeSrc",          "0");                               //³öÊÛµãÈ¯Íæ¼ÒÖ§¸¶µÄÊÕ·Ñ·ÑÓÃ
+				pOrderHandle->SetOrderInfoValue(obj ,  "feeSrc",          "0");                               //å‡ºå”®ç‚¹åˆ¸ç©å®¶æ”¯ä»˜çš„æ”¶è´¹è´¹ç”¨
 				break;
 			
-			case 5:  //½»Ò×ĞÅÏ¢ ĞèÒª´«ÈëµÄ²ÎÊıÁĞ±í,ÕâĞ©¹ºÂòĞÅÏ¢ÓÎÏ··şÎñÆ÷¶ËĞèÒª±£´æ£¬ÓÈÆäÊÇ¶©µ¥ºÅÂë
-				pOrderHandle->SetOrderInfoValue(obj , "orderId",   szId);                       //¶¨µ¥ºÅ ·şÎñ¶ËĞèÒª±£´æÏÂÀ´
-				pOrderHandle->SetOrderInfoValue(obj , "userId",    "98009999");                 //ÓÃ»§id
-				pOrderHandle->SetOrderInfoValue(obj , "payType",   "3");						//¸¶·ÑÓÎÏ·±ÒÀàĞÍ ±ÈÈçÊ¢´óµãÈ¯ 3
-				pOrderHandle->SetOrderInfoValue(obj , "amount",    "30");						//Ö§¸¶µÄ×Ü¶î
+			case 5:  //äº¤æ˜“ä¿¡æ¯ éœ€è¦ä¼ å…¥çš„å‚æ•°åˆ—è¡¨,è¿™äº›è´­ä¹°ä¿¡æ¯æ¸¸æˆæœåŠ¡å™¨ç«¯éœ€è¦ä¿å­˜ï¼Œå°¤å…¶æ˜¯è®¢å•å·ç 
+				pOrderHandle->SetOrderInfoValue(obj , "orderId",   szId);                       //å®šå•å· æœåŠ¡ç«¯éœ€è¦ä¿å­˜ä¸‹æ¥
+				pOrderHandle->SetOrderInfoValue(obj , "userId",    "98009999");                 //ç”¨æˆ·id
+				pOrderHandle->SetOrderInfoValue(obj , "payType",   "3");						//ä»˜è´¹æ¸¸æˆå¸ç±»å‹ æ¯”å¦‚ç››å¤§ç‚¹åˆ¸ 3
+				pOrderHandle->SetOrderInfoValue(obj , "amount",    "30");						//æ”¯ä»˜çš„æ€»é¢
 
-				pOrderHandle->SetOrderInfoValue(obj , "sessionId", "0");						//Ä¿Ç°ÌîÁã
-				pOrderHandle->SetOrderInfoValue(obj , "goodsNum",  "1");						//¹ºÂòµÀ¾ßÖÖÀà
-				pOrderHandle->SetOrderInfoValue(obj , "goodInfo",  "1,999999,30");              //µÀ¾ßÏêÏ¸ĞÅÏ¢(³öÊÛµÄµÀ¾ßĞÅÏ¢)
-				pOrderHandle->SetOrderInfoValue(obj , "indication","0");						//¸½¼ÓÖ¸Áî
+				pOrderHandle->SetOrderInfoValue(obj , "sessionId", "0");						//ç›®å‰å¡«é›¶
+				pOrderHandle->SetOrderInfoValue(obj , "goodsNum",  "1");						//è´­ä¹°é“å…·ç§ç±»
+				pOrderHandle->SetOrderInfoValue(obj , "goodInfo",  "1,999999,30");              //é“å…·è¯¦ç»†ä¿¡æ¯(å‡ºå”®çš„é“å…·ä¿¡æ¯)
+				pOrderHandle->SetOrderInfoValue(obj , "indication","0");						//é™„åŠ æŒ‡ä»¤
 				                                     
-				pOrderHandle->SetOrderInfoValue(obj , "userIdDest","98006666");                 //¹ºÂòµãÈ¯µÄÕÊºÅ(³öµÀ¾ßµÄÓÎÏ·ÕËºÅ)
-				pOrderHandle->SetOrderInfoValue(obj , "feeDest",   "1");						//¹ºÂòµãÈ¯Íæ¼ÒÖ§¸¶µÄ½É·ÑÊıÄ¿(½»Ò×ÏûÏ¢Âô³öµÀ¾ßËùÖ§¸¶ÊÖĞø·ÑÊıÄ¿) ·ÑÓÃÊÕÈ¡¹æÔòÓÉÓÎÏ··½¶¨Òå
-				pOrderHandle->SetOrderInfoValue(obj , "userIdSrc", "98009999");                 //³öÊÛµãÈ¯ÕËºÅ(³öµãÈ¯µÄÓÎÏ·ÕËºÅ)
-				pOrderHandle->SetOrderInfoValue(obj , "feeSrc",    "0");						//³öÊÛµãÈ¯Íæ¼ÒÖ§¸¶µÄÊÕ·Ñ·ÑÓÃ(½»Ò×ÏûÏ¢¹ºÂòµÀ¾ßËùÖ§¸¶µÄÊÖĞø·ÑÊıÄ¿) ·ÑÓÃÊÕÈ¡¹æÔòÓÉÓÎÏ··½¶¨Òå				
+				pOrderHandle->SetOrderInfoValue(obj , "userIdDest","98006666");                 //è´­ä¹°ç‚¹åˆ¸çš„å¸å·(å‡ºé“å…·çš„æ¸¸æˆè´¦å·)
+				pOrderHandle->SetOrderInfoValue(obj , "feeDest",   "1");						//è´­ä¹°ç‚¹åˆ¸ç©å®¶æ”¯ä»˜çš„ç¼´è´¹æ•°ç›®(äº¤æ˜“æ¶ˆæ¯å–å‡ºé“å…·æ‰€æ”¯ä»˜æ‰‹ç»­è´¹æ•°ç›®) è´¹ç”¨æ”¶å–è§„åˆ™ç”±æ¸¸æˆæ–¹å®šä¹‰
+				pOrderHandle->SetOrderInfoValue(obj , "userIdSrc", "98009999");                 //å‡ºå”®ç‚¹åˆ¸è´¦å·(å‡ºç‚¹åˆ¸çš„æ¸¸æˆè´¦å·)
+				pOrderHandle->SetOrderInfoValue(obj , "feeSrc",    "0");						//å‡ºå”®ç‚¹åˆ¸ç©å®¶æ”¯ä»˜çš„æ”¶è´¹è´¹ç”¨(äº¤æ˜“æ¶ˆæ¯è´­ä¹°é“å…·æ‰€æ”¯ä»˜çš„æ‰‹ç»­è´¹æ•°ç›®) è´¹ç”¨æ”¶å–è§„åˆ™ç”±æ¸¸æˆæ–¹å®šä¹‰				
 				break;
 		}
 
-		//¶ÔÊı¾İÇ©Ãû(Ç©Ãû¹ı³ÌÔÚBuildOrderUrlº¯ÊıÀàÍê³É)²¢Éú³ÉURL²ÎÊı´®£¬´Ë×Ö·û´®ĞèÒª´«¸øÓÎÏ·¿Í»§¶Ë£»
+		//å¯¹æ•°æ®ç­¾å(ç­¾åè¿‡ç¨‹åœ¨BuildOrderUrlå‡½æ•°ç±»å®Œæˆ)å¹¶ç”ŸæˆURLå‚æ•°ä¸²ï¼Œæ­¤å­—ç¬¦ä¸²éœ€è¦ä¼ ç»™æ¸¸æˆå®¢æˆ·ç«¯ï¼›
 		char szUrl[2048]; 
 		pOrderHandle->BuildOrderUrl(obj, szUrl); 
 
         /*
-		*  ¶©µ¥ĞÅÏ¢±ØĞëÓÉÓÎÏ··½½øĞĞ´¦Àí
-		*  ÓÎÏ··şÎñ¶ËĞèÒªÔÚÕâÀï½«¸Ã±Ê¶©µ¥ÏûÏ¢Èë¿â£¬Í¬Ê±½øĞĞÏà¹ØµÄÒµÎñ´¦Àí£»Í¬Ê±Ç©ÃûÍêµÄ×Ö·û´®½«·¢ËÍ¸øÓÎÏ·¿Í»§¶Ë£¬
-		*  ÓÎÏ·¿Í»§¶ËÊÕµ½´ËÇ©Ãû´®ºó£¬Í¨¹ıIWG×ª·¢¸ø¼Æ·ÑÍø¹Ø½øĞĞ´¦Àí£¬Íê³É±¾´Î¼Æ·ÑÇëÇó¡£
+		*  è®¢å•ä¿¡æ¯å¿…é¡»ç”±æ¸¸æˆæ–¹è¿›è¡Œå¤„ç†
+		*  æ¸¸æˆæœåŠ¡ç«¯éœ€è¦åœ¨è¿™é‡Œå°†è¯¥ç¬”è®¢å•æ¶ˆæ¯å…¥åº“ï¼ŒåŒæ—¶è¿›è¡Œç›¸å…³çš„ä¸šåŠ¡å¤„ç†ï¼›åŒæ—¶ç­¾åå®Œçš„å­—ç¬¦ä¸²å°†å‘é€ç»™æ¸¸æˆå®¢æˆ·ç«¯ï¼Œ
+		*  æ¸¸æˆå®¢æˆ·ç«¯æ”¶åˆ°æ­¤ç­¾åä¸²åï¼Œé€šè¿‡IWGè½¬å‘ç»™è®¡è´¹ç½‘å…³è¿›è¡Œå¤„ç†ï¼Œå®Œæˆæœ¬æ¬¡è®¡è´¹è¯·æ±‚ã€‚
 		*/
 	 
-		//Ïú»Ù¶©µ¥ĞÅÏ¢ 
+		//é”€æ¯è®¢å•ä¿¡æ¯ 
 		pOrderHandle->DestroyOrderInfo(obj); 
 		while (1) 
 		{ 
@@ -261,10 +261,10 @@ int main(int argc, char* argv[])
 			#endif 
 		} 
 	 
-		//È«¸¶Í¨¿Í»§¶ËĞ¶ÔØ 
+		//å…¨ä»˜é€šå®¢æˆ·ç«¯å¸è½½ 
 		pOrderHandle->UnInitialize(); 
 	 
-		//ÊÍ·Å×ÊÔ´ 
+		//é‡Šæ”¾èµ„æº 
 		pOrderHandle->Release(); 
 		return 0; 
 		

@@ -5,22 +5,22 @@
 
 struct QUEST_REWARD_DATA
 {
-	// Íê³ÉÈÎÎñ½±Àø
-	INT32       nAwardMoneyType1;                                   // »õ±Ò½±ÀøÀàĞÍ1
-	INT32       nAwardMoneyAmount1;                                 // »õ±Ò½±ÀøÊıÁ¿1
-	INT32       nAwardMoneyType2;                                   // »õ±Ò½±ÀøÀàĞÍ2
-	INT32       nAwardMoneyAmount2;                                 // »õ±Ò½±ÀøÊıÁ¿2
-	INT32       nAwardExp;                                          // ¾­Ñé½±Àø
-	INT32       nAwardBuffID;                                       // ½±ÀøBUFF ID
-	INT32       nAwardBuffLevel;                                    // ½±ÀøBUFF Level
-	INT32		nAwardTitleID;										// ½±Àø³ÆºÅ ID
-	INT32       nAwardReputationForceID;                            // ÉùÍû½±ÀøÀàĞÍ
-	INT32       nAwardReputation;                                   // ÉùÍû½±Àø
-	INT32		nActivity;											// »îÁ¦Öµ
-	INT32       vecAwardItemID[MAX_REWARD_PER_QUEST];				// ÎïÆ·½±Àø
+	// å®Œæˆä»»åŠ¡å¥–åŠ±
+	INT32       nAwardMoneyType1;                                   // è´§å¸å¥–åŠ±ç±»å‹1
+	INT32       nAwardMoneyAmount1;                                 // è´§å¸å¥–åŠ±æ•°é‡1
+	INT32       nAwardMoneyType2;                                   // è´§å¸å¥–åŠ±ç±»å‹2
+	INT32       nAwardMoneyAmount2;                                 // è´§å¸å¥–åŠ±æ•°é‡2
+	INT32       nAwardExp;                                          // ç»éªŒå¥–åŠ±
+	INT32       nAwardBuffID;                                       // å¥–åŠ±BUFF ID
+	INT32       nAwardBuffLevel;                                    // å¥–åŠ±BUFF Level
+	INT32		nAwardTitleID;										// å¥–åŠ±ç§°å· ID
+	INT32       nAwardReputationForceID;                            // å£°æœ›å¥–åŠ±ç±»å‹
+	INT32       nAwardReputation;                                   // å£°æœ›å¥–åŠ±
+	INT32		nActivity;											// æ´»åŠ›å€¼
+	INT32       vecAwardItemID[MAX_REWARD_PER_QUEST];				// ç‰©å“å¥–åŠ±
 	INT32       vecAwardItemCnt[MAX_REWARD_PER_QUEST];
 	BOOL        bNeedSelectAward;
-	INT32       vecSelectableAwardItemID[MAX_SELECTABLE_REWARD_COUNT];  // ¿ÉÑ¡ÎïÆ·½±Àø
+	INT32       vecSelectableAwardItemID[MAX_SELECTABLE_REWARD_COUNT];  // å¯é€‰ç‰©å“å¥–åŠ±
 	INT32       vecSelectableAwardItemCnt[MAX_SELECTABLE_REWARD_COUNT];
 };
 

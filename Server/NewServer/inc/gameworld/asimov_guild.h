@@ -94,7 +94,7 @@ struct ASIMOV_GUILD_DATA
 
     INT32       arrVariables[MAX_GUILD_VARIABLE_COUNT];
 
-    ASIMOV_GUILD_BUILDING   arrBData[GUILD_MAX_BUILDING_NUM];       // �ĳɱ䳤�� Allan Tao[19.3.2014] 
+    ASIMOV_GUILD_BUILDING   arrBData[GUILD_MAX_BUILDING_NUM];       // 改成变长包 Allan Tao[19.3.2014] 
     ASIMOV_GUILD_BUILDING_UPGRADE   arrBUData[GUILD_MAX_UPGRADE_BUILDING_COUNT];
     INT8        arrWelfareAuraLvl[GUILD_MAX_WELFARE_AURA_COUNT];
     INT8        arrWelfareUpgradeAuraID[GUILD_MAX_UPGRADE_AURA_COUNT];
@@ -195,8 +195,8 @@ private:
     UINT32      m_dwLeaderID;
     INT32       m_nLevel;
 
-    //CHAR        m_szAnnounce[GUILD_ANNOUNCE_LEN];        // ��������  todo
-    CHAR        m_szNotice[GUILD_NOTICE_LEN];         // ���幫��
+    //CHAR        m_szAnnounce[GUILD_ANNOUNCE_LEN];        // 家族宣言  todo
+    CHAR        m_szNotice[GUILD_NOTICE_LEN];         // 家族公告
 
     INT32       m_nGuildMoney;
     INT32       m_nProsperity;

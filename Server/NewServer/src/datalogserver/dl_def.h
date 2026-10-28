@@ -89,52 +89,52 @@ enum DL_LOG_MODULE_TYPE
 {
 	dlmtInvalid = -1,
 
-	dlmtItem,								// µÀ¾ßÁ÷×ª
-	dlmtChat,								// ÁÄÌì
-	dlmtQuest,								// ÈÎÎñ
-	dlmtAchievement,						// ³É¾Í
-	dlmtLevelUp,							// Éı¼¶
-	dlmtDie,								// ËÀÍö
-	dlmtScene,								// ³¡¾°´´½¨Ïú»Ù
-	dlmtConSlot,							// °ü¹ü¸ñ×Ó
-	dlmtRoleLogout_basic,					// ½ÇÉ«ÏÂÏß»ù±¾ĞÅÏ¢
-	//dlmtRoleLogout_friend,					// ½ÇÉ«ÏÂÏßºÃÓÑĞÅÏ¢
-	//dlmtRoleLogout_master,					// ½ÇÉ«ÏÂÏßÊ¦Í½ĞÅÏ¢
-	dlmtRoleLogout_itembag_default,			// ½ÇÉ«ÏÂÏßÄ¬ÈÏ°ü¹üĞÅÏ¢
-	dlmtRoleLogout_itembag_equipped,		// ½ÇÉ«ÏÂÏßÒÑ×°±¸ĞÅÏ¢
-	dlmtLogin,								// ÕËºÅµÇÂ½µÇ³ö
-	//dlmtGmCommand,							// GMÃüÁî
-	dlmtSubMoney,							// ½ğ±Ò½»Ò×¼ÇÂ¼
-	dlmtTeam,								// ×é¶Ó
-	dlmtRolePosition,						// Íæ¼ÒÎ»ÖÃĞÅÏ¢
-	dlmtClientHardwareInfo,					// Íæ¼ÒÓ²¼şĞÅÏ¢
-	dlmtClientFpsInfo,						// Íæ¼ÒÏÔÊ¾Æ÷Ö¡ÊıĞÅÏ¢
-	dlmtSpellEffect,						// ¼¼ÄÜÊÍ·Å
-	dlmtCastSpell,							// ÊÍ·Å¼¼ÄÜ
-	dlmtLearnSpell,							// ÊÍ·Å¼¼ÄÜ
-    dlmtGuildEvent,                         // ¹«»áÊÂ¼ş
-    dlmtGuildChest,                         // ¹«»á×Ê½ğ
-    dlmtGuildNumStat,                       // ¹«»áÍ³¼Æ
-    dlmtGuildMoneyStat,                     // ¹«»áÍ³¼Æ
-    dlmtGuildRiceStat,                      // ¹«»áÍ³¼Æ
-    dlmtGuildWoodStat,                      // ¹«»áÍ³¼Æ
-    dlmtGuildStoneStat,                     // ¹«»áÍ³¼Æ
-    dlmtGuildMetalStat,                     // ¹«»áÍ³¼Æ
-    dlmtGuildBuildingStat,                  // ¹«»áÍ³¼Æ
-    dlmtBillingRequest,                     // ¼Æ·ÑÇëÇó
-    dlmtBillingResult,                      // ¼Æ·Ñ½á¹û
-    dlmtRuneItem,                           // Ï´ÃúÎÄ
-    dlmtChangeItem,                         // ÎïÆ·¸Ä±ä
+	dlmtItem,								// é“å…·æµè½¬
+	dlmtChat,								// èŠå¤©
+	dlmtQuest,								// ä»»åŠ¡
+	dlmtAchievement,						// æˆå°±
+	dlmtLevelUp,							// å‡çº§
+	dlmtDie,								// æ­»äº¡
+	dlmtScene,								// åœºæ™¯åˆ›å»ºé”€æ¯
+	dlmtConSlot,							// åŒ…è£¹æ ¼å­
+	dlmtRoleLogout_basic,					// è§’è‰²ä¸‹çº¿åŸºæœ¬ä¿¡æ¯
+	//dlmtRoleLogout_friend,					// è§’è‰²ä¸‹çº¿å¥½å‹ä¿¡æ¯
+	//dlmtRoleLogout_master,					// è§’è‰²ä¸‹çº¿å¸ˆå¾’ä¿¡æ¯
+	dlmtRoleLogout_itembag_default,			// è§’è‰²ä¸‹çº¿é»˜è®¤åŒ…è£¹ä¿¡æ¯
+	dlmtRoleLogout_itembag_equipped,		// è§’è‰²ä¸‹çº¿å·²è£…å¤‡ä¿¡æ¯
+	dlmtLogin,								// è´¦å·ç™»é™†ç™»å‡º
+	//dlmtGmCommand,							// GMå‘½ä»¤
+	dlmtSubMoney,							// é‡‘å¸äº¤æ˜“è®°å½•
+	dlmtTeam,								// ç»„é˜Ÿ
+	dlmtRolePosition,						// ç©å®¶ä½ç½®ä¿¡æ¯
+	dlmtClientHardwareInfo,					// ç©å®¶ç¡¬ä»¶ä¿¡æ¯
+	dlmtClientFpsInfo,						// ç©å®¶æ˜¾ç¤ºå™¨å¸§æ•°ä¿¡æ¯
+	dlmtSpellEffect,						// æŠ€èƒ½é‡Šæ”¾
+	dlmtCastSpell,							// é‡Šæ”¾æŠ€èƒ½
+	dlmtLearnSpell,							// é‡Šæ”¾æŠ€èƒ½
+    dlmtGuildEvent,                         // å…¬ä¼šäº‹ä»¶
+    dlmtGuildChest,                         // å…¬ä¼šèµ„é‡‘
+    dlmtGuildNumStat,                       // å…¬ä¼šç»Ÿè®¡
+    dlmtGuildMoneyStat,                     // å…¬ä¼šç»Ÿè®¡
+    dlmtGuildRiceStat,                      // å…¬ä¼šç»Ÿè®¡
+    dlmtGuildWoodStat,                      // å…¬ä¼šç»Ÿè®¡
+    dlmtGuildStoneStat,                     // å…¬ä¼šç»Ÿè®¡
+    dlmtGuildMetalStat,                     // å…¬ä¼šç»Ÿè®¡
+    dlmtGuildBuildingStat,                  // å…¬ä¼šç»Ÿè®¡
+    dlmtBillingRequest,                     // è®¡è´¹è¯·æ±‚
+    dlmtBillingResult,                      // è®¡è´¹ç»“æœ
+    dlmtRuneItem,                           // æ´—é“­æ–‡
+    dlmtChangeItem,                         // ç‰©å“æ”¹å˜
 
-    dlmtStatRealMoney,                      // Í³¼Æ£ºÏûºÄµãÈ¯
-    dlmtStatQuestComplete,                  // Í³¼Æ£ºÈÎÎñÍê³É
-    dlmtStatNpcDie,                         // Í³¼Æ£ºNPCËÀÍö
-    dlmtStatNpcMoney,                       // Í³¼Æ£ºNPCµôÂä½ğ±Ò
-    dlmtStatMoney,                          // Í³¼Æ£º»õ±Ò
-    dlmtStatMomentaryKillNpc,               // Í³¼Æ£º
-    dlmtStatConsecutiveKillNpc,             // Í³¼Æ£º
-    dlmtStatItem,                           // ÎïÆ·²ú³öÏûºÄÊıÁ¿
-	dlmtAntiCheat,							// ·´Íâ¹Ò
+    dlmtStatRealMoney,                      // ç»Ÿè®¡ï¼šæ¶ˆè€—ç‚¹åˆ¸
+    dlmtStatQuestComplete,                  // ç»Ÿè®¡ï¼šä»»åŠ¡å®Œæˆ
+    dlmtStatNpcDie,                         // ç»Ÿè®¡ï¼šNPCæ­»äº¡
+    dlmtStatNpcMoney,                       // ç»Ÿè®¡ï¼šNPCæ‰è½é‡‘å¸
+    dlmtStatMoney,                          // ç»Ÿè®¡ï¼šè´§å¸
+    dlmtStatMomentaryKillNpc,               // ç»Ÿè®¡ï¼š
+    dlmtStatConsecutiveKillNpc,             // ç»Ÿè®¡ï¼š
+    dlmtStatItem,                           // ç‰©å“äº§å‡ºæ¶ˆè€—æ•°é‡
+	dlmtAntiCheat,							// åå¤–æŒ‚
 
 	dlmtTotal
 };

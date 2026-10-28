@@ -19,7 +19,7 @@ const char* g_szTableName[ntTotal] =
     "guild",
 };
 
-// ³¤¶È(ROLE_NAME_LEN) (GUILD_NAME_LEN)
+// é•¿åº¦(ROLE_NAME_LEN) (GUILD_NAME_LEN)
 const char* g_szCreateTable[ntTotal] =
 {
     "CREATE TABLE IF NOT EXISTS `role` ( `RoleID` int(4) unsigned NOT NULL AUTO_INCREMENT, `RoleName` varchar(25) NOT NULL, PRIMARY KEY(`RoleID`) ) ENGINE = MyISAM DEFAULT CHARSET = utf8 ",
@@ -110,16 +110,16 @@ void CNameServer::_ThrdWork(void)
 
     pQuery->nErrCode = errNsNameDBSysErr;
 
-    // Ä¬ÈÏ´úÂë
+    // é»˜è®¤ä»£ç 
     //sprintf(szSql, "insert into %s (name) values ('%s');", g_szTableName[pQuery->eType], pQuery->szName);
     //nRetCode = mysql_query(m_sql, szSql);
     //LOG_PROCESS_ERROR(nRetCode == 0);
     //dwRetID = mysql_insert_id(m_sql);
     //LOG_PROCESS_ERROR(dwRetID > 0);
 
-    // ×Ô¼ºĞÂÔö´úÂë
+    // è‡ªå·±æ–°å¢ä»£ç 
     
-    // ×¼±¸ SQL Óï¾ä, ¸ù¾İÀàĞÍÇø·Ö [½ÇÉ«Ãû×Ö/¹«»áÃû×Ö]
+    // å‡†å¤‡ SQL è¯­å¥, æ ¹æ®ç±»å‹åŒºåˆ† [è§’è‰²åå­—/å…¬ä¼šåå­—]
     switch (pQuery->eType)
     {
         case 0:
@@ -134,55 +134,55 @@ void CNameServer::_ThrdWork(void)
             LOG_PROCESS_ERROR(false);
     }
 
-    // Ö´ĞĞ SQL Óï¾ä
+    // æ‰§è¡Œ SQL è¯­å¥
     nRetCode = mysql_query(m_sql, szSql);
     LOG_PROCESS_ERROR(nRetCode == 0);
 
-    // »ñÈ¡½á¹û¼¯
+    // è·å–ç»“æœé›†
     MYSQL_RES* result = mysql_store_result(m_sql);
     LOG_PROCESS_ERROR(result);
 
-    // ¶ÁÈ¡½á¹û
+    // è¯»å–ç»“æœ
     MYSQL_ROW row = mysql_fetch_row(result);
     LOG_PROCESS_ERROR(row);
 
-    // ±íÖĞÒÑ¾­ÓĞÊı¾İÁË, ¾ÍÖ±½Ó»ñÈ¡ÊıÖµ
+    // è¡¨ä¸­å·²ç»æœ‰æ•°æ®äº†, å°±ç›´æ¥è·å–æ•°å€¼
     if (*row)
     {
-        // µ±Ç°id×î´óÖµ+1
+        // å½“å‰idæœ€å¤§å€¼+1
         dwRetID = (UINT32)atoi(row[0]) + 1;
     }
-    // ±íÖĞÃ»ÓĞÊı¾İ, Ö±½Ó¶Á row[0] ¾Í»á±ÀÀ£, Òò´ËÏÈÅĞ¶ÏÒ»ÂÖ
+    // è¡¨ä¸­æ²¡æœ‰æ•°æ®, ç›´æ¥è¯» row[0] å°±ä¼šå´©æºƒ, å› æ­¤å…ˆåˆ¤æ–­ä¸€è½®
     else
     {
-        // ×¼±¸ SQL Óï¾ä, ²éÑ¯±íÖĞÓĞ¶àÉÙĞĞÊı¾İ
+        // å‡†å¤‡ SQL è¯­å¥, æŸ¥è¯¢è¡¨ä¸­æœ‰å¤šå°‘è¡Œæ•°æ®
         char szSqlTotalRows[1024] = { 0 };
         sprintf(szSqlTotalRows, "SELECT COUNT(*) AS TotalRows FROM %s;", g_szTableName[pQuery->eType]);
 
-        // Ö´ĞĞ SQL Óï¾ä
+        // æ‰§è¡Œ SQL è¯­å¥
         nRetCode = mysql_query(m_sql, szSqlTotalRows);
         LOG_PROCESS_ERROR(nRetCode == 0);
 
-        // »ñÈ¡½á¹û¼¯
+        // è·å–ç»“æœé›†
         MYSQL_RES* resultTotalRows = mysql_store_result(m_sql);
         LOG_PROCESS_ERROR(resultTotalRows);
 
-        // ¶ÁÈ¡½á¹û
+        // è¯»å–ç»“æœ
         MYSQL_ROW rowTotalRows = mysql_fetch_row(resultTotalRows);
         LOG_PROCESS_ERROR(rowTotalRows);
 
-        // µ±±íÖĞÒ»ĞĞÊı¾İ¶¼Ã»ÓĞÊ±, ËµÃ÷µ±Ç°ÊÇµÚÒ»ÌõÊı¾İ
+        // å½“è¡¨ä¸­ä¸€è¡Œæ•°æ®éƒ½æ²¡æœ‰æ—¶, è¯´æ˜å½“å‰æ˜¯ç¬¬ä¸€æ¡æ•°æ®
         if (atoi(rowTotalRows[0]) == 0)
         {
             dwRetID = 1;
         }
 
-        // ÊÍ·Å½á¹û¼¯
+        // é‡Šæ”¾ç»“æœé›†
         mysql_free_result(resultTotalRows);
         resultTotalRows = NULL;
     }
 
-    // ÊÍ·Å½á¹û¼¯
+    // é‡Šæ”¾ç»“æœé›†
     mysql_free_result(result);
     result = NULL;
 
@@ -341,10 +341,10 @@ BOOL CNameServer::_LoadData(void)
     {
         char szSql[1024] = { 0 };
 
-        // Ä¬ÈÏ´úÂë
+        // é»˜è®¤ä»£ç 
         //sprintf(szSql, "select id, name from %s;", g_szTableName[i]);
 
-        // ²éÑ¯ ½ÇÉ«±í/¹«»á±í, ×Ö¶ÎÃû²»Ò»Ñù
+        // æŸ¥è¯¢ è§’è‰²è¡¨/å…¬ä¼šè¡¨, å­—æ®µåä¸ä¸€æ ·
         switch (i)
         {
             case ntRoleName:
@@ -381,7 +381,7 @@ Exit0:
     return FALSE;
 }
 
-// Ìí¼ÓĞÂÊı¾İ, ¼ì²éÊÇ·ñÓĞÖØ¸´Êı¾İ
+// æ·»åŠ æ–°æ•°æ®, æ£€æŸ¥æ˜¯å¦æœ‰é‡å¤æ•°æ®
 INT32 CNameServer::AddNewData(INT32 eType, INT32 nSessionID, UINT32 dwCliSessionID, const char* szName, const char* UserData)
 {
     INT32 nResult = errNsNameUnknown;
@@ -393,13 +393,13 @@ INT32 CNameServer::AddNewData(INT32 eType, INT32 nSessionID, UINT32 dwCliSession
     LOG_PROCESS_ERROR(eType > ntInvalid && eType < ntTotal);
     LOG_PROCESS_ERROR(strlen(szName) > 0);
 
-    // µ±Ç°ÒÑÓĞµÄÃû×ÖÀïÊÇ·ñÓĞÖØÃû
+    // å½“å‰å·²æœ‰çš„åå­—é‡Œæ˜¯å¦æœ‰é‡å
     {
         TNameMap::iterator itr = m_NameMap[eType].find(szName);
         PROCESS_ERROR_RET_CODE(itr == m_NameMap[eType].end(), errNsNameDuplicated);
     }
 
-    // µ±Ç°Ëø¶¨µÄÃû×ÖÀïÊÇ·ñÓĞÖØÃû
+    // å½“å‰é”å®šçš„åå­—é‡Œæ˜¯å¦æœ‰é‡å
     {
         TLockNameSet::iterator itr = m_LockNameSet[eType].find(szName);
         PROCESS_ERROR_RET_CODE(itr == m_LockNameSet[eType].end(), errNsNameDuplicated);
@@ -543,27 +543,27 @@ BOOL g_bStop = FALSE;
 SERVICE_STATUS_HANDLE g_hServiceStatus;
 SERVICE_STATUS g_status;
 NS_CONFIG g_NSConfig;
-char g_szConfigName[] = { 0 };    // nameserver.ini ÎÄ¼şÂ·¾¶
+char g_szConfigName[] = { 0 };    // nameserver.ini æ–‡ä»¶è·¯å¾„
 
-// ³õÊ¼»¯ÅäÖÃÂ·¾¶
+// åˆå§‹åŒ–é…ç½®è·¯å¾„
 void InitConfigPath() 
 {
     char szExePath[MAX_PATH] = { 0 };
 
-    // »ñÈ¡µ±Ç°³ÌĞòµÄ¾ø¶ÔÂ·¾¶£¨Èç E:\cqyh-new2\NewServer\bin\nameserver64_d.exe£©
+    // è·å–å½“å‰ç¨‹åºçš„ç»å¯¹è·¯å¾„ï¼ˆå¦‚ E:\cqyh-new2\NewServer\bin\nameserver64_d.exeï¼‰
     GetModuleFileName(NULL, szExePath, MAX_PATH);
 
-    // ÌáÈ¡³ÌĞòËùÔÚÄ¿Â¼£¨E:\cqyh-new2\NewServer\bin\£©
+    // æå–ç¨‹åºæ‰€åœ¨ç›®å½•ï¼ˆE:\cqyh-new2\NewServer\bin\ï¼‰
     char* pLastSlash = strrchr(szExePath, '\\');
     if (pLastSlash != NULL) {
-        *pLastSlash = '\0'; // ½Ø¶ÏÎÄ¼şÃû£¬±£ÁôÄ¿Â¼
+        *pLastSlash = '\0'; // æˆªæ–­æ–‡ä»¶åï¼Œä¿ç•™ç›®å½•
     }
 
-    // Æ´½Ó³É .ini ÎÄ¼şµÄÍêÕûÂ·¾¶
+    // æ‹¼æ¥æˆ .ini æ–‡ä»¶çš„å®Œæ•´è·¯å¾„
     snprintf(g_szConfigName, MAX_PATH, "%s\\nameserver.ini", szExePath);
 }
 
-// ÕâÀïÓĞÎÊÌâ, Â·¾¶ÕıÈ·, µ«ÊÇ¶ÁÈ¡²»³öÀ´Êı¾İ, Òò´ËÉè¶¨Ò»¸öÄ¬ÈÏÖµÁË
+// è¿™é‡Œæœ‰é—®é¢˜, è·¯å¾„æ­£ç¡®, ä½†æ˜¯è¯»å–ä¸å‡ºæ¥æ•°æ®, å› æ­¤è®¾å®šä¸€ä¸ªé»˜è®¤å€¼äº†
 void ReadConfig(void)
 {
     ::GetPrivateProfileString("net", "ip", "127.0.0.1", g_NSConfig.net_config.ip, COMMON_NAME_LEN, g_szConfigName);

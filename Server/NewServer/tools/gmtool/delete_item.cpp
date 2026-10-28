@@ -13,10 +13,10 @@ CDeleteItem::CDeleteItem(QWidget *parent, Qt::WindowFlags flags)
     ui.setupUi(this);
 
     ui.comboBox->addItem("");
-    ui.comboBox->addItem(QString::fromLocal8Bit("¿Û³ýµÀ¾ß(¸ù¾ÝÀàÐÍID)"));
-    ui.comboBox->addItem(QString::fromLocal8Bit("¿Û³ý½ð±Ò"));
-    ui.comboBox->addItem(QString::fromLocal8Bit("Çå¿ÕÉíÉÏ×°±¸"));
-    ui.comboBox->addItem(QString::fromLocal8Bit("Çå¿Õ±³°ü"));
+    ui.comboBox->addItem(QString::fromLocal8Bit("æ‰£é™¤é“å…·(æ ¹æ®ç±»åž‹ID)"));
+    ui.comboBox->addItem(QString::fromLocal8Bit("æ‰£é™¤é‡‘å¸"));
+    ui.comboBox->addItem(QString::fromLocal8Bit("æ¸…ç©ºèº«ä¸Šè£…å¤‡"));
+    ui.comboBox->addItem(QString::fromLocal8Bit("æ¸…ç©ºèƒŒåŒ…"));
 
     ui.label_3->close();
     ui.label_4->close();
@@ -50,29 +50,29 @@ void CDeleteItem::Exit()
 
 void CDeleteItem::OnSelectDeleteItemType(const QString &currentText)
 {
-    if (currentText == QString::fromLocal8Bit("¿Û³ýµÀ¾ß(¸ù¾ÝÀàÐÍID)"))
+    if (currentText == QString::fromLocal8Bit("æ‰£é™¤é“å…·(æ ¹æ®ç±»åž‹ID)"))
     {
-        ui.label_3->setText(QString::fromLocal8Bit("µÀ¾ßÀàÐÍID"));
+        ui.label_3->setText(QString::fromLocal8Bit("é“å…·ç±»åž‹ID"));
         ui.label_3->show();
         ui.lineEdit->show();
         ui.label_4->show();
         ui.lineEdit_2->show();
         ui.comboBox_2->close();
     }
-    else if (currentText == QString::fromLocal8Bit("¿Û³ý½ð±Ò"))
+    else if (currentText == QString::fromLocal8Bit("æ‰£é™¤é‡‘å¸"))
     {
-        ui.label_3->setText(QString::fromLocal8Bit("½ð±ÒÀàÐÍ"));
+        ui.label_3->setText(QString::fromLocal8Bit("é‡‘å¸ç±»åž‹"));
         ui.comboBox_2->addItem("");
-        ui.comboBox_2->addItem(QString::fromLocal8Bit("ÉîÔ¨½ð±Ò"));
-        ui.comboBox_2->addItem(QString::fromLocal8Bit("½ð±Ò"));
-        ui.comboBox_2->addItem(QString::fromLocal8Bit("ÃûÊ¦Öµ"));
+        ui.comboBox_2->addItem(QString::fromLocal8Bit("æ·±æ¸Šé‡‘å¸"));
+        ui.comboBox_2->addItem(QString::fromLocal8Bit("é‡‘å¸"));
+        ui.comboBox_2->addItem(QString::fromLocal8Bit("åå¸ˆå€¼"));
         ui.label_3->show();
         ui.lineEdit->close();
         ui.label_4->show();
         ui.lineEdit_2->show();
         ui.comboBox_2->show();
     }
-    else if (currentText == QString::fromLocal8Bit("Çå¿ÕÉíÉÏ×°±¸"))
+    else if (currentText == QString::fromLocal8Bit("æ¸…ç©ºèº«ä¸Šè£…å¤‡"))
     {
         ui.label_3->close();
         ui.label_4->close();
@@ -80,7 +80,7 @@ void CDeleteItem::OnSelectDeleteItemType(const QString &currentText)
         ui.lineEdit_2->close();
         ui.comboBox_2->close();
     }
-    else if (currentText == QString::fromLocal8Bit("Çå¿Õ±³°ü"))
+    else if (currentText == QString::fromLocal8Bit("æ¸…ç©ºèƒŒåŒ…"))
     {
         ui.label_3->close();
         ui.label_4->close();

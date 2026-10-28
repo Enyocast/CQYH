@@ -52,18 +52,18 @@ namespace ExternalMessage
 		// master
 		m2c_master_twitter_ack,
 		m2c_master_hello_teacher,
-		m2c_master_recruit_list,        // ÏÂ·¢Ê¦Í½ÕĞÄ¼ÁĞ±í
-		//m2c_master_recruit_ack,         // ÉêÇë£¬È¡ÏûÕĞÄ¼µÄ·µ»ØÖµ
-		m2c_master_get_solo_list_ack,       // ·µ»ØÔ¤±¸Í½µÜµÄÁĞ±í
+		m2c_master_recruit_list,        // ä¸‹å‘å¸ˆå¾’æ‹›å‹Ÿåˆ—è¡¨
+		//m2c_master_recruit_ack,         // ç”³è¯·ï¼Œå–æ¶ˆæ‹›å‹Ÿçš„è¿”å›å€¼
+		m2c_master_get_solo_list_ack,       // è¿”å›é¢„å¤‡å¾’å¼Ÿçš„åˆ—è¡¨
 
 		m2c_master_info,
 		m2c_master_sync_lvl,
 
 		m2c_master_stud_submit_app_ack,
-		m2c_master_stud_submit_app_ntf,         // Ê¦¸µÊÕµ½Í½µÜµÄ°İÊ¦ÉêÇë
+		m2c_master_stud_submit_app_ntf,         // å¸ˆå‚…æ”¶åˆ°å¾’å¼Ÿçš„æ‹œå¸ˆç”³è¯·
 		m2c_master_agree_stud_app_ack,
-		m2c_master_refuse_stud_app_ack,         // ·¢ËÍ¸øÊ¦¸µ
-		m2c_master_refuse_stud_app_ntf,         // ·¢ËÍ¸øÍ½µÜ£¬±»Ê¦¸µ¾Ü¾øÁË
+		m2c_master_refuse_stud_app_ack,         // å‘é€ç»™å¸ˆå‚…
+		m2c_master_refuse_stud_app_ntf,         // å‘é€ç»™å¾’å¼Ÿï¼Œè¢«å¸ˆå‚…æ‹’ç»äº†
 		m2c_master_cancel_stud_app_ack,
 		m2c_master_cancel_stud_app_ntf,
 
@@ -899,7 +899,7 @@ namespace ExternalMessage
 
 		INT32       arrVariables[MAX_GUILD_VARIABLE_COUNT];
 
-		G_B_DATA    arrBData[GUILD_MAX_BUILDING_NUM];       // ¸Ä³É±ä³¤°ü Allan Tao[19.3.2014] 
+		G_B_DATA    arrBData[GUILD_MAX_BUILDING_NUM];       // æ”¹æˆå˜é•¿åŒ… Allan Tao[19.3.2014] 
 		G_B_U_DATA  arrBUData[GUILD_MAX_UPGRADE_BUILDING_COUNT];
 		INT8        arrWelfareAuraLvl[GUILD_MAX_WELFARE_AURA_COUNT];
 		INT8        arrWelfareUpgradeAuraID[GUILD_MAX_UPGRADE_AURA_COUNT];
@@ -1320,7 +1320,7 @@ namespace ExternalMessage
 		UINT32      dwBuyerRoleID;
 		INT64       llPrice;
 		INT64       llBuyoutPrice;
-		INT64       llDepositPrice;    // ±£Ö¤½ğ
+		INT64       llDepositPrice;    // ä¿è¯é‡‘
 		UINT32      dwStartTime;
 		UINT32      dwFinishTime;
 		UINT8       byAuctionStatus;

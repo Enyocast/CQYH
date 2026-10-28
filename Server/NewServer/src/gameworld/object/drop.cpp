@@ -56,7 +56,7 @@ BOOL CDrop::UnInit()
 
 BOOL CDrop::MainLoop()
 {
-    //±£»¤ÆÚ2·ÖÖÓ£¬¹«¹²ÆÚ2·ÖÖÓ£¬È»ºóÏûÊ§
+    //ä¿æŠ¤æœŸ2åˆ†é’Ÿï¼Œå…¬å…±æœŸ2åˆ†é’Ÿï¼Œç„¶åŽæ¶ˆå¤±
     switch (m_state)
     {
     case DS_PROTECT:
@@ -142,7 +142,7 @@ INT32 CDrop::OnPickUp(CRole* pRole)
         return errDropBindied;
     }
 
-    // Ê°È¡ÎïÆ·
+    // æ‹¾å–ç‰©å“
     if (m_content.m_type == DropContent::DROP_ITEM)
     {
 		CTeamInGS* pTeam = NULL;
@@ -153,23 +153,23 @@ INT32 CDrop::OnPickUp(CRole* pRole)
 			LOG_PROCESS_ERROR(pTeam);
 		}
 
-        // ´¥·¢×é¶ÓÅÄÂô
+        // è§¦å‘ç»„é˜Ÿæ‹å–
 		if (pTeam && pTeam->CanBeAddedtoBidAuction(m_content.m_item) && m_state == DS_PROTECT)
 		{
 			nRetCode = pTeam->AddAuctionItem(this);
 			LOG_PROCESS_ERROR(nRetCode);
 		}
-        // Ö±½ÓÊ°È¡½ø±³°ü
+        // ç›´æŽ¥æ‹¾å–è¿›èƒŒåŒ…
 		else
 		{
 	        nRetCode = pRole->GetItemBag()->AddItem(m_content.m_item, ITEMLOG_LOOT, 0);
  			LOG_PROCESS_ERROR(nRetCode);
  		}
     }
-    // Ê°È¡»õ±Ò
+    // æ‹¾å–è´§å¸
     else
     {
-        // ÐÂÔö´úÂë, ÅÐ¶Ï½ÇÉ«µã¿¨ÊÇ·ñ¹ýÆÚ (ÓÐµã¿¨, [½ð±Ò]Ë«±¶ÊÕÒæ) (ÔÝÊ±ÆÁ±Î)
+        // æ–°å¢žä»£ç , åˆ¤æ–­è§’è‰²ç‚¹å¡æ˜¯å¦è¿‡æœŸ (æœ‰ç‚¹å¡, [é‡‘å¸]åŒå€æ”¶ç›Š) (æš‚æ—¶å±è”½)
         {
 //            if (m_content.m_money.moneytype == MONEYTYPE_02)
 //            {
@@ -182,7 +182,7 @@ INT32 CDrop::OnPickUp(CRole* pRole)
 //                CCliMessageHandler::GetInstance().DoPickUpMoney(pRole, m_content.m_money.moneytype, nAddCount);
 //#endif
 //            }
-//            // ±ðµÄ»õ±ÒÕý³£
+//            // åˆ«çš„è´§å¸æ­£å¸¸
 //            else
 //            {
 //                pRole->GetItemBag()->AddMoney(m_content.m_money.moneytype, m_content.m_money.count, MONEYLOG_LOOT, 0);
@@ -195,7 +195,7 @@ INT32 CDrop::OnPickUp(CRole* pRole)
 //            }
         }
 
-        // Ô­´úÂë, Õý³£Ê°È¡»õ±Ò
+        // åŽŸä»£ç , æ­£å¸¸æ‹¾å–è´§å¸
         {
             pRole->GetItemBag()->AddMoney(m_content.m_money.moneytype, m_content.m_money.count, MONEYLOG_LOOT, 0);
 

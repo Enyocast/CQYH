@@ -435,7 +435,7 @@ Exit0:
 
 			poSession->SetHandlerAndAllocator(m_poNet->GetEventHandler(), m_poNet->GetPacketAllocator());
 
-			// ·þÎñ¶Ë
+			// æœåŠ¡ç«¯
 			nRetCode = poSession->ReadyToUse(FALSE, m_nPort, nSerialNo, m_poNet->GetInitParam().nSendBufSize, m_poNet->GetInitParam().nRecvBufSize);
 			LOG_PROCESS_ERROR(nRetCode);
 
@@ -838,7 +838,7 @@ Exit0:
 				continue;
 			}
 
-			// ¿Í»§¶Ë
+			// å®¢æˆ·ç«¯
 			nRetCode = poSession->ReadyToUse(TRUE, pConnectorNode->nPort, pAccNode->nSerialNo, m_InitParam.nSendBufSize, m_InitParam.nRecvBufSize);
 			LOG_PROCESS_ERROR(nRetCode);
 

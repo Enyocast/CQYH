@@ -30,8 +30,8 @@ public:
     UINT32 m_dwRoleID;
     UINT32 m_dwDeleteTime;
 
-    CCircleList m_MemList;      //ËùÓÐÓÃ¹ýµÄÄÚ´æÁÐ±í
-    DB_ROLE_DATA* m_pCurMem;    //µ±Ç°ÓÐÐ§µÄÄÚ´æ
+    CCircleList m_MemList;      //æ‰€æœ‰ç”¨è¿‡çš„å†…å­˜åˆ—è¡¨
+    DB_ROLE_DATA* m_pCurMem;    //å½“å‰æœ‰æ•ˆçš„å†…å­˜
     BOOL ClearCache(BOOL include_current);
 
     enum DB_TASK
@@ -49,21 +49,21 @@ public:
 
     enum LOCK_STATE
     {
-        LOCK_STATE_INVALID,                 //ÎÞÓÐÐ§Êý¾Ý£¬Ä¬ÈÏ×´Ì¬£¬´´½¨½ÇÉ«Ç°£¬´´½¨½ÇÉ«Ê§°Üºó£¬ÊôÓÚ´Ë×´Ì¬
-        LOCK_STATE_UNLOCKED,                //º¬ÓÐÐ§Êý¾Ý£¬´´½¨½ÇÉ«³É¹¦ºó£¬ÉÏËøÇ°/½âËøºó£¬ÊôÓÚ´Ë×´Ì¬
-        LOCK_STATE_LOCKING,                 //ÕýÔÚÉÏËø£¬°üÀ¨´ÓÊý¾Ý¿âÖÐ¶ÁÈ¡Êý¾ÝÒ²ÊôÓÚÕâÒ»×´Ì¬
-        LOCK_STATE_LOCKED,                  //ÒÑÉÏËø£¬½ÇÉ«ÕýÔÚÓÎÏ·ÖÐ
-        LOCK_STATE_UNLOCKING,               //ÕýÔÚ½âËø
-        LOCK_STATE_LOCKING_AND_UNLOCKING,   //ÕýÔÚÉÏËøÊ±ÔâÓö½âËøÇëÇó
-        LOCK_STATE_UNLOCKING_AND_LOCKING    //ÕýÔÚ½âËøÊ±ÔâÓöÉÏËøÇëÇó
+        LOCK_STATE_INVALID,                 //æ— æœ‰æ•ˆæ•°æ®ï¼Œé»˜è®¤çŠ¶æ€ï¼Œåˆ›å»ºè§’è‰²å‰ï¼Œåˆ›å»ºè§’è‰²å¤±è´¥åŽï¼Œå±žäºŽæ­¤çŠ¶æ€
+        LOCK_STATE_UNLOCKED,                //å«æœ‰æ•ˆæ•°æ®ï¼Œåˆ›å»ºè§’è‰²æˆåŠŸåŽï¼Œä¸Šé”å‰/è§£é”åŽï¼Œå±žäºŽæ­¤çŠ¶æ€
+        LOCK_STATE_LOCKING,                 //æ­£åœ¨ä¸Šé”ï¼ŒåŒ…æ‹¬ä»Žæ•°æ®åº“ä¸­è¯»å–æ•°æ®ä¹Ÿå±žäºŽè¿™ä¸€çŠ¶æ€
+        LOCK_STATE_LOCKED,                  //å·²ä¸Šé”ï¼Œè§’è‰²æ­£åœ¨æ¸¸æˆä¸­
+        LOCK_STATE_UNLOCKING,               //æ­£åœ¨è§£é”
+        LOCK_STATE_LOCKING_AND_UNLOCKING,   //æ­£åœ¨ä¸Šé”æ—¶é­é‡è§£é”è¯·æ±‚
+        LOCK_STATE_UNLOCKING_AND_LOCKING    //æ­£åœ¨è§£é”æ—¶é­é‡ä¸Šé”è¯·æ±‚
     };
     LOCK_STATE m_lockstate;
 
-    //ÒÔÏÂÊý¾ÝÓÃÓÚ¶ÁÈ¡Íê³Éºó·¢ËÍ»Ø°ü
-    INT32 m_nResult;                //Êý¾Ý¿â²Ù×÷½á¹û³É¹¦»òÊ§°Ü
-    UINT32 m_dwGSSessionID;         //ÇëÇóÊý¾ÝµÄ·þÎñÆ÷µÄsession id£¬ÓÃÓÚ·¢ËÍ»Ø¸´
+    //ä»¥ä¸‹æ•°æ®ç”¨äºŽè¯»å–å®ŒæˆåŽå‘é€å›žåŒ…
+    INT32 m_nResult;                //æ•°æ®åº“æ“ä½œç»“æžœæˆåŠŸæˆ–å¤±è´¥
+    UINT32 m_dwGSSessionID;         //è¯·æ±‚æ•°æ®çš„æœåŠ¡å™¨çš„session idï¼Œç”¨äºŽå‘é€å›žå¤
 
-    //ÒÔÏÂÊý¾ÝÓÃÓÚ´´½¨ÐÂ½ÇÉ«
+    //ä»¥ä¸‹æ•°æ®ç”¨äºŽåˆ›å»ºæ–°è§’è‰²
     struct CreateRoleParam
     {
         CHAR szUserName[USER_NAME_LEN];
@@ -77,7 +77,7 @@ public:
     };
     CreateRoleParam m_CreateRoleParam;
 
-    //ÒÔÏÂÊý¾ÝÓÃÓÚ¹¤×÷Ïß³Ì´æÅÌÊ±ÅÅÐò
+    //ä»¥ä¸‹æ•°æ®ç”¨äºŽå·¥ä½œçº¿ç¨‹å­˜ç›˜æ—¶æŽ’åº
     UINT64 m_qwLastSaveTime;
 
     CDBUser* m_dbuser;

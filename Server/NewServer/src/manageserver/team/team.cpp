@@ -211,7 +211,7 @@ BOOL CTeam::SelectLeader(BOOL bLeaveTeam)
     }
     
     PROCESS_SUCCESS(bLeaveTeam == FALSE);
-    //Àë¿ª¶ÓÎéÊ±±ØĞëÒÆ½»¶Ó³¤
+    //ç¦»å¼€é˜Ÿä¼æ—¶å¿…é¡»ç§»äº¤é˜Ÿé•¿
     for (INT32 nIndex = 0; nIndex < m_nMemberSizeLimit; nIndex++)
     {
         if (m_dwMemberIDList[nIndex] == 0)

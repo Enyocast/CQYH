@@ -10,16 +10,16 @@ g_MSGuildMgr = CMsGuildMgr:GetInstance();
 
 
 --------------------------------------------------------------------------------------
--- ¹¦ÄÜ£º·¢ËÍ¹Ì¶¨ÄÚÈİ
--- ²ÎÊıËµÃ÷£º
--- µÚÒ»²ÎÊı£¬µÚ¶ş²ÎÊı£¬µÚÈı²ÎÊı£¬ ¹Ì¶¨¿½±´¼´¿É
--- µÚËÄ²ÎÊı, ¹«¸æ¶ÔÏó£º
---			guild_id:  ¶Ô¹«»á
---          cctGroup£ºÈ«·ş
--- µÚÎå²ÎÊı£¬¹«¸æÏÔÊ¾µÄÎ»ÖÃ
---			cltLighting: ×ßÂíµÆ
--- 			cltTvShow: µçÊÓ»ú
---          cltTrumpet: À®°È
+-- åŠŸèƒ½ï¼šå‘é€å›ºå®šå†…å®¹
+-- å‚æ•°è¯´æ˜ï¼š
+-- ç¬¬ä¸€å‚æ•°ï¼Œç¬¬äºŒå‚æ•°ï¼Œç¬¬ä¸‰å‚æ•°ï¼Œ å›ºå®šæ‹·è´å³å¯
+-- ç¬¬å››å‚æ•°, å…¬å‘Šå¯¹è±¡ï¼š
+--			guild_id:  å¯¹å…¬ä¼š
+--          cctGroupï¼šå…¨æœ
+-- ç¬¬äº”å‚æ•°ï¼Œå…¬å‘Šæ˜¾ç¤ºçš„ä½ç½®
+--			cltLighting: èµ°é©¬ç¯
+-- 			cltTvShow: ç”µè§†æœº
+--          cltTrumpet: å–‡å­
 
 function TrySay(group_id, guild_level, lighting_id, targetID, location)
 	local text = "<#T:"..lighting_id..">";
@@ -29,16 +29,16 @@ end
 
 
 --------------------------------------------------------------------------------------
--- ¹¦ÄÜ£º·¢ËÍ°üÀ¨¹«»áÃûÔÚÄÚµÄÄÚÈİ
--- ²ÎÊıËµÃ÷£º
--- µÚÒ»²ÎÊı£¬µÚ¶ş²ÎÊı£¬µÚÈı²ÎÊı£¬µÚËÄ²ÎÊı ¹Ì¶¨¿½±´¼´¿É
--- µÚÎå²ÎÊı, ¹«¸æ¶ÔÏó£º
---			guild_id:  ¶Ô¹«»á
---          cctGroup£ºÈ«·ş
--- µÚÁù²ÎÊı£¬¹«¸æÏÔÊ¾µÄÎ»ÖÃ
---			cltLighting: ×ßÂíµÆ
--- 			cltTvShow: µçÊÓ»ú
---          cltTrumpet: À®°È
+-- åŠŸèƒ½ï¼šå‘é€åŒ…æ‹¬å…¬ä¼šååœ¨å†…çš„å†…å®¹
+-- å‚æ•°è¯´æ˜ï¼š
+-- ç¬¬ä¸€å‚æ•°ï¼Œç¬¬äºŒå‚æ•°ï¼Œç¬¬ä¸‰å‚æ•°ï¼Œç¬¬å››å‚æ•° å›ºå®šæ‹·è´å³å¯
+-- ç¬¬äº”å‚æ•°, å…¬å‘Šå¯¹è±¡ï¼š
+--			guild_id:  å¯¹å…¬ä¼š
+--          cctGroupï¼šå…¨æœ
+-- ç¬¬å…­å‚æ•°ï¼Œå…¬å‘Šæ˜¾ç¤ºçš„ä½ç½®
+--			cltLighting: èµ°é©¬ç¯
+-- 			cltTvShow: ç”µè§†æœº
+--          cltTrumpet: å–‡å­
 
 function TrySayWithGuild(group_id, guild_id, guild_level, lighting_id, targetID, location)
 	local guild = g_MSGuildMgr:FindGuildByID(guild_id);
@@ -57,25 +57,25 @@ end
 
 -- common
 
----ÔËïÚ
+---è¿é•–
 function OpenActivity_1(group_id, guild_id, guild_level, lighting_id)
 	TrySayWithGuild(group_id, guild_id, guild_level, lighting_id, cctGroup, cltLighting);
 end
 
 
----ÑıÊŞ
+---å¦–å…½
 function OpenActivity_2(group_id, guild_id, guild_level, lighting_id)
 	TrySay(group_id, guild_level, lighting_id, guild_id, cltLighting);
 end
 
 
----ÎÂÈª
+---æ¸©æ³‰
 function OpenActivity_3(group_id, guild_id, guild_level, lighting_id)
 	TrySay(group_id, guild_level, lighting_id, guild_id, cltLighting);
 end
 
 
----Æíµ»
+---ç¥ˆç¥·
 function OpenActivity_4(group_id, guild_id, guild_level, lighting_id)
 	TrySay(group_id, guild_level, lighting_id, guild_id, cltLighting);
 end

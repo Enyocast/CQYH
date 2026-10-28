@@ -27,13 +27,13 @@ enum CHAT_LOCATION_TYPE
 {
 	cltInvalid,
 
-	cltNormal,		// 聊天窗口系统黄字
-	cltLighting,	// 滚屏公告
-	cltTvShow,		// 屏幕上方, 中间黄字
-	cltUrl,			// 聊天窗口系统黄字
-	cltDialog,      // 聊天窗口系统黄字
-	cltTrumpet,		// 喇叭道具
-	cltGMTrumpet,   // 聊天窗口系统黄字
+	cltNormal,		// 鑱婂ぉ绐楀彛绯荤粺榛勫瓧
+	cltLighting,	// 婊氬睆鍏憡
+	cltTvShow,		// 灞忓箷涓婃柟, 涓棿榛勫瓧
+	cltUrl,			// 鑱婂ぉ绐楀彛绯荤粺榛勫瓧
+	cltDialog,      // 鑱婂ぉ绐楀彛绯荤粺榛勫瓧
+	cltTrumpet,		// 鍠囧彮閬撳叿
+	cltGMTrumpet,   // 鑱婂ぉ绐楀彛绯荤粺榛勫瓧
 
 	cltTotal,
 };

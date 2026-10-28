@@ -823,7 +823,7 @@ BOOL CMessageHandler::DoClientMasterInfo(UINT32 dwClientSessionID, UINT32 dwRole
             pMsg->arrInfo[pMsg->byStudentNum].byLevel = pRole->byLevel;
             pMsg->arrInfo[pMsg->byStudentNum].dwStudentID = pRole->dwRoleID;
 
-            // Èç¹ûÊÇÀÏÊ¦£¬ÔòÕÒ¹§Ï²µÈ¼¶ÏÂ·¢
+            // å¦‚æžœæ˜¯è€å¸ˆï¼Œåˆ™æ‰¾æ­å–œç­‰çº§ä¸‹å‘
             if (dwRoleID == data.dwRoleID)
             {
                 nCZ = CMasterMgr::GetInstance().GetCZ(pRole->dwRoleID, dwRoleID);

@@ -2,7 +2,7 @@
 TestCase.Group = {};
 
 function TestCase.Group.Scene()
-	-- µÇÂ½
+	-- ç™»é™†
     local user_name1 = "gpS1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1, 1);
     check(user1, "failed to create user");
@@ -47,7 +47,7 @@ function TestCase.Group.Scene()
 	check(scene3:GetSceneTempID() == scene4:GetSceneTempID() and scene3:GetSceneID() == scene4:GetSceneID(), "error scene")
 
 	
-	-- ²âÊÔÍê³É£¬µÇ³ö
+	-- æµ‹è¯•å®Œæˆï¼Œç™»å‡º
 	cleanup(user1);
     cleanup(user2);
     cleanup(user3);
@@ -177,7 +177,7 @@ function TestCase.Group.Chat()
 	msg = recv_msg(5, user4sessionid, protocol.m2c_chat_message);
 	check(msg == nil, "fail to recv chat_message");
 	
-	-- ²âÊÔÍê³É£¬µÇ³ö
+	-- æµ‹è¯•å®Œæˆï¼Œç™»å‡º
 	cleanup(user1);
     cleanup(user2);
     cleanup(user3);

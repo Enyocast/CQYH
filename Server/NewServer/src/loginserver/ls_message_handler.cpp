@@ -429,7 +429,7 @@ Exit0:
     return FALSE;
 }
 
-// LS ·¢¸ø MS, ÈÃMSÔÚÊý¾Ý¿âÀï²éÑ¯ÕËºÅÃÜÂë
+// LS å‘ç»™ MS, è®©MSåœ¨æ•°æ®åº“é‡ŒæŸ¥è¯¢è´¦å·å¯†ç 
 BOOL CLSMessageHandler::DoMsLoginQueryReq(UINT32 dwClientSessionID, CHAR* szUserName, CHAR* szPassword)
 {
     INT32 nRetCode = 0;
@@ -473,7 +473,7 @@ Exit0:
     return FALSE;
 }
 
-// ¿Í»§µÇÂ¼Ó¦´ð
+// å®¢æˆ·ç™»å½•åº”ç­”
 BOOL CLSMessageHandler::DoGTLoginAck(UINT32 dwClientSessionID, INT32 nErrorCode, 
                                      CHAR* szOASessionID, CHAR* szUserName, CHAR* szPGT, UINT8 bAdult,
                                      UINT16 wInfoLen, BYTE* abyInfo)
@@ -626,7 +626,7 @@ void CLSMessageHandler::OnMSClose(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, I
     INF("LS is closing");
 }
 
-// MS ·µ»Ø²éÑ¯ÕËºÅÃÜÂëÊý¾Ý½á¹û
+// MS è¿”å›žæŸ¥è¯¢è´¦å·å¯†ç æ•°æ®ç»“æžœ
 void CLSMessageHandler::OnMSLoginQueryAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
     INT32 nResult = errLoginAuthFailed;
@@ -672,7 +672,7 @@ Exit0:
 
 void CLSMessageHandler::OnGTLoginReq(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
-    // Ä¬ÈÏ´úÂë
+    // é»˜è®¤ä»£ç 
     /*
     INT32 nResult = errLoginAuthFailed;
     INT32 nRetCode = 0;
@@ -706,7 +706,7 @@ Exit0:
     INT32 nRetCode = 0;
     T2L_LOGIN_REQ* pMsg = (T2L_LOGIN_REQ*)pPacketBuffer;
 
-    // µÇÂ¼ÑéÖ¤, ·¢¸øMS È¥Êý¾Ý¿âÀï²éÑ¯ÕËºÅ
+    // ç™»å½•éªŒè¯, å‘ç»™MS åŽ»æ•°æ®åº“é‡ŒæŸ¥è¯¢è´¦å·
     nRetCode = CLSMessageHandler::GetInstance().DoMsLoginQueryReq(pMsg->dwClientSessionID, pMsg->szUserName, pMsg->szPassword);
     LOG_CHECK_ERROR(nRetCode);
 
@@ -719,7 +719,7 @@ Exit0:
 }
 
 /************************************************************************/
-// From MG (ÊÖ»ú¶Ë)
+// From MG (æ‰‹æœºç«¯)
 void CLSMessageHandler::OnMGRegister(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
 	INT32 nRetCode = 0;

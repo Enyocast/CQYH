@@ -81,7 +81,7 @@ HRESULT InitD3D( HWND hWnd )
     d3dpp.BackBufferFormat = d3ddm.Format;
     d3dpp.EnableAutoDepthStencil = TRUE;
     d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
-	d3dpp.hDeviceWindow = hWnd;// ×¢ÒâIGWÄÚ²¿×ÜÊÇÍ¨¹ýËüÈ¡µ½ÓÎÏ·Ö÷´°¿ÚµÄ
+	d3dpp.hDeviceWindow = hWnd;// æ³¨æ„IGWå†…éƒ¨æ€»æ˜¯é€šè¿‡å®ƒå–åˆ°æ¸¸æˆä¸»çª—å£çš„
 
     // Create the D3DDevice
     if( FAILED( g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
@@ -298,7 +298,7 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 
 void CALLBACK OnLostDevice()
 {
-	/* Í¨Öªd3dÉè±¸¶ªÊ§ */
+	/* é€šçŸ¥d3dè®¾å¤‡ä¸¢å¤± */
 	if( g_pVB != NULL )
 	{
 		g_pVB->Release();
@@ -308,7 +308,7 @@ void CALLBACK OnLostDevice()
 
 void CALLBACK OnResetDevice()
 {
-	/* Í¨Öªd3dÉè±¸ÖØÖÃ³É¹¦ */
+	/* é€šçŸ¥d3dè®¾å¤‡é‡ç½®æˆåŠŸ */
 	InitGeometry();
 	// Turn off culling
 	g_pd3dDevice->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
@@ -364,9 +364,9 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 					DispatchMessage( &msg );
                 }
                 else
-				{	// ¼òµ¥´¦ÀíÉè±¸¶ªÊ§ÎÊÌâ
+				{	// ç®€å•å¤„ç†è®¾å¤‡ä¸¢å¤±é—®é¢˜
 					if (g_DeviceLost == true)
-					{	// ´¦ÓÚÉè±¸¶ªÊ§ÖÐ¿ÉÂýµã»Ö¸´£¬±ÜÃâ³¤Ê±¼ä¶ªÊ§Õ¼ÓÃ¹ý¶àCPU
+					{	// å¤„äºŽè®¾å¤‡ä¸¢å¤±ä¸­å¯æ…¢ç‚¹æ¢å¤ï¼Œé¿å…é•¿æ—¶é—´ä¸¢å¤±å ç”¨è¿‡å¤šCPU
 						Sleep(50);
 					}
 					switch (g_pd3dDevice->TestCooperativeLevel())

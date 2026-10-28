@@ -72,7 +72,7 @@ void CAsimovMessageHandler::OnRecv(ISocketSession* pSocketSession, PACKET_BUFFER
 
     if (pHeader->wMsg >= g2c_message_begin && pHeader->wMsg < m2c_message_end)
     {
-		if (poUser->GetPlayingRole()) // Èç¹ûÒÑ¾­ÏÂÏßÁË£¬¾ÍºöÂÔ°ü¡£ ¿ÉÄÜÒÑ¾­ÏÂÏß£¬²ÅÊÕµ½·þÎñÆ÷µÄ°ü Allan Tao[5.6.2013] 
+		if (poUser->GetPlayingRole()) // å¦‚æžœå·²ç»ä¸‹çº¿äº†ï¼Œå°±å¿½ç•¥åŒ…ã€‚ å¯èƒ½å·²ç»ä¸‹çº¿ï¼Œæ‰æ”¶åˆ°æœåŠ¡å™¨çš„åŒ… Allan Tao[5.6.2013] 
         {			
 			CRobotMessageHandler::GetInstance().OnRecv(poUser->GetPlayingRole(), (const char*)pPacketBuffer);
         }
@@ -209,7 +209,7 @@ void CAsimovMessageHandler::OnGSErrorNotify(CUser* poUser, PACKET_BUFFER* pPacke
 void CAsimovMessageHandler::OnLoginAck(CUser* poUser, PACKET_BUFFER* pPacketBuffer, UINT32 dwSize)
 {
     T2C_LOGIN_ACK* pMsg = (T2C_LOGIN_ACK*)pPacketBuffer;
-    //ÔÝÊ±ÎÞÑéÖ¤²»Í¨¹ý
+    //æš‚æ—¶æ— éªŒè¯ä¸é€šè¿‡
 
 	poUser->SetEncryptCode(pMsg->byEncryptCode);
 

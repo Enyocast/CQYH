@@ -264,15 +264,15 @@ public:
 
     BOOL DoGSAddExerciseTime(INT32 dwGSSessionID, UINT32 dwRoleID, INT32 nHour, INT32 nResult);
 
-    // ===== 下面全是自己新加代码 =====
+    // ===== 涓嬮潰鍏ㄦ槸鑷繁鏂板姞浠ｇ爜 =====
 
-    // 玩家查询元宝
+    // 鐜╁鏌ヨ鍏冨疂
     BOOL DoGSQueryYuanBao(INT32 dwGSSessionID, UINT32 dwCliSessionID, UINT32 dwRoleID);
     
-    // 玩家购买商城物品
+    // 鐜╁璐拱鍟嗗煄鐗╁搧
     BOOL DoGSRoleRealMoneyShopBuyItemReq(INT32 dwGSSessionID, UINT32 dwCliSessionID, CHAR* pcszRoleName, UINT32 dwRoleID, INT32 nTotalCost, INT32 nItemID, INT32 nItemCount);
 
-    // 玩家购买点卡
+    // 鐜╁璐拱鐐瑰崱
     BOOL DoGSCustomRoleBuyTime(INT32 dwGSSessionID, UINT32 dwCliSessionID, UINT32 dwRoleID, UINT32 dwBuyTimeCost);
 
     /************************************************************************/
@@ -352,7 +352,7 @@ public:
 	BOOL DoClientQueueInfo(UINT32 dwClientSessionID, INT32 nTotal, INT32 nSelfPos);
     BOOL DoClientSyncRoleInfo(UINT32 dwClientSessionID, MS_ROLE_DATA* pRoleData, const char* pGuildName, UINT32 dwCRC);
 
-    // 组队
+    // 缁勯槦
 	BOOL DoClientTeamJoin(UINT32 dwClientSessionID, CTeam* poTeam);
     BOOL DoClientTeamAnswer(UINT32 dwClientSessionID, UINT8 byType, UINT32 dwRequestRoleID, const CHAR* pcszRoleName);
     BOOL DoClientTeamLeave(UINT32 dwClientSessionID, UINT32 dwTeamID);
@@ -772,7 +772,7 @@ private:
     // From Client
     void OnClientQueryRoleInfo(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole);
 
-    // 组队
+    // 缁勯槦
     void OnClientTeamJoin(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole);
     void OnClientTeamLeave(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole);
     void OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole);
@@ -786,7 +786,7 @@ private:
     void OnClientTeamQuery(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole);
     void OnClientTeamInvite(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole);
 
-    // 好友
+    // 濂藉弸
     void OnClientFriendAdd(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole);
     void OnClientFriendDel(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole);
     void OnClientFriendChangeGroup(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole);

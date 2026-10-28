@@ -92,7 +92,7 @@ BOOL CAwardItemTestApp::InitInstance()
 
 	if (pRmInitialize((LPCTSTR)strIniFile, HandleSotsCallback) != 1)
 	{
-		AfxMessageBox("³õÊ¼»¯SOSTÊ§°Ü£¡");
+		AfxMessageBox("åˆå§‹åŒ–SOSTå¤±è´¥ï¼");
 		return FALSE;
 	}
 

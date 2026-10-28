@@ -18,13 +18,13 @@ struct ModifierParam
 
 struct ModifierNode
 {
-	INT32	nType;            // �ڵ��޸ĺ�������
-	INT32	nParentNode;      // ���ڵ���
-	INT32	nTrueRetNode;     // TRUE����ֵ�����ڵ���
-	INT32	nFalseRetNode;    // FALSE����ֵ�����ڵ���
-	INT32	nNextNode;        // ��Ȼ��ִ�еĺ����ڵ���
-	INT32	nKey;             // �޸ĺ������
-	ModifierParam Param[MODIFIER_PARAM_COUNT];    // �޸ĺ�������
+	INT32	nType;            // 节点修改函数类型
+	INT32	nParentNode;      // 父节点编号
+	INT32	nTrueRetNode;     // TRUE返回值后续节点编号
+	INT32	nFalseRetNode;    // FALSE返回值后续节点编号
+	INT32	nNextNode;        // 必然被执行的后续节点编号
+	INT32	nKey;             // 修改函数编号
+	ModifierParam Param[MODIFIER_PARAM_COUNT];    // 修改函数参数
 };
 
 class CModifierTree

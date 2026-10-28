@@ -1,6 +1,6 @@
 
 air_level_define = {
-	owner='ÕÅ¾´Ðù',
+	owner='å¼ æ•¬è½©',
 	Level = {
 		type = 'number',
 		default = 0,

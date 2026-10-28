@@ -69,7 +69,7 @@ void CDetailDialog::CancelSystemOrder()
     INT32       nRetCode = 0;
     CMyTreeWidgetItem   *pItem = NULL;
 
-    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("È·ÈÏÈ¡Ïû¶©µ¥£¿"));
+    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("ç¡®è®¤å–æ¶ˆè®¢å•ï¼Ÿ"));
     if (nCheckEnum != QMessageBox::Yes)
         return;
 

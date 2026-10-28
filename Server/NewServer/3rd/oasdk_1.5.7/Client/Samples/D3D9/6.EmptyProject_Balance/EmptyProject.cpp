@@ -16,7 +16,7 @@
 #include "SDOA4Client.h"
 #include "SDOADx9.h"
 
-/* ½ÓÈëÏà¹ØÈ«¾Ö±äÁ¿  */
+/* æŽ¥å…¥ç›¸å…³å…¨å±€å˜é‡  */
 HINSTANCE          g_hInstIGWDll = 0;
 LPigwInitialize    igwInitialize = NULL;
 LPigwGetModule     igwGetModule = NULL;
@@ -27,7 +27,7 @@ ISDOAApp*			g_SDOAApp = NULL;
 ISDOAAppUtils*		g_SDOAAppUtils = NULL;
 ISDOAClientService* g_SDOAClientService = NULL;
 
-/* ÊÍ·ÅIGW */
+/* é‡Šæ”¾IGW */
 void CloseIGW()
 {
 	if (g_SDOADx9)
@@ -55,7 +55,7 @@ void CloseIGW()
 	}
 
 	if (igwTerminal)
-	{  // ÊÍ·ÅDLLÇ°×ÜÊÇÏÈµ÷ÓÃigwTerminal
+	{  // é‡Šæ”¾DLLå‰æ€»æ˜¯å…ˆè°ƒç”¨igwTerminal
 		igwTerminal();
 		igwTerminal = NULL;
 	}
@@ -67,7 +67,7 @@ void CloseIGW()
 	igwInitialize = NULL;
 }
 
-/* ¼ÓÔØIGW */
+/* åŠ è½½IGW */
 void OpenIGW()
 {
 	WCHAR strExePath[MAX_PATH] = {0};
@@ -77,7 +77,7 @@ void OpenIGW()
 	strExePath[MAX_PATH-1]=0;
 	strLastSlash = wcsrchr( strExePath, TEXT('\\') );
 	if( strLastSlash )
-	{	// µÃµ½EXEËùÔÚÂ·¾¶
+	{	// å¾—åˆ°EXEæ‰€åœ¨è·¯å¾„
 		StringCchCopyW( strExeName, MAX_PATH, &strLastSlash[1] );
 		*strLastSlash = 0;
 		strLastSlash = wcsrchr( strExeName, TEXT('.') );
@@ -89,12 +89,12 @@ void OpenIGW()
 	StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\GameWidget.dll", strExePath );
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // Èç¹û³ÌÐòÔËÐÐÂ·¾¶ÖÐ²»´æÔÚÔò»»¸öÂ·¾¶ÔÙÊÔ
+	{ // å¦‚æžœç¨‹åºè¿è¡Œè·¯å¾„ä¸­ä¸å­˜åœ¨åˆ™æ¢ä¸ªè·¯å¾„å†è¯•
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // Èç¹û³ÌÐòÔËÐÐÂ·¾¶ÖÐ²»´æÔÚÔò»»¸öÂ·¾¶ÔÙÊÔ
+	{ // å¦‚æžœç¨‹åºè¿è¡Œè·¯å¾„ä¸­ä¸å­˜åœ¨åˆ™æ¢ä¸ªè·¯å¾„å†è¯•
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"E:\\Worke\\Ez\\IGP\\demo&prototype\\allsnap\\bin\\GameWidget.dll" );
 	}
 
@@ -102,7 +102,7 @@ void OpenIGW()
 	CloseIGW();
 
 	if ( GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF )
-	{	// ÕÒµ½×é¼þÔò¼ÓÔØ	
+	{	// æ‰¾åˆ°ç»„ä»¶åˆ™åŠ è½½	
 		g_hInstIGWDll = LoadLibraryW(strGameWidgetDll);
 		if (g_hInstIGWDll)
 		{
@@ -111,25 +111,25 @@ void OpenIGW()
 			igwTerminal = (LPigwTerminal)GetProcAddress( g_hInstIGWDll, "igwTerminal" );
 			if ( igwInitialize && igwGetModule && igwTerminal)
 			{
-				// ¼ÓÔØ³É¹¦
+				// åŠ è½½æˆåŠŸ
 
-				// ×¢ÒâAppInfoÀàÐÍËùÓÐ×Ö¶Î±ØÐëÌî
+				// æ³¨æ„AppInfoç±»åž‹æ‰€æœ‰å­—æ®µå¿…é¡»å¡«
 				AppInfo tmpAppInfo = {
-					sizeof(AppInfo),       // ½á¹¹Ìå´óÐ¡£¬·½±ãÀ©Õ¹
-					9999,                  // ½ÓÈëÓ¦ÓÃID£¬´Ó¿ª·¢ÕßÍøÕ¾ÖÐÉêÇë
-					L"ÁúÌ¶»¢Ñ¨OnLine",     // Ó¦ÓÃÃû³Æ
-					L"0.1.2.0",            // Ó¦ÓÃ¿Í»§¶Ëµ±Ç°°æ±¾ºÅ
-					SDOA_RENDERTYPE_D3D9,  // ¿Í»§¶ËÖ§³ÖµÄÍ¼ÐÎÒýÇæÀàÐÍ£¬ÕâÀïÍ¬Ê±Ö§³Öd3d9ºÍd3d8
-					1,                     // ¿ÉÍ¬Ê±ÔÚÒ»Ì¨»úÆ÷ÉÏÓÎÏ·µÄ×î´óÈËÊý£¨Í¨³£Îª1£¬ÀýÈç:KOFÓ¦¸ÃÊÇ2£©
-					-1,                    // ÓÎÏ·ÇøID£¬²»¿ÉÓÃÊ±´«Èë-1
-					-1                     // ÓÎÏ·×éID£¬²»¿ÉÓÃÊ±´«Èë-1
+					sizeof(AppInfo),       // ç»“æž„ä½“å¤§å°ï¼Œæ–¹ä¾¿æ‰©å±•
+					9999,                  // æŽ¥å…¥åº”ç”¨IDï¼Œä»Žå¼€å‘è€…ç½‘ç«™ä¸­ç”³è¯·
+					L"é¾™æ½­è™Žç©´OnLine",     // åº”ç”¨åç§°
+					L"0.1.2.0",            // åº”ç”¨å®¢æˆ·ç«¯å½“å‰ç‰ˆæœ¬å·
+					SDOA_RENDERTYPE_D3D9,  // å®¢æˆ·ç«¯æ”¯æŒçš„å›¾å½¢å¼•æ“Žç±»åž‹ï¼Œè¿™é‡ŒåŒæ—¶æ”¯æŒd3d9å’Œd3d8
+					1,                     // å¯åŒæ—¶åœ¨ä¸€å°æœºå™¨ä¸Šæ¸¸æˆçš„æœ€å¤§äººæ•°ï¼ˆé€šå¸¸ä¸º1ï¼Œä¾‹å¦‚:KOFåº”è¯¥æ˜¯2ï¼‰
+					-1,                    // æ¸¸æˆåŒºIDï¼Œä¸å¯ç”¨æ—¶ä¼ å…¥-1
+					-1                     // æ¸¸æˆç»„IDï¼Œä¸å¯ç”¨æ—¶ä¼ å…¥-1
 
 				};
 
 				if (igwInitialize(SDOA_SDK_VERSION, &tmpAppInfo) == SDOA_OK)
-				{	// ³õÊ¼»¯×é¼þ³É¹¦
+				{	// åˆå§‹åŒ–ç»„ä»¶æˆåŠŸ
 
-					// »ñÈ¡×é¼þ½Ó¿Ú					
+					// èŽ·å–ç»„ä»¶æŽ¥å£					
 					igwGetModule(__uuidof(ISDOADx9), (void**)&g_SDOADx9);
 					igwGetModule(__uuidof(ISDOAApp), (void**)&g_SDOAApp);
 					igwGetModule(__uuidof(ISDOAAppUtils), (void**)&g_SDOAAppUtils);
@@ -139,10 +139,10 @@ void OpenIGW()
 						CloseIGW();
 
 				}
-				else // ³õÊ¼»¯Ê§°ÜÇå³ý»·¾³
+				else // åˆå§‹åŒ–å¤±è´¥æ¸…é™¤çŽ¯å¢ƒ
 					CloseIGW();
 			}
-			else  // ¼ÓÔØDLLÊ§°ÜÇå³ý»·¾³
+			else  // åŠ è½½DLLå¤±è´¥æ¸…é™¤çŽ¯å¢ƒ
 				CloseIGW();
 		}
 	}
@@ -152,7 +152,7 @@ void OpenIGW()
 
 
 CDXUTDialogResourceManager	g_DialogResourceManager; // manager for shared resources of dialogs
-CDXUTDialog					g_GameAudioSet;          // Ä£ÄâÒôÁ¿¿ØÖÆ
+CDXUTDialog					g_GameAudioSet;          // æ¨¡æ‹ŸéŸ³é‡æŽ§åˆ¶
 
 #define IDC_AUDIOSOUNDLABEL		1
 #define IDC_AUDIOEFFECTLABEL	2
@@ -195,7 +195,7 @@ HRESULT CALLBACK OnCreateDevice( IDirect3DDevice9* pd3dDevice, const D3DSURFACE_
 	HRESULT hr;
 	V_RETURN( g_DialogResourceManager.OnCreateDevice( pd3dDevice ) );
 	if (g_SDOADx9)
-	{	// ³õÊ¼»¯IGWÄÚ²¿Í¼ÐÎÒýÇæ
+	{	// åˆå§‹åŒ–IGWå†…éƒ¨å›¾å½¢å¼•æ“Ž
 		D3DPRESENT_PARAMETERS d3dpp = DXUTGetPresentParameters ();
 		g_SDOADx9->Initialize( pd3dDevice, &d3dpp, FALSE );
 	}
@@ -215,7 +215,7 @@ HRESULT CALLBACK OnResetDevice( IDirect3DDevice9* pd3dDevice,
 	g_GameAudioSet.SetSize( 180, 180 );
 	
 	if(g_SDOADx9)
-	{	// Í¨ÖªIGW d3dÉè±¸ÖØÖÃ³É¹¦
+	{	// é€šçŸ¥IGW d3dè®¾å¤‡é‡ç½®æˆåŠŸ
 		D3DPRESENT_PARAMETERS d3dpp = DXUTGetPresentParameters () ;	
 		g_SDOADx9->OnDeviceReset ( &d3dpp ) ;
 	}
@@ -246,7 +246,7 @@ void CALLBACK OnFrameRender( IDirect3DDevice9* pd3dDevice, double fTime, float f
     // Render the scene
     if( SUCCEEDED( pd3dDevice->BeginScene() ) )
     {
-		/* »æÖÆIGW½çÃæ */
+		/* ç»˜åˆ¶IGWç•Œé¢ */
 		if (g_SDOADx9)
 			g_SDOADx9->RenderEx();
 
@@ -254,43 +254,43 @@ void CALLBACK OnFrameRender( IDirect3DDevice9* pd3dDevice, double fTime, float f
     }
 }
 
-BOOL isSDOLogin = false; // ×¢ÒâÒ»¶¨ÒªÊÇBOOLÀàÐÍ£¬²»ÄÜÎªbool·ñÔò¿ÉÄÜ»áµ¼ÖÂÎÊÌâ
+BOOL isSDOLogin = false; // æ³¨æ„ä¸€å®šè¦æ˜¯BOOLç±»åž‹ï¼Œä¸èƒ½ä¸ºboolå¦åˆ™å¯èƒ½ä¼šå¯¼è‡´é—®é¢˜
 LoginResult loginResult;
 
 BOOL CALLBACK OnLogin(int nErrorCode, const LoginResult* pLoginResult, int nUserData, int nReserved) 
-{ // ×¢Òâ¸Ã»Øµ÷·µ»ØtrueÔò¹Ø±ÕµÇÂ¼¶Ô»°¿ò£¬·ñÔòµÇÂ¼¶Ô»°¿òÈÔÈ»ÏÔÊ¾
+{ // æ³¨æ„è¯¥å›žè°ƒè¿”å›žtrueåˆ™å…³é—­ç™»å½•å¯¹è¯æ¡†ï¼Œå¦åˆ™ç™»å½•å¯¹è¯æ¡†ä»ç„¶æ˜¾ç¤º
 	
 	isSDOLogin = (SDOA_ERRORCODE_OK == nErrorCode); 
 	if (isSDOLogin) 
 	{ 
 		loginResult = *pLoginResult;
-		// µÇÂ¼³É¹¦ºó,°ÑÓÃ»§Ê¹ÓÃµÄÓÎÏ·½ÇÉ«ÐÅÏ¢´«ÈëIGW
+		// ç™»å½•æˆåŠŸåŽ,æŠŠç”¨æˆ·ä½¿ç”¨çš„æ¸¸æˆè§’è‰²ä¿¡æ¯ä¼ å…¥IGW
 		if (g_SDOAApp)
 		{
-			RoleInfo tmpRoleInfo = { sizeof(RoleInfo), L"ÃÀÃ²ÏÉ×Ó", 0 } ;
-			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // ÉèÖÃ½ÇÉ«ÐÅÏ¢£¬¿É¶à´Îµ÷ÓÃ£¬Ö»ÒªÓÃ»§ÇÐ»»ÁË½ÇÉ«¾Íµ÷ÓÃÍ¨ÖªIGW
+			RoleInfo tmpRoleInfo = { sizeof(RoleInfo), L"ç¾Žè²Œä»™å­", 0 } ;
+			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // è®¾ç½®è§’è‰²ä¿¡æ¯ï¼Œå¯å¤šæ¬¡è°ƒç”¨ï¼Œåªè¦ç”¨æˆ·åˆ‡æ¢äº†è§’è‰²å°±è°ƒç”¨é€šçŸ¥IGW
 		}
 	} 
 
 	if (SDOA_ERRORCODE_SHOWMESSAGE == nErrorCode)
-	{ // µÇÂ¼´íÎóÏûÏ¢´¦Àí
+	{ // ç™»å½•é”™è¯¯æ¶ˆæ¯å¤„ç†
 		if (nReserved != 0)
 		{
 			LoginMessage* pCurLoginMsg = (LoginMessage*)nReserved;
 			if (pCurLoginMsg->dwSize >= sizeof(LoginMessage))
-			{ // ¼æÈÝÐÔ´¦Àí 
-				// ÐÞ¸Ä´íÎóÌáÊ¾¶Ô»°¿ò±êÌâ
-				//SysReAllocString(pCurLoginMsg->pbstrTitle, L"[²âÊÔÓÎÏ·´íÎóÌáÊ¾]");
+			{ // å…¼å®¹æ€§å¤„ç† 
+				// ä¿®æ”¹é”™è¯¯æç¤ºå¯¹è¯æ¡†æ ‡é¢˜
+				//SysReAllocString(pCurLoginMsg->pbstrTitle, L"[æµ‹è¯•æ¸¸æˆé”™è¯¯æç¤º]");
 
-				// ´ËÊ±·µ»ØFALSEÔòÊ¹ÓÃÄ¬ÈÏÌáÊ¾
+				// æ­¤æ—¶è¿”å›žFALSEåˆ™ä½¿ç”¨é»˜è®¤æç¤º
 
-				// ´ËÊ±·µ»ØTRUEÔòÊ¹ÓÃ×Ô¶¨ÒåµÄÌáÊ¾
+				// æ­¤æ—¶è¿”å›žTRUEåˆ™ä½¿ç”¨è‡ªå®šä¹‰çš„æç¤º
 				//isSDOLogin = TRUE;
 				//::MessageBox(0, *pCurLoginMsg->pbstrContent, *pCurLoginMsg->pbstrTitle, MB_OK);
 			}
 		}
 	}
-	return isSDOLogin; // ³£¹æÂß¼­£¬µÇÂ¼³É¹¦Ôò¹Ø±ÕµÇÂ¼¶Ô»°¿ò
+	return isSDOLogin; // å¸¸è§„é€»è¾‘ï¼Œç™»å½•æˆåŠŸåˆ™å…³é—­ç™»å½•å¯¹è¯æ¡†
 } 
 
 //--------------------------------------------------------------------------------------
@@ -300,11 +300,11 @@ LRESULT CALLBACK MsgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
                           bool* pbNoFurtherProcessing, void* pUserContext )
 {
 	if(g_SDOADx9) 
-	{	// °ÑÏûÏ¢½»¸øIGWÄ£¿é´¦Àí 
+	{	// æŠŠæ¶ˆæ¯äº¤ç»™IGWæ¨¡å—å¤„ç† 
 		LRESULT lResult; 
 		if (g_SDOADx9->OnWindowProc( hWnd, uMsg, wParam, lParam, &lResult ) == SDOA_OK ) 
 		{ 
-			*pbNoFurtherProcessing = true;// ²»ÈÃ×ÔÉíÔÙ´¦ÀíÏûÏ¢ 
+			*pbNoFurtherProcessing = true;// ä¸è®©è‡ªèº«å†å¤„ç†æ¶ˆæ¯ 
 			return lResult; 
 		} 
 	} 
@@ -313,7 +313,7 @@ LRESULT CALLBACK MsgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
 
 	if ( (UINT)SDOA_WM_CLIENT_RUN == uMsg )
 	{
-		// ´Ë¿Ì¿ÉÒÔ¿ªÊ¼µÇÂ¼
+		// æ­¤åˆ»å¯ä»¥å¼€å§‹ç™»å½•
 		if (g_SDOAApp)
 		{
 			g_SDOAApp->ShowLoginDialog(OnLogin, 0, 0);
@@ -358,7 +358,7 @@ void CALLBACK OnLostDevice( void* pUserContext )
 {
 	g_DialogResourceManager.OnLostDevice();
 
-	/* Í¨ÖªIGW d3dÉè±¸¶ªÊ§ */
+	/* é€šçŸ¥IGW d3dè®¾å¤‡ä¸¢å¤± */
 	if(g_SDOADx9)
 		g_SDOADx9->OnDeviceLost();
 }
@@ -371,18 +371,18 @@ void CALLBACK OnDestroyDevice( void* pUserContext )
 {
 	g_DialogResourceManager.OnDestroyDevice();
 
-	/* ÊÍ·ÅIGWÍ¼ÐÎÒýÇæ */
+	/* é‡Šæ”¾IGWå›¾å½¢å¼•æ“Ž */
 	if (g_SDOADx9)
 		g_SDOADx9->Finalize();
 }
 
 void CALLBACK QueryCallback(int nRetCode, int nUserData)
-{ // Òì²½²éÑ¯µÄ»Øµ÷
+{ // å¼‚æ­¥æŸ¥è¯¢çš„å›žè°ƒ
 	if (g_SDOAClientService)
 	{
 		if (nRetCode != SDOA_OK)
 		{
-			g_GameAudioSet.GetStatic( IDC_BALANCELABEL )->SetText( L"²éÑ¯Ê§°Ü" );
+			g_GameAudioSet.GetStatic( IDC_BALANCELABEL )->SetText( L"æŸ¥è¯¢å¤±è´¥" );
 			BSTR bstrRetKey = SysAllocString(L"descMsg");
 			BSTR bstrRetValue = NULL;
 			g_SDOAClientService->GetValue(bstrRetKey, &bstrRetValue);
@@ -390,7 +390,7 @@ void CALLBACK QueryCallback(int nRetCode, int nUserData)
 			LPCWSTR szRet = strRet;
 
 			WCHAR strErrotTitle[100] = {0};
-			StringCchPrintfW( strErrotTitle, 100, L"´íÎóÐÅÏ¢(%d)", nRetCode);
+			StringCchPrintfW( strErrotTitle, 100, L"é”™è¯¯ä¿¡æ¯(%d)", nRetCode);
 
 			::MessageBox(0, szRet, strErrotTitle, MB_OK);	 
 			SysFreeString(bstrRetKey);
@@ -421,7 +421,7 @@ void CALLBACK OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pControl, v
 		int g_dwNumSound;
 		g_dwNumSound = ((CDXUTSlider*)pControl)->GetValue();
 		WCHAR wszAudioSoundBuf[256];
-		StringCchPrintf( wszAudioSoundBuf, 256, L"ÒôÀÖÒôÁ¿£º %u", g_dwNumSound );
+		StringCchPrintf( wszAudioSoundBuf, 256, L"éŸ³ä¹éŸ³é‡ï¼š %u", g_dwNumSound );
 		g_GameAudioSet.GetStatic( IDC_AUDIOSOUNDLABEL )->SetText( wszAudioSoundBuf );
 		if (g_SDOAAppUtils)
 		{
@@ -433,7 +433,7 @@ void CALLBACK OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pControl, v
 		int g_dwNumEffect;
 		g_dwNumEffect = ((CDXUTSlider*)pControl)->GetValue();
 		WCHAR wszAudioEffectBuf[256];
-		StringCchPrintf( wszAudioEffectBuf, 256, L"ÒôÐ§ÒôÁ¿£º %u", g_dwNumEffect );
+		StringCchPrintf( wszAudioEffectBuf, 256, L"éŸ³æ•ˆéŸ³é‡ï¼š %u", g_dwNumEffect );
 		g_GameAudioSet.GetStatic( IDC_AUDIOEFFECTLABEL )->SetText( wszAudioEffectBuf );
 		if (g_SDOAAppUtils)
 		{
@@ -442,14 +442,14 @@ void CALLBACK OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pControl, v
 
 		break;
 	case IDC_BALANCE:
-		// ±ØÐë½Ó¿Ú´æÔÚÇÒµÇÂ¼³É¹¦ºó²Å¿Éµ÷ÓÃ¸Ã½Ó¿Ú£¬ÀýÈç£º²éÑ¯Óà¶î
+		// å¿…é¡»æŽ¥å£å­˜åœ¨ä¸”ç™»å½•æˆåŠŸåŽæ‰å¯è°ƒç”¨è¯¥æŽ¥å£ï¼Œä¾‹å¦‚ï¼šæŸ¥è¯¢ä½™é¢
 		if (isSDOLogin)
 		{
 			if (g_SDOAClientService)
 			{
-				// µ÷ÓÃÇ°ÉèÖÃ²ÎÊý
+				// è°ƒç”¨å‰è®¾ç½®å‚æ•°
 
-				// ¶©µ¥±àºÅ (Çë¸ù¾ÝÊµ¼Êµ¥ºÅÌîÐ´£¬ÕâÀï½öÊÇÑùÀý´úÂë)
+				// è®¢å•ç¼–å· (è¯·æ ¹æ®å®žé™…å•å·å¡«å†™ï¼Œè¿™é‡Œä»…æ˜¯æ ·ä¾‹ä»£ç )
 				BSTR bstrOrderIdName = SysAllocString(L"orderId");
 				BSTR bstrOrderIdValue = SysAllocString(L"01234567890123456789012345678912");
 				if (g_SDOAClientService->SetValue(bstrOrderIdName, bstrOrderIdValue) == SDOA_FALSE)
@@ -459,7 +459,7 @@ void CALLBACK OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pControl, v
 				SysFreeString(bstrOrderIdValue);
 				SysFreeString(bstrOrderIdName);
 
-				// ÉÌ»§±àÂë (¸ù¾ÝÊµ¼ÊÇé¿öÌîÐ´)
+				// å•†æˆ·ç¼–ç  (æ ¹æ®å®žé™…æƒ…å†µå¡«å†™)
 				BSTR bstrSpIdName = SysAllocString(L"spId");
 				BSTR bstrSpIdValue = SysAllocString(L"10075");
 				if (g_SDOAClientService->SetValue(bstrSpIdName, bstrSpIdValue) == SDOA_FALSE)
@@ -470,7 +470,7 @@ void CALLBACK OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pControl, v
 				SysFreeString(bstrSpIdValue);
 
 
-				// »õ±ÒÀàÐÍ
+				// è´§å¸ç±»åž‹
 				BSTR bstrPayTypeName = SysAllocString(L"payType");
 				BSTR bstrPayTypeValue = SysAllocString(L"1");
 				if (g_SDOAClientService->SetValue(bstrPayTypeName, bstrPayTypeValue) == SDOA_FALSE)
@@ -479,7 +479,7 @@ void CALLBACK OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pControl, v
 				}
 				SysFreeString(bstrPayTypeName);
 				SysFreeString(bstrPayTypeValue);
-				// ÃüÁîÀàÐÍ
+				// å‘½ä»¤ç±»åž‹
 				BSTR bstrCmdTypeName = SysAllocString(L"cmdType");
 				BSTR bstrCmdTypeValue = SysAllocString(L"1");
 				if (g_SDOAClientService->SetValue(bstrCmdTypeName, bstrCmdTypeValue) == SDOA_FALSE)
@@ -488,7 +488,7 @@ void CALLBACK OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pControl, v
 				}
 				SysFreeString(bstrCmdTypeName);
 				SysFreeString(bstrCmdTypeValue);
-				// µ÷ÓÃÊ±¼ä
+				// è°ƒç”¨æ—¶é—´
 				BSTR bstrCallTimeName = SysAllocString(L"callTime");
 				WCHAR strTime[50] = {0};
 				SYSTEMTIME sys;
@@ -502,7 +502,7 @@ void CALLBACK OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pControl, v
 				}
 				SysFreeString(bstrCallTimeName);
 				SysFreeString(bstrCallTimeValue);
-				// ¸½¼ÓÖ¸Áî
+				// é™„åŠ æŒ‡ä»¤
 				BSTR bstrIndicationName = SysAllocString(L"indication");
 				BSTR bstrIndicationValue = SysAllocString(L"");
 				if (g_SDOAClientService->SetValue(bstrIndicationName, bstrIndicationValue) == SDOA_FALSE)
@@ -515,16 +515,16 @@ void CALLBACK OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pControl, v
 
 				BSTR bstrServiceName = SysAllocString(L"UserBalance");
 				if ( g_SDOAClientService->AsyncQuery(bstrServiceName, QueryCallback, 0) == SDOA_OK )
-					g_GameAudioSet.GetStatic( IDC_BALANCELABEL )->SetText( L"¿ªÊ¼²éÑ¯" );
+					g_GameAudioSet.GetStatic( IDC_BALANCELABEL )->SetText( L"å¼€å§‹æŸ¥è¯¢" );
 				else
-					g_GameAudioSet.GetStatic( IDC_BALANCELABEL )->SetText( L"²éÑ¯Ê§°Ü" );
+					g_GameAudioSet.GetStatic( IDC_BALANCELABEL )->SetText( L"æŸ¥è¯¢å¤±è´¥" );
 				SysFreeString(bstrServiceName);
 
 			}
 		}
 		else
 		{
-			g_GameAudioSet.GetStatic( IDC_BALANCELABEL )->SetText( L"µÇÂ¼³É¹¦ºó²Å¿ÉÓÃ£¡" );
+			g_GameAudioSet.GetStatic( IDC_BALANCELABEL )->SetText( L"ç™»å½•æˆåŠŸåŽæ‰å¯ç”¨ï¼" );
 		}
 		break;
 
@@ -540,18 +540,18 @@ void InitApp()
 
 	g_GameAudioSet.SetCallback( OnGUIEvent );
 	int iY = 10;
-	g_GameAudioSet.AddStatic( IDC_AUDIOSOUNDLABEL, L"ÒôÀÖÒôÁ¿:0", 35, iY += 20, 125, 22);
+	g_GameAudioSet.AddStatic( IDC_AUDIOSOUNDLABEL, L"éŸ³ä¹éŸ³é‡:0", 35, iY += 20, 125, 22);
 	g_GameAudioSet.AddSlider( IDC_AUDIOSOUND, 10, iY += 20, 150, 10, 0, 100, 0);
-	g_GameAudioSet.AddStatic( IDC_AUDIOEFFECTLABEL, L"ÒôÐ§ÒôÁ¿:0", 35, iY += 20, 125, 22);
+	g_GameAudioSet.AddStatic( IDC_AUDIOEFFECTLABEL, L"éŸ³æ•ˆéŸ³é‡:0", 35, iY += 20, 125, 22);
 	g_GameAudioSet.AddSlider( IDC_AUDIOEFFECT, 10, iY += 20, 150, 10, 10, 100, 0);
 
-	g_GameAudioSet.AddButton( IDC_BALANCE, L"²éÑ¯Óà¶î", 10, iY += 20, 80, 26);
+	g_GameAudioSet.AddButton( IDC_BALANCE, L"æŸ¥è¯¢ä½™é¢", 10, iY += 20, 80, 26);
 	g_GameAudioSet.AddStatic( IDC_BALANCELABEL, L"", 95, iY, 120, 22);
 	
 }
 
 void WINAPI TestSetAudioSoundVolume(DWORD NewVolume)
-{ // ²âÊÔÉèÖÃÒôÀÖÒôÁ¿£¬½öÄ£Äâ¸öÊýÖµ±ä»¯
+{ // æµ‹è¯•è®¾ç½®éŸ³ä¹éŸ³é‡ï¼Œä»…æ¨¡æ‹Ÿä¸ªæ•°å€¼å˜åŒ–
 	DWORD tmpValue;
 	if (NewVolume >= 100)
 	{
@@ -562,7 +562,7 @@ void WINAPI TestSetAudioSoundVolume(DWORD NewVolume)
 		tmpValue = NewVolume;
 	}
 	WCHAR wszAudioSoundBuf[256];
-	StringCchPrintf( wszAudioSoundBuf, 256, L"ÒôÀÖÒôÁ¿£º %u", tmpValue );
+	StringCchPrintf( wszAudioSoundBuf, 256, L"éŸ³ä¹éŸ³é‡ï¼š %u", tmpValue );
 
 	g_GameAudioSet.GetStatic( IDC_AUDIOSOUNDLABEL )->SetText( wszAudioSoundBuf );
 	g_GameAudioSet.GetSlider( IDC_AUDIOSOUND )->SetValue(tmpValue);
@@ -575,7 +575,7 @@ DWORD WINAPI TestGetAudioSoundVolume()
 }
 
 void WINAPI TestSetAudioEffectVolume(DWORD NewVolume)
-{ // ²âÊÔÉèÖÃÒôÐ§ÒôÁ¿£¬½öÄ£Äâ¸öÊýÖµ±ä»¯
+{ // æµ‹è¯•è®¾ç½®éŸ³æ•ˆéŸ³é‡ï¼Œä»…æ¨¡æ‹Ÿä¸ªæ•°å€¼å˜åŒ–
 	DWORD tmpValue;
 	if (NewVolume >= 100)
 	{
@@ -586,7 +586,7 @@ void WINAPI TestSetAudioEffectVolume(DWORD NewVolume)
 		tmpValue = NewVolume;
 	}
 	WCHAR wszAudioEffectBuf[256];
-	StringCchPrintf( wszAudioEffectBuf, 256, L"ÒôÐ§ÒôÁ¿£º %u", tmpValue );
+	StringCchPrintf( wszAudioEffectBuf, 256, L"éŸ³æ•ˆéŸ³é‡ï¼š %u", tmpValue );
 
 	g_GameAudioSet.GetStatic( IDC_AUDIOEFFECTLABEL )->SetText( wszAudioEffectBuf );
 	g_GameAudioSet.GetSlider( IDC_AUDIOEFFECT )->SetValue(tmpValue);
@@ -608,7 +608,7 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 #if defined(DEBUG) | defined(_DEBUG)
     _CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #endif
-	/* ¼ÓÔØIGW */
+	/* åŠ è½½IGW */
 	OpenIGW();
 
     // Set the callback functions
@@ -630,13 +630,13 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
     DXUTCreateDevice( D3DADAPTER_DEFAULT, true, 640, 480, IsDeviceAcceptable, ModifyDeviceSettings );
 
 	if (igwInitialize)
-	{	// ËµÃ÷¼ÓÔØ³É¹¦£¬±íÊ¾ÏÂ......
+	{	// è¯´æ˜ŽåŠ è½½æˆåŠŸï¼Œè¡¨ç¤ºä¸‹......
 		HWND hMainWin = DXUTGetHWND();
-		SetWindowTextW(hMainWin, L"EmptyProject [¼ÓÔØIGW×é¼þ³É¹¦]");
+		SetWindowTextW(hMainWin, L"EmptyProject [åŠ è½½IGWç»„ä»¶æˆåŠŸ]");
 	}		
 
 	if (g_SDOAAppUtils)
-	{  // ÉèÖÃÒôÁ¿¿ØÖÆ»Øµ÷º¯Êý
+	{  // è®¾ç½®éŸ³é‡æŽ§åˆ¶å›žè°ƒå‡½æ•°
 		g_SDOAAppUtils->SetAudioSetting(TestGetAudioSoundVolume, TestSetAudioSoundVolume, TestGetAudioEffectVolume, TestSetAudioEffectVolume);
 	}
 
@@ -645,11 +645,11 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 
     // TODO: Perform any application-level cleanup here
 	if (isSDOLogin && g_SDOAApp)
-	{ // µÇÂ¼³É¹¦£¬ÍË³öÊ±ÒªµÇ³ö
+	{ // ç™»å½•æˆåŠŸï¼Œé€€å‡ºæ—¶è¦ç™»å‡º
 		g_SDOAApp->Logout();
 	}
 
-	/* ÊÍ·ÅIGW */
+	/* é‡Šæ”¾IGW */
 	CloseIGW();
 
     return DXUTGetExitCode();

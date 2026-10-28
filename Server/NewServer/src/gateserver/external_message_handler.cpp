@@ -161,7 +161,7 @@ void CExternalMessageHandler::OnRecv(ISocketSession* pSocketSession, PACKET_BUFF
 	pSession = (CLIENT_SESSION*)pSocketSession->GetUserData();
 	LOG_PROCESS_ERROR(pSession);
 
-	// ½âÃÜ
+	// è§£å¯†
 	if (pSession->byEncryptCode)
 	{
 		for (INT32 nIndex = sizeof(FLEX_MESSAGE_HEADER); nIndex < dwSize; nIndex++)
@@ -170,7 +170,7 @@ void CExternalMessageHandler::OnRecv(ISocketSession* pSocketSession, PACKET_BUFF
 		}
 	}
 
-	// ¸ú¾Í·â°üID, ¾ö¶¨°ÑÊý¾Ý·¢ËÍ¸øgs/ms/ls
+	// è·Ÿå°±å°åŒ…ID, å†³å®šæŠŠæ•°æ®å‘é€ç»™gs/ms/ls
 	if (pHeader->wMsg > c2g_message_begin && pHeader->wMsg < ExternalMessage::c2g_message_end)
 	{
 		LOG_PROCESS_ERROR(pSession->eState == cssPlaying);
@@ -396,7 +396,7 @@ BOOL CExternalMessageHandler::Send(UINT32 dwSessionID, PACKET_BUFFER* pPacketBuf
 		LOG_PROCESS_ERROR(FALSE);
 	}
 
-	// ¼ÓÃÜ
+	// åŠ å¯†
 	if (pSession->byEncryptCode)
 	{
 		for (INT32 nIndex = nOffset + sizeof(FLEX_MESSAGE_HEADER); nIndex < dwSize + nOffset; nIndex++)
@@ -460,12 +460,12 @@ void CExternalMessageHandler::DoLoginAck(UINT32 dwSessionID)
 
 	strxcpy(pMsg->szUserName, pSession->szUserName, USER_NAME_LEN);
 
-	//memset(pMsg->szUserPassword, 0, USER_PASSWORD_LEN);    // Ä¬ÈÏ´úÂë
-	strxcpy(pMsg->szUserPassword, pSession->szPassword, USER_PASSWORD_LEN);    // ×Ô¼º¸Ä´úÂë
+	//memset(pMsg->szUserPassword, 0, USER_PASSWORD_LEN);    // é»˜è®¤ä»£ç 
+	strxcpy(pMsg->szUserPassword, pSession->szPassword, USER_PASSWORD_LEN);    // è‡ªå·±æ”¹ä»£ç 
 
 	pMsg->bAdult = pSession->bAdult;
 	pMsg->byEncryptCode = g_ServerConfig.GT.nEncryptCode;
-	pMsg->dwClientOption = g_GWConfig.dwClientOption;    // ÒÔÇ°ÊÇ gtconfig.lua ÎÄ¼þ, ÏÖÔÚÊÇ gameworldconfig.lua ÎÄ¼þ
+	pMsg->dwClientOption = g_GWConfig.dwClientOption;    // ä»¥å‰æ˜¯ gtconfig.lua æ–‡ä»¶, çŽ°åœ¨æ˜¯ gameworldconfig.lua æ–‡ä»¶
 	memcpy(pMsg->szMessageSize, s_MessageSizeBuffer, s_nMessageSizeBufferSize);
 
 	nRetCode = Send(dwSessionID, (PACKET_BUFFER*)pMsg, pMsg->wSize);
@@ -700,15 +700,15 @@ BOOL CExternalMessageHandler::OnLoginReq(CLIENT_SESSION* pSession, PACKET_BUFFER
 
 	LOG_PROCESS_ERROR(pSession->eState == cssUnAuthed);
 
-	// ×Ö·û´®½áÎ²Ð´0
+	// å­—ç¬¦ä¸²ç»“å°¾å†™0
 	pMsg->szUserName[USER_NAME_LEN - 1] = 0;
 	pMsg->szPassword[USER_PASSWORD_LEN - 1] = 0;
 
-	// ×Ö·û´®ÖÐ´óÐ´×ªÐ¡Ð´
+	// å­—ç¬¦ä¸²ä¸­å¤§å†™è½¬å°å†™
 	_strlwr(pMsg->szUserName);
 	_strlwr(pMsg->szPassword);
 
-	// ¿½±´
+	// æ‹·è´
 	strxcpy(pSession->szUserName, pMsg->szUserName, USER_NAME_LEN);
 	strxcpy(pSession->szPassword, pMsg->szPassword, USER_PASSWORD_LEN);
 
@@ -765,7 +765,7 @@ BOOL CExternalMessageHandler::OnSelectRole(CLIENT_SESSION* pSession, PACKET_BUFF
 	C2T_SELECT_ROLE* pMsg = (C2T_SELECT_ROLE*)pPacketBuffer;
 	INT32 nIndex = 0;
 
-	// ´Ë´¦×´Ì¬²»¶Ô¿ÉÅÐ¶¨Íâ¹ÒÔÚ×ö³¢ÊÔ£¬»òÕß¿Í»§¶ËÓÐBUG
+	// æ­¤å¤„çŠ¶æ€ä¸å¯¹å¯åˆ¤å®šå¤–æŒ‚åœ¨åšå°è¯•ï¼Œæˆ–è€…å®¢æˆ·ç«¯æœ‰BUG
 	LOG_PROCESS_ERROR(pSession->eState == cssRoleOperating);
 
 	LOG_PROCESS_ERROR(pSession->byRoleCount > 0);
@@ -775,7 +775,7 @@ BOOL CExternalMessageHandler::OnSelectRole(CLIENT_SESSION* pSession, PACKET_BUFF
 		if (pSession->RoleList[nIndex].dwRoleID == pMsg->dwRoleID)
 			break;
 	}
-	// Ã»ÕÒµ½ÊÇÍâ¹Ò£¬»òÕß¿Í»§¶ËÓÐBUG
+	// æ²¡æ‰¾åˆ°æ˜¯å¤–æŒ‚ï¼Œæˆ–è€…å®¢æˆ·ç«¯æœ‰BUG
 	LOG_PROCESS_ERROR(nIndex < pSession->byRoleCount);
 	LOG_PROCESS_ERROR(pSession->RoleList[nIndex].byDeleted == 0);
 
@@ -802,7 +802,7 @@ BOOL CExternalMessageHandler::OnCreateRole(CLIENT_SESSION* pSession, PACKET_BUFF
 	CreateRoleParam p;
 	C2T_CREATE_ROLE* pMsg = (C2T_CREATE_ROLE*)pPacketBuffer;
 
-	// ´Ë´¦×´Ì¬²»¶Ô¿ÉÅÐ¶¨Íâ¹ÒÔÚ×ö³¢ÊÔ£¬»òÕß¿Í»§¶ËÓÐBUG
+	// æ­¤å¤„çŠ¶æ€ä¸å¯¹å¯åˆ¤å®šå¤–æŒ‚åœ¨åšå°è¯•ï¼Œæˆ–è€…å®¢æˆ·ç«¯æœ‰BUG
 	LOG_PROCESS_ERROR(pSession->eState == cssRoleOperating);
 
 	LOG_PROCESS_ERROR(strlen(pMsg->szRoleName) > 0);
@@ -887,7 +887,7 @@ BOOL CExternalMessageHandler::OnDeleteRole(CLIENT_SESSION* pSession, PACKET_BUFF
 	INT32 nIndex = 0;
 	INT32 nDeletedRoles = 0;
 
-	// ´Ë´¦×´Ì¬²»¶Ô¿ÉÅÐ¶¨Íâ¹ÒÔÚ×ö³¢ÊÔ£¬»òÕß¿Í»§¶ËÓÐBUG
+	// æ­¤å¤„çŠ¶æ€ä¸å¯¹å¯åˆ¤å®šå¤–æŒ‚åœ¨åšå°è¯•ï¼Œæˆ–è€…å®¢æˆ·ç«¯æœ‰BUG
 	LOG_PROCESS_ERROR(pSession->eState == cssRoleOperating);
 
 	LOG_PROCESS_ERROR(pSession->byRoleCount > 0);
@@ -897,7 +897,7 @@ BOOL CExternalMessageHandler::OnDeleteRole(CLIENT_SESSION* pSession, PACKET_BUFF
 		if (pSession->RoleList[nIndex].dwRoleID == pMsg->dwRoleID)
 			break;
 	}
-	// Ã»ÕÒµ½ÊÇÍâ¹Ò£¬»òÕß¿Í»§¶ËÓÐBUG
+	// æ²¡æ‰¾åˆ°æ˜¯å¤–æŒ‚ï¼Œæˆ–è€…å®¢æˆ·ç«¯æœ‰BUG
 	LOG_PROCESS_ERROR(nIndex < pSession->byRoleCount);
 	LOG_PROCESS_ERROR(pSession->RoleList[nIndex].byDeleted == 0);
 
@@ -928,7 +928,7 @@ BOOL CExternalMessageHandler::OnUnDeleteRole(CLIENT_SESSION* pSession, PACKET_BU
 	INT32 nIndex = 0;
 	INT32 nUsableRoles = 0;
 
-	// ´Ë´¦×´Ì¬²»¶Ô¿ÉÅÐ¶¨Íâ¹ÒÔÚ×ö³¢ÊÔ£¬»òÕß¿Í»§¶ËÓÐBUG
+	// æ­¤å¤„çŠ¶æ€ä¸å¯¹å¯åˆ¤å®šå¤–æŒ‚åœ¨åšå°è¯•ï¼Œæˆ–è€…å®¢æˆ·ç«¯æœ‰BUG
 	LOG_PROCESS_ERROR(pSession->eState == cssRoleOperating);
 
 	LOG_PROCESS_ERROR(pSession->byRoleCount > 0);
@@ -938,7 +938,7 @@ BOOL CExternalMessageHandler::OnUnDeleteRole(CLIENT_SESSION* pSession, PACKET_BU
 		if (pSession->RoleList[nIndex].dwRoleID == pMsg->dwRoleID)
 			break;
 	}
-	// Ã»ÕÒµ½ÊÇÍâ¹Ò£¬»òÕß¿Í»§¶ËÓÐBUG
+	// æ²¡æ‰¾åˆ°æ˜¯å¤–æŒ‚ï¼Œæˆ–è€…å®¢æˆ·ç«¯æœ‰BUG
 	LOG_PROCESS_ERROR(nIndex < pSession->byRoleCount);
 	LOG_PROCESS_ERROR(pSession->RoleList[nIndex].byDeleted == 1);
 
@@ -968,7 +968,7 @@ BOOL CExternalMessageHandler::OnForeverDeleteRole(CLIENT_SESSION* pSession, PACK
 	C2T_FOREVER_DELETE_ROLE* pMsg = (C2T_FOREVER_DELETE_ROLE*)pPacketBuffer;
 	INT32 nIndex = 0;
 
-	// ´Ë´¦×´Ì¬²»¶Ô¿ÉÅÐ¶¨Íâ¹ÒÔÚ×ö³¢ÊÔ£¬»òÕß¿Í»§¶ËÓÐBUG
+	// æ­¤å¤„çŠ¶æ€ä¸å¯¹å¯åˆ¤å®šå¤–æŒ‚åœ¨åšå°è¯•ï¼Œæˆ–è€…å®¢æˆ·ç«¯æœ‰BUG
 	LOG_PROCESS_ERROR(pSession->eState == cssRoleOperating);
 
 	LOG_PROCESS_ERROR(pSession->byRoleCount > 0);
@@ -978,7 +978,7 @@ BOOL CExternalMessageHandler::OnForeverDeleteRole(CLIENT_SESSION* pSession, PACK
 		if (pSession->RoleList[nIndex].dwRoleID == pMsg->dwRoleID)
 			break;
 	}
-	// Ã»ÕÒµ½ÊÇÍâ¹Ò£¬»òÕß¿Í»§¶ËÓÐBUG
+	// æ²¡æ‰¾åˆ°æ˜¯å¤–æŒ‚ï¼Œæˆ–è€…å®¢æˆ·ç«¯æœ‰BUG
 	LOG_PROCESS_ERROR(nIndex < pSession->byRoleCount);
 	LOG_PROCESS_ERROR(pSession->RoleList[nIndex].byDeleted == 1);
 

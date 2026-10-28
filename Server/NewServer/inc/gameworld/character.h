@@ -500,11 +500,11 @@ protected:
 	INT32	m_eMoveState;
 	INT32	m_nMoveSpeed;
 	BOOL	m_bCanRun;
-	INT32	m_nMoveTimer;         // 移动间隔
-	INT32	m_nWalkTimer;         // 行走间隔
-	INT32	m_nRunTimer;          // 跑动间隔
-	INT32   m_nPassiveMoveTimer;  // 被动移动间隔
-	INT32	m_nMineTimer;         // 挖矿间隔
+	INT32	m_nMoveTimer;         // 绉诲姩闂撮殧
+	INT32	m_nWalkTimer;         // 琛岃蛋闂撮殧
+	INT32	m_nRunTimer;          // 璺戝姩闂撮殧
+	INT32   m_nPassiveMoveTimer;  // 琚姩绉诲姩闂撮殧
+	INT32	m_nMineTimer;         // 鎸栫熆闂撮殧
 	INT32	m_nFearDirection;
 	INT32   m_nVolumeID;
 

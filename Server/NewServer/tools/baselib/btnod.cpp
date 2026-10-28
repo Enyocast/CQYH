@@ -137,7 +137,7 @@ BTNod* BTNod_FindTagNode(BTNod* root, INT32 nTag, BOOL nDepthFirst = FALSE)
     LOG_PROCESS_ERROR(nTag > 0);
 
     nod = root->child;
-    if (FALSE == nDepthFirst) // 广度优先
+    if (FALSE == nDepthFirst) // 骞垮害浼樺厛
     {
         while (nod)
         {
@@ -164,7 +164,7 @@ BTNod* BTNod_FindTagNode(BTNod* root, INT32 nTag, BOOL nDepthFirst = FALSE)
         }
 
     } 
-    else  // 深度优先
+    else  // 娣卞害浼樺厛
     {
         while (nod)
         {

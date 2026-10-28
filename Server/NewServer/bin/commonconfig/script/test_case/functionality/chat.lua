@@ -3,15 +3,15 @@ LoadPackage("scene.pkg");
 LoadPackage("chat_def.pkg");
 LoadPackage("id_def.pkg");
 ------------------------------------------------------------------------------------------------------
--- case¸²¸ÇnpcµÄÁÄÌìºÍroleµÄÁÄÌì£¬Ã¿¸öcaseÒª²â5ÖÖÁÄÌìÀàĞÍ
+-- caseè¦†ç›–npcçš„èŠå¤©å’Œroleçš„èŠå¤©ï¼Œæ¯ä¸ªcaseè¦æµ‹5ç§èŠå¤©ç±»å‹
 
---¶ÔÓÚroleµÃÁÄÌì£¬²»¾­¹ıgsÖĞ×ª£¬Ö±½Ó·¢µ½msµÄÊÇ£º×é¶Ó£¬Ë½ÁÄ
---¾­¹ıgs×ª·¢µÄÊÇ£º ÇøÓò(region)£¬³¡¾°(scene)ºÍÈ«·ş¹ã²¥(server)
+--å¯¹äºroleå¾—èŠå¤©ï¼Œä¸ç»è¿‡gsä¸­è½¬ï¼Œç›´æ¥å‘åˆ°msçš„æ˜¯ï¼šç»„é˜Ÿï¼Œç§èŠ
+--ç»è¿‡gsè½¬å‘çš„æ˜¯ï¼š åŒºåŸŸ(region)ï¼Œåœºæ™¯(scene)å’Œå…¨æœå¹¿æ’­(server)
 
---¶ÔÓÚnpcµÄÁÄÌì£¬gsÖ±½Ó´¦ÀíµÄÊÇÇøÓò(region)£¬³¡¾°(scene)£¬ÆäÓàµÄÈ«²¿·¢Íùms
+--å¯¹äºnpcçš„èŠå¤©ï¼Œgsç›´æ¥å¤„ç†çš„æ˜¯åŒºåŸŸ(region)ï¼Œåœºæ™¯(scene)ï¼Œå…¶ä½™çš„å…¨éƒ¨å‘å¾€ms
 
---ÁÄÌìµÄÀàĞÍÎª Role Npc Doodad Missile Drop Guild Team Channel
---Channel µÄÀàĞÍÎª:System GM Scene Screen Server,
+--èŠå¤©çš„ç±»å‹ä¸º Role Npc Doodad Missile Drop Guild Team Channel
+--Channel çš„ç±»å‹ä¸º:System GM Scene Screen Server,
 ------------------------------------------------------------------------------------------------------
 
 TestCase.Chat = {};
@@ -19,7 +19,7 @@ TestCase.Chat = {};
 TestString = "abcdefg1234567898765432123456789";
 function TestCase.Chat.RoleChat()
 
-    -- µÇÂ½
+    -- ç™»é™†
     local user_name1 = "testgs1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
@@ -35,7 +35,7 @@ function TestCase.Chat.RoleChat()
 	local user1sessionid = user1:GetSessionID();	
 	local user2sessionid = user2:GetSessionID();
 
-	-- ÃØÁÄ
+	-- ç§˜èŠ
     print("---------------------------------wisper---------------------------------------");	
 	targetid = user2id;
 	ret = role1:Say(targetid, TestString);
@@ -50,7 +50,7 @@ function TestCase.Chat.RoleChat()
 	username = get_role_name_from_msmessage(msg);
 	check(username == user_name1, "fail to receive msg from correct sender");
 
-    -- ³¡¾°
+    -- åœºæ™¯
     print("---------------------------------scene---------------------------------------");
 	ret = user1:GMCommand("Jump(114, 0, 35763, 18876, 19503)");
 	check(ret, "failed to jump to scene");
@@ -71,7 +71,7 @@ function TestCase.Chat.RoleChat()
 	username = get_role_name_from_gsmsmessage(msg);
 	check(username == user_name1, "fail to receive msg from correct sender");
 
-	--ÇøÓò
+	--åŒºåŸŸ
 	print("---------------------------------screen---------------------------------------");
 	targetid = cctScreen;
 	ret = role1:Say(targetid, TestString);
@@ -84,7 +84,7 @@ function TestCase.Chat.RoleChat()
 	username = get_role_name_from_gsmsmessage(msg);
 	check(username == user_name1, "fail to receive msg from correct sender");
 	
-	-- ×é¶Ó
+	-- ç»„é˜Ÿ
     print("---------------------------------team---------------------------------------");	
 	local team_name = user_name1.."team";
 	
@@ -107,7 +107,7 @@ function TestCase.Chat.RoleChat()
 
 	wait(10);    -- chat interval
 
-	--È«·ş¹ã²¥
+	--å…¨æœå¹¿æ’­
     print("---------------------------------allserver---------------------------------------");	
 	local targetid = cctServer;
 	local ret = role1:Say(targetid, TestString);
@@ -122,14 +122,14 @@ function TestCase.Chat.RoleChat()
 
 	print("test complete");
 	
-	 --²âÊÔÍê³É£¬µÇ³ö
+	 --æµ‹è¯•å®Œæˆï¼Œç™»å‡º
     cleanup(user1);
     cleanup(user2);
 end
 
 function TestCase.Chat.NpcChat()
 
-    -- µÇÂ½
+    -- ç™»é™†
     local user_name1 = "testgs1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
@@ -162,7 +162,7 @@ function TestCase.Chat.NpcChat()
 	check(ret, "failed to jump to scene");
 	wait(10);
 
-	-- ×é¶Ó
+	-- ç»„é˜Ÿ
 	print("---------team-----------------");	
 	local team_name = user_name1.."team";
 	
@@ -181,7 +181,7 @@ function TestCase.Chat.NpcChat()
 	check(msg.dwTargetID == targetid, "fail to receive msg with correct type");
 	check(msg.szMessage == TestString, "fail to receive correct msg content");
 	
-	-- ÃØÁÄ
+	-- ç§˜èŠ
 	print("---------wisper-----------------");	
 	targetid = user2id;
 	summonnpc_and_say(user3, targetid, TestString);
@@ -191,7 +191,7 @@ function TestCase.Chat.NpcChat()
 	print(msg.szMessage);
 	check(msg.szMessage == TestString, "fail to receive correct msg content");
 	
-	--ÇøÓò
+	--åŒºåŸŸ
 	print("---------screen-----------------");
 	local oScene = role1:GetScene();
     local sceneTempID = oScene:GetSceneTempID();		
@@ -204,18 +204,18 @@ function TestCase.Chat.NpcChat()
 	check(msg, "fail to recv chat_message");
 	check(msg.szMessage == TestString, "fail to receive correct msg content");
 	
-    -- ³¡¾°
+    -- åœºæ™¯
 	print("---------scene-----------------");
 
 	targetid = cctScene;
-	--ÓÃGMÖ¸Áî²úÉúNPCËµ»°
+	--ç”¨GMæŒ‡ä»¤äº§ç”ŸNPCè¯´è¯
 	summonnpc_and_say(user3, targetid, TestString);
 	
 	msg = recv_msg(10, user2sessionid, protocol.g2c_chat_message);
 	check(msg, "fail to recv chat_message");
 	check(msg.szMessage == TestString, "fail to receive correct msg content");
 
-	--È«·ş¹ã²¥
+	--å…¨æœå¹¿æ’­
 	print("---------allserver-----------------");	
 	targetid = cctServer;
 	
@@ -224,7 +224,7 @@ function TestCase.Chat.NpcChat()
 	check(msg, "fail to recv chat_message");
 	check(msg.szMessage == TestString, "fail to receive correct msg content");
 
-	--²âÊÔÍê³É£¬µÇ³ö
+	--æµ‹è¯•å®Œæˆï¼Œç™»å‡º
     cleanup(user1);
     cleanup(user2);
     cleanup(user3);
@@ -240,13 +240,13 @@ end
 
 
 ---------------------------------------------------------------------------------
---±¾Case¸ºÔğ²»Í¬³¡¾°ºÍÇøÓòµÄ½»»¥ÁÄÌì
---user1 2ÔÚÍ¬Ò»ÇøÓò£¬3 ÔÚÍ¬Ò»³¡¾°µÄ²»Í¬ÇøÓò
---user 4 ÔÚÓë 1 2 3ÔÚ²»Í¬µÄ¾²Ì¬³¡¾°£¬ user5Óë 1 2 3ÔÚ²»Í¬µÄ¶¯Ì¬³¡¾° 
+--æœ¬Caseè´Ÿè´£ä¸åŒåœºæ™¯å’ŒåŒºåŸŸçš„äº¤äº’èŠå¤©
+--user1 2åœ¨åŒä¸€åŒºåŸŸï¼Œ3 åœ¨åŒä¸€åœºæ™¯çš„ä¸åŒåŒºåŸŸ
+--user 4 åœ¨ä¸ 1 2 3åœ¨ä¸åŒçš„é™æ€åœºæ™¯ï¼Œ user5ä¸ 1 2 3åœ¨ä¸åŒçš„åŠ¨æ€åœºæ™¯ 
 ---------------------------------------------------------------------------------
 function TestCase.Chat.MultiSceneChat()
 	    
-	-- µÇÂ½
+	-- ç™»é™†
     local user_name1 = "testgs1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
@@ -283,9 +283,9 @@ function TestCase.Chat.MultiSceneChat()
 	local user4sessionid = user4:GetSessionID();
 	local user5sessionid = user5:GetSessionID();	
 		
-	-- ÓÃ»§ÌøµØÍ¼
-	--user1 2ÔÚÍ¬Ò»ÇøÓò£¬3 ÔÚÍ¬Ò»³¡¾°µÄ²»Í¬ÇøÓò
-	--user 4 ÔÚÓë 1 2 3ÔÚ²»Í¬µÄ¾²Ì¬³¡¾°£¬ user5Óë 1 2 3ÔÚ²»Í¬µÄ¶¯Ì¬³¡¾° 
+	-- ç”¨æˆ·è·³åœ°å›¾
+	--user1 2åœ¨åŒä¸€åŒºåŸŸï¼Œ3 åœ¨åŒä¸€åœºæ™¯çš„ä¸åŒåŒºåŸŸ
+	--user 4 åœ¨ä¸ 1 2 3åœ¨ä¸åŒçš„é™æ€åœºæ™¯ï¼Œ user5ä¸ 1 2 3åœ¨ä¸åŒçš„åŠ¨æ€åœºæ™¯ 
 	ret = user1:GMCommand("Jump xsc");
 	check(ret, "failed to jump to scene");
 	
@@ -310,13 +310,13 @@ function TestCase.Chat.MultiSceneChat()
     msg = recv_msg(20, user5sessionid, protocol.g2c_leave_scene, user5sessionid, protocol.g2c_enter_scene, user5sessionid, protocol.g2c_char_appear);
     check(msg, "failed to  recv g2c_leave_scene");
 	
-	-- ÇøÓò
+	-- åŒºåŸŸ
     print("---------------------------------screen---------------------------------------");
 	local oScene = role1:GetScene();
     local sceneTempID = oScene:GetSceneTempID();
     local sceneID = oScene:GetSceneID();
 
-	-- ÓÃ»§1Ëµ»°, 2 ÄÜÊÕµ½
+	-- ç”¨æˆ·1è¯´è¯, 2 èƒ½æ”¶åˆ°
 	local targetid = cctScreen;
 	ret =role1:Say(targetid, TestString);
 	check(ret, "failed to send scene chat message");
@@ -328,7 +328,7 @@ function TestCase.Chat.MultiSceneChat()
 	username = get_role_name_from_gsmsmessage(msg);
 	check(username == user_name1, "fail to receive msg from correct sender");
 	
-	-- ÓÃ»§1Ëµ»°, 3,4 5 ÊÕ²»µ½	
+	-- ç”¨æˆ·1è¯´è¯, 3,4 5 æ”¶ä¸åˆ°	
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send scene chat message");
 	msg = recv_msg(10, user3sessionid, protocol.g2c_chat_message);
@@ -344,10 +344,10 @@ function TestCase.Chat.MultiSceneChat()
 	msg = recv_msg(10, user5sessionid, protocol.g2c_chat_message);
 	check(msg == nil, "fail to recv chat_message");
 	
-	--È«·ş¹ã²¥
+	--å…¨æœå¹¿æ’­
     print("---------------------------------allserver---------------------------------------");	
 	
-	-- ÓÃ»§1 Ëµ»°£¬ 2 3 4 5¶¼ÄÜÊÕµ½
+	-- ç”¨æˆ·1 è¯´è¯ï¼Œ 2 3 4 5éƒ½èƒ½æ”¶åˆ°
 	targetid = cctServer;
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send all server chat message");
@@ -366,15 +366,15 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 	
-	-- ÃØÁÄ
+	-- ç§˜èŠ
     print("---------------------------------wisper---------------------------------------");	
 
-	-- ÓÃ»§1¶Ô3Ëµ»°
+	-- ç”¨æˆ·1å¯¹3è¯´è¯
 	targetid = user3id;
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send wisper chat message");
 	
-	-- ÓÃ»§3ÄÜÊÕµ½
+	-- ç”¨æˆ·3èƒ½æ”¶åˆ°
 	msg = recv_msg(10, user3sessionid, protocol.m2c_chat_message);
 	check(msg, "fail to recv chat_message");
 	--check(msg.dwTargetID == targetid, "fail to receive msg with correct type");
@@ -382,7 +382,7 @@ function TestCase.Chat.MultiSceneChat()
 	username = get_role_name_from_msmessage(msg);
 	check(username == user_name1, "fail to receive msg from correct sender");
 
-	-- ÓÃ»§2 4 5ÊÕ²»µ½
+	-- ç”¨æˆ·2 4 5æ”¶ä¸åˆ°
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send wisper chat message");
 	retMsgInfo = recv_msg_and(10, user2sessionid, protocol.m2c_chat_message, user4sessionid, protocol.m2c_chat_message, user5sessionid, protocol.m2c_chat_message);
@@ -394,12 +394,12 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 	
-	-- ÓÃ»§1¶Ô4Ëµ»°
+	-- ç”¨æˆ·1å¯¹4è¯´è¯
 	targetid = user4id;
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send wisper chat message");
 	
-	-- ÓÃ»§4ÄÜÊÕµ½
+	-- ç”¨æˆ·4èƒ½æ”¶åˆ°
 	msg = recv_msg(10, user4sessionid, protocol.m2c_chat_message);
 	check(msg, "fail to recv chat_message");
 	
@@ -408,7 +408,7 @@ function TestCase.Chat.MultiSceneChat()
 	username = get_role_name_from_msmessage(msg);
 	check(username == user_name1, "fail to receive msg from correct sender");
 
-	-- ÓÃ»§2 3 5ÊÕ²»µ½
+	-- ç”¨æˆ·2 3 5æ”¶ä¸åˆ°
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send wisper chat message");
 	
@@ -421,12 +421,12 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 	
-	-- ÓÃ»§1¶Ô5Ëµ»°
+	-- ç”¨æˆ·1å¯¹5è¯´è¯
 	targetid = user5id;
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send wisper chat message");
 
-	-- ÓÃ»§5ÄÜÊÕµ½
+	-- ç”¨æˆ·5èƒ½æ”¶åˆ°
 	msg = recv_msg(10, user5sessionid, protocol.m2c_chat_message);
 	check(msg, "fail to recv chat_message");
 	--check(msg.dwTargetID == targetid, "fail to receive msg with correct type");
@@ -435,7 +435,7 @@ function TestCase.Chat.MultiSceneChat()
 	check(username == user_name1, "fail to receive msg from correct sender");
 	
 	wait(30);
-	-- ÓÃ»§2 3 4ÊÕ²»µ½
+	-- ç”¨æˆ·2 3 4æ”¶ä¸åˆ°
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send wisper chat message");
 	retMsgInfo = recv_msg_and(10, user2sessionid, protocol.m2c_chat_message, user3sessionid, protocol.m2c_chat_message, user4sessionid, protocol.m2c_chat_message);
@@ -447,10 +447,10 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 	
-	-- ³¡¾°
+	-- åœºæ™¯
     print("---------------------------------scene---------------------------------------");
 
-	-- ÓÃ»§1Ëµ»°, 2 3ÄÜÊÕµ½
+	-- ç”¨æˆ·1è¯´è¯, 2 3èƒ½æ”¶åˆ°
 	targetid = cctScene;
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send scene chat message");
@@ -467,7 +467,7 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 	
-	-- ÓÃ»§1Ëµ»°, 4 5 ÊÕ²»µ½	
+	-- ç”¨æˆ·1è¯´è¯, 4 5 æ”¶ä¸åˆ°	
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send scene chat message");
 	
@@ -480,9 +480,9 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 
-	-- ×é¶Ó
+	-- ç»„é˜Ÿ
 	print("---------------------------------team---------------------------------------");
-	-- ÓÃ»§1 ºÍ 4 ¿ç¾²Ì¬³¡¾°×é¶Ó		
+	-- ç”¨æˆ·1 å’Œ 4 è·¨é™æ€åœºæ™¯ç»„é˜Ÿ		
 	local team_name = user_name1.."team";
 	
     local teamid = CreateTeam(team_name, user1, role1);
@@ -494,7 +494,7 @@ function TestCase.Chat.MultiSceneChat()
 
 	targetid = teamid;
 	
-	-- ÓÃ»§1 Ïò¶ÓÎéËµ»°£¬ 4 ÄÜÊÕµ½
+	-- ç”¨æˆ·1 å‘é˜Ÿä¼è¯´è¯ï¼Œ 4 èƒ½æ”¶åˆ°
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send team chat message");
 		
@@ -505,7 +505,7 @@ function TestCase.Chat.MultiSceneChat()
 	username = get_role_name_from_msmessage(msg);
 	check(username == user_name1, "fail to receive msg from correct sender");	
 
-	-- ÓÃ»§2 3 5ÊÕ²»µ½
+	-- ç”¨æˆ·2 3 5æ”¶ä¸åˆ°
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send team chat message");	
 	retMsg = recv_msg_and(10, user2sessionid, protocol.m2c_chat_message, user3sessionid, protocol.m2c_chat_message, user5sessionid, protocol.m2c_chat_message);
@@ -517,13 +517,13 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 
-	-- ÔÙÑûÇëÓë1ÔÚÍ³Ò»³¡¾°µÄ3¼ÓÈë¶ÓÎé
+	-- å†é‚€è¯·ä¸1åœ¨ç»Ÿä¸€åœºæ™¯çš„3åŠ å…¥é˜Ÿä¼
 	
 	InviteToTeam(user3, role3, user1, role1, 0);
 	retMsg = recv_msg_and(30, user1sessionid, protocol.m2c_team_add_member, user3sessionid, protocol.m2c_team_add_member, user4sessionid, protocol.m2c_team_join);
     check(retMsg, "failed to received m2c_team_add_member or m2c_team_join");
 
-	-- ÓÃ»§1 Ïò¶ÓÎéËµ»°£¬3 4 ÄÜÊÕµ½
+	-- ç”¨æˆ·1 å‘é˜Ÿä¼è¯´è¯ï¼Œ3 4 èƒ½æ”¶åˆ°
 	ret = role1:Say(targetid, TestString);
 	retMsg = recv_msg_and(10, user3sessionid, protocol.m2c_chat_message, user4sessionid, protocol.m2c_chat_message);
 	check(retMsg, "fail to recv chat_message");
@@ -537,7 +537,7 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end
 	
-	-- ÓÃ»§2 5ÊÕ²»µ½
+	-- ç”¨æˆ·2 5æ”¶ä¸åˆ°
 	ret = role1:Say(targetid, TestString);
 	check(ret, "failed to send team chat message");	
 	retMsg = recv_msg_and(10, user2sessionid, protocol.m2c_chat_message, user5sessionid, protocol.m2c_chat_message);
@@ -549,7 +549,7 @@ function TestCase.Chat.MultiSceneChat()
 		end
 	end	
 	
-	-- ²âÊÔÍê³É£¬µÇ³ö
+	-- æµ‹è¯•å®Œæˆï¼Œç™»å‡º
 	cleanup(user1);
     cleanup(user2);
     cleanup(user3);

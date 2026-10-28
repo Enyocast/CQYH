@@ -67,7 +67,7 @@ private:
 	INT32	m_nAverageLevel[MAX_SERVER_GROUP_COUNT];
 
 	CObjectPool<RANK_NODE>	m_RankPool;
-	CBaseList m_RankList[MAX_SERVER_GROUP_COUNT][rlTotal];	// °ñÊ×°ñÎ²
+	CBaseList m_RankList[MAX_SERVER_GROUP_COUNT][rlTotal];	// æ¦œé¦–æ¦œå°¾
 
 	typedef std::map<INT64, RANK_NODE*> MAP_KEY_2_RANKING;
 	typedef MAP_KEY_2_RANKING::iterator Iter_MapKey2RankNode;

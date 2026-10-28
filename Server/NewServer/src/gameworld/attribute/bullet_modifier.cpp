@@ -1230,7 +1230,7 @@ INT32 ModifierBullet_040(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT
     CBullet* poBullet = static_cast<CBullet*>(poTarget);
     LOG_PROCESS_ERROR(poBullet);
 
-    // ¸ù¾İIDA·´±àÒëµÄ´úÂë ²¹³ä½øÀ´µÄ, ÔİÊ±ÏÈÆÁ±Î
+    // æ ¹æ®IDAåç¼–è¯‘çš„ä»£ç  è¡¥å……è¿›æ¥çš„, æš‚æ—¶å…ˆå±è”½
     //LOG_PROCESS_ERROR(nParam1 > 0);
 
     eSpellAtkType = poBullet->GetSpellAttr(satAttackType);
@@ -2622,15 +2622,15 @@ INT32 ModifierBullet_086(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT
     caster = CGameWorld::GetInstance().FindValidCharacter(poBullet->GetCasterID());
     LOG_PROCESS_ERROR(caster);
 
-    // ÅĞ¶Ï ÓÕ»óÉñË®
+    // åˆ¤æ–­ è¯±æƒ‘ç¥æ°´
     poAura = caster->GetFirstAura(45780);
     if (poAura)
     {
-        return mrcTrue;  // ÓĞÓÕ»óÉñË®Buff, Ö±½Ó³É¹¦
+        return mrcTrue;  // æœ‰è¯±æƒ‘ç¥æ°´Buff, ç›´æ¥æˆåŠŸ
     }
     else
     {
-        // Ä¬ÈÏ´úÂë - Ã»ÓĞÓÕ»óÉñË®Buff, Õı³£¸ÅÂÊ
+        // é»˜è®¤ä»£ç  - æ²¡æœ‰è¯±æƒ‘ç¥æ°´Buff, æ­£å¸¸æ¦‚ç‡
         if (g_Random(0, nParam1) == nParam2)
             return mrcTrue;
     }
@@ -2805,21 +2805,21 @@ INT32 ModifierBullet_092(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT
     caster = CGameWorld::GetInstance().FindValidCharacter(poBullet->GetCasterID());
     LOG_PROCESS_ERROR(caster);
 
-    // ÅĞ¶Ï ÓÕ»óÉñË®
+    // åˆ¤æ–­ è¯±æƒ‘ç¥æ°´
     poAura = caster->GetFirstAura(45780);
     if (poAura)
     {
-        // ÓĞÓÕ»óÉñË®Buff, Ìá¸ß¸ÅÂÊ
+        // æœ‰è¯±æƒ‘ç¥æ°´Buff, æé«˜æ¦‚ç‡
         nRoleDiff = caster->GetLevel() + nParam1 + nParam2 * poBullet->GetSpellLevel();
         nNpcLevelDiff = target->GetLevel() + nParam3;
         if (nRoleDiff > nNpcLevelDiff)
         {
-            return g_Random(0, 3) == 1;  // 33.33% ¸ÅÂÊ (0,1,2)
+            return g_Random(0, 3) == 1;  // 33.33% æ¦‚ç‡ (0,1,2)
         }
     }
     else
     {
-        // Ä¬ÈÏ´úÂë - Ã»ÓĞÓÕ»óÉñË®Buff, Õı³£¸ÅÂÊ
+        // é»˜è®¤ä»£ç  - æ²¡æœ‰è¯±æƒ‘ç¥æ°´Buff, æ­£å¸¸æ¦‚ç‡
         if (g_Random(0, caster->GetLevel() + nParam1 + nParam2 * poBullet->GetSpellLevel()) > target->GetLevel() + nParam3)
             return mrcTrue;
     }
@@ -2855,15 +2855,15 @@ INT32 ModifierBullet_093(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT
     caster = CGameWorld::GetInstance().FindValidCharacter(poBullet->GetCasterID());
     LOG_PROCESS_ERROR(caster);
 
-    // ÅĞ¶Ï ÓÕ»óÉñË®
+    // åˆ¤æ–­ è¯±æƒ‘ç¥æ°´
     poAura = caster->GetFirstAura(45780);
     if (poAura)
     {
-        return mrcTrue;  // ÓĞÓÕ»óÉñË®Buff, Ö±½Ó³É¹¦
+        return mrcTrue;  // æœ‰è¯±æƒ‘ç¥æ°´Buff, ç›´æ¥æˆåŠŸ
     }
     else
     {
-        // Ä¬ÈÏ´úÂë - Ã»ÓĞÓÕ»óÉñË®Buff, Õı³£¸ÅÂÊ
+        // é»˜è®¤ä»£ç  - æ²¡æœ‰è¯±æƒ‘ç¥æ°´Buff, æ­£å¸¸æ¦‚ç‡
         if (g_Random(0, nA) == nParam2)
             return mrcTrue;
     }
@@ -4150,7 +4150,7 @@ Exit0:
     return mrcError;
 }
 
-// ×Ô¼ºĞÂÔö¼ÓµÄº¯Êı, ÓĞµÄº¯ÊıÄÚÈİ²»ÖªµÀ¸ÃÕ¦Ğ´, ÔİÊ±ÏÈÁô¿Õ
+// è‡ªå·±æ–°å¢åŠ çš„å‡½æ•°, æœ‰çš„å‡½æ•°å†…å®¹ä¸çŸ¥é“è¯¥å’‹å†™, æš‚æ—¶å…ˆç•™ç©º
 INT32 ModifierBullet_129(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32 nParam2, INT32 nParam3, void* pExParam)
 {
     //WRN("Execute Function - %s", __FUNCTION__);
@@ -4166,11 +4166,11 @@ INT32 ModifierBullet_129(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT
     target = poBullet->GetTarget();
     LOG_PROCESS_ERROR(target);
 
-    // ÕâÀïÊÇ»ñÈ¡Ö÷ÈË¶ÔÏó
+    // è¿™é‡Œæ˜¯è·å–ä¸»äººå¯¹è±¡
     host = CGameWorld::GetInstance().FindValidCharacter(target->GetHostID());
     PROCESS_ERROR(host);
 
-    // ÅĞ¶Ï [Ö÷ÈË×´Ì¬] ÊÇ·ñÎª[ÍÚ¿ó]
+    // åˆ¤æ–­ [ä¸»äººçŠ¶æ€] æ˜¯å¦ä¸º[æŒ–çŸ¿]
     if (host->GetMoveState() == CMS_MINE)
     {
         return mrcTrue;
@@ -4463,7 +4463,7 @@ Exit0:
     return mrcError;
 }
 
-// Î´Öªº¯Êı - ³àÔÂ¶ñÄ§»á´¥·¢Õâ¸ö
+// æœªçŸ¥å‡½æ•° - èµ¤æœˆæ¶é­”ä¼šè§¦å‘è¿™ä¸ª
 INT32 ModifierBullet_138(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32 nParam2, INT32 nParam3, void* pExParam)
 {
     //WRN("Execute Function - %s", __FUNCTION__);
@@ -4479,8 +4479,8 @@ INT32 ModifierBullet_138(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT
     target = poBullet->GetTarget();
     LOG_PROCESS_ERROR(target);
 
-    // ¼²¹âµçÓ°-ÎŞÃúÎÄ, Òª×ßÕâ¸öº¯Êı
-    //target->Î´Öªº¯Êı(nParam1);    // ÔÚIDAÖĞ Ã»ÕÒµ½Õâ¸öº¯Êı, ¿ÉÄÜÊÇËûĞÂ¼ÓµÄº¯Êı, ÔİÊ±ÏÈÆÁ±Î
+    // ç–¾å…‰ç”µå½±-æ— é“­æ–‡, è¦èµ°è¿™ä¸ªå‡½æ•°
+    //target->æœªçŸ¥å‡½æ•°(nParam1);    // åœ¨IDAä¸­ æ²¡æ‰¾åˆ°è¿™ä¸ªå‡½æ•°, å¯èƒ½æ˜¯ä»–æ–°åŠ çš„å‡½æ•°, æš‚æ—¶å…ˆå±è”½
 
     return mrcTrue;
 Exit1:
@@ -4492,75 +4492,75 @@ Exit0:
 ModifierFunc g_BulletModifier[bmiCount] =
 {
     { NULL, FALSE },
-    { ModifierBullet_001, FALSE },  // Attack,								   »ù´¡¹¥»÷¼ÆËã£¨ÎïÀí/Ä§·¨ÉËº¦¼ÆËã£©
-    { ModifierBullet_002, FALSE },  // Roll,								   Ëæ»ú÷»×ÓÅĞ¶¨£¨±©»÷¡¢ÉÁ±Ü¡¢ÃüÖĞÂÊµÈ£©
-    { ModifierBullet_003, FALSE },  // TargetKnockBack,						   »÷ÍËÄ¿±ê£¨Ç¿ÖÆÎ»ÒÆ£©
-    { ModifierBullet_004, FALSE },  // AppendAuraToTarget,					   ¸øÄ¿±ê¸½¼Ó×´Ì¬£¨Buff/Debuff£©
-    { ModifierBullet_005, FALSE },  // ModifyAttackByRage,					   ¸ù¾İÅ­ÆøÖµµ÷Õû¹¥»÷£¨Õ½Ê¿Àà¼¼ÄÜ£©
-    { ModifierBullet_006, FALSE },  // AppendAuraToCaster,					   ¸øÊ©·¨Õß¸½¼Ó×´Ì¬£¨ÔöÒæĞ§¹û£©
-    { ModifierBullet_007, FALSE },  // CheckAttackType,						   ¼ì²é¹¥»÷ÀàĞÍ£¨ÎïÀí/Ä§·¨/ÕæÊµÉËº¦µÈ£©
-    { ModifierBullet_008, FALSE },  // ModifyEffect,						   ĞŞ¸Ä¼¼ÄÜĞ§¹û£¨¶¯Ì¬µ÷ÕûÊıÖµ£©
-    { ModifierBullet_009, FALSE },  // CheckTargetDying,					   ¼ì²éÄ¿±êÊÇ·ñ±ôËÀ£¨HPµÍÓÚãĞÖµ£¿£©
-    { ModifierBullet_010, FALSE },  // SetTargetHp,							   Ö±½ÓÉèÖÃÄ¿±êHP£¨ÃëÉ±/ÖÎÁÆµ½¹Ì¶¨Öµ£©
-    { ModifierBullet_011, FALSE },  // ModifyEffectAccordingToMaxHp,		   ĞŞ¸Ä¼¼ÄÜĞ§¹û¸ù¾İ×î´óHP
-    { ModifierBullet_012, FALSE },  // CastSubSpellFromCasterToTarget,		   Ê©·Å×Ó¼¼ÄÜ£¨´ÓÊ©·¨Õß¡úÄ¿±ê£©
-    { ModifierBullet_013, FALSE },  // IsRollResultLessThanTargetAttribute,    ÅĞ¶¨½á¹ûÊÇ·ñĞ¡ÓÚÄ¿±êÊôĞÔ
-    { ModifierBullet_014, FALSE },  // RecordCasterToTargetSpellSlot,		   ¼ÇÂ¼Ê©·¨Õßµ½Ä¿±ê¼¼ÄÜ¿¨²Û
-    { ModifierBullet_015, FALSE },  // CheckRoundTableResult,				   ¼ì²é»ØºÏÖÆ½á¹û£¨ÈçÏÈ¹¥/ÉÁ±Ü/¸ñµ²£©
-    { ModifierBullet_016, FALSE },  // SetTargetFlagBit,					   ÉèÖÃÄ¿±ê±ê¼ÇÎ»£¨Èç¡°³ÁÄ¬¡±¡°Ñ£ÔÎ¡±£©
-    { ModifierBullet_017, FALSE },  // SetCasterFlagBit,					   ÉèÖÃÊ©·¨Õß±ê¼ÇÎ»£¨Èç¡°ÎŞµĞ¡±¡°ÒşÉí¡±£©
-    { ModifierBullet_018, FALSE },  // CheckMpByPercent,					   °´°Ù·Ö±È¼ì²éMP£¨À¶Á¿ÊÇ·ñ×ã¹»£©
-    { ModifierBullet_019, FALSE },  // CheckMpByValue,						   °´¹Ì¶¨Öµ¼ì²éMP£¨ÊÇ·ñ¡İX MP£©
-    { ModifierBullet_020, FALSE },  // ModifierCost,						   ĞŞ¸Ä»¨·Ñ? ²»È·¶¨
-    { ModifierBullet_021, FALSE },  // Leech,								   ÎüÑª/ÎüÀ¶Ğ§¹û£¨ÉúÃüÍµÈ¡£©
-    { ModifierBullet_022, FALSE },  // CheckTargetType,						   ¼ì²éÄ¿±êÀàĞÍ£¨Íæ¼Ò/NPC/BOSS/ÓÑ¾üµÈ£©
-    { ModifierBullet_023, FALSE },  // IsTargetFaceToCaster,				   ¼ì²éÄ¿±êÊÇ·ñÃæÏòÊ©·¨Õß£¨±³´Ì/¸ñµ²»úÖÆ£©
-    { ModifierBullet_024, FALSE },  // CheckRemainCooldown,					   ¼ì²éÊ£ÓàÀäÈ´Ê±¼ä£¨CDÊÇ·ñ×ªºÃ£©
-    { ModifierBullet_025, FALSE },  // ReduceCooldown,						   ¼õÉÙÀäÈ´Ê±¼ä£¨Ë¢ĞÂ/¼ÓËÙCD£©
-    { ModifierBullet_026, FALSE },  // CheckCasterWeaponType,				   ¼ì²éÊ©·¨ÕßÎäÆ÷ÀàĞÍ£¨½£/·¨ÕÈ/¹­µÈ£©
-    { ModifierBullet_027, FALSE },  // ModifyEffectByRemainMp,				   ¸ù¾İÊ£ÓàMPµ÷ÕûĞ§¹û£¨À¶Á¿Ô½¸ßÉËº¦Ô½¸ß£©
-    { ModifierBullet_028, FALSE },  // DamageReflect,						   ÉËº¦·´µ¯£¨·´ÉË»úÖÆ£©
-    { ModifierBullet_029, FALSE },  // CheckTargetDistance,					   ¼ì²éÄ¿±ê¾àÀë£¨ÊÇ·ñÔÚ¼¼ÄÜ·¶Î§ÄÚ£©
-    { ModifierBullet_030, FALSE },  // CheckTargetExFlag,					   ¼ì²éÄ¿±ê¶îÍâ±ê¼Ç£¨×Ô¶¨Òå×´Ì¬£©
-    { ModifierBullet_031, FALSE },  // ModifyX1ByTargetHp,					   ĞŞ¸ÄX1¸ù¾İÄ¿±êHP
-    { ModifierBullet_032, FALSE },  // CheckHealBullet,						   ¼ì²éÖÎÓú×Óµ¯ ²»È·¶¨
-    { ModifierBullet_033, FALSE },  // ChangeTargetMp,						   ¸Ä±äÄ¿±êMP£¨ÎüÀ¶/»ØÀ¶£©
-    { ModifierBullet_034, FALSE },  // RemoveTargetAura,					   ÒÆ³ıÄ¿±ê×´Ì¬£¨ÇıÉ¢Debuff£©
-    { ModifierBullet_035, FALSE },  // CheckTargetHp,						   ¼ì²éÄ¿±êHP£¨ÊÇ·ñÂú×ãÌõ¼ş£¬Èç>50%£©
-    { ModifierBullet_036, FALSE },  // CheckSpellAndRune,					   ¼ì²é¼¼ÄÜÓë·ûÎÄ£¨·ûÎÄÇ¿»¯Ğ§¹û£©
-    { ModifierBullet_037, FALSE },  // CastSubSpellFromCasterToCaster,		   Ê©·Å×Ó¼¼ÄÜ£¨×ÔÉí¡ú×ÔÉí£©
-    { ModifierBullet_038, FALSE },  // CastSubSpellFromTargetToTarget,		   Ê©·Å×Ó¼¼ÄÜ£¨´ÓÊ©·¨Õß¡úÄ¿±ê£©
-    { ModifierBullet_039, FALSE },  // CastSubSpellFromTargetToCaster,		   Ê©·Å×Ó¼¼ÄÜ£¨Ä¿±ê¡úÄ¿±ê£©
-    { ModifierBullet_040, FALSE },  // ModifyEffectByUsedMp,				   ¸ù¾İÒÑÏûºÄMPµ÷ÕûĞ§¹û£¨ÀàËÆ¡°·¨Á¦È¼ÉÕ¡±»úÖÆ£©
-    { ModifierBullet_041, FALSE },  // CommonStiff,							   ÆÕÍ¨¸ÕĞÔ? ²»È·¶¨
-    { ModifierBullet_042, FALSE },  // RemoveCasterAura,					   ÒÆ³ıÊ©·¨Õß×´Ì¬£¨Çå³ıBuff£©
-    { ModifierBullet_043, FALSE },  // CheckCasterExFlag,					   ¼ì²éÊ©·¨Õß¶îÍâ±ê¼Ç
-    { ModifierBullet_044, FALSE },  // CheckTargetIsBoss,					   ¼ì²éÄ¿±êÊÇ·ñÎªBOSS£¨ÌØÊâ»úÖÆ£©
-    { ModifierBullet_045, FALSE },  // ForceChangeRoundTableResult,			   Ç¿ÖÆĞŞ¸Ä»ØºÏ½á¹û£¨±Ø¶¨ÃüÖĞ/ÉÁ±Ü£©
-    { ModifierBullet_046, FALSE },  // CheckSpellCost,						   ¼ì²é¼¼ÄÜÏûºÄ£¨MP/HP/ÎïÆ·µÈ£©
-    { ModifierBullet_047, FALSE },  // CheckCasterHp,						   ¼ì²éÊ©·¨ÕßHP£¨ÊÇ·ñÂú×ãÊ©·¨Ìõ¼ş£©
-    { ModifierBullet_048, FALSE },  // CheckCasterAura,						   ¼ì²éÊ©·¨ÕßÊÇ·ñÓĞÄ³×´Ì¬
-    { ModifierBullet_049, FALSE },  // ModifyEffectPctByDistance,			   ¸ù¾İ¾àÀëµ÷ÕûĞ§¹û°Ù·Ö±È£¨Ô¶³ÌË¥¼õ/½üÕ½ÔöÇ¿£©
-    { ModifierBullet_050, FALSE },  // CheckTargetCanbeThrown,				   ¼ì²éÄ¿±êÊÇ·ñ¿É±»Í¶ÖÀ£¨»÷·É/×¥È¡ÅĞ¶¨£©
-    { ModifierBullet_051, FALSE },  // CheckWeather,						   ¼ì²éÌìÆø£¨Ä³Ğ©¼¼ÄÜÊÜÌìÆøÓ°Ïì£©
-    { ModifierBullet_052, FALSE },  // CheckLevel,							   ¼ì²éµÈ¼¶£¨ÊÇ·ñ´ïµ½¼¼ÄÜÒªÇó£©
-    { ModifierBullet_053, FALSE },  // MoveTargetToSpellTargetPos,			   ½«Ä¿±êÒÆ¶¯µ½¼¼ÄÜÄ¿±êÎ»ÖÃ£¨´«ËÍ/À­×§£©
-    { ModifierBullet_054, FALSE },  // CheckTargetMp,						   ¼ì²éÄ¿±êMP
-    { ModifierBullet_055, FALSE },  // CheckIsDaytime,						   ¼ì²éÊÇ·ñÎª°×Ìì£¨ÖçÒ¹»úÖÆ£©
-    { ModifierBullet_056, FALSE },  // ConvertToCasterHp,					   ½«ÉËº¦/ÖÎÁÆ×ª»»ÎªÊ©·¨ÕßHP£¨ÎüÑª/×ª»»£©
-    { ModifierBullet_057, FALSE },  // ModifyEffectByHpMax,					   ¸ù¾İ×î´óHPµ÷ÕûĞ§¹û£¨°Ù·Ö±ÈÉËº¦/ÖÎÁÆ£©
-    { ModifierBullet_058, FALSE },  // ReduceTargetAura,					   ¼õÉÙÄ¿±ê×´Ì¬²ãÊı/Ê±¼ä£¨ÈçDot£©
-    { ModifierBullet_059, FALSE },  // ModifySpellAtrr,						   ĞŞ¸Ä¼¼ÄÜÊôĞÔ
-    { ModifierBullet_060, FALSE },  // DamageShare,							   ÉËº¦·ÖÌ¯£¨ÍÅ¶Ó·Öµ£ÉËº¦£©
-    { ModifierBullet_061, FALSE },  // CheckElementaryType,					   ¼ì²éÔªËØÀàĞÍ£¨»ğ/±ù/À×µÈÏà¿Ë£©
-    { ModifierBullet_062, FALSE },  // TriggerEventRootSpellCD: Caster,		   Ê©·¨Õß: ´¥·¢ÊÂ¼ş¸ù²¿¼¼ÄÜCD
-    { ModifierBullet_063, FALSE },  // TriggerEventRootSpellCD: Target,		   Ä¿±ê: ´¥·¢ÊÂ¼ş¸ù²¿¼¼ÄÜCD
-    { ModifierBullet_064, FALSE },  // CheckSpellFlag,						   ¼ì²é¼¼ÄÜ±ê¼Ç£¨Èç¡°ÊÇ·ñ¿É´ò¶Ï¡±£©
-    { ModifierBullet_065, FALSE },  // ReduceTargetAuraStack,				   ¼õÉÙÄ¿±ê×´Ì¬µş¼Ó²ãÊı
-    { ModifierBullet_066, FALSE },  // FinishAuraImmidiately,				   Á¢¼´½áÊø¹â»·
-    { ModifierBullet_067, FALSE },  // TargetTurnToCaster,                     Ä¿±ê×ªÊ©·¨Õß
-    { ModifierBullet_068, FALSE },  // AddTargetHp,                            Ôö¼¡Ä¿±êHP
-    { ModifierBullet_069, FALSE },  // CheckTargetAura,                        ¼ì²éÄ¿±ê¹â»·
+    { ModifierBullet_001, FALSE },  // Attack,								   åŸºç¡€æ”»å‡»è®¡ç®—ï¼ˆç‰©ç†/é­”æ³•ä¼¤å®³è®¡ç®—ï¼‰
+    { ModifierBullet_002, FALSE },  // Roll,								   éšæœºéª°å­åˆ¤å®šï¼ˆæš´å‡»ã€é—ªé¿ã€å‘½ä¸­ç‡ç­‰ï¼‰
+    { ModifierBullet_003, FALSE },  // TargetKnockBack,						   å‡»é€€ç›®æ ‡ï¼ˆå¼ºåˆ¶ä½ç§»ï¼‰
+    { ModifierBullet_004, FALSE },  // AppendAuraToTarget,					   ç»™ç›®æ ‡é™„åŠ çŠ¶æ€ï¼ˆBuff/Debuffï¼‰
+    { ModifierBullet_005, FALSE },  // ModifyAttackByRage,					   æ ¹æ®æ€’æ°”å€¼è°ƒæ•´æ”»å‡»ï¼ˆæˆ˜å£«ç±»æŠ€èƒ½ï¼‰
+    { ModifierBullet_006, FALSE },  // AppendAuraToCaster,					   ç»™æ–½æ³•è€…é™„åŠ çŠ¶æ€ï¼ˆå¢ç›Šæ•ˆæœï¼‰
+    { ModifierBullet_007, FALSE },  // CheckAttackType,						   æ£€æŸ¥æ”»å‡»ç±»å‹ï¼ˆç‰©ç†/é­”æ³•/çœŸå®ä¼¤å®³ç­‰ï¼‰
+    { ModifierBullet_008, FALSE },  // ModifyEffect,						   ä¿®æ”¹æŠ€èƒ½æ•ˆæœï¼ˆåŠ¨æ€è°ƒæ•´æ•°å€¼ï¼‰
+    { ModifierBullet_009, FALSE },  // CheckTargetDying,					   æ£€æŸ¥ç›®æ ‡æ˜¯å¦æ¿’æ­»ï¼ˆHPä½äºé˜ˆå€¼ï¼Ÿï¼‰
+    { ModifierBullet_010, FALSE },  // SetTargetHp,							   ç›´æ¥è®¾ç½®ç›®æ ‡HPï¼ˆç§’æ€/æ²»ç–—åˆ°å›ºå®šå€¼ï¼‰
+    { ModifierBullet_011, FALSE },  // ModifyEffectAccordingToMaxHp,		   ä¿®æ”¹æŠ€èƒ½æ•ˆæœæ ¹æ®æœ€å¤§HP
+    { ModifierBullet_012, FALSE },  // CastSubSpellFromCasterToTarget,		   æ–½æ”¾å­æŠ€èƒ½ï¼ˆä»æ–½æ³•è€…â†’ç›®æ ‡ï¼‰
+    { ModifierBullet_013, FALSE },  // IsRollResultLessThanTargetAttribute,    åˆ¤å®šç»“æœæ˜¯å¦å°äºç›®æ ‡å±æ€§
+    { ModifierBullet_014, FALSE },  // RecordCasterToTargetSpellSlot,		   è®°å½•æ–½æ³•è€…åˆ°ç›®æ ‡æŠ€èƒ½å¡æ§½
+    { ModifierBullet_015, FALSE },  // CheckRoundTableResult,				   æ£€æŸ¥å›åˆåˆ¶ç»“æœï¼ˆå¦‚å…ˆæ”»/é—ªé¿/æ ¼æŒ¡ï¼‰
+    { ModifierBullet_016, FALSE },  // SetTargetFlagBit,					   è®¾ç½®ç›®æ ‡æ ‡è®°ä½ï¼ˆå¦‚â€œæ²‰é»˜â€â€œçœ©æ™•â€ï¼‰
+    { ModifierBullet_017, FALSE },  // SetCasterFlagBit,					   è®¾ç½®æ–½æ³•è€…æ ‡è®°ä½ï¼ˆå¦‚â€œæ— æ•Œâ€â€œéšèº«â€ï¼‰
+    { ModifierBullet_018, FALSE },  // CheckMpByPercent,					   æŒ‰ç™¾åˆ†æ¯”æ£€æŸ¥MPï¼ˆè“é‡æ˜¯å¦è¶³å¤Ÿï¼‰
+    { ModifierBullet_019, FALSE },  // CheckMpByValue,						   æŒ‰å›ºå®šå€¼æ£€æŸ¥MPï¼ˆæ˜¯å¦â‰¥X MPï¼‰
+    { ModifierBullet_020, FALSE },  // ModifierCost,						   ä¿®æ”¹èŠ±è´¹? ä¸ç¡®å®š
+    { ModifierBullet_021, FALSE },  // Leech,								   å¸è¡€/å¸è“æ•ˆæœï¼ˆç”Ÿå‘½å·å–ï¼‰
+    { ModifierBullet_022, FALSE },  // CheckTargetType,						   æ£€æŸ¥ç›®æ ‡ç±»å‹ï¼ˆç©å®¶/NPC/BOSS/å‹å†›ç­‰ï¼‰
+    { ModifierBullet_023, FALSE },  // IsTargetFaceToCaster,				   æ£€æŸ¥ç›®æ ‡æ˜¯å¦é¢å‘æ–½æ³•è€…ï¼ˆèƒŒåˆº/æ ¼æŒ¡æœºåˆ¶ï¼‰
+    { ModifierBullet_024, FALSE },  // CheckRemainCooldown,					   æ£€æŸ¥å‰©ä½™å†·å´æ—¶é—´ï¼ˆCDæ˜¯å¦è½¬å¥½ï¼‰
+    { ModifierBullet_025, FALSE },  // ReduceCooldown,						   å‡å°‘å†·å´æ—¶é—´ï¼ˆåˆ·æ–°/åŠ é€ŸCDï¼‰
+    { ModifierBullet_026, FALSE },  // CheckCasterWeaponType,				   æ£€æŸ¥æ–½æ³•è€…æ­¦å™¨ç±»å‹ï¼ˆå‰‘/æ³•æ–/å¼“ç­‰ï¼‰
+    { ModifierBullet_027, FALSE },  // ModifyEffectByRemainMp,				   æ ¹æ®å‰©ä½™MPè°ƒæ•´æ•ˆæœï¼ˆè“é‡è¶Šé«˜ä¼¤å®³è¶Šé«˜ï¼‰
+    { ModifierBullet_028, FALSE },  // DamageReflect,						   ä¼¤å®³åå¼¹ï¼ˆåä¼¤æœºåˆ¶ï¼‰
+    { ModifierBullet_029, FALSE },  // CheckTargetDistance,					   æ£€æŸ¥ç›®æ ‡è·ç¦»ï¼ˆæ˜¯å¦åœ¨æŠ€èƒ½èŒƒå›´å†…ï¼‰
+    { ModifierBullet_030, FALSE },  // CheckTargetExFlag,					   æ£€æŸ¥ç›®æ ‡é¢å¤–æ ‡è®°ï¼ˆè‡ªå®šä¹‰çŠ¶æ€ï¼‰
+    { ModifierBullet_031, FALSE },  // ModifyX1ByTargetHp,					   ä¿®æ”¹X1æ ¹æ®ç›®æ ‡HP
+    { ModifierBullet_032, FALSE },  // CheckHealBullet,						   æ£€æŸ¥æ²»æ„ˆå­å¼¹ ä¸ç¡®å®š
+    { ModifierBullet_033, FALSE },  // ChangeTargetMp,						   æ”¹å˜ç›®æ ‡MPï¼ˆå¸è“/å›è“ï¼‰
+    { ModifierBullet_034, FALSE },  // RemoveTargetAura,					   ç§»é™¤ç›®æ ‡çŠ¶æ€ï¼ˆé©±æ•£Debuffï¼‰
+    { ModifierBullet_035, FALSE },  // CheckTargetHp,						   æ£€æŸ¥ç›®æ ‡HPï¼ˆæ˜¯å¦æ»¡è¶³æ¡ä»¶ï¼Œå¦‚>50%ï¼‰
+    { ModifierBullet_036, FALSE },  // CheckSpellAndRune,					   æ£€æŸ¥æŠ€èƒ½ä¸ç¬¦æ–‡ï¼ˆç¬¦æ–‡å¼ºåŒ–æ•ˆæœï¼‰
+    { ModifierBullet_037, FALSE },  // CastSubSpellFromCasterToCaster,		   æ–½æ”¾å­æŠ€èƒ½ï¼ˆè‡ªèº«â†’è‡ªèº«ï¼‰
+    { ModifierBullet_038, FALSE },  // CastSubSpellFromTargetToTarget,		   æ–½æ”¾å­æŠ€èƒ½ï¼ˆä»æ–½æ³•è€…â†’ç›®æ ‡ï¼‰
+    { ModifierBullet_039, FALSE },  // CastSubSpellFromTargetToCaster,		   æ–½æ”¾å­æŠ€èƒ½ï¼ˆç›®æ ‡â†’ç›®æ ‡ï¼‰
+    { ModifierBullet_040, FALSE },  // ModifyEffectByUsedMp,				   æ ¹æ®å·²æ¶ˆè€—MPè°ƒæ•´æ•ˆæœï¼ˆç±»ä¼¼â€œæ³•åŠ›ç‡ƒçƒ§â€æœºåˆ¶ï¼‰
+    { ModifierBullet_041, FALSE },  // CommonStiff,							   æ™®é€šåˆšæ€§? ä¸ç¡®å®š
+    { ModifierBullet_042, FALSE },  // RemoveCasterAura,					   ç§»é™¤æ–½æ³•è€…çŠ¶æ€ï¼ˆæ¸…é™¤Buffï¼‰
+    { ModifierBullet_043, FALSE },  // CheckCasterExFlag,					   æ£€æŸ¥æ–½æ³•è€…é¢å¤–æ ‡è®°
+    { ModifierBullet_044, FALSE },  // CheckTargetIsBoss,					   æ£€æŸ¥ç›®æ ‡æ˜¯å¦ä¸ºBOSSï¼ˆç‰¹æ®Šæœºåˆ¶ï¼‰
+    { ModifierBullet_045, FALSE },  // ForceChangeRoundTableResult,			   å¼ºåˆ¶ä¿®æ”¹å›åˆç»“æœï¼ˆå¿…å®šå‘½ä¸­/é—ªé¿ï¼‰
+    { ModifierBullet_046, FALSE },  // CheckSpellCost,						   æ£€æŸ¥æŠ€èƒ½æ¶ˆè€—ï¼ˆMP/HP/ç‰©å“ç­‰ï¼‰
+    { ModifierBullet_047, FALSE },  // CheckCasterHp,						   æ£€æŸ¥æ–½æ³•è€…HPï¼ˆæ˜¯å¦æ»¡è¶³æ–½æ³•æ¡ä»¶ï¼‰
+    { ModifierBullet_048, FALSE },  // CheckCasterAura,						   æ£€æŸ¥æ–½æ³•è€…æ˜¯å¦æœ‰æŸçŠ¶æ€
+    { ModifierBullet_049, FALSE },  // ModifyEffectPctByDistance,			   æ ¹æ®è·ç¦»è°ƒæ•´æ•ˆæœç™¾åˆ†æ¯”ï¼ˆè¿œç¨‹è¡°å‡/è¿‘æˆ˜å¢å¼ºï¼‰
+    { ModifierBullet_050, FALSE },  // CheckTargetCanbeThrown,				   æ£€æŸ¥ç›®æ ‡æ˜¯å¦å¯è¢«æŠ•æ·ï¼ˆå‡»é£/æŠ“å–åˆ¤å®šï¼‰
+    { ModifierBullet_051, FALSE },  // CheckWeather,						   æ£€æŸ¥å¤©æ°”ï¼ˆæŸäº›æŠ€èƒ½å—å¤©æ°”å½±å“ï¼‰
+    { ModifierBullet_052, FALSE },  // CheckLevel,							   æ£€æŸ¥ç­‰çº§ï¼ˆæ˜¯å¦è¾¾åˆ°æŠ€èƒ½è¦æ±‚ï¼‰
+    { ModifierBullet_053, FALSE },  // MoveTargetToSpellTargetPos,			   å°†ç›®æ ‡ç§»åŠ¨åˆ°æŠ€èƒ½ç›®æ ‡ä½ç½®ï¼ˆä¼ é€/æ‹‰æ‹½ï¼‰
+    { ModifierBullet_054, FALSE },  // CheckTargetMp,						   æ£€æŸ¥ç›®æ ‡MP
+    { ModifierBullet_055, FALSE },  // CheckIsDaytime,						   æ£€æŸ¥æ˜¯å¦ä¸ºç™½å¤©ï¼ˆæ˜¼å¤œæœºåˆ¶ï¼‰
+    { ModifierBullet_056, FALSE },  // ConvertToCasterHp,					   å°†ä¼¤å®³/æ²»ç–—è½¬æ¢ä¸ºæ–½æ³•è€…HPï¼ˆå¸è¡€/è½¬æ¢ï¼‰
+    { ModifierBullet_057, FALSE },  // ModifyEffectByHpMax,					   æ ¹æ®æœ€å¤§HPè°ƒæ•´æ•ˆæœï¼ˆç™¾åˆ†æ¯”ä¼¤å®³/æ²»ç–—ï¼‰
+    { ModifierBullet_058, FALSE },  // ReduceTargetAura,					   å‡å°‘ç›®æ ‡çŠ¶æ€å±‚æ•°/æ—¶é—´ï¼ˆå¦‚Dotï¼‰
+    { ModifierBullet_059, FALSE },  // ModifySpellAtrr,						   ä¿®æ”¹æŠ€èƒ½å±æ€§
+    { ModifierBullet_060, FALSE },  // DamageShare,							   ä¼¤å®³åˆ†æ‘Šï¼ˆå›¢é˜Ÿåˆ†æ‹…ä¼¤å®³ï¼‰
+    { ModifierBullet_061, FALSE },  // CheckElementaryType,					   æ£€æŸ¥å…ƒç´ ç±»å‹ï¼ˆç«/å†°/é›·ç­‰ç›¸å…‹ï¼‰
+    { ModifierBullet_062, FALSE },  // TriggerEventRootSpellCD: Caster,		   æ–½æ³•è€…: è§¦å‘äº‹ä»¶æ ¹éƒ¨æŠ€èƒ½CD
+    { ModifierBullet_063, FALSE },  // TriggerEventRootSpellCD: Target,		   ç›®æ ‡: è§¦å‘äº‹ä»¶æ ¹éƒ¨æŠ€èƒ½CD
+    { ModifierBullet_064, FALSE },  // CheckSpellFlag,						   æ£€æŸ¥æŠ€èƒ½æ ‡è®°ï¼ˆå¦‚â€œæ˜¯å¦å¯æ‰“æ–­â€ï¼‰
+    { ModifierBullet_065, FALSE },  // ReduceTargetAuraStack,				   å‡å°‘ç›®æ ‡çŠ¶æ€å åŠ å±‚æ•°
+    { ModifierBullet_066, FALSE },  // FinishAuraImmidiately,				   ç«‹å³ç»“æŸå…‰ç¯
+    { ModifierBullet_067, FALSE },  // TargetTurnToCaster,                     ç›®æ ‡è½¬æ–½æ³•è€…
+    { ModifierBullet_068, FALSE },  // AddTargetHp,                            å¢è‚Œç›®æ ‡HP
+    { ModifierBullet_069, FALSE },  // CheckTargetAura,                        æ£€æŸ¥ç›®æ ‡å…‰ç¯
     { ModifierBullet_070, FALSE },
     { ModifierBullet_071, FALSE },
     { ModifierBullet_072, FALSE },
@@ -4621,7 +4621,7 @@ ModifierFunc g_BulletModifier[bmiCount] =
     { ModifierBullet_127, FALSE },
     { ModifierBullet_128, FALSE },
 
-    // ×Ô¼ºĞÂÔö¼ÓµÄ
+    // è‡ªå·±æ–°å¢åŠ çš„
     { ModifierBullet_129, FALSE },
     { ModifierBullet_130, FALSE },
     { ModifierBullet_131, FALSE },

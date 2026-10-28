@@ -79,11 +79,11 @@ void CStatistic::OnKillNpc(CRole* poRole, CNpc* poNpc)
 	LOG_PROCESS_ERROR(poNpc);
 	LOG_PROCESS_ERROR(poNpc->GetNpcData());
 
-	// Í³¼ÆÉ±¹ÖÊýÁ¿
+	// ç»Ÿè®¡æ€æ€ªæ•°é‡
 
 	poRole->GetAchievementList().AddVariable(avdKillNpcTotalCount, 1);
 
-	// Í³¼ÆÉ±ËÀÖ¸¶¨ID¹ÖÎï
+	// ç»Ÿè®¡æ€æ­»æŒ‡å®šIDæ€ªç‰©
 
 	if (poNpc->GetNpcData()->nBeKilledVarIndex >= 0 && poNpc->GetNpcData()->nBeKilledVarIndex < MAX_ROLE_VARIABLE_COUNT)
 	{
@@ -123,8 +123,8 @@ void CStatistic::OnKilledByPlayer(CRole* poKiller, CRole* poVictim)
 	LOG_PROCESS_ERROR(poKiller);
 	LOG_PROCESS_ERROR(poVictim);
 
-	// É±ÈËÕßÍ³¼Æ
-	switch (poVictim->GetClass())	// Í³¼ÆÉ±ËÀ¸÷Ö°ÒµÍæ¼ÒÊýÁ¿
+	// æ€äººè€…ç»Ÿè®¡
+	switch (poVictim->GetClass())	// ç»Ÿè®¡æ€æ­»å„èŒä¸šçŽ©å®¶æ•°é‡
 	{
 	case clsWarrior:
 		poKiller->GetAchievementList().AddVariable(avdKillWarriorCount, 1);
@@ -145,13 +145,13 @@ void CStatistic::OnKilledByPlayer(CRole* poKiller, CRole* poVictim)
 		break;
 	}
 
-	if (poVictim->GetPkValue() > ACHIEVEMENT_PK_VALUE)	// Í³¼ÆÉ±ËÀÖ¸¶¨ÉÆ¶ñÖµÍæ¼Ò
+	if (poVictim->GetPkValue() > ACHIEVEMENT_PK_VALUE)	// ç»Ÿè®¡æ€æ­»æŒ‡å®šå–„æ¶å€¼çŽ©å®¶
 	{
 		poKiller->GetAchievementList().AddVariable(avdKillPkValuePlayerCount, 1);
 	}
 
-	// ±»É±ÕßÍ³¼Æ
-	poVictim->GetAchievementList().AddVariable(avdPVPKilledByPlayer, 1);	// Í³¼Æpvp±»Íæ¼ÒËùÉ±													
+	// è¢«æ€è€…ç»Ÿè®¡
+	poVictim->GetAchievementList().AddVariable(avdPVPKilledByPlayer, 1);	// ç»Ÿè®¡pvpè¢«çŽ©å®¶æ‰€æ€													
 
 	return;
 Exit0:
@@ -171,7 +171,7 @@ void CStatistic::OnKillWithNoGuilty(CRole* poKiller)
 	if (pScene->GetSceneData()->nType != estBattleField &&
 		pScene->GetSceneData()->nType != estArena)
 	{
-		poKiller->GetAchievementList().AddVariable(avdKillWithNoGuilty, 1);		// Íê³ÉÒ»´ÎÃ»ÓÐpkÖµµÄpvp»÷É±
+		poKiller->GetAchievementList().AddVariable(avdKillWithNoGuilty, 1);		// å®Œæˆä¸€æ¬¡æ²¡æœ‰pkå€¼çš„pvpå‡»æ€
 	}
 
 	return;
@@ -189,44 +189,44 @@ void CStatistic::OnCompleteQuest(CRole* poRole, const QUEST_DATA* pQuest)
 	case qtTrunk:
 	case qtBranch:
 		{
-			poRole->GetAchievementList().AddVariable(avdCompleteStoryQuestCount, 1);		// Í³¼Æ¾çÇéÈÎÎñ
+			poRole->GetAchievementList().AddVariable(avdCompleteStoryQuestCount, 1);		// ç»Ÿè®¡å‰§æƒ…ä»»åŠ¡
 		}
 		break;
 	case qtReward:
 		{
-			poRole->GetAchievementList().AddVariable(avdCompleteRewardQuestCount, 1);		// Í³¼ÆÐüÉÍÈÎÎñ
-			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// Í³¼ÆÆÕÍ¨ÈÎÎñ
+			poRole->GetAchievementList().AddVariable(avdCompleteRewardQuestCount, 1);		// ç»Ÿè®¡æ‚¬èµä»»åŠ¡
+			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// ç»Ÿè®¡æ™®é€šä»»åŠ¡
 		}
 		break;
 	case qtCircle:  
 		{
-			poRole->GetAchievementList().AddVariable(avdCompleteCircleQuestCount, 1);		// Í³¼Æ»·ÈÎÎñ
-			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// Í³¼ÆÆÕÍ¨ÈÎÎñ
+			poRole->GetAchievementList().AddVariable(avdCompleteCircleQuestCount, 1);		// ç»Ÿè®¡çŽ¯ä»»åŠ¡
+			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// ç»Ÿè®¡æ™®é€šä»»åŠ¡
 		}
 		break;
 	case qtEmegency:
 		{
-			poRole->GetAchievementList().AddVariable(avdCompleteEmegencyQuestCount, 1);		// Í³¼Æ½ô¼±ÈÎÎñ
-			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// Í³¼ÆÆÕÍ¨ÈÎÎñ
+			poRole->GetAchievementList().AddVariable(avdCompleteEmegencyQuestCount, 1);		// ç»Ÿè®¡ç´§æ€¥ä»»åŠ¡
+			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// ç»Ÿè®¡æ™®é€šä»»åŠ¡
 		}
 		break;
 	case qtDaily:
 	case qtActivity: 
 	case qtGuild:
 		{
-			poRole->GetAchievementList().AddVariable(avdCompleteGuildQuest, 1);				// Í³¼Æ¹«»áÈÎÎñ
+			poRole->GetAchievementList().AddVariable(avdCompleteGuildQuest, 1);				// ç»Ÿè®¡å…¬ä¼šä»»åŠ¡
 		}
 		break;
 	case qtMaster:   
 	case qtWedding:  
 	case qtAdventure:
 		{
-			poRole->GetAchievementList().AddVariable(avdCompleteAdventureQuest, 1);			// Í³¼ÆÆæÓöÈÎÎñ
+			poRole->GetAchievementList().AddVariable(avdCompleteAdventureQuest, 1);			// ç»Ÿè®¡å¥‡é‡ä»»åŠ¡
 		}
 		break;	
 	case qtGuide:
 		{
-			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// Í³¼ÆÆÕÍ¨ÈÎÎñ
+			poRole->GetAchievementList().AddVariable(avdCompleteNormalQuestCount, 1);		// ç»Ÿè®¡æ™®é€šä»»åŠ¡
 		}
 		break;
 	default:
@@ -236,7 +236,7 @@ void CStatistic::OnCompleteQuest(CRole* poRole, const QUEST_DATA* pQuest)
 		break;
 	}
 
-	poRole->GetAchievementList().AddVariable(avdCompleteQuestTotalCount, 1);				// Íê³ÉÈÎÎñµÄ×ÜÁ¿
+	poRole->GetAchievementList().AddVariable(avdCompleteQuestTotalCount, 1);				// å®Œæˆä»»åŠ¡çš„æ€»é‡
 
 	return;
 Exit0:
@@ -251,19 +251,19 @@ void CStatistic::OnHurt(CRole* poVictim, CCharacter* poDealer, INT32 nEffectValu
 	LOG_PROCESS_ERROR(poVictim);
 	LOG_PROCESS_ERROR(poDealer);
 
-	// ±»¹¥»÷ÕßÍ³¼Æ
+	// è¢«æ”»å‡»è€…ç»Ÿè®¡
 
-	if (poVictim->GetAchievementList().GetVariable(avdMaxHPBeHit) > nEffectValue)		// ÊÜµ½µÄ×î¸ßÉËº¦
+	if (poVictim->GetAchievementList().GetVariable(avdMaxHPBeHit) > nEffectValue)		// å—åˆ°çš„æœ€é«˜ä¼¤å®³
 	{
 		poVictim->GetAchievementList().SetVariable(avdMaxHPBeHit, nEffectValue);
 	}
 
-	// ¹¥»÷ÕßÍ³¼Æ
+	// æ”»å‡»è€…ç»Ÿè®¡
 
 	poRole = CGameWorld::GetInstance().FindValidRole(poDealer->GetObjID());
 	PROCESS_ERROR(poRole);
 
-	if (poRole->GetAchievementList().GetVariable(avdMaxHPHit) > nEffectValue)		//´ò³öµÄ×î¸ßÉËº¦
+	if (poRole->GetAchievementList().GetVariable(avdMaxHPHit) > nEffectValue)		//æ‰“å‡ºçš„æœ€é«˜ä¼¤å®³
 	{
 		poRole->GetAchievementList().SetVariable(avdMaxHPHit, nEffectValue);
 	}
@@ -279,13 +279,13 @@ void CStatistic::OnUseItem(CRole* poRole, Item* pItem)
 	LOG_PROCESS_ERROR(pItem);
 	LOG_PROCESS_ERROR(pItem->m_pTemplate);
 
-	// Í³¼ÆÖ¸¶¨IDÊ¹ÓÃ£¬Ê¹ÓÃÈËÎï±äÁ¿
+	// ç»Ÿè®¡æŒ‡å®šIDä½¿ç”¨ï¼Œä½¿ç”¨äººç‰©å˜é‡
 	if ((pItem->m_pTemplate->m_nVarIndex > 0) && (pItem->m_pTemplate->m_nVarIndex  < MAX_ROLE_VARIABLE_COUNT))
 	{
 		poRole->AddVariable(pItem->m_pTemplate->m_nVarIndex, 1);
 	}
 
-	// Í³¼ÆÖ¸¶¨ÀàÐÍÊ¹ÓÃ
+	// ç»Ÿè®¡æŒ‡å®šç±»åž‹ä½¿ç”¨
 	switch (pItem->m_pTemplate->m_byType)
 	{
 	case ITEMTYPE_USABLE:
@@ -316,10 +316,10 @@ void CStatistic::OnKilledByNpc(CRole* poRole, CNpc* poNpc)
 	LOG_PROCESS_ERROR(poNpc);
 	LOG_PROCESS_ERROR(poNpc->GetNpcData());
 
-	// Í³¼Æpvp±»¹ÖÎïËùÉ±
+	// ç»Ÿè®¡pvpè¢«æ€ªç‰©æ‰€æ€
 	poRole->GetAchievementList().AddVariable(avdPVPKilledByNpc, 1);
 
-	// Í³¼Æ±»Ö¸¶¨ID¹ÖÎïËùÉ±
+	// ç»Ÿè®¡è¢«æŒ‡å®šIDæ€ªç‰©æ‰€æ€
 	if (poNpc->GetNpcData()->nKillPlayerVarIndex >= 0 && poNpc->GetNpcData()->nKillPlayerVarIndex < MAX_ROLE_VARIABLE_COUNT)
 	{
 		poRole->AddVariable(poNpc->GetNpcData()->nKillPlayerVarIndex, 1);

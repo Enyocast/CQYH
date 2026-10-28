@@ -138,7 +138,7 @@ namespace InternalMessage
         m2g_take_role,
         m2g_arrest_role,
 
-        // ÉÌ³Ç¹ºÂò³É¹¦
+        // å•†åŸè´­ä¹°æˆåŠŸ
         m2g_query_real_money_req,
         m2g_real_money_buy_success,
 
@@ -165,9 +165,9 @@ namespace InternalMessage
         // exercise
         m2g_add_exercise_time,
 
-        // ×Ô¼ºĞÂÔö´úÂë
+        // è‡ªå·±æ–°å¢ä»£ç 
         m2g_role_real_money_shop_buy_item_req,
-        m2g_custom_role_buy_time,    // ×Ô¶¨Òå¹ºÂòµã¿¨
+        m2g_custom_role_buy_time,    // è‡ªå®šä¹‰è´­ä¹°ç‚¹å¡
 
         m2g_end = m2g_message_end
     };
@@ -532,7 +532,7 @@ namespace InternalMessage
         UINT32		dwSabacEnrollTime[MAX_SABAC_ENROLL_COUNT];
         UINT8		bySabacOccupied;
         UINT8		byServerGroup;
-        G_B_DATA    arrBData[0];       // todo_tq ÔİÊ±ÕâÑù£¬Ö®ºóÏë°ì·¨¸Ä³É±ä³¤°ü°Ñ Allan Tao[19.3.2014] 
+        G_B_DATA    arrBData[0];       // todo_tq æš‚æ—¶è¿™æ ·ï¼Œä¹‹åæƒ³åŠæ³•æ”¹æˆå˜é•¿åŒ…æŠŠ Allan Tao[19.3.2014] 
     };
 
     struct M2G_GUILD_SYNC_ATTR_NTF : MESSAGE_HEADER

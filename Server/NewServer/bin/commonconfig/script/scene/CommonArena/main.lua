@@ -14,21 +14,21 @@ LoadPackage("char_def.pkg")
 
 
 
--- JJC ��ɫ����
+-- JJC 角色数量
 ARENA_ROLE_NUM_INDEX = 1;
--- JJC ��ʼ׼��ʱ��
+-- JJC 开始准备时间
 ARENA_START_TIME_INDEX = 2;
 -- JJC state
 ARENA_STATE_INDEX = 3;
--- ���������ŵĳ�������
+-- 竞技场开门的场景变量
 ARENA_DOOR_TOGGLE_INDEX = 4;
 
 
 
 
--- JJC ��һ����ɫ�Ľ�ɫroleid
+-- JJC 第一个角色的角色roleid
 ARENA_FIRST_ROLE_INDEX = 11;
--- JJC �ڶ�����ɫ�Ľ�ɫroleid
+-- JJC 第二个角色的角色roleid
 ARENA_SECOND_ROLE_INDEX = 12;
 
 
@@ -47,17 +47,17 @@ ARENA_FACTION_FIRST = 1;
 ARENA_FACTION_SECOND = 2;
 
 
--- JJC �ȴ��رյ�ͼʱ��
+-- JJC 等待关闭地图时间
 --ARENA_CLOSE_WAIT_DURATION = 120000;
 ARENA_CLOSE_WAIT_DURATION = 10000;
 
--- JJC ����ʱ��
+-- JJC 持续时间
 ARENA_LAST_TIME = 600000;
 
--- ����buff id
+-- 减益buff id
 ARENA_DEC_ROLE_ATTR_AURA_ID = 2150;
 
--- ����buff id
+-- 增益buff id
 ARENA_ADD_ROLE_ATTR_AURA_ID = 2050;
 
 

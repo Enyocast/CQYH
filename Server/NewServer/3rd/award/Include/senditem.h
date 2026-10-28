@@ -3,14 +3,14 @@
 
 #include "svccommoninfo.h"
 
-#define SVCSENDITEM     "SVCSENDITEM"   /// "µÀ¾ß"ÏûÏ¢·şÎñ  
+#define SVCSENDITEM     "SVCSENDITEM"   /// "é“å…·"æ¶ˆæ¯æœåŠ¡  
 
-#define ITEMC2SREQ            0x00000001   /// "µÀ¾ß"·¢ËÍÇëÇó  
-#define ITEMC2SRES            0x80000001   /// "µÀ¾ß"·¢ËÍ·´À¡  
-#define ITEMS2CREQ            0x00000002   /// "µÀ¾ß"ÏÂ·¢ÇëÇó  
-#define ITEMS2CRES            0x80000002   /// "µÀ¾ß"ÏÂ·¢·´À¡  
+#define ITEMC2SREQ            0x00000001   /// "é“å…·"å‘é€è¯·æ±‚  
+#define ITEMC2SRES            0x80000001   /// "é“å…·"å‘é€åé¦ˆ  
+#define ITEMS2CREQ            0x00000002   /// "é“å…·"ä¸‹å‘è¯·æ±‚  
+#define ITEMS2CRES            0x80000002   /// "é“å…·"ä¸‹å‘åé¦ˆ  
 
-#pragma pack (push,4)  /// Ö¸¶¨°´ 4 ×Ö½Ú¶ÔÆë
+#pragma pack (push,4)  /// æŒ‡å®šæŒ‰ 4 å­—èŠ‚å¯¹é½
 
 typedef struct
 {

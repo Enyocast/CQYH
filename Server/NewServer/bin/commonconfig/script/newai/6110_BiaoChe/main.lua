@@ -14,8 +14,8 @@ LoadPackage("quest_list.pkg");
 Include("script/newai/sub_tree/sub_tree.lh")
 Include("script/include/escort.lh")
 
-BROCAST_LOSE_ESCORT_TIMER = nastCustom + 1;                -- ïÚ³µ¶ªÊ§Í¨Öª¶¨Ê±Æ÷
-CHECK_ESCORT_DISTANCE_TIMER = nastCustom + 2;              -- ¼ì²âïÚ³µ¾àÀë¶¨Ê±Æ÷
+BROCAST_LOSE_ESCORT_TIMER = nastCustom + 1;                -- é•–è½¦ä¸¢å¤±é€šçŸ¥å®šæ—¶å™¨
+CHECK_ESCORT_DISTANCE_TIMER = nastCustom + 2;              -- æ£€æµ‹é•–è½¦è·ç¦»å®šæ—¶å™¨
 
 g_GameWorld = CGameWorld:GetInstance();
 

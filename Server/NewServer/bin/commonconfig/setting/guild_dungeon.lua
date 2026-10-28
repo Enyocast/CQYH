@@ -1,45 +1,45 @@
 guild_dungeon_define = {
-	owner='³Â¿­',
+	owner='é™ˆå‡¯',
 	SceneTemplateID = {
 		type = 'link',
 		default = 0,
 		refertable = 'scene',
 		referfield = 'SceneID',
 	},
-	ConditionBuildingLvl = {	-- ¿ªÆôµØÏÂ³ÇĞèÇó¹«»áÕ½ÊÂÌüµÈ¼¶
+	ConditionBuildingLvl = {	-- å¼€å¯åœ°ä¸‹åŸéœ€æ±‚å…¬ä¼šæˆ˜äº‹å…ç­‰çº§
 		type = 'link',
 		default = 0,
 		refertable = 'guild_building',
 		referfield = 'Level',
 	},
-	ConditionMoney = {	-- ĞèÇó½ğ±Ò
+	ConditionMoney = {	-- éœ€æ±‚é‡‘å¸
 		type = 'number',
 		default = 0,
 		min = 1,
 		max = 6,
 	},
-	PosX = {			-- Ìø×ª½ø¸±±¾µÄx×ø±ê
+	PosX = {			-- è·³è½¬è¿›å‰¯æœ¬çš„xåæ ‡
 		type = 'number',
 		default = 0,
 		min = 1,
 	},
-	PosY = {  			-- Ìø×ª½ø¸±±¾µÄY×ø±ê
+	PosY = {  			-- è·³è½¬è¿›å‰¯æœ¬çš„Yåæ ‡
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	PosZ = { 			-- Ìø×ª½ø¸±±¾µÄZ×ø±ê
+	PosZ = { 			-- è·³è½¬è¿›å‰¯æœ¬çš„Zåæ ‡
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	Direction = {  		-- Ìø×ª½ø¸±±¾µÄ³¯Ïò,½Ç¶È
+	Direction = {  		-- è·³è½¬è¿›å‰¯æœ¬çš„æœå‘,è§’åº¦
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
 
-	for i = 1,8 then		-- µôÂä
+	for i = 1,8 then		-- æ‰è½
 		guild_dungeon_define['DropChance'..i] = {
 			type = 'number',
 			default = 0,
@@ -52,13 +52,13 @@ guild_dungeon_define = {
 		};
 	end
 
-	BestTeammateNum = {  		-- ¸±±¾ÍÆ¼öÈËÊı
+	BestTeammateNum = {  		-- å‰¯æœ¬æ¨èäººæ•°
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
 
-	for i = 1,8 then		-- µôÂä
+	for i = 1,8 then		-- æ‰è½
 		guild_dungeon_define['Award'..i] = {
 			type = 'number',
 			default = 0,

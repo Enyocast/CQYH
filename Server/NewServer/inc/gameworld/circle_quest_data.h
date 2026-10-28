@@ -7,18 +7,18 @@
 
 struct	CIRCLE_QUEST_DATA 
 {
-	INT32		nCircleID;													// »·ºÅ
-	INT32		nGroupID;													// ×éID
+	INT32		nCircleID;													// ç¯å·
+	INT32		nGroupID;													// ç»„ID
 
-	INT32		nMaxCirclePerDay;											// Ã¿ÈÕ×î´óÍê³É´ÎÊı
-	INT32		nMaxQuestPerNum;											// Ã¿´Î×î´ó»·Êı
+	INT32		nMaxCirclePerDay;											// æ¯æ—¥æœ€å¤§å®Œæˆæ¬¡æ•°
+	INT32		nMaxQuestPerNum;											// æ¯æ¬¡æœ€å¤§ç¯æ•°
 
-	// ¾ö¶¨½±Àø×é
-	INT32		nCircleNum;													// ´ÎÊı
-	INT32		nLevel;														// µÈ¼¶
-	INT32		nRewardGroupID[MAX_QUEST_PER_CIRCLE];						// ½±Àø×éID
+	// å†³å®šå¥–åŠ±ç»„
+	INT32		nCircleNum;													// æ¬¡æ•°
+	INT32		nLevel;														// ç­‰çº§
+	INT32		nRewardGroupID[MAX_QUEST_PER_CIRCLE];						// å¥–åŠ±ç»„ID
 
-	INT32		nResetTime;													// Ã¿¸ö»·µÄÖØÖÃÊ±¼ä
+	INT32		nResetTime;													// æ¯ä¸ªç¯çš„é‡ç½®æ—¶é—´
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, CIRCLE_QUEST_DATA* pData, 
 		CTabFile * pTabConfig, INT32 nRow);
@@ -26,8 +26,8 @@ struct	CIRCLE_QUEST_DATA
 
 struct	CIRCLE_REWARD_DATA
 {
-	// »ù±¾Êı¾İ
-	INT32		nRewardGroupID;										// »·ÈÎÎñ½±Àø×éID
+	// åŸºæœ¬æ•°æ®
+	INT32		nRewardGroupID;										// ç¯ä»»åŠ¡å¥–åŠ±ç»„ID
 
 	QUEST_REWARD_DATA stQuestRewardData;
 

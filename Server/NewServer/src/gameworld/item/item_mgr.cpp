@@ -11,11 +11,11 @@
 
 UINT64 CreateItemGuid()
 {
-    //ItemGuid¹²8×Ö½Ú£¬´Ó×óÖÁÓÒËµÃ÷£º
-    //1-4:  Ê±¼ä
-    //5:    ´óÇøID
+    //ItemGuidå…±8å­—èŠ‚ï¼Œä»å·¦è‡³å³è¯´æ˜ï¼š
+    //1-4:  æ—¶é—´
+    //5:    å¤§åŒºID
     //6:    GameServer ID
-    //7-8:  Á÷Ë®ºÅ
+    //7-8:  æµæ°´å·
 
     static UINT16 item_seed = 0;
     static UINT64 last_game_time = 0;
@@ -127,7 +127,7 @@ Item* CItemMgr::GenerateItem(const ITEM_DATA* itemdata, INT32 nItemCount, BOOL b
     }
     item->m_iteminfo.m_byBindType = itemdata->m_byBindType;
 
-    // Éú³É Ëæ»úÊôĞÔ/¿×Î»
+    // ç”Ÿæˆ éšæœºå±æ€§/å­”ä½
     if (itemdata->m_byType == ITEMTYPE_EQUIP)
     {
         const EQUIP_DATA* equipdata = (const EQUIP_DATA*)itemdata;
@@ -136,10 +136,10 @@ Item* CItemMgr::GenerateItem(const ITEM_DATA* itemdata, INT32 nItemCount, BOOL b
 
         if (equipdata->m_byIdentified)
         {
-            GenerateRandomAttributes(item);  // Ëæ»úÊôĞÔ
+            GenerateRandomAttributes(item);  // éšæœºå±æ€§
         }
 
-        // ¿×Î», ÔİÊ±ÆÁ±Î
+        // å­”ä½, æš‚æ—¶å±è”½
         //_GenerateSockets(item->m_iteminfo, equipdata->m_nSocketChance, equipdata->m_bySocketCountMin, equipdata->m_bySocketCountMax, equipdata->m_nColorSocketRate);
     }
 
@@ -214,13 +214,13 @@ BOOL CItemMgr::DestroyItem(Item* item)
     return bRet;
 }
 
-// Éú³É Ëæ»ú¿×Î»
+// ç”Ÿæˆ éšæœºå­”ä½
 void CItemMgr::_GenerateSockets(ItemInfo& iteminfo, INT32 chance, UINT8 countmin, UINT8 countmax, INT32 colorrate)
 {
-    //Ëæ»ú¿×µÄ¸öÊı£¬0-count
-    //Ëæ»ú¿×µÄÑÕÉ«£¨²»°üº¬²ÊÉ«¿×£¬ÆäËûÑÕÉ«¸ÅÂÊÆ½¾ù£©
-    //ÓÉ×°±¸Ä£°åÊı¾İ¾ö¶¨²ÊÉ«¿×³öÏÖµÄ¸ÅÂÊ£¬³öÏÖÔò½«×îºóÒ»¸ö¿×ĞŞ¸ÄÎª²ÊÉ«¿×
-    //Òò´Ë£¬Èç¹ûµÚÒ»´ÎËæ»úµ½0¸ö¿×£¬Ôò²ÊÉ«¿×Ò²²»»á³öÏÖ
+    //éšæœºå­”çš„ä¸ªæ•°ï¼Œ0-count
+    //éšæœºå­”çš„é¢œè‰²ï¼ˆä¸åŒ…å«å½©è‰²å­”ï¼Œå…¶ä»–é¢œè‰²æ¦‚ç‡å¹³å‡ï¼‰
+    //ç”±è£…å¤‡æ¨¡æ¿æ•°æ®å†³å®šå½©è‰²å­”å‡ºç°çš„æ¦‚ç‡ï¼Œå‡ºç°åˆ™å°†æœ€åä¸€ä¸ªå­”ä¿®æ”¹ä¸ºå½©è‰²å­”
+    //å› æ­¤ï¼Œå¦‚æœç¬¬ä¸€æ¬¡éšæœºåˆ°0ä¸ªå­”ï¼Œåˆ™å½©è‰²å­”ä¹Ÿä¸ä¼šå‡ºç°
 
     UINT32 temp_socket_type = SOCKET_NONE;
     INT32 actual_socket_count = 0;
@@ -229,8 +229,8 @@ void CItemMgr::_GenerateSockets(ItemInfo& iteminfo, INT32 chance, UINT8 countmin
 
     LOG_PROCESS_ERROR(chance >= 0 && chance <= RATE_MAX);
 
-    //if (g_Random(RATE_MAX) >= chance)    // Ä¬ÈÏ´úÂë (¸ÅÂÊ¸ß)
-    if (g_Random(RATE_MAX) < chance)    // ĞŞ¸Ä´úÂë (¸ÅÂÊµÍ)
+    //if (g_Random(RATE_MAX) >= chance)    // é»˜è®¤ä»£ç  (æ¦‚ç‡é«˜)
+    if (g_Random(RATE_MAX) < chance)    // ä¿®æ”¹ä»£ç  (æ¦‚ç‡ä½)
         return;
 
     LOG_PROCESS_ERROR(countmin <= countmax);
@@ -260,21 +260,21 @@ Exit0:
     return;
 }
 
-// Éú³É Ëæ»úÊôĞÔ
+// ç”Ÿæˆ éšæœºå±æ€§
 void CItemMgr::GenerateRandomAttributes(Item* item, INT32 modifyrate/* = RATE_MAX*/, INT32 nServerGroup/* = 0*/)
 {
     const EQUIP_DATA* equip_data = (const EQUIP_DATA*)item->m_pTemplate;
     INT32 attr_count = 0;
 
-    // ¼ÆËã¸ÅÂÊ
-    //INT32 final_rate = (INT32)((INT64)equip_data->m_nRandomAttributeChance * modifyrate / RATE_MAX);  Ä¬ÈÏ´úÂë
-    INT32 final_rate = equip_data->m_nRandomAttributeChance;  // ĞŞ¸Ä´úÂë, È¥µô¼ÆËã
+    // è®¡ç®—æ¦‚ç‡
+    //INT32 final_rate = (INT32)((INT64)equip_data->m_nRandomAttributeChance * modifyrate / RATE_MAX);  é»˜è®¤ä»£ç 
+    INT32 final_rate = equip_data->m_nRandomAttributeChance;  // ä¿®æ”¹ä»£ç , å»æ‰è®¡ç®—
 
-    // Ä¬ÈÏ´úÂë
+    // é»˜è®¤ä»£ç 
     if (g_Random(RATE_MAX) >= final_rate)
         return;
 
-    // ÅĞ¶Ï ÔË2ÏîÁ´²ú³öÏŞÖÆ
+    // åˆ¤æ–­ è¿2é¡¹é“¾äº§å‡ºé™åˆ¶
     BOOL bIsLuck2Equip = FALSE;
     BOOL bIsLuck2NecklaceLimit = FALSE;
     if (equip_data->m_bySubType == ITEMSUBTYPE_EQUIP_NECKLACE)
@@ -294,7 +294,7 @@ void CItemMgr::GenerateRandomAttributes(Item* item, INT32 modifyrate/* = RATE_MA
         }
     }
 
-    // ²»ÊÇ [ÔË2ÏîÁ´ÎïÆ·] »òÕß ÊÇ [ÔË2ÏîÁ´ÎïÆ·, µ«ÊÇ»¹Ã»´ïµ½ÏŞÖÆÊıÁ¿], »¹ÊÇ×ßÄ¬ÈÏ´úÂëÁ÷³Ì ²»±ä
+    // ä¸æ˜¯ [è¿2é¡¹é“¾ç‰©å“] æˆ–è€… æ˜¯ [è¿2é¡¹é“¾ç‰©å“, ä½†æ˜¯è¿˜æ²¡è¾¾åˆ°é™åˆ¶æ•°é‡], è¿˜æ˜¯èµ°é»˜è®¤ä»£ç æµç¨‹ ä¸å˜
     if (bIsLuck2NecklaceLimit == FALSE)
     {
         for (INT32 i = 0; i < MAX_RANDOM_ATTR_COUNT; i++)
@@ -315,7 +315,7 @@ void CItemMgr::GenerateRandomAttributes(Item* item, INT32 modifyrate/* = RATE_MA
 
                         item->m_iteminfo.m_wRandomAttrID[attr_count++] = tmpRandomAttrID;
 
-                        // ÊÇÏîÁ´, ²¢ÇÒÊÇÔË2ÊôĞÔ, ÔòÔö¼Ó±äÁ¿
+                        // æ˜¯é¡¹é“¾, å¹¶ä¸”æ˜¯è¿2å±æ€§, åˆ™å¢åŠ å˜é‡
                         if (equip_data->m_bySubType == ITEMSUBTYPE_EQUIP_NECKLACE &&
                             tmpRandomAttrID >= g_ServerConfig.CC.nMinLuck2AttributelID && 
                             tmpRandomAttrID <= g_ServerConfig.CC.nMaxLuck2AttributelID)
@@ -333,7 +333,7 @@ void CItemMgr::GenerateRandomAttributes(Item* item, INT32 modifyrate/* = RATE_MA
             }
         }
     }
-    // ÊÇ [ÔË2ÏîÁ´ÎïÆ·] , ²¢ÇÒ´ïµ½ÏŞÖÆÊıÁ¿ÁË, Ö»ÓĞ[ÔË2ÏîÁ´ÎïÆ·] ²Å»á×ßÕâÀï
+    // æ˜¯ [è¿2é¡¹é“¾ç‰©å“] , å¹¶ä¸”è¾¾åˆ°é™åˆ¶æ•°é‡äº†, åªæœ‰[è¿2é¡¹é“¾ç‰©å“] æ‰ä¼šèµ°è¿™é‡Œ
     else
     {
         for (INT32 i = 0; i < MAX_RANDOM_ATTR_COUNT; i++)
@@ -350,10 +350,10 @@ void CItemMgr::GenerateRandomAttributes(Item* item, INT32 modifyrate/* = RATE_MA
                 {
                     if (random_number < pool->m_PoolData[j].m_nWeight)
                     {
-                        // Ëæ»úÒ»¸öÊôĞÔID
+                        // éšæœºä¸€ä¸ªå±æ€§ID
                         UINT16 tmpRandomAttrID = g_Random(pool->m_PoolData[j].m_nAttributeIDMin, pool->m_PoolData[j].m_nAttributeIDMax + 1);
 
-                        // Èç¹ûÊÇ [ÔË2ÊôĞÔ] ÔòÖ±½ÓÌø¹ı, ·ñÔò ¸³ÖµÊôĞÔ
+                        // å¦‚æœæ˜¯ [è¿2å±æ€§] åˆ™ç›´æ¥è·³è¿‡, å¦åˆ™ èµ‹å€¼å±æ€§
                         if (tmpRandomAttrID >= g_ServerConfig.CC.nMinLuck2AttributelID && tmpRandomAttrID <= g_ServerConfig.CC.nMaxLuck2AttributelID)
                         {
                             random_number -= pool->m_PoolData[j].m_nWeight;
@@ -373,7 +373,7 @@ void CItemMgr::GenerateRandomAttributes(Item* item, INT32 modifyrate/* = RATE_MA
         }
     }
 
-    // Ä¬ÈÏ´úÂë
+    // é»˜è®¤ä»£ç 
     //for (INT32 i = 0; i < MAX_RANDOM_ATTR_COUNT; i++)
     //{
     //    if (equip_data->m_nAttributePoolID[i] && g_Random(RATE_MAX) < equip_data->m_nAttributePoolChance[i])
@@ -421,7 +421,7 @@ BOOL CItemMgr::RegisterRuneData(const RUNE_DATA* data)
     {
         LOG_PROCESS_ERROR(data->dwWeight > 0);
         //LOG_PROCESS_ERROR(data->dwWeight <= 1000000);
-        LOG_PROCESS_ERROR(data->dwWeight[0][0] <= 1000000);    // ÔİÊ±¹Ì¶¨Ê¹ÓÃ ÏÂ±ê[0][0]
+        LOG_PROCESS_ERROR(data->dwWeight[0][0] <= 1000000);    // æš‚æ—¶å›ºå®šä½¿ç”¨ ä¸‹æ ‡[0][0]
         LOG_PROCESS_ERROR(CSpellConfig::GetInstance().FindSpellTemplate(data->nSpellID, 0, 0));
         LOG_PROCESS_ERROR(data->nClass >= clsPlayerBegin && data->nClass < clsPlayerEnd);
 
@@ -434,11 +434,11 @@ Exit0:
     return FALSE;
 }
 
-// ÆÕÍ¨ÃúÎÄÏ´Á·
+// æ™®é€šé“­æ–‡æ´—ç»ƒ
 INT32 CItemMgr::GenerateRandomRuneData(INT32 nServerGroup, Item* item, INT32 cls, INT32 level, INT32 runegroup)
 {
-    UINT16* p_this_random_rune_id = NULL;  // µ±Ç°ÒªÏ´Á·µÄÃúÎÄ
-    UINT16* p_another_rune_id = NULL;      // ÁíÒ»¸öÒª±£ÁôµÄÃúÎÄ
+    UINT16* p_this_random_rune_id = NULL;  // å½“å‰è¦æ´—ç»ƒçš„é“­æ–‡
+    UINT16* p_another_rune_id = NULL;      // å¦ä¸€ä¸ªè¦ä¿ç•™çš„é“­æ–‡
     const RUNE_DATA* another_rune_data = NULL;
     const EQUIP_DATA* equip_data = NULL;
 
@@ -447,14 +447,14 @@ INT32 CItemMgr::GenerateRandomRuneData(INT32 nServerGroup, Item* item, INT32 cls
 
     equip_data = (const EQUIP_DATA*)item->m_pTemplate;
 
-    // Ä¬ÈÏ´úÂë
+    // é»˜è®¤ä»£ç 
     {
-        // Ëæ»úÏ´ÄÄ¸ö¿¨²Û, ÅĞ¶Ï ¿ªÆôµÚ¶ş¿¨²ÛÊÇ·ñÓĞÊıÖµ, ²¢ÇÒµ±Ç°Ïû·ÑÊıÁ¿ ÊÇ·ñÒÑ¾­´óÓÚ m_dwSecondRuneCost, ¶¼ÊÇÅĞ¶Ï 1200 ´Î
+        // éšæœºæ´—å“ªä¸ªå¡æ§½, åˆ¤æ–­ å¼€å¯ç¬¬äºŒå¡æ§½æ˜¯å¦æœ‰æ•°å€¼, å¹¶ä¸”å½“å‰æ¶ˆè´¹æ•°é‡ æ˜¯å¦å·²ç»å¤§äº m_dwSecondRuneCost, éƒ½æ˜¯åˆ¤æ–­ 1200 æ¬¡
         //if (item->m_iteminfo.m_wRune[1] || (item->m_iteminfo.m_dwCostMoney >= equip_data->m_dwSecondRuneCostMax))
         //{
         //    if (g_Random(2) == 0)
         //    {
-        //        p_this_random_rune_id = &item->m_iteminfo.m_wRune[0];  // Ö¸Õë
+        //        p_this_random_rune_id = &item->m_iteminfo.m_wRune[0];  // æŒ‡é’ˆ
         //        p_another_rune_id = &item->m_iteminfo.m_wRune[1];
         //        another_rune_data = CDataManager<RUNE_DATA>::GetInstance().GetData(*p_another_rune_id);
         //    }
@@ -471,28 +471,28 @@ INT32 CItemMgr::GenerateRandomRuneData(INT32 nServerGroup, Item* item, INT32 cls
         //}
     }
 
-    // ×Ô¼º¸ÄµÄ´úÂë
+    // è‡ªå·±æ”¹çš„ä»£ç 
     {
-        // ÓĞ¿¨²Û1, ÓĞ¿¨²Û2, Í¬Ê±Âú×ã¿ªË«¿¨²ÛÌõ¼ş, Ï´[¿¨²Û1]
-        if (item->m_iteminfo.m_wRune[0] > 0 &&                                    // ÓĞ¿¨²Û1
-            item->m_iteminfo.m_wRune[1] > 0 &&                                    // ÓĞ¿¨²Û2
-            equip_data->m_dwSecondRuneCostMax > 0 &&                              // ¿ªÆô¿¨²Û2ÓĞÌõ¼ş
-            item->m_iteminfo.m_dwCostMoney >= equip_data->m_dwSecondRuneCostMax)  // Âú×ã¿ªË«¿¨²ÛÌõ¼ş
+        // æœ‰å¡æ§½1, æœ‰å¡æ§½2, åŒæ—¶æ»¡è¶³å¼€åŒå¡æ§½æ¡ä»¶, æ´—[å¡æ§½1]
+        if (item->m_iteminfo.m_wRune[0] > 0 &&                                    // æœ‰å¡æ§½1
+            item->m_iteminfo.m_wRune[1] > 0 &&                                    // æœ‰å¡æ§½2
+            equip_data->m_dwSecondRuneCostMax > 0 &&                              // å¼€å¯å¡æ§½2æœ‰æ¡ä»¶
+            item->m_iteminfo.m_dwCostMoney >= equip_data->m_dwSecondRuneCostMax)  // æ»¡è¶³å¼€åŒå¡æ§½æ¡ä»¶
         {
-            p_this_random_rune_id = &item->m_iteminfo.m_wRune[0];  // Ö¸Õë
+            p_this_random_rune_id = &item->m_iteminfo.m_wRune[0];  // æŒ‡é’ˆ
             p_another_rune_id = &item->m_iteminfo.m_wRune[1];
             another_rune_data = CDataManager<RUNE_DATA>::GetInstance().GetData(*p_another_rune_id);
         }
-        // ÓĞ¿¨²Û1, Í¬Ê±Âú×ã¿ªË«¿¨²ÛÌõ¼ş, Ï´[¿¨²Û2]
-        else if (item->m_iteminfo.m_wRune[0] > 0 &&                               // ÓĞ¿¨²Û1
-            equip_data->m_dwSecondRuneCostMax > 0 &&                              // ¿ªÆô¿¨²Û2ÓĞÌõ¼ş
-            item->m_iteminfo.m_dwCostMoney >= equip_data->m_dwSecondRuneCostMax)  // Âú×ã¿ªË«¿¨²ÛÌõ¼ş
+        // æœ‰å¡æ§½1, åŒæ—¶æ»¡è¶³å¼€åŒå¡æ§½æ¡ä»¶, æ´—[å¡æ§½2]
+        else if (item->m_iteminfo.m_wRune[0] > 0 &&                               // æœ‰å¡æ§½1
+            equip_data->m_dwSecondRuneCostMax > 0 &&                              // å¼€å¯å¡æ§½2æœ‰æ¡ä»¶
+            item->m_iteminfo.m_dwCostMoney >= equip_data->m_dwSecondRuneCostMax)  // æ»¡è¶³å¼€åŒå¡æ§½æ¡ä»¶
         {
-            p_this_random_rune_id = &item->m_iteminfo.m_wRune[1];  // Ö¸Õë
+            p_this_random_rune_id = &item->m_iteminfo.m_wRune[1];  // æŒ‡é’ˆ
             p_another_rune_id = &item->m_iteminfo.m_wRune[0];
             another_rune_data = CDataManager<RUNE_DATA>::GetInstance().GetData(*p_another_rune_id);
         }
-        // Ã»ÓĞÃúÎÄ, Ï´[¿¨²Û1]
+        // æ²¡æœ‰é“­æ–‡, æ´—[å¡æ§½1]
         else
         {
             p_this_random_rune_id = &item->m_iteminfo.m_wRune[0];
@@ -500,18 +500,18 @@ INT32 CItemMgr::GenerateRandomRuneData(INT32 nServerGroup, Item* item, INT32 cls
     }
 
 
-    // Ñ­»·10´Î
+    // å¾ªç¯10æ¬¡
     for (INT32 loop_times = 0; loop_times < 10; loop_times++)
     {
-        // Éú³ÉÒ»¸ö¶ÔÓ¦Ö°ÒµµÄÃúÎÄ
+        // ç”Ÿæˆä¸€ä¸ªå¯¹åº”èŒä¸šçš„é“­æ–‡
         UINT16 temp_rune_id = _GenerateRuneID(cls, level, runegroup);
         LOG_PROCESS_ERROR(temp_rune_id);
 
-        // »ñÈ¡ÃúÎÄÄ£°å
+        // è·å–é“­æ–‡æ¨¡æ¿
         const RUNE_DATA* temp_rune_data = CDataManager<RUNE_DATA>::GetInstance().GetData(temp_rune_id);
         LOG_PROCESS_ERROR(temp_rune_data);
 
-        // ²éÑ¯ÃúÎÄÏ´Á·ÏŞÖÆ
+        // æŸ¥è¯¢é“­æ–‡æ´—ç»ƒé™åˆ¶
         INT32 rune_count = CGameWorld::GetInstance().GetServerVariable(nServerGroup, MakeServerKey(esvtRune, temp_rune_id));
         if (temp_rune_data->nDropLimitCount && rune_count >= temp_rune_data->nDropLimitCount)
         {
@@ -522,7 +522,7 @@ INT32 CItemMgr::GenerateRandomRuneData(INT32 nServerGroup, Item* item, INT32 cls
         if (another_rune_data == NULL ||
             (temp_rune_data->nSpellID != another_rune_data->nSpellID))
         {
-            *p_this_random_rune_id = temp_rune_id;  // ¸³Öµ, ĞŞ¸Ä¿¨²ÛÀïµÄÃúÎÄ
+            *p_this_random_rune_id = temp_rune_id;  // èµ‹å€¼, ä¿®æ”¹å¡æ§½é‡Œçš„é“­æ–‡
             return temp_rune_id;
         }
     }
@@ -535,7 +535,7 @@ Exit0:
 
 INT32 CItemMgr::GenerateRandomRuneDataAdvanced(INT32 nServerGroup, Item* item, INT32 cls, INT32 level, INT32 runegroup)
 {
-    UINT16* p_another_rune_id = NULL;      // ÁíÒ»¸öÒª±£ÁôµÄÃúÎÄ
+    UINT16* p_another_rune_id = NULL;      // å¦ä¸€ä¸ªè¦ä¿ç•™çš„é“­æ–‡
     const RUNE_DATA* another_rune_data = NULL;
     const EQUIP_DATA* equip_data = NULL;
 
@@ -544,31 +544,31 @@ INT32 CItemMgr::GenerateRandomRuneDataAdvanced(INT32 nServerGroup, Item* item, I
 
     equip_data = (const EQUIP_DATA*)item->m_pTemplate;
 
-    // ÅĞ¶Ï, µ±Ç°×°±¸ÊÇ·ñ¿ªÆôµÚ¶ş¿¨²Û
+    // åˆ¤æ–­, å½“å‰è£…å¤‡æ˜¯å¦å¼€å¯ç¬¬äºŒå¡æ§½
     if (item->m_iteminfo.m_wRune[1] > 0 || 
         item->m_iteminfo.m_dwCostMoney >= equip_data->m_dwSecondRuneCostMax)
     {
-        // ¹Ì¶¨Ï´µÚ¶ş¿¨²Û, »ñÈ¡µÚÒ»¿¨²ÛµÄÃúÎÄĞÅÏ¢
+        // å›ºå®šæ´—ç¬¬äºŒå¡æ§½, è·å–ç¬¬ä¸€å¡æ§½çš„é“­æ–‡ä¿¡æ¯
         p_another_rune_id = &item->m_iteminfo.m_wRune[0];
         another_rune_data = CDataManager<RUNE_DATA>::GetInstance().GetData(*p_another_rune_id);
     }
     else
     {
-        return 0;  // °´ÀíËµÃ»¿ª2¸ö¿¨²ÛµÄÎäÆ÷, ¿Í»§¶Ë²»ÈÃ·¢°üµÄ, Ç¿ĞĞ·¢°ü¿Ï¶¨ÊÇµ÷CallÁË
+        return 0;  // æŒ‰ç†è¯´æ²¡å¼€2ä¸ªå¡æ§½çš„æ­¦å™¨, å®¢æˆ·ç«¯ä¸è®©å‘åŒ…çš„, å¼ºè¡Œå‘åŒ…è‚¯å®šæ˜¯è°ƒCalläº†
     }
 
-    // Ñ­»·10´Î
+    // å¾ªç¯10æ¬¡
     for (INT32 loop_times = 0; loop_times < 10; loop_times++)
     {
-        // Éú³ÉÒ»¸ö¶ÔÓ¦Ö°ÒµµÄÃúÎÄ
+        // ç”Ÿæˆä¸€ä¸ªå¯¹åº”èŒä¸šçš„é“­æ–‡
         UINT16 temp_rune_id = _GenerateRuneID(cls, level, runegroup);
         LOG_PROCESS_ERROR(temp_rune_id);
 
-        // »ñÈ¡ÃúÎÄÄ£°å
+        // è·å–é“­æ–‡æ¨¡æ¿
         const RUNE_DATA* temp_rune_data = CDataManager<RUNE_DATA>::GetInstance().GetData(temp_rune_id);
         LOG_PROCESS_ERROR(temp_rune_data);
 
-        // ²éÑ¯ÃúÎÄÏ´Á·ÏŞÖÆ
+        // æŸ¥è¯¢é“­æ–‡æ´—ç»ƒé™åˆ¶
         INT32 rune_count = CGameWorld::GetInstance().GetServerVariable(nServerGroup, MakeServerKey(esvtRune, temp_rune_id));
         if (temp_rune_data->nDropLimitCount && rune_count >= temp_rune_data->nDropLimitCount)
         {
@@ -579,7 +579,7 @@ INT32 CItemMgr::GenerateRandomRuneDataAdvanced(INT32 nServerGroup, Item* item, I
         if (another_rune_data == NULL ||
             (temp_rune_data->nSpellID != another_rune_data->nSpellID))
         {
-            return temp_rune_id;  // // ¸ß¼¶Ï´Á·, ÏÈ²»ĞŞ¸ÄÃúÎÄÊı¾İ, Ö»°Ñ½á¹û·µ»Ø
+            return temp_rune_id;  // // é«˜çº§æ´—ç»ƒ, å…ˆä¸ä¿®æ”¹é“­æ–‡æ•°æ®, åªæŠŠç»“æœè¿”å›
         }
     }
 
@@ -589,7 +589,7 @@ Exit0:
     return 0;
 }
 
-// ²ÎÊı (Ö°Òµ, VipµÈ¼¶, ÃúÎÄ·Ö×é)
+// å‚æ•° (èŒä¸š, Vipç­‰çº§, é“­æ–‡åˆ†ç»„)
 UINT16 CItemMgr::_GenerateRuneID(INT32 cls, INT32 level, INT32 runegroup)
 {
     UINT32 random_number;
@@ -598,7 +598,7 @@ UINT16 CItemMgr::_GenerateRuneID(INT32 cls, INT32 level, INT32 runegroup)
 
     LOG_PROCESS_ERROR(cls >= 0 && cls <clsPlayerTotal);
 
-    // ¸ù¾İÖ°Òµ, ¼ÆËãÈ¨ÖØ×ÜºÍ
+    // æ ¹æ®èŒä¸š, è®¡ç®—æƒé‡æ€»å’Œ
     for (std::vector<const RUNE_DATA*>::iterator it = m_vec_rune_data[cls].begin(); it != m_vec_rune_data[cls].end(); ++it)
     {
         const RUNE_DATA* data = *it;
@@ -606,23 +606,23 @@ UINT16 CItemMgr::_GenerateRuneID(INT32 cls, INT32 level, INT32 runegroup)
         {
             temp_vec_rune_data.push_back(data);
             //weight += data->dwWeight;
-            weight += data->dwWeight[0][0];    // ÔİÊ±¹Ì¶¨Ê¹ÓÃ ÏÂ±ê[0][0]
+            weight += data->dwWeight[0][0];    // æš‚æ—¶å›ºå®šä½¿ç”¨ ä¸‹æ ‡[0][0]
         }
     }
     LOG_PROCESS_ERROR(!temp_vec_rune_data.empty());
 
-    // Ëæ»úÈ¨ÖØÊıÖµ
+    // éšæœºæƒé‡æ•°å€¼
     random_number = g_Random(weight);
 
-    // È¨ÖØËã·¨
+    // æƒé‡ç®—æ³•
     for (INT32 i = 0; i < temp_vec_rune_data.size(); i++)
     {
         //if (random_number < temp_vec_rune_data[i]->dwWeight)
-        if (random_number < temp_vec_rune_data[i]->dwWeight[0][0])    // ÔİÊ±¹Ì¶¨Ê¹ÓÃ ÏÂ±ê[0][0]
+        if (random_number < temp_vec_rune_data[i]->dwWeight[0][0])    // æš‚æ—¶å›ºå®šä½¿ç”¨ ä¸‹æ ‡[0][0]
             return (UINT16)temp_vec_rune_data[i]->nRuneID;
 
         //random_number -= temp_vec_rune_data[i]->dwWeight;
-        random_number -= temp_vec_rune_data[i]->dwWeight[0][0];    // ÔİÊ±¹Ì¶¨Ê¹ÓÃ ÏÂ±ê[0][0]
+        random_number -= temp_vec_rune_data[i]->dwWeight[0][0];    // æš‚æ—¶å›ºå®šä½¿ç”¨ ä¸‹æ ‡[0][0]
     }
 
     LOG_PROCESS_ERROR(FALSE);
@@ -632,9 +632,9 @@ Exit0:
 }
 
 
-// ========== ÏÂÃæÈ«ÊÇ×Ô¼ºĞÂÔö¼ÓµÄ´úÂë begin
+// ========== ä¸‹é¢å…¨æ˜¯è‡ªå·±æ–°å¢åŠ çš„ä»£ç  begin
 
-// ÅĞ¶Ï×°±¸ÊÇ²»ÊÇÔË2ÏîÁ´×°±¸
+// åˆ¤æ–­è£…å¤‡æ˜¯ä¸æ˜¯è¿2é¡¹é“¾è£…å¤‡
 BOOL CItemMgr::CheckEquipIsLuck2Item(INT32 itemID)
 {
     for (const auto id : g_ServerConfig.CC.nLuck2NecklaceItemID)
@@ -647,7 +647,7 @@ BOOL CItemMgr::CheckEquipIsLuck2Item(INT32 itemID)
     return FALSE;
 }
 
-// ×Ô¼ºĞÂ¼Óº¯Êı, ×¨ÃÅÓÃÓÚÔË2
+// è‡ªå·±æ–°åŠ å‡½æ•°, ä¸“é—¨ç”¨äºè¿2
 Item* CItemMgr::GenerateItem(INT32 nServerGroup, const ITEM_DATA* itemdata, INT32 nItemCount, BOOL bRandomDur)
 {
     Item* item = NULL;
@@ -708,7 +708,7 @@ Item* CItemMgr::GenerateItem(INT32 nServerGroup, const ITEM_DATA* itemdata, INT3
     }
     item->m_iteminfo.m_byBindType = itemdata->m_byBindType;
 
-    // Éú³É Ëæ»úÊôĞÔ/¿×Î»
+    // ç”Ÿæˆ éšæœºå±æ€§/å­”ä½
     if (itemdata->m_byType == ITEMTYPE_EQUIP)
     {
         const EQUIP_DATA* equipdata = (const EQUIP_DATA*)itemdata;
@@ -733,4 +733,4 @@ Exit0:
     return NULL;
 }
 
-// ========== ÏÂÃæÈ«ÊÇ×Ô¼ºĞÂÔö¼ÓµÄ´úÂë end
+// ========== ä¸‹é¢å…¨æ˜¯è‡ªå·±æ–°å¢åŠ çš„ä»£ç  end

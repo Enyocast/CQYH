@@ -212,7 +212,7 @@ INT32 CMasterMgr::CreateMasterRelation(MS_ONLINE_ROLE_DATA &teacher, MS_ONLINE_R
     nRetCode = CMasterMgr::GetInstance().DelSolo(student.pRoleData->byGroup, student.pRoleData->dwRoleID);
     LOG_CHECK_ERROR(nRetCode);
 
-    // È¥³ıÍ¬ÃÅ¹§Ï²
+    // å»é™¤åŒé—¨æ­å–œ
     //for (INT32 nIndex = 0; nIndex < pTeacherData->byStudNum; ++nIndex)
     //{
     //    if (pTeacherData->arrStudentID[nIndex] != student.pRoleData->dwRoleID)
@@ -230,7 +230,7 @@ INT32 CMasterMgr::CreateMasterRelation(MS_ONLINE_ROLE_DATA &teacher, MS_ONLINE_R
     LOG_CHECK_ERROR(bRet);
 
     // construct memory
-    // Í½µÜ²»ÄÜÔÙ¹§Ï²Ê¦¸µ
+    // å¾’å¼Ÿä¸èƒ½å†æ­å–œå¸ˆå‚…
     //AddCZ(teacher.pRoleData->byGroup, teacher.pRoleData->dwRoleID, student.pRoleData->dwRoleID, teacher.pRoleData->byLevel);
     AddCZ(teacher.pRoleData->byGroup, student.pRoleData->dwRoleID, teacher.pRoleData->dwRoleID, student.pRoleData->byLevel);
     
@@ -309,13 +309,13 @@ INT32 CMasterMgr::DelMasterRelation(UINT32 dwTeacherID, MS_ROLE_DATA &student, B
     pTeacherData->arrStudentID[nIndex] = pTeacherData->arrStudentID[pTeacherData->byStudNum - 1];
     --pTeacherData->byStudNum;
 
-    // È¥³ıÍ½µÜ¹§Ï²Ê¦¸µ
+    // å»é™¤å¾’å¼Ÿæ­å–œå¸ˆå‚…
     //nRetCode = DelCZ(dwTeacherID, student.dwRoleID);
     //LOG_CHECK_ERROR(nRetCode);
     nRetCode = DelCZ(student.dwRoleID, dwTeacherID);
     LOG_CHECK_ERROR(nRetCode);
 
-    // È¥³ıÍ¬ÃÅ¹§Ï²
+    // å»é™¤åŒé—¨æ­å–œ
     //for (INT32 i = 0; i < pTeacherData->byStudNum; ++i)
     //{
     //    if (pTeacherData->arrStudentID[i] != student.dwRoleID)
@@ -1317,7 +1317,7 @@ BOOL MasterRoleLogin(MS_ONLINE_ROLE_DATA &onlineRoleData)
     if (onlineRoleData.pRoleData->byLevel >= STUD_LEVEL_LOWER_LIMIT && onlineRoleData.pRoleData->byLevel < GRADUATE_LEVEL)
     {
         nRetCode = CMasterMgr::GetInstance().AddSolo(onlineRoleData.pRoleData->byGroup, onlineRoleData.pRoleData->dwRoleID);
-        //LOG_CHECK_ERROR(nRetCode);  ¿ÉÄÜÒÑ¾­ÊÇÍ½µÜ£¬ÔÚÀïÃæÅĞ¶Ï·µ»Ø£¬Õı³£Âß¼­
+        //LOG_CHECK_ERROR(nRetCode);  å¯èƒ½å·²ç»æ˜¯å¾’å¼Ÿï¼Œåœ¨é‡Œé¢åˆ¤æ–­è¿”å›ï¼Œæ­£å¸¸é€»è¾‘
     }
 
     nRetCode = CMasterMgr::GetInstance().IsMaster(onlineRoleData.pRoleData->dwRoleID);

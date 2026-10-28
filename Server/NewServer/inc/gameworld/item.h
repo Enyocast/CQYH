@@ -17,36 +17,36 @@ struct ItemInfo
     INT32 m_nCurDur;
     INT32 m_nMaxDur;
     UINT8 m_byBindType;
-    UINT8 m_Exclusive;    // ¿Í»§¶ËÀïÓĞÕâ¸ö×Ö¶Î, ²»ÖªµÀ¸ÉÉ¶ÓÃµÄ, Ò²Ã»ÓĞµ÷ÓÃ
+    UINT8 m_Exclusive;    // å®¢æˆ·ç«¯é‡Œæœ‰è¿™ä¸ªå­—æ®µ, ä¸çŸ¥é“å¹²å•¥ç”¨çš„, ä¹Ÿæ²¡æœ‰è°ƒç”¨
 
-    //ÒÔÏÂÊôĞÔ½öÏŞ×°±¸
-    //ÊÇ·ñÒÑ¼ø¶¨
+    //ä»¥ä¸‹å±æ€§ä»…é™è£…å¤‡
+    //æ˜¯å¦å·²é‰´å®š
     UINT8 m_byIdentified;
-    //Ëæ»úÊôĞÔ
+    //éšæœºå±æ€§
     UINT16 m_wRandomAttrID[MAX_RANDOM_ATTR_COUNT];
-    //Ç©Ãû
+    //ç­¾å
     UINT32 m_dwRoleID;
-    //ÒÑÏû·Ñ½ğ±Ò
+    //å·²æ¶ˆè´¹é‡‘å¸
     UINT32 m_dwCostMoney;
 
-    //ÒÔÏÂÊôĞÔ½öÏŞÎäÆ÷
-    INT8 m_byLuck;  //ĞÒÔËÖµ
+    //ä»¥ä¸‹å±æ€§ä»…é™æ­¦å™¨
+    INT8 m_byLuck;  //å¹¸è¿å€¼
 
-    //ÎäÆ÷Éı¼¶
-    UINT8 m_byLevelupTimes;        // ÎäÆ÷Éı¼¶´ÎÊı
-    UINT8 m_byLevelupPhyPoint;     // ¹¥»÷µãÊı
-    UINT8 m_byLevelupMagPoint;     // Ä§·¨µãÊı
-    UINT8 m_byLevelupTaoPoint;     // µÀÊõµãÊı
-    UINT8 m_byLevelupTypeHidden;   // Òş²ØµãÊıÀàĞÍ
-    UINT8 m_byLevelupPointHidden;  // Òş²ØµãÊıÊıÖµ
+    //æ­¦å™¨å‡çº§
+    UINT8 m_byLevelupTimes;        // æ­¦å™¨å‡çº§æ¬¡æ•°
+    UINT8 m_byLevelupPhyPoint;     // æ”»å‡»ç‚¹æ•°
+    UINT8 m_byLevelupMagPoint;     // é­”æ³•ç‚¹æ•°
+    UINT8 m_byLevelupTaoPoint;     // é“æœ¯ç‚¹æ•°
+    UINT8 m_byLevelupTypeHidden;   // éšè—ç‚¹æ•°ç±»å‹
+    UINT8 m_byLevelupPointHidden;  // éšè—ç‚¹æ•°æ•°å€¼
 
-    //ÃúÎÄ
+    //é“­æ–‡
     UINT16 m_wRune[MAX_RUNE_COUNT];
 
-    //ÒÔÏÂÊôĞÔ½öÏŞ·À¾ß
-    //ÈÚÁé
-    UINT32 m_dwSocketCombination;       // ¿×Î»ÑÕÉ«
-    INT32 m_nSoulID[MAX_SOCKET_COUNT];  // ¿×Î»ÏâÇ¶ÁéÊ¯
+    //ä»¥ä¸‹å±æ€§ä»…é™é˜²å…·
+    //èçµ
+    UINT32 m_dwSocketCombination;       // å­”ä½é¢œè‰²
+    INT32 m_nSoulID[MAX_SOCKET_COUNT];  // å­”ä½é•¶åµŒçµçŸ³
 
     ItemInfo()
     {
@@ -622,7 +622,7 @@ struct Item
 
     void SetPos(UINT8 conslot, UINT8 itemslot);
 
-    //Èç¹ûÊÇ×°±¸Ìæ»»£¬±ØĞëÏÈÍÑÔÙ´©£¡
+    //å¦‚æœæ˜¯è£…å¤‡æ›¿æ¢ï¼Œå¿…é¡»å…ˆè„±å†ç©¿ï¼
     void OnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot);
     void OnUnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot);
 
@@ -638,7 +638,7 @@ struct Item
     ItemInfo m_iteminfo;
     BOOL m_bAttrEffective;
 
-    //µ÷ÊÔ¹¦ÄÜ
+    //è°ƒè¯•åŠŸèƒ½
     BOOL SetAttribute(INT32 index, UINT16 attrid);
     BOOL SetSocketColor(INT32 index, UINT8 color);
     BOOL SetSoul(INT32 index, INT32 soulid);

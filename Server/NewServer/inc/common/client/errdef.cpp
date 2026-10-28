@@ -10,165 +10,165 @@
 namespace  ERR_ENTER_GS
 {
     const INT32 ID_NOERROR = 0;
-    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "²Ù×÷³É¹¦");
+    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "æ“ä½œæˆåŠŸ");
 
     const INT32 ID_ENTERGAMEFAILED = 1;
-    const TCHAR* STR_ENTERGAMEFAILED = _SDTSource2T("GBK", "½øÈëÓÎÏ·Ê§°Ü");
+    const TCHAR* STR_ENTERGAMEFAILED = _SDTSource2T("GBK", "è¿›å…¥æ¸¸æˆå¤±è´¥");
 
     const INT32 ID_EXISTEDINGAMESERVER = 2;
-    const TCHAR* STR_EXISTEDINGAMESERVER = _SDTSource2T("GBK", "ÒÑÔÚÓÎÏ·ÖÐ");
+    const TCHAR* STR_EXISTEDINGAMESERVER = _SDTSource2T("GBK", "å·²åœ¨æ¸¸æˆä¸­");
 
     const INT32 ID_TASKLOADSTATUSFAILD = 3;
-    const TCHAR* STR_TASKLOADSTATUSFAILD = _SDTSource2T("GBK", "¼ÓÔØÈÎÎñÐÅÏ¢Ê§°Ü");
+    const TCHAR* STR_TASKLOADSTATUSFAILD = _SDTSource2T("GBK", "åŠ è½½ä»»åŠ¡ä¿¡æ¯å¤±è´¥");
 }
 
 namespace  ERR_MOVE
 {
     const INT32 ID_NOERROR = 0;
-    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "²Ù×÷³É¹¦");
+    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "æ“ä½œæˆåŠŸ");
 
     const INT32 ID_TIMEOUT = 1;
-    const TCHAR* STR_TIMEOUT = _SDTSource2T("GBK", "³¬Ê±");
+    const TCHAR* STR_TIMEOUT = _SDTSource2T("GBK", "è¶…æ—¶");
 
     const INT32 ID_MOREPKG = 2;
-    const TCHAR* STR_MOREPKG = _SDTSource2T("GBK", "·¢°ü¹ý¶à");
+    const TCHAR* STR_MOREPKG = _SDTSource2T("GBK", "å‘åŒ…è¿‡å¤š");
 
     const INT32 ID_DIRERR = 3;
-    const TCHAR* STR_DIRERR = _SDTSource2T("GBK", "·½ÏòÖµ·¶Î§´íÎó");
+    const TCHAR* STR_DIRERR = _SDTSource2T("GBK", "æ–¹å‘å€¼èŒƒå›´é”™è¯¯");
 
     const INT32 ID_MOVEERR = 4;
-    const TCHAR* STR_MOVEERR = _SDTSource2T("GBK", "ÒÆ¶¯´íÎó");
+    const TCHAR* STR_MOVEERR = _SDTSource2T("GBK", "ç§»åŠ¨é”™è¯¯");
 
     const INT32 ID_GETOBJERR = 5;
-    const TCHAR* STR_GETOBJERR = _SDTSource2T("GBK", "OBJID´íÎó");
+    const TCHAR* STR_GETOBJERR = _SDTSource2T("GBK", "OBJIDé”™è¯¯");
 
     const INT32 ID_MOVETRYERR = 6;
-    const TCHAR* STR_MOVETRYERR = _SDTSource2T("GBK", "ÒÆ¶¯ÀàÐÍ´íÎó");
+    const TCHAR* STR_MOVETRYERR = _SDTSource2T("GBK", "ç§»åŠ¨ç±»åž‹é”™è¯¯");
 
     const INT32 ID_NOTACTIVE = 7;
-    const TCHAR* STR_NOTACTIVE = _SDTSource2T("GBK", "½ÇÉ«µ±Ç°²»¿É»î¶¯");
+    const TCHAR* STR_NOTACTIVE = _SDTSource2T("GBK", "è§’è‰²å½“å‰ä¸å¯æ´»åŠ¨");
 }
 
 namespace  ERR_CHANGE_DIR
 {
     const INT32 ID_NOERROR = 0;
-    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "²Ù×÷³É¹¦");
+    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "æ“ä½œæˆåŠŸ");
 
     const INT32 ID_OUTOFMAX = 1;
-    const TCHAR* STR_OUTOFMAX = _SDTSource2T("GBK", "·½Ïò³¬³ö×î´ó·¶Î§");
+    const TCHAR* STR_OUTOFMAX = _SDTSource2T("GBK", "æ–¹å‘è¶…å‡ºæœ€å¤§èŒƒå›´");
 }
 
 namespace  ERR_DRESS
 {
     const INT32 ID_NOERROR = 0;
-    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "²Ù×÷³É¹¦");
+    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "æ“ä½œæˆåŠŸ");
 
     const INT32 ID_UNVALIDITEM = 1;
-    const TCHAR* STR_UNVALIDITEM = _SDTSource2T("GBK", "ÇëÇó×°±¸ÎÞÐ§");
+    const TCHAR* STR_UNVALIDITEM = _SDTSource2T("GBK", "è¯·æ±‚è£…å¤‡æ— æ•ˆ");
 
     const INT32 ID_NOTMATCHTYPE = 2;
-    const TCHAR* STR_NOTMATCHTYPE = _SDTSource2T("GBK", "ÇëÇó×°±¸ÀàÐÍ²»Æ¥Åä");
+    const TCHAR* STR_NOTMATCHTYPE = _SDTSource2T("GBK", "è¯·æ±‚è£…å¤‡ç±»åž‹ä¸åŒ¹é…");
 
     const INT32 ID_SRCPOSNOITEM = 3;
-    const TCHAR* STR_SRCPOSNOITEM = _SDTSource2T("GBK", "Ô´Î»ÖÃÎÞ×°±¸");
+    const TCHAR* STR_SRCPOSNOITEM = _SDTSource2T("GBK", "æºä½ç½®æ— è£…å¤‡");
 
     const INT32 ID_TARGETPOSHAVEITEM = 4;
-    const TCHAR* STR_TARGETPOSHAVEITEM = _SDTSource2T("GBK", "Ä¿±êÎ»ÖÃÓÐ×°±¸£¬ÎÞ·¨×°±¸");
+    const TCHAR* STR_TARGETPOSHAVEITEM = _SDTSource2T("GBK", "ç›®æ ‡ä½ç½®æœ‰è£…å¤‡ï¼Œæ— æ³•è£…å¤‡");
 
     const INT32 ID_POSNOTCHANGE = 5;
-    const TCHAR* STR_POSNOTCHANGE = _SDTSource2T("GBK", "Î»ÖÃÃ»ÓÐÐÞ¸Ä");
+    const TCHAR* STR_POSNOTCHANGE = _SDTSource2T("GBK", "ä½ç½®æ²¡æœ‰ä¿®æ”¹");
 
     const INT32 ID_NOTMATCHOBJID = 6;
-    const TCHAR* STR_NOTMATCHOBJID = _SDTSource2T("GBK", "OBJID²»Æ¥Åä");
+    const TCHAR* STR_NOTMATCHOBJID = _SDTSource2T("GBK", "OBJIDä¸åŒ¹é…");
 
     const INT32 ID_SPACENOTENOUGH = 7;
-    const TCHAR* STR_SPACENOTENOUGH = _SDTSource2T("GBK", "°ü¹ü¿Õ¼ä²»×ã");
+    const TCHAR* STR_SPACENOTENOUGH = _SDTSource2T("GBK", "åŒ…è£¹ç©ºé—´ä¸è¶³");
 
     const INT32 ID_SERVERCHECKINVALID = 8;
-    const TCHAR* STR_SERVERCHECKINVALID = _SDTSource2T("GBK", "·þÎñÆ÷¼ì²é°ü¹ü²»ºÏ·¨");
+    const TCHAR* STR_SERVERCHECKINVALID = _SDTSource2T("GBK", "æœåŠ¡å™¨æ£€æŸ¥åŒ…è£¹ä¸åˆæ³•");
 }
 
 namespace  ERR_SKILL_ATTACK
 {
     const INT32 ID_NOERROR = 0;
-    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "²Ù×÷³É¹¦");
+    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "æ“ä½œæˆåŠŸ");
 
     const INT32 ID_USE_SKILL_FAILED = 1;
-    const TCHAR* STR_USE_SKILL_FAILED = _SDTSource2T("GBK", "¼¼ÄÜÊ¹ÓÃ´íÎó");
+    const TCHAR* STR_USE_SKILL_FAILED = _SDTSource2T("GBK", "æŠ€èƒ½ä½¿ç”¨é”™è¯¯");
 }
 
 namespace  ERR_NPC_TALK
 {
     const INT32 ID_NOERROR = 0;
-    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "²Ù×÷³É¹¦");
+    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "æ“ä½œæˆåŠŸ");
 }
 
 namespace  ERR_SYNC_TIME
 {
     const INT32 ID_NOERROR = 0;
-    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "²Ù×÷³É¹¦");
+    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "æ“ä½œæˆåŠŸ");
 }
 
 namespace  ERR_TASK_OPERATE
 {
     const INT32 ID_NOERROR = 0;
-    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "ÈÎÎñ²Ù×÷³É¹¦");
+    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "ä»»åŠ¡æ“ä½œæˆåŠŸ");
 
     const INT32 ID_OPERATE_FAILED = 1;
-    const TCHAR* STR_OPERATE_FAILED = _SDTSource2T("GBK", "ÈÎÎñ²Ù×÷´íÎó");
+    const TCHAR* STR_OPERATE_FAILED = _SDTSource2T("GBK", "ä»»åŠ¡æ“ä½œé”™è¯¯");
 
     const INT32 ID_INSTANCE_TASK_FAILED = 2;
-    const TCHAR* STR_INSTANCE_TASK_FAILED = _SDTSource2T("GBK", "¸±±¾ÈÎÎñ´íÎó");
+    const TCHAR* STR_INSTANCE_TASK_FAILED = _SDTSource2T("GBK", "å‰¯æœ¬ä»»åŠ¡é”™è¯¯");
 }
 
 namespace  ERR_ITEM_SMITHING
 {
     const INT32 ID_NOERROR = 0;
-    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "²Ù×÷³É¹¦");
+    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "æ“ä½œæˆåŠŸ");
 
     const INT32 ID_NOCHANGE = 1;
-    const TCHAR* STR_NOCHANGE = _SDTSource2T("GBK", "Ê§°Ü£¬ÊôÐÔ²»±ä");
+    const TCHAR* STR_NOCHANGE = _SDTSource2T("GBK", "å¤±è´¥ï¼Œå±žæ€§ä¸å˜");
 
     const INT32 ID_OVERFLOW = 2;
-    const TCHAR* STR_OVERFLOW = _SDTSource2T("GBK", "Ê§°Ü£¬ÒÑ´ïµ½×î´ó¶ÍÔì´ÎÊý");
+    const TCHAR* STR_OVERFLOW = _SDTSource2T("GBK", "å¤±è´¥ï¼Œå·²è¾¾åˆ°æœ€å¤§é”»é€ æ¬¡æ•°");
 
     const INT32 ID_DESTROY = 3;
-    const TCHAR* STR_DESTROY = _SDTSource2T("GBK", "Ê§°Ü£¬ÇÒ¸ÃµÀ¾ßÒÑ±»Ïú»Ù");
+    const TCHAR* STR_DESTROY = _SDTSource2T("GBK", "å¤±è´¥ï¼Œä¸”è¯¥é“å…·å·²è¢«é”€æ¯");
 }
 
 namespace  ERR_ITEM_USE
 {
     const INT32 ID_NOERROR = 0;
-    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "²Ù×÷³É¹¦");
+    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "æ“ä½œæˆåŠŸ");
 
     const INT32 ID_DESTROY = 1;
-    const TCHAR* STR_DESTROY = _SDTSource2T("GBK", "²Ù×÷³É¹¦£¬ÇÒ¸ÃµÀ¾ßÒÑ±»Ïú»Ù");
+    const TCHAR* STR_DESTROY = _SDTSource2T("GBK", "æ“ä½œæˆåŠŸï¼Œä¸”è¯¥é“å…·å·²è¢«é”€æ¯");
 
     const INT32 ID_INVALIDPARA = 2;
-    const TCHAR* STR_INVALIDPARA = _SDTSource2T("GBK", "Ê§°Ü£¬·Ç·¨²ÎÊý");
+    const TCHAR* STR_INVALIDPARA = _SDTSource2T("GBK", "å¤±è´¥ï¼Œéžæ³•å‚æ•°");
 
     const INT32 ID_UNUSED = 3;
-    const TCHAR* STR_UNUSED = _SDTSource2T("GBK", "Ê§°Ü£¬µÀ¾ß²»¿ÉÊ¹ÓÃ");
+    const TCHAR* STR_UNUSED = _SDTSource2T("GBK", "å¤±è´¥ï¼Œé“å…·ä¸å¯ä½¿ç”¨");
 }
 
 namespace  ERR_TRAP
 {
     const INT32 ID_NOERROR = 0;
-    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "²Ù×÷³É¹¦");
+    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "æ“ä½œæˆåŠŸ");
 
     const INT32 ID_INTERNEL_ERROR = 1;
-    const TCHAR* STR_INTERNEL_ERROR = _SDTSource2T("GBK", "ÄÚ²¿´íÎó");
+    const TCHAR* STR_INTERNEL_ERROR = _SDTSource2T("GBK", "å†…éƒ¨é”™è¯¯");
 
     const INT32 ID_BAD_TRAP_ID = 2;
-    const TCHAR* STR_BAD_TRAP_ID = _SDTSource2T("GBK", "»ú¹ØID´íÎó");
+    const TCHAR* STR_BAD_TRAP_ID = _SDTSource2T("GBK", "æœºå…³IDé”™è¯¯");
 
     const INT32 ID_NOT_ONTIME = 3;
-    const TCHAR* STR_NOT_ONTIME = _SDTSource2T("GBK", "´¥·¢Ê±¼ä´íÎó");
+    const TCHAR* STR_NOT_ONTIME = _SDTSource2T("GBK", "è§¦å‘æ—¶é—´é”™è¯¯");
 
     const INT32 ID_PLAYER_CAN_NOT_OPEN = 4;
-    const TCHAR* STR_PLAYER_CAN_NOT_OPEN = _SDTSource2T("GBK", "Íæ¼Ò²»ÄÜ¿ªÆô¸Ã»ú¹Ø");
+    const TCHAR* STR_PLAYER_CAN_NOT_OPEN = _SDTSource2T("GBK", "çŽ©å®¶ä¸èƒ½å¼€å¯è¯¥æœºå…³");
 
     const INT32 ID_BAD_TRAP_STATUS = 4;
-    const TCHAR* STR_BAD_TRAP_STATUS = _SDTSource2T("GBK", "»ú¹ØÄ¿Ç°²»ÄÜ¿ªÆô");
+    const TCHAR* STR_BAD_TRAP_STATUS = _SDTSource2T("GBK", "æœºå…³ç›®å‰ä¸èƒ½å¼€å¯");
 }
 

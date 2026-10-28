@@ -55,16 +55,16 @@ enum SPELL_FLAG_BITS
 	sfbInvalid = -1,
 
 	sfbRoundTableBegin,
-	sfbCrit = sfbRoundTableBegin,	// ±©»÷ = 0
-	sfbBlock,						// ¸ñµ² = 1
-	sfbDodge,						// ÉÁ±Ü = 2
-	sfbParry,						// ÕĞ¼Ü = 3
-	sfbMiss,						// Î´ÃüÖĞ = 4
-	sfbNormal,						// ÆÕÍ¨ = 5
+	sfbCrit = sfbRoundTableBegin,	// æš´å‡» = 0
+	sfbBlock,						// æ ¼æŒ¡ = 1
+	sfbDodge,						// é—ªé¿ = 2
+	sfbParry,						// æ‹›æ¶ = 3
+	sfbMiss,						// æœªå‘½ä¸­ = 4
+	sfbNormal,						// æ™®é€š = 5
 	sfbRoundTableEnd,
 
-	sfbImmune = sfbRoundTableEnd,	// ÃâÒß = 6
-	sfbDead,						// ËÀÍö = 7
+	sfbImmune = sfbRoundTableEnd,	// å…ç–« = 6
+	sfbDead,						// æ­»äº¡ = 7
 	sfbEmptyEffect,
 
 	sfbTotal

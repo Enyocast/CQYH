@@ -30,7 +30,7 @@ enum CHAR_MOVE_STATE
 	CMS_TOTAL
 };
 
-// ¼¼ÄÜ×´Ì¬
+// æŠ€èƒ½çŠ¶æ€
 enum CHAR_SPELL_STATE
 {
 	cspsInvalid = -1,
@@ -85,19 +85,19 @@ enum CHAR_SPECIES_TYPE
 {
 	spcInvalid = -1,
 
-	spcNone,	   // ÎÞÀàÐÍ
-	spcPlayer,	   // Íæ¼Ò
-	spcHuman,	   // ÈËÀà
-	spcHumanlike,  // ÀàÈËÉúÎï
-	spcBeast,	   // Ò°ÊÞ
-	spcInsect,	   // À¥³æ
-	spcPlant,	   // Ö²Îï
-	spcUndead,	   // ÍöÁé
-	spcMachine,	   // »úÐµ
-	spcDragon,	   // Áú×å
-	spcDemon,	   // ¶ñÄ§
-	spcElements,   // ÔªËØÉúÎï
-	spcBuilding,   // ½¨Öþ
+	spcNone,	   // æ— ç±»åž‹
+	spcPlayer,	   // çŽ©å®¶
+	spcHuman,	   // äººç±»
+	spcHumanlike,  // ç±»äººç”Ÿç‰©
+	spcBeast,	   // é‡Žå…½
+	spcInsect,	   // æ˜†è™«
+	spcPlant,	   // æ¤ç‰©
+	spcUndead,	   // äº¡çµ
+	spcMachine,	   // æœºæ¢°
+	spcDragon,	   // é¾™æ—
+	spcDemon,	   // æ¶é­”
+	spcElements,   // å…ƒç´ ç”Ÿç‰©
+	spcBuilding,   // å»ºç­‘
 
 	spcTotal,
 };
@@ -199,7 +199,7 @@ enum CHAR_REVIVE_TYPE
 	crtTotal,
 };
 
-// Íæ¼Ò => login, inrange
+// çŽ©å®¶ => login, inrange
 // Npc => inrange, spawn, revive, NoPerforSpawn
 enum SCENE_OBJECT_APPEAR_TYPE
 {
@@ -250,9 +250,9 @@ enum ENUM_COMBAT_STAT_ENTRY
 };
 
 
-// ========== ÐÂÔö´úÂë, ×Ô¼ºÐÂÔö¼Ó Ã¶¾Ù
+// ========== æ–°å¢žä»£ç , è‡ªå·±æ–°å¢žåŠ  æžšä¸¾
 
-// ÃúÎÄÏ´Á·½Úµã
+// é“­æ–‡æ´—ç»ƒèŠ‚ç‚¹
 enum ROLE_RUNE_ROOT
 {
 	rrrNormal,

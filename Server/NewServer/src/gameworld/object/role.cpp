@@ -192,7 +192,7 @@ CRole::CRole()
     m_bUserWhiteList = FALSE;
     m_dwIpAddr = 0;
 
-    // ĞÂÔö´úÂë, ×Ô¼ºĞÂÔö¼Ó
+    // æ–°å¢ä»£ç , è‡ªå·±æ–°å¢åŠ 
     m_dwGameTimeCard = 0;
     m_bDoTellGameTimeCard = FALSE;
     m_bHaveTime = TRUE;
@@ -413,7 +413,7 @@ BOOL CRole::Init(UINT32 dwObjID, UINT32 dwSessionID)
 
 #endif  // _ROBOT
 
-    // ĞÂÔö´úÂë, ×Ô¼ºĞÂÔö¼Ó
+    // æ–°å¢ä»£ç , è‡ªå·±æ–°å¢åŠ 
     m_dwGameTimeCard = 0;
     m_bDoTellGameTimeCard = FALSE;
     m_bHaveTime = TRUE;
@@ -496,7 +496,7 @@ BOOL CRole::UnInit(void)
     nRetCode = CCharacter::UnInit();
     LOG_CHECK_ERROR(nRetCode);
 
-    // ĞÂÔö´úÂë, ×Ô¼ºĞÂÔö¼Ó
+    // æ–°å¢ä»£ç , è‡ªå·±æ–°å¢åŠ 
     m_dwGameTimeCard = 0;
 
     return TRUE;
@@ -679,15 +679,15 @@ void CRole::_CheckInteractBT(void)
 }
 
 
-// ==================== ×Ô¼ºĞÂÔö¼Ó´úÂë Begin
+// ==================== è‡ªå·±æ–°å¢åŠ ä»£ç  Begin
 
-// »ñÈ¡µ±Ç°µã¿¨µ½ÆÚÊ±¼ä (ÃëÊı)
+// è·å–å½“å‰ç‚¹å¡åˆ°æœŸæ—¶é—´ (ç§’æ•°)
 UINT32 CRole::GetGameTimeCard_UINT32()
 {
     return m_dwGameTimeCard;
 }
 
-// Ôö¼Óµã¿¨Ê±¼ä (ÃëÊı)
+// å¢åŠ ç‚¹å¡æ—¶é—´ (ç§’æ•°)
 void CRole::AddGameTimeCard(UINT32 seconds)
 {
     if (g_ServerConfig.CC.bCustomGameTimeCardEnable == false)
@@ -697,22 +697,22 @@ void CRole::AddGameTimeCard(UINT32 seconds)
 
     UINT32 dwnowTime = CGameWorld::GetInstance().GetGameTime();
     
-    // ¹ıÆÚÁË
+    // è¿‡æœŸäº†
     if (dwnowTime > m_dwGameTimeCard)
     {
         m_dwGameTimeCard = dwnowTime + seconds;
     }
-    // Ã»¹ıÆÚ
+    // æ²¡è¿‡æœŸ
     else
     {
         m_dwGameTimeCard += seconds;
     }
 
-    SetFreeMode(FALSE);    // Ö»Òª³Ôµã¿¨, ¾ÍĞŞ¸Ä m_bFreeMode ±êÖ¾
+    SetFreeMode(FALSE);    // åªè¦åƒç‚¹å¡, å°±ä¿®æ”¹ m_bFreeMode æ ‡å¿—
     NotifyRole_GameTimeCard();
 }
 
-// ¸øÍæ¼Ò·¢ËÍË½ÁÄ Í¨ÖªÊ£ÓàÊ±¼ä
+// ç»™ç©å®¶å‘é€ç§èŠ é€šçŸ¥å‰©ä½™æ—¶é—´
 void CRole::NotifyRole_GameTimeCard()
 {
     if (g_ServerConfig.CC.bCustomGameTimeCardEnable == false)
@@ -725,24 +725,24 @@ void CRole::NotifyRole_GameTimeCard()
 
     UINT32 dwnowTime = CGameWorld::GetInstance().GetGameTime();
 
-    // ¹ıÆÚÁË
+    // è¿‡æœŸäº†
     if (dwnowTime > m_dwGameTimeCard)
     {
         m_bHaveTime = TRUE;
 
-        const char* strNoTime = "[VipÔÂ¿¨]ÒÑ¹ıÆÚ!";
+        const char* strNoTime = "[Vipæœˆå¡]å·²è¿‡æœŸ!";
 
         snprintf(strMsg, sizeof(strMsg), "%s", strNoTime);
         char* str_utf8 = char_to_utf8(strMsg);
         Say(GetObjID(), cltNormal, str_utf8);
         delete[] str_utf8;
     }
-    // Ã»¹ıÆÚ
+    // æ²¡è¿‡æœŸ
     else
     {
         m_bHaveTime = FALSE;
 
-        const char* strHaveTime = "[VipÔÂ¿¨]Ê±¼ä: ";
+        const char* strHaveTime = "[Vipæœˆå¡]æ—¶é—´: ";
 
         snprintf(strMsg, sizeof(strMsg), "%s%s", strHaveTime, strTime);
         char* str_utf8 = char_to_utf8(strMsg);
@@ -751,28 +751,28 @@ void CRole::NotifyRole_GameTimeCard()
     }
 }
 
-// »ñÈ¡µ½µãÊÇ·ñ¹ıÆÚ
+// è·å–åˆ°ç‚¹æ˜¯å¦è¿‡æœŸ
 BOOL CRole::GetGameTimeCard_HaveTime()
 {
     return m_bHaveTime;
 }
 
-// »ñÈ¡-¸ß¼¶ÃúÎÄÏ´Á·½á¹û
+// è·å–-é«˜çº§é“­æ–‡æ´—ç»ƒç»“æœ
 INT32 CRole::GetRuneItemHighResult()
 {
     return m_dwRuneID;
 }
 
-// ĞŞ¸Ä-¸ß¼¶ÃúÎÄÏ´Á·½á¹û
+// ä¿®æ”¹-é«˜çº§é“­æ–‡æ´—ç»ƒç»“æœ
 void CRole::SetRuneItemHighResult(INT32 RuneID)
 {
     m_dwRuneID = RuneID;
 }
 
-// »ñÈ¡-ÃúÎÄ½ÚµãÊıÖµ
+// è·å–-é“­æ–‡èŠ‚ç‚¹æ•°å€¼
 INT32 CRole::GetRuneRootCount(INT32 nType, INT32 cls)
 {
-    // ÆÕÍ¨
+    // æ™®é€š
     if (nType == rrrNormal)
     {
         switch (cls)
@@ -785,7 +785,7 @@ INT32 CRole::GetRuneRootCount(INT32 nType, INT32 cls)
             return m_nRuneNormal_Taoist;
         }
     }
-    // ¸ß¼¶
+    // é«˜çº§
     else if (nType == rrrAdvanced)
     {
         switch (cls)
@@ -801,10 +801,10 @@ INT32 CRole::GetRuneRootCount(INT32 nType, INT32 cls)
     return 0;
 }
 
-// Ôö¼Ó-ÃúÎÄ½ÚµãÊıÖµ
+// å¢åŠ -é“­æ–‡èŠ‚ç‚¹æ•°å€¼
 void CRole::IncRuneRootCount(INT32 nType, INT32 cls)
 {
-    // ÆÕÍ¨
+    // æ™®é€š
     if (nType == rrrNormal)
     {
         switch (cls)
@@ -835,7 +835,7 @@ void CRole::IncRuneRootCount(INT32 nType, INT32 cls)
         }
         }
     }
-    // ¸ß¼¶
+    // é«˜çº§
     else if (nType == rrrAdvanced)
     {
         switch (cls)
@@ -868,67 +868,67 @@ void CRole::IncRuneRootCount(INT32 nType, INT32 cls)
     }
 }
 
-// ·¢ËÍË½ÁÄ Í¨ÖªÃúÎÄ½ÚµãÊıÖµ
+// å‘é€ç§èŠ é€šçŸ¥é“­æ–‡èŠ‚ç‚¹æ•°å€¼
 void CRole::NotifyRole_RuneRootCount(INT32 nType, INT32 cls)
 {
     char strMsg[128] = { 0 };
     char* str_utf8 = "";
 
-    // ÆÕÍ¨
+    // æ™®é€š
     if (nType == rrrNormal)
     {
-        const char* str1 = "[ÆÕÍ¨ÃúÎÄÏ´Á·]-";
+        const char* str1 = "[æ™®é€šé“­æ–‡æ´—ç»ƒ]-";
 
         switch (cls)
         {
         case clsWarrior:
         {
-            const char* str2 = "[Õ½Ê¿] ";
-            snprintf(strMsg, sizeof(strMsg), "%s%s%d´Î", str1, str2, m_nRuneNormal_Warrior);
+            const char* str2 = "[æˆ˜å£«] ";
+            snprintf(strMsg, sizeof(strMsg), "%s%s%dæ¬¡", str1, str2, m_nRuneNormal_Warrior);
             str_utf8 = char_to_utf8(strMsg);
             break;
         }
         case clsMage:
         {
-            const char* str2 = "[·¨Ê¦] ";
-            snprintf(strMsg, sizeof(strMsg), "%s%s%d´Î", str1, str2, m_nRuneNormal_Mage);
+            const char* str2 = "[æ³•å¸ˆ] ";
+            snprintf(strMsg, sizeof(strMsg), "%s%s%dæ¬¡", str1, str2, m_nRuneNormal_Mage);
             str_utf8 = char_to_utf8(strMsg);
             break;
         }
         case clsTaoist:
         {
-            const char* str2 = "[µÀÊ¿] ";
-            snprintf(strMsg, sizeof(strMsg), "%s%s%d´Î", str1, str2, m_nRuneNormal_Taoist);
+            const char* str2 = "[é“å£«] ";
+            snprintf(strMsg, sizeof(strMsg), "%s%s%dæ¬¡", str1, str2, m_nRuneNormal_Taoist);
             str_utf8 = char_to_utf8(strMsg);
             break;
         }
         }
     }
-    // ¸ß¼¶
+    // é«˜çº§
     else if (nType == rrrAdvanced)
     {
-        const char* str1 = "[¸ß¼¶ÃúÎÄÏ´Á·]-";
+        const char* str1 = "[é«˜çº§é“­æ–‡æ´—ç»ƒ]-";
 
         switch (cls)
         {
         case clsWarrior:
         {
-            const char* str2 = "[Õ½Ê¿] ";
-            snprintf(strMsg, sizeof(strMsg), "%s%s%d´Î", str1, str2, m_nRuneAdvanced_Warrior);
+            const char* str2 = "[æˆ˜å£«] ";
+            snprintf(strMsg, sizeof(strMsg), "%s%s%dæ¬¡", str1, str2, m_nRuneAdvanced_Warrior);
             str_utf8 = char_to_utf8(strMsg);
             break;
         }
         case clsMage:
         {
-            const char* str2 = "[·¨Ê¦] ";
-            snprintf(strMsg, sizeof(strMsg), "%s%s%d´Î", str1, str2, m_nRuneAdvanced_Mage);
+            const char* str2 = "[æ³•å¸ˆ] ";
+            snprintf(strMsg, sizeof(strMsg), "%s%s%dæ¬¡", str1, str2, m_nRuneAdvanced_Mage);
             str_utf8 = char_to_utf8(strMsg);
             break;
         }
         case clsTaoist:
         {
-            const char* str2 = "[µÀÊ¿] ";
-            snprintf(strMsg, sizeof(strMsg), "%s%s%d´Î", str1, str2, m_nRuneAdvanced_Taoist);
+            const char* str2 = "[é“å£«] ";
+            snprintf(strMsg, sizeof(strMsg), "%s%s%dæ¬¡", str1, str2, m_nRuneAdvanced_Taoist);
             str_utf8 = char_to_utf8(strMsg);
             break;
         }
@@ -944,31 +944,31 @@ void CRole::ResetLuckRootCount()
     m_nLuckRootCount = 0;
 }
 
-// »ñÈ¡×£¸£ÓÍ½ÚµãÊıÖµ
+// è·å–ç¥ç¦æ²¹èŠ‚ç‚¹æ•°å€¼
 INT32 CRole::GetLuckRootCount()
 {
     return m_nLuckRootCount;
 }
 
-// Ôö¼Ó-×£¸£ÓÍ½ÚµãÊıÖµ
+// å¢åŠ -ç¥ç¦æ²¹èŠ‚ç‚¹æ•°å€¼
 void CRole::IncLuckRootCount()
 {
     m_nLuckRootCount += 1;
 }
 
-// ·¢ËÍË½ÁÄ Í¨Öª×£¸£ÓÍ½ÚµãÊıÖµ
+// å‘é€ç§èŠ é€šçŸ¥ç¥ç¦æ²¹èŠ‚ç‚¹æ•°å€¼
 void CRole::NotifyRole_LuckRootCount()
 {
     char strMsg[128] = { 0 };
     char* str_utf8 = "";
-    const char* str1 = "×£¸£ÓÍ½Úµã-";
+    const char* str1 = "ç¥ç¦æ²¹èŠ‚ç‚¹-";
     snprintf(strMsg, sizeof(strMsg), "%s[%d]", str1, m_nLuckRootCount);
     str_utf8 = char_to_utf8(strMsg);
     Say(GetObjID(), cltDialog, str_utf8);
     delete[] str_utf8;
 }
 
-// ==================== ×Ô¼ºĞÂÔö¼Ó´úÂë end
+// ==================== è‡ªå·±æ–°å¢åŠ ä»£ç  end
 
 void CRole::_On1SecMainLoop(void)
 {
@@ -998,16 +998,16 @@ void CRole::_On1SecMainLoop(void)
     if (!IsDead())
         m_ItemBag.MainLoop();
 
-    // ĞÂÔö´úÂë - µã¿¨ÏµÍ³ÊÇ·ñµ½ÆÚ
-    if (g_ServerConfig.CC.bCustomGameTimeCardEnable == TRUE && // ¿ªÆô ×Ô¶¨Òåµã¿¨¹¦ÄÜ
-        dwCurTime > m_dwGameTimeCard &&                        // µã¿¨¹ıÆÚ
-        IsFreeMode() == FALSE &&                               // m_bFreeMode ±êÖ¾ == FALSE
-        GetLevel() > g_ServerConfig.CC.nCustomFreeRoleLevel)   // µ±Ç°µÈ¼¶ ³¬¹ı[×ÔÓÉÈËÎïµÈ¼¶]
+    // æ–°å¢ä»£ç  - ç‚¹å¡ç³»ç»Ÿæ˜¯å¦åˆ°æœŸ
+    if (g_ServerConfig.CC.bCustomGameTimeCardEnable == TRUE && // å¼€å¯ è‡ªå®šä¹‰ç‚¹å¡åŠŸèƒ½
+        dwCurTime > m_dwGameTimeCard &&                        // ç‚¹å¡è¿‡æœŸ
+        IsFreeMode() == FALSE &&                               // m_bFreeMode æ ‡å¿— == FALSE
+        GetLevel() > g_ServerConfig.CC.nCustomFreeRoleLevel)   // å½“å‰ç­‰çº§ è¶…è¿‡[è‡ªç”±äººç‰©ç­‰çº§]
     {
-        // ÔİÊ±ÆÁ±Î, µ±Ç°¸Ä³É ÓĞµã¿¨Ê±¼ä,Ê°È¡½ğ±ÒÊÇË«±¶
-        //SetFreeMode(TRUE);    // µã¿¨¹ıÆÚ, ²Å»áĞŞ¸Ä m_bFreeMode ±êÖ¾
+        // æš‚æ—¶å±è”½, å½“å‰æ”¹æˆ æœ‰ç‚¹å¡æ—¶é—´,æ‹¾å–é‡‘å¸æ˜¯åŒå€
+        //SetFreeMode(TRUE);    // ç‚¹å¡è¿‡æœŸ, æ‰ä¼šä¿®æ”¹ m_bFreeMode æ ‡å¿—
 
-        // ¸æËßÍæ¼Òµ½ÆÚÁË
+        // å‘Šè¯‰ç©å®¶åˆ°æœŸäº†
         if (m_bDoTellGameTimeCard == FALSE)
         {
             NotifyRole_GameTimeCard();
@@ -1016,7 +1016,7 @@ void CRole::_On1SecMainLoop(void)
         }
     }
 
-    // Ä¬ÈÏ´úÂë - ÅĞ¶ÏÔ­Éúµã¿¨ÏµÍ³, µ½ÆÚÁË¾ÍÌø×ªµØÍ¼
+    // é»˜è®¤ä»£ç  - åˆ¤æ–­åŸç”Ÿç‚¹å¡ç³»ç»Ÿ, åˆ°æœŸäº†å°±è·³è½¬åœ°å›¾
     //if (IsFreeMode() && GetState() == rsPlaying && GetSceneTempID() != g_ServerConfig.MS.nFreeRoleSceneID && GetSceneTempID() != g_GWConfig.ArrestConfig.nSceneTempID)
     //    CGameWorld::GetInstance().JumpTo(this, g_ServerConfig.MS.nFreeRoleSceneID, 0,
     //    g_ServerConfig.MS.nFreeRoleScenePosX, g_ServerConfig.MS.nFreeRoleScenePosY,
@@ -1432,8 +1432,8 @@ BOOL CRole::_GridMove(INT64 llDestX, INT64 llDestY)
         m_pcGrid = pcDestGrid;
         m_pcZone = pcDestZone;
 
-        pOldGridInstance = m_pGridInstance;  // °Ñµ±Ç°m_pGridInstance, ¸³Öµ¸ø Old ÀÏµÄ¶ÔÏó
-        m_pGridInstance = pGridInstance;     // °ÑĞÂpGridInstance, ¸³Öµ¸øµ±Ç°m_pGridInstance¶ÔÏó
+        pOldGridInstance = m_pGridInstance;  // æŠŠå½“å‰m_pGridInstance, èµ‹å€¼ç»™ Old è€çš„å¯¹è±¡
+        m_pGridInstance = pGridInstance;     // æŠŠæ–°pGridInstance, èµ‹å€¼ç»™å½“å‰m_pGridInstanceå¯¹è±¡
 
         nRetCode = SetGridCharRef();
         LOG_CHECK_ERROR(nRetCode);
@@ -1444,7 +1444,7 @@ BOOL CRole::_GridMove(INT64 llDestX, INT64 llDestY)
             LOG_PROCESS_ERROR(nRetCode);
         }
 
-        // ÅĞ¶ÏÌå»ı
+        // åˆ¤æ–­ä½“ç§¯
         nRetCode = CheckVolume();
         LOG_CHECK_ERROR(nRetCode);
 
@@ -2354,7 +2354,7 @@ void CRole::SetScene(CScene* poScene)
     CCharacter::SetScene(poScene);
 }
 
-// Ê°È¡ÎïÆ·
+// æ‹¾å–ç‰©å“
 INT32 CRole::PickUp(UINT32 dwDropID)
 {
     INT32 nResult = errUnknownError;
@@ -2855,7 +2855,7 @@ BOOL CRole::SetLevel(INT32 nNewLevel)
 
     CLuaScript* poScript = NULL;
 
-    nRetCode = CCharacter::SetLevel(nNewLevel);  // ¸üĞÂÊôĞÔ
+    nRetCode = CCharacter::SetLevel(nNewLevel);  // æ›´æ–°å±æ€§
     LOG_PROCESS_ERROR(nRetCode);
 
     poScript = CScriptMgr::GetInstance().FindScript(ROLE_LEVEL_SCRIPT_NAME);
@@ -3045,7 +3045,7 @@ BOOL CRole::Die(INT32 nParam)
 
     if (poKiller)
     {
-        // ±»ÆäËûÍæ¼Ò»÷É±
+        // è¢«å…¶ä»–ç©å®¶å‡»æ€
         if (poKiller->GetObjType() == otRole)
         {
             CRole* poKillerRole = (CRole*)poKiller;
@@ -3088,7 +3088,7 @@ BOOL CRole::Die(INT32 nParam)
 
                     if (GetPkValue() < 100)
                     {
-                        //poKillerRole->GetItemBag()->DecreaseWeaponLuck();  // ÔİÊ±ÆÁ±Î, ¸Ä³É É±ÈË²»µôÎäÆ÷ÄÍ¾Ã
+                        //poKillerRole->GetItemBag()->DecreaseWeaponLuck();  // æš‚æ—¶å±è”½, æ”¹æˆ æ€äººä¸æ‰æ­¦å™¨è€ä¹…
                     }
                 }
                 else
@@ -3133,7 +3133,7 @@ BOOL CRole::Die(INT32 nParam)
                 poKillerRole->GetLevel(), poKillerRole->GetClass(), GetX() / POINT_PER_CM, GetY() / POINT_PER_CM, GetZ() / POINT_PER_CM);
             LOG_CHECK_ERROR(nRetCode);
         }
-        // ±»¹ÖÎï»÷É±
+        // è¢«æ€ªç‰©å‡»æ€
         else if (poKiller->GetObjType() == otNpc)
         {
             CNpc* poKillerNpc = (CNpc*)poKiller;
@@ -4324,7 +4324,7 @@ BOOL CRole::_InitNewRole(void)
     m_Friend.Clear();
     m_Title.clear();
 
-    // Ö´ĞĞ lua½Å±¾ "script/create_role/main.lua"
+    // æ‰§è¡Œ luaè„šæœ¬ "script/create_role/main.lua"
     poScript = CScriptMgr::GetInstance().FindScript(CREATE_ROLE_SCRIPT_NAME);
     LOG_PROCESS_ERROR(poScript);
 
@@ -4914,12 +4914,12 @@ INT32 CRole::OnKillNpc(CNpc* pNpc, INT32 nExp)
     LOG_PROCESS_ERROR(pNpc);
     LOG_PROCESS_ERROR(pNpc->GetNpcData());
 
-    //consecutive kill - Á¬Ğø»÷É±
+    //consecutive kill - è¿ç»­å‡»æ€
     m_nConsecutiveKillNpcCount++;
     m_nConsecutiveKillNpcExp += nExp;
     m_nConsecutiveKillNpcFrame = CGameWorld::GetInstance().GetGameFrame() + MAX_CONSECUTIVE_KILL_NPC_FRAME;
 
-    // momentary kill - Ë²¼ä»÷É±
+    // momentary kill - ç¬é—´å‡»æ€
     m_nMomentaryKillNpcCount[MOMENTARY_KILL_NPC_TIEM - 1]++;
     m_nMomentaryKillNpcExp[MOMENTARY_KILL_NPC_TIEM - 1] += nExp;
 

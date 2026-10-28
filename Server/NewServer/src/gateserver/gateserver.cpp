@@ -58,7 +58,7 @@ BOOL CGateServer::Init(INetEventHandler* poInterMessageHandler, INetEventHandler
     nRetCode = m_PacketAllocator.Init(g_ServerConfig.GT.Net.nSmallPacketCount, g_ServerConfig.GT.Net.nLargePacketCount);
     LOG_PROCESS_ERROR(nRetCode);
 
-    // external - ÍâÁªÍø
+    // external - å¤–è”ç½‘
     AsioInitParam.nMaxSessionCount = g_ServerConfig.GT.nMaxClientSessionCount;
     AsioInitParam.nThreadCount = g_ServerConfig.GT.nWorkThreadCount;
     AsioInitParam.pnMessageSizeList = g_nC2SMessageSize;
@@ -68,7 +68,7 @@ BOOL CGateServer::Init(INetEventHandler* poInterMessageHandler, INetEventHandler
     m_pExternalNet = g_CreateNetInterface(netAsio, &m_PacketAllocator, poExternalMessageHandler, &AsioInitParam);
     LOG_PROCESS_ERROR(m_pExternalNet);
 
-    // internal - ÄÚÁªÍø
+    // internal - å†…è”ç½‘
 #if defined(WIN32)
     IntranetInitParam.nMaxAcceptor = g_ServerConfig.GT.Net.nMaxAcceptor;
     IntranetInitParam.nMaxConnector = g_ServerConfig.GT.Net.nMaxConnector;
@@ -96,7 +96,7 @@ BOOL CGateServer::Init(INetEventHandler* poInterMessageHandler, INetEventHandler
 		if (m_dwExternalAddr[m_nExternalAddrCount] == 0)
 			break;
 
-        // ÍâÁªÍø - ´´½¨Acceptor
+        // å¤–è”ç½‘ - åˆ›å»ºAcceptor
 		m_pClientSocketAcceptor[m_nExternalAddrCount] = m_pExternalNet->CreateAcceptor();
 		LOG_PROCESS_ERROR(m_pClientSocketAcceptor[m_nExternalAddrCount]);
 
@@ -122,7 +122,7 @@ BOOL CGateServer::Init(INetEventHandler* poInterMessageHandler, INetEventHandler
 	m_dwInternalAddr = GetIp(g_ServerConfig.Common.szIntranetAddr, g_ServerConfig.Common.szIntranetMask, TRUE, 0);
 	LOG_PROCESS_ERROR(m_dwInternalAddr);
 
-    // ´´½¨¹²ÏíÄÚ´æ
+    // åˆ›å»ºå…±äº«å†…å­˜
     m_dwInternalPort = g_ServerConfig.GT.dwStartInternalPort;
 	nRetCode = m_pGSSocketAcceptor->Open(m_dwInternalAddr, m_dwInternalPort);
     while(!nRetCode)
@@ -208,10 +208,10 @@ BOOL CGateServer::MainLoop(void)
 		s_qwLastSessionTick = qwCurrentTick;
 	}
 
-    nRetCode = m_pInternalNet->MainLoop();    // ÄÚÁªÍø
+    nRetCode = m_pInternalNet->MainLoop();    // å†…è”ç½‘
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = m_pExternalNet->MainLoop();    // ÍâÁªÍø
+    nRetCode = m_pExternalNet->MainLoop();    // å¤–è”ç½‘
     LOG_PROCESS_ERROR(nRetCode);
 
 	UINT64 qwEndTick = GetTickCountEx();
@@ -283,19 +283,19 @@ BOOL _InitServer(void)
 	INF("initializing gate server %d.%d.%d", MAJOR_VERSION, MINOR_VERSION, BUILD_NUMBER);
 #endif	// _FINAL
 
-    // ´´½¨ÍøÂç - ÄÚÁªÍø/ÍâÁªÍø
+    // åˆ›å»ºç½‘ç»œ - å†…è”ç½‘/å¤–è”ç½‘
     nRetCode = CGateServer::GetInstance().Init(&rInternalMessageHandler, &rExternalMessageHandler);
     LOG_PROCESS_ERROR(nRetCode);
 
-    // ÍâÁªÍø - ³õÊ¼»¯ĞÅÏ¢
+    // å¤–è”ç½‘ - åˆå§‹åŒ–ä¿¡æ¯
     nRetCode = rExternalMessageHandler.Init(rGateServer.GetExternalNet(), rGateServer.GetPacketAllocator());
     LOG_PROCESS_ERROR(nRetCode);
 
-    // ÄÚÁªÍø - ³õÊ¼»¯ĞÅÏ¢
+    // å†…è”ç½‘ - åˆå§‹åŒ–ä¿¡æ¯
     nRetCode = rInternalMessageHandler.Init(rGateServer.GetInternalNet(), rGateServer.GetPacketAllocator());
     LOG_PROCESS_ERROR(nRetCode);
 
-    // ³õÊ¼»¯ - ¸÷ÖÖSESSION×Ö¶Î
+    // åˆå§‹åŒ– - å„ç§SESSIONå­—æ®µ
     nRetCode = CGTSessionMgr::GetInstance().Init(rGateServer.GetExternalNet(), rGateServer.GetInternalNet());
     LOG_PROCESS_ERROR(nRetCode);
 

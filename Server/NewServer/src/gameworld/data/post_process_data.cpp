@@ -448,7 +448,7 @@ BOOL g_ProcessSpellVar(SPELL_VAR* pData, BOOL bInit)
 
         e->m_bInited = TRUE;
 
-        // Ä¬ÈÏ´úÂë
+        // é»˜è®¤ä»£ç 
         for (INT32 i = 0; i < MAX_EX_PARAM_COUNT; i++)
         {
             t->SetX(i, pData->m_nX[i]);
@@ -699,7 +699,7 @@ BOOL g_ProcessAchievementData(ACHIEVEMENT_DATA* pData, BOOL bInit)
 
             switch (pData->vecAchievementType[nIndex])
             {
-                case adKillNpcIDCount:				// Íæ¼ÒÉ±ËÀÖ¸¶¨ID¹ÖÎï
+                case adKillNpcIDCount:				// ç©å®¶æ€æ­»æŒ‡å®šIDæ€ªç‰©
                 {
                     LOG_PROCESS_ERROR(pData->vecAchievementValue1[nIndex] >= 0 && pData->vecAchievementValue1[nIndex] < MAX_ROLE_VARIABLE_COUNT);
 
@@ -727,7 +727,7 @@ BOOL g_ProcessAchievementData(ACHIEVEMENT_DATA* pData, BOOL bInit)
 
                     break;
                 }
-                case adKilledByNpcIDCount:			// Ö¸¶¨ID¹ÖÎïÉ±ËÀÍæ¼Ò
+                case adKilledByNpcIDCount:			// æŒ‡å®šIDæ€ªç‰©æ€æ­»ç©å®¶
                 {
                     LOG_PROCESS_ERROR(pData->vecAchievementValue1[nIndex] >= 0 && pData->vecAchievementValue1[nIndex] < MAX_ROLE_VARIABLE_COUNT);
 
@@ -738,7 +738,7 @@ BOOL g_ProcessAchievementData(ACHIEVEMENT_DATA* pData, BOOL bInit)
 
                     break;
                 }
-                case adUseItemIDCount:						// Ê¹ÓÃÖ¸¶¨IDÎïÆ·						
+                case adUseItemIDCount:						// ä½¿ç”¨æŒ‡å®šIDç‰©å“						
                 {
                     LOG_PROCESS_ERROR(pData->vecAchievementValue1[nIndex] >= 0 && pData->vecAchievementValue1[nIndex] < MAX_ROLE_VARIABLE_COUNT);
 

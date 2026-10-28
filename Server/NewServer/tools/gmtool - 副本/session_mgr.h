@@ -26,7 +26,7 @@ struct GM_SESSION : BASE_LIST_NODE
     INT32               nConnectState;
     UINT32              dwSessionID;
 
-    GM_SVR_STATE    eState;             // todo_tq Õâ±ßstateĞèÒªÍ³Ò»´¦ÀíÒ»´Î Allan Tao[17.12.2013] 
+    GM_SVR_STATE    eState;             // todo_tq è¿™è¾¹stateéœ€è¦ç»Ÿä¸€å¤„ç†ä¸€æ¬¡ Allan Tao[17.12.2013] 
     INT32           nSvrID;
     char            szGMName[33];
 };

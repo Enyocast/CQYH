@@ -45,7 +45,7 @@ CTargetScanner::DoodadSelectFunc CTargetScanner::m_DoodadSelectFuncs[] =
     &CTargetScanner::_DoodadGridUSelector,		 // 10
     &CTargetScanner::_DoodadGridSingleSelector,  // 11
 
-    // ÕâÀï¿ÉÄÜÈ±ÉÙ3¸öº¯Êı 12 13 14
+    // è¿™é‡Œå¯èƒ½ç¼ºå°‘3ä¸ªå‡½æ•° 12 13 14
     //...
 };
 
@@ -445,7 +445,7 @@ Exit0:
 }
 
 
-// ==================== ·Ö¸îÏß
+// ==================== åˆ†å‰²çº¿
 
 inline BOOL CheckPos(INT64 x, INT64 y, INT64 start_x, INT64 start_y, INT64 end_x, INT64 end_y)
 {
@@ -841,7 +841,7 @@ BOOL CTargetScanner::_GridMultiLineSelector(CCharacter* obj, INT64& llRangeSq)
 
     for (INT32 i = 0; i < m_nParam2; i++)
     {
-        // ÀïÃæ»á¼ÆËã, ĞŞ¸Ä llTargetX, llTargetY
+        // é‡Œé¢ä¼šè®¡ç®—, ä¿®æ”¹ llTargetX, llTargetY
         GetOffsetedPos(m_llCenterX, m_llCenterY, m_nDirection, v27[i], 0, llTargetX, llTargetY);
 
         llTgGridX = llTargetX / GRID_WIDTH;
@@ -871,8 +871,8 @@ BOOL CTargetScanner::_GridMultiLineSelector(CCharacter* obj, INT64& llRangeSq)
 
     if (nDirection8 % 2)
     {
-        // "3072" Õâ¸öÊıÖµ, ÊÇ´Óida·´±àÒë³­¹ıÀ´µÄ, µ½µ×É¶ÒâË¼Ã»¶®
-        // Ó¦¸ÃÊÇ×ª»»·½Ïò ¼ÓµÄ¹Ì¶¨ÊıÖµ, ÑĞ¾¿ÆäËüµ÷Õû·½ÏòµÄ´úÂë, ÑĞ¾¿¼ÆËã·½ÏòÏà¹ØµÄ¹«Ê½
+        // "3072" è¿™ä¸ªæ•°å€¼, æ˜¯ä»idaåç¼–è¯‘æŠ„è¿‡æ¥çš„, åˆ°åº•å•¥æ„æ€æ²¡æ‡‚
+        // åº”è¯¥æ˜¯è½¬æ¢æ–¹å‘ åŠ çš„å›ºå®šæ•°å€¼, ç ”ç©¶å…¶å®ƒè°ƒæ•´æ–¹å‘çš„ä»£ç , ç ”ç©¶è®¡ç®—æ–¹å‘ç›¸å…³çš„å…¬å¼
         dir_1 = NormalizeDirection(m_nDirection + 3072);  
 
         v25 = ConvertToDir8(dir_1);
@@ -882,7 +882,7 @@ BOOL CTargetScanner::_GridMultiLineSelector(CCharacter* obj, INT64& llRangeSq)
 
         for (INT32 i = 0; i < m_nParam2 - 1; i++)
         {
-            // ÀïÃæ»á¼ÆËã, ĞŞ¸Ä llTargetX, llTargetY
+            // é‡Œé¢ä¼šè®¡ç®—, ä¿®æ”¹ llTargetX, llTargetY
             GetOffsetedPos(v30, v33, m_nDirection, v26[i], 0, llTargetX, llTargetY);
 
             llTgGridX = llTargetX / GRID_WIDTH;
@@ -913,7 +913,7 @@ Exit0:
 }
 
 
-// ==================== ·Ö¸îÏß
+// ==================== åˆ†å‰²çº¿
 
 INT64 CTargetScanner::CheckTarget(CCharacter* poCaster, CCharacter* poTarget)
 {

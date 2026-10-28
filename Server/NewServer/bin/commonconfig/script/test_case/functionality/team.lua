@@ -1334,7 +1334,7 @@ function TestCase.Team.TeamAuction()
 
 	wait(10);
 	
-    --msg = recv_msg(30, session_id2, protocol.g2c_sync_drop_list);	-- ÕâÀïÖÁÉÙ»áÊÕµ½Á½¸öÒÔÉÏµÄµôÂä£¬ÆäÖĞÓĞÒ»¸ö·Ç½ğÇ®
+    --msg = recv_msg(30, session_id2, protocol.g2c_sync_drop_list);	-- è¿™é‡Œè‡³å°‘ä¼šæ”¶åˆ°ä¸¤ä¸ªä»¥ä¸Šçš„æ‰è½ï¼Œå…¶ä¸­æœ‰ä¸€ä¸ªéé‡‘é’±
     --check(msg, "failed to received g2c_sync_drop_list");
 
 	ret = g_RobotMessageHandler:DoPickUpItem(role2, 0, 1);
@@ -1395,7 +1395,7 @@ function TestCase.Team.TeamAuction()
     check(msg.dwRoleID == roleid1);
     check(msg.nItemID == itemid);    
     
-    -- Òì³£Çé¿ö£¬ÅÄÂôÍê³É¼ÌĞø³ö¼Û
+    -- å¼‚å¸¸æƒ…å†µï¼Œæ‹å–å®Œæˆç»§ç»­å‡ºä»·
     --ret = g_RobotMessageHandler:DoTeamAuctionBid(role1, );
     --check(ret, "failed to send DoTeamAuctionBid");   
 end

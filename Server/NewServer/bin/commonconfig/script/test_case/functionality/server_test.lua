@@ -378,7 +378,7 @@ function _TestChatPerUser(index, username, nSceneTmpID, nSceneID, cls)
 	local targetid = 0;	
 	local nTime = 0;
 	while(nTime < 6) do
-		--chattype = math.random(3); -- 世界 场景 区域 
+		--chattype = math.random(3); -- 涓栫晫 鍦烘櫙 鍖哄煙 
 		--if chattype == 1 then
 			targetid = MakeObjectID(otChannel,cctServer);
 		--elseif chattype == 2 then

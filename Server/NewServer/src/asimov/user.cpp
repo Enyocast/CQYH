@@ -2731,7 +2731,7 @@ BOOL CUser::VerifyItem(UINT32 dwSrcRoleId, char* pText)
 	//memcpy(&dwRoleID, ucSignItem + dwPreSize, sizeof(dwRoleID));
 	//LOG_PROCESS_ERROR(dwRoleID == dwSrcRoleId);
 
-	//// 注意还有一个结束符'>'
+	//// 娉ㄦ剰杩樻湁涓�涓粨鏉熺'>'
 	//nRetCode = RSA_Verify(pPublickey, ucSignItem + dwPreSize, nMessageSize - RSA_KEY_LENGTH/8 - dwPreSize - 1, ucSignItem + (nMessageSize - RSA_KEY_LENGTH/8 - 1), RSA_KEY_LENGTH/8);
 	//LOG_PROCESS_ERROR(nRetCode == errSuccess);
 

@@ -133,7 +133,7 @@ void CMGInternalMessageHandler::OnDisconnected(ISocketSession* pSocketSession, B
 	PROCESS_ERROR(pBaseSession);
 
 	LOG_PROCESS_ERROR(pSocketSession);
-	LOG_PROCESS_ERROR(pSocketSession == pBaseSession->pSocketSession);  // ±ØÐë¼ì²é  
+	LOG_PROCESS_ERROR(pSocketSession == pBaseSession->pSocketSession);  // å¿…é¡»æ£€æŸ¥  
 	pBaseSession->pSocketSession = NULL;
 
 	switch (pBaseSession->byType)

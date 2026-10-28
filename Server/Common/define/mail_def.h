@@ -21,9 +21,9 @@ enum MAIL_TYPE
 
 enum
 {
-    ATTACHTYPE_NONE,        //没有附件
-    ATTACHTYPE_SIMPLE,      //简单附件，只有道具ID和数量，这种附件不可以是装备
-    ATTACHTYPE_BUFFER,      //GS生成好的道具信息，一个ItemInfo结构
+    ATTACHTYPE_NONE,        //娌℃湁闄勪欢
+    ATTACHTYPE_SIMPLE,      //绠�鍗曢檮浠讹紝鍙湁閬撳叿ID鍜屾暟閲忥紝杩欑闄勪欢涓嶅彲浠ユ槸瑁呭
+    ATTACHTYPE_BUFFER,      //GS鐢熸垚濂界殑閬撳叿淇℃伅锛屼竴涓狪temInfo缁撴瀯
     ATTACHTYPE_COUNT
 };
 

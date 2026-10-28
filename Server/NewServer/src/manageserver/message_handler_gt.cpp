@@ -43,19 +43,19 @@ VOID CMessageHandler::OnGTEnterGate(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize,
 		INF("user[%s] repeat Login, old user sessionID<%08X> state %d, new user[%s], new user sessionID<%08x>", 
             pOldUser->szUserName, dwOldClientSessionID, pOldUser->eState, pMsg->szUserName, pMsg->dwClientSessionID );
 
-        // ÕËºÅÖØ¸´µÇÂ¼±»ÌßÏÂÏß
+        // è´¦å·é‡å¤ç™»å½•è¢«è¸¢ä¸‹çº¿
 		nRetCode = DoErrorNotify(pOldUser->dwCliSessionID, errLoginRepeatKicked, 0, 0);
 		LOG_PROCESS_ERROR(nRetCode);
 
         KICK_USER(pOldUser->dwCliSessionID, ktImmediately);
 
-        // ÕËºÅÖØ¸´µÇÂ¼
+        // è´¦å·é‡å¤ç™»å½•
         nRetCode = DoGTEnterGateAck(pMsg->dwClientSessionID, errLoginRepeat);
         LOG_PROCESS_ERROR(nRetCode);
     }
     else
     {
-        // Íæ¼Ò±»Ëø¶¨£¬ÇëÉÔºóÔÙÊÔ
+        // çŽ©å®¶è¢«é”å®šï¼Œè¯·ç¨åŽå†è¯•
 		if (CGMManager::GetInstance().IsUserLocked(pMsg->szUserName))
 		{
 			nRetCode = DoGTEnterGateAck(pMsg->dwClientSessionID, errLoginLocked);
@@ -129,8 +129,8 @@ VOID CMessageHandler::OnGTQueryScene(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize
     MS_ROLE_DATA        *pRoleData = NULL;
 	INT32				nServerGroupID = GET_GROUP_INDEX_FROM_SESSION_ID(pMsg->dwClientSessionID);
 
-    // ÕÒ²»µ½userÊÇÓÐbug
-    // ×´Ì¬²»¶ÔÒ²ÊÇbug
+    // æ‰¾ä¸åˆ°useræ˜¯æœ‰bug
+    // çŠ¶æ€ä¸å¯¹ä¹Ÿæ˜¯bug
     poUser = CUserMgr::GetInstance().FindUserBySessionID(pMsg->dwClientSessionID);
     LOG_PROCESS_ERROR(poUser);
     LOG_PROCESS_ERROR(poUser->eState == USER_STATE_QUEUEFINISHED);
@@ -138,19 +138,19 @@ VOID CMessageHandler::OnGTQueryScene(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize
     pRoleData = CRoleDataMgr::GetInstance().FindRole(pMsg->dwRoleID);
     LOG_PROCESS_ERROR(pRoleData);
 
-    // ¼ì²âgm ¶³½á½ÇÉ«
+    // æ£€æµ‹gm å†»ç»“è§’è‰²
 	if (pRoleData->dwLoginFrozenTime > CManageServer::GetInstance().GetGameTime())
     {
         nRetCode = CMessageHandler::GetInstance().DoGTQuerySceneAck(pMsg->dwClientSessionID, pMsg->dwRoleID, 0, errLoginRoleFrozen, pRoleData->dwLoginFrozenTime, 0);
         LOG_CHECK_ERROR(nRetCode);
     }
-    // Ô¤´´½¨½ÇÉ«
+    // é¢„åˆ›å»ºè§’è‰²
 	else if (g_ServerConfig.GroupConfig[nServerGroupID].bPrecreateRole)
 	{
         nRetCode = CMessageHandler::GetInstance().DoGTQuerySceneAck(pMsg->dwClientSessionID, pMsg->dwRoleID, 0, errLoginPrecreate, 0, 0);
 		LOG_CHECK_ERROR(nRetCode);
 	}
-    // ÆôÓÃÔÂ¿¨¹¦ÄÜ, ÅÐ¶ÏÊ±¼ä
+    // å¯ç”¨æœˆå¡åŠŸèƒ½, åˆ¤æ–­æ—¶é—´
     else if (g_ServerConfig.MS.bTimeCardEnabled && poUser->nTimeLeft < 0)
     {
         nRetCode = CMessageHandler::GetInstance().DoGTQuerySceneAck(pMsg->dwClientSessionID, pMsg->dwRoleID, 0, errLoginTimeUnknown, 0, 0);
@@ -163,7 +163,7 @@ VOID CMessageHandler::OnGTQueryScene(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize
 
 		poUser->dwCurRoleID = pMsg->dwRoleID;
 
-		pstOnlineRole = COnlineRoleDataMgr::GetInstance().NewOnlineRole(poUser);  // ÐÂÁ¬½ÓµÄ¿Í»§
+		pstOnlineRole = COnlineRoleDataMgr::GetInstance().NewOnlineRole(poUser);  // æ–°è¿žæŽ¥çš„å®¢æˆ·
 		LOG_PROCESS_ERROR(pstOnlineRole);
 
 		pcSceneData = CDataManager<SCENE_DATA>::GetInstance().GetData(pMsg->nSceneTempID);
@@ -237,7 +237,7 @@ VOID CMessageHandler::OnGTClientShutDown(PACKET_BUFFER* pPacketBuffer, UINT32 dw
     T2M_CLIENT_SHUTDOWN* pMsg = (T2M_CLIENT_SHUTDOWN*)pPacketBuffer;
     LOG_PROCESS_ERROR(pMsg);
 
-    // ÕÒ²»µ½UserÊÇºÏÀíÒì³£
+    // æ‰¾ä¸åˆ°Useræ˜¯åˆç†å¼‚å¸¸
     poUser = CUserMgr::GetInstance().FindUserBySessionID(pMsg->dwClientSessionID);
     PROCESS_ERROR(poUser);
 
@@ -286,7 +286,7 @@ VOID CMessageHandler::OnGTChangeGSAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSiz
     MS_USER* poUser = NULL;
     MS_ONLINE_ROLE_DATA* pstOnlineRole = NULL;
 
-    // ÕÒ²»µ½userºÍ×´Ì¬²»¶Ô¶¼ÊÇÓÐBUG
+    // æ‰¾ä¸åˆ°userå’ŒçŠ¶æ€ä¸å¯¹éƒ½æ˜¯æœ‰BUG
     poUser = CUserMgr::GetInstance().FindUserBySessionID(pMsg->dwClientSessionID);
     LOG_PROCESS_ERROR(poUser);
     LOG_PROCESS_ERROR(poUser->eState == USER_STATE_JUMP_ENTER_TARGET);

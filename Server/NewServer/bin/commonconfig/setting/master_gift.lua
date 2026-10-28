@@ -1,6 +1,6 @@
 
 master_gift_define = {
-	owner='÷��ӱ',
+	owner='梅丽颖',
 	ID = {
 		type = 'number',
 		default = 0,

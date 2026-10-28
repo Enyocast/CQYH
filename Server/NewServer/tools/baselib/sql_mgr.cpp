@@ -624,7 +624,7 @@ BOOL CSqlMgr::_ParseSqlStmt(SQL_STMT_DATA* pSqlStmtData)
             if (bParamEscaped)
             {
                 pSqlStmtData->nParamType[pSqlStmtData->nParamCount] = MYSQL_TYPE_LONG_BLOB;
-                pSqlStmtData->nParamSize[pSqlStmtData->nParamCount] = atoi(pcszSql + 1);            // »¹ÊÇÊ¹ÓÃÔ­À´µÄbufferµÄ×î´ó´óÐ¡¡£³¬³ö¸ÅÂÊºÜÐ¡
+                pSqlStmtData->nParamSize[pSqlStmtData->nParamCount] = atoi(pcszSql + 1);            // è¿˜æ˜¯ä½¿ç”¨åŽŸæ¥çš„bufferçš„æœ€å¤§å¤§å°ã€‚è¶…å‡ºæ¦‚çŽ‡å¾ˆå°
                 LOG_PROCESS_ERROR(pSqlStmtData->nParamSize[pSqlStmtData->nParamCount] > 0);
                 pSqlStmtData->nParamBufferSize += sizeof(UINT32) + pSqlStmtData->nParamSize[pSqlStmtData->nParamCount];
                 pSqlStmtData->nParamCount++;

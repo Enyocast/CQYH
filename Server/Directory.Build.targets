@@ -4,20 +4,12 @@
   <!--
     Source and execution character sets.
 
-    About 340 of the server's source files are GBK-encoded (no BOM) and contain Chinese text in
-    string literals and comments; 13 are UTF-8 with a BOM. The code was originally built on a
-    Chinese Windows machine, where the default code page (936/GBK) decodes the GBK files correctly.
-    On any other system language the compiler misreads the GBK bytes (a trailing byte can equal a
-    backslash or a quote), which breaks string literals ("newline in constant", "invalid literal
-    suffix", cascading syntax errors).
-
-    These switches make the build independent of the system language and reproduce the original
-    behaviour: files with a BOM are still read as UTF-8, files without one are read as GBK, and
-    narrow string literals are emitted as GBK, exactly as before.
+    Sources are UTF-8. Keep the legacy GBK execution character set so narrow string literals
+    continue to use the same bytes regardless of the Windows system language.
   -->
   <ItemDefinitionGroup Condition="'$(MSBuildProjectExtension)' == '.vcxproj'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions) /source-charset:gbk /execution-charset:gbk /bigobj</AdditionalOptions>
+      <AdditionalOptions>%(AdditionalOptions) /source-charset:utf-8 /execution-charset:gbk /bigobj</AdditionalOptions>
       <LanguageStandard Condition="'$(LanguageStandard)' == ''">stdcpp17</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>

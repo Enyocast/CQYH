@@ -7,7 +7,7 @@
 #define MAX_ATTR_NAME_LEN	(128)				///< @line
 
 
-/// Warning: catPhyAtkHi, catPhyAtkLo, catMagAtkHi, catMagAtkLo ÕâËÄ¸öÊôÐÔÊÇ·Å´ó1w±¶´æ´¢µÄ£¬µ«²¢²»ÓÃRate½áÎ²¡£
+/// Warning: catPhyAtkHi, catPhyAtkLo, catMagAtkHi, catMagAtkLo è¿™å››ä¸ªå±žæ€§æ˜¯æ”¾å¤§1wå€å­˜å‚¨çš„ï¼Œä½†å¹¶ä¸ç”¨Rateç»“å°¾ã€‚
 
 ///@enum CHAR_ATTR_TYPE
 enum CHAR_ATTR_TYPE
@@ -23,76 +23,76 @@ enum CHAR_ATTR_TYPE
 
 	// ====================
 
-	catPhyDef = catBeginExAttr,    // 2	 ÎïÀí·ÀÓù
-	catMaxPhyDef,				   // 3	 ×î´óÎïÀí·ÀÓù
-	catMagDef,					   // 4	 Ä§·¨·ÀÓù
-	catMaxMagDef,				   // 5	 ×î´óÄ§·¨·ÀÓù
-	catPhyAtk,					   // 6	 ÎïÀí¹¥»÷
-	catMaxPhyAtk,				   // 7	 ×î´óÎïÀí¹¥»÷
-	catMagAtk,					   // 8	 Ä§·¨¹¥»÷
-	catMaxMagAtk,				   // 9	 ×î´óÄ§·¨¹¥»÷
-	catTaoAtk,					   // 10 µÀÊõ¹¥»÷
-	catMaxTaoAtk,				   // 11 ×î´óµÀÊõ¹¥»÷
-	catMaxHp,					   // 12 ×î´óHP
-	catMaxMp,					   // 13 ×î´óMP
-	catWalkSpeed,				   // 14 ÐÐ×ßËÙ¶È
-	catRunSpeed,				   // 15 ÅÜ²½ËÙ¶È
+	catPhyDef = catBeginExAttr,    // 2	 ç‰©ç†é˜²å¾¡
+	catMaxPhyDef,				   // 3	 æœ€å¤§ç‰©ç†é˜²å¾¡
+	catMagDef,					   // 4	 é­”æ³•é˜²å¾¡
+	catMaxMagDef,				   // 5	 æœ€å¤§é­”æ³•é˜²å¾¡
+	catPhyAtk,					   // 6	 ç‰©ç†æ”»å‡»
+	catMaxPhyAtk,				   // 7	 æœ€å¤§ç‰©ç†æ”»å‡»
+	catMagAtk,					   // 8	 é­”æ³•æ”»å‡»
+	catMaxMagAtk,				   // 9	 æœ€å¤§é­”æ³•æ”»å‡»
+	catTaoAtk,					   // 10 é“æœ¯æ”»å‡»
+	catMaxTaoAtk,				   // 11 æœ€å¤§é“æœ¯æ”»å‡»
+	catMaxHp,					   // 12 æœ€å¤§HP
+	catMaxMp,					   // 13 æœ€å¤§MP
+	catWalkSpeed,				   // 14 è¡Œèµ°é€Ÿåº¦
+	catRunSpeed,				   // 15 è·‘æ­¥é€Ÿåº¦
 
-	catAccurate,				   // 16 ×¼È·/ÃüÖÐ
-	catAgility,					   // 17 Ãô½Ý
-	catMagDodge,				   // 18 Ä§·¨ÉÁ±Ü
-	catCrit,					   // 19 ±©»÷ÂÊ
-	catCritDmg,					   // 20 ±©»÷ÉËº¦
-	catCritResist,				   // 21 ±©»÷µÖ¿¹
-	catCritDmgResist,			   // 22 ±¬ÉËµÖ¿¹
-	catAntiPhyDef,				   // 23 ÎïÀí´©Í¸
-	catAntiMagDef,				   // 24 Ä§·¨´©Í¸
-	catDrugHpRecovery,			   // 25 Ò©¼ÁHP»Ö¸´
-	catDrugMpRecovery,			   // 26 Ò©¼ÁMP»Ö¸´
-	catLuck,					   // 27 ÐÒÔË
-	catHolyDmg,					   // 28 ÉñÊ¥ÉËº¦
+	catAccurate,				   // 16 å‡†ç¡®/å‘½ä¸­
+	catAgility,					   // 17 æ•æ·
+	catMagDodge,				   // 18 é­”æ³•é—ªé¿
+	catCrit,					   // 19 æš´å‡»çŽ‡
+	catCritDmg,					   // 20 æš´å‡»ä¼¤å®³
+	catCritResist,				   // 21 æš´å‡»æŠµæŠ—
+	catCritDmgResist,			   // 22 çˆ†ä¼¤æŠµæŠ—
+	catAntiPhyDef,				   // 23 ç‰©ç†ç©¿é€
+	catAntiMagDef,				   // 24 é­”æ³•ç©¿é€
+	catDrugHpRecovery,			   // 25 è¯å‰‚HPæ¢å¤
+	catDrugMpRecovery,			   // 26 è¯å‰‚MPæ¢å¤
+	catLuck,					   // 27 å¹¸è¿
+	catHolyDmg,					   // 28 ç¥žåœ£ä¼¤å®³
 
-	catHurtEnhanced,			   // 29 ÊÜ»÷ÔöÉË (ÊÜµ½¹¥»÷Ê±ÏÂ´ÎÉËº¦ÌáÉý)
-	catDmgResist,				   // 30 ÉËº¦µÖ¿¹
-	catDmgEnhance,				   // 31 ÉËº¦Ç¿»¯
-	catAtkSpeed,				   // 32 ¹¥»÷ËÙ¶È
+	catHurtEnhanced,			   // 29 å—å‡»å¢žä¼¤ (å—åˆ°æ”»å‡»æ—¶ä¸‹æ¬¡ä¼¤å®³æå‡)
+	catDmgResist,				   // 30 ä¼¤å®³æŠµæŠ—
+	catDmgEnhance,				   // 31 ä¼¤å®³å¼ºåŒ–
+	catAtkSpeed,				   // 32 æ”»å‡»é€Ÿåº¦
 
-	catHpRecovery,				   // 33 HP»Ö¸´
-	catMpRecovery,				   // 34 MP»Ö¸´
-	catHpRecoveryTap,			   // 35 HP»Ö¸´ÏµÊý
-	catMpRecoveryTap,			   // 36 MP»Ö¸´ÏµÊý
-	catTapIncrease,				   // 37 ÏµÊýÔö¼Ó?
-	catAtkSpeedRate,			   // 38 ¹¥»÷ËÙ¶È¼Ó³ÉÂÊ
+	catHpRecovery,				   // 33 HPæ¢å¤
+	catMpRecovery,				   // 34 MPæ¢å¤
+	catHpRecoveryTap,			   // 35 HPæ¢å¤ç³»æ•°
+	catMpRecoveryTap,			   // 36 MPæ¢å¤ç³»æ•°
+	catTapIncrease,				   // 37 ç³»æ•°å¢žåŠ ?
+	catAtkSpeedRate,			   // 38 æ”»å‡»é€Ÿåº¦åŠ æˆçŽ‡
 
-	catPoisonDef,				   // 39 ¶¾Ò©·ÀÓù
-	catPoisonRecovery,			   // 40 ¶¾Ò©»Ö¸´
+	catPoisonDef,				   // 39 æ¯’è¯é˜²å¾¡
+	catPoisonRecovery,			   // 40 æ¯’è¯æ¢å¤
 
-	catPoisonResist,			   // 41 ¶¾Ò©µÖ¿¹
-	catStunResist,				   // 42 »÷ÔÎµÖ¿¹
-	catRepelResist,				   // 43 »÷ÍËµÖ¿¹
-	catHurtResist,				   // 44 ÊÜ»÷Ó²Ö±µÖ¿¹
-	catBurnResist,				   // 45 È¼ÉÕµÖ¿¹
+	catPoisonResist,			   // 41 æ¯’è¯æŠµæŠ—
+	catStunResist,				   // 42 å‡»æ™•æŠµæŠ—
+	catRepelResist,				   // 43 å‡»é€€æŠµæŠ—
+	catHurtResist,				   // 44 å—å‡»ç¡¬ç›´æŠµæŠ—
+	catBurnResist,				   // 45 ç‡ƒçƒ§æŠµæŠ—
 
-	catWeaponWeightLmt,			   // 46 ÎäÆ÷¸ºÖØÏÞÖÆ
-	catArmorWeightLmt,			   // 47 ·À¾ß¸ºÖØÏÞÖÆ
-	catBagWeightLmt,			   // 48 ±³°ü¸ºÖØÏÞÖÆ
+	catWeaponWeightLmt,			   // 46 æ­¦å™¨è´Ÿé‡é™åˆ¶
+	catArmorWeightLmt,			   // 47 é˜²å…·è´Ÿé‡é™åˆ¶
+	catBagWeightLmt,			   // 48 èƒŒåŒ…è´Ÿé‡é™åˆ¶
 
 	catEndExAttr,				   // 49 
 
 	// ====================
 
-	catDmgAbsorb = catEndExAttr,   // 49 ÉËº¦ÎüÊÕ
-	catExtraDmg,				   // 50 ¶îÍâ¹Ì¶¨ÉËº¦ - ÓÐÊ¹ÓÃ
-	catExtraHardTime,			   // 51 Ó²Ö±Ê±¼äÑÓ³¤ - ÓÐÊ¹ÓÃ
-	catPHitCountDown,			   // 52 ÎïÀíÁ¬»÷¼ä¸ô - ÓÐÊ¹ÓÃ
-	catPHitNum,					   // 53 ÎïÀíÁ¬»÷´ÎÊý - ÓÐÊ¹ÓÃ
-	catSpellPtsIncr,			   // 54 ¼¼ÄÜµãÊýÔöÒæ - ÓÐÊ¹ÓÃ
-	catLeech,					   // 55 ÎüÑªÏµÊý - ÓÐÊ¹ÓÃ
-	catMpToHp,					   // 56 Ä§×ªÑª (MP×ªHP) - ÓÐÊ¹ÓÃ
-	catMpToHpRemain,			   // 57 Ê£Óà·¨Á¦×ªÉúÃü - ÓÐÊ¹ÓÃ
-	catExtraThunderDmg,			   // 58 ¶îÍâÀ×µçÉËº¦
-	catDrugHpSlowRecovery,		   // 59 Ò©¼Á»ºÐ§»Ö¸´ - ÓÐÊ¹ÓÃ
-	catExpRate,					   // 60 ¾­Ñé»ñÈ¡ÂÊ
+	catDmgAbsorb = catEndExAttr,   // 49 ä¼¤å®³å¸æ”¶
+	catExtraDmg,				   // 50 é¢å¤–å›ºå®šä¼¤å®³ - æœ‰ä½¿ç”¨
+	catExtraHardTime,			   // 51 ç¡¬ç›´æ—¶é—´å»¶é•¿ - æœ‰ä½¿ç”¨
+	catPHitCountDown,			   // 52 ç‰©ç†è¿žå‡»é—´éš” - æœ‰ä½¿ç”¨
+	catPHitNum,					   // 53 ç‰©ç†è¿žå‡»æ¬¡æ•° - æœ‰ä½¿ç”¨
+	catSpellPtsIncr,			   // 54 æŠ€èƒ½ç‚¹æ•°å¢žç›Š - æœ‰ä½¿ç”¨
+	catLeech,					   // 55 å¸è¡€ç³»æ•° - æœ‰ä½¿ç”¨
+	catMpToHp,					   // 56 é­”è½¬è¡€ (MPè½¬HP) - æœ‰ä½¿ç”¨
+	catMpToHpRemain,			   // 57 å‰©ä½™æ³•åŠ›è½¬ç”Ÿå‘½ - æœ‰ä½¿ç”¨
+	catExtraThunderDmg,			   // 58 é¢å¤–é›·ç”µä¼¤å®³
+	catDrugHpSlowRecovery,		   // 59 è¯å‰‚ç¼“æ•ˆæ¢å¤ - æœ‰ä½¿ç”¨
+	catExpRate,					   // 60 ç»éªŒèŽ·å–çŽ‡
 
 	catTotal,					///< @line
 };
@@ -112,7 +112,7 @@ enum SPELL_ATTR_TYPE
 	satCacheTime,								///< @line
 
 	satWeaponTypeR,								///< @line
-	satWeaponTypeL,								///< @line  Ã»µ÷ÓÃ¹ý
+	satWeaponTypeL,								///< @line  æ²¡è°ƒç”¨è¿‡
 
 	satCanEquip,								///< @line
 	satCastType,								///< @line
@@ -126,7 +126,7 @@ enum SPELL_ATTR_TYPE
 	satMaxDistance,								///< @line
 	satMinGrids,								///< @line
 	satMaxGrids,								///< @line
-	satTolerantDistance,						///< @line  Ã»µ÷ÓÃ¹ý
+	satTolerantDistance,						///< @line  æ²¡è°ƒç”¨è¿‡
 	satTolerantGrids,							///< @line
 	satRangeType,								///< @line
 	satRangeParam1,								///< @line
@@ -136,7 +136,7 @@ enum SPELL_ATTR_TYPE
 	satUseWeaponRange,							///< @line
 	satIgnoreTargetRadius,						///< @line
 	satAffectedByAtkSpeed,						///< @line
-	satUseDPH,									///< @line  Ã»µ÷ÓÃ¹ý
+	satUseDPH,									///< @line  æ²¡è°ƒç”¨è¿‡
 	satIgnoreDefense,							///< @line
 	satIgnoreClientTarget,						///< @line
 
@@ -149,15 +149,15 @@ enum SPELL_ATTR_TYPE
 
 	satTargetObjType,							///< @line
 	satTargetRelationship,						///< @line
-	satTargetSpecies,							///< @line  Ã»µ÷ÓÃ¹ý
-	satTargetSex,								///< @line  Ã»µ÷ÓÃ¹ý
+	satTargetSpecies,							///< @line  æ²¡è°ƒç”¨è¿‡
+	satTargetSex,								///< @line  æ²¡è°ƒç”¨è¿‡
 
-	satTargetDirection,							///< @line  Ã»µ÷ÓÃ¹ý
+	satTargetDirection,							///< @line  æ²¡è°ƒç”¨è¿‡
 
 	satTargetStance,							///< @line
-	satSelfStance,								///< @line  Ã»µ÷ÓÃ¹ý
+	satSelfStance,								///< @line  æ²¡è°ƒç”¨è¿‡
 
-	satCostType,								///< @line  Ã»µ÷ÓÃ¹ý
+	satCostType,								///< @line  æ²¡è°ƒç”¨è¿‡
 	satInitialCostValue,						///< @line
 	satInitialCostValuePct,						///< @line
 	satDurativeCostValue,						///< @line
@@ -167,7 +167,7 @@ enum SPELL_ATTR_TYPE
 
 	satItemCostID,								///< @line
 	satItemCostCount,							///< @line
-	satConsumeItem,								///< @line  Ã»µ÷ÓÃ¹ý
+	satConsumeItem,								///< @line  æ²¡è°ƒç”¨è¿‡
 
 	satItemCostType,							///< @line
 	satItemCostSubType,							///< @line
@@ -191,7 +191,7 @@ enum SPELL_ATTR_TYPE
 	satWalkDelayTime,							///< @line
 	satRunDelayTime,							///< @line
 
-	satHitLevel,								///< @line  Ã»µ÷ÓÃ¹ý
+	satHitLevel,								///< @line  æ²¡è°ƒç”¨è¿‡
 	satMoveBreak,								///< @line
 	satBreakMove,								///< @line
 	satCanMoveInPrepare,						///< @line
@@ -206,9 +206,9 @@ enum SPELL_ATTR_TYPE
 	satHitTag,									///< @line
 	satSpeed,									///< @line
 
-	satIsMixEffect,								///< @line  Ã»µ÷ÓÃ¹ý
-	satMixEffectPhyRate,						///< @line  Ã»µ÷ÓÃ¹ý
-	satMixEffectMagRate,						///< @line  Ã»µ÷ÓÃ¹ý
+	satIsMixEffect,								///< @line  æ²¡è°ƒç”¨è¿‡
+	satMixEffectPhyRate,						///< @line  æ²¡è°ƒç”¨è¿‡
+	satMixEffectMagRate,						///< @line  æ²¡è°ƒç”¨è¿‡
 
 	satEffectPct,								///< @line
 
@@ -226,7 +226,7 @@ enum SPELL_ATTR_TYPE
 	satTargetDeadLimit,							///< @line
 	satCasterLimitBits,							///< @line
 	satCasterCCLimitBits,						///< @line
-	satSceneTypeLimit,							///< @line  Ã»µ÷ÓÃ¹ý
+	satSceneTypeLimit,							///< @line  æ²¡è°ƒç”¨è¿‡
 
 	satCasterCheckNode,							///< @line
 	satTargetCheckNode,							///< @line
@@ -266,15 +266,15 @@ enum AURA_ATTR_TYPE
 	aatDuration,								///< @line
 	aatDelay,									///< @line
 	aatInterval,								///< @line
-	aatSameIdStackType,							///< @line  Ã»µ÷ÓÃ¹ý
-	aatDiffIdStackType,							///< @line  Ã»µ÷ÓÃ¹ý
+	aatSameIdStackType,							///< @line  æ²¡è°ƒç”¨è¿‡
+	aatDiffIdStackType,							///< @line  æ²¡è°ƒç”¨è¿‡
 
 	aatStackTypeSameIdSameCaster,				///< @line
 	aatStackSameTypeSameCaster,					///< @line
-	aatStackSameGroupSameCaster,				///< @line  Ã»µ÷ÓÃ¹ý
+	aatStackSameGroupSameCaster,				///< @line  æ²¡è°ƒç”¨è¿‡
 	aatStackTypeSameIdDiffCaster,				///< @line
 	aatStackSameTypeDiffCaster,					///< @line
-	aatStackSameGroupDiffCaster,				///< @line  Ã»µ÷ÓÃ¹ý
+	aatStackSameGroupDiffCaster,				///< @line  æ²¡è°ƒç”¨è¿‡
 
 
 	aatTimeCover,								///< @line
@@ -287,13 +287,13 @@ enum AURA_ATTR_TYPE
 
 	aatCanDispel,								///< @line
 	aatCanCancel,								///< @line
-	aatDispelCount,								///< @line  Ã»µ÷ÓÃ¹ý
+	aatDispelCount,								///< @line  æ²¡è°ƒç”¨è¿‡
 	aatTrigOnRemoveWhenDispel,					///< @line
 	aatTrigOnRemoveWhenTimeup,					///< @line
 
 	aatAttackType,								///< @line
-	aatJudgeType,								///< @line  Ã»µ÷ÓÃ¹ý
-	aatElementaryType,							///< @line  Ã»µ÷ÓÃ¹ý
+	aatJudgeType,								///< @line  æ²¡è°ƒç”¨è¿‡
+	aatElementaryType,							///< @line  æ²¡è°ƒç”¨è¿‡
 
 	aatEffectPctX,								///< @line
 	aatEffectValueX,							///< @line
@@ -311,15 +311,15 @@ enum AURA_ATTR_TYPE
 	aatEffectTimeMin,							///< @line
 	aatEternal,									///< @line
 	aatIgnoreDefense,							///< @line
-	aatIgnoreResistence,						///< @line  Ã»µ÷ÓÃ¹ý
-	aatAffectedCharAttr,						///< @line  Ã»µ÷ÓÃ¹ý
+	aatIgnoreResistence,						///< @line  æ²¡è°ƒç”¨è¿‡
+	aatAffectedCharAttr,						///< @line  æ²¡è°ƒç”¨è¿‡
 	aatDisplayGroup,							///< @line
 	aatDisplayValue,							///< @line
 	aatResistType,								///< @line
 	aatEffectDecay,								///< @line
 
 	aatOnAppend,								///< @line
-	aatBeforeStack,								///< @line  Ã»µ÷ÓÃ¹ý
+	aatBeforeStack,								///< @line  æ²¡è°ƒç”¨è¿‡
 	aatAfterStack,								///< @line
 	aatOnTimeup,								///< @line
 	aatOnDispel,								///< @line
@@ -334,7 +334,7 @@ enum MISSILE_ATTR_TYPE
 	matInvalid = -1,							///< @line
 
 	matDefault,									///< @line
-	matLockType,								///< @line  Ã»µ÷ÓÃ¹ý
+	matLockType,								///< @line  æ²¡è°ƒç”¨è¿‡
 	matMoveType,								///< @line
 	matMoveSpeed,								///< @line
 	matHeight,									///< @line
@@ -345,8 +345,8 @@ enum MISSILE_ATTR_TYPE
 	matRangeParam1,								///< @line
 	matRangeParam2,								///< @line
 	matRangeParam3,								///< @line
-	matBlockShape,								///< @line  Ã»µ÷ÓÃ¹ý
-	matBlockParam,								///< @line  Ã»µ÷ÓÃ¹ý
+	matBlockShape,								///< @line  æ²¡è°ƒç”¨è¿‡
+	matBlockParam,								///< @line  æ²¡è°ƒç”¨è¿‡
 	matOffsetDirection,							///< @line
 	matOffsetDistance,							///< @line
 	matHOffsetGrids,							///< @line
@@ -355,7 +355,7 @@ enum MISSILE_ATTR_TYPE
 	matInterval,								///< @line
 	matNotMultiEffect,							///< @line
 	matNotHitLastTarget,						///< @line
-	matBlockType,								///< @line  Ã»µ÷ÓÃ¹ý
+	matBlockType,								///< @line  æ²¡è°ƒç”¨è¿‡
 	matOnInit,									///< @line
 	matOnCreate,								///< @line
 	matOnScan,									///< @line

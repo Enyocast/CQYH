@@ -16,169 +16,169 @@ GuildConfig = {
 	nGuildFightingPool	= 128,
 	--nGuildSaveItemBufferPool  = 32000,
 	nGuildBuildingRevivePool = 128,
-	-- ���ɴ���������Ʒ����ID
+	-- 帮派创建需求物品类型ID
 	nCanCreateGuildItemTypeID = 80002,
-	-- ��Ʒ����
+	-- 物品数量
     nCanCreateGuildItemNum = 1,
-	-- ���������Ǯ
+	-- 创建需求金钱
     nCanCreateGuildMoney = 200000,
-	-- ������������ȼ�
+	-- 创建需求人物等级
     nCanCreateGuildLevel = 17,
-	-- ���빫����͵ȼ�
+	-- 加入公会最低等级
 	nCanJoinGuildLevel = 17,
-	-- ��ʼ���ɽ�Ǯ
+	-- 初始帮派金钱
     nInitGuildMoney = 100000,
-	-- ��ʼ��
+	-- 初始粮
 	nWood = 100000,
-	-- ��ʼľ
+	-- 初始木
 	nHerb = 100000,
-	-- ��ʼʯ
+	-- 初始石
 	nCrystal = 100000,
-	-- ��ʼ��
+	-- 初始铁
 	nSilver = 100000,
 
-	-- ְλȨ��
+	-- 职位权限
 	nInitGuildPositionRight =	-- 7 = GUILD_POSITION_COUNT
 	{
 		[0] = 0,		-- none
-		[1] = 4095,		-- ����
-		[2] = 4095,		-- ������
-		[3] = 495,		-- ����
-		[4] = 15,		-- ����
-		[5] = 3,		-- ִ��
-		[6] = 1,		-- ����
-		[7] = 0,		-- ����
+		[1] = 4095,		-- 帮主
+		[2] = 4095,		-- 副帮主
+		[3] = 495,		-- 长老
+		[4] = 15,		-- 监事
+		[5] = 3,		-- 执事
+		[6] = 1,		-- 主簿
+		[7] = 0,		-- 帮众
 	},
 
-	-- �ֿ�Ȩ��
+	-- 仓库权限
     nInitGuildStorageRight =		-- 7 = GUILD_POSITION_COUNT
 	{
-		[0] = 4095,		-- ����
-		[1] = 0,		-- ������
-		[2] = 0,		-- ����
-		[3] = 0,		-- ����
-		[4] = 0,		-- ִ��
-		[5] = 0,		-- ����
-		[6] = 0,		-- ����
+		[0] = 4095,		-- 帮主
+		[1] = 0,		-- 副帮主
+		[2] = 0,		-- 长老
+		[3] = 0,		-- 殿主
+		[4] = 0,		-- 执事
+		[5] = 0,		-- 主簿
+		[6] = 0,		-- 帮众
 	},
 
-	-- ���ɽ�ɢ�ȼ�����
+	-- 帮派解散等级限制
 	nGuildDisbandLevelLimit = 3,
 
-	-- �˳�����cdʱ�䣬��λ����
+	-- 退出帮派cd时间，单位：秒
     dwReJoinGuildCD = 0,
 
-	-- �����������ʱ�䣬 ��λ�� ��
+	-- 帮派申请存在时间， 单位： 秒
 	nGuildApplicationLastTime = 300,
 
-	-- �Ӱ��ɲֿ�ȡ��Ʒÿ�����Ľ�Ǯ��Ĭ���ǽ�Ǯ����1�����󶨽�Ǯ��
+	-- 从帮派仓库取物品每次消耗金钱，默认是金钱类型1（即绑定金钱）
 	nGuildPopItemComsumeMoney = 0,
 
 
-	-- ���һ�ο���ȡ��нˮ����
+	-- 最多一次可领取的薪水上限
 	nInitGuildMaxSalary = 10000,
 
-	-- һ����ȡнˮռ��ѫ�İٷֱ�
+	-- 一次领取薪水占功勋的百分比
 	nGuildDrawSalaryPercent = 80,
 
-	-- ��ѫ���������
+	-- 功勋获得周上限
 	nGuildObtainMoneyLimitPerWeek = 10000,
 
-	-- ���ɷ�нˮ��ʱ������, (604800 Ϊһ�ܵ�����)
+	-- 帮派发薪水的时间周期, (604800 为一周的秒数)
 	--nDrawSalaryPeriod = 604800,
 	nDrawSalaryPeriod = 3600,
 
-	-- ÿ������������
+	-- 每天捐赠金币上限
 	nMaxDonateMoneyPerDay =
 	{
 		[0] = 1,
-		[1] = 100000000,		-- ����
-		[2] = 100000000,		-- ��
-		[3] = 100000000,		-- ����
+		[1] = 100000000,		-- 帮主
+		[2] = 100000000,		-- 副
+		[3] = 100000000,		-- 长老
 		[4] = 100000000,
 		[5] = 100000000,
 		[6] = 100000000,
-		[7] = 100000000,		-- ����
+		[7] = 100000000,		-- 帮众
 	},
-	-- ÿ�������Դ����
+	-- 每天捐赠资源上限
 	nMaxDonateResPerDay =
 	{
 		[0] = 1,
-		[1] = 100000000,		-- ����
-		[2] = 100000000,		-- ��
-		[3] = 100000000,		-- ����
+		[1] = 100000000,		-- 帮主
+		[2] = 100000000,		-- 副
+		[3] = 100000000,		-- 长老
 		[4] = 100000000,
 		[5] = 100000000,
 		[6] = 100000000,
-		[7] = 100000000,		-- ����
+		[7] = 100000000,		-- 帮众
 	},
 
 
 
-	-- ���� ���Ľ�Ǯ
+	-- 联盟 消耗金钱
 	nAllianceConsumeMoney =
 	{
-		[0] = 100000,		-- 1��
-		[1] = 200000,		-- 3��
-		[2] = 500000,		-- 7��
-		[3] = 1000000,		-- 30��
+		[0] = 100000,		-- 1天
+		[1] = 200000,		-- 3天
+		[2] = 500000,		-- 7天
+		[3] = 1000000,		-- 30天
 	},
 
-	-- �ж����Ľ�Ǯ
+	-- 敌对消耗金钱
 	nEnemyConsumeMoney =
 	{
-		[0] = 100000,		-- 1��
-		[1] = 200000,		-- 3��
-		[2] = 500000,		-- 7��
-		[3] = 1000000,		-- 30��
+		[0] = 100000,		-- 1天
+		[1] = 200000,		-- 3天
+		[2] = 500000,		-- 7天
+		[3] = 1000000,		-- 30天
 	},
 
-	-- �������˻��ߵжԳ���ʱ�䣬��λ������
+	-- 帮派联盟或者敌对持续时间，单位：秒数
 	nGuildDiplomatLastTime =
 	{
-		[0] = 86400,		-- 1��
-		[1] = 259200,		-- 3��
+		[0] = 86400,		-- 1天
+		[1] = 259200,		-- 3天
 		[2] = 604800,		-- 7
 		[3] = 2592000,		-- 30
 	},
 
-	-- �����������ʱ��
+	-- 联盟申请持续时间
 	nDiplomatAppLastTime = 300,
 
 
-	-- ȡ����������������Դ�ٷֱ�
+	-- 取消建筑升级返回资源百分比
 	nBuildingUpgradeRefundPercent = 50,
-	-- ɾ������������Դ�ٷֱ�
+	-- 删除建筑返还资源百分比
 	nDelBuildingRefundPercent = 33,
-	-- ȡ��buffer����������Դ�ٷֱ�
+	-- 取消buffer升级返回资源百分比
     nWelfareBufferUpgradeRefundPercent = 50,
-	-- ��Դ�Զ������ٷֱ�
+	-- 资源自动增长百分比
     nAddResourceInterval = 3600,
 
-	--��������TEMPLATE ID
+	--帮派属地TEMPLATE ID
 	dwSceneTemplateID = 127,
-	-- ��������������꣬����
+	-- 进入帮派属地坐标，朝向
 	nEnterMapPosX = 41355,
 	nEnterMapPosY = 50258,
 	nEnterMapPosZ = 7753,
 	nEnterMapDirection = 1,
 
-	-- ���빫�����ص����� SERVER_POINT
+	-- 进入公会属地的坐标 SERVER_POINT
 	dwServerPoint = 14,
-	-- ����ս����Է����ص�����
+	-- 公会战进入对方属地的坐标
 	dwTargetGuildServerPoint = 3,
 
-	-- ���ǵ�ͼTEMPLATE ID
+	-- 王城地图TEMPLATE ID
 	dwPalaceSceneTemplateID = 101,
 
 
-	--���ɽ���
+	--帮派建筑
 	szBMainNameID 		= "main01",
-	szBBusinessNameID	= "Shop01";		-- �̻�
-	szBDeityNameID		= "God01";		-- ��̳
+	szBBusinessNameID	= "Shop01";		-- 商会
+	szBDeityNameID		= "God01";		-- 神坛
 	szBWonderNameID		= "Gtot01";
 
-	-- �ı����ǻ��߰�����������������, {��ң�����ʱ��/��}
+	-- 改变王城或者帮派属地天气的条件, {金币，持续时间/秒}
 	arrWeatherCondition = {
 		[0] = {nMoney = 9999999, nTime = 9999999}, -- invalid
 		[1] = {nMoney = 50000, nTime = 300},		-- 50000 money, 300 s
@@ -186,10 +186,10 @@ GuildConfig = {
 		[3] = {nMoney = 200000, nTime = 1800},	-- 200000, 1800s
 	},
 
-	-- ����ά����ʼʱ��
-	nRoutineConsumeTime = 4,		-- ÿ��4�㿪ʼ
+	-- 帮派维护开始时刻
+	nRoutineConsumeTime = 4,		-- 每天4点开始
 
-	-- ��������ʱ��
+	-- 公会活动重置时间
 	nGuildActivityResetHour = 4,
 
 	nGuildActivityBeginHour1 = 0,
@@ -199,15 +199,15 @@ GuildConfig = {
 
 
     ---------------------------- war ------------------------------------
-	-- ����ս���򱣻�ʱ�䣬�룬�ӵ��칫��ս��ʼʱ����
+	-- 公会战被打保护时间，秒，从当天公会战开始时算起
 	nGuildWarProtectionTime = 106200,
 
-	-- ������սcd,��λ���룬�ӵ��칫��ս��ʼʱ����
+	-- 公会宣战cd,单位：秒，从当天公会战开始时算起
 	nGuildWarAttackCD = 106200,
 
 
 
-	-- ÿ�칫��ս��ʼʱ�䣬 ��λ������ ����ÿ������1��=����13�� = 3600*13,����6��30��ʼ
+	-- 每天公会战开始时间， 单位秒数， 比如每天下午1点=下午13点 = 3600*13,下午6点30开始
 	nGuildWarReadyHour = 18,
 	nGuildWarReadyMin = 20,
 
@@ -221,29 +221,29 @@ GuildConfig = {
 	nGuildWarEndMin = 30,
 
 
-	-- ÿ����ս����ʱ�䣬 ��λ����, �������������Ӧ
+	-- 每天宣战结束时间， 单位秒数, 下面必须和上面对应
 	nGuildWarBeginTime = 66600,
 	nGuildWarEndTime = 70200,--70200,
 
-	-- ����ս ָ������ս��ս�ȼ�
+	-- 家族战 指定公会战参战等级
 	nGuildSpecifyWarLevelLimit = 5,--3,
 
-	-- ����ս������ȴ�����ʱ��, �Ѿ�Ų���������ص�evtGuildWarEnd��tree���棬 main.lua������
-	-- ���Ҳ߻����� ƽ�� ���¡� �Ǳߵĵ�λ�Ǻ���
+	-- 帮派战结束后等待传送时间, 已经挪到帮派属地的evtGuildWarEnd的tree里面， main.lua配置里
+	-- 请找策划妹子 平怡 更新。 那边的单位是毫秒
 
-	-- ����ս������������buffer, �޷��ƶ����޷��ͷż��ܣ�buffer������������ͼ
+	-- 公会战结束，攻击方buffer, 无法移动，无法释放技能，buffer结束被传出地图
 	nGuildWarAttackEndAuraID = 2500,
 
-	-- ����ս���������ط�buffer,�޷��ƶ��� �޷��ͷż��ܣ�buffer�������ᱻ������ͼ
+	-- 公会战结束，防守方buffer,无法移动， 无法释放技能，buffer结束不会被传出地图
 	nGuildWarDefendEndAuraID = 2500,
 
 
-	-- ����սʤ���� ս��Ʒռ��������ֱ�
+	-- 公会战胜利， 战利品占总量的万分比
 	nGuildWarMoneyPlunderPercent = 3000,
 	nGuildWarResPlunderPercent = 3000,
 
 
-	-- ����սʤ��������ս��Ʒ��ֱ�
+	-- 公会战胜利，额外战利品万分比
 	nGuildWarMoneyPlunder = 5000,
 	nGuildWarResPlunder = 5000,
 
@@ -251,19 +251,19 @@ GuildConfig = {
 
 	--
 	----------------------------- match war -----------------------------
-	-- ƥ�乫��ս��͵ȼ�����
+	-- 匹配公会战最低等级限制
 	nGuildMatchWarLevelLimit = 1,
 
-	-- ƥ�乫��սÿ�մ�������
+	-- 匹配公会战每日次数限制
 	nGuildMatchWarCountLimit = 5,
 
-	-- ƥ��ս�����ʽ�����
+	-- 匹配战公会资金消耗
 	nGuildMatchWarMoneyConsumption = 5000,
 
-	-- ƥ�乫��ս� ��ʼʱ��
+	-- 匹配公会战活动 开始时间
 	nGuildMatchWarBeginTime = 0,
 
-	-- ƥ�乫��ս� ����ʱ��
+	-- 匹配公会战活动 结束时间
 	nGuildMatchWarEndTime = 86400,
 
 
@@ -275,12 +275,12 @@ GuildConfig = {
 	---------------------------------------------------------------------
 
 
-	-- ���ɸ���нˮռ�����۳���ҵİٷֱ�
+	-- 帮派副本薪水占副本扣除金币的百分比
 	nGuildDungeonSalaryPercent = 50,
-	-- ���ḱ��ˢ��ʱ��, �賿4�������
+	-- 公会副本刷新时间, 凌晨4点的秒数
 	nGuildDungeonUpdateTime = 14400,
 
-	-- �����Ա�ṩ�ķ��ٶ�
+	-- 公会成员提供的繁荣度
 	nGuildMemberBaseProsperity = 3,
 
 

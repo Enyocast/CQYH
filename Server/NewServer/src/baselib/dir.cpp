@@ -65,7 +65,7 @@ BOOL g_CreateDirectory(const char* dirName, BOOL bforce)
             bool bfirst = true;
             while(pos < end)
             {
-                //====¼ì²âµÚÒ»¶ÎÂ·¾¶ÊÇ·ñÎªÅÌ·û====
+                //====æ£€æµ‹ç¬¬ä¸€æ®µè·¯å¾„æ˜¯å¦ä¸ºç›˜ç¬¦====
                 if(bfirst)
                 {
                     bool isdrive = false;
@@ -87,9 +87,9 @@ BOOL g_CreateDirectory(const char* dirName, BOOL bforce)
                     }
                     bfirst = false;
                 }
-                //====¼ì²âµÚÒ»¶ÎÂ·¾¶ÊÇ·ñÎªÅÌ·ûÍê±Ï====
+                //====æ£€æµ‹ç¬¬ä¸€æ®µè·¯å¾„æ˜¯å¦ä¸ºç›˜ç¬¦å®Œæ¯•====
 
-                //====Èç¹û´Ë¶ÎÂ·¾¶²»´æÔÚ£¬´´½¨Ä¿Â¼====
+                //====å¦‚æžœæ­¤æ®µè·¯å¾„ä¸å­˜åœ¨ï¼Œåˆ›å»ºç›®å½•====
                 if(!g_DirectoryExists(path))
                 {
 #if (defined(WIN32) || defined(WIN64))

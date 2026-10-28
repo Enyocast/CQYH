@@ -3,7 +3,7 @@
 	file:		ms_guild.h
 	author:		Allan Tao
 	
-	purpose:	°ïÅÉ
+	purpose:	å¸®æ´¾
 *********************************************************************/
 
 
@@ -154,8 +154,8 @@ struct GUILD_DB
 
 	CHAR            szCreaterName[ROLE_NAME_LEN];
 	UINT32          dwCreateTime;
-	CHAR            szAnnounce[GUILD_ANNOUNCE_LEN];         // ¼Ò×åĞûÑÔ
-	CHAR            szNotice[GUILD_NOTICE_LEN];             // ¼Ò×å¹«¸æ
+	CHAR            szAnnounce[GUILD_ANNOUNCE_LEN];         // å®¶æ—å®£è¨€
+	CHAR            szNotice[GUILD_NOTICE_LEN];             // å®¶æ—å…¬å‘Š
 	char            BlobBuffer[0];
 };
 #pragma pack(pop)
@@ -235,7 +235,7 @@ public:
     BOOL    AddGuildEvent(INT32 nType, UINT32 param1, UINT32 param2, UINT32 param3, UINT32 param4);
     BOOL    AddGuildChestEvent(INT32 nType, UINT32 param1, UINT32 param2, UINT32 param3, UINT32 param4);
 
-    // Ö»·¢¸ø»á³¤£¬¸±»á³¤
+    // åªå‘ç»™ä¼šé•¿ï¼Œå‰¯ä¼šé•¿
     BOOL    BroadcastMail(INT32 nMailTemplateID);
     BOOL    BroadcastMail(const char *pcszTitle, const char *pcszContent);
 
@@ -518,8 +518,8 @@ private:
     INT32           m_nState;
     UINT32          m_dwRoutineConsumeTime;
 
-    CHAR            m_szAnnounce[GUILD_ANNOUNCE_LEN];        // ¼Ò×åĞûÑÔ
-    CHAR            m_szNotice[GUILD_NOTICE_LEN];         // ¼Ò×å¹«¸æ
+    CHAR            m_szAnnounce[GUILD_ANNOUNCE_LEN];        // å®¶æ—å®£è¨€
+    CHAR            m_szNotice[GUILD_NOTICE_LEN];         // å®¶æ—å…¬å‘Š
 
     UINT16          m_wStorageRight[GUILD_POSITION_COUNT];
 
@@ -547,7 +547,7 @@ private:
     CBaseList       m_History;
     CBaseList       m_ChestHistory;
 
-    // °ïÅÉÅÅĞò
+    // å¸®æ´¾æ’åº
     BASE_LIST_NODE      m_NodeSortByLvl;
     BASE_LIST_NODE      m_LadderNode;
 

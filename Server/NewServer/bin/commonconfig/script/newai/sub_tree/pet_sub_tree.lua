@@ -76,7 +76,7 @@ local pet_follow =
 		--{ batCheckCanMove, },
 		{ batSelector,
 			{ batJumpToHost, },
-			{ batSuicide, param = { false, false } },	-- ÌøµØÍ¼Ê§°Ü£¬¾ÍÈ¥ËÀ
+			{ batSuicide, param = { false, false } },	-- è·³åœ°å›¾å¤±è´¥ï¼Œå°±å»æ­»
 		},
 	},
 };
@@ -136,7 +136,7 @@ function CheckTargetIsPet(owner)
 	return brvFail;
 end
 
--- ·¢ÏÖµĞÈË
+-- å‘ç°æ•Œäºº
 local pet_detect_enemy =
 { batSequencer,
 	{ batPetScanEnemy, param = { 60, 700, 64 } },
@@ -325,7 +325,7 @@ local pet_fight =
 		{ batSelector,
 			{ batSequencer,
 				{ batCheckAIVariable, param = { boEQ, PET_AI_CONTROL, psFight} },
-				'on_pet_cast_spell',  -- ÊÍ·Å¼¼ÄÜ
+				'on_pet_cast_spell',  -- é‡Šæ”¾æŠ€èƒ½
 			},
 			--_pet_enter_idle(),
 		},
@@ -376,7 +376,7 @@ function _pet_fight_tree()
 		pet_chase,
 		{ batParallel,
 			{ batRotateTo, param = { tarAITarget, 0, 0, 360 } },
-			pet_fight,  -- ¹¥»÷
+			pet_fight,  -- æ”»å‡»
 			pet_check_target_die,
 		},
 	--},
@@ -390,7 +390,7 @@ end
 function GetPetAttackSpeed(born_type, init_level)
 	local attack_speed = 8;
 	
-	-- ÕÙ»½ÉñÊŞ, ÉèÖÃ¹¥»÷ËÙ¶È
+	-- å¬å”¤ç¥å…½, è®¾ç½®æ”»å‡»é€Ÿåº¦
 	if born_type == petBornHoly then
 		attack_speed = (500 - init_level * 50) * GAME_FPS / 1000;
 	elseif born_type == petBornSkeleton then
@@ -405,7 +405,7 @@ end
 function GetPetWalkSpeed(born_type, init_level)
 	local walk_speed = 8;
 
-	-- ÕÙ»½÷¼÷Ã, ÉèÖÃ¹¥»÷ËÙ¶È
+	-- å¬å”¤éª·é«…, è®¾ç½®æ”»å‡»é€Ÿåº¦
 	if born_type == petBornHoly then
 		walk_speed = (500 - init_level * 30) * GAME_FPS / 1000;
 	elseif born_type == petBornSkeleton then

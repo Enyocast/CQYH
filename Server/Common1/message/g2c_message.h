@@ -327,20 +327,20 @@ namespace ExternalMessage
         g2c_shield_ack,
         g2c_unshield_ack,
 
-        // ÈÚÁé
+        // èçµ
         g2c_upgrade_soul,
         g2c_add_soul,
         g2c_remove_soul,
 
-        // Öı»ê
+        // é“¸é­‚
         g2c_rune_item,
 
-        // ×°±¸Éı¼¶
+        // è£…å¤‡å‡çº§
         g2c_weapon_level_up_put_in,
         g2c_weapon_level_up_take_out,
         g2c_weapon_level_up_result,
 
-        // ×°±¸·Ö½âºÏ³É
+        // è£…å¤‡åˆ†è§£åˆæˆ
         g2c_decompose,
         g2c_compose,
 
@@ -2295,22 +2295,22 @@ namespace ExternalMessage
 
     struct G2C_UPGRADE_SOUL : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
     };
 
     struct G2C_ADD_SOUL : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
     };
 
     struct G2C_REMOVE_SOUL : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
     };
 
     struct G2C_RUNE_ITEM : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
     };
 
     struct G2C_WEAPON_LEVEL_UP_PUT_IN : MESSAGE_HEADER
@@ -2323,12 +2323,12 @@ namespace ExternalMessage
 
     struct G2C_WEAPON_LEVEL_UP_RESULT : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
     };
 
     struct G2C_DECOMPOSE : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
         INT32       nOriginalItemID;
         INT32       nItemID[MAX_DECOMPOSE_ITEM_COUNT];
         INT32       nItemCount[MAX_DECOMPOSE_ITEM_COUNT];
@@ -2336,14 +2336,14 @@ namespace ExternalMessage
 
     struct G2C_COMPOSE : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦£¬2³É¹¦ÇÒ±©»÷ 
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸï¼Œ2æˆåŠŸä¸”æš´å‡» 
         INT32       nResultItemID;
     };
 
     struct G2C_REFINE : MESSAGE_HEADER
     {
         UINT8       bySlot;
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
         UINT16      wRefineLevel;
     };
 
@@ -2354,7 +2354,7 @@ namespace ExternalMessage
 
     struct G2C_IDENTIFY_ITEM : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
     };
 
 	struct G2C_DRAW_DEBUG_LINE : MESSAGE_HEADER
@@ -2465,7 +2465,7 @@ namespace ExternalMessage
 
     struct G2C_GAMBLE : MESSAGE_HEADER
     {
-        INT32   nResult;//1³É¹¦£¬0Ê§°Ü
+        INT32   nResult;//1æˆåŠŸï¼Œ0å¤±è´¥
         INT32   nItemID;
     };
 

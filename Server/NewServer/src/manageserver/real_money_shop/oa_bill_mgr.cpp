@@ -534,7 +534,7 @@ BOOL COABillMgr::DoUnfreezeCurrency(UINT32 dwRoleID, const char* szBillingOrderI
     pMsg->SetValue("groupId", role->byGroup);
 
     m_poOABill->GetGUID(szTempString);
-    pMsg->SetValue("sessionId", szTempString); //³ÌÇÕ»ÔËµ£¬¼Æ·Ñ²»ÑéÖ¤sessionID£¬Òò´ËÌî32Î»Ëæ»úÊý
+    pMsg->SetValue("sessionId", szTempString); //ç¨‹é’¦è¾‰è¯´ï¼Œè®¡è´¹ä¸éªŒè¯sessionIDï¼Œå› æ­¤å¡«32ä½éšæœºæ•°
 
     pMsg->SetValue("orderId", szBillingOrderID);
     pMsg->SetValue("confirm", 2);
@@ -625,7 +625,7 @@ BOOL COABillMgr::DoConfirmFrozenCurrency(UINT64 qwBuyingOrderID, UINT64 qwSellin
     pMsg->SetValue("groupId", role->byGroup);
 
     m_poOABill->GetGUID(szTempString);
-    pMsg->SetValue("sessionId", szTempString); //³ÌÇÕ»ÔËµ£¬¼Æ·Ñ²»ÑéÖ¤sessionID£¬Òò´ËÌî32Î»Ëæ»úÊý
+    pMsg->SetValue("sessionId", szTempString); //ç¨‹é’¦è¾‰è¯´ï¼Œè®¡è´¹ä¸éªŒè¯sessionIDï¼Œå› æ­¤å¡«32ä½éšæœºæ•°
 
     pMsg->SetValue("orderId", szBillingOrderID);
     pMsg->SetValue("confirm", 1);
@@ -728,7 +728,7 @@ BOOL COABillMgr::DoTransferCurrency(UINT64 qwBuyingOrderID, UINT64 qwSellingOrde
     pMsg->SetValue("groupIdSrc", buyer->byGroup);
 
     m_poOABill->GetGUID(szTempString);
-    pMsg->SetValue("sessionId", szTempString); //³ÌÇÕ»ÔËµ£¬¼Æ·Ñ²»ÑéÖ¤sessionID£¬Òò´ËÌî32Î»Ëæ»úÊý
+    pMsg->SetValue("sessionId", szTempString); //ç¨‹é’¦è¾‰è¯´ï¼Œè®¡è´¹ä¸éªŒè¯sessionIDï¼Œå› æ­¤å¡«32ä½éšæœºæ•°
     pMsg->SetValue("orderId", szBillingOrderID);
     pMsg->SetValue("appTradeType", 8);
     pMsg->SetValue("couplingType", 2);
@@ -822,7 +822,7 @@ BOOL COABillMgr::DoQueryTime(MS_USER* pstUser)
     pMsg->SetValue("groupId", GET_GROUP_INDEX_FROM_SESSION_ID(pstUser->dwCliSessionID));
     //pMsg->SetValue("pgt", pstUser->szPGT);
 
-    strxcpy(szTempString, pstUser->szOASessionID, 32);//¼Æ·ÑÒªÇó½Ø¶Ï³É32×Ö½Ú³¤¶È
+    strxcpy(szTempString, pstUser->szOASessionID, 32);//è®¡è´¹è¦æ±‚æˆªæ–­æˆ32å­—èŠ‚é•¿åº¦
     pMsg->SetValue("sessionId", szTempString);
 
     time(&cur_time);
@@ -885,7 +885,7 @@ BOOL COABillMgr::DoSubTime(MS_ONLINE_ROLE_DATA* pstOnlineRole, UINT32 dwBeginTim
 
     m_poOABill->GetGUID(szUniqueID);
     pMsg->SetValue("uniqueId", szUniqueID);
-    pMsg->SetValue("sessionId", szUniqueID);//¼Æ·ÑÒªÇósessionid¶¼ÊÇÊý×Ö
+    pMsg->SetValue("sessionId", szUniqueID);//è®¡è´¹è¦æ±‚sessionidéƒ½æ˜¯æ•°å­—
 
     pMsg->SetValue("userId", pstOnlineRole->pRoleData->szUserName);
     pMsg->SetValue("userIdType", 2);
@@ -1240,7 +1240,7 @@ int SNDACALLBACK BillingCallback(EMsgDirection eMsgType, unsigned int dwRpcId, i
         }
         else
         {
-            if (nResult != -106114 && nResult != -106908) //Óà¶î²»×ã¾Í²»¼ÇÁË£¬·ñÔòÌ«¶àÁË
+            if (nResult != -106114 && nResult != -106908) //ä½™é¢ä¸è¶³å°±ä¸è®°äº†ï¼Œå¦åˆ™å¤ªå¤šäº†
             {
                 char* szFailReason = NULL;
                 pMsg->GetValue("failReason", &szFailReason);
@@ -1274,7 +1274,7 @@ int SNDACALLBACK BillingCallback(EMsgDirection eMsgType, unsigned int dwRpcId, i
         }
         else
         {
-            if (nResult != -106114 && nResult != -106908) //Óà¶î²»×ã¾Í²»¼ÇÁË£¬·ñÔòÌ«¶àÁË
+            if (nResult != -106114 && nResult != -106908) //ä½™é¢ä¸è¶³å°±ä¸è®°äº†ï¼Œå¦åˆ™å¤ªå¤šäº†
             {
                 char* szFailReason = NULL;
                 pMsg->GetValue("failReason", &szFailReason);
@@ -1333,7 +1333,7 @@ int SNDACALLBACK NotifyCallback(EMsgDirection eMsgType, unsigned int dwRpcId, in
         WRN("UnProcessed bl3-notify Msg: %s", pMsg->GetMsgName());
     }
 
-    // ½ÓÊÕµ½Í¨ÖªºóÒªÓÐÏìÓ¦
+    // æŽ¥æ”¶åˆ°é€šçŸ¥åŽè¦æœ‰å“åº”
     pMsg->GetValue("uniqueId", &szUniqueID);
     pResMsg = sdoCreateMsg(E_RESPONSE, pMsg->GetMsgName());
     pResMsg->SetValue("resultCode", 0);

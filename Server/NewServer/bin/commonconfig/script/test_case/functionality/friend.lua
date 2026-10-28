@@ -11,7 +11,7 @@ function TestCase.friend.Friend()
     local msg;
     local session_id1, session_id2;
 
-    --µÇÂ¼
+    --ç™»å½•
     user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user1");
     check(role1, "failed to create role1");
@@ -22,50 +22,50 @@ function TestCase.friend.Friend()
     check(role2, "failed to create role2");
     session_id2 = user2:GetSessionID();
 
-    --user1: ¼Óuser2ÎªºÃÓÑ(ÒÔRoleIDÎª¸ù¾İ)
+    --user1: åŠ user2ä¸ºå¥½å‹(ä»¥RoleIDä¸ºæ ¹æ®)
     ret = user1:AddFriend(role2:GetObjID(), "");
     check(ret, "failed to add friend");
 
-    --user1: ÊÕµ½¼ÓºÃÓÑ»Ø¸´
+    --user1: æ”¶åˆ°åŠ å¥½å‹å›å¤
     msg = recv_msg(5, session_id1, protocol.m2c_friend_add);
     check(msg, "faield to recv m2c_friend_add");
     check(msg.dwRoleID == role2:GetObjID(), "failed to recv correct friend add msg");
     check(msg.szRoleName == user_name2, "failed to recv correct friend add msg");
 
-    --user1: É¾µôºÃÓÑuser2
+    --user1: åˆ æ‰å¥½å‹user2
     ret = user1:DelFriend(role2:GetObjID());
     check(ret, "failed to del friend");
 
-    --user1: ÊÕµ½É¾ºÃÓÑ»Ø¸´
+    --user1: æ”¶åˆ°åˆ å¥½å‹å›å¤
     msg = recv_msg(5, session_id1, protocol.m2c_friend_del);
     check(msg, "faield to recv m2c_friend_del");
     check(msg.dwRoleID == role2:GetObjID(), "failed to recv correct friend del msg");
 
-    --user1: ¼Óuser2ÎªºÃÓÑ(ÒÔRoleNameÎª¸ù¾İ)
+    --user1: åŠ user2ä¸ºå¥½å‹(ä»¥RoleNameä¸ºæ ¹æ®)
     ret = user1:AddFriend(0, user_name2);
     check(ret, "failed to add friend");
 
-    --user1: ÊÕµ½¼ÓºÃÓÑ»Ø¸´
+    --user1: æ”¶åˆ°åŠ å¥½å‹å›å¤
     msg = recv_msg(5, session_id1, protocol.m2c_friend_add);
     check(msg, "faield to recv m2c_friend_add");
     check(msg.dwRoleID == role2:GetObjID(), "failed to recv correct friend add msg");
     check(msg.szRoleName == user_name2, "failed to recv correct friend add msg");
 
-    --user2: ÊÕµ½±»¼ÓºÃÓÑ»Ø¸´
+    --user2: æ”¶åˆ°è¢«åŠ å¥½å‹å›å¤
     msg = recv_msg(5, session_id2, protocol.m2c_friend_added_by);
     check(msg, "faield to recv m2c_friend_added_by");
     check(msg.dwRoleID == role1:GetObjID(), "failed to recv correct friend add msg");
     check(msg.szRoleName == user_name1, "failed to recv correct friend add msg");
 
-    --user1: ¸Ä±äºÃÓÑ·Ö×é
+    --user1: æ”¹å˜å¥½å‹åˆ†ç»„
     ret = user1:ChangeFriendGroup(role2:GetObjID(), 3);
     check(ret, "failed to change friend group");
 
-    --user1: É¾µôºÃÓÑuser2
+    --user1: åˆ æ‰å¥½å‹user2
     ret = user1:DelFriend(role2:GetObjID());
     check(ret, "failed to del friend");
 
-    --µÇ³ö
+    --ç™»å‡º
     cleanup(user1);
     cleanup(user2);
 end
@@ -108,7 +108,7 @@ function TestCase.friend.ShieldList()
     local msg;
     local session_id1, session_id2;
 
-    --µÇÂ¼
+    --ç™»å½•
     user1, role1 = startup(user_name1, user_name1,1);
     check(user1, "failed to create user1");
     check(role1, "failed to create role1");
@@ -123,7 +123,7 @@ function TestCase.friend.ShieldList()
 	msg = recv_msg(50, session_id1, protocol.g2c_shield_ack);
 	check(msg, "failed to recv protocol.g2c_shield_ack");
 
-	--µÇ³ö
+	--ç™»å‡º
     cleanup(user1);
     cleanup(user2);
 
@@ -150,7 +150,7 @@ function TestCase.friend.PersonalEnemy()
     local msg;
     local session_id1, session_id2;
 
-    --µÇÂ¼
+    --ç™»å½•
     user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user1");
     check(role1, "failed to create role1");
@@ -167,7 +167,7 @@ function TestCase.friend.PersonalEnemy()
 	msg = recv_msg(50, session_id1, protocol.m2c_personal_enemy_add);
 	check(msg, "failed to recv protocol.m2c_personal_enemy_add");
 
-	--µÇ³ö
+	--ç™»å‡º
     cleanup(user1);
     cleanup(user2);
 

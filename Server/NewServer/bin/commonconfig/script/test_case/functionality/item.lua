@@ -13,7 +13,7 @@ function TestCase.Item.Basic()
     local session_id;
     local item;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -22,11 +22,11 @@ function TestCase.Item.Basic()
 
     --local equip_data = CDataManager_EQUIP_DATA_:GetInstance():GetFirstData();
     --while equip_data do
-        ----ÓÃGMÖ¸ÁîÔö¼ÓÒ»¼şÎïÆ·
+        ----ç”¨GMæŒ‡ä»¤å¢åŠ ä¸€ä»¶ç‰©å“
         --ret = user:GMCommand("AddItem(" .. equip_data.m_nTemplateID .. ", 1)");
         --check(ret, "failed to send gm command");
 --
-        ----¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+        ----æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
         --msg = recv_msg(5, session_id, protocol.g2c_item_change);
         --check(msg, "failed to recv g2c_item_change");
 --
@@ -35,11 +35,11 @@ function TestCase.Item.Basic()
         --check(item, "failed to get item");
         --check(item.m_iteminfo.m_nTemplateID==equip_data.m_nTemplateID, "failed to get correct item");
 --
-        ----É¾³ıĞÂ¼ÓµÄÎïÆ·
+        ----åˆ é™¤æ–°åŠ çš„ç‰©å“
         --ret = user:DeleteItem(3, 0, 1);
         --check(ret, "failed to send delete item msg");
 --
-        ----¼ì²éÉ¾³ıÎïÆ·µÄ»Ø°ü
+        ----æ£€æŸ¥åˆ é™¤ç‰©å“çš„å›åŒ…
         --msg = recv_msg(5, session_id, protocol.g2c_item_delete);
         --check(msg, "failed to recv g2c_item_delete");
         --check(msg.byConSlot == 3 and msg.byItemSlot == 0, "failed to delete correct item");
@@ -48,7 +48,7 @@ function TestCase.Item.Basic()
         --equip_data = CDataManager_EQUIP_DATA_:GetInstance():GetNextData();
     --end
 
-	-- ÏÈÉ¾³ıÒ»´ÎÒª¼ÓµÄÎïÆ·
+	-- å…ˆåˆ é™¤ä¸€æ¬¡è¦åŠ çš„ç‰©å“
 	item = role:GetItemBag():GetItem(2,0);
 	if item then
 		print("begin send delete item msg");
@@ -56,11 +56,11 @@ function TestCase.Item.Basic()
 		check(ret, "failed to send delete item msg");
 	end
 
-    --ÓÃGMÖ¸ÁîÔö¼ÓÒ©Ë®£¬ÏÂÃæµÄÒÆ¶¯/²ğ·ÖÒªÓÃ
+    --ç”¨GMæŒ‡ä»¤å¢åŠ è¯æ°´ï¼Œä¸‹é¢çš„ç§»åŠ¨/æ‹†åˆ†è¦ç”¨
     ret = user:GMCommand("AddItem(123,10)");
     check(ret, "failed to send gm command");
 
-    --¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+    --æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
@@ -72,22 +72,22 @@ function TestCase.Item.Basic()
     --check(msg.stItem.nTemplateID==101, "failed to create correct item");
     --check(msg.stItem.nCurDur==10, "failed to create correct item");
 
-    --µÇ³ö
+    --ç™»å‡º
     cleanup(user);
     wait(5);
 
-    --ÔÙ´ÎµÇÂ¼
+    --å†æ¬¡ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
 
     session_id = user:GetSessionID();
 
-    --ÒÆ¶¯ÎïÆ·
+    --ç§»åŠ¨ç‰©å“
     ret = user:MoveItem(2, 0, 2, 1);
     check(ret, "failed to send move item msg");
 
-    --¼ì²éÒÆ¶¯ÎïÆ·µÄ»Ø°ü
+    --æ£€æŸ¥ç§»åŠ¨ç‰©å“çš„å›åŒ…
     msg = recv_msg(5, session_id, protocol.g2c_item_swap);
     check(msg, "failed to recv g2c_item_swap");
     check(msg.wSrcConSlot==2 and
@@ -96,11 +96,11 @@ function TestCase.Item.Basic()
           msg.wDstItemSlot==1,
           "failed to get correct g2c_item_swap message");
 
-    --²ğ·ÖÎïÆ·
+    --æ‹†åˆ†ç‰©å“
     ret = user:SplitItem(2, 1, 2, 2, 5);
     check(ret, "failed to send split item msg");
 
-    --¼ì²é²ğ·ÖÎïÆ·µÄ»Ø°ü
+    --æ£€æŸ¥æ‹†åˆ†ç‰©å“çš„å›åŒ…
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
     --check(msg.stItem.nTemplateID==123 and
@@ -116,7 +116,7 @@ function TestCase.Item.Basic()
 	--msg.stItem.byConSlot==2 and
 	--msg.stItem.byItemSlot==2,
 	--"failed to recv correct g2c_item_change after splitting");
-	-- ĞÂµÄ¼ì²é·½Ê½,Ò»´Î¼ì²é2¸ö°ü
+	-- æ–°çš„æ£€æŸ¥æ–¹å¼,ä¸€æ¬¡æ£€æŸ¥2ä¸ªåŒ…
 	item = role:GetItemBag():GetItem(2,2);
     check(item, "failed to get item");
     check(item.m_iteminfo.m_nTemplateID == 123, "failed to get correct item");
@@ -127,11 +127,11 @@ function TestCase.Item.Basic()
     check(item.m_iteminfo.m_nTemplateID == 123, "failed to get correct item");
     check(item.m_iteminfo.m_shCurDur == 5, "item num error");
 
-    --¶ÑµşÎïÆ·
+    --å †å ç‰©å“
     ret = user:MoveItem(2, 2, 2, 1);
     check(ret, "failed to send move item msg");
 
-    --¼ì²é¶ÑµşÎïÆ·µÄ»Ø°ü
+    --æ£€æŸ¥å †å ç‰©å“çš„å›åŒ…
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
     item = role:GetItemBag():GetItem(2,1);
@@ -150,18 +150,18 @@ function TestCase.Item.Basic()
           msg.byItemSlot==2,
           "failed to recv correct g2c_item_delete after stacking");
 
-    --Ïú»ÙÎïÆ·
+    --é”€æ¯ç‰©å“
     ret = user:DeleteItem(2,1,10);
     check(ret, "failed to send delete item msg");
 
-    --¼ì²éÏú»ÙÎïÆ·µÄ»Ø°ü
+    --æ£€æŸ¥é”€æ¯ç‰©å“çš„å›åŒ…
     msg = recv_msg(5, session_id, protocol.g2c_item_delete);
     check(msg, "failed to recv g2c_item_delete");
     check(msg.byConSlot==2 and
           msg.byItemSlot==1,
           "failed to recv correct g2c_item_delete after deleting");
 
-    --µÇ³ö
+    --ç™»å‡º
     cleanup(user);
 end
 
@@ -174,18 +174,18 @@ function TestCase.Item.RunScript()
     local msg;
     local session_id;
 
-	--µÇÂ¼
+	--ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
 
     session_id = user:GetSessionID();
 
-   --ÓÃGMÖ¸ÁîÔö¼ÓÒ©Ë®£¬ÏÂÃæµÄÒÆ¶¯/²ğ·ÖÒªÓÃ
+   --ç”¨GMæŒ‡ä»¤å¢åŠ è¯æ°´ï¼Œä¸‹é¢çš„ç§»åŠ¨/æ‹†åˆ†è¦ç”¨
     ret = user:GMCommand("AddItem(101,1)");
     check(ret, "failed to send gm command");
 
-    --¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+    --æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
@@ -197,7 +197,7 @@ function TestCase.Item.RunScript()
 	wait(2);
 
 
-    --µÇ³ö
+    --ç™»å‡º
     cleanup(user);
 
 	wait(2);
@@ -209,7 +209,7 @@ function TestCase.Item.RunScript()
 	print("role-level:"..role:GetLevel());
 	check(currentLevel < role:GetLevel(), "use item failed");
 
-	--µÇ³ö
+	--ç™»å‡º
     cleanup(user);
 end
 
@@ -223,18 +223,18 @@ function TestCase.Item.Attribute()
     local msg;
     local session_id;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
 
     check(user, "failed to create user");
     check(role, "failed to create role");
     session_id = user:GetSessionID();
 
-    --ÓÃGMÖ¸ÁîÔö¼Ó²âÊÔÓÃÎäÆ÷
+    --ç”¨GMæŒ‡ä»¤å¢åŠ æµ‹è¯•ç”¨æ­¦å™¨
     ret = user:GMCommand("AddItem(190002,1)");
     check(ret, "failed to send gm command");
 
-    --¼ì²éÔö¼ÓµÄÎïÆ·ÊôĞÔ
+    --æ£€æŸ¥å¢åŠ çš„ç‰©å“å±æ€§
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
     item = role:GetItemBag():GetItem(3,0);
@@ -245,11 +245,11 @@ function TestCase.Item.Attribute()
     --check(msg.stItem.byAttrCount>=8, "failed to create correct item");
     --check(msg.stItem.astAttrs[0].shParam>=95 and msg.stItem.astAttrs[0].shParam<=110, "failed to create correct item");
 
-    --×°±¸
+    --è£…å¤‡
     ret = user:MoveItem(3, 0, 0, 0);
     check(ret, "failed to send move item msg");
 
-    --µÇ³ö
+    --ç™»å‡º
     cleanup(user);
 end
 
@@ -261,7 +261,7 @@ function TestCase.Item.Shop()
     local msg;
     local session_id;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -269,11 +269,11 @@ function TestCase.Item.Shop()
     session_id = user:GetSessionID();
 
     wait(2);
-    --ÓÃGMÖ¸ÁîÕÙ»½Ò»¸öNPC
+    --ç”¨GMæŒ‡ä»¤å¬å”¤ä¸€ä¸ªNPC
     ret = user:GMCommand("SummonNpc(6003)");
     check(ret, "failed to send gm command");
 
-    --¼ì²éÕÙ»½³öµÄNPC
+    --æ£€æŸ¥å¬å”¤å‡ºçš„NPC
     msg = recv_msg(5, session_id, protocol.g2c_char_appear)
     check(msg, "Npc appear fail.")
     local diag_npc_id = msg.stAppearData.dwCharID
@@ -285,19 +285,19 @@ function TestCase.Item.Shop()
     --local diag_npc_id = get_npc_id_from_list(msg, 2001);
     --check(diag_npc_id ~= 0, "npc appear fail");
 
-    --µãÑ¡NPC
+    --ç‚¹é€‰NPC
     ret = user:InteractWithNpc(diag_npc_id);
     check(ret, "failed to interact with npc");
 
-    --¹ºÂòÉÌÆ·
+    --è´­ä¹°å•†å“
     ret = user:BuyItem(3);
     check(ret, "failed to send buy item msg");
 
-    --¼ì²é»Ø°ü
+    --æ£€æŸ¥å›åŒ…
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-    --µÇ³ö
+    --ç™»å‡º
     cleanup(user);
 end
 
@@ -310,7 +310,7 @@ function TestCase.Item.Shop_2()
     local session_id;
 	local conSlot;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -319,7 +319,7 @@ function TestCase.Item.Shop_2()
 
     wait(2);
 
-		-- Çå¿Õ°ü¹ü
+		-- æ¸…ç©ºåŒ…è£¹
 	item = role:GetItemBag():GetItem(2, 0);
 	while item do
 		--
@@ -354,11 +354,11 @@ function TestCase.Item.Shop_2()
 	local npc_list = {6002,6003,6006};
 
 	for i,npc_id in ipairs(npc_list) do
-		--ÓÃGMÖ¸ÁîÕÙ»½Ò»¸öNPC
+		--ç”¨GMæŒ‡ä»¤å¬å”¤ä¸€ä¸ªNPC
 		ret = user:GMCommand("SummonNpc("..npc_id..")");
 		check(ret, "failed to send gm command");
 
-		--¼ì²éÕÙ»½³öµÄNPC
+		--æ£€æŸ¥å¬å”¤å‡ºçš„NPC
 		msg = recv_msg(5, session_id, protocol.g2c_char_appear)
 		check(msg, "Npc appear fail.")
 		local diag_npc_id = msg.stAppearData.dwCharID
@@ -370,7 +370,7 @@ function TestCase.Item.Shop_2()
 		--local diag_npc_id = get_npc_id_from_list(msg, 2001);
 		--check(diag_npc_id ~= 0, "npc appear fail");
 
-		--µãÑ¡NPC
+		--ç‚¹é€‰NPC
 		ret = user:InteractWithNpc(diag_npc_id);
 		check(ret, "failed to interact with npc");
 
@@ -379,7 +379,7 @@ function TestCase.Item.Shop_2()
 		print(npc_data.nShopID);
 		local shop_data = CDataManager_SHOP_DATA_:GetInstance():GetData(npc_data.nShopID);
 
-		--ÓÃGMÖ¸Áî¼ÓÇ®
+		--ç”¨GMæŒ‡ä»¤åŠ é’±
 		ret = user:GMCommand("AddMoney(1, 100000000, MONEYLOG_GM_COMMAND)");
 		check(ret, "failed to send gm command");
 		ret = user:GMCommand("AddMoney(3, 100000000, MONEYLOG_GM_COMMAND)");
@@ -394,11 +394,11 @@ function TestCase.Item.Shop_2()
 
 
 				print("deal item"..shop_data.m_ShopItem[i-1].m_nItemID);
-				--¹ºÂòÉÌÆ·
+				--è´­ä¹°å•†å“
 				ret = user:BuyItem(i-1);
 				check(ret, "failed to send buy item msg");
 
-				--¼ì²é»Ø°ü
+				--æ£€æŸ¥å›åŒ…
 				msg = recv_msg(30, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_change");
 
@@ -410,15 +410,15 @@ function TestCase.Item.Shop_2()
 					end
 				end
 
-				-- ÅĞ¶Ï°ü¹üÎ»ÖÃ
-				if item_data.m_byType == 3 then -- ²ÄÁÏ
+				-- åˆ¤æ–­åŒ…è£¹ä½ç½®
+				if item_data.m_byType == 3 then -- ææ–™
 					conSlot = 4;
-				elseif item_data.m_byType == 9 then -- ÈÎÎñ
+				elseif item_data.m_byType == 9 then -- ä»»åŠ¡
 					conSlot = 5;
 				elseif item_data.m_byType == 2 then
-					conSlot = 3;		-- ×°±¸
+					conSlot = 3;		-- è£…å¤‡
 				else
-					conSlot = 2;	-- Ä¬ÈÏ°ü¹ü
+					conSlot = 2;	-- é»˜è®¤åŒ…è£¹
 				end
 
 				print("item bag position"..conSlot);
@@ -435,7 +435,7 @@ function TestCase.Item.Shop_2()
 		wait(2);
 	end
 
-    --µÇ³ö
+    --ç™»å‡º
     cleanup(user);
 end
 
@@ -447,60 +447,60 @@ function TestCase.Item.Money()
     local msg;
     local session_id;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
 
     session_id = user:GetSessionID();
 
-    --ÓÃGMÖ¸ÁîÔö¼ÓÇ®
+    --ç”¨GMæŒ‡ä»¤å¢åŠ é’±
     ret = user:GMCommand("SetMoney(0,1234)");
     check(ret, "failed to send gm command");
 
-    --¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+    --æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
     msg = recv_msg(5, session_id, protocol.g2c_money_change);
     check(msg, "failed to recv g2c_item_change");
     check(msg.nMoneyType==0, "failed to create correct money");
     check(msg.nMoney==1234, "failed to create correct money");
 
-    --ÓÃGMÖ¸ÁîÔö¼ÓÇ®
+    --ç”¨GMæŒ‡ä»¤å¢åŠ é’±
     ret = user:GMCommand("SetMoney(1,1234)");
     check(ret, "failed to send gm command");
 
-    --¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+    --æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
     msg = recv_msg(5, session_id, protocol.g2c_money_change);
     check(msg, "failed to recv g2c_item_change");
     check(msg.nMoneyType==1, "failed to create correct money");
     check(msg.nMoney==1234, "failed to create correct money");
 
-    --ÓÃGMÖ¸ÁîÔö¼ÓÇ®
+    --ç”¨GMæŒ‡ä»¤å¢åŠ é’±
     ret = user:GMCommand("SetMoney(2,1234)");
     check(ret, "failed to send gm command");
 
-    --¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+    --æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
     msg = recv_msg(5, session_id, protocol.g2c_money_change);
     check(msg, "failed to recv g2c_item_change");
     check(msg.nMoneyType==2, "failed to create correct money");
     check(msg.nMoney==1234, "failed to create correct money");
 
-    --ÓÃGMÖ¸ÁîÔö¼ÓÇ®
+    --ç”¨GMæŒ‡ä»¤å¢åŠ é’±
     ret = user:GMCommand("SetMoney(3,1234)");
     check(ret, "failed to send gm command");
 
-    --¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+    --æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
     msg = recv_msg(5, session_id, protocol.g2c_money_change);
     check(msg, "failed to recv g2c_item_change");
     check(msg.nMoneyType==3, "failed to create correct money");
     check(msg.nMoney==1234, "failed to create correct money");
 
-    --µÇ³ö
+    --ç™»å‡º
     cleanup(user);
 end
 
 function TestCase.Item.Sign()
 
-    --µÇÂ¼
+    --ç™»å½•
 	local user_name1 = "SignItem" .. os.date("%H%M%S");
     user1, role1 = startup(user_name1, user_name1)
     check(user1, "failed to create user");
@@ -517,26 +517,26 @@ function TestCase.Item.Sign()
 	local user1id = role1:GetObjID();
 	local user2id = role2:GetObjID();
 
-	 --ÓÃGMÖ¸ÁîÔö¼ÓÒ»¼şÎïÆ·
-    --ret = user1:GMCommand("AddItem(1000005,1)");  -- ¿ªÌì
+	 --ç”¨GMæŒ‡ä»¤å¢åŠ ä¸€ä»¶ç‰©å“
+    --ret = user1:GMCommand("AddItem(1000005,1)");  -- å¼€å¤©
     --check(ret, "failed to send gm command");
 
-    --¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+    --æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
     --local msg = recv_msg(5, usersessionid1, protocol.g2c_item_change);
     --check(msg, "failed to recv g2c_item_change");
 
-	--¶Ô×°±¸½øĞĞÇ©Ãû
+	--å¯¹è£…å¤‡è¿›è¡Œç­¾å
 	ret = g_RobotMessageHandler:DoSignItem(role1, 0, 0);
 	check(ret, "fail to sign item");
 
-	--¼ì²éÇ©ÃûµÄ»Ø°ü
+	--æ£€æŸ¥ç­¾åçš„å›åŒ…
     msg = recv_msg(5, usersessionid1, protocol.g2c_sign_item);
     check(msg, "failed to recv g2c_sign_item");
 
 	ret = g_RobotMessageHandler:DoSayWithItem(role1, user_name2);
 	check(ret, "fail to say with item");
 
-	--¼ì²éÁÄÌìµÄ»Ø°ü
+	--æ£€æŸ¥èŠå¤©çš„å›åŒ…
     msg = recv_msg(5, usersessionid2, protocol.m2c_chat_message);
 	check(msg, "fail to receive chat message");
 	local username = get_role_name_from_msmessage(msg);
@@ -544,7 +544,7 @@ function TestCase.Item.Sign()
 	check(username == user_name1, "fail to receive wrong target name");
 
 	local chatcontent = get_chat_content_from_msmessage(msg);
-	--ÑéÖ¤Ç©Ãû
+	--éªŒè¯ç­¾å
 	ret = user2:VerifyItem(user1id, chatcontent);
 	check(ret, "failed to verify rsa signup");
 end
@@ -612,7 +612,7 @@ function TestCase.Item.EquipCheck()
     local item;
 	local item2;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -623,14 +623,14 @@ function TestCase.Item.EquipCheck()
     while equip_data do
 		if equip_data.m_nTemplateID ~= 0 then
 			print("Equip begin ID: "..equip_data.m_nTemplateID);
-			-- ×Ö¶Î·¶Î§¼ì²â
+			-- å­—æ®µèŒƒå›´æ£€æµ‹
 			ItemFieldRangeCheck(equip_data);
 
-			--ÓÃGMÖ¸ÁîÔö¼ÓÒ»¼şÎïÆ·
+			--ç”¨GMæŒ‡ä»¤å¢åŠ ä¸€ä»¶ç‰©å“
 			ret = user:GMCommand("AddItem(" .. equip_data.m_nTemplateID .. ", 1)");
 			check(ret, "failed to send gm command");
 
-			--¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+			--æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
 			msg = recv_msg(5, session_id, protocol.g2c_item_change);
 			check(msg, "failed to recv g2c_item_change");
 
@@ -638,21 +638,21 @@ function TestCase.Item.EquipCheck()
 			check(item, "failed to get item");
 			check(item.m_iteminfo.m_nTemplateID==equip_data.m_nTemplateID,"failed to get correct item");
 
-			-- ¼ì²â°ó¶¨ÊôĞÔ
+			-- æ£€æµ‹ç»‘å®šå±æ€§
 			--if equip_data.m_byBindType == 3 then
 			--	print("bind type templateID "..equip_data.m_nTemplateID);
 			--	check(item.m_iteminfo.m_byBindType == 10,"item bind fail");
 			--end
 
-			-- ¼ì²âµş¼ÓÊôĞÔ
+			-- æ£€æµ‹å åŠ å±æ€§
 			if equip_data.m_byDurType == 2 then
 				check(nil, "equip field DurType error");
 			else
-				--ÔÙ¼ÓÒ»¸öÍ¬ÑùµÄÎïÆ·
+				--å†åŠ ä¸€ä¸ªåŒæ ·çš„ç‰©å“
 				ret = user:GMCommand("AddItem(" .. equip_data.m_nTemplateID .. ", 1)");
 				check(ret, "failed to send gm command");
 
-				--¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+				--æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_change");
 
@@ -660,21 +660,21 @@ function TestCase.Item.EquipCheck()
 				check(item2, "failed to get item");
 				check(item2.m_iteminfo.m_nTemplateID==equip_data.m_nTemplateID,	"failed to get correct item");
 
-				--É¾³ıĞÂ¼ÓµÄÎïÆ·
+				--åˆ é™¤æ–°åŠ çš„ç‰©å“
 				ret = user:DeleteItem(3, 1, 1);
 				check(ret, "failed to send delete item msg");
 
-				--¼ì²éÉ¾³ıÎïÆ·µÄ»Ø°ü
+				--æ£€æŸ¥åˆ é™¤ç‰©å“çš„å›åŒ…
 				msg = recv_msg(5, session_id, protocol.g2c_item_delete);
 				check(msg, "failed to recv g2c_item_delete");
 				check(msg.byConSlot == 3 and msg.byItemSlot == 1,"failed to delete correct item");
 			end
 
-			--É¾³ıĞÂ¼ÓµÄÎïÆ·
+			--åˆ é™¤æ–°åŠ çš„ç‰©å“
 			ret = user:DeleteItem(3, 0, 1);
 			check(ret, "failed to send delete item msg");
 
-			--¼ì²éÉ¾³ıÎïÆ·µÄ»Ø°ü
+			--æ£€æŸ¥åˆ é™¤ç‰©å“çš„å›åŒ…
 			msg = recv_msg(5, session_id, protocol.g2c_item_delete);
 			check(msg, "failed to recv g2c_item_delete");
 			check(msg.byConSlot == 3 and msg.byItemSlot == 0,"failed to delete correct item");
@@ -687,7 +687,7 @@ function TestCase.Item.EquipCheck()
 
     end
 
-	--µÇ³ö
+	--ç™»å‡º
     cleanup(user);
 end
 
@@ -701,7 +701,7 @@ function TestCase.ItemCheck()
     local item;
 	local item2;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -712,67 +712,67 @@ function TestCase.ItemCheck()
     while item_data do
 		if item_data.m_nTemplateID > 100 then
 			print("Equip begin ID: "..item_data.m_nTemplateID);
-			-- ×Ö¶Î·¶Î§¼ì²â
+			-- å­—æ®µèŒƒå›´æ£€æµ‹
 			ItemFieldRangeCheck(item_data);
 
-			--ÓÃGMÖ¸ÁîÔö¼ÓÒ»¼şÎïÆ·
+			--ç”¨GMæŒ‡ä»¤å¢åŠ ä¸€ä»¶ç‰©å“
 			ret = user:GMCommand("AddItem(" .. item_data.m_nTemplateID .. ", 1)");
 			check(ret, "failed to send gm command");
 
-			--¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+			--æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
 			msg = recv_msg(5, session_id, protocol.g2c_item_change);
 			check(msg, "failed to recv g2c_item_change");
 
-			-- ÅĞ¶Ï°ü¹üÎ»ÖÃ
-			local conSlot = 2;	-- Ä¬ÈÏ°ü¹ü
-			if item_data.m_byType == 3 then -- ²ÄÁÏ
+			-- åˆ¤æ–­åŒ…è£¹ä½ç½®
+			local conSlot = 2;	-- é»˜è®¤åŒ…è£¹
+			if item_data.m_byType == 3 then -- ææ–™
 				conSlot = 4;
-			elseif item_data.m_byType == 9 then -- ÈÎÎñ
+			elseif item_data.m_byType == 9 then -- ä»»åŠ¡
 				conSlot = 5;
 			end
 
-			-- »ñÈ¡ĞÂÔöÎïÆ·£¬¿ªÊ¼¼ì²âÂß¼­
+			-- è·å–æ–°å¢ç‰©å“ï¼Œå¼€å§‹æ£€æµ‹é€»è¾‘
 			item = role:GetItemBag():GetItem(conSlot,0);
 			check(item, "failed to get item");
 			check(item.m_iteminfo.m_nTemplateID==item_data.m_nTemplateID,"failed to get correct item");
 
-			-- ¼ì²â°ó¶¨ÊôĞÔ
+			-- æ£€æµ‹ç»‘å®šå±æ€§
 			--if item_data.m_byBindType == 3 then
 			--	check(item.m_iteminfo.m_byBindType == 10,"item bind fail");
 			--end
 
-			-- ¼ì²âµş¼ÓÊôĞÔ
+			-- æ£€æµ‹å åŠ å±æ€§
 			if item_data.m_byDurType == 2 and item_data.m_nDur ~= 1 then
-				-- ²»µ½ÉÏÏŞ¼ì²â
+				-- ä¸åˆ°ä¸Šé™æ£€æµ‹
 				ret = user:GMCommand("AddItem(" .. item_data.m_nTemplateID..", "..item_data.m_nDur..")");
 				check(ret, "failed to send gm command");
-				-- µş¼ÓÊıÁ¿¹ıµÍ
+				-- å åŠ æ•°é‡è¿‡ä½
 				if item_data.m_nDur - 2 < 0 then
 					check(nil, "dur num error! type : 2 , num: " .. item_data.m_nDur);
 				end
 
-				--¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+				--æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_change");
 
-				-- ³¬¹ıÉÏÏŞ·Ö¸ñ×Ó¼ì²â
+				-- è¶…è¿‡ä¸Šé™åˆ†æ ¼å­æ£€æµ‹
 				item = role:GetItemBag():GetItem(conSlot,1);
 				check(item, "failed to get item");
 				check(item.m_iteminfo.m_nTemplateID==item_data.m_nTemplateID,"failed to get correct item");
 				print("dur num : "..item.m_iteminfo.m_shCurDur.." "..item_data.m_nDur);
 				check(item.m_iteminfo.m_shCurDur == item_data.m_nDur,"ItemDurNum error");
 
-				-- µÚ¶ş¸ö¸ñ×Ó¼ì²â
+				-- ç¬¬äºŒä¸ªæ ¼å­æ£€æµ‹
 				item2 = role:GetItemBag():GetItem(conSlot,0);
 				check(item2, "failed to get item");
 				check(item2.m_iteminfo.m_nTemplateID==item_data.m_nTemplateID,"failed to get correct item");
 				check(item2.m_iteminfo.m_shCurDur == 1,"ItemDurNum error");
 
-				--É¾³ıĞÂ¼ÓµÄÎïÆ·
+				--åˆ é™¤æ–°åŠ çš„ç‰©å“
 				ret = user:DeleteItem(conSlot, 1, 2);
 				check(ret, "failed to send delete item msg");
 
-				--¼ì²éÉ¾³ıÎïÆ·µÄ»Ø°ü
+				--æ£€æŸ¥åˆ é™¤ç‰©å“çš„å›åŒ…
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_delete");
 
@@ -781,13 +781,13 @@ function TestCase.ItemCheck()
 				check(item2.m_iteminfo.m_nTemplateID==item_data.m_nTemplateID,"failed to get correct item");
 				check(item2.m_iteminfo.m_shCurDur == item_data.m_nDur - 2, "ItemDurNum error");
 
-				-- ºÏ²¢£¬²ğ·Ö¼ì²â
+				-- åˆå¹¶ï¼Œæ‹†åˆ†æ£€æµ‹
 
-				-- ÏÈ²ğ·Ö(ÆäÖĞ°üÀ¨¶Ñµş)
+				-- å…ˆæ‹†åˆ†(å…¶ä¸­åŒ…æ‹¬å †å )
 				ret = user:SplitItem(conSlot, 1, conSlot, 0, 1);
 				check(ret, "failed to send split item msg");
 
-				--¼ì²é²ğ·ÖÎïÆ·µÄ»Ø°ü
+				--æ£€æŸ¥æ‹†åˆ†ç‰©å“çš„å›åŒ…
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_change");
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
@@ -804,11 +804,11 @@ function TestCase.ItemCheck()
 				check(item.m_iteminfo.m_nTemplateID == item_data.m_nTemplateID, "failed to get correct item");
 				check(item.m_iteminfo.m_shCurDur == 2, "item num error");
 
-				-- ÔÙÒÆ¶¯
+				-- å†ç§»åŠ¨
 				ret = user:MoveItem(conSlot, 1, conSlot, 2);
 				check(ret, "failed to send move item msg");
 
-				--¼ì²éÒÆ¶¯ÎïÆ·µÄ»Ø°ü
+				--æ£€æŸ¥ç§»åŠ¨ç‰©å“çš„å›åŒ…
 				msg = recv_msg(5, session_id, protocol.g2c_item_swap);
 				check(msg, "failed to recv g2c_item_swap");
 				check(msg.wSrcConSlot==conSlot and msg.wSrcItemSlot==1 and
@@ -829,10 +829,10 @@ function TestCase.ItemCheck()
 				print("temp show3: "..item.m_iteminfo.m_shCurDur.." "..item_data.m_nDur);
 				--
 
-				-- ×îºóºÏ²¢
+				-- æœ€ååˆå¹¶
 				ret = user:MoveItem(conSlot, 2, conSlot, 0);
 				check(ret, "failed to send move item msg");
-				--¼ì²é¶ÑµşÎïÆ·µÄ»Ø°ü
+				--æ£€æŸ¥å †å ç‰©å“çš„å›åŒ…
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_change");
 
@@ -847,20 +847,20 @@ function TestCase.ItemCheck()
 				print("temp show55:"..item.m_iteminfo.m_shCurDur.." "..item_data.m_nDur);
 				check(item.m_iteminfo.m_shCurDur == item_data.m_nDur - 1, "item num error");
 
-				-- Çå¿ÕÏÖ³¡
+				-- æ¸…ç©ºç°åœº
 				ret = user:DeleteItem(conSlot, 0, item.m_iteminfo.m_shCurDur);
 				check(ret, "failed to send delete item msg");
 
-				--¼ì²éÉ¾³ıÎïÆ·µÄ»Ø°ü
+				--æ£€æŸ¥åˆ é™¤ç‰©å“çš„å›åŒ…
 				msg = recv_msg(5, session_id, protocol.g2c_item_delete);
 				check(msg, "failed to recv g2c_item_delete");
 				check(msg.byConSlot == conSlot and msg.byItemSlot == 0,"failed to delete correct item");
-			else	-- ÎŞÄÍ¾Ã£¬Ê¹ÓÃ´ÎÊıºÍ×°±¸ÄÍ¾Ã£¬Ó¦¸Ã¶¼ÊÇ²»¿Éµş¼ÓÊôĞÔ
-				--ÔÙ¼ÓÒ»¸öÍ¬ÑùµÄÎïÆ·
+			else	-- æ— è€ä¹…ï¼Œä½¿ç”¨æ¬¡æ•°å’Œè£…å¤‡è€ä¹…ï¼Œåº”è¯¥éƒ½æ˜¯ä¸å¯å åŠ å±æ€§
+				--å†åŠ ä¸€ä¸ªåŒæ ·çš„ç‰©å“
 				ret = user:GMCommand("AddItem(" .. item_data.m_nTemplateID .. ", 1)");
 				check(ret, "failed to send gm command");
 
-				--¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+				--æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_change");
 
@@ -868,20 +868,20 @@ function TestCase.ItemCheck()
 				check(item2, "failed to get item");
 				check(item2.m_iteminfo.m_nTemplateID==item_data.m_nTemplateID,"failed to get correct item");
 
-				--É¾³ıĞÂ¼ÓµÄÎïÆ·
+				--åˆ é™¤æ–°åŠ çš„ç‰©å“
 				ret = user:DeleteItem(conSlot, 1, 1);
 				check(ret, "failed to send delete item msg");
 
-				--¼ì²éÉ¾³ıÎïÆ·µÄ»Ø°ü
+				--æ£€æŸ¥åˆ é™¤ç‰©å“çš„å›åŒ…
 				msg = recv_msg(5, session_id, protocol.g2c_item_delete);
 				check(msg, "failed to recv g2c_item_delete");
 				check(msg.byConSlot == conSlot and msg.byItemSlot == 1,"failed to delete correct item");
 
-				--É¾³ıĞÂ¼ÓµÄÎïÆ·
+				--åˆ é™¤æ–°åŠ çš„ç‰©å“
 				ret = user:DeleteItem(conSlot, 0, 1);
 				check(ret, "failed to send delete item msg");
 
-				--¼ì²éÉ¾³ıÎïÆ·µÄ»Ø°ü
+				--æ£€æŸ¥åˆ é™¤ç‰©å“çš„å›åŒ…
 				msg = recv_msg(5, session_id, protocol.g2c_item_delete);
 				check(msg, "failed to recv g2c_item_delete");
 				check(msg.byConSlot == conSlot and msg.byItemSlot == 0,"failed to delete correct item");
@@ -892,7 +892,7 @@ function TestCase.ItemCheck()
         item_data = CDataManager_ITEM_DATA_:GetInstance():GetNextData();
     end
 
-	--µÇ³ö
+	--ç™»å‡º
     cleanup(user);
 end
 
@@ -907,7 +907,7 @@ function TestCase.UseDicPKValue()
     local session_id;
     local item;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -918,7 +918,7 @@ function TestCase.UseDicPKValue()
 	ret = user:GMCommand("AddItem(100002, 1)");
 	check(ret, "failed to send gm command");
 
-	--¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+	--æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
 	msg = recv_msg(5, session_id, protocol.g2c_item_change);
 	check(msg, "failed to recv g2c_item_change");
 
@@ -929,7 +929,7 @@ function TestCase.UseDicPKValue()
 
 
 
-	--µÇ³ö
+	--ç™»å‡º
     cleanup(user);
 end
 
@@ -944,7 +944,7 @@ function TestCase.Item.Use()
     local item;
 	local conSlot;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -960,7 +960,7 @@ function TestCase.Item.Use()
 	ret = user:GMCommand("AddExp(2000000)");
 	check(ret, "failed to send gm command");
 
-	-- Çå¿Õ°ü¹ü
+	-- æ¸…ç©ºåŒ…è£¹
 	item = role:GetItemBag():GetItem(2, 0);
 	while item do
 		--
@@ -994,21 +994,21 @@ function TestCase.Item.Use()
 
 	local item_data = CDataManager_ITEM_DATA_:GetInstance():GetFirstData();
 	while item_data do
-		-- ÅĞ¶Ï°ü¹üÎ»ÖÃ
+		-- åˆ¤æ–­åŒ…è£¹ä½ç½®
 
-		if item_data.m_byType == 3 then -- ²ÄÁÏ
+		if item_data.m_byType == 3 then -- ææ–™
 			conSlot = 4;
-		elseif item_data.m_byType == 9 then -- ÈÎÎñ
+		elseif item_data.m_byType == 9 then -- ä»»åŠ¡
 			conSlot = 5;
 		else
-			conSlot = 2;	-- Ä¬ÈÏ°ü¹ü
+			conSlot = 2;	-- é»˜è®¤åŒ…è£¹
 		end
 
 		if item_data.m_nTemplateID >100 then
-			-- ¿ÉÊ¹ÓÃµÄÎïÆ·
+			-- å¯ä½¿ç”¨çš„ç‰©å“
 			if item_data.m_byType == 1 then
 
-				-- Ñ¡ÔñÖ°Òµ
+				-- é€‰æ‹©èŒä¸š
 				if item_data.m_byRequireClass > 0 then
 					user:GMCommand("SelfRole:SetClass("..((item_data.m_byRequireClass - 1)%4)..");");
 				end
@@ -1018,7 +1018,7 @@ function TestCase.Item.Use()
 					ret = user:GMCommand("AddItem(" .. item_data.m_nTemplateID .. ", 1)");
 					check(ret, "failed to send gm command");
 
-					--¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+					--æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
 					msg = recv_msg(5, session_id, protocol.g2c_item_change);
 					check(msg, "failed to recv g2c_item_change");
 
@@ -1048,10 +1048,10 @@ function TestCase.Item.Use()
 				elseif item_data.m_szScript ~= 0 then
 					print(item_data.m_szScript);
 					--check(nil, "script ~= 0");
-					-- Èç¹ûÃ»ÓĞ¼¼ÄÜ£¬¾Í±ØÈ»ÓĞ½Å±¾
+					-- å¦‚æœæ²¡æœ‰æŠ€èƒ½ï¼Œå°±å¿…ç„¶æœ‰è„šæœ¬
 				elseif item_data.m_szScript == 0 then
 					check(nil, "script:use item can not use");
-					-- ÏÖÔÚÊÇÔÊĞíµÄ
+					-- ç°åœ¨æ˜¯å…è®¸çš„
 				else
 					check(nil, "use item can not use");
 				end
@@ -1063,14 +1063,14 @@ function TestCase.Item.Use()
         item_data = CDataManager_ITEM_DATA_:GetInstance():GetNextData();
 	end
 
-	--µÇ³ö
+	--ç™»å‡º
     cleanup(user);
 end
 
 
 
 
--- ¸ù¾İ×ÓÀàĞÍ»ñÈ¡×°±¸²¿Î»
+-- æ ¹æ®å­ç±»å‹è·å–è£…å¤‡éƒ¨ä½
 function GetEquipPos(subType)
 	if subType == ITEMSUBTYPE_EQUIP_WEAPON then
 		return NES_MAIN_HAND;
@@ -1117,9 +1117,9 @@ function TestCase.Item.EquipItem()
     local msg;
     local session_id;
     local item;
-	local conSlot = 3;	-- ×°±¸£¬Ã»µÄÑ¡°ü¹ü
+	local conSlot = 3;	-- è£…å¤‡ï¼Œæ²¡çš„é€‰åŒ…è£¹
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -1132,7 +1132,7 @@ function TestCase.Item.EquipItem()
 	ret = user:GMCommand("AddExp(2000000)");
 	check(ret, "failed to send gm command");
 
-	-- Çå¿Õ°ü¹ü
+	-- æ¸…ç©ºåŒ…è£¹
 	item = role:GetItemBag():GetItem(3, 0);
 	while item do
 		--
@@ -1147,9 +1147,9 @@ function TestCase.Item.EquipItem()
 	local equip_data = CDataManager_EQUIP_DATA_:GetInstance():GetFirstData();
 	while equip_data do
 		if equip_data.m_nTemplateID >100 and equip_data.m_nTemplateID ~= 1999997 and equip_data.m_nTemplateID ~= 1999998 and equip_data.m_nTemplateID ~= 1999999 then
-			-- ¿ÉÊ¹ÓÃµÄÎïÆ·
+			-- å¯ä½¿ç”¨çš„ç‰©å“
 			if equip_data.m_byType == 2 then
-				-- Ñ¡ÔñÖ°Òµ
+				-- é€‰æ‹©èŒä¸š
 				if equip_data.m_byRequireClass == 4 then
 					user:GMCommand("SelfRole:SetClass(2);");
 				elseif equip_data.m_byRequireClass > 0 then
@@ -1160,12 +1160,12 @@ function TestCase.Item.EquipItem()
 				ret = user:GMCommand("AddItem(" .. equip_data.m_nTemplateID .. ", 1)");
 				check(ret, "failed to send gm command");
 
-				--¼ì²éÔö¼ÓµÄÎïÆ·È·ÊµÊÇGMÖ¸ÁîËù¼ÓµÄ
+				--æ£€æŸ¥å¢åŠ çš„ç‰©å“ç¡®å®æ˜¯GMæŒ‡ä»¤æ‰€åŠ çš„
 				msg = recv_msg(5, session_id, protocol.g2c_item_change);
 				check(msg, "failed to recv g2c_item_change");
 
 				local dstItemSlot = GetEquipPos(equip_data.m_bySubType);
-				--¶ÑµşÎïÆ·
+				--å †å ç‰©å“
 				ret = user:MoveItem(3, 0, 0, dstItemSlot);
 				check(ret, "failed to send move item msg");
 
@@ -1177,7 +1177,7 @@ function TestCase.Item.EquipItem()
 					check(msg, "failed to recv g2c_sync_role_avatar");
 				end
 
-				-- Ëµ²»¶¨ÓĞÍÑÏÂÀ´µÄ...°ÑÖ®Ç°ÍÑÏÂÀ´µÄÉ¾ÁË£¬ÔÙ¼ÌĞøÍÑ
+				-- è¯´ä¸å®šæœ‰è„±ä¸‹æ¥çš„...æŠŠä¹‹å‰è„±ä¸‹æ¥çš„åˆ äº†ï¼Œå†ç»§ç»­è„±
 				item = role:GetItemBag():GetItem(3, 0);
 				if item then
 					ret = user:DeleteItem(conSlot, 0, 1);
@@ -1204,7 +1204,7 @@ function TestCase.Item.EquipItem()
         equip_data = CDataManager_EQUIP_DATA_:GetInstance():GetNextData();
 	end
 
-	--µÇ³ö
+	--ç™»å‡º
     cleanup(user);
 end
 
@@ -1219,49 +1219,49 @@ function TestCase.Item.CD()
     local item;
 	local conSlot;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
 
 	session_id = user:GetSessionID();
 
-	--ÓÃGMÖ¸ÁîÔö¼Ó²âÊÔÎïÆ·
+	--ç”¨GMæŒ‡ä»¤å¢åŠ æµ‹è¯•ç‰©å“
     ret = user:GMCommand("AddItem(99, 1)");
     check(ret, "failed to send gm command");
 
-    --¼ì²éÎïÆ·»Ø°ü
+    --æ£€æŸ¥ç‰©å“å›åŒ…
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-	--Ê¹ÓÃ
+	--ä½¿ç”¨
 	ret = role:GetItemBag():UseItem(2, 0, 99);
 	check(ret, "failed to use item");
 
-	--Ê¹ÓÃÎïÆ·³É¹¦
+	--ä½¿ç”¨ç‰©å“æˆåŠŸ
 	msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-	--ÔÙÊ¹ÓÃ
+	--å†ä½¿ç”¨
 	ret = role:GetItemBag():UseItem(2, 0, 99);
 	check(ret, "failed to use item");
 
-	--Ê¹ÓÃÎïÆ·Ê§°Ü
+	--ä½¿ç”¨ç‰©å“å¤±è´¥
 	msg = recv_msg(5, session_id, protocol.g2c_error_notify);
 	check(msg, "failed to recv g2c_error_notify");
 	check(msg.nErrCode == error_code.errItemNotReady, "failed to recv correct err msg");
 
-	--µÈ35ÃëºóÔÙ´ÎÊ¹ÓÃ
+	--ç­‰35ç§’åå†æ¬¡ä½¿ç”¨
 	wait(35);
 
 	ret = role:GetItemBag():UseItem(2, 0, 99);
 	check(ret, "failed to use item");
 
-	--Ê¹ÓÃÎïÆ·³É¹¦
+	--ä½¿ç”¨ç‰©å“æˆåŠŸ
 	msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-	--µÇ³ö
+	--ç™»å‡º
     cleanup(user);
 end
 
@@ -1273,51 +1273,51 @@ function TestCase.Item.NovicePackage()
     local msg;
     local session_id;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
 
 	session_id = user:GetSessionID();
 
-	--ÓÃGMÖ¸ÁîÔö¼ÓĞÂÊÖÀñ°ü
+	--ç”¨GMæŒ‡ä»¤å¢åŠ æ–°æ‰‹ç¤¼åŒ…
     ret = user:GMCommand("AddItem(1000011, 1)");
     check(ret, "failed to send gm command");
 
-    --¼ì²éÎïÆ·»Ø°ü
+    --æ£€æŸ¥ç‰©å“å›åŒ…
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-	--Ê¹ÓÃ
+	--ä½¿ç”¨
 	ret = role:GetItemBag():UseItem(2, 0, 1000011);
 	check(ret, "failed to use item");
 
-	--Ê¹ÓÃÎïÆ·³É¹¦
+	--ä½¿ç”¨ç‰©å“æˆåŠŸ
 	msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-    	--µÇ³ö
+    	--ç™»å‡º
     cleanup(user);
 end
 
 function TestCase.Item.RoleLogoutDLSaveItem()
 	local user_name = "DLItem" .. os.date("%Y%H%M%S");
 
-	--µÇÂ¼
+	--ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
     session_id = user:GetSessionID();
 
-	--ÓÃGMÖ¸ÁîÔö¼Ó²âÊÔÎïÆ·
+	--ç”¨GMæŒ‡ä»¤å¢åŠ æµ‹è¯•ç‰©å“
     ret = user:GMCommand("AddItem(99, 1)");
     check(ret, "failed to send gm command");
 
-    --¼ì²éÎïÆ·»Ø°ü
+    --æ£€æŸ¥ç‰©å“å›åŒ…
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-    --µÇ³ö
+    --ç™»å‡º
     cleanup(user);
 
 end
@@ -1326,7 +1326,7 @@ function TestCase.Item.TradeItem()
 	local user_name1 = "TradeItem17" .. os.date("%Y%H%M%S");
 	local user_name2 = "TradeItem18" .. os.date("%Y%H%M%S");
 
-	--µÇÂ¼
+	--ç™»å½•
     user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
     check(role1, "failed to create role");
@@ -1352,17 +1352,17 @@ function TestCase.Item.TradeItem()
 
 	wait(5);
 
-	--ÓÃGMÖ¸ÁîÔö¼Ó²âÊÔÎïÆ·
+	--ç”¨GMæŒ‡ä»¤å¢åŠ æµ‹è¯•ç‰©å“
     ret = user1:GMCommand("AddItem(101, 1)");
     check(ret, "failed to send gm command");
 
-    --¼ì²éÎïÆ·»Ø°ü
+    --æ£€æŸ¥ç‰©å“å›åŒ…
     msg = recv_msg(5, session_id1, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
     performance_trade_with_role(user1, user2, 101);
 
-    --µÇ³ö
+    --ç™»å‡º
     cleanup(user1);
     cleanup(user2);
 end
@@ -1381,75 +1381,75 @@ function performance_trade_with_role(user, targetuser, itemid)
     local session_id1 = user:GetSessionID();
     local session_id2 = targetuser:GetSessionID();
 
-	--user: ÇëÇó½»Ò×
+	--user: è¯·æ±‚äº¤æ˜“
     ret = user:AskTrade(targetrole:GetObjID());
     check(ret, "failed to ask trade");
 
-    --targetuser: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --targetuser: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --targetuser: ½ÓÊÜ½»Ò×
+    --targetuser: æ¥å—äº¤æ˜“
     ret = targetuser:AcceptTrade(srcrole:GetObjID());
     check(ret, "failed to cancel trade");
 
-    --user1: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user1: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user: ³ö1000¿éÇ®
+    --user: å‡º1000å—é’±
     ret = user:SetTradeMoney(1000);
     check(ret, "failed to set trade money");
 
-    --targetuser: ÊÕµ½user³öÇ®µÄÏûÏ¢
+    --targetuser: æ”¶åˆ°userå‡ºé’±çš„æ¶ˆæ¯
     msg = recv_msg(5, session_id2, protocol.g2c_trade_set_money);
     check(msg, "failed to recv g2c_trade_set_money");
 
     wait(2);
 
-    --user: Ëø¶¨
+    --user: é”å®š
     ret = user:LockTrade();
     check(ret, "failed to lock trade");
 
-    --targetuser: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --targetuser: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --targetuser: Ëø¶¨
+    --targetuser: é”å®š
     ret = targetuser:LockTrade();
     check(ret, "failed to lock trade");
 
-    --user: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user: È·ÈÏ
+    --user: ç¡®è®¤
     ret = user:ConfirmTrade();
     check(ret, "failed to lock trade");
 
-    --targetuser: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --targetuser: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --targetuser: È·ÈÏ
+    --targetuser: ç¡®è®¤
     ret = targetuser:ConfirmTrade();
     check(ret, "failed to lock trade");
 
-    --user: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
-    --targetuser: ÊÕµ½Ç®
+    --targetuser: æ”¶åˆ°é’±
     msg = recv_msg(5, session_id2, protocol.g2c_money_change);
     check(msg, "failed to recv g2c_money_change");
     check(msg.nMoney == 1000, "failed to recv correct money (user2)");
@@ -1472,7 +1472,7 @@ function TestCase.Item.TradeMoney()
 	local user_name1 = "TradeMoney47" .. os.date("%Y%H%M%S");
 	local user_name2 = "TradeMoney48" .. os.date("%Y%H%M%S");
 
-	--µÇÂ¼
+	--ç™»å½•
     user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
     check(role1, "failed to create role");
@@ -1496,7 +1496,7 @@ function TestCase.Item.TradeMoney()
 
 	wait(10);
 
-	-- ¼ÓÇ®
+	-- åŠ é’±
 
 	local ret = user1:GMCommand("AddMoney(1, 1000000, MONEYLOG_GM_COMMAND)");
 	check(ret, "failed to add money");
@@ -1506,7 +1506,7 @@ function TestCase.Item.TradeMoney()
 
 	wait(5);
 
-	-- ¼Ó»ê
+	-- åŠ é­‚
 
 	ret = user1:GMCommand("AddMoney(5, 1000000, MONEYLOG_GM_COMMAND)");
 	check(ret, "failed to add money");
@@ -1516,7 +1516,7 @@ function TestCase.Item.TradeMoney()
 
 	wait(5);
 
-	-- ÉıµÈ¼¶
+	-- å‡ç­‰çº§
 
 	local ret = user1:GMCommand("SetLevel(10)");
     check(ret, "exec GMCommand SetLevel error: user1");
@@ -1528,10 +1528,10 @@ function TestCase.Item.TradeMoney()
 
 	wait(1);
 
-	-- ¾³½çÃ¿¸öÈËÌáÉı10´Î
+	-- å¢ƒç•Œæ¯ä¸ªäººæå‡10æ¬¡
 
 	for changecount = 1, 10 do
-	    ret = user1:ChangeSoul2Pts(true, true); --ÔÚÏß×ª»¯
+	    ret = user1:ChangeSoul2Pts(true, true); --åœ¨çº¿è½¬åŒ–
 		check(ret, "fail to send changesoul2pts");
 
 	    msg = recv_msg(100, session_id1, protocol.g2c_spirit_exp_change);
@@ -1541,7 +1541,7 @@ function TestCase.Item.TradeMoney()
 	end
 
 	for changecount = 1, 10 do
-	    ret = user2:ChangeSoul2Pts(true, true); --ÔÚÏß×ª»¯
+	    ret = user2:ChangeSoul2Pts(true, true); --åœ¨çº¿è½¬åŒ–
 		check(ret, "fail to send changesoul2pts");
 
 	    msg = recv_msg(100, session_id2, protocol.g2c_spirit_exp_change);
@@ -1550,75 +1550,75 @@ function TestCase.Item.TradeMoney()
 		wait(1);
 	end
 
-	--user1: ÇëÇó½»Ò×
+	--user1: è¯·æ±‚äº¤æ˜“
     ret = user1:AskTrade(role2:GetObjID());
     check(ret, "failed to ask trade");
 
-    --user2: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user2: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user2: ½ÓÊÜ½»Ò×
+    --user2: æ¥å—äº¤æ˜“
     ret = user2:AcceptTrade(role1:GetObjID());
     check(ret, "failed to accept trade");
 
-    --user1: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user1: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user1: ³ö1000¿éÇ®
+    --user1: å‡º1000å—é’±
     ret = user1:SetTradeMoney(1000);
     check(ret, "failed to set trade money");
 
-    --user2: ÊÕµ½user1³öÇ®µÄÏûÏ¢
+    --user2: æ”¶åˆ°user1å‡ºé’±çš„æ¶ˆæ¯
     msg = recv_msg(5, session_id2, protocol.g2c_trade_set_money);
     check(msg, "failed to recv g2c_trade_set_money");
 
     wait(2);
 
-    --user1: Ëø¶¨
+    --user1: é”å®š
     ret = user1:LockTrade();
     check(ret, "failed to lock trade");
 
-    --user2: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user2: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user2: Ëø¶¨
+    --user2: é”å®š
     ret = user2:LockTrade();
     check(ret, "failed to lock trade");
 
-    --user1: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user1: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user1: È·ÈÏ
+    --user1: ç¡®è®¤
     ret = user1:ConfirmTrade();
     check(ret, "failed to lock trade");
 
-    --user2: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user2: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user2: È·ÈÏ
+    --user2: ç¡®è®¤
     ret = user2:ConfirmTrade();
     check(ret, "failed to lock trade");
 
-    --user: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
-    --targetuser: ÊÕµ½Ç®
+    --targetuser: æ”¶åˆ°é’±
 
     msg = recv_msg(5, session_id2, protocol.g2c_money_change);
     check(msg, "failed to recv g2c_money_change");

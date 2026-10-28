@@ -241,7 +241,7 @@ BOOL CMsGuild::LoadDiplomat_v1(const char *pcData, UINT32 dwSize)
     LOG_PROCESS_ERROR(GUILD_MAX_ALLIANCE_NUM >= pDiplomat->byAllianceNum);
     LOG_PROCESS_ERROR(GUILD_MAX_ENEMY_NUM >= pDiplomat->byEnemyNum);
 
-    //m_dwActiveEnemy = pDiplomat->dwActiveEnemy;       v5 °æ±¾É¾µôÁËm_dwActiveEnemyÕâ¸ö×Ö¶Î
+    //m_dwActiveEnemy = pDiplomat->dwActiveEnemy;       v5 ç‰ˆæœ¬åˆ æŽ‰äº†m_dwActiveEnemyè¿™ä¸ªå­—æ®µ
     m_dwRevengeGuildID = pDiplomat->dwRevengeGuildID;
     m_dwAimID = pDiplomat->dwAimID;
     m_dwAttackCD = pDiplomat->dwAttackCD;

@@ -28,7 +28,7 @@ private:
     HINSTANCE m_hInstance;
     WNDCLASSEX m_WndCls;
     HWND m_hWnd;
-	// ÿ֡���ƶ���Ҫ���룬Ϊ����ʹ��
+	// 每帧绘制都需要传入，为方便使用
 	LPDIRECTDRAWSURFACE m_dds;
 
     LPDIRECTDRAW7 m_pDirectDraw;

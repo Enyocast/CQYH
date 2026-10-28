@@ -630,7 +630,7 @@ void CMessageHandler::OnMSRegister(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, 
     pMSSession->eState = egmssNormal;
 
 
-    // ms ÔÚÕâÉÏÏß£¬Ó¦¸Ã´øÉÏ×Ô¼ºµÄdbÏà¹ØµÄÊı¾İ¿â¡£ ÕâÑù¡£ÁÙÊ±ÉÏÏßµÄms£¬ÔÚÀëÏßºógmserver²ÅÄÜÕÒµ½ËüµÄdb Allan Tao[20.12.2013] 
+    // ms åœ¨è¿™ä¸Šçº¿ï¼Œåº”è¯¥å¸¦ä¸Šè‡ªå·±çš„dbç›¸å…³çš„æ•°æ®åº“ã€‚ è¿™æ ·ã€‚ä¸´æ—¶ä¸Šçº¿çš„msï¼Œåœ¨ç¦»çº¿ågmserveræ‰èƒ½æ‰¾åˆ°å®ƒçš„db Allan Tao[20.12.2013] 
 
     //nRetCode = CMSMgr::GetInstance().RegisterMS(pMSSession->dwSessionID, pMsg->szName);
     //LOG_PROCESS_ERROR(nRetCode);
@@ -713,7 +713,7 @@ void CMessageHandler::OnMSQueryRoleDataAck(PACKET_BUFFER* pPacketBuffer, UINT32 
     LOG_PROCESS_ERROR(pTLUser);
 
     pCmd = (CMD_QUERY_ROLE_DATA*)CKernel::GetInstance().FindCmd(pMsg->dwCmdSerialID);
-    LOG_ECHO_ERROR(pCmd, pTLUser->GetSessionID(), "´ÓMS·µ»ØÎ´ÕÒµ½CMD");
+    LOG_ECHO_ERROR(pCmd, pTLUser->GetSessionID(), "ä»MSè¿”å›æœªæ‰¾åˆ°CMD");
 
     pCmd->nResult = pMsg->nResult;
     pCmd->dwLogoutTime = pMsg->dwLogoutTime;
@@ -1023,7 +1023,7 @@ void CMessageHandler::OnMSDelMail(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, I
     snprintf(pCmd->szLog, MAX_GM_LOG_LENGTH, "%s Del Mail[%u] ||", pCmd->szLog, pMsg->dwMailID);
     pCmd->eCmdState = GM_LS_MS_DEL_MAIL_ACK;
 
-    LOG_ECHO_ERROR(pCmd->nResult == errSuccess, pTLUser->GetSessionID(), "É¾³ıÓÊ¼şÊ§°Ü");
+    LOG_ECHO_ERROR(pCmd->nResult == errSuccess, pTLUser->GetSessionID(), "åˆ é™¤é‚®ä»¶å¤±è´¥");
 
     pMailInfo = (MailInfo*)pMsg->szBuffer;
     if (pMailInfo->ma.byAttachType == ATTACHTYPE_SIMPLE)
@@ -1035,7 +1035,7 @@ void CMessageHandler::OnMSDelMail(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, I
     }
     else if (pMailInfo->ma.byAttachType == ATTACHTYPE_BUFFER)
     {
-        LOG_PROCESS_ERROR(FALSE);       // todo ÏÖÔÚÄ¾ÓĞÖ±½ÓÊÇbufferµÄÓÊ¼şÁË¡£ ÅÄÂôĞĞÒÑ¾­Ä¾ÓĞ¹¦ÄÜÁË
+        LOG_PROCESS_ERROR(FALSE);       // todo ç°åœ¨æœ¨æœ‰ç›´æ¥æ˜¯bufferçš„é‚®ä»¶äº†ã€‚ æ‹å–è¡Œå·²ç»æœ¨æœ‰åŠŸèƒ½äº†
         ItemInfo    itemInfo;
         INT32 nLength = itemInfo.Load(pMailInfo->ma.buffer);
         INT32   nDumpLength = 0;
@@ -1293,15 +1293,15 @@ void CMessageHandler::OnTLVerify(PACKET_BUFFER *pPacketBuffer, UINT32 dwSize, IS
     LOG_PROCESS_ERROR(pIP);
 
     nRetCode = CPermissionMgr::GetInstance().CheckIP(dwIP);
-    LOG_ECHO_ERROR(nRetCode, pTLSession->dwSessionID, "IPÏŞÖÆ");
+    LOG_ECHO_ERROR(nRetCode, pTLSession->dwSessionID, "IPé™åˆ¶");
 
     nRetCode = CPermissionMgr::GetInstance().GetUserID(pMsg->szName, pMsg->szPwd);
-    LOG_ECHO_ERROR(nRetCode != 0, pTLSession->dwSessionID, "ÕËºÅÃûÃÜÂë´íÎó");
+    LOG_ECHO_ERROR(nRetCode != 0, pTLSession->dwSessionID, "è´¦å·åå¯†ç é”™è¯¯");
 
     bLD = CPermissionMgr::GetInstance().IsLD(pMsg->szName, pMsg->szPwd);
     
     //pUserData = CUserManager::GetInstance().FindUserByID(nRetCode);
-    //LOG_ECHO_ERROR(pUserData == NULL, pTLSession->dwSessionID, "ÖØ¸´µÇÂ½");
+    //LOG_ECHO_ERROR(pUserData == NULL, pTLSession->dwSessionID, "é‡å¤ç™»é™†");
 
     INF("GMTOOL Verify password Success IP:[%s][%d]\tAccount:[%s]\t", pIP, dwIP, pMsg->szName);
 
@@ -1352,8 +1352,8 @@ void CMessageHandler::OnTLLogin(PACKET_BUFFER *pPacketBuffer, UINT32 dwSize, ISo
     LOG_PROCESS_ERROR(pTLSession->pSocketSession);
     LOG_PROCESS_ERROR(pTLSession->eState == egmssNormal);
 
-    LOG_ECHO_ERROR(pMsg->nVersion == GM_MAJOR_VERSION, pTLSession->dwSessionID, "¹¤¾ß°æ±¾´íÎó");
-    LOG_ECHO_ERROR(pMsg->nDependVersion == GM_DEPEND_VERSION, pTLSession->dwSessionID, "¹¤¾ßÊı¾İ¿â°æ±¾´íÎó");
+    LOG_ECHO_ERROR(pMsg->nVersion == GM_MAJOR_VERSION, pTLSession->dwSessionID, "å·¥å…·ç‰ˆæœ¬é”™è¯¯");
+    LOG_ECHO_ERROR(pMsg->nDependVersion == GM_DEPEND_VERSION, pTLSession->dwSessionID, "å·¥å…·æ•°æ®åº“ç‰ˆæœ¬é”™è¯¯");
 
     nRetCode = pTLSession->pSocketSession->GetRemoteAddress(dwIP, wPort);
     LOG_PROCESS_ERROR(nRetCode);
@@ -1363,16 +1363,16 @@ void CMessageHandler::OnTLLogin(PACKET_BUFFER *pPacketBuffer, UINT32 dwSize, ISo
     LOG_PROCESS_ERROR(pIP);
 
     nRetCode = CPermissionMgr::GetInstance().CheckIP(dwIP);
-    LOG_ECHO_ERROR(nRetCode, pTLSession->dwSessionID, "²»ÔÚIP°×Ãûµ¥ÄÚ");
+    LOG_ECHO_ERROR(nRetCode, pTLSession->dwSessionID, "ä¸åœ¨IPç™½åå•å†…");
 
     dwTLUserID = CPermissionMgr::GetInstance().GetUserID(pMsg->szName, pMsg->szPwd);
-    LOG_ECHO_ERROR(dwTLUserID, pTLSession->dwSessionID, "ÕËºÅÃÜÂë´íÎó»òÓÃ»§Ãû²»´æÔÚ");
+    LOG_ECHO_ERROR(dwTLUserID, pTLSession->dwSessionID, "è´¦å·å¯†ç é”™è¯¯æˆ–ç”¨æˆ·åä¸å­˜åœ¨");
 
     pUserData = CUserManager::GetInstance().FindUserByID(dwTLUserID);
-    LOG_ECHO_ERROR(pUserData == NULL, pTLSession->dwSessionID, "ÕËºÅÔÚÆäËûµØ·½µÇÂ½");
+    LOG_ECHO_ERROR(pUserData == NULL, pTLSession->dwSessionID, "è´¦å·åœ¨å…¶ä»–åœ°æ–¹ç™»é™†");
 
     nRetCode = CUserManager::GetInstance().LoginUser(pTLSession->dwSessionID, dwIP, pMsg->szName, pMsg->szPwd);
-    LOG_ECHO_ERROR(nRetCode, pTLSession->dwSessionID, "µÇÂ½Ê§°Ü");
+    LOG_ECHO_ERROR(nRetCode, pTLSession->dwSessionID, "ç™»é™†å¤±è´¥");
 
     pTLSession->dwTLUserID = dwTLUserID;
 
@@ -1513,10 +1513,10 @@ void CMessageHandler::OnTLQueryRoleData(CTLUser *pTLUser, const char *pcData)
     LOG_PROCESS_ERROR(pTLUser);
 
     poRole = CGameWorld::GetInstance().FindRole(pMsg->dwRoleID);
-    LOG_ECHO_ERROR(poRole == NULL, pTLUser->GetSessionID(), "½ÇÉ«ÕıÔÚ±»Ê¹ÓÃ,ÉÔºóÔÙÊÔ");
+    LOG_ECHO_ERROR(poRole == NULL, pTLUser->GetSessionID(), "è§’è‰²æ­£åœ¨è¢«ä½¿ç”¨,ç¨åå†è¯•");
 
     pCmd = (CMD_QUERY_ROLE_DATA*)CCmdMgr::GetInstance().NewCmd(GM_CMD_QUERY_ROLE_DATA);
-    LOG_ECHO_ERROR(pCmd, pTLUser->GetSessionID(), "ÄÚ´æºÄ¾¡");
+    LOG_ECHO_ERROR(pCmd, pTLUser->GetSessionID(), "å†…å­˜è€—å°½");
 
     pCmd->dwTLUserID = pTLUser->GetID();
     pCmd->eCmdType = GM_CMD_QUERY_ROLE_DATA;
@@ -1877,16 +1877,16 @@ void CMessageHandler::OnTLLoadRole(CTLUser *pTLUser, const char *pcData)
     LOG_PROCESS_ERROR(pTLUser);
 
     poRole = CGameWorld::GetInstance().FindRole(pMsg->dwRoleID);
-    LOG_ECHO_ERROR(poRole == NULL, pTLUser->GetSessionID(), "½ÇÉ«ÕıÔÚ±»Ê¹ÓÃ,ÉÔºóÔÙÊÔ");
+    LOG_ECHO_ERROR(poRole == NULL, pTLUser->GetSessionID(), "è§’è‰²æ­£åœ¨è¢«ä½¿ç”¨,ç¨åå†è¯•");
 
     pCmd = (CMD_LOAD_ROLE*)CCmdMgr::GetInstance().NewCmd(GM_CMD_LOAD_ROLE);
-    LOG_ECHO_ERROR(pCmd, pTLUser->GetSessionID(), "ÄÚ´æºÄ¾¡");
+    LOG_ECHO_ERROR(pCmd, pTLUser->GetSessionID(), "å†…å­˜è€—å°½");
 
     nRetCode = CGMRoleMgr::GetInstance().CheckRoleExist(pMsg->dwRoleID);
-    LOG_ECHO_ERROR(nRetCode == FALSE, pTLUser->GetSessionID(), "ÓÎÏ·½ÇÉ«Êı¾İÒÑ±»Ê¹ÓÃ");
+    LOG_ECHO_ERROR(nRetCode == FALSE, pTLUser->GetSessionID(), "æ¸¸æˆè§’è‰²æ•°æ®å·²è¢«ä½¿ç”¨");
 
     nRetCode = CGMRoleMgr::GetInstance().AddRole(pMsg->dwRoleID, pTLUser->GetID());
-    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Ëø¶¨½ÇÉ«Ê§°Ü");
+    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "é”å®šè§’è‰²å¤±è´¥");
 
     pCmd->dwTLUserID = pTLUser->GetID();
     pCmd->eCmdType = GM_CMD_LOAD_ROLE;
@@ -1903,7 +1903,7 @@ void CMessageHandler::OnTLLoadRole(CTLUser *pTLUser, const char *pcData)
     LOG_PROCESS_ERROR(pCmd->poRole);
 
     nRetCode = CKernel::GetInstance().PushCmd(pCmd);
-    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "¶ÓÁĞ²åÈëÊ§°Ü");
+    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "é˜Ÿåˆ—æ’å…¥å¤±è´¥");
 
     INF("TLUserID[%u] cmdID[%u] load role[%u] data begin", pTLUser->GetID(), pCmd->dwSerialID, pCmd->dwRoleID);
 
@@ -1937,21 +1937,21 @@ void CMessageHandler::OnTLModifyRole(CTLUser *pTLUser, const char *pcData)
     LOG_PROCESS_ERROR(pTLUser);
 
     poRole = CGameWorld::GetInstance().FindRole(pMsg->dwRoleID);
-    LOG_ECHO_ERROR(poRole == NULL, pTLUser->GetSessionID(), "½ÇÉ«ÕıÔÚ±»Ê¹ÓÃ,ÉÔºóÔÙÊÔ");
+    LOG_ECHO_ERROR(poRole == NULL, pTLUser->GetSessionID(), "è§’è‰²æ­£åœ¨è¢«ä½¿ç”¨,ç¨åå†è¯•");
 
     if (pMsg->dwTargetRoleID)
     {
         poRole = CGameWorld::GetInstance().FindRole(pMsg->dwTargetRoleID);
-        LOG_ECHO_ERROR(poRole == NULL, pTLUser->GetSessionID(), "µÀ¾ß×ªÒÆÄ¿±ê½ÇÉ«ÕıÔÚ±»Ê¹ÓÃ,ÉÔºóÔÙÊÔ");
+        LOG_ECHO_ERROR(poRole == NULL, pTLUser->GetSessionID(), "é“å…·è½¬ç§»ç›®æ ‡è§’è‰²æ­£åœ¨è¢«ä½¿ç”¨,ç¨åå†è¯•");
     }
 
     nRetCode = CGMRoleMgr::GetInstance().CheckRoleLock(pMsg->dwRoleID, pTLUser->GetID());
-    LOG_ECHO_ERROR(nRetCode == TRUE, pTLUser->GetSessionID(), "ÓÎÏ·½ÇÉ«Êı¾İÎ´±»Ëø¶¨");
+    LOG_ECHO_ERROR(nRetCode == TRUE, pTLUser->GetSessionID(), "æ¸¸æˆè§’è‰²æ•°æ®æœªè¢«é”å®š");
 
     if (pMsg->dwTargetRoleID != 0)
     {
         nRetCode = CGMRoleMgr::GetInstance().AddRole(pMsg->dwTargetRoleID, pTLUser->GetID());
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Ëø¶¨Ä¿±ê½ÇÉ«Ê§°Ü£¬ Ä¿±ê½ÇÉ«±»ÆäËûÓÃ»§²Ù×÷");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "é”å®šç›®æ ‡è§’è‰²å¤±è´¥ï¼Œ ç›®æ ‡è§’è‰²è¢«å…¶ä»–ç”¨æˆ·æ“ä½œ");
     }
 
     pModifyCmd = (CMD_MODIFY_ROLE*)CCmdMgr::GetInstance().NewCmd(GM_CMD_MODIFY_ROLE);
@@ -2022,10 +2022,10 @@ void CMessageHandler::OnTLReleaseRole(CTLUser *pTLUser, const char *pcData)
     LOG_PROCESS_ERROR(pTLUser);
 
     nRetCode = CGMRoleMgr::GetInstance().CheckRoleLock(pMsg->dwRoleID, pTLUser->GetID());
-    LOG_ECHO_ERROR(nRetCode == TRUE, pTLUser->GetSessionID(), "ÓÎÏ·½ÇÉ«Êı¾İÎ´±»Ëø¶¨");
+    LOG_ECHO_ERROR(nRetCode == TRUE, pTLUser->GetSessionID(), "æ¸¸æˆè§’è‰²æ•°æ®æœªè¢«é”å®š");
 
     nRetCode = CGMRoleMgr::GetInstance().DelRole(pMsg->dwRoleID, pTLUser->GetID());
-    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½âËø½ÇÉ«Êı¾İÊ§°Ü");
+    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§£é”è§’è‰²æ•°æ®å¤±è´¥");
 
     INF("TL:[%u] Role[%u] Release Role Data Success", pTLUser->GetID(), pMsg->dwRoleID);
 
@@ -2082,13 +2082,13 @@ void CMessageHandler::OnTLRoleExeCmd(CTLUser *pTLUser, const char *pcData)
     LOG_PROCESS_ERROR(pTLUser);
 
     poRole = CGameWorld::GetInstance().FindRole(pMsg->dwRoleID);
-    LOG_ECHO_ERROR(poRole == NULL, pTLUser->GetSessionID(), "½ÇÉ«ÕıÔÚ±»Ê¹ÓÃ,ÉÔºóÔÙÊÔ");
+    LOG_ECHO_ERROR(poRole == NULL, pTLUser->GetSessionID(), "è§’è‰²æ­£åœ¨è¢«ä½¿ç”¨,ç¨åå†è¯•");
 
     nRetCode = CGMRoleMgr::GetInstance().CheckRoleExist(pMsg->dwRoleID);
-    LOG_ECHO_ERROR(nRetCode == FALSE, pTLUser->GetSessionID(), "ÓÎÏ·½ÇÉ«Êı¾İÒÑ±»Ê¹ÓÃ");
+    LOG_ECHO_ERROR(nRetCode == FALSE, pTLUser->GetSessionID(), "æ¸¸æˆè§’è‰²æ•°æ®å·²è¢«ä½¿ç”¨");
 
     nRetCode = CGMRoleMgr::GetInstance().AddRole(pMsg->dwRoleID, pTLUser->GetID());
-    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Ëø¶¨½ÇÉ«Ê§°Ü");
+    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "é”å®šè§’è‰²å¤±è´¥");
 
     pRoleExeCmd = (CMD_ROLE_EXE_GM_CMD*)CCmdMgr::GetInstance().NewCmd(GM_CMD_ROLE_EXE_GM_CMD);
     LOG_PROCESS_ERROR(pRoleExeCmd);

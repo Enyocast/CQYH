@@ -1,5 +1,5 @@
 attribute_define = {
-owner='¸µÀÚ',
+owner='å‚…ç£Š',
 
 AttributeID = {
     type = 'number',

@@ -244,11 +244,11 @@ BOOL CManageServer::_MainLoop(void)
 		m_dwNextDailyTime = ((m_dwCurrentTime + m_nTimeZone - DAILY_TRIGGER_TIME) / 86400 + 1) * 86400 - m_nTimeZone + DAILY_TRIGGER_TIME;
 	}
 
-    // ¶¨Ê±Æ÷
+    // å®šæ—¶å™¨
     nRetCode = CTimerMgr::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
-    // ¶¨Ê±Æ÷´¥·¢
+    // å®šæ—¶å™¨è§¦å‘
     nRetCode = CTimeTrigger::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
@@ -256,11 +256,11 @@ BOOL CManageServer::_MainLoop(void)
     nRetCode = CApplicationMgr::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
-    // ½»Ò×ĞĞ
+    // äº¤æ˜“è¡Œ
     nRetCode = CAuctionMgr::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
-    // µôÂäÎïÆ·
+    // æ‰è½ç‰©å“
     nRetCode = CMsDropMgr::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
@@ -276,7 +276,7 @@ BOOL CManageServer::_MainLoop(void)
     nRetCode = CPreSaveList::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
-    // ³äÖµ½Ó¿Ú
+    // å……å€¼æ¥å£
     if (g_ServerConfig.MS.bOABillingEnable ||
         g_ServerConfig.MS.bTimeCardEnabled ||
         g_ServerConfig.MS.bMonthCardEnabled)
@@ -285,14 +285,14 @@ BOOL CManageServer::_MainLoop(void)
         LOG_CHECK_ERROR(nRetCode);
     }
 
-    // ·À³ÁÃÔ
+    // é˜²æ²‰è¿·
     if (g_ServerConfig.MS.bFcmEnable)
     {
         nRetCode = CFcmMgr::GetInstance().MainLoop();
         LOG_CHECK_ERROR(nRetCode);
     }
 
-    // µÇÂ¼ÅÅ¶Ó
+    // ç™»å½•æ’é˜Ÿ
 	if (CManageServer::GetInstance().GetGameFrame() % (PROCESS_QUEUE_INTERVAL * GAME_FPS / MAX_SERVER_GROUP_COUNT) == 0)
 	{
 		INT32 nServerGroup = CManageServer::GetInstance().GetGameFrame() % (PROCESS_QUEUE_INTERVAL * GAME_FPS);
@@ -301,11 +301,11 @@ BOOL CManageServer::_MainLoop(void)
 			CUserMgr::GetInstance().ProcessQueue(nServerGroup);
 	}
 
-    // È«¾ÖÊı¾İ
+    // å…¨å±€æ•°æ®
     nRetCode = CGlobalDataManager::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
-    // ºÚÊĞ
+    // é»‘å¸‚
     nRetCode = CMSBlackMarketMgr::GetInstance().MainLoop();
     LOG_CHECK_ERROR(nRetCode);
 
@@ -378,7 +378,7 @@ void CManageServer::_On1MinMainLoop(void)
     CServerVar& var = CServerVar::GetInstance();
     UINT32 cur_time = CManageServer::GetInstance().GetGameTime();
 
-    // ³õÊ¼»¯ µôÂäÎïÆ·/×°±¸/ÃúÎÄÏ´Á·/ÔË2ÏîÁ´ÏŞÖÆ
+    // åˆå§‹åŒ– æ‰è½ç‰©å“/è£…å¤‡/é“­æ–‡æ´—ç»ƒ/è¿2é¡¹é“¾é™åˆ¶
     if (!init_list)
     {
         const ITEM_DATA* item_data;
@@ -413,7 +413,7 @@ void CManageServer::_On1MinMainLoop(void)
             rune_data = CDataManager<RUNE_DATA>::GetInstance().GetNextData();
         }
 
-        // ×Ô¼ºĞÂ¼Ó´úÂë, ÅĞ¶ÏÔË2ÏîÁ´²ú³ö
+        // è‡ªå·±æ–°åŠ ä»£ç , åˆ¤æ–­è¿2é¡¹é“¾äº§å‡º
         if (g_ServerConfig.CC.nMinLuck2AttributelID > 0 && 
             g_ServerConfig.CC.nMaxLuck2AttributelID > 0 &&
             g_ServerConfig.CC.nItemDropLimitLuck2NecklaceDuration > 0 && 
@@ -428,7 +428,7 @@ void CManageServer::_On1MinMainLoop(void)
         init_list = TRUE;
     }
 
-    // Ë¢ĞÂ µôÂäÎïÆ·/×°±¸/ÃúÎÄÏ´Á·ÏŞÖÆ
+    // åˆ·æ–° æ‰è½ç‰©å“/è£…å¤‡/é“­æ–‡æ´—ç»ƒé™åˆ¶
     for (INT32 group = 0; group < MAX_SERVER_GROUP_COUNT; group++)
     {
         if (IsValidGroup(group))
@@ -453,7 +453,7 @@ void CManageServer::_On1MinMainLoop(void)
                 }
             }
 
-            // ÔË2ÏîÁ´ÏŞÖÆ
+            // è¿2é¡¹é“¾é™åˆ¶
             for (INT_PAIR_LIST::iterator it = Luck2Necklace_list.begin(); it != Luck2Necklace_list.end(); ++it)
             {
                 INT32 last_refresh_time = var.GetVariable(group, MakeServerKey(esvtItemDropLimitLuck2NecklaceRefreshTime, it->first));
@@ -466,7 +466,7 @@ void CManageServer::_On1MinMainLoop(void)
         }
     }
 
-    // ÔË2ÏîÁ´ÏŞÖÆ
+    // è¿2é¡¹é“¾é™åˆ¶
     //for (INT_PAIR_LIST::iterator it = Luck2Necklace_list.begin(); it != Luck2Necklace_list.end(); ++it)
     //{
     //    INT32 last_refresh_time = var.GetVariable(g_ServerConfig.CC.nItemDropLimitLuck2NecklaceServerGroup, MakeServerKey(esvtItemDropLimitLuck2NecklaceRefreshTime, it->first));
@@ -496,14 +496,14 @@ void CManageServer::_OnDailyMainLoop(void)
 		m_bUpdateLastRank = FALSE;
 	m_nUpdateLastRankType = rlBegin;
 
-    // ĞŞ¸Ä GameWorld È«¾Ö±äÁ¿
+    // ä¿®æ”¹ GameWorld å…¨å±€å˜é‡
     CServerVar& var = CServerVar::GetInstance();
     for (INT32 group = 0; group < MAX_SERVER_GROUP_COUNT; group++)
     {
         if (IsValidGroup(group))
         {
-            // Àı×Ó
-            //var.SetVariable(group, MakeServerKey(esvtDestinyWeaponCount, 2000024), 0);  // 2000024-ÃüÔËÎäÆ÷ÀñºĞ, ´ÎÊıÇå0
+            // ä¾‹å­
+            //var.SetVariable(group, MakeServerKey(esvtDestinyWeaponCount, 2000024), 0);  // 2000024-å‘½è¿æ­¦å™¨ç¤¼ç›’, æ¬¡æ•°æ¸…0
         }
     }
 
@@ -592,7 +592,7 @@ BOOL CManageServer::Init(INetEventHandler* poNetEventHandler)
     nRetCode = _InitMathTable();
     LOG_PROCESS_ERROR(nRetCode);
 
-    // internal - ÄÚÁªÍø
+    // internal - å†…è”ç½‘
 #if defined(WIN32)
     IntranetInitParam.nMaxAcceptor = g_ServerConfig.MS.Net.nMaxAcceptor;
     IntranetInitParam.nMaxConnector = g_ServerConfig.MS.Net.nMaxConnector;
@@ -707,7 +707,7 @@ BOOL CManageServer::Open(void)
 
 	INF("opened MM listen port at %s:%d", g_ServerConfig.MS.szAddress, g_ServerConfig.MS.dwMMPort);
 
-    // Monitor for role number - ¼à¿Ø½ÇÉ«ÊıÁ¿
+    // Monitor for role number - ç›‘æ§è§’è‰²æ•°é‡
 	m_pMonitorForRoleNumberAcceptor = m_pNet->CreateAcceptor();
 	LOG_PROCESS_ERROR(m_pMonitorForRoleNumberAcceptor);
 
@@ -1242,7 +1242,7 @@ BOOL _InitServer(void)
 	nRetCode = CheckDiskRemainCapacity();
 	LOG_PROCESS_ERROR(nRetCode);
 
-    // ´´½¨ÄÚÁªÍø
+    // åˆ›å»ºå†…è”ç½‘
     nRetCode = rManageServer.Init(&rMessageHandler);
     LOG_PROCESS_ERROR(nRetCode);
 
@@ -1399,7 +1399,7 @@ BOOL _InitServer(void)
 	nRetCode = CBattleQueueMgr::GetInstance().Init();
 	LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CAuctionMgr::GetInstance().Init(4, 1024);    // Ä¬ÈÏ´úÂë (4¸öÏß³Ì, ×î¶à1024¸ö¾ºÅÄ¶ÔÏó)
+    nRetCode = CAuctionMgr::GetInstance().Init(4, 1024);    // é»˜è®¤ä»£ç  (4ä¸ªçº¿ç¨‹, æœ€å¤š1024ä¸ªç«æ‹å¯¹è±¡)
     LOG_PROCESS_ERROR(nRetCode);
 
     nRetCode = CApplicationMgr::GetInstance().Init();
@@ -1440,15 +1440,15 @@ BOOL _InitServer(void)
     signal(SIGBREAK, _signal_handler);
 #endif  // _WIN32
 
-    // ´´½¨ÄÚÁªÍø, »¥ÏàÁ¬½ÓÉÏ - open network port after finish preparing
+    // åˆ›å»ºå†…è”ç½‘, äº’ç›¸è¿æ¥ä¸Š - open network port after finish preparing
     nRetCode = rManageServer.Open();
     LOG_PROCESS_ERROR(nRetCode);
 
-    // ³õÊ¼»¯ - ¸÷ÖÖ Session ×Ö¶Î
+    // åˆå§‹åŒ– - å„ç§ Session å­—æ®µ
     nRetCode = CMSSessionMgr::GetInstance().Init(rManageServer.GetNetInterface());
     LOG_PROCESS_ERROR(nRetCode);
 
-    // ³õÊ¼»¯ - ¸÷ÖÖº¯Êı
+    // åˆå§‹åŒ– - å„ç§å‡½æ•°
     nRetCode = rMessageHandler.Init(rManageServer.GetNetInterface(), rManageServer.GetPacketAllocator(), 
         rManageServer.GetGTSocketAcceptor(), rManageServer.GetGSSocketAcceptor(), rManageServer.GetLSSocketAcceptor(), 
         rManageServer.GetDBSocketAcceptor(),rManageServer.GetBSSocketAcceptor(), rManageServer.GetDLSocketAcceptor(),
@@ -1656,7 +1656,7 @@ INT32 main(INT32 argc, TCHAR** argv)
     SetWindowPos(GetConsoleWindow(), HWND_TOP, 500, 0, 0, 0, SWP_NOSIZE);
 #endif
 
-    // ÔİÊ±Ìí¼Ó, µ÷ÊÔ´úÂë
+    // æš‚æ—¶æ·»åŠ , è°ƒè¯•ä»£ç 
     //Sleep(1000 * 10);
 
 	nRetCode = g_OpenPakFolder(DEFAULT_PAK_PATH);

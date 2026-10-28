@@ -1,35 +1,35 @@
 #ifndef _SPIRITLEVEL_DEF_H_
 #define _SPIRITLEVEL_DEF_H_    
 
-// ¾³½ç×ÜÀÀ
-#define  MAX_EXT2PTS_MULTIPLE				20	// (»ê×ªÐÞÁ¶µãÒ»¼üÍê³ÉµÄ)½ð±ÒÏûºÄ×î´ó±¶Êý(¸úÃ¿´Î×ª»¯´ÎÊýÓÐ¹Ø)
-#define  MAX_EXP2PTS_THRESHOLD				50	// (»ê×ªÐÞÁ¶µãÒ»¼üÍê³ÉµÄ)ÈÕ³£×î´óÍê³É´ÎÊý
+// å¢ƒç•Œæ€»è§ˆ
+#define  MAX_EXT2PTS_MULTIPLE				20	// (é­‚è½¬ä¿®ç‚¼ç‚¹ä¸€é”®å®Œæˆçš„)é‡‘å¸æ¶ˆè€—æœ€å¤§å€æ•°(è·Ÿæ¯æ¬¡è½¬åŒ–æ¬¡æ•°æœ‰å…³)
+#define  MAX_EXP2PTS_THRESHOLD				50	// (é­‚è½¬ä¿®ç‚¼ç‚¹ä¸€é”®å®Œæˆçš„)æ—¥å¸¸æœ€å¤§å®Œæˆæ¬¡æ•°
 
-// Æøº£
-#define  MAX_AIRSEA_CONTAINER_SIZE			24	// Æøº£°ü¹üµÄ´óÐ¡1
-#define  ORIGINAL_AIRSEA_CONTAINER_SIZE		12	// ³õÊ¼Æøº£°ü¹üµÄ´óÐ¡
-#define  MAX_SPIRIT_LEVEL					18	// ¾³½ç×î´óµÈ¼¶	
+// æ°”æµ·
+#define  MAX_AIRSEA_CONTAINER_SIZE			24	// æ°”æµ·åŒ…è£¹çš„å¤§å°1
+#define  ORIGINAL_AIRSEA_CONTAINER_SIZE		12	// åˆå§‹æ°”æµ·åŒ…è£¹çš„å¤§å°
+#define  MAX_SPIRIT_LEVEL					18	// å¢ƒç•Œæœ€å¤§ç­‰çº§	
 
-#define  MAX_AIR_PROCEDURE					5	// Á·Æø½×¶Î
+#define  MAX_AIR_PROCEDURE					5	// ç»ƒæ°”é˜¶æ®µ
 
-#define  MAX_AIR_LEVEL						9	// ÆøµÄ×î´óµÈ¼¶
-#define  MAX_AIR_NODE						256	// ×î´ónodeÊýÄ¿
-#define	 MAX_ATTR_PER_NODE					2	// Ã¿¸önodeËù´ø×î´óÊôÐÔÊýÄ¿
+#define  MAX_AIR_LEVEL						9	// æ°”çš„æœ€å¤§ç­‰çº§
+#define  MAX_AIR_NODE						256	// æœ€å¤§nodeæ•°ç›®
+#define	 MAX_ATTR_PER_NODE					2	// æ¯ä¸ªnodeæ‰€å¸¦æœ€å¤§å±žæ€§æ•°ç›®
 
-// Ñªº£
-#define  MAX_DAN_PER_LEVEL					1024 // Ã¿Ò»¼¶µ¤×î¶àÄÜ¿ÄµÄÊýÄ¿
-#define	 MAX_DAN_TYPE						5	 // µ¤Ò©ÀàÐÍÖÖÀà
-#define  MAX_DAN_LEVEL_PER_TYPE				7	 // Ã¿Ò»¼¶µ¤µÄµÈ¼¶
+// è¡€æµ·
+#define  MAX_DAN_PER_LEVEL					1024 // æ¯ä¸€çº§ä¸¹æœ€å¤šèƒ½ç£•çš„æ•°ç›®
+#define	 MAX_DAN_TYPE						5	 // ä¸¹è¯ç±»åž‹ç§ç±»
+#define  MAX_DAN_LEVEL_PER_TYPE				7	 // æ¯ä¸€çº§ä¸¹çš„ç­‰çº§
 
 enum SPIRIT_AIR_TYPE
 {
 	spiritInvalid = -1,
-	spiritPower,	// ÂùÁ¦
-	spiritSwift,	// Ñ¸½Ý
-	spiritWise,		// î£ÖÇ
-	spiritBody,		// ¸ÕÌå
-	spiritDivine,	// ÉñÊ¥
-	spiritKing,		// Íò·¨
+	spiritPower,	// è›®åŠ›
+	spiritSwift,	// è¿…æ·
+	spiritWise,		// ç¿æ™º
+	spiritBody,		// åˆšä½“
+	spiritDivine,	// ç¥žåœ£
+	spiritKing,		// ä¸‡æ³•
 };
 
 #endif  //_SPIRITLEVEL_DEF_H_

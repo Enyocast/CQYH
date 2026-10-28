@@ -1,5 +1,5 @@
 refine_define = {
-owner='¸µÀÚ',
+owner='å‚…ç£Š',
 
 RefineLevel = {
     type = 'number',

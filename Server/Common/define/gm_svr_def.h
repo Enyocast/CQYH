@@ -53,7 +53,7 @@ enum GM_COMMAND
 
     GM_CMD_QUERY_STATIS_INFO,
 
-    // Ó¦¸ÃÊÇÂô¼Ò ×Ô¶¨ÒåµÄGMÃüÁî
+    // åº”è¯¥æ˜¯å–å®¶ è‡ªå®šä¹‰çš„GMå‘½ä»¤
     GM_CMD_QUERY_ROLE_ID,
     GM_CMD_EXE_GM_STR,
     GM_CMD_SYS_EXCHANGE_INFO,

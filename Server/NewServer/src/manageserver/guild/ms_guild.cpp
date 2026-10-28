@@ -202,8 +202,8 @@ BOOL CMsGuild::Load(GUILD_DB& db_data)
     LOG_PROCESS_ERROR(nRetCode);
 
     //////////////////////////////////////////////////////////////////////////
-    // todo_tq ÔİÊ±×¢ÊÍ redmine 23026
-    // todo_tq ÔİÊ±·ÅÔÚÕâ Allan Tao[17.4.2014] 
+    // todo_tq æš‚æ—¶æ³¨é‡Š redmine 23026
+    // todo_tq æš‚æ—¶æ”¾åœ¨è¿™ Allan Tao[17.4.2014] 
     //_CalculateOfflineData();
     //////////////////////////////////////////////////////////////////////////
 
@@ -719,7 +719,7 @@ BOOL CMsGuild::MainLoop(UINT32 dwCurrentTime)
     INT32       nResult = errGuildFailed;
     INT32       nIncrementValue = 0;
 
-    UINT32      dwTick = m_dwID + dwCurrentTime;  // °ïÅÉtimer 5ÃëÒ»´Î£¬´í¿ª¼ÇÊ± Allan Tao[8.5.2013] 
+    UINT32      dwTick = m_dwID + dwCurrentTime;  // å¸®æ´¾timer 5ç§’ä¸€æ¬¡ï¼Œé”™å¼€è®°æ—¶ Allan Tao[8.5.2013] 
     if ( dwTick % 5 == 0 )
     {
         // 60 sec timer
@@ -729,7 +729,7 @@ BOOL CMsGuild::MainLoop(UINT32 dwCurrentTime)
             LOG_CHECK_ERROR(nRetCode);
         }
 
-        // 2015.12.6 °æ±¾²»ĞèÒª´Ë¹¦ÄÜ redmine 23026
+        // 2015.12.6 ç‰ˆæœ¬ä¸éœ€è¦æ­¤åŠŸèƒ½ redmine 23026
         //if (dwTick % g_GuildConfig.nAddResourceInterval == 0 && m_dwCalculateResourceTime < dwTick / 3600)
         //{
         //    nIncrementValue = GetResourceIncrement(GUILD_B_WOOD);
@@ -809,7 +809,7 @@ BOOL CMsGuild::MainLoop(UINT32 dwCurrentTime)
             }
         }
 
-		//if ((dwCurrentTime%86400 >= GUILD_UPDATE_RANKLIST_STARTTIME) && (dwCurrentTime%86400 <= GUILD_UPDATE_RANKLIST_ENDIME))				// Ã¿ÌìÁè³¿4µã¿ªÊ¼µÄ2·ÖÖÓÄÚË¢ĞÂ±¾°ï»áÅÅĞĞ°ñÊı¾İ
+		//if ((dwCurrentTime%86400 >= GUILD_UPDATE_RANKLIST_STARTTIME) && (dwCurrentTime%86400 <= GUILD_UPDATE_RANKLIST_ENDIME))				// æ¯å¤©å‡Œæ™¨4ç‚¹å¼€å§‹çš„2åˆ†é’Ÿå†…åˆ·æ–°æœ¬å¸®ä¼šæ’è¡Œæ¦œæ•°æ®
 		//{
 		//	if (m_dwID%1023 == dwCurrentTime%1023)
 		//	{
@@ -922,7 +922,7 @@ INT32 CMsGuild::RefuseRoleApply(UINT32 dwRoleID, MS_ONLINE_ROLE_DATA &onlineRole
     LOG_PROCESS_ERROR_RET_CODE(_IsInGuildAppList(dwRoleID), errGuildAppNotExist);
 
     pRoleData = CRoleDataMgr::GetInstance().FindRole(dwRoleID);
-    if (pRoleData)      // É¾ºÅµÈ
+    if (pRoleData)      // åˆ å·ç­‰
     {
         --pRoleData->byApplicationCount;
     }
@@ -978,7 +978,7 @@ INT32 CMsGuild::AgreeRoleApply(UINT32 dwInviterID, UINT32 dwRoleID)
     LOG_PROCESS_ERROR_RET_CODE(g_GuildConfig.nInitGuildPositionRight[poMsGuildMember->GetPosition()] & G_POS_RIGHT_RECRUIT, errGuildNoRight);
 
     pRoleData = CRoleDataMgr::GetInstance().FindRole(dwRoleID);
-    LOG_PROCESS_ERROR_RET_CODE(pRoleData, errGuildRoleNotExist);    // É¾ºÅµÈ
+    LOG_PROCESS_ERROR_RET_CODE(pRoleData, errGuildRoleNotExist);    // åˆ å·ç­‰
     PROCESS_ERROR_RET_CODE(pRoleData->dwJoinGuildCD < CManageServer::GetInstance().GetGameTime(), errGuildJoinCD);
     PROCESS_ERROR_RET_CODE(pRoleData->byLevel >= g_GuildConfig.nCanJoinGuildLevel, errGuildJoinGuildLevelLimit);
     PROCESS_ERROR_RET_CODE(0 == pRoleData->dwGuildID, errGuildAlreadyJoin);
@@ -1039,7 +1039,7 @@ INT32 CMsGuild::InviteToJoinGuild(MS_ONLINE_ROLE_DATA &onlineRoleData, const cha
 
     pTargetOnlineRole->dwGuildInviterID = onlineRoleData.pRoleData->dwRoleID;
 
-    // ·¢ËÍÑûÇë
+    // å‘é€é‚€è¯·
     nRetCode = CMessageHandler::GetInstance().DoClientBeInvitedToJoinGuild(pTargetOnlineRole->dwCliSessionID, onlineRoleData.pRoleData->dwRoleID, 
         onlineRoleData.pRoleData->szRoleName, m_szGuildName);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildMsgError);
@@ -1062,7 +1062,7 @@ INT32 CMsGuild::AgreeToJoinGuild(UINT32 dwInviterID, MS_ONLINE_ROLE_DATA &online
     MS_GUILD_WAR_DATA   *pWarData = NULL;
     pInviterRoleData = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(dwInviterID);
 
-    onlineRoleData.dwGuildInviterID = 0;    // Ö»Òª²Ù×÷ÁË£¬²»¹ÜÊÇÍ¬Òâ»¹ÊÇ¾Ü¾ø£¬¶¼Ó¦¸ÃÈ¡ÏûËûµÄ±»ÑûÇë¼ÇÂ¼ Allan Tao[22.4.2013] 
+    onlineRoleData.dwGuildInviterID = 0;    // åªè¦æ“ä½œäº†ï¼Œä¸ç®¡æ˜¯åŒæ„è¿˜æ˜¯æ‹’ç»ï¼Œéƒ½åº”è¯¥å–æ¶ˆä»–çš„è¢«é‚€è¯·è®°å½• Allan Tao[22.4.2013] 
 
     poMsGuildMember = GetMember(dwInviterID);
     LOG_PROCESS_ERROR_RET_CODE(poMsGuildMember, errGuildNotMember);
@@ -1319,12 +1319,12 @@ INT32 CMsGuild::ForbidChat(MS_ONLINE_ROLE_DATA &onlineRoleData, INT32 nOperation
     LOG_PROCESS_ERROR_RET_CODE(poMsTargetGuildMember, errGuildNotMember);
 
     LOG_PROCESS_ERROR_RET_CODE(poMsTargetGuildMember->GetPosition() < GUILD_POSITION_TOTAL, errGuildPositionError);
-    LOG_PROCESS_ERROR_RET_CODE(poMsTargetGuildMember->GetPosition() >= poMsGuildMember->GetPosition(), errGuildPositionLow);   // Ö°Î»ÖµÔ½Ğ¡£¬È¨Á¦Ô½´ó Allan Tao[23.4.2013] 
+    LOG_PROCESS_ERROR_RET_CODE(poMsTargetGuildMember->GetPosition() >= poMsGuildMember->GetPosition(), errGuildPositionLow);   // èŒä½å€¼è¶Šå°ï¼ŒæƒåŠ›è¶Šå¤§ Allan Tao[23.4.2013] 
     
 
     if (GUILD_CHAT_FORBID == nOperation )
     {
-        // todo_tq 11 ¿¼ÂÇ Allan Tao[19.11.2013] 
+        // todo_tq 11 è€ƒè™‘ Allan Tao[19.11.2013] 
         byFlag = poMsTargetGuildMember->GetFlag();
         byFlag |= GUILD_FLAG_IS_CHAT_FORBIDDEN;
         nRetCode = poMsTargetGuildMember->SetFlag(byFlag);
@@ -1588,7 +1588,7 @@ INT32 CMsGuild::PrePushItem(MS_ONLINE_ROLE_DATA &onlineRoleData, INT32 nSourceCo
     LOG_PROCESS_ERROR_RET_CODE(poMsGuildMember, errGuildNotFind);
 
     LOG_PROCESS_ERROR_RET_CODE(poMsGuildMember->GetPosition() > GUILD_POSITION_NONE && poMsGuildMember->GetPosition() < GUILD_POSITION_TOTAL, errGuildPositionError);
-    // todo_tq 11 Õâ¸öµØ·½ÄªÃûµÄÓÃposition¼õÁË¸ö1µÄÊı×éÏÂ±ê£¬ ÕÒÊ±¼ä´¦ÀíÖ® Allan Tao[19.11.2013] 
+    // todo_tq 11 è¿™ä¸ªåœ°æ–¹è«åçš„ç”¨positionå‡äº†ä¸ª1çš„æ•°ç»„ä¸‹æ ‡ï¼Œ æ‰¾æ—¶é—´å¤„ç†ä¹‹ Allan Tao[19.11.2013] 
     PROCESS_ERROR_RET_CODE(m_wStorageRight[poMsGuildMember->GetPosition()-1] & (1 << (nConSlot + 6)), errGuildNoRight);
 
 
@@ -2381,7 +2381,7 @@ INT32 CMsGuild::AddMember(MS_ROLE_DATA* pRoleData, INT32 nPosition)
             nRetCode = CMessageHandler::GetInstance().DoClientGetGuildDataNtf(pOnlineRoleData->dwCliSessionID, this, pLeaderRole->szRoleName);
             LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildMsgError);
 
-            // todo_tq ¹«»áÕ½ÆÚ¼äĞÂÈë³ÉÔ±
+            // todo_tq å…¬ä¼šæˆ˜æœŸé—´æ–°å…¥æˆå‘˜
             //pWarData = CMsGuildMgr::GetInstance().FindBattleByAttack(GetID());
             //if (pWarData)
             //{
@@ -3724,7 +3724,7 @@ BOOL CMsGuild::_DiplomatWashOut( UINT32 dwCurrentTime, UINT32 dwCheckTime )
     LOG_PROCESS_ERROR(m_nAllianceNum <= GUILD_MAX_ALLIANCE_NUM);
     LOG_PROCESS_ERROR(m_nEnemyNum <= GUILD_MAX_ENEMY_NUM);
 
-    // ÁªÃË£¬µĞ¶Ô°ïÅÉÌÔÌ­
+    // è”ç›Ÿï¼Œæ•Œå¯¹å¸®æ´¾æ·˜æ±°
     for (INT32 i = 0; i < m_nAllianceNum; ++i)
     {
         if (m_arrAlliance[i].dwEndTime > dwCurrentTime + dwCheckTime)
@@ -3765,7 +3765,7 @@ INT32 CMsGuild::_LeaveGuild(INT32 nLeaveType, UINT32 dwRoleID)
 
     LOG_PROCESS_ERROR_RET_CODE(m_dwLeaderID != dwRoleID, errUnknownError);
 
-    // todo_tq guild ÀıÈçÔÚ°ïÅÉµØÍ¼µÈµÈµÄÅĞ¶Ï£¬´«ËÍÂß¼­ Allan Tao[15.4.2013] 
+    // todo_tq guild ä¾‹å¦‚åœ¨å¸®æ´¾åœ°å›¾ç­‰ç­‰çš„åˆ¤æ–­ï¼Œä¼ é€é€»è¾‘ Allan Tao[15.4.2013] 
 
     pRoleData = CRoleDataMgr::GetInstance().FindRole(dwRoleID);
     if (pRoleData)
@@ -3884,7 +3884,7 @@ INT32 CMsGuild::_DiplomatEnemy(MS_ONLINE_ROLE_DATA &onlineRoleData, CMsGuild *pM
         pMsTargetGuild->GetLevel(), (UINT8)pMsTargetGuild->m_memberList.size(), pMsTargetGuild->m_szGuildName);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildMsgError);
 
-    // ·ÅÔÚºóÃæÊÇÒòÎª²»È»¿Í»§¶ËÄÃ²»µ½¶Ô·½°ïÅÉµÄÃû×Ö£¬Í¨¹ıid
+    // æ”¾åœ¨åé¢æ˜¯å› ä¸ºä¸ç„¶å®¢æˆ·ç«¯æ‹¿ä¸åˆ°å¯¹æ–¹å¸®æ´¾çš„åå­—ï¼Œé€šè¿‡id
     nRetCode = AddGuildEvent(GUILD_HE_TYPE_ENEMY, m_dwID, pMsTargetGuild->m_dwID, 0, 0);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildAddEventFailed);
 
@@ -3966,7 +3966,7 @@ INT32 CMsGuild::_AgreeApplyAlliance(MS_ONLINE_ROLE_DATA &onlineRoleData, CMsGuil
         GetLevel(), (UINT8)m_memberList.size(), m_szGuildName);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildMsgError);
 
-    // ·ÅÔÚºóÃæÊÇÒòÎª²»È»¿Í»§¶ËÄÃ²»µ½¶Ô·½°ïÅÉµÄÃû×Ö£¬Í¨¹ıid
+    // æ”¾åœ¨åé¢æ˜¯å› ä¸ºä¸ç„¶å®¢æˆ·ç«¯æ‹¿ä¸åˆ°å¯¹æ–¹å¸®æ´¾çš„åå­—ï¼Œé€šè¿‡id
     nRetCode = AddGuildEvent(GUILD_HE_TYPE_UNION, m_dwID, pApplicantGuild->m_dwID, 0, 0);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildAddEventFailed);
 

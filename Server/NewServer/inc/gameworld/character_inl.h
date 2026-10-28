@@ -542,7 +542,7 @@ inline INT32 CCharacter::GetPendingItemSlot(void)
 	return m_nPendingItemSlot;
 }
 
-// ËÀÍö=TRUE, ´æ»î=FALSE
+// æ­»äº¡=TRUE, å­˜æ´»=FALSE
 inline BOOL CCharacter::IsDead(void)
 {
 	return m_eMoveState == CMS_DIE;

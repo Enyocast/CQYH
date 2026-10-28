@@ -12,13 +12,13 @@
 
 struct SCENE_PHYX_HEADER
 {
-    UINT32    dwTag;        // ÎÄ¼þ±êÊ¶£¨¹Ì¶¨Îª'phyx'£©
-    UINT32    dwVersion;    // ÎÄ¼þ°æ±¾ºÅ
-    INT32     nMaxZoneX;    // ³¡¾°X·½Ïò×î´óÇøÓòÊý
-    INT32     nMaxZoneY;    // ³¡¾°Y·½Ïò×î´óÇøÓòÊý
-    UINT32    dwZoneCount;  // ×ÜÇøÓòÊýÁ¿
-    char      szVolumnScript[MAX_VOLUME_COUNT][MAX_EMBEDDED_SCRIPT_LEN];    // Ìå»ý´¥·¢½Å±¾
-    INT32     nMaxVolumeTriggerCount[MAX_VOLUME_COUNT];    // ×î´óÌå»ý´¥·¢´ÎÊý
+    UINT32    dwTag;        // æ–‡ä»¶æ ‡è¯†ï¼ˆå›ºå®šä¸º'phyx'ï¼‰
+    UINT32    dwVersion;    // æ–‡ä»¶ç‰ˆæœ¬å·
+    INT32     nMaxZoneX;    // åœºæ™¯Xæ–¹å‘æœ€å¤§åŒºåŸŸæ•°
+    INT32     nMaxZoneY;    // åœºæ™¯Yæ–¹å‘æœ€å¤§åŒºåŸŸæ•°
+    UINT32    dwZoneCount;  // æ€»åŒºåŸŸæ•°é‡
+    char      szVolumnScript[MAX_VOLUME_COUNT][MAX_EMBEDDED_SCRIPT_LEN];    // ä½“ç§¯è§¦å‘è„šæœ¬
+    INT32     nMaxVolumeTriggerCount[MAX_VOLUME_COUNT];    // æœ€å¤§ä½“ç§¯è§¦å‘æ¬¡æ•°
 };
 
 

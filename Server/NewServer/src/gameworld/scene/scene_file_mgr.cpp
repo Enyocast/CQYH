@@ -506,7 +506,7 @@ inline BOOL _CheckGrid(const GRID_DATA* pcGrid, INT32 nCenterZ)
     return FALSE;
 }
 
-// »ñÈ¡¿ÉÓÃ×ø±ê, Ô­µã×ø±ê(nCenterX,nCenterY,nCenterZ), ·¶Î§ nMaxRange, »ñÈ¡ÊıÁ¿ nPosCount
+// è·å–å¯ç”¨åæ ‡, åŸç‚¹åæ ‡(nCenterX,nCenterY,nCenterZ), èŒƒå›´ nMaxRange, è·å–æ•°é‡ nPosCount
 INT32 CSceneStaticData::GetNearestAvailablePos(INT32 nCenterX, INT32 nCenterY, INT32 nCenterZ,
     INT32 nMaxRange, INT32 nPosCount, INT32 nPos[][3])
 {
@@ -725,8 +725,8 @@ inline INT64 _CheckPos(NAV_VERTEX_DATA* pPoint, NAV_VERTEX_DATA* pLeftPoint, NAV
     return ((yr - yl) * xp + (xl - xr) * yp + (xr * yl - xl * yr));
 }
 
-// ²éÕÒÂ·Ïß, Æğµã×ø±ê(nSrcX, nSrcY, nSrcZ), Ä¿µÄ×ø±ê(nDestX, nDestY, nDestZ)
-// rnResultSize => Â·Ïß×ø±êÊıÁ¿, pnResult => ×ø±êÂ·Ïßµã
+// æŸ¥æ‰¾è·¯çº¿, èµ·ç‚¹åæ ‡(nSrcX, nSrcY, nSrcZ), ç›®çš„åæ ‡(nDestX, nDestY, nDestZ)
+// rnResultSize => è·¯çº¿åæ ‡æ•°é‡, pnResult => åæ ‡è·¯çº¿ç‚¹
 BOOL CSceneStaticData::FindPath(INT32 nSrcX, INT32 nSrcY, INT32 nSrcZ, UINT16 wSrcEdge,
     INT32 nDestX, INT32 nDestY, INT32 nDestZ, UINT16 wDestEdge,
     INT32& rnResultSize, INT32* pnResult)
@@ -1175,7 +1175,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
     auto addNewNpc = m_vecAddSpawnNpcs.find(pSceneData->nSceneID);
     auto blockNpc = m_mapBlockNpc.find(pSceneData->nSceneID);
 
-    // ÓĞĞÂÔö¼ÓµÄ¹ÖÎï
+    // æœ‰æ–°å¢åŠ çš„æ€ªç‰©
     if (addNewNpc != m_vecAddSpawnNpcs.end())
     {
         std::vector<ADD_NPC_SPAWN_POINT> vecData = addNewNpc->second;
@@ -1194,7 +1194,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
 
         pSceneStaticData->m_nSingleNpcCount = 0;
 
-        // ¼ÆËã pSceneStaticData->m_nSingleNpcCount
+        // è®¡ç®— pSceneStaticData->m_nSingleNpcCount
         for (INT32 nIndex = 0; nIndex < pHeader->nNpcCount; nIndex++)
         {
             NPC_SINGLE_SPAWN& rSingleNpc = pHeader->NpcTable[nIndex];
@@ -1216,23 +1216,23 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
         pSceneStaticData->m_dwMemorySize += sizeof(NPC_SPAWN_POINT) * pSceneStaticData->m_nSingleNpcCount;
         memset(pSceneStaticData->m_pSingleNpcTable, 0, sizeof(NPC_SPAWN_POINT) * pSceneStaticData->m_nSingleNpcCount);
 
-        // ×Ô¶¨ÒåÅäÖÃÀïµÄNpc
+        // è‡ªå®šä¹‰é…ç½®é‡Œçš„Npc
         for (INT32 nIndex = 0; nIndex < pHeader->nNpcCount; nIndex++)
         {
             NPC_SINGLE_SPAWN& rSingleNpc = pHeader->NpcTable[nIndex];
             NPC_SPAWN_POINT& rPoint = pSceneStaticData->m_pSingleNpcTable[rSingleNpc.nID];
 
-            // ÆÁ±ÎNpc (ÒòÎªÊÇ×Ô¶¨ÒåÅäÖÃÀïµÄNpc, ËùÒÔ²»ÏëË¢µÄNpc¿Ï¶¨²»»áĞ´, ÕâÀï¾Í²»×öÅĞ¶ÏÁË)
+            // å±è”½Npc (å› ä¸ºæ˜¯è‡ªå®šä¹‰é…ç½®é‡Œçš„Npc, æ‰€ä»¥ä¸æƒ³åˆ·çš„Npcè‚¯å®šä¸ä¼šå†™, è¿™é‡Œå°±ä¸åšåˆ¤æ–­äº†)
             //...
 
             rPoint.qwNameID = rSingleNpc.qwNameID;                   // npcID
-            rPoint.nX = rSingleNpc.nX;                               // ×ø±êX
-            rPoint.nY = rSingleNpc.nY;                               // ×ø±êY
-            rPoint.nZ = rSingleNpc.nZ;                               // ×ø±êZ
-            rPoint.nRange = (INT32)rSingleNpc.wRange * POINT_PER_CM; // ·¶Î§
-            rPoint.nDirection = rSingleNpc.wDirection;               // ·½Ïò
+            rPoint.nX = rSingleNpc.nX;                               // åæ ‡X
+            rPoint.nY = rSingleNpc.nY;                               // åæ ‡Y
+            rPoint.nZ = rSingleNpc.nZ;                               // åæ ‡Z
+            rPoint.nRange = (INT32)rSingleNpc.wRange * POINT_PER_CM; // èŒƒå›´
+            rPoint.nDirection = rSingleNpc.wDirection;               // æ–¹å‘
 
-            // ·½Ïò²»¶ÔµÄnpc
+            // æ–¹å‘ä¸å¯¹çš„npc
             if (rPoint.nDirection < 0 || rPoint.nDirection >= MAX_DIRECTION_COUNT)
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1243,7 +1243,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 m_nErrorCount++;
             }
 
-            // Ã»ÓĞµÄnpc
+            // æ²¡æœ‰çš„npc
             if (CDataManager<NPC_DATA>::GetInstance().GetData(rSingleNpc.nNpcTemplateID) == NULL)
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1255,32 +1255,32 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 m_nErrorCount++;
             }
 
-            // Ìí¼Ó¹ÖÎï
+            // æ·»åŠ æ€ªç‰©
             rPoint.RandNpc.Add(rSingleNpc.nNpcTemplateID, 1);
 
-            rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // µÈ¼¶Æ«ÒÆ?
+            rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // ç­‰çº§åç§»?
             rPoint.nAIID = rSingleNpc.nAIID;                                   // AIID
-            rPoint.nQuality = rSingleNpc.byQuality;                            // ÖÊÁ¿ÀàĞÍ
-            rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // ×îĞ¡»Ø¸´Ê±¼ä
-            rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // ×î´ó»Ø¸´Ê±¼ä
-            rPoint.nSpawnTime = CONVERT_TIME(rSingleNpc.nSpawnTime);           // Ë¢ĞÂÊ±¼ä
-            rPoint.nReviveTime = CONVERT_TIME(rSingleNpc.nReviveTime);         // ¸´»îÊ±¼ä
-            rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // ÑªÁ¿
-            rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // À¶Á¿
-            rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // ÄÜ·ñµôÂäÎïÆ·
+            rPoint.nQuality = rSingleNpc.byQuality;                            // è´¨é‡ç±»å‹
+            rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // æœ€å°å›å¤æ—¶é—´
+            rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // æœ€å¤§å›å¤æ—¶é—´
+            rPoint.nSpawnTime = CONVERT_TIME(rSingleNpc.nSpawnTime);           // åˆ·æ–°æ—¶é—´
+            rPoint.nReviveTime = CONVERT_TIME(rSingleNpc.nReviveTime);         // å¤æ´»æ—¶é—´
+            rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // è¡€é‡
+            rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // è“é‡
+            rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // èƒ½å¦æ‰è½ç‰©å“
 
-            rPoint.nPatrolPathID = rSingleNpc.nPatrolPathID;   // Ñ²ÂßÂ·ÏßID
-            rPoint.nPatrolStyle = rSingleNpc.nPatrolStyle;     // Ñ²Âß·ç¸ñ
-            rPoint.nFollowHostID = rSingleNpc.nFollowHostID;   // ¸úËæID?
-            rPoint.nFollowOffsetX = rSingleNpc.nFollowOffsetX; // ¸úËæÆ«ÒÆX
-            rPoint.nFollowOffsetY = rSingleNpc.nFollowOffsetY; // ¸úËæÆ«ÒÆY
+            rPoint.nPatrolPathID = rSingleNpc.nPatrolPathID;   // å·¡é€»è·¯çº¿ID
+            rPoint.nPatrolStyle = rSingleNpc.nPatrolStyle;     // å·¡é€»é£æ ¼
+            rPoint.nFollowHostID = rSingleNpc.nFollowHostID;   // è·ŸéšID?
+            rPoint.nFollowOffsetX = rSingleNpc.nFollowOffsetX; // è·Ÿéšåç§»X
+            rPoint.nFollowOffsetY = rSingleNpc.nFollowOffsetY; // è·Ÿéšåç§»Y
 
-            rPoint.bAutoSpawn = rSingleNpc.IsAutoSpawn;        // ×Ô¶¯Ë¢ĞÂ?
-            rPoint.bAutoRespawn = rSingleNpc.IsAutoReSpawn;    // ×Ô¶¯»Ø¸´?
-            rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // ·Ö×éID
-            rPoint.nID = rSingleNpc.nID;                       // Êı×éÖĞµÄÏÂ±ê?
+            rPoint.bAutoSpawn = rSingleNpc.IsAutoSpawn;        // è‡ªåŠ¨åˆ·æ–°?
+            rPoint.bAutoRespawn = rSingleNpc.IsAutoReSpawn;    // è‡ªåŠ¨å›å¤?
+            rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // åˆ†ç»„ID
+            rPoint.nID = rSingleNpc.nID;                       // æ•°ç»„ä¸­çš„ä¸‹æ ‡?
 
-            // load BT - ¼ÓÔØ½Å±¾ĞĞÎªÊ÷
+            // load BT - åŠ è½½è„šæœ¬è¡Œä¸ºæ ‘
             rPoint.pDeadBTRoot = NULL;
             snprintf(szBTTreeName, sizeof(szBTTreeName), "%s_%d", g_BTEventName[evtSingleNpcDie], rPoint.nID);
             if (pSceneStaticData->m_pScript && pSceneStaticData->m_pScript->IsTableExist(szBTTreeName))
@@ -1293,7 +1293,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 }
             }
 
-            // Ìí¼Óµ½ pSceneStaticData->m_mapSingleNpc
+            // æ·»åŠ åˆ° pSceneStaticData->m_mapSingleNpc
             if (rPoint.qwNameID > 0)
             {
                 InsRet = pSceneStaticData->m_mapSingleNpc.insert(std::make_pair(rPoint.qwNameID, &rPoint));
@@ -1315,7 +1315,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
 
             // s_mapNpcCount[rSingleNpc.nNpcTemplateID]++;
 
-            // ÅĞ¶ÏÍø¸ñ×ø±ê
+            // åˆ¤æ–­ç½‘æ ¼åæ ‡
             if (!pSceneStaticData->CheckGrid(rPoint.nX, rPoint.nY, rPoint.nZ + GRID_WIDTH))
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1332,19 +1332,19 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
 #endif
         }
 
-        // ĞÂÔö¼ÓµÄ¹ÖÎï
+        // æ–°å¢åŠ çš„æ€ªç‰©
         for (ADD_NPC_SPAWN_POINT& rSingleNpc : vecData)
         {
             NPC_SPAWN_POINT& rPoint = pSceneStaticData->m_pSingleNpcTable[rSingleNpc.nID];
 
             rPoint.qwNameID = 0;                   // npcID
-            rPoint.nX = rSingleNpc.nX;                               // ×ø±êX
-            rPoint.nY = rSingleNpc.nY;                               // ×ø±êY
-            rPoint.nZ = rSingleNpc.nZ;                               // ×ø±êZ
-            rPoint.nRange = rSingleNpc.nRange; // ·¶Î§
-            rPoint.nDirection = rSingleNpc.nDirection;               // ·½Ïò
+            rPoint.nX = rSingleNpc.nX;                               // åæ ‡X
+            rPoint.nY = rSingleNpc.nY;                               // åæ ‡Y
+            rPoint.nZ = rSingleNpc.nZ;                               // åæ ‡Z
+            rPoint.nRange = rSingleNpc.nRange; // èŒƒå›´
+            rPoint.nDirection = rSingleNpc.nDirection;               // æ–¹å‘
 
-            // ·½Ïò²»¶ÔµÄnpc
+            // æ–¹å‘ä¸å¯¹çš„npc
             if (rPoint.nDirection < 0 || rPoint.nDirection >= MAX_DIRECTION_COUNT)
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1355,7 +1355,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 m_nErrorCount++;
             }
 
-            // Ã»ÓĞµÄnpc
+            // æ²¡æœ‰çš„npc
             if (CDataManager<NPC_DATA>::GetInstance().GetData(rSingleNpc.nTemplateID) == NULL)
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1369,29 +1369,29 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
 
             rPoint.RandNpc.Add(rSingleNpc.nTemplateID, 1);
 
-            rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // µÈ¼¶Æ«ÒÆ?
+            rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // ç­‰çº§åç§»?
             rPoint.nAIID = 0;                                   // AIID
-            rPoint.nQuality = rSingleNpc.nQuality;                            // ÖÊÁ¿ÀàĞÍ
-            rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // ×îĞ¡»Ø¸´Ê±¼ä
-            rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // ×î´ó»Ø¸´Ê±¼ä
-            rPoint.nSpawnTime = 0;           // Ë¢ĞÂÊ±¼ä
-            rPoint.nReviveTime = 0;           // ¸´»îÊ±¼ä
-            rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // ÑªÁ¿
-            rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // À¶Á¿
-            rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // ÄÜ·ñµôÂäÎïÆ·
+            rPoint.nQuality = rSingleNpc.nQuality;                            // è´¨é‡ç±»å‹
+            rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // æœ€å°å›å¤æ—¶é—´
+            rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // æœ€å¤§å›å¤æ—¶é—´
+            rPoint.nSpawnTime = 0;           // åˆ·æ–°æ—¶é—´
+            rPoint.nReviveTime = 0;           // å¤æ´»æ—¶é—´
+            rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // è¡€é‡
+            rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // è“é‡
+            rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // èƒ½å¦æ‰è½ç‰©å“
 
-            rPoint.nPatrolPathID = 0;  // Ñ²ÂßÂ·ÏßID
-            rPoint.nPatrolStyle = 0;  // Ñ²Âß·ç¸ñ
-            rPoint.nFollowHostID = 0;  // ¸úËæID?
-            rPoint.nFollowOffsetX = 0;  // ¸úËæÆ«ÒÆX
-            rPoint.nFollowOffsetY = 0;  // ¸úËæÆ«ÒÆY
+            rPoint.nPatrolPathID = 0;  // å·¡é€»è·¯çº¿ID
+            rPoint.nPatrolStyle = 0;  // å·¡é€»é£æ ¼
+            rPoint.nFollowHostID = 0;  // è·ŸéšID?
+            rPoint.nFollowOffsetX = 0;  // è·Ÿéšåç§»X
+            rPoint.nFollowOffsetY = 0;  // è·Ÿéšåç§»Y
 
-            rPoint.bAutoSpawn = rSingleNpc.bAutoSpawn;        // ×Ô¶¯Ë¢ĞÂ?
-            rPoint.bAutoRespawn = rSingleNpc.bAutoRespawn;    // ×Ô¶¯»Ø¸´?
-            rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // ·Ö×éID
-            rPoint.nID = rSingleNpc.nID;                       // Êı×éÖĞµÄÏÂ±ê?
+            rPoint.bAutoSpawn = rSingleNpc.bAutoSpawn;        // è‡ªåŠ¨åˆ·æ–°?
+            rPoint.bAutoRespawn = rSingleNpc.bAutoRespawn;    // è‡ªåŠ¨å›å¤?
+            rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // åˆ†ç»„ID
+            rPoint.nID = rSingleNpc.nID;                       // æ•°ç»„ä¸­çš„ä¸‹æ ‡?
 
-            // load BT - ¼ÓÔØ½Å±¾ĞĞÎªÊ÷
+            // load BT - åŠ è½½è„šæœ¬è¡Œä¸ºæ ‘
             rPoint.pDeadBTRoot = NULL;
             snprintf(szBTTreeName, sizeof(szBTTreeName), "%s_%d", g_BTEventName[evtSingleNpcDie], rPoint.nID);
             if (pSceneStaticData->m_pScript && pSceneStaticData->m_pScript->IsTableExist(szBTTreeName))
@@ -1404,7 +1404,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 }
             }
 
-            // Ìí¼Óµ½ pSceneStaticData->m_mapSingleNpc
+            // æ·»åŠ åˆ° pSceneStaticData->m_mapSingleNpc
             if (rPoint.qwNameID > 0)
             {
                 InsRet = pSceneStaticData->m_mapSingleNpc.insert(std::make_pair(rPoint.qwNameID, &rPoint));
@@ -1426,7 +1426,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
 
             // s_mapNpcCount[rSingleNpc.nNpcTemplateID]++;
 
-            // ÅĞ¶ÏÍø¸ñ×ø±ê
+            // åˆ¤æ–­ç½‘æ ¼åæ ‡
             if (!pSceneStaticData->CheckGrid(rPoint.nX, rPoint.nY, rPoint.nZ + GRID_WIDTH))
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1444,7 +1444,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
         }
 
     }
-    // Ô­´úÂë - Ã»ÓĞĞÂÔö¼ÓµÄ¹ÖÎï
+    // åŸä»£ç  - æ²¡æœ‰æ–°å¢åŠ çš„æ€ªç‰©
     else
     {
         INT32 nRetCode = 0;
@@ -1480,7 +1480,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
             NPC_SINGLE_SPAWN& rSingleNpc = pHeader->NpcTable[nIndex];
             NPC_SPAWN_POINT& rPoint = pSceneStaticData->m_pSingleNpcTable[rSingleNpc.nID];
 
-            // ÓĞÆÁ±ÎµÄNpc
+            // æœ‰å±è”½çš„Npc
             if (blockNpc != m_mapBlockNpc.end())
             {
                 auto find_block_npc = blockNpc->second.find(rSingleNpc.nNpcTemplateID);
@@ -1489,13 +1489,13 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
             }
 
             rPoint.qwNameID = rSingleNpc.qwNameID;                   // npcID
-            rPoint.nX = rSingleNpc.nX;                               // ×ø±êX
-            rPoint.nY = rSingleNpc.nY;                               // ×ø±êY
-            rPoint.nZ = rSingleNpc.nZ;                               // ×ø±êZ
-            rPoint.nRange = (INT32)rSingleNpc.wRange * POINT_PER_CM; // ·¶Î§
-            rPoint.nDirection = rSingleNpc.wDirection;               // ·½Ïò
+            rPoint.nX = rSingleNpc.nX;                               // åæ ‡X
+            rPoint.nY = rSingleNpc.nY;                               // åæ ‡Y
+            rPoint.nZ = rSingleNpc.nZ;                               // åæ ‡Z
+            rPoint.nRange = (INT32)rSingleNpc.wRange * POINT_PER_CM; // èŒƒå›´
+            rPoint.nDirection = rSingleNpc.wDirection;               // æ–¹å‘
 
-            // ·½Ïò²»¶ÔµÄnpc
+            // æ–¹å‘ä¸å¯¹çš„npc
             if (rPoint.nDirection < 0 || rPoint.nDirection >= MAX_DIRECTION_COUNT)
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1506,7 +1506,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 m_nErrorCount++;
             }
 
-            // Ã»ÓĞµÄnpc
+            // æ²¡æœ‰çš„npc
             if (CDataManager<NPC_DATA>::GetInstance().GetData(rSingleNpc.nNpcTemplateID) == NULL)
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1520,29 +1520,29 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
 
             rPoint.RandNpc.Add(rSingleNpc.nNpcTemplateID, 1);
 
-            rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // µÈ¼¶Æ«ÒÆ?
+            rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // ç­‰çº§åç§»?
             rPoint.nAIID = rSingleNpc.nAIID;                                   // AIID
-            rPoint.nQuality = rSingleNpc.byQuality;                            // ÖÊÁ¿ÀàĞÍ
-            rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // ×îĞ¡»Ø¸´Ê±¼ä
-            rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // ×î´ó»Ø¸´Ê±¼ä
-            rPoint.nSpawnTime = CONVERT_TIME(rSingleNpc.nSpawnTime);           // Ë¢ĞÂÊ±¼ä
-            rPoint.nReviveTime = CONVERT_TIME(rSingleNpc.nReviveTime);         // ¸´»îÊ±¼ä
-            rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // ÑªÁ¿
-            rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // À¶Á¿
-            rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // ÄÜ·ñµôÂäÎïÆ·
+            rPoint.nQuality = rSingleNpc.byQuality;                            // è´¨é‡ç±»å‹
+            rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // æœ€å°å›å¤æ—¶é—´
+            rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // æœ€å¤§å›å¤æ—¶é—´
+            rPoint.nSpawnTime = CONVERT_TIME(rSingleNpc.nSpawnTime);           // åˆ·æ–°æ—¶é—´
+            rPoint.nReviveTime = CONVERT_TIME(rSingleNpc.nReviveTime);         // å¤æ´»æ—¶é—´
+            rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // è¡€é‡
+            rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // è“é‡
+            rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // èƒ½å¦æ‰è½ç‰©å“
 
-            rPoint.nPatrolPathID = rSingleNpc.nPatrolPathID;   // Ñ²ÂßÂ·ÏßID
-            rPoint.nPatrolStyle = rSingleNpc.nPatrolStyle;     // Ñ²Âß·ç¸ñ
-            rPoint.nFollowHostID = rSingleNpc.nFollowHostID;   // ¸úËæID?
-            rPoint.nFollowOffsetX = rSingleNpc.nFollowOffsetX; // ¸úËæÆ«ÒÆX
-            rPoint.nFollowOffsetY = rSingleNpc.nFollowOffsetY; // ¸úËæÆ«ÒÆY
+            rPoint.nPatrolPathID = rSingleNpc.nPatrolPathID;   // å·¡é€»è·¯çº¿ID
+            rPoint.nPatrolStyle = rSingleNpc.nPatrolStyle;     // å·¡é€»é£æ ¼
+            rPoint.nFollowHostID = rSingleNpc.nFollowHostID;   // è·ŸéšID?
+            rPoint.nFollowOffsetX = rSingleNpc.nFollowOffsetX; // è·Ÿéšåç§»X
+            rPoint.nFollowOffsetY = rSingleNpc.nFollowOffsetY; // è·Ÿéšåç§»Y
 
-            rPoint.bAutoSpawn = rSingleNpc.IsAutoSpawn;        // ×Ô¶¯Ë¢ĞÂ?
-            rPoint.bAutoRespawn = rSingleNpc.IsAutoReSpawn;    // ×Ô¶¯»Ø¸´?
-            rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // ·Ö×éID
-            rPoint.nID = rSingleNpc.nID;                       // Êı×éÖĞµÄÏÂ±ê?
+            rPoint.bAutoSpawn = rSingleNpc.IsAutoSpawn;        // è‡ªåŠ¨åˆ·æ–°?
+            rPoint.bAutoRespawn = rSingleNpc.IsAutoReSpawn;    // è‡ªåŠ¨å›å¤?
+            rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // åˆ†ç»„ID
+            rPoint.nID = rSingleNpc.nID;                       // æ•°ç»„ä¸­çš„ä¸‹æ ‡?
 
-            // load BT - ¼ÓÔØ½Å±¾ĞĞÎªÊ÷
+            // load BT - åŠ è½½è„šæœ¬è¡Œä¸ºæ ‘
             rPoint.pDeadBTRoot = NULL;
             snprintf(szBTTreeName, sizeof(szBTTreeName), "%s_%d", g_BTEventName[evtSingleNpcDie], rPoint.nID);
             if (pSceneStaticData->m_pScript && pSceneStaticData->m_pScript->IsTableExist(szBTTreeName))
@@ -1555,7 +1555,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 }
             }
 
-            // Ìí¼Óµ½ pSceneStaticData->m_mapSingleNpc
+            // æ·»åŠ åˆ° pSceneStaticData->m_mapSingleNpc
             if (rPoint.qwNameID > 0)
             {
                 InsRet = pSceneStaticData->m_mapSingleNpc.insert(std::make_pair(rPoint.qwNameID, &rPoint));
@@ -1577,7 +1577,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
 
             // s_mapNpcCount[rSingleNpc.nNpcTemplateID]++;
 
-            // ÅĞ¶ÏÍø¸ñ×ø±ê
+            // åˆ¤æ–­ç½‘æ ¼åæ ‡
             if (!pSceneStaticData->CheckGrid(rPoint.nX, rPoint.nY, rPoint.nZ + GRID_WIDTH))
             {
                 INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1589,7 +1589,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
                 m_nErrorCount++;
             }
 
-            // ×Ô¼ºÔö¼Ó²âÊÔ´úÂë
+            // è‡ªå·±å¢åŠ æµ‹è¯•ä»£ç 
             //auto it = setNpcID.find(rSingleNpc.nNpcTemplateID);
             //if (it != setNpcID.end())
             //{
@@ -1619,7 +1619,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
         }
     }
 
-    // Ô­´úÂë
+    // åŸä»£ç 
     //    INT32 nRetCode = 0;
     //    char szScript[256] = { 0 };
     //    char szBTTreeName[256] = { 0 };
@@ -1654,13 +1654,13 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
     //        NPC_SPAWN_POINT& rPoint = pSceneStaticData->m_pSingleNpcTable[rSingleNpc.nID];
     //
     //        rPoint.qwNameID = rSingleNpc.qwNameID;                   // npcID
-    //        rPoint.nX = rSingleNpc.nX;                               // ×ø±êX
-    //        rPoint.nY = rSingleNpc.nY;                               // ×ø±êY
-    //        rPoint.nZ = rSingleNpc.nZ;                               // ×ø±êZ
-    //        rPoint.nRange = (INT32)rSingleNpc.wRange * POINT_PER_CM; // ·¶Î§
-    //        rPoint.nDirection = rSingleNpc.wDirection;               // ·½Ïò
+    //        rPoint.nX = rSingleNpc.nX;                               // åæ ‡X
+    //        rPoint.nY = rSingleNpc.nY;                               // åæ ‡Y
+    //        rPoint.nZ = rSingleNpc.nZ;                               // åæ ‡Z
+    //        rPoint.nRange = (INT32)rSingleNpc.wRange * POINT_PER_CM; // èŒƒå›´
+    //        rPoint.nDirection = rSingleNpc.wDirection;               // æ–¹å‘
     //
-    //        // ·½Ïò²»¶ÔµÄnpc
+    //        // æ–¹å‘ä¸å¯¹çš„npc
     //        if (rPoint.nDirection < 0 || rPoint.nDirection >= MAX_DIRECTION_COUNT)
     //        {
     //            INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1671,7 +1671,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
     //            m_nErrorCount++;
     //        }
     //
-    //        // Ã»ÓĞµÄnpc
+    //        // æ²¡æœ‰çš„npc
     //        if (CDataManager<NPC_DATA>::GetInstance().GetData(rSingleNpc.nNpcTemplateID) == NULL)
     //        {
     //            INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1685,29 +1685,29 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
     //
     //        rPoint.RandNpc.Add(rSingleNpc.nNpcTemplateID, 1);
     //
-    //        rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // µÈ¼¶Æ«ÒÆ?
+    //        rPoint.nLevelOffset = rSingleNpc.nLevelOffset;                     // ç­‰çº§åç§»?
     //        rPoint.nAIID = rSingleNpc.nAIID;                                   // AIID
-    //        rPoint.nQuality = rSingleNpc.byQuality;                            // ÖÊÁ¿ÀàĞÍ
-    //        rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // ×îĞ¡»Ø¸´Ê±¼ä
-    //        rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // ×î´ó»Ø¸´Ê±¼ä
-    //        rPoint.nSpawnTime = CONVERT_TIME(rSingleNpc.nSpawnTime);           // Ë¢ĞÂÊ±¼ä
-    //        rPoint.nReviveTime = CONVERT_TIME(rSingleNpc.nReviveTime);         // ¸´»îÊ±¼ä
-    //        rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // ÑªÁ¿
-    //        rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // À¶Á¿
-    //        rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // ÄÜ·ñµôÂäÎïÆ·
+    //        rPoint.nQuality = rSingleNpc.byQuality;                            // è´¨é‡ç±»å‹
+    //        rPoint.nMinRespawnTime = CONVERT_TIME(rSingleNpc.nMinRespawnTime); // æœ€å°å›å¤æ—¶é—´
+    //        rPoint.nMaxRespawnTime = CONVERT_TIME(rSingleNpc.nMaxRespawnTime); // æœ€å¤§å›å¤æ—¶é—´
+    //        rPoint.nSpawnTime = CONVERT_TIME(rSingleNpc.nSpawnTime);           // åˆ·æ–°æ—¶é—´
+    //        rPoint.nReviveTime = CONVERT_TIME(rSingleNpc.nReviveTime);         // å¤æ´»æ—¶é—´
+    //        rPoint.nCurrentHp = rSingleNpc.nCurrentHp;                         // è¡€é‡
+    //        rPoint.nCurrentMp = rSingleNpc.nCurrentMp;                         // è“é‡
+    //        rPoint.bCanDropItem = rSingleNpc.bCanDropItem;                     // èƒ½å¦æ‰è½ç‰©å“
     //
-    //        rPoint.nPatrolPathID = rSingleNpc.nPatrolPathID;   // Ñ²ÂßÂ·ÏßID
-    //        rPoint.nPatrolStyle = rSingleNpc.nPatrolStyle;     // Ñ²Âß·ç¸ñ
-    //        rPoint.nFollowHostID = rSingleNpc.nFollowHostID;   // ¸úËæID?
-    //        rPoint.nFollowOffsetX = rSingleNpc.nFollowOffsetX; // ¸úËæÆ«ÒÆX
-    //        rPoint.nFollowOffsetY = rSingleNpc.nFollowOffsetY; // ¸úËæÆ«ÒÆY
+    //        rPoint.nPatrolPathID = rSingleNpc.nPatrolPathID;   // å·¡é€»è·¯çº¿ID
+    //        rPoint.nPatrolStyle = rSingleNpc.nPatrolStyle;     // å·¡é€»é£æ ¼
+    //        rPoint.nFollowHostID = rSingleNpc.nFollowHostID;   // è·ŸéšID?
+    //        rPoint.nFollowOffsetX = rSingleNpc.nFollowOffsetX; // è·Ÿéšåç§»X
+    //        rPoint.nFollowOffsetY = rSingleNpc.nFollowOffsetY; // è·Ÿéšåç§»Y
     //
-    //        rPoint.bAutoSpawn = rSingleNpc.IsAutoSpawn;        // ×Ô¶¯Ë¢ĞÂ?
-    //        rPoint.bAutoRespawn = rSingleNpc.IsAutoReSpawn;    // ×Ô¶¯»Ø¸´?
-    //        rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // ·Ö×éID
-    //        rPoint.nID = rSingleNpc.nID;                       // Êı×éÖĞµÄÏÂ±ê?
+    //        rPoint.bAutoSpawn = rSingleNpc.IsAutoSpawn;        // è‡ªåŠ¨åˆ·æ–°?
+    //        rPoint.bAutoRespawn = rSingleNpc.IsAutoReSpawn;    // è‡ªåŠ¨å›å¤?
+    //        rPoint.nSmallGroupID = rPoint.nMediumGroupID = rPoint.nLargeGroupID = -1;  // åˆ†ç»„ID
+    //        rPoint.nID = rSingleNpc.nID;                       // æ•°ç»„ä¸­çš„ä¸‹æ ‡?
     //
-    //        // load BT - ¼ÓÔØ½Å±¾ĞĞÎªÊ÷
+    //        // load BT - åŠ è½½è„šæœ¬è¡Œä¸ºæ ‘
     //        rPoint.pDeadBTRoot = NULL;
     //        snprintf(szBTTreeName, sizeof(szBTTreeName), "%s_%d", g_BTEventName[evtSingleNpcDie], rPoint.nID);
     //        if (pSceneStaticData->m_pScript && pSceneStaticData->m_pScript->IsTableExist(szBTTreeName))
@@ -1720,7 +1720,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
     //            }
     //        }
     //
-    //        // Ìí¼Óµ½ pSceneStaticData->m_mapSingleNpc
+    //        // æ·»åŠ åˆ° pSceneStaticData->m_mapSingleNpc
     //        if (rPoint.qwNameID > 0)
     //        {
     //            InsRet = pSceneStaticData->m_mapSingleNpc.insert(std::make_pair(rPoint.qwNameID, &rPoint));
@@ -1742,7 +1742,7 @@ BOOL CSceneFileMgr::_LoadSingleNpc(const SCENE_DATA* pSceneData, CSceneStaticDat
     //
     //        // s_mapNpcCount[rSingleNpc.nNpcTemplateID]++;
     //
-    //        // ÅĞ¶ÏÍø¸ñ×ø±ê
+    //        // åˆ¤æ–­ç½‘æ ¼åæ ‡
     //        if (!pSceneStaticData->CheckGrid(rPoint.nX, rPoint.nY, rPoint.nZ + GRID_WIDTH))
     //        {
     //            INT32 nX = rPoint.nX / POINT_PER_CM;
@@ -1787,7 +1787,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
     pSceneStaticData->m_nNpcLargeGroupCount = 0;
     pSceneStaticData->m_nNpcMediumGroupCount = 0;
 
-    // ¼ÆËã m_nNpcLargeGroupCount, m_nNpcMediumGroupCount
+    // è®¡ç®— m_nNpcLargeGroupCount, m_nNpcMediumGroupCount
     for (INT32 nLargeGroupIndex = 0; nLargeGroupIndex < pHeader->nLargeGroupCount; nLargeGroupIndex++)
     {
         NPC_SPAWN_LARGE_GROUP* pLargeGroupData = (NPC_SPAWN_LARGE_GROUP*)pData;
@@ -1807,7 +1807,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
 
             LOG_PROCESS_ERROR(pMediumGroupData->nID >= 0 && pMediumGroupData->nID < MAX_NPC_MEDIUM_GROUP_COUNT);
 
-            // ºËĞÄÕâÒ»¾ä´úÂë, ¸³Öµ
+            // æ ¸å¿ƒè¿™ä¸€å¥ä»£ç , èµ‹å€¼
             if (pSceneStaticData->m_nNpcMediumGroupCount < pMediumGroupData->nID)
                 pSceneStaticData->m_nNpcMediumGroupCount = pMediumGroupData->nID;
 
@@ -1834,25 +1834,25 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
     LOG_PROCESS_ERROR(pSceneStaticData->m_nNpcLargeGroupCount < MAX_NPC_LARGE_GROUP_COUNT);
     LOG_PROCESS_ERROR(pSceneStaticData->m_nNpcMediumGroupCount < MAX_NPC_MEDIUM_GROUP_COUNT);
 
-    // ´ó·Ö×é new
+    // å¤§åˆ†ç»„ new
     pSceneStaticData->m_pNpcLargeGroupTable = new NPC_LARGE_SPAWN_GROUP[pSceneStaticData->m_nNpcLargeGroupCount];
     LOG_PROCESS_ERROR(pSceneStaticData->m_pNpcLargeGroupTable);
-    // ´ó·Ö×é ÇåÁã
+    // å¤§åˆ†ç»„ æ¸…é›¶
     pSceneStaticData->m_dwMemorySize += sizeof(NPC_LARGE_SPAWN_GROUP) * pSceneStaticData->m_nNpcLargeGroupCount;
     memset(pSceneStaticData->m_pNpcLargeGroupTable, 0, sizeof(NPC_LARGE_SPAWN_GROUP) * pSceneStaticData->m_nNpcLargeGroupCount);
 
-    // ÖĞ·Ö×é new
+    // ä¸­åˆ†ç»„ new
     pSceneStaticData->m_pNpcMediumGroupTable = new NPC_MEDIUM_SPAWN_GROUP[pSceneStaticData->m_nNpcMediumGroupCount];
     LOG_PROCESS_ERROR(pSceneStaticData->m_pNpcMediumGroupTable);
-    // ÖĞ·Ö×é ÇåÁã
+    // ä¸­åˆ†ç»„ æ¸…é›¶
     pSceneStaticData->m_dwMemorySize += sizeof(NPC_MEDIUM_SPAWN_GROUP) * pSceneStaticData->m_nNpcMediumGroupCount;
     memset(pSceneStaticData->m_pNpcMediumGroupTable, 0, sizeof(NPC_MEDIUM_SPAWN_GROUP) * pSceneStaticData->m_nNpcMediumGroupCount);
 
-    // ÔÙ´Î´ÓÍ·¿ªÊ¼Ñ­»·?
+    // å†æ¬¡ä»å¤´å¼€å§‹å¾ªç¯?
     pData = pOriginalData + sizeof(NPC_SPAWN_DATA_HEADER);
     for (INT32 nLargeGroupIndex = 0; nLargeGroupIndex < pHeader->nLargeGroupCount; nLargeGroupIndex++)
     {
-        // ´ó·Ö×é
+        // å¤§åˆ†ç»„
         NPC_SPAWN_LARGE_GROUP* pLargeGroupData = (NPC_SPAWN_LARGE_GROUP*)pData;
         pData += sizeof(NPC_SPAWN_LARGE_GROUP);
 
@@ -1881,7 +1881,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
 
         pLargeGroup->nMediumGroupCount = 0;
 
-        // ÖĞ·Ö×é
+        // ä¸­åˆ†ç»„
         LOG_PROCESS_ERROR(pLargeGroupData->nMediumGroupCount < MAX_NPC_MEDIUM_GROUP_PER_LARGE_GROUP);
         for (INT32 nMediumGroupIndex = 0; nMediumGroupIndex < pLargeGroupData->nMediumGroupCount; nMediumGroupIndex++)
         {
@@ -1918,7 +1918,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
 
             pMediumGroup->nSmallGroupCount = 0;
 
-            // Ğ¡·Ö×é
+            // å°åˆ†ç»„
             LOG_PROCESS_ERROR(pMediumGroupData->nSmallGroupCount < MAX_NPC_SMALL_GROUP_PER_MEDIUM_GROUP);
             for (INT32 nSmallGroupID = 0; nSmallGroupID < pMediumGroupData->nSmallGroupCount; nSmallGroupID++)
             {
@@ -1940,7 +1940,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
                 pSmallGroup->nPointCount = 0;
                 pSmallGroup->bDynamicRespawnTime = pSmallGroupData->bDynamicRespawnTime;
 
-                // ±éÀúĞ¡·Ö×é
+                // éå†å°åˆ†ç»„
                 for (INT32 nPointIndex = 0; nPointIndex < pSmallGroupData->nPointCount; nPointIndex++)
                 {
                     NPC_SPAWN_POINT_DATA* pPointData = (NPC_SPAWN_POINT_DATA*)pData;
@@ -1988,7 +1988,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
 
                     for (INT32 nNpcIndex = 0; nNpcIndex < MAX_NPC_TEMPLATE_COUNT; nNpcIndex++)
                     {
-                        // ÓĞÆÁ±ÎµÄNpc
+                        // æœ‰å±è”½çš„Npc
                         if (blockNpc != m_mapBlockNpc.end())
                         {
                             auto find_block_npc = blockNpc->second.find(pPointData->NpcList[nNpcIndex].nTemplateID);
@@ -1998,7 +1998,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
 
                         if (pPointData->NpcList[nNpcIndex].nTemplateID > 0 && pPointData->NpcList[nNpcIndex].nWeight > 0)
                         {
-                            // ÅĞ¶Ï ¹ÖÎïÊÇ·ñ´æÔÚ
+                            // åˆ¤æ–­ æ€ªç‰©æ˜¯å¦å­˜åœ¨
                             if (CDataManager<NPC_DATA>::GetInstance().GetData(pPointData->NpcList[nNpcIndex].nTemplateID) == NULL)
                             {
                                 INT32 nX = pSpawnPoint->nX / POINT_PER_CM;
@@ -2012,7 +2012,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
                                 m_nErrorCount++;
                             }
 
-                            // ÅĞ¶Ï Ìí¼ÓÊÇ·ñ³É¹¦
+                            // åˆ¤æ–­ æ·»åŠ æ˜¯å¦æˆåŠŸ
                             nRetCode = pSpawnPoint->RandNpc.Add(pPointData->NpcList[nNpcIndex].nTemplateID, pPointData->NpcList[nNpcIndex].nWeight);
                             if (!nRetCode)
                             {
@@ -2027,7 +2027,7 @@ BOOL CSceneFileMgr::_LoadNpcSpawnData(const SCENE_DATA* pSceneData, CSceneStatic
                                 m_nErrorCount++;
                             }
 
-                            // ×Ô¼ºÔö¼Ó²âÊÔ´úÂë
+                            // è‡ªå·±å¢åŠ æµ‹è¯•ä»£ç 
                             //auto it = setNpcID.find(pPointData->NpcList[nNpcIndex].nTemplateID);
                             //if (it != setNpcID.end())
                             //{
@@ -2317,7 +2317,7 @@ Exit0:
     return FALSE;
 }
 
-// ¼ÓÔØ teleports.bin
+// åŠ è½½ teleports.bin
 BOOL CSceneFileMgr::_LoadTeleport()
 {
     INT32 nRetCode = 0;
@@ -2382,7 +2382,7 @@ Exit0:
     return FALSE;
 }
 
-// ¼ÓÔØ teleport_platforms.bin
+// åŠ è½½ teleport_platforms.bin
 BOOL CSceneFileMgr::_LoadTeleportPlatforms(void)
 {
     INT32 nRetCode = 0;
@@ -2437,7 +2437,7 @@ Exit0:
     return FALSE;
 }
 
-// ÇøÓò phx
+// åŒºåŸŸ phx
 BOOL CSceneFileMgr::_LoadPhyxData(const SCENE_DATA* pSceneData, CSceneStaticData* pSceneStaticData, char* pData, INT32 nSize)
 {
     INT32 nRetCode = 0;
@@ -2495,27 +2495,27 @@ BOOL CSceneFileMgr::_LoadPhyxData(const SCENE_DATA* pSceneData, CSceneStaticData
         pSceneStaticData->m_dwSceneArea += pZoneData->nGridCount;
     }
 
-    // AI·ÖÎö
-    // Âß¼­ÇøÓò£¨Region£©µÄĞĞÊıºÍÁĞÊı
-    // ³¡¾°ÓÉ¶à¸ö Zone£¨Ğ¡ÇøÓò£©×é³É£¬Ã¿¸ö Zone µÄ´óĞ¡Îª ZONE_WIDTH¡£
-    // Region ÊÇ¸ü´óµÄÂß¼­»®·Öµ¥Î»£¬´óĞ¡Îª REGION_WIDTH£¨Í¨³£ÊÇ ZONE_WIDTH µÄÕûÊı±¶£©¡£
-    // REGION_WIDTH / ZONE_WIDTH ±íÊ¾Ò»¸ö Region °üº¬¶àÉÙ¸ö Zone¡£
-    // m_nMaxZoneX ÊÇ³¡¾°µÄ Zone ÁĞÊı£¬³ıÒÔÃ¿ Region µÄ Zone ÁĞÊı£¬µÃµ½ Region ÁĞÊı£¨+1 ´¦Àí±ß½çÓàÊı£©¡£
-    // Í¬Àí¿ÉµÃ nRegionHeight£¨Region ĞĞÊı£©¡£
+    // AIåˆ†æ
+    // é€»è¾‘åŒºåŸŸï¼ˆRegionï¼‰çš„è¡Œæ•°å’Œåˆ—æ•°
+    // åœºæ™¯ç”±å¤šä¸ª Zoneï¼ˆå°åŒºåŸŸï¼‰ç»„æˆï¼Œæ¯ä¸ª Zone çš„å¤§å°ä¸º ZONE_WIDTHã€‚
+    // Region æ˜¯æ›´å¤§çš„é€»è¾‘åˆ’åˆ†å•ä½ï¼Œå¤§å°ä¸º REGION_WIDTHï¼ˆé€šå¸¸æ˜¯ ZONE_WIDTH çš„æ•´æ•°å€ï¼‰ã€‚
+    // REGION_WIDTH / ZONE_WIDTH è¡¨ç¤ºä¸€ä¸ª Region åŒ…å«å¤šå°‘ä¸ª Zoneã€‚
+    // m_nMaxZoneX æ˜¯åœºæ™¯çš„ Zone åˆ—æ•°ï¼Œé™¤ä»¥æ¯ Region çš„ Zone åˆ—æ•°ï¼Œå¾—åˆ° Region åˆ—æ•°ï¼ˆ+1 å¤„ç†è¾¹ç•Œä½™æ•°ï¼‰ã€‚
+    // åŒç†å¯å¾— nRegionHeightï¼ˆRegion è¡Œæ•°ï¼‰ã€‚
     INT32 nRegionWidth = pSceneStaticData->m_nMaxZoneX / (REGION_WIDTH / ZONE_WIDTH) + 1;
     LOG_PROCESS_ERROR(nRegionWidth < (1 << 16));
     INT32 nRegionHeight = pSceneStaticData->m_nMaxZoneY / (REGION_WIDTH / ZONE_WIDTH) + 1;
     LOG_PROCESS_ERROR(nRegionHeight < (1 << 16));
 
-    // AI·ÖÎö
-    // Í³¼Æ³¡¾°ÖĞ ÓĞĞ§ÇøÓò£¨Valid Region£©µÄÊıÁ¿
-    // ÓĞĞ§ÇøÓò¶¨Òå: ÈôÒ»¸ö Region ÄÚ´æÔÚÖÁÉÙÒ»¸ö ¿ÉĞĞ×ßµÄÍø¸ñ(bOutOfPoly == 0), Ôò¸Ã Region ÓĞĞ§
-    // ¼ì²éÃ¿¸öÍø¸ñÊÇ·ñ¿ÉĞĞ×ß, Í¨¹ı GetGroundGrid »ñÈ¡µØÃæÍø¸ñÊı¾İ¡£ÈôÍø¸ñµÄ bOutOfPoly Îª 0£¬±ê¼Ç¸Ã Region ÎªÓĞĞ§¡£
-    // 1 - Ñ­»·ÉÏÏŞ£ºREGION_WIDTH / GRID_WIDTH
-    // ÎïÀíÒâÒå: Ã¿¸ö Region(Âß¼­ÇøÓò) µÄ³ß´çÎª REGION_WIDTH£¬¶øÃ¿¸ö Grid(Íø¸ñ) µÄ³ß´çÎª GRID_WIDTH
-    // Òò´Ë£¬Ò»¸ö Region ÔÚ X/Y ·½ÏòÉÏ°üº¬µÄÍø¸ñÊıÎª "Íø¸ñÊı = REGION_WIDTH / GRID_WIDTH"
-    // Êµ¼Ê¼ÆËã "16 = 2097152 / 131072", Ôò Ã¿¸ö Region ÔÚ X/Y ·½Ïò¸÷°üº¬ 16 ¸öÍø¸ñ£¬×Ü¹²ÓĞ 256 ¸öÍø¸ñĞèÒª±éÀú
-    // 2 - Ìõ¼ş !bValidRegion, Ò»µ©ÔÚ Region ÄÚÕÒµ½ ÖÁÉÙÒ»¸ö¿ÉĞĞ×ßÍø¸ñ£¨bOutOfPoly == 0£©£¬Á¢¼´±ê¼Ç¸Ã Region ÎªÓĞĞ§£¬²¢ ÌáÇ°ÍË³öÑ­»·¡£
+    // AIåˆ†æ
+    // ç»Ÿè®¡åœºæ™¯ä¸­ æœ‰æ•ˆåŒºåŸŸï¼ˆValid Regionï¼‰çš„æ•°é‡
+    // æœ‰æ•ˆåŒºåŸŸå®šä¹‰: è‹¥ä¸€ä¸ª Region å†…å­˜åœ¨è‡³å°‘ä¸€ä¸ª å¯è¡Œèµ°çš„ç½‘æ ¼(bOutOfPoly == 0), åˆ™è¯¥ Region æœ‰æ•ˆ
+    // æ£€æŸ¥æ¯ä¸ªç½‘æ ¼æ˜¯å¦å¯è¡Œèµ°, é€šè¿‡ GetGroundGrid è·å–åœ°é¢ç½‘æ ¼æ•°æ®ã€‚è‹¥ç½‘æ ¼çš„ bOutOfPoly ä¸º 0ï¼Œæ ‡è®°è¯¥ Region ä¸ºæœ‰æ•ˆã€‚
+    // 1 - å¾ªç¯ä¸Šé™ï¼šREGION_WIDTH / GRID_WIDTH
+    // ç‰©ç†æ„ä¹‰: æ¯ä¸ª Region(é€»è¾‘åŒºåŸŸ) çš„å°ºå¯¸ä¸º REGION_WIDTHï¼Œè€Œæ¯ä¸ª Grid(ç½‘æ ¼) çš„å°ºå¯¸ä¸º GRID_WIDTH
+    // å› æ­¤ï¼Œä¸€ä¸ª Region åœ¨ X/Y æ–¹å‘ä¸ŠåŒ…å«çš„ç½‘æ ¼æ•°ä¸º "ç½‘æ ¼æ•° = REGION_WIDTH / GRID_WIDTH"
+    // å®é™…è®¡ç®— "16 = 2097152 / 131072", åˆ™ æ¯ä¸ª Region åœ¨ X/Y æ–¹å‘å„åŒ…å« 16 ä¸ªç½‘æ ¼ï¼Œæ€»å…±æœ‰ 256 ä¸ªç½‘æ ¼éœ€è¦éå†
+    // 2 - æ¡ä»¶ !bValidRegion, ä¸€æ—¦åœ¨ Region å†…æ‰¾åˆ° è‡³å°‘ä¸€ä¸ªå¯è¡Œèµ°ç½‘æ ¼ï¼ˆbOutOfPoly == 0ï¼‰ï¼Œç«‹å³æ ‡è®°è¯¥ Region ä¸ºæœ‰æ•ˆï¼Œå¹¶ æå‰é€€å‡ºå¾ªç¯ã€‚
     pSceneStaticData->m_dwValidRegion = 0;
     UINT32 dwValid_GRID_DATA = 0;
     for (INT32 nRegionX = 0; nRegionX < nRegionWidth; nRegionX++)
@@ -2553,14 +2553,14 @@ BOOL CSceneFileMgr::_LoadPhyxData(const SCENE_DATA* pSceneData, CSceneStaticData
 
     pSceneStaticData->m_pdwValidRegionList = new UINT32[pSceneStaticData->m_dwValidRegion + 1];
 
-    // AI·ÖÎö
-    // Ìî³ä m_pdwValidRegionList
-    // ¹Ø¼ü´úÂë pSceneStaticData->m_pdwValidRegionList[nRegionIndex++] = nRegionX << 16 | nRegionY;
-    // ½« nRegionX ×óÒÆ 16 Î»£¬¸ßÎ»´æ´¢ X ×ø±ê£»nRegionY ´æ´¢ÔÚµÍ 16 Î»¡£
-    // ½á¹ûÊÇÒ»¸ö 32 Î»ÕûÊı£¬Í¬Ê±°üº¬ X ºÍ Y ×ø±ê¡£
-    // ÕâÑùÉè¼ÆµÄÒâÒåÊÇ "¸ßĞ§´æ´¢Óë¶ÁÈ¡"
-    // INT32 decodedX = encodedValue >> 16;  // ½âÂë X
-    // INT32 decodedY = encodedValue & 0xFFFF; // ½âÂë Y
+    // AIåˆ†æ
+    // å¡«å…… m_pdwValidRegionList
+    // å…³é”®ä»£ç  pSceneStaticData->m_pdwValidRegionList[nRegionIndex++] = nRegionX << 16 | nRegionY;
+    // å°† nRegionX å·¦ç§» 16 ä½ï¼Œé«˜ä½å­˜å‚¨ X åæ ‡ï¼›nRegionY å­˜å‚¨åœ¨ä½ 16 ä½ã€‚
+    // ç»“æœæ˜¯ä¸€ä¸ª 32 ä½æ•´æ•°ï¼ŒåŒæ—¶åŒ…å« X å’Œ Y åæ ‡ã€‚
+    // è¿™æ ·è®¾è®¡çš„æ„ä¹‰æ˜¯ "é«˜æ•ˆå­˜å‚¨ä¸è¯»å–"
+    // INT32 decodedX = encodedValue >> 16;  // è§£ç  X
+    // INT32 decodedY = encodedValue & 0xFFFF; // è§£ç  Y
     INT32 nRegionIndex = 0;
     for (INT32 nRegionX = 0; nRegionX < nRegionWidth; nRegionX++)
     {
@@ -2606,7 +2606,7 @@ Exit0:
     return FALSE;
 }
 
-// µØĞÎ nav
+// åœ°å½¢ nav
 BOOL CSceneFileMgr::_LoadNavData(const SCENE_DATA* pSceneData, CSceneStaticData* pSceneStaticData, char* pData, INT32 nSize)
 {
     INT32 nRetCode = 0;
@@ -2616,12 +2616,12 @@ BOOL CSceneFileMgr::_LoadNavData(const SCENE_DATA* pSceneData, CSceneStaticData*
     LOG_PROCESS_ERROR(pHeader->dwTag == SCENE_NAV_FILE_TAG);
     LOG_PROCESS_ERROR(pHeader->dwVersion == SCENE_NAV_FILE_VERSION || pHeader->dwVersion == 2);
 
-    // ¶¥µã
+    // é¡¶ç‚¹
     pSceneStaticData->m_NavVertexData = new NAV_VERTEX_DATA[pHeader->wVertexCount + 2];
     LOG_PROCESS_ERROR(pSceneStaticData->m_NavVertexData);
     pSceneStaticData->m_dwMemorySize += sizeof(NAV_VERTEX_DATA) * (pHeader->wVertexCount + 2);
 
-    // ±ß
+    // è¾¹
     pSceneStaticData->m_NavEdgeData = new NAV_EDGE_DATA[pHeader->wEdgeCount];
     LOG_PROCESS_ERROR(pSceneStaticData->m_NavEdgeData);
     pSceneStaticData->m_dwMemorySize += sizeof(NAV_EDGE_DATA) * pHeader->wEdgeCount;
@@ -2654,7 +2654,7 @@ Exit0:
     return FALSE;
 }
 
-// ¼ÓÔØ phx/nav/scn
+// åŠ è½½ phx/nav/scn
 BOOL CSceneFileMgr::CTraverseSceneData::operator()(const SCENE_DATA* pSceneData)
 {
     BOOL bResult = FALSE;
@@ -2675,7 +2675,7 @@ BOOL CSceneFileMgr::CTraverseSceneData::operator()(const SCENE_DATA* pSceneData)
     nRetCode = pSceneStaticData->Init();
     LOG_PROCESS_ERROR(nRetCode);
 
-    // ¼ÓÔØ³¡¾° script
+    // åŠ è½½åœºæ™¯ script
 #ifndef	_ROBOT
     snprintf(szFileName, PATH_LEN, "%s/%s/%s/main.lua", CGameWorld::GetInstance().GetConfigPath(),
         SCENE_SCRIPT_FOLDER, pSceneData->szConfigName);
@@ -2711,7 +2711,7 @@ BOOL CSceneFileMgr::CTraverseSceneData::operator()(const SCENE_DATA* pSceneData)
     }
 #endif
 
-    // ¼ÓÔØ phx
+    // åŠ è½½ phx
     snprintf(szFileName, PATH_LEN, "%s/%s/%s/%s.%s", CGameWorld::GetInstance().GetConfigPath(), SCENE_FILE_FOLDER,
         pSceneData->szConfigName, pSceneData->szConfigName, SCENE_PHYX_FILE_EXT_NAME);
 
@@ -2735,7 +2735,7 @@ BOOL CSceneFileMgr::CTraverseSceneData::operator()(const SCENE_DATA* pSceneData)
         pFile = NULL;
     }
 
-    // ¼ÓÔØ nav
+    // åŠ è½½ nav
     snprintf(szFileName, PATH_LEN, "%s/%s/%s/%s.%s", CGameWorld::GetInstance().GetConfigPath(), SCENE_FILE_FOLDER,
         pSceneData->szConfigName, pSceneData->szConfigName, SCENE_NAV_FILE_EXT_NAME);
 
@@ -2759,7 +2759,7 @@ BOOL CSceneFileMgr::CTraverseSceneData::operator()(const SCENE_DATA* pSceneData)
         SAFE_DELETE_ARRAY(pData);
     }
 
-    // ¼ÓÔØ scn
+    // åŠ è½½ scn
     snprintf(szFileName, PATH_LEN, "%s/%s/%s/%s.%s", CGameWorld::GetInstance().GetConfigPath(),
         SCENE_FILE_FOLDER, pSceneData->szConfigName, pSceneData->szConfigName, SCENE_FILE_EXT_NAME);
 
@@ -2872,10 +2872,10 @@ BOOL CSceneFileMgr::Init(void)
     TraverseSceneData.pThis = this;
     m_nLoadedCount = 0;
 
-    // ¶îÍâÌí¼Ó[Ë¢ĞÂ/ÆÁ±Î]Npc
+    // é¢å¤–æ·»åŠ [åˆ·æ–°/å±è”½]Npc
     Init_AdditionalProcessNpcs();
 
-    // ÀïÃæÖ´ĞĞÖØÔØº¯Êı BOOL CSceneFileMgr::CTraverseSceneData::operator()(const SCENE_DATA* pSceneData)
+    // é‡Œé¢æ‰§è¡Œé‡è½½å‡½æ•° BOOL CSceneFileMgr::CTraverseSceneData::operator()(const SCENE_DATA* pSceneData)
     nRetCode = rDataMgr.Traverse(TraverseSceneData);
     LOG_CHECK_ERROR(nRetCode);
 
@@ -2885,19 +2885,19 @@ BOOL CSceneFileMgr::Init(void)
 
     if (m_nErrorCount > 0)
     {
-        g_AppendErrorMsg("³¡¾°Êı¾İÎÄ¼şÖĞÓĞ---%d---¸ö¶ÁÈ¡´íÎó\n", m_nErrorCount);
+        g_AppendErrorMsg("åœºæ™¯æ•°æ®æ–‡ä»¶ä¸­æœ‰---%d---ä¸ªè¯»å–é”™è¯¯\n", m_nErrorCount);
     }
 
     if (m_nLoadedCount < rDataMgr.GetDataCount())
     {
-        g_AppendErrorMsg("³¡¾°Êı¾İÎÄ¼şÖĞÓĞ---%d---¸ö³¡¾°¶ÁÈ¡Ê§°Ü\n", rDataMgr.GetDataCount() - m_nLoadedCount);
+        g_AppendErrorMsg("åœºæ™¯æ•°æ®æ–‡ä»¶ä¸­æœ‰---%d---ä¸ªåœºæ™¯è¯»å–å¤±è´¥\n", rDataMgr.GetDataCount() - m_nLoadedCount);
     }
 
-    // ¼ÓÔØ teleports.bin
+    // åŠ è½½ teleports.bin
     nRetCode = _LoadTeleport();
     LOG_CHECK_ERROR(nRetCode);
 
-    // ¼ÓÔØ teleport_platforms.bin
+    // åŠ è½½ teleport_platforms.bin
     memset(m_lstTeleportPlatforms, 0, sizeof(m_lstTeleportPlatforms));
     nRetCode = _LoadTeleportPlatforms();
     LOG_CHECK_ERROR(nRetCode);
@@ -2974,14 +2974,14 @@ const NPC_POSITION* CSceneFileMgr::GetNpcPosition(INT32 nTemplateID) const
         return &it->second;
 }
 
-// ¶îÍâÌí¼Ó[Ë¢ĞÂ/ÆÁ±Î]Npc
+// é¢å¤–æ·»åŠ [åˆ·æ–°/å±è”½]Npc
 void CSceneFileMgr::Init_AdditionalProcessNpcs()
 {
-    // ¶îÍâÌí¼ÓË¢ĞÂNpc
+    // é¢å¤–æ·»åŠ åˆ·æ–°Npc
     {
         m_vecAddSpawnNpcs.clear();
 
-        // Àı×Ó´úÂë
+        // ä¾‹å­ä»£ç 
         {
             //INT32 nMapID_1 = 142;
             //ADD_NPC_SPAWN_POINT Npc_001;
@@ -3001,14 +3001,14 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //Npc_001.bCanDropItem = 1;
             //Npc_001.bAutoSpawn = 1;
             //Npc_001.bAutoRespawn = 1;
-            //Npc_001.nSmallGroupID = Npc_001.nMediumGroupID = Npc_001.nLargeGroupID = -1;  // ·Ö×éID
+            //Npc_001.nSmallGroupID = Npc_001.nMediumGroupID = Npc_001.nLargeGroupID = -1;  // åˆ†ç»„ID
             //
             //std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
             //vecMap_1.push_back(Npc_001);
             //m_vecAddSpawnNpcs.insert(std::make_pair(nMapID_1, vecMap_1));
         }
 
-        // 146 ÎÖÂêËÂÃí1 - 3150,3151
+        // 146 æ²ƒç›å¯ºåº™1 - 3150,3151
         {
             INT32 nMapID_1 = 146;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3075,7 +3075,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 155 ÎÖÂêËÂÃí2 - 3150,3151
+        // 155 æ²ƒç›å¯ºåº™2 - 3150,3151
         {
             INT32 nMapID_1 = 155;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3142,7 +3142,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 148 ËÀÍöÏ¿¹È1 - 3220,3214
+        // 148 æ­»äº¡å³¡è°·1 - 3220,3214
         {
             INT32 nMapID_1 = 148;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3209,7 +3209,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 201 ËÀÍöÏ¿¹È2 - 3220,3214
+        // 201 æ­»äº¡å³¡è°·2 - 3220,3214
         {
             INT32 nMapID_1 = 201;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3276,7 +3276,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 157 ËÀÍöÏ¿¹È3 - 3217,3213
+        // 157 æ­»äº¡å³¡è°·3 - 3217,3213
         {
             INT32 nMapID_1 = 157;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3343,7 +3343,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 158 ËÀÍöÏ¿¹È5 - 3217,3213
+        // 158 æ­»äº¡å³¡è°·5 - 3217,3213
         {
             INT32 nMapID_1 = 158;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3410,7 +3410,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 203 ËÀÍöÏ¿¹È6 - 1020
+        // 203 æ­»äº¡å³¡è°·6 - 1020
         {
             INT32 nMapID_1 = 203;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3477,7 +3477,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 149 Ê¯Ä¹1 - 1045,1046
+        // 149 çŸ³å¢“1 - 1045,1046
         {
             INT32 nMapID_1 = 149;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3544,7 +3544,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 159 Ê¯Ä¹2 - 1045,1046
+        // 159 çŸ³å¢“2 - 1045,1046
         {
             INT32 nMapID_1 = 159;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3611,7 +3611,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 160 Ê¯Ä¹3 - 1048,1049
+        // 160 çŸ³å¢“3 - 1048,1049
         {
             INT32 nMapID_1 = 160;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3678,7 +3678,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 161 Ê¯Ä¹4 - 1048,1049
+        // 161 çŸ³å¢“4 - 1048,1049
         {
             INT32 nMapID_1 = 161;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3745,7 +3745,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 162 Ê¯Ä¹5 - 1047,1050
+        // 162 çŸ³å¢“5 - 1047,1050
         {
             INT32 nMapID_1 = 162;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3812,7 +3812,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 164 ºçÄ§½ÌÌ³ - 1047,1050
+        // 164 è™¹é­”æ•™å› - 1047,1050
         {
             INT32 nMapID_1 = 164;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3879,7 +3879,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 180 ×æÂêËÂÃí1 - 1086,1087
+        // 180 ç¥–ç›å¯ºåº™1 - 1086,1087
         {
             INT32 nMapID_1 = 180;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -3946,7 +3946,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 167 ×æÂêËÂÃí2 - 1086,1087
+        // 167 ç¥–ç›å¯ºåº™2 - 1086,1087
         {
             INT32 nMapID_1 = 167;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4013,7 +4013,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 168 ×æÂêËÂÃí3 - 1090,3300
+        // 168 ç¥–ç›å¯ºåº™3 - 1090,3300
         {
             INT32 nMapID_1 = 168;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4080,7 +4080,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 169 ×æÂêËÂÃí4 - 1090,3300
+        // 169 ç¥–ç›å¯ºåº™4 - 1090,3300
         {
             INT32 nMapID_1 = 169;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4147,7 +4147,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 170 ×æÂêËÂÃí5 - 3301,3302
+        // 170 ç¥–ç›å¯ºåº™5 - 3301,3302
         {
             INT32 nMapID_1 = 170;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4214,7 +4214,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 172 ×æÂê´óÌü - 3300
+        // 172 ç¥–ç›å¤§å… - 3300
         {
             INT32 nMapID_1 = 172;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4256,7 +4256,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 188 ³àÔÂÏ¿¹È±±Èë¿Ú - 1103,1104
+        // 188 èµ¤æœˆå³¡è°·åŒ—å…¥å£ - 1103,1104
         {
             INT32 nMapID_1 = 188;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4323,7 +4323,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 189 ³àÔÂÏ¿¹ÈÄÏÈë¿Ú - 1103,1104
+        // 189 èµ¤æœˆå³¡è°·å—å…¥å£ - 1103,1104
         {
             INT32 nMapID_1 = 189;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4390,7 +4390,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 190 ³àÔÂÏ¿¹È¶«Èë¿Ú - 1106,1107
+        // 190 èµ¤æœˆå³¡è°·ä¸œå…¥å£ - 1106,1107
         {
             INT32 nMapID_1 = 190;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4457,7 +4457,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 191 ³àÔÂÏ¿¹È¹ã³¡ - 1106,1107
+        // 191 èµ¤æœˆå³¡è°·å¹¿åœº - 1106,1107
         {
             INT32 nMapID_1 = 191;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4524,7 +4524,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 193 ×ó»ØÀÈ - 1105,1108
+        // 193 å·¦å›å»Š - 1105,1108
         {
             INT32 nMapID_1 = 193;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4591,7 +4591,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 194 ÓÒ»ØÀÈ - 1105,1108
+        // 194 å³å›å»Š - 1105,1108
         {
             INT32 nMapID_1 = 194;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4658,7 +4658,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 195 ¾ñÔñÖ®µØ - 1097
+        // 195 æŠ‰æ‹©ä¹‹åœ° - 1097
         {
             INT32 nMapID_1 = 195;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4725,7 +4725,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 196 É½¹ÈÃØµÀ1 - 1097
+        // 196 å±±è°·ç§˜é“1 - 1097
         {
             INT32 nMapID_1 = 196;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4767,7 +4767,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 197 É½¹ÈÃØµÀ2 - 1097
+        // 197 å±±è°·ç§˜é“2 - 1097
         {
             INT32 nMapID_1 = 197;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4809,7 +4809,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 187 ´ÔÁÖÃÔ¹¬ - 1105,1108
+        // 187 ä¸›æ—è¿·å®« - 1105,1108
         {
             INT32 nMapID_1 = 187;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4876,7 +4876,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 223 ÓÄÚ¤º£1 - 2175
+        // 223 å¹½å†¥æµ·1 - 2175
         {
             INT32 nMapID_1 = 223;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -4943,7 +4943,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 224 ÓÄÚ¤º£2 - 2106, 2115
+        // 224 å¹½å†¥æµ·2 - 2106, 2115
         {
             INT32 nMapID_1 = 224;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -5010,7 +5010,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 225 ÓÄÚ¤º£3 - 2117, 2118
+        // 225 å¹½å†¥æµ·3 - 2117, 2118
         {
             INT32 nMapID_1 = 225;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -5077,7 +5077,7 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
             //WRN("");
         }
 
-        // 226 ÓÄÚ¤º£4 - 2117, 2118
+        // 226 å¹½å†¥æµ·4 - 2117, 2118
         {
             INT32 nMapID_1 = 226;
             std::vector<ADD_NPC_SPAWN_POINT> vecMap_1;
@@ -5145,20 +5145,20 @@ void CSceneFileMgr::Init_AdditionalProcessNpcs()
         }
     }
 
-    // ¶îÍâÆÁ±ÎNpc
+    // é¢å¤–å±è”½Npc
     {
-        m_mapBlockNpc[143] = { 6128, 6101 };  // 143-±ÈÆæÊ¡       => 6128-½­ºşÏÀ¿Í, 6101-»ÊÊÒ±¦¿â´«ËÍÔ±
-        m_mapBlockNpc[147] = { 6128, 6101 };  // 147-ÃËÖØÊ¡       => 6128-½­ºşÏÀ¿Í, 6101-»ÊÊÒ±¦¿â´«ËÍÔ±
-        m_mapBlockNpc[207] = { 3118 };  // 207-Ê¬Íõµî       => 3118-À×Êõ¹íÊ¬
-        m_mapBlockNpc[156] = {  953 };  // 156-ÎÖÂêËÂÃí3²ã  => 953-¶¾ÕëÄ§Õ½Ê¿
-        m_mapBlockNpc[203] = { 3227 };  // 203-ËÀÍöÏ¿¹È6²ã  => 3227-Éã»êÌøÌø·ä
-        m_mapBlockNpc[164] = { 3248 };  //  35-ºçÄ§½ÌÌ³     => 3248-°×Ò°Öí±©Í½
-        m_mapBlockNpc[172] = { 1078 };  // 172-×æÂê´óÌü     => 1078-Ğ°¼ı¹­ÊÖ
-        m_mapBlockNpc[173] = { 1078 };  // 173-×æÂê½ÌÖ÷Ö®¼Ò => 1078-Ğ°¼ı¹­ÊÖ
-        m_mapBlockNpc[197] = { 1102 };  // 197-É½¹ÈÃØµÀ     => 1102-ÁÔÄ§Ö©Öë01
-        m_mapBlockNpc[244] = { 1142 };  // 244-Ä§ÁúÑªÓò     => 1142-Ä§Áú¹íÉä01
-        m_mapBlockNpc[66]  = {  329 };  //  66-Å£Ä§ËÂÃí´óÌü => 329-ºÚ°µ¼ÀË¾
-        m_mapBlockNpc[55]  = {  306 };  //  55-¹ÇÄ§¶´Îå²ã   => 306-ËéÂ­¹­¼ıÊÖ
+        m_mapBlockNpc[143] = { 6128, 6101 };  // 143-æ¯”å¥‡çœ       => 6128-æ±Ÿæ¹–ä¾ å®¢, 6101-çš‡å®¤å®åº“ä¼ é€å‘˜
+        m_mapBlockNpc[147] = { 6128, 6101 };  // 147-ç›Ÿé‡çœ       => 6128-æ±Ÿæ¹–ä¾ å®¢, 6101-çš‡å®¤å®åº“ä¼ é€å‘˜
+        m_mapBlockNpc[207] = { 3118 };  // 207-å°¸ç‹æ®¿       => 3118-é›·æœ¯é¬¼å°¸
+        m_mapBlockNpc[156] = {  953 };  // 156-æ²ƒç›å¯ºåº™3å±‚  => 953-æ¯’é’ˆé­”æˆ˜å£«
+        m_mapBlockNpc[203] = { 3227 };  // 203-æ­»äº¡å³¡è°·6å±‚  => 3227-æ‘„é­‚è·³è·³èœ‚
+        m_mapBlockNpc[164] = { 3248 };  //  35-è™¹é­”æ•™å›     => 3248-ç™½é‡çŒªæš´å¾’
+        m_mapBlockNpc[172] = { 1078 };  // 172-ç¥–ç›å¤§å…     => 1078-é‚ªç®­å¼“æ‰‹
+        m_mapBlockNpc[173] = { 1078 };  // 173-ç¥–ç›æ•™ä¸»ä¹‹å®¶ => 1078-é‚ªç®­å¼“æ‰‹
+        m_mapBlockNpc[197] = { 1102 };  // 197-å±±è°·ç§˜é“     => 1102-çŒé­”èœ˜è››01
+        m_mapBlockNpc[244] = { 1142 };  // 244-é­”é¾™è¡€åŸŸ     => 1142-é­”é¾™é¬¼å°„01
+        m_mapBlockNpc[66]  = {  329 };  //  66-ç‰›é­”å¯ºåº™å¤§å… => 329-é»‘æš—ç¥­å¸
+        m_mapBlockNpc[55]  = {  306 };  //  55-éª¨é­”æ´äº”å±‚   => 306-ç¢é¢…å¼“ç®­æ‰‹
     }
 
 }

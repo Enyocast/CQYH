@@ -3,7 +3,7 @@
 	file:		cmd_manager.cpp
 	author:		Allan Tao
 	
-	purpose:	ÃüÁî¹ÜÀíÆ÷ UI²ãºÍÂß¼­²ã½»»¥
+	purpose:	å‘½ä»¤ç®¡ç†å™¨ UIå±‚å’Œé€»è¾‘å±‚äº¤äº’
 *********************************************************************/
 
 
@@ -85,7 +85,7 @@ BOOL CCmdManager::MainLoop()
 
                 nRetCode = CCmdManager::GetInstance().DelCmd(m_pCmd);
                 LOG_CHECK_ERROR(nRetCode);
-                CGMLog::GetInstance().Log("Ö¸Áî³¬Ê±!");
+                CGMLog::GetInstance().Log("æŒ‡ä»¤è¶…æ—¶!");
 
                 m_pCmd = NULL;
             }
@@ -93,7 +93,7 @@ BOOL CCmdManager::MainLoop()
             {
                 nRetCode = CCmdManager::GetInstance().DelCmd(m_pCmd);
                 LOG_CHECK_ERROR(nRetCode);
-                //CGMLog::GetInstance().Log("Ö¸Áî³É¹¦!");
+                //CGMLog::GetInstance().Log("æŒ‡ä»¤æˆåŠŸ!");
                 //nRetCode = CCmdManager::GetInstance().Success(m_pCmd);
                 //LOG_CHECK_ERROR(nRetCode);
                 m_pCmd = NULL;
@@ -171,7 +171,7 @@ BOOL CCmdManager::QueryRoleData(CMD_BASE *pCmd)
     LOG_CHECK_ERROR(nRetCode);
     if (nRetCode == FALSE)
     {
-        CGMLog::GetInstance().Log("²éÑ¯½ÇÉ«[%s]Ê§°Ü", ((QUERY_ROLE_DATA*)m_pCmd)->szRoleName);
+        CGMLog::GetInstance().Log("æŸ¥è¯¢è§’è‰²[%s]å¤±è´¥", ((QUERY_ROLE_DATA*)m_pCmd)->szRoleName);
     }
 
     return TRUE;
@@ -193,7 +193,7 @@ BOOL CCmdManager::ForbidChat(CMD_BASE *pCmd)
     nRetCode = CMessageHandler::GetInstance().DoForbidChat(((FORBIDDEN_CHAT*)pCmd)->llTime, ((FORBIDDEN_CHAT*)pCmd)->roleList.begin()->dwRoleID);
     if (nRetCode == FALSE)
     {
-        CGMLog::GetInstance().Log("·¢ËÍ½ÇÉ«[%d]½ûÑÔÏûÏ¢Ê§°Ü", ((FORBIDDEN_CHAT*)pCmd)->roleList.begin()->dwRoleID);
+        CGMLog::GetInstance().Log("å‘é€è§’è‰²[%d]ç¦è¨€æ¶ˆæ¯å¤±è´¥", ((FORBIDDEN_CHAT*)pCmd)->roleList.begin()->dwRoleID);
         LOG_PROCESS_ERROR(FALSE);
     }
 
@@ -216,7 +216,7 @@ BOOL CCmdManager::FreezeRole(CMD_BASE *pCmd)
     nRetCode = CMessageHandler::GetInstance().DoFreezeRole(((FREEZE_ROLE*)pCmd)->llTime, ((FREEZE_ROLE*)pCmd)->roleList.begin()->dwRoleID);
     if (nRetCode == FALSE)
     {
-        CGMLog::GetInstance().Log("·¢ËÍ½ÇÉ«[%d]¶³½áÏûÏ¢Ê§°Ü", ((FREEZE_ROLE*)pCmd)->roleList.begin()->dwRoleID);
+        CGMLog::GetInstance().Log("å‘é€è§’è‰²[%d]å†»ç»“æ¶ˆæ¯å¤±è´¥", ((FREEZE_ROLE*)pCmd)->roleList.begin()->dwRoleID);
         LOG_PROCESS_ERROR(FALSE);
     }
 
@@ -240,7 +240,7 @@ BOOL CCmdManager::KickRole(CMD_BASE *pCmd)
     nRetCode = CMessageHandler::GetInstance().DoKickRole(((KICK_ROLE*)pCmd)->roleList.begin()->dwRoleID);
     if (nRetCode == FALSE)
     {
-        CGMLog::GetInstance().Log("·¢ËÍ½ÇÉ«[%d]Ç¿ÖÆÏÂÏßÏûÏ¢Ê§°Ü", ((KICK_ROLE*)pCmd)->roleList.begin()->dwRoleID);
+        CGMLog::GetInstance().Log("å‘é€è§’è‰²[%d]å¼ºåˆ¶ä¸‹çº¿æ¶ˆæ¯å¤±è´¥", ((KICK_ROLE*)pCmd)->roleList.begin()->dwRoleID);
         LOG_PROCESS_ERROR(FALSE);
     }
 
@@ -265,7 +265,7 @@ BOOL CCmdManager::SendMail(CMD_BASE *pCmd)
         pSendMail->szContent, pSendMail->szReason, pSendMail->dwItemID, pSendMail->nItemNum);
     if (nRetCode == FALSE)
     {
-        CGMLog::GetInstance().Log("·¢ËÍ½ÇÉ«[%d]½ûÑÔÏûÏ¢Ê§°Ü", pSendMail->roleList.begin()->dwRoleID);
+        CGMLog::GetInstance().Log("å‘é€è§’è‰²[%d]ç¦è¨€æ¶ˆæ¯å¤±è´¥", pSendMail->roleList.begin()->dwRoleID);
         LOG_PROCESS_ERROR(nRetCode);
     }
 
@@ -568,67 +568,67 @@ BOOL CCmdManager::Success(CMD_BASE *pCmd)
     {
     case CMD_QUERY_ROLE_ID:
     {
-        nRetCode = CGMLog::GetInstance().Log("²éÑ¯½ÇÉ«IDÖ¸ÁîÖ´ĞĞ³É¹¦");
+        nRetCode = CGMLog::GetInstance().Log("æŸ¥è¯¢è§’è‰²IDæŒ‡ä»¤æ‰§è¡ŒæˆåŠŸ");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_QUERY_ROLE_DATA:
     {
-        nRetCode = CGMLog::GetInstance().Log("²éÑ¯½ÇÉ«ĞÅÏ¢³É¹¦");
+        nRetCode = CGMLog::GetInstance().Log("æŸ¥è¯¢è§’è‰²ä¿¡æ¯æˆåŠŸ");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_FORBIDDEN_CHAT:
     {
-        nRetCode = CGMLog::GetInstance().Log("½ûÑÔ½ÇÉ«³É¹¦");
+        nRetCode = CGMLog::GetInstance().Log("ç¦è¨€è§’è‰²æˆåŠŸ");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_FREEZE_ROLE:
     {
-        nRetCode = CGMLog::GetInstance().Log("¶³½á½ÇÉ«³É¹¦");
+        nRetCode = CGMLog::GetInstance().Log("å†»ç»“è§’è‰²æˆåŠŸ");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_KICK_ROLE:
     {
-        nRetCode = CGMLog::GetInstance().Log("ÌßÏß½ÇÉ«³É¹¦");
+        nRetCode = CGMLog::GetInstance().Log("è¸¢çº¿è§’è‰²æˆåŠŸ");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_ANNOUNCE:
     {
-        nRetCode = CGMLog::GetInstance().Log("·¢²¼¹«¸æ³É¹¦");
+        nRetCode = CGMLog::GetInstance().Log("å‘å¸ƒå…¬å‘ŠæˆåŠŸ");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_SEND_MAIL:
     {
-        nRetCode = CGMLog::GetInstance().Log("·¢ËÍÓÊ¼ş³É¹¦");
+        nRetCode = CGMLog::GetInstance().Log("å‘é€é‚®ä»¶æˆåŠŸ");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_LOG:
     {
-        nRetCode = CGMLog::GetInstance().Log("²éÑ¯ÈÕÖ¾³É¹¦£¡");
+        nRetCode = CGMLog::GetInstance().Log("æŸ¥è¯¢æ—¥å¿—æˆåŠŸï¼");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_EXECUTE_GM_STR:
     {
-        nRetCode = CGMLog::GetInstance().Log("Ö´ĞĞgm lua³É¹¦");
+        nRetCode = CGMLog::GetInstance().Log("æ‰§è¡Œgm luaæˆåŠŸ");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_LOAD_ROLE_DATA:
     {
-        nRetCode = CGMLog::GetInstance().Log("¼ÓÔØ½ÇÉ«Êı¾İ³É¹¦");
+        nRetCode = CGMLog::GetInstance().Log("åŠ è½½è§’è‰²æ•°æ®æˆåŠŸ");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_MODIFY_ROLE_DATA:
     {
-        nRetCode = CGMLog::GetInstance().Log("ĞŞ¸Ä½ÇÉ«Êı¾İ³É¹¦");
+        nRetCode = CGMLog::GetInstance().Log("ä¿®æ”¹è§’è‰²æ•°æ®æˆåŠŸ");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
@@ -653,21 +653,21 @@ BOOL CCmdManager::Washout(CMD_BASE *pCmd)
     {
     case CMD_QUERY_ROLE_ID:
     {
-        nRetCode = CGMLog::GetInstance().Log("²éÑ¯½ÇÉ«IDÖ¸Áî³¬Ê±£¬²¿·Ö·şÎñÆ÷Î´Ö´ĞĞÍê±Ï");
+        nRetCode = CGMLog::GetInstance().Log("æŸ¥è¯¢è§’è‰²IDæŒ‡ä»¤è¶…æ—¶ï¼Œéƒ¨åˆ†æœåŠ¡å™¨æœªæ‰§è¡Œå®Œæ¯•");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_QUERY_ROLE_DATA:
     {
         QUERY_ROLE_DATA *pQuery = (QUERY_ROLE_DATA *)pCmd;
-        nRetCode = CGMLog::GetInstance().Log("²éÑ¯½ÇÉ«Êı¾İÖ¸Áî³¬Ê±");
+        nRetCode = CGMLog::GetInstance().Log("æŸ¥è¯¢è§’è‰²æ•°æ®æŒ‡ä»¤è¶…æ—¶");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_FORBIDDEN_CHAT:
     {
         FORBIDDEN_CHAT *pForbidChat = (FORBIDDEN_CHAT *)pCmd;
-        nRetCode = CGMLog::GetInstance().Log("½ûÑÔ½ÇÉ«Ö¸Áî³¬Ê±");
+        nRetCode = CGMLog::GetInstance().Log("ç¦è¨€è§’è‰²æŒ‡ä»¤è¶…æ—¶");
         LOG_CHECK_ERROR(nRetCode);
 
     }
@@ -675,55 +675,55 @@ BOOL CCmdManager::Washout(CMD_BASE *pCmd)
     case CMD_FREEZE_ROLE:
     {
         FREEZE_ROLE *pFreezeRole = (FREEZE_ROLE *)pCmd;
-        nRetCode = CGMLog::GetInstance().Log("¶³½á½ÇÉ«Ö¸Áî³¬Ê±");
+        nRetCode = CGMLog::GetInstance().Log("å†»ç»“è§’è‰²æŒ‡ä»¤è¶…æ—¶");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_KICK_ROLE:
     {
         KICK_ROLE *pKickRole = (KICK_ROLE *)pCmd;
-        nRetCode = CGMLog::GetInstance().Log("ÌßÏß½ÇÉ«Ö¸Áî³¬Ê±");
+        nRetCode = CGMLog::GetInstance().Log("è¸¢çº¿è§’è‰²æŒ‡ä»¤è¶…æ—¶");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_ANNOUNCE:
     {
         ANNOUNCE *pAnnounce = (ANNOUNCE*)pCmd;
-        nRetCode = CGMLog::GetInstance().Log("·¢²¼¹«¸æÖ¸Áî³¬Ê±£¬ Ê£Óà[%d]¸ö·şÎñÆ÷Î´Ö´ĞĞ", pAnnounce->nSvrNum);
+        nRetCode = CGMLog::GetInstance().Log("å‘å¸ƒå…¬å‘ŠæŒ‡ä»¤è¶…æ—¶ï¼Œ å‰©ä½™[%d]ä¸ªæœåŠ¡å™¨æœªæ‰§è¡Œ", pAnnounce->nSvrNum);
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_SEND_MAIL:
     {
         SEND_MAIL   *pSendMail = (SEND_MAIL*)pCmd;
-        nRetCode = CGMLog::GetInstance().Log("·¢ËÍÓÊ¼şÖ¸Áî³¬Ê±");
+        nRetCode = CGMLog::GetInstance().Log("å‘é€é‚®ä»¶æŒ‡ä»¤è¶…æ—¶");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_LOG:
     {
-        nRetCode = CGMLog::GetInstance().Log("²éÑ¯ÈÕÖ¾³¬Ê±£¡");
+        nRetCode = CGMLog::GetInstance().Log("æŸ¥è¯¢æ—¥å¿—è¶…æ—¶ï¼");
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_EXECUTE_GM_STR:
     {
         EXECUTE_GM_STR *pExeStrCmd = (EXECUTE_GM_STR*)pCmd;
-        nRetCode = CGMLog::GetInstance().Log("Ö´ĞĞgm luaÖ¸Áî³¬Ê±£¬ Ê£Óà[%d]¸ö·şÎñÆ÷Î´Ö´ĞĞ", pExeStrCmd->nSvrNum);
+        nRetCode = CGMLog::GetInstance().Log("æ‰§è¡Œgm luaæŒ‡ä»¤è¶…æ—¶ï¼Œ å‰©ä½™[%d]ä¸ªæœåŠ¡å™¨æœªæ‰§è¡Œ", pExeStrCmd->nSvrNum);
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_LOAD_ROLE_DATA:
     {
         LOAD_ROLE_DATA *pLoadRoleCmd = (LOAD_ROLE_DATA *)pCmd;
-        nRetCode = CGMLog::GetInstance().Log("¼ÓÔØ½ÇÉ«[%u]Êı¾İ³¬Ê±", pLoadRoleCmd->dwRoleID);
+        nRetCode = CGMLog::GetInstance().Log("åŠ è½½è§’è‰²[%u]æ•°æ®è¶…æ—¶", pLoadRoleCmd->dwRoleID);
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
     case CMD_MODIFY_ROLE_DATA:
     {
         MODIFY_ROLE_DATA *pModifyRoleCmd = (MODIFY_ROLE_DATA *)pCmd;
-        nRetCode = CGMLog::GetInstance().Log("ĞŞ¸Ä½ÇÉ«Êı¾İÀàĞÍ[%d]³¬Ê±", pModifyRoleCmd->nType);
+        nRetCode = CGMLog::GetInstance().Log("ä¿®æ”¹è§’è‰²æ•°æ®ç±»å‹[%d]è¶…æ—¶", pModifyRoleCmd->nType);
         LOG_CHECK_ERROR(nRetCode);
     }
         break;
@@ -735,7 +735,7 @@ BOOL CCmdManager::Washout(CMD_BASE *pCmd)
 
     return TRUE;
 Exit0:
-    nRetCode = CGMLog::GetInstance().Log("Ö¸Áî´íÎó£¡£¡");
+    nRetCode = CGMLog::GetInstance().Log("æŒ‡ä»¤é”™è¯¯ï¼ï¼");
     LOG_CHECK_ERROR(nRetCode);
     return FALSE;
 }

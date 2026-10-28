@@ -59,7 +59,7 @@ public:
 
     BOOL DoMSQueryRealMoneyRole(UINT32 dwClientSessionID, UINT32 dwRoleID, INT64 llRealMoney);
 
-    // Íæ¼Ò¹ºÂòÉÌ³ÇÎïÆ·
+    // ç©å®¶è´­ä¹°å•†åŸç‰©å“
     BOOL DoMSRoleRealMoneyShopBuyItemAck(UINT32 dwClientSessionID, INT32 nResult, UINT32 dwRoleID, INT32 nItemID, INT32 nItemCount, CHAR* pcszRoleName);
 
     /************************************************************************/
@@ -237,21 +237,21 @@ private:
     void OnMSAddExerciseTime(PACKET_BUFFER *pPacketBuffer, UINT32 dwSize, ISocketSession *pSocketSession);
 
 
-    // ========== ÏÂÃæÊÇ×Ô¼ºĞÂ¼Ó´úÂë begin
+    // ========== ä¸‹é¢æ˜¯è‡ªå·±æ–°åŠ ä»£ç  begin
 
-    // Íæ¼Ò²éÑ¯Ôª±¦
+    // ç©å®¶æŸ¥è¯¢å…ƒå®
     void OnMSQueryRealMoneyRole(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession);
 
-    // ÉÌ³Ç¹ºÎï³É¹¦
+    // å•†åŸè´­ç‰©æˆåŠŸ
     void OnMSRealMoneyBuySuccess(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession);
 
-    // Íæ¼Ò¹ºÂòÉÌ³ÇÎïÆ·
+    // ç©å®¶è´­ä¹°å•†åŸç‰©å“
     void OnMSRoleRealMoneyShopBuyItemReq(PACKET_BUFFER *pPacketBuffer, UINT32 dwSize, ISocketSession *pSocketSession);
 
-    // Íæ¼Ò¹ºÂòµã¿¨
+    // ç©å®¶è´­ä¹°ç‚¹å¡
     void OnMSCustomRoleBuyTimeReq(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession);
 
-    // ========== ÏÂÃæÊÇ×Ô¼ºĞÂ¼Ó´úÂë end
+    // ========== ä¸‹é¢æ˜¯è‡ªå·±æ–°åŠ ä»£ç  end
 
     /************************************************************************/
     // From DB

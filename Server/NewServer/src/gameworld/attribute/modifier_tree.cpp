@@ -84,7 +84,7 @@ BOOL CModifierTree::Reload(void)
     for (INT32 i = 1; i < m_nExtraNodeCount; i++)
         m_FreeNodeList.push_back(i);
 
-    // ÏÂ±ê i, ¾ÍÊÇ½ÚµãÏÂ±ê
+    // ä¸‹æ ‡ i, å°±æ˜¯èŠ‚ç‚¹ä¸‹æ ‡
     for (INT32 i = 0; i < m_nGlobalNodeCount && !pFile->Eof(); i++)
     {
         MODIFIER_FILE_NODE_NEW FileNode;
@@ -101,10 +101,10 @@ BOOL CModifierTree::Reload(void)
 
         m_pstrNameList[i] = FileNode.szObjName;
 
-        // ĞŞ¸Ä½ÚµãÊı¾İ
+        // ä¿®æ”¹èŠ‚ç‚¹æ•°æ®
         switch (i)
         {
-        // Ä¬ÈÏ
+        // é»˜è®¤
         default:
         {
             for (INT32 j = 0; j < MODIFIER_PARAM_COUNT; j++)
@@ -133,7 +133,7 @@ BOOL CModifierTree::Reload(void)
             break;
         }
 
-        // ÕÙ»½÷¼÷Ã/ÉñÊŞ, ×î´óÕÙ»½ÊıÁ¿2¸Ä1
+        // å¬å”¤éª·é«…/ç¥å…½, æœ€å¤§å¬å”¤æ•°é‡2æ”¹1
         case 1134:
         case 1100:
         case 1138:
@@ -144,32 +144,32 @@ BOOL CModifierTree::Reload(void)
         case 1632:
         {
             m_pData[i].Param[0].nXType = FileNode.Param[0].nXType;
-            m_pData[i].Param[0].nParam = 1;  // ¿ØÖÆµÀÊ¿ÕÙ»½ÎïÊıÁ¿
+            m_pData[i].Param[0].nParam = 1;  // æ§åˆ¶é“å£«å¬å”¤ç‰©æ•°é‡
 
             m_pData[i].Param[1].nXType = FileNode.Param[1].nXType;
-            m_pData[i].Param[1].nParam = 1;  // Õâ¸ö²ÎÊıÃ»É¶ÓÃ
+            m_pData[i].Param[1].nParam = 1;  // è¿™ä¸ªå‚æ•°æ²¡å•¥ç”¨
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
             m_pData[i].Param[2].nParam = 0;
             break;
         }
 
-        // ÕÙ»½÷¼÷Ã-åÈÀ¼Ó¡, ¶îÍâÊôĞÔÀàĞÍ 7 => 4, ºÍ¾ıÍõÓ¡Ò»Ñù
+        // å¬å”¤éª·é«…-è¿¦å…°å°, é¢å¤–å±æ€§ç±»å‹ 7 => 4, å’Œå›ç‹å°ä¸€æ ·
         case 1152:
         case 1155:
         {
             m_pData[i].Param[0].nXType = FileNode.Param[0].nXType;
-            m_pData[i].Param[0].nParam = 3003;  // ¼¼ÄÜID
+            m_pData[i].Param[0].nParam = 3003;  // æŠ€èƒ½ID
 
             m_pData[i].Param[1].nXType = FileNode.Param[1].nXType;
-            m_pData[i].Param[1].nParam = 2;  // ¶îÍâÊôĞÔÀàĞÍ
+            m_pData[i].Param[1].nParam = 2;  // é¢å¤–å±æ€§ç±»å‹
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
             m_pData[i].Param[2].nParam = 0;
             break;
         }
 
-        // ¶ñÁé¹¥»÷³èÎï, °´°Ù·Ö±ÈµôÑª (3500 => 1000)
+        // æ¶çµæ”»å‡»å® ç‰©, æŒ‰ç™¾åˆ†æ¯”æ‰è¡€ (3500 => 1000)
         case 2954:
         {
             m_pData[i].Param[0].nXType = FileNode.Param[0].nXType;
@@ -179,7 +179,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 67;  // Õâ¸ö²ÎÊıÃ»É¶ÓÃ
+            m_pData[i].Param[2].nParam = 67;  // è¿™ä¸ªå‚æ•°æ²¡å•¥ç”¨
             break;
         }
         case 2956:
@@ -191,7 +191,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 60;  // Õâ¸ö²ÎÊıÃ»É¶ÓÃ
+            m_pData[i].Param[2].nParam = 60;  // è¿™ä¸ªå‚æ•°æ²¡å•¥ç”¨
             break;
         }
         case 2957:
@@ -203,7 +203,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 54;  // Õâ¸ö²ÎÊıÃ»É¶ÓÃ
+            m_pData[i].Param[2].nParam = 54;  // è¿™ä¸ªå‚æ•°æ²¡å•¥ç”¨
             break;
         }
         case 2988:
@@ -215,7 +215,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 64;  // Õâ¸ö²ÎÊıÃ»É¶ÓÃ
+            m_pData[i].Param[2].nParam = 64;  // è¿™ä¸ªå‚æ•°æ²¡å•¥ç”¨
             break;
         }
         case 2989:
@@ -227,7 +227,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 62;  // Õâ¸ö²ÎÊıÃ»É¶ÓÃ
+            m_pData[i].Param[2].nParam = 62;  // è¿™ä¸ªå‚æ•°æ²¡å•¥ç”¨
             break;
         }
         case 2992:
@@ -239,7 +239,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 57;  // Õâ¸ö²ÎÊıÃ»É¶ÓÃ
+            m_pData[i].Param[2].nParam = 57;  // è¿™ä¸ªå‚æ•°æ²¡å•¥ç”¨
             break;
         }
         case 2993:
@@ -251,7 +251,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 55;  // Õâ¸ö²ÎÊıÃ»É¶ÓÃ
+            m_pData[i].Param[2].nParam = 55;  // è¿™ä¸ªå‚æ•°æ²¡å•¥ç”¨
             break;
         }
         case 2996:
@@ -263,7 +263,7 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 51;  // Õâ¸ö²ÎÊıÃ»É¶ÓÃ
+            m_pData[i].Param[2].nParam = 51;  // è¿™ä¸ªå‚æ•°æ²¡å•¥ç”¨
             break;
         }
         case 2997:
@@ -275,13 +275,13 @@ BOOL CModifierTree::Reload(void)
             m_pData[i].Param[1].nParam = 0;
 
             m_pData[i].Param[2].nXType = FileNode.Param[2].nXType;
-            m_pData[i].Param[2].nParam = 48;  // Õâ¸ö²ÎÊıÃ»É¶ÓÃ
+            m_pData[i].Param[2].nParam = 48;  // è¿™ä¸ªå‚æ•°æ²¡å•¥ç”¨
             break;
         }
         }
 
 
-        // Ä¬ÈÏ´úÂë
+        // é»˜è®¤ä»£ç 
         //for(INT32 j = 0; j < MODIFIER_PARAM_COUNT; j++)
         //{
         //	m_pData[i].Param[j].nXType = FileNode.Param[j].nXType;
@@ -416,17 +416,17 @@ BOOL CModifierTree::_CheckNode(INT32 nRootIndex, INT32 nIndex, INT32 nType)
     LOG_PROCESS_ERROR(m_pData[nIndex].nFalseRetNode != nRootIndex);
     LOG_PROCESS_ERROR(m_pData[nIndex].nNextNode != nRootIndex);
 
-    // ¸ùº¯Êı
+    // æ ¹å‡½æ•°
     pRootFunc = GetModifierFunction(m_pData[nRootIndex].nType, m_pData[nRootIndex].nKey);
     LOG_PROCESS_ERROR(pRootFunc);
 
-    // ×Óº¯Êı
+    // å­å‡½æ•°
     pFunc = GetModifierFunction(m_pData[nIndex].nType, m_pData[nIndex].nKey);
     LOG_PROCESS_ERROR(pFunc);
 
     m_nDepth++;
 
-    // Ìõ¼ş½Úµã
+    // æ¡ä»¶èŠ‚ç‚¹
     nRetCode = _CheckConditionNode(nRootIndex, m_pData[nIndex].nTrueRetNode, nType);
     LOG_PROCESS_ERROR(nRetCode);
 

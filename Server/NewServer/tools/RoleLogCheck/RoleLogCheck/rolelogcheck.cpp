@@ -67,7 +67,7 @@ BOOL CRoleLogCheck::DoCheckLog(const char* pszDirectory, const char* pszDate1, c
 
 	_ReleaseLogCache();
 
-	// ¼ÓÔØ Money logÎÄ¼þ 
+	// åŠ è½½ Money logæ–‡ä»¶ 
 	if (NULL != pszDirectory2)
 	{
 		snprintf(szFileName, MAX_PATH, "%s\\Money_%s.txt", pszDirectory2, pszDate2);
@@ -82,7 +82,7 @@ BOOL CRoleLogCheck::DoCheckLog(const char* pszDirectory, const char* pszDate1, c
 	nRetCode = _LoadMoneyLog(szFileName, m_byFileIndex);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	// ¼ÓÔØ GM logÎÄ¼þ 
+	// åŠ è½½ GM logæ–‡ä»¶ 
 	if (NULL != pszDirectory2)
 	{
 		snprintf(szFileName, MAX_PATH, "%s\\gmmoney_%s.txt", pszDirectory2, pszDate2);
@@ -97,7 +97,7 @@ BOOL CRoleLogCheck::DoCheckLog(const char* pszDirectory, const char* pszDate1, c
 	nRetCode = _LoadGMLog(szFileName, m_byFileIndex);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	// ¼ÓÔØ RoleLogout Basic logÎÄ¼þ 
+	// åŠ è½½ RoleLogout Basic logæ–‡ä»¶ 
 	if (NULL != pszDirectory2)
 	{
 		snprintf(szFileName, MAX_PATH, "%s\\RoleLogout_Basic_%s.txt", pszDirectory2, pszDate2);
@@ -112,7 +112,7 @@ BOOL CRoleLogCheck::DoCheckLog(const char* pszDirectory, const char* pszDate1, c
 	nRetCode = _LoadBasicLog(szFileName, m_byFileIndex);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	//Êý¾Ý·ÖÎö
+	//æ•°æ®åˆ†æž
 	nRetCode = _CheckLog();
 	LOG_PROCESS_ERROR(nRetCode);
 
@@ -479,7 +479,7 @@ BOOL CRoleLogCheck::_CheckLog()
 			continue;
 		}
 
-		//ºöÂÔ½ÇÉ«µÚÒ»´ÎlogoutÖ®Ç°µÄÊý¾Ý
+		//å¿½ç•¥è§’è‰²ç¬¬ä¸€æ¬¡logoutä¹‹å‰çš„æ•°æ®
 		pLogoutLogNode = pLstLogoutData->Top();
 		LOG_PROCESS_ERROR(pLogoutLogNode);
 
@@ -585,7 +585,7 @@ BOOL CRoleLogCheck::_CheckLog()
 				}
 			}
 
-			//¶ªÆú
+			//ä¸¢å¼ƒ
 			if (bTimeAtLastLogoutTime)
 			{
 				nDiscardLogoutDataCount += 1;

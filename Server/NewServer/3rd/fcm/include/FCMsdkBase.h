@@ -2,7 +2,7 @@
 #define _FCMSDK_H_
 
 typedef int (*funcPtr)(const char* szUserID, const char* szRoleID,int iOnlineMinutes,int iOfflineMinutes);
-typedef void (*funcPtrSwitch)(int needFCM); //needFCM = 1ĞèÒª·À³ÁÃÔ £¬needFCM = 0²»ĞèÒª·À³ÁÃÔ
+typedef void (*funcPtrSwitch)(int needFCM); //needFCM = 1éœ€è¦é˜²æ²‰è¿· ï¼ŒneedFCM = 0ä¸éœ€è¦é˜²æ²‰è¿·
 typedef void (*QueryFuncPtr)(const char* szUserID, const char* szRoleID,int iState ,int iOnlineMinutes,int iOfflineMinutes);
 
 class CFCMSDKBase
@@ -20,7 +20,7 @@ public:
 	virtual int __stdcall FCMIDOffline(const char* szUserID, const char* szRoleID,const char *IPAddr);
 	virtual int __stdcall FCMIDOnlineGS(const char* szUserID, const char* szRoleID,const char *IPAddr);
 	virtual int __stdcall FCMIDOfflineGS(const char* szUserID, const char* szRoleID,const char *IPAddr);
-	//2010-08-11 ÎªÁË¼æÈİÀÏµÄ°æ±¾,²»ĞŞ¸Äº¯ÊıË³Ğò(²»Ê¹ÓÃĞÂ½Ó¿Ú£¬¿ÉÒÔ²»ÖØĞÂÁ´½Ó)
+	//2010-08-11 ä¸ºäº†å…¼å®¹è€çš„ç‰ˆæœ¬,ä¸ä¿®æ”¹å‡½æ•°é¡ºåº(ä¸ä½¿ç”¨æ–°æ¥å£ï¼Œå¯ä»¥ä¸é‡æ–°é“¾æ¥)
 	virtual bool __stdcall initFCMSDKEx(const char* szGameType, int GameTypeLength
 		, const  char* szGameArea, int GameAreaLength
 		,const char* szServerCode, int ServerCodeLength

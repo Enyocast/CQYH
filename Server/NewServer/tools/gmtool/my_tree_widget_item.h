@@ -3,7 +3,7 @@
 	file:		my_tree_widget_item.h
 	author:		Allan Tao
 	
-	purpose:	¼Ì³Ð×ÔQTreeWidgetItem
+	purpose:	ç»§æ‰¿è‡ªQTreeWidgetItem
 *********************************************************************/
 
 #ifndef _H_MY_TREE_WIDGET_ITEM_H_

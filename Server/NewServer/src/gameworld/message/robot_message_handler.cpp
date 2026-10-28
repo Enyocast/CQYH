@@ -304,7 +304,7 @@ BOOL CRobotMessageHandler::Init(IRobotMessageNotifier* poNotifier, IPacketAlloca
 	m_RobotMessageFuncList[g2c_hire_hero] = &CRobotMessageHandler::OnHireHero;
 	m_RobotMessageFuncList[g2c_hero_level_up] = &CRobotMessageHandler::OnHeroLevelUp;
 
-	// Öý»ê
+	// é“¸é­‚
 	m_RobotMessageFuncList[g2c_rune_item] = &CRobotMessageHandler::OnRuneItem;
 
 	// vip
@@ -1250,16 +1250,16 @@ void CRobotMessageHandler::OnItemChange(CRole* poRole, const char* pData)
 	UINT32 itemlen = iteminfo.Load(pMsg->acItem);
 	LOG_PROCESS_ERROR(itemlen > 0);
 
-	//³É¾ÍÏà¹Ø´¦Àí
+	//æˆå°±ç›¸å…³å¤„ç†
 	item = poRole->GetItemBag()->GetItem(iteminfo.m_byConSlot, iteminfo.m_byItemSlot);
 	pNewItemTemplate = GetItemData(iteminfo.m_nTemplateID);
 	LOG_PROCESS_ERROR(pNewItemTemplate);
 	if (item == NULL)
 	{
-		//itemÎªNULL£¬
+		//itemä¸ºNULLï¼Œ
 		bNewAddItem = TRUE;
 
-		//luckÔö¼ÓÅÐ¶Ï
+		//luckå¢žåŠ åˆ¤æ–­
 		if (iteminfo.m_byLuck > 0)
 		{
 			bItemLuckChange = TRUE;
@@ -1273,13 +1273,13 @@ void CRobotMessageHandler::OnItemChange(CRole* poRole, const char* pData)
 	}
 	else
 	{
-		//luckÔö¼ÓÅÐ¶Ï
+		//luckå¢žåŠ åˆ¤æ–­
 		if (iteminfo.m_byLuck != item->m_iteminfo.m_byLuck)
 		{
 			bItemLuckChange = TRUE;
 		}
 
-		//ÐÂÔöÎïÆ·ÅÐ¶Ï
+		//æ–°å¢žç‰©å“åˆ¤æ–­
 		if (item->m_iteminfo.m_nCurDur < iteminfo.m_nCurDur)
 		{
 			bNewAddItem = TRUE;
@@ -1289,7 +1289,7 @@ void CRobotMessageHandler::OnItemChange(CRole* poRole, const char* pData)
 			}
 		}
 
-		//¼ì²â×°±¸Æ·ÖÊ¸Ä±ä
+		//æ£€æµ‹è£…å¤‡å“è´¨æ”¹å˜
 		pOldItemTemplate = GetItemData(item->m_iteminfo.m_nTemplateID);
 		LOG_PROCESS_ERROR(pOldItemTemplate);
 		if ((pOldItemTemplate->m_byColor != pNewItemTemplate->m_byColor) 
@@ -6130,7 +6130,7 @@ void CRobotMessageHandler::OnSpiritAirChange(CRole* pRole, const char* pData)
 
 	G2C_SPIRIT_AIR_CHANGE* pMsg = (G2C_SPIRIT_AIR_CHANGE*)pData;
 
-	//¼ì²âÆøÏ¢±³°ü»ñµÃÐÂÆøÏ¢
+	//æ£€æµ‹æ°”æ¯èƒŒåŒ…èŽ·å¾—æ–°æ°”æ¯
 	pAir = pRole->GetSpirit().GetAir(sasbtBag, pMsg->nIndex);
 	if ((NULL == pAir || pAir->nTemplateID != pMsg->nAirID) && sasbtBag == pMsg->nBagType)
 	{

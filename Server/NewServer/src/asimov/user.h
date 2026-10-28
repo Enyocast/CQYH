@@ -122,18 +122,18 @@ public:
 	BOOL UseMoneyType01Only(BOOL bValue);
 	BOOL CheckNpcShopData(UINT32 dwCrc);
 
-	// 融灵
+	// 铻嶇伒
 	//        c2g_upgrade_soul,
 	//        c2g_add_soul,
 	//        c2g_remove_soul,
 	//
-	//        // 铸魂
+	//        // 閾搁瓊
 	//        c2g_rune_open_slot,
 	//        c2g_rune_close_slot,
 	//        c2g_rune_add,
 	//        c2g_rune_remove,
 	//
-	//        // 装备分解合成
+	//        // 瑁呭鍒嗚В鍚堟垚
 	//        c2g_decompose,
 	//        c2g_compose,
 

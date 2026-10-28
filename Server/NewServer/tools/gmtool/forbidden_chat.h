@@ -3,7 +3,7 @@
 	file:		forbidden_chat.h
 	author:		Allan Tao
 	
-	purpose:	½ûÑÔ½çÃæÀà
+	purpose:	ç¦è¨€ç•Œé¢ç±»
 *********************************************************************/
 
 #ifndef FORBIDDEN_CHAT_H_

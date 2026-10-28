@@ -8,7 +8,7 @@
 #include "data_manager.h"
 #include "spell_def.h"
 
-//¹ÌÓĞÊôĞÔÁĞ±í
+//å›ºæœ‰å±æ€§åˆ—è¡¨
 static const INT16 FixAttrTable[] =
 {
     catPhyAtk,     // 0
@@ -76,9 +76,9 @@ struct ITEM_DATA
     UINT8 m_byExpensiveItem;
     UINT8 m_byDropBroadcast;
     UINT8 m_bPkDrop;
-    UINT8 m_bTeamAuction;       //ÊÇ·ñ¿ÉÒÔ×é¶ÓÅÄÂô
-    UINT8 m_bAuction;           //ÊÇ·ñ¿ÉÅÄÂô
-    INT32 m_nAuctionFee[MAX_AUCTION_TIME_INTERVAL_TYPE];        //ÅÄÂô±£¹Ü·Ñ
+    UINT8 m_bTeamAuction;       //æ˜¯å¦å¯ä»¥ç»„é˜Ÿæ‹å–
+    UINT8 m_bAuction;           //æ˜¯å¦å¯æ‹å–
+    INT32 m_nAuctionFee[MAX_AUCTION_TIME_INTERVAL_TYPE];        //æ‹å–ä¿ç®¡è´¹
     UINT8 m_byAuctionType;
     INT32 m_nDefaultAuctionPrice;
     INT32 m_nPlayerDropTime;
@@ -110,14 +110,14 @@ struct EQUIP_DATA : public ITEM_DATA
     UINT8 m_byDestroyOnDeath;
     UINT8 m_byCannotUnEquip;
 
-    // ĞÂÔö´úÂë - ¿×Î»
+    // æ–°å¢ä»£ç  - å­”ä½
     UINT8 m_byCanSocket;
     UINT8 m_bySocketCountMaxNew;
     UINT8 m_byFirstSocketCost;
-    UINT8 m_bySecondSocketCost;      // ´ò¿×ÏûºÄ
+    UINT8 m_bySecondSocketCost;      // æ‰“å­”æ¶ˆè€—
 
 
-    // Ä¬ÈÏ´úÂë - ¿×Î»
+    // é»˜è®¤ä»£ç  - å­”ä½
     INT32 m_nSocketChance;
     UINT8 m_bySocketCountMin;
     UINT8 m_bySocketCountMax;
@@ -132,21 +132,21 @@ struct EQUIP_DATA : public ITEM_DATA
     INT32 m_nLuckModifier;
     SET_DATA* m_SetData;
 
-    //¹ÌÓĞÊôĞÔ
+    //å›ºæœ‰å±æ€§
     INT32 m_nFixAttr[FixAttrTableSize];
 
-    //¹ÌÓĞÌìÆøÊôĞÔ
+    //å›ºæœ‰å¤©æ°”å±æ€§
     INT32 m_nWeatherAttrID;
 
-    //¹ÌÓĞÌØÊâ¼¼ÄÜ
+    //å›ºæœ‰ç‰¹æ®ŠæŠ€èƒ½
     INT32 m_nSpecialAttrID;
 
-    //ÊôĞÔ³ØIDºÍ¸ÅÂÊ
+    //å±æ€§æ± IDå’Œæ¦‚ç‡
     INT32 m_nRandomAttributeChance;
     INT32 m_nAttributePoolID[MAX_RANDOM_ATTR_COUNT];
     INT32 m_nAttributePoolChance[MAX_RANDOM_ATTR_COUNT];
 
-    //µÚ¶ş¸öÃúÎÄ³öÏÖµÄ×îÉÙ»¨·ÑÊı(ĞèËæ»ú)
+    //ç¬¬äºŒä¸ªé“­æ–‡å‡ºç°çš„æœ€å°‘èŠ±è´¹æ•°(éœ€éšæœº)
     UINT32 m_dwSecondRuneCostMin;
     UINT32 m_dwSecondRuneCostMax;
 

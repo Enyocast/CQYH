@@ -8,7 +8,7 @@
 
 #include "error_def.h"
 #include "string_def.h"
-#include "ai_processor.h"	// ¾ßÌå¹¦ÄÜÊµÏÖÔÚ CAIProcessor ÖĞ
+#include "ai_processor.h"	// å…·ä½“åŠŸèƒ½å®ç°åœ¨ CAIProcessor ä¸­
 #include "game_world.h"		// FindValidCharacter, GetString
 #include "bt_manager.h"     // ms_ActionFuncList
 #include "spell_config.h"
@@ -908,7 +908,7 @@ INT32 bfPetChangeFightTarget(BTCustomCtx* pCtx, INT32 nParam[])
             if (poTarget->GetFlag().CheckFlag(cfNeverBeHit) == TRUE)
                 continue;
 
-            if (((CNpc*)poTarget)->GetNpcData() && ((CNpc*)poTarget)->GetNpcData()->bCounterInvisible == FALSE)    // ²ß»®ËµµÄÔ¶³Ì¹Ö±êÇ©...
+            if (((CNpc*)poTarget)->GetNpcData() && ((CNpc*)poTarget)->GetNpcData()->bCounterInvisible == FALSE)    // ç­–åˆ’è¯´çš„è¿œç¨‹æ€ªæ ‡ç­¾...
             {
                 dwTargetID = poTarget->GetObjID();
                 continue;
@@ -1394,7 +1394,7 @@ INT32 bfChangeGuildResource(BTCustomCtx* pCtx, INT32 nParam[])
     LOG_PROCESS_ERROR(poNpc->GetScene());
 
     pCtx->eRunningType = brtWaitMSGuildData;
-    pCtx->nWaitFrame = CGameWorld::GetInstance().GetGameFrame() + CONVERT_TIME(5000);   // 3Ãë³¬Ê±
+    pCtx->nWaitFrame = CGameWorld::GetInstance().GetGameFrame() + CONVERT_TIME(5000);   // 3ç§’è¶…æ—¶
 
 #ifndef _ROBOT
     nRetCode = CCliMessageHandler::GetInstance().DoMSNpcChangeGuildRes(poNpc->GetObjID(), poNpc->GetScene()->GetSceneID(), nChangeType, nResourceType, nCount, GUILD_CHEST_BUILDING_DAMAGE, nCtxType);
@@ -5471,7 +5471,7 @@ INT32 bfGuildEndWar(BTCustomCtx *pCtx, INT32 nParam[])
     LOG_PROCESS_ERROR(nRetCode);
 #endif
 
-    // ³Â¿­Ëµ£¬ÏÖÔÚ²»ÓÃËø¶¨ÁË¡£½áÊøÁËÒ²Ëæ±ãËûÃÇÉ±
+    // é™ˆå‡¯è¯´ï¼Œç°åœ¨ä¸ç”¨é”å®šäº†ã€‚ç»“æŸäº†ä¹Ÿéšä¾¿ä»–ä»¬æ€
     //nRetCode = GuildWarLockRole(poScene);
     //LOG_PROCESS_ERROR(nRetCode);
 

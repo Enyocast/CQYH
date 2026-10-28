@@ -11,80 +11,80 @@ const char *GetBaseDataName(INT32 nBaseType)
     switch (nBaseType)
     {
     case GM_RBD_ID:
-        return "½ÇÉ«ID";
+        return "è§’è‰²ID";
     case GM_RBD_NAME:
-        return "½ÇÉ«Ãû";
+        return "è§’è‰²å";
     case GM_RBD_GROUPID:
-        return "Çø×é";
+        return "åŒºç»„";
     case GM_RBD_DELETETIME:
-        return "É¾ºÅÊ±¼ä";
+        return "åˆ å·æ—¶é—´";
     case GM_RBD_CLASS:
-        return "Ö°Òµ";
+        return "èŒä¸š";
     case GM_RBD_SEX:
-        return "ĞÔ±ğ";
+        return "æ€§åˆ«";
     case GM_RBD_LEVEL:
-        return "µÈ¼¶";
+        return "ç­‰çº§";
     case GM_RBD_EXP:
-        return "¾­Ñé";
+        return "ç»éªŒ";
     case GM_RBD_PKVALUE:
-        return "PKÖµ";
+        return "PKå€¼";
     case GM_RBD_GMLEVEL:
-        return "GMµÈ¼¶";
+        return "GMç­‰çº§";
     case GM_RBD_MAP_ID:
-        return "µØÍ¼ÀàĞÍ";
+        return "åœ°å›¾ç±»å‹";
     case GM_RBD_MAP_SERIAL_ID:
-        return "µØÍ¼Á÷Ë®ºÅ";
+        return "åœ°å›¾æµæ°´å·";
     case GM_RBD_X:
-        return "×ø±êX";
+        return "åæ ‡X";
     case GM_RBD_Y:
-        return "×ø±êY";
+        return "åæ ‡Y";
     case GM_RBD_Z:
-        return "×ø±êZ";
+        return "åæ ‡Z";
     case GM_RBD_LAST_LOGIN_TIME:
-        return "ÉÏ´ÎµÇÂ¼Ê±¼ä";
+        return "ä¸Šæ¬¡ç™»å½•æ—¶é—´";
     case GM_RBD_LAST_LOGOUT_TIME:
-        return "ÉÏ´ÎÊı¾İ±£´æÊ±¼ä";
+        return "ä¸Šæ¬¡æ•°æ®ä¿å­˜æ—¶é—´";
     case GM_RBD_FORBIDDEND_CHAT_TIME:
-        return "½ûÑÔÊ±¼ä";
+        return "ç¦è¨€æ—¶é—´";
     case GM_RBD_FREEZE_ROLE_TIME:
-        return "GMÈË¹¤½ûÖ¹µÇÂ½Ê±¼ä";
+        return "GMäººå·¥ç¦æ­¢ç™»é™†æ—¶é—´";
     case GM_RBD_FREEZE_CHEAT_ROLE:
-        return "ÏµÍ³½ûÖ¹µÇÂ½Ê±¼ä";
+        return "ç³»ç»Ÿç¦æ­¢ç™»é™†æ—¶é—´";
     case GM_RBD_GUILD_ID:
-        return "¹«»áID";
+        return "å…¬ä¼šID";
     case GM_RBD_MONEY_1:
-        return "°ó½ğ";
+        return "ç»‘é‡‘";
     case GM_RBD_MONEY_2:
-        return "½ğ±Ò";
+        return "é‡‘å¸";
     case GM_RBD_MONEY_3:
-        return "Î´Ê¹ÓÃ";
+        return "æœªä½¿ç”¨";
     case GM_RBD_MONEY_4:
-        return "Î´Ê¹ÓÃ";
+        return "æœªä½¿ç”¨";
     case GM_RBD_MONEY_5:
-        return "Æ£ÀÍ¶È";
+        return "ç–²åŠ³åº¦";
     case GM_RBD_MONEY_6:
-        return "»ê";
+        return "é­‚";
     case GM_RBD_MONEY_7:
-        return "ÃûÊ¦Öµ";
+        return "åå¸ˆå€¼";
     case GM_RBD_MONEY_8:
-        return "Íò·¨Ö®Æø";
+        return "ä¸‡æ³•ä¹‹æ°”";
     case GM_RBD_MONEY_9:
-        return "Õ½³¡µãÊı";
+        return "æˆ˜åœºç‚¹æ•°";
     case GM_RBD_MONEY_10:
-        return "¼Ò×å¹±Ï×";
+        return "å®¶æ—è´¡çŒ®";
     case GM_RBD_MONEY_11:
-        return "ĞŞÁ¶µã";
+        return "ä¿®ç‚¼ç‚¹";
     case GM_RBD_MONEY_12:
-        return "µÀÒåÖµ";
+        return "é“ä¹‰å€¼";
     case GM_RBD_MONEY_13:
-        return "¾º¼¼³¡µãÊı";
+        return "ç«æŠ€åœºç‚¹æ•°";
     case GM_RBD_MONEY_14:
-        return "³É¾ÍµãÊı";
+        return "æˆå°±ç‚¹æ•°";
     default:
         break;
     }
 
-    return "Î´Öª";
+    return "æœªçŸ¥";
 }
 
 const char *GetSexString(INT32 nSexType)
@@ -92,17 +92,17 @@ const char *GetSexString(INT32 nSexType)
     switch (nSexType)
     {
     case cstMale:
-        return "ÄĞ";
+        return "ç”·";
     case cstFemale:
-        return "Å®";
+        return "å¥³";
     case cstAsexual:
-        return "Ñı";
+        return "å¦–";
         break;
     default:
-        return "¿Õ";
+        return "ç©º";
     }
 
-    return "¿Õ";
+    return "ç©º";
 }
 
 const char *GetClassString(INT32 nClassType)
@@ -110,20 +110,20 @@ const char *GetClassString(INT32 nClassType)
     switch (nClassType)
     {
     case clsWarrior:
-        return "Õ½Ê¿";
+        return "æˆ˜å£«";
     case clsMage:
-        return "·¨Ê¦";
+        return "æ³•å¸ˆ";
     case clsRogue:
-        return "´Ì¿Í";
+        return "åˆºå®¢";
     case clsArcher:
-        return "¹­ÊÖ";
+        return "å¼“æ‰‹";
     case clsTaoist:
-        return "µÀÊ¿";
+        return "é“å£«";
     default:
-        return "¿Õ";
+        return "ç©º";
     }
 
-    return "¿Õ";
+    return "ç©º";
 }
 
 const char *GetItemContainerString(INT32 nConSlot)
@@ -131,22 +131,22 @@ const char *GetItemContainerString(INT32 nConSlot)
     switch (nConSlot)
     {
     case CONSLOT_EQUIPPED:
-        return "ÒÑ×°±¸";
+        return "å·²è£…å¤‡";
     case CONSLOT_DEFAULT:
-        return "±³°ü";
+        return "èƒŒåŒ…";
     case CONSLOT_BANK:
-        return "ÒøĞĞ";
+        return "é“¶è¡Œ";
     case CONSLOT_HERO_EQUIPPED:
-        return "Ó¢ĞÛ×°±¸";
+        return "è‹±é›„è£…å¤‡";
     case CONSLOT_HERO_EQUIPMENT:
-        return "Ó¢ĞÛ°ü¹ü";
+        return "è‹±é›„åŒ…è£¹";
     case CONSLOT_DEPOSIT:
-        return "´¢ÖµÀ¸";
+        return "å‚¨å€¼æ ";
     default:
-        return "¿Õ";
+        return "ç©º";
     }
 
-    return "¿Õ";
+    return "ç©º";
 }
 
 const char *GetItemTypeString(INT32 nType)
@@ -154,36 +154,36 @@ const char *GetItemTypeString(INT32 nType)
     switch (nType)
     {
     case ITEMTYPE_INVALID:
-        return "¿Õ";
+        return "ç©º";
     case ITEMTYPE_USABLE:
-        return "ÏûºÄÆ·";
+        return "æ¶ˆè€—å“";
     case ITEMTYPE_EQUIP:
-        return "×°±¸";
+        return "è£…å¤‡";
     case ITEMTYPE_MATERIAL:
-        return "²ÄÁÏ";
+        return "ææ–™";
     case ITEMTYPE_FORMULA:
-        return "Åä·½";
+        return "é…æ–¹";
     case ITEMTYPE_SPELLBOOK:
-        return "¼¼ÄÜÊé";
+        return "æŠ€èƒ½ä¹¦";
     case ITEMTYPE_RUNE:
-        return "·ûÎÄ";
+        return "ç¬¦æ–‡";
     case ITEMTYPE_DAN:
-        return "µ¤Ò©";
+        return "ä¸¹è¯";
     case ITEMTYPE_SOUL:
-        return "Áé»ê";
+        return "çµé­‚";
     case ITEMTYPE_MISC:
-        return "ÆäËû";
+        return "å…¶ä»–";
     case ITEMTYPE_QUEST:
-        return "ÈÎÎñ";
+        return "ä»»åŠ¡";
     case ITEMTYPE_DEPOSIT:
-        return "´¢Öµ";
+        return "å‚¨å€¼";
     case ITEMTYPE_RMB:
-        return "ÉÌ³Ç";
+        return "å•†åŸ";
     default:
-        return "¿Õ";
+        return "ç©º";
     }
 
-    return "¿Õ";
+    return "ç©º";
 }
 
 const char *GetMailAttachType(INT32 nAttachType)
@@ -191,15 +191,15 @@ const char *GetMailAttachType(INT32 nAttachType)
     switch (nAttachType)
     {
     case ATTACHTYPE_NONE:
-        return "ÎŞ¸½¼ş";
+        return "æ— é™„ä»¶";
     case ATTACHTYPE_SIMPLE:
     case ATTACHTYPE_BUFFER:
-        return "ÓĞ¸½¼ş";
+        return "æœ‰é™„ä»¶";
     default:
-        return "¿Õ";
+        return "ç©º";
     }
 
-    return "¿Õ";
+    return "ç©º";
 }
 
 const char * gm_itoa(INT32 i, char *pBuffer)
@@ -234,14 +234,14 @@ BOOL DisplayBaseInfoWidgetItem(CMyTreeWidgetItem *pTreeItem, INT32 nAreaId, INT3
     pTreeItem->setText(3, QString::fromUtf8(pcszRoleName));
 
     if (dwDeleteTime > 0)
-        pTreeItem->setText(4, QString::fromLocal8Bit("ÊÇ"));
+        pTreeItem->setText(4, QString::fromLocal8Bit("æ˜¯"));
     else
-        pTreeItem->setText(4, QString::fromLocal8Bit("·ñ"));
+        pTreeItem->setText(4, QString::fromLocal8Bit("å¦"));
 
     if (bIsOnline)
-        pTreeItem->setText(5, QString::fromLocal8Bit("ÔÚÏß"));
+        pTreeItem->setText(5, QString::fromLocal8Bit("åœ¨çº¿"));
     else
-        pTreeItem->setText(5, QString::fromLocal8Bit("ÀëÏß"));
+        pTreeItem->setText(5, QString::fromLocal8Bit("ç¦»çº¿"));
 
     pTreeItem->setText(6, QString::fromLocal8Bit(pcszSaveTime));
 
@@ -265,61 +265,61 @@ const char *ParseResult(INT32 nResult)
     switch (nResult)
     {
     case errSuccess:
-        return "³É¹¦";
+        return "æˆåŠŸ";
     case errGMUnknownError:
-        return "Î´Öª´íÎó";
+        return "æœªçŸ¥é”™è¯¯";
     case errGMVersionError:
-        return "GM¹¤¾ß°æ±¾´íÎó£¬Çë¸üĞÂ°æ±¾";
+        return "GMå·¥å…·ç‰ˆæœ¬é”™è¯¯ï¼Œè¯·æ›´æ–°ç‰ˆæœ¬";
     case errGMConnectERROR:
-        return "Á¬½Ó´íÎó";
+        return "è¿æ¥é”™è¯¯";
     case errGMPwdError:
-        return "ÕËºÅorÃÜÂë´í";
+        return "è´¦å·orå¯†ç é”™";
     case errGMRelogin:
-        return "ÕËºÅÖØ¸´µÇÂ½";
+        return "è´¦å·é‡å¤ç™»é™†";
     case errGMCannotExecuteNewCmd:
-        return "ÄÚ´æ·ÖÅäÊ§°Ü";
+        return "å†…å­˜åˆ†é…å¤±è´¥";
     case errGMNotExecutePermission:
-        return "Ã»ÓĞÖ´ĞĞ¸ÃÃüÁîµÄÈ¨ÏŞ";
+        return "æ²¡æœ‰æ‰§è¡Œè¯¥å‘½ä»¤çš„æƒé™";
     case errGMGetPermissionError:
-        return "»ñÈ¡È¨ÏŞÊ§°Ü";
+        return "è·å–æƒé™å¤±è´¥";
     case errGMUserNotFind:
-        return "´Óms·µ»Øºó£¬Î´ÕÒµ½GMÕËºÅ";
+        return "ä»msè¿”å›åï¼Œæœªæ‰¾åˆ°GMè´¦å·";
     case errGMDBError:
-        return "Êı¾İ¿â´íÎó";
+        return "æ•°æ®åº“é”™è¯¯";
     case errGMTimeout:
-        return "Ö¸ÁîÖ´ĞĞ³¬Ê±";
+        return "æŒ‡ä»¤æ‰§è¡Œè¶…æ—¶";
     case errGMSendMsgToMSError:
-        return "Ïòms·¢ËÍÏûÏ¢Ê§°Ü";
+        return "å‘mså‘é€æ¶ˆæ¯å¤±è´¥";
     case errGMLostTLUser:
-        return "¶ªÊ§gmÕËºÅ";
+        return "ä¸¢å¤±gmè´¦å·";
     case errGMCannotFindRole:
-        return "ÕÒ²»µ½ÓÎÏ·½ÇÉ«";
+        return "æ‰¾ä¸åˆ°æ¸¸æˆè§’è‰²";
     case errGMLostCmd:
-        return "´Óms·µ»Øºó¶ªÊ§Ö¸Áî";
+        return "ä»msè¿”å›åä¸¢å¤±æŒ‡ä»¤";
     case errGMMSNotOnline:
-        return "ms²»ÔÚÏß";
+        return "msä¸åœ¨çº¿";
     case errGMMSExecuteCmdFailed:
-        return "msÖ´ĞĞgmÖ¸ÁîÊ§°Ü";
+        return "msæ‰§è¡ŒgmæŒ‡ä»¤å¤±è´¥";
     case errGMSaveRoleDataFailed:
-        return "±£´æÓÎÏ·½ÇÉ«Êı¾İÊ§°Ü";
+        return "ä¿å­˜æ¸¸æˆè§’è‰²æ•°æ®å¤±è´¥";
     case errGMModifyRoleTypeError:
-        return "¸ü¸Ä½ÇÉ«µÄÊı¾İµÄÃüÁîÀàĞÍ´íÎó";
+        return "æ›´æ”¹è§’è‰²çš„æ•°æ®çš„å‘½ä»¤ç±»å‹é”™è¯¯";
     case errGMRoleOnline:
-        return "ÓÎÏ·½ÇÉ«ÔÚÏß";
+        return "æ¸¸æˆè§’è‰²åœ¨çº¿";
     case errGMQueryZeroRoleData:
-        return "Î´²éÑ¯µ½ÓÎÏ·½ÇÉ«Êı¾İ";
+        return "æœªæŸ¥è¯¢åˆ°æ¸¸æˆè§’è‰²æ•°æ®";
     case errGMRoleNotFreeze:
-        return "½ÇÉ«Î´±»¶³½á";
+        return "è§’è‰²æœªè¢«å†»ç»“";
     case errGMRoleFreezeLessOneHour:
-        return "½ÇÉ«¶³½áÊ±¼äĞ¡ÓÚ1Ğ¡Ê±";
+        return "è§’è‰²å†»ç»“æ—¶é—´å°äº1å°æ—¶";
     case errGMAnnounceNotExist:
-        return "¹«¸æ²»´æÔÚÁË";
+        return "å…¬å‘Šä¸å­˜åœ¨äº†";
     case errGMRoleBeOp:
-        return "¸Ã½ÇÉ«±»²Ù×÷";
+        return "è¯¥è§’è‰²è¢«æ“ä½œ";
     case errGMRoleLockedByOther:
-        return "ÆäËûÕËºÅÕıÔÚ²Ù×÷";
+        return "å…¶ä»–è´¦å·æ­£åœ¨æ“ä½œ";
     default:
-        return "Î´Í³¼ÆµÄ´íÎóÂë£¬ÇëÁªÏµ³ÌĞò";
+        return "æœªç»Ÿè®¡çš„é”™è¯¯ç ï¼Œè¯·è”ç³»ç¨‹åº";
     }
 }
 

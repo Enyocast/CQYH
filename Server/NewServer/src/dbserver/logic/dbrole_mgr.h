@@ -18,9 +18,9 @@ public:
     BOOL DelDBRole(CDBRole* dbrole);
     CDBRole* GetDBRoleByID(UINT32 dwRoleID);
 
-    CDBRole* Pop(void);             //ÉêÇëÒ»¸ö¿ÕÏÐµÄDBRole¶ÔÏó£¬Ö÷Ïß³Ìµ÷ÓÃ
-    BOOL Pop(CDBRole* dbrole);      //ÉêÇëÒ»¸öÖ¸¶¨µÄDBRole¶ÔÏó£¬Ö÷Ïß³Ìµ÷ÓÃ
-    BOOL Push(CDBRole* dbrole);     //¹é»¹Ò»¸öÓÃÍêµÄDBRole¶ÔÏó£¬Ö÷Ïß³Ìµ÷ÓÃ
+    CDBRole* Pop(void);             //ç”³è¯·ä¸€ä¸ªç©ºé—²çš„DBRoleå¯¹è±¡ï¼Œä¸»çº¿ç¨‹è°ƒç”¨
+    BOOL Pop(CDBRole* dbrole);      //ç”³è¯·ä¸€ä¸ªæŒ‡å®šçš„DBRoleå¯¹è±¡ï¼Œä¸»çº¿ç¨‹è°ƒç”¨
+    BOOL Push(CDBRole* dbrole);     //å½’è¿˜ä¸€ä¸ªç”¨å®Œçš„DBRoleå¯¹è±¡ï¼Œä¸»çº¿ç¨‹è°ƒç”¨
 
 private:
     CBaseList m_freerolelist;

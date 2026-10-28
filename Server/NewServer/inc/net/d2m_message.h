@@ -69,7 +69,7 @@ namespace InternalMessage
         UINT32              dwRoleID;
         UINT32              dwTLUserID;
         UINT32              dwCmdSerialID;
-        UINT8               byResult; //1≥…π¶ 0 ß∞‹
+        UINT8               byResult; //1ÊàêÂäü 0Â§±Ë¥•
     };
 };
 #pragma pack(pop)

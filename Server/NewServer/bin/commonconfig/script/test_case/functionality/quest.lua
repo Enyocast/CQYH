@@ -51,7 +51,7 @@ function TestCase.Quest.AcceptQuest()
     msg = recv_msg(30, session_id, protocol.g2c_error_notify);
     check(msg.nErrCode == error_code.errQuestNpcTooFar, "failed to recv errQuestNpcTooFar ");
 
-	-- no start npc ´ËÏîÔİÊ±Ã»ÓĞÅä£¬ÏÈ×¢µô
+	-- no start npc æ­¤é¡¹æš‚æ—¶æ²¡æœ‰é…ï¼Œå…ˆæ³¨æ‰
 	ret = user:GMCommand("SummonNpc(6009)");
 	check(ret, "failed to summon npc 6009");
 
@@ -244,51 +244,51 @@ end
 function getquestcompleteconfigcount(quest_data)
 	local nCount = 0;
 
-	-- ÈÎÎñÖ°ÒµĞèÇó
+	-- ä»»åŠ¡èŒä¸šéœ€æ±‚
 	if quest_data.nClassLimit ~= 4 then
 		nCount = nCount + 1;
 	end
 
-	-- ĞÔ±ğĞèÇó
+	-- æ€§åˆ«éœ€æ±‚
 	if quest_data.nSexLimit ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- É±¹ÖÊı¼ì²é(·ÅÔÚ¼ì²éÈÎÎñnpcÇ°Ãæ£¬·ÀÖ¹ÓÉÓÚÊÍ·Å¼¼ÄÜ£¬ÒÆ¶¯¾àÀë¹ı´ó£¬µ¼ÖÂÓënpc¾àÀë¹ı´ó)
+	-- æ€æ€ªæ•°æ£€æŸ¥(æ”¾åœ¨æ£€æŸ¥ä»»åŠ¡npcå‰é¢ï¼Œé˜²æ­¢ç”±äºé‡Šæ”¾æŠ€èƒ½ï¼Œç§»åŠ¨è·ç¦»è¿‡å¤§ï¼Œå¯¼è‡´ä¸npcè·ç¦»è¿‡å¤§)
 	for nNpcIndex = 0, MAX_CONDITION_PER_QUEST - 1 do
         if  quest_data.vecCheckKillNpcID[nNpcIndex] ~= 0 and quest_data.vecCheckKillNpcCnt[nNpcIndex] ~= 0 then
 			nCount = nCount + 1;
         end
     end
 
-	--ÈÎÎñ½áÊøµÄNPC ID
+	--ä»»åŠ¡ç»“æŸçš„NPC ID
 	if quest_data.nFinishNpc ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- ÈÎÎñÍê³ÉµÄBUF¼ì²é
+	-- ä»»åŠ¡å®Œæˆçš„BUFæ£€æŸ¥
 	if quest_data.nCheckBuffID ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- ÈÎÎñÎïÆ·¼ì²é
+	-- ä»»åŠ¡ç‰©å“æ£€æŸ¥
     for nItemIndex = 0, MAX_CONDITION_PER_QUEST - 1 do
         if quest_data.vecCheckItemID[nItemIndex] ~= 0 then
             nCount = nCount + 1;
         end
     end
 
-	-- ĞèÇó±äÁ¿ID1, ĞèÇó±äÁ¿Öµ1£¨ÅĞ¶ÏÏàµÈ£©ĞèÒªÅĞ¶Ï Role, Scene, Quest
+	-- éœ€æ±‚å˜é‡ID1, éœ€æ±‚å˜é‡å€¼1ï¼ˆåˆ¤æ–­ç›¸ç­‰ï¼‰éœ€è¦åˆ¤æ–­ Role, Scene, Quest
 	if quest_data.nCheckVarID1 ~= -1 then
 		nCount = nCount + 1;
 	end
 
-	-- ĞèÇó±äÁ¿ID2, ĞèÇó±äÁ¿Öµ2£¨ÅĞ¶ÏÏàµÈ£©ĞèÒªÅĞ¶Ï Role, Scene, Quest
+	-- éœ€æ±‚å˜é‡ID2, éœ€æ±‚å˜é‡å€¼2ï¼ˆåˆ¤æ–­ç›¸ç­‰ï¼‰éœ€è¦åˆ¤æ–­ Role, Scene, Quest
 	if quest_data.nCheckVarID2 ~= -1 then
 		nCount = nCount + 1;
 	end
 
-	-- »õ±Ò½±ÀøÀàĞÍ, »õ±Ò½±ÀøÊıÁ¿
+	-- è´§å¸å¥–åŠ±ç±»å‹, è´§å¸å¥–åŠ±æ•°é‡
 	if quest_data.nAwardMoneyType ~= 0 and quest_data.nAwardMoneyAmount ~= 0 then
 		nCount = nCount + 1;
 	end
@@ -297,8 +297,8 @@ function getquestcompleteconfigcount(quest_data)
 end
 
 function TestCase.ShareQuest()
-	-- 10, 11Åä³É¹²ÏíÈÎÎñ£¬12, 13 Åä³É·Ç¹²ÏíÈÎÎñ
-	--ÓÃ»§Ö»½Ó10 12, ²»½Ó11 13
+	-- 10, 11é…æˆå…±äº«ä»»åŠ¡ï¼Œ12, 13 é…æˆéå…±äº«ä»»åŠ¡
+	--ç”¨æˆ·åªæ¥10 12, ä¸æ¥11 13
 	local msg;
 	local questdata;
 
@@ -314,18 +314,18 @@ function TestCase.ShareQuest()
 	check(role2, "fail to login");
 	local session_id2 = user2:GetSessionID();
 
-	-- ´´ÔìÌõ¼şÈÃ1Âú×ãÈÎÎñ10
+	-- åˆ›é€ æ¡ä»¶è®©1æ»¡è¶³ä»»åŠ¡10
 	questdata = GetQuestByID(10);
 	check(questdata, "fail to get quest");
 	_AcceptQuestWithoutConditionIndex(user1, role1, questdata, 0, 1, qatNpc, 0);
 
-	-- ´´ÔìÌõ¼şÈÃ1Âú×ãÈÎÎñ12
+	-- åˆ›é€ æ¡ä»¶è®©1æ»¡è¶³ä»»åŠ¡12
 	questdata = GetQuestByID(12);
 	check(questdata, "fail to get quest");
 	_AcceptQuestWithoutConditionIndex(user1, role1, questdata, 0, 1, qatNpc, 0);
 
 	print("--------------no team---------------------------------");
-	-- Ã»ÓĞ¶ÓÎéµÄÊ±ºò¹²Ïí
+	-- æ²¡æœ‰é˜Ÿä¼çš„æ—¶å€™å…±äº«
 	ret = user1:ShareQuest(10, qatShare);
 	check(ret, "fail to share quest");
 
@@ -333,13 +333,13 @@ function TestCase.ShareQuest()
     check(msg.nErrCode == error_code.errQuestNoShareTeam, "failed to recv errQuestNoShareTeam");
 
  	print("--------------create team---------------------------------");
-    -- ×é¶Ó
+    -- ç»„é˜Ÿ
     local team_name = username1.."team";
     local teamid = CreateTeam(team_name, user1, role1);
     check(teamid, "failed to create team");
 
 	print("--------------create team success---------------------------------");
-    -- ¶ÓÎéÖ»ÓĞ1¸öÈËÊ±£¬ÉêÇë¹²ÏíÈÎÎñ
+    -- é˜Ÿä¼åªæœ‰1ä¸ªäººæ—¶ï¼Œç”³è¯·å…±äº«ä»»åŠ¡
     ret = user1:ShareQuest(10, qatShare);
 	check(ret, "fail to share quest");
 
@@ -347,12 +347,12 @@ function TestCase.ShareQuest()
     check(msg.nErrCode == error_code.errQuestShareUnavailable, "failed to recv errQuestShareUnavailable");
 
 	print("--------------enter team---------------------------------");
-    --¼ÓÈë¶ÓÎé
+    --åŠ å…¥é˜Ÿä¼
    	InviteToTeam(user2, role2, user1, role1, 0);
 	local retMsg = recv_msg_and(30, session_id1, protocol.m2c_team_add_member, session_id2, protocol.m2c_team_join);
     check(retMsg, "failed to received m2c_team_add_member or m2c_team_join");
 
-    -- ¶ÓÎéÈËÊı´óÓÚ2Ê±£¬ÉêÇë¹²Ïí½Ó¹ıµÄ·Ç¹²ÏíÈÎÎñ
+    -- é˜Ÿä¼äººæ•°å¤§äº2æ—¶ï¼Œç”³è¯·å…±äº«æ¥è¿‡çš„éå…±äº«ä»»åŠ¡
     ret = user1:ShareQuest(12, qatShare);
 	check(ret, "fail to share quest");
 
@@ -360,8 +360,8 @@ function TestCase.ShareQuest()
     check(msg.nErrCode == error_code.errQuestCannotShare, "failed to recv errQuestCannotShare");
 
 	print("--------------share no accepted quest---------------------------------");
-    -- ¶ÓÎéÈËÊı´óÓÚ2Ê±£¬ÉêÇëÎ´½Ó¹ıµÄ¹²ÏíÈÎÎñ
-    --(´ËÖÖÇé¿ö·şÎñÆ÷·µ»Øunknownerror,ÔİÊ±²»ÌßÈË£¬Èç¹ûÒÔºóÌßÈËµÄ»°£¬´ËÏûÏ¢ÊÕ²»µ½)
+    -- é˜Ÿä¼äººæ•°å¤§äº2æ—¶ï¼Œç”³è¯·æœªæ¥è¿‡çš„å…±äº«ä»»åŠ¡
+    --(æ­¤ç§æƒ…å†µæœåŠ¡å™¨è¿”å›unknownerror,æš‚æ—¶ä¸è¸¢äººï¼Œå¦‚æœä»¥åè¸¢äººçš„è¯ï¼Œæ­¤æ¶ˆæ¯æ”¶ä¸åˆ°)
 
     ret = user1:ShareQuest(11, qatShare);
 	check(ret, "fail to share quest");
@@ -369,7 +369,7 @@ function TestCase.ShareQuest()
     msg = recv_msg(5, session_id1, protocol.g2c_error_notify);
 	check(msg.nErrCode == error_code.errQuestAlreadyCompleted, "failed to recv errUnknownError");
 
-	-- ´´ÔìÌõ¼şÈÃÓÃ»§2Âú×ã½ÓÈÎÎñÌõ¼ş£¬ÉêÇë½ÓÊÜ¹²ÏíÈÎÎñID
+	-- åˆ›é€ æ¡ä»¶è®©ç”¨æˆ·2æ»¡è¶³æ¥ä»»åŠ¡æ¡ä»¶ï¼Œç”³è¯·æ¥å—å…±äº«ä»»åŠ¡ID
 	questdata = GetQuestByID(10);
 	_AcceptQuestWithoutConditionIndex(user2, role2, questdata, 0, -1, qatNpc, 0);
 
@@ -379,7 +379,7 @@ function TestCase.ShareQuest()
     msg = recv_msg(5, session_id2, protocol.g2c_share_quest);
     check(msg, "fail to recv share quest");
 
-	-- ÓÃ»§2 È·ÈÏÈÎÎñ
+	-- ç”¨æˆ·2 ç¡®è®¤ä»»åŠ¡
 	ret = user2:AcceptQuest(msg.nQuestID, qatShare, msg.nSrcID)
 	check(ret, "fail to share quest ack");
 
@@ -387,7 +387,7 @@ function TestCase.ShareQuest()
     check(msg, "fail to recv share quest");
 
 	print("--------------jump scene--------------------------------");
-	-- ÓÃ»§2Ìø³¡¾°
+	-- ç”¨æˆ·2è·³åœºæ™¯
 	ret = user2:GMCommand("Jump(102,0)");
 	check(ret, "failed to jump to scene");
 
@@ -401,7 +401,7 @@ function TestCase.ShareQuest()
      check(msg, "failed to  recv g2c_char_appear");
 
  	print("--------------not in the same scene--------------------------------");
-    -- ¶ÓÎéÈËÊı´óÓÚ2£¬µ«ÊÇ²»ÔÚÍ¬Ò»³¡¾°£¬ ¼ì²âÄÜ·ñÊÕµ½¹²ÏíÈÎÎñ
+    -- é˜Ÿä¼äººæ•°å¤§äº2ï¼Œä½†æ˜¯ä¸åœ¨åŒä¸€åœºæ™¯ï¼Œ æ£€æµ‹èƒ½å¦æ”¶åˆ°å…±äº«ä»»åŠ¡
 	ret = user1:ShareQuest(10, qatShare);
 	check(ret, "fail to share quest");
 
@@ -413,7 +413,7 @@ function TestCase.ShareQuest()
 end
 
 
-function TestCase.PublishQuest()				-- Ê¦Í½¹²ÏíÈÎÎñ
+function TestCase.PublishQuest()				-- å¸ˆå¾’å…±äº«ä»»åŠ¡
 
     local user_name1 = "Pub1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
@@ -425,42 +425,42 @@ function TestCase.PublishQuest()				-- Ê¦Í½¹²ÏíÈÎÎñ
     local session_id2 = user2:GetSessionID();
 	local roleid2 = role2:GetObjID();
 
-	-- °İÊ¦
+	-- æ‹œå¸ˆ
 
-	-- ±ä³ÉÊ¦¸µ
+	-- å˜æˆå¸ˆå‚…
 	BecomeMasterByMyself(user1, role1);
 	wait(5);
 
-	-- Ìá½»ÉêÇë
+	-- æäº¤ç”³è¯·
 	TestSubmitApp(role1, session_id1, role2, session_id2);
 
-	-- Í¬Òâ°İÊ¦
+	-- åŒæ„æ‹œå¸ˆ
 	TestAgreeApp(role1, session_id1, role2, session_id2);
 
 	local ret = user1:ShareQuest(203, qatPublish);
 	check(ret, "fail to publish quest");
 
-	-- ¼ì²é¹²ÏíÈÎÎñÏûÏ¢»Ø°ü
+	-- æ£€æŸ¥å…±äº«ä»»åŠ¡æ¶ˆæ¯å›åŒ…
 	msg = recv_msg(5, session_id2, protocol.m2c_publish_quest);
 	check(msg, "failed to recv m2c_publish_quest");
 	check(msg.nQuestID == 203,"fail to recv correct quest id  ");
 	check(msg.dwMasterRoleID == roleid1,"fail to recv correct roleid  ");
 
-	-- È·ÈÏ¹²Ïí
+	-- ç¡®è®¤å…±äº«
 	ret = user2:ConfirmPublishQuest(203, roleid1);
 	check(ret, "fail to confirm quest");
 
-	-- ¼ì²é½ÓÈÎÎñµÄ»Ø°ü
+	-- æ£€æŸ¥æ¥ä»»åŠ¡çš„å›åŒ…
     msg = recv_msg(5, session_id2, protocol.g2c_accept_quest);
     check(msg, "failed to recv g2c_accept_quest");
 	check(msg.nQuestID == 203,"fail to recv correct quest id  ");
 
 end
 
--- ²âÊÔÈÎÎñÏµÍ³µÄĞÂÔöÈÎÎñÀàĞÍºÍĞÂÔöÈÎÎñ½±ÀøÀàĞÍ
--- °üÀ¨£ºÏŞÊ±ÈÎÎñ
--- Íê³ÉÈÎÎñÊ±½±ÀøµÀ¾ß
--- ÈÎÎñ20ÎªÏŞÊ±ÈÎÎñ£¬Íê³ÉÒÔºó½±Àø³ÆºÅ1
+-- æµ‹è¯•ä»»åŠ¡ç³»ç»Ÿçš„æ–°å¢ä»»åŠ¡ç±»å‹å’Œæ–°å¢ä»»åŠ¡å¥–åŠ±ç±»å‹
+-- åŒ…æ‹¬ï¼šé™æ—¶ä»»åŠ¡
+-- å®Œæˆä»»åŠ¡æ—¶å¥–åŠ±é“å…·
+-- ä»»åŠ¡20ä¸ºé™æ—¶ä»»åŠ¡ï¼Œå®Œæˆä»¥åå¥–åŠ±ç§°å·1
 function TestCase.Quest.QuestTimeLimit()
 	local user_name1 = "QuestTime1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
@@ -474,14 +474,14 @@ function TestCase.Quest.QuestTimeLimit()
 
 	local ret, msg;
 
-	-- ÓÃ»§1 È·ÈÏÑÓÊ±25Ãë½»ÈÎÎñ
+	-- ç”¨æˆ·1 ç¡®è®¤å»¶æ—¶25ç§’äº¤ä»»åŠ¡
 	ret = user1:AcceptQuest(20, qatNpc, 0)
 	check(ret, "fail to send acceptquest");
 
     msg = recv_msg(5, session_id1, protocol.g2c_accept_quest);
     check(msg, "fail to recv accept quest");
 
-	wait(25);	-- ÏŞÊ±ÈÎÎñ20Ãë
+	wait(25);	-- é™æ—¶ä»»åŠ¡20ç§’
 
 	ret = user1:CompleteQuest(20, 0);
 	check(ret, "failed to complete quest");
@@ -489,14 +489,14 @@ function TestCase.Quest.QuestTimeLimit()
     msg = recv_msg(30, session_id1, protocol.g2c_error_notify);
     check(msg.nErrCode == error_code.errQuestTimeLimit, "failed to recv errUnknownError");
 
-	-- ÓÃ»§2 È·ÈÏÑÓÊ±15Ãë½»ÈÎÎñ
+	-- ç”¨æˆ·2 ç¡®è®¤å»¶æ—¶15ç§’äº¤ä»»åŠ¡
 	ret = user2:AcceptQuest(20, qatNpc, 0)
 	check(ret, "fail to send acceptquest");
 
     msg = recv_msg(5, session_id2, protocol.g2c_accept_quest);
     check(msg, "fail to recv accept quest");
 
-	wait(15);	-- ÏŞÊ±ÈÎÎñ20Ãë
+	wait(15);	-- é™æ—¶ä»»åŠ¡20ç§’
 
 	local ret = user2:CompleteQuest(20, 0);
 	check(ret, "failed to complete quest");
@@ -505,8 +505,8 @@ function TestCase.Quest.QuestTimeLimit()
     check(msg, "failed to recv g2c_complete_quest");
 end
 
--- ²âÊÔÈÎÎñÏµÍ³µÄĞÂÔöÈÎÎñÀàĞÍºÍĞÂÔöÈÎÎñ½±ÀøÀàĞÍ
--- ÈÎÎñ21ÎªÌ¸»°ÈÎÎñ,Íê³ÉÒÔºóÔö¼Ó300»ê
+-- æµ‹è¯•ä»»åŠ¡ç³»ç»Ÿçš„æ–°å¢ä»»åŠ¡ç±»å‹å’Œæ–°å¢ä»»åŠ¡å¥–åŠ±ç±»å‹
+-- ä»»åŠ¡21ä¸ºè°ˆè¯ä»»åŠ¡,å®Œæˆä»¥åå¢åŠ 300é­‚
 function TestCase.Quest.QuestChat()
 	local user_name1 = "QuestChat"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
@@ -515,7 +515,7 @@ function TestCase.Quest.QuestChat()
 
 	local ret, msg;
 
-	-- ÕÙ»½npc
+	-- å¬å”¤npc
 	ret = user1:GMCommand("SummonNpc(6085)");
 	check(ret, "failed to summon npc 6085");
 
@@ -537,7 +537,7 @@ function TestCase.Quest.QuestChat()
 
 	wait(3);
 
-	-- ½»ÈÎÎñ
+	-- äº¤ä»»åŠ¡
 	local ret = user1:CompleteQuest(21, 0);
 	check(ret, "failed to complete quest");
 
@@ -545,10 +545,10 @@ function TestCase.Quest.QuestChat()
     check(msg, "failed to recv g2c_complete_quest");
 end
 
--- ²âÊÔÈÎÎñÏµÍ³µÄĞÂÔöÈÎÎñÀàĞÍºÍĞÂÔöÈÎÎñ½±ÀøÀàĞÍ
--- °üÀ¨£ºÌ½Ë÷ÈÎÎñ
--- Íê³ÉÈÎÎñÊ±½±Àø»ê
--- ÈÎÎñ22ÎªËÑË÷ÈÎÎñ£¬grid×ø±êÎª
+-- æµ‹è¯•ä»»åŠ¡ç³»ç»Ÿçš„æ–°å¢ä»»åŠ¡ç±»å‹å’Œæ–°å¢ä»»åŠ¡å¥–åŠ±ç±»å‹
+-- åŒ…æ‹¬ï¼šæ¢ç´¢ä»»åŠ¡
+-- å®Œæˆä»»åŠ¡æ—¶å¥–åŠ±é­‚
+-- ä»»åŠ¡22ä¸ºæœç´¢ä»»åŠ¡ï¼Œgridåæ ‡ä¸º
 function TestCase.Quest.QuestExplor()
 	local user_name1 = "QuestTime1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
@@ -557,7 +557,7 @@ function TestCase.Quest.QuestExplor()
 
 	local ret, msg;
 
-	-- ÓÃ»§1 ½»ÈÎÎñ
+	-- ç”¨æˆ·1 äº¤ä»»åŠ¡
 	ret = user1:AcceptQuest(21, qatNpc, 0)
 	check(ret, "fail to send acceptquest");
 
@@ -587,7 +587,7 @@ function TestCase.Quest.QuestExplor()
 
      wait(3);
 
-	-- ½»ÈÎÎñ£¬ÊÕ»ñ»ê
+	-- äº¤ä»»åŠ¡ï¼Œæ”¶è·é­‚
 	local ret = user2:CompleteQuest(21, 0);
 	check(ret, "failed to complete quest");
 
@@ -595,12 +595,12 @@ function TestCase.Quest.QuestExplor()
     check(msg, "failed to recv g2c_complete_quest");
 end
 
--- ²âÊÔÈÎÎñÏµÍ³µÄĞÂÔöÈÎÎñÀàĞÍ
--- ÎïÆ·idÎª101£¬¹Ò½Å±¾,Íê³ÉÈÎÎñ101
+-- æµ‹è¯•ä»»åŠ¡ç³»ç»Ÿçš„æ–°å¢ä»»åŠ¡ç±»å‹
+-- ç‰©å“idä¸º101ï¼ŒæŒ‚è„šæœ¬,å®Œæˆä»»åŠ¡101
 
--- ²âÊÔÈÎÎñÏµÍ³µÄĞÂÔöÈÎÎñÀàĞÍ
--- °üÀ¨£ºÒıµ¼ÈÎÎñ
--- ÈÎÎñ23Îª¿Í»§¶Ë±äÁ¿ÈÎÎñ
+-- æµ‹è¯•ä»»åŠ¡ç³»ç»Ÿçš„æ–°å¢ä»»åŠ¡ç±»å‹
+-- åŒ…æ‹¬ï¼šå¼•å¯¼ä»»åŠ¡
+-- ä»»åŠ¡23ä¸ºå®¢æˆ·ç«¯å˜é‡ä»»åŠ¡
 function TestCase.Quest.QuestClientVar()
 	local user_name1 = "QuestClient1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
@@ -609,7 +609,7 @@ function TestCase.Quest.QuestClientVar()
 
 	local ret, msg;
 
-	-- ÓÃ»§1 ½ÓÈÎÎñ
+	-- ç”¨æˆ·1 æ¥ä»»åŠ¡
 	ret = user1:AcceptQuest(23, qatNpc, 0)
 	check(ret, "fail to send acceptquest");
 
@@ -623,12 +623,12 @@ function TestCase.Quest.QuestClientVar()
     check(msg, "failed to recv g2c_error_notify");
     check(msg.nErrCode == error_code.errQuestLimitVar, "failed to recv errQuestLimitVar");
 
-	-- 0ºÅ±äÁ¿Îª¿Í»§¶Ë±äÁ¿
+	-- 0å·å˜é‡ä¸ºå®¢æˆ·ç«¯å˜é‡
 	ret = user1:UpdateClientVariable(1,1);
 	check(ret, "failed to update client value");
 	wait(10);
 
-   	-- 1ºÅ±äÁ¿Îª¿Í»§¶Ë±äÁ¿
+   	-- 1å·å˜é‡ä¸ºå®¢æˆ·ç«¯å˜é‡
 	ret = user1:GMCommand("SetQV(23, 1, 1)");
 	check(ret, "failed to summon npc 6009");
 	wait(10);
@@ -636,7 +636,7 @@ function TestCase.Quest.QuestClientVar()
    	ret = user1:CompleteQuest(23, 0);
 	check(ret, "failed to complete quest");
 
-   	-- ÊÕÈÎÎñÍê³ÉµÄÏûÏ¢
+   	-- æ”¶ä»»åŠ¡å®Œæˆçš„æ¶ˆæ¯
     msg = recv_msg(30, session_id1, protocol.g2c_complete_quest);
     check(msg, "failed to recv g2c_complete_quest");
     check(msg.nQuestID == 23, "failed to recv g2c_complete_quest");
@@ -680,10 +680,10 @@ function TestCase.Quest.TestDailyQuest()
 
 	wait(10);
 
-    --²âÊÔÍê³É£¬µÇ³ö
+    --æµ‹è¯•å®Œæˆï¼Œç™»å‡º
     cleanup(user1);
 
-	--ÔÙ´ÎÉÏÏß£¬²âÊÔÊı¾İµÄ½â°ü
+	--å†æ¬¡ä¸Šçº¿ï¼Œæµ‹è¯•æ•°æ®çš„è§£åŒ…
     user1, role1 = startup(user_name1, user_name1);
 
 	wait(10);
@@ -737,7 +737,7 @@ function TestCase.Quest.TestAward()
 
 	wait(2);
 
-    --ret = user1:SelectDialogOption(2);  -- Åú´ÎÁì½±
+    --ret = user1:SelectDialogOption(2);  -- æ‰¹æ¬¡é¢†å¥–
 	--check(msg, "failed to Select Dialog Option");
 
 	--wait(10);
@@ -746,7 +746,7 @@ function TestCase.Quest.TestAward()
 	--check(msg, "failed to receive g2c_item_change");
     --check(msg.stItem.nTemplateID==3194, "failed to create correct item");
 
-    ret = user1:AwardUseNumber("131129171328494787900595075918");	   -- ÍÆ¹ãÂëÁì½±
+    ret = user1:AwardUseNumber("131129171328494787900595075918");	   -- æ¨å¹¿ç é¢†å¥–
 	check(msg, "failed to send AwardUseNumber");
 
 	wait(20);

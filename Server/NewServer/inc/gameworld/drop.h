@@ -39,9 +39,9 @@ public:
     enum DropState
     {
         DS_INVALID,
-        DS_PROTECT, // ±£»¤ÆÚ£¬ÓĞÊ°È¡È¨µÄ½ÇÉ«¿ÉÊ°È¡
-        DS_PUBLIC,  // ±£»¤ÆÚ½áÊø£¬ÈÎºÎÈË¶¼¿ÉÒÔÊ°È¡
-        DS_PLAYER   // Íæ¼Ò¶ªÆú£¬ÈÎºÎÈË¶¼¿ÉÒÔÊ°È¡
+        DS_PROTECT, // ä¿æŠ¤æœŸï¼Œæœ‰æ‹¾å–æƒçš„è§’è‰²å¯æ‹¾å–
+        DS_PUBLIC,  // ä¿æŠ¤æœŸç»“æŸï¼Œä»»ä½•äººéƒ½å¯ä»¥æ‹¾å–
+        DS_PLAYER   // ç©å®¶ä¸¢å¼ƒï¼Œä»»ä½•äººéƒ½å¯ä»¥æ‹¾å–
     };
 
     BOOL Init(UINT32 dwObjID, const DropContent& content, DropState drop_state);
@@ -59,7 +59,7 @@ public:
 
 private:
     DropState m_state;
-    INT64 m_state_frame;    //ÊÇÄÄÒ»Ö¡½øÈëµ±Ç°×´Ì¬µÄ
+    INT64 m_state_frame;    //æ˜¯å“ªä¸€å¸§è¿›å…¥å½“å‰çŠ¶æ€çš„
     void _SetState(DropState estate, INT64 frame = 0);
 
     std::set<UINT32> m_owners;

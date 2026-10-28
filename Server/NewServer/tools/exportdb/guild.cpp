@@ -149,7 +149,7 @@ BOOL YY_GUILD_DATA::Load(const char *pcData)
 
     LOG_PROCESS_ERROR(pcData);
     pcActualData = pcData + sizeof(UINT32);
-    pGuildData = (GUILD_DB_DATA *)pcActualData; // ¼ÓµÄ4¸ö×Ö½Ú£¬ÊÇÔÚsave blobµÄÊ±ºò£¬²åÔÚÍ·²¿µÄ³¤¶È
+    pGuildData = (GUILD_DB_DATA *)pcActualData; // åŠ çš„4ä¸ªå­—èŠ‚ï¼Œæ˜¯åœ¨save blobçš„æ—¶å€™ï¼Œæ’åœ¨å¤´éƒ¨çš„é•¿åº¦
 
     LOG_PROCESS_ERROR(pGuildData->dwLen >= 4 && pGuildData->dwLen < 60000);
     LOG_PROCESS_ERROR(pGuildData->dwCRC ==

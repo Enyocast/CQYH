@@ -10,7 +10,7 @@
 #define QUEST_DESC_LEN	        (4096)                          ///< @line
 #define PATH_LEN		        (256)                           ///< @line
 
-// 默认代码 65, 改成 33
+// 榛樿浠ｇ爜 65, 鏀规垚 33
 //#define USER_NAME_LEN           (65)                            ///< @line
 #define USER_NAME_LEN           (33)                            ///< @line
 #define USER_PASSWORD_LEN       (32)                            ///< @line

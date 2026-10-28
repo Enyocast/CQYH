@@ -20,7 +20,7 @@ struct GAME_WORLD_CONFIG
 	INT32       nLootDistance;
 	INT32       nCompareAchievementDistance;
 	INT32       nExpShareDistance;
-	INT32		nLevelLimit;    // ÉèÖÃÓÎÏ·×î¸ßµÈ¼¶
+	INT32		nLevelLimit;    // è®¾ç½®æ¸¸æˆæœ€é«˜ç­‰çº§
 	INT32       nTeamAuctionTimeout;
 	INT32       nTeamAuctionTax;
 
@@ -332,7 +332,7 @@ struct GAME_WORLD_CONFIG
 	} GpkPunishOption;
 
 	// arena 
-	UINT32          dwArenaSceneTemplateID;    // ²¹³ä´úÂë
+	UINT32          dwArenaSceneTemplateID;    // è¡¥å……ä»£ç 
 
     struct ARENA 
     {

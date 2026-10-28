@@ -7,7 +7,7 @@
 #define MAX_ATTR_NAME_LEN	(128)				///< @line
 
 
-/// Warning: catPhyAtkHi, catPhyAtkLo, catMagAtkHi, catMagAtkLoÕâËÄ¸öÊôÐÔÊÇ·Å´ó1w±¶´æ´¢µÄ£¬µ«²¢²»ÓÃRate½áÎ²¡£
+/// Warning: catPhyAtkHi, catPhyAtkLo, catMagAtkHi, catMagAtkLoè¿™å››ä¸ªå±žæ€§æ˜¯æ”¾å¤§1wå€å­˜å‚¨çš„ï¼Œä½†å¹¶ä¸ç”¨Rateç»“å°¾ã€‚
 
 ///@enum CHAR_ATTR_TYPE
 enum CHAR_ATTR_TYPE

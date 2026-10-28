@@ -3,7 +3,7 @@
 	file:		view_guild.h
 	author:		Allan Tao
 	
-	purpose:	GM 工具 查看帮派
+	purpose:	GM 宸ュ叿 鏌ョ湅甯淳
 *********************************************************************/
 
 #ifndef VIEW_GUILD_H_

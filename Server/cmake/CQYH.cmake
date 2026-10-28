@@ -37,9 +37,8 @@ function(cqyh_target_defaults tgt)
             /permissive
             /GS- /GR-
             /MP${CQYH_MSVC_COMPILE_PROCESSES}
-            # Sources are GBK-encoded (Chinese comments/strings, no BOM). Pin the code pages so the result does not
-            # depend on the Windows system language.
-            /source-charset:gbk /execution-charset:gbk)
+            # Read UTF-8 source while retaining the legacy GBK encoding of narrow string literals.
+            /source-charset:utf-8 /execution-charset:gbk)
     endif()
 endfunction()
 
@@ -47,8 +46,7 @@ endfunction()
 # The directory goes on the include path as well so sources in other directories that say #include "stdafx.h" find it.
 function(cqyh_use_pch tgt dir)
     target_include_directories(${tgt} PRIVATE "${dir}")
-    # <stdafx.h>, not a full path: CMake writes the PCH wrapper header as UTF-8, and a path containing non-ASCII
-    # characters would be misread under /source-charset:gbk.
+    # Use the include path to locate the precompiled header.
     target_precompile_headers(${tgt} PRIVATE <stdafx.h>)
 endfunction()
 

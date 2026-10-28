@@ -32,13 +32,13 @@ struct TeamMember
 //
 //struct GS_TEAM_AUCTION_ITEM : BASE_LIST_NODE
 //{
-//	UINT32	dwCanBidRoleID[MAX_TEAM_MEMBER_COUNT];			//ÓĞÈ¨ÅÄÂôµÄ
-//	UINT32	dwCanRewardMoneyRoleID[MAX_TEAM_MEMBER_COUNT];	//ÓĞÈ¨·ÖÇ®µÄ
+//	UINT32	dwCanBidRoleID[MAX_TEAM_MEMBER_COUNT];			//æœ‰æƒæ‹å–çš„
+//	UINT32	dwCanRewardMoneyRoleID[MAX_TEAM_MEMBER_COUNT];	//æœ‰æƒåˆ†é’±çš„
 //	UINT32	dwCanRewardMoneyRoleCount;
-//	UINT32	dwAbandonRoleID[MAX_TEAM_MEMBER_COUNT];			// ·ÅÆúÅÄÂôµÄ
+//	UINT32	dwAbandonRoleID[MAX_TEAM_MEMBER_COUNT];			// æ”¾å¼ƒæ‹å–çš„
 //	UINT32	dwAbandonRoleCount;
 //	Item*	pItem;
-//	UINT32	nIndex;											// ÅÄÂôĞòºÅ
+//	UINT32	nIndex;											// æ‹å–åºå·
 //};
 
 struct TeamAuctionItem
@@ -156,9 +156,9 @@ private:
 	// team auction 
 //	typedef std::vector<GS_TEAM_AUCTION_ITEM> VecTeamAuctionContainer;
 //	typedef VecTeamAuctionContainer::iterator IterVecTeamAuctionContainer;
-//	VecTeamAuctionContainer	m_VecTeamAuctionContainer;	// ¹ÜÀíÅÄÂôÎïÆ·
+//	VecTeamAuctionContainer	m_VecTeamAuctionContainer;	// ç®¡ç†æ‹å–ç‰©å“
 //
-//	CObjectPool<GS_TEAM_AUCTION_BID_MEMBER>	m_BidMumberPool; // ¹ÜÀí³ö¼ÛÕß£¬Î¬»¤ÓĞĞò
+//	CObjectPool<GS_TEAM_AUCTION_BID_MEMBER>	m_BidMumberPool; // ç®¡ç†å‡ºä»·è€…ï¼Œç»´æŠ¤æœ‰åº
 //	CBaseList m_BidMemberList;
 
 	typedef std::list<TeamAuctionItem*> TAuctionItemList;

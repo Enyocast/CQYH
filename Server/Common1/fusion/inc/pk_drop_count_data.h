@@ -7,7 +7,7 @@
 struct PK_DROP_COUNT_DATA
 {
     INT32 m_nLevel;
-    INT32 m_nMaxDropCount[3][rncTotal];    //µôÂäÉÏÏÞ£¬Ç°Ò»¸ö3±íÊ¾±³°üÄÚÆÕÍ¨ÎïÆ·£¬±³°üÄÚ¹óÖØÎïÆ·£¬ÒÑ×°±¸ÎïÆ·£»ºóÒ»¸ö3±íÊ¾°×Ãû£¬»ÆÃû£¬ºìÃû
+    INT32 m_nMaxDropCount[3][rncTotal];    //æŽ‰è½ä¸Šé™ï¼Œå‰ä¸€ä¸ª3è¡¨ç¤ºèƒŒåŒ…å†…æ™®é€šç‰©å“ï¼ŒèƒŒåŒ…å†…è´µé‡ç‰©å“ï¼Œå·²è£…å¤‡ç‰©å“ï¼›åŽä¸€ä¸ª3è¡¨ç¤ºç™½åï¼Œé»„åï¼Œçº¢å
     INT32 m_nProtectTime;
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, PK_DROP_COUNT_DATA* pData, CTabFile* pTabConfig, INT32 nRow);

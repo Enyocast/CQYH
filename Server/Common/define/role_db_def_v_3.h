@@ -174,15 +174,15 @@ namespace ROLE_DB_DEF_V_3
 		INT32	nDailyOnlineTime;
 		UINT32	dwPKProtect;
 
-		UINT32	dwGameTimeCard;    // µã¿¨Ê±¼ä(Ê£ÓàÃëÊı), ×Ô¼Ó´úÂë
+		UINT32	dwGameTimeCard;    // ç‚¹å¡æ—¶é—´(å‰©ä½™ç§’æ•°), è‡ªåŠ ä»£ç 
 
-		INT32   nRuneNormal_Warrior;    // ÆÕÍ¨ÃúÎÄÏ´Á·½Úµã
+		INT32   nRuneNormal_Warrior;    // æ™®é€šé“­æ–‡æ´—ç»ƒèŠ‚ç‚¹
 		INT32   nRuneNormal_Mage;
 		INT32   nRuneNormal_Taoist;
-		INT32   nRuneAdvanced_Warrior;  // ¸ß¼¶ÃúÎÄÏ´Á·½Úµã
+		INT32   nRuneAdvanced_Warrior;  // é«˜çº§é“­æ–‡æ´—ç»ƒèŠ‚ç‚¹
 		INT32   nRuneAdvanced_Mage;
 		INT32   nRuneAdvanced_Taoist;
-		INT32   nLuckRootCount;         // ×£¸£ÓÍ½Úµã
+		INT32   nLuckRootCount;         // ç¥ç¦æ²¹èŠ‚ç‚¹
 
 		INT32	nReserved[505];
 	};
@@ -438,14 +438,14 @@ namespace ROLE_DB_DEF_V_3
 	{
 		/********* overal ********/
 
-		UINT8	byLevel;						// ¾³½çµÈ¼¶
-		INT32	nExp;							// ¾­ÑéÖµ
+		UINT8	byLevel;						// å¢ƒç•Œç­‰çº§
+		INT32	nExp;							// ç»éªŒå€¼
 
-		UINT32	dwExp2PtsRemainTime;			// Ê£Óà×ª»¯Ê±¼ä
-		INT32	nMoneyCost;						// »ê×ªĞŞÁ¶µã×ÜÏûºÄ½ğ±Ò
+		UINT32	dwExp2PtsRemainTime;			// å‰©ä½™è½¬åŒ–æ—¶é—´
+		INT32	nMoneyCost;						// é­‚è½¬ä¿®ç‚¼ç‚¹æ€»æ¶ˆè€—é‡‘å¸
 
-		UINT32 dwDailyUseMoneyChangeCount;		// Ã¿ÌìÊ¹ÓÃ½ğ±Ò×ª»»´ÎÊı
-		UINT32 dwNextScanTimer;					// ÏÂ´ÎÉ¨ÃèÊ±¼ä(ÓÃÓÚÃ¿ÈÕÖØÖÃ)			
+		UINT32 dwDailyUseMoneyChangeCount;		// æ¯å¤©ä½¿ç”¨é‡‘å¸è½¬æ¢æ¬¡æ•°
+		UINT32 dwNextScanTimer;					// ä¸‹æ¬¡æ‰«ææ—¶é—´(ç”¨äºæ¯æ—¥é‡ç½®)			
 
 		/********* air sea **********/
 
@@ -462,7 +462,7 @@ namespace ROLE_DB_DEF_V_3
 		INT32  nStallContainerSize;
 		INT32  nEquipContainerSize;
 
-		INT32  nProductAirLevel;		// Á·ÆøµÈ¼¶
+		INT32  nProductAirLevel;		// ç»ƒæ°”ç­‰çº§
 
 		/********* blood sea **********/
 		INT32  nBloodSlot[4][10];	// MAX_BLOODSEA_PAGE MAX_BLOODSEA_SLOT_PER_PAGE

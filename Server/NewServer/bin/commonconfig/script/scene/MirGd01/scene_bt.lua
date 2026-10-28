@@ -86,13 +86,13 @@ evtGuildWarBegin =
 { batParallel,
 	{ batSequencer,
 		{ batCheckSceneVariable, param = { boEQ, 7, 0 } },
-		{ batSetSceneVariable, param = { 7, 1, 0 } },		-- ÉèÖÃÒôĞ§¹Ø±Õ
+		{ batSetSceneVariable, param = { 7, 1, 0 } },		-- è®¾ç½®éŸ³æ•ˆå…³é—­
 	},
 };
 
 evtGuildWarEnd =
 { batSequencer,
-	{ batSetSceneVariable, param = { 7, 0, 0 } },		-- ÉèÖÃÒôĞ§¹Ø±Õ
+	{ batSetSceneVariable, param = { 7, 0, 0 } },		-- è®¾ç½®éŸ³æ•ˆå…³é—­
     { batSceneRoleSetFaction, param={ RAW_FACTION },
     },
     { batSetReputationToFaction, param={ RAW_FACTION, REPUTATION_TYPE, 19999 },

@@ -49,27 +49,27 @@ INT64 Auction::GetNextPrice() const
 
 void Auction::Finish()
 {
-    // Ò»¹²3¸öÇé¿ö×ßÕâ¸öº¯Êý, 1-³¬Ê±ÁË, 2-Ö÷¶¯È¡Ïû¶©µ¥, 3-Õý³£ÅÄÂô
+    // ä¸€å…±3ä¸ªæƒ…å†µèµ°è¿™ä¸ªå‡½æ•°, 1-è¶…æ—¶äº†, 2-ä¸»åŠ¨å–æ¶ˆè®¢å•, 3-æ­£å¸¸æ‹å–
     BOOL bRet = FALSE;
 
-    // ³öÊÛÕß
+    // å‡ºå”®è€…
     MS_ROLE_DATA* seller_role = CRoleDataMgr::GetInstance().FindRole(m_dwSellerRoleID);
     LOG_PROCESS_ERROR(seller_role);
 
-    // ¹ºÂòÕß - ÕâÀï²»ÄÜÐ´ÁË, ÒòÎªÖ÷¶¯È¡Ïû¶©µ¥, Ò²ÊÇ×ßÕâ¸öº¯Êý, Ö÷¶¯È¡ÏûµÄ»°, ¾ÍÃ»ÓÐ¹ºÂòÕßÁË, ·ÅÔÚÏÂÃæÐ´
+    // è´­ä¹°è€… - è¿™é‡Œä¸èƒ½å†™äº†, å› ä¸ºä¸»åŠ¨å–æ¶ˆè®¢å•, ä¹Ÿæ˜¯èµ°è¿™ä¸ªå‡½æ•°, ä¸»åŠ¨å–æ¶ˆçš„è¯, å°±æ²¡æœ‰è´­ä¹°è€…äº†, æ”¾åœ¨ä¸‹é¢å†™
     //MS_ROLE_DATA* buyer_role = CRoleDataMgr::GetInstance().FindRole(m_dwBuyerRoleID);
     //LOG_PROCESS_ERROR(buyer_role);
 
-    // ÅÐ¶Ï¶©µ¥×´Ì¬
+    // åˆ¤æ–­è®¢å•çŠ¶æ€
     LOG_PROCESS_ERROR(m_byAuctionStatus == easEffective);
 
     BOOL is_expire = (m_dwFinishTime <= CManageServer::GetInstance().GetGameTime());
     m_dwFinishTime = CManageServer::GetInstance().GetGameTime();
 
-    // Èç¹û Õý³£ÅÄÂô, ÔÚº¯Êý BidItem ÀïÃæ, »áÏò m_deposit_map ÖÐÌí¼ÓÊý¾Ý, Òò´ËÕâÀï±Ø¶¨ÓÐÊý¾Ý ²»Îª¿Õ
+    // å¦‚æžœ æ­£å¸¸æ‹å–, åœ¨å‡½æ•° BidItem é‡Œé¢, ä¼šå‘ m_deposit_map ä¸­æ·»åŠ æ•°æ®, å› æ­¤è¿™é‡Œå¿…å®šæœ‰æ•°æ® ä¸ä¸ºç©º
     CAuctionMgr::AUCTION_DEPOSIT_MAP& dmap = CAuctionMgr::GetInstance().m_deposit_map[m_dwAuctionID];
 
-    // Îª¿Õ, Ã»ÓÐ³ö¼ÛÊý¾Ý, ³¬Ê±/Ö÷¶¯È¡Ïû
+    // ä¸ºç©º, æ²¡æœ‰å‡ºä»·æ•°æ®, è¶…æ—¶/ä¸»åŠ¨å–æ¶ˆ
     if (dmap.empty())
     {
         LOG_PROCESS_ERROR(m_dwBuyerRoleID == 0);
@@ -100,7 +100,7 @@ void Auction::Finish()
         {
             CAuctionMgr::GetInstance()._UpDateAuction(this, easExpired);
 
-            // ³­´úÂë, ÈÕÖ¾¹¦ÄÜ ÔÝÊ±ÆÁ±Î
+            // æŠ„ä»£ç , æ—¥å¿—åŠŸèƒ½ æš‚æ—¶å±è”½
             //bRet = CMessageHandler::GetInstance().DoDLAuction(m_byGroupID, m_dwSellerRoleID, 0, m_dwAuctionID, "Expire",
             //    0, 0, 0, 0, m_iteminfo.m_nTemplateID, m_iteminfo.m_llGuid);
             //LOG_PROCESS_ERROR(bRet);
@@ -109,7 +109,7 @@ void Auction::Finish()
         {
             CAuctionMgr::GetInstance()._UpDateAuction(this, easCanceled);
 
-            // ³­´úÂë, ÈÕÖ¾¹¦ÄÜ ÔÝÊ±ÆÁ±Î
+            // æŠ„ä»£ç , æ—¥å¿—åŠŸèƒ½ æš‚æ—¶å±è”½
             //bRet = CMessageHandler::GetInstance().DoDLAuction(m_byGroupID, m_dwSellerRoleID, 0, m_dwAuctionID, "Cancel",
             //    0, 0, 0, 0, m_iteminfo.m_nTemplateID, m_iteminfo.m_llGuid);
             //LOG_PROCESS_ERROR(bRet);
@@ -117,20 +117,20 @@ void Auction::Finish()
 
         CAuctionMgr::GetInstance().m_role_selling_auction_list[m_dwSellerRoleID].remove(this);
     }
-    // ²»Îª¿Õ, ÓÐÈË³ö¹ý³ö¼Û, Õý³£ÅÄÂô
+    // ä¸ä¸ºç©º, æœ‰äººå‡ºè¿‡å‡ºä»·, æ­£å¸¸æ‹å–
     else
     {
         LOG_CHECK_ERROR(m_dwBuyerRoleID != 0);
 
         std::list<UINT32> allbidder;
 
-        // ÕûÀíÒ»¹²¶àÉÙÈË³ö¹ý¼Û, »ñÈ¡ËùÓÐ RoleID
+        // æ•´ç†ä¸€å…±å¤šå°‘äººå‡ºè¿‡ä»·, èŽ·å–æ‰€æœ‰ RoleID
         for (CAuctionMgr::AUCTION_DEPOSIT_MAP::const_iterator it = dmap.begin(); it != dmap.end(); ++it)
         {
             allbidder.push_back(it->first);
         }
 
-        // ³ýÁË¹ºÂòÕß±¾ÈË, É¾³ýÆäËûÈËµÄ±£Ö¤½ðÊý¾Ý, ²¢ÍË»¹±£Ö¤½ð
+        // é™¤äº†è´­ä¹°è€…æœ¬äºº, åˆ é™¤å…¶ä»–äººçš„ä¿è¯é‡‘æ•°æ®, å¹¶é€€è¿˜ä¿è¯é‡‘
         for (std::list<UINT32>::const_iterator it = allbidder.begin(); it != allbidder.end(); ++it)
         {
             CAuctionMgr::GetInstance().DelDeposit(this, *it);
@@ -141,7 +141,7 @@ void Auction::Finish()
             }
         }
 
-        // ×Ô¼º¸Ä´úÂë
+        // è‡ªå·±æ”¹ä»£ç 
         //for (const auto it : allbidder)
         //{
         //    CAuctionMgr::GetInstance().DelDeposit(this, it);
@@ -153,7 +153,7 @@ void Auction::Finish()
         //    }
         //}
 
-        // ·¢ÓÊ¼þ
+        // å‘é‚®ä»¶
         if (seller_role)
         {
             const MAIL_TEMPLATE_DATA* seller_mail = NULL;
@@ -181,15 +181,15 @@ void Auction::Finish()
             LOG_PROCESS_ERROR(bRet);
         }
 
-        LOG_PROCESS_ERROR(dmap.empty());    // Õý³£ÕâÀïÓ¦¸ÃÎª¿ÕÁË
+        LOG_PROCESS_ERROR(dmap.empty());    // æ­£å¸¸è¿™é‡Œåº”è¯¥ä¸ºç©ºäº†
 
-        // É¾³ý ¶©µ¥±£Ö¤½ðÊý¾Ý
+        // åˆ é™¤ è®¢å•ä¿è¯é‡‘æ•°æ®
         CAuctionMgr::GetInstance().m_deposit_map.erase(m_dwAuctionID);
 
-        // ¸üÐÂ ¶©µ¥×´Ì¬, µÈ´ý¸¶Î²¿î
+        // æ›´æ–° è®¢å•çŠ¶æ€, ç­‰å¾…ä»˜å°¾æ¬¾
         CAuctionMgr::GetInstance()._UpDateAuction(this, easWaitForPayment);
 
-        // ³­´úÂë, ÈÕÖ¾¹¦ÄÜ ÔÝÊ±ÆÁ±Î
+        // æŠ„ä»£ç , æ—¥å¿—åŠŸèƒ½ æš‚æ—¶å±è”½
         //bRet = CMessageHandler::GetInstance().DoDLAuction(m_byGroupID, m_dwSellerRoleID, m_dwBuyerRoleID, m_dwAuctionID, "Win",
         //    m_llPrice, 0, 0, 0, m_iteminfo.m_nTemplateID, m_iteminfo.m_llGuid);
         //LOG_PROCESS_ERROR(bRet);
@@ -263,7 +263,7 @@ void Auction::FinishWaitForPayment()
 
     CAuctionMgr::GetInstance()._UpDateAuction(this, easPaymentExpired);
 
-    // ³­´úÂë, ÈÕÖ¾¹¦ÄÜ ÔÝÊ±ÆÁ±Î
+    // æŠ„ä»£ç , æ—¥å¿—åŠŸèƒ½ æš‚æ—¶å±è”½
     //bRet = CMessageHandler::GetInstance().DoDLAuction(m_byGroupID, m_dwSellerRoleID, m_dwBuyerRoleID, m_dwAuctionID, "PaymentExpire",
     //    0, 0, 0, 0, m_iteminfo.m_nTemplateID, m_iteminfo.m_llGuid);
     //LOG_PROCESS_ERROR(bRet);
@@ -290,8 +290,8 @@ CAuctionMgr CAuctionMgr::ms_Instance;
 
 UINT32 CAuctionMgr::_GetAuctionID(INT32 nGroupID)
 {
-    // auctionid Éú³É¹æÔò
-    // Ç°8¸öbit ×éºÅ, ºó24¸öbit ´Ó1¿ªÊ¼×ÔÔö³¤
+    // auctionid ç”Ÿæˆè§„åˆ™
+    // å‰8ä¸ªbit ç»„å·, åŽ24ä¸ªbit ä»Ž1å¼€å§‹è‡ªå¢žé•¿
     UINT32 auctionid = 0;
     LOG_PROCESS_ERROR(IsValidGroup(nGroupID));
 
@@ -509,7 +509,7 @@ INT32 CAuctionMgr::AddItem(MS_ROLE_DATA* role, ItemInfo& iteminfo, UINT8 bytimet
 
     actual_buf_len = auction->m_iteminfo.Save(item_buf);
 
-    // °ÑÎïÆ·Êý¾ÝÐÅÏ¢ ×éºÏ³É×Ö·û´®, ÔÝÊ±ÆÁ±Î
+    // æŠŠç‰©å“æ•°æ®ä¿¡æ¯ ç»„åˆæˆå­—ç¬¦ä¸², æš‚æ—¶å±è”½
     //auction->m_iteminfo.SaveString(item_detail, 1024);
 
     bRet = CManageServer::GetInstance().GetSqlMgr().AsyncExecSqlStmt(msqlInsertAuction, NULL, NULL, "ucudududlllududucucbs",
@@ -519,7 +519,7 @@ INT32 CAuctionMgr::AddItem(MS_ROLE_DATA* role, ItemInfo& iteminfo, UINT8 bytimet
         item_buf, actual_buf_len, item_detail);
     LOG_PROCESS_ERROR(bRet);
 
-    // ³­´úÂë, ÈÕÖ¾¹¦ÄÜ ÔÝÊ±ÆÁ±Î
+    // æŠ„ä»£ç , æ—¥å¿—åŠŸèƒ½ æš‚æ—¶å±è”½
     //bRet = CManageServer::GetInstance().DoDLAuction(role->byGroup, role->dwRoleID, 0, auction->m_dwAuctionID, "Sell",
     //    price, buyoutprice, depositprice, timetype, iteminfo.m_nTemplateID, iteminfo.m_llGuid);
     //LOG_PROCESS_ERROR(bRet);
@@ -611,14 +611,14 @@ INT32 CAuctionMgr::BidItem(MS_ROLE_DATA* role, UINT32 auctionid, INT64 price)
         return errSuccess;
     }
 
-    // ÅÐ¶Ï³ö¼ÛµÄÈË, ÊÇ·ñÔÚ ±£Ö¤½ðÁÐ±íÀï, Èç¹û²»ÔÚ¾ÍÌí¼Ó½øÈ¥, ÎÞÂÛÊÇ Ö±½Ó"Ò»¿Ú¼Û" »ò ¶à´Î"¾ºÅÄ"¶¼ÅÐ¶Ï ¶¼Ìí¼Ó
+    // åˆ¤æ–­å‡ºä»·çš„äºº, æ˜¯å¦åœ¨ ä¿è¯é‡‘åˆ—è¡¨é‡Œ, å¦‚æžœä¸åœ¨å°±æ·»åŠ è¿›åŽ», æ— è®ºæ˜¯ ç›´æŽ¥"ä¸€å£ä»·" æˆ– å¤šæ¬¡"ç«žæ‹"éƒ½åˆ¤æ–­ éƒ½æ·»åŠ 
     if (!IsBidder(auctionid, role->dwRoleID))
     {
         AddDeposit(auction, role->dwRoleID);
         m_role_buying_auction_list[role->dwRoleID].push_back(auction);
     }
 
-    // ³­´úÂë, ÈÕÖ¾¹¦ÄÜ ÔÝÊ±ÆÁ±Î
+    // æŠ„ä»£ç , æ—¥å¿—åŠŸèƒ½ æš‚æ—¶å±è”½
     //bRet = CMessageHandler::GetInstance().DoDLAuction(auction->m_byGroupID, auction->m_dwSellerRoleID, role->dwRoleID, auction->m_dwAuctionID,
     //    "Bid", price, 0, 0, 0, auction->m_iteminfo.m_nTemplateID, auction->m_iteminfo.m_llGuid);
     //LOG_PROCESS_ERROR(bRet);
@@ -658,12 +658,12 @@ INT32 CAuctionMgr::BidItem(MS_ROLE_DATA* role, UINT32 auctionid, INT64 price)
         auction->m_dwBuyerRoleID = role->dwRoleID;
         auction->m_llPrice = price;
 
-        // ³ö¼Û >= Ò»¿Ú¼Û, Õâ¸öÅÄÂô¾ÍÖ±½Ó½áÊø
+        // å‡ºä»· >= ä¸€å£ä»·, è¿™ä¸ªæ‹å–å°±ç›´æŽ¥ç»“æŸ
         if (auction->m_llBuyoutPrice && auction->m_llPrice >= auction->m_llBuyoutPrice)
         {
             auction->Finish();
         }
-        // ³ö¼Û < Ò»¿Ú¼Û, ËµÃ÷ÊÇ¾ºÅÄ, ¿ªÊ¼¸üÐÂÊý¾Ý
+        // å‡ºä»· < ä¸€å£ä»·, è¯´æ˜Žæ˜¯ç«žæ‹, å¼€å§‹æ›´æ–°æ•°æ®
         else
         {
             if (auction->m_dwFinishTime < CManageServer::GetInstance().GetGameTime() + g_GWConfig.nAuctionFinishDelayTime)
@@ -731,18 +731,18 @@ INT32 CAuctionMgr::PaidLeftMoney(Auction* auction)
     buyer_mail = CDataManager<MAIL_TEMPLATE_DATA>::GetInstance().GetData(mtiAuctionSuccessBuyer);
     LOG_PROCESS_ERROR(buyer_mail);
 
-    // ¸ø¹ºÂòÕß·¢ÓÊ¼þ
+    // ç»™è´­ä¹°è€…å‘é‚®ä»¶
     snprintf(mail_subject_buyer, MAIL_SUBJECT_LEN, buyer_mail->m_szMailSubject, auction->m_iteminfo.m_nTemplateID);
     snprintf(mail_content_buyer, MAIL_CONTENT_LEN, buyer_mail->m_szMailContent, auction->m_llPrice);
     bRet = CMailMgr::GetInstance().SendSystemMailWithBufferAttach(buyer_role, mail_subject_buyer, mail_content_buyer, attachbuffer, attachlen);
     LOG_PROCESS_ERROR(bRet);
 
-    // ÎïÆ·ÔÚÓÊ¼þÖÐµÄcdÊ±¼ä, µÈµ½cdÊ±¼äÁË, ²ÅÄÜÌáÈ¡
+    // ç‰©å“åœ¨é‚®ä»¶ä¸­çš„cdæ—¶é—´, ç­‰åˆ°cdæ—¶é—´äº†, æ‰èƒ½æå–
     mail_cd = g_GWConfig.nAuctionMoneyCDTime - (CManageServer::GetInstance().GetGameTime() - auction->m_dwFinishTime);
     if (mail_cd < 0)
         mail_cd = 0;
 
-    // ¼ÆËãË°ÂÊ ºÍ ×îÖÕ½ð¶î, ¸ø³öÊÛÕß·¢ÓÊ¼þ
+    // è®¡ç®—ç¨ŽçŽ‡ å’Œ æœ€ç»ˆé‡‘é¢, ç»™å‡ºå”®è€…å‘é‚®ä»¶
     tax = GetAuctionTax(auction->m_llPrice);
     snprintf(mail_subject_seller, MAIL_SUBJECT_LEN, seller_mail->m_szMailSubject, auction->m_iteminfo.m_nTemplateID);
     snprintf(mail_content_seller, MAIL_CONTENT_LEN, seller_mail->m_szMailContent, auction->m_llPrice - tax, tax);
@@ -761,29 +761,29 @@ INT32 CAuctionMgr::PaidLeftMoney(Auction* auction)
         LOG_PROCESS_ERROR(bRet);
     }
 
-    // ¹ºÂòÕß ÔÚ SellingÁÐ±í ÖÐÉ¾³ý, Ìí¼Óµ½ SoldÁÐ±í
+    // è´­ä¹°è€… åœ¨ Sellingåˆ—è¡¨ ä¸­åˆ é™¤, æ·»åŠ åˆ° Soldåˆ—è¡¨
     m_role_selling_auction_list[auction->m_dwSellerRoleID].remove(auction);
     _AddSoldAuction(auction->m_dwSellerRoleID, auction);
 
-    // ¹ºÂòÕß ÔÚ BuyingÁÐ±í ÖÐÉ¾³ý, Ìí¼Óµ½ BoughtÁÐ±í
+    // è´­ä¹°è€… åœ¨ Buyingåˆ—è¡¨ ä¸­åˆ é™¤, æ·»åŠ åˆ° Boughtåˆ—è¡¨
     m_role_buying_auction_list[auction->m_dwBuyerRoleID].remove(auction);
     _AddBoughtAuction(auction->m_dwBuyerRoleID, auction);
 
     _UpDateAuction(auction, easFinished);
 
-    // ³­´úÂë, ÈÕÖ¾¹¦ÄÜ ÔÝÊ±ÆÁ±Î
+    // æŠ„ä»£ç , æ—¥å¿—åŠŸèƒ½ æš‚æ—¶å±è”½
     //bRet = CMessageHandler::GetInstance().DoDLAuction(auction->m_byGroupID, auction->m_dwSellerRoleID, auction->m_dwBuyerRoleID, auction->m_dwAuctionID,
     //    "PaidLeftMoney", 0, 0, 0, 0, auction->m_iteminfo.m_nTemplateID, auction->m_iteminfo.m_llGuid);
     //LOG_PROCESS_ERROR(bRet);
 
-    // ³öÊÛÕß
+    // å‡ºå”®è€…
     pOnlineRoleSeller = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(auction->m_dwSellerRoleID);
     if (pOnlineRoleSeller)
     {
         CMessageHandler::GetInstance().DoClientAuctionFinished(pOnlineRoleSeller->dwCliSessionID, auction->m_dwAuctionID, easFinished);
     }
 
-    // ¹ºÂòÕß
+    // è´­ä¹°è€…
     pOnlineRoleBuyer = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(auction->m_dwBuyerRoleID);
     if (pOnlineRoleBuyer)
     {

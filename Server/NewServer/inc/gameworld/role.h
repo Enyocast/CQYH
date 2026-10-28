@@ -542,23 +542,23 @@ private:
 	/************************************************************************/
 
 
-	// ĞÂÔö´úÂë, ×Ô¼ºĞÂÔö¼Ó º¯Êı
+	// æ–°å¢ä»£ç , è‡ªå·±æ–°å¢åŠ  å‡½æ•°
 public:
-	UINT32 GetGameTimeCard_UINT32();	       // »ñÈ¡µ±Ç°µã¿¨µ½ÆÚÊ±¼ä (ÃëÊı)
-	void AddGameTimeCard(UINT32 seconds);	   // Ôö¼Óµã¿¨Ê±¼ä (ÃëÊı)
-	void NotifyRole_GameTimeCard();			   // ·¢ËÍË½ÁÄ Í¨ÖªÊ£ÓàÊ±¼ä
-	BOOL GetGameTimeCard_HaveTime();           // »ñÈ¡µ½µãÊÇ·ñ¹ıÆÚ
+	UINT32 GetGameTimeCard_UINT32();	       // è·å–å½“å‰ç‚¹å¡åˆ°æœŸæ—¶é—´ (ç§’æ•°)
+	void AddGameTimeCard(UINT32 seconds);	   // å¢åŠ ç‚¹å¡æ—¶é—´ (ç§’æ•°)
+	void NotifyRole_GameTimeCard();			   // å‘é€ç§èŠ é€šçŸ¥å‰©ä½™æ—¶é—´
+	BOOL GetGameTimeCard_HaveTime();           // è·å–åˆ°ç‚¹æ˜¯å¦è¿‡æœŸ
 
-	INT32 GetRuneItemHighResult();			                // »ñÈ¡-¸ß¼¶ÃúÎÄÏ´Á·½á¹û
-	void SetRuneItemHighResult(INT32 RuneID);               // ĞŞ¸Ä-¸ß¼¶ÃúÎÄÏ´Á·½á¹û
-	INT32 GetRuneRootCount(INT32 nType, INT32 cls);         // »ñÈ¡-ÃúÎÄ½ÚµãÊıÖµ
-	void IncRuneRootCount(INT32 nType, INT32 cls);          // Ôö¼Ó-ÃúÎÄ½ÚµãÊıÖµ
-	void NotifyRole_RuneRootCount(INT32 nType, INT32 cls);  // ·¢ËÍË½ÁÄ Í¨ÖªÃúÎÄ½ÚµãÊıÖµ
+	INT32 GetRuneItemHighResult();			                // è·å–-é«˜çº§é“­æ–‡æ´—ç»ƒç»“æœ
+	void SetRuneItemHighResult(INT32 RuneID);               // ä¿®æ”¹-é«˜çº§é“­æ–‡æ´—ç»ƒç»“æœ
+	INT32 GetRuneRootCount(INT32 nType, INT32 cls);         // è·å–-é“­æ–‡èŠ‚ç‚¹æ•°å€¼
+	void IncRuneRootCount(INT32 nType, INT32 cls);          // å¢åŠ -é“­æ–‡èŠ‚ç‚¹æ•°å€¼
+	void NotifyRole_RuneRootCount(INT32 nType, INT32 cls);  // å‘é€ç§èŠ é€šçŸ¥é“­æ–‡èŠ‚ç‚¹æ•°å€¼
 
-	void ResetLuckRootCount();          // ÇåÁã-×£¸£ÓÍ½ÚµãÊıÖµ
-	INT32 GetLuckRootCount();           // »ñÈ¡-×£¸£ÓÍ½ÚµãÊıÖµ
-	void IncLuckRootCount();	        // Ôö¼Ó-×£¸£ÓÍ½ÚµãÊıÖµ
-	void NotifyRole_LuckRootCount();    // ·¢ËÍË½ÁÄ Í¨Öª×£¸£ÓÍ½ÚµãÊıÖµ
+	void ResetLuckRootCount();          // æ¸…é›¶-ç¥ç¦æ²¹èŠ‚ç‚¹æ•°å€¼
+	INT32 GetLuckRootCount();           // è·å–-ç¥ç¦æ²¹èŠ‚ç‚¹æ•°å€¼
+	void IncLuckRootCount();	        // å¢åŠ -ç¥ç¦æ²¹èŠ‚ç‚¹æ•°å€¼
+	void NotifyRole_LuckRootCount();    // å‘é€ç§èŠ é€šçŸ¥ç¥ç¦æ²¹èŠ‚ç‚¹æ•°å€¼
 
 protected:
     void _On1SecMainLoop(void);
@@ -597,7 +597,7 @@ private:
     char                m_szUserName[USER_NAME_LEN];
 	ERoleState          m_eState;
     UINT8               m_eFcmState;
-    BOOL                m_bFreeMode;    // (=TRUE, ÓĞ¹¦ÄÜÏŞÖÆ) (=FALSE, ÎŞ¹¦ÄÜÏŞÖÆ)
+    BOOL                m_bFreeMode;    // (=TRUE, æœ‰åŠŸèƒ½é™åˆ¶) (=FALSE, æ— åŠŸèƒ½é™åˆ¶)
     BOOL                m_bInJump;
     BOOL                m_bInLogin;
 	UINT32				m_dwJumpRandomNumber;
@@ -651,7 +651,7 @@ private:
 	INT32				m_nPkMode;
 	INT32				m_dwPkValue;
 	INT32				m_nComboKill;
-	INT32			    m_nGreyNameFrame;  // »ÒÃûÖ¡Êı
+	INT32			    m_nGreyNameFrame;  // ç°åå¸§æ•°
 
     CProMails           m_ProMails;
 	CItemBag            m_ItemBag;
@@ -802,19 +802,19 @@ private:
     BOOL            m_bDoingSubTime;
 
 
-	// ĞÂÔö´úÂë, ×Ô¼ºĞÂÔö¼Ó ±äÁ¿
+	// æ–°å¢ä»£ç , è‡ªå·±æ–°å¢åŠ  å˜é‡
 private:
-	UINT32	        m_dwGameTimeCard;         // µã¿¨Ê±¼ä(Ê£ÓàÃëÊı)
-	BOOL            m_bDoTellGameTimeCard;    // Í¨ÖªÍæ¼Òµã¿¨µ½ÆÚ, Ö»Í¨ÖªÒ»´Î
-	BOOL            m_bHaveTime;              // ÊÇ·ñµ½ÆÚ
-	INT32           m_dwRuneID;               // ¸ß¼¶ÃúÎÄÏ´Á·½á¹û
-	INT32           m_nRuneNormal_Warrior;    // ÆÕÍ¨ÃúÎÄÏ´Á·½Úµã
+	UINT32	        m_dwGameTimeCard;         // ç‚¹å¡æ—¶é—´(å‰©ä½™ç§’æ•°)
+	BOOL            m_bDoTellGameTimeCard;    // é€šçŸ¥ç©å®¶ç‚¹å¡åˆ°æœŸ, åªé€šçŸ¥ä¸€æ¬¡
+	BOOL            m_bHaveTime;              // æ˜¯å¦åˆ°æœŸ
+	INT32           m_dwRuneID;               // é«˜çº§é“­æ–‡æ´—ç»ƒç»“æœ
+	INT32           m_nRuneNormal_Warrior;    // æ™®é€šé“­æ–‡æ´—ç»ƒèŠ‚ç‚¹
 	INT32           m_nRuneNormal_Mage;
 	INT32           m_nRuneNormal_Taoist;
-	INT32           m_nRuneAdvanced_Warrior;  // ¸ß¼¶ÃúÎÄÏ´Á·½Úµã
+	INT32           m_nRuneAdvanced_Warrior;  // é«˜çº§é“­æ–‡æ´—ç»ƒèŠ‚ç‚¹
 	INT32           m_nRuneAdvanced_Mage;
 	INT32           m_nRuneAdvanced_Taoist;
-	INT32           m_nLuckRootCount;         // ×£¸£ÓÍ½Úµã
+	INT32           m_nLuckRootCount;         // ç¥ç¦æ²¹èŠ‚ç‚¹
 	
 
 private:

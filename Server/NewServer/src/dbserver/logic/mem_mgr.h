@@ -31,11 +31,11 @@ public:
     BOOL Init(UINT32 dwMemCount);
     BOOL UnInit();
 
-    void Push(DB_ROLE_DATA* pData);     //¹¤×÷Ïß³Ì¹é»¹
-    DB_ROLE_DATA* Pop(void);            //Ö÷Ïß³ÌÄÃ
+    void Push(DB_ROLE_DATA* pData);     //å·¥ä½œçº¿ç¨‹å½’è¿˜
+    DB_ROLE_DATA* Pop(void);            //ä¸»çº¿ç¨‹æ‹¿
 
 private:
-    CFreeStack m_FreeStack; //Ö÷Ïß³Ì´ÓÕâÀïÄÃ¿ÕÏÐµÄÄÚ´æ£¬¹¤×÷Ïß³Ì°Ñ¿ÕÏÐµÄÄÚ´æ·Åµ½ÕâÀï
+    CFreeStack m_FreeStack; //ä¸»çº¿ç¨‹ä»Žè¿™é‡Œæ‹¿ç©ºé—²çš„å†…å­˜ï¼Œå·¥ä½œçº¿ç¨‹æŠŠç©ºé—²çš„å†…å­˜æ”¾åˆ°è¿™é‡Œ
     MemPtr m_memptr;
 };
 

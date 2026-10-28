@@ -8750,11 +8750,11 @@ INT32 ModifierChar_235(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
 
     if (nParam3 <= 0)
     {
-        // Ä¬ÈÏ´úÂë
+        // é»˜è®¤ä»£ç 
         nRate = nParam1 * poNpc->GetPetLevel() + nParam2;
         PROCESS_SUCCESS(g_Random(0, RATE_MAX) > nRate);
 
-        // ÕâÀïÊÇ»ñÈ¡Ö÷ÈË¶ÔÏó - ÔİÊ±ÆÁ±Î
+        // è¿™é‡Œæ˜¯è·å–ä¸»äººå¯¹è±¡ - æš‚æ—¶å±è”½
         {
             //host = CGameWorld::GetInstance().FindValidCharacter(poChar->GetHostID());
             //if (host)
@@ -8782,11 +8782,11 @@ INT32 ModifierChar_235(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
             //    case 9: nRate += 5000; break;
             //    }
             //
-            //    // Ä¬ÈÏ´úÂë, ÁéÊŞÃ¿¼¶3%¸ÅÂÊ, 7¼¶¾ÍÊÇ21%
+            //    // é»˜è®¤ä»£ç , çµå…½æ¯çº§3%æ¦‚ç‡, 7çº§å°±æ˜¯21%
             //    nRate += nParam1 * poNpc->GetPetLevel() + nParam2;
             //    PROCESS_SUCCESS(g_Random(0, RATE_MAX) > nRate);
             //
-            //    // ³­À´µÄ´úÂë, ¸ù¾İÓÕ»óÉñË®´¥·¢µÄ
+            //    // æŠ„æ¥çš„ä»£ç , æ ¹æ®è¯±æƒ‘ç¥æ°´è§¦å‘çš„
             //    //poAura = host->GetFirstAura(45780);
             //    //if (poAura)
             //    //{
@@ -8794,14 +8794,14 @@ INT32 ModifierChar_235(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
             //    //}
             //    //else
             //    //{
-            //    //    // Ä¬ÈÏ´úÂë, ÁéÊŞÃ¿¼¶3%¸ÅÂÊ, 7¼¶¾ÍÊÇ21%
+            //    //    // é»˜è®¤ä»£ç , çµå…½æ¯çº§3%æ¦‚ç‡, 7çº§å°±æ˜¯21%
             //    //    nRate = nParam1 * poNpc->GetPetLevel() + nParam2;
             //    //    PROCESS_SUCCESS(g_Random(0, RATE_MAX) > nRate);
             //    //}
             //}
             //else
             //{
-            //    // Ä¬ÈÏ´úÂë
+            //    // é»˜è®¤ä»£ç 
             //    nRate = nParam1 * poNpc->GetPetLevel() + nParam2;
             //    PROCESS_SUCCESS(g_Random(0, RATE_MAX) > nRate);
             //}
@@ -9354,7 +9354,7 @@ Exit0:
     return mrcError;
 }
 
-// ×Ô¼ºĞÂÔö¼ÓµÄº¯Êı, ÓĞµÄº¯ÊıÄÚÈİ²»ÖªµÀ¸ÃÕ¦Ğ´, ÔİÊ±ÏÈÁô¿Õ
+// è‡ªå·±æ–°å¢åŠ çš„å‡½æ•°, æœ‰çš„å‡½æ•°å†…å®¹ä¸çŸ¥é“è¯¥å’‹å†™, æš‚æ—¶å…ˆç•™ç©º
 INT32 ModifierChar_251(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32 nParam2, INT32 nParam3, void* pExParam)
 {
     //WRN("Execute Function - %s", __FUNCTION__);
@@ -9555,17 +9555,17 @@ INT32 ModifierChar_257(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
     CCharacter* poChar = static_cast<CCharacter*>(poTarget);
     LOG_PROCESS_ERROR(poChar);
 
-    //LOG_PROCESS_ERROR(!bIsRollingBack);    // IDA´úÂëÀïÃ»ÓĞ, ÎÒ×Ô¼º¼ÓµÄ
+    //LOG_PROCESS_ERROR(!bIsRollingBack);    // IDAä»£ç é‡Œæ²¡æœ‰, æˆ‘è‡ªå·±åŠ çš„
 
     LOG_PROCESS_ERROR(poChar->GetObjType() == otRole);
 
     if (!bIsRollingBack)
     {
-        //poChar->SetSceneExpRate(v7, 0);    // ÎÒµÄ´úÂëÀïÃ»ÓĞÕâ¸öº¯Êı CRole::SetSceneExpRate
+        //poChar->SetSceneExpRate(v7, 0);    // æˆ‘çš„ä»£ç é‡Œæ²¡æœ‰è¿™ä¸ªå‡½æ•° CRole::SetSceneExpRate
     }
     else
     {
-        //poChar->SetSceneExpRate(v7, nParam2);    // ÎÒµÄ´úÂëÀïÃ»ÓĞÕâ¸öº¯Êı CRole::SetSceneExpRate
+        //poChar->SetSceneExpRate(v7, nParam2);    // æˆ‘çš„ä»£ç é‡Œæ²¡æœ‰è¿™ä¸ªå‡½æ•° CRole::SetSceneExpRate
     }
 
     return mrcTrue;
@@ -9585,7 +9585,7 @@ INT32 ModifierChar_258(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
     CCharacter* poChar = static_cast<CCharacter*>(poTarget);
     LOG_PROCESS_ERROR(poChar);
 
-    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDA´úÂëÀïÃ»ÓĞ, ÎÒ×Ô¼º¼ÓµÄ
+    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDAä»£ç é‡Œæ²¡æœ‰, æˆ‘è‡ªå·±åŠ çš„
 
     LOG_PROCESS_ERROR(poChar->GetObjType() == otRole);
 
@@ -9636,7 +9636,7 @@ INT32 ModifierChar_259(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
     CCharacter* poChar = static_cast<CCharacter*>(poTarget);
     LOG_PROCESS_ERROR(poChar);
 
-    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDA´úÂëÀïÃ»ÓĞ, ÎÒ×Ô¼º¼ÓµÄ
+    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDAä»£ç é‡Œæ²¡æœ‰, æˆ‘è‡ªå·±åŠ çš„
 
     spell = poChar->GetPendingSpell();
     LOG_PROCESS_ERROR(spell);
@@ -9653,7 +9653,7 @@ INT32 ModifierChar_259(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
             {
                 v17 = g_GetDistance3D(poRole->GetX(), poRole->GetY(), poRole->GetZ(), poNpc->GetX(), poNpc->GetY(), poNpc->GetZ());
 
-                // -1 ²»ÖªµÀ ÊÇÉ¶Ã¶¾ÙÖµ, ÔİÊ±ÏÈ¸ù¾İIDAÉú³ÉµÄ´úÂëĞ´
+                // -1 ä¸çŸ¥é“ æ˜¯å•¥æšä¸¾å€¼, æš‚æ—¶å…ˆæ ¹æ®IDAç”Ÿæˆçš„ä»£ç å†™
                 if (v17 < -1 && v17 < v18 * v18)
                 {
                     v19 = v17;
@@ -9674,7 +9674,7 @@ Exit0:
     return mrcError;
 }
 
-// ÓĞÎ´Öªº¯Êı
+// æœ‰æœªçŸ¥å‡½æ•°
 INT32 ModifierChar_260(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32 nParam2, INT32 nParam3, void* pExParam)
 {
     //WRN("Execute Function - %s", __FUNCTION__);
@@ -9682,9 +9682,9 @@ INT32 ModifierChar_260(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
     CCharacter* poChar = static_cast<CCharacter*>(poTarget);
     LOG_PROCESS_ERROR(poChar);
 
-    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDA´úÂëÀïÃ»ÓĞ, ÎÒ×Ô¼º¼ÓµÄ
+    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDAä»£ç é‡Œæ²¡æœ‰, æˆ‘è‡ªå·±åŠ çš„
 
-    //poChar->Î´Öªº¯Êı(nParam1);
+    //poChar->æœªçŸ¥å‡½æ•°(nParam1);
 
     return mrcTrue;
 Exit1:
@@ -9693,7 +9693,7 @@ Exit0:
     return mrcError;
 }
 
-// ÓĞÎ´Öªº¯Êı
+// æœ‰æœªçŸ¥å‡½æ•°
 INT32 ModifierChar_261(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32 nParam2, INT32 nParam3, void* pExParam)
 {
     //WRN("Execute Function - %s", __FUNCTION__);
@@ -9701,13 +9701,13 @@ INT32 ModifierChar_261(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
     CCharacter* poChar = static_cast<CCharacter*>(poTarget);
     LOG_PROCESS_ERROR(poChar);
 
-    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDA´úÂëÀïÃ»ÓĞ, ÎÒ×Ô¼º¼ÓµÄ
+    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDAä»£ç é‡Œæ²¡æœ‰, æˆ‘è‡ªå·±åŠ çš„
 
     for (INT32 i = 0; i < 3; ++i)
     {
         if ((nParam1 & (1 << i)) != 0)
         {
-            //poChar->Î´Öªº¯Êı(i);
+            //poChar->æœªçŸ¥å‡½æ•°(i);
         }
     }
 
@@ -9727,7 +9727,7 @@ INT32 ModifierChar_262(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
     CCharacter* poChar = static_cast<CCharacter*>(poTarget);
     LOG_PROCESS_ERROR(poChar);
 
-    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDA´úÂëÀïÃ»ÓĞ, ÎÒ×Ô¼º¼ÓµÄ
+    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDAä»£ç é‡Œæ²¡æœ‰, æˆ‘è‡ªå·±åŠ çš„
 
     LOG_PROCESS_ERROR(poChar->GetObjType() == otRole);
 
@@ -9753,7 +9753,7 @@ INT32 ModifierChar_263(void* poTarget, BOOL bIsRollingBack, INT32 nParam1, INT32
     CCharacter* poChar = static_cast<CCharacter*>(poTarget);
     LOG_PROCESS_ERROR(poChar);
 
-    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDA´úÂëÀïÃ»ÓĞ, ÎÒ×Ô¼º¼ÓµÄ
+    LOG_PROCESS_ERROR(!bIsRollingBack);    // IDAä»£ç é‡Œæ²¡æœ‰, æˆ‘è‡ªå·±åŠ çš„
 
     LOG_PROCESS_ERROR(poChar->GetObjType() == otRole);
 
@@ -9776,12 +9776,12 @@ Exit0:
 ModifierFunc g_CharModifier[cmiCount] =
 {
     { NULL, FALSE },
-    { ModifierChar_A, TRUE },	  // ¸Ä±ä×ÔÉíµÄ×ßÂ·»òÕßÅÜ²½ËÙ¶È 1²ÎÎª¸Ä±äµÄÀàĞÍ(¾ßÌåÊıÖµ)
-    { ModifierChar_B, TRUE },	  // ¸Ä±ä×ÔÉíµÄÒ»Ğ©ÊôĞÔ(¾ßÌåÊıÖµ)
-    { ModifierChar_003, TRUE },	  // ¸Ä±ä×ÔÉíµÄÒ»Ğ©ÊôĞÔ(°Ù·Ö±È)  Í¨¹ı¹â»·µÄ GetEffectPct() º¯Êı»ñµÃ°Ù·Ö±ÈÊıÖµ
-    { ModifierChar_004, TRUE },	  // ¸Ä±ä×ÔÉíµÄ×ßÂ·»òÕßÅÜ²½ËÙ¶È 1²ÎÎª¸Ä±äµÄÀàĞÍ(°Ù·Ö±È) Í¨¹ı¹â»·µÄ GetEffectPct() º¯Êı»ñµÃ°Ù·Ö±ÈÊıÖµ
-    { ModifierChar_005, FALSE },  // Ê©¼ÓÄ³ÖÖÉËº¦¸øµ±Ç°ÊÍ·ÅµÄ¼¼ÄÜËùÄÜÓ°ÏìµÄÄ¿±ê
-    { ModifierChar_006, FALSE },  // Ê©¼ÓÄ³ÖÖÉËº¦¸øµ±Ç°ÊÍ·Å¼¼ÄÜµÄËùÄÜÓ°ÏìµÄÇøÓò
+    { ModifierChar_A, TRUE },	  // æ”¹å˜è‡ªèº«çš„èµ°è·¯æˆ–è€…è·‘æ­¥é€Ÿåº¦ 1å‚ä¸ºæ”¹å˜çš„ç±»å‹(å…·ä½“æ•°å€¼)
+    { ModifierChar_B, TRUE },	  // æ”¹å˜è‡ªèº«çš„ä¸€äº›å±æ€§(å…·ä½“æ•°å€¼)
+    { ModifierChar_003, TRUE },	  // æ”¹å˜è‡ªèº«çš„ä¸€äº›å±æ€§(ç™¾åˆ†æ¯”)  é€šè¿‡å…‰ç¯çš„ GetEffectPct() å‡½æ•°è·å¾—ç™¾åˆ†æ¯”æ•°å€¼
+    { ModifierChar_004, TRUE },	  // æ”¹å˜è‡ªèº«çš„èµ°è·¯æˆ–è€…è·‘æ­¥é€Ÿåº¦ 1å‚ä¸ºæ”¹å˜çš„ç±»å‹(ç™¾åˆ†æ¯”) é€šè¿‡å…‰ç¯çš„ GetEffectPct() å‡½æ•°è·å¾—ç™¾åˆ†æ¯”æ•°å€¼
+    { ModifierChar_005, FALSE },  // æ–½åŠ æŸç§ä¼¤å®³ç»™å½“å‰é‡Šæ”¾çš„æŠ€èƒ½æ‰€èƒ½å½±å“çš„ç›®æ ‡
+    { ModifierChar_006, FALSE },  // æ–½åŠ æŸç§ä¼¤å®³ç»™å½“å‰é‡Šæ”¾æŠ€èƒ½çš„æ‰€èƒ½å½±å“çš„åŒºåŸŸ
     { ModifierChar_007, FALSE },
     { ModifierChar_008, FALSE },
     { ModifierChar_009, FALSE },
@@ -10027,7 +10027,7 @@ ModifierFunc g_CharModifier[cmiCount] =
     { ModifierChar_249, FALSE },
     { ModifierChar_250, FALSE },
 
-    // ²¹³äº¯Êı
+    // è¡¥å……å‡½æ•°
     { ModifierChar_251, FALSE },
     { ModifierChar_252, FALSE },
     { ModifierChar_253, FALSE },

@@ -9,7 +9,7 @@
 
 #define   USERID_SPILITTER                    _SDT("~^")
 
-// ´íÎóÀàĞÍÃ¶¾Ù¶¨Òå
+// é”™è¯¯ç±»å‹æšä¸¾å®šä¹‰
 enum ECenterServerErrors
 {
     CS_NO_ERROR=0,
@@ -18,17 +18,17 @@ enum ECenterServerErrors
     CS_USER_FAILED_LOGIN,
     CS_SYSTEM_FAILED
 };
-// Center ServerÏà¹Ø¶¨Òå
+// Center Serverç›¸å…³å®šä¹‰
 enum ESubscriptState
 {
 	CANCELED_SUBSCRIPTED=0,
 	SUBSCRIPTED,
 };
 
-//  ¶©ÔÄÀàĞÍ
+//  è®¢é˜…ç±»å‹
 enum ESubscriptType
 {
-	SUBSCRIPT_BYTYPE=0,//  ¶©ÔÄµÄÊÇÀàĞÍ·şÎñÆ÷£¬Ôòm_dwSubscriptIDÖ¸ÏòµÄÊÇ·şÎñÆ÷µÄÀàĞÍ£»
+	SUBSCRIPT_BYTYPE=0,//  è®¢é˜…çš„æ˜¯ç±»å‹æœåŠ¡å™¨ï¼Œåˆ™m_dwSubscriptIDæŒ‡å‘çš„æ˜¯æœåŠ¡å™¨çš„ç±»å‹ï¼›
 };
 
 #endif

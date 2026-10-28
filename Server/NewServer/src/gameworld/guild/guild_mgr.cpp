@@ -3,7 +3,7 @@
 	file:		guild_mgr.cpp
 	author:		Allan Tao
 	
-	purpose:	gs °ïÅÉ¹ÜÀíÀà
+	purpose:	gs å¸®æ´¾ç®¡ç†ç±»
 *********************************************************************/
 
 #include "stdafx.h"

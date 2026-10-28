@@ -327,7 +327,7 @@ void WINAPI ServiceMain()
 
 	g_status.dwCurrentState = SERVICE_START_PENDING;
 	g_status.dwWaitHint = 3000;
-    g_status.dwControlsAccepted = SERVICE_ACCEPT_STOP;//Õâ¸öÒªÊ¹ÓÃ£¬·ñÔòÄã²»ÄÜ¿ØÖÆ
+    g_status.dwControlsAccepted = SERVICE_ACCEPT_STOP;//è¿™ä¸ªè¦ä½¿ç”¨ï¼Œå¦åˆ™ä½ ä¸èƒ½æ§åˆ¶
     SetServiceStatus(g_hServiceStatus, &g_status);
 
 	nRetCode = _PreRunServer(0, NULL);

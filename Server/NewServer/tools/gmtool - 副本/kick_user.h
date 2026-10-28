@@ -3,7 +3,7 @@
 	file:		kick_user.h
 	author:		Allan Tao
 	
-	purpose:	GM√¸¡Ó Ãﬂ»À,∑‚∫≈
+	purpose:	GMÂëΩ‰ª§ Ë∏¢‰∫∫,Â∞ÅÂè∑
 *********************************************************************/
 
 #ifndef KICK_USER_H_

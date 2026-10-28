@@ -29,7 +29,7 @@ void MS_USER::SetFreeMode(BOOL fm)
     {
         if (fm)
         {
-            // Àë¿ª¶ÓÎé£¬´úÂë¸´ÖÆÓÚ£ºCMessageHandler::OnClientTeamLeave
+            // ç¦»å¼€é˜Ÿä¼ï¼Œä»£ç å¤åˆ¶äºŽï¼šCMessageHandler::OnClientTeamLeave
             CTeam* poTeam = CTeamMgr::GetInstance().Find(role->pRoleData->dwTeamID);
             if (poTeam)
             {
@@ -86,7 +86,7 @@ void MS_USER::SetFreeMode(BOOL fm)
                 nRetCode = CMessageHandler::GetInstance().DoGSTeamRemoveMember(role->pRoleData->dwRoleID, poTeam);
                 LOG_CHECK_ERROR(nRetCode);
             }
-            // Àë¿ª¶ÓÎé½áÊø
+            // ç¦»å¼€é˜Ÿä¼ç»“æŸ
         }
 
         CMessageHandler::GetInstance().DoGSFreeMode(role->dwGSSessionID, dwCurRoleID, fm);

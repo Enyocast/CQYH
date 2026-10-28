@@ -6,14 +6,14 @@
 #include "openssl/obj_mac.h"
 #include "openssl/md5.h"
 
-/*�������sudrsaģ��ʹ��rsakey��buffer���мӽ��ܣ�������������������ֲ�ͬ�ķ���*/
-/*1.ʹ�ù�Կ���ܣ���˽Կ����*/
-/*2.ʹ��˽Կ���ܣ��ù�Կ����*/
-/*3.ʹ��˽Կǩ�����ù�Կ��֤*/
-/*4.ASN1_OCTET_STRING���͵�ǩ������֤*/
+/*解决方案sudrsa模拟使用rsakey对buffer进行加解密，本解决方案测试了四种不同的方法*/
+/*1.使用公钥加密，用私钥解密*/
+/*2.使用私钥加密，用公钥解密*/
+/*3.使用私钥签名，用公钥验证*/
+/*4.ASN1_OCTET_STRING类型的签名和验证*/
 
 
-UINT32	dwTargetID = 12345; // ����ǰ������ݣ���Ϊ��������
+UINT32	dwTargetID = 12345; // 明文前填充内容，可为任意内容
 				
 UINT32  dwAttr[] = {123,234,345,456,567,123,234,345,456,567,123,234,345,\
 					456,567,123,234,345,456,567,123,234,345,456,567,123,234,345,456,567,123,234,\
@@ -29,16 +29,16 @@ int main(int argc, char *argv[])
  	INT32 nSize = 0;
 	INT32 nAttrCount =  sizeof(dwAttr) / sizeof(dwAttr[0]);
 
-	UINT32 dwBuffer[1024] = {0};		//	���ڴ洢������ַ��� 
-	unsigned char md[16] = {0};			// ��ʱ���ժҪ����
+	UINT32 dwBuffer[1024] = {0};		//	用于存储构造的字符串 
+	unsigned char md[16] = {0};			// 暂时存放摘要明文
 
- 	unsigned char uszEnc[1024] = {0};	// ��ʱ���ǩ�����ժҪ
-	UINT32  nBufferLength = 0;			// ��ʱ���ǩ����֤ժҪ�ĳ���
+ 	unsigned char uszEnc[1024] = {0};	// 暂时存放签名后的摘要
+	UINT32  nBufferLength = 0;			// 暂时存放签名验证摘要的长度
 
 	nRetCode = CLog::GetInstance().Init( "RSATest", lltAll, lotConsole | lotFile, TRUE, 0 );
 	LOG_PROCESS_ERROR(nRetCode);
 	
-	/*-----------------------ʹ��˽Կǩ�����ù�Կ��֤------------------------------------------*/
+	/*-----------------------使用私钥签名，用公钥验证------------------------------------------*/
 
 	PROFILE_START();
 
@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 		pKey->p = NULL;
 		pKey->q = NULL;
 		pKey->d = NULL;
-		p q d Ĩȥ�Ժ�ǩ��ʱ���ɹ���������֤ʱ�ɹ�
+		p q d 抹去以后，签名时不成功，但是验证时成功
 	*/
 
 	nRetCode = RSA_sign(NID_md5, md, sizeof(md) , uszEnc, &nBufferLength, pKey);
@@ -87,7 +87,7 @@ int main(int argc, char *argv[])
 		pKey->blinding = NULL;
 		pKey->p = NULL;
 		pKey->mt_blinding = NULL;
-		��֤�������ݸ�ǩ�� ��֤ ����
+		验证以上内容跟签名 验证 加密
 	*/
 
 	/*
@@ -95,11 +95,11 @@ int main(int argc, char *argv[])
 		pKey->meth->name = NULL;
 		pKey->meth->app_data = NULL;
 		pKey->e = NULL;
-		��֤ n  meth�� e �ڽ��ܵ�ʱ����Ĩȥ
+		验证 n  meth和 e 在解密的时候不能抹去
 	*/
 
 
-	// ��������һ����Կ�ף���n e ��������
+	// 重新生成一个空钥匙，将n e 拷贝过来
 	RSA* pPublicKey = RSA_new();
 
 	pPublicKey->n = (BIGNUM*)malloc(sizeof(BIGNUM));
@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
 	PROFILE_END();
 
 
- 	/*-------------------------------------ʹ�ù�Կ���ܣ���˽����-------------------------------------------------*/
+ 	/*-------------------------------------使用公钥加密，用私解密-------------------------------------------------*/
 
 	INT32 nEncLen = 0;
 	INT32 nDecLen = 0;
@@ -157,7 +157,7 @@ int main(int argc, char *argv[])
  	PROFILE_END();
  
  
-	/*---------------------------------------ʹ��˽Կ���ܣ��ù�Կ����---------------------------------------*/
+	/*---------------------------------------使用私钥加密，用公钥解密---------------------------------------*/
 
  	PROFILE_START();
  
@@ -174,7 +174,7 @@ int main(int argc, char *argv[])
  	PROFILE_END();
  
 
-	/*-----------------------------ASN1_OCTET_STRING���͵�ǩ������֤-------------------------------------------*/
+	/*-----------------------------ASN1_OCTET_STRING类型的签名和验证-------------------------------------------*/
 
  	PROFILE_START();
  

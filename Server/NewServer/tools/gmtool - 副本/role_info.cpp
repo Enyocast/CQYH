@@ -81,7 +81,7 @@ char* CRoleInfo::GetReason(char *pszStr)
     strxcpy(pszStr, ui.modifyRoleReasonEdit->toPlainText().toUtf8(), COMMON_NAME_LEN);
     if (strlen(pszStr) <= 0)
     {
-        QMessageBox::critical(this, "critical", "ÇëÌîÐ´ÐÞ¸ÄÔ­Òò!", QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", "è¯·å¡«å†™ä¿®æ”¹åŽŸå› !", QMessageBox::Yes);
         return NULL;
     }
 
@@ -97,7 +97,7 @@ void CRoleInfo::ReturnPos()
     if (m_bIsModify == FALSE)
         return;
 
-    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("È·ÈÏÐÞ¸ÄÊý¾Ý£¿"));
+    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("ç¡®è®¤ä¿®æ”¹æ•°æ®ï¼Ÿ"));
     if (nCheckEnum != QMessageBox::Yes)
         return;
 
@@ -125,7 +125,7 @@ void CRoleInfo::EndModify()
             nRetCode = CCmdManager::GetInstance().IsCmdExecuting(TRUE);
             LOG_PROCESS_ERROR(nRetCode);
 
-            QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("È·ÈÏÐÞ¸ÄÊý¾Ý²¢ÍË³öÐÞ¸Ä´°¿Ú£¿"));
+            QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("ç¡®è®¤ä¿®æ”¹æ•°æ®å¹¶é€€å‡ºä¿®æ”¹çª—å£ï¼Ÿ"));
             if (nCheckEnum == QMessageBox::Yes)
             {
                 nRetCode = CServerMgr::GetInstance().IsSingleSelected();
@@ -133,20 +133,20 @@ void CRoleInfo::EndModify()
 
                 if (ui.modifyRoleReasonEdit->toPlainText().toUtf8().length() <= 0)
                 {
-                    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÌîÐ´ÐÞ¸ÄÔ­Òò!"), QMessageBox::Yes);
+                    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·å¡«å†™ä¿®æ”¹åŽŸå› !"), QMessageBox::Yes);
                     return;
                 }
 
                 if (ui.modifyRoleReasonEdit->toPlainText().toUtf8().length() > GM_REASON_LEN - 1)
                 {
-                    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ô­Òò¹ý³¤!"), QMessageBox::Yes);
+                    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("åŽŸå› è¿‡é•¿!"), QMessageBox::Yes);
                     return;
                 }
 
                 nRetCode = CCmdManager::GetInstance().ModifyRole(m_dwRoleID, m_dwTargetRoleID, m_nLength, m_SaveList, ui.modifyRoleReasonEdit->toPlainText().toUtf8());
                 if (nRetCode == FALSE)
                 {
-                    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+                    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
                     return;
                 }
             }
@@ -506,43 +506,43 @@ void CRoleInfo::ShowItemInfo(QTreeWidgetItem * item, int column)
 
     memset(pBuffer, 0, BUFFER_LENGTH);
 
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "ÎïÆ·ÀàÐÍID", iter->second.dwItemID);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%llu\n", "ÎïÆ·ID", iter->second.qwGuid);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "°ü¹ü", iter->second.wConSlot);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "°ü¹üÎ»ÖÃ", iter->second.wItemSlot);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "µÀ¾ßÀàÐÍ", iter->second.nType);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "µÀ¾ß×ÓÀàÐÍ", iter->second.nSubType);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "ÊýÁ¿", iter->second.nNum);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "°ó¶¨ÀàÐÍ", iter->second.byBindType);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "ç‰©å“ç±»åž‹ID", iter->second.dwItemID);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%llu\n", "ç‰©å“ID", iter->second.qwGuid);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "åŒ…è£¹", iter->second.wConSlot);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "åŒ…è£¹ä½ç½®", iter->second.wItemSlot);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "é“å…·ç±»åž‹", iter->second.nType);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "é“å…·å­ç±»åž‹", iter->second.nSubType);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "æ•°é‡", iter->second.nNum);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "ç»‘å®šç±»åž‹", iter->second.byBindType);
 
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "¼ø¶¨ÀàÐÍ", iter->second.byIdentified);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "Ëæ»úÊôÐÔ1", iter->second.wRandomAttrID[0]);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "Ëæ»úÊôÐÔ2", iter->second.wRandomAttrID[1]);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "Ëæ»úÊôÐÔ3", iter->second.wRandomAttrID[2]);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "Ëæ»úÊôÐÔ4", iter->second.wRandomAttrID[3]);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "é‰´å®šç±»åž‹", iter->second.byIdentified);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "éšæœºå±žæ€§1", iter->second.wRandomAttrID[0]);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "éšæœºå±žæ€§2", iter->second.wRandomAttrID[1]);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "éšæœºå±žæ€§3", iter->second.wRandomAttrID[2]);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "éšæœºå±žæ€§4", iter->second.wRandomAttrID[3]);
 
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "Ç©Ãû", iter->second.dwRoleID);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "ÒÑÏû·Ñ½ð±Ò", iter->second.dwCostMoney);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%d\n", "ÐÒÔËÖµ", iter->second.byLuck);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "ç­¾å", iter->second.dwRoleID);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "å·²æ¶ˆè´¹é‡‘å¸", iter->second.dwCostMoney);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%d\n", "å¹¸è¿å€¼", iter->second.byLuck);
 
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "ÎäÆ÷Éý¼¶´ÎÊý", iter->second.byLevelupTimes);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "ÎäÆ÷Éý¼¶ÎïÀíµãÊý", iter->second.byLevelupPhyPoint);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "ÎäÆ÷Éý¼¶Ä§·¨µãÊý", iter->second.byLevelupMagPoint);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "ÎäÆ÷Éý¼¶µÀÊõµãÊý", iter->second.byLevelupTaoPoint);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "ÎäÆ÷Òþ²ØÀàÐÍ", iter->second.byLevelupTypeHidden);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "ÎäÆ÷Òþ²ØµãÊý", iter->second.byLevelupPointHidden);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "æ­¦å™¨å‡çº§æ¬¡æ•°", iter->second.byLevelupTimes);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "æ­¦å™¨å‡çº§ç‰©ç†ç‚¹æ•°", iter->second.byLevelupPhyPoint);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "æ­¦å™¨å‡çº§é­”æ³•ç‚¹æ•°", iter->second.byLevelupMagPoint);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "æ­¦å™¨å‡çº§é“æœ¯ç‚¹æ•°", iter->second.byLevelupTaoPoint);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "æ­¦å™¨éšè—ç±»åž‹", iter->second.byLevelupTypeHidden);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "æ­¦å™¨éšè—ç‚¹æ•°", iter->second.byLevelupPointHidden);
 
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "Öý»ê1", iter->second.wRune[0]);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "Öý»ê2", iter->second.wRune[1]);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "Öý»ê3", iter->second.wRune[2]);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "Öý»ê4", iter->second.wRune[3]);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "Öý»ê5", iter->second.wRune[4]);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "Öý»ê6", iter->second.wRune[5]);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "é“¸é­‚1", iter->second.wRune[0]);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "é“¸é­‚2", iter->second.wRune[1]);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "é“¸é­‚3", iter->second.wRune[2]);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "é“¸é­‚4", iter->second.wRune[3]);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "é“¸é­‚5", iter->second.wRune[4]);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "é“¸é­‚6", iter->second.wRune[5]);
 
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "²å²ÛÀàÐÍ", iter->second.dwSocketCombination);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%d\n", "±¦Ê¯ID1", iter->second.nSoulID[0]);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%d\n", "±¦Ê¯ID2", iter->second.nSoulID[1]);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%d\n", "±¦Ê¯ID3", iter->second.nSoulID[2]);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%u\n", "æ’æ§½ç±»åž‹", iter->second.dwSocketCombination);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%d\n", "å®çŸ³ID1", iter->second.nSoulID[0]);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%d\n", "å®çŸ³ID2", iter->second.nSoulID[1]);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%d\n", "å®çŸ³ID3", iter->second.nSoulID[2]);
 
 
     CGMItemInfo *pItemInfo = new CGMItemInfo(this);

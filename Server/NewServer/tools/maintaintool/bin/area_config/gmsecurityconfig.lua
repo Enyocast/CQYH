@@ -53,59 +53,59 @@ ServerConfig.GM_PWD = {
 
 	gmCmdList = {
 		[GM_CMD_QUERY_ROLE_ID] = {
-			szDescript = "²éÑ¯½ÇÉ«ID",
+			szDescript = "æŸ¥è¯¢è§’è‰²ID",
 			nPermission = GM_PERMISSION_GUEST,
 		},
 		[GM_CMD_QUERY_ROLE_DATA] = {
-			szDescript = "´Ó¿â²éÑ¯½ÇÉ«Êı¾İ",
+			szDescript = "ä»åº“æŸ¥è¯¢è§’è‰²æ•°æ®",
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_FORBID_CHAT] = {
-			szDescript = "½ûÑÔ",
+			szDescript = "ç¦è¨€",
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_FREEZE_ROLE] = {
-			szDescript = "¶³½á½ÇÉ«",
+			szDescript = "å†»ç»“è§’è‰²",
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_KICK_ROLE] = {
-			szDescript = "ÌßÈËÏÂÏß",
+			szDescript = "è¸¢äººä¸‹çº¿",
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_ANNOUNCE] = {
-			szDescript = "·¢²¼¹«¸æ",
+			szDescript = "å‘å¸ƒå…¬å‘Š",
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_GET_ANNOUNCE_LIST] = {
-			szDescript = "»ñÈ¡ÒÑ·¢ËÍ¹«¸æ",
+			szDescript = "è·å–å·²å‘é€å…¬å‘Š",
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_DEL_ANNOUNCE] = {
-			szDescript = "É¾³ı¹«¸æ",
+			szDescript = "åˆ é™¤å…¬å‘Š",
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_SEND_MAIL] = {
-			szDescript = "·¢ËÍÓÊ¼ş",
+			szDescript = "å‘é€é‚®ä»¶",
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_LOG] = {
-			szDescript = "²éÑ¯ÈÕÖ¾",
+			szDescript = "æŸ¥è¯¢æ—¥å¿—",
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_EXE_GM_STR] = {
-			szDescript = "lua gmÓï¾äÖ´ĞĞÈ¨ÏŞ",	-- ½¨Òé×î¸ßÈ¨ÏŞ
+			szDescript = "lua gmè¯­å¥æ‰§è¡Œæƒé™",	-- å»ºè®®æœ€é«˜æƒé™
 			nPermission = GM_PERMISSION_A,
 		},
 		[GM_CMD_LOAD_ROLE] = {
-			szDescript = "Ö÷¿â²éÑ¯½ÇÉ«Êı¾İ£¬¿ÉĞŞ¸Ä",
+			szDescript = "ä¸»åº“æŸ¥è¯¢è§’è‰²æ•°æ®ï¼Œå¯ä¿®æ”¹",
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_MODIFY_ROLE] = {
-			szDescript = "ĞŞ¸Ä½ÇÉ«Êı¾İ",
+			szDescript = "ä¿®æ”¹è§’è‰²æ•°æ®",
 			nPermission = GM_PERMISSION_GM,
 		},
 		[GM_CMD_QUERY_NAME_TO_ID] = {
-			szDescript = "ÅúÁ¿²éÑ¯½ÇÉ«ID",
+			szDescript = "æ‰¹é‡æŸ¥è¯¢è§’è‰²ID",
 			nPermission = GM_PERMISSION_GM,
 		},
 	},

@@ -2,7 +2,7 @@
 #include "npc.h"
 
 #include "utf8.h"
-#include <tchar.h>  // Ìí¼ÓÕâ¸öÍ·ÎÄ¼ş
+#include <tchar.h>  // æ·»åŠ è¿™ä¸ªå¤´æ–‡ä»¶
 
 #include "id_def.h"
 #include "role_def.h"
@@ -365,7 +365,7 @@ BOOL CNpc::_DistributeRegionBonus(CRole* poRole, CTeamInGS* poTeam, CRole* poKil
     LOG_PROCESS_ERROR(m_pNpcData->nExpRate >= 0 && m_pNpcData->nExpRate <= 200000);
     LOG_PROCESS_ERROR(m_pNpcData->nSoulRate >= 0 && m_pNpcData->nSoulRate <= 200000);
 
-    // Ôö¼Ó¾­Ñé
+    // å¢åŠ ç»éªŒ
     if (m_pNpcData->bProfit)
     {
         // traverse team members
@@ -481,7 +481,7 @@ BOOL CNpc::_DistributeRegionBonus(CRole* poRole, CTeamInGS* poTeam, CRole* poKil
         }
     }
 
-    // reputation ÉùÍû
+    // reputation å£°æœ›
     if (m_pNpcData->bReduceReputation)
     {
         poRole->GetReputation().ModifyValue(m_pNpcData->nForceID, g_GWConfig.SubReputation[m_nQuality]);
@@ -553,7 +553,7 @@ BOOL CNpc::Die(INT32 nParam)
     LOG_PROCESS_ERROR(m_eMoveState != CMS_DIE);
     PROCESS_SUCCESS(m_oFlag.CheckFlag(cfBTDenyDie));
 
-    // ËÀÍö½Å±¾¡£
+    // æ­»äº¡è„šæœ¬ã€‚
 #ifndef _ROBOT
     if (m_poAIProcessor && m_poAIProcessor->GetFightState() != afsDying)
     {
@@ -566,26 +566,26 @@ BOOL CNpc::Die(INT32 nParam)
 
     PROCESS_ERROR(m_eMoveState != CMS_DIE);
 
-    // Ö´ĞĞÉÏ²ã»ùÀà ËÀÍöº¯Êı
+    // æ‰§è¡Œä¸Šå±‚åŸºç±» æ­»äº¡å‡½æ•°
     nRetCode = CCharacter::Die(nParam);
     LOG_PROCESS_ERROR(nRetCode);
 
-    // ¹ÖÎï×´Ì¬
+    // æ€ªç‰©çŠ¶æ€
     m_nNpcState = npcCorpse;
 
-    // ¹ÖÎïÊ±¼ä
+    // æ€ªç‰©æ—¶é—´
     m_nNpcTimer = CGameWorld::GetInstance().GetGameFrame() + m_pNpcData->nCorpseTime;
 
-    // ÑªÁ¿
+    // è¡€é‡
     m_nPetHpRestore = 0;
 
-    // ÅĞ¶Ï Ö±½Ó»÷É±Õß
+    // åˆ¤æ–­ ç›´æ¥å‡»æ€è€…
     if (m_dwDropOwnerID)
         poDirectKiller = CGameWorld::GetInstance().FindValidCharacter(m_dwDropOwnerID);
     if (poDirectKiller == NULL && m_dwLastCasterID)
         poDirectKiller = CGameWorld::GetInstance().FindValidCharacter(m_dwLastCasterID);
 
-    // ÅĞ¶Ï ×îÖÕ»÷É±Õß
+    // åˆ¤æ–­ æœ€ç»ˆå‡»æ€è€…
     if (poDirectKiller)
     {
         if (poDirectKiller->GetObjType() == otNpc)
@@ -606,7 +606,7 @@ BOOL CNpc::Die(INT32 nParam)
             poKiller = (CRole*)poDirectKiller;
     }
 
-    // Ôö¼Ó ¾­Ñé/ÉùÍû/Íê³ÉÈÎÎñ/µØÍ¼±äÁ¿ (ÀıÈç »÷É±x¸ö¹ÖÎïÖ®ºó, Ë¢Ä³¸öBOSS³öÀ´)
+    // å¢åŠ  ç»éªŒ/å£°æœ›/å®Œæˆä»»åŠ¡/åœ°å›¾å˜é‡ (ä¾‹å¦‚ å‡»æ€xä¸ªæ€ªç‰©ä¹‹å, åˆ·æŸä¸ªBOSSå‡ºæ¥)
     if (poKiller && m_bGenerateDrop)
     {
         if (poKiller->GetTeamID() != INVALID_OBJECT_ID)
@@ -633,11 +633,11 @@ BOOL CNpc::Die(INT32 nParam)
         }
         else
         {
-            // ·¢·ÅÇøÓò½±Àø
+            // å‘æ”¾åŒºåŸŸå¥–åŠ±
             nRetCode = _DistributeRegionBonus(poKiller, NULL, poKiller);
             LOG_CHECK_ERROR(nRetCode);
 
-            // ·ÖÅä³¡¾°½±Àø
+            // åˆ†é…åœºæ™¯å¥–åŠ±
             nRetCode = _DistributeSceneBonus(poKiller, NULL);
             LOG_CHECK_ERROR(nRetCode);
         }
@@ -650,7 +650,7 @@ BOOL CNpc::Die(INT32 nParam)
         CAdventure::GetInstance().OnKillNpc(poKiller, this);
     }
 
-    // Boss±»»÷É±, ·¢È«·ş¹«¸æ
+    // Bossè¢«å‡»æ€, å‘å…¨æœå…¬å‘Š
     if (poKiller)
     {
         if (this->GetQuality() == nqBoss)
@@ -661,21 +661,21 @@ BOOL CNpc::Die(INT32 nParam)
             char* strAnsiBossName = utf8_to_char(strBossName.c_str());
             char* strAnsiRoleName = utf8_to_char(strRoleName.c_str());
 
-            // "[ÎÖÂê½ÌÖ÷]±»Íæ¼Ò[°¢´ï]»÷°Ü!"
+            // "[æ²ƒç›æ•™ä¸»]è¢«ç©å®¶[é˜¿è¾¾]å‡»è´¥!"
             char strMsg[128] = { 0 };
-            snprintf(strMsg, sizeof(strMsg), "[%s]±»Íæ¼Ò[%s]»÷°Ü!", strAnsiBossName, strAnsiRoleName);
+            snprintf(strMsg, sizeof(strMsg), "[%s]è¢«ç©å®¶[%s]å‡»è´¥!", strAnsiBossName, strAnsiRoleName);
 
             char* str_utf8 = char_to_utf8(strMsg);
             Say(cctServer, cltTvShow, str_utf8);
 
-            free_converted_string(strAnsiBossName);  // ÊÍ·ÅÄÚ´æ
+            free_converted_string(strAnsiBossName);  // é‡Šæ”¾å†…å­˜
             free_converted_string(strAnsiRoleName);
             free_converted_string(str_utf8);
         }
     }
 
 #ifndef _ROBOT
-    // ¹ÖÎïËÀÍöÖ®ºó, Ö´ĞĞ½Å±¾
+    // æ€ªç‰©æ­»äº¡ä¹‹å, æ‰§è¡Œè„šæœ¬
     if (m_pSpawnPoint)
     {
         CLuaScript* pScript = m_poScene->GetStaticData()->GetScript();
@@ -698,7 +698,7 @@ BOOL CNpc::Die(INT32 nParam)
         }
     }
 
-    //²úÉúµôÂä
+    //äº§ç”Ÿæ‰è½
     if (m_pNpcData->bProfit &&
         m_bGenerateDrop &&
         m_poScene->GetState() == edstRuning &&
@@ -717,7 +717,7 @@ BOOL CNpc::Die(INT32 nParam)
         }
     }
 
-    // ÅĞ¶Ï ¹ÖÎï×îÖÕÄ¿±êID (ÔİÊ±²»ÖªµÀ¸ÉÉ¶ÓÃµÄ)
+    // åˆ¤æ–­ æ€ªç‰©æœ€ç»ˆç›®æ ‡ID (æš‚æ—¶ä¸çŸ¥é“å¹²å•¥ç”¨çš„)
     if (m_poScene->CheckTargetID(m_pNpcData->nTemplateID))
     {
         //m_poScene->UpdateTarget(esttKillBoss);
@@ -741,7 +741,7 @@ BOOL CNpc::Die(INT32 nParam)
         }
     }
 
-    // ÅĞ¶Ï ¹ÖÎï²»ÊÇ×ÔÉ±, Ôò±£´æÈÕÖ¾
+    // åˆ¤æ–­ æ€ªç‰©ä¸æ˜¯è‡ªæ€, åˆ™ä¿å­˜æ—¥å¿—
     if (nParam != cdrSuicide)
     {
         nRetCode = CCliMessageHandler::GetInstance().DoDLNpcDie(m_poScene->GetServerGroup(),
@@ -775,7 +775,7 @@ BOOL CNpc::_NpcLoop(void)
         break;
     case npcAlive:
         break;
-    case npcCorpse:    // Ê¬Ìå
+    case npcCorpse:    // å°¸ä½“
         if (m_nNpcTimer < CGameWorld::GetInstance().GetGameFrame())
         {
             LOG_PROCESS_ERROR(m_pNpcData);
@@ -793,7 +793,7 @@ BOOL CNpc::_NpcLoop(void)
                 LOG_PROCESS_ERROR(m_poScene->GetSceneData());
                 LOG_PROCESS_ERROR(m_poScene->GetStaticData());
 
-                // ¸´»î¼ä¸ô
+                // å¤æ´»é—´éš”
                 if (m_pSpawnPoint->nMinRespawnTime == 0 && m_pSpawnPoint->nMaxRespawnTime == 0)
                     nRespawnTime = g_Random(m_pNpcData->nMinRespawnTime, m_pNpcData->nMaxRespawnTime);
                 else
@@ -818,13 +818,13 @@ BOOL CNpc::_NpcLoop(void)
                     }
                 }
 
-                // ÖØĞÂ¼ÆËã ¸´»îÊ±¼ä
+                // é‡æ–°è®¡ç®— å¤æ´»æ—¶é—´
                 if (m_nQuality <= nqNormal5)
                     m_nNpcTimer = m_nSpawnFrame + nRespawnTime;
                 else
                     m_nNpcTimer = CGameWorld::GetInstance().GetGameFrame() + nRespawnTime;
 
-                // ¶ÔÏó×´Ì¬
+                // å¯¹è±¡çŠ¶æ€
                 m_nNpcState = npcRespawn;
 
                 nRetCode = m_poScene->AddNpcToRespawnList(this);

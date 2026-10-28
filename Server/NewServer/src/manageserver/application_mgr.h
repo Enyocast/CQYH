@@ -3,8 +3,8 @@
 	file:		application_mgr.h
 	author:		Allan Tao
 	
-	purpose:	¸÷ÖÖapplicationµÄ¹ÜÀí(¸÷app_nodeµÄ½ÚµãÔİÊ±ÓÉÍâÃæ¹ÜÀí
-                    ºóÆÚ¿ÉÒÔÅ²µ½Õâ±ßÓÃfactory¹ÜÀíÆğÀ´)
+	purpose:	å„ç§applicationçš„ç®¡ç†(å„app_nodeçš„èŠ‚ç‚¹æš‚æ—¶ç”±å¤–é¢ç®¡ç†
+                    åæœŸå¯ä»¥æŒªåˆ°è¿™è¾¹ç”¨factoryç®¡ç†èµ·æ¥)
 *********************************************************************/
 
 #ifndef _H_APPLICATION_MGR_H_

@@ -24,9 +24,9 @@ struct ACCEPTED_QUEST
 struct CIRCLE_QUEST
 {
 	INT32	nQuestID;
-	INT32	nCompleteCount;			// ÅÜ»·×Ü´ÎÊı
-	INT32	nCircleNumber;			// µ±Ç°»·Êı
-	UINT32	nLastCompleteTime;		// ÉÏ´ÎÍê³ÉÊ±¼ä
+	INT32	nCompleteCount;			// è·‘ç¯æ€»æ¬¡æ•°
+	INT32	nCircleNumber;			// å½“å‰ç¯æ•°
+	UINT32	nLastCompleteTime;		// ä¸Šæ¬¡å®Œæˆæ—¶é—´
 };
 
 class CQuestList
@@ -144,19 +144,19 @@ private:
 
 	/******************** reward quest  *************************/
 
-	UINT64	m_qwRewardQuest;					// ÉíÉÏÄ¿Ç°µÄÈÕ³£ÈÎÎñ,°´Î»ÓÃ
-	UINT64	m_qwRewardAccepted;					// ÉíÉÏµÄÈÎÎñÊÇ·ñÒÑ½Ó
-	UINT64  m_qwRewardCompleted;				// ÉíÉÏµÄÈÎÎñÊÇ·ñÒÑÍê³É
-	INT32	m_nRewardIndex;						// Ä¿Ç°ÈÎÎñËùÔÚµÄindex(Ã¿5¼¶ÎªÒ»¸öindex)
+	UINT64	m_qwRewardQuest;					// èº«ä¸Šç›®å‰çš„æ—¥å¸¸ä»»åŠ¡,æŒ‰ä½ç”¨
+	UINT64	m_qwRewardAccepted;					// èº«ä¸Šçš„ä»»åŠ¡æ˜¯å¦å·²æ¥
+	UINT64  m_qwRewardCompleted;				// èº«ä¸Šçš„ä»»åŠ¡æ˜¯å¦å·²å®Œæˆ
+	INT32	m_nRewardIndex;						// ç›®å‰ä»»åŠ¡æ‰€åœ¨çš„index(æ¯5çº§ä¸ºä¸€ä¸ªindex)
 
-	INT32	m_dwRewardBoughtTime;				// ÒÑ¹ºÂòÍ»ÆÆÍê³ÉÈÎÎñÉÏÏŞ´ÎÊı
-	INT32	m_nRewardQuestRemainCompleteTime;	// Ã¿ÈËÃ¿ÌìµÄÊ£Óà´ÎÊı
-	UINT32	m_dwRewardQuestBrushCDTime;			// Ë¢ĞÂµÄcdÊ±¼ä
-	UINT32	m_nRewardCompleteCount;				// ½ñÈÕÍê³É´ÎÊı
+	INT32	m_dwRewardBoughtTime;				// å·²è´­ä¹°çªç ´å®Œæˆä»»åŠ¡ä¸Šé™æ¬¡æ•°
+	INT32	m_nRewardQuestRemainCompleteTime;	// æ¯äººæ¯å¤©çš„å‰©ä½™æ¬¡æ•°
+	UINT32	m_dwRewardQuestBrushCDTime;			// åˆ·æ–°çš„cdæ—¶é—´
+	UINT32	m_nRewardCompleteCount;				// ä»Šæ—¥å®Œæˆæ¬¡æ•°
 
-	INT32	m_nDailyRewwardBoughtTime;			// ½ñÈÕÒÑ¹ºÂòÍ»ÆÆÍê³ÉÈÎÎñÉÏÏŞ´ÎÊı(ÓÃÓÚÏŞÖÆ¹ºÂò×Ü´ÎÊı)
+	INT32	m_nDailyRewwardBoughtTime;			// ä»Šæ—¥å·²è´­ä¹°çªç ´å®Œæˆä»»åŠ¡ä¸Šé™æ¬¡æ•°(ç”¨äºé™åˆ¶è´­ä¹°æ€»æ¬¡æ•°)
 
-	ACCEPTED_QUEST_LIST	m_AcceptedQuest;		// ÓÃÓÚÈÕ³£ÈÎÎñÒ»¼üÍê³É£¬¹ıÆÚÎ´Íê³ÉµÄÈÎÎñ
+	ACCEPTED_QUEST_LIST	m_AcceptedQuest;		// ç”¨äºæ—¥å¸¸ä»»åŠ¡ä¸€é”®å®Œæˆï¼Œè¿‡æœŸæœªå®Œæˆçš„ä»»åŠ¡
 
 	UINT32	m_dwLastCompleteEmergencyQuestTime;
 	INT32	m_nCompleteEmergencyQuestCount;

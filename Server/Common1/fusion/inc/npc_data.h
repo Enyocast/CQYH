@@ -41,14 +41,14 @@ struct NPC_DATA
     BOOL                    bExclusive;
 	BOOL					bNeverBeHit;
 
-    BOOL                    bProfit;                    //¿ØÖÆÊÇ·ñµôÂäÎïÆ·,¾­Ñé,»ê
+    BOOL                    bProfit;                    //æ§åˆ¶æ˜¯å¦æ‰è½ç‰©å“,ç»éªŒ,é­‚
 	INT32                   nExpRate;
     INT32                   nSoulRate;
-    BOOL                    bDailyExp;                  //¿ØÖÆÊÇ·ñ¼ÆÈëÃ¿ÈÕ¾­ÑéÉÏÏŞ
+    BOOL                    bDailyExp;                  //æ§åˆ¶æ˜¯å¦è®¡å…¥æ¯æ—¥ç»éªŒä¸Šé™
 	BOOL					bAuraInvalid;
 
 	INT32					nKillPlayerVarIndex;		
-	INT32					nBeKilledVarIndex;			// É±ËÀÖ¸¶¨IDµÄ¹ÖÎï¶ÔÓ¦µÄÍæ¼Ò±äÁ¿
+	INT32					nBeKilledVarIndex;			// æ€æ­»æŒ‡å®šIDçš„æ€ªç‰©å¯¹åº”çš„ç©å®¶å˜é‡
 
     INT32                   nShopID;
     INT32                   nBlackMarketID;

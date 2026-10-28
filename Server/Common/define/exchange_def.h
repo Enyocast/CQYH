@@ -11,11 +11,11 @@ enum EOrderType
 enum EOrderStatus
 {
 	eosInvalid,
-	eosEffective,   //ÓĞĞ§µ¥
-	eosCanceled,    //Ö÷¶¯³·µ¥
-	eosExpired,     //³¬Ê±³·µ¥
-	eosFinished,    //ÍêÈ«³É½»
-	eosError,       //´íÎóµ¥
+	eosEffective,   //æœ‰æ•ˆå•
+	eosCanceled,    //ä¸»åŠ¨æ’¤å•
+	eosExpired,     //è¶…æ—¶æ’¤å•
+	eosFinished,    //å®Œå…¨æˆäº¤
+	eosError,       //é”™è¯¯å•
 	eosTotal,
 };
 

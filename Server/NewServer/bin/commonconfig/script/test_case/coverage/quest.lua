@@ -8,12 +8,12 @@ function _TraversAllQuests()
     local ret;
     g_traversstatus = {};
 
-    local questcountmeanwhile = 1; -- Í¬Ê±ÅÜµÄÈÎÎñÊı
+    local questcountmeanwhile = 1; -- åŒæ—¶è·‘çš„ä»»åŠ¡æ•°
     local nquestcount = 0;
 	local runflag = true;
     g_queststatus = {};
 
-	-- ±éÀúËùÓĞÈÎÎñ
+	-- éå†æ‰€æœ‰ä»»åŠ¡
 	local quest_data = CDataManager_QUEST_DATA_:GetInstance():GetFirstData();
 
 	while(quest_data ~= nil) do
@@ -54,7 +54,7 @@ function _TraversSingleQuest(quest_data, nindex)
 	local nQuestIndex;
 	g_nQuestConfigCount = 0;
 
-	-- ²âÊÔ²»Âú×ã½ÓÈÎÎñÌõ¼şÇé¿ö
+	-- æµ‹è¯•ä¸æ»¡è¶³æ¥ä»»åŠ¡æ¡ä»¶æƒ…å†µ
 	g_nQuestConfigCount = getquestacceptconfigcount(quest_data);
 	check(g_nQuestConfigCount ~= 0, "fail to check quest_data");
 
@@ -67,13 +67,13 @@ function _TraversSingleQuest(quest_data, nindex)
 
 	print("=============configurenum = "..g_nQuestConfigCount.."=================================");
 
-	-- ²âÊÔ²»Âú×ã½»ÈÎÎñÌõ¼şÇé¿ö
+	-- æµ‹è¯•ä¸æ»¡è¶³äº¤ä»»åŠ¡æ¡ä»¶æƒ…å†µ
 	for nQuestIndex = 1, g_nQuestConfigCount do
 		user_name = "Complete"..os.date("%H%M%S");
-		_CompleteQuest(user_name, quest_data, 0, 1, nQuestIndex, 1); -- ´´Ôì½ÓÈÎÎñ³É¹¦Ìõ¼ş,²â½»ÈÎÎñ
+		_CompleteQuest(user_name, quest_data, 0, 1, nQuestIndex, 1); -- åˆ›é€ æ¥ä»»åŠ¡æˆåŠŸæ¡ä»¶,æµ‹äº¤ä»»åŠ¡
 	end
 
-	-- ²âÊÔÂú×ã½ÓÈÎÎñºÍ½»ÈÎÎñµÄÌõ¼şÏÂ£¬ÖØ¸´ÈÎÎñµÄÖØ¸´Íê³É (ÆÕÍ¨ÈÎÎñµÄÖØ¸´½ÓÒÑ¾­ÔÚ_AcceptConditionIndex ÖĞÍê³É)
+	-- æµ‹è¯•æ»¡è¶³æ¥ä»»åŠ¡å’Œäº¤ä»»åŠ¡çš„æ¡ä»¶ä¸‹ï¼Œé‡å¤ä»»åŠ¡çš„é‡å¤å®Œæˆ (æ™®é€šä»»åŠ¡çš„é‡å¤æ¥å·²ç»åœ¨_AcceptConditionIndex ä¸­å®Œæˆ)
 	if quest_data.nQuestID >= REPEAT_QUEST_START_ID and quest_data.nQuestID <= (REPEAT_QUEST_START_ID + MAX_REPEAT_QUEST_COUNT) then
 		user_name = "Quests"..os.date("%H%M%S");
 		user, role = startup(user_name, user_name);
@@ -94,7 +94,7 @@ end
 
 function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompletingTime, nAcceptType, nSrcID)
 
-	-- ÅäÖÃÏîÊıÄ¿
+	-- é…ç½®é¡¹æ•°ç›®
 	local nCount = 0;
 	local session_id = user:GetSessionID();
 
@@ -102,14 +102,14 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 	local tm = get_localtime_ex(g_gametime);
 	local gametime = g_gametime;
 
-	-- ¶³½áÊ±¼ä
+	-- å†»ç»“æ—¶é—´
 	user:GMCommand("g_oGameWorld:SetFreezeTime(true)");
 	wait(3);
 
-	-- ÊÇ·ñÖØ¸´½ÓÈÎÎñ
+	-- æ˜¯å¦é‡å¤æ¥ä»»åŠ¡
 	nCount = nCount + 1;
 	if nCount == nIndex then
-		-- Ê¹ÓÃGMÃüÁîÉèÖÃ´ËÈÎÎñÒÑ¾­Íê³É
+		-- ä½¿ç”¨GMå‘½ä»¤è®¾ç½®æ­¤ä»»åŠ¡å·²ç»å®Œæˆ
 		ret = user:GMCommand("CompleteQuest("..questdata.nQuestID..");");
 		wait(3);
 	    check(ret, "failed to CompleteQuest");
@@ -117,7 +117,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here1 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- ÈÎÎñÖ°ÒµĞèÇó
+	-- ä»»åŠ¡èŒä¸šéœ€æ±‚
 	if questdata.nClassLimit ~= 4 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -132,7 +132,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here 2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- ĞÔ±ğĞèÇó
+	-- æ€§åˆ«éœ€æ±‚
 	if questdata.nSexLimit ~= 0 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -151,16 +151,16 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here 3 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	 -- ¹ØÏµĞèÇó
-	 -- Ôİ²»×÷¿¼ÂÇ
+	 -- å…³ç³»éœ€æ±‚
+	 -- æš‚ä¸ä½œè€ƒè™‘
 
-	-- ÅĞ¶ÏÇ°ÖÃÈÎÎñ1,²»Âú×ãÇ°ÖÃÈÎÎñÄÜ·ñÍê³Éµ±Ç°ÈÎÎñ(Èç¹ûÔÚ²âÊÔÖØ¸´½ÓÊÜÈÎÎñÊ±ÒÑ¾­Ê¹ÓÃMeetÂú×ã¹ıÌõ¼ş£¬´ËÏîpass)
+	-- åˆ¤æ–­å‰ç½®ä»»åŠ¡1,ä¸æ»¡è¶³å‰ç½®ä»»åŠ¡èƒ½å¦å®Œæˆå½“å‰ä»»åŠ¡(å¦‚æœåœ¨æµ‹è¯•é‡å¤æ¥å—ä»»åŠ¡æ—¶å·²ç»ä½¿ç”¨Meetæ»¡è¶³è¿‡æ¡ä»¶ï¼Œæ­¤é¡¹pass)
 	if questdata.nPreQuestID1 ~= 0 then
 		print("==========questdata.nPreQuestID1 = "..questdata.nPreQuestID1.."===================");
 		nCount = nCount + 1;
 		if nCount ~= nIndex and nIndex ~= 1 and nCompletingTime == 1 then
 
-			--	Ê¹ÓÃGMÃüÁî±êÖ¾À´ÉèÖÃÍê³É±êÖ¾
+			--	ä½¿ç”¨GMå‘½ä»¤æ ‡å¿—æ¥è®¾ç½®å®Œæˆæ ‡å¿—
 			ret = user:GMCommand("CompleteQuest("..questdata.nPreQuestID1..");");
 			wait(3);
 	        check(ret, "failed to CompleteQuest");
@@ -170,13 +170,13 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 		end
 	end
 
-	-- ÅĞ¶ÏÇ°ÖÃÈÎÎñ2,²»Âú×ãÇ°ÖÃÈÎÎñÄÜ·ñÍê³Éµ±Ç°ÈÎÎñ(Èç¹ûÔÚ²âÊÔÖØ¸´½ÓÊÜÈÎÎñÊ±ÒÑ¾­Ê¹ÓÃMeetÂú×ã¹ıÌõ¼ş£¬´ËÏîpass)
+	-- åˆ¤æ–­å‰ç½®ä»»åŠ¡2,ä¸æ»¡è¶³å‰ç½®ä»»åŠ¡èƒ½å¦å®Œæˆå½“å‰ä»»åŠ¡(å¦‚æœåœ¨æµ‹è¯•é‡å¤æ¥å—ä»»åŠ¡æ—¶å·²ç»ä½¿ç”¨Meetæ»¡è¶³è¿‡æ¡ä»¶ï¼Œæ­¤é¡¹pass)
 	if questdata.nPreQuestID2 ~= 0 then
 		print("==========questdata.nPreQuestID2 = "..questdata.nPreQuestID2.."===================");
 		nCount = nCount + 1;
 		if nCount ~= nIndex and nIndex ~= 1 and nCompletingTime == 1 then
 
-			--	Ê¹ÓÃGMÃüÁî±êÖ¾À´ÉèÖÃÍê³É±êÖ¾
+			--	ä½¿ç”¨GMå‘½ä»¤æ ‡å¿—æ¥è®¾ç½®å®Œæˆæ ‡å¿—
 			user:GMCommand("CompleteQuest("..questdata.nPreQuestID2..");");
 			wait(3);
 			print("==================successfully completed nPreQuestID2=="..questdata.nPreQuestID2.."==================================");
@@ -185,7 +185,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 		end
 	end
 
-	-- ¿ªÊ¼ÈÎÎñµÄNPC ID
+	-- å¼€å§‹ä»»åŠ¡çš„NPC ID
 	if questdata.nStartNpcID ~= 0 then
 	  	print("@@@@@@@@@@@@@@@@@@@@@@@ come here nStartNpcID @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		nCount = nCount + 1;
@@ -204,7 +204,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 		end
 	end
 
-	-- ÄêÏŞÖÆ
+	-- å¹´é™åˆ¶
 	if questdata.nYearLimit ~= 0 then
 	   	print("@@@@@@@@@@@@@@@@@@@@@@@ come here nYearLimit @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		nCount = nCount + 1;
@@ -223,7 +223,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 		end
 	end
 
-	-- ÔÂÏŞÖÆ
+	-- æœˆé™åˆ¶
 	if questdata.nMonthLimit ~= -1 then
 	   	print("@@@@@@@@@@@@@@@@@@@@@@@ come here nMonthLimit @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		nCount = nCount + 1;
@@ -234,16 +234,16 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 			print("==================unable to fullfil nMonthLimit====================================");
 		else
 			if tm.tm_mon ~= questdata.nMonthLimit then
-				if tm.tm_mon > questdata.nMonthLimit then  -- ÏÖÔÚµÄÊ±¼ä´óÓÚÈÎÎñÒªÇóÊ±¼ä
+				if tm.tm_mon > questdata.nMonthLimit then  -- ç°åœ¨çš„æ—¶é—´å¤§äºä»»åŠ¡è¦æ±‚æ—¶é—´
 					gametime = gametime - ((tm.tm_mon + 1) - questdata.nMonthLimit)*31*24*3600;
-				else	-- ÏÖÔÚµÄÊ±¼äĞ¡ÓÚÈÎÎñÒªÇóÊ±¼ä,ËùÒÔÒª¶à¼ÓÒ»Äê
+				else	-- ç°åœ¨çš„æ—¶é—´å°äºä»»åŠ¡è¦æ±‚æ—¶é—´,æ‰€ä»¥è¦å¤šåŠ ä¸€å¹´
 					gametime = gametime - ((tm.tm_mon + 13) - questdata.nMonthLimit)*31*24*3600 + 365*24*3600;
 				end
 			end
 		end
 	end
 
-	-- ĞÇÆÚÖØ¸´ÈÎÎñÔÊĞí½ÓÊÜµÄ¿ªÊ¼Ê±¼ä
+	-- æ˜ŸæœŸé‡å¤ä»»åŠ¡å…è®¸æ¥å—çš„å¼€å§‹æ—¶é—´
 	--if questdata.nStartWeekday ~= -1 then
 	--   	print("@@@@@@@@@@@@@@@@@@@@@@@ come here nStartWeekday @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 	--	local endweekday = (questdata.nStartWeekday + questdata.nWeekdayDuration) % 7;
@@ -263,7 +263,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 	--	end
 	--end
 
-	-- ÔÂ·İÖØ¸´ÈÎÎñÔÊĞí½ÓÊÜµÄ¿ªÊ¼Ê±¼ä
+	-- æœˆä»½é‡å¤ä»»åŠ¡å…è®¸æ¥å—çš„å¼€å§‹æ—¶é—´
 	--if questdata.nStartMonthday ~= 0 then
 	--   	print("@@@@@@@@@@@@@@@@@@@@@@@ come here nStartMonthday @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 	--	nCount = nCount + 1;
@@ -280,7 +280,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 	--	end
 	--end
 
-	-- ÔÊĞí½ÓÊÜÊ±¼ä·¶Î§¿ªÊ¼
+	-- å…è®¸æ¥å—æ—¶é—´èŒƒå›´å¼€å§‹
 	--if questdata.dwAcceptStartTime ~= 0 then
 	--   	print("@@@@@@@@@@@@@@@@@@@@@@@ come here dwAcceptStartTime @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 	--	local daytime = gametime % 86400;
@@ -295,7 +295,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 	--	end
 	--end
 
-	-- ¿ªÊ¼ÈÎÎñµÄItem ID
+	-- å¼€å§‹ä»»åŠ¡çš„Item ID
 	if questdata.nStartItemID ~= 0 then
 	   	print("@@@@@@@@@@@@@@@@@@@@@@@ come here nStartItemID @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		nCount = nCount + 1;
@@ -306,7 +306,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 			msg = recv_msg(5, session_id, protocol.g2c_item_change);
 			check(msg, "failed to recv g2c_item_change");
 		else
-			-- ²éÕÒÉíÉÏÊÇ·ñÓĞ´ËÎïÆ·
+			-- æŸ¥æ‰¾èº«ä¸Šæ˜¯å¦æœ‰æ­¤ç‰©å“
 			local itembag = role:GetItemBag();
 			check(itembag, "failed to get itembag");
 
@@ -316,11 +316,11 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 		end
 	end
 
-	-- ÈÎÎñ×îµÍµÈ¼¶ĞèÇó
+	-- ä»»åŠ¡æœ€ä½ç­‰çº§éœ€æ±‚
 	if questdata.nMinLevelLimit ~= 0 then
 		print("@@@@@@@@@@@@@@@@@@@@@@@ come here 5 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		nCount = nCount + 1;
-		-- ÔÚ²âÊÔ×î¸ßµÈ¼¶Ê±£¬²»ÊÜ×îµÍµÈ¼¶Ó°Ïì
+		-- åœ¨æµ‹è¯•æœ€é«˜ç­‰çº§æ—¶ï¼Œä¸å—æœ€ä½ç­‰çº§å½±å“
 		if nCount ~= nIndex - 1 then
 			if nCount ~= nIndex then
 				local exp = GetMaxExpByLevel(questdata.nMinLevelLimit);
@@ -334,13 +334,13 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 		end
 	end
 
-	 -- ÈÎÎñ×î¸ßµÈ¼¶ĞèÇó
+	 -- ä»»åŠ¡æœ€é«˜ç­‰çº§éœ€æ±‚
 	if questdata.nMaxLevelLimit ~= 0 then
 		nCount = nCount + 1;
 		local exp = GetMaxExpByLevel(questdata.nMaxLevelLimit + 1);
 		check(exp ~= nil, "fail to get exp by level");
 
-		-- ÔÚ²âÊÔ×îµÍµÈ¼¶Ê±£¬²»ÊÜ×î¸ßµÈ¼¶Ó°Ïì
+		-- åœ¨æµ‹è¯•æœ€ä½ç­‰çº§æ—¶ï¼Œä¸å—æœ€é«˜ç­‰çº§å½±å“
 		if nCount ~= nIndex + 1 and nIndex ~= 0 then
 			if nCount ~= nIndex then
 				exp = exp - 2;
@@ -357,19 +357,19 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here 6 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- Õâ¸öĞèÒªadditem ºÍ useitem, ÔİÇÒ×¢ÊÍµô
-	-- ĞèÇóBUFF ID ºÍ LEVEL
+	-- è¿™ä¸ªéœ€è¦additem å’Œ useitem, æš‚ä¸”æ³¨é‡Šæ‰
+	-- éœ€æ±‚BUFF ID å’Œ LEVEL
 	--if questdata.nBuffIDLimit ~= 0 then
 	--	nCount = nCount + 1;
 	--	if nCount ~= nIndex then
-	----		ret = role:CastSpellToSelf(109);	-- 109ºÅ¼¼ÄÜ£¬¶ÔÓ¦109ºÅµÄbuf,Åä¶ÔÓ¦bufÊ±×¢ÒâÓëquest_data.nBuffLevelLimit¶ÔÓ¦
+	----		ret = role:CastSpellToSelf(109);	-- 109å·æŠ€èƒ½ï¼Œå¯¹åº”109å·çš„buf,é…å¯¹åº”bufæ—¶æ³¨æ„ä¸quest_data.nBuffLevelLimitå¯¹åº”
 	--		check(ret, "fail to cast spell to myself");
 	--	else
 	--		print("==================unable to fullfil nBuffIDLimit====================================");
 	--	end
 	--end
 
-	-- ĞèÇó»õ±ÒÀàĞÍ, ĞèÇó»õ±ÒÊıÁ¿£¨²»¿Û³ı£©
+	-- éœ€æ±‚è´§å¸ç±»å‹, éœ€æ±‚è´§å¸æ•°é‡ï¼ˆä¸æ‰£é™¤ï¼‰
 	if questdata.nMoneyTypeLimit ~= 0 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -382,10 +382,10 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here 7 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- ĞèÇóNpcÊÆÁ¦ÉùÍû
+	-- éœ€æ±‚NpcåŠ¿åŠ›å£°æœ›
 	if questdata.nReputationForceID ~= -1 then
 
-		-- ĞèÇó×îµÍÉùÍû(ÔÚ²âÊÔĞèÇó×î¸ßÉùÍûÊ±ĞèÒªpass)
+		-- éœ€æ±‚æœ€ä½å£°æœ›(åœ¨æµ‹è¯•éœ€æ±‚æœ€é«˜å£°æœ›æ—¶éœ€è¦pass)
 		if questdata.nReputationMinLimit ~= 0 then
 
 			print("==================questdata.nReputationMinLimit=="..questdata.nReputationMinLimit.."====================================");
@@ -405,7 +405,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 			wait(1);
 		end
 
-		-- ĞèÇó×î¸ßÉùÍû(ÔÚ²âÊÔ×îµÍÉùÍûÊ±ĞèÒªpass)
+		-- éœ€æ±‚æœ€é«˜å£°æœ›(åœ¨æµ‹è¯•æœ€ä½å£°æœ›æ—¶éœ€è¦pass)
 		if questdata.nReputationMaxLimit ~= 0 then
 			nCount = nCount + 1;
 			if nCount ~= nIndex and nCount ~= nIndex + 1 then
@@ -424,8 +424,8 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here 8 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- »úÆ÷ÈËÔÚ½ÓÊÜg2c_item_changeÊ±»á±Â£¬ÔİÊ±°ÑÎïÆ·×¢µô
-	-- ÉíÉÏµÀ¾ßĞèÇó
+	-- æœºå™¨äººåœ¨æ¥å—g2c_item_changeæ—¶ä¼šç”­ï¼Œæš‚æ—¶æŠŠç‰©å“æ³¨æ‰
+	-- èº«ä¸Šé“å…·éœ€æ±‚
 	--for nItemIndex = 0, MAX_CONDITION_PER_QUEST - 1 do
 	--	if questdata.vecItemLimitID[nItemIndex] ~= 0 and questdata.vecItemLimitCnt[nItemIndex] ~= 0 then
 	--		nCount = nCount + 1;
@@ -443,7 +443,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here nLimitVarID1 = "..questdata.nLimitVarID1.."@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- ĞèÇó±äÁ¿ID1, ĞèÇó±äÁ¿Öµ1£¨ÅĞ¶ÏÏàµÈ£©½ÓÈÎÎñÊ±Ö»ÅĞ¶ÏRole Scene, ²»¿¼ÂÇQuest
+	-- éœ€æ±‚å˜é‡ID1, éœ€æ±‚å˜é‡å€¼1ï¼ˆåˆ¤æ–­ç›¸ç­‰ï¼‰æ¥ä»»åŠ¡æ—¶åªåˆ¤æ–­Role Scene, ä¸è€ƒè™‘Quest
 	if questdata.nLimitVarID1 ~= -1 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -466,7 +466,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here 9 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- ĞèÇó±äÁ¿ID2, ĞèÇó±äÁ¿Öµ2£¨ÅĞ¶ÏÏàµÈ£©½ÓÈÎÎñÊ±Ö»ÅĞ¶ÏRole Scene, ²»¿¼ÂÇQuest
+	-- éœ€æ±‚å˜é‡ID2, éœ€æ±‚å˜é‡å€¼2ï¼ˆåˆ¤æ–­ç›¸ç­‰ï¼‰æ¥ä»»åŠ¡æ—¶åªåˆ¤æ–­Role Scene, ä¸è€ƒè™‘Quest
 	if questdata.nLimitVarID2 ~= -1 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -488,7 +488,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 
 	print("@@@@@@@@@@@@@@@@@@@@@@@ come here 10 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-	-- ½ÓÈÎÎñ»ñµÃ»õ±ÒÀàĞÍ
+	-- æ¥ä»»åŠ¡è·å¾—è´§å¸ç±»å‹
 	if questdata.nOfferMoneyType ~= 0 then
 		nCount = nCount + 1;
 		if nCount == nIndex then
@@ -509,7 +509,7 @@ function _AcceptQuestWithoutConditionIndex(user, role, questdata, nIndex, nCompl
 		check(ret, "fail to send accept quest");
 
 		if nIndex <= nCount then
-			-- ÒÑ¾­Íê³ÉµÄ´ÎÊı³¬¹ıÔÊĞíÍê³ÉµÄ´ÎÊı
+			-- å·²ç»å®Œæˆçš„æ¬¡æ•°è¶…è¿‡å…è®¸å®Œæˆçš„æ¬¡æ•°
 			if nIndex ~= 0 or (nCompletingTime > questdata.nMaxCompletedCount and questdata.nQuestID <= MAX_NORMAL_QUEST_COUNT) then
 				msg = recv_msg(30, session_id, protocol.g2c_error_notify);
 				check(msg.nErrCode ~= error_code.errSuccess, "failed to recv errSuccess");
@@ -528,7 +528,7 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
 	local msg;
 	local session_id = user:GetSessionID();
 
-	-- ÈÎÎñÖ°ÒµĞèÇó
+	-- ä»»åŠ¡èŒä¸šéœ€æ±‚
 	if quest_data.nClassLimit ~= 4 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -540,7 +540,7 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
 		end
 	end
 
-	-- ĞÔ±ğĞèÇó
+	-- æ€§åˆ«éœ€æ±‚
 	if quest_data.nSexLimit ~= 0 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -558,16 +558,16 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
 		end
 	end
 
-	-- É±¹ÖÊı¼ì²é(·ÅÔÚ¼ì²éÈÎÎñnpcÇ°Ãæ£¬·ÀÖ¹ÓÉÓÚÊÍ·Å¼¼ÄÜ£¬ÒÆ¶¯¾àÀë¹ı´ó£¬µ¼ÖÂÓënpc¾àÀë¹ı´ó)
+	-- æ€æ€ªæ•°æ£€æŸ¥(æ”¾åœ¨æ£€æŸ¥ä»»åŠ¡npcå‰é¢ï¼Œé˜²æ­¢ç”±äºé‡Šæ”¾æŠ€èƒ½ï¼Œç§»åŠ¨è·ç¦»è¿‡å¤§ï¼Œå¯¼è‡´ä¸npcè·ç¦»è¿‡å¤§)
 	for nNpcIndex = 0, MAX_CONDITION_PER_QUEST - 1 do
         if  quest_data.vecCheckKillNpcID[nNpcIndex] ~= 0 and quest_data.vecCheckKillNpcCnt[nNpcIndex] ~= 0 then
 			print("************* Quest is: "..quest_data.nQuestID.. "*******   quest_data.vecCheckKillNpcID[nNpcIndex] : " ..quest_data.vecCheckKillNpcID[nNpcIndex].."********quest_data.vecCheckKillNpcCnt[nNpcIndex] = "..quest_data.vecCheckKillNpcCnt[nNpcIndex].."******");
 			nCount = nCount + 1;
 			if nCount ~= nIndex then
 				for nNpcCount = 1, quest_data.vecCheckKillNpcCnt[nNpcIndex] + 4 do
-					-- ÕĞ¹Ö, É±¹Ö
+					-- æ‹›æ€ª, æ€æ€ª
 					local cmd = "local oNpc = SummonNpc(" ..quest_data.vecCheckKillNpcID[nNpcIndex].."); oNpc:SetHp(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ()); wait(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ());";
-					ret = user:GMCommand(cmd); -- Õ½Ê¿£¬Ò°Âù³å×²
+					ret = user:GMCommand(cmd); -- æˆ˜å£«ï¼Œé‡è›®å†²æ’
 					wait(3);
 				end
 			else
@@ -576,7 +576,7 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
         end
     end
 
-	--ÈÎÎñ½áÊøµÄNPC ID
+	--ä»»åŠ¡ç»“æŸçš„NPC ID
 	if quest_data.nFinishNpc ~= 0 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -590,9 +590,9 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
 			check(msg, "failed to summon npc");
 
 		else
-			-- ¶àÊıÇé¿öÏÂ£¬½áÊøÈÎÎñµÄnpc»áÓë¿ªÊ¼ÈÎÎñµÄnpcÒ»ÖÂ
-			-- µ¼ÖÂ½ÓÈÎÎñÊ±ÒÑ¾­ÉèÖÃ¹ıinteract npc£¬¼°Ê±½»ÈÎÎñÊ±²»ÉèÖÃnpc  Ò²ÄÜ¹ı
-			-- Òò´Ë²âÊÔ½áÊønpc Ê±£¬Ë¢Ò»¸ö´íÎónpcid
+			-- å¤šæ•°æƒ…å†µä¸‹ï¼Œç»“æŸä»»åŠ¡çš„npcä¼šä¸å¼€å§‹ä»»åŠ¡çš„npcä¸€è‡´
+			-- å¯¼è‡´æ¥ä»»åŠ¡æ—¶å·²ç»è®¾ç½®è¿‡interact npcï¼ŒåŠæ—¶äº¤ä»»åŠ¡æ—¶ä¸è®¾ç½®npc  ä¹Ÿèƒ½è¿‡
+			-- å› æ­¤æµ‹è¯•ç»“æŸnpc æ—¶ï¼Œåˆ·ä¸€ä¸ªé”™è¯¯npcid
 
 			local npcid = quest_data.nFinishNpc - 1;
 			user:GMCommand("SummonNpc(".. npcid ..")");
@@ -608,7 +608,7 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
 		end
 	end
 
-	-- ÈÎÎñÍê³ÉµÄBUF¼ì²é
+	-- ä»»åŠ¡å®Œæˆçš„BUFæ£€æŸ¥
 	if quest_data.nCheckBuffID ~= 0 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex and quest_data.nCheckBuffID == 109 then
@@ -635,7 +635,7 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
         end
     end
 
-	-- ĞèÇó±äÁ¿ID1, ĞèÇó±äÁ¿Öµ1£¨ÅĞ¶ÏÏàµÈ£©ĞèÒªÅĞ¶Ï Role, Scene, Quest
+	-- éœ€æ±‚å˜é‡ID1, éœ€æ±‚å˜é‡å€¼1ï¼ˆåˆ¤æ–­ç›¸ç­‰ï¼‰éœ€è¦åˆ¤æ–­ Role, Scene, Quest
 	if quest_data.nCheckVarID1 ~= -1 then
 		nCount = nCount + 1;
 
@@ -658,7 +658,7 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
 		end
 	end
 
-	-- ĞèÇó±äÁ¿ID2, ĞèÇó±äÁ¿Öµ2£¨ÅĞ¶ÏÏàµÈ£©ĞèÒªÅĞ¶Ï Role, Scene, Quest
+	-- éœ€æ±‚å˜é‡ID2, éœ€æ±‚å˜é‡å€¼2ï¼ˆåˆ¤æ–­ç›¸ç­‰ï¼‰éœ€è¦åˆ¤æ–­ Role, Scene, Quest
 	if quest_data.nCheckVarID2 ~= -1 then
 		nCount = nCount + 1;
 		if nCount ~= nIndex then
@@ -680,7 +680,7 @@ function _CompleteQuestWithoutConditionIndex(user, role, quest_data, nIndex, nCo
 		end
 	end
 
-	-- »õ±Ò½±ÀøÀàĞÍ, »õ±Ò½±ÀøÊıÁ¿
+	-- è´§å¸å¥–åŠ±ç±»å‹, è´§å¸å¥–åŠ±æ•°é‡
 	if quest_data.nAwardMoneyType ~= 0 and quest_data.nAwardMoneyAmount ~= 0 then
 		nCount = nCount + 1;
 		if nCount == nIndex then
@@ -747,17 +747,17 @@ end
 
 function _MeetQuest()
     local user_name;
-    local questcountmeanwhile = 1; -- Í¬Ê±ÅÜµÄÈÎÎñÊı
+    local questcountmeanwhile = 1; -- åŒæ—¶è·‘çš„ä»»åŠ¡æ•°
     local nquestcount = 0;
 	local runflag = true;
 	local i;
 
-    g_queststatus = {}; -- Ã¿¸öÈÎÎñµÄ×´Ì¬
-    g_acceptstatus = {}; -- ¼ì²â½ÓÊÜÈÎÎñÊ±,Ã¿¸öindex¶ÔÓ¦Ğ­³ÌµÄ×´Ì¬
-    g_completestatus = {}; -- ¼ì²â½»ÈÎÎñÊ±,Ã¿¸öindex¶ÔÓ¦Ğ­³ÌµÄ×´Ì¬
-    g_traversstatus = {}; -- ¼ì²â±éÀúÈÎÎñÊ±,Ã¿¸öindex¶ÔÓ¦Ğ­³ÌµÄ×´Ì¬
+    g_queststatus = {}; -- æ¯ä¸ªä»»åŠ¡çš„çŠ¶æ€
+    g_acceptstatus = {}; -- æ£€æµ‹æ¥å—ä»»åŠ¡æ—¶,æ¯ä¸ªindexå¯¹åº”åç¨‹çš„çŠ¶æ€
+    g_completestatus = {}; -- æ£€æµ‹äº¤ä»»åŠ¡æ—¶,æ¯ä¸ªindexå¯¹åº”åç¨‹çš„çŠ¶æ€
+    g_traversstatus = {}; -- æ£€æµ‹éå†ä»»åŠ¡æ—¶,æ¯ä¸ªindexå¯¹åº”åç¨‹çš„çŠ¶æ€
 
-	-- ±éÀúËùÓĞÈÎÎñ
+	-- éå†æ‰€æœ‰ä»»åŠ¡
 	local quest_data = CDataManager_QUEST_DATA_:GetInstance():GetFirstData();
 
 	while(quest_data ~= nil) do
@@ -822,99 +822,99 @@ end
 
 function getquestacceptconfigcount(questdata)
 
-	-- ÅäÖÃÏîÊıÄ¿
+	-- é…ç½®é¡¹æ•°ç›®
 	local nCount = 0;
 
-	-- ÊÇ·ñÖØ¸´½ÓÈÎÎñ
+	-- æ˜¯å¦é‡å¤æ¥ä»»åŠ¡
 	nCount = nCount + 1;
 
-	-- ÈÎÎñÖ°ÒµĞèÇó
+	-- ä»»åŠ¡èŒä¸šéœ€æ±‚
 	if questdata.nClassLimit ~= 4 then
 		nCount = nCount + 1;
 	end
 
-	-- ĞÔ±ğĞèÇó
+	-- æ€§åˆ«éœ€æ±‚
 	if questdata.nSexLimit ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	 -- ¹ØÏµĞèÇó
-	 -- Ôİ²»×÷¿¼ÂÇ
+	 -- å…³ç³»éœ€æ±‚
+	 -- æš‚ä¸ä½œè€ƒè™‘
 
-	-- ÅĞ¶ÏÇ°ÖÃÈÎÎñ1,²»Âú×ãÇ°ÖÃÈÎÎñÄÜ·ñÍê³Éµ±Ç°ÈÎÎñ(Èç¹ûÔÚ²âÊÔÖØ¸´½ÓÊÜÈÎÎñÊ±ÒÑ¾­Ê¹ÓÃMeetÂú×ã¹ıÌõ¼ş£¬´ËÏîpass)
+	-- åˆ¤æ–­å‰ç½®ä»»åŠ¡1,ä¸æ»¡è¶³å‰ç½®ä»»åŠ¡èƒ½å¦å®Œæˆå½“å‰ä»»åŠ¡(å¦‚æœåœ¨æµ‹è¯•é‡å¤æ¥å—ä»»åŠ¡æ—¶å·²ç»ä½¿ç”¨Meetæ»¡è¶³è¿‡æ¡ä»¶ï¼Œæ­¤é¡¹pass)
 	if questdata.nPreQuestID1 ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- ÅĞ¶ÏÇ°ÖÃÈÎÎñ2,²»Âú×ãÇ°ÖÃÈÎÎñÄÜ·ñÍê³Éµ±Ç°ÈÎÎñ(Èç¹ûÔÚ²âÊÔÖØ¸´½ÓÊÜÈÎÎñÊ±ÒÑ¾­Ê¹ÓÃMeetÂú×ã¹ıÌõ¼ş£¬´ËÏîpass)
+	-- åˆ¤æ–­å‰ç½®ä»»åŠ¡2,ä¸æ»¡è¶³å‰ç½®ä»»åŠ¡èƒ½å¦å®Œæˆå½“å‰ä»»åŠ¡(å¦‚æœåœ¨æµ‹è¯•é‡å¤æ¥å—ä»»åŠ¡æ—¶å·²ç»ä½¿ç”¨Meetæ»¡è¶³è¿‡æ¡ä»¶ï¼Œæ­¤é¡¹pass)
 	if questdata.nPreQuestID2 ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- ¿ªÊ¼ÈÎÎñµÄNPC ID
+	-- å¼€å§‹ä»»åŠ¡çš„NPC ID
 	if questdata.nStartNpcID ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- ¿ªÊ¼ÈÎÎñµÄItem ID
+	-- å¼€å§‹ä»»åŠ¡çš„Item ID
 	if questdata.nStartItemID ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- ÈÎÎñ×îµÍµÈ¼¶ĞèÇó
+	-- ä»»åŠ¡æœ€ä½ç­‰çº§éœ€æ±‚
 	if questdata.nMinLevelLimit ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	 -- ÈÎÎñ×î¸ßµÈ¼¶ĞèÇó
+	 -- ä»»åŠ¡æœ€é«˜ç­‰çº§éœ€æ±‚
 	if questdata.nMaxLevelLimit ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- Õâ¸öĞèÒªadditem ºÍ useitem, ÔİÇÒ×¢ÊÍµô
-	-- ĞèÇóBUFF ID ºÍ LEVEL
+	-- è¿™ä¸ªéœ€è¦additem å’Œ useitem, æš‚ä¸”æ³¨é‡Šæ‰
+	-- éœ€æ±‚BUFF ID å’Œ LEVEL
 	--if questdata.nBuffIDLimit ~= 0 then
 	--	nCount = nCount + 1;
 	--end
 
-	-- ĞèÇó»õ±ÒÀàĞÍ, ĞèÇó»õ±ÒÊıÁ¿£¨²»¿Û³ı£©
+	-- éœ€æ±‚è´§å¸ç±»å‹, éœ€æ±‚è´§å¸æ•°é‡ï¼ˆä¸æ‰£é™¤ï¼‰
 	if questdata.nMoneyTypeLimit ~= 0 then
 		nCount = nCount + 1;
 	end
 
-	-- ĞèÇóNpcÊÆÁ¦ÉùÍû
+	-- éœ€æ±‚NpcåŠ¿åŠ›å£°æœ›
 	if questdata.nReputationForceID ~= -1 then
 
-		-- ĞèÇó×îµÍÉùÍû(ÔÚ²âÊÔĞèÇó×î¸ßÉùÍûÊ±ĞèÒªpass)
+		-- éœ€æ±‚æœ€ä½å£°æœ›(åœ¨æµ‹è¯•éœ€æ±‚æœ€é«˜å£°æœ›æ—¶éœ€è¦pass)
 		if questdata.nReputationMinLimit ~= 0 then
 			nCount = nCount + 1;
 		end
 
-		-- ĞèÇó×î¸ßÉùÍû(ÔÚ²âÊÔ×îµÍÉùÍûÊ±ĞèÒªpass)
+		-- éœ€æ±‚æœ€é«˜å£°æœ›(åœ¨æµ‹è¯•æœ€ä½å£°æœ›æ—¶éœ€è¦pass)
 		if questdata.nReputationMaxLimit ~= 0 then
 			nCount = nCount + 1;
 		end
 	end
 
-	-- »úÆ÷ÈËÔÚ½ÓÊÜg2c_item_changeÊ±»á±Â£¬ÔİÊ±°ÑÎïÆ·×¢µô
-	-- ÉíÉÏµÀ¾ßĞèÇó
+	-- æœºå™¨äººåœ¨æ¥å—g2c_item_changeæ—¶ä¼šç”­ï¼Œæš‚æ—¶æŠŠç‰©å“æ³¨æ‰
+	-- èº«ä¸Šé“å…·éœ€æ±‚
 	--for nItemIndex = 0, MAX_CONDITION_PER_QUEST - 1 do
 	--	if questdata.vecItemLimitID[nItemIndex] ~= 0 and questdata.vecItemLimitCnt[nItemIndex] ~= 0 then
 	--		nCount = nCount + 1;
 	--  end
 	--end
 
-	-- ĞèÇó±äÁ¿ID1, ĞèÇó±äÁ¿Öµ1£¨ÅĞ¶ÏÏàµÈ£©½ÓÈÎÎñÊ±Ö»ÅĞ¶ÏRole Scene, ²»¿¼ÂÇQuest
+	-- éœ€æ±‚å˜é‡ID1, éœ€æ±‚å˜é‡å€¼1ï¼ˆåˆ¤æ–­ç›¸ç­‰ï¼‰æ¥ä»»åŠ¡æ—¶åªåˆ¤æ–­Role Scene, ä¸è€ƒè™‘Quest
 	if questdata.nLimitVarID1 ~= -1 then
 		nCount = nCount + 1;
 	end
 
-	-- ĞèÇó±äÁ¿ID2, ĞèÇó±äÁ¿Öµ2£¨ÅĞ¶ÏÏàµÈ£©½ÓÈÎÎñÊ±Ö»ÅĞ¶ÏRole Scene, ²»¿¼ÂÇQuest
+	-- éœ€æ±‚å˜é‡ID2, éœ€æ±‚å˜é‡å€¼2ï¼ˆåˆ¤æ–­ç›¸ç­‰ï¼‰æ¥ä»»åŠ¡æ—¶åªåˆ¤æ–­Role Scene, ä¸è€ƒè™‘Quest
 	if questdata.nLimitVarID2 ~= -1 then
 		nCount = nCount + 1;
 	end
 
-	-- ½ÓÈÎÎñ»ñµÃ»õ±ÒÀàĞÍ
+	-- æ¥ä»»åŠ¡è·å¾—è´§å¸ç±»å‹
 	if questdata.nOfferMoneyType ~= 0 then
 		nCount = nCount + 1;
 	end

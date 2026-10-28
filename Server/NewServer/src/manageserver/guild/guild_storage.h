@@ -3,7 +3,7 @@
 	file:		guild_storage.h
 	author:		Allan Tao
 	
-	purpose:	°ïÅÉ²Ö¿â
+	purpose:	å¸®æ´¾ä»“åº“
 *********************************************************************/
 
 #ifndef _H_MS_GUILD_STORAGE_H_

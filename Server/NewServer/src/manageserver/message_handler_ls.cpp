@@ -53,7 +53,7 @@ void CMessageHandler::OnLSCloseAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, 
     INF("LS is closed");
 }
 
-// »Øµ÷º¯Êý
+// å›žè°ƒå‡½æ•°
 BOOL _LoginQuery(std::list<void*>& ResultList, void* pUserData)
 {
     if (!ResultList.empty())
@@ -67,10 +67,10 @@ void CMessageHandler::OnLSLoginQueryReq(PACKET_BUFFER* pPacketBuffer, UINT32 dwS
     BOOL bRet = FALSE;
     L2M_LOGIN_QUERY_REQ* pMsg = (L2M_LOGIN_QUERY_REQ*)pPacketBuffer;
 
-    // MS ÀûÓÃÊý¾Ý¿â²éÑ¯ ÕËºÅÃÜÂë ÊÇ·ñÓÐ¶ÔÓ¦µÄÊý¾Ý
+    // MS åˆ©ç”¨æ•°æ®åº“æŸ¥è¯¢ è´¦å·å¯†ç  æ˜¯å¦æœ‰å¯¹åº”çš„æ•°æ®
     bRet = CManageServer::GetInstance().GetSqlMgr().SyncExecSqlStmt(mysqlSelectLoginQuery, _LoginQuery, NULL, "ss", pMsg->szUserName, pMsg->szPassword);
 
-    // ³É¹¦ = 1, Ê§°Ü = 0
+    // æˆåŠŸ = 1, å¤±è´¥ = 0
     if (bRet == TRUE)
     {
         DoLSLoginQueryAck(pMsg->dwClientSessionID, 1, pMsg->szUserName);

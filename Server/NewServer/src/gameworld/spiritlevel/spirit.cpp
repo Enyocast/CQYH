@@ -175,7 +175,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 	LOG_PROCESS_ERROR_RET_CODE((m_pOwner->GetItemBag()->GetMoney(MONEYTYPE_SOUL_PTS) >= pSpiritData->nSoulCost), errSpiritMoneyNotEnough); 
 	LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetLevel() >= SPIRIT_OPEN_LEVEL, errSpiritNotOpen);
 
-	if (bUseMoney)																														// Á¢¼´×ª»¯
+	if (bUseMoney)																														// ç«‹å³è½¬åŒ–
 	{
 		INT32 nMinuteTime = 0;
 		INT32 nMoneyCost = 0;
@@ -183,7 +183,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 
 		LOG_PROCESS_ERROR_RET_CODE(m_dwDailyUseMoneyChangeCount < pSpiritData->nDailyExp2PtsMaxCount, errSpiritExp2PtsMaxCount);
 
-		// Ã¿ÈÕ´ÎÊı¼Ó³É
+		// æ¯æ—¥æ¬¡æ•°åŠ æˆ
 		for (INT32 nIndex = 1; nIndex <= MAX_EXP2PTS_LEVEL; nIndex++)
 		{
 			pSpiritChangeData = CDataManager<SPIRIT_CHANGE_DATA>::GetInstance().GetData(nIndex);
@@ -202,7 +202,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 		{
 			nMinuteTime = (m_dwNextExp2PtsTime - dwCurrentTime)%60 ? ((m_dwNextExp2PtsTime - dwCurrentTime)/60 + 1) : (m_dwNextExp2PtsTime - dwCurrentTime )/60;
 
-			// ¸ù¾İ¾³½çµÈ¼¶ºÍ½ñÈÕ´ÎÊı¼Ó³ÉÀ´ËãÇ®
+			// æ ¹æ®å¢ƒç•Œç­‰çº§å’Œä»Šæ—¥æ¬¡æ•°åŠ æˆæ¥ç®—é’±
 			if (nMinuteTime > 0)
 			{
 				nMoneyCost = (INT64)nMinuteTime * pSpiritData->nMoneyCostOneShot * (10000 + nDailyTimeAddtional) / 10000;
@@ -225,7 +225,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 			nDisCount = pSpiritData->nVipOnlineChangeDiscount[m_pOwner->GetVIPLevel() - vlLevel1] + 100;
 		}
 	}
-	else if (!bIsOnline)																												// ÀëÏß×ª»¯
+	else if (!bIsOnline)																												// ç¦»çº¿è½¬åŒ–
 	{	
 		INT32 nDuration = 0;
 		
@@ -238,7 +238,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 
 		nDisCount = pSpiritData->nOfflineChangeDiscount[m_pOwner->GetVIPLevel() - vlLevel1] * (nDuration + 1);
 	}
-	else																																// ÔÚÏß×ª»¯
+	else																																// åœ¨çº¿è½¬åŒ–
 	{
 		if (m_dwNextExp2PtsTime > dwCurrentTime)
 		{
@@ -278,7 +278,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 
 		m_pOwner->GetAchievementList().AddVariable(avdSpiritLevelUP, 1);
 
-		// Éı¼¶Íê³ÉºóĞŞ¸ÄÉíÉÏÊôĞÔ
+		// å‡çº§å®Œæˆåä¿®æ”¹èº«ä¸Šå±æ€§
 
 		for (INT32 nIndex = 0; nIndex < MAX_SPIRIT_NODE_PER_LEVEL; nIndex++)
 		{
@@ -292,7 +292,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 		pSpiritData = CDataManager<SPIRIT_DATA>::GetInstance().GetData(m_nLevel);
 		LOG_PROCESS_ERROR(pSpiritData);
 
-		for (INT32 nIndex = 0; nIndex < MAX_SPIRIT_NODE_PER_LEVEL; nIndex++)		// Ã¿¸ö¾³½çµÈ¼¶¶ÔÓ¦µÄÊôĞÔ
+		for (INT32 nIndex = 0; nIndex < MAX_SPIRIT_NODE_PER_LEVEL; nIndex++)		// æ¯ä¸ªå¢ƒç•Œç­‰çº§å¯¹åº”çš„å±æ€§
 		{
 			if (pSpiritData->nAttrTemplateNodeID[nIndex])
 			{
@@ -301,7 +301,7 @@ INT32 CSpirit::ChangeSoul2Pts(BOOL bUseMoney, BOOL bIsOnline)
 			}
 		}
 
-		if (pSpiritData->nBroadcastStringID)						// ĞèÒªµçÊÓ»ú¹ã²¥
+		if (pSpiritData->nBroadcastStringID)						// éœ€è¦ç”µè§†æœºå¹¿æ’­
 		{
 			const char* pcszMessage = NULL;
 			char szMessage[256];
@@ -368,7 +368,7 @@ INT32 CSpirit::ProductAir(INT32 nIndex)
 	const AIR_LEVEL_DATA* pAirLevel = NULL;
 
 	LOG_PROCESS_ERROR(m_pOwner);
-	LOG_PROCESS_ERROR(_GetProductAirLevel(nIndex));											// ÊÇ·ñ´Ë¼¶ÒÑ¾­ÁÁÁË
+	LOG_PROCESS_ERROR(_GetProductAirLevel(nIndex));											// æ˜¯å¦æ­¤çº§å·²ç»äº®äº†
 	LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetLevel() >= SPIRIT_OPEN_LEVEL, errSpiritLevel);
 	LOG_PROCESS_ERROR(nIndex >= 0 && nIndex < MAX_AIR_PROCEDURE);
 
@@ -380,7 +380,7 @@ INT32 CSpirit::ProductAir(INT32 nIndex)
 
 	if (nIndex < MAX_AIR_PROCEDURE)
 	{
-		for (INT32 nDropIndex = 0; nDropIndex < MAX_DROP_AIR_COUNT; nDropIndex++)			//¡¡ÆøµôÂä
+		for (INT32 nDropIndex = 0; nDropIndex < MAX_DROP_AIR_COUNT; nDropIndex++)			//ã€€æ°”æ‰è½
 		{
 			nNum += pAirLevel->nDropAirRate[nDropIndex];
 
@@ -422,20 +422,20 @@ INT32 CSpirit::ProductAir(INT32 nIndex)
 		
 		if (nIndex > 0)
 		{
-			_ClearProductAirLevel(nIndex);				// ±¾¼¶°´Å¥ÏÈ±ä°µ
+			_ClearProductAirLevel(nIndex);				// æœ¬çº§æŒ‰é’®å…ˆå˜æš—
 		}
 
-		if (nRandNum <= pAirLevel->nNextLevelRate && m_nLevel >= pAirLevel->nSpiritLevelLimit)	// Á·Æø½×¶ÎÌáÉı
+		if (nRandNum <= pAirLevel->nNextLevelRate && m_nLevel >= pAirLevel->nSpiritLevelLimit)	// ç»ƒæ°”é˜¶æ®µæå‡
 		{
 			SetProductAirLevel(nIndex+1);
 		}
 	}
 	else
 	{
-		_ClearProductAirLevel(nIndex);				// ±¾¼¶°´Å¥ÏÈ±ä°µ
+		_ClearProductAirLevel(nIndex);				// æœ¬çº§æŒ‰é’®å…ˆå˜æš—
 	}
 
-	if (pAirLevel->nDropMoneyCount != 0)			// Íò·¨Ö®Æø
+	if (pAirLevel->nDropMoneyCount != 0)			// ä¸‡æ³•ä¹‹æ°”
 	{
 		nResult = m_pOwner->GetItemBag()->AddMoney(MONEYTYPE_AIR, pAirLevel->nDropMoneyCount, MONEYLOG_SPIRIT_ADDAIR, 0);
 		PROCESS_ERROR_RET_CODE(nResult == errSuccess, nResult);
@@ -612,7 +612,7 @@ INT32 CSpirit::MoveAir(INT32 nSrcType, INT32 nSrcIndex, INT32 nTarType, INT32 nT
 		break;
 	case sasbtEquip:
 		{
-			pAir = CDataManager<AIR_DATA>::GetInstance().GetData(m_EquipContainer[nSrcIndex].nTemplateID);	// ÍÑ×°±¸
+			pAir = CDataManager<AIR_DATA>::GetInstance().GetData(m_EquipContainer[nSrcIndex].nTemplateID);	// è„±è£…å¤‡
 			LOG_PROCESS_ERROR(pAir);
 
 			nTargetAirID = m_EquipContainer[nSrcIndex].nTemplateID;
@@ -660,12 +660,12 @@ INT32 CSpirit::MoveAir(INT32 nSrcType, INT32 nSrcIndex, INT32 nTarType, INT32 nT
 		break;
 	case sasbtEquip:
 		{
-			if (m_EquipContainer[nTarIndex].nTemplateID)						// Èç¹ûÒÑ¾­×°±¸ÁËÆø£¬ÄÇÃ´ÏÈ»Ø¹öµôÊôĞÔ
+			if (m_EquipContainer[nTarIndex].nTemplateID)						// å¦‚æœå·²ç»è£…å¤‡äº†æ°”ï¼Œé‚£ä¹ˆå…ˆå›æ»šæ‰å±æ€§
 			{
 				pAir = CDataManager<AIR_DATA>::GetInstance().GetData(m_EquipContainer[nTarIndex].nTemplateID);
 				LOG_PROCESS_ERROR(pAir);
 
-				for (INT32 nIndex = 0; nIndex < MAX_ATTR_PER_NODE; nIndex++)		// ÍÑ×°±¸
+				for (INT32 nIndex = 0; nIndex < MAX_ATTR_PER_NODE; nIndex++)		// è„±è£…å¤‡
 				{
 					if (pAir->nNodeID[nIndex])
 					{
@@ -684,7 +684,7 @@ INT32 CSpirit::MoveAir(INT32 nSrcType, INT32 nSrcIndex, INT32 nTarType, INT32 nT
 			pAir = CDataManager<AIR_DATA>::GetInstance().GetData(m_EquipContainer[nTarIndex].nTemplateID);
 			LOG_PROCESS_ERROR(pAir);
 
-			for (INT32 nIndex = 0; nIndex < MAX_ATTR_PER_NODE; nIndex++)		// ´©×°±¸
+			for (INT32 nIndex = 0; nIndex < MAX_ATTR_PER_NODE; nIndex++)		// ç©¿è£…å¤‡
 			{
 				if (pAir->nNodeID[nIndex])
 				{
@@ -725,7 +725,7 @@ INT32 CSpirit::MoveAir(INT32 nSrcType, INT32 nSrcIndex, INT32 nTarType, INT32 nT
 				pAir = CDataManager<AIR_DATA>::GetInstance().GetData(nSrcAirID);
 				LOG_PROCESS_ERROR(pAir);
 
-				for (INT32 nIndex = 0; nIndex < MAX_ATTR_PER_NODE; nIndex++)		// ÍÑ×°±¸
+				for (INT32 nIndex = 0; nIndex < MAX_ATTR_PER_NODE; nIndex++)		// è„±è£…å¤‡
 				{
 					if (pAir->nNodeID[nIndex])
 					{
@@ -989,7 +989,7 @@ INT32 CSpirit::SetBlood(INT32 nPage, INT32 nSlot, INT32 nNewNumber)
 	LOG_PROCESS_ERROR(nSlot >= 0 && nSlot < MAX_BLOODSEA_SLOT_PER_PAGE);
 	LOG_PROCESS_ERROR(nNewNumber > 0 && nNewNumber <= MAX_BLOODSEA_SLOT_NUMBER);
 
-	// ÍÑ
+	// è„±
 
 	pPreBlood = CDataManager<BLOOD_DATA>::GetInstance().GetData(MAKE_BLOOD_KEY(nPage+1, nSlot+1, m_nBloodSlot[nPage][nSlot]));
 	pNextBlood = CDataManager<BLOOD_DATA>::GetInstance().GetData(MAKE_BLOOD_KEY(nPage+1, nSlot+1, nNewNumber));
@@ -997,7 +997,7 @@ INT32 CSpirit::SetBlood(INT32 nPage, INT32 nSlot, INT32 nNewNumber)
 
 	if (pPreBlood)
 	{
-		for (INT32 nIndex = 0; nIndex < MAX_BLOODSEA_ATTR_PER_SLOT; nIndex++)		// ÍÑ×°±¸
+		for (INT32 nIndex = 0; nIndex < MAX_BLOODSEA_ATTR_PER_SLOT; nIndex++)		// è„±è£…å¤‡
 		{
 			if (pPreBlood->nNodeID[nIndex])
 			{
@@ -1009,9 +1009,9 @@ INT32 CSpirit::SetBlood(INT32 nPage, INT32 nSlot, INT32 nNewNumber)
 
 	m_nBloodSlot[nPage][nSlot] = pNextBlood->nNumber;
 
-	// ´©
+	// ç©¿
 
-	for (INT32 nIndex = 0; nIndex < MAX_BLOODSEA_ATTR_PER_SLOT; nIndex++)		// ÍÑ×°±¸
+	for (INT32 nIndex = 0; nIndex < MAX_BLOODSEA_ATTR_PER_SLOT; nIndex++)		// è„±è£…å¤‡
 	{
 		if (pNextBlood->nNodeID[nIndex])
 		{
@@ -1064,8 +1064,8 @@ INT32 CSpirit::BrushBloodSlot(INT32 nPage, INT32 nSlot)
 		}
 	}
 
-	LOG_PROCESS_ERROR_RET_CODE(m_nLevel >= pNextBlood->nLevelLimit, errSpiritBloodSlotLevel);														// ¿ªÆôµÈ¼¶
-	LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetItemBag()->GetMoney(MONEYTYPE_SPELL_PTS) >= pNextBlood->nSpiritPtsCost, errSpiritSpellPts);				// ĞŞÁ¶µãÊıÁ¿
+	LOG_PROCESS_ERROR_RET_CODE(m_nLevel >= pNextBlood->nLevelLimit, errSpiritBloodSlotLevel);														// å¼€å¯ç­‰çº§
+	LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetItemBag()->GetMoney(MONEYTYPE_SPELL_PTS) >= pNextBlood->nSpiritPtsCost, errSpiritSpellPts);				// ä¿®ç‚¼ç‚¹æ•°é‡
 
 	nResult = m_pOwner->GetItemBag()->SubMoney(MONEYTYPE_SPELL_PTS, pNextBlood->nSpiritPtsCost, MONEYLOG_SPIRIT_BLOOD, 0);
 	LOG_PROCESS_ERROR(nResult == errSuccess);
@@ -1129,7 +1129,7 @@ Exit0:
 	return nAirIndex;
 }
 
-INT32 CSpirit::_MergeAir(INT32 nSrcCon, INT32 nTarCon)			// Src ÎüÊÕ Tar
+INT32 CSpirit::_MergeAir(INT32 nSrcCon, INT32 nTarCon)			// Src å¸æ”¶ Tar
 {
 	INT32 nRetCode = 0;
 	const AIR_DATA* pAir = NULL;
@@ -1147,7 +1147,7 @@ INT32 CSpirit::_MergeAir(INT32 nSrcCon, INT32 nTarCon)			// Src ÎüÊÕ Tar
 		m_BagContainer[nSrcCon].nExp = INT_MAX;
 	}
 
-	m_BagContainer[nTarCon].nExp = 0;								// ±»ÎüÊÕ
+	m_BagContainer[nTarCon].nExp = 0;								// è¢«å¸æ”¶
 	m_BagContainer[nTarCon].nTemplateID = 0;
 
 #ifndef _ROBOT
@@ -1165,7 +1165,7 @@ INT32 CSpirit::_MergeAir(INT32 nSrcCon, INT32 nTarCon)			// Src ÎüÊÕ Tar
 		LOG_PROCESS_ERROR(pNextAir);
 		LOG_PROCESS_ERROR(pNextAir->nNextLevelExp > 0);
 
-		m_BagContainer[nSrcCon].nTemplateID = pNextAir->nAirID;	// Éı¼¶ÒÔºó±ä³ÉÁËĞÂµÄÆø
+		m_BagContainer[nSrcCon].nTemplateID = pNextAir->nAirID;	// å‡çº§ä»¥åå˜æˆäº†æ–°çš„æ°”
 
 #ifndef _ROBOT
 		nRetCode = CCliMessageHandler::GetInstance().DoSpiritAirChange(m_pOwner, sasbtBag, nSrcCon, m_BagContainer[nSrcCon].nTemplateID, m_BagContainer[nSrcCon].nExp);
@@ -1189,7 +1189,7 @@ INT32 CSpirit::_CanBrush(INT32 nPage, INT32 nSlot)
 
 	LOG_PROCESS_ERROR_RET_CODE(IsBloodOpen(nPage) == TRUE, errSpiritBloodNotOpen);
 
-	if (nSlot != BLOODSEA_SLOT_INIT_SLOT)	// ±£Ö¤ÉÏÒ»¼¶¿ªÆô
+	if (nSlot != BLOODSEA_SLOT_INIT_SLOT)	// ä¿è¯ä¸Šä¸€çº§å¼€å¯
 	{
 		LOG_PROCESS_ERROR(m_nBloodSlot[nPage][nSlot-1] != 0);
 	}

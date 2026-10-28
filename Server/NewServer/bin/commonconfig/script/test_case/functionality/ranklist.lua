@@ -6,8 +6,8 @@ TestCase.Ranklist = {};
 
 function TestCase.Ranklist.AddRanklist()
 
-	-- µÇÂ½	
-	-- ÓÃ»§1 2 5¶¼µÇÂ½µ½ServerGroup1
+	-- ç™»é™†	
+	-- ç”¨æˆ·1 2 5éƒ½ç™»é™†åˆ°ServerGroup1
     local user_name1 = "ranklist1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
@@ -23,7 +23,7 @@ function TestCase.Ranklist.AddRanklist()
     check(user5, "failed to create user");
     check(role5, "failed to create role"); 
 
-	-- ÓÃ»§3 4 6¶¼µÇÂ½µ½ServerGroup2£¨Ä¬ÈÏ£©
+	-- ç”¨æˆ·3 4 6éƒ½ç™»é™†åˆ°ServerGroup2ï¼ˆé»˜è®¤ï¼‰
     local user_name3 = "ranklist3"..os.date("%H%M%S");
     local user3, role3 = startup(user_name3, user_name3);
     check(user3, "failed to create user");
@@ -53,7 +53,7 @@ function TestCase.Ranklist.AddRanklist()
 	local userid5 = role5:GetObjID();
 	local userid6 = role6:GetObjID();
 	
-    ---- ÓÃ»§2 4¶¼Éıµ½10¼¶
+    ---- ç”¨æˆ·2 4éƒ½å‡åˆ°10çº§
     
    	local ret = user2:GMCommand("SetLevel(10)");
     check(ret, "exec GMCommand SetLevel error: user2");
@@ -63,11 +63,11 @@ function TestCase.Ranklist.AddRanklist()
 
 	wait(2);
 
-	-- ÓÃ»§2 4 ÏÂÏß£¬Ë¢ĞÂÉíÉÏµÄÅÅĞĞ°ñ
+	-- ç”¨æˆ·2 4 ä¸‹çº¿ï¼Œåˆ·æ–°èº«ä¸Šçš„æ’è¡Œæ¦œ
     cleanup(user2);
     cleanup(user4);
 
-	-- ÓÃ»§5 6¶¼Éıµ½20¼¶
+	-- ç”¨æˆ·5 6éƒ½å‡åˆ°20çº§
    	local ret = user5:GMCommand("SetLevel(20)");
     check(ret, "exec GMCommand SetLevel error: user5");
 	
@@ -76,13 +76,13 @@ function TestCase.Ranklist.AddRanklist()
 
 	wait(2);
 
-	-- ÓÃ»§5 6 ÏÂÏß£¬Ë¢ĞÂÉíÉÏµÄÅÅĞĞ°ñ
+	-- ç”¨æˆ·5 6 ä¸‹çº¿ï¼Œåˆ·æ–°èº«ä¸Šçš„æ’è¡Œæ¦œ
     cleanup(user5);
     cleanup(user6);
 
 	wait(10);
 
-    -- ÓÃ»§1 3Ñ¯ÎÊµÈ¼¶ÅÅĞĞ°ñÇé¿ö
+    -- ç”¨æˆ·1 3è¯¢é—®ç­‰çº§æ’è¡Œæ¦œæƒ…å†µ
     ret = user1:QueryRanklist(0, 0); -- rlLevel
     check(ret, "fail to query ranklist");    
     
@@ -91,7 +91,7 @@ function TestCase.Ranklist.AddRanklist()
 	check(msg.nServerGroupID == 1, "wrong ServerGroupID in m2c_query_ranklist");
 	check(msg.nRanklistID == 0, "wrong nRanklistID in m2c_query_ranklist");    
     
-    -- °´ÕÕÔ¤¼Æ½á¹û ÅÅĞĞ°ñÖĞÓ¦¸ÃÊÇ5 20¼¶ÅÅµÚÒ»£¬ 2 10¼¶ÅÅµÚ¶ş£¨ÓÃ»§1ÓÉÓÚÎ´ÏÂÏß£¬ÅÅĞĞ°ñÖĞÎŞËûµÄÎ»ÖÃ£©
+    -- æŒ‰ç…§é¢„è®¡ç»“æœ æ’è¡Œæ¦œä¸­åº”è¯¥æ˜¯5 20çº§æ’ç¬¬ä¸€ï¼Œ 2 10çº§æ’ç¬¬äºŒï¼ˆç”¨æˆ·1ç”±äºæœªä¸‹çº¿ï¼Œæ’è¡Œæ¦œä¸­æ— ä»–çš„ä½ç½®ï¼‰
 	check(msg.llKey[0] == userid5, "wrong llkey0 in m2c_query_ranklist");    
 	check(msg.llValue[0] == 20, "wrong llvalue0 in m2c_query_ranklist");		
 	
@@ -110,7 +110,7 @@ function TestCase.Ranklist.AddRanklist()
     local msg = recv_msg(30, session_id3, protocol.m2c_query_ranklist);
     check(msg, "failed to  recv m2c_query_ranklist");    
 	
-    -- °´ÕÕÔ¤¼Æ½á¹û ÅÅĞĞ°ñÖĞÓ¦¸ÃÊÇ6 20¼¶ÅÅµÚÒ» £¬ 4 10¼¶ÅÅµÚ2£¨ÓÃ»§3ÓÉÓÚÎ´ÏÂÏß£¬ÅÅĞĞ°ñÖĞÎŞËûµÄÎ»ÖÃ£©
+    -- æŒ‰ç…§é¢„è®¡ç»“æœ æ’è¡Œæ¦œä¸­åº”è¯¥æ˜¯6 20çº§æ’ç¬¬ä¸€ ï¼Œ 4 10çº§æ’ç¬¬2ï¼ˆç”¨æˆ·3ç”±äºæœªä¸‹çº¿ï¼Œæ’è¡Œæ¦œä¸­æ— ä»–çš„ä½ç½®ï¼‰
 	check(msg.llKey[0] == userid6, "wrong llkey1 in m2c_query_ranklist");    
 	check(msg.llValue[0] == 20, "wrong llvalue1 in m2c_query_ranklist");		
 	
@@ -125,11 +125,11 @@ function TestCase.Ranklist.AddRanklist()
 end
 
 function TestCase.Ranklist.TestRankList()
-	-- µÇÂ½
+	-- ç™»é™†
 	
 	local i, ret;
 	
-	-- Â½ĞøµÇÂ½
+	-- é™†ç»­ç™»é™†
 	
 	local user_name = {};
 	local user = {};
@@ -144,7 +144,7 @@ function TestCase.Ranklist.TestRankList()
 		check(role[i], "failed to create role index : "..i);
 	end
 
-	-- ·×·×Éı¼¶
+	-- çº·çº·å‡çº§
 	
 	for i = 1, 100 do
 		ret = user[i]:GMCommand("SetLevel(10)");
@@ -216,7 +216,7 @@ function TestCase.Ranklist.TestRankList()
 	
 	wait(1);
 
-	-- ·×·×ÏÂÏß, Ë¢ĞÂ×Ô¼ºÉíÉÏµÄÅÅĞĞ°ñ
+	-- çº·çº·ä¸‹çº¿, åˆ·æ–°è‡ªå·±èº«ä¸Šçš„æ’è¡Œæ¦œ
 	
 	for i = 1, 1000 do
 		cleanup(user[i]);	
@@ -228,7 +228,7 @@ function TestCase.Ranklist.TestRankList()
 
     local session_id1 = user1:GetSessionID();
 		
-	-- 1ºÅÓÃ»§²éÑ¯ÅÅĞĞ°ñĞÅÏ¢
+	-- 1å·ç”¨æˆ·æŸ¥è¯¢æ’è¡Œæ¦œä¿¡æ¯
 
     ret = user1:QueryRanklist(0, 0); -- rlLevel
     check(ret, "fail to query ranklist");    
@@ -238,7 +238,7 @@ function TestCase.Ranklist.TestRankList()
 	check(msg.nServerGroupID == 1, "wrong ServerGroupID in m2c_query_ranklist");
 	check(msg.nRanklistID == 0, "wrong nRanklistID in m2c_query_ranklist");    
     
-    -- °´ÕÕÔ¤¼Æ½á¹û ÅÅĞĞ°ñÖĞµÚ0Ò³È«ÊÇ55
+    -- æŒ‰ç…§é¢„è®¡ç»“æœ æ’è¡Œæ¦œä¸­ç¬¬0é¡µå…¨æ˜¯55
     
     for ranklistindex = 0,9 do
 	   	check(msg.llValue[ranklistindex] == 55, "wrong llvalue0 in m2c_query_ranklist");		 
@@ -252,13 +252,13 @@ function TestCase.Ranklist.TestRankList()
 	check(msg.nServerGroupID == 1, "wrong ServerGroupID in m2c_query_ranklist");
 	check(msg.nRanklistID == 0, "wrong nRanklistID in m2c_query_ranklist");    
 	
-    -- °´ÕÕÔ¤¼Æ½á¹û ÅÅĞĞ°ñÖĞµÚ99Ò³Ó¦¸ÃÊÇ1
+    -- æŒ‰ç…§é¢„è®¡ç»“æœ æ’è¡Œæ¦œä¸­ç¬¬99é¡µåº”è¯¥æ˜¯1
 	
     for ranklistindex = 0,9 do
 	   	check(msg.llValue[ranklistindex] == 1, "wrong llvalue0 in m2c_query_ranklist");		 
     end
 	
-	-- ÔÙÉÏ1¸öÓÃ»§£¬Éı¼¶µ½60¼¶
+	-- å†ä¸Š1ä¸ªç”¨æˆ·ï¼Œå‡çº§åˆ°60çº§
 
 	username = "ranklist"..os.date("%H%M%S");	
 	user2, role2 = startup(user_name[i], user_name[i]);
@@ -268,7 +268,7 @@ function TestCase.Ranklist.TestRankList()
 	ret = user2:GMCommand("SetLevel(60)");
 	check(ret, "exec GMCommand SetLevel user");
 	
-	-- 1ºÅÓÃ»§²éÑ¯ÅÅĞĞ°ñĞÅÏ¢
+	-- 1å·ç”¨æˆ·æŸ¥è¯¢æ’è¡Œæ¦œä¿¡æ¯
 			
 	ret = user1:QueryRanklist(0, 0); -- rlLevel
     check(ret, "fail to query ranklist");    
@@ -280,7 +280,7 @@ function TestCase.Ranklist.TestRankList()
 		
 	userid2 = role2:GetObjID();
 	
-	-- °´ÕÕÔ¤¼Æ½á¹û ÅÅÃûµÚ1µÄÓ¦¸ÃÊÇ2ºÅÓÃ»§ 60¼¶£¬ÆäËû9¸ö¶¼ÊÇ55¼¶
+	-- æŒ‰ç…§é¢„è®¡ç»“æœ æ’åç¬¬1çš„åº”è¯¥æ˜¯2å·ç”¨æˆ· 60çº§ï¼Œå…¶ä»–9ä¸ªéƒ½æ˜¯55çº§
 	
 	check(msg.llKey[0] == userid2, "wrong llkey1 in m2c_query_ranklist");   	
    	check(msg.llValue[0] == 60, "wrong llvalue0 in m2c_query_ranklist");		 
@@ -289,14 +289,14 @@ function TestCase.Ranklist.TestRankList()
 	   	check(msg.llValue[ranklistindex] == 55, "wrong llvalue0 in m2c_query_ranklist");		 
     end
 	
-	-- 1ºÅÓÃ»§Éı¼¶µ½65 ÏÂÏßË¢ĞÂÅÅĞĞ°ñ
+	-- 1å·ç”¨æˆ·å‡çº§åˆ°65 ä¸‹çº¿åˆ·æ–°æ’è¡Œæ¦œ
 	
 	ret = user1:GMCommand("SetLevel(65)");
 	check(ret, "exec GMCommand SetLevel user");
 
     cleanup(user1);
 	
-	-- ÓÃ»§2À´²éÑ¯ÅÅĞĞ°ñ£¬µÚÒ»ÊÇuser1 µÚ¶şÊÇuser2
+	-- ç”¨æˆ·2æ¥æŸ¥è¯¢æ’è¡Œæ¦œï¼Œç¬¬ä¸€æ˜¯user1 ç¬¬äºŒæ˜¯user2
 	check(msg.llKey[0] == userid1, "wrong llkey1 in m2c_query_ranklist");   	
    	check(msg.llValue[0] == 65, "wrong llvalue0 in m2c_query_ranklist");		 
 	

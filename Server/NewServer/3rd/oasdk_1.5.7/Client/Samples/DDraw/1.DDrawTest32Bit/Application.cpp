@@ -70,7 +70,7 @@ LRESULT CApplication::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 			bool bAltDown = ( (lParam & dwMask) != 0 );
 
 			if (bAltDown && (VK_RETURN == wParam))
-			{	// ÔÚÈ«ÆÁÓë´°¿ÚÄ£Ê½¼äÇĞ»»
+			{	// åœ¨å…¨å±ä¸çª—å£æ¨¡å¼é—´åˆ‡æ¢
 				ShutdownDDraw();
 				m_bIsFullScreen = !m_bIsFullScreen;
 				if (m_bIsFullScreen)
@@ -419,7 +419,7 @@ void CApplication::FrameMove()
 
 	if ( !m_bIsFullScreen )
 	{
-		//´°¿ÚÄ£Ê½Ê¹ÓÃ
+		//çª—å£æ¨¡å¼ä½¿ç”¨
 		RECT rt;
 		::GetClientRect( m_hWnd, &rt );
 

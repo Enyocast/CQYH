@@ -13,12 +13,12 @@ CMovePosition::CMovePosition(QWidget *parent, Qt::WindowFlags flags)
     ui.setupUi(this);
 
     ui.comboBox->addItem("");
-    ui.comboBox->addItem(QString::fromLocal8Bit("xsc-ĞÂÊÖ´å"));
-    ui.comboBox->addItem(QString::fromLocal8Bit("hzc-»¢×¦×¯"));
-    ui.comboBox->addItem(QString::fromLocal8Bit("hhc-ºÚ»¢´å"));
-    ui.comboBox->addItem(QString::fromLocal8Bit("lgz-Áú¹ÇÕò"));
-    ui.comboBox->addItem(QString::fromLocal8Bit("lgsm-Áú¹ÇÉ³Ä®"));
-    ui.comboBox->addItem(QString::fromLocal8Bit("hmyj-»ÄÄ®ÒÅ¼£"));
+    ui.comboBox->addItem(QString::fromLocal8Bit("xsc-æ–°æ‰‹æ‘"));
+    ui.comboBox->addItem(QString::fromLocal8Bit("hzc-è™çˆªåº„"));
+    ui.comboBox->addItem(QString::fromLocal8Bit("hhc-é»‘è™æ‘"));
+    ui.comboBox->addItem(QString::fromLocal8Bit("lgz-é¾™éª¨é•‡"));
+    ui.comboBox->addItem(QString::fromLocal8Bit("lgsm-é¾™éª¨æ²™æ¼ "));
+    ui.comboBox->addItem(QString::fromLocal8Bit("hmyj-è’æ¼ é—è¿¹"));
 
 
     //connect(ui.loginButton, SIGNAL(clicked()), this, SLOT(Login()));

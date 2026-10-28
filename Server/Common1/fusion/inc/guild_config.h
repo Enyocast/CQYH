@@ -29,7 +29,7 @@ struct GUILD_CONFIG
     INT32       nCrystal;
     INT32       nSilver;
 
-    INT16       nInitGuildPositionRight[8]; // GUILD_POSITION_COUNT£¬ ÒÔ´ËÀ´Ìø¹ı0
+    INT16       nInitGuildPositionRight[8]; // GUILD_POSITION_COUNTï¼Œ ä»¥æ­¤æ¥è·³è¿‡0
     INT16       nInitGuildStorageRight[7];  // GUILD_POSITION_COUNT
 
     INT32       nGuildDisbandLevelLimit;
@@ -37,7 +37,7 @@ struct GUILD_CONFIG
     INT32       nGuildApplicationLastTime;
     INT32       nGuildPopItemComsumeMoney;
 
-    // Ğ½Ë®
+    // è–ªæ°´
     INT32       nInitGuildMaxSalary;
     INT32       nGuildDrawSalaryPercent;
     INT32       nGuildObtainMoneyLimitPerWeek;
@@ -51,13 +51,13 @@ struct GUILD_CONFIG
     INT32       nDiplomatAppLastTime;
 
 
-    // È¡ÏûÉı¼¶ ·µ»¹±ÈÀı
+    // å–æ¶ˆå‡çº§ è¿”è¿˜æ¯”ä¾‹
     INT32       nBuildingUpgradeRefundPercent;
     INT32       nDelBuildingRefundPercent;
     INT32       nWelfareBufferUpgradeRefundPercent;
     INT32       nAddResourceInterval;
 
-    // ¼Ò×åÊôµØ
+    // å®¶æ—å±åœ°
     UINT32      dwSceneTemplateID;
     INT32       nEnterMapPosX;
     INT32       nEnterMapPosY;
@@ -66,7 +66,7 @@ struct GUILD_CONFIG
     UINT32      dwServerPoint;
     UINT32      dwTargetGuildServerPoint;
 
-    // Íõ³ÇµØÍ¼
+    // ç‹åŸåœ°å›¾
     UINT32      dwPalaceSceneTemplateID;
 
     char        szBMainNameID[8];
@@ -100,10 +100,10 @@ struct GUILD_CONFIG
     INT32           nGuildWarAttackEndAuraID;
     INT32           nGuildWarDefendEndAuraID;
 
-    INT32           nGuildWarMoneyPlunderPercent;       // ¹«»á×Ê½ğ°üÍò·Ö±È
-    INT32           nGuildWarResPlunderPercent;         // ×ÊÔ´°üÍò·Ö±È
-    INT32           nGuildWarMoneyPlunder;              // ¹«»áÕ½Ê¤Àû Ó®È¡»ñµÃ¶Ô·½µÄ¹«»á×Ê½ğÍò·Ö±È
-    INT32           nGuildWarResPlunder;                // ¹«»áÕ½Ê¤Àû Ó®È¡»ñµÃ¶Ô·½µÄ×ÊÔ´Íò·Ö±È
+    INT32           nGuildWarMoneyPlunderPercent;       // å…¬ä¼šèµ„é‡‘åŒ…ä¸‡åˆ†æ¯”
+    INT32           nGuildWarResPlunderPercent;         // èµ„æºåŒ…ä¸‡åˆ†æ¯”
+    INT32           nGuildWarMoneyPlunder;              // å…¬ä¼šæˆ˜èƒœåˆ© èµ¢å–è·å¾—å¯¹æ–¹çš„å…¬ä¼šèµ„é‡‘ä¸‡åˆ†æ¯”
+    INT32           nGuildWarResPlunder;                // å…¬ä¼šæˆ˜èƒœåˆ© èµ¢å–è·å¾—å¯¹æ–¹çš„èµ„æºä¸‡åˆ†æ¯”
     //////////////////////////////////////////////////////////////////////////
 
     // match war
@@ -115,7 +115,7 @@ struct GUILD_CONFIG
 
     //////////////////////////////////////////////////////////////////////////
 
-    INT32           nGuildDungeonUpdateTime;        // Áè³¿4µãµÄÃëÊı
+    INT32           nGuildDungeonUpdateTime;        // å‡Œæ™¨4ç‚¹çš„ç§’æ•°
     INT32           nGuildDungeonSalaryPercent;
 
     // guild prosperity

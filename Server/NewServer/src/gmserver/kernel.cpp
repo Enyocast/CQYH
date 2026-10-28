@@ -115,9 +115,9 @@ BOOL CKernel::MainLoop()
             }
 
             nRetCode = CPermissionMgr::GetInstance().CheckExecutePermission((*old_iter)->eCmdType, pTLUser->GetPermission());
-            if (nRetCode == FALSE)  // Ä¬ÈÏ´úÂëÊÇ "=", Ó¦¸ÃÊÇĞ´´íÁË, ÏÖÔÚ¸Ä³É "=="
+            if (nRetCode == FALSE)  // é»˜è®¤ä»£ç æ˜¯ "=", åº”è¯¥æ˜¯å†™é”™äº†, ç°åœ¨æ”¹æˆ "=="
             {
-                CMessageHandler::GetInstance().DoTLErrorStr(pTLUser->GetSessionID(), "È¨ÏŞ²»¹»");
+                CMessageHandler::GetInstance().DoTLErrorStr(pTLUser->GetSessionID(), "æƒé™ä¸å¤Ÿ");
                 pCmd = *old_iter;
                 nRetCode = CKernel::GetInstance().PopCmd(pCmd);
                 LOG_CHECK_ERROR(nRetCode);

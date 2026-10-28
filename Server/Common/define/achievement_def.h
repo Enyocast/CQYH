@@ -256,16 +256,16 @@ enum ACHIEVEMENT_VARIABLE_DEF
 
 	avdStatisticEnd,
 
-	avdQuestFlytoZone,					// ĞÂÊÖÒıµ¼ ÈÎÎñ·ÉĞ¬ÓÃ Ç°¼¸´ÎÃâ·Ñ
+	avdQuestFlytoZone,					// æ–°æ‰‹å¼•å¯¼ ä»»åŠ¡é£é‹ç”¨ å‰å‡ æ¬¡å…è´¹
 
-	avdLastOfflineTime,					// ¼ÇÂ¼ÏÂÏßÊ±¼ä
+	avdLastOfflineTime,					// è®°å½•ä¸‹çº¿æ—¶é—´
 
-	avdRewardQuestCompleteCount,		// Ã¿ÈÕĞüÉÍÈÎÎñµÄÍê³É´ÎÊı£¬ÓÃÓÚ»î¶¯ÏÔÊ¾
+	avdRewardQuestCompleteCount,		// æ¯æ—¥æ‚¬èµä»»åŠ¡çš„å®Œæˆæ¬¡æ•°ï¼Œç”¨äºæ´»åŠ¨æ˜¾ç¤º
 
 	avdKillPlayerLevelDuarionBegin,
-	avdKillPlayerLevelDuarion1 = avdKillPlayerLevelDuarionBegin,			// É±ËÀµÈ¼¶¶Î1Íæ¼Ò£¬
-	avdKillPlayerLevelDuarion2,												// É±ËÀµÈ¼¶¶Î2Íæ¼Ò£¬
-	avdKillPlayerLevelDuarion3,												// É±ËÀµÈ¼¶¶Î3Íæ¼Ò£¬	
+	avdKillPlayerLevelDuarion1 = avdKillPlayerLevelDuarionBegin,			// æ€æ­»ç­‰çº§æ®µ1ç©å®¶ï¼Œ
+	avdKillPlayerLevelDuarion2,												// æ€æ­»ç­‰çº§æ®µ2ç©å®¶ï¼Œ
+	avdKillPlayerLevelDuarion3,												// æ€æ­»ç­‰çº§æ®µ3ç©å®¶ï¼Œ	
 
 	avdEquipDecompose,
 	avdEquipCompose,

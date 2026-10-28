@@ -247,7 +247,7 @@ void CDBRole::OnLoadRole()
     }
     else
     {
-        //Êý¾Ý¿â¶ÁÈ¡Ê§°Ü
+        //æ•°æ®åº“è¯»å–å¤±è´¥
         m_lockstate = LOCK_STATE_INVALID;
         m_dbuser->RemoveRole(this, FALSE);
         LOG_PROCESS_ERROR(FALSE);

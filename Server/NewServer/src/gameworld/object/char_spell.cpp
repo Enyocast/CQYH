@@ -483,7 +483,7 @@ INT32 CCharacter::CastInstantSpell(CSceneObject* poFromObj, CSpell* poSpell, CCh
 	if(poFromObj->GetObjType() != otMissile)
 		TrigEvent(meoOnCharCastSuccess, &inst);
 
-	// ÀäÈ´
+	// å†·å´
 	{
 		INT32 nCoolDownFrm = inst.GetSelfCoolDownFrm();
 		// self cooldown
@@ -582,7 +582,7 @@ void CCharacter::_CastSpell(CSpellInstance* poSpell, INT32& nCastTime)
 
 	nInterval = poSpell->GetIntervalFrm();
 
-	// ¼¼ÄÜ×¼±¸ÀàĞÍ
+	// æŠ€èƒ½å‡†å¤‡ç±»å‹
 	switch(poSpell->GetAttr(satPrepareType))
 	{
 	case spptChanneled:
@@ -713,7 +713,7 @@ void CCharacter::_ClearAfterDie(void)
 		poBullet->SetRemoveFlag(TRUE);
 	}
 
-	// remove all negative auras: É¾³ıËùÓĞ¸ºÃæBuff
+	// remove all negative auras: åˆ é™¤æ‰€æœ‰è´Ÿé¢Buff
 
 //	for(INT32 i = auetNone; i < auetTotal; i++)
 //	{
@@ -1477,15 +1477,15 @@ CAuraInstance* CCharacter::AppendAura(CAura* poAuraInfo, CCharacter* poCaster, U
 
 	nGroup = poAuraInfo->GetAttr(aatGroup);
 
-	// »ñÈ¡¶ÔÏóÊôĞÔÁĞ±í
+	// è·å–å¯¹è±¡å±æ€§åˆ—è¡¨
 	aura = m_AuraList.BeginAura(eEffectType);
 
 	while((aura = m_AuraList.NextAura(eEffectType, aura)) != NULL)
 	{
-		// Èç¹û ÊôĞÔÁĞ±íÖĞ, ÒÑ¾­´æÔÚÏàÍ¬IDµÄÊôĞÔ
+		// å¦‚æœ å±æ€§åˆ—è¡¨ä¸­, å·²ç»å­˜åœ¨ç›¸åŒIDçš„å±æ€§
 		if(aura->GetID() == poAuraInfo->GetID())
 		{
-			// Èç¹û ÊÍ·Å¶ÔÏó µÈÓÚ Ä¿±ê¶ÔÏó
+			// å¦‚æœ é‡Šæ”¾å¯¹è±¡ ç­‰äº ç›®æ ‡å¯¹è±¡
 			if(aura->GetCasterID() == poCaster->GetObjID())
 			{
 				poExistAura1 = aura;
@@ -1495,10 +1495,10 @@ CAuraInstance* CCharacter::AppendAura(CAura* poAuraInfo, CCharacter* poCaster, U
 				poExistAura2 = aura;
 			}
 		}
-		// Èç¹û ÊôĞÔÁĞ±íÖĞ, Ã»ÓĞÕâ¸öIDµÄÊôĞÔ
+		// å¦‚æœ å±æ€§åˆ—è¡¨ä¸­, æ²¡æœ‰è¿™ä¸ªIDçš„å±æ€§
 		else if(aura->GetAttr(aatType) == eEffectType)
 		{
-			// Èç¹û ÊÍ·Å¶ÔÏó µÈÓÚ Ä¿±ê¶ÔÏó
+			// å¦‚æœ é‡Šæ”¾å¯¹è±¡ ç­‰äº ç›®æ ‡å¯¹è±¡
 			if(aura->GetCasterID() == poCaster->GetObjID())
 			{
 				poExistAura3 = aura;

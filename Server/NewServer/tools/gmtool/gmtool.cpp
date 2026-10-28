@@ -126,11 +126,11 @@ gmtool::gmtool(QWidget *parent, Qt::WindowFlags flags)
     m_pFCRadioGroup->addButton(ui.fc2_radioButton, 2);
 
     ui.fc1_comboBox->clear();
-    ui.fc1_comboBox->insertItem(TIME_ONE_HOUR_INDEX, QString::fromLocal8Bit("1Ğ¡Ê±"));
-    ui.fc1_comboBox->insertItem(TIME_ONE_DAY_INDEX, QString::fromLocal8Bit("1Ìì"));
-    ui.fc1_comboBox->insertItem(TIME_THREE_DAY_INDEX, QString::fromLocal8Bit("3Ìì"));
-    ui.fc1_comboBox->insertItem(TIME_SEVEN_DAY_INDEX, QString::fromLocal8Bit("7Ìì"));
-    ui.fc1_comboBox->insertItem(TIME_FOREVER_INDEX, QString::fromLocal8Bit("ÓÀ¾Ã"));
+    ui.fc1_comboBox->insertItem(TIME_ONE_HOUR_INDEX, QString::fromLocal8Bit("1å°æ—¶"));
+    ui.fc1_comboBox->insertItem(TIME_ONE_DAY_INDEX, QString::fromLocal8Bit("1å¤©"));
+    ui.fc1_comboBox->insertItem(TIME_THREE_DAY_INDEX, QString::fromLocal8Bit("3å¤©"));
+    ui.fc1_comboBox->insertItem(TIME_SEVEN_DAY_INDEX, QString::fromLocal8Bit("7å¤©"));
+    ui.fc1_comboBox->insertItem(TIME_FOREVER_INDEX, QString::fromLocal8Bit("æ°¸ä¹…"));
 
 
     // tag 4
@@ -153,12 +153,12 @@ gmtool::gmtool(QWidget *parent, Qt::WindowFlags flags)
     ui.dateTimeEdit_log_2->setDateTime(qDataTime);
 
     ui.logComboBox->clear();
-    ui.logComboBox->insertItem(GM_LOG_QUERY_ROLE_LOGIN, QString::fromLocal8Bit("ÕËºÅµÇÈëµÇ³ö"));
-    ui.logComboBox->insertItem(GM_LOG_QUERY_ROLE_LOGOUT, QString::fromLocal8Bit("½ÇÉ«µÇ³ö"));
-    ui.logComboBox->insertItem(GM_LOG_QUERY_ITEM, QString::fromLocal8Bit("µÀ¾ßÁ÷×ª"));
-    ui.logComboBox->insertItem(GM_LOG_QUERY_MONEY, QString::fromLocal8Bit("»õ±ÒÁ÷×ª"));
-    ui.logComboBox->insertItem(GM_LOG_QUERY_QUEST, QString::fromLocal8Bit("½ÇÉ«ÈÎÎñ"));
-    ui.logComboBox->insertItem(GM_LOG_QUERY_GM, QString::fromLocal8Bit("gmÖ¸ÁîÈÕÖ¾"));
+    ui.logComboBox->insertItem(GM_LOG_QUERY_ROLE_LOGIN, QString::fromLocal8Bit("è´¦å·ç™»å…¥ç™»å‡º"));
+    ui.logComboBox->insertItem(GM_LOG_QUERY_ROLE_LOGOUT, QString::fromLocal8Bit("è§’è‰²ç™»å‡º"));
+    ui.logComboBox->insertItem(GM_LOG_QUERY_ITEM, QString::fromLocal8Bit("é“å…·æµè½¬"));
+    ui.logComboBox->insertItem(GM_LOG_QUERY_MONEY, QString::fromLocal8Bit("è´§å¸æµè½¬"));
+    ui.logComboBox->insertItem(GM_LOG_QUERY_QUEST, QString::fromLocal8Bit("è§’è‰²ä»»åŠ¡"));
+    ui.logComboBox->insertItem(GM_LOG_QUERY_GM, QString::fromLocal8Bit("gmæŒ‡ä»¤æ—¥å¿—"));
 
     connect(ui.logComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(ChangeInputType(int)));
     connect(ui.searchButton_log, SIGNAL(clicked()), this, SLOT(LogSearch()));
@@ -244,20 +244,20 @@ void gmtool::Login()
                 nRetCode = CMessageHandler::GetInstance().DoLoginToGM(m_arrItemPoint[nIndex]->GetSessionID(), CGMManager::GetInstance().GetUserName(), CGMManager::GetInstance().GetUserPwd());
                 if (nRetCode == FALSE)
                 {
-                    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Î´Á´½ÓÉÏ·şÎñÆ÷£¬ÎŞ·¨µÇÂ½"), QMessageBox::Yes);
+                    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœªé“¾æ¥ä¸ŠæœåŠ¡å™¨ï¼Œæ— æ³•ç™»é™†"), QMessageBox::Yes);
                     return;
                 }
 
-                nRetCode = CGMLog::GetInstance().Log("µÇÂ½·şÎñÆ÷[%s]....", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
+                nRetCode = CGMLog::GetInstance().Log("ç™»é™†æœåŠ¡å™¨[%s]....", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
                 LOG_PROCESS_ERROR(nRetCode);
-                break;      // Ã¿´ÎÖ»´¦ÀíÒ»¸öserver Allan Tao[5.3.2014] 
+                break;      // æ¯æ¬¡åªå¤„ç†ä¸€ä¸ªserver Allan Tao[5.3.2014] 
             }
         }
     }
 
     return ;
 Exit0:
-    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("µÇÂ½Ê§°Ü£¬ÇëÉÔºóÖØÊÔ»òÁªÏµ¿ª·¢ÈËÔ±"), QMessageBox::Yes);
+    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ç™»é™†å¤±è´¥ï¼Œè¯·ç¨åé‡è¯•æˆ–è”ç³»å¼€å‘äººå‘˜"), QMessageBox::Yes);
     return;
 }
 
@@ -281,21 +281,21 @@ void gmtool::Logout()
                 nRetCode = CMessageHandler::GetInstance().DoLogoutToGM(m_arrItemPoint[nIndex]->GetSessionID());
                 if (nRetCode == FALSE)
                 {
-                    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Î´Á´½ÓÉÏ·şÎñÆ÷£¬ÎŞ·¨µÇÂ½"), QMessageBox::Yes);
+                    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœªé“¾æ¥ä¸ŠæœåŠ¡å™¨ï¼Œæ— æ³•ç™»é™†"), QMessageBox::Yes);
                     return;
                 }
 
-                nRetCode = CGMLog::GetInstance().Log("µÇ³ö·şÎñÆ÷[%s]....", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
+                nRetCode = CGMLog::GetInstance().Log("ç™»å‡ºæœåŠ¡å™¨[%s]....", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
                 LOG_PROCESS_ERROR(nRetCode);
 
-                break;      // Ã¿´ÎÖ»´¦ÀíÒ»¸öserver Allan Tao[5.3.2014] 
+                break;      // æ¯æ¬¡åªå¤„ç†ä¸€ä¸ªserver Allan Tao[5.3.2014] 
             }
         }
     }
 
     return ;
 Exit0:
-    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("µÇÂ½Ê§°Ü£¬ÇëÉÔºóÖØÊÔ»òÁªÏµ¿ª·¢ÈËÔ±"), QMessageBox::Yes);
+    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ç™»é™†å¤±è´¥ï¼Œè¯·ç¨åé‡è¯•æˆ–è”ç³»å¼€å‘äººå‘˜"), QMessageBox::Yes);
     return;
 }
 
@@ -320,7 +320,7 @@ void gmtool::SecondInit(int nIndex)
         }
         if (MAX_GM_SESSION_COUNT == dwSessionID)
         {
-            //QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡ÔñÖ´ĞĞÇø·ş"), QMessageBox::Yes);
+            //QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©æ‰§è¡ŒåŒºæœ"), QMessageBox::Yes);
             return;
         }
 
@@ -439,20 +439,20 @@ void gmtool::QueryRoleID()
 
     if (CCmdManager::GetInstance().IsCmdExecuting())
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÃüÁîÖ´ĞĞÖĞ..."), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘½ä»¤æ‰§è¡Œä¸­..."), QMessageBox::Yes);
         return;
     }
 
     nRetCode = CServerMgr::GetInstance().IsServerSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡ÔñÖ´ĞĞÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©æ‰§è¡ŒåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
     if (-1 == m_pQueryIDRadioGroup->checkedId())
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡ÔñÒª²éÑ¯µÄÈÕÖ¾"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©è¦æŸ¥è¯¢çš„æ—¥å¿—"), QMessageBox::Yes);
         return;
     }
 
@@ -463,20 +463,20 @@ void gmtool::QueryRoleID()
         strxcpy(szName, ui.lineEdit_query_2->text().toUtf8(), sizeof(szName));
     else
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡Ôñ²éÑ¯ÀàĞÍ"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©æŸ¥è¯¢ç±»å‹"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
     if (0 == strlen(szName))
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÊäÈëÕıÈ·µÄÃû×Ö"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·è¾“å…¥æ­£ç¡®çš„åå­—"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
     nRetCode = CCmdManager::GetInstance().QueryRoleID(nSelectRadioID, szName);
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
@@ -495,7 +495,7 @@ void gmtool::QueryRoleData()
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
@@ -503,7 +503,7 @@ void gmtool::QueryRoleData()
     {
         if (ui.lineEdit_queryByid->text().toUtf8().length() <= 0)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÕıÈ·ÌîĞ´½ÇÉ«Ãû"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·æ­£ç¡®å¡«å†™è§’è‰²å"), QMessageBox::Yes);
             return;
         }
 
@@ -524,7 +524,7 @@ void gmtool::QueryRoleData()
         LOG_CHECK_ERROR(nRetCode);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
             LOG_PROCESS_ERROR(FALSE);
         }
 
@@ -534,7 +534,7 @@ void gmtool::QueryRoleData()
         //nRetCode = _ReadRoleIDFromFile(ui.lineEdit_queryByFile->text().toUtf8(), roleIDList);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("¶ÁÈ¡½ÇÉ«IDÎÄ¼şÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯»å–è§’è‰²IDæ–‡ä»¶å¤±è´¥"), QMessageBox::Yes);
             return;
         }
 
@@ -554,7 +554,7 @@ void gmtool::ViewRoleData()
     nRetCode = CCmdManager::GetInstance().IsCmdExecuting();
     if (nRetCode)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÃüÁîÖ´ĞĞÖĞ..."), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘½ä»¤æ‰§è¡Œä¸­..."), QMessageBox::Yes);
         return;
     }
 
@@ -581,28 +581,28 @@ void gmtool::ModifyRoleData()
     nRetCode = CCmdManager::GetInstance().IsCmdExecuting();
     if (nRetCode)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÃüÁîÖ´ĞĞÖĞ..."), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘½ä»¤æ‰§è¡Œä¸­..."), QMessageBox::Yes);
         return;
     }
 
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
     // clear role cache
     ui.treeWidget->clear();
 
-    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("ÇëÈ·ÈÏ½ÇÉ«´¦ÓÚÀëÏß×´Ì¬£¡·ñÔò½«µ¼ÖÂÍæ¼ÒÊı¾İ²»Ò»ÖÂ"));
+    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("è¯·ç¡®è®¤è§’è‰²å¤„äºç¦»çº¿çŠ¶æ€ï¼å¦åˆ™å°†å¯¼è‡´ç©å®¶æ•°æ®ä¸ä¸€è‡´"));
     if (nCheckEnum == QMessageBox::Yes)
     {
         if (ui.radioButton_queryByID->isChecked())
         {
             if (ui.lineEdit_queryByid->text().toUtf8().length() <= 0)
             {
-                QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÌîĞ´½ÇÉ«Ãû"), QMessageBox::Yes);
+                QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·å¡«å†™è§’è‰²å"), QMessageBox::Yes);
                 return;
             }
 
@@ -620,18 +620,18 @@ void gmtool::ModifyRoleData()
             LOG_CHECK_ERROR(nRetCode);
             if (nRetCode == FALSE)
             {
-                QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+                QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
                 LOG_PROCESS_ERROR(FALSE);
             }
         }
         else if (ui.radioButton_queryByFile->isChecked())
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("½ÇÉ«ID ÊıÁ¿¹ı¶à"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è§’è‰²ID æ•°é‡è¿‡å¤š"), QMessageBox::Yes);
             return;
         }
         else
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡Ôñ½ÇÉ«IDÊäÈëÀàĞÍ"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©è§’è‰²IDè¾“å…¥ç±»å‹"), QMessageBox::Yes);
             return;
         }
     }
@@ -651,11 +651,11 @@ void gmtool::OpenFile()
     QFileDialog *pFileDialog = new QFileDialog(this);
     if (pFileDialog == NULL)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("´ò¿ªÎÄ¼ş¶Ô»°¿òÊ§°Ü"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æ‰“å¼€æ–‡ä»¶å¯¹è¯æ¡†å¤±è´¥"), QMessageBox::Yes);
         return;
     }
 
-    pFileDialog->setWindowTitle(QString::fromLocal8Bit("Ñ¡ÔñÎÄ¼ş"));
+    pFileDialog->setWindowTitle(QString::fromLocal8Bit("é€‰æ‹©æ–‡ä»¶"));
     pFileDialog->setDirectory(".");
     if (pFileDialog->exec() == QDialog::Accepted)
     {
@@ -664,7 +664,7 @@ void gmtool::OpenFile()
     }
     else
     {
-        QMessageBox::information(this, "critical", QString::fromLocal8Bit("Î´Ñ¡ÔñÎÄ¼ş"), QMessageBox::Yes);
+        QMessageBox::information(this, "critical", QString::fromLocal8Bit("æœªé€‰æ‹©æ–‡ä»¶"), QMessageBox::Yes);
         return;
     }
 
@@ -682,14 +682,14 @@ void gmtool::RoleGMCmd()
     nRetCode = CCmdManager::GetInstance().IsCmdExecuting();
     if (nRetCode)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÃüÁîÖ´ĞĞÖĞ..."), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘½ä»¤æ‰§è¡Œä¸­..."), QMessageBox::Yes);
         return;
     }
 
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
@@ -697,7 +697,7 @@ void gmtool::RoleGMCmd()
     {
         if (ui.lineEdit_queryByid->text().toUtf8().length() <= 0)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÌîĞ´½ÇÉ«Ãû"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·å¡«å†™è§’è‰²å"), QMessageBox::Yes);
             return;
         }
 
@@ -705,12 +705,12 @@ void gmtool::RoleGMCmd()
     }
     else if (ui.radioButton_queryByFile->isChecked())
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("½ÇÉ«ID ÊıÁ¿¹ı¶à"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è§’è‰²ID æ•°é‡è¿‡å¤š"), QMessageBox::Yes);
         return;
     }
     else
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡Ôñ½ÇÉ«IDÊäÈëÀàĞÍ"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©è§’è‰²IDè¾“å…¥ç±»å‹"), QMessageBox::Yes);
         return;
     }
 
@@ -733,7 +733,7 @@ void gmtool::RoleGMCmd()
         LOG_CHECK_ERROR(nRetCode);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
             LOG_PROCESS_ERROR(FALSE);
         }
     }
@@ -771,11 +771,11 @@ void gmtool::ForBiddenChat()
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
-    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("È·ÈÏ½ûÑÔ£¿"));
+    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("ç¡®è®¤ç¦è¨€ï¼Ÿ"));
     if (nCheckEnum != QMessageBox::Yes)
         return;
 
@@ -794,7 +794,7 @@ void gmtool::ForBiddenChat()
             llTime = FOREVER_TIME;
         else
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÊäÈë´íÎó"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¾“å…¥é”™è¯¯"), QMessageBox::Yes);
             return;
         }
     }
@@ -805,7 +805,7 @@ void gmtool::ForBiddenChat()
             llTime = FOREVER_TIME;
         else if (llTime == 0)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("²ÎÊı´íÎó"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‚æ•°é”™è¯¯"), QMessageBox::Yes);
             return;
         }
         else
@@ -817,7 +817,7 @@ void gmtool::ForBiddenChat()
     }
     else
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡Ôñ½ûÑÔÊ±¼ä"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©ç¦è¨€æ—¶é—´"), QMessageBox::Yes);
         return;
     }
 
@@ -835,7 +835,7 @@ void gmtool::ForBiddenChat()
     {
         if (ui.textEdit_RoleID->toPlainText().toUtf8().length() <= 0)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÌîĞ´½ÇÉ«Ãû"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·å¡«å†™è§’è‰²å"), QMessageBox::Yes);
             return;
         }
 
@@ -847,7 +847,7 @@ void gmtool::ForBiddenChat()
         nRetCode = CCmdManager::GetInstance().PreQuery(CMD_FORBIDDEN_CHAT, roleres.szRoleName, pCmd);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
             LOG_PROCESS_ERROR(FALSE);
         }
     }
@@ -858,26 +858,26 @@ void gmtool::ForBiddenChat()
         nRetCode = _ReadRoleFromFile(pCmd->szFileName, pCmd->roleList);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("¶ÁÈ¡½ÇÉ«IDÎÄ¼şÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯»å–è§’è‰²IDæ–‡ä»¶å¤±è´¥"), QMessageBox::Yes);
             return;
         }
 
         if (pCmd->roleList.size() == 0)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÓĞĞ§½ÇÉ«ÃûÊıÁ¿Îª0"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœ‰æ•ˆè§’è‰²åæ•°é‡ä¸º0"), QMessageBox::Yes);
             return;
         }
 
         nRetCode = CCmdManager::GetInstance().PreQuery(CMD_FORBIDDEN_CHAT, pCmd->roleList.begin()->szRoleName, pCmd);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
             LOG_PROCESS_ERROR(FALSE);
         }
     }
     else
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡Ôñ½ÇÉ«IDÊäÈë·½Ê½"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©è§’è‰²IDè¾“å…¥æ–¹å¼"), QMessageBox::Yes);
         return;
     }
 
@@ -894,11 +894,11 @@ void gmtool::UnforbidChat()
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
-    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("È·ÈÏ½â³ı½ûÑÔ£¿"));
+    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("ç¡®è®¤è§£é™¤ç¦è¨€ï¼Ÿ"));
     if (nCheckEnum != QMessageBox::Yes)
         return;
 
@@ -916,7 +916,7 @@ void gmtool::UnforbidChat()
     {
         if (ui.textEdit_RoleID->toPlainText().toUtf8().length() <= 0)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÌîĞ´½ÇÉ«Ãû"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·å¡«å†™è§’è‰²å"), QMessageBox::Yes);
             return;
         }
 
@@ -928,7 +928,7 @@ void gmtool::UnforbidChat()
         nRetCode = CCmdManager::GetInstance().PreQuery(CMD_FORBIDDEN_CHAT, roleres.szRoleName, pCmd);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
             LOG_PROCESS_ERROR(FALSE);
         }
     }
@@ -939,26 +939,26 @@ void gmtool::UnforbidChat()
         nRetCode = _ReadRoleFromFile(pCmd->szFileName, pCmd->roleList);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("¶ÁÈ¡½ÇÉ«IDÎÄ¼şÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯»å–è§’è‰²IDæ–‡ä»¶å¤±è´¥"), QMessageBox::Yes);
             return;
         }
 
         if (pCmd->roleList.size() == 0)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÓĞĞ§½ÇÉ«ÃûÊıÁ¿Îª0"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœ‰æ•ˆè§’è‰²åæ•°é‡ä¸º0"), QMessageBox::Yes);
             return;
         }
 
         nRetCode = CCmdManager::GetInstance().PreQuery(CMD_FORBIDDEN_CHAT, pCmd->roleList.begin()->szRoleName, pCmd);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
             LOG_PROCESS_ERROR(FALSE);
         }
     }
     else
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡Ôñ½ÇÉ«IDÊäÈë·½Ê½"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©è§’è‰²IDè¾“å…¥æ–¹å¼"), QMessageBox::Yes);
         return;
     }
 
@@ -978,11 +978,11 @@ void gmtool::FreezeRole()
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
-    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("È·ÈÏ·âºÅ£¿"));
+    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("ç¡®è®¤å°å·ï¼Ÿ"));
     if (nCheckEnum != QMessageBox::Yes)
         return;
 
@@ -1001,7 +1001,7 @@ void gmtool::FreezeRole()
             llTime = FOREVER_TIME;
         else
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÊäÈë´íÎó"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¾“å…¥é”™è¯¯"), QMessageBox::Yes);
             return;
         }
     }
@@ -1019,7 +1019,7 @@ void gmtool::FreezeRole()
     }
     else
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡Ôñ¶³½áÊ±¼ä"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©å†»ç»“æ—¶é—´"), QMessageBox::Yes);
         return;
     }
 
@@ -1038,7 +1038,7 @@ void gmtool::FreezeRole()
     {
         if (ui.textEdit_RoleID->toPlainText().toUtf8().length() <= 0)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÌîĞ´½ÇÉ«Ãû"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·å¡«å†™è§’è‰²å"), QMessageBox::Yes);
             return;
         }
 
@@ -1050,7 +1050,7 @@ void gmtool::FreezeRole()
         nRetCode = CCmdManager::GetInstance().PreQuery(CMD_FREEZE_ROLE, roleres.szRoleName, pCmd);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
             LOG_PROCESS_ERROR(FALSE);
         }
     }
@@ -1061,26 +1061,26 @@ void gmtool::FreezeRole()
         nRetCode = _ReadRoleFromFile(pCmd->szFileName, pCmd->roleList);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("¶ÁÈ¡½ÇÉ«IDÎÄ¼şÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯»å–è§’è‰²IDæ–‡ä»¶å¤±è´¥"), QMessageBox::Yes);
             return;
         }
 
         if (pCmd->roleList.size() == 0)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÓĞĞ§½ÇÉ«ÃûÊıÁ¿Îª0"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœ‰æ•ˆè§’è‰²åæ•°é‡ä¸º0"), QMessageBox::Yes);
             return;
         }
 
         nRetCode = CCmdManager::GetInstance().PreQuery(CMD_FREEZE_ROLE, pCmd->roleList.begin()->szRoleName, pCmd);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
             LOG_PROCESS_ERROR(FALSE);
         }
     }
     else
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡Ôñ½ÇÉ«IDÊäÈë·½Ê½"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©è§’è‰²IDè¾“å…¥æ–¹å¼"), QMessageBox::Yes);
         return;
     }
 
@@ -1097,11 +1097,11 @@ void gmtool::UnfreezeRole()
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
-    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("È·ÈÏ½â³ı·âºÅ£¿"));
+    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("ç¡®è®¤è§£é™¤å°å·ï¼Ÿ"));
     if (nCheckEnum != QMessageBox::Yes)
         return;
 
@@ -1119,7 +1119,7 @@ void gmtool::UnfreezeRole()
     {
         if (ui.textEdit_RoleID->toPlainText().toUtf8().length() <= 0)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÌîĞ´½ÇÉ«Ãû"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·å¡«å†™è§’è‰²å"), QMessageBox::Yes);
             return;
         }
 
@@ -1131,7 +1131,7 @@ void gmtool::UnfreezeRole()
         nRetCode = CCmdManager::GetInstance().PreQuery(CMD_FREEZE_ROLE, roleres.szRoleName, pCmd);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
             LOG_PROCESS_ERROR(FALSE);
         }
     }
@@ -1142,26 +1142,26 @@ void gmtool::UnfreezeRole()
         nRetCode = _ReadRoleFromFile(pCmd->szFileName, pCmd->roleList);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("¶ÁÈ¡½ÇÉ«IDÎÄ¼şÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯»å–è§’è‰²IDæ–‡ä»¶å¤±è´¥"), QMessageBox::Yes);
             return;
         }
 
         if (pCmd->roleList.size() == 0)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÓĞĞ§½ÇÉ«ÃûÊıÁ¿Îª0"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœ‰æ•ˆè§’è‰²åæ•°é‡ä¸º0"), QMessageBox::Yes);
             return;
         }
 
         nRetCode = CCmdManager::GetInstance().PreQuery(CMD_FREEZE_ROLE, pCmd->roleList.begin()->szRoleName, pCmd);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
             LOG_PROCESS_ERROR(FALSE);
         }
     }
     else
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡Ôñ½ÇÉ«IDÊäÈë·½Ê½"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©è§’è‰²IDè¾“å…¥æ–¹å¼"), QMessageBox::Yes);
         return;
     }
 
@@ -1178,11 +1178,11 @@ void gmtool::KickRole()
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
-    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("È·ÈÏÇ¿ÖÆ½ÇÉ«ÏÂÏß£¿"));
+    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("ç¡®è®¤å¼ºåˆ¶è§’è‰²ä¸‹çº¿ï¼Ÿ"));
     if (nCheckEnum != QMessageBox::Yes)
         return;
 
@@ -1199,7 +1199,7 @@ void gmtool::KickRole()
     {
         if (ui.textEdit_RoleID->toPlainText().toUtf8().length() <= 0)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÌîĞ´½ÇÉ«Ãû"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·å¡«å†™è§’è‰²å"), QMessageBox::Yes);
             return;
         }
 
@@ -1211,7 +1211,7 @@ void gmtool::KickRole()
         nRetCode = CCmdManager::GetInstance().PreQuery(CMD_KICK_ROLE, roleres.szRoleName, pCmd);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
             LOG_PROCESS_ERROR(FALSE);
         }
     }
@@ -1222,26 +1222,26 @@ void gmtool::KickRole()
         nRetCode = _ReadRoleFromFile(pCmd->szFileName, pCmd->roleList);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("¶ÁÈ¡½ÇÉ«IDÎÄ¼şÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯»å–è§’è‰²IDæ–‡ä»¶å¤±è´¥"), QMessageBox::Yes);
             return;
         }
 
         if (pCmd->roleList.size() == 0)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÓĞĞ§½ÇÉ«ÃûÊıÁ¿Îª0"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœ‰æ•ˆè§’è‰²åæ•°é‡ä¸º0"), QMessageBox::Yes);
             return;
         }
 
         nRetCode = CCmdManager::GetInstance().PreQuery(CMD_KICK_ROLE, pCmd->roleList.begin()->szRoleName, pCmd);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
             LOG_PROCESS_ERROR(FALSE);
         }
     }
     else
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡Ôñ½ÇÉ«IDÊäÈë·½Ê½"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©è§’è‰²IDè¾“å…¥æ–¹å¼"), QMessageBox::Yes);
         return;
     }
     return;
@@ -1263,11 +1263,11 @@ void gmtool::Mail()
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
-    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("È·ÈÏ·¢ËÍÓÊ¼ş£¿"));
+    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("ç¡®è®¤å‘é€é‚®ä»¶ï¼Ÿ"));
     if (nCheckEnum != QMessageBox::Yes)
         return;
 
@@ -1286,19 +1286,19 @@ void gmtool::Mail()
 
     if (bParam == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÊäÈëÕıÈ·µÄ²ÎÊı"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·è¾“å…¥æ­£ç¡®çš„å‚æ•°"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
     if (dwItemID > 0 && strlen(szReason) <= 0)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÊäÈëÔ­Òò"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·è¾“å…¥åŸå› "), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
     if (strlen(szReason) > GM_REASON_LEN - 1)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ô­Òò¹ı³¤!"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("åŸå› è¿‡é•¿!"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
@@ -1321,7 +1321,7 @@ void gmtool::Mail()
     {
         if (ui.textEdit_RoleID->toPlainText().toUtf8().length() <= 0)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÌîĞ´½ÇÉ«Ãû"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·å¡«å†™è§’è‰²å"), QMessageBox::Yes);
             return;
         }
 
@@ -1333,7 +1333,7 @@ void gmtool::Mail()
         nRetCode = CCmdManager::GetInstance().PreQuery(CMD_SEND_MAIL, roleres.szRoleName, pCmd);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
             LOG_PROCESS_ERROR(FALSE);
         }
     }
@@ -1344,26 +1344,26 @@ void gmtool::Mail()
         nRetCode = _ReadRoleFromFile(pCmd->szFileName, pCmd->roleList);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("¶ÁÈ¡½ÇÉ«IDÎÄ¼şÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯»å–è§’è‰²IDæ–‡ä»¶å¤±è´¥"), QMessageBox::Yes);
             return;
         }
 
         if (pCmd->roleList.size() == 0)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÓĞĞ§½ÇÉ«ÃûÊıÁ¿Îª0"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœ‰æ•ˆè§’è‰²åæ•°é‡ä¸º0"), QMessageBox::Yes);
             return;
         }
 
         nRetCode = CCmdManager::GetInstance().PreQuery(CMD_SEND_MAIL, pCmd->roleList.begin()->szRoleName, pCmd);
         if (nRetCode == FALSE)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
             LOG_PROCESS_ERROR(FALSE);
         }
     }
     else
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡Ôñ½ÇÉ«IDÊäÈë·½Ê½"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©è§’è‰²IDè¾“å…¥æ–¹å¼"), QMessageBox::Yes);
         return;
     }
 
@@ -1379,11 +1379,11 @@ void gmtool::OpenFile_2()
     QFileDialog *pFileDialog = new QFileDialog(this);
     if (pFileDialog == NULL)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("´ò¿ªÎÄ¼ş¶Ô»°¿òÊ§°Ü"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æ‰“å¼€æ–‡ä»¶å¯¹è¯æ¡†å¤±è´¥"), QMessageBox::Yes);
         return;
     }
 
-    pFileDialog->setWindowTitle(QString::fromLocal8Bit("Ñ¡ÔñÎÄ¼ş"));
+    pFileDialog->setWindowTitle(QString::fromLocal8Bit("é€‰æ‹©æ–‡ä»¶"));
     pFileDialog->setDirectory(".");
     if (pFileDialog->exec() == QDialog::Accepted)
     {
@@ -1392,7 +1392,7 @@ void gmtool::OpenFile_2()
     }
     else
     {
-        QMessageBox::information(this, "critical", QString::fromLocal8Bit("Î´Ñ¡ÔñÎÄ¼ş"), QMessageBox::Yes);
+        QMessageBox::information(this, "critical", QString::fromLocal8Bit("æœªé€‰æ‹©æ–‡ä»¶"), QMessageBox::Yes);
         return;
     }
 
@@ -1428,25 +1428,25 @@ void gmtool::AnnounceFunc()
 
     if (CCmdManager::GetInstance().IsCmdExecuting())
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÃüÁîÖ´ĞĞÖĞ..."), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘½ä»¤æ‰§è¡Œä¸­..."), QMessageBox::Yes);
         return;
     }
 
     nRetCode = CServerMgr::GetInstance().IsServerSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡ÔñÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©åŒºæœ"), QMessageBox::Yes);
         return;
     }
 
-    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("È·ÈÏ·¢ËÍ¹«¸æ£¿"));
+    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("ç¡®è®¤å‘é€å…¬å‘Šï¼Ÿ"));
     if (nCheckEnum != QMessageBox::Yes)
         return;
 
     nRetCode = _SelectGroup(nGroupID);
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return ;
     }
 
@@ -1463,20 +1463,20 @@ void gmtool::AnnounceFunc()
     nAnnounceLength = strlen(szAnnounce);
     if (nIntervalTime <= 0 || nRepeatNum <= 0 || 0 == nAnnounceLength)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("²ÎÊı²»¶Ô"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‚æ•°ä¸å¯¹"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
     if (nAnnounceLength >= GM_ANNOUNCE_LENGTH)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("¹«¸æ¹ı³¤£¬¿ÉÄÜ»á½Ø¶Ï"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å…¬å‘Šè¿‡é•¿ï¼Œå¯èƒ½ä¼šæˆªæ–­"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
     nRetCode = CCmdManager::GetInstance().SendAnnounce(nGroupID, dwBeginTime, nIntervalTime, nRepeatNum, szAnnounce);
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
@@ -1492,21 +1492,21 @@ void gmtool::GetAnnounceList()
 
     if (CCmdManager::GetInstance().IsCmdExecuting())
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÃüÁîÖ´ĞĞÖĞ..."), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘½ä»¤æ‰§è¡Œä¸­..."), QMessageBox::Yes);
         return; 
     }
 
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
     nRetCode = _SelectGroup(nGroupID);
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
@@ -1516,7 +1516,7 @@ void gmtool::GetAnnounceList()
     nRetCode = CCmdManager::GetInstance().QueryAnnounceList(nGroupID);
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
@@ -1537,25 +1537,25 @@ void gmtool::DelAnnounce()
 
     if (CCmdManager::GetInstance().IsCmdExecuting())
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÃüÁîÖ´ĞĞÖĞ..."), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘½ä»¤æ‰§è¡Œä¸­..."), QMessageBox::Yes);
         return;
     }
 
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
-    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("È·ÈÏÉ¾³ı¹«¸æ£¿"));
+    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("ç¡®è®¤åˆ é™¤å…¬å‘Šï¼Ÿ"));
     if (nCheckEnum != QMessageBox::Yes)
         return;
 
     nRetCode = _SelectGroup(nGroupID);
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
@@ -1566,14 +1566,14 @@ void gmtool::DelAnnounce()
     
     if (-1 == nAnnounceSerial)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÑ¡ÔñÒªÉ¾³ıµÄ¹«¸æ"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·é€‰æ‹©è¦åˆ é™¤çš„å…¬å‘Š"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
     nRetCode = CCmdManager::GetInstance().DelAnnounce(nGroupID, nAnnounceSerial);
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
@@ -1678,7 +1678,7 @@ void gmtool::LogSearch()
     
     if (CCmdManager::GetInstance().IsCmdExecuting())
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÃüÁîÖ´ĞĞÖĞ..."), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘½ä»¤æ‰§è¡Œä¸­..."), QMessageBox::Yes);
         return;
     }
 
@@ -1688,7 +1688,7 @@ void gmtool::LogSearch()
     nRetCode = _PreDealGameLogFile();
     if (!nRetCode)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÎŞ·¨´´½¨Ö¸¶¨logÊä³öÎÄ¼ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æ— æ³•åˆ›å»ºæŒ‡å®šlogè¾“å‡ºæ–‡ä»¶"), QMessageBox::Yes);
         return;
     }
 
@@ -1699,14 +1699,14 @@ void gmtool::LogSearch()
     nRetCode = _SerializeQueryLogStr(nLogType, szQueryStr);
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÈÕÖ¾ÀàĞÍ´íÎó"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æ—¥å¿—ç±»å‹é”™è¯¯"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
     nRetCode = CCmdManager::GetInstance().QueryLog(nLogType, dwBeginTime , dwEndTime, szQueryStr);
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
@@ -1740,7 +1740,7 @@ BOOL gmtool::PutsGameLog(INT32 nLogType, BOOL bTruncated, INT32 nLength, const c
 
     if (bTruncated == TRUE)
     {
-        QMessageBox::warning(this, "Warning", QString::fromLocal8Bit("²éÑ¯Êı¾İ¹ı³¤£¬ÇëËõ¶Ì²éÑ¯·¶Î§"), QMessageBox::Yes);
+        QMessageBox::warning(this, "Warning", QString::fromLocal8Bit("æŸ¥è¯¢æ•°æ®è¿‡é•¿ï¼Œè¯·ç¼©çŸ­æŸ¥è¯¢èŒƒå›´"), QMessageBox::Yes);
     }
 
     return TRUE;
@@ -1757,28 +1757,28 @@ void gmtool::QueryNameToID()
 
     if (CCmdManager::GetInstance().IsCmdExecuting())
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÃüÁîÖ´ĞĞÖĞ..."), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘½ä»¤æ‰§è¡Œä¸­..."), QMessageBox::Yes);
         return;
     }
 
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
     nRetCode = _ReadRoleNameFromFile(ui.queryfile_lineEdit->text().toUtf8(), RoleNameMap);
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("¶ÁÈ¡½ÇÉ«ÃûÎÄ¼şÊ§°Ü"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯»å–è§’è‰²åæ–‡ä»¶å¤±è´¥"), QMessageBox::Yes);
         return;
     }
 
     nRetCode = CCmdManager::GetInstance().QueryNameToID(RoleNameMap);
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
@@ -1795,32 +1795,32 @@ void gmtool::SendGMStrCmd()
 
     if (CCmdManager::GetInstance().IsCmdExecuting())
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÃüÁîÖ´ĞĞÖĞ..."), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘½ä»¤æ‰§è¡Œä¸­..."), QMessageBox::Yes);
         return;
     }
 
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
-    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("È·ÈÏÖ´ĞĞ¸ÃgmÖ¸Áî£¿"));
+    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("ç¡®è®¤æ‰§è¡Œè¯¥gmæŒ‡ä»¤ï¼Ÿ"));
     if (nCheckEnum != QMessageBox::Yes)
         return;
 
     strxcpy(szStr, ui.textEdit_gmStrCmd->toPlainText().toUtf8(), sizeof(szStr));
     if (0 == strlen(szStr))
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÇëÊäÈëgmÖ¸Áî"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è¯·è¾“å…¥gmæŒ‡ä»¤"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
     nRetCode = CCmdManager::GetInstance().SendGMStrCmd(szStr);
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
         LOG_PROCESS_ERROR(FALSE);
     }
 
@@ -1864,8 +1864,8 @@ BOOL gmtool::SetTitle()
     char        szNum[32] = { 0 };
     char        szSubVersion[32] = { 0 };
 
-    setWindowTitle(QString::fromLocal8Bit("ÕËºÅ: ") + QString::fromLocal8Bit(CGMManager::GetInstance().GetUserName()) 
-        + QString::fromLocal8Bit("    °æ±¾ºÅ: ") + QString::fromLocal8Bit(gm_itoa(GM_MAJOR_VERSION, szNum))
+    setWindowTitle(QString::fromLocal8Bit("è´¦å·: ") + QString::fromLocal8Bit(CGMManager::GetInstance().GetUserName()) 
+        + QString::fromLocal8Bit("    ç‰ˆæœ¬å·: ") + QString::fromLocal8Bit(gm_itoa(GM_MAJOR_VERSION, szNum))
         + QString::fromLocal8Bit("---") + QString::fromLocal8Bit(gm_itoa(GM_MINOR_VERSION, szSubVersion)));
     return TRUE;
 }
@@ -1901,17 +1901,17 @@ BOOL gmtool::UpdateSvrNameColor(UINT32 dwSessionID, GM_SVR_STATE eState)
             
         }
         break;
-    case GM_SVR_STATE_REGISTERED:   // »Æ
+    case GM_SVR_STATE_REGISTERED:   // é»„
         {
             brush.setColor(QColor(200,200,0,255));
         }
         break;
-    case GM_SVR_STATE_LOGIN:        // ÂÌ
+    case GM_SVR_STATE_LOGIN:        // ç»¿
         {
             brush.setColor(QColor(0,255,0,255));
         }
         break;
-    case GM_SVR_STATE_DISCONNECT:       // ºì
+    case GM_SVR_STATE_DISCONNECT:       // çº¢
         {
             brush.setColor(QColor(255,0,0,255));
         }
@@ -1972,7 +1972,7 @@ BOOL gmtool::_ReadRoleFromFile(const char *pcszFileName, std::list<ROLE_RESULT> 
     pFile = fopen(pcszFileName, "r");
     if (pFile == NULL)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ö¸¶¨ÎÄ¼şÎŞ·¨´ò¿ª"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æŒ‡å®šæ–‡ä»¶æ— æ³•æ‰“å¼€"), QMessageBox::Yes);
         return FALSE;
     }
 
@@ -2051,7 +2051,7 @@ BOOL gmtool::UpdateRoleResult(const char *pcszFileName, INT32 nType, std::list<R
     pFile = fopen(szFileNameBuffer, "w");
     if (pFile == NULL)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ö¸¶¨ÎÄ¼şÎŞ·¨´ò¿ª"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æŒ‡å®šæ–‡ä»¶æ— æ³•æ‰“å¼€"), QMessageBox::Yes);
         return FALSE;
     }
 
@@ -2100,7 +2100,7 @@ BOOL gmtool::_ReadRoleIDFromFile(const char *pcszFileName, std::list<UINT32> &Ro
     pFile = fopen(pcszFileName, "r");
     if (pFile == NULL)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ö¸¶¨ÎÄ¼şÎŞ·¨´ò¿ª"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æŒ‡å®šæ–‡ä»¶æ— æ³•æ‰“å¼€"), QMessageBox::Yes);
         return FALSE;
     }
     
@@ -2110,7 +2110,7 @@ BOOL gmtool::_ReadRoleIDFromFile(const char *pcszFileName, std::list<UINT32> &Ro
     nFileLength = fread(pBuffer, 1, FILE_BUFFER_LENGTH, pFile);
     if (nFileLength <= 0)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÎÄ¼ş´ò¿ª´íÎó"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æ–‡ä»¶æ‰“å¼€é”™è¯¯"), QMessageBox::Yes);
         return FALSE;
     }
     fclose(pFile);
@@ -2120,7 +2120,7 @@ BOOL gmtool::_ReadRoleIDFromFile(const char *pcszFileName, std::list<UINT32> &Ro
     nRetCode = ParseIDString(pBuffer, nFileLength, RoleIDList);
     if (!nRetCode)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("½ÇÉ«ID ¸ñÊ½´íÎó"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è§’è‰²ID æ ¼å¼é”™è¯¯"), QMessageBox::Yes);
         return FALSE;
     }
 
@@ -2153,7 +2153,7 @@ BOOL gmtool::_ReadRoleNameFromFile(const char *pcszFileName, std::map<INT32, ROL
     pFile = fopen(szFileNameBuffer, "r");
     if (pFile == NULL)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ö¸¶¨ÎÄ¼şÎŞ·¨´ò¿ª"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æŒ‡å®šæ–‡ä»¶æ— æ³•æ‰“å¼€"), QMessageBox::Yes);
         return FALSE;
     }
 
@@ -2188,12 +2188,12 @@ BOOL gmtool::_Tag2ReadRoleID(ROLEID_LIST& roleIDList)
         nRetCode = ParseIDString(ui.textEdit_RoleID->toPlainText().toUtf8(), ui.textEdit_RoleID->toPlainText().toUtf8().length(), roleIDList);
         if (!nRetCode)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("½ÇÉ«ID ¸ñÊ½´íÎó"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è§’è‰²ID æ ¼å¼é”™è¯¯"), QMessageBox::Yes);
             return FALSE;
         }
         if (roleIDList.size() > 10)
         {
-            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("½ÇÉ«ID ÊıÁ¿¹ı¶à"), QMessageBox::Yes);
+            QMessageBox::critical(this, "critical", QString::fromLocal8Bit("è§’è‰²ID æ•°é‡è¿‡å¤š"), QMessageBox::Yes);
             return FALSE;
         }
     }
@@ -2204,7 +2204,7 @@ BOOL gmtool::_Tag2ReadRoleID(ROLEID_LIST& roleIDList)
 
     if (roleIDList.size() == 0)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Î´»ñÈ¡½ÇÉ«ID"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœªè·å–è§’è‰²ID"), QMessageBox::Yes);
         return FALSE;
     }
 
@@ -2313,13 +2313,13 @@ BOOL gmtool::UpdateAnnounceList()
         if (pSvr)
         {
             if (rList.data[i].nGroupID == 0)
-                pTreeItem->setText(0, QString::fromLocal8Bit("È«Çø"));
+                pTreeItem->setText(0, QString::fromLocal8Bit("å…¨åŒº"));
             else
                 pTreeItem->setText(0, QString::fromUtf8(pSvr->groupList[rList.data[i].nGroupID].szGroupName));
         }
         else
         {
-            pTreeItem->setText(0, QString::fromLocal8Bit("Î´ÕÒµ½×éÃû"));
+            pTreeItem->setText(0, QString::fromLocal8Bit("æœªæ‰¾åˆ°ç»„å"));
         }
 
         pTreeItem->setText(1, QString(gm_itoa(rList.data[i].dwIntervalTime, szNum)).toLocal8Bit());
@@ -2484,7 +2484,7 @@ BOOL gmtool::ServerLogin(INT32 nSvrID)
     }
     LOG_PROCESS_ERROR(GM_MAX_SERVER_COUNT != nServerListIndex);
 
-    ui.comboBox->insertItem(0, QString::fromLocal8Bit("È«Çø"));
+    ui.comboBox->insertItem(0, QString::fromLocal8Bit("å…¨åŒº"));
     for (INT32 nIndex = 1; nIndex < MAX_SERVER_GROUP_COUNT; ++nIndex)
     {
         QString a;

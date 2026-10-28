@@ -5,7 +5,7 @@ LoadPackage("attr_list.pkg")
 
 TestCase.Title = {};
 
--- ²âÊÔÐÂÔö£¬×°±¸£¬Ìæ»»£¬É¾³ý
+-- æµ‹è¯•æ–°å¢žï¼Œè£…å¤‡ï¼Œæ›¿æ¢ï¼Œåˆ é™¤
 function TestCase.Title.Base()
     local user_name = "Title" .. os.date("%Y%H%M%S");
     local user;
@@ -14,7 +14,7 @@ function TestCase.Title.Base()
     local msg;
     local session_id;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -164,7 +164,7 @@ function TestCase.Title.Base()
     --msg = recv_msg(10, session_id, protocol.g2c_sync_attr_change);
     --check(msg, "failed to recv g2c_sync_attr_change");
 
-	--µÇ³ö
+	--ç™»å‡º
     cleanup(user);
 end
 
@@ -178,7 +178,7 @@ function TestCase.Title.Reload()
     local msg;
     local session_id;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
@@ -221,7 +221,7 @@ function TestCase.Title.Reload()
 	check(role:GetAttr(title_data.m_Attr[0].shAttrType) > title_data.m_Attr[0].shAttrType);
 
 
-	--µÇ³ö
+	--ç™»å‡º
     cleanup(user);
 
 end

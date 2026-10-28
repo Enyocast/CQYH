@@ -127,24 +127,24 @@ BOOL CAwardManager::SendAwardReq(MS_ONLINE_ROLE_DATA* pOnlineUserData, INT32 nAw
 	stAwardReqMsg.msgBody.areaId = htonl(m_cltinfo.areaId);		
 	stAwardReqMsg.msgBody.hostId = htonl(m_cltinfo.hostId);		
 
-	m_pRmGetSotsUniqueId(stAwardReqMsg.msgBody.orderId, 33);		// »ñµÃÎ¨Ò»ÒµÎñÁ÷Ë®ºÅ
+	m_pRmGetSotsUniqueId(stAwardReqMsg.msgBody.orderId, 33);		// è·å¾—å”¯ä¸€ä¸šåŠ¡æµæ°´å·
 
 	switch (nAwardType)
 	{
 	case eratAwardReq_Survey:
 		{
-			stAwardReqMsg.msgBody.awardType = htonl(1);													// Êı¾İÖĞĞÄ½Ó¿Ú¹æ¶¨typeÎª1	
+			stAwardReqMsg.msgBody.awardType = htonl(1);													// æ•°æ®ä¸­å¿ƒæ¥å£è§„å®štypeä¸º1	
 
-			strxcpy(stAwardReqMsg.msgBody.batchId, pAwardNumber, MAX_BATCHID_LEN);						// Åú´ÎºÅ
+			strxcpy(stAwardReqMsg.msgBody.batchId, pAwardNumber, MAX_BATCHID_LEN);						// æ‰¹æ¬¡å·
 			strxcpy(stAwardReqMsg.msgBody.awardNum, "0", MAX_ORDERID_LEN);			
 		}
 		break;
 	case eratAwardReq_AwardNumber:
 		{
-			stAwardReqMsg.msgBody.awardType = htonl(3);													// Êı¾İÖĞĞÄ½Ó¿Ú¹æ¶¨typeÎª3
+			stAwardReqMsg.msgBody.awardType = htonl(3);													// æ•°æ®ä¸­å¿ƒæ¥å£è§„å®štypeä¸º3
 			strxcpy(stAwardReqMsg.msgBody.batchId, "0", MAX_BATCHID_LEN);
 
-			strxcpy(stAwardReqMsg.msgBody.awardNum, pAwardNumber, MAX_ORDERID_LEN);						// ÍÆ¹ãÂë	
+			strxcpy(stAwardReqMsg.msgBody.awardNum, pAwardNumber, MAX_ORDERID_LEN);						// æ¨å¹¿ç 	
 		}
 		break;
 	default:
@@ -157,7 +157,7 @@ BOOL CAwardManager::SendAwardReq(MS_ONLINE_ROLE_DATA* pOnlineUserData, INT32 nAw
 
 	/******************* user data *********************/
 
-	stAwardReqMsg.msgBody.uidType = htonl(2);																		// Ê¢´óÍ¨ĞĞÖ¤ÕËºÅÀàĞÍ£¬ 1Îª×Ö·ûÕËºÅ£¬2ÎªÊı×ÖÕËºÅ
+	stAwardReqMsg.msgBody.uidType = htonl(2);																		// ç››å¤§é€šè¡Œè¯è´¦å·ç±»å‹ï¼Œ 1ä¸ºå­—ç¬¦è´¦å·ï¼Œ2ä¸ºæ•°å­—è´¦å·
 	strxcpy(stAwardReqMsg.msgBody.userId, (LPCTSTR)pOnlineUserData->pUser->szUserName, MAX_ORDERID_LEN);			
 	strxcpy(stAwardReqMsg.msgBody.roleName, (LPCTSTR)pOnlineUserData->pRoleData->szRoleName, MAX_ORDERID_LEN);			
 	strxcpy(stAwardReqMsg.msgBody.roleProperty, "0", MAX_PROFESSION_LEN);			
@@ -411,15 +411,15 @@ void CallBackFunction(ULONG handle, char* pServiceName, char *pData, INT32 lengt
 		}
 		return;
 	}
-	else if (strcmp(pServiceName, SVCAWARDITEM) == 0)   // Áì½±·´À¡ 
+	else if (strcmp(pServiceName, SVCAWARDITEM) == 0)   // é¢†å¥–åé¦ˆ 
 	{
         _OnAwardItem(pData, length);
 	}
-	else if (strcmp(pServiceName, SVCSENDITEM) == 0)    // µÀ¾ßÏÂ·¢
+	else if (strcmp(pServiceName, SVCSENDITEM) == 0)    // é“å…·ä¸‹å‘
 	{
 		_OnSendItem(pData, length);
 	}
-	else if (strcmp(pServiceName, SVCPD) == 0)          // ¸öĞÔ»¯Áì½±½Ó¿Ú
+	else if (strcmp(pServiceName, SVCPD) == 0)          // ä¸ªæ€§åŒ–é¢†å¥–æ¥å£
 	{
 		LOG_PROCESS_ERROR(FALSE);
 	}

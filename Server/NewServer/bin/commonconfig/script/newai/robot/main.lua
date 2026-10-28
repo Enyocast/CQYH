@@ -163,7 +163,7 @@ ACTION_LIST = {
 	{ func_name = "UnShieldRole", cd_min = 600, cd_max = 1800 },
 
 --[[
-	-- master prot:  ÏÖÔÚ³¬¹ı20¼¶×Ô¶¯³ÉÎªÊ¦¸µ£¬ÒªÇó»úÆ÷ÈË³õÊ¼µÈ¼¶²»³¬¹ı20¼¶
+	-- master prot:  ç°åœ¨è¶…è¿‡20çº§è‡ªåŠ¨æˆä¸ºå¸ˆå‚…ï¼Œè¦æ±‚æœºå™¨äººåˆå§‹ç­‰çº§ä¸è¶…è¿‡20çº§
 	{ func_name = "BeMaster", cd_min = 600, cd_max = 1800 },
 	{ func_name = "GetMasterInfo", cd_min = 600, cd_max = 1800 },
 	{ func_name = "GetMasterRecruitList", cd_min = 600, cd_max = 1800 },

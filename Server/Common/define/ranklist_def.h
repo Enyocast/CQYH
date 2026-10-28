@@ -9,28 +9,28 @@ enum RANK_LIST
 	rlInvalid = -1,
     rlBegin,
 
-    // ¸öÈËÅÅĞĞ°ñ
+    // ä¸ªäººæ’è¡Œæ¦œ
     rlRoleBegin = rlBegin,
 
-	rlLevel = rlRoleBegin,			// µÈ¼¶ÅÅĞĞ°ñ
+	rlLevel = rlRoleBegin,			// ç­‰çº§æ’è¡Œæ¦œ
 	rlLevelWarrior,
 	rlLevelMage,
 	rlLevelTaoist,
 	rlLevelRogue,
 	rlLevelArcher,	
 
-	rlPower,					    // Õ½¶·Á¦ÅÅĞĞ°ñ
+	rlPower,					    // æˆ˜æ–—åŠ›æ’è¡Œæ¦œ
 	rlPowerWarrior,
 	rlPowerMage,
 	rlPowerTaoist,
 	rlPowerRogue,
 	rlPowerArcher,	
 
-	rlMoney,					    // ²Æ¸»ÅÅĞĞ°ñ
-	rlAchievement,				    // ³É¾ÍµãÊıÅÅĞĞ°ñ
-	rlMaster,					    // ÃûÊ¦ÖµÅÅĞĞ°ñ
-	rlPkValue,					    // pkÖµÅÅĞĞ°ñ
-	rlTotalKillCount,			    // ×ÜÉ±ÈËÊı
+	rlMoney,					    // è´¢å¯Œæ’è¡Œæ¦œ
+	rlAchievement,				    // æˆå°±ç‚¹æ•°æ’è¡Œæ¦œ
+	rlMaster,					    // åå¸ˆå€¼æ’è¡Œæ¦œ
+	rlPkValue,					    // pkå€¼æ’è¡Œæ¦œ
+	rlTotalKillCount,			    // æ€»æ€äººæ•°
 
 	rlActivity01,
 	rlActivity02,
@@ -66,25 +66,25 @@ enum RANK_LIST
 
     rlRoleEnd,
 
-	// ¼Ò×åÅÅĞĞ°ñ
+	// å®¶æ—æ’è¡Œæ¦œ
     rlGuildBegin = rlRoleEnd,
 
-    rlGuild_Level = rlGuildBegin,   // ¼Ò×åµÈ¼¶ÅÅĞĞ°ñ
-	rlGuild_Money,				    // ¼Ò×å½ğÇ®ÅÅĞĞ°ñ
-	rlGuild_Resource_Herb,		    // ¼Ò×å×ÊÔ´01
-	rlGuild_Resource_Wood,		    // ¼Ò×å×ÊÔ´02
-	rlGuild_Resource_Crystal,	    // ¼Ò×å×ÊÔ´03
-	rlGuild_Resource_Silver,	    // ¼Ò×å×ÊÔ´04
-	rlGuild_Pow,					// ¼Ò×å×ÜÕ½¶·Á¦
-    rlGuild_War,                    // ¹«»áÕ½»ı·Ö
+    rlGuild_Level = rlGuildBegin,   // å®¶æ—ç­‰çº§æ’è¡Œæ¦œ
+	rlGuild_Money,				    // å®¶æ—é‡‘é’±æ’è¡Œæ¦œ
+	rlGuild_Resource_Herb,		    // å®¶æ—èµ„æº01
+	rlGuild_Resource_Wood,		    // å®¶æ—èµ„æº02
+	rlGuild_Resource_Crystal,	    // å®¶æ—èµ„æº03
+	rlGuild_Resource_Silver,	    // å®¶æ—èµ„æº04
+	rlGuild_Pow,					// å®¶æ—æ€»æˆ˜æ–—åŠ›
+    rlGuild_War,                    // å…¬ä¼šæˆ˜ç§¯åˆ†
 
     rlGuildEnd,
 
-	// ¾º¼¼³¡ÅÅĞĞ°ñ
+	// ç«æŠ€åœºæ’è¡Œæ¦œ
  //   rlArenaBegin = rlGuildEnd,
 
- //   rlArenaScore = rlArenaBegin,    //¾º¼¼³¡5v5»ı·Ö
-	//rlRoleArenaScore,			    // ¾º¼¼³¡1v1»ı·ÖÅÅĞĞ°ñ
+ //   rlArenaScore = rlArenaBegin,    //ç«æŠ€åœº5v5ç§¯åˆ†
+	//rlRoleArenaScore,			    // ç«æŠ€åœº1v1ç§¯åˆ†æ’è¡Œæ¦œ
 
  //   rlArenaEnd,
 

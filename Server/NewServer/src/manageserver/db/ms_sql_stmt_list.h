@@ -58,9 +58,9 @@ enum MS_SQL_STMT_ID
     mysqlInsertGuildWar,
 
     mysqlSelectGMember,                 // start 
-    mysqlInsertGMember,                 // running, 2£¨200
-    mysqlDeleteGMember,                 // running, 2£¨200
-    mysqlUpdateGMember,                 // running, 2£¨500
+    mysqlInsertGMember,                 // running, 2Ôºå200
+    mysqlDeleteGMember,                 // running, 2Ôºå200
+    mysqlUpdateGMember,                 // running, 2Ôºå500
     mysqlDeleteGMemberByGuildID,
     mysqlClearGMember,
 
@@ -93,7 +93,7 @@ enum MS_SQL_STMT_ID
 	mysqlUpdateGroup,
 	mysqlDeleteGroup,
 
-    mysqlSelectLoginQuery,    // øÕªßµ«¬º, ≤È—Ø’À∫≈√‹¬Î
+    mysqlSelectLoginQuery,    // ÂÆ¢Êà∑ÁôªÂΩï, Êü•ËØ¢Ë¥¶Âè∑ÂØÜÁ†Å
 
     msqlSelectAuctionDeposit,
     msqlInserAuctionDeposit,

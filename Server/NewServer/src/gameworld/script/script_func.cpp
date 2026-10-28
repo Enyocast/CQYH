@@ -359,7 +359,7 @@ Exit0:
 	return 0;
 }
 
-// Luaº¯Êý±í G±í
+// Luaå‡½æ•°è¡¨ Gè¡¨
 LUA_FUNC g_LuaScriptFuncTable[] =
 {
     {"get_near_pos",            lua_getnearpos},

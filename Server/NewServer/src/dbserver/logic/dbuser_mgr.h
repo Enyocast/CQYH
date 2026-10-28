@@ -24,9 +24,9 @@ public:
     BOOL DelFromSessionIDMap(CDBUser* dbuser);
     CDBUser* GetDBUserBySessionID(UINT32 dwSessionID);
 
-    CDBUser* Pop();                  //ÉêÇëÒ»¸ö¿ÕÏÐµÄDBUser¶ÔÏó£¬Ö÷Ïß³Ìµ÷ÓÃ
-    BOOL Pop(CDBUser* dbuser);       //ÉêÇëÒ»¸öÖ¸¶¨µÄDBRole¶ÔÏó£¬Ö÷Ïß³Ìµ÷ÓÃ
-    void Push(CDBUser* dbuser);      //¹é»¹Ò»¸öÓÃÍêµÄDBUser¶ÔÏó£¬Ö÷Ïß³Ìµ÷ÓÃ
+    CDBUser* Pop();                  //ç”³è¯·ä¸€ä¸ªç©ºé—²çš„DBUserå¯¹è±¡ï¼Œä¸»çº¿ç¨‹è°ƒç”¨
+    BOOL Pop(CDBUser* dbuser);       //ç”³è¯·ä¸€ä¸ªæŒ‡å®šçš„DBRoleå¯¹è±¡ï¼Œä¸»çº¿ç¨‹è°ƒç”¨
+    void Push(CDBUser* dbuser);      //å½’è¿˜ä¸€ä¸ªç”¨å®Œçš„DBUserå¯¹è±¡ï¼Œä¸»çº¿ç¨‹è°ƒç”¨
 
 private:
 

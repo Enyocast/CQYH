@@ -743,26 +743,26 @@ Exit0:
 ModifierFunc g_MissileModifier[mmiCount] = 
 {
 	{ NULL, FALSE }, 
-	{ ModifierMissile_001, FALSE },  // CastSubSpellToCurPos					 ÔÚµ±Ç°Î»ÖÃÊ©·Å×Ó¼¼ÄÜ£¨Èç·¶Î§±¬Õ¨£©
-	{ ModifierMissile_002, FALSE },  // BulletToEachTarget					     ÏòÃ¿¸öÄ¿±ê·¢ÉäÍ¶ÉäÎï£¨¶àÖØËø¶¨£©
-	{ ModifierMissile_003, FALSE },  // JustAddCollisionCount					 ½öÔö¼ÓÅö×²¼ÆÊı£¨¼ÇÂ¼ÃüÖĞ´ÎÊı£©
-	{ ModifierMissile_004, FALSE },  // RotateTo								 Ğı×ªÖÁÄ¿±ê·½Ïò£¨µ÷ÕûÍ¶ÉäÎï·ÉĞĞ½Ç¶È£©
-	{ ModifierMissile_005, FALSE },  // CoverParam1WithTargetPt				     ÓÃÄ¿±êµã¸²¸Ç²ÎÊı1£¨¶¯Ì¬µ÷Õûµ¯µÀ£©
-	{ ModifierMissile_006, FALSE },  // ReduceMaxCollisionCountIfCollision	     Åö×²ºó¼õÉÙ×î´óÅö×²´ÎÊı£¨Èç´©Í¸µİ¼õ£©
-	{ ModifierMissile_007, FALSE },  // LockNearestTargetInSector				 Ëø¶¨ÉÈĞÎÇøÓòÄÚ×î½üÄ¿±ê£¨Èç½üÕ½ºáÉ¨£©
-	{ ModifierMissile_008, FALSE },  // LockNearestTargetInCircle				 Ëø¶¨Ô²ĞÎ·¶Î§ÄÚ×î½üÄ¿±ê£¨AOE¼¼ÄÜ£©
-	{ ModifierMissile_009, FALSE },  // CheckOwnerMovementStateAndDeleteSelf     ¼ì²âËùÓĞÕßÒÆ¶¯×´Ì¬²¢×ÔÎÒÏú»Ù£¨Èç½ÇÉ«Í£Ö¹Ê±ÏûÊ§£©
-	{ ModifierMissile_010, FALSE },  // CheckOwnerExFlag						 ¼ì²éËùÓĞÕß¶îÍâ±ê¼Ç£¨Èç¡°ÎŞµĞ¡±×´Ì¬ÊÇ·ñÓ°ÏìÍ¶ÉäÎï£©
-	{ ModifierMissile_011, FALSE },  // AddEffectByRemainCollisionCount		     ¸ù¾İÊ£ÓàÅö×²´ÎÊıÌí¼ÓĞ§¹û£¨Èç´©Í¸ºóÉËº¦ÔöÇ¿£©
-	{ ModifierMissile_012, FALSE },  // DeleteSelf							     ×ÔÎÒÏú»Ù£¨Í¶ÉäÎïÉúÃüÖÜÆÚ½áÊø£©
-	{ ModifierMissile_013, FALSE },  // TurnToCaster							 ×ªÏòÊ©·¨Õß£¨Èç³ğºŞÎüÒı/¾µÍ·¸úËæ£©
-	{ ModifierMissile_014, FALSE },  // ModifyMissileAttr						 ĞŞ¸ÄÍ¶ÉäÎïÊôĞÔ£¨ËÙ¶È/ÉËº¦/·½ÏòµÈ£©
-	{ ModifierMissile_015, FALSE },  // RemoveSameMissile						 ÒÆ³ıÏàÍ¬ÀàĞÍµÄÍ¶ÉäÎï£¨±ÜÃâÖØ¸´Ğ§¹û£©
-	{ ModifierMissile_016, FALSE },  // RemoveSameMissile						 ÒÆ³ıÏàÍ¬ÀàĞÍµÄÍ¶ÉäÎï£¨±ÜÃâÖØ¸´Ğ§¹û£©
-	{ ModifierMissile_017, FALSE },  // RemoveSameMissile						 ÒÆ³ıÏàÍ¬ÀàĞÍµÄÍ¶ÉäÎï£¨±ÜÃâÖØ¸´Ğ§¹û£©
-	{ ModifierMissile_018, FALSE },  // RemoveSameMissile						 ÒÆ³ıÏàÍ¬ÀàĞÍµÄÍ¶ÉäÎï£¨±ÜÃâÖØ¸´Ğ§¹û£©
-	{ ModifierMissile_019, FALSE },  // RemoveSameMissile						 ÒÆ³ıÏàÍ¬ÀàĞÍµÄÍ¶ÉäÎï£¨±ÜÃâÖØ¸´Ğ§¹û£©
-	{ ModifierMissile_020, FALSE },  // RemoveSameMissile						 ÒÆ³ıÏàÍ¬ÀàĞÍµÄÍ¶ÉäÎï£¨±ÜÃâÖØ¸´Ğ§¹û£©
-	{ ModifierMissile_021, FALSE },  // RemoveSameMissile						 ÒÆ³ıÏàÍ¬ÀàĞÍµÄÍ¶ÉäÎï£¨±ÜÃâÖØ¸´Ğ§¹û£©
-	{ ModifierMissile_022, FALSE },  // RemoveSameMissile						 ÒÆ³ıÏàÍ¬ÀàĞÍµÄÍ¶ÉäÎï£¨±ÜÃâÖØ¸´Ğ§¹û£©
+	{ ModifierMissile_001, FALSE },  // CastSubSpellToCurPos					 åœ¨å½“å‰ä½ç½®æ–½æ”¾å­æŠ€èƒ½ï¼ˆå¦‚èŒƒå›´çˆ†ç‚¸ï¼‰
+	{ ModifierMissile_002, FALSE },  // BulletToEachTarget					     å‘æ¯ä¸ªç›®æ ‡å‘å°„æŠ•å°„ç‰©ï¼ˆå¤šé‡é”å®šï¼‰
+	{ ModifierMissile_003, FALSE },  // JustAddCollisionCount					 ä»…å¢åŠ ç¢°æ’è®¡æ•°ï¼ˆè®°å½•å‘½ä¸­æ¬¡æ•°ï¼‰
+	{ ModifierMissile_004, FALSE },  // RotateTo								 æ—‹è½¬è‡³ç›®æ ‡æ–¹å‘ï¼ˆè°ƒæ•´æŠ•å°„ç‰©é£è¡Œè§’åº¦ï¼‰
+	{ ModifierMissile_005, FALSE },  // CoverParam1WithTargetPt				     ç”¨ç›®æ ‡ç‚¹è¦†ç›–å‚æ•°1ï¼ˆåŠ¨æ€è°ƒæ•´å¼¹é“ï¼‰
+	{ ModifierMissile_006, FALSE },  // ReduceMaxCollisionCountIfCollision	     ç¢°æ’åå‡å°‘æœ€å¤§ç¢°æ’æ¬¡æ•°ï¼ˆå¦‚ç©¿é€é€’å‡ï¼‰
+	{ ModifierMissile_007, FALSE },  // LockNearestTargetInSector				 é”å®šæ‰‡å½¢åŒºåŸŸå†…æœ€è¿‘ç›®æ ‡ï¼ˆå¦‚è¿‘æˆ˜æ¨ªæ‰«ï¼‰
+	{ ModifierMissile_008, FALSE },  // LockNearestTargetInCircle				 é”å®šåœ†å½¢èŒƒå›´å†…æœ€è¿‘ç›®æ ‡ï¼ˆAOEæŠ€èƒ½ï¼‰
+	{ ModifierMissile_009, FALSE },  // CheckOwnerMovementStateAndDeleteSelf     æ£€æµ‹æ‰€æœ‰è€…ç§»åŠ¨çŠ¶æ€å¹¶è‡ªæˆ‘é”€æ¯ï¼ˆå¦‚è§’è‰²åœæ­¢æ—¶æ¶ˆå¤±ï¼‰
+	{ ModifierMissile_010, FALSE },  // CheckOwnerExFlag						 æ£€æŸ¥æ‰€æœ‰è€…é¢å¤–æ ‡è®°ï¼ˆå¦‚â€œæ— æ•Œâ€çŠ¶æ€æ˜¯å¦å½±å“æŠ•å°„ç‰©ï¼‰
+	{ ModifierMissile_011, FALSE },  // AddEffectByRemainCollisionCount		     æ ¹æ®å‰©ä½™ç¢°æ’æ¬¡æ•°æ·»åŠ æ•ˆæœï¼ˆå¦‚ç©¿é€åä¼¤å®³å¢å¼ºï¼‰
+	{ ModifierMissile_012, FALSE },  // DeleteSelf							     è‡ªæˆ‘é”€æ¯ï¼ˆæŠ•å°„ç‰©ç”Ÿå‘½å‘¨æœŸç»“æŸï¼‰
+	{ ModifierMissile_013, FALSE },  // TurnToCaster							 è½¬å‘æ–½æ³•è€…ï¼ˆå¦‚ä»‡æ¨å¸å¼•/é•œå¤´è·Ÿéšï¼‰
+	{ ModifierMissile_014, FALSE },  // ModifyMissileAttr						 ä¿®æ”¹æŠ•å°„ç‰©å±æ€§ï¼ˆé€Ÿåº¦/ä¼¤å®³/æ–¹å‘ç­‰ï¼‰
+	{ ModifierMissile_015, FALSE },  // RemoveSameMissile						 ç§»é™¤ç›¸åŒç±»å‹çš„æŠ•å°„ç‰©ï¼ˆé¿å…é‡å¤æ•ˆæœï¼‰
+	{ ModifierMissile_016, FALSE },  // RemoveSameMissile						 ç§»é™¤ç›¸åŒç±»å‹çš„æŠ•å°„ç‰©ï¼ˆé¿å…é‡å¤æ•ˆæœï¼‰
+	{ ModifierMissile_017, FALSE },  // RemoveSameMissile						 ç§»é™¤ç›¸åŒç±»å‹çš„æŠ•å°„ç‰©ï¼ˆé¿å…é‡å¤æ•ˆæœï¼‰
+	{ ModifierMissile_018, FALSE },  // RemoveSameMissile						 ç§»é™¤ç›¸åŒç±»å‹çš„æŠ•å°„ç‰©ï¼ˆé¿å…é‡å¤æ•ˆæœï¼‰
+	{ ModifierMissile_019, FALSE },  // RemoveSameMissile						 ç§»é™¤ç›¸åŒç±»å‹çš„æŠ•å°„ç‰©ï¼ˆé¿å…é‡å¤æ•ˆæœï¼‰
+	{ ModifierMissile_020, FALSE },  // RemoveSameMissile						 ç§»é™¤ç›¸åŒç±»å‹çš„æŠ•å°„ç‰©ï¼ˆé¿å…é‡å¤æ•ˆæœï¼‰
+	{ ModifierMissile_021, FALSE },  // RemoveSameMissile						 ç§»é™¤ç›¸åŒç±»å‹çš„æŠ•å°„ç‰©ï¼ˆé¿å…é‡å¤æ•ˆæœï¼‰
+	{ ModifierMissile_022, FALSE },  // RemoveSameMissile						 ç§»é™¤ç›¸åŒç±»å‹çš„æŠ•å°„ç‰©ï¼ˆé¿å…é‡å¤æ•ˆæœï¼‰
 };

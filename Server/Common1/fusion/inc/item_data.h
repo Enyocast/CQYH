@@ -7,7 +7,7 @@
 #include "data_manager.h"
 #include "spell_def.h"
 
-//¹ÌÓĞÊôĞÔÁĞ±í
+//å›ºæœ‰å±æ€§åˆ—è¡¨
 static const INT16 FixAttrTable[] =
 {
     catPhyAtk,
@@ -75,9 +75,9 @@ struct ITEM_DATA
     UINT8 m_byStat;
     UINT8 m_byExpensiveItem;
     UINT8 m_bPkDrop;
-    UINT8 m_bTeamAuction;       //ÊÇ·ñ¿ÉÒÔ×é¶ÓÅÄÂô
-    UINT8 m_bAuction;           //ÊÇ·ñ¿ÉÅÄÂô
-    INT32 m_nAuctionFee;        //ÅÄÂô±£¹Ü·Ñ
+    UINT8 m_bTeamAuction;       //æ˜¯å¦å¯ä»¥ç»„é˜Ÿæ‹å–
+    UINT8 m_bAuction;           //æ˜¯å¦å¯æ‹å–
+    INT32 m_nAuctionFee;        //æ‹å–ä¿ç®¡è´¹
     UINT8 m_byAuctionType;
     UINT8 m_byAuctionSubType;
     INT32 m_nDefaultAuctionPrice;
@@ -118,21 +118,21 @@ struct EQUIP_DATA : public ITEM_DATA
     INT32 m_nCanDecompose;
     SET_DATA* m_SetData;
 
-    //¹ÌÓĞÊôĞÔ
+    //å›ºæœ‰å±æ€§
     INT32 m_nFixAttr[FixAttrTableSize];
 
-    //¹ÌÓĞÌìÆøÊôĞÔ
+    //å›ºæœ‰å¤©æ°”å±æ€§
     INT32 m_nWeatherAttrID;
 
-    //¹ÌÓĞÌØÊâ¼¼ÄÜ
+    //å›ºæœ‰ç‰¹æ®ŠæŠ€èƒ½
     INT32 m_nSpecialAttrID;
 
-    //ÊôĞÔ³ØIDºÍ¸ÅÂÊ
+    //å±æ€§æ± IDå’Œæ¦‚ç‡
     INT32 m_nRandomAttributeChance;
     INT32 m_nAttributePoolID[MAX_RANDOM_ATTR_COUNT];
     INT32 m_nAttributePoolChance[MAX_RANDOM_ATTR_COUNT];
 
-    //µÚ¶ş¸öÃúÎÄ³öÏÖµÄ×îÉÙ»¨·ÑÊı
+    //ç¬¬äºŒä¸ªé“­æ–‡å‡ºç°çš„æœ€å°‘èŠ±è´¹æ•°
     UINT32 m_dwSecondRuneCost;
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, EQUIP_DATA* pData, CTabFile* pTabConfig, INT32 nRow);

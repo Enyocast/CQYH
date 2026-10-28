@@ -174,9 +174,9 @@ BOOL SPELL_ENTRY::ReadLine(INT32& rnID, const char*& rpcszName, SPELL_ENTRY* pDa
 	READ_INT("SpellCommonAttribute.HOffsetGrids", m_nAttrTable[satHOffsetGrids]);
 	READ_INT("SpellCommonAttribute.VOffsetGrids", m_nAttrTable[satVOffsetGrids]);
 
-	// 缺少
-	//SpellCommonAttribute.SceneDifficultyLimit - 场景难度限制
-	//SpellCommonAttribute.SceneTypeLimit	    - 场景类型限制
+	// 缂哄皯
+	//SpellCommonAttribute.SceneDifficultyLimit - 鍦烘櫙闅惧害闄愬埗
+	//SpellCommonAttribute.SceneTypeLimit	    - 鍦烘櫙绫诲瀷闄愬埗
 
 	READ_INT("SpellCommonAttribute.TargetObjectType", m_nAttrTable[satTargetObjType]);
 	READ_INT("SpellCommonAttribute.TargetRelationship", m_nAttrTable[satTargetRelationship]);

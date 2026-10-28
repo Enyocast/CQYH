@@ -41,7 +41,7 @@
 
 
 
-//×Ö·û´®²ÎÊı Äê-ÔÂ-ÈÕ Ê±:·Ö:Ãë
+//å­—ç¬¦ä¸²å‚æ•° å¹´-æœˆ-æ—¥ æ—¶:åˆ†:ç§’
 time_t Str2Time(const char* szTime);
 time_t CustomizedStr2Time(const char* szTime);
 

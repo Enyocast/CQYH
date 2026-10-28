@@ -3,7 +3,7 @@
 	file:		gm_def.h
 	author:		Allan Tao
 	
-	purpose:	gmserverºÍgmtool¹²ÓÃÍ·ÎÄ¼ş
+	purpose:	gmserverå’Œgmtoolå…±ç”¨å¤´æ–‡ä»¶
 *********************************************************************/
 
 
@@ -155,31 +155,31 @@ struct GM_ROLE_ITEM_SLOT
 
     UINT8       byBindType;
 
-    //ÒÔÏÂÊôĞÔ½öÏŞ×°±¸
-    //ÊÇ·ñÒÑ¼ø¶¨
+    //ä»¥ä¸‹å±æ€§ä»…é™è£…å¤‡
+    //æ˜¯å¦å·²é‰´å®š
     UINT8       byIdentified;
-    //Ëæ»úÊôĞÔ
+    //éšæœºå±æ€§
     UINT16      wRandomAttrID[4];
-    //Ç©Ãû
+    //ç­¾å
     UINT32      dwRoleID;
-    //ÒÑÏû·Ñ½ğ±Ò
+    //å·²æ¶ˆè´¹é‡‘å¸
     UINT32      dwCostMoney;
 
-    //ÒÔÏÂÊôĞÔ½öÏŞÎäÆ÷
-    //ĞÒÔËÖµ
+    //ä»¥ä¸‹å±æ€§ä»…é™æ­¦å™¨
+    //å¹¸è¿å€¼
     INT8        byLuck;
-    //ÎäÆ÷Éı¼¶
+    //æ­¦å™¨å‡çº§
     UINT8       byLevelupTimes;
     UINT8       byLevelupPhyPoint;
     UINT8       byLevelupMagPoint;
     UINT8       byLevelupTaoPoint;
     UINT8       byLevelupTypeHidden;
     UINT8       byLevelupPointHidden;
-    //Öı»ê
+    //é“¸é­‚
     UINT16      wRune[6];
 
-    //ÒÔÏÂÊôĞÔ½öÏŞ·À¾ß
-    //ÈÚÁé
+    //ä»¥ä¸‹å±æ€§ä»…é™é˜²å…·
+    //èçµ
     UINT32      dwSocketCombination;
     INT32       nSoulID[3];
 
@@ -258,7 +258,7 @@ struct DUNGEON_LOG_DATA
 // exchange
 
 #define MAX_EXCHANGE_LOG_NUM            (1024)
-#define MAX_EXCHANGE_HISTORY_NUM        (768)        // ÍùÇ°Êı32ÌìµÄ¼ÇÂ¼£¬Ã¿Ğ¡Ê±Ò»Ìõ£¬¸ÕºÃ768
+#define MAX_EXCHANGE_HISTORY_NUM        (768)        // å¾€å‰æ•°32å¤©çš„è®°å½•ï¼Œæ¯å°æ—¶ä¸€æ¡ï¼Œåˆšå¥½768
 #define MAX_EXCHANGE_BUFFER_SIZE        (0xFFFF)
 
 struct GM_EXCHANGE_PRICE_LOG

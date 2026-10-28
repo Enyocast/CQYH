@@ -98,7 +98,7 @@ BOOL COAAuthMgr::MainLoop()
 		else
 			INF("session <%08X> oa authorized failed, error code %d", pstAuthingUser->dwSessionID, pstAuthorizedUser->nError);
 
-		// ÊÖ»ú¶Ë
+		// æ‰‹æœºç«¯
 		if (IS_MOBILE_CLIENT(pstAuthingUser->dwSessionID))
 		{
 			nRetCode = CLSMessageHandler::GetInstance().DoMGLoginAck(pstAuthingUser->dwSessionID, nError,
@@ -108,7 +108,7 @@ BOOL COAAuthMgr::MainLoop()
 
 			INF("User from session <%08X> get SNDA ID %s, and DoMGLoginAck", pstAuthingUser->dwSessionID, pstAuthorizedUser->szSNDAID);
 		}
-		// PC¶Ë
+		// PCç«¯
 		else
 		{
 			nRetCode = CLSMessageHandler::GetInstance().DoGTLoginAck(pstAuthingUser->dwSessionID, nError,

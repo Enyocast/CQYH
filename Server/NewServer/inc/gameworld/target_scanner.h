@@ -126,7 +126,7 @@ protected:
 	BOOL _GridSingleSelector(CCharacter* target, INT64& llRangeSq);
 	BOOL _GridLineTransverse(CCharacter* target, INT64& llRangeSq);
 
-	// 自己新增代码
+	// 鑷繁鏂板浠ｇ爜
 	BOOL _GridMultiLineSelector(CCharacter* target, INT64& llRangeSq);
 
 	typedef BOOL (CTargetScanner::*DoodadSelectFunc)(CDoodad* target);

@@ -43,7 +43,7 @@ BOOL CRole::Load(const char* pcData, UINT32 dwSize)
 	if (pRoleData->dwVersion < ROLE_DB_DATA_CURRENT_VERSION)
 		INF("load old role %d db data %d %d", m_dwObjID, pRoleData->dwVersion, pRoleData->dwLen);
 
-	// Ä¬ÈÏ´úÂë, ÕâÀï¸Ä³ÉÇ¿ÖÆ¶ÁÈ¡ÏÂ±ê0µÄº¯Êı
+	// é»˜è®¤ä»£ç , è¿™é‡Œæ”¹æˆå¼ºåˆ¶è¯»å–ä¸‹æ ‡0çš„å‡½æ•°
 	nRetCode = (this->*s_LoadFuncList[pRoleData->dwVersion])(pcData, dwSize);
 	LOG_PROCESS_ERROR(nRetCode);
 
@@ -103,7 +103,7 @@ BOOL CRole::_LoadBaseData(const char* pcData, UINT32 dwSize)
 	nRetCode = ConvertToBaseDataCurrentVersion(&BaseData, pcData, dwSize);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	// Ä¬ÈÏ´úÂë, ÔİÊ±ÆÁ±Î
+	// é»˜è®¤ä»£ç , æš‚æ—¶å±è”½
 	LOG_PROCESS_ERROR(BaseData.byVersion == ROLE_DB_BASE_DATA_CURRENT_VERSION);
 
 	m_dwCreateTime = BaseData.dwCreateTime;

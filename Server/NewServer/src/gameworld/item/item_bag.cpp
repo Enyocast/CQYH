@@ -146,7 +146,7 @@ BOOL CItemBag::MainLoop()
     BOOL check_mp = FALSE;
     BOOL item_change = FALSE;
 
-    // »ñÈ¡Õ½¾ß¶ÔÏóÖ¸Õë
+    // è·å–æˆ˜å…·å¯¹è±¡æŒ‡é’ˆ
     Item* item = GetItem(CONSLOT_RECOVER, 0);
     if (item)
     {
@@ -231,7 +231,7 @@ BOOL CItemBag::MainLoop()
         }
     }
 
-    // ÅĞ¶Ï ÊÇ·ñÓĞÎäÆ÷ÕıÔÚÉı¼¶ÖĞ
+    // åˆ¤æ–­ æ˜¯å¦æœ‰æ­¦å™¨æ­£åœ¨å‡çº§ä¸­
     if (m_WeaponItem && !m_byMailNotified &&
         CGameWorld::GetInstance().GetGameTime() - m_dwWeaponLevelUpStartTime >= WEAPON_LEVEL_UP_TIME)
     {
@@ -422,7 +422,7 @@ INT32 CItemBag::AddItem(INT32 itemid, INT32 itemcount, EItemLog reason, UINT64 u
     LOG_PROCESS_ERROR(item);
     LOG_PROCESS_ERROR(item->m_pTemplate);
 
-    // ÉÌµê»õ²»¸øËæ»úÊôĞÔ
+    // å•†åº—è´§ä¸ç»™éšæœºå±æ€§
     if (reason == ITEMLOG_SHOP && item->m_pTemplate->m_byType == ITEMTYPE_EQUIP)
     {
         for (INT32 i = 0; i < MAX_RANDOM_ATTR_COUNT; i++)
@@ -507,7 +507,7 @@ INT32 CItemBag::UseItem(UINT8 conslot, UINT8 itemslot)
     LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetMoveState() != CMS_STALL, errItemStall);
     LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);
     LOG_PROCESS_ERROR_RET_CODE(_CheckValidItemPos(conslot, itemslot), errItemInvalidPos);
-    //LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->IsFreeMode(), errFreeMode);    // Ä¬ÈÏ´úÂë, ·ÅÏÂÃæÅĞ¶Ï
+    //LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->IsFreeMode(), errFreeMode);    // é»˜è®¤ä»£ç , æ”¾ä¸‹é¢åˆ¤æ–­
 
     it = m_cons[conslot].find(itemslot);
     if (it == m_cons[conslot].end())
@@ -515,7 +515,7 @@ INT32 CItemBag::UseItem(UINT8 conslot, UINT8 itemslot)
 
     item = it->second;
 
-    // ĞÂÔö´úÂë (ÔİÊ±ÆÁ±Î) - Èç¹û¿ªÆôµã¿¨¹¦ÄÜ, µ±Ê¹ÓÃµã¿¨µÀ¾ßÊ±, ²»ÅĞ¶Ï m_bFreeMode±êÖ¾
+    // æ–°å¢ä»£ç  (æš‚æ—¶å±è”½) - å¦‚æœå¼€å¯ç‚¹å¡åŠŸèƒ½, å½“ä½¿ç”¨ç‚¹å¡é“å…·æ—¶, ä¸åˆ¤æ–­ m_bFreeModeæ ‡å¿—
     //if (g_ServerConfig.MS.bCustomGameTimeCardEnable == TRUE &&
     //    m_pOwner->GetLevel() > g_ServerConfig.MS.nCustomFreeRoleLevel && 
     //    CheckTemplateIDIsTimeCard(item->m_pTemplate->m_nTemplateID) == FALSE)
@@ -548,7 +548,7 @@ INT32 CItemBag::UseItem(UINT8 conslot, UINT8 itemslot)
         LOG_PROCESS_ERROR_RET_CODE(item->m_pTemplate->m_byUseInArena, errItemCannotUseInArena);
     }
 
-    // ½Å±¾ script
+    // è„šæœ¬ script
     if ('\0' != item->m_pTemplate->m_szScript[0])
     {
         INT32 nUseItemRtn = errSuccess;
@@ -565,12 +565,12 @@ INT32 CItemBag::UseItem(UINT8 conslot, UINT8 itemslot)
         return nUseItemRtn;
     }
 
-    // ÅĞ¶ÏÀàĞÍ
+    // åˆ¤æ–­ç±»å‹
     switch (item->m_pTemplate->m_byType)
     {
     case ITEMTYPE_USABLE:
     {
-        // ×Ô¼ºĞÂÔö´úÂë - ´¦ÀíĞÂÎïÆ·
+        // è‡ªå·±æ–°å¢ä»£ç  - å¤„ç†æ–°ç‰©å“
         switch (item->m_pTemplate->m_nTemplateID)
         {
         default:
@@ -732,14 +732,14 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
     LOG_PROCESS_ERROR_RET_CODE(_CheckValidItemPos(dstconslot, dstitemslot), errItemInvalidPos);
     LOG_PROCESS_ERROR_RET_CODE(!_SrcDstSame(srcconslot, srcitemslot, dstconslot, dstitemslot), errItemInvalidPos);
 
-    srcitem = GetItem(srcconslot, srcitemslot);    // Ô­Ê¼ÎïÆ·
-    dstitem = GetItem(dstconslot, dstitemslot);    // Ä¿±êÎïÆ·
+    srcitem = GetItem(srcconslot, srcitemslot);    // åŸå§‹ç‰©å“
+    dstitem = GetItem(dstconslot, dstitemslot);    // ç›®æ ‡ç‰©å“
 
-    // ÅĞ¶Ï - Ô­Ê¼ÎïÆ· ÊÇ·ñÎª¿Õ
+    // åˆ¤æ–­ - åŸå§‹ç‰©å“ æ˜¯å¦ä¸ºç©º
     if (srcitem == NULL)
         return errItemNotFound;
 
-    // ÅĞ¶Ï - (Ô­Ê¼Î»ÖÃ == Ö÷±³°ü 1, Ä¿±êÎ»ÖÃ == ×°±¸À¸ 0)
+    // åˆ¤æ–­ - (åŸå§‹ä½ç½® == ä¸»èƒŒåŒ… 1, ç›®æ ‡ä½ç½® == è£…å¤‡æ  0)
     if (srcconslot == CONSLOT_DEFAULT && dstconslot == CONSLOT_EQUIPPED)
     {
         //Equip
@@ -778,7 +778,7 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return nResult;
     }
 
-    // ÅĞ¶Ï - (Ô­Ê¼Î»ÖÃ == ×°±¸À¸ 0, Ä¿±êÎ»ÖÃ == Ö÷±³°ü 1)
+    // åˆ¤æ–­ - (åŸå§‹ä½ç½® == è£…å¤‡æ  0, ç›®æ ‡ä½ç½® == ä¸»èƒŒåŒ… 1)
     if (srcconslot == CONSLOT_EQUIPPED && dstconslot == CONSLOT_DEFAULT)
     {
         //UnEquip
@@ -817,27 +817,27 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return nResult;
     }
 
-    // ÅĞ¶Ï - (Ô­Ê¼Î»ÖÃ == Ö÷±³°ü 1, Ä¿±êÎ»ÖÃ == ×ÊÔ´°ü 7)
+    // åˆ¤æ–­ - (åŸå§‹ä½ç½® == ä¸»èƒŒåŒ… 1, ç›®æ ‡ä½ç½® == èµ„æºåŒ… 7)
     if (srcconslot == CONSLOT_DEFAULT && dstconslot == CONSLOT_RESOURCE)
     {
-        // Ö»ÄÜ·ÅÈë [¿óÊ¯/Åä·½] ÎïÆ·
+        // åªèƒ½æ”¾å…¥ [çŸ¿çŸ³/é…æ–¹] ç‰©å“
         if (srcitem->m_pTemplate->m_byType == ITEMTYPE_MATERIAL || srcitem->m_pTemplate->m_byType == ITEMTYPE_FORMULA)
         {
             return _MoveItem(srcconslot, srcitemslot, dstconslot, dstitemslot);
         }
     }
 
-    // ÅĞ¶Ï - (Ô­Ê¼Î»ÖÃ == ×ÊÔ´°ü 7, Ä¿±êÎ»ÖÃ == Ö÷±³°ü 1)
+    // åˆ¤æ–­ - (åŸå§‹ä½ç½® == èµ„æºåŒ… 7, ç›®æ ‡ä½ç½® == ä¸»èƒŒåŒ… 1)
     if (srcconslot == CONSLOT_RESOURCE && dstconslot == CONSLOT_DEFAULT)
     {
-        // Ö»ÄÜÈ¡³ö [¿óÊ¯/Åä·½] ÎïÆ·
+        // åªèƒ½å–å‡º [çŸ¿çŸ³/é…æ–¹] ç‰©å“
         if (srcitem->m_pTemplate->m_byType == ITEMTYPE_MATERIAL || srcitem->m_pTemplate->m_byType == ITEMTYPE_FORMULA)
         {
             return _MoveItem(srcconslot, srcitemslot, dstconslot, dstitemslot);
         }
     }
 
-    // ÅĞ¶Ï - (Ô­Ê¼Î»ÖÃ == Ó¢ĞÛ±³°ü 4 »òÕß Ô­Ê¼Î»ÖÃ == Ö÷±³°ü 1, Ä¿±êÎ»ÖÃ == Ó¢ĞÛ×°±¸À¸ 3)
+    // åˆ¤æ–­ - (åŸå§‹ä½ç½® == è‹±é›„èƒŒåŒ… 4 æˆ–è€… åŸå§‹ä½ç½® == ä¸»èƒŒåŒ… 1, ç›®æ ‡ä½ç½® == è‹±é›„è£…å¤‡æ  3)
     if ((srcconslot == CONSLOT_HERO_EQUIPMENT || srcconslot == CONSLOT_DEFAULT) && dstconslot == CONSLOT_HERO_EQUIPPED)
     {
         CHero* poHero = m_pOwner->GetHero();
@@ -871,7 +871,7 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return nResult;
     }
 
-    // ÅĞ¶Ï - (Ô­Ê¼Î»ÖÃ == Ó¢ĞÛ×°±¸À¸ 3, Ä¿±êÎ»ÖÃ == Ó¢ĞÛ±³°ü 4 »òÕß Ä¿±êÎ»ÖÃ == Ö÷±³°ü 1)
+    // åˆ¤æ–­ - (åŸå§‹ä½ç½® == è‹±é›„è£…å¤‡æ  3, ç›®æ ‡ä½ç½® == è‹±é›„èƒŒåŒ… 4 æˆ–è€… ç›®æ ‡ä½ç½® == ä¸»èƒŒåŒ… 1)
     if (srcconslot == CONSLOT_HERO_EQUIPPED && (dstconslot == CONSLOT_HERO_EQUIPMENT || dstconslot == CONSLOT_DEFAULT))
     {
         CHero* poHero = m_pOwner->GetHero();
@@ -906,7 +906,7 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return nResult;
     }
 
-    // ÅĞ¶Ï - (Ô­Ê¼Î»ÖÃ == ×°±¸À¸ 0, Ä¿±êÎ»ÖÃ == ×°±¸À¸ 0)
+    // åˆ¤æ–­ - (åŸå§‹ä½ç½® == è£…å¤‡æ  0, ç›®æ ‡ä½ç½® == è£…å¤‡æ  0)
     if (srcconslot == CONSLOT_EQUIPPED && dstconslot == CONSLOT_EQUIPPED)
     {
         //Swap Equip
@@ -918,7 +918,7 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return _MoveItem(srcconslot, srcitemslot, dstconslot, dstitemslot);
     }
 
-    // ÅĞ¶Ï - (Ô­Ê¼Î»ÖÃ == Ö÷±³°ü 1, Ä¿±êÎ»ÖÃ == ´¢ÖµÀ¸ 5)
+    // åˆ¤æ–­ - (åŸå§‹ä½ç½® == ä¸»èƒŒåŒ… 1, ç›®æ ‡ä½ç½® == å‚¨å€¼æ  5)
     if (srcconslot == CONSLOT_DEFAULT && dstconslot == CONSLOT_DEPOSIT)
     {
         if (!_CorrectDepositSlot(srcitem, dstitemslot))
@@ -930,7 +930,7 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return _MoveItem(srcconslot, srcitemslot, dstconslot, dstitemslot);
     }
 
-    // ÅĞ¶Ï - (Ô­Ê¼Î»ÖÃ == ´¢ÖµÀ¸ 5, Ä¿±êÎ»ÖÃ == Ö÷±³°ü 1)
+    // åˆ¤æ–­ - (åŸå§‹ä½ç½® == å‚¨å€¼æ  5, ç›®æ ‡ä½ç½® == ä¸»èƒŒåŒ… 1)
     if (srcconslot == CONSLOT_DEPOSIT && dstconslot == CONSLOT_DEFAULT)
     {
         if (dstitem && !_CorrectDepositSlot(dstitem, srcitemslot))
@@ -942,7 +942,7 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return _MoveItem(srcconslot, srcitemslot, dstconslot, dstitemslot);
     }
 
-    // ÅĞ¶Ï - (Ô­Ê¼Î»ÖÃ == Ö÷±³°ü 1, Ä¿±êÎ»ÖÃ == ×Ô¶¯»Ö¸´À¸ 6)
+    // åˆ¤æ–­ - (åŸå§‹ä½ç½® == ä¸»èƒŒåŒ… 1, ç›®æ ‡ä½ç½® == è‡ªåŠ¨æ¢å¤æ  6)
     if (srcconslot == CONSLOT_DEFAULT && dstconslot == CONSLOT_RECOVER)
     {
         if (srcitem->m_pTemplate->m_byType != ITEMTYPE_RECOVER)
@@ -951,7 +951,7 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return _MoveItem(srcconslot, srcitemslot, dstconslot, dstitemslot);
     }
 
-    // ÅĞ¶Ï - (Ô­Ê¼Î»ÖÃ == ×Ô¶¯»Ö¸´À¸ 6, Ä¿±êÎ»ÖÃ == Ö÷±³°ü 1)
+    // åˆ¤æ–­ - (åŸå§‹ä½ç½® == è‡ªåŠ¨æ¢å¤æ  6, ç›®æ ‡ä½ç½® == ä¸»èƒŒåŒ… 1)
     if (srcconslot == CONSLOT_RECOVER && dstconslot == CONSLOT_DEFAULT)
     {
         if (dstitem && dstitem->m_pTemplate->m_byType != ITEMTYPE_RECOVER)
@@ -960,14 +960,14 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
         return _MoveItem(srcconslot, srcitemslot, dstconslot, dstitemslot);
     }
 
-    // ÅĞ¶Ï - (Ô­Ê¼Î»ÖÃ == ²Ö¿â 2, Ä¿±êÎ»ÖÃ == Ö÷±³°ü 1)
+    // åˆ¤æ–­ - (åŸå§‹ä½ç½® == ä»“åº“ 2, ç›®æ ‡ä½ç½® == ä¸»èƒŒåŒ… 1)
     if (srcconslot == CONSLOT_BANK && dstconslot == CONSLOT_DEFAULT)
     {
         if (_GetBagWeight() + srcitem->GetWeight() - (dstitem ? dstitem->GetWeight() : 0) > m_pOwner->GetAttr(catBagWeightLmt))
             return errItemBagTooHeavy;
     }
 
-    // ÅĞ¶Ï - (Ô­Ê¼Î»ÖÃ == Ö÷±³°ü 1, Ä¿±êÎ»ÖÃ == ²Ö¿â 2)
+    // åˆ¤æ–­ - (åŸå§‹ä½ç½® == ä¸»èƒŒåŒ… 1, ç›®æ ‡ä½ç½® == ä»“åº“ 2)
     if (srcconslot == CONSLOT_DEFAULT && dstconslot == CONSLOT_BANK &&
         dstitem &&
         !(srcitem->m_pTemplate == dstitem->m_pTemplate && srcitem->m_iteminfo.m_byBindType == dstitem->m_iteminfo.m_byBindType))
@@ -976,11 +976,11 @@ INT32 CItemBag::MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot, 
             return errItemBagTooHeavy;
     }
 
-    // ÅĞ¶Ï - (Ä¿±êÎ»ÖÃ != ²Ö¿â 2, Ä¿±êÎ»ÖÃ != Ö÷±³°ü 1)
+    // åˆ¤æ–­ - (ç›®æ ‡ä½ç½® != ä»“åº“ 2, ç›®æ ‡ä½ç½® != ä¸»èƒŒåŒ… 1)
     if (dstconslot != CONSLOT_BANK && dstconslot != CONSLOT_DEFAULT)
         return errItemTypeMismatch;
 
-    // ÅĞ¶Ï - (Ô­Ê¼Î»ÖÃ != ²Ö¿â 2, Ô­Ê¼Î»ÖÃ != Ö÷±³°ü 1)
+    // åˆ¤æ–­ - (åŸå§‹ä½ç½® != ä»“åº“ 2, åŸå§‹ä½ç½® != ä¸»èƒŒåŒ… 1)
     if (srcconslot != CONSLOT_BANK && srcconslot != CONSLOT_DEFAULT)
         return errItemTypeMismatch;
 
@@ -1033,7 +1033,7 @@ INT32 CItemBag::SplitItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot,
     {
         UINT32 real_count = 0;
 
-        //ÒÆµ½ÒÑÓĞÎïÆ·ÉÏ
+        //ç§»åˆ°å·²æœ‰ç‰©å“ä¸Š
         if (srcitem->m_pTemplate != dstitem->m_pTemplate ||
             dstitem->m_iteminfo.m_nCurDur >= dstitem->m_pTemplate->m_nDur)
         {
@@ -1079,7 +1079,7 @@ INT32 CItemBag::SplitItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot,
     }
     else
     {
-        //ÒÆµ½¿Õ´¦
+        //ç§»åˆ°ç©ºå¤„
         Item* newitem = CItemMgr::GetInstance().CopyItem(srcitem);
         LOG_PROCESS_ERROR(newitem);
         srcitem->m_iteminfo.m_nCurDur -= itemcount;
@@ -1122,7 +1122,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// ¶ªÆúÎïÆ·
+// ä¸¢å¼ƒç‰©å“
 INT32 CItemBag::DeleteItem(UINT8 conslot, UINT8 itemslot, INT16 itemcount)
 {
 #ifdef _ROBOT
@@ -1215,7 +1215,7 @@ INT32 CItemBag::SellItem(UINT8 conslot, UINT8 itemslot, INT32 shoptypesell)
     LOG_PROCESS_ERROR_RET_CODE(item->m_pTemplate->m_byCanSell, errItemCannotSell);
     LOG_PROCESS_ERROR_RET_CODE(item->m_iteminfo.m_dwRoleID == 0, errItemAlreadySigned);
 
-    // ÆÁ±ÎÉÌµêÀàĞÍ, ÈÎºÎÉÌµê¶¼ÄÜÂô¶«Î÷
+    // å±è”½å•†åº—ç±»å‹, ä»»ä½•å•†åº—éƒ½èƒ½å–ä¸œè¥¿
     LOG_PROCESS_ERROR_RET_CODE(item->m_pTemplate->m_nShopTypeSell == 0 || shoptypesell == 0 || item->m_pTemplate->m_nShopTypeSell == shoptypesell, errShopTypeSell);
 
     sellprice = _GetSellPrice(item);
@@ -1430,7 +1430,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// ¼ø¶¨ÎïÆ·?
+// é‰´å®šç‰©å“?
 INT32 CItemBag::IdentifyItem(UINT8 conslot, UINT8 itemslot)
 {
 #ifdef _ROBOT
@@ -1544,7 +1544,7 @@ INT32 CItemBag::ConfirmRandomizeItem()
 
     INT32 nResult = errItemUnknown;
     Item* item = NULL;
-    INT32 require_money = 100;//ÁÙÊ±ĞÔ£¬100¿é
+    INT32 require_money = 100;//ä¸´æ—¶æ€§ï¼Œ100å—
 
     LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetMoveState() != CMS_STALL, errItemStall);
     LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);
@@ -1614,7 +1614,7 @@ INT32 CItemBag::Refine(UINT8 refineslot, UINT8 addequip, UINT8 conslot, UINT8 it
     if (GetMoney(MONEYTYPE_01) < refine_data->m_nCost)
         return errItemNotEnoughMoneytype01;
 
-    //É¾ÎïÆ·É¾Ç®
+    //åˆ ç‰©å“åˆ é’±
     if (addequip)
     {
         DeleteItemPos(conslot, itemslot, 1, ITEMLOG_REFINE_ITEM, 0);
@@ -1623,7 +1623,7 @@ INT32 CItemBag::Refine(UINT8 refineslot, UINT8 addequip, UINT8 conslot, UINT8 it
 
     SubMoney(MONEYTYPE_01, refine_data->m_nCost, MONEYLOG_REFINE_ITEM, 0);
 
-    //¼ÆËãÇ¿»¯³É¹¦ÂÊ
+    //è®¡ç®—å¼ºåŒ–æˆåŠŸç‡
     refine_success_rate = refine_data->m_dwSuccessRate;
     if (addequip)
     {
@@ -1631,14 +1631,14 @@ INT32 CItemBag::Refine(UINT8 refineslot, UINT8 addequip, UINT8 conslot, UINT8 it
     }
     if (g_Random(10000) >= refine_success_rate)
     {
-        //Ê§°Ü¡£¡£¡£
+        //å¤±è´¥ã€‚ã€‚ã€‚
         CCliMessageHandler::GetInstance().DoSendRefineResult(m_pOwner, refineslot, 0, m_refine_levels[refineslot]);
         return errSuccess;
     }
 
     SetRefineLevel(refineslot, m_refine_levels[refineslot] + 1);
 
-    //È«·ş¹ã²¥
+    //å…¨æœå¹¿æ’­
     if (refine_data->m_nBroadCast)
     {
         char szBroadcast[1024];
@@ -1658,12 +1658,12 @@ INT32 CItemBag::Refine(UINT8 refineslot, UINT8 addequip, UINT8 conslot, UINT8 it
 
     CAdventure::GetInstance().OnRefineEquip(m_pOwner);
 
-    m_pOwner->GetAchievementList().AddVariable(avdTotalRefineTime, 1);	// ×°±¸Ç¿»¯×Ü´ÎÊı
+    m_pOwner->GetAchievementList().AddVariable(avdTotalRefineTime, 1);	// è£…å¤‡å¼ºåŒ–æ€»æ¬¡æ•°
 
     return errSuccess;
 
 Exit0:
-    m_pOwner->GetAchievementList().AddVariable(avdRefineFailTime, 1);	// Ç¿»¯Ê§°Ü´ÎÊı
+    m_pOwner->GetAchievementList().AddVariable(avdRefineFailTime, 1);	// å¼ºåŒ–å¤±è´¥æ¬¡æ•°
 
     return nResult;
 
@@ -1679,7 +1679,7 @@ void CItemBag::SetRefineLevel(UINT8 refineslot, UINT16 level)
     if (m_refine_levels[refineslot] == level)
         return;
 
-    //Èç¹ûÇ¿»¯²¿Î»´æÔÚÒÑ×°±¸µÄÎïÆ·£¬ÔòĞèÒª¼ÆËãĞÂµÄÊôĞÔ
+    //å¦‚æœå¼ºåŒ–éƒ¨ä½å­˜åœ¨å·²è£…å¤‡çš„ç‰©å“ï¼Œåˆ™éœ€è¦è®¡ç®—æ–°çš„å±æ€§
     if (equipped_item && equipped_item->m_pTemplate->m_byType == ITEMTYPE_EQUIP && equipped_item->m_iteminfo.m_nCurDur > 0 && m_refine_levels[refineslot] > 0)
     {
         const REFINE_ATTR_DATA* refine_attr_data = CDataManager<REFINE_ATTR_DATA>::GetInstance().GetData(REFINE_ATTR_DATA::MakeKey(m_refine_levels[refineslot], m_pOwner->GetClass(), refineslot));
@@ -1714,7 +1714,7 @@ void CItemBag::SetRefineLevel(UINT8 refineslot, UINT16 level)
             cur_min_level = m_refine_levels[i];
     }
 
-    //¼ÆËãÇ¿»¯¼¤»îÊôĞÔ
+    //è®¡ç®—å¼ºåŒ–æ¿€æ´»å±æ€§
     if (old_min_level != cur_min_level)
     {
         const REFINE_ATTR_DATA* old_data = CDataManager<REFINE_ATTR_DATA>::GetInstance().GetData(REFINE_ATTR_DATA::MakeKey(old_min_level, m_pOwner->GetClass(), NES_TOTAL));
@@ -1792,7 +1792,7 @@ INT32 CItemBag::AuctionSell(UINT8 conslot, UINT8 itemslot, UINT8 byAuctionTimeTy
     char szItemInfo[256] = { 0 };
     Item* item = GetItem(conslot, itemslot);
 
-    // Ä¬ÈÏ´úÂë ÅĞ¶ÏvipµÈ¼¶
+    // é»˜è®¤ä»£ç  åˆ¤æ–­vipç­‰çº§
     //if (m_pOwner->GetVIPLevel() < vlLevel3)
     //{
     //	CNpc* npc = CGameWorld::GetInstance().FindNpc(m_pOwner->GetInteractNpc());
@@ -1811,27 +1811,27 @@ INT32 CItemBag::AuctionSell(UINT8 conslot, UINT8 itemslot, UINT8 byAuctionTimeTy
     LOG_PROCESS_ERROR_RET_CODE(item->m_pTemplate->m_bAuction, errItemCannotAuction);
     LOG_PROCESS_ERROR_RET_CODE(item->m_iteminfo.m_byBindType != BINDTYPE_BINDED, errItemBinded);
     LOG_PROCESS_ERROR_RET_CODE(llprice >= item->m_pTemplate->m_nDefaultAuctionPrice, errAuctionSellingPriceLow);
-    LOG_PROCESS_ERROR_RET_CODE(byAuctionTimeType < MAX_AUCTION_TIME_INTERVAL_TYPE, errAuctionUnknown);    // Ê±¼äÀàĞÍ²»¶Ô
+    LOG_PROCESS_ERROR_RET_CODE(byAuctionTimeType < MAX_AUCTION_TIME_INTERVAL_TYPE, errAuctionUnknown);    // æ—¶é—´ç±»å‹ä¸å¯¹
     LOG_PROCESS_ERROR(item->m_pTemplate->m_nAuctionFee);
     LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_02) >= item->m_pTemplate->m_nAuctionFee[byAuctionTimeType], errItemNotEnoughMoneytype02);
 
-    // ¿ÛÇ® ÊÖĞø·Ñ
+    // æ‰£é’± æ‰‹ç»­è´¹
     nRetCode = SubMoney(MONEYTYPE_02, item->m_pTemplate->m_nAuctionFee[byAuctionTimeType], MONEYLOG_AUCTION_SELL_COST, 0);
     LOG_PROCESS_ERROR(nRetCode == errSuccess);
 
-    // É¾³ıÎïÆ·Ö®Ç°, ÏÈ±£´æ item->m_iteminfo µÄÊı¾İ, ÔÚ DeleteItemPos ÖĞ, »áÏú»Ù item Ö¸Õë¶ÔÏó
+    // åˆ é™¤ç‰©å“ä¹‹å‰, å…ˆä¿å­˜ item->m_iteminfo çš„æ•°æ®, åœ¨ DeleteItemPos ä¸­, ä¼šé”€æ¯ item æŒ‡é’ˆå¯¹è±¡
     dwItemInfoSize = item->m_iteminfo.Save(szItemInfo);
 
-    // É¾³ıÎïÆ·
+    // åˆ é™¤ç‰©å“
     nRetCode = DeleteItemPos(conslot, itemslot,
         item->m_pTemplate->m_byDurType == DURTYPE_STACK ? item->m_iteminfo.m_nCurDur : 1,
         ITEMLOG_AUCTION_SELL, 0);
     LOG_PROCESS_ERROR(nRetCode == errSuccess);
 
-    // Ìí¼ÓÍæ¼Ò±äÁ¿
+    // æ·»åŠ ç©å®¶å˜é‡
     m_pOwner->GetAchievementList().AddVariable(avdAuctionSellCount, 1);
 
-    // ·¢°ü¸øMS
+    // å‘åŒ…ç»™MS
     CCliMessageHandler::GetInstance().DoMSAuctionSell(errSuccess, m_pOwner->GetObjID(), byAuctionTimeType, byOpen, llprice, llbuyoutPrice, llDepositePrice, szItemInfo, dwItemInfoSize);
 
     return errSuccess;
@@ -1851,7 +1851,7 @@ INT32 CItemBag::AuctionBuy(UINT32 auctionid, INT64 llBidPrice, INT64 llAuctionPr
     INT32 nRetCode = 0;
     INT32 nResult = errItemUnknown;
 
-    // Ä¬ÈÏ´úÂë ÅĞ¶ÏvipµÈ¼¶
+    // é»˜è®¤ä»£ç  åˆ¤æ–­vipç­‰çº§
     //if (m_pOwner->GetVIPLevel() < vlLevel3)
     //{
     //	CNpc* npc = CGameWorld::GetInstance().FindNpc(m_pOwner->GetInteractNpc());
@@ -1867,13 +1867,13 @@ INT32 CItemBag::AuctionBuy(UINT32 auctionid, INT64 llBidPrice, INT64 llAuctionPr
     LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetMoveState() != CMS_STALL, errItemStall);
     LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);
 
-    // ÎŞÂÛÊÇ "Ò»¿Ú¼Û" »ò "¾ºÅÄ", ¶¼ÊÇÖ»¿Û±£Ö¤½ğ
+    // æ— è®ºæ˜¯ "ä¸€å£ä»·" æˆ– "ç«æ‹", éƒ½æ˜¯åªæ‰£ä¿è¯é‡‘
     LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_02) >= llDepositPrice, errItemNotEnoughMoneytype02);
 
-    // ¿ÛÇ®, ±£Ö¤½ğ
+    // æ‰£é’±, ä¿è¯é‡‘
     SubMoney(MONEYTYPE_02, llDepositPrice, MONEYLOG_AUCTION_DEPOSIT_COST, 0);
 
-    // ¸ù¾İ³ö¼ÛÀàĞÍ, ·¢ËÍµÄ¼Û¸ñ±äÁ¿²»Ò»Ñù, »áÖ±½ÓÓ°Ïì Auction¶ÔÏó ºÍ ¿Í»§¶ËÏÔÊ¾
+    // æ ¹æ®å‡ºä»·ç±»å‹, å‘é€çš„ä»·æ ¼å˜é‡ä¸ä¸€æ ·, ä¼šç›´æ¥å½±å“ Auctionå¯¹è±¡ å’Œ å®¢æˆ·ç«¯æ˜¾ç¤º
     if (byBuyType == EAuctionBuyType::eabtBuyout)
     {
         CCliMessageHandler::GetInstance().DoMSAuctionBuy(errSuccess, m_pOwner->GetObjID(), auctionid, llAuctionPrice);
@@ -1900,7 +1900,7 @@ INT32 CItemBag::AuctionPay(UINT32 auctionid, INT64 llprice)
     INT32 nRetCode = 0;
     INT32 nResult = errItemUnknown;
 
-    // Ä¬ÈÏ´úÂë ÅĞ¶ÏvipµÈ¼¶
+    // é»˜è®¤ä»£ç  åˆ¤æ–­vipç­‰çº§
     //if (m_pOwner->GetVIPLevel() < vlLevel3)
     //{
     //	CNpc* npc = CGameWorld::GetInstance().FindNpc(m_pOwner->GetInteractNpc());
@@ -1916,7 +1916,7 @@ INT32 CItemBag::AuctionPay(UINT32 auctionid, INT64 llprice)
     //LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);
     LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_02) >= llprice, errItemNotEnoughMoneytype02);
 
-    // ¿ÛÇ® "Ò»¿Ú¼Û" »ò "¾ºÅÄ"
+    // æ‰£é’± "ä¸€å£ä»·" æˆ– "ç«æ‹"
     SubMoney(MONEYTYPE_02, llprice, MONEYLOG_AUCTION_LEFT_MONEY, 0);
 
     CCliMessageHandler::GetInstance().DoMSAuctionPay(errSuccess, m_pOwner->GetObjID(), auctionid, llprice);
@@ -2135,7 +2135,7 @@ INT32 CItemBag::DeleteItemId(INT32 itemid, INT16 itemcount, EItemLog reason, BOO
 
 INT32 CItemBag::RemoveItem(UINT8 conslot, UINT8 itemslot, EItemLog reason)
 {
-    // ´Ë·½·¨½ö¹©tradeµ÷ÓÃ£¬¿ÉÒÔÉ¾³ıÎïÆ·¶ø²»É¾³ı¶ÔÏó£¬ÒòÎª¶ÔÏó»¹Òª¸øÁíÍâÒ»¸öÍæ¼Ò
+    // æ­¤æ–¹æ³•ä»…ä¾›tradeè°ƒç”¨ï¼Œå¯ä»¥åˆ é™¤ç‰©å“è€Œä¸åˆ é™¤å¯¹è±¡ï¼Œå› ä¸ºå¯¹è±¡è¿˜è¦ç»™å¦å¤–ä¸€ä¸ªç©å®¶
     INT32 nResult = errItemUnknown;
     INT32 nRetCode = 0;
     Item* item = GetItem(conslot, itemslot);
@@ -2231,7 +2231,7 @@ void CItemBag::LoseItemOnDeath(BOOL is_player)
     Item* drop_items[256];
     INT32 total_drop_count = 0;
 
-    //ÒÔÏÂ·Ö±ğÊÇ°üÄÚÆÕÍ¨ÎïÆ·£¬°üÄÚ¹óÖØÎïÆ·£¬ÒÑ×°±¸ÎïÆ·µÄ×î¶àµôÂäÊıÁ¿ºÍ±»Ñ¡µôÂäÎïÆ·£¬¾ßÌåµôÂä¸ÅÂÊ»¹ĞèÒª¸ù¾İÎïÆ·²»Í¬¶ø±ä»¯
+    //ä»¥ä¸‹åˆ†åˆ«æ˜¯åŒ…å†…æ™®é€šç‰©å“ï¼ŒåŒ…å†…è´µé‡ç‰©å“ï¼Œå·²è£…å¤‡ç‰©å“çš„æœ€å¤šæ‰è½æ•°é‡å’Œè¢«é€‰æ‰è½ç‰©å“ï¼Œå…·ä½“æ‰è½æ¦‚ç‡è¿˜éœ€è¦æ ¹æ®ç‰©å“ä¸åŒè€Œå˜åŒ–
     std::vector<Item*> items_to_be_dropped[3];
 
     UINT8 name_color = m_pOwner->GetNameColor();
@@ -2250,7 +2250,7 @@ void CItemBag::LoseItemOnDeath(BOOL is_player)
 
     if (m_dwDeathCountFromFirst >= 50)
     {
-        //Èç¹ûÍæ¼Ò½ÇÉ«ÔÚ10·ÖÖÓÄÚPKËÀÍö³¬¹ı50´Î£¬ÔòÍæ¼ÒÉíÉÏºÍ±³°üÄÚÊÜµ½°×Ãûµ¥±£»¤µÄµÀ¾ßÖĞËæ»úµôÂäÒ»¸ö¡£
+        //å¦‚æœç©å®¶è§’è‰²åœ¨10åˆ†é’Ÿå†…PKæ­»äº¡è¶…è¿‡50æ¬¡ï¼Œåˆ™ç©å®¶èº«ä¸Šå’ŒèƒŒåŒ…å†…å—åˆ°ç™½åå•ä¿æŠ¤çš„é“å…·ä¸­éšæœºæ‰è½ä¸€ä¸ªã€‚
         std::vector<Item*> protected_items;
 
         for (ConIt it = m_cons[CONSLOT_DEFAULT].begin(); it != m_cons[CONSLOT_DEFAULT].end(); it++)
@@ -2289,7 +2289,7 @@ void CItemBag::LoseItemOnDeath(BOOL is_player)
 
     if (m_dwLastDeathTime && m_dwLastDeathTime + pk_drop_data->m_nProtectTime / GAME_FPS >= CGameWorld::GetInstance().GetGameTime())
     {
-        //±£»¤Ê±¼äÄÚÃâµôÂäÒ»´Î
+        //ä¿æŠ¤æ—¶é—´å†…å…æ‰è½ä¸€æ¬¡
         m_dwLastDeathTime = 0;
     }
     else
@@ -2619,7 +2619,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// ÉèÖÃ-ÎäÆ÷ĞÒÔËÊıÖµ (²»ÊÇÔö¼Ó, ÊÇÖ±½Ó¸³Öµ)
+// è®¾ç½®-æ­¦å™¨å¹¸è¿æ•°å€¼ (ä¸æ˜¯å¢åŠ , æ˜¯ç›´æ¥èµ‹å€¼)
 void CItemBag::SetWeaponLuck(INT8 v)
 {
 #ifndef _ROBOT
@@ -2650,7 +2650,7 @@ void CItemBag::SetWeaponLuck(INT8 v)
         }
     }
 
-    // ĞÂÔö´úÂë - ÇåÁã-×£¸£ÓÍ½Úµã
+    // æ–°å¢ä»£ç  - æ¸…é›¶-ç¥ç¦æ²¹èŠ‚ç‚¹
     m_pOwner->ResetLuckRootCount();
     m_pOwner->NotifyRole_LuckRootCount();
 
@@ -2660,7 +2660,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// Ôö¼Ó-ÎäÆ÷ĞÒÔËÊıÖµ (´«Èë¸ºÊı, ÊÇ¿ÛÊıÖµ)
+// å¢åŠ -æ­¦å™¨å¹¸è¿æ•°å€¼ (ä¼ å…¥è´Ÿæ•°, æ˜¯æ‰£æ•°å€¼)
 void CItemBag::IncreaseWeaponLuck(INT8 v)
 {
 #ifndef _ROBOT
@@ -2689,7 +2689,7 @@ void CItemBag::IncreaseWeaponLuck(INT8 v)
         }
     }
 
-    // ĞÂÔö´úÂë - Ôö¼Ó×£¸£ÓÍ½Úµã
+    // æ–°å¢ä»£ç  - å¢åŠ ç¥ç¦æ²¹èŠ‚ç‚¹
     m_pOwner->IncLuckRootCount();
     m_pOwner->NotifyRole_LuckRootCount();
 
@@ -2702,7 +2702,7 @@ Exit0:
 void CItemBag::DecreaseWeaponLuck()
 {
 #ifndef _ROBOT
-    //Èô±»»÷É±Íæ¼ÒµÄPKÖµĞ¡ÓÚ100£¬ÔòÓĞ20%µÄ¼¸ÂÊ½µµÍÒ»µãĞÒÔËÖµ¡£
+    //è‹¥è¢«å‡»æ€ç©å®¶çš„PKå€¼å°äº100ï¼Œåˆ™æœ‰20%çš„å‡ ç‡é™ä½ä¸€ç‚¹å¹¸è¿å€¼ã€‚
     Item* item = GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
     if (item && item->m_iteminfo.m_byLuck > -9 && g_Random(100) < 20)
     {
@@ -3159,7 +3159,7 @@ INT32 CItemBag::AddMoney(INT32 moneytype, INT32 nCount, EMoneyLog reason, UINT32
     }
 
     //redmine #23983
-    //ÓàÁ¦ìÇ£º½ğ±ÒµÄÖ±½Ó½»Ò×£¬°ÚÌ¯»ñµÃ£¬×é¶ÓÅÄÂô»ñµÃ£¬ÓÊ¼ş²»¼ÆÈëÃ¿ÈÕ¼°Ã¿ÖÜ»ñÈ¡ÉÏÏŞ
+    //ä½™åŠ›çƒ¨ï¼šé‡‘å¸çš„ç›´æ¥äº¤æ˜“ï¼Œæ‘†æ‘Šè·å¾—ï¼Œç»„é˜Ÿæ‹å–è·å¾—ï¼Œé‚®ä»¶ä¸è®¡å…¥æ¯æ—¥åŠæ¯å‘¨è·å–ä¸Šé™
     if (!(moneytype == MONEYTYPE_02 &&
         (reason == MONEYLOG_PLAYER_TRADE ||
             reason == MONEYLOG_PLAYER_STALL ||
@@ -3391,7 +3391,7 @@ INT32 CItemBag::BuySlots(UINT8 conslot, UINT8 slotcount)
     LOG_PROCESS_ERROR(slotcount > 0);
     LOG_PROCESS_ERROR(m_con_sizes[conslot] + slotcount <= MAX_CONTAINER_SIZE[conslot]);
 
-    // ÅĞ¶Ï±³°üÀàĞÍ (Ä¬ÈÏ±³°ü/²Ö¿â/×ÊÔ´±³°ü)
+    // åˆ¤æ–­èƒŒåŒ…ç±»å‹ (é»˜è®¤èƒŒåŒ…/ä»“åº“/èµ„æºèƒŒåŒ…)
     switch (conslot)
     {
     default:
@@ -3484,7 +3484,7 @@ INT32 CItemBag::UpgradeSoul(UINT8 targetconslot, UINT8 targetitemslot, UINT8 src
     next_level_soul_data = CDataManager<SOUL_DATA>::GetInstance().GetData(target_soul_data->m_nUpgradeSoulID);
     LOG_PROCESS_ERROR(next_level_soul_data && next_level_soul_data->m_nPriceValue);
 
-    //ÕûÀíÊäÈë£¬ÓĞ¿ÉÄÜ¼¸¸ö²ÄÁÏÊÇ¶ÑÔÚÍ¬Ò»¸ñÀïµÄ
+    //æ•´ç†è¾“å…¥ï¼Œæœ‰å¯èƒ½å‡ ä¸ªææ–™æ˜¯å †åœ¨åŒä¸€æ ¼é‡Œçš„
     memset(src_soul, 0, sizeof(src_soul));
     memset(src_soul_data, 0, sizeof(src_soul_data));
     memset(src_soul_count, 0, sizeof(src_soul_count));
@@ -3526,7 +3526,7 @@ INT32 CItemBag::UpgradeSoul(UINT8 targetconslot, UINT8 targetitemslot, UINT8 src
         LOG_PROCESS_ERROR_RET_CODE(GetFreeSlots(CONSLOT_DEFAULT) > 0, errItemBagFull);
     }
 
-    //É¾²ÄÁÏ
+    //åˆ ææ–™
     for (UINT8 i = 0; i < real_src_count; i++)
     {
         INT32 ret = DeleteItemPos(src_soul[i]->m_iteminfo.m_byConSlot, src_soul[i]->m_iteminfo.m_byItemSlot, src_soul_count[i],
@@ -3534,7 +3534,7 @@ INT32 CItemBag::UpgradeSoul(UINT8 targetconslot, UINT8 targetitemslot, UINT8 src
         LOG_CHECK_ERROR(ret == errSuccess);
     }
 
-    //Ëæ»ú
+    //éšæœº
     upgrade_success = g_Random(next_level_soul_data->m_nPriceValue) < total_price_value;
     if (upgrade_success)
     {
@@ -3555,7 +3555,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// ÏâÇ¶ÁéÊ¯
+// é•¶åµŒçµçŸ³
 INT32 CItemBag::AddSoul(UINT8 equipconslot, UINT8 equipitemslot, UINT8 socketindex, UINT8 soulconslot, UINT8 soulitemslot)
 {
 #ifdef _ROBOT
@@ -3588,24 +3588,24 @@ INT32 CItemBag::AddSoul(UINT8 equipconslot, UINT8 equipitemslot, UINT8 socketind
     LOG_PROCESS_ERROR_RET_CODE(target_equip, errItemNotFound);
     LOG_PROCESS_ERROR_RET_CODE(soul, errItemNotFound);
     LOG_PROCESS_ERROR_RET_CODE(equipconslot != CONSLOT_EQUIPPED && equipconslot != CONSLOT_HERO_EQUIPPED, errItemEquipped);
-    LOG_PROCESS_ERROR(socketindex < MAX_SOCKET_COUNT);//×î¶à²å3¸ö
-    LOG_PROCESS_ERROR_RET_CODE(soul->m_pTemplate->m_byType == ITEMTYPE_SOUL, errItemCannotAddSoul);//±ØĞëÓÃÁé»êÀ´²å
-    LOG_PROCESS_ERROR_RET_CODE(target_equip->m_pTemplate->m_byType == ITEMTYPE_EQUIP, errItemCannotAddSoul);//Ö»ÄÜ²åÔÚ×°±¸ÉÏ
+    LOG_PROCESS_ERROR(socketindex < MAX_SOCKET_COUNT);//æœ€å¤šæ’3ä¸ª
+    LOG_PROCESS_ERROR_RET_CODE(soul->m_pTemplate->m_byType == ITEMTYPE_SOUL, errItemCannotAddSoul);//å¿…é¡»ç”¨çµé­‚æ¥æ’
+    LOG_PROCESS_ERROR_RET_CODE(target_equip->m_pTemplate->m_byType == ITEMTYPE_EQUIP, errItemCannotAddSoul);//åªèƒ½æ’åœ¨è£…å¤‡ä¸Š
 
     target_socket_type = target_equip->m_iteminfo.GetSocketType(socketindex);
-    LOG_PROCESS_ERROR(target_socket_type != SOCKET_NONE);//ÓĞ¿×²ÅÄÜ²å
+    LOG_PROCESS_ERROR(target_socket_type != SOCKET_NONE);//æœ‰å­”æ‰èƒ½æ’
     LOG_PROCESS_ERROR_RET_CODE(target_equip->m_iteminfo.m_nSoulID[socketindex] == 0, errItemAlreadySocketed);
 
     soul_data = CDataManager<SOUL_DATA>::GetInstance().GetData(soul->m_iteminfo.m_nTemplateID);
     LOG_PROCESS_ERROR(soul_data);
     if (target_socket_type != SOCKET_COLORFUL)
     {
-        //Èç¹û²»ÊÇ²ÊÉ«¿×£¬ÔòÑÕÉ«±ØĞëÆ¥Åä
+        //å¦‚æœä¸æ˜¯å½©è‰²å­”ï¼Œåˆ™é¢œè‰²å¿…é¡»åŒ¹é…
         LOG_PROCESS_ERROR_RET_CODE(target_socket_type == soul_data->m_nMatchSocket, errItemSocketNotMatch);
     }
-    //LOG_PROCESS_ERROR(target_equip->m_pTemplate->m_byRequireLevel >= soul_data->m_nSoulLevel);//Áé»êÓĞµÈ¼¶ĞèÇó£¬Ğè´óÓÚ×°±¸ĞèÇóµÈ¼¶
+    //LOG_PROCESS_ERROR(target_equip->m_pTemplate->m_byRequireLevel >= soul_data->m_nSoulLevel);//çµé­‚æœ‰ç­‰çº§éœ€æ±‚ï¼Œéœ€å¤§äºè£…å¤‡éœ€æ±‚ç­‰çº§
 
-    //Âú×ãÁËËùÓĞÌõ¼ş£¬ÄÇ¾Í²å½øÈ¥°É
+    //æ»¡è¶³äº†æ‰€æœ‰æ¡ä»¶ï¼Œé‚£å°±æ’è¿›å»å§
     DeleteItemPos(soulconslot, soulitemslot, 1, ITEMLOG_INSERT_SOUL, 0);
 
     target_equip->m_iteminfo.m_nSoulID[socketindex] = soul_data->m_nTemplateID;
@@ -3632,7 +3632,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// ²ğ³ıÁéÊ¯
+// æ‹†é™¤çµçŸ³
 INT32 CItemBag::RemoveSoul(UINT8 conslot, UINT8 itemslot, UINT8 socketindex)
 {
 #ifdef _ROBOT
@@ -3696,7 +3696,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// ÆÕÍ¨ÃúÎÄÏ´Á·
+// æ™®é€šé“­æ–‡æ´—ç»ƒ
 INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
 {
 #ifdef _ROBOT
@@ -3738,7 +3738,7 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
         LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_GUILD) >= GUILD_RUNE_COST, errGuildNotEnoughContribution);
     }
 
-    // »ñÈ¡½ÚµãÊıÖµ
+    // è·å–èŠ‚ç‚¹æ•°å€¼
     if (itemid == RUNE_ITEMID_WARRIOR_1)
         nRuneRootCount = m_pOwner->GetRuneRootCount(rrrNormal, clsWarrior);
     else if (itemid == RUNE_ITEMID_MAGE_1)
@@ -3746,7 +3746,7 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
     else if (itemid == RUNE_ITEMID_TAOIST_1)
         nRuneRootCount = m_pOwner->GetRuneRootCount(rrrNormal, clsTaoist);
 
-    // ´ïµ½½Úµã 2500
+    // è¾¾åˆ°èŠ‚ç‚¹ 2500
     if (nRuneRootCount >= RUNE_ROOT_NORMAL)
     {
         if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
@@ -3754,17 +3754,17 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
 
         if (itemid == RUNE_ITEMID_WARRIOR_1)
         {
-            nRuneID = RUNE_ROOT_NORMAL_Warrior;  // Õ¶ÔÂÓ¡
+            nRuneID = RUNE_ROOT_NORMAL_Warrior;  // æ–©æœˆå°
             m_pOwner->IncRuneRootCount(rrrNormal, clsWarrior);
         }
         else if (itemid == RUNE_ITEMID_MAGE_1)
         {
-            nRuneID = RUNE_ROOT_NORMAL_Mage;  // À×ÖäÓ¡
+            nRuneID = RUNE_ROOT_NORMAL_Mage;  // é›·å’’å°
             m_pOwner->IncRuneRootCount(rrrNormal, clsMage);
         }
         else if (itemid == RUNE_ITEMID_TAOIST_1)
         {
-            nRuneID = RUNE_ROOT_NORMAL_Taoist;  // Ê¥ÊŞÓ¡
+            nRuneID = RUNE_ROOT_NORMAL_Taoist;  // åœ£å…½å°
             m_pOwner->IncRuneRootCount(rrrNormal, clsTaoist);
         }
         else
@@ -3772,23 +3772,23 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
             LOG_PROCESS_ERROR(FALSE);
         }
 
-        // ¹Ì¶¨¿¨²Û1
+        // å›ºå®šå¡æ§½1
         weapon->m_iteminfo.m_wRune[0] = nRuneID;
 
         if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
             weapon->OnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
     }
-    // Ã»µ½½Úµã
+    // æ²¡åˆ°èŠ‚ç‚¹
     else
     {
-        // ÆÕÍ¨Ï´Á·
+        // æ™®é€šæ´—ç»ƒ
         if (itemid == RUNE_ITEMID_WARRIOR_1 || itemid == RUNE_ITEMID_MAGE_1 || itemid == RUNE_ITEMID_TAOIST_1)
         {
-            // ÍÑ×°±¸
+            // è„±è£…å¤‡
             if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
                 weapon->OnUnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
 
-            // ÈıÖ°ÒµÃúÎÄ
+            // ä¸‰èŒä¸šé“­æ–‡
             if (itemid == RUNE_ITEMID_WARRIOR_1)
             {
                 nRuneID = CItemMgr::GetInstance().GenerateRandomRuneData(m_pOwner->GetServerGroup(), weapon, clsWarrior, m_pOwner->GetLevel(), runegroup);
@@ -3805,11 +3805,11 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
                 m_pOwner->IncRuneRootCount(rrrNormal, clsTaoist);
             }
 
-            // ´©×°±¸
+            // ç©¿è£…å¤‡
             if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
                 weapon->OnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
         }
-        // ĞÂÊÖ½Ì³Ì, ¹Ì¶¨ÃúÎÄ
+        // æ–°æ‰‹æ•™ç¨‹, å›ºå®šé“­æ–‡
         else if (itemid == RUNE_ITEMID_WARRIOR_2 || itemid == RUNE_ITEMID_MAGE_2 || itemid == RUNE_ITEMID_TAOIST_2)
         {
             if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
@@ -3833,24 +3833,24 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
         }
     }
 
-    // É¾³ıÎïÆ·
+    // åˆ é™¤ç‰©å“
     DeleteItemId(itemid, 1, ITEMLOG_RUNE, FALSE, 0);
 
-    // ¿ÛÇ®
+    // æ‰£é’±
     SubMoney(MONEYTYPE_02, RUNE_ITEM_COST, MONEYLOG_RUNE, 0);
     weapon->m_iteminfo.m_dwCostMoney += RUNE_ITEM_COST;
 
-    // ÅĞ¶Ï µ±Ç°³¡¾°ÊÇ²»ÊÇĞĞ»áµØÍ¼
+    // åˆ¤æ–­ å½“å‰åœºæ™¯æ˜¯ä¸æ˜¯è¡Œä¼šåœ°å›¾
     if (m_pOwner->GetScene()->GetSceneID() == m_pOwner->GetGuildID())
     {
         SubMoney(MONEYTYPE_GUILD, GUILD_RUNE_COST, MONEYLOG_INVALID, 0);
     }
 
-    // ¸ù¾İÃúÎÄID, »ñÈ¡ÃúÎÄÄ£°å
+    // æ ¹æ®é“­æ–‡ID, è·å–é“­æ–‡æ¨¡æ¿
     pcRuneData = CDataManager<RUNE_DATA>::GetInstance().GetData(nRuneID);
     if (pcRuneData)
     {
-        // ·¢¹«¸æ
+        // å‘å…¬å‘Š
         if (pcRuneData->nBroadCast)
         {
             char szBroadcast[1024];
@@ -3868,15 +3868,15 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
             m_pOwner->Say(cctGroup, cltTvShow, szBroadcast);
         }
 
-        // Í¬²½°ÙÏşÉú
+        // åŒæ­¥ç™¾æ™“ç”Ÿ
         if (pcRuneData->nHandbookType != 0)
             m_pOwner->GetAchievementList().ActivateHandbook(pcRuneData->nHandbookType, pcRuneData->nHandbookIndex);
     }
 
-    // ·¢°üÍ¬²½×°±¸Êı¾İ
+    // å‘åŒ…åŒæ­¥è£…å¤‡æ•°æ®
     CCliMessageHandler::GetInstance().DoSendItemChange(m_pOwner, weapon);
 
-    // ¼ÇÂ¼ÈÕÖ¾ - ×°±¸Ï´Á·
+    // è®°å½•æ—¥å¿— - è£…å¤‡æ´—ç»ƒ
     if (weapon->m_pTemplate->m_byLog)
     {
         CCliMessageHandler::GetInstance().DoDLChangeItem(
@@ -3886,10 +3886,10 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
             weapon->m_iteminfo);
     }
 
-    // ·¢°üÍ¬²½Ï´Á·
+    // å‘åŒ…åŒæ­¥æ´—ç»ƒ
     CCliMessageHandler::GetInstance().DoSendRuneItem(m_pOwner, errSuccess);
 
-    // ¼ÇÂ¼ÈÕÖ¾ - ÃúÎÄÎïÆ·¸Ä±ä
+    // è®°å½•æ—¥å¿— - é“­æ–‡ç‰©å“æ”¹å˜
     CCliMessageHandler::GetInstance().DoDLRuneItem(
         m_pOwner->GetObjID(),
         m_pOwner->GetServerGroup(),
@@ -3898,7 +3898,7 @@ INT32 CItemBag::RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid)
         itemid,
         nRuneID);
 
-    // ¸øÍæ¼Ò·¢ËÍÍ¨Öª½ÚµãĞÅÏ¢
+    // ç»™ç©å®¶å‘é€é€šçŸ¥èŠ‚ç‚¹ä¿¡æ¯
     {
         if (itemid == RUNE_ITEMID_WARRIOR_1)
         {
@@ -3922,7 +3922,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// ¸ß¼¶ÃúÎÄÏ´Á·
+// é«˜çº§é“­æ–‡æ´—ç»ƒ
 INT32 CItemBag::RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid)
 {
 #ifdef _ROBOT
@@ -3943,18 +3943,18 @@ INT32 CItemBag::RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid)
     LOG_PROCESS_ERROR_RET_CODE(weapon, errItemNotFound);
     LOG_PROCESS_ERROR_RET_CODE(weapon->m_pTemplate->m_byType == ITEMTYPE_EQUIP, errItemRuneError);
     LOG_PROCESS_ERROR_RET_CODE(weapon->m_pTemplate->m_bySubType == ITEMSUBTYPE_EQUIP_WEAPON, errItemRuneError);
-    LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_02) >= RUNE_ITEM_COST_HIGH, errItemNotEnoughMoneytype02);  // ¸ß¼¶Ï´Á· 10Íò½ğ±Ò
+    LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_02) >= RUNE_ITEM_COST_HIGH, errItemNotEnoughMoneytype02);  // é«˜çº§æ´—ç»ƒ 10ä¸‡é‡‘å¸
     LOG_PROCESS_ERROR_RET_CODE(GetItemCount(itemid) >= 1, errItemRuneNotEnoughMaterial);
     if (m_pOwner->GetScene()->GetSceneID() == m_pOwner->GetGuildID())
     {
         LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_GUILD) >= GUILD_RUNE_COST, errGuildNotEnoughContribution);
     }
 
-    // Á½¸ö¿¨²Û, Èç¹ûµÚ¶ş¿¨²ÛÎª0, ÄÇ¾ÍÊÇÃ»ÓĞÃúÎÄ, ¾Í²»ÄÜÏ´
+    // ä¸¤ä¸ªå¡æ§½, å¦‚æœç¬¬äºŒå¡æ§½ä¸º0, é‚£å°±æ˜¯æ²¡æœ‰é“­æ–‡, å°±ä¸èƒ½æ´—
     if (weapon->m_iteminfo.m_wRune[1] == 0)
         return nResult;
 
-    // »ñÈ¡½ÚµãÊıÖµ
+    // è·å–èŠ‚ç‚¹æ•°å€¼
     if (itemid == RUNE_ITEMID_WARRIOR_1)
         nRuneRootCount = m_pOwner->GetRuneRootCount(rrrAdvanced, clsWarrior);
     else if (itemid == RUNE_ITEMID_MAGE_1)
@@ -3962,7 +3962,7 @@ INT32 CItemBag::RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid)
     else if (itemid == RUNE_ITEMID_TAOIST_1)
         nRuneRootCount = m_pOwner->GetRuneRootCount(rrrAdvanced, clsTaoist);
 
-    // ½Úµã´ïµ½ 500
+    // èŠ‚ç‚¹è¾¾åˆ° 500
     if (nRuneRootCount >= RUNE_ROOT_ADVANCED)
     {
         if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
@@ -3970,17 +3970,17 @@ INT32 CItemBag::RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid)
 
         if (itemid == RUNE_ITEMID_WARRIOR_1)
         {
-            nRuneID = RUNE_ROOT_ADVANCED_Warrior;  // ÉñÇûÓ¡
+            nRuneID = RUNE_ROOT_ADVANCED_Warrior;  // ç¥èº¯å°
             m_pOwner->IncRuneRootCount(rrrAdvanced, clsWarrior);
         }
         else if (itemid == RUNE_ITEMID_MAGE_1)
         {
-            nRuneID = RUNE_ROOT_ADVANCED_Mage;  // »ğÓêÓ¡
+            nRuneID = RUNE_ROOT_ADVANCED_Mage;  // ç«é›¨å°
             m_pOwner->IncRuneRootCount(rrrAdvanced, clsMage);
         }
         else if (itemid == RUNE_ITEMID_TAOIST_1)
         {
-            nRuneID = RUNE_ROOT_ADVANCED_Taoist;  // ¶á»êÓ¡
+            nRuneID = RUNE_ROOT_ADVANCED_Taoist;  // å¤ºé­‚å°
             m_pOwner->IncRuneRootCount(rrrAdvanced, clsTaoist);
         }
         else
@@ -3988,13 +3988,13 @@ INT32 CItemBag::RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid)
             LOG_PROCESS_ERROR(FALSE);
         }
 
-        // ¹Ì¶¨¿¨²Û2
+        // å›ºå®šå¡æ§½2
         weapon->m_iteminfo.m_wRune[1] = nRuneID;
 
         if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
             weapon->OnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
     }
-    // Ã»µ½½Úµã
+    // æ²¡åˆ°èŠ‚ç‚¹
     else
     {
         if (itemid == RUNE_ITEMID_WARRIOR_1 || itemid == RUNE_ITEMID_MAGE_1 || itemid == RUNE_ITEMID_TAOIST_1)
@@ -4021,29 +4021,29 @@ INT32 CItemBag::RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid)
         }
     }
 
-    // É¾³ıÎïÆ·
+    // åˆ é™¤ç‰©å“
     DeleteItemId(itemid, 1, ITEMLOG_RUNE, FALSE, 0);
 
-    // ¿ÛÇ®
+    // æ‰£é’±
     SubMoney(MONEYTYPE_02, RUNE_ITEM_COST_HIGH, MONEYLOG_RUNE, 0);
     weapon->m_iteminfo.m_dwCostMoney += RUNE_ITEM_COST_HIGH;
 
-    // ÅĞ¶Ï µ±Ç°³¡¾°ÊÇ²»ÊÇĞĞ»áµØÍ¼
+    // åˆ¤æ–­ å½“å‰åœºæ™¯æ˜¯ä¸æ˜¯è¡Œä¼šåœ°å›¾
     if (m_pOwner->GetScene()->GetSceneID() == m_pOwner->GetGuildID())
     {
         SubMoney(MONEYTYPE_GUILD, GUILD_RUNE_COST, MONEYLOG_INVALID, 0);
     }
 
-    // ¸ß¼¶Ï´Á·½á¹û, ±£´æµ½ÁÙÊ±×Ö¶ÎÉÏ
+    // é«˜çº§æ´—ç»ƒç»“æœ, ä¿å­˜åˆ°ä¸´æ—¶å­—æ®µä¸Š
     m_pOwner->SetRuneItemHighResult(nRuneID);
 
-    // ·¢°üÍ¬²½ - ¸ß¼¶Ï´Á·½á¹û
+    // å‘åŒ…åŒæ­¥ - é«˜çº§æ´—ç»ƒç»“æœ
     CCliMessageHandler::GetInstance().DoSendRuneItemAdvance(m_pOwner, errSuccess, weapon->m_iteminfo.m_wRune[0], nRuneID);
 
-    // ¼ÇÂ¼ÈÕÖ¾
+    // è®°å½•æ—¥å¿—
     if (weapon->m_pTemplate->m_byLog)
     {
-        // ÃúÎÄÎïÆ·¸Ä±ä
+        // é“­æ–‡ç‰©å“æ”¹å˜
         CCliMessageHandler::GetInstance().DoDLRuneItem(
             m_pOwner->GetObjID(),
             m_pOwner->GetServerGroup(),
@@ -4053,7 +4053,7 @@ INT32 CItemBag::RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid)
             nRuneID);
     }
 
-    // ¸øÍæ¼Ò·¢ËÍÍ¨Öª½ÚµãĞÅÏ¢
+    // ç»™ç©å®¶å‘é€é€šçŸ¥èŠ‚ç‚¹ä¿¡æ¯
     {
         if (itemid == RUNE_ITEMID_WARRIOR_1)
         {
@@ -4077,7 +4077,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// È·ÈÏ¸ß¼¶Ï´Á·
+// ç¡®è®¤é«˜çº§æ´—ç»ƒ
 INT32 CItemBag::RuneItemConfirm(UINT8 conslot, UINT8 itemslot)
 {
     INT32 nResult = errItemUnknown;
@@ -4093,30 +4093,30 @@ INT32 CItemBag::RuneItemConfirm(UINT8 conslot, UINT8 itemslot)
 
     equip_data = (const EQUIP_DATA*)weapon->m_pTemplate;
 
-    // ÍÑ×°±¸
+    // è„±è£…å¤‡
     if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
         weapon->OnUnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
 
-    // ¸²¸ÇÃúÎÄÊôĞÔ - ¹Ì¶¨ĞŞ¸ÄµÚ¶ş¿¨²Û
+    // è¦†ç›–é“­æ–‡å±æ€§ - å›ºå®šä¿®æ”¹ç¬¬äºŒå¡æ§½
     if (weapon->m_iteminfo.m_wRune[1] || (weapon->m_iteminfo.m_dwCostMoney >= equip_data->m_dwSecondRuneCostMax))
     {
         weapon->m_iteminfo.m_wRune[1] = m_pOwner->GetRuneItemHighResult();
     }
 
-    // ´©×°±¸
+    // ç©¿è£…å¤‡
     if (conslot == CONSLOT_EQUIPPED && itemslot == NES_MAIN_HAND && weapon->m_iteminfo.m_nCurDur > 0)
         weapon->OnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
 
-    // ·¢°üÍ¬²½ - ×°±¸Êı¾İ
+    // å‘åŒ…åŒæ­¥ - è£…å¤‡æ•°æ®
     CCliMessageHandler::GetInstance().DoSendItemChange(m_pOwner, weapon);
 
-    // ·¢°üÍ¬²½ - È·ÈÏÏ´Á·
+    // å‘åŒ…åŒæ­¥ - ç¡®è®¤æ´—ç»ƒ
     CCliMessageHandler::GetInstance().DoSendRuneItemConfirm(m_pOwner, errSuccess);
 
-    // ¼ÇÂ¼ÈÕÖ¾
+    // è®°å½•æ—¥å¿—
     if (weapon->m_pTemplate->m_byLog)
     {
-        // ×°±¸Êı¾İ, ·¢Éú¸Ä±ä
+        // è£…å¤‡æ•°æ®, å‘ç”Ÿæ”¹å˜
         CCliMessageHandler::GetInstance().DoDLChangeItem(
             m_pOwner->GetServerGroup(),
             m_pOwner->GetObjID(),
@@ -4130,52 +4130,52 @@ Exit0:
     return nResult;
 }
 
-// ²âÊÔÃúÎÄ - ²ÎÊı ÃúÎÄID (ÀıÈç: 10314)
+// æµ‹è¯•é“­æ–‡ - å‚æ•° é“­æ–‡ID (ä¾‹å¦‚: 10314)
 INT32 CItemBag::RuneTest(INT32 nRuneID)
 {
     INT32 nResult = errItemUnknown;
 
-    // Ä¬ÈÏµ±Ç°Åå´÷µÄÎäÆ÷
+    // é»˜è®¤å½“å‰ä½©æˆ´çš„æ­¦å™¨
     Item* weapon = GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
     LOG_PROCESS_ERROR_RET_CODE(weapon, errItemNotFound);
 
-    // ÒÆ³ıµ±Ç°×°±¸ÊôĞÔ
+    // ç§»é™¤å½“å‰è£…å¤‡å±æ€§
     weapon->OnUnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
 
-    // ÃúÎÄ¸³Öµ
+    // é“­æ–‡èµ‹å€¼
     weapon->m_iteminfo.m_wRune[0] = nRuneID;
 
-    // Ìí¼Óµ±Ç°×°±¸ÊôĞÔ
+    // æ·»åŠ å½“å‰è£…å¤‡å±æ€§
     weapon->OnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
 
-    // ·¢°üÍ¬²½×°±¸Êı¾İ
+    // å‘åŒ…åŒæ­¥è£…å¤‡æ•°æ®
     CCliMessageHandler::GetInstance().DoSendItemChange(m_pOwner, weapon);
 
-    // ·¢°üÍ¬²½Ï´Á·
+    // å‘åŒ…åŒæ­¥æ´—ç»ƒ
     CCliMessageHandler::GetInstance().DoSendRuneItem(m_pOwner, errSuccess);
 
 Exit0:
     return nResult;
 }
 
-// ´ò¿×
+// æ‰“å­”
 INT32 CItemBag::EquipAddSocket(INT32 nIndex)
 {
-    INT32 nItemID = 91115;  // 91115-´ò¿×Ê¯
+    INT32 nItemID = 91115;  // 91115-æ‰“å­”çŸ³
     Item* pEquip = NULL;
     INT32 nEquipSlot = -1;
     const EQUIP_DATA* equip_data = NULL;
 
     if (m_pOwner->IsDead() == TRUE)
-        return errItemRoleDead;  // ½ÇÉ«´¦ÓÚËÀÍö×´Ì¬ÖĞ
+        return errItemRoleDead;  // è§’è‰²å¤„äºæ­»äº¡çŠ¶æ€ä¸­
 
     if (m_pOwner->GetMoveState() == CMS_STALL)
-        return errItemStall;  // µ±Ç°ÕıÔÚ°ÚÌ¯ÖĞ
+        return errItemStall;  // å½“å‰æ­£åœ¨æ‘†æ‘Šä¸­
 
     if (m_pOwner->GetTrade()->IsTrading())
-        return errItemTrading;  // µ±Ç°ÕıÔÚ½»Ò×ÖĞ
+        return errItemTrading;  // å½“å‰æ­£åœ¨äº¤æ˜“ä¸­
 
-    // 11-Í·¿ø, 12-ÒÂ·ş, 13-Ñü´ø, 14-Ğ¬×Ó, 15-»¤¼ç, 16-»¤Íó, 17-Åû·ç
+    // 11-å¤´ç›”, 12-è¡£æœ, 13-è…°å¸¦, 14-é‹å­, 15-æŠ¤è‚©, 16-æŠ¤è…•, 17-æŠ«é£
     switch (nIndex)
     {
     case 11: nEquipSlot = NES_HEAD;     break;
@@ -4189,13 +4189,13 @@ INT32 CItemBag::EquipAddSocket(INT32 nIndex)
 
     pEquip = GetItem(CONSLOT_EQUIPPED, nEquipSlot);
     if (pEquip == NULL)
-        return asetEquipIsNull;  // ×°±¸²»´æÔÚ
+        return asetEquipIsNull;  // è£…å¤‡ä¸å­˜åœ¨
 
     equip_data = (const EQUIP_DATA*)pEquip->m_pTemplate;
     if (equip_data->m_byCanSocket != 1)
-        return asetEquipCantSocket;  // ¸Ã×°±¸²»ÄÜ´ò¿×
+        return asetEquipCantSocket;  // è¯¥è£…å¤‡ä¸èƒ½æ‰“å­”
 
-    // »ñÈ¡¸Ã×°±¸µ±Ç°¿×Î»ÊıÁ¿
+    // è·å–è¯¥è£…å¤‡å½“å‰å­”ä½æ•°é‡
     INT32 nSocketCount = 0;
     UINT8 bySocket_0 = (pEquip->m_iteminfo.m_dwSocketCombination >> 0) & 0xFF;
     UINT8 bySocket_1 = (pEquip->m_iteminfo.m_dwSocketCombination >> 8) & 0xFF;
@@ -4204,43 +4204,43 @@ INT32 CItemBag::EquipAddSocket(INT32 nIndex)
     if (bySocket_1 != 0)
         nSocketCount += 1;
 
-    // ÅĞ¶Ï¸Ã×°±¸×î´ó¿×Î»ÊıÁ¿
+    // åˆ¤æ–­è¯¥è£…å¤‡æœ€å¤§å­”ä½æ•°é‡
     if (nSocketCount >= equip_data->m_bySocketCountMaxNew)
-        return asetEquipCantNotBeAddSocket;  // ¸Ã×°±¸ÎŞ·¨ÔÙ¼ÌĞø´ò¿×
+        return asetEquipCantNotBeAddSocket;  // è¯¥è£…å¤‡æ— æ³•å†ç»§ç»­æ‰“å­”
 
-    // ÅĞ¶Ï ´òµÚ¼¸¸ö¿×
+    // åˆ¤æ–­ æ‰“ç¬¬å‡ ä¸ªå­”
     INT32 nSocketSlot = 0;
     if (bySocket_0 == 0 && bySocket_1 == 0)
         nSocketSlot = 0;
     if (bySocket_0 != 0 && bySocket_1 == 0)
         nSocketSlot = 1;
     if (nSocketSlot != 0 && nSocketSlot != 1)
-        return asetEquipAddSocketSlotUnknown;  // ´ò¿×Î»ÖÃÎ´Öª´íÎó
+        return asetEquipAddSocketSlotUnknown;  // æ‰“å­”ä½ç½®æœªçŸ¥é”™è¯¯
 
-    // ²éÕÒ¶ÔÓ¦µÄ²ÄÁÏÊıÁ¿
+    // æŸ¥æ‰¾å¯¹åº”çš„ææ–™æ•°é‡
     INT32 nNeedItemCount = 0;
     if (nSocketSlot == 0)
         nNeedItemCount = equip_data->m_byFirstSocketCost;
     if (nSocketSlot == 1)
         nNeedItemCount = equip_data->m_bySecondSocketCost;
     if (nNeedItemCount == 0)
-        return asetEquipNeedItemCount;  // »ñÈ¡´ò¿×²ÄÁÏÏûºÄÊıÁ¿´íÎó
+        return asetEquipNeedItemCount;  // è·å–æ‰“å­”ææ–™æ¶ˆè€—æ•°é‡é”™è¯¯
 
-    // »ñÈ¡±³°üÀïµ±Ç°²ÄÁÏÊıÁ¿
+    // è·å–èƒŒåŒ…é‡Œå½“å‰ææ–™æ•°é‡
     INT32 nNowItemCount = GetItemCount(nItemID);
     if (nNowItemCount < nNeedItemCount)
-        return asetEquipItemNotEnough;  // ´ò¿×²ÄÁÏÊıÁ¿²»¹»
+        return asetEquipItemNotEnough;  // æ‰“å­”ææ–™æ•°é‡ä¸å¤Ÿ
 
-    // É¾³ıÎïÆ·, ¿Û³ı²ÄÁÏ
+    // åˆ é™¤ç‰©å“, æ‰£é™¤ææ–™
     DeleteItemId(nItemID, nNeedItemCount, ITEMLOG_EQUIP_ADD_SOCKET, FALSE, 0);
 
-    // ĞŞ¸Ä¿×Î»ÑÕÉ«, ´ò¿×Ä¬ÈÏ¶¼ÊÇ»ÆÉ«
+    // ä¿®æ”¹å­”ä½é¢œè‰², æ‰“å­”é»˜è®¤éƒ½æ˜¯é»„è‰²
     pEquip->m_iteminfo.m_dwSocketCombination |= SOCKET_YELLOW << (nSocketSlot * 8);
 
-    // ·¢°üÍ¬²½×°±¸Êı¾İ
+    // å‘åŒ…åŒæ­¥è£…å¤‡æ•°æ®
     CCliMessageHandler::GetInstance().DoSendItemChange(m_pOwner, pEquip);
 
-    // ¼ÇÂ¼ÈÕÖ¾ - ×°±¸Ï´Á·
+    // è®°å½•æ—¥å¿— - è£…å¤‡æ´—ç»ƒ
     if (pEquip->m_pTemplate->m_byLog)
     {
         CCliMessageHandler::GetInstance().DoDLChangeItem(
@@ -4249,7 +4249,7 @@ INT32 CItemBag::EquipAddSocket(INT32 nIndex)
             ITEMLOG_EQUIP_ADD_SOCKET,
             pEquip->m_iteminfo);
 
-        // ¼ÇÂ¼ÈÕÖ¾ - ÎïÆ·¿×Î»¸Ä±ä (ºóÆÚ·ÂÕÕÕâ¸öº¯Êı²ÎÊı, ĞÂÔö¼ÓÒ»¸öÈÕÖ¾º¯Êı)
+        // è®°å½•æ—¥å¿— - ç‰©å“å­”ä½æ”¹å˜ (åæœŸä»¿ç…§è¿™ä¸ªå‡½æ•°å‚æ•°, æ–°å¢åŠ ä¸€ä¸ªæ—¥å¿—å‡½æ•°)
         //CCliMessageHandler::GetInstance().DoDLRuneItem(
         //    m_pOwner->GetObjID(),
         //    m_pOwner->GetServerGroup(),
@@ -4262,31 +4262,31 @@ INT32 CItemBag::EquipAddSocket(INT32 nIndex)
     return errSuccess;
 }
 
-// µñÉ«
+// é›•è‰²
 INT32 CItemBag::SetSocketColor(INT32 nIndex, INT32 nTargetColor)
 {
-    INT32 nItemID = 91116;  // 91116-µñÉ«Ê¯
+    INT32 nItemID = 91116;  // 91116-é›•è‰²çŸ³
     Item* pEquip = NULL;
     INT32 nEquipSlot = -1;
     const EQUIP_DATA* equip_data = NULL;
 
-    INT32 nCheckSlotColor = SOCKET_NONE;  // ÅĞ¶ÏÁíÒ»¸ö¿×Î»
-    INT32 nTargetSlot = -1;  // Ä¿±ê¿×Î»ÏÂ±ê
+    INT32 nCheckSlotColor = SOCKET_NONE;  // åˆ¤æ–­å¦ä¸€ä¸ªå­”ä½
+    INT32 nTargetSlot = -1;  // ç›®æ ‡å­”ä½ä¸‹æ ‡
 
     if (nTargetColor < SOCKET_RED || nTargetColor > SOCKET_PURPLE)
-        return ssctEquipSetColorError;  // µñÉ«ÑÕÉ«´íÎó
+        return ssctEquipSetColorError;  // é›•è‰²é¢œè‰²é”™è¯¯
 
     if (m_pOwner->IsDead() == TRUE)
-        return errItemRoleDead;  // ½ÇÉ«´¦ÓÚËÀÍö×´Ì¬ÖĞ
+        return errItemRoleDead;  // è§’è‰²å¤„äºæ­»äº¡çŠ¶æ€ä¸­
 
     if (m_pOwner->GetMoveState() == CMS_STALL)
-        return errItemStall;  // µ±Ç°ÕıÔÚ°ÚÌ¯ÖĞ
+        return errItemStall;  // å½“å‰æ­£åœ¨æ‘†æ‘Šä¸­
 
     if (m_pOwner->GetTrade()->IsTrading())
-        return errItemTrading;  // µ±Ç°ÕıÔÚ½»Ò×ÖĞ
+        return errItemTrading;  // å½“å‰æ­£åœ¨äº¤æ˜“ä¸­
 
-    // [µÚ1¿×Î»] => 21-Í·¿ø, 22-ÒÂ·ş, 23-Ñü´ø, 24-Ğ¬×Ó, 25-»¤¼ç, 26-»¤Íó, 27-Åû·ç
-    // [µÚ2¿×Î»] => 31-Í·¿ø, 32-ÒÂ·ş, 33-Ñü´ø, 34-Ğ¬×Ó, 35-»¤¼ç, 36-»¤Íó, 37-Åû·ç
+    // [ç¬¬1å­”ä½] => 21-å¤´ç›”, 22-è¡£æœ, 23-è…°å¸¦, 24-é‹å­, 25-æŠ¤è‚©, 26-æŠ¤è…•, 27-æŠ«é£
+    // [ç¬¬2å­”ä½] => 31-å¤´ç›”, 32-è¡£æœ, 33-è…°å¸¦, 34-é‹å­, 35-æŠ¤è‚©, 36-æŠ¤è…•, 37-æŠ«é£
     switch (nIndex)
     {
     case 21:
@@ -4321,44 +4321,44 @@ INT32 CItemBag::SetSocketColor(INT32 nIndex, INT32 nTargetColor)
 
     pEquip = GetItem(CONSLOT_EQUIPPED, nEquipSlot);
     if (pEquip == NULL)
-        return ssctEquipIsNull;  // ×°±¸²»´æÔÚ
+        return ssctEquipIsNull;  // è£…å¤‡ä¸å­˜åœ¨
 
     equip_data = (const EQUIP_DATA*)pEquip->m_pTemplate;
     if (equip_data->m_byCanSocket != 1)
-        return ssctEquipCantSetColor;  // ×°±¸²»ÄÜµñÉ«
+        return ssctEquipCantSetColor;  // è£…å¤‡ä¸èƒ½é›•è‰²
 
     UINT8 bySocketColor_0 = (pEquip->m_iteminfo.m_dwSocketCombination >> 0) & 0xFF;
     UINT8 bySocketColor_1 = (pEquip->m_iteminfo.m_dwSocketCombination >> 8) & 0xFF;
 
-    // »ñÈ¡ ÏûºÄ²ÄÁÏÊıÁ¿
+    // è·å– æ¶ˆè€—ææ–™æ•°é‡
     INT32 nNeedItemCount = 0;
 
-    // ¸øµÚ1¿×Î»µñÉ«
+    // ç»™ç¬¬1å­”ä½é›•è‰²
     if (nIndex >= 21 && nIndex <= 27)
     {
         if (bySocketColor_0 == SOCKET_NONE)
-            return ssctEquipNoSocket1;  // Ä¿±ê¿×Î»1²»´æÔÚ
+            return ssctEquipNoSocket1;  // ç›®æ ‡å­”ä½1ä¸å­˜åœ¨
 
-        // ÅĞ¶Ï µÚ2¿×Î»
+        // åˆ¤æ–­ ç¬¬2å­”ä½
         if (bySocketColor_1 == SOCKET_NONE)
-            nCheckSlotColor = SOCKET_YELLOW;    // °´»ÆÉ«ÅĞ¶Ï
+            nCheckSlotColor = SOCKET_YELLOW;    // æŒ‰é»„è‰²åˆ¤æ–­
         else
-            nCheckSlotColor = bySocketColor_1;  // µÚ2¿×Î» ´æÔÚ
+            nCheckSlotColor = bySocketColor_1;  // ç¬¬2å­”ä½ å­˜åœ¨
 
         nTargetSlot = 0;
 
         nNeedItemCount = GetSetSocketColorCost(nTargetColor, nCheckSlotColor);
     }
-    // ¸øµÚ2¿×Î»µñÉ«
+    // ç»™ç¬¬2å­”ä½é›•è‰²
     else if (nIndex >= 31 && nIndex <= 37)
     {
         if (bySocketColor_0 == SOCKET_NONE)
-            return ssctEquipNoSocket1;  // Ä¿±ê¿×Î»1²»´æÔÚ
+            return ssctEquipNoSocket1;  // ç›®æ ‡å­”ä½1ä¸å­˜åœ¨
 
         if (bySocketColor_1 == SOCKET_NONE)
-            return ssctEquipNoSocket2;  // Ä¿±ê¿×Î»2²»´æÔÚ
+            return ssctEquipNoSocket2;  // ç›®æ ‡å­”ä½2ä¸å­˜åœ¨
 
-        nCheckSlotColor = bySocketColor_0;   // ÅĞ¶Ï µÚ1¿×Î»ÑÕÉ«
+        nCheckSlotColor = bySocketColor_0;   // åˆ¤æ–­ ç¬¬1å­”ä½é¢œè‰²
 
         nTargetSlot = 1;
 
@@ -4366,29 +4366,29 @@ INT32 CItemBag::SetSocketColor(INT32 nIndex, INT32 nTargetColor)
     }
 
     if (nNeedItemCount == 0)
-        return ssctEquipNeedItemCount;  // »ñÈ¡´ò¿×²ÄÁÏÏûºÄÊıÁ¿´íÎó
+        return ssctEquipNeedItemCount;  // è·å–æ‰“å­”ææ–™æ¶ˆè€—æ•°é‡é”™è¯¯
     if (nTargetSlot == -1)
-        return ssctEquipSetSlotError;  // Ä¿±ê¿×Î»´íÎó
+        return ssctEquipSetSlotError;  // ç›®æ ‡å­”ä½é”™è¯¯
 
-    // »ñÈ¡±³°üÀïµ±Ç°²ÄÁÏÊıÁ¿
+    // è·å–èƒŒåŒ…é‡Œå½“å‰ææ–™æ•°é‡
     INT32 nNowItemCount = GetItemCount(nItemID);
     if (nNowItemCount < nNeedItemCount)
-        return ssctEquipItemNotEnough;  // µñÉ«²ÄÁÏÊıÁ¿²»¹»
+        return ssctEquipItemNotEnough;  // é›•è‰²ææ–™æ•°é‡ä¸å¤Ÿ
 
     WRN("Slot now 0-[%d], 1-[%d], nColor %d, nTargetSlot %d, nNeedItemCount %d",
         bySocketColor_0, bySocketColor_1, nTargetColor, nTargetSlot, nNeedItemCount);
 
-    // É¾³ıÎïÆ·, ¿Û³ı²ÄÁÏ
+    // åˆ é™¤ç‰©å“, æ‰£é™¤ææ–™
     DeleteItemId(nItemID, nNeedItemCount, ITEMLOG_EQUIP_SET_COLOR, FALSE, 0);
 
-    // ĞŞ¸Ä¿×Î»ÑÕÉ« (×¢Òâ²»ÄÜÎŞÄÔ [|=], ÕâÑùÖ»»áµş¼ÓÊıÖµ, ĞèÒªÏÈÇå³ı, ÔÙĞ´Èë)
-    pEquip->m_iteminfo.m_dwSocketCombination &= ~(0xFF << (nTargetSlot * 8));  // ÏÈÇå³ıÔ­ÊıÖµ
-    pEquip->m_iteminfo.m_dwSocketCombination |= nTargetColor << (nTargetSlot * 8);   // ÔÙ°ÑĞÂÊıÖµĞ´Èë
+    // ä¿®æ”¹å­”ä½é¢œè‰² (æ³¨æ„ä¸èƒ½æ— è„‘ [|=], è¿™æ ·åªä¼šå åŠ æ•°å€¼, éœ€è¦å…ˆæ¸…é™¤, å†å†™å…¥)
+    pEquip->m_iteminfo.m_dwSocketCombination &= ~(0xFF << (nTargetSlot * 8));  // å…ˆæ¸…é™¤åŸæ•°å€¼
+    pEquip->m_iteminfo.m_dwSocketCombination |= nTargetColor << (nTargetSlot * 8);   // å†æŠŠæ–°æ•°å€¼å†™å…¥
 
-    // ·¢°üÍ¬²½×°±¸Êı¾İ
+    // å‘åŒ…åŒæ­¥è£…å¤‡æ•°æ®
     CCliMessageHandler::GetInstance().DoSendItemChange(m_pOwner, pEquip);
 
-    // ¼ÇÂ¼ÈÕÖ¾ - ×°±¸Ï´Á·
+    // è®°å½•æ—¥å¿— - è£…å¤‡æ´—ç»ƒ
     if (pEquip->m_pTemplate->m_byLog)
     {
         CCliMessageHandler::GetInstance().DoDLChangeItem(
@@ -4397,7 +4397,7 @@ INT32 CItemBag::SetSocketColor(INT32 nIndex, INT32 nTargetColor)
             ITEMLOG_EQUIP_SET_COLOR,
             pEquip->m_iteminfo);
 
-        // ¼ÇÂ¼ÈÕÖ¾ - ÎïÆ·µñÉ«¸Ä±ä (ºóÆÚ·ÂÕÕÕâ¸öº¯Êı²ÎÊı, ĞÂÔö¼ÓÒ»¸öÈÕÖ¾º¯Êı)
+        // è®°å½•æ—¥å¿— - ç‰©å“é›•è‰²æ”¹å˜ (åæœŸä»¿ç…§è¿™ä¸ªå‡½æ•°å‚æ•°, æ–°å¢åŠ ä¸€ä¸ªæ—¥å¿—å‡½æ•°)
         //CCliMessageHandler::GetInstance().DoDLRuneItem(
         //    m_pOwner->GetObjID(),
         //    m_pOwner->GetServerGroup(),
@@ -4414,15 +4414,15 @@ INT32 CItemBag::GetSetSocketColorCost(int targetID, int CheckID)
 {
     const static std::vector<std::vector<int>> vecSetSocketColor =
     {
-        // ÁĞºÅ ÏÂ±ê0ÊÇIDÁĞ ²»¼ÆÈë, ÏÂ±ê1-5 ·Ö±ğ¶ÔÓ¦ ºì1/»Æ2/À¶3/ÂÌ3/×Ï5
-        // ĞŞ¸ÄÊı¾İ, °Ñ ºìÂÌÀ¶ ¸Ä³ÉÒ»ÑùµÄÏûºÄ
+        // åˆ—å· ä¸‹æ ‡0æ˜¯IDåˆ— ä¸è®¡å…¥, ä¸‹æ ‡1-5 åˆ†åˆ«å¯¹åº” çº¢1/é»„2/è“3/ç»¿3/ç´«5
+        // ä¿®æ”¹æ•°æ®, æŠŠ çº¢ç»¿è“ æ”¹æˆä¸€æ ·çš„æ¶ˆè€—
         { 1, 235, 50, 70,  135, 55 },     // ID=1, SOCKET_RED
         { 2, 10,  10, 10,  10,  10 },     // ID=2, SOCKET_YELLOW
         { 3, 60,  50, 235,  85,  45 },    // ID=3, SOCKET_BLUE
         { 4, 160, 50, 120, 235, 75 },     // ID=4, SOCKET_GREEN
         { 5, 40,  10, 40,  35,  35 },     // ID=5, SOCKET_PURPLE
 
-        // Ô­°æÊı¾İ
+        // åŸç‰ˆæ•°æ®
         //{ 1, 110, 25, 70,  135, 55 },    // ID=1, SOCKET_RED
         //{ 2, 10,  10, 10,  10,  10 },    // ID=2, SOCKET_YELLOW
         //{ 3, 60,  15, 70,  85,  45 },    // ID=3, SOCKET_BLUE
@@ -4430,27 +4430,27 @@ INT32 CItemBag::GetSetSocketColorCost(int targetID, int CheckID)
         //{ 5, 40,  10, 40,  35,  35 },    // ID=5, SOCKET_PURPLE
     };
 
-    // ÏÈ°´ĞĞIDÕÒ Í¨¹ıÄ¿±êÑÕÉ«ÊıÖµ ÕÒµ½¶ÔÓ¦µÄĞĞ, ÔÙ°´ÁĞ ÕÒµ½µ±Ç°ÑÕÉ«ÊıÖµµÄÁĞ, ½»»ãµã¾ÍÊÇÏûºÄÊıÖµ
-    // Ô­°æÀı×Ó
-    // ¼ÙÉè µ±Ç°2¸ö¿×¶¼ÊÇ[»ÆÉ«], Ïë°ÑÆäÖĞÒ»¸ö ¸Ä³É[À¶É«]
-    // ÏÖÔÚ2¸ö¿×Î» [1»Æ1»Æ], Ä¿±êÑÕÉ«ĞĞ [À¶É«]ÊÇµÚ3ĞĞ, µ±Ç°¿×Î»ÑÕÉ« [»ÆÉ«]ÊÇµÚ2ÁĞ, ½»»ãµãÊıÖµÊÇ 15
-    // ÏÖÔÚ2¸ö¿×Î» [1»Æ1À¶], ÔÙ¼ÌĞø°Ñ[»ÆÉ«]¿× ¸Ä³É[ÂÌÉ«], Ä¿±êÑÕÉ«ĞĞ [ÂÌÉ«]ÊÇµÚ4ĞĞ, µ±Ç°¿×Î»ÑÕÉ« [»ÆÉ«]ÊÇµÚ2ÁĞ, ½»»ãµãÊıÖµÊÇ 50
-    // ÏÖÔÚ2¸ö¿×Î» [1ÂÌ1À¶], ÔÙ¼ÌĞø°Ñ[À¶É«]¿× ¸Ä³É[ºìÉ«], Ä¿±êÑÕÉ«ĞĞ [ºìÉ«]ÊÇµÚ1ĞĞ, µ±Ç°¿×Î»ÑÕÉ« [À¶É«]ÊÇµÚ3ÁĞ, ½»»ãµãÊıÖµÊÇ 70
+    // å…ˆæŒ‰è¡ŒIDæ‰¾ é€šè¿‡ç›®æ ‡é¢œè‰²æ•°å€¼ æ‰¾åˆ°å¯¹åº”çš„è¡Œ, å†æŒ‰åˆ— æ‰¾åˆ°å½“å‰é¢œè‰²æ•°å€¼çš„åˆ—, äº¤æ±‡ç‚¹å°±æ˜¯æ¶ˆè€—æ•°å€¼
+    // åŸç‰ˆä¾‹å­
+    // å‡è®¾ å½“å‰2ä¸ªå­”éƒ½æ˜¯[é»„è‰²], æƒ³æŠŠå…¶ä¸­ä¸€ä¸ª æ”¹æˆ[è“è‰²]
+    // ç°åœ¨2ä¸ªå­”ä½ [1é»„1é»„], ç›®æ ‡é¢œè‰²è¡Œ [è“è‰²]æ˜¯ç¬¬3è¡Œ, å½“å‰å­”ä½é¢œè‰² [é»„è‰²]æ˜¯ç¬¬2åˆ—, äº¤æ±‡ç‚¹æ•°å€¼æ˜¯ 15
+    // ç°åœ¨2ä¸ªå­”ä½ [1é»„1è“], å†ç»§ç»­æŠŠ[é»„è‰²]å­” æ”¹æˆ[ç»¿è‰²], ç›®æ ‡é¢œè‰²è¡Œ [ç»¿è‰²]æ˜¯ç¬¬4è¡Œ, å½“å‰å­”ä½é¢œè‰² [é»„è‰²]æ˜¯ç¬¬2åˆ—, äº¤æ±‡ç‚¹æ•°å€¼æ˜¯ 50
+    // ç°åœ¨2ä¸ªå­”ä½ [1ç»¿1è“], å†ç»§ç»­æŠŠ[è“è‰²]å­” æ”¹æˆ[çº¢è‰²], ç›®æ ‡é¢œè‰²è¡Œ [çº¢è‰²]æ˜¯ç¬¬1è¡Œ, å½“å‰å­”ä½é¢œè‰² [è“è‰²]æ˜¯ç¬¬3åˆ—, äº¤æ±‡ç‚¹æ•°å€¼æ˜¯ 70
     for (const auto& row : vecSetSocketColor)
     {
-        if (row[0] == targetID) // Ã¿ĞĞµÄµÚÒ»¸öÔªËØÊÇID
+        if (row[0] == targetID) // æ¯è¡Œçš„ç¬¬ä¸€ä¸ªå…ƒç´ æ˜¯ID
         {
             if (CheckID >= 1 && CheckID < row.size())
             {
-                return row[CheckID];  // Ö±½Ó·µ»Ø¶ÔÓ¦ÁĞµÄÖµ
+                return row[CheckID];  // ç›´æ¥è¿”å›å¯¹åº”åˆ—çš„å€¼
             }
             break;
         }
     }
-    return 0;  // Î´ÕÒµ½
+    return 0;  // æœªæ‰¾åˆ°
 }
 
-// »ñµÃÃüÔËÎäÆ÷
+// è·å¾—å‘½è¿æ­¦å™¨
 INT32 CItemBag::AddDestinyWeapon(INT32 nItemID, INT32 nLevel)
 {
     INT32 nResult = errItemUnknown;
@@ -4466,7 +4466,7 @@ INT32 CItemBag::AddDestinyWeapon(INT32 nItemID, INT32 nLevel)
         LOG_CHECK_ERROR(bItemRet);
     }
 
-    // Éı¼¶ÎäÆ÷
+    // å‡çº§æ­¦å™¨
     if (nLevel > 0)
     {
         nResult = EquipLevelUpToSpecifiedLevel(item, nLevel);
@@ -4476,23 +4476,23 @@ Exit0:
     return nResult;
 }
 
-// ×°±¸Éı¼¶µ½Ö¸¶¨¶¥¼¶
+// è£…å¤‡å‡çº§åˆ°æŒ‡å®šé¡¶çº§
 INT32 CItemBag::EquipLevelUpToSpecifiedLevel(Item* item, INT32 nLevel)
 {
     INT32 nResult = errItemUnknown;
 
     LOG_PROCESS_ERROR(item);
-    LOG_PROCESS_ERROR(item->m_pTemplate->m_byType == ITEMTYPE_EQUIP);  // ±ØĞëÊÇ×°±¸ÀàĞÍ
+    LOG_PROCESS_ERROR(item->m_pTemplate->m_byType == ITEMTYPE_EQUIP);  // å¿…é¡»æ˜¯è£…å¤‡ç±»å‹
 
     switch (item->m_pTemplate->m_nTemplateID)
     {
-    case 99900030:  // ÃüÔËÖ®ÈĞ
+    case 99900030:  // å‘½è¿ä¹‹åˆƒ
         item->m_iteminfo.m_byLevelupPhyPoint = nLevel;
         break;
-    case 99900046:  // ÃüÔËÖ®ÕÈ
+    case 99900046:  // å‘½è¿ä¹‹æ–
         item->m_iteminfo.m_byLevelupMagPoint = nLevel;
         break;
-    case 99900047:  // ÃüÔËÖ®á¦
+    case 99900047:  // å‘½è¿ä¹‹å¹¡
         item->m_iteminfo.m_byLevelupTaoPoint = nLevel;
         break;
     }
@@ -4520,7 +4520,7 @@ Exit0:
     return nResult;
 }
 
-// Éı¼¶ÎäÆ÷
+// å‡çº§æ­¦å™¨
 INT32 CItemBag::WeaponLevelUpPutIn()
 {
 #ifdef _ROBOT
@@ -4530,9 +4530,9 @@ INT32 CItemBag::WeaponLevelUpPutIn()
 
     INT32 nResult = errItemUnknown;
     INT32 dur_list[64];     //MAX_CONTAINER_SIZE[CONSLOT_DEFAULT]
-    INT32 nItemCount = 0;   //ºÚÌú×ÜÊı
-    INT32 CCount = 0;       //ºÚÌúµÄÓĞĞ§¼ÆÊı
-    INT32 nDura = 0;        // ºÚÌú¿óÊ¯×Ü´¿¶È
+    INT32 nItemCount = 0;   //é»‘é“æ€»æ•°
+    INT32 CCount = 0;       //é»‘é“çš„æœ‰æ•ˆè®¡æ•°
+    INT32 nDura = 0;        // é»‘é“çŸ¿çŸ³æ€»çº¯åº¦
     INT32 nPhyMin = 0;
     INT32 nPhyMax = 0;
     INT32 nMagMin = 0;
@@ -4543,45 +4543,45 @@ INT32 CItemBag::WeaponLevelUpPutIn()
     Item* weapon = GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
 
     CNpc* npc = CGameWorld::GetInstance().FindNpc(m_pOwner->GetInteractNpc());
-    PROCESS_ERROR_RET_CODE(npc, errNpcNotFound);  // NPCÎ´ÕÒµ½
+    PROCESS_ERROR_RET_CODE(npc, errNpcNotFound);  // NPCæœªæ‰¾åˆ°
 
     nResult = m_pOwner->CanInteract(npc);
     PROCESS_ERROR(nResult == errSuccess);
 
-    LOG_PROCESS_ERROR_RET_CODE(npc->GetNpcData()->bInteractWeaponLevelUpPutIn, errNpcNoSuchFunction);   // NpcÃ»ÓĞ´Ë¹¦ÄÜ
-    LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetMoveState() != CMS_STALL, errItemStall);                    // °ÚÌ¯ÖĞ
-    LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);                     // ½»Ò×ÖĞ
-    LOG_PROCESS_ERROR_RET_CODE(weapon, errItemNotFound);                                                // ÎïÆ·²»´æÔÚ
-    LOG_PROCESS_ERROR_RET_CODE(weapon->m_iteminfo.m_nMaxDur > 2 * EQUIP_DUR_MULTIPLIER, errItemDurLow); // ÄÍ¾Ã¶È¹ıµÍ
+    LOG_PROCESS_ERROR_RET_CODE(npc->GetNpcData()->bInteractWeaponLevelUpPutIn, errNpcNoSuchFunction);   // Npcæ²¡æœ‰æ­¤åŠŸèƒ½
+    LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetMoveState() != CMS_STALL, errItemStall);                    // æ‘†æ‘Šä¸­
+    LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);                     // äº¤æ˜“ä¸­
+    LOG_PROCESS_ERROR_RET_CODE(weapon, errItemNotFound);                                                // ç‰©å“ä¸å­˜åœ¨
+    LOG_PROCESS_ERROR_RET_CODE(weapon->m_iteminfo.m_nMaxDur > 2 * EQUIP_DUR_MULTIPLIER, errItemDurLow); // è€ä¹…åº¦è¿‡ä½
     LOG_PROCESS_ERROR_RET_CODE(weapon->m_pTemplate->m_byType == ITEMTYPE_EQUIP &&                       // 
-        weapon->m_pTemplate->m_bySubType == ITEMSUBTYPE_EQUIP_WEAPON, errItemCannotLevelup);            // ²»¿ÉÉı¼¶
+        weapon->m_pTemplate->m_bySubType == ITEMSUBTYPE_EQUIP_WEAPON, errItemCannotLevelup);            // ä¸å¯å‡çº§
 
-    LOG_PROCESS_ERROR_RET_CODE(m_WeaponItem == NULL, errItemLevelUpInProcess);  // Á¶µ¶ÖĞ
+    LOG_PROCESS_ERROR_RET_CODE(m_WeaponItem == NULL, errItemLevelUpInProcess);  // ç‚¼åˆ€ä¸­
 
-    // Î´¼ø¶¨
+    // æœªé‰´å®š
     if (weapon->m_iteminfo.m_byIdentified == IDENTIFY_TYPE_NO)
         nResult = errItemNotIdentified;
 
-    // ÒÑ¼ø¶¨£¬µÈ´ıÊÔµ¶
+    // å·²é‰´å®šï¼Œç­‰å¾…è¯•åˆ€
     if (weapon->m_iteminfo.m_byIdentified == IDENTIFY_TYPE_LEVEL_UP)
         nResult = errItemWeaponNotTried;
 
-    // ÒÑ¼ø¶¨
+    // å·²é‰´å®š
     LOG_PROCESS_ERROR(weapon->m_iteminfo.m_byIdentified == IDENTIFY_TYPE_YES);
 
-    // ½ğ±Ò²»×ã 10000
+    // é‡‘å¸ä¸è¶³ 10000
     LOG_PROCESS_ERROR_RET_CODE(GetMoney(MONEYTYPE_02) >= WEAPON_LEVEL_UP_COST, errItemNotEnoughMoneytype02);
 
-    // Ã»ÓĞºÚÌú - ÖÁÉÙÒª1¸öºÚÌú
+    // æ²¡æœ‰é»‘é“ - è‡³å°‘è¦1ä¸ªé»‘é“
     LOG_PROCESS_ERROR_RET_CODE(
         SearchDefaultContainer(ITEMTYPE_MATERIAL, ITEMSUBTYPE_MATERIAL_WEAPON_LEVELUP, 1) != INVALID_ITEM_SLOT, errItemNotEnoughBlackIron);
 
-    //¼ÆËã¿ªÊ¼£¬ÒÔÏÂÄÚÈİ´ÓÊæ¹¤Ìá¹©´úÂë·­Òë¶øÀ´
+    //è®¡ç®—å¼€å§‹ï¼Œä»¥ä¸‹å†…å®¹ä»èˆ’å·¥æä¾›ä»£ç ç¿»è¯‘è€Œæ¥
     for (ConIt it = m_cons[CONSLOT_DEFAULT].begin(); it != m_cons[CONSLOT_DEFAULT].end();)
     {
         Item* item = it->second;
 
-        //ºÚÌú
+        //é»‘é“
         if (item->m_pTemplate->m_byType == ITEMTYPE_MATERIAL &&
             item->m_pTemplate->m_bySubType == ITEMSUBTYPE_MATERIAL_WEAPON_LEVELUP)
         {
@@ -4594,7 +4594,7 @@ INT32 CItemBag::WeaponLevelUpPutIn()
 
             m_cons[CONSLOT_DEFAULT].erase(it++);
         }
-        //Ê×ÊÎ
+        //é¦–é¥°
         else if (item->m_pTemplate->m_byType == ITEMTYPE_EQUIP)
         {
             if (item->m_pTemplate->m_bySubType == ITEMSUBTYPE_EQUIP_NECKLACE ||
@@ -4658,11 +4658,11 @@ INT32 CItemBag::WeaponLevelUpPutIn()
 
     LOG_PROCESS_ERROR(nItemCount > 0);
 
-    // ÅĞ¶ÏºÚÌúÊıÁ¿
+    // åˆ¤æ–­é»‘é“æ•°é‡
     if (nItemCount > 5)
     {
-        // °ÑºÚÌú¿óÊ¯ °´´¿¶ÈÅÅĞò, ´Ó´óµ½Ğ¡ 
-        // (Ô­´úÂëÊÇ std::greater<UINT16>(), ÏÖÔÚĞŞ¸Ä UINT16 => INT32)
+        // æŠŠé»‘é“çŸ¿çŸ³ æŒ‰çº¯åº¦æ’åº, ä»å¤§åˆ°å° 
+        // (åŸä»£ç æ˜¯ std::greater<UINT16>(), ç°åœ¨ä¿®æ”¹ UINT16 => INT32)
         std::sort(dur_list, dur_list + nItemCount, std::greater<INT32>());
         nItemCount = 6;
         CCount = 5;
@@ -4672,19 +4672,19 @@ INT32 CItemBag::WeaponLevelUpPutIn()
         CCount = nItemCount;
     }
 
-    // Ö»È¡´¿¶ÈÇ°6¸ö¿óÊ¯
+    // åªå–çº¯åº¦å‰6ä¸ªçŸ¿çŸ³
     for (INT32 i = 0; i < nItemCount; i++)
     {
         nDura += dur_list[i];
     }
 
-    //×¢£ºÔ­Ê¼ËãÊ½£ºRound(CCount + CCount * ((nDura / nItemCount) / 5.0));
+    //æ³¨ï¼šåŸå§‹ç®—å¼ï¼šRound(CCount + CCount * ((nDura / nItemCount) / 5.0));
     m_nWeaponDur = round_div(CCount * nItemCount * 5 + CCount * nDura, nItemCount * 5);
     m_nWeaponPhy = round_div(nPhyMin, 5) + nPhyMin + round_div(nPhyMax, 3);
     m_nWeaponMag = round_div(nMagMin, 5) + nMagMin + round_div(nMagMax, 3);
     m_nWeaponTao = round_div(nTaoMin, 5) + nTaoMin + round_div(nTaoMax, 3);
 
-    //¼ÆËãµ½´Ë½áÊø
+    //è®¡ç®—åˆ°æ­¤ç»“æŸ
 #ifdef _DEBUG
     char debug_string[1024];
     snprintf(debug_string, 1024, "PutIn: dur=%d, phy=%d, mag=%d, tao=%d",
@@ -4692,15 +4692,15 @@ INT32 CItemBag::WeaponLevelUpPutIn()
     m_pOwner->Say(cctScreen, cltNormal, debug_string);
 #endif
 
-    // ¿ÛÇ®
+    // æ‰£é’±
     SubMoney(MONEYTYPE_02, WEAPON_LEVEL_UP_COST, MONEYLOG_EQUIP_LEVELUP, 0);
     weapon->m_iteminfo.m_dwCostMoney += WEAPON_LEVEL_UP_COST;
 
-    // É¾³ıÎäÆ÷, µ«ÊÇ²»É¾³ı¶ÔÏó
+    // åˆ é™¤æ­¦å™¨, ä½†æ˜¯ä¸åˆ é™¤å¯¹è±¡
     nResult = RemoveItem(CONSLOT_EQUIPPED, NES_MAIN_HAND, ITEMLOG_EQUIP_LEVELUP);
     LOG_CHECK_ERROR(nResult == errSuccess);
 
-    // ÉèÖÃpos
+    // è®¾ç½®pos
     weapon->SetPos(CONSLOT_WEAPON_LEVEL_UP, 0);
 
     m_WeaponItem = weapon;
@@ -4729,7 +4729,7 @@ Exit0:
 #endif
 }
 
-// È¡»ØÎäÆ÷ (µÈ2Ğ¡Ê±)
+// å–å›æ­¦å™¨ (ç­‰2å°æ—¶)
 INT32 CItemBag::WeaponLevelUpTakeOut()
 {
 #ifdef _ROBOT
@@ -4746,19 +4746,19 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
     nResult = m_pOwner->CanInteract(npc);
     PROCESS_ERROR(nResult == errSuccess);
 
-    LOG_PROCESS_ERROR_RET_CODE(npc->GetNpcData()->bInteractWeaponLevelUpTakeOut, errNpcNoSuchFunction); // NpcÃ»ÓĞ´Ë¹¦ÄÜ
-    LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetMoveState() != CMS_STALL, errItemStall);                    // °ÚÌ¯ÖĞ
-    LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);                     // ½»Ò×ÖĞ
-    PROCESS_ERROR_RET_CODE(m_WeaponItem, errItemNoLevelUp);                                             // Ã»ÓĞÕıÔÚÁ¶µ¶µÄÎäÆ÷
+    LOG_PROCESS_ERROR_RET_CODE(npc->GetNpcData()->bInteractWeaponLevelUpTakeOut, errNpcNoSuchFunction); // Npcæ²¡æœ‰æ­¤åŠŸèƒ½
+    LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetMoveState() != CMS_STALL, errItemStall);                    // æ‘†æ‘Šä¸­
+    LOG_PROCESS_ERROR_RET_CODE(!m_pOwner->GetTrade()->IsTrading(), errItemTrading);                     // äº¤æ˜“ä¸­
+    PROCESS_ERROR_RET_CODE(m_WeaponItem, errItemNoLevelUp);                                             // æ²¡æœ‰æ­£åœ¨ç‚¼åˆ€çš„æ­¦å™¨
 
     LOG_PROCESS_ERROR(m_WeaponItem->m_pTemplate->m_byType == ITEMTYPE_EQUIP &&                          // 
         m_WeaponItem->m_pTemplate->m_bySubType == ITEMSUBTYPE_EQUIP_WEAPON);                            // 
 
-    LOG_PROCESS_ERROR(m_WeaponItem->m_iteminfo.m_byIdentified == IDENTIFY_TYPE_YES);                    // ÒÑ¼ø¶¨
+    LOG_PROCESS_ERROR(m_WeaponItem->m_iteminfo.m_byIdentified == IDENTIFY_TYPE_YES);                    // å·²é‰´å®š
 
-    PROCESS_ERROR_RET_CODE(GetFreeSlots(CONSLOT_DEFAULT) > 0, errItemBagFull);                          // °ü¹üÒÑÂú
+    PROCESS_ERROR_RET_CODE(GetFreeSlots(CONSLOT_DEFAULT) > 0, errItemBagFull);                          // åŒ…è£¹å·²æ»¡
 
-    // Ê±¼ä»¹Ã»µ½
+    // æ—¶é—´è¿˜æ²¡åˆ°
     if (CGameWorld::GetInstance().GetGameTime() - m_dwWeaponLevelUpStartTime < WEAPON_LEVEL_UP_TIME)
     {
 #ifndef _ROBOT
@@ -4768,12 +4768,12 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
         return errSuccess;
     }
 
-    // ¼ÆËã¿ªÊ¼£¬ÒÔÏÂÄÚÈİ´ÓÊæ¹¤Ìá¹©´úÂë·­Òë¶øÀ´
+    // è®¡ç®—å¼€å§‹ï¼Œä»¥ä¸‹å†…å®¹ä»èˆ’å·¥æä¾›ä»£ç ç¿»è¯‘è€Œæ¥
     {
-        // ¼ÆËãÄÍ¾Ã¶È - ĞÂ´úÂë
+        // è®¡ç®—è€ä¹…åº¦ - æ–°ä»£ç 
         if (m_nWeaponDur >= 0 && m_nWeaponDur <= 8)
         {
-            // µÍ´¿¶È³Í·£Çø - Ö±½Ó¿Û³ı 4µã×î´óÄÍ¾Ã
+            // ä½çº¯åº¦æƒ©ç½šåŒº - ç›´æ¥æ‰£é™¤ 4ç‚¹æœ€å¤§è€ä¹…
             if (m_WeaponItem->m_iteminfo.m_nMaxDur > 4 * EQUIP_DUR_MULTIPLIER)
                 m_WeaponItem->m_iteminfo.m_nMaxDur -= 4 * EQUIP_DUR_MULTIPLIER;
             else
@@ -4784,7 +4784,7 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
         }
         else if (m_nWeaponDur >= 9 && m_nWeaponDur <= 15)
         {
-            // ÖĞµÍµÈ´¿¶ÈÇø - ¸ÅÂÊĞÔĞ¡·ù¶ÈËğÊ§ 3µã×î´óÄÍ¾Ã
+            // ä¸­ä½ç­‰çº¯åº¦åŒº - æ¦‚ç‡æ€§å°å¹…åº¦æŸå¤± 3ç‚¹æœ€å¤§è€ä¹…
             if (g_Random(m_nWeaponDur) < 6)
             {
                 if (m_WeaponItem->m_iteminfo.m_nMaxDur > 3 * EQUIP_DUR_MULTIPLIER)
@@ -4796,7 +4796,7 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
         }
         else if (m_nWeaponDur >= 16 && m_nWeaponDur <= 24)
         {
-            // ÖĞµÈ´¿¶ÈÇø - ¸ÅÂÊĞÔĞ¡·ù¶ÈËğÊ§ 2µã×î´óÄÍ¾Ã
+            // ä¸­ç­‰çº¯åº¦åŒº - æ¦‚ç‡æ€§å°å¹…åº¦æŸå¤± 2ç‚¹æœ€å¤§è€ä¹…
             if (g_Random(m_nWeaponDur) < 6)
             {
                 if (m_WeaponItem->m_iteminfo.m_nMaxDur > 2 * EQUIP_DUR_MULTIPLIER)
@@ -4808,7 +4808,7 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
         }
         else if (m_nWeaponDur >= 25 && m_nWeaponDur <= 29)
         {
-            // ¸ß´¿¶ÈÇø - ¸ÅÂÊĞÔĞ¡·ù¶ÈËğÊ§ 1µã×î´óÄÍ¾Ã
+            // é«˜çº¯åº¦åŒº - æ¦‚ç‡æ€§å°å¹…åº¦æŸå¤± 1ç‚¹æœ€å¤§è€ä¹…
             if (g_Random(m_nWeaponDur) < 6)
             {
                 if (m_WeaponItem->m_iteminfo.m_nMaxDur > 1 * EQUIP_DUR_MULTIPLIER)
@@ -4820,10 +4820,10 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
         }
         else if (m_nWeaponDur >= 30 && m_nWeaponDur <= 255)
         {
-            // ¼«¸ß´¿¶ÈÇø - ÍêÈ«²»ËğÊ§ÄÍ¾Ã (6¸ö´¿¶È26 »òÕß 6¸ö´¿¶È25)
+            // æé«˜çº¯åº¦åŒº - å®Œå…¨ä¸æŸå¤±è€ä¹… (6ä¸ªçº¯åº¦26 æˆ–è€… 6ä¸ªçº¯åº¦25)
         }
 
-        // ¼ÆËãÄÍ¾Ã¶È - Ô­°æÄ¬ÈÏ´úÂë, Éè¼ÆµÄÊıÖµÇø¼ä²»ºÏÀí
+        // è®¡ç®—è€ä¹…åº¦ - åŸç‰ˆé»˜è®¤ä»£ç , è®¾è®¡çš„æ•°å€¼åŒºé—´ä¸åˆç†
         //if (m_nWeaponDur >= 0 && m_nWeaponDur <= 8)
         //{
         //    if (m_WeaponItem->m_iteminfo.m_nMaxDur > 3 * EQUIP_DUR_MULTIPLIER)
@@ -4866,8 +4866,8 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
         //}
     }
 
-    //¼ÆËãÔö¼ÓµÄÊôĞÔ
-    //×¢£ºÏÂÃæÕâ¶Î´úÂëÓĞÎÊÌâ£¬AbilCode ÆäÊµ¸ù±¾Ã»Æğ×÷ÓÃ£¬±¾×ÅÁ¬bugÒ²ÒªÒ»ÖÂµÄÖ¸µ¼Ë¼Ïë£¬Ö±½ÓÕÕ³­Î´×÷ĞŞ¸Ä
+    //è®¡ç®—å¢åŠ çš„å±æ€§
+    //æ³¨ï¼šä¸‹é¢è¿™æ®µä»£ç æœ‰é—®é¢˜ï¼ŒAbilCode å…¶å®æ ¹æœ¬æ²¡èµ·ä½œç”¨ï¼Œæœ¬ç€è¿bugä¹Ÿè¦ä¸€è‡´çš„æŒ‡å¯¼æ€æƒ³ï¼Œç›´æ¥ç…§æŠ„æœªä½œä¿®æ”¹
     m_WeaponItem->m_iteminfo.m_byIdentified = IDENTIFY_TYPE_LEVEL_UP;
 
     if (m_WeaponItem->m_iteminfo.m_byLevelupTimes < 255)
@@ -4878,8 +4878,8 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
 
     if ((m_nWeaponPhy >= m_nWeaponMag && m_nWeaponPhy >= m_nWeaponTao) || AbilCode == 0)
     {
-        //factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // Ô­´úÂë²»ºÏÀí
-        factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // ĞÂ´úÂë - °ÑĞÒÔËµ¥¶ÀÄÃ³öÀ´¼Ó
+        //factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // åŸä»£ç ä¸åˆç†
+        factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // æ–°ä»£ç  - æŠŠå¹¸è¿å•ç‹¬æ‹¿å‡ºæ¥åŠ 
         if (g_Random(130) < factor)
         {
             m_WeaponItem->m_iteminfo.m_byLevelupTypeHidden = 1;
@@ -4893,8 +4893,8 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
 
     if ((m_nWeaponMag >= m_nWeaponPhy && m_nWeaponMag >= m_nWeaponTao) || AbilCode == 1)
     {
-        //factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // Ô­´úÂë²»ºÏÀí
-        factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // ĞÂ´úÂë - °ÑĞÒÔËµ¥¶ÀÄÃ³öÀ´¼Ó
+        //factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // åŸä»£ç ä¸åˆç†
+        factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // æ–°ä»£ç  - æŠŠå¹¸è¿å•ç‹¬æ‹¿å‡ºæ¥åŠ 
         if (g_Random(130) < factor)
         {
             m_WeaponItem->m_iteminfo.m_byLevelupTypeHidden = 2;
@@ -4908,8 +4908,8 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
 
     if ((m_nWeaponPhy >= m_nWeaponMag && m_nWeaponTao >= m_nWeaponPhy) || AbilCode == 2)
     {
-        //factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // Ô­´úÂë²»ºÏÀí
-        factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // ĞÂ´úÂë - °ÑĞÒÔËµ¥¶ÀÄÃ³öÀ´¼Ó
+        //factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // åŸä»£ç ä¸åˆç†
+        factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // æ–°ä»£ç  - æŠŠå¹¸è¿å•ç‹¬æ‹¿å‡ºæ¥åŠ 
         if (g_Random(130) < factor)
         {
             m_WeaponItem->m_iteminfo.m_byLevelupTypeHidden = 3;
@@ -4920,7 +4920,7 @@ INT32 CItemBag::WeaponLevelUpTakeOut()
                 m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 3;
         }
     }
-    //¼ÆËãµ½´Ë½áÊø
+    //è®¡ç®—åˆ°æ­¤ç»“æŸ
 
 #ifdef _DEBUG
 #ifndef _ROBOT
@@ -4959,7 +4959,7 @@ Exit0:
 #endif
 }
 
-// Á¢¼´È¡»Ø (»¨·Ñ10Íò½ğ±Ò)
+// ç«‹å³å–å› (èŠ±è´¹10ä¸‡é‡‘å¸)
 INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
 {
 #ifdef _ROBOT
@@ -4985,16 +4985,16 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
     LOG_PROCESS_ERROR(m_WeaponItem->m_iteminfo.m_byIdentified == IDENTIFY_TYPE_YES);
     PROCESS_ERROR_RET_CODE(GetFreeSlots(CONSLOT_DEFAULT) > 0, errItemBagFull);
 
-    // ¿Û³ı½ğ±Ò
+    // æ‰£é™¤é‡‘å¸
     nResult = SubMoney(MONEYTYPE_02, 100000, MONEYLOG_EQUIP_LEVELUP_TAKE_OUT_IMMEDIATELY, 0);
     LOG_PROCESS_ERROR(nResult == errSuccess);
 
-    // ¼ÆËã¿ªÊ¼£¬ÒÔÏÂÄÚÈİ´ÓÊæ¹¤Ìá¹©´úÂë·­Òë¶øÀ´
+    // è®¡ç®—å¼€å§‹ï¼Œä»¥ä¸‹å†…å®¹ä»èˆ’å·¥æä¾›ä»£ç ç¿»è¯‘è€Œæ¥
     {
-        // ¼ÆËãÄÍ¾Ã¶È - ĞÂ´úÂë
+        // è®¡ç®—è€ä¹…åº¦ - æ–°ä»£ç 
         if (m_nWeaponDur >= 0 && m_nWeaponDur <= 8)
         {
-            // µÍ´¿¶È³Í·£Çø - Ö±½Ó¿Û³ı 4µã×î´óÄÍ¾Ã
+            // ä½çº¯åº¦æƒ©ç½šåŒº - ç›´æ¥æ‰£é™¤ 4ç‚¹æœ€å¤§è€ä¹…
             if (m_WeaponItem->m_iteminfo.m_nMaxDur > 4 * EQUIP_DUR_MULTIPLIER)
                 m_WeaponItem->m_iteminfo.m_nMaxDur -= 4 * EQUIP_DUR_MULTIPLIER;
             else
@@ -5005,7 +5005,7 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
         }
         else if (m_nWeaponDur >= 9 && m_nWeaponDur <= 15)
         {
-            // ÖĞµÍµÈ´¿¶ÈÇø - ¸ÅÂÊĞÔĞ¡·ù¶ÈËğÊ§ 3µã×î´óÄÍ¾Ã
+            // ä¸­ä½ç­‰çº¯åº¦åŒº - æ¦‚ç‡æ€§å°å¹…åº¦æŸå¤± 3ç‚¹æœ€å¤§è€ä¹…
             if (g_Random(m_nWeaponDur) < 6)
             {
                 if (m_WeaponItem->m_iteminfo.m_nMaxDur > 3 * EQUIP_DUR_MULTIPLIER)
@@ -5017,7 +5017,7 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
         }
         else if (m_nWeaponDur >= 16 && m_nWeaponDur <= 24)
         {
-            // ÖĞµÈ´¿¶ÈÇø - ¸ÅÂÊĞÔĞ¡·ù¶ÈËğÊ§ 2µã×î´óÄÍ¾Ã
+            // ä¸­ç­‰çº¯åº¦åŒº - æ¦‚ç‡æ€§å°å¹…åº¦æŸå¤± 2ç‚¹æœ€å¤§è€ä¹…
             if (g_Random(m_nWeaponDur) < 6)
             {
                 if (m_WeaponItem->m_iteminfo.m_nMaxDur > 2 * EQUIP_DUR_MULTIPLIER)
@@ -5029,7 +5029,7 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
         }
         else if (m_nWeaponDur >= 25 && m_nWeaponDur <= 29)
         {
-            // ¸ß´¿¶ÈÇø - ¸ÅÂÊĞÔĞ¡·ù¶ÈËğÊ§ 1µã×î´óÄÍ¾Ã
+            // é«˜çº¯åº¦åŒº - æ¦‚ç‡æ€§å°å¹…åº¦æŸå¤± 1ç‚¹æœ€å¤§è€ä¹…
             if (g_Random(m_nWeaponDur) < 6)
             {
                 if (m_WeaponItem->m_iteminfo.m_nMaxDur > 1 * EQUIP_DUR_MULTIPLIER)
@@ -5041,10 +5041,10 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
         }
         else if (m_nWeaponDur >= 30 && m_nWeaponDur <= 255)
         {
-            // ¼«¸ß´¿¶ÈÇø - ÍêÈ«²»ËğÊ§ÄÍ¾Ã (6¸ö´¿¶È26 »òÕß 6¸ö´¿¶È25)
+            // æé«˜çº¯åº¦åŒº - å®Œå…¨ä¸æŸå¤±è€ä¹… (6ä¸ªçº¯åº¦26 æˆ–è€… 6ä¸ªçº¯åº¦25)
         }
 
-        // ¼ÆËãÄÍ¾Ã¶È - Ô­°æÄ¬ÈÏ´úÂë, Éè¼ÆµÄÊıÖµÇø¼ä²»ºÏÀí
+        // è®¡ç®—è€ä¹…åº¦ - åŸç‰ˆé»˜è®¤ä»£ç , è®¾è®¡çš„æ•°å€¼åŒºé—´ä¸åˆç†
         //if (m_nWeaponDur >= 0 && m_nWeaponDur <= 8)
         //{
         //    if (m_WeaponItem->m_iteminfo.m_nMaxDur > 3 * EQUIP_DUR_MULTIPLIER)
@@ -5087,27 +5087,27 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
         //}
     }
 
-    //¼ÆËãÔö¼ÓµÄÊôĞÔ
-    //×¢£ºÏÂÃæÕâ¶Î´úÂëÓĞÎÊÌâ£¬AbilCodeÆäÊµ¸ù±¾Ã»Æğ×÷ÓÃ£¬±¾×ÅÁ¬bugÒ²ÒªÒ»ÖÂµÄÖ¸µ¼Ë¼Ïë£¬Ö±½ÓÕÕ³­Î´×÷ĞŞ¸Ä
+    //è®¡ç®—å¢åŠ çš„å±æ€§
+    //æ³¨ï¼šä¸‹é¢è¿™æ®µä»£ç æœ‰é—®é¢˜ï¼ŒAbilCodeå…¶å®æ ¹æœ¬æ²¡èµ·ä½œç”¨ï¼Œæœ¬ç€è¿bugä¹Ÿè¦ä¸€è‡´çš„æŒ‡å¯¼æ€æƒ³ï¼Œç›´æ¥ç…§æŠ„æœªä½œä¿®æ”¹
     m_WeaponItem->m_iteminfo.m_byIdentified = IDENTIFY_TYPE_LEVEL_UP;
     if (m_WeaponItem->m_iteminfo.m_byLevelupTimes < 255)
         m_WeaponItem->m_iteminfo.m_byLevelupTimes++;
 
-    // 3ÖÖÊôĞÔÏàÍ¬, ¾ÍËæ»úÒ»ÖÖ
+    // 3ç§å±æ€§ç›¸åŒ, å°±éšæœºä¸€ç§
     if (m_nWeaponPhy == m_nWeaponMag && m_nWeaponPhy == m_nWeaponTao)
         AbilCode = g_Random(3);
 
-    // ¹¥»÷ÊôĞÔ, Í¬Ê±´óÓÚ Ä§·¨/µÀÊõ
+    // æ”»å‡»å±æ€§, åŒæ—¶å¤§äº é­”æ³•/é“æœ¯
     if ((m_nWeaponPhy >= m_nWeaponMag && m_nWeaponPhy >= m_nWeaponTao) || AbilCode == 0)
     {
-        //factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // Ô­´úÂë²»ºÏÀí
-        factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // ĞÂ´úÂë - °ÑĞÒÔËµ¥¶ÀÄÃ³öÀ´¼Ó
+        //factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // åŸä»£ç ä¸åˆç†
+        factor = _Min(85, _Min(11, m_nWeaponPhy) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // æ–°ä»£ç  - æŠŠå¹¸è¿å•ç‹¬æ‹¿å‡ºæ¥åŠ 
         if (g_Random(130) < factor)
         {
             m_WeaponItem->m_iteminfo.m_byLevelupTypeHidden = 1;
             m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 1;
 
-            // ÅĞ¶Ï ÊÇ·ñÔö¼ÓÒş²ØÊôĞÔ
+            // åˆ¤æ–­ æ˜¯å¦å¢åŠ éšè—å±æ€§
             if (factor > 63 && g_Random(30) == 0)
                 m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 2;
             if (factor > 79 && g_Random(200) == 0)
@@ -5115,17 +5115,17 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
         }
     }
 
-    // Ä§·¨ÊôĞÔ, Í¬Ê±´óÓÚ ¹¥»÷/µÀÊõ
+    // é­”æ³•å±æ€§, åŒæ—¶å¤§äº æ”»å‡»/é“æœ¯
     if ((m_nWeaponMag >= m_nWeaponPhy && m_nWeaponMag >= m_nWeaponTao) || AbilCode == 1)
     {
-        //factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // Ô­´úÂë²»ºÏÀí
-        factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // ĞÂ´úÂë - °ÑĞÒÔËµ¥¶ÀÄÃ³öÀ´¼Ó
+        //factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // åŸä»£ç ä¸åˆç†
+        factor = _Min(85, _Min(11, m_nWeaponMag) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // æ–°ä»£ç  - æŠŠå¹¸è¿å•ç‹¬æ‹¿å‡ºæ¥åŠ 
         if (g_Random(130) < factor)
         {
             m_WeaponItem->m_iteminfo.m_byLevelupTypeHidden = 2;
             m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 1;
 
-            // ÅĞ¶Ï ÊÇ·ñÔö¼ÓÒş²ØÊôĞÔ
+            // åˆ¤æ–­ æ˜¯å¦å¢åŠ éšè—å±æ€§
             if (factor > 63 && g_Random(30) == 0)
                 m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 2;
             if (factor > 79 && g_Random(200) == 0)
@@ -5133,24 +5133,24 @@ INT32 CItemBag::WeaponLevelUpTakeOutImmediately()
         }
     }
 
-    // µÀÊõÊôĞÔ (¹¥»÷ > Ä§·¨ && µÀÊõ > ¹¥»÷)
+    // é“æœ¯å±æ€§ (æ”»å‡» > é­”æ³• && é“æœ¯ > æ”»å‡»)
     if ((m_nWeaponPhy >= m_nWeaponMag && m_nWeaponTao >= m_nWeaponPhy) || AbilCode == 2)
     {
-        //factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // Ô­´úÂë²»ºÏÀí
-        factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // ĞÂ´úÂë - °ÑĞÒÔËµ¥¶ÀÄÃ³öÀ´¼Ó
+        //factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10 + m_WeaponItem->m_iteminfo.m_byLuck);  // åŸä»£ç ä¸åˆç†
+        factor = _Min(85, _Min(11, m_nWeaponTao) * 7 + 10) + m_WeaponItem->m_iteminfo.m_byLuck;  // æ–°ä»£ç  - æŠŠå¹¸è¿å•ç‹¬æ‹¿å‡ºæ¥åŠ 
         if (g_Random(130) < factor)
         {
             m_WeaponItem->m_iteminfo.m_byLevelupTypeHidden = 3;
             m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 1;
 
-            // ÅĞ¶Ï ÊÇ·ñÔö¼ÓÒş²ØÊôĞÔ
+            // åˆ¤æ–­ æ˜¯å¦å¢åŠ éšè—å±æ€§
             if (factor > 63 && g_Random(30) == 0)
                 m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 2;
             if (factor > 79 && g_Random(200) == 0)
                 m_WeaponItem->m_iteminfo.m_byLevelupPointHidden = 3;
         }
     }
-    //¼ÆËãµ½´Ë½áÊø
+    //è®¡ç®—åˆ°æ­¤ç»“æŸ
 
 #ifdef _DEBUG
 #ifndef _ROBOT
@@ -5189,22 +5189,22 @@ Exit0:
 #endif
 }
 
-// ÊÔµ¶
+// è¯•åˆ€
 void CItemBag::OnPhyAttack()
 {
     Item* weapon = GetItem(CONSLOT_EQUIPPED, NES_MAIN_HAND);
 
     if (weapon && weapon->m_iteminfo.m_byIdentified == IDENTIFY_TYPE_LEVEL_UP)
     {
-        // ¼ÆËã Éı¼¶µãÊı×ÜºÍ
+        // è®¡ç®— å‡çº§ç‚¹æ•°æ€»å’Œ
         INT32 nTotalPoint = weapon->m_iteminfo.m_byLevelupPhyPoint + weapon->m_iteminfo.m_byLevelupMagPoint + weapon->m_iteminfo.m_byLevelupTaoPoint;
 
-        // µãÊı×ÜºÍ ×î´óÎª7, Òş²ØÊôĞÔµã 1-3µã, Ã»ÓĞÒş²Øµã ¾ÍÊÇÉı¼¶Ê§°Ü
+        // ç‚¹æ•°æ€»å’Œ æœ€å¤§ä¸º7, éšè—å±æ€§ç‚¹ 1-3ç‚¹, æ²¡æœ‰éšè—ç‚¹ å°±æ˜¯å‡çº§å¤±è´¥
         if (nTotalPoint >= 7 ||
             weapon->m_iteminfo.m_byLevelupTypeHidden < 1 ||
             weapon->m_iteminfo.m_byLevelupTypeHidden > 3)
         {
-            // Éı¼¶Ê§°Ü É¾³ıÎïÆ·Êı¾İ
+            // å‡çº§å¤±è´¥ åˆ é™¤ç‰©å“æ•°æ®
             DeleteItemPos(CONSLOT_EQUIPPED, NES_MAIN_HAND, 1, ITEMLOG_EQUIP_LEVELUP_FAILED, 0);
 
 #ifndef _ROBOT
@@ -5216,7 +5216,7 @@ void CItemBag::OnPhyAttack()
         if (weapon->m_iteminfo.m_nCurDur > 0)
             weapon->OnUnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
 
-        // Éı¼¶µãÊı
+        // å‡çº§ç‚¹æ•°
         switch (weapon->m_iteminfo.m_byLevelupTypeHidden)
         {
         case 1:
@@ -5232,7 +5232,7 @@ void CItemBag::OnPhyAttack()
             LOG_PROCESS_ERROR(FALSE);
         }
 
-        // ´©ÉÏ×°±¸
+        // ç©¿ä¸Šè£…å¤‡
         if (weapon->m_iteminfo.m_nCurDur > 0)
             weapon->OnEquip(m_pOwner, m_refine_levels[NES_MAIN_HAND], m_pOwner->GetClass(), NES_MAIN_HAND);
 
@@ -5259,7 +5259,7 @@ Exit0:
     return;
 }
 
-// ·Ö½â
+// åˆ†è§£
 INT32 CItemBag::Decompose(UINT8 conslot, UINT8 itemslot)
 {
 #ifdef _ROBOT
@@ -5330,7 +5330,7 @@ Exit0:
 #endif // _ROBOT
 }
 
-// ºÏ³É
+// åˆæˆ
 INT32 CItemBag::Compose(INT32 formulaid)
 {
 #ifdef _ROBOT
@@ -5393,7 +5393,7 @@ INT32 CItemBag::Compose(INT32 formulaid)
 
     CStatistic::GetInstance().OnComposeItem(m_pOwner, item_data->m_byColor, 1);
 
-    //È«·ş¹ã²¥
+    //å…¨æœå¹¿æ’­
     if (co_data->m_nBroadCast)
     {
         char szBroadcast[1024];
@@ -5548,14 +5548,14 @@ INT32 CItemBag::GetPow()
         Item* item = it->second;
         const EQUIP_DATA* equip_data = (const EQUIP_DATA*)item->m_pTemplate;
 
-        //×°±¸±¾ÉíµÄÕ½¶·Á¦
+        //è£…å¤‡æœ¬èº«çš„æˆ˜æ–—åŠ›
         p += _GetPow(item);
 
-        //Ì××°¼ÆÊı£¬ºóÃæÍ³Ò»¼ÆËãÌ××°ÊôĞÔµÄÕ½¶·Á¦
+        //å¥—è£…è®¡æ•°ï¼Œåé¢ç»Ÿä¸€è®¡ç®—å¥—è£…å±æ€§çš„æˆ˜æ–—åŠ›
         if (equip_data->m_SetData)
             set_count[equip_data->m_SetData]++;
 
-        //Ç¿»¯µÄÕ½¶·Á¦
+        //å¼ºåŒ–çš„æˆ˜æ–—åŠ›
         equip_slot = it->first;
         LOG_PROCESS_ERROR(equip_slot < NES_TOTAL);
         if (m_refine_levels[equip_slot])
@@ -5579,7 +5579,7 @@ INT32 CItemBag::GetPow()
         }
     }
 
-    //Í³Ò»¼ÆËãÌ××°Õ½¶·Á¦
+    //ç»Ÿä¸€è®¡ç®—å¥—è£…æˆ˜æ–—åŠ›
     for (std::map<const SET_DATA*, INT32>::iterator it = set_count.begin(); it != set_count.end(); it++)
     {
         const SET_DATA* set_data = it->first;
@@ -5878,7 +5878,7 @@ Exit0:
     return nResult;
 }
 
-// Ó¦¸ÃÒÑ¾­·ÏÆúÁË
+// åº”è¯¥å·²ç»åºŸå¼ƒäº†
 INT32 CItemBag::Gamble(UINT8 equiptype)
 {
     INT32 nResult = errItemUnknown;
@@ -5954,7 +5954,7 @@ Exit0:
     return nResult;
 }
 
-// ×°±¸ÖØÖı
+// è£…å¤‡é‡é“¸
 INT32 CItemBag::GambleAdvance(INT32 nGambleType, INT32 nGambleLevel)
 {
     INT32 nResult = errItemUnknown;
@@ -6100,7 +6100,7 @@ Exit0:
     return nResult;
 }
 
-// ¼¼ÄÜÊéÖØÖø
+// æŠ€èƒ½ä¹¦é‡è‘—
 INT32 CItemBag::SpellBookGamble()
 {
     INT32 nResult = errItemUnknown;
@@ -6200,7 +6200,7 @@ INT32 CItemBag::AddItemToContainer(Item* item, UINT8 conslot, EItemLog reason, U
 
     if (item->m_pTemplate->m_byDurType == DURTYPE_STACK)
     {
-        //Èç¹ûÎïÆ·¿É¶Ñµş£¬Ôò³¢ÊÔ¶Ñµşµ½ÏàÍ¬ÎïÆ·ÉÏ
+        //å¦‚æœç‰©å“å¯å †å ï¼Œåˆ™å°è¯•å †å åˆ°ç›¸åŒç‰©å“ä¸Š
         for (ConIt it = container.begin(); it != container.end(); ++it)
         {
             Item* olditem = it->second;
@@ -6249,7 +6249,7 @@ INT32 CItemBag::AddItemToContainer(Item* item, UINT8 conslot, EItemLog reason, U
 
     if (nResult != errSuccess)
     {
-        //²»¿É¶Ñµş£¬ÔòÑ°ÕÒ¿ÕÎ»×Ó·ÅÈë
+        //ä¸å¯å †å ï¼Œåˆ™å¯»æ‰¾ç©ºä½å­æ”¾å…¥
         UINT8 itemslot = 0;
         BOOL found = FALSE;
         for (ConIt it = container.begin(); it != container.end(); ++it)
@@ -6267,11 +6267,11 @@ INT32 CItemBag::AddItemToContainer(Item* item, UINT8 conslot, EItemLog reason, U
             container.insert(Container::value_type(itemslot, item));
             item->SetPos(conslot, itemslot);
 
-            // Ê°È¡°ó¶¨
+            // æ‹¾å–ç»‘å®š
             if (item->m_iteminfo.m_byBindType == BINDTYPE_BOP)
                 item->m_iteminfo.m_byBindType = BINDTYPE_BINDED;
 
-            // ½»Ò×°ó¶¨
+            // äº¤æ˜“ç»‘å®š
             if (item->m_iteminfo.m_byBindType == BINDTYPE_BOT && reason == ITEMLOG_PLAYER_TRADE)
                 item->m_iteminfo.m_byBindType = BINDTYPE_BINDED;
 
@@ -6491,7 +6491,7 @@ INT32 CItemBag::_MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot,
     Item* dstitem = NULL;
     if (dstit == m_cons[dstconslot].end())
     {
-        //ÎïÆ·ÒÆÏò¿Õ¸ñ
+        //ç‰©å“ç§»å‘ç©ºæ ¼
 #ifndef _ROBOT
         CCliMessageHandler::GetInstance().DoSendItemSwap(m_pOwner, srcconslot, srcitemslot, dstconslot, dstitemslot);
 #endif // _ROBOT
@@ -6501,13 +6501,13 @@ INT32 CItemBag::_MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot,
     }
     else
     {
-        //ÎïÆ·ÒÆÏòÁíÒ»ÎïÆ·
+        //ç‰©å“ç§»å‘å¦ä¸€ç‰©å“
         dstitem = dstit->second;
         if (srcitem->m_pTemplate->m_byDurType == DURTYPE_STACK &&
             srcitem->m_pTemplate == dstitem->m_pTemplate &&
             srcitem->m_iteminfo.m_byBindType == dstitem->m_iteminfo.m_byBindType)
         {
-            //¶Ñµş
+            //å †å 
             if (srcitem->m_iteminfo.m_nCurDur + dstitem->m_iteminfo.m_nCurDur <= srcitem->m_pTemplate->m_nDur)
             {
                 dstitem->m_iteminfo.m_nCurDur += srcitem->m_iteminfo.m_nCurDur;
@@ -6581,7 +6581,7 @@ INT32 CItemBag::_MoveItem(UINT8 srcconslot, UINT8 srcitemslot, UINT8 dstconslot,
         }
         else
         {
-            //½»»»
+            //äº¤æ¢
 #ifndef _ROBOT
             CCliMessageHandler::GetInstance().DoSendItemSwap(m_pOwner, srcconslot, srcitemslot, dstconslot, dstitemslot);
 #endif // _ROBOT
@@ -6817,7 +6817,7 @@ INT32 CItemBag::_GetSellPrice(const Item* item) const
     }
     else if (item->m_pTemplate->m_byDurType == DURTYPE_EQUIP)
     {
-        //Ëæ»úÊôĞÔ
+        //éšæœºå±æ€§
         for (INT32 i = 0; i < MAX_RANDOM_ATTR_COUNT; i++)
         {
             if (item->m_iteminfo.m_wRandomAttrID[i])
@@ -6828,7 +6828,7 @@ INT32 CItemBag::_GetSellPrice(const Item* item) const
             }
         }
 
-        //ÈÚÁéÊôĞÔ
+        //èçµå±æ€§
         for (INT32 i = 0; i < MAX_SOCKET_COUNT; i++)
         {
             if (item->m_iteminfo.m_nSoulID[i])
@@ -6847,22 +6847,22 @@ INT32 CItemBag::_GetSellPrice(const Item* item) const
             }
         }
 
-        //Öı»êÊôĞÔ
+        //é“¸é­‚å±æ€§
         for (INT32 i = 0; i < MAX_RUNE_COUNT; i++)
         {
             if (item->m_iteminfo.m_wRune[i])
                 sell_price += RUNE_SELL_PRICE;
         }
 
-        //ĞÒÔË¡¢×çÖä
+        //å¹¸è¿ã€è¯…å’’
         sell_price += abs(item->m_iteminfo.m_byLuck);
 
-        //Éı¼¶ÊôĞÔ
+        //å‡çº§å±æ€§
         sell_price += item->m_iteminfo.m_byLevelupPhyPoint * 100;
         sell_price += item->m_iteminfo.m_byLevelupMagPoint * 100;
         sell_price += item->m_iteminfo.m_byLevelupTaoPoint * 100;
 
-        //Âôµê¼Û=£¨ÂúÄÍ¾ÃÂôµê¼Û*90%£©*£¨µ±Ç°ÄÍ¾Ã/×î´óÄÍ¾Ã£©+ÂúÄÍ¾ÃÂôµê¼Û*10%
+        //å–åº—ä»·=ï¼ˆæ»¡è€ä¹…å–åº—ä»·*90%ï¼‰*ï¼ˆå½“å‰è€ä¹…/æœ€å¤§è€ä¹…ï¼‰+æ»¡è€ä¹…å–åº—ä»·*10%
         sell_price = ((INT64)sell_price * 9 * item->m_iteminfo.m_nCurDur / item->m_pTemplate->m_nDur + sell_price) / 10;
     }
 

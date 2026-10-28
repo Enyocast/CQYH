@@ -13,12 +13,12 @@ struct MS_ONLINE_ROLE_DATA;
 enum TimeBillingType
 {
     etbtInvalid,
-    etbtForceOffline,       //1£ºÇ¿ÖÆÏÂÏß
-    etbtKeepOnline,         //2£º³ÖĞøÔÚÏß
-    etbtPlayerGoOffline,    //3£ºÖ÷¶¯ÏÂÏß
-    etbtSupplementary,      //4£º²¹³ä¿Û·Ñ
-    etbtTimeUp,             //5£ºÕË»§Óà¶îÁÙ½çµã
-    etbtChangeScene,        //6£ºÇĞ»»µØÍ¼
+    etbtForceOffline,       //1ï¼šå¼ºåˆ¶ä¸‹çº¿
+    etbtKeepOnline,         //2ï¼šæŒç»­åœ¨çº¿
+    etbtPlayerGoOffline,    //3ï¼šä¸»åŠ¨ä¸‹çº¿
+    etbtSupplementary,      //4ï¼šè¡¥å……æ‰£è´¹
+    etbtTimeUp,             //5ï¼šè´¦æˆ·ä½™é¢ä¸´ç•Œç‚¹
+    etbtChangeScene,        //6ï¼šåˆ‡æ¢åœ°å›¾
     etbtTotal
 };
 

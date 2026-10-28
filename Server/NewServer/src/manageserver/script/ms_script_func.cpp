@@ -620,7 +620,7 @@ Exit0:
     return 0;
 }
 
-// Luaº¯Êý±í G±í
+// Luaå‡½æ•°è¡¨ Gè¡¨
 LUA_FUNC g_LuaScriptFuncTable[] =
 {
     { "clear_string_table",         lua_clear_string_table },

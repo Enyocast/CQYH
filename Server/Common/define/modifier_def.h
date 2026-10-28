@@ -80,148 +80,148 @@ enum CHAR_MODIFIER_INDEX
 {
 	cmiInvalid = 0,
 
-	cmi_A,			///< @line		¸Ä±ä×ÔÉíµÄ×ßÂ·»òÕßÅÜ²½ËÙ¶È 1²ÎÎª¸Ä±äµÄÀàÐÍ(¾ßÌåÊýÖµ)
-	cmi_B,			///< @line		¸Ä±ä×ÔÉíµÄÒ»Ð©ÊôÐÔ(¾ßÌåÊýÖµ)
-	cmi_003,		///< @line		¸Ä±ä×ÔÉíµÄÒ»Ð©ÊôÐÔ(°Ù·Ö±È)  Í¨¹ý¹â»·µÄ GetEffectPct() º¯Êý»ñµÃ°Ù·Ö±ÈÊýÖµ
-	cmi_004,		///< @line		¸Ä±ä×ÔÉíµÄ×ßÂ·»òÕßÅÜ²½ËÙ¶È 1²ÎÎª¸Ä±äµÄÀàÐÍ(°Ù·Ö±È) Í¨¹ý¹â»·µÄ GetEffectPct() º¯Êý»ñµÃ°Ù·Ö±ÈÊýÖµ
-	cmi_005,		///< @line		GenerateSingleBullet,							Éú³Éµ¥·¢×Óµ¯£¨µ¥Ìå¹¥»÷£©
-	cmi_006,		///< @line		GenerateMultiBullet,							Éú³É¶à·¢×Óµ¯£¨É¢Éä/¶àÖØÉä»÷£©
-	cmi_007,		///< @line		GenerateMissile,								Éú³É·ÉÐÐÍ¶ÉäÎï£¨»ðÇò¡¢¼ýÊ¸µÈ£©
-	cmi_008,		///< @line		Charge,											³å·æ£¨Ö±ÏßÎ»ÒÆ+ÉËº¦£©
-	cmi_009,		///< @line		SingleAura,										µ¥Ìå×´Ì¬Ð§¹û£¨Èçµ¥ÌåBuff£©
-	cmi_010,		///< @line		MultiAura,										ÈºÌå×´Ì¬Ð§¹û£¨ÈçÍÅ¶ÓBuff£©
-	cmi_011,		///< @line		Stun,											Ñ£ÔÎ£¨Ó²¿Ø£©
-	cmi_012,		///< @line		EnableAttribute,								¿ªÆôÊôÐÔ
-	cmi_013,		///< @line		MutiBulletWithAvgDamage,						¾ùÌ¯ÉËº¦µÄ¶à·¢×Óµ¯£¨Èçö±µ¯Ç¹£©
-	cmi_014,		///< @line		AuraRegisterEvent,								×´Ì¬Ð§¹û×¢²áÊÂ¼þ£¨Èç´¥·¢Ìõ¼þ£©
+	cmi_A,			///< @line		æ”¹å˜è‡ªèº«çš„èµ°è·¯æˆ–è€…è·‘æ­¥é€Ÿåº¦ 1å‚ä¸ºæ”¹å˜çš„ç±»åž‹(å…·ä½“æ•°å€¼)
+	cmi_B,			///< @line		æ”¹å˜è‡ªèº«çš„ä¸€äº›å±žæ€§(å…·ä½“æ•°å€¼)
+	cmi_003,		///< @line		æ”¹å˜è‡ªèº«çš„ä¸€äº›å±žæ€§(ç™¾åˆ†æ¯”)  é€šè¿‡å…‰çŽ¯çš„ GetEffectPct() å‡½æ•°èŽ·å¾—ç™¾åˆ†æ¯”æ•°å€¼
+	cmi_004,		///< @line		æ”¹å˜è‡ªèº«çš„èµ°è·¯æˆ–è€…è·‘æ­¥é€Ÿåº¦ 1å‚ä¸ºæ”¹å˜çš„ç±»åž‹(ç™¾åˆ†æ¯”) é€šè¿‡å…‰çŽ¯çš„ GetEffectPct() å‡½æ•°èŽ·å¾—ç™¾åˆ†æ¯”æ•°å€¼
+	cmi_005,		///< @line		GenerateSingleBullet,							ç”Ÿæˆå•å‘å­å¼¹ï¼ˆå•ä½“æ”»å‡»ï¼‰
+	cmi_006,		///< @line		GenerateMultiBullet,							ç”Ÿæˆå¤šå‘å­å¼¹ï¼ˆæ•£å°„/å¤šé‡å°„å‡»ï¼‰
+	cmi_007,		///< @line		GenerateMissile,								ç”Ÿæˆé£žè¡ŒæŠ•å°„ç‰©ï¼ˆç«çƒã€ç®­çŸ¢ç­‰ï¼‰
+	cmi_008,		///< @line		Charge,											å†²é”‹ï¼ˆç›´çº¿ä½ç§»+ä¼¤å®³ï¼‰
+	cmi_009,		///< @line		SingleAura,										å•ä½“çŠ¶æ€æ•ˆæžœï¼ˆå¦‚å•ä½“Buffï¼‰
+	cmi_010,		///< @line		MultiAura,										ç¾¤ä½“çŠ¶æ€æ•ˆæžœï¼ˆå¦‚å›¢é˜ŸBuffï¼‰
+	cmi_011,		///< @line		Stun,											çœ©æ™•ï¼ˆç¡¬æŽ§ï¼‰
+	cmi_012,		///< @line		EnableAttribute,								å¼€å¯å±žæ€§
+	cmi_013,		///< @line		MutiBulletWithAvgDamage,						å‡æ‘Šä¼¤å®³çš„å¤šå‘å­å¼¹ï¼ˆå¦‚éœ°å¼¹æžªï¼‰
+	cmi_014,		///< @line		AuraRegisterEvent,								çŠ¶æ€æ•ˆæžœæ³¨å†Œäº‹ä»¶ï¼ˆå¦‚è§¦å‘æ¡ä»¶ï¼‰
 	cmi_015,		///< @line		______NotImplemented_No15,						
-	cmi_016,		///< @line		LeapToTargetPos,								ÌøÔ¾ÖÁÄ¿±êÎ»ÖÃ£¨Í»½ø£©
-	cmi_017,		///< @line		SpellRegisterEventOnEquip,						×°±¸Ê±×¢²á¼¼ÄÜÊÂ¼þ£¨Èç´¥·¢ÌØÐ§£©
-	cmi_018,		///< @line		Fear,											¿Ö¾å£¨Èí¿Ø£¬Ä¿±êÌÓÅÜ£©
-	cmi_019,		///< @line		ModifyAttackWithDefense,						¸ù¾Ý·ÀÓùÁ¦ÐÞÕý¹¥»÷£¨ÆÆ¼×»úÖÆ£©
-	cmi_020,		///< @line		DirectlyAddSpell,								Ö±½ÓÌí¼Ó¼¼ÄÜ
-	cmi_021,		///< @line		CircleSearchEnemyAndCastSubSpell,				Ô²ÐÎËÑË÷µÐÈË²¢Ê©·Å×Ó¼¼ÄÜ
-	cmi_022,		///< @line		ReduceCurrentAuraStackCount,					¼õÉÙµ±Ç°¹â»·²ãÊý
-	cmi_023,		///< @line		ModifyPendingSpell,								ÐÞ¸Ä´ýÉúÐ§¼¼ÄÜ£¨¶¯Ì¬µ÷Õû£©
-	cmi_024,		///< @line		SetDamageAbsorb,								ÉèÖÃÉËº¦ÎüÊÕ£¨»¤¶ÜÖµ£©
-	cmi_025,		///< @line		AuraCheckDamageAbsorb,							×´Ì¬¼ì²éÉËº¦ÎüÊÕ£¨Èç»¤¶Ü£©
-	cmi_026,		///< @line		SpellRegisterTimerEvent,						¼¼ÄÜ¶¨Ê±ÊÂ¼þ£¨ÑÓ³Ù´¥·¢£©
-	cmi_027,		///< @line		DirectlyCastSubSpell,							Ö±½ÓÊÍ·Å×Ó¼¼ÄÜ
-	cmi_028,		///< @line		TeleportToLockedTarget,							´«ËÍÖÁËø¶¨Ä¿±ê£¨ÉÁÏÖ£©
-	cmi_029,		///< @line		CharInvincible,									½ÇÉ«ÎÞµÐ£¨¶ÌÔÝÃâÉË£©
-	cmi_030,		///< @line		ChargeToTarget,									ÏòÄ¿±ê³å·æ
-	cmi_031,		///< @line		GenerateSingleHealBullet,						Éú³Éµ¥ÌåÖÎÁÆ×Óµ¯£¨ÈçÖÎÁÆ¼ý£©
-	cmi_032,		///< @line		GenerateMultiHealBullet,						Éú³ÉÈºÌåÖÎÁÆ×Óµ¯£¨·¶Î§ÖÎÁÆ£©
-	cmi_033,		///< @line		GenerateTeamHealBullet,							Éú³É¶ÓÎéÖÎÁÆ×Óµ¯£¨ÍÅ¶Ó»ØÑª£©
-	cmi_034,		///< @line		AdjustSpellDirectionWithFaceDirection,			¸ù¾Ý½ÇÉ«³¯Ïòµ÷Õû¼¼ÄÜ·½Ïò
-	cmi_035,		///< @line		RecoveryHp,										»Ö¸´HP
-	cmi_036,		///< @line		CheckItem,										¼ì²éÎïÆ·£¨ÏûºÄÆ·/×°±¸ÐèÇó£©
-	cmi_037,		///< @line		CheckAccumulateTime,							¼ì²éÀÛ»ýÊ±¼ä£¨Èç³äÄÜ»úÖÆ£©
-	cmi_038,		///< @line		SetCharFlagBit,									ÉèÖÃ½ÇÉ«±êÖ¾Î»
-	cmi_039,		///< @line		Random,											Ëæ»ú
-	cmi_040,		///< @line		ClearNextTarget,								Çå³ýÏÂÒ»¸öÄ¿±ê
-	cmi_041,		///< @line		CheckMpByPercent,								°´°Ù·Ö±È¼ì²éMP
-	cmi_042,		///< @line		CheckMpByValue,									°´¹Ì¶¨Öµ¼ì²éMP
-	cmi_043,		///< @line		ReviveTarget,									¸´»îÄ¿±ê
-	cmi_044,		///< @line		TeleportToNearestGraveyard,						´«ËÍÖÁ×î½üÄ¹µØ£¨ËÀÍö¸´»î£©
-	cmi_045,		///< @line		CheckAndConsumeMoney,							¼ì²é²¢ÇÒÏûºÄ»õ±Ò
-	cmi_046,		///< @line		CheckTargetCount,								¼ì²éÄ¿±êÊýÁ¿
-	cmi_047,		///< @line		LockNearestTargetInSector,						Ëø¶¨ÉÈÐÎÄÚ×î½üÄ¿±ê
-	cmi_048,		///< @line		LockNearestTarget,								Ëø¶¨×î½üÄ¿±ê
-	cmi_049,		///< @line		KnockBack,										»÷ÍË
-	cmi_050,		///< @line		ModifierCost,									ÐÞ¸Ä¼¼ÄÜ»¨·Ñ
-	cmi_051,		///< @line		SummonNpc,										ÕÙ»½NPC£¨³èÎï/Í¼ÌÚ£©
-	cmi_052,		///< @line		RotateTargetPt,									Ðý×ªÄ¿±ê½Ç¶È
-	cmi_053,		///< @line		CheckIntervalAndCastSubSpell,					¼ì²é¼ä¸ô²¢Ê©·Å×Ó¼¼ÄÜ£¨ÖÜÆÚÐÔÐ§¹û£©
-	cmi_054,		///< @line		RotateSelf,										Ðý×ª×Ô¼º
-	cmi_055,		///< @line		CheckMultiAccumulateTime,						¼ì²é¶àÖØÀÛ»ýÊ±¼ä
-	cmi_056,		///< @line		CheckHpByPct,									°´°Ù·Ö±È¼ì²éHP
-	cmi_057,		///< @line		CheckHpByValue,									°´¹Ì¶¨Öµ¼ì²éHP
-	cmi_058,		///< @line		CheckExFlag,									¼ì²éEx±êÖ¾ (¼¼ÄÜ?)
-	cmi_059,		///< @line		SetExFlag,										ÉèÖÃEx±êÖ¾ (¼¼ÄÜ?)
-	cmi_060,		///< @line		RemoveAura,										ÒÆ³ý¹â»·
-	cmi_061,		///< @line		CastSubSpellByAuraCaster,						¸ù¾Ý¹â»·Ê©·¨Õß´¥·¢×Ó¼¼ÄÜ
-	cmi_062,		///< @line		CheckCurrentWeaponType,							¼ì²éµ±Ç°ÎäÆ÷ÀàÐÍ
-	cmi_063,		///< @line		AuraTimeupEffect,								×´Ì¬½áÊøÊ±µÄÐ§¹û£¨Èç±¬Õ¨/»ØÑª£©
-	cmi_064,		///< @line		AuraKnockBack,									×´Ì¬¸½´ø»÷ÍË£¨Èç¹â»·±¬Õ¨£©
-	cmi_065,		///< @line		GenerateDivergentMissile,						Éú³É·Ö²æÍ¶ÉäÎï£¨Èç·ÖÁÑµ¯£©
-	cmi_066,		///< @line		GenerateRandomTargetPt,							Éú³ÉËæ»úÄ¿±êµã£¨Èç·¶Î§ºäÕ¨£©
-	cmi_067,		///< @line		FindAura,										²éÕÒ×´Ì¬Ð§¹û£¨¼ì²éÊÇ·ñ´æÔÚ£©
-	cmi_068,		///< @line		SubstituteNextSpell,							Ìæ»»ÏÂÒ»¸ö¼¼ÄÜ
-	cmi_069,		///< @line		AddAuraToCaster,								¸øÊ©·¨ÕßÌí¼Ó×´Ì¬£¨×ÔÎÒÔöÒæ£©
-	cmi_070,		///< @line		ScanTarget,										É¨ÃèÄ¿±ê£¨·¶Î§ÄÚË÷µÐ£©
-	cmi_071,		///< @line		Silence,										³ÁÄ¬£¨½ûÖ¹Ê©·¨£©
-	cmi_072,		///< @line		CheckCurrentAura,								¼ì²éµ±Ç°¹â»·
-	cmi_073,		///< @line		GhostStep,										¹í²½£¨Ë²ÒÆ²ÐÓ°£©
-	cmi_074,		///< @line		LeapAndMissile,									ÌøÔ¾ºÍµ¼µ¯?
-	cmi_075,		///< @line		DispelAuraByID,									°´IDÇýÉ¢×´Ì¬
-	cmi_076,		///< @line		DispelAuraByType,								°´ÀàÐÍÇýÉ¢×´Ì¬£¨ÈçÇýÉ¢ËùÓÐDebuff£©
-	cmi_077,		///< @line		DispelAuraBySubType,							¸ù¾Ý×ÓÀàÐÍÏû³ý¹â»·
-	cmi_078,		///< @line		BatchDispelAuraByType,							ÅúÁ¿ÇýÉ¢Í¬Àà×´Ì¬
-	cmi_079,		///< @line		CheckLockTarget,								¼ì²éËø¶¨Ä¿±ê
-	cmi_080,		///< @line		BreakCast,										Í£Ö¹´¥·¢
-	cmi_081,		///< @line		ChargeToNextTarget,								³å·æµ½ÏÂÒ»¸öÄ¿±ê
-	cmi_082,		///< @line		ModifyParamX,									ÐÞ¸Ä²ÎÊýX£¨Í¨ÓÃÊýÖµµ÷Õû£©
-	cmi_083,		///< @line		CheckCurrentSpell,								¼ì²éµ±Ç°¼¼ÄÜ
-	cmi_084,		///< @line		Freeze,											¶³½á£¨¶¨Éí+±ùÉË£©
-	cmi_085,		///< @line		CheckObjType,									¼ì²é¶ÔÏóÀàÐÍ£¨Íæ¼Ò/NPC/ÏÝÚåµÈ£©
-	cmi_086,		///< @line		SetStance,										ÉèÖÃ×ËÌ¬£¨Õ½¶·/·ÇÕ½¶·×´Ì¬£©
-	cmi_087,		///< @line		DragByAura,										±»×´Ì¬Ð§¹ûÍÏ¶¯£¨ÈçºÚ¶´ÎüÒý£©
-	cmi_088,		///< @line		SyncFlagPos,									Í¬²½±êÖ¾Î»ÖÃ
-	cmi_089,		///< @line		Thrown,											Í¶ÖÀ£¨Ç¿ÖÆÎ»ÒÆ£¬Èç×¥È¡Å×Í¶£©
-	cmi_090,		///< @line		CheckThrown,									¼ì²éÍ¶ÖÀ
-	cmi_091,		///< @line		RotateToLockedTarget,							Ðý×ªµ½Ëø¶¨Ä¿±ê
-	cmi_092,		///< @line		DirectlySummonNpc,								Ö±½ÓÕÙ»½NPC£¨ÎÞÑÓ³Ù£©
-	cmi_093,		///< @line		ResetScanner,									ÖØÖÃÉ¨Ãè
-	cmi_094,		///< @line		CheckChangedWeaponType,							¼ì²éÇÐ»»ºóµÄÎäÆ÷ÀàÐÍ
-	cmi_095,		///< @line		Suicide,										×ÔÉ±£¨×Ô±¬¼¼ÄÜ£©
-	cmi_096,		///< @line		ModifyCanbeThrown,								ÐÞ¸Ä¿ÉÒÔÍ¶ÖÀ
-	cmi_097,		///< @line		CheckPass,										¼ì²éÍ¨¹ýÌõ¼þ
-	cmi_098,		///< @line		LockNearestTargetInRect,						Ëø¶¨¾ØÐÎÄÚ×î½üÄ¿±ê
-	cmi_099,		///< @line		ScanTargetAndExcludeLocked,						É¨ÃèÄ¿±ê²¢ÅÅ³ýÒÑËø¶¨
-	cmi_100,		///< @line		NpcCopySelf,									NPC¸´ÖÆ×ÔÉí£¨¾µÏñ·ÖÉí£©
-	cmi_101,		///< @line		ClientShowTime,									¿Í»§¶ËÏÔÊ¾Ê±¼ä£¨Èçµ¹¼ÆÊ±UI£©
-	cmi_102,		///< @line		JumpToAuraCaster,								ÌøÔ¾µ½¹â»·Ê©·¨Õß
-	cmi_103,		///< @line		BreakAuraCasterSpell,							´ò¶Ï×´Ì¬Ê©·¨ÕßµÄÊ©·¨(¹â»·)
-	cmi_104,		///< @line		SingleBulletToNextLoopedTarget,					×Óµ¯Ñ­»·¹¥»÷ÏÂÒ»¸öÄ¿±ê£¨µ¯Éä»úÖÆ£©
-	cmi_105,		///< @line		ChargeCertainDistance,							¹Ì¶¨¾àÀë³å·æ
-	cmi_106,		///< @line		CheckDistanceBetweenCasterAndTarget,			¼ì²éÊ©·¨ÕßÓëÄ¿±êÖ®¼äµÄ¾àÀë
-	cmi_107,		///< @line		GenerateMissileFromCaster,						´ÓÊ©·¨ÕßÉú³ÉÍ¶ÉäÎï
-	cmi_108,		///< @line		ModifyParam1WithTargetDistance,					¸ù¾ÝÄ¿±ê¾àÀëÐÞ¸Ä²ÎÊý1£¨ÈçÔ¶³ÌË¥¼õ£©
-	cmi_109,		///< @line		ModifySpellEffectAccordingToAccumulateParam,    ¸ù¾ÝÀÛ»ý²ÎÊýÐÞ¸Ä¼¼ÄÜÐ§¹û
-	cmi_110,		///< @line		ReduceAuraStackCount,							¼õÉÙ×´Ì¬Ð§¹ûµÄµþ¼Ó²ãÊý
-	cmi_111,		///< @line		CastingSpellRegisterEvent,						Ê©·¨Ê±×¢²áÊÂ¼þ£¨Èç¶ÁÌõ»Øµ÷£©
-	cmi_112,		///< @line		GenerateBlock,									Éú³É¸ñµ²Ð§¹û
-	cmi_113,		///< @line		RefreshSlotCD,									Ë¢ÐÂ¼¼ÄÜ²ÛCD
-	cmi_114,		///< @line		CheckHpInCircle,								¼ì²éÔ²ÐÎÇøÓòÄÚÄ¿±êµÄHP
-	cmi_115,		///< @line		RemoveTargetAura,								ÒÆ³ýÄ¿±ê¹â»·
-	cmi_116,		///< @line		CheckWeather,									¼ì²éÌìÆø£¨ÈçÓêÌìÔöÇ¿À×µç¼¼ÄÜ£©
-	cmi_117,		///< @line		CheckAuraCasterLive,							¼ì²é¹â»·Ê©·¨ÕßÊÇ·ñ´æ»î
-	cmi_118,		///< @line		RemovePendingAura,								ÒÆ³ý´ýÉúÐ§µÄ×´Ì¬Ð§¹û
-	cmi_119,		///< @line		AddPendingSpellAttr,							Ìí¼Ó´ýÉúÐ§µÄ¼¼ÄÜÊôÐÔ
-	cmi_120,		///< @line		AddMaxHpAndCurrentHp,							Ôö¼Ó×î´óHPºÍµ±Ç°HP
-	cmi_121,		///< @line		CheckIsBoss,									¼ì²éÄ¿±êÊÇ·ñÎªBOSS
-	cmi_122,		///< @line		CheckIsDaytime,									¼ì²éÊÇ·ñÎª°×Ìì
-	cmi_123,		///< @line		AddParamX,										Ôö¼ÓParamX
-	cmi_124,		///< @line		AuraLoadTransformSpell,							×´Ì¬Ð§¹û¼ÓÔØ±äÐÎ¼¼ÄÜ
-	cmi_125,		///< @line		CastSubSpellToAuraCaster,						¶Ô×´Ì¬Ê©·¨Õß´¥·¢×Ó¼¼ÄÜ
-	cmi_126,		///< @line		Seduced,										÷È»ó£¨Ä¿±êÔÝÊ±ÅÑ±ä£©
-	cmi_127,		///< @line		CheckIsMoving,									¼ì²éÊÇ·ñÔÚÒÆ¶¯
-	cmi_128,		///< @line		Like 063,										[×´Ì¬½áÊøÊ±µÄÐ§¹û£¨Èç±¬Õ¨/»ØÑª£©] ?
-	cmi_129,		///< @line		ModifyAuraAttr,									ÐÞ¸Ä×´Ì¬ÊôÐÔ£¨ÈçÑÓ³¤³ÖÐøÊ±¼ä£©
-	cmi_130,		///< @line		ThrownFromCurrentPos,							´Óµ±Ç°Î»ÖÃÍ¶ÖÀ
-	cmi_131,		///< @line		Leap,											ÌøÔ¾
-	cmi_132,		///< @line		LeapToLockedTarget,								ÌøÔ¾ÖÁËø¶¨Ä¿±ê£¨ÈçÃÍÆË£©
-	cmi_133,		///< @line		SuperMassiveBlackHole,							³¬¼¶ºÚ¶´£¨´ó·¶Î§Ç£ÒýÐ§¹û£©
-	cmi_134,		///< @line		ShareDamageWithAuraCaster,						Óë×´Ì¬Ê©·¨Õß·ÖÌ¯ÉËº¦£¨ÉúÃüÁ´½Ó£©
-	cmi_135,		///< @line		TriggerEventRootSpellCD,						´¥·¢¹ØÁª¼¼ÄÜµÄÀäÈ´ÊÂ¼þ
-	cmi_136,		///< @line		IgnoreDynamicBlock,								ºöÂÔ¶¯Ì¬×èµ²£¨´©Ç½¼¼ÄÜ£©
-	cmi_AllNpcSpecies,	///< @line	AllNpcSpeciesDamage,							¶ÔÄ³ÀàNPCÔì³ÉÌØ¶¨ÉËº¦£¨ÖÖ×å¿ËÖÆ£©
-	cmi_138,		///< @line		SetSpellFlag,									ÉèÖÃ¼¼ÄÜ±ê¼Ç£¨Èç¡°²»¿É´ò¶Ï¡±£©
-	cmi_139,		///< @line		RemoveAllDebuff,								ÒÆ³ýËùÓÐ¸ºÃæ×´Ì¬£¨¾»»¯£©
-	cmi_140,		///< @line		ChangeWeather,									¸Ä±äÌìÆø£¨¼¼ÄÜ´¥·¢»·¾³±ä»¯£©
-	cmi_141,		///< @line		SubstituteMainSpellID,							Ìæ»»Ö÷¼¼ÄÜID
-	cmi_142,		///< @line		CheckSlotSpellID,								¼ì²é¼¼ÄÜ²ÛÖÐµÄ¼¼ÄÜID
+	cmi_016,		///< @line		LeapToTargetPos,								è·³è·ƒè‡³ç›®æ ‡ä½ç½®ï¼ˆçªè¿›ï¼‰
+	cmi_017,		///< @line		SpellRegisterEventOnEquip,						è£…å¤‡æ—¶æ³¨å†ŒæŠ€èƒ½äº‹ä»¶ï¼ˆå¦‚è§¦å‘ç‰¹æ•ˆï¼‰
+	cmi_018,		///< @line		Fear,											ææƒ§ï¼ˆè½¯æŽ§ï¼Œç›®æ ‡é€ƒè·‘ï¼‰
+	cmi_019,		///< @line		ModifyAttackWithDefense,						æ ¹æ®é˜²å¾¡åŠ›ä¿®æ­£æ”»å‡»ï¼ˆç ´ç”²æœºåˆ¶ï¼‰
+	cmi_020,		///< @line		DirectlyAddSpell,								ç›´æŽ¥æ·»åŠ æŠ€èƒ½
+	cmi_021,		///< @line		CircleSearchEnemyAndCastSubSpell,				åœ†å½¢æœç´¢æ•Œäººå¹¶æ–½æ”¾å­æŠ€èƒ½
+	cmi_022,		///< @line		ReduceCurrentAuraStackCount,					å‡å°‘å½“å‰å…‰çŽ¯å±‚æ•°
+	cmi_023,		///< @line		ModifyPendingSpell,								ä¿®æ”¹å¾…ç”Ÿæ•ˆæŠ€èƒ½ï¼ˆåŠ¨æ€è°ƒæ•´ï¼‰
+	cmi_024,		///< @line		SetDamageAbsorb,								è®¾ç½®ä¼¤å®³å¸æ”¶ï¼ˆæŠ¤ç›¾å€¼ï¼‰
+	cmi_025,		///< @line		AuraCheckDamageAbsorb,							çŠ¶æ€æ£€æŸ¥ä¼¤å®³å¸æ”¶ï¼ˆå¦‚æŠ¤ç›¾ï¼‰
+	cmi_026,		///< @line		SpellRegisterTimerEvent,						æŠ€èƒ½å®šæ—¶äº‹ä»¶ï¼ˆå»¶è¿Ÿè§¦å‘ï¼‰
+	cmi_027,		///< @line		DirectlyCastSubSpell,							ç›´æŽ¥é‡Šæ”¾å­æŠ€èƒ½
+	cmi_028,		///< @line		TeleportToLockedTarget,							ä¼ é€è‡³é”å®šç›®æ ‡ï¼ˆé—ªçŽ°ï¼‰
+	cmi_029,		///< @line		CharInvincible,									è§’è‰²æ— æ•Œï¼ˆçŸ­æš‚å…ä¼¤ï¼‰
+	cmi_030,		///< @line		ChargeToTarget,									å‘ç›®æ ‡å†²é”‹
+	cmi_031,		///< @line		GenerateSingleHealBullet,						ç”Ÿæˆå•ä½“æ²»ç–—å­å¼¹ï¼ˆå¦‚æ²»ç–—ç®­ï¼‰
+	cmi_032,		///< @line		GenerateMultiHealBullet,						ç”Ÿæˆç¾¤ä½“æ²»ç–—å­å¼¹ï¼ˆèŒƒå›´æ²»ç–—ï¼‰
+	cmi_033,		///< @line		GenerateTeamHealBullet,							ç”Ÿæˆé˜Ÿä¼æ²»ç–—å­å¼¹ï¼ˆå›¢é˜Ÿå›žè¡€ï¼‰
+	cmi_034,		///< @line		AdjustSpellDirectionWithFaceDirection,			æ ¹æ®è§’è‰²æœå‘è°ƒæ•´æŠ€èƒ½æ–¹å‘
+	cmi_035,		///< @line		RecoveryHp,										æ¢å¤HP
+	cmi_036,		///< @line		CheckItem,										æ£€æŸ¥ç‰©å“ï¼ˆæ¶ˆè€—å“/è£…å¤‡éœ€æ±‚ï¼‰
+	cmi_037,		///< @line		CheckAccumulateTime,							æ£€æŸ¥ç´¯ç§¯æ—¶é—´ï¼ˆå¦‚å……èƒ½æœºåˆ¶ï¼‰
+	cmi_038,		///< @line		SetCharFlagBit,									è®¾ç½®è§’è‰²æ ‡å¿—ä½
+	cmi_039,		///< @line		Random,											éšæœº
+	cmi_040,		///< @line		ClearNextTarget,								æ¸…é™¤ä¸‹ä¸€ä¸ªç›®æ ‡
+	cmi_041,		///< @line		CheckMpByPercent,								æŒ‰ç™¾åˆ†æ¯”æ£€æŸ¥MP
+	cmi_042,		///< @line		CheckMpByValue,									æŒ‰å›ºå®šå€¼æ£€æŸ¥MP
+	cmi_043,		///< @line		ReviveTarget,									å¤æ´»ç›®æ ‡
+	cmi_044,		///< @line		TeleportToNearestGraveyard,						ä¼ é€è‡³æœ€è¿‘å¢“åœ°ï¼ˆæ­»äº¡å¤æ´»ï¼‰
+	cmi_045,		///< @line		CheckAndConsumeMoney,							æ£€æŸ¥å¹¶ä¸”æ¶ˆè€—è´§å¸
+	cmi_046,		///< @line		CheckTargetCount,								æ£€æŸ¥ç›®æ ‡æ•°é‡
+	cmi_047,		///< @line		LockNearestTargetInSector,						é”å®šæ‰‡å½¢å†…æœ€è¿‘ç›®æ ‡
+	cmi_048,		///< @line		LockNearestTarget,								é”å®šæœ€è¿‘ç›®æ ‡
+	cmi_049,		///< @line		KnockBack,										å‡»é€€
+	cmi_050,		///< @line		ModifierCost,									ä¿®æ”¹æŠ€èƒ½èŠ±è´¹
+	cmi_051,		///< @line		SummonNpc,										å¬å”¤NPCï¼ˆå® ç‰©/å›¾è…¾ï¼‰
+	cmi_052,		///< @line		RotateTargetPt,									æ—‹è½¬ç›®æ ‡è§’åº¦
+	cmi_053,		///< @line		CheckIntervalAndCastSubSpell,					æ£€æŸ¥é—´éš”å¹¶æ–½æ”¾å­æŠ€èƒ½ï¼ˆå‘¨æœŸæ€§æ•ˆæžœï¼‰
+	cmi_054,		///< @line		RotateSelf,										æ—‹è½¬è‡ªå·±
+	cmi_055,		///< @line		CheckMultiAccumulateTime,						æ£€æŸ¥å¤šé‡ç´¯ç§¯æ—¶é—´
+	cmi_056,		///< @line		CheckHpByPct,									æŒ‰ç™¾åˆ†æ¯”æ£€æŸ¥HP
+	cmi_057,		///< @line		CheckHpByValue,									æŒ‰å›ºå®šå€¼æ£€æŸ¥HP
+	cmi_058,		///< @line		CheckExFlag,									æ£€æŸ¥Exæ ‡å¿— (æŠ€èƒ½?)
+	cmi_059,		///< @line		SetExFlag,										è®¾ç½®Exæ ‡å¿— (æŠ€èƒ½?)
+	cmi_060,		///< @line		RemoveAura,										ç§»é™¤å…‰çŽ¯
+	cmi_061,		///< @line		CastSubSpellByAuraCaster,						æ ¹æ®å…‰çŽ¯æ–½æ³•è€…è§¦å‘å­æŠ€èƒ½
+	cmi_062,		///< @line		CheckCurrentWeaponType,							æ£€æŸ¥å½“å‰æ­¦å™¨ç±»åž‹
+	cmi_063,		///< @line		AuraTimeupEffect,								çŠ¶æ€ç»“æŸæ—¶çš„æ•ˆæžœï¼ˆå¦‚çˆ†ç‚¸/å›žè¡€ï¼‰
+	cmi_064,		///< @line		AuraKnockBack,									çŠ¶æ€é™„å¸¦å‡»é€€ï¼ˆå¦‚å…‰çŽ¯çˆ†ç‚¸ï¼‰
+	cmi_065,		///< @line		GenerateDivergentMissile,						ç”Ÿæˆåˆ†å‰æŠ•å°„ç‰©ï¼ˆå¦‚åˆ†è£‚å¼¹ï¼‰
+	cmi_066,		///< @line		GenerateRandomTargetPt,							ç”Ÿæˆéšæœºç›®æ ‡ç‚¹ï¼ˆå¦‚èŒƒå›´è½°ç‚¸ï¼‰
+	cmi_067,		///< @line		FindAura,										æŸ¥æ‰¾çŠ¶æ€æ•ˆæžœï¼ˆæ£€æŸ¥æ˜¯å¦å­˜åœ¨ï¼‰
+	cmi_068,		///< @line		SubstituteNextSpell,							æ›¿æ¢ä¸‹ä¸€ä¸ªæŠ€èƒ½
+	cmi_069,		///< @line		AddAuraToCaster,								ç»™æ–½æ³•è€…æ·»åŠ çŠ¶æ€ï¼ˆè‡ªæˆ‘å¢žç›Šï¼‰
+	cmi_070,		///< @line		ScanTarget,										æ‰«æç›®æ ‡ï¼ˆèŒƒå›´å†…ç´¢æ•Œï¼‰
+	cmi_071,		///< @line		Silence,										æ²‰é»˜ï¼ˆç¦æ­¢æ–½æ³•ï¼‰
+	cmi_072,		///< @line		CheckCurrentAura,								æ£€æŸ¥å½“å‰å…‰çŽ¯
+	cmi_073,		///< @line		GhostStep,										é¬¼æ­¥ï¼ˆçž¬ç§»æ®‹å½±ï¼‰
+	cmi_074,		///< @line		LeapAndMissile,									è·³è·ƒå’Œå¯¼å¼¹?
+	cmi_075,		///< @line		DispelAuraByID,									æŒ‰IDé©±æ•£çŠ¶æ€
+	cmi_076,		///< @line		DispelAuraByType,								æŒ‰ç±»åž‹é©±æ•£çŠ¶æ€ï¼ˆå¦‚é©±æ•£æ‰€æœ‰Debuffï¼‰
+	cmi_077,		///< @line		DispelAuraBySubType,							æ ¹æ®å­ç±»åž‹æ¶ˆé™¤å…‰çŽ¯
+	cmi_078,		///< @line		BatchDispelAuraByType,							æ‰¹é‡é©±æ•£åŒç±»çŠ¶æ€
+	cmi_079,		///< @line		CheckLockTarget,								æ£€æŸ¥é”å®šç›®æ ‡
+	cmi_080,		///< @line		BreakCast,										åœæ­¢è§¦å‘
+	cmi_081,		///< @line		ChargeToNextTarget,								å†²é”‹åˆ°ä¸‹ä¸€ä¸ªç›®æ ‡
+	cmi_082,		///< @line		ModifyParamX,									ä¿®æ”¹å‚æ•°Xï¼ˆé€šç”¨æ•°å€¼è°ƒæ•´ï¼‰
+	cmi_083,		///< @line		CheckCurrentSpell,								æ£€æŸ¥å½“å‰æŠ€èƒ½
+	cmi_084,		///< @line		Freeze,											å†»ç»“ï¼ˆå®šèº«+å†°ä¼¤ï¼‰
+	cmi_085,		///< @line		CheckObjType,									æ£€æŸ¥å¯¹è±¡ç±»åž‹ï¼ˆçŽ©å®¶/NPC/é™·é˜±ç­‰ï¼‰
+	cmi_086,		///< @line		SetStance,										è®¾ç½®å§¿æ€ï¼ˆæˆ˜æ–—/éžæˆ˜æ–—çŠ¶æ€ï¼‰
+	cmi_087,		///< @line		DragByAura,										è¢«çŠ¶æ€æ•ˆæžœæ‹–åŠ¨ï¼ˆå¦‚é»‘æ´žå¸å¼•ï¼‰
+	cmi_088,		///< @line		SyncFlagPos,									åŒæ­¥æ ‡å¿—ä½ç½®
+	cmi_089,		///< @line		Thrown,											æŠ•æŽ·ï¼ˆå¼ºåˆ¶ä½ç§»ï¼Œå¦‚æŠ“å–æŠ›æŠ•ï¼‰
+	cmi_090,		///< @line		CheckThrown,									æ£€æŸ¥æŠ•æŽ·
+	cmi_091,		///< @line		RotateToLockedTarget,							æ—‹è½¬åˆ°é”å®šç›®æ ‡
+	cmi_092,		///< @line		DirectlySummonNpc,								ç›´æŽ¥å¬å”¤NPCï¼ˆæ— å»¶è¿Ÿï¼‰
+	cmi_093,		///< @line		ResetScanner,									é‡ç½®æ‰«æ
+	cmi_094,		///< @line		CheckChangedWeaponType,							æ£€æŸ¥åˆ‡æ¢åŽçš„æ­¦å™¨ç±»åž‹
+	cmi_095,		///< @line		Suicide,										è‡ªæ€ï¼ˆè‡ªçˆ†æŠ€èƒ½ï¼‰
+	cmi_096,		///< @line		ModifyCanbeThrown,								ä¿®æ”¹å¯ä»¥æŠ•æŽ·
+	cmi_097,		///< @line		CheckPass,										æ£€æŸ¥é€šè¿‡æ¡ä»¶
+	cmi_098,		///< @line		LockNearestTargetInRect,						é”å®šçŸ©å½¢å†…æœ€è¿‘ç›®æ ‡
+	cmi_099,		///< @line		ScanTargetAndExcludeLocked,						æ‰«æç›®æ ‡å¹¶æŽ’é™¤å·²é”å®š
+	cmi_100,		///< @line		NpcCopySelf,									NPCå¤åˆ¶è‡ªèº«ï¼ˆé•œåƒåˆ†èº«ï¼‰
+	cmi_101,		///< @line		ClientShowTime,									å®¢æˆ·ç«¯æ˜¾ç¤ºæ—¶é—´ï¼ˆå¦‚å€’è®¡æ—¶UIï¼‰
+	cmi_102,		///< @line		JumpToAuraCaster,								è·³è·ƒåˆ°å…‰çŽ¯æ–½æ³•è€…
+	cmi_103,		///< @line		BreakAuraCasterSpell,							æ‰“æ–­çŠ¶æ€æ–½æ³•è€…çš„æ–½æ³•(å…‰çŽ¯)
+	cmi_104,		///< @line		SingleBulletToNextLoopedTarget,					å­å¼¹å¾ªçŽ¯æ”»å‡»ä¸‹ä¸€ä¸ªç›®æ ‡ï¼ˆå¼¹å°„æœºåˆ¶ï¼‰
+	cmi_105,		///< @line		ChargeCertainDistance,							å›ºå®šè·ç¦»å†²é”‹
+	cmi_106,		///< @line		CheckDistanceBetweenCasterAndTarget,			æ£€æŸ¥æ–½æ³•è€…ä¸Žç›®æ ‡ä¹‹é—´çš„è·ç¦»
+	cmi_107,		///< @line		GenerateMissileFromCaster,						ä»Žæ–½æ³•è€…ç”ŸæˆæŠ•å°„ç‰©
+	cmi_108,		///< @line		ModifyParam1WithTargetDistance,					æ ¹æ®ç›®æ ‡è·ç¦»ä¿®æ”¹å‚æ•°1ï¼ˆå¦‚è¿œç¨‹è¡°å‡ï¼‰
+	cmi_109,		///< @line		ModifySpellEffectAccordingToAccumulateParam,    æ ¹æ®ç´¯ç§¯å‚æ•°ä¿®æ”¹æŠ€èƒ½æ•ˆæžœ
+	cmi_110,		///< @line		ReduceAuraStackCount,							å‡å°‘çŠ¶æ€æ•ˆæžœçš„å åŠ å±‚æ•°
+	cmi_111,		///< @line		CastingSpellRegisterEvent,						æ–½æ³•æ—¶æ³¨å†Œäº‹ä»¶ï¼ˆå¦‚è¯»æ¡å›žè°ƒï¼‰
+	cmi_112,		///< @line		GenerateBlock,									ç”Ÿæˆæ ¼æŒ¡æ•ˆæžœ
+	cmi_113,		///< @line		RefreshSlotCD,									åˆ·æ–°æŠ€èƒ½æ§½CD
+	cmi_114,		///< @line		CheckHpInCircle,								æ£€æŸ¥åœ†å½¢åŒºåŸŸå†…ç›®æ ‡çš„HP
+	cmi_115,		///< @line		RemoveTargetAura,								ç§»é™¤ç›®æ ‡å…‰çŽ¯
+	cmi_116,		///< @line		CheckWeather,									æ£€æŸ¥å¤©æ°”ï¼ˆå¦‚é›¨å¤©å¢žå¼ºé›·ç”µæŠ€èƒ½ï¼‰
+	cmi_117,		///< @line		CheckAuraCasterLive,							æ£€æŸ¥å…‰çŽ¯æ–½æ³•è€…æ˜¯å¦å­˜æ´»
+	cmi_118,		///< @line		RemovePendingAura,								ç§»é™¤å¾…ç”Ÿæ•ˆçš„çŠ¶æ€æ•ˆæžœ
+	cmi_119,		///< @line		AddPendingSpellAttr,							æ·»åŠ å¾…ç”Ÿæ•ˆçš„æŠ€èƒ½å±žæ€§
+	cmi_120,		///< @line		AddMaxHpAndCurrentHp,							å¢žåŠ æœ€å¤§HPå’Œå½“å‰HP
+	cmi_121,		///< @line		CheckIsBoss,									æ£€æŸ¥ç›®æ ‡æ˜¯å¦ä¸ºBOSS
+	cmi_122,		///< @line		CheckIsDaytime,									æ£€æŸ¥æ˜¯å¦ä¸ºç™½å¤©
+	cmi_123,		///< @line		AddParamX,										å¢žåŠ ParamX
+	cmi_124,		///< @line		AuraLoadTransformSpell,							çŠ¶æ€æ•ˆæžœåŠ è½½å˜å½¢æŠ€èƒ½
+	cmi_125,		///< @line		CastSubSpellToAuraCaster,						å¯¹çŠ¶æ€æ–½æ³•è€…è§¦å‘å­æŠ€èƒ½
+	cmi_126,		///< @line		Seduced,										é­…æƒ‘ï¼ˆç›®æ ‡æš‚æ—¶å›å˜ï¼‰
+	cmi_127,		///< @line		CheckIsMoving,									æ£€æŸ¥æ˜¯å¦åœ¨ç§»åŠ¨
+	cmi_128,		///< @line		Like 063,										[çŠ¶æ€ç»“æŸæ—¶çš„æ•ˆæžœï¼ˆå¦‚çˆ†ç‚¸/å›žè¡€ï¼‰] ?
+	cmi_129,		///< @line		ModifyAuraAttr,									ä¿®æ”¹çŠ¶æ€å±žæ€§ï¼ˆå¦‚å»¶é•¿æŒç»­æ—¶é—´ï¼‰
+	cmi_130,		///< @line		ThrownFromCurrentPos,							ä»Žå½“å‰ä½ç½®æŠ•æŽ·
+	cmi_131,		///< @line		Leap,											è·³è·ƒ
+	cmi_132,		///< @line		LeapToLockedTarget,								è·³è·ƒè‡³é”å®šç›®æ ‡ï¼ˆå¦‚çŒ›æ‰‘ï¼‰
+	cmi_133,		///< @line		SuperMassiveBlackHole,							è¶…çº§é»‘æ´žï¼ˆå¤§èŒƒå›´ç‰µå¼•æ•ˆæžœï¼‰
+	cmi_134,		///< @line		ShareDamageWithAuraCaster,						ä¸ŽçŠ¶æ€æ–½æ³•è€…åˆ†æ‘Šä¼¤å®³ï¼ˆç”Ÿå‘½é“¾æŽ¥ï¼‰
+	cmi_135,		///< @line		TriggerEventRootSpellCD,						è§¦å‘å…³è”æŠ€èƒ½çš„å†·å´äº‹ä»¶
+	cmi_136,		///< @line		IgnoreDynamicBlock,								å¿½ç•¥åŠ¨æ€é˜»æŒ¡ï¼ˆç©¿å¢™æŠ€èƒ½ï¼‰
+	cmi_AllNpcSpecies,	///< @line	AllNpcSpeciesDamage,							å¯¹æŸç±»NPCé€ æˆç‰¹å®šä¼¤å®³ï¼ˆç§æ—å…‹åˆ¶ï¼‰
+	cmi_138,		///< @line		SetSpellFlag,									è®¾ç½®æŠ€èƒ½æ ‡è®°ï¼ˆå¦‚â€œä¸å¯æ‰“æ–­â€ï¼‰
+	cmi_139,		///< @line		RemoveAllDebuff,								ç§»é™¤æ‰€æœ‰è´Ÿé¢çŠ¶æ€ï¼ˆå‡€åŒ–ï¼‰
+	cmi_140,		///< @line		ChangeWeather,									æ”¹å˜å¤©æ°”ï¼ˆæŠ€èƒ½è§¦å‘çŽ¯å¢ƒå˜åŒ–ï¼‰
+	cmi_141,		///< @line		SubstituteMainSpellID,							æ›¿æ¢ä¸»æŠ€èƒ½ID
+	cmi_142,		///< @line		CheckSlotSpellID,								æ£€æŸ¥æŠ€èƒ½æ§½ä¸­çš„æŠ€èƒ½ID
 	cmi_143,		///< @line		,
 	cmi_144,		///< @line		,
 	cmi_145,		///< @line		,
@@ -289,10 +289,10 @@ enum CHAR_MODIFIER_INDEX
 	cmi_207,		///< @line		,
 	cmi_208,		///< @line		,
 	cmi_209,		///< @line		,
-	cmi_210,		///< @line		»¤Éí½äÖ¸/Âé±Ô½äÖ¸/³¬¸ºÔØ½äÖ¸/¸´»î½äÖ¸/ÒþÉí½äÖ¸/ºçÄ§½äÖ¸/ÏîÁ´/ÊÖïí/ºì±¦Ê¯½äÖ¸/Ë¼±´¶ùÊÖïí/ÁúÖ®ÊÖïí/åÐÒ£ÉÈ/ÁúÖ®½äÖ¸/ÐÄÁéÊÖïí/¶ñÄ§Áåîõ/²¬½ð½äÖ¸/ÆïÊ¿ÊÖïí
-	cmi_211,		///< @line		¼¯ºÏÁî
-	cmi_212,		///< @line		Õì²âÏîÁ´
-	cmi_213,		///< @line		´«ËÍ½äÖ¸
+	cmi_210,		///< @line		æŠ¤èº«æˆ’æŒ‡/éº»ç—¹æˆ’æŒ‡/è¶…è´Ÿè½½æˆ’æŒ‡/å¤æ´»æˆ’æŒ‡/éšèº«æˆ’æŒ‡/è™¹é­”æˆ’æŒ‡/é¡¹é“¾/æ‰‹é•¯/çº¢å®çŸ³æˆ’æŒ‡/æ€è´å„¿æ‰‹é•¯/é¾™ä¹‹æ‰‹é•¯/é€é¥æ‰‡/é¾™ä¹‹æˆ’æŒ‡/å¿ƒçµæ‰‹é•¯/æ¶é­”é“ƒé“›/é“‚é‡‘æˆ’æŒ‡/éª‘å£«æ‰‹é•¯
+	cmi_211,		///< @line		é›†åˆä»¤
+	cmi_212,		///< @line		ä¾¦æµ‹é¡¹é“¾
+	cmi_213,		///< @line		ä¼ é€æˆ’æŒ‡
 	cmi_214,		///< @line		,
 	cmi_215,		///< @line		,
 	cmi_216,		///< @line		,
@@ -302,7 +302,7 @@ enum CHAR_MODIFIER_INDEX
 	cmi_220,		///< @line		,
 	cmi_221,		///< @line		,
 	cmi_222,		///< @line		,
-	cmi_223,		///< @line		Ä§Ñª½äÖ¸/ÏîÁ´/ÊÖïí/Ä§Ñª×ª»»
+	cmi_223,		///< @line		é­”è¡€æˆ’æŒ‡/é¡¹é“¾/æ‰‹é•¯/é­”è¡€è½¬æ¢
 	cmi_224,		///< @line		,
 	cmi_225,		///< @line		,
 	cmi_226,		///< @line		,

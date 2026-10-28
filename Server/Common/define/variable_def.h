@@ -107,26 +107,26 @@ enum SERVER_VARIABLE_TYPE
 
 	esvtDefault = esvtInvalid,
 
-	esvtRune,				// ÃúÎÄÏ´Á·ÏŞÖÆ
+	esvtRune,				// é“­æ–‡æ´—ç»ƒé™åˆ¶
 	esvtRuneRefreshTime,    // 
 
-	esvtItemDropLimitType0,				  // ¹ÖÎïµôÂäÏŞÖÆ
+	esvtItemDropLimitType0,				  // æ€ªç‰©æ‰è½é™åˆ¶
     esvtItemDropLimitType0RefreshTime,	  // 
     esvtItemDropLimitType1,				  // 
     esvtItemDropLimitType1RefreshTime,	  // 
     esvtItemDropLimitType2,				  // 
     esvtItemDropLimitType2RefreshTime,    // 
 
-	esvtItemDropLimitLuck2Necklace,       // ÔË2ÏîÁ´ÏŞÖÆ×¨ÓÃ
-	esvtItemDropLimitLuck2NecklaceRefreshTime,       // ÔË2ÏîÁ´ÏŞÖÆ×¨ÓÃ, Ë¢ĞÂÊ±¼ä
+	esvtItemDropLimitLuck2Necklace,       // è¿2é¡¹é“¾é™åˆ¶ä¸“ç”¨
+	esvtItemDropLimitLuck2NecklaceRefreshTime,       // è¿2é¡¹é“¾é™åˆ¶ä¸“ç”¨, åˆ·æ–°æ—¶é—´
 
-    esvtWorldGambleCount,			 // µ±Ç°È«ÇøÖØÖıÊıÁ¿
-    esvtPreviousWorldGambleCount,    // ÉÏÒ»´ÎÈ«ÇøÖØÖıÊıÁ¿
+    esvtWorldGambleCount,			 // å½“å‰å…¨åŒºé‡é“¸æ•°é‡
+    esvtPreviousWorldGambleCount,    // ä¸Šä¸€æ¬¡å…¨åŒºé‡é“¸æ•°é‡
 
-    esvtArena,    // ¾º¼¼³¡
-    esvtGuild,	  // ¹«»á
+    esvtArena,    // ç«æŠ€åœº
+    esvtGuild,	  // å…¬ä¼š
 
-	esvtSceneLostFaction,    // ³¡¾°ÃÔÊ§ÅÉÏµ?
+	esvtSceneLostFaction,    // åœºæ™¯è¿·å¤±æ´¾ç³»?
 
 	esvtTotal
 };

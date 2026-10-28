@@ -19,16 +19,16 @@
 
 // unused
 #define MAX_GUILD_NUM_SYSTEM_LIMIT  (16384)
-#define MAX_APPLY_GUILD_ROLE_NUM    (200)   // °ïÅÉ×î¶àÔÊÐíÉêÇëµÄÍæ¼ÒÊýÁ¿£¬ÔÝ¶¨
-#define GUILD_MAX_MEMBER_COUNT    (250)           // ×î´ó³ÉÔ±ÊýÁ¿
-//#define GUILD_MEMBER_SYS_LIMIT      (250)       // ÏµÍ³ÏÞÖÆµÄ×î´óÍæ¼ÒÊýÁ¿
+#define MAX_APPLY_GUILD_ROLE_NUM    (200)   // å¸®æ´¾æœ€å¤šå…è®¸ç”³è¯·çš„çŽ©å®¶æ•°é‡ï¼Œæš‚å®š
+#define GUILD_MAX_MEMBER_COUNT    (250)           // æœ€å¤§æˆå‘˜æ•°é‡
+//#define GUILD_MEMBER_SYS_LIMIT      (250)       // ç³»ç»Ÿé™åˆ¶çš„æœ€å¤§çŽ©å®¶æ•°é‡
 
-#define MAX_VIEW_GUILD_LIST_COUNT (12)      // °ïÅÉ²é¿´£¬Ò»´Î·¢ËÍ°ïÅÉÊýÁ¿
+#define MAX_VIEW_GUILD_LIST_COUNT (12)      // å¸®æ´¾æŸ¥çœ‹ï¼Œä¸€æ¬¡å‘é€å¸®æ´¾æ•°é‡
 
-#define ROLE_MAX_APPLICATION     (10)       // ½ÇÉ«Ò»´Î×î¶à¿ÉÉêÇë¼ÓÈëµÄ°ïÅÉÊýÁ¿
+#define ROLE_MAX_APPLICATION     (10)       // è§’è‰²ä¸€æ¬¡æœ€å¤šå¯ç”³è¯·åŠ å…¥çš„å¸®æ´¾æ•°é‡
 
-#define GUILD_MAX_ALLIANCE_NUM      (10)     // ×î´óÁªÃË°ïÅÉÊýÁ¿
-#define GUILD_MAX_ENEMY_NUM          (10)    // ×î´óµÐ¶Ô°ïÅÉÊýÁ¿
+#define GUILD_MAX_ALLIANCE_NUM      (10)     // æœ€å¤§è”ç›Ÿå¸®æ´¾æ•°é‡
+#define GUILD_MAX_ENEMY_NUM          (10)    // æœ€å¤§æ•Œå¯¹å¸®æ´¾æ•°é‡
 
 #define GUILD_DATA_NTF_HISTORY_NUM   (10)
 #define GUILD_MAX_CHEST_NTF_NUM     (50)
@@ -41,7 +41,7 @@
 #define GUILD_STORAGE_MAX_TAG_NUM (6)
 #define GUILD_STORAGE_LOW_LIMIT     (10000)
 
-#define GUILD_MAX_APPLY_ALLIANCE_NUM    (250)           // ÔÙ´óÃ¿´Î·¢ËÍ¾Í²»¿¼ÂÇÁË£¬Õâ¶¼ÊÇÊÀ½ç¹«µÐÁË
+#define GUILD_MAX_APPLY_ALLIANCE_NUM    (250)           // å†å¤§æ¯æ¬¡å‘é€å°±ä¸è€ƒè™‘äº†ï¼Œè¿™éƒ½æ˜¯ä¸–ç•Œå…¬æ•Œäº†
 
 #define GUILD_MAX_WELFARE_AURA_COUNT  (64)
 #define GUILD_MAX_UPGRADE_AURA_COUNT (2)
@@ -51,11 +51,11 @@
 
 //#define WEEK_SECOND (604800)
 #define ONE_DAY_SECOND      (86400)
-//#define ROLE_APPLICATION_LAST_TIME  (300) // ÉêÇë´æÔÚÊ±¼ä
-//#define GUILD_DISBAND_LEVEL_LIMIT   (3)     // °ïÅÉ½âÉ¢µÄ×î¸ßµÈ¼¶ÏÞÖÆ£¬µÍÓÚÕâ¸öµÈ¼¶²Å¿ÉÒÔÉ¾³ý
+//#define ROLE_APPLICATION_LAST_TIME  (300) // ç”³è¯·å­˜åœ¨æ—¶é—´
+//#define GUILD_DISBAND_LEVEL_LIMIT   (3)     // å¸®æ´¾è§£æ•£çš„æœ€é«˜ç­‰çº§é™åˆ¶ï¼Œä½ŽäºŽè¿™ä¸ªç­‰çº§æ‰å¯ä»¥åˆ é™¤
 
-#define GUILD_UPDATE_RANKLIST_STARTTIME		(3600*4)	// °ïÅÉË¢ÐÂÅÅÐÐ°ñ¿ªÊ¼Ê±¼ä£¬Ã¿ÌìÁè³¿4µã¿ªÊ¼
-#define GUILD_UPDATE_RANKLIST_ENDIME		(3600*4 + 128)	// °ïÅÉË¢ÐÂÅÅÐÐ°ñ½áÊøÊ±¼ä£¬³ÖÐø128Ãë£¬1024èåÄÚ×öÍê
+#define GUILD_UPDATE_RANKLIST_STARTTIME		(3600*4)	// å¸®æ´¾åˆ·æ–°æŽ’è¡Œæ¦œå¼€å§‹æ—¶é—´ï¼Œæ¯å¤©å‡Œæ™¨4ç‚¹å¼€å§‹
+#define GUILD_UPDATE_RANKLIST_ENDIME		(3600*4 + 128)	// å¸®æ´¾åˆ·æ–°æŽ’è¡Œæ¦œç»“æŸæ—¶é—´ï¼ŒæŒç»­128ç§’ï¼Œ1024æ¡¢å†…åšå®Œ
 
 #define GUILD_DUNGEON_AWARD_NUM (8)
 
@@ -75,7 +75,7 @@
 //////////////////////////////////////////////////////////////////////////
 // server use
 
-#define MAX_TIME_DEVIATION      (10)            // ÔÊÐíÊ±¼ä¼ÆËãÎó²î
+#define MAX_TIME_DEVIATION      (10)            // å…è®¸æ—¶é—´è®¡ç®—è¯¯å·®
 
 #define MAX_GUILD_CORE_MEMBER   (20)
 
@@ -104,21 +104,21 @@ enum GUILD_POSITION_TYPE
     GUILD_POSITION_LEADER       = 1,
     GUILD_POSITION_SUBLEADER    = 2,
     GUILD_POSITION_ELDER        = 3,
-    GUILD_POSITION_BISHOP       = 4,        // Ö÷½Ì £¬ µîÖ÷
-    GUILD_POSITION_DEACON       = 5,        // Ö´ÊÂ
-    GUILD_POSITION_SUBDEACON    = 6,        // ¸±Ö´ÊÂ£¬Ö÷²¾
-    GUILD_POSITION_CIVILIAN     = 7,        // °ïÖÚ
+    GUILD_POSITION_BISHOP       = 4,        // ä¸»æ•™ ï¼Œ æ®¿ä¸»
+    GUILD_POSITION_DEACON       = 5,        // æ‰§äº‹
+    GUILD_POSITION_SUBDEACON    = 6,        // å‰¯æ‰§äº‹ï¼Œä¸»ç°¿
+    GUILD_POSITION_CIVILIAN     = 7,        // å¸®ä¼—
 
     GUILD_POSITION_TOTAL        = 8,
 };
 
-#define GUILD_POSITION_COUNT  (GUILD_POSITION_TOTAL-1)       // GUILD_POSITION_TYPE ¹ØÁªÕâ¸ö
+#define GUILD_POSITION_COUNT  (GUILD_POSITION_TOTAL-1)       // GUILD_POSITION_TYPE å…³è”è¿™ä¸ª
 
 enum GUILD_POSITION_RIGHT_FIELD
 {
     G_POS_RIGHT_NONE                = 0,
-    G_POS_RIGHT_INVITE              = 1 << 0,               // ÑûÇëÈ¨ÏÞ£¨¾õµÃÓÐÖØ¸´£©
-    G_POS_RIGHT_RECRUIT             = 1 << 1,               // ¾Ü¾ø»òÕß½ÓÊÜµÄÈ¨ÏÞ
+    G_POS_RIGHT_INVITE              = 1 << 0,               // é‚€è¯·æƒé™ï¼ˆè§‰å¾—æœ‰é‡å¤ï¼‰
+    G_POS_RIGHT_RECRUIT             = 1 << 1,               // æ‹’ç»æˆ–è€…æŽ¥å—çš„æƒé™
     G_POS_RIGHT_FORBID_CHAT         = 1 << 2,
     G_POS_RIGHT_NOTICE              = 1 << 3,
     G_POS_RIGHT_SET_STORAGE_RIGHT   = 1 << 4,
@@ -127,7 +127,7 @@ enum GUILD_POSITION_RIGHT_FIELD
     G_POS_RIGHT_UPGRADE_WELFARE     = 1 << 7,
     G_POS_RIGHT_CHANGE_POS          = 1 << 8,
     G_POS_RIGHT_BANISH              = 1 << 9,
-    G_POS_RIGHT_DIPLOMAT            = 1 << 10,      // Íâ½»
+    G_POS_RIGHT_DIPLOMAT            = 1 << 10,      // å¤–äº¤
     G_POS_RIGHT_ACTIVITY            = 1 << 11,
 
     //G_POS_RIGHT_MANAGE_MONEY = 1 << 8,
@@ -151,15 +151,15 @@ enum GUILD_STORAGE_RIGHT_FLAG
 
 enum GUILD_FLAG_FIELD
 {
-    GUILD_FLAG_IS_CHAT_FORBIDDEN = 1 << 0,  // ÊÇ·ñ±»½ûÑÔ
+    GUILD_FLAG_IS_CHAT_FORBIDDEN = 1 << 0,  // æ˜¯å¦è¢«ç¦è¨€
 };
 
 enum GUILD_DIPLOMATIC_TIME_TYPE
 {
-    G_DIPLOMATIC_TIME_1     = 1,    // 1Ìì
-    G_DIPLOMATIC_TIME_2     = 2,    // 3Ìì
-    G_DIPLOMATIC_TIME_3     = 3,    // 7Ìì
-    G_DIPLOMATIC_TIME_4     = 4,    // 30Ìì
+    G_DIPLOMATIC_TIME_1     = 1,    // 1å¤©
+    G_DIPLOMATIC_TIME_2     = 2,    // 3å¤©
+    G_DIPLOMATIC_TIME_3     = 3,    // 7å¤©
+    G_DIPLOMATIC_TIME_4     = 4,    // 30å¤©
 };
 
 enum GUILD_REVERT_APPLY_ENUM
@@ -185,7 +185,7 @@ enum GUILD_RESOURCE_CHANGE_TYPE
 
 enum GUILD_ATTR_ENUM
 {
-    // Ç°ÃæµÄ¸øguild variables ÓÃµÄ£¬Ïàµ±ÓÚindex Allan Tao[19.11.2013] 
+    // å‰é¢çš„ç»™guild variables ç”¨çš„ï¼Œç›¸å½“äºŽindex Allan Tao[19.11.2013] 
     GUILD_ATTR_BEGIN = MAX_GUILD_VARIABLE_COUNT + 1,
     GUILD_ATTR_MONEY,
     GUILD_ATTR_LEVEL,
@@ -319,40 +319,40 @@ enum GUILD_REPLY
 enum GUILD_BUILDING_ENUM
 {
     GUILD_B_NONE                = 0,
-    GUILD_B_MAIN                = 1,    // Ö÷µî
-    GUILD_B_BUSINESS            = 2,    // ÉÌ»á
-    GUILD_B_DEITY               = 3,    // ÉñÌ³
-    GUILD_B_HOUSE               = 4,    // ¾ÓËù
-    GUILD_B_STORAGE             = 5,    // ½ð¿â
-    GUILD_B_STAFF               = 6,    // Õ½ÊÂÌü
-    GUILD_B_WONDER              = 7,    // Í¼ÌÚ
-    GUILD_B_HERB                = 8,    // Å©³¡
-    GUILD_B_WOOD                = 9,    // ÁÖ³¡
-    GUILD_B_CRYSTAL             = 10,   // Ê¯³¡
-    GUILD_B_SILVER              = 11,   // ¿ó³¡
-    GUILD_B_HERB_STORAGE        = 12,   // Á¸²Ö
-    GUILD_B_WOOD_STORAGE        = 13,   // Ä¾²Ö
-    GUILD_B_CRYSTAL_STORAGE     = 14,   // Ê¯²Ö
-    GUILD_B_SILVER_STORAGE      = 15,   // ¿ó²Ö
+    GUILD_B_MAIN                = 1,    // ä¸»æ®¿
+    GUILD_B_BUSINESS            = 2,    // å•†ä¼š
+    GUILD_B_DEITY               = 3,    // ç¥žå›
+    GUILD_B_HOUSE               = 4,    // å±…æ‰€
+    GUILD_B_STORAGE             = 5,    // é‡‘åº“
+    GUILD_B_STAFF               = 6,    // æˆ˜äº‹åŽ…
+    GUILD_B_WONDER              = 7,    // å›¾è…¾
+    GUILD_B_HERB                = 8,    // å†œåœº
+    GUILD_B_WOOD                = 9,    // æž—åœº
+    GUILD_B_CRYSTAL             = 10,   // çŸ³åœº
+    GUILD_B_SILVER              = 11,   // çŸ¿åœº
+    GUILD_B_HERB_STORAGE        = 12,   // ç²®ä»“
+    GUILD_B_WOOD_STORAGE        = 13,   // æœ¨ä»“
+    GUILD_B_CRYSTAL_STORAGE     = 14,   // çŸ³ä»“
+    GUILD_B_SILVER_STORAGE      = 15,   // çŸ¿ä»“
 
     GUILD_B_FUNATIONAL_NUM      = 16,
 
-    GUILD_B_GATE                = 16,   // ³ÇÃÅ
-    GUILD_B_WALL                = 17,   // ³ÇÇ½
+    GUILD_B_GATE                = 16,   // åŸŽé—¨
+    GUILD_B_WALL                = 17,   // åŸŽå¢™
 
-    GUILD_B_ARMSHOP             = 18,   // ±ø¹¤³§
-    GUILD_B_ARROW               = 19,	// ¼ýËþ
-    GUILD_B_TURRET              = 20,	// ÅÚËþ
-    GUILD_B_GROUP_ATTACK        = 21,   // Èº¹¥Ëþ
-    GUILD_B_MAGIC               = 22,   // Ä§·¨Ëþ
-    GUILD_B_CURE                = 23,   // ¼ÓÑªËþ
+    GUILD_B_ARMSHOP             = 18,   // å…µå·¥åŽ‚
+    GUILD_B_ARROW               = 19,	// ç®­å¡”
+    GUILD_B_TURRET              = 20,	// ç‚®å¡”
+    GUILD_B_GROUP_ATTACK        = 21,   // ç¾¤æ”»å¡”
+    GUILD_B_MAGIC               = 22,   // é­”æ³•å¡”
+    GUILD_B_CURE                = 23,   // åŠ è¡€å¡”
 	
-    GUILD_B_BLOCK               = 24,   // Â·ÕÏ
+    GUILD_B_BLOCK               = 24,   // è·¯éšœ
 
     GUILD_B_NUM,
 
 
-    GUILD_B_PROTECTOR           = GUILD_B_NUM,          // ¹«»á±£»¤Õß
+    GUILD_B_PROTECTOR           = GUILD_B_NUM,          // å…¬ä¼šä¿æŠ¤è€…
 
 
 

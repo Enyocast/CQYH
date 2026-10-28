@@ -58,7 +58,7 @@ void CMessageHandler::OnGTClientMsg(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize,
 
     pUser = CUserMgr::GetInstance().FindUserBySessionID(pMsg->dwClientSessionID);
     LOG_PROCESS_ERROR(pUser);
-    LOG_PROCESS_ERROR(pUser->eState == USER_STATE_INGAME);  // ◊¥Ã¨≤ª∂‘ «∫œ¿Ì◊¥øˆ
+    LOG_PROCESS_ERROR(pUser->eState == USER_STATE_INGAME);  // Áä∂ÊÄÅ‰∏çÂØπÊòØÂêàÁêÜÁä∂ÂÜµ
 
     pstOnlineRole = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(pUser->dwCurRoleID);
     LOG_PROCESS_ERROR(pstOnlineRole);
@@ -124,7 +124,7 @@ Exit0:
     return;
 }
 
-// ===== ◊È∂”º”»Î (À´∑Ω»Œ“‚“ª»À”–∂”ŒÈ, ∂º◊ﬂ’‚¿Ô)
+// ===== ÁªÑÈòüÂä†ÂÖ• (ÂèåÊñπ‰ªªÊÑè‰∏Ä‰∫∫ÊúâÈòü‰ºç, ÈÉΩËµ∞ËøôÈáå)
 void CMessageHandler::OnClientTeamJoin(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nRetCode = 0;
@@ -153,7 +153,7 @@ void CMessageHandler::OnClientTeamJoin(PACKET_BUFFER* pPacketBuffer, UINT32 dwSi
     LOG_PROCESS_ERROR(pstTgtOnlineRole->pRoleData);
     PROCESS_ERROR_RET_CODE(pstTgtOnlineRole->stBattleQueue.byQueue == qsNotInQueue, errTeamInBattleQueue);
 
-    // ◊‘º∫◊È∂”◊‘º∫, ≤ª÷™µ¿’¶¥•∑¢µƒ, ‘› ±œ»≤ªπ‹
+    // Ëá™Â∑±ÁªÑÈòüËá™Â∑±, ‰∏çÁü•ÈÅìÂíãËß¶ÂèëÁöÑ, ÊöÇÊó∂ÂÖà‰∏çÁÆ°
     if (pstOnlineRole->pRoleData->dwRoleID == pMsg->dwTargetRoleID)
     {
         UINT32 dwNewTeamID = 0;
@@ -239,7 +239,7 @@ Exit0:
     return;
 }
 
-// ÕÀ∂”
+// ÈÄÄÈòü
 void CMessageHandler::OnClientTeamLeave(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nRetCode = 0;
@@ -356,7 +356,7 @@ Exit0:
     return;
 }
 
-// ◊È∂”ªÿ¥
+// ÁªÑÈòüÂõûÁ≠î
 void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nRetCode = 0;
@@ -391,10 +391,10 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
     pstOnlineRole->dwWaitReqRoleID = 0;
     PROCESS_ERROR_RET_CODE(pstRequstRole->stBattleQueue.byQueue == qsNotInQueue, errTeamInBattleQueue);
 
-    // Œ“æ‹æ¯◊È∂”
+    // ÊàëÊãíÁªùÁªÑÈòü
     if (pMsg->byAnswerResult == etarDisAgree)
     {
-        // æ‹æ¯—˚«Î
+        // ÊãíÁªùÈÇÄËØ∑
         if (pMsg->byAnswerType == etatInvite)
         {
             CMessageHandler::GetInstance().DoErrorNotify(pstOnlineRole->dwCliSessionID, errTeamRefusedInvitation,
@@ -403,7 +403,7 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
             CMessageHandler::GetInstance().DoErrorNotify(pstRequstRole->dwCliSessionID, errTeamInvitationRefused,
                 pstOnlineRole->pRoleData->dwRoleID, pstRequstRole->pRoleData->dwRoleID);
         }
-        // æ‹æ¯÷˜∂Ø…Í«Î
+        // ÊãíÁªù‰∏ªÂä®Áî≥ËØ∑
         else if (pMsg->byAnswerType == etatEnter)
         {
             CMessageHandler::GetInstance().DoErrorNotify(pstOnlineRole->dwCliSessionID, errTeamRefusedApplication,
@@ -415,14 +415,14 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         PROCESS_SUCCESS(TRUE);
     }
 
-    // œ¬√ÊæÕ «Ω” ‹◊È∂”¡À
+    // ‰∏ãÈù¢Â∞±ÊòØÊé•ÂèóÁªÑÈòü‰∫Ü
     pstRequstUser = pstRequstRole->pUser;
     PROCESS_ERROR_RET_CODE(pstRequstUser->eState == USER_STATE_INGAME, errTeamOffLine);
 
     PROCESS_ERROR_RET_CODE(pstRequstRole->pRoleData->dwTeamID == 0 ||
         pstOnlineRole->pRoleData->dwTeamID == 0, errTeamAlreadyInTeam);
 
-    // Œ“√ª∂”ŒÈ, ∂‘∑Ω√ª∂”ŒÈ, ƒ«æÕ¥¥Ω®“ª∏ˆ∂”ŒÈ
+    // ÊàëÊ≤°Èòü‰ºç, ÂØπÊñπÊ≤°Èòü‰ºç, ÈÇ£Â∞±ÂàõÂª∫‰∏Ä‰∏™Èòü‰ºç
     if (pstOnlineRole->pRoleData->dwTeamID == 0 && pstRequstRole->pRoleData->dwTeamID == 0)
     {
         UINT32 dwNewTeamID = 0;
@@ -432,17 +432,17 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         poTeam = CTeamMgr::GetInstance().New(dwNewTeamID);
         LOG_PROCESS_ERROR(poTeam);
 
-        // –¬‘ˆ¥˙¬Î, ªÒ»° [◊È∂”ƒ£ Ω]
+        // Êñ∞Â¢û‰ª£Á†Å, Ëé∑Âèñ [ÁªÑÈòüÊ®°Âºè]
         UINT8 byAssignType = pstOnlineRole->m_TeamInvite[pMsg->dwAnswerRequestRoleID];
 
         nRetCode = poTeam->Init(GET_GROUP_INDEX_FROM_SESSION_ID(pstOnlineRole->dwCliSessionID),
-            //dwNewTeamID, pstRequstRole->pRoleData->szRoleName, 11, etaFreeForAll, ITEMCOLOR_WHITE);    // ‘≠¥˙¬Î, ƒ¨»œ[◊‘”… ∞»°]
-            dwNewTeamID, pstRequstRole->pRoleData->szRoleName, 11, byAssignType, ITEMCOLOR_WHITE);       // –¬¥˙¬Î, …Ë÷√[◊È∂”ƒ£ Ω]
+            //dwNewTeamID, pstRequstRole->pRoleData->szRoleName, 11, etaFreeForAll, ITEMCOLOR_WHITE);    // Âéü‰ª£Á†Å, ÈªòËÆ§[Ëá™Áî±ÊãæÂèñ]
+            dwNewTeamID, pstRequstRole->pRoleData->szRoleName, 11, byAssignType, ITEMCOLOR_WHITE);       // Êñ∞‰ª£Á†Å, ËÆæÁΩÆ[ÁªÑÈòüÊ®°Âºè]
         LOG_PROCESS_ERROR(nRetCode);
 
-        poTeam->AddMember(pstRequstRole->pRoleData->dwRoleID);    // –¬∂”ŒÈ ∞—∂‘∑Ωº”Ω¯»•
-        poTeam->AddMember(pstOnlineRole->pRoleData->dwRoleID);    // –¬∂”ŒÈ ∞—Œ“º”Ω¯»•
-        poTeam->SetLeader(pstRequstRole->pRoleData->dwRoleID);    // ∂‘∑Ω «∂”≥§
+        poTeam->AddMember(pstRequstRole->pRoleData->dwRoleID);    // Êñ∞Èòü‰ºç ÊääÂØπÊñπÂä†ËøõÂéª
+        poTeam->AddMember(pstOnlineRole->pRoleData->dwRoleID);    // Êñ∞Èòü‰ºç ÊääÊàëÂä†ËøõÂéª
+        poTeam->SetLeader(pstRequstRole->pRoleData->dwRoleID);    // ÂØπÊñπÊòØÈòüÈïø
 
         nRetCode = DoClientTeamJoin(pstRequstRole->dwCliSessionID, poTeam);
         LOG_CHECK_ERROR(nRetCode);
@@ -453,10 +453,10 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         nRetCode = DoGSTeamNew(poTeam);
         LOG_PROCESS_ERROR(nRetCode);
 
-        // –¬¥˙¬Î, ƒ‹◊ﬂµΩ’‚¿ÔÀµ√˜◊È∂”≥…π¶, «Â≥˝ ˝æ›
+        // Êñ∞‰ª£Á†Å, ËÉΩËµ∞Âà∞ËøôÈáåËØ¥ÊòéÁªÑÈòüÊàêÂäü, Ê∏ÖÈô§Êï∞ÊçÆ
         pstOnlineRole->m_TeamInvite.clear();
 
-        // º«¬º»’÷æ
+        // ËÆ∞ÂΩïÊó•Âøó
         nRetCode = DoDLCreateTeam(CManageServer::GetInstance().GetGameTime(),
             pstRequstRole->pRoleData->byGroup, pstRequstRole->pRoleData->dwRoleID, dwNewTeamID);
         LOG_CHECK_ERROR(nRetCode);
@@ -466,7 +466,7 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
             poTeam->GetLeader(), poTeam->GetMemberCount());
         LOG_CHECK_ERROR(nRetCode);
     }
-    // ∂‘∑Ω”–∂”ŒÈ, Œ“√ª∂”ŒÈ
+    // ÂØπÊñπÊúâÈòü‰ºç, ÊàëÊ≤°Èòü‰ºç
     else if (pstRequstRole->pRoleData->dwTeamID > 0)
     {
         poTeam = CTeamMgr::GetInstance().Find(pstRequstRole->pRoleData->dwTeamID);
@@ -475,7 +475,7 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         PROCESS_ERROR_RET_CODE(poTeam->GetLeader() == pstRequstRole->pRoleData->dwRoleID, errTeamNotLeader);
         PROCESS_ERROR_RET_CODE(poTeam->GetMemberCount() < poTeam->GetMemberSizeLimit(), errTeamFull);
 
-        nRetCode = poTeam->AddMember(pstOnlineRole->pRoleData->dwRoleID);    // ∞—Œ“º”Ω¯»•
+        nRetCode = poTeam->AddMember(pstOnlineRole->pRoleData->dwRoleID);    // ÊääÊàëÂä†ËøõÂéª
         LOG_PROCESS_ERROR(nRetCode);
 
         nRetCode = DoClientTeamJoin(pstOnlineRole->dwCliSessionID, poTeam);
@@ -491,7 +491,7 @@ void CMessageHandler::OnClientTeamAnswer(PACKET_BUFFER* pPacketBuffer, UINT32 dw
             pstOnlineRole->pRoleData->dwRoleID, poTeam->GetTeamID(), poTeam->GetLeader(), poTeam->GetMemberCount());
         LOG_CHECK_ERROR(nRetCode);
     }
-    // Œ““—æ≠”–∂”ŒÈ, ∂‘∑Ω…Í«Îº”»ÎŒ“µƒ∂”ŒÈ, Œ“◊ˆ≥ˆªÿ”¶
+    // ÊàëÂ∑≤ÁªèÊúâÈòü‰ºç, ÂØπÊñπÁî≥ËØ∑Âä†ÂÖ•ÊàëÁöÑÈòü‰ºç, ÊàëÂÅöÂá∫ÂõûÂ∫î
     else
     {
         poTeam = CTeamMgr::GetInstance().Find(pstOnlineRole->pRoleData->dwTeamID);
@@ -534,7 +534,7 @@ Exit0:
     return;
 }
 
-// –ﬁ∏ƒ∂”ŒÈ–≈œ¢
+// ‰øÆÊîπÈòü‰ºç‰ø°ÊÅØ
 void CMessageHandler::OnClientTeamChangeInfo(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nRetCode = 0;
@@ -563,7 +563,7 @@ void CMessageHandler::OnClientTeamChangeInfo(PACKET_BUFFER* pPacketBuffer, UINT3
     LOG_PROCESS_ERROR(pMsg->byAssignType < etaTotal);
     LOG_PROCESS_ERROR(pMsg->byItemAuctionColorLimit< ITEMCOLOR_TOTAL && pMsg->byItemAuctionColorLimit > ITEMCOLOR_INVALID);
 
-    poTeam->SetMemberSizeLimit(pMsg->nTeamMemberLimit);    // ’‚æ‰¥˙¬Î ƒ¨»œ «◊¢ Õµƒ, ‘› ±¥Úø™ ‘ ‘
+    poTeam->SetMemberSizeLimit(pMsg->nTeamMemberLimit);    // ËøôÂè•‰ª£Á†Å ÈªòËÆ§ÊòØÊ≥®ÈáäÁöÑ, ÊöÇÊó∂ÊâìÂºÄËØïËØï
     poTeam->SetLeader(pMsg->dwLeadID);
     poTeam->SetAssignType(pMsg->byAssignType);
     poTeam->SetTeamName(pMsg->szTeamName);
@@ -673,7 +673,7 @@ Exit0:
     return;
 }
 
-// ≤È—Ø∂”ŒÈ–≈œ¢
+// Êü•ËØ¢Èòü‰ºç‰ø°ÊÅØ
 void CMessageHandler::OnClientTeamQuery(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     CTeam* poTeam = NULL;
@@ -681,19 +681,19 @@ void CMessageHandler::OnClientTeamQuery(PACKET_BUFFER* pPacketBuffer, UINT32 dwS
 
     C2M_TEAM_QUERY* pMsg = (C2M_TEAM_QUERY*)pPacketBuffer;
 
-    // ªÒ»° ∂‘∑Ω∂‘œÛ÷∏’Î
+    // Ëé∑Âèñ ÂØπÊñπÂØπË±°ÊåáÈíà
     targetrole = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(pMsg->dwTargetRoleID);
     LOG_PROCESS_ERROR(targetrole);
 
-    // ªÒ»° ∂‘∑Ω∂”ŒÈ∂‘œÛ÷∏’Î
+    // Ëé∑Âèñ ÂØπÊñπÈòü‰ºçÂØπË±°ÊåáÈíà
     poTeam = CTeamMgr::GetInstance().Find(targetrole->pRoleData->dwTeamID);
 
-    // ∂‘∑Ω√ª∂”ŒÈ
+    // ÂØπÊñπÊ≤°Èòü‰ºç
     if (poTeam == NULL)
     {
         DoClientTeamSyncTeamInfo(0, "", ITEMCOLOR_WHITE, 0, pstOnlineRole);
     }
-    // ∂‘∑Ω”–∂”ŒÈ
+    // ÂØπÊñπÊúâÈòü‰ºç
     else
     {
         DoClientTeamSyncTeamInfo(poTeam->GetTeamID(), poTeam->GetTeamName(), poTeam->GetAuctionItemColorLimit(), poTeam->GetLeader(), pstOnlineRole);
@@ -703,7 +703,7 @@ Exit0:
     return;
 }
 
-// —˚«Î◊È∂” (À´∑Ω∂º√ª∂”ŒÈ, ◊ﬂ’‚¿Ô)
+// ÈÇÄËØ∑ÁªÑÈòü (ÂèåÊñπÈÉΩÊ≤°Èòü‰ºç, Ëµ∞ËøôÈáå)
 void CMessageHandler::OnClientTeamInvite(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nRetCode = 0;
@@ -724,19 +724,19 @@ void CMessageHandler::OnClientTeamInvite(PACKET_BUFFER* pPacketBuffer, UINT32 dw
 
     LOG_PROCESS_ERROR_RET_CODE(!pstReqUser->bFreeMode, errFreeMode);
 
-    // ªÒ»° µ±«∞∂‘œÛ–≈œ¢
+    // Ëé∑Âèñ ÂΩìÂâçÂØπË±°‰ø°ÊÅØ
     pstOnlineRole = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(pstReqUser->dwCurRoleID);
     LOG_PROCESS_ERROR(pstOnlineRole);
     LOG_PROCESS_ERROR(pstOnlineRole->pRoleData);
     PROCESS_ERROR_RET_CODE(pstOnlineRole->stBattleQueue.byQueue == qsNotInQueue, errTeamInBattleQueue);
 
-    // ªÒ»° ƒø±Í∂‘œÛ–≈œ¢
+    // Ëé∑Âèñ ÁõÆÊ†áÂØπË±°‰ø°ÊÅØ
     pstTgtOnlineRole = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(pMsg->dwTargetRoleID);
     PROCESS_ERROR_RET_CODE(pstTgtOnlineRole, errTeamOffLine);
     LOG_PROCESS_ERROR(pstTgtOnlineRole->pRoleData);
     PROCESS_ERROR_RET_CODE(pstTgtOnlineRole->stBattleQueue.byQueue == qsNotInQueue, errTeamInBattleQueue);
 
-    // ◊‘º∫◊È∂”
+    // Ëá™Â∑±ÁªÑÈòü
     if (pstOnlineRole->pRoleData->dwRoleID == pMsg->dwTargetRoleID)
     {
         UINT32 dwNewTeamID = 0;
@@ -763,7 +763,7 @@ void CMessageHandler::OnClientTeamInvite(PACKET_BUFFER* pPacketBuffer, UINT32 dw
             pstOnlineRole->pRoleData->dwRoleID, dwNewTeamID);
         LOG_CHECK_ERROR(nRetCode);
     }
-    // —˚«Î±»À“ª∆◊È∂”, À´∑Ω∂º≤ª‘⁄∂”ŒÈ÷–
+    // ÈÇÄËØ∑Âà´‰∫∫‰∏ÄËµ∑ÁªÑÈòü, ÂèåÊñπÈÉΩ‰∏çÂú®Èòü‰ºç‰∏≠
     else
     {
         UINT32 dwTeamID = INVALID_OBJECT_ID;
@@ -782,7 +782,7 @@ void CMessageHandler::OnClientTeamInvite(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         
         pstTgtOnlineRole->dwJoinTeamRoleID[MAX_JOIN_TEAM_ROLE_COUNT - 1] = pstOnlineRole->pRoleData->dwRoleID;
 
-        // –¬‘ˆ¥˙¬Î, —˚«Î±»À◊È∂”, ”√”⁄º«¬º[∂”ŒÈƒ£ Ω]
+        // Êñ∞Â¢û‰ª£Á†Å, ÈÇÄËØ∑Âà´‰∫∫ÁªÑÈòü, Áî®‰∫éËÆ∞ÂΩï[Èòü‰ºçÊ®°Âºè]
         pstTgtOnlineRole->m_TeamInvite[pstOnlineRole->pRoleData->dwRoleID] = pMsg->byAssignType;
 
         nRetCode = DoClientTeamAnswer(pstTgtOnlineRole->dwCliSessionID, eAnswerType, pstOnlineRole->pRoleData->dwRoleID, pstOnlineRole->pRoleData->szRoleName);
@@ -802,9 +802,9 @@ Exit0:
         DoErrorNotify(pstOnlineRole->dwCliSessionID, nResult, 0, 0);
     return;
 }
-// ===== ◊È∂” end
+// ===== ÁªÑÈòü end
 
-// ∫√”—
+// Â•ΩÂèã
 void CMessageHandler::OnClientFriendAdd(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nResult = errSuccess;
@@ -1103,7 +1103,7 @@ void CMessageHandler::OnClientPersonalEnemyAdd(PACKET_BUFFER* pPacketBuffer, UIN
     LOG_PROCESS_ERROR(pstOnlineRole->pRoleData);
     LOG_PROCESS_ERROR(IsValidGroup(pstOnlineRole->pRoleData->byGroup));
 
-    // todo is friend »Áπ˚ «Œ“πÿ◊¢µƒ»À£¨ƒ«√¥æÕ≤ªº∆»Î≥»À Allan Tao
+    // todo is friend Â¶ÇÊûúÊòØÊàëÂÖ≥Ê≥®ÁöÑ‰∫∫ÔºåÈÇ£‰πàÂ∞±‰∏çËÆ°ÂÖ•‰ªá‰∫∫ Allan Tao
     PROCESS_ERROR_RET_CODE(pstOnlineRole->m_friends.find(pMsg->dwRoleID) == pstOnlineRole->m_friends.end(), errFriendAlreadyExists);
 
     // check same
@@ -1284,7 +1284,7 @@ void CMessageHandler::OnClientChatMessage(PACKET_BUFFER* pPacketBuffer, UINT32 d
             }
 
             nRetCode = DoClientChatMessage(pstOnlineRole->pRoleData->szRoleName, poTargetRole->pRoleData->dwRoleID,
-                pstOnlineRole->pRoleData->dwRoleID, cltNormal, pMsg->szMessage, 0, pstOnlineRole->nGMLevel > 0); //¥À∑¢ÀÕœ˚œ¢Õ¨ ±∑¢ªÿ∏¯∑¢ÀÕ∑Ω“ª∑›
+                pstOnlineRole->pRoleData->dwRoleID, cltNormal, pMsg->szMessage, 0, pstOnlineRole->nGMLevel > 0); //Ê≠§ÂèëÈÄÅÊ∂àÊÅØÂêåÊó∂ÂèëÂõûÁªôÂèëÈÄÅÊñπ‰∏Ä‰ªΩ
             LOG_PROCESS_ERROR_RET_CODE(nRetCode, errChatServiceUnavaible);
 
             nRetCode = DoDLChatMessage(CManageServer::GetInstance().GetGameTime(),
@@ -1465,7 +1465,7 @@ Exit0:
     return FALSE;
 }
 
-// ===== ◊È∂” begin
+// ===== ÁªÑÈòü begin
 BOOL CMessageHandler::DoClientTeamJoin(UINT32 dwClientSessionID, CTeam* poTeam)
 {
     INT32 nRetCode = 0;
@@ -1817,7 +1817,7 @@ Exit0:
         m_pPacketAllocator->Free((PACKET_BUFFER*)pMsg);
     return FALSE;
 }
-// ===== ◊È∂” end
+// ===== ÁªÑÈòü end
 
 BOOL CMessageHandler::DoClientSelfInfo(MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
@@ -2480,7 +2480,7 @@ BOOL CMessageHandler::DoClientMailListRecv(UINT32 dwClientSessionID, CBaseList& 
 
         pMsg->wMailCount++;
 
-        //≈–∂œ‘ΩΩÁ
+        //Âà§Êñ≠Ë∂äÁïå
         if (pMsg->wMailCount >= dwMaxMailCount)
             break;
     }
@@ -2730,7 +2730,7 @@ Exit0:
     return FALSE;
 }
 
-// ===== ÷¡◊Ωª“◊–– Auction begin
+// ===== Ëá≥Â∞ä‰∫§ÊòìË°å Auction begin
 BOOL CMessageHandler::DoClientAuctionSearchResult(UINT32 dwClientSessionID, ExternalMessage::FLEX_MESSAGE_HEADER* pMsg)
 {
     INT32 nRetCode = 0;
@@ -2774,10 +2774,10 @@ BOOL CMessageHandler::DoClientAuctionQuery(UINT32 dwClientSessionID, Auction* pA
         pMsg->bySellerLevel = pSellerRole->byLevel;
         pMsg->bySellerClass = pSellerRole->byClass;
 
-        // ≥ˆ €’ﬂ √˚◊÷
+        // Âá∫ÂîÆËÄÖ ÂêçÂ≠ó
         strxcpy(pMsg->szSellerName, pSellerRole->szRoleName, ROLE_NAME_LEN);
 
-        // ≥ˆ €’ﬂ π´ª·√˚◊÷
+        // Âá∫ÂîÆËÄÖ ÂÖ¨‰ºöÂêçÂ≠ó
         pGuild = CMsGuildMgr::GetInstance().FindGuildByID(pSellerRole->dwGuildID);
         if (pGuild)
         {
@@ -3021,9 +3021,9 @@ Exit0:
         m_pPacketAllocator->Free((PACKET_BUFFER*)pMsg);
     return FALSE;
 }
-// ===== ÷¡◊Ωª“◊–– Auction end
+// ===== Ëá≥Â∞ä‰∫§ÊòìË°å Auction end
 
-// ===== Ω±“Ωª“◊–– Exchange begin
+// ===== ÈáëÂ∏Å‰∫§ÊòìË°å Exchange begin
 BOOL CMessageHandler::DoClientExchangeAddOrder(UINT32 dwClientSessionID, Order* pOrder)
 {
     INT32 nRetCode = 0;
@@ -3219,7 +3219,7 @@ Exit0:
         m_pPacketAllocator->Free((PACKET_BUFFER*)pMsg);
     return FALSE;
 }
-// ===== Ω±“Ωª“◊–– Exchange end
+// ===== ÈáëÂ∏Å‰∫§ÊòìË°å Exchange end
 
 BOOL CMessageHandler::DoClientSyncRealMoney(UINT32 dwClientSessionID, INT32 nBalance)
 {
@@ -3742,7 +3742,7 @@ Exit0:
     return;
 }
 
-// ===== ÷¡◊Ωª“◊–– Auction begin
+// ===== Ëá≥Â∞ä‰∫§ÊòìË°å Auction begin
 void CMessageHandler::OnClientAuctionSearchType(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nRetCode = 0;
@@ -3866,7 +3866,7 @@ void CMessageHandler::OnClientAuctionBuy(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         return;
     }
 
-    // ªÒ»° Auction∂‘œÛ
+    // Ëé∑Âèñ AuctionÂØπË±°
     auction = CAuctionMgr::GetInstance().GetAuction(pMsg->dwAuctionID);
     if (auction == NULL)
     {
@@ -3874,44 +3874,44 @@ void CMessageHandler::OnClientAuctionBuy(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         return;
     }
 
-    // ≈–∂œ ≥ˆº€ «∑Ò≥¨π˝µ±«∞◊Ó∏ﬂµƒº€∏Ò
+    // Âà§Êñ≠ Âá∫‰ª∑ÊòØÂê¶Ë∂ÖËøáÂΩìÂâçÊúÄÈ´òÁöÑ‰ª∑Ê†º
     if (pMsg->llBidPrice < auction->GetNextPrice())
     {
         DoErrorNotify(pstOnlineRole->dwCliSessionID, errAuctionBuyingPriceLow, 0, 0);
         return;
     }
 
-    // ≈–∂œ  «∑ÒŒ™"“ªø⁄º€", ±‰¡ø llBidPrice  «≥ˆº€, »Áπ˚–°”⁄"“ªø⁄º€"µƒº€∏Ò, æÕ « "æ∫≈ƒº€"
+    // Âà§Êñ≠ ÊòØÂê¶‰∏∫"‰∏ÄÂè£‰ª∑", ÂèòÈáè llBidPrice ÊòØÂá∫‰ª∑, Â¶ÇÊûúÂ∞è‰∫é"‰∏ÄÂè£‰ª∑"ÁöÑ‰ª∑Ê†º, Â∞±ÊòØ "Á´ûÊãç‰ª∑"
     if (auction->m_llBuyoutPrice && pMsg->llBidPrice >= auction->m_llBuyoutPrice)
     {
         buying_out = TRUE;
     }
 
-    // ≤ª «“ªø⁄º€π∫¬Ú, ≈–∂œ∏√ÕÊº“≤Œ”Î≈ƒ¬Ùµƒ∂©µ•,  «∑Ò≥¨π˝∂©µ•◊Ó¥Û ˝¡ø
+    // ‰∏çÊòØ‰∏ÄÂè£‰ª∑Ë¥≠‰π∞, Âà§Êñ≠ËØ•Áé©ÂÆ∂ÂèÇ‰∏éÊãçÂçñÁöÑËÆ¢Âçï, ÊòØÂê¶Ë∂ÖËøáËÆ¢ÂçïÊúÄÂ§ßÊï∞Èáè
     if (!buying_out && CAuctionMgr::GetInstance().GetBuyingAuctions(pstOnlineRole->pRoleData->dwRoleID).size() >= g_GWConfig.nMaxAuctionBuyingItems)
     {
         DoErrorNotify(pstOnlineRole->dwCliSessionID, errAuctionBuyingFull, 0, 0);
         return;
     }
 
-    // ≈–∂œ π∫¬Ú’ﬂ ∫Õ ≥ˆ €’ﬂ,  «∑ÒŒ™Õ¨“ª∏ˆ»À
+    // Âà§Êñ≠ Ë¥≠‰π∞ËÄÖ Âíå Âá∫ÂîÆËÄÖ, ÊòØÂê¶‰∏∫Âêå‰∏Ä‰∏™‰∫∫
     if (auction->m_dwSellerRoleID == pstOnlineRole->pRoleData->dwRoleID)
     {
         DoErrorNotify(pstOnlineRole->dwCliSessionID, errAuctionSellerCannotBuy, 0, 0);
         return;
     }
 
-    // ≈–∂œ »Áπ˚≤ª «“ªø⁄º€π∫¬Ú, ≤¢«“ µ±«∞æ∫≈ƒ≥ˆº€◊Ó∏ﬂµƒ»À,  «∏√ÕÊº“±æ»À, ‘Ú≤ªø…÷ÿ∏¥æ∫≈ƒ
+    // Âà§Êñ≠ Â¶ÇÊûú‰∏çÊòØ‰∏ÄÂè£‰ª∑Ë¥≠‰π∞, Âπ∂‰∏î ÂΩìÂâçÁ´ûÊãçÂá∫‰ª∑ÊúÄÈ´òÁöÑ‰∫∫, ÊòØËØ•Áé©ÂÆ∂Êú¨‰∫∫, Âàô‰∏çÂèØÈáçÂ§çÁ´ûÊãç
     if (!buying_out && auction->m_dwBuyerRoleID == pstOnlineRole->pRoleData->dwRoleID)
     {
         DoErrorNotify(pstOnlineRole->dwCliSessionID, errAuctionBuyerCannotBuy, 0, 0);
         return;
     }
 
-    // ∑¢∏¯GSø€±£÷§Ω, "“ªø⁄º€"ªÚ"æ∫≈ƒ", ’‚¿Ô∂º «÷ªø€ [±£÷§Ω], ◊Ó∫Û‘Ÿ∏∂Œ≤øÓ
-    // ◊ˆ∫√«¯∑÷  «"“ªø⁄º€", ªπ «"æ∫≈ƒ", “ÚŒ™’‚∏ˆ≥ˆº€ ª·÷±Ω”–ﬁ∏ƒ Auction∂‘œÛ, “≤ª·”∞œÏøÕªß∂Àœ‘ æ
+    // ÂèëÁªôGSÊâ£‰øùËØÅÈáë, "‰∏ÄÂè£‰ª∑"Êàñ"Á´ûÊãç", ËøôÈáåÈÉΩÊòØÂè™Êâ£ [‰øùËØÅÈáë], ÊúÄÂêéÂÜç‰ªòÂ∞æÊ¨æ
+    // ÂÅöÂ•ΩÂå∫ÂàÜ ÊòØ"‰∏ÄÂè£‰ª∑", ËøòÊòØ"Á´ûÊãç", Âõ†‰∏∫Ëøô‰∏™Âá∫‰ª∑ ‰ºöÁõ¥Êé•‰øÆÊîπ AuctionÂØπË±°, ‰πü‰ºöÂΩ±ÂìçÂÆ¢Êà∑Á´ØÊòæÁ§∫
 
-    // ≤ª «"“ªø⁄º€", ≤¢«“ “≤√ªΩªπ˝±£÷§Ω, ‘Úø€±£÷§Ω (’‚÷÷«Èøˆ,  «∏√ÕÊº“µ⁄“ª¥Œ≤Ÿ◊˜’‚∏ˆ∂©µ•, ÷ª «≥ˆº€æ∫≈ƒ, ≤ª «“ªø⁄º€¬Ú)
+    // ‰∏çÊòØ"‰∏ÄÂè£‰ª∑", Âπ∂‰∏î ‰πüÊ≤°‰∫§Ëøá‰øùËØÅÈáë, ÂàôÊâ£‰øùËØÅÈáë (ËøôÁßçÊÉÖÂÜµ, ÊòØËØ•Áé©ÂÆ∂Á¨¨‰∏ÄÊ¨°Êìç‰ΩúËøô‰∏™ËÆ¢Âçï, Âè™ÊòØÂá∫‰ª∑Á´ûÊãç, ‰∏çÊòØ‰∏ÄÂè£‰ª∑‰π∞)
     if (!buying_out && !CAuctionMgr::GetInstance().IsBidder(pMsg->dwAuctionID, pstOnlineRole->pRoleData->dwRoleID))
     {
         byBuyType = EAuctionBuyType::eabtBid;
@@ -3920,7 +3920,7 @@ void CMessageHandler::OnClientAuctionBuy(PACKET_BUFFER* pPacketBuffer, UINT32 dw
 
         pstOnlineRole->pRoleData->eAuctionQueryStatus = MS_ROLE_DATA::eqsGsAuctionBuy;
     }
-    //  «"“ªø⁄º€", ≤¢«“ “≤√ªΩªπ˝±£÷§Ω, ‘Úø€±£÷§Ω (’‚÷÷«Èøˆ,  «∏√ÕÊº“µ⁄“ª¥Œ≤Ÿ◊˜’‚∏ˆ∂©µ•, …œ¿¥÷±Ω”æÕ“ªø⁄º€¬Ú¡À)
+    // ÊòØ"‰∏ÄÂè£‰ª∑", Âπ∂‰∏î ‰πüÊ≤°‰∫§Ëøá‰øùËØÅÈáë, ÂàôÊâ£‰øùËØÅÈáë (ËøôÁßçÊÉÖÂÜµ, ÊòØËØ•Áé©ÂÆ∂Á¨¨‰∏ÄÊ¨°Êìç‰ΩúËøô‰∏™ËÆ¢Âçï, ‰∏äÊù•Áõ¥Êé•Â∞±‰∏ÄÂè£‰ª∑‰π∞‰∫Ü)
     else if (buying_out == TRUE && !CAuctionMgr::GetInstance().IsBidder(pMsg->dwAuctionID, pstOnlineRole->pRoleData->dwRoleID))
     {
         byBuyType = EAuctionBuyType::eabtBuyout;
@@ -3931,8 +3931,8 @@ void CMessageHandler::OnClientAuctionBuy(PACKET_BUFFER* pPacketBuffer, UINT32 dw
     }
     else
     {
-        //  «"“ªø⁄º€", µ´ «÷Æ«∞“—æ≠Ωªπ˝±£÷§Ω, Àµ√˜ «∂‡¥Œ≤Ÿ◊˜’‚∏ˆ∂©µ•, œ÷‘⁄÷±Ω”“‘“ªø⁄º€¬Ú¡À
-        // œ÷‘⁄æÕ≤ª”√ø€±£÷§Ω¡À, ÷±Ω”∏¸–¬∂©µ•◊¥Ã¨, Ω· ¯∂©µ•, »√∏√ÕÊº“∏∂Œ≤øÓ
+        // ÊòØ"‰∏ÄÂè£‰ª∑", ‰ΩÜÊòØ‰πãÂâçÂ∑≤Áªè‰∫§Ëøá‰øùËØÅÈáë, ËØ¥ÊòéÊòØÂ§öÊ¨°Êìç‰ΩúËøô‰∏™ËÆ¢Âçï, Áé∞Âú®Áõ¥Êé•‰ª•‰∏ÄÂè£‰ª∑‰π∞‰∫Ü
+        // Áé∞Âú®Â∞±‰∏çÁî®Êâ£‰øùËØÅÈáë‰∫Ü, Áõ¥Êé•Êõ¥Êñ∞ËÆ¢ÂçïÁä∂ÊÄÅ, ÁªìÊùüËÆ¢Âçï, ËÆ©ËØ•Áé©ÂÆ∂‰ªòÂ∞æÊ¨æ
 
         role = CRoleDataMgr::GetInstance().FindRole(pstOnlineRole->pRoleData->dwRoleID);
         pOnlineRole = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(pstOnlineRole->pRoleData->dwRoleID);
@@ -3967,15 +3967,15 @@ void CMessageHandler::OnClientAuctionListMyBuying(PACKET_BUFFER* pPacketBuffer, 
 
 void CMessageHandler::OnClientAuctionPayLeftMoney(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
-    // ƒ‹◊ﬂµΩ’‚“ª≤Ω, Àµ√˜“—æ≠µΩ◊Ó∫Û“ª≤Ω[∏∂Œ≤øÓ]¡À, ≤¢«“µ±«∞ÕÊº“ «◊Ó÷’≥ˆº€’ﬂ, ≤¢«““—æ≠ø€≥˝¡À [±£÷§Ω]
+    // ËÉΩËµ∞Âà∞Ëøô‰∏ÄÊ≠•, ËØ¥ÊòéÂ∑≤ÁªèÂà∞ÊúÄÂêé‰∏ÄÊ≠•[‰ªòÂ∞æÊ¨æ]‰∫Ü, Âπ∂‰∏îÂΩìÂâçÁé©ÂÆ∂ÊòØÊúÄÁªàÂá∫‰ª∑ËÄÖ, Âπ∂‰∏îÂ∑≤ÁªèÊâ£Èô§‰∫Ü [‰øùËØÅÈáë]
     INT32 nRetCode = 0;
     Auction* auction = NULL;
     C2M_AUCTION_PAY_LEFT_MONEY* pMsg = (C2M_AUCTION_PAY_LEFT_MONEY*)pPacketBuffer;
 
-    // ªÒ»° ◊‘º∫π∫¬ÚŒÔ∆∑µƒ¡–±Ì
+    // Ëé∑Âèñ Ëá™Â∑±Ë¥≠‰π∞Áâ©ÂìÅÁöÑÂàóË°®
     const CAuctionMgr::AUCTION_LIST& auction_list = CAuctionMgr::GetInstance().GetBuyingAuctions(pstOnlineRole->pRoleData->dwRoleID);
 
-    // ≈–∂œ¡–±Ì÷–  «∑Ò”–∂‘”¶µƒ∂©µ•ID
+    // Âà§Êñ≠ÂàóË°®‰∏≠ ÊòØÂê¶ÊúâÂØπÂ∫îÁöÑËÆ¢ÂçïID
     for (const auto it : auction_list)
     {
         if (it->m_dwAuctionID == pMsg->dwAuctionID)
@@ -3988,31 +3988,31 @@ void CMessageHandler::OnClientAuctionPayLeftMoney(PACKET_BUFFER* pPacketBuffer, 
 
     UINT32 dwCurTime = CManageServer::GetInstance().GetGameTime();
 
-    // ≥¨π˝ ±º‰¡À, æÕ «æ∫≈ƒΩ· ¯, µΩ ±º‰¡À, “‘∂©µ•º€∏ÒŒ™÷˜ (ø€«Æ∂º «ø€≤Óº€, “™ø€µÙ±£÷§Ω)
+    // Ë∂ÖËøáÊó∂Èó¥‰∫Ü, Â∞±ÊòØÁ´ûÊãçÁªìÊùü, Âà∞Êó∂Èó¥‰∫Ü, ‰ª•ËÆ¢Âçï‰ª∑Ê†º‰∏∫‰∏ª (Êâ£Èí±ÈÉΩÊòØÊâ£Â∑Æ‰ª∑, Ë¶ÅÊâ£Êéâ‰øùËØÅÈáë)
     if (auction->m_dwFinishTime <= dwCurTime)
     {
         INT64 diffPrice = auction->m_llPrice - auction->m_llDepositPrice;
-        diffPrice = (diffPrice < 0) ? 0 : diffPrice;    // ≈–∂œº∆À„Ω·π˚  «∑Ò–°”⁄0
+        diffPrice = (diffPrice < 0) ? 0 : diffPrice;    // Âà§Êñ≠ËÆ°ÁÆóÁªìÊûú ÊòØÂê¶Â∞è‰∫é0
         nRetCode = DoGSAuctionPay(pstOnlineRole->dwGSSessionID, pstOnlineRole->pRoleData->dwRoleID, pMsg->dwAuctionID, diffPrice);
         LOG_PROCESS_ERROR(nRetCode);
     }
-    // √ª≥¨π˝ ±º‰æÕ“™∏∂øÓ, Àµ√˜∂©µ•º€∏Ò¥ÔµΩ“ªø⁄º€¡À
+    // Ê≤°Ë∂ÖËøáÊó∂Èó¥Â∞±Ë¶Å‰ªòÊ¨æ, ËØ¥ÊòéËÆ¢Âçï‰ª∑Ê†ºËææÂà∞‰∏ÄÂè£‰ª∑‰∫Ü
     else
     {
         INT64 diffPrice = auction->m_llBuyoutPrice - auction->m_llDepositPrice;
-        diffPrice = (diffPrice < 0) ? 0 : diffPrice;    // ≈–∂œº∆À„Ω·π˚  «∑Ò–°”⁄0
+        diffPrice = (diffPrice < 0) ? 0 : diffPrice;    // Âà§Êñ≠ËÆ°ÁÆóÁªìÊûú ÊòØÂê¶Â∞è‰∫é0
         nRetCode = DoGSAuctionPay(pstOnlineRole->dwGSSessionID, pstOnlineRole->pRoleData->dwRoleID, pMsg->dwAuctionID, diffPrice);
         LOG_PROCESS_ERROR(nRetCode);
     }
 
 
 Exit0:
-    // ∫Ï◊÷Ã· æ ∏√∂©µ•≤ª¥Ê‘⁄…∂µƒ...
+    // Á∫¢Â≠óÊèêÁ§∫ ËØ•ËÆ¢Âçï‰∏çÂ≠òÂú®Âï•ÁöÑ...
     return;
 }
-// ===== ÷¡◊Ωª“◊–– Auction end
+// ===== Ëá≥Â∞ä‰∫§ÊòìË°å Auction end
 
-// ===== Ω±“Ωª“◊–– Exchange begin
+// ===== ÈáëÂ∏Å‰∫§ÊòìË°å Exchange begin
 void CMessageHandler::OnClientExchangeAddOrder(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nRetCode = 0;
@@ -4027,9 +4027,9 @@ void CMessageHandler::OnClientExchangeAddOrder(PACKET_BUFFER* pPacketBuffer, UIN
     LOG_PROCESS_ERROR(!pstOnlineRole->pUser->bFreeMode);
     LOG_PROCESS_ERROR(pstOnlineRole->pRoleData->byLevel >= g_GWConfig.nRoleLowLevel);
     LOG_PROCESS_ERROR(pMsg->byOrderType == eotBuy || pMsg->byOrderType == eotSell);
-    LOG_PROCESS_ERROR(pMsg->nItemID == MONEYTYPE_02);//ƒø«∞÷ªø…“‘¬Ú¬ÙΩ±“
+    LOG_PROCESS_ERROR(pMsg->nItemID == MONEYTYPE_02);//ÁõÆÂâçÂè™ÂèØ‰ª•‰π∞ÂçñÈáëÂ∏Å
     LOG_PROCESS_ERROR(pMsg->nCount > 0);
-    LOG_PROCESS_ERROR(pMsg->nPrice > 1);//±ÿ–Î¥Û”⁄1£¨“ÚŒ™ ’À∞÷¡…Ÿ1£¨æª ’»Î0ª·±ª∆ΩÃ®æ‹æ¯
+    LOG_PROCESS_ERROR(pMsg->nPrice > 1);//ÂøÖÈ°ªÂ§ß‰∫é1ÔºåÂõ†‰∏∫Êî∂Á®éËá≥Â∞ë1ÔºåÂáÄÊî∂ÂÖ•0‰ºöË¢´Âπ≥Âè∞ÊãíÁªù
     LOG_PROCESS_ERROR(pMsg->byOrderType == eotSell || (INT64)pMsg->nPrice * (INT64)pMsg->nCount * 10000LL <= (INT64)MAX_MONEY);
 
     if (pMsg->byOrderType == eotBuy && CExchangeMgr::GetInstance().GetOrders(pMsg->byOrderType, pstOnlineRole->pRoleData->dwRoleID).size() >= MAX_EXCHANGE_BUYING_ORDERS)
@@ -4043,11 +4043,11 @@ void CMessageHandler::OnClientExchangeAddOrder(PACKET_BUFFER* pPacketBuffer, UIN
         return;
     }
 
-    // TODO: ºÏ≤Èº€∏Ò£¨’«Õ£∞Âµ¯Õ£∞Â
+    // TODO: Ê£ÄÊü•‰ª∑Ê†ºÔºåÊ∂®ÂÅúÊùøË∑åÂÅúÊùø
 
     if (pMsg->byOrderType == eotBuy)
     {
-        // ¬ÚΩ±“≥ˆµ„»Ø
+        // ‰π∞ÈáëÂ∏ÅÂá∫ÁÇπÂà∏
         if (!g_ServerConfig.MS.bOABillingEnable)
         {
             DoErrorNotify(pstOnlineRole->dwCliSessionID, errRealMoneyShopNotOpen, 0, 0);
@@ -4061,7 +4061,7 @@ void CMessageHandler::OnClientExchangeAddOrder(PACKET_BUFFER* pPacketBuffer, UIN
     }
     else
     {
-        // ¬ÙΩ±“ ’µ„»Ø
+        // ÂçñÈáëÂ∏ÅÊî∂ÁÇπÂà∏
         nRetCode = DoGSExchangeAddOrder(pstOnlineRole->dwGSSessionID, pstOnlineRole->pRoleData->dwRoleID, MONEYTYPE_02, pMsg->nCount * 10000,
             pMsg->byOrderType, pMsg->nPrice, pMsg->nCount);
         LOG_PROCESS_ERROR(nRetCode);
@@ -4141,12 +4141,12 @@ void CMessageHandler::OnClientExchangeListMyLogs(PACKET_BUFFER* pPacketBuffer, U
 Exit0:
     return;
 }
-// ===== Ω±“Ωª“◊–– Exchange end
+// ===== ÈáëÂ∏Å‰∫§ÊòìË°å Exchange end
 
-// ≤È—Ø‘™±¶, MS ∑¢∏¯ GS
+// Êü•ËØ¢ÂÖÉÂÆù, MS ÂèëÁªô GS
 void CMessageHandler::OnClientCheckRealMoney(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
-    // ƒ¨»œ¥˙¬Î
+    // ÈªòËÆ§‰ª£Á†Å
     //if (g_ServerConfig.MS.bOABillingEnable)
     //{
     //    COABillMgr::GetInstance().DoQueryAccount(pstOnlineRole->pUser);
@@ -4156,13 +4156,13 @@ void CMessageHandler::OnClientCheckRealMoney(PACKET_BUFFER* pPacketBuffer, UINT3
     //    DoErrorNotify(pstOnlineRole->dwCliSessionID, errRealMoneyShopNotOpen, 0, 0);
     //}
 
-    // ◊‘º∫º”¥˙¬Î
+    // Ëá™Â∑±Âä†‰ª£Á†Å
     DoGSQueryYuanBao(pstOnlineRole->dwGSSessionID, pstOnlineRole->dwCliSessionID, pstOnlineRole->pRoleData->dwRoleID);
 }
 
 void CMessageHandler::OnClientCheckRealMoneyShopData(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
-    // ƒ¨»œ¥˙¬Î
+    // ÈªòËÆ§‰ª£Á†Å
 //    C2M_CHECK_REAL_MONEY_SHOP_DATA* pMsg = (C2M_CHECK_REAL_MONEY_SHOP_DATA*)pPacketBuffer;
 //    M2C_SYNC_REAL_MONEY_SHOP_DATA* pResponse = NULL;
 //    INT32 nRetCode = 0;
@@ -4187,7 +4187,7 @@ void CMessageHandler::OnClientCheckRealMoneyShopData(PACKET_BUFFER* pPacketBuffe
 //    if (pResponse)
 //        m_pPacketAllocator->Free((PACKET_BUFFER*)pResponse);
 
-    // ◊‘º∫∏ƒ¥˙¬Î
+    // Ëá™Â∑±Êîπ‰ª£Á†Å
     C2M_CHECK_REAL_MONEY_SHOP_DATA* pMsg = (C2M_CHECK_REAL_MONEY_SHOP_DATA*)pPacketBuffer;
     M2C_SYNC_REAL_MONEY_SHOP_DATA* pResponse = NULL;
     INT32 nRetCode = 0;
@@ -4208,7 +4208,7 @@ Exit0:
 
 void CMessageHandler::OnClientRealMoneyBuy(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
-    // ƒ¨»œ¥˙¬Î
+    // ÈªòËÆ§‰ª£Á†Å
     //if (g_ServerConfig.MS.bOABillingEnable)
     //{
     //    C2M_REAL_MONEY_BUY* pMsg = (C2M_REAL_MONEY_BUY*)pPacketBuffer;
@@ -4237,7 +4237,7 @@ void CMessageHandler::OnClientSaleInfo(PACKET_BUFFER* pPacketBuffer, UINT32 dwSi
     DoClientSaleInfo(pstOnlineRole->dwCliSessionID);
 }
 
-// GM√¸¡Ó
+// GMÂëΩ‰ª§
 void CMessageHandler::OnClientGMCommand(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     BOOL bRet = FALSE;
@@ -4250,20 +4250,20 @@ void CMessageHandler::OnClientGMCommand(PACKET_BUFFER* pPacketBuffer, UINT32 dwS
     LOG_PROCESS_ERROR(pstOnlineRole->pUser);
     LOG_PROCESS_ERROR(pstOnlineRole->pRoleData);
 
-    // –¬º”¥˙¬Î, ≈–∂œ «∑Òø™∆ÙGM√¸¡Ó, ≈–∂œGMΩ«…´√˚◊÷ (=FALSE, ‘ÚÀ˘”–»À∂ºø…“‘¥Ú√¸¡Ó)
+    // Êñ∞Âä†‰ª£Á†Å, Âà§Êñ≠ÊòØÂê¶ÂºÄÂêØGMÂëΩ‰ª§, Âà§Êñ≠GMËßíËâ≤ÂêçÂ≠ó (=FALSE, ÂàôÊâÄÊúâ‰∫∫ÈÉΩÂèØ‰ª•ÊâìÂëΩ‰ª§)
     if (g_ServerConfig.CC.bGmComandEnable == TRUE)
     {
         bRet = g_GM_CheckRoleName(pstOnlineRole->pRoleData->szRoleName);
         LOG_PROCESS_ERROR(bRet);
     }
 
-    // ≤‚ ‘¥˙¬Î
+    // ÊµãËØï‰ª£Á†Å
     //UINT32 size = CDataManager<EQUIP_DATA>::GetInstance().GetDataSize();
     //WRN("EQUIP_DATA size %d", size);
     //const EQUIP_DATA* pcNpcData = CDataManager<EQUIP_DATA>::GetInstance().GetFirstData();
     //while (pcNpcData)
     //{
-    //    WRN("ŒÔ∆∑–Ú∫≈ %d, √˚◊÷ %s", pcNpcData->m_nTemplateID, pcNpcData->m_szName);
+    //    WRN("Áâ©ÂìÅÂ∫èÂè∑ %d, ÂêçÂ≠ó %s", pcNpcData->m_nTemplateID, pcNpcData->m_szName);
     //    pcNpcData = CDataManager<EQUIP_DATA>::GetInstance().GetNextData();
     //}
 
@@ -4319,25 +4319,25 @@ Exit0:
     return;
 }
 
-// π∫¬Úµ„ø®
+// Ë¥≠‰π∞ÁÇπÂç°
 void CMessageHandler::OnClientBuyTime(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
-    // øÕªß∂ÀUI¿Ô ‰»Î "1", ∑‚∞¸≤Œ ˝ pMsg->dwBuyTimeCost  « "100", øÕªß∂À¿Ôª·◊‘∂Ø≥À“‘100 ‘Ÿ∑¢∑‚∞¸
+    // ÂÆ¢Êà∑Á´ØUIÈáåËæìÂÖ• "1", Â∞ÅÂåÖÂèÇÊï∞ pMsg->dwBuyTimeCost ÊòØ "100", ÂÆ¢Êà∑Á´ØÈáå‰ºöËá™Âä®‰πò‰ª•100 ÂÜçÂèëÂ∞ÅÂåÖ
     C2M_BUY_TIME* pMsg = (C2M_BUY_TIME*)pPacketBuffer;
     LOG_PROCESS_ERROR(pMsg->dwBuyTimeCost > 0 && pMsg->dwBuyTimeCost <= 10000000);
     LOG_PROCESS_ERROR(pMsg->dwBuyTimeCost % 100 == 0);
 
-    // ƒ¨»œ¥˙¬Î
+    // ÈªòËÆ§‰ª£Á†Å
     //COABillMgr::GetInstance().DoBuyTime(pstOnlineRole, pMsg->dwBuyTimeCost, pMsg->dwBuyTimeCost / 100 * 6000, FALSE);
 
-    // ◊‘º∫∏ƒ¥˙¬Î, ≤ª π”√ƒ¨»œµƒµ„ø®œµÕ≥
+    // Ëá™Â∑±Êîπ‰ª£Á†Å, ‰∏ç‰ΩøÁî®ÈªòËÆ§ÁöÑÁÇπÂç°Á≥ªÁªü
     DoGSCustomRoleBuyTime(pstOnlineRole->dwGSSessionID, pstOnlineRole->dwCliSessionID, pstOnlineRole->pRoleData->dwRoleID, pMsg->dwBuyTimeCost);
 
 Exit0:
     return;
 }
 
-// ‘ –ÌÃÏµÿ∫œ“ª
+// ÂÖÅËÆ∏Â§©Âú∞Âêà‰∏Ä
 void CMessageHandler::OnClientChangeRecallState(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, MS_ONLINE_ROLE_DATA* pstOnlineRole)
 {
     INT32 nResult = errUnknownError;

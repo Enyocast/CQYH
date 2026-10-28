@@ -11,7 +11,7 @@
 #include "SDOA4Client.h"
 #include "SDOADx9Hook.h"
 
-/* ½ÓÈëÏà¹ØÈ«¾Ö±äÁ¿  */
+/* æŽ¥å…¥ç›¸å…³å…¨å±€å˜é‡  */
 HINSTANCE          g_hInstIGWDll = 0;
 LPigwInitialize    igwInitialize = NULL;
 LPigwGetModule     igwGetModule = NULL;
@@ -20,7 +20,7 @@ LPigwTerminal      igwTerminal = NULL;
 ISDOADx9Hook*			g_SDOADx9Hook = NULL;
 ISDOAApp*			g_SDOAApp = NULL;
 
-/* ÊÍ·ÅIGW */
+/* é‡Šæ”¾IGW */
 void CloseIGW()
 {
 	if (g_SDOADx9Hook)
@@ -37,7 +37,7 @@ void CloseIGW()
 
 
 	if (igwTerminal)
-	{  // ÊÍ·ÅDLLÇ°×ÜÊÇÏÈµ÷ÓÃigwTerminal
+	{  // é‡Šæ”¾DLLå‰æ€»æ˜¯å…ˆè°ƒç”¨igwTerminal
 		igwTerminal();
 		igwTerminal = NULL;
 	}
@@ -49,7 +49,7 @@ void CloseIGW()
 	igwInitialize = NULL;
 }
 
-/* ¼ÓÔØIGW */
+/* åŠ è½½IGW */
 void OpenIGW()
 {
 	WCHAR strExePath[MAX_PATH] = {0};
@@ -59,7 +59,7 @@ void OpenIGW()
 	strExePath[MAX_PATH-1]=0;
 	strLastSlash = wcsrchr( strExePath, TEXT('\\') );
 	if( strLastSlash )
-	{	// µÃµ½EXEËùÔÚÂ·¾¶
+	{	// å¾—åˆ°EXEæ‰€åœ¨è·¯å¾„
 		StringCchCopyW( strExeName, MAX_PATH, &strLastSlash[1] );
 		*strLastSlash = 0;
 		strLastSlash = wcsrchr( strExeName, TEXT('.') );
@@ -71,18 +71,18 @@ void OpenIGW()
 	StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\GameWidget.dll", strExePath );
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // Èç¹û³ÌÐòÔËÐÐÂ·¾¶ÖÐ²»´æÔÚÔò»»¸öÂ·¾¶ÔÙÊÔ
+	{ // å¦‚æžœç¨‹åºè¿è¡Œè·¯å¾„ä¸­ä¸å­˜åœ¨åˆ™æ¢ä¸ªè·¯å¾„å†è¯•
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // Èç¹û³ÌÐòÔËÐÐÂ·¾¶ÖÐ²»´æÔÚÔò»»¸öÂ·¾¶ÔÙÊÔ
+	{ // å¦‚æžœç¨‹åºè¿è¡Œè·¯å¾„ä¸­ä¸å­˜åœ¨åˆ™æ¢ä¸ªè·¯å¾„å†è¯•
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
 	CloseIGW();
 
 	if ( GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF )
-	{	// ÕÒµ½×é¼þÔò¼ÓÔØ	
+	{	// æ‰¾åˆ°ç»„ä»¶åˆ™åŠ è½½	
 		g_hInstIGWDll = LoadLibraryW(strGameWidgetDll);
 		if (g_hInstIGWDll)
 		{
@@ -91,25 +91,25 @@ void OpenIGW()
 			igwTerminal = (LPigwTerminal)GetProcAddress( g_hInstIGWDll, "igwTerminal" );
 			if ( igwInitialize && igwGetModule && igwTerminal)
 			{
-				// ¼ÓÔØ³É¹¦
+				// åŠ è½½æˆåŠŸ
 
-				// ×¢ÒâAppInfoÀàÐÍËùÓÐ×Ö¶Î±ØÐëÌî
+				// æ³¨æ„AppInfoç±»åž‹æ‰€æœ‰å­—æ®µå¿…é¡»å¡«
 				AppInfo tmpAppInfo = {
-					sizeof(AppInfo),       // ½á¹¹Ìå´óÐ¡£¬·½±ãÀ©Õ¹
-					9999,                  // ½ÓÈëÓ¦ÓÃID£¬´Ó¿ª·¢ÕßÍøÕ¾ÖÐÉêÇë
-					L"ÁúÌ¶»¢Ñ¨OnLine",     // Ó¦ÓÃÃû³Æ
-					L"0.1.2.0",            // Ó¦ÓÃ¿Í»§¶Ëµ±Ç°°æ±¾ºÅ
-					SDOA_RENDERTYPE_D3D9,  // ¿Í»§¶ËÖ§³ÖµÄÍ¼ÐÎÒýÇæÀàÐÍ£¬ÕâÀïÍ¬Ê±Ö§³Öd3d9ºÍd3d8
-					1,                     // ¿ÉÍ¬Ê±ÔÚÒ»Ì¨»úÆ÷ÉÏÓÎÏ·µÄ×î´óÈËÊý£¨Í¨³£Îª1£¬ÀýÈç:KOFÓ¦¸ÃÊÇ2£©
-					-1,                    // ÓÎÏ·ÇøID£¬²»¿ÉÓÃÊ±´«Èë-1
-					-1                     // ÓÎÏ·×éID£¬²»¿ÉÓÃÊ±´«Èë-1
+					sizeof(AppInfo),       // ç»“æž„ä½“å¤§å°ï¼Œæ–¹ä¾¿æ‰©å±•
+					9999,                  // æŽ¥å…¥åº”ç”¨IDï¼Œä»Žå¼€å‘è€…ç½‘ç«™ä¸­ç”³è¯·
+					L"é¾™æ½­è™Žç©´OnLine",     // åº”ç”¨åç§°
+					L"0.1.2.0",            // åº”ç”¨å®¢æˆ·ç«¯å½“å‰ç‰ˆæœ¬å·
+					SDOA_RENDERTYPE_D3D9,  // å®¢æˆ·ç«¯æ”¯æŒçš„å›¾å½¢å¼•æ“Žç±»åž‹ï¼Œè¿™é‡ŒåŒæ—¶æ”¯æŒd3d9å’Œd3d8
+					1,                     // å¯åŒæ—¶åœ¨ä¸€å°æœºå™¨ä¸Šæ¸¸æˆçš„æœ€å¤§äººæ•°ï¼ˆé€šå¸¸ä¸º1ï¼Œä¾‹å¦‚:KOFåº”è¯¥æ˜¯2ï¼‰
+					-1,                    // æ¸¸æˆåŒºIDï¼Œä¸å¯ç”¨æ—¶ä¼ å…¥-1
+					-1                     // æ¸¸æˆç»„IDï¼Œä¸å¯ç”¨æ—¶ä¼ å…¥-1
 
 				};
 
 				if (igwInitialize(SDOA_SDK_VERSION, &tmpAppInfo) == SDOA_OK)
-				{	// ³õÊ¼»¯×é¼þ³É¹¦
+				{	// åˆå§‹åŒ–ç»„ä»¶æˆåŠŸ
 
-					// »ñÈ¡×é¼þ½Ó¿Ú
+					// èŽ·å–ç»„ä»¶æŽ¥å£
 					igwGetModule(__uuidof(ISDOADx9Hook), (void**)&g_SDOADx9Hook);
 					igwGetModule(__uuidof(ISDOAApp), (void**)&g_SDOAApp);
 
@@ -117,10 +117,10 @@ void OpenIGW()
 						CloseIGW();
 
 				}
-				else // ³õÊ¼»¯Ê§°ÜÇå³ý»·¾³
+				else // åˆå§‹åŒ–å¤±è´¥æ¸…é™¤çŽ¯å¢ƒ
 					CloseIGW();
 			}
-			else  // ¼ÓÔØDLLÊ§°ÜÇå³ý»·¾³
+			else  // åŠ è½½DLLå¤±è´¥æ¸…é™¤çŽ¯å¢ƒ
 				CloseIGW();
 		}
 	}
@@ -163,7 +163,7 @@ bool CALLBACK ModifyDeviceSettings( DXUTDeviceSettings* pDeviceSettings, const D
 HRESULT CALLBACK OnCreateDevice( IDirect3DDevice9* pd3dDevice, const D3DSURFACE_DESC* pBackBufferSurfaceDesc, void* pUserContext )
 {
 	//if (g_SDOADx9)
-	//{	// ³õÊ¼»¯IGWÄÚ²¿Í¼ÐÎÒýÇæ
+	//{	// åˆå§‹åŒ–IGWå†…éƒ¨å›¾å½¢å¼•æ“Ž
 	//	D3DPRESENT_PARAMETERS d3dpp = DXUTGetPresentParameters ();
 	//	g_SDOADx9->Initialize( pd3dDevice, &d3dpp, FALSE );
 	//}
@@ -186,7 +186,7 @@ HRESULT CALLBACK OnResetDevice( IDirect3DDevice9* pd3dDevice,
 {
 	
 	//if(g_SDOADx9)
-	//{	// Í¨ÖªIGW d3dÉè±¸ÖØÖÃ³É¹¦
+	//{	// é€šçŸ¥IGW d3dè®¾å¤‡é‡ç½®æˆåŠŸ
 	//	D3DPRESENT_PARAMETERS d3dpp = DXUTGetPresentParameters () ;	
 	//	g_SDOADx9->OnDeviceReset ( &d3dpp ) ;
 	//}
@@ -216,7 +216,7 @@ void CALLBACK OnFrameRender( IDirect3DDevice9* pd3dDevice, double fTime, float f
     // Render the scene
     if( SUCCEEDED( pd3dDevice->BeginScene() ) )
     {
-		/* »æÖÆIGW½çÃæ */
+		/* ç»˜åˆ¶IGWç•Œé¢ */
 		//if (g_SDOADx9)
 		//	g_SDOADx9->RenderEx();
 
@@ -224,44 +224,44 @@ void CALLBACK OnFrameRender( IDirect3DDevice9* pd3dDevice, double fTime, float f
     }
 }
 
-BOOL isSDOLogin = false; // ×¢ÒâÒ»¶¨ÒªÊÇBOOLÀàÐÍ£¬²»ÄÜÎªbool·ñÔò¿ÉÄÜ»áµ¼ÖÂÎÊÌâ
+BOOL isSDOLogin = false; // æ³¨æ„ä¸€å®šè¦æ˜¯BOOLç±»åž‹ï¼Œä¸èƒ½ä¸ºboolå¦åˆ™å¯èƒ½ä¼šå¯¼è‡´é—®é¢˜
 LoginResult loginResult;
 
 BOOL CALLBACK OnLogin(int nErrorCode, const LoginResult* pLoginResult, int nUserData, int nReserved) 
-{ // ×¢Òâ¸Ã»Øµ÷·µ»ØtrueÔò¹Ø±ÕµÇÂ¼¶Ô»°¿ò£¬·ñÔòµÇÂ¼¶Ô»°¿òÈÔÈ»ÏÔÊ¾
+{ // æ³¨æ„è¯¥å›žè°ƒè¿”å›žtrueåˆ™å…³é—­ç™»å½•å¯¹è¯æ¡†ï¼Œå¦åˆ™ç™»å½•å¯¹è¯æ¡†ä»ç„¶æ˜¾ç¤º
 	
 	isSDOLogin = (SDOA_ERRORCODE_OK == nErrorCode); 
 	if (isSDOLogin) 
 	{ 
 		loginResult = *pLoginResult; 
 
-		// µÇÂ¼³É¹¦ºó,°ÑÓÃ»§Ê¹ÓÃµÄÓÎÏ·½ÇÉ«ÐÅÏ¢´«ÈëIGW
+		// ç™»å½•æˆåŠŸåŽ,æŠŠç”¨æˆ·ä½¿ç”¨çš„æ¸¸æˆè§’è‰²ä¿¡æ¯ä¼ å…¥IGW
 		if (g_SDOAApp)
 		{
-			RoleInfo tmpRoleInfo = { sizeof(RoleInfo), L"ÃÀÃ²ÏÉ×Ó", 0 } ;
-			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // ÉèÖÃ½ÇÉ«ÐÅÏ¢£¬¿É¶à´Îµ÷ÓÃ£¬Ö»ÒªÓÃ»§ÇÐ»»ÁË½ÇÉ«¾Íµ÷ÓÃÍ¨ÖªIGW
+			RoleInfo tmpRoleInfo = { sizeof(RoleInfo), L"ç¾Žè²Œä»™å­", 0 } ;
+			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // è®¾ç½®è§’è‰²ä¿¡æ¯ï¼Œå¯å¤šæ¬¡è°ƒç”¨ï¼Œåªè¦ç”¨æˆ·åˆ‡æ¢äº†è§’è‰²å°±è°ƒç”¨é€šçŸ¥IGW
 		}
 	} 
 
 	if (SDOA_ERRORCODE_SHOWMESSAGE == nErrorCode)
-	{ // µÇÂ¼´íÎóÏûÏ¢´¦Àí
+	{ // ç™»å½•é”™è¯¯æ¶ˆæ¯å¤„ç†
 		if (nReserved != 0)
 		{
 			LoginMessage* pCurLoginMsg = (LoginMessage*)nReserved;
 			if (pCurLoginMsg->dwSize >= sizeof(LoginMessage))
-			{ // ¼æÈÝÐÔ´¦Àí 
-				// ÐÞ¸Ä´íÎóÌáÊ¾¶Ô»°¿ò±êÌâ
-				//SysReAllocString(pCurLoginMsg->pbstrTitle, L"[²âÊÔÓÎÏ·´íÎóÌáÊ¾]");
+			{ // å…¼å®¹æ€§å¤„ç† 
+				// ä¿®æ”¹é”™è¯¯æç¤ºå¯¹è¯æ¡†æ ‡é¢˜
+				//SysReAllocString(pCurLoginMsg->pbstrTitle, L"[æµ‹è¯•æ¸¸æˆé”™è¯¯æç¤º]");
 
-				// ´ËÊ±·µ»ØFALSEÔòÊ¹ÓÃÄ¬ÈÏÌáÊ¾
+				// æ­¤æ—¶è¿”å›žFALSEåˆ™ä½¿ç”¨é»˜è®¤æç¤º
 
-				// ´ËÊ±·µ»ØTRUEÔòÊ¹ÓÃ×Ô¶¨ÒåµÄÌáÊ¾
+				// æ­¤æ—¶è¿”å›žTRUEåˆ™ä½¿ç”¨è‡ªå®šä¹‰çš„æç¤º
 				//isSDOLogin = TRUE;
 				//::MessageBox(0, *pCurLoginMsg->pbstrContent, *pCurLoginMsg->pbstrTitle, MB_OK);
 			}
 		}
 	}
-	return isSDOLogin; // ³£¹æÂß¼­£¬µÇÂ¼³É¹¦Ôò¹Ø±ÕµÇÂ¼¶Ô»°¿ò
+	return isSDOLogin; // å¸¸è§„é€»è¾‘ï¼Œç™»å½•æˆåŠŸåˆ™å…³é—­ç™»å½•å¯¹è¯æ¡†
 } 
 
 //--------------------------------------------------------------------------------------
@@ -271,11 +271,11 @@ LRESULT CALLBACK MsgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
                           bool* pbNoFurtherProcessing, void* pUserContext )
 {
 	//if(g_SDOADx9) 
-	//{	// °ÑÏûÏ¢½»¸øIGWÄ£¿é´¦Àí 
+	//{	// æŠŠæ¶ˆæ¯äº¤ç»™IGWæ¨¡å—å¤„ç† 
 	//	LRESULT lResult; 
 	//	if (g_SDOADx9->OnWindowProc( hWnd, uMsg, wParam, lParam, &lResult ) == SDOA_OK ) 
 	//	{ 
-	//		*pbNoFurtherProcessing = true;// ²»ÈÃ×ÔÉíÔÙ´¦ÀíÏûÏ¢ 
+	//		*pbNoFurtherProcessing = true;// ä¸è®©è‡ªèº«å†å¤„ç†æ¶ˆæ¯ 
 	//		return lResult; 
 	//	} 
 	//} 
@@ -284,7 +284,7 @@ LRESULT CALLBACK MsgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
 
 	if ( (UINT)SDOA_WM_CLIENT_RUN == uMsg )
 	{
-		// ´Ë¿Ì¿ÉÒÔ¿ªÊ¼µÇÂ¼
+		// æ­¤åˆ»å¯ä»¥å¼€å§‹ç™»å½•
 		if (g_SDOAApp)
 		{
 			g_SDOAApp->ShowLoginDialog(OnLogin, 0, 0);
@@ -301,7 +301,7 @@ LRESULT CALLBACK MsgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
 //--------------------------------------------------------------------------------------
 void CALLBACK OnLostDevice( void* pUserContext )
 {
-	/* Í¨ÖªIGW d3dÉè±¸¶ªÊ§ */
+	/* é€šçŸ¥IGW d3dè®¾å¤‡ä¸¢å¤± */
 	//if(g_SDOADx9)
 	//	g_SDOADx9->OnDeviceLost();
 }
@@ -312,7 +312,7 @@ void CALLBACK OnLostDevice( void* pUserContext )
 //--------------------------------------------------------------------------------------
 void CALLBACK OnDestroyDevice( void* pUserContext )
 {
-	/* ÊÍ·ÅIGWÍ¼ÐÎÒýÇæ */
+	/* é‡Šæ”¾IGWå›¾å½¢å¼•æ“Ž */
 	//if (g_SDOADx9)
 	//	g_SDOADx9->Finalize();
 
@@ -333,7 +333,7 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 #if defined(DEBUG) | defined(_DEBUG)
     _CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #endif
-	/* ¼ÓÔØIGW */
+	/* åŠ è½½IGW */
 	OpenIGW();
 
     // Set the callback functions
@@ -357,9 +357,9 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 
 
 	if (igwInitialize)
-	{	// ËµÃ÷¼ÓÔØ³É¹¦£¬±íÊ¾ÏÂ......
+	{	// è¯´æ˜ŽåŠ è½½æˆåŠŸï¼Œè¡¨ç¤ºä¸‹......
 		HWND hMainWin = DXUTGetHWND();
-		SetWindowTextW(hMainWin, L"EmptyProject [¼ÓÔØIGW×é¼þ³É¹¦]");
+		SetWindowTextW(hMainWin, L"EmptyProject [åŠ è½½IGWç»„ä»¶æˆåŠŸ]");
 	}		
 
     // Start the render loop
@@ -367,11 +367,11 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 
     // TODO: Perform any application-level cleanup here
 	if (isSDOLogin && g_SDOAApp)
-	{ // µÇÂ¼³É¹¦£¬ÍË³öÊ±ÒªµÇ³ö
+	{ // ç™»å½•æˆåŠŸï¼Œé€€å‡ºæ—¶è¦ç™»å‡º
 		g_SDOAApp->Logout();
 	}
 
-	/* ÊÍ·ÅIGW */
+	/* é‡Šæ”¾IGW */
 	CloseIGW();
 
     return DXUTGetExitCode();

@@ -1,4 +1,4 @@
-//Microsoft Visual C++ generated resource script.
+ï»¿//Microsoft Visual C++ generated resource script.
 //
 #include "resource.h"
 
@@ -15,7 +15,7 @@
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 LANGUAGE 4, 2
-#pragma code_page(936)
+#pragma code_page(65001)
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -35,13 +35,13 @@ IDI_SMALL               ICON         "small.ico"
 
 IDC_NORMALGDIWIN MENU 
 BEGIN
-    POPUP "ÎÄ¼þ(&F)"
+    POPUP "æ–‡ä»¶(&F)"
     BEGIN
-        MENUITEM "ÍË³ö(&X)",                IDM_EXIT
+        MENUITEM "é€€å‡º(&X)",                IDM_EXIT
     END
-    POPUP "°ïÖú(&H)"
+    POPUP "å¸®åŠ©(&H)"
     BEGIN
-        MENUITEM "¹ØÓÚ(&A)...",				IDM_ABOUT
+        MENUITEM "å…³äºŽ(&A)...",				IDM_ABOUT
     END
 END
 

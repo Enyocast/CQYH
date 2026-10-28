@@ -265,7 +265,7 @@ BOOL CDBServer::MainLoop(void)
 
             switch (dbrole->m_dbtask)
             {
-            case CDBRole::DB_TASK_CREATE_ROLE:    // ´´½¨½ÇÉ«
+            case CDBRole::DB_TASK_CREATE_ROLE:    // åˆ›å»ºè§’è‰²
                 dbrole->OnCreateRole();
                 break;
             case CDBRole::DB_TASK_UPDATE_ROLE_DELETE_TIME:

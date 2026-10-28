@@ -9,7 +9,7 @@ function TestCase.Stall()
     local msg;
     local session_id1, session_id2;
 
-    --µÇÂ¼
+    --ç™»å½•
     user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user1");
     check(role1, "failed to create role1");
@@ -20,7 +20,7 @@ function TestCase.Stall()
     check(role2, "failed to create role2");
     session_id2 = user2:GetSessionID();
 
-    --user1: ÓÃGMÖ¸ÁîÔö¼ÓÒ©Ë®²¢¼ì²é
+    --user1: ç”¨GMæŒ‡ä»¤å¢åŠ è¯æ°´å¹¶æ£€æŸ¥
     ret = user1:GMCommand("AddItem(101,10, ITEMLOG_GM_COMMAND)");
     check(ret, "failed to send gm command");
 
@@ -29,21 +29,21 @@ function TestCase.Stall()
     check(msg.stItem.nTemplateID==101, "failed to create correct item");
     check(msg.stItem.nCurDur==10, "failed to create correct item");
 
-    --user1: ×¼±¸°ÚÌ¯
+    --user1: å‡†å¤‡æ‘†æ‘Š
     ret = user1:OpenStall();
     check(ret, "failed to send move item msg");
 
-    --user2: ÊÕµ½¸½½üÓĞÈËÌ¯Î»×´Ì¬±ä»¯ÏûÏ¢
+    --user2: æ”¶åˆ°é™„è¿‘æœ‰äººæ‘Šä½çŠ¶æ€å˜åŒ–æ¶ˆæ¯
     msg = recv_msg(5, session_id2, protocol.g2c_stall_state_change);
     check(msg, "failed to recv g2c_stall_state_change");
     check(msg.dwRoleID==role1:GetObjID(), "failed to recv correct stall msg");
     check(msg.btStallState==essPreparing, "failed to recv correct stall msg");
 
-    --user1: °ÑÒ©Ë®ÉÏ¼Ü£¬100/¸ö£¬¹²5¸ö
+    --user1: æŠŠè¯æ°´ä¸Šæ¶ï¼Œ100/ä¸ªï¼Œå…±5ä¸ª
     ret = user1:AddStallItem(0, CONSLOT_DEFAULT, 0, 5, 100);
     check(ret, "failed to add stall item");
 
-    --user1: ÊÕµ½ÉÏ¼Ü»Ø¸´
+    --user1: æ”¶åˆ°ä¸Šæ¶å›å¤
     msg = recv_msg(5, session_id1, protocol.g2c_add_stall_item);
     check(msg, "failed to recv g2c_add_stall_item");
     check(msg.btStallSlot==0, "failed to recv correct add stall item msg");
@@ -52,21 +52,21 @@ function TestCase.Stall()
     check(msg.nItemCount==5, "failed to recv correct add stall item msg");
     check(msg.nPrice==100, "failed to recv correct add stall item msg");
 
-    --user1: ÕæÕı¿ªÕÅ
+    --user1: çœŸæ­£å¼€å¼ 
     ret = user1:RealOpenStall();
     check(ret, "failed to real open stall");
 
-    --user2: ÊÕµ½¸½½üÓĞÈËÌ¯Î»×´Ì¬±ä»¯ÏûÏ¢
+    --user2: æ”¶åˆ°é™„è¿‘æœ‰äººæ‘Šä½çŠ¶æ€å˜åŒ–æ¶ˆæ¯
     msg = recv_msg(5, session_id2, protocol.g2c_stall_state_change);
     check(msg, "failed to recv g2c_stall_state_change");
     check(msg.dwRoleID==role1:GetObjID(), "failed to recv correct stall state change msg");
     check(msg.btStallState==essOpen, "failed to recv correct stall state change msg");
 
-    --user2: ²é¿´Ì¯Î»ÎïÆ·ÁĞ±í
+    --user2: æŸ¥çœ‹æ‘Šä½ç‰©å“åˆ—è¡¨
     ret = user2:ViewStallItem(role1:GetObjID());
     check(ret, "failed to view stall item");
 
-    --user2: ÊÕµ½Ì¯Î»ÎïÆ·ÁĞ±í»Ø¸´
+    --user2: æ”¶åˆ°æ‘Šä½ç‰©å“åˆ—è¡¨å›å¤
     msg = recv_msg(5, session_id2, protocol.g2c_view_stall_item);
     check(msg, "failed to recv g2c_view_stall_item");
     check(msg.dwRoleID==role1:GetObjID(), "failed to recv correct view stall item msg");
@@ -76,20 +76,20 @@ function TestCase.Stall()
     check(msg.stStallItem[0].nPrice==100, "failed to recv correct view stall item msg");
     local modifytime = msg.stStallItem[0].dwModifyTime;
 
-    --user2: ÓÃGMÖ¸Áî¸ø×Ô¼º¼ÓµãÇ®£¬µÈÏÂÒªÂò¶«Î÷
+    --user2: ç”¨GMæŒ‡ä»¤ç»™è‡ªå·±åŠ ç‚¹é’±ï¼Œç­‰ä¸‹è¦ä¹°ä¸œè¥¿
     ret = user2:GMCommand("AddMoney(1, 1000, MONEYLOG_GM_COMMAND)");
     check(ret, "failed to send gm command");
 
-    --user2: ÂòÌ¯Î»ÎïÆ·
+    --user2: ä¹°æ‘Šä½ç‰©å“
     ret = user2:BuyStallItem(role1:GetObjID(), 0, 1, modifytime);
     check(ret, "failed to buy stall item");
 
-    --user2: ÊÕµ½ÎïÆ·Ôö¼ÓÏûÏ¢
-    --user1: ÊÕµ½ÎïÆ·¼õÉÙÏûÏ¢
-    --user2: ÊÕµ½Ç®¼õÉÙÏûÏ¢
-    --user1: ÊÕµ½Ç®Ôö¼ÓÏûÏ¢
-    --user2: ÊÕµ½¹ºÂòÌ¯Î»ÎïÆ·³É¹¦ÏûÏ¢
-    --user1: ÊÕµ½ÊÛ³öÌ¯Î»ÎïÆ·³É¹¦ÏûÏ¢
+    --user2: æ”¶åˆ°ç‰©å“å¢åŠ æ¶ˆæ¯
+    --user1: æ”¶åˆ°ç‰©å“å‡å°‘æ¶ˆæ¯
+    --user2: æ”¶åˆ°é’±å‡å°‘æ¶ˆæ¯
+    --user1: æ”¶åˆ°é’±å¢åŠ æ¶ˆæ¯
+    --user2: æ”¶åˆ°è´­ä¹°æ‘Šä½ç‰©å“æˆåŠŸæ¶ˆæ¯
+    --user1: æ”¶åˆ°å”®å‡ºæ‘Šä½ç‰©å“æˆåŠŸæ¶ˆæ¯
     msg = recv_msg_and(10,
         session_id1, protocol.g2c_item_change,
         session_id2, protocol.g2c_item_change,
@@ -99,7 +99,7 @@ function TestCase.Stall()
         session_id2, protocol.g2c_buy_stall_item);
     check(msg, "failed to recv some msgs");
 
-    --µÇ³ö
+    --ç™»å‡º
     cleanup(user1);
     cleanup(user2);
 end

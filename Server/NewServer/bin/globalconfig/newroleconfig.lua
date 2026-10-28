@@ -6,7 +6,7 @@ NewRoleConfig = {
     wFaceDirection = 5120,
 
     MaleNewEquip = {
-	-- 战士 --
+	-- 鎴樺＋ --
         [0] = {
             nMainHand = 99900001,
       --      nHead = 0,
@@ -17,7 +17,7 @@ NewRoleConfig = {
       --      nFoot = 0,
 	  --      nBack = 0
         },
-	-- 法师 --
+	-- 娉曞笀 --
         [1] = {
             nMainHand = 99900001,
       --       nHead = 0,
@@ -28,7 +28,7 @@ NewRoleConfig = {
       --       nFoot = 0,
       --       nBack = 0
         },
-	-- 刺客 --
+	-- 鍒哄 --
         [2] = {
              nMainHand = 99900001,
       --       nHead = 0,
@@ -39,7 +39,7 @@ NewRoleConfig = {
       --       nFoot =0 ,
       --       nBack = 0
         },
-	-- 弓手 --
+	-- 寮撴墜 --
         [3] = {
             nMainHand = 99900001,
 	  --       nHead = 0,
@@ -50,7 +50,7 @@ NewRoleConfig = {
       --       nFoot = 0,
       --       nBack = 0
         },
-	-- 道士 --
+	-- 閬撳＋ --
         [4] = {
             nMainHand = 99900001,
       --       nHead = 0,
@@ -63,7 +63,7 @@ NewRoleConfig = {
         },
 	},
     FemaleNewEquip = {
- 	-- 战士 --
+ 	-- 鎴樺＋ --
         [0] = {
             nMainHand = 99900001,
       --       nHead = 0,
@@ -74,7 +74,7 @@ NewRoleConfig = {
       --       nFoot = 0,
       --       nBack = 0
         },
-	-- 法师 --
+	-- 娉曞笀 --
         [1] = {
             nMainHand = 99900001,
       --       nHead = 0,
@@ -85,7 +85,7 @@ NewRoleConfig = {
       --       nFoot = 0,
       --       nBack = 0
         },
- 	-- 刺客 --
+ 	-- 鍒哄 --
        [2] = {
              nMainHand = 99900001,
       --       nHead = 0,
@@ -96,7 +96,7 @@ NewRoleConfig = {
       --       nFoot = 0,
       --       nBack = 0
         },
- 	-- 弓手 --
+ 	-- 寮撴墜 --
        [3] = {
             nMainHand = 99900001,
       --       nHead = 0,
@@ -107,7 +107,7 @@ NewRoleConfig = {
       --       nFoot = 0,
       --       nBack = 0
         },
-	-- 道士 --
+	-- 閬撳＋ --
         [4] = {
             nMainHand = 99900001,
       --       nHead = 0,

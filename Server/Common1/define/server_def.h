@@ -108,7 +108,7 @@ enum SERVER_GROUP_INDEX
 };
 
 #define SNDA_APPID					(991002359)
-#define FCM_APPID                   (3001)  //·À³ÁÃÔµÄappidÖ»ÓÐ2¸öbytes£¬ËùÒÔ·À³ÁÃÔÐÂ¿ªÁËÒ»¸öappid£¬½öÓÃÓÚ·À³ÁÃÔ
+#define FCM_APPID                   (3001)  //é˜²æ²‰è¿·çš„appidåªæœ‰2ä¸ªbytesï¼Œæ‰€ä»¥é˜²æ²‰è¿·æ–°å¼€äº†ä¸€ä¸ªappidï¼Œä»…ç”¨äºŽé˜²æ²‰è¿·
 #define MAX_GS_SESSION_COUNT        (64)    // MAX_GS_SESSION_COUNT + MAX_GT_SESSION_COUNT <= 64 (FD_SETSIZE)
 #define MAX_GT_SESSION_COUNT        (32)
 #define MAX_MS_SESSION_COUNT        (32)

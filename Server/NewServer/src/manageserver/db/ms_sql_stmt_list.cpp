@@ -85,7 +85,7 @@ SQL_STMT_DATA g_MSSqlStmtList[msqlTotal] =
     { 9, mysqlDeleteFriend, "DELETE FROM friend WHERE RoleID = [ud] AND FriendID = [ud]", },
     { 9, mysqlUpdateFriend, "UPDATE friend SET FriendGroup = [uc] WHERE RoleID = [ud] AND FriendID = [ud]", },
 
-    // ƒ¨»œ¥˙¬Î UserName  « [64], œ÷‘⁄∏ƒ≥… [32]
+    // ÈªòËÆ§‰ª£Á†Å UserName ÊòØ [64], Áé∞Âú®ÊîπÊàê [32]
 	//{ 10, mysqlSelectRole, "SELECT RoleID{ud}, RoleName{s24}, UserName{s64}, UNIX_TIMESTAMP(LoginTime){ud}, GroupID{uc}, BaseData{b512} FROM role WHERE RoleDeleted = 0"},
 	{ 10, mysqlSelectRole, "SELECT RoleID{ud}, RoleName{s24}, UserName{s32}, UNIX_TIMESTAMP(LoginTime){ud}, GroupID{uc}, BaseData{b512} FROM role WHERE RoleDeleted = 0"},
     { 10, mysqlSelectGM , "SELECT GroupID{uc}, ID{ul}, UNIX_TIMESTAMP(Time){ud} from gm" },
@@ -101,7 +101,7 @@ SQL_STMT_DATA g_MSSqlStmtList[msqlTotal] =
 	//{ 0, mysqlSelectLoginQuery, "SELECT RealMoney{ul} FROM user WHERE UserName = [s33] AND Password = [s32]" },
 	{ 0, mysqlSelectLoginQuery, "SELECT * FROM user WHERE UserName = [s33] AND Password = [s32]" },
 
-    // ¥˝ÕÍ…∆
+    // ÂæÖÂÆåÂñÑ
     { 3, msqlSelectAuctionDeposit, "SELECT GroupID{uc}, AuctionID{ud}, RoleID{ud}, DepositPrice{l} FROM auction_deposit" },
     { 3, msqlInserAuctionDeposit,  "INSERT INTO auction_deposit (GroupID, AuctionID, RoleID, DepositPrice) VALUES ([uc], [ud], [ud], [l])" },
     { 3, msqlDeleteAuctionDeposit, "DELETE FROM auction_deposit WHERE AuctionID = [ud] AND RoleID = [ud]" },

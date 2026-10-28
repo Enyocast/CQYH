@@ -10,13 +10,13 @@ MIDL_INTERFACE("E6DCDBF9-6058-4210-9979-766B9E56C9C9")
 ISDOAOpenGL : public IUnknown
 {
 public:
-	/* ³õÊ¼»¯Í¼ÐÎÒýÇæ */
+	/* åˆå§‹åŒ–å›¾å½¢å¼•æ“Ž */
 	STDMETHOD_(HRESULT,Initialize)(THIS_ HDC hDC, HGLRC hRC, bool bHookWnd) PURE;	
-	/* äÖÈ¾½çÃæ */
+	/* æ¸²æŸ“ç•Œé¢ */
 	STDMETHOD_(HRESULT,Render)(THIS) PURE;	
-	/* ÊÍ·ÅÍ¼ÐÎÒýÇæÏà¹Ø×ÊÔ´ */
+	/* é‡Šæ”¾å›¾å½¢å¼•æ“Žç›¸å…³èµ„æº */
 	STDMETHOD_(HRESULT,Finalize)(THIS) PURE;
-	/* ´«ÈëÏûÏ¢ */
+	/* ä¼ å…¥æ¶ˆæ¯ */
 	STDMETHOD_(HRESULT,OnWindowProc)(THIS_ HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* lResult) PURE;
 };
 

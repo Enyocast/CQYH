@@ -55,16 +55,16 @@ enum SPELL_FLAG_BITS
 	sfbInvalid = -1,
 
 	sfbRoundTableBegin,
-	sfbCrit = sfbRoundTableBegin,	// ±©»÷ = 0
-	sfbBlock,						// ¸ñµ² = 1
-	sfbDodge,						// ÉÁ±Ü = 2
-	sfbParry,						// ÕĞ¼Ü = 3
-	sfbMiss,						// Î´ÃüÖĞ = 4
-	sfbNormal,						// ÆÕÍ¨ = 5
+	sfbCrit = sfbRoundTableBegin,	// æš´å‡» = 0
+	sfbBlock,						// æ ¼æŒ¡ = 1
+	sfbDodge,						// é—ªé¿ = 2
+	sfbParry,						// æ‹›æ¶ = 3
+	sfbMiss,						// æœªå‘½ä¸­ = 4
+	sfbNormal,						// æ™®é€š = 5
 	sfbRoundTableEnd,
 
-	sfbImmune = sfbRoundTableEnd,	// ÃâÒß = 6
-	sfbDead,						// ËÀÍö = 7
+	sfbImmune = sfbRoundTableEnd,	// å…ç–« = 6
+	sfbDead,						// æ­»äº¡ = 7
 	sfbEmptyEffect,
 
 	sfbTotal
@@ -74,11 +74,11 @@ enum SPELL_CAST_TYPE
 {
 	spctInvalid = -1,
 
-	spctPassive,     // ±»¶¯¼¼ÄÜ
-	spctActive,	     // Ö÷¶¯¼¼ÄÜ
-	spctSubSpell,    // ×Ó¼¼ÄÜ
-	spctDirectly,    // Ö±½Ó¼¼ÄÜ
-	spctSwitch,	     // ¿ª¹Ø¼¼ÄÜ/Ë²¼ä¼¼ÄÜ
+	spctPassive,     // è¢«åŠ¨æŠ€èƒ½
+	spctActive,	     // ä¸»åŠ¨æŠ€èƒ½
+	spctSubSpell,    // å­æŠ€èƒ½
+	spctDirectly,    // ç›´æ¥æŠ€èƒ½
+	spctSwitch,	     // å¼€å…³æŠ€èƒ½/ç¬é—´æŠ€èƒ½
 
 	spctTotal
 };
@@ -87,9 +87,9 @@ enum SPELL_JUDGE_TYPE
 {
 	spjtInvalid = -1,
 
-	spjtDirectly,  // Ö±½ÓÅĞ¶Ï
-	spjtPhy,	   // ÎïÀíÅĞ¶Ï
-	spjtMag,	   // Ä§·¨ÅĞ¶Ï
+	spjtDirectly,  // ç›´æ¥åˆ¤æ–­
+	spjtPhy,	   // ç‰©ç†åˆ¤æ–­
+	spjtMag,	   // é­”æ³•åˆ¤æ–­
 
 	spjtTotal
 };
@@ -131,24 +131,24 @@ enum SPELL_RANGE_TYPE
 {
 	sprtInvalid = -1,
 
-	sprtSingle,			 // 0 µ¥Ò»
-	sprtCircle,			 // 1 Ô²ĞÎ
-	sprtSector,			 // 2 ÉÈĞÎ
-	sprtArc,			 // 3 »¡ĞÎ
-	sprtRectangle,		 // 4 ¾ØĞÎ
-	sprtRearHalfCircle,  // 5 ºó°ëÔ²
+	sprtSingle,			 // 0 å•ä¸€
+	sprtCircle,			 // 1 åœ†å½¢
+	sprtSector,			 // 2 æ‰‡å½¢
+	sprtArc,			 // 3 å¼§å½¢
+	sprtRectangle,		 // 4 çŸ©å½¢
+	sprtRearHalfCircle,  // 5 ååŠåœ†
 
-	sprtGridBegin = sprtRearHalfCircle, // 5  Íø¸ñ·¶Î§ÆğÊ¼
-	sprtGridLine,						// 6  Ö±ÏßÍø¸ñ
-	sprtGridRect,						// 7  ¾ØĞÎÍø¸ñ
-	sprtGridCross,						// 8  Ê®×ÖĞÎÍø¸ñ
-	sprtGridX,							// 9  XĞÎÍø¸ñ
-	sprtGridU,							// 10 UĞÎÍø¸ñ
-	sprtGridSingle,						// 11 µ¥µãÍø¸ñ
-	sprtGridLineTransverse,				// 12 ºáÏòÖ±ÏßÍø¸ñ
-	sprtGridMultiLine,					// 13 ¶àÖØÖ±ÏßÍø¸ñ
+	sprtGridBegin = sprtRearHalfCircle, // 5  ç½‘æ ¼èŒƒå›´èµ·å§‹
+	sprtGridLine,						// 6  ç›´çº¿ç½‘æ ¼
+	sprtGridRect,						// 7  çŸ©å½¢ç½‘æ ¼
+	sprtGridCross,						// 8  åå­—å½¢ç½‘æ ¼
+	sprtGridX,							// 9  Xå½¢ç½‘æ ¼
+	sprtGridU,							// 10 Uå½¢ç½‘æ ¼
+	sprtGridSingle,						// 11 å•ç‚¹ç½‘æ ¼
+	sprtGridLineTransverse,				// 12 æ¨ªå‘ç›´çº¿ç½‘æ ¼
+	sprtGridMultiLine,					// 13 å¤šé‡ç›´çº¿ç½‘æ ¼
 
-	sprtGridEnd,						// 14 Íø¸ñ·¶Î§½áÊø
+	sprtGridEnd,						// 14 ç½‘æ ¼èŒƒå›´ç»“æŸ
 
 	sprtTotal = sprtGridEnd,
 };
@@ -261,14 +261,14 @@ enum SPELL_PREPARE_TYPE
 	spptTotal
 };
 
-// ¼¼ÄÜÈ¡ÏûÀàĞÍ
+// æŠ€èƒ½å–æ¶ˆç±»å‹
 enum SPELL_CANCEL_TYPE
 {
 	spcltInvalid = -1,
 
-	spcltNone,			   // ÎŞ
-	spcltDependOnValue,    // ÒÀÀµÖµ
-	spcltInstant,		   // Ë²¼ä
+	spcltNone,			   // æ— 
+	spcltDependOnValue,    // ä¾èµ–å€¼
+	spcltInstant,		   // ç¬é—´
 
 	spcltTotal,
 };

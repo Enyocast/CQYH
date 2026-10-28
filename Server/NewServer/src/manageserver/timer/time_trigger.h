@@ -29,14 +29,14 @@ enum TIME_TRIGGER_TYPE
 };
 
 //////////////////////////////////////////////////////////////////////////
-// ����ֵ TIME_TRIGGER_RET
-// �����ڲ���֤��BASE_TRIGGER_NODE���ͷ�, ����ֵEND�ͷţ� CONTINUE ���ͷ�
-// ���� CONTINUE ��Ҫ���ڲ������µ���̭ʱ�� nWashoutTime �ֶ�
+// 返回值 TIME_TRIGGER_RET
+// 函数内部保证对BASE_TRIGGER_NODE的释放, 返回值END释放， CONTINUE 不释放
+// 返回 CONTINUE 需要在内部更新新的淘汰时间 nWashoutTime 字段
 //////////////////////////////////////////////////////////////////////////
 typedef INT32 (*fpTimeTriggerCallBack)(BASE_TRIGGER_NODE *pTriggerNode);
 
 
-// ʱ�䴥���ڵ�Ļ���
+// 时间触发节点的基类
 struct BASE_TRIGGER_NODE : BASE_LIST_NODE
 {
     //BASE_LIST_NODE  node;

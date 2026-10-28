@@ -63,7 +63,7 @@ INT32 CServerVar::GetVariable(INT32 nServerGroup, UINT64 qwKey)
 	it = m_VarList[nServerGroup].find(qwKey);
 	PROCESS_ERROR(it != m_VarList[nServerGroup].end());
 
-	// 判断 是不是运2项链专属ServerGroup
+	// 鍒ゆ柇 鏄笉鏄繍2椤归摼涓撳睘ServerGroup
 	//if (nServerGroup == g_ServerConfig.CC.nItemDropLimitLuck2NecklaceServerGroup)
 	//{
 	//	it = m_Luck2NecklaceVarList[nServerGroup].find(qwKey);
@@ -108,7 +108,7 @@ void CServerVar::SetVariable(INT32 nServerGroup, UINT64 qwKey, INT32 nValue)
 	nRetCode = CMessageHandler::GetInstance().DoGSUpdateServerVariable(nServerGroup, qwKey, nValue);
 	LOG_CHECK_ERROR(nRetCode);
 
-	// 判断 是不是运2项链专属ServerGroup
+	// 鍒ゆ柇 鏄笉鏄繍2椤归摼涓撳睘ServerGroup
 	//if (nServerGroup == g_ServerConfig.CC.nItemDropLimitLuck2NecklaceServerGroup)
 	//{
 	//	it = m_Luck2NecklaceVarList[nServerGroup].find(qwKey);

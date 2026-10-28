@@ -38,32 +38,32 @@ namespace ExternalMessage
 		c2m_query_line_req,
 
         // master
-        c2m_master_teacher_ignore,      // Ê¦¸µÎŞÊÓor¾Ü¾øÍÆËÍÇëÇóÊ¦¸µĞÅÏ¢
-        c2m_master_get_recruit_list,    // À­È¡Ê¦Í½ÕĞÄ¼°ñ
-        //c2m_master_apply_recruit,       // ÉêÇëÕĞÄ¼Í½µÜ
-        //c2m_master_cancel_recruit,      // È¡ÏûÕĞÄ¼Í½µÜ
-        c2m_master_get_solo_list,       // À­È¡Ã»ÓĞ°İÊ¦µÄÍæ¼ÒÁĞ±í
+        c2m_master_teacher_ignore,      // å¸ˆå‚…æ— è§†oræ‹’ç»æ¨é€è¯·æ±‚å¸ˆå‚…ä¿¡æ¯
+        c2m_master_get_recruit_list,    // æ‹‰å–å¸ˆå¾’æ‹›å‹Ÿæ¦œ
+        //c2m_master_apply_recruit,       // ç”³è¯·æ‹›å‹Ÿå¾’å¼Ÿ
+        //c2m_master_cancel_recruit,      // å–æ¶ˆæ‹›å‹Ÿå¾’å¼Ÿ
+        c2m_master_get_solo_list,       // æ‹‰å–æ²¡æœ‰æ‹œå¸ˆçš„ç©å®¶åˆ—è¡¨
 
-        c2m_master_stud_submit_app,     // ÉêÇë°İÊ¦
-        c2m_master_agree_stud_app,      // Í¬Òâ°İÊ¦ÉêÇë
-        c2m_master_refuse_stud_app,     // Ê¦¸µ¾Ü¾øÍ½µÜ°İÊ¦ÉêÇë
-        c2m_master_cancel_stud_app,     // Í½µÜÖ÷¶¯È¡Ïû°İÊ¦ÉêÇë
+        c2m_master_stud_submit_app,     // ç”³è¯·æ‹œå¸ˆ
+        c2m_master_agree_stud_app,      // åŒæ„æ‹œå¸ˆç”³è¯·
+        c2m_master_refuse_stud_app,     // å¸ˆå‚…æ‹’ç»å¾’å¼Ÿæ‹œå¸ˆç”³è¯·
+        c2m_master_cancel_stud_app,     // å¾’å¼Ÿä¸»åŠ¨å–æ¶ˆæ‹œå¸ˆç”³è¯·
 
         c2m_master_teacher_submit_app,
         c2m_master_agree_teacher_app,
         c2m_master_refuse_teacher_app,
         c2m_master_cancel_teacher_app,
 
-        c2m_master_leave_teacher,        // Í½µÜÅÑÊ¦
-        c2m_master_fire_stud,           // Ê¦¸µ¿ª³ıÍ½µÜ
+        c2m_master_leave_teacher,        // å¾’å¼Ÿå›å¸ˆ
+        c2m_master_fire_stud,           // å¸ˆå‚…å¼€é™¤å¾’å¼Ÿ
 
-        c2m_master_info,     // À­È¡Ê¦Í½Êı¾İ
+        c2m_master_info,     // æ‹‰å–å¸ˆå¾’æ•°æ®
 
         c2m_master_cz,
         c2m_master_grad,
 
         
-        //c2m_master_cong_level_up,  // ¹§Ï²Éı¼¶
+        //c2m_master_cong_level_up,  // æ­å–œå‡çº§
 
         // mail
         c2m_mail_write,

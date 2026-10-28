@@ -12,22 +12,22 @@
 
 struct ZONE_DATA
 {
-    unsigned short  usZoneX;    // ÇøÓòX×ø±ê
-    unsigned short  usZoneY;    // ÇøÓòY×ø±ê
+    unsigned short  usZoneX;    // åŒºåŸŸXåæ ‡
+    unsigned short  usZoneY;    // åŒºåŸŸYåæ ‡
 
-    unsigned short  GroundGrid[GRID_PER_ZONE][GRID_PER_ZONE];  // µØÃæÍø¸ñË÷Òı±í
-    int             nGridCount;  // Íø¸ñ×ÜÊı
+    unsigned short  GroundGrid[GRID_PER_ZONE][GRID_PER_ZONE];  // åœ°é¢ç½‘æ ¼ç´¢å¼•è¡¨
+    int             nGridCount;  // ç½‘æ ¼æ€»æ•°
 	
-    unsigned char   byVolume[MAX_VOLUME_PER_ZONE];     // Ìå»ıÇøÓò±ê¼Ç
-    unsigned char   byDoor[MAX_DOOR_PER_ZONE];         // ÃÅ×´Ì¬
-	unsigned short	wEdge[MAX_EDGE_INDEX_PER_ZONE];    // ±ßÔµË÷Òı
-    int             nQuestID[MAX_QUEST_PER_ZONE];      // ¹ØÁªÈÎÎñID
-	unsigned char	byServerPointIndex;                // ·şÎñÆ÷µãË÷Òı
+    unsigned char   byVolume[MAX_VOLUME_PER_ZONE];     // ä½“ç§¯åŒºåŸŸæ ‡è®°
+    unsigned char   byDoor[MAX_DOOR_PER_ZONE];         // é—¨çŠ¶æ€
+	unsigned short	wEdge[MAX_EDGE_INDEX_PER_ZONE];    // è¾¹ç¼˜ç´¢å¼•
+    int             nQuestID[MAX_QUEST_PER_ZONE];      // å…³è”ä»»åŠ¡ID
+	unsigned char	byServerPointIndex;                // æœåŠ¡å™¨ç‚¹ç´¢å¼•
     
-	GRID_DATA		GridList[0];  // Íø¸ñÊı¾İ¶¯Ì¬Êı×é
+	GRID_DATA		GridList[0];  // ç½‘æ ¼æ•°æ®åŠ¨æ€æ•°ç»„
 };
 
-// ÇøÓòÊµÀıÊı¾İ
+// åŒºåŸŸå®ä¾‹æ•°æ®
 struct ZONE_INSTANCE_DATA
 {
 	GRID_INSTANCE_DATA	GridList[0];

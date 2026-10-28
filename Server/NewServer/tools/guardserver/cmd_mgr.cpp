@@ -98,7 +98,7 @@ Exit0:
 BOOL CCmdMgr::StartServer(INT32 nCount, const char* pcszParam)
 {
 	INT32 nRetCode = 0;
-	BOOL bRunRelease = FALSE;	// 默认启动debug版本,除非-r选项启动release版本
+	BOOL bRunRelease = FALSE;	// 榛樿鍚姩debug鐗堟湰,闄ら潪-r閫夐」鍚姩release鐗堟湰
 	if (nCount == 0)
 	{
         nRetCode = CProcessMgr::GetInstance().StartAllProcess(NULL, FALSE, bRunRelease);

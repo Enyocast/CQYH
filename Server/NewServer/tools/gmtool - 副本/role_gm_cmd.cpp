@@ -29,19 +29,19 @@ void CRoleGMCmd::OK()
 {
     INT32       nRetCode = 0;
 
-    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("È·ÈÏÖ´ĞĞ¸ÃGMÖ¸Áî£¿"));
+    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("ç¡®è®¤æ‰§è¡Œè¯¥GMæŒ‡ä»¤ï¼Ÿ"));
     if (nCheckEnum != QMessageBox::Yes)
         return;
 
     if (ui.textEdit->toPlainText().toUtf8().length() < 2 || ui.textEdit_2->toPlainText().toUtf8().length() < 2)
     {
-        QMessageBox::warning(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("ÄÚÈİ²»ÄÜÎª¿Õ!"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("å†…å®¹ä¸èƒ½ä¸ºç©º!"));
         return;
     }
 
     if (ui.textEdit_2->toPlainText().toUtf8().length() > GM_REASON_LEN - 1)
     {
-        QMessageBox::warning(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("Ô­Òò¹ı³¤!"));
+        QMessageBox::warning(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("åŸå› è¿‡é•¿!"));
         return;
     }
 

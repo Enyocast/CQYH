@@ -38,7 +38,7 @@ BOOL CIRCLE_REWARD_DATA::ReadLine(INT32& rnID, const char*& rpcszName, CIRCLE_RE
 
 	READ_INT("GroupID", nRewardGroupID);
 
-	// ½»ÈÎÎñÖ´ÐÐ¶¯×÷
+	// äº¤ä»»åŠ¡æ‰§è¡ŒåŠ¨ä½œ
  	READ_INT("AwardMoneyType", stQuestRewardData.nAwardMoneyType1);
  	READ_INT("AwardMoneyAmount", stQuestRewardData.nAwardMoneyAmount1);
  	READ_INT("AwardMoneyTypeEx", stQuestRewardData.nAwardMoneyType2);

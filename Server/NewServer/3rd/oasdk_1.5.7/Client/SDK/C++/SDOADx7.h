@@ -12,19 +12,19 @@ MIDL_INTERFACE("2724598A-63A9-413C-97D8-0E3EFEAB368F")
 ISDOADx7 : public IUnknown
 {
 public:
-	/* ³õÊ¼»¯d3dÉè±¸ */
+	/* åˆå§‹åŒ–d3dè®¾å¤‡ */
 	STDMETHOD_(HRESULT,Initialize)(THIS_ IDirect3DDevice7* pDev7, IDirectDraw7* DirectDraw7, IDirectDrawSurface7* FrontBuffer, IDirectDrawSurface7* BackBuffer, bool bHookGameWnd, HWND hGameWnd) PURE;	
-	/* äÖÈ¾½çÃæÄÚ²¿ÒÑ¾­µ÷ÓÃBeginSceneºÍEndScene£¬È·ÈÏÔÚEndSceneÖ®ºóµ÷ÓÃËü */
+	/* æ¸²æŸ“ç•Œé¢å†…éƒ¨å·²ç»è°ƒç”¨BeginSceneå’ŒEndSceneï¼Œç¡®è®¤åœ¨EndSceneä¹‹åè°ƒç”¨å®ƒ */
 	STDMETHOD_(HRESULT,Render)(THIS) PURE;	
-	/* È·±£ÔÚBeginScene¡¢EndSceneÖ®¼äµ÷ÓÃRenderEx */
+	/* ç¡®ä¿åœ¨BeginSceneã€EndSceneä¹‹é—´è°ƒç”¨RenderEx */
 	STDMETHOD_(HRESULT,RenderEx)(THIS) PURE;	
-	/* ÊÍ·Åd3dÏà¹Ø×ÊÔ´ */
+	/* é‡Šæ”¾d3dç›¸å…³èµ„æº */
 	STDMETHOD_(HRESULT,Finalize)(THIS) PURE;
-	/* ÖØÖÃÉè±¸ */
+	/* é‡ç½®è®¾å¤‡ */
 	STDMETHOD_(void,OnDeviceReset)(THIS) PURE;
-	/* Éè±¸¶ªÊ§ */
+	/* è®¾å¤‡ä¸¢å¤± */
 	STDMETHOD_(void,OnDeviceLost)(THIS) PURE;
-	/* ´«ÈëÏûÏ¢ */
+	/* ä¼ å…¥æ¶ˆæ¯ */
 	STDMETHOD_(HRESULT,OnWindowProc)(THIS_ HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* lResult) PURE;
 };
 

@@ -150,7 +150,7 @@ INT32 CTrade::SetItem(UINT8 byTradeSlot, UINT8 bAdd, UINT8 byConSlot, UINT8 byIt
         if (item->m_iteminfo.m_dwRoleID && item->m_iteminfo.m_dwRoleID != m_pTradeTarget->GetObjID())
             return errItemAlreadySigned;
 
-        //¼ì²éÊÇ·ñÒÑ¾­±»½»Ò×ÁË
+        //æ£€æŸ¥æ˜¯å¦å·²ç»è¢«äº¤æ˜“äº†
         for (UINT8 i=0; i<MAX_TRADE_SLOT; i++)
         {
             if (m_slots[i] == MAKEWORD(byConSlot, byItemSlot))
@@ -311,7 +311,7 @@ INT32 CTrade::_CommitTrade()
     pTargetTrade = m_pTradeTarget->GetTrade();
     LOG_PROCESS_ERROR(pTargetTrade->m_state == etsConfirmed);
 
-    //¼ì²éÇ®
+    //æ£€æŸ¥é’±
     tax = (INT32)(((INT64)m_money * TRADE_TAX + 9999) / 10000);
     if (m_money && m_pOwner->GetItemBag()->GetMoney(MONEYTYPE_02) < m_money + tax)
 	{
@@ -328,7 +328,7 @@ INT32 CTrade::_CommitTrade()
         return errSuccess;
     }
 
-    //¼ì²éÎïÆ·
+    //æ£€æŸ¥ç‰©å“
     item_count_diff = 0;
     for (INT32 i=0; i<MAX_TRADE_SLOT; i++)
     {
@@ -384,7 +384,7 @@ INT32 CTrade::_CommitTrade()
     pTargetTrade->m_state = etsSuccess;
     pTargetTrade->_BroadcastStateChange();
 
-    //¿ÛÇ®¼ÓÇ®
+    //æ‰£é’±åŠ é’±
     if (m_money)
     {
         nRetCode = m_pOwner->GetItemBag()->SubMoney(MONEYTYPE_02, m_money, MONEYLOG_PLAYER_TRADE, m_pTradeTarget->GetObjID());
@@ -408,7 +408,7 @@ INT32 CTrade::_CommitTrade()
         LOG_CHECK_ERROR(nRetCode == errSuccess);
     }
 
-    //»¥Ïà¸ø¶«Î÷
+    //äº’ç›¸ç»™ä¸œè¥¿
     for (std::list<Item*>::iterator it=items.begin(); it!=items.end(); ++it)
     {
         nRetCode = m_pOwner->GetItemBag()->RemoveItem((*it)->m_iteminfo.m_byConSlot, (*it)->m_iteminfo.m_byItemSlot, ITEMLOG_PLAYER_TRADE);

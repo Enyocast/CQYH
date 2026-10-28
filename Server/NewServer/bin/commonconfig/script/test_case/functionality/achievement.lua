@@ -7,7 +7,7 @@ LoadPackage("achievement_list.pkg");
 
 function TestCase.Achievement()
 
-    -- µÇÂ½
+    -- ç™»é™†
     local user_name1 = "achievement1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
@@ -23,8 +23,8 @@ function TestCase.Achievement()
 	local user1sessionid = user1:GetSessionID();
 	local user2sessionid = user2:GetSessionID();
 
-	-- ³É¾Í1: µÈ¼¶´ïµ½2¼¶,»ñµÃIDÎª104µÄÎïÆ·,ÉíÉÏ½ğ±Ò³¬¹ı1000
-	-- ³É¾Í2: ½øÈë³¡¾°Îª102µÄµØÍ¼, Íê³ÉÈÎÎñIDÎª102µÄÈÎÎñ, ·ÅÆúÈÎÎñ³¬¹ı10¸ö
+	-- æˆå°±1: ç­‰çº§è¾¾åˆ°2çº§,è·å¾—IDä¸º104çš„ç‰©å“,èº«ä¸Šé‡‘å¸è¶…è¿‡1000
+	-- æˆå°±2: è¿›å…¥åœºæ™¯ä¸º102çš„åœ°å›¾, å®Œæˆä»»åŠ¡IDä¸º102çš„ä»»åŠ¡, æ”¾å¼ƒä»»åŠ¡è¶…è¿‡10ä¸ª
 
 	-- User1
 
@@ -103,7 +103,7 @@ function _achievement(achievement_data)
 
 	print("-------------start to _achievement----------");
 
-	-- µÇÂ½
+	-- ç™»é™†
     local user_name = "achieve1"..achievement_data["nAchievementID"]..os.date("%H%M%S");
     local user, role = startup(user_name, user_name);
     check(user, "failed to create user");
@@ -130,7 +130,7 @@ function _achievement(achievement_data)
 		check(ret, "PreAchievementID2 fail");
 	end
 
-	-- ½ÓÊÜÈÎÎñ
+	-- æ¥å—ä»»åŠ¡
 	ret = user:CompleteAchievement(achievement_data["nAchievementID"]);
 	check(ret, "CompleteAchievement : "..achievement_data["nAchievementID"].. "fail");
 
@@ -185,14 +185,14 @@ function complete_achievem(user1, role1, Type, value1, value2, value3)
 
 		msg = recv_msg(10, user1sessionid, protocol.g2c_item_change);
 		check(msg, "failed to receive g2c_item_change in type: adEquip");
-	elseif Type == adEquipColor then	-- 30004 ¾«ÖÂµÄÓ°ÎäÑü´ø color 3
+	elseif Type == adEquipColor then	-- 30004 ç²¾è‡´çš„å½±æ­¦è…°å¸¦ color 3
 		print("-----adEquipColor--------");
 		ret = user1:GMCommand("AddItem(30004, 1)");
 		check(ret, "fail to adEquip")
 
 		msg = recv_msg(10, user1sessionid, protocol.g2c_item_change);
 		check(msg, "failed to receive g2c_item_change in type: adEquip");
-	elseif Type == adEquipBodyColor then -- 30004 ¾«ÖÂµÄÓ°ÎäÑü´ø color 3
+	elseif Type == adEquipBodyColor then -- 30004 ç²¾è‡´çš„å½±æ­¦è…°å¸¦ color 3
 		print("-----adEquipBodyColor--------");
 		ret = user1:GMCommand("AddItem(30004, 1)");
 		check(ret, "fail to adEquip")
@@ -200,7 +200,7 @@ function complete_achievem(user1, role1, Type, value1, value2, value3)
 		msg = recv_msg(10, user1sessionid, protocol.g2c_item_change);
 		check(msg, "failed to receive g2c_item_change in type: adEquip");
 
-		ret = user1:MoveItem(0,0,0, 7); -- ×°±¸µ½Ñü²¿
+		ret = user1:MoveItem(0,0,0, 7); -- è£…å¤‡åˆ°è…°éƒ¨
 		check(ret, "fail to add move item")
 
 	elseif Type == adBankSlotCount then
@@ -244,7 +244,7 @@ function complete_achievem(user1, role1, Type, value1, value2, value3)
 		msg = recv_msg(10, user1sessionid, protocol.g2c_money_change);
 		check(msg, "failed to receive g2c_money_change in type: adTotalMoneyType_04");
 	elseif Type == adKillPlayerTotalCount then
-		-- µÇÂ½
+		-- ç™»é™†
 		local user_name2 = "achievement2"..os.date("%H%M%S");
 		local user2, role2 = startup(user_name2, user_name2);
 		check(user2, "failed to create user");
@@ -279,7 +279,7 @@ function complete_achievem(user1, role1, Type, value1, value2, value3)
 
 		_CompleteQuestWithoutConditionIndex(user1, role1, quest_data, 0, nTime);
 	elseif Type == adCompleteQuestCount then
-		-- ±éÀúËùÓĞÈÎÎñ
+		-- éå†æ‰€æœ‰ä»»åŠ¡
 		local completecount = 0;
 
 		local quest_data = CDataManager_Quest_DATA_:GetInstance():GetFirstData();
@@ -308,7 +308,7 @@ function complete_achievem(user1, role1, Type, value1, value2, value3)
 		msg = recv_msg(10, user1sessionid, protocol.g2c_role_learn_spell);
 		check(msg, "failed to receive g2c_role_learn_spell in type: adLearnSpell");
 	elseif Type == adSpellCount then
-		local remaincout = value1 - 8;	-- Ê£Óàspell ÊıÁ¿
+		local remaincout = value1 - 8;	-- å‰©ä½™spell æ•°é‡
 		local spell_data = CDataManager_SPELL_ENTRY_:GetInstance():GetFirstData();
 
 		while (spell_data and spell_data.m_nAttrTable["satClass"] and remaincount > 0) do
@@ -391,11 +391,11 @@ function complete_achievem(user1, role1, Type, value1, value2, value3)
 			check(user2, "failed to create user");
 			check(role2, "failed to create role");
 
-			--user1: ¼Óuser2ÎªºÃÓÑ(ÒÔRoleIDÎª¸ù¾İ)
+			--user1: åŠ user2ä¸ºå¥½å‹(ä»¥RoleIDä¸ºæ ¹æ®)
 			ret = user1:AddFriend(role2:GetObjID(), "");
 			check(ret, "failed to add friend");
 
-			--user1: ÊÕµ½¼ÓºÃÓÑ»Ø¸´
+			--user1: æ”¶åˆ°åŠ å¥½å‹å›å¤
 			msg = recv_msg(5, session_id1, protocol.m2c_friend_add);
 			check(msg, "faield to recv m2c_friend_add");
 			check(msg.dwRoleID == role2:GetObjID(), "failed to recv correct friend add msg");
@@ -473,7 +473,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 		local totalpick = 0;
 
 		while (totalpic < value2) do
-			ret = user:GMCommand(cmd);		-- Õ½Ê¿£¬Ò°Âù³å×²
+			ret = user:GMCommand(cmd);		-- æˆ˜å£«ï¼Œé‡è›®å†²æ’
 			wait(3);
 
 			msg = recv_msg(10, user1sessionid, protocol.g2c_pickup_money);
@@ -505,7 +505,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 	elseif (value1 == ervtRelieveMoneyTotal) then
 		local totalcost = 0;
 
-		ret = user:GMCommand("AddMoney("..MONEYTYPE_01..", 10000000, MONEYLOG_GM_COMMAND)");	-- ¼ÓÇ®
+		ret = user:GMCommand("AddMoney("..MONEYTYPE_01..", 10000000, MONEYLOG_GM_COMMAND)");	-- åŠ é’±
 		check(ret, "fail to adTotalMoneyType_01");
 
 		msg = recv_msg(10, user1sessionid, protocol.g2c_money_change);
@@ -513,11 +513,11 @@ function complete_variable(user, role, Type, value1, value2, value3)
 
 		while (totalcost < value2) do
 			for i = 1, 10 do
-				--ÓÃGMÖ¸ÁîÕÙ»½Ò»¸öNPC
+				--ç”¨GMæŒ‡ä»¤å¬å”¤ä¸€ä¸ªNPC
 				ret = user:GMCommand("SummonNpc(109)");
 				check(ret, "failed to send gm command");
 
-				--¼ì²éÕÙ»½³öµÄNPC
+				--æ£€æŸ¥å¬å”¤å‡ºçš„NPC
 				msg = recv_msg(5, session_id, protocol.g2c_char_appear)
 				check(msg, "Npc appear fail.")
 			end
@@ -531,31 +531,31 @@ function complete_variable(user, role, Type, value1, value2, value3)
 				wait(5);
 			end
 
-			ret = user:CastSpell(8001, role:GetObjID(), role:GetX(), role:GetY(), role:GetZ());	-- ¼ÙÉè»¨½ğ±Ò¸´»îµÄ¼¼ÄÜIDÎª8001
+			ret = user:CastSpell(8001, role:GetObjID(), role:GetX(), role:GetY(), role:GetZ());	-- å‡è®¾èŠ±é‡‘å¸å¤æ´»çš„æŠ€èƒ½IDä¸º8001
 			check(ret, "failed to cast spell with type: ervtRelieveMoneyTotal");
 
 			msg = recv_msg(10, user1sessionid, protocol.g2c_char_revive);
 			check(msg, "failed to receive g2c_char_revive in type: ervtRelieveMoneyTotal");
 			wait(5);
 		end
-	elseif (value1 == ervtRepairMoneyTotal) then	-- ¼ÙÉè102Îª×°±¸µÄID, ¼ÙÉèÊÇÎäÆ÷,ÒòÎªÊÇ°ÑÖ÷ÊÖÉÏµÄ×°±¸ÄÃÏÂÀ´ Õâ¸öÏÖÔÚ»¹Ã»ÊµÏÖÍê,Î¬ĞŞÒÔºó·şÎñÆ÷ÔİÊ±Ã»¿ÛÇ®
+	elseif (value1 == ervtRepairMoneyTotal) then	-- å‡è®¾102ä¸ºè£…å¤‡çš„ID, å‡è®¾æ˜¯æ­¦å™¨,å› ä¸ºæ˜¯æŠŠä¸»æ‰‹ä¸Šçš„è£…å¤‡æ‹¿ä¸‹æ¥ è¿™ä¸ªç°åœ¨è¿˜æ²¡å®ç°å®Œ,ç»´ä¿®ä»¥åæœåŠ¡å™¨æš‚æ—¶æ²¡æ‰£é’±
 		ret = user:GMCommand("AddItem(102, 1)");
 		check(ret, "fail to adEquip")
 
 		msg = recv_msg(10, user1sessionid, protocol.g2c_item_change);
 		check(msg, "failed to receive g2c_item_change in type: adEquip");
 
-		--ÓÃGMÖ¸ÁîÕÙ»½Ò»¸öNPC
-		ret = user:GMCommand("SummonNpc(6003)");	-- ¼ÙÉèĞŞÀíµÄnpcµÄIDÎª6003
+		--ç”¨GMæŒ‡ä»¤å¬å”¤ä¸€ä¸ªNPC
+		ret = user:GMCommand("SummonNpc(6003)");	-- å‡è®¾ä¿®ç†çš„npcçš„IDä¸º6003
 		check(ret, "failed to send gm command");
 
-		--¼ì²éÕÙ»½³öµÄNPC
+		--æ£€æŸ¥å¬å”¤å‡ºçš„NPC
 		msg = recv_msg(5, session_id, protocol.g2c_char_appear)
 		check(msg, "Npc appear fail.")
 		local diag_npc_id = msg.stAppearData.dwCharID
 		check(diag_npc_id ~= 0, "Npc appear fail.")
 
-		--µãÑ¡NPC
+		--ç‚¹é€‰NPC
 		ret = user:InteractWithNpc(diag_npc_id);
 		check(ret, "failed to interact with npc");
 
@@ -579,24 +579,24 @@ function complete_variable(user, role, Type, value1, value2, value3)
 
 			wait(5);
 		end
-	elseif (value1 == ervtRepairMoneyMax) then	-- ¼ÙÉè102Îª×°±¸µÄID, ¼ÙÉèÊÇÎäÆ÷,ÒòÎªÊÇ°ÑÖ÷ÊÖÉÏµÄ×°±¸ÄÃÏÂÀ´,Î¬ĞŞÒÔºó·şÎñÆ÷ÔİÊ±Ã»¿ÛÇ®
+	elseif (value1 == ervtRepairMoneyMax) then	-- å‡è®¾102ä¸ºè£…å¤‡çš„ID, å‡è®¾æ˜¯æ­¦å™¨,å› ä¸ºæ˜¯æŠŠä¸»æ‰‹ä¸Šçš„è£…å¤‡æ‹¿ä¸‹æ¥,ç»´ä¿®ä»¥åæœåŠ¡å™¨æš‚æ—¶æ²¡æ‰£é’±
 		ret = user:GMCommand("AddItem(102, 1)");
 		check(ret, "fail to adEquip")
 
 		msg = recv_msg(10, user1sessionid, protocol.g2c_item_change);
 		check(msg, "failed to receive g2c_item_change in type: adEquip");
 
-		--ÓÃGMÖ¸ÁîÕÙ»½Ò»¸öNPC
-		ret = user:GMCommand("SummonNpc(6003)");	-- ¼ÙÉèĞŞÀíµÄnpcµÄIDÎª6003
+		--ç”¨GMæŒ‡ä»¤å¬å”¤ä¸€ä¸ªNPC
+		ret = user:GMCommand("SummonNpc(6003)");	-- å‡è®¾ä¿®ç†çš„npcçš„IDä¸º6003
 		check(ret, "failed to send gm command");
 
-		--¼ì²éÕÙ»½³öµÄNPC
+		--æ£€æŸ¥å¬å”¤å‡ºçš„NPC
 		msg = recv_msg(5, session_id, protocol.g2c_char_appear)
 		check(msg, "Npc appear fail.")
 		local diag_npc_id = msg.stAppearData.dwCharID
 		check(diag_npc_id ~= 0, "Npc appear fail.")
 
-		--µãÑ¡NPC
+		--ç‚¹é€‰NPC
 		ret = user:InteractWithNpc(diag_npc_id);
 		check(ret, "failed to interact with npc");
 
@@ -637,7 +637,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			wait(5);
 		end
 	elseif (value1 == ervtPVPKilledByPlayer) then
-		-- µÇÂ½
+		-- ç™»é™†
 		local user_name2 = "achievement2"..os.date("%H%M%S");
 		local user2, role2 = startup(user_name2, user_name2);
 		check(user2, "failed to create user");
@@ -707,18 +707,18 @@ function complete_variable(user, role, Type, value1, value2, value3)
 		local cmd = "local oNpc = SummonNpc(101); oNpc:SetHp(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ()); wait(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ());";
 
 		for i = 1, value2 do
-		    ret = user:GMCommand(cmd);		-- Õ½Ê¿£¬Ò°Âù³å×²
+		    ret = user:GMCommand(cmd);		-- æˆ˜å£«ï¼Œé‡è›®å†²æ’
 			wait(3);
 		end
 	elseif (value1 == ervtKillMonsterCount) then
 		local cmd = "local oNpc = SummonNpc(101); oNpc:SetHp(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ()); wait(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ());";
 
 		for i = 1, value2 do
-		    ret = user:GMCommand(cmd);		-- Õ½Ê¿£¬Ò°Âù³å×²
+		    ret = user:GMCommand(cmd);		-- æˆ˜å£«ï¼Œé‡è›®å†²æ’
 			wait(3);
 		end
 	elseif (value1 == ervtKillWarriorCount) then
-		-- µÇÂ½
+		-- ç™»é™†
 		local user_name2 = "achievement2"..os.date("%H%M%S");
 		local user2, role2 = startup(user_name2, user_name2);
 		check(user2, "failed to create user");
@@ -743,7 +743,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			wait(5);
 		end
 	elseif (value1 == ervtKillMageCount) then
-		-- µÇÂ½
+		-- ç™»é™†
 		local user_name2 = "achievement2"..os.date("%H%M%S");
 		local user2, role2 = startup(user_name2, user_name2, nil, clsMage);
 		check(user2, "failed to create user");
@@ -768,7 +768,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			wait(5);
 		end
 	elseif (value1 == ervtKillRogueCount) then
-		-- µÇÂ½
+		-- ç™»é™†
 		local user_name2 = "achievement2"..os.date("%H%M%S");
 		local user2, role2 = startup(user_name2, user_name2, nil, clsRogue);
 		check(user2, "failed to create user");
@@ -793,7 +793,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			wait(5);
 		end
 	elseif (value1 == ervtKillArcherCount) then
-		-- µÇÂ½
+		-- ç™»é™†
 		local user_name2 = "achievement2"..os.date("%H%M%S");
 		local user2, role2 = startup(user_name2, user_name2, nil, clsArcher);
 		check(user2, "failed to create user");
@@ -827,7 +827,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 		    JumpToStartMap(user);
 		end
 	elseif (value1 == ervtCompleteMainQuestCount) then
-		-- ±éÀúËùÓĞÈÎÎñ
+		-- éå†æ‰€æœ‰ä»»åŠ¡
 		local i = 0;
 
 		local quest_data = CDataManager_Quest_DATA_:GetInstance():GetFirstData();
@@ -846,7 +846,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 
 		check(i >= value2, "fail to complete ervtCompleteMainQuestCount with Type: Variable");
 	elseif (value1 == ervtCompleteSubQuestCount) then
-		-- ±éÀúËùÓĞÈÎÎñ
+		-- éå†æ‰€æœ‰ä»»åŠ¡
 		local i = 0;
 
 		local quest_data = CDataManager_Quest_DATA_:GetInstance():GetFirstData();
@@ -865,7 +865,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 
 		check(i >= value2, "fail to complete ervtCompleteSubQuestCount with Type: Variable");
 	elseif (value1 == ervtCompleteHiddenQuestCount) then
-		-- ±éÀúËùÓĞÈÎÎñ
+		-- éå†æ‰€æœ‰ä»»åŠ¡
 		local i = 0;
 
 		local quest_data = CDataManager_Quest_DATA_:GetInstance():GetFirstData();
@@ -884,7 +884,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 
 		check(i >= value2, "fail to complete ervtCompleteHiddenQuestCount with Type: Variable");
 	elseif (value1 == ervtCompleteDailyQuestCount) then
-		-- ±éÀúËùÓĞÈÎÎñ
+		-- éå†æ‰€æœ‰ä»»åŠ¡
 		local i = 0;
 
 		local quest_data = CDataManager_Quest_DATA_:GetInstance():GetFirstData();
@@ -933,11 +933,11 @@ function complete_variable(user, role, Type, value1, value2, value3)
 		end
 	elseif (value1 == ervtMaxHPBeHit) then
 		for i = 1, 10 do
-			--ÓÃGMÖ¸ÁîÕÙ»½Ò»¸öNPC
+			--ç”¨GMæŒ‡ä»¤å¬å”¤ä¸€ä¸ªNPC
 			ret = user:GMCommand("SummonNpc(109)");
 			check(ret, "failed to send gm command");
 
-			--¼ì²éÕÙ»½³öµÄNPC
+			--æ£€æŸ¥å¬å”¤å‡ºçš„NPC
 			msg = recv_msg(5, session_id, protocol.g2c_char_appear)
 			check(msg, "Npc appear fail.")
 			local diag_npc_id = msg.stAppearData.dwCharID
@@ -955,7 +955,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 				maxvalue = msg.nvalue;
 			end
 		end
-	elseif (value1 == ervtUseChaseSpellCount) then -- ¼ÙÉè×·»÷¼¼ÄÜIDÎª102
+	elseif (value1 == ervtUseChaseSpellCount) then -- å‡è®¾è¿½å‡»æŠ€èƒ½IDä¸º102
 		local cmd = "local oNpc = SummonNpc(109); oNpc:SetHp(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ()); wait(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ());";
 
 		for i = 1, value2 do
@@ -963,7 +963,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			check(ret, "fail to adEquip");
 			wait(5);
 		end
-	elseif (value1 == ervtUseCounterSpellCount) then	-- ¼ÙÉè·´»÷¼¼ÄÜIDÎª102
+	elseif (value1 == ervtUseCounterSpellCount) then	-- å‡è®¾åå‡»æŠ€èƒ½IDä¸º102
 		local cmd = "local oNpc = SummonNpc(109); oNpc:SetHp(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ()); wait(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ());";
 
 		for i = 1, value2 do
@@ -971,7 +971,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			check(ret, "fail to adEquip");
 			wait(5);
 		end
-	elseif (value1 == ervtUseTerminateSpellCount) then	-- ¼ÙÉèÖÕ½á¼¼ÄÜIDÎª102
+	elseif (value1 == ervtUseTerminateSpellCount) then	-- å‡è®¾ç»ˆç»“æŠ€èƒ½IDä¸º102
 		local cmd = "local oNpc = SummonNpc(109); oNpc:SetHp(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ()); wait(1); SelfRole:CastSpell(1002, oNpc, oNpc:GetX(), oNpc:GetY(), oNpc:GetZ());";
 
 		for i = 1, value2 do
@@ -979,7 +979,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			check(ret, "fail to adEquip");
 			wait(5);
 		end
-	elseif (value1 == ervtUseItemCount_Useable) then	-- ¼ÙÉè¿ÉÏûºÄÆ·µÄIDÎª102
+	elseif (value1 == ervtUseItemCount_Useable) then	-- å‡è®¾å¯æ¶ˆè€—å“çš„IDä¸º102
 		for i = 1, value2 do
 			ret = user:GMCommand("AddItem(102, 1)");
 			check(ret, "fail to adEquip")
@@ -993,7 +993,7 @@ function complete_variable(user, role, Type, value1, value2, value3)
 			msg = recv_msg(10, user1sessionid, protocol.g2c_item_delete);
 			check(msg, "failed to receive g2c_item_delete in type:ervtUseItem101CountadEquip");
 		end
-	elseif (value1 == ervtUseItemCount_SpellBoke) then	-- ¼ÙÉè¿ÉÏûºÄÆ·µÄIDÎª102
+	elseif (value1 == ervtUseItemCount_SpellBoke) then	-- å‡è®¾å¯æ¶ˆè€—å“çš„IDä¸º102
 		for i = 1, value2 do
 			ret = user:GMCommand("AddItem(103, 1)");
 			check(ret, "fail to adEquip")
@@ -1041,7 +1041,7 @@ function _TraverseAchievements()
 	g_AchievementList = {};
 	local runflag = true;
 
-	-- ±éÀúËùÓĞ³É¾Í
+	-- éå†æ‰€æœ‰æˆå°±
 	local achievement_data = CDataManager_ACHIEVEMENT_DATA_:GetInstance():GetFirstData();
 	while(achievement_data ~= nil) do
 

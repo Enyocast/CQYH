@@ -4,8 +4,8 @@ LoadPackage("spirit_def.pkg");
 
 TestCase.Spirit = {};
 
-function TestCase.Spirit.Soul2Pts()	-- »ê×ªĞŞÁ¶µã
-	-- µÇÂ½
+function TestCase.Spirit.Soul2Pts()	-- é­‚è½¬ä¿®ç‚¼ç‚¹
+	-- ç™»é™†
     local user_name1 = "spirit1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
@@ -14,13 +14,13 @@ function TestCase.Spirit.Soul2Pts()	-- »ê×ªĞŞÁ¶µã
    	local user1id = role1:GetObjID();
 	local user1sessionid = user1:GetSessionID();
 
-    ret = user1:ChangeSoul2Pts(false, true); --ÔÚÏß×ª»¯
+    ret = user1:ChangeSoul2Pts(false, true); --åœ¨çº¿è½¬åŒ–
     check(ret, "fail to send changesoul2pts");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
     check(msg.nErrCode == error_code.errSpiritNotOpen, "failed to recv errSpiritNotOpen");
 
-    ret = user1:ChangeSoul2Pts(true, true); --Á¢¼´×ª»¯
+    ret = user1:ChangeSoul2Pts(true, true); --ç«‹å³è½¬åŒ–
     check(ret, "fail to send changesoul2pts");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
@@ -31,42 +31,42 @@ function TestCase.Spirit.Soul2Pts()	-- »ê×ªĞŞÁ¶µã
 
 	wait(1);
 
-    ret = user1:ChangeSoul2Pts(false, true); --ÔÚÏß×ª»¯
+    ret = user1:ChangeSoul2Pts(false, true); --åœ¨çº¿è½¬åŒ–
     check(ret, "fail to send changesoul2pts");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
-    check(msg.nErrCode == error_code.errSpiritMoneyNotEnough, "failed to recv errSpiritMoneyNotEnough");	-- »ê²»¹»
+    check(msg.nErrCode == error_code.errSpiritMoneyNotEnough, "failed to recv errSpiritMoneyNotEnough");	-- é­‚ä¸å¤Ÿ
 
-    ret = user1:ChangeSoul2Pts(false, true); --ÔÚÏß×ª»¯
+    ret = user1:ChangeSoul2Pts(false, true); --åœ¨çº¿è½¬åŒ–
     check(ret, "fail to send changesoul2pts");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
     check(msg.nErrCode == error_code.errSpiritMoneyNotEnough, "failed to recv errSpiritMoneyNotEnough");
 
-    -- Ôö¼Ó»ê
+    -- å¢åŠ é­‚
 
    	ret = user1:GMCommand("AddMoney(6, 10000, MONEYLOG_GM_COMMAND)");
 	check(ret, "failed to add money: soul");
 
 	wait(2);
 
-    ret = user1:ChangeSoul2Pts(false, true); --ÔÚÏß×ª»¯
+    ret = user1:ChangeSoul2Pts(false, true); --åœ¨çº¿è½¬åŒ–
     check(ret, "fail to send changesoul2pts");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_exp_change);
     check(msg, "failed to recv g2c_spirit_exp_change");
 
-    ret = user1:ChangeSoul2Pts(false, true); --ÔÚÏß×ª»¯
+    ret = user1:ChangeSoul2Pts(false, true); --åœ¨çº¿è½¬åŒ–
     check(ret, "fail to send changesoul2pts");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
-    check(msg.nErrCode == error_code.errSpiritChangeCDTime, "failed to recv errSpiritChangeCDTime");	-- Ê±¼äÃ»µ½
+    check(msg.nErrCode == error_code.errSpiritChangeCDTime, "failed to recv errSpiritChangeCDTime");	-- æ—¶é—´æ²¡åˆ°
 
     cleanup(user1);
 end
 
-function TestCase.Spirit.Air()	-- Æøº£
-	-- µÇÂ½
+function TestCase.Spirit.Air()	-- æ°”æµ·
+	-- ç™»é™†
     local user_name1 = "spiritair1"..os.date("%H%M%S");
     local user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user");
@@ -75,12 +75,12 @@ function TestCase.Spirit.Air()	-- Æøº£
    	local user1id = role1:GetObjID();
 	local user1sessionid = user1:GetSessionID();
 
-	-- Á·Æø
+	-- ç»ƒæ°”
     local ret = user1:SpiritAddAir(false);
     check(ret, "fail to add spirit air");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
-    check(msg.nErrCode == error_code.errSpiritLevel, "failed to recv errSpiritLevel");	-- µÈ¼¶Ã»µ½
+    check(msg.nErrCode == error_code.errSpiritLevel, "failed to recv errSpiritLevel");	-- ç­‰çº§æ²¡åˆ°
 
     ret = user1:GMCommand("SetLevel(25)");
     check(ret, "exec GMCommand SetLevel error: user1");
@@ -91,95 +91,95 @@ function TestCase.Spirit.Air()	-- Æøº£
     check(ret, "fail to add spirit air");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
-    check(msg.nErrCode == error_code.errSpiritMoneyNotEnough, "failed to recv errSpiritMoneyNotEnough");	-- »ê²»¹»
+    check(msg.nErrCode == error_code.errSpiritMoneyNotEnough, "failed to recv errSpiritMoneyNotEnough");	-- é­‚ä¸å¤Ÿ
 
-    -- Ôö¼ÓĞŞÁ¶µã
+    -- å¢åŠ ä¿®ç‚¼ç‚¹
     ret = user1:GMCommand("AddPts(100000)");
     check(ret, "exec GMCommand SetLevel error: user1");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_exp_change);
     check(msg, "failed to recv g2c_spirit_exp_change");
 
-    -- ¼ÌĞøÁ·Æø
+    -- ç»§ç»­ç»ƒæ°”
     ret = user1:SpiritAddAir(false);
     check(ret, "fail to add spirit air");
 
    msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
    check(msg, "failed to recv g2c_spirit_air_change");
-   check(msg.nIndex == 0, "failed to recv g2c_spirit_air_change");	-- ³öÏÖÔÚµÚ0¸ñ
+   check(msg.nIndex == 0, "failed to recv g2c_spirit_air_change");	-- å‡ºç°åœ¨ç¬¬0æ ¼
 
-    -- ¼ÌĞøÁ·Æø
+    -- ç»§ç»­ç»ƒæ°”
     ret = user1:SpiritAddAir(false);
     check(ret, "fail to add spirit air");
 
    msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
    check(msg, "failed to recv g2c_spirit_air_change");
-   check(msg.nIndex == 1, "failed to recv g2c_spirit_air_change");	-- ³öÏÖÔÚµÚ1¸ñ
+   check(msg.nIndex == 1, "failed to recv g2c_spirit_air_change");	-- å‡ºç°åœ¨ç¬¬1æ ¼
 
-	-- °ÑÆø´ÓµÚ1¸ñÒÆµ½µÚ0¸ñ
+	-- æŠŠæ°”ä»ç¬¬1æ ¼ç§»åˆ°ç¬¬0æ ¼
 	ret = user1:MoveAir(sasbtBag, 1, sasbtBag, 0);
 	check(ret, "failed to MoveAir");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
-    check(msg.nErrCode == error_code.errSpiritAirSlotNotEmpty, "failed to recv errSpiritAirSlotNotEmpty");	-- Æø¸ñ×Ó·Ç¿Õ
+    check(msg.nErrCode == error_code.errSpiritAirSlotNotEmpty, "failed to recv errSpiritAirSlotNotEmpty");	-- æ°”æ ¼å­éç©º
 
-	-- °ÑÆø´ÓµÚ1¸ñÒÆµ½µÚ2¸ñ
+	-- æŠŠæ°”ä»ç¬¬1æ ¼ç§»åˆ°ç¬¬2æ ¼
 	ret = user1:MoveAir(sasbtBag, 1, sasbtBag, 2);
 	check(ret, "failed to MoveAir");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
     check(msg, "failed to recv g2c_spirit_air_change");
 
-	-- °ÑÆø´ÓµÚ1¸ñÒÆµ½µÚ3¸ñ
+	-- æŠŠæ°”ä»ç¬¬1æ ¼ç§»åˆ°ç¬¬3æ ¼
 	ret = user1:MoveAir(sasbtBag, 1, sasbtBag, 3);
 	check(ret, "failed to MoveAir");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
-    check(msg.nErrCode == error_code.errSpiritAirSlotEmpty, "failed to recv errSpiritAirSlotEmpty");	-- Æø¸ñ×ÓÎª¿Õ
+    check(msg.nErrCode == error_code.errSpiritAirSlotEmpty, "failed to recv errSpiritAirSlotEmpty");	-- æ°”æ ¼å­ä¸ºç©º
 
-	-- °ÑÆø´Ó±³°üµÚ¶ş¸ñ·ÀÈë²Ö¿â -- sasbtBag : 0 sasbtStall : 1
+	-- æŠŠæ°”ä»èƒŒåŒ…ç¬¬äºŒæ ¼é˜²å…¥ä»“åº“ -- sasbtBag : 0 sasbtStall : 1
 	ret = user1:MoveAir(0, 2, 1, 0);
 	check(ret, "failed to MoveAir");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
     check(msg, "failed to recv g2c_spirit_air_change");
 
-	-- °ÑÆø´Ó²Ö¿â·ÅÈë±³°üµÚ¶ş¸ñ
-	--ret = user1:MoveAir(1, 0£¬0, 2);
+	-- æŠŠæ°”ä»ä»“åº“æ”¾å…¥èƒŒåŒ…ç¬¬äºŒæ ¼
+	--ret = user1:MoveAir(1, 0ï¼Œ0, 2);
 	--check(ret, "failed to MoveAir");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
     check(msg, "failed to recv g2c_spirit_air_change");
 
-	-- °ÑÆø´Ó±³°üµÚ¶ş¸ñ×°±¸µ½µÚ0¸ñ
+	-- æŠŠæ°”ä»èƒŒåŒ…ç¬¬äºŒæ ¼è£…å¤‡åˆ°ç¬¬0æ ¼
 	ret = user1:MoveAir(sasbtBag, 2, sasbtEquip, 0);
 	check(ret, "failed to MoveAir");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
     check(msg, "failed to recv g2c_spirit_air_change");
 
-	-- °ÑÆø´ÓµÚ0¸ñ·Åµ½±³°üµÚ¶ş¸ñ
-	--ret = user1:MoveAir(sasbtEquip, 0£¬ sasbtBag, 2);
+	-- æŠŠæ°”ä»ç¬¬0æ ¼æ”¾åˆ°èƒŒåŒ…ç¬¬äºŒæ ¼
+	--ret = user1:MoveAir(sasbtEquip, 0ï¼Œ sasbtBag, 2);
 	--check(ret, "failed to MoveAir");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
     check(msg, "failed to recv g2c_spirit_air_change");
 
-	-- ºÏ³ÉÆø
+	-- åˆæˆæ°”
 	ret = user1:MergeAir(0);
 	check(ret, "failed to MergeAir");
 
    msg = recv_msg(30, user1sessionid, protocol.g2c_spirit_air_change);
    check(msg, "failed to recv g2c_spirit_air_change");
 
-	-- Âò¸ñ×Ó
+	-- ä¹°æ ¼å­
 	ret = user1:BuyAirSlot(sasbtBag);
 	check(ret, "failed to BuyAirSlot");
 
     msg = recv_msg(30, user1sessionid, protocol.g2c_error_notify);
-    check(msg.nErrCode == error_code.errNotEnoughMoney, "failed to recv errNotEnoughMoney");	-- Ç®²»¹»
+    check(msg.nErrCode == error_code.errNotEnoughMoney, "failed to recv errNotEnoughMoney");	-- é’±ä¸å¤Ÿ
 
-	-- Ôö¼ÓÇ®
+	-- å¢åŠ é’±
 	ret = user:GMCommand("AddMoney(2, 1000, MONEYLOG_GM_COMMAND)");
 	check(ret, "failed to add money");
 
@@ -205,7 +205,7 @@ function TestCase.Spirit.Air()	-- Æøº£
 
 end
 
-function TestCase.Spirit.Blood()	-- Ìì¸³
+function TestCase.Spirit.Blood()	-- å¤©èµ‹
 
    local user_name1 = "spiritblood1"..os.date("%H%M%S");
    local user1, role1 = startup(user_name1, user_name1);
@@ -214,26 +214,26 @@ function TestCase.Spirit.Blood()	-- Ìì¸³
 
    local user1sessionid = user1:GetSessionID();
 
-   -- Ã»µ½¾³½ç¿ªÆôµÈ¼¶
+   -- æ²¡åˆ°å¢ƒç•Œå¼€å¯ç­‰çº§
    local ret = user1:GMCommand("SetLevel(5)");
    check(ret, "exec GMCommand SetLevel error: user1");
 
    wait(1);
 
-   -- Ë¢ĞÂµÚ1Ò³
+   -- åˆ·æ–°ç¬¬1é¡µ
    ret = user1:BrushSlot(1, 1);
    check(ret, "failed to BuyAirSlot");
 
    local msg = recv_msg(5, user1sessionid, protocol.g2c_error_notify);
    check(msg == nil, "failed to test level");
 
-   -- ¿ªÆôµÈ¼¶
+   -- å¼€å¯ç­‰çº§
    local ret = user1:GMCommand("SetLevel(10)");
    check(ret, "exec GMCommand SetLevel error: user1");
 
    wait(1);
 
-   -- Ë¢ĞÂµÚ0Ò³
+   -- åˆ·æ–°ç¬¬0é¡µ
    ret = user1:BrushSlot(1, 0);
    check(ret, "failed to BuyAirSlot");
 
@@ -252,20 +252,20 @@ function TestCase.Spirit.Blood()	-- Ìì¸³
    msg = recv_msg(5, user1sessionid, protocol.g2c_error_notify);
    check(msg == nil, "failed to test slot index")
 
-   -- Ë¢ĞÂµÚ1Ò³,¾³½çµÈ¼¶²»¹»
+   -- åˆ·æ–°ç¬¬1é¡µ,å¢ƒç•Œç­‰çº§ä¸å¤Ÿ
    ret = user1:BrushSlot(1, 2);
    check(ret, "failed to BuyAirSlot");
 
    msg = recv_msg(5, user1sessionid, protocol.g2c_error_notify);
    check(msg.nErrCode == error_code.errSpiritLevel, "failed to test page index2")
 
-   -- Ìá¸ß¾³½çµÈ¼¶
+   -- æé«˜å¢ƒç•Œç­‰çº§
    local ret = user1:GMCommand("SetSpiritLevel(20)");
    check(ret, "exec GMCommand SetLevel error: user1");
 
    wait(5);
 
-   -- ĞŞÁ¶µã²»¹»
+   -- ä¿®ç‚¼ç‚¹ä¸å¤Ÿ
 
    ret = user1:BrushSlot(1, 2);
    check(ret, "failed to BuyAirSlot");
@@ -273,7 +273,7 @@ function TestCase.Spirit.Blood()	-- Ìì¸³
    msg = recv_msg(5, user1sessionid, protocol.g2c_error_notify);
    check(msg.nErrCode == error_code.errNotEnoughMoney, "failed to test page index3")
 
-   -- Ôö¼ÓĞŞÁ¶µã
+   -- å¢åŠ ä¿®ç‚¼ç‚¹
    ret = user1:GMCommand("AddMoney 11 50000");
    check(ret, "exec GMCommand SetLevel error: user1");
 

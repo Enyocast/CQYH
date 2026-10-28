@@ -3,7 +3,7 @@
     file:		ms_guild_handler.cpp
     author:		Allan Tao
 
-    purpose:	guild Ïà¹Ø client Ð­Òé
+    purpose:	guild ç›¸å…³ client åè®®
 *********************************************************************/
 
 #include "stdafx.h"
@@ -1179,7 +1179,7 @@ BOOL CMessageHandler::DoClientGuildPushItemAck(UINT32 dwClientSessionID, INT32 n
 
     pMsg = (M2C_GUILD_PUSH_ITEM_ACK*)m_pPacketAllocator->Alloc(MAX_MESSAGE_SIZE);
     LOG_PROCESS_ERROR(pMsg);
-    LOG_PROCESS_ERROR(nItemSize < MAX_MESSAGE_SIZE / 2);    // Ò»¸öµÀ¾ß²»¿ÉÄÜÓÐÕâÃ´³¤
+    LOG_PROCESS_ERROR(nItemSize < MAX_MESSAGE_SIZE / 2);    // ä¸€ä¸ªé“å…·ä¸å¯èƒ½æœ‰è¿™ä¹ˆé•¿
 
     pMsg->wMsg = m2c_guild_push_item_ack;
     pMsg->byStorageConSlot = nConSlot;
@@ -1913,7 +1913,7 @@ Exit0:
     return FALSE;
 }
 
-// Ê÷Á¢µñÏñ
+// æ ‘ç«‹é›•åƒ
 BOOL CMessageHandler::DoClientErectStatue(INT32 nServerGroup, UINT32 dwCliSessionID)
 {
     INT32 nRetCode = 0;
@@ -1971,7 +1971,7 @@ Exit0:
     return FALSE;
 }
 
-// É³°Í¿Ë³ÉÔ±½øÈëÓÎÏ·
+// æ²™å·´å…‹æˆå‘˜è¿›å…¥æ¸¸æˆ
 BOOL CMessageHandler::DoClientSabacWinnerLogin(MS_ONLINE_ROLE_DATA* pOnlineRoleData)
 {
     INT32 nRetCode = 0;
@@ -2008,7 +2008,7 @@ void CMessageHandler::OnClientGuildQueryName(PACKET_BUFFER* pPacketBuffer, UINT3
 
     poMsGuild = CMsGuildMgr::GetInstance().FindGuildByID(pMsg->dwGuildID);
     LOG_PROCESS_ERROR_RET_CODE(poMsGuild, errGuildQueryFailed);
-    LOG_PROCESS_ERROR_RET_CODE(poMsGuild->GetSvrGroup() == pstOnlineRole->pRoleData->byGroup, errGuildQueryFailed); // todo Èç¹ûÓÐ¿ç·þµØÍ¼ÔÙËµ
+    LOG_PROCESS_ERROR_RET_CODE(poMsGuild->GetSvrGroup() == pstOnlineRole->pRoleData->byGroup, errGuildQueryFailed); // todo å¦‚æžœæœ‰è·¨æœåœ°å›¾å†è¯´
 
     nRetCode = DoClientGuildQueryName(pstOnlineRole->dwCliSessionID, poMsGuild, pMsg->dwCRC);
     LOG_CHECK_ERROR(nRetCode);
@@ -2255,7 +2255,7 @@ void CMessageHandler::OnClientRevertGuildInvitation(PACKET_BUFFER* pPacketBuffer
 
     if (GUILD_REVERT_REFUSE == pMsg->byResult)
     {
-        pstOnlineRole->dwGuildInviterID = 0;    // Ö»Òª²Ù×÷ÁË£¬²»¹ÜÊÇÍ¬Òâ»¹ÊÇ¾Ü¾ø£¬¶¼Ó¦¸ÃÈ¡ÏûËûµÄ±»ÑûÇë¼ÇÂ¼ Allan Tao[22.4.2013] 
+        pstOnlineRole->dwGuildInviterID = 0;    // åªè¦æ“ä½œäº†ï¼Œä¸ç®¡æ˜¯åŒæ„è¿˜æ˜¯æ‹’ç»ï¼Œéƒ½åº”è¯¥å–æ¶ˆä»–çš„è¢«é‚€è¯·è®°å½• Allan Tao[22.4.2013] 
 
         pInviterRoleData = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(pMsg->dwRoleID);
         if (pInviterRoleData)
@@ -3116,7 +3116,7 @@ void CMessageHandler::OnClientGuildActivity(PACKET_BUFFER* pPacketBuffer, UINT32
     nRetCode = poGuild->AddGuildChestEvent(GUILD_CHEST_ACTIVITY, pstOnlineRole->pRoleData->dwRoleID, pMsg->nActivityID, GUILD_ATTR_SILVER, pData->nConsumeSilver);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildAddChestEventFailed);
 
-    { // µ÷ÓÃ½Å±¾£¬·¢ËÍlighting£¬tvshowµÈ
+    { // è°ƒç”¨è„šæœ¬ï¼Œå‘é€lightingï¼Œtvshowç­‰
         char        szScriptFuncName[64] = { 0 };
         snprintf(szScriptFuncName, 64, "OpenActivity_%d", pMsg->nActivityID);
 

@@ -42,10 +42,10 @@ void CCliMessageHandler::OnChatMessage(CRole* poRole, const char* pData)
 		PROCESS_ERROR_RET_CODE(!pcSceneData->bCannotGroupChat, errChatSceneForbidden);
 		switch (pMsg->byLocation)
 		{
-		case cltNormal:    // ÊÀ½ç
+		case cltNormal:    // ä¸–ç•Œ
 			PROCESS_ERROR_RET_CODE(CGameWorld::GetInstance().GetGameFrame() > poRole->GetGroupChatTimer(), errChatTooFrequent);
 
-			//ÊÀ½çÆµµÀÈ¥µô´ÎÊýÏÞÖÆ£¬Ôö¼ÓµÈ¼¶ºÍ½ð±ÒÏûºÄÏÞÖÆ
+			//ä¸–ç•Œé¢‘é“åŽ»æŽ‰æ¬¡æ•°é™åˆ¶ï¼Œå¢žåŠ ç­‰çº§å’Œé‡‘å¸æ¶ˆè€—é™åˆ¶
 			PROCESS_ERROR_RET_CODE(poRole->GetLevel() >= g_GWConfig.ChatConfig.nGroupChatLevel, errChatLevelTooLow);
 			PROCESS_ERROR_RET_CODE(poRole->GetItemBag()->GetMoney(MONEYTYPE_02) >= g_GWConfig.ChatConfig.nGroupChatCost, errChatMoneyNotEnough);
 
@@ -55,7 +55,7 @@ void CCliMessageHandler::OnChatMessage(CRole* poRole, const char* pData)
 			poRole->SetGroupChatTimer(CGameWorld::GetInstance().GetGameFrame() + CONVERT_TIME(g_GWConfig.ChatConfig.nGroupMsgInterval));
 
 			break;
-		case cltTrumpet:    // À®°È
+		case cltTrumpet:    // å–‡å­
 			if (g_GWConfig.ChatConfig.nTrumpetItemID > 0)
 			{
 				nRetCode = poRole->GetItemBag()->DeleteItemId(g_GWConfig.ChatConfig.nTrumpetItemID, 1, ITEMLOG_TRUMPET, FALSE, 0);

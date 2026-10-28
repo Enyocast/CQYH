@@ -85,13 +85,13 @@ public:
 	INT16 GetItemCount(INT32 itemid, BOOL includebank = FALSE) const;
 	UINT32 GetFreeSlots(UINT8 conslot);
 
-	//×ªÒÆÎïÆ·ËùÓĞÈ¨¸øËûÈË
+	//è½¬ç§»ç‰©å“æ‰€æœ‰æƒç»™ä»–äºº
 	INT32 TransferItemTo(CItemBag* dstbag, Item* item, INT16 itemcount, EItemLog reason);
 
 	void OnDisArm();
 	void OnDisArmFinish();
 
-	//¹¥»÷ºÍ±»¹¥»÷Ê±µ÷ÓÃ£¬¿ÛÄÍ¾Ã¶È
+	//æ”»å‡»å’Œè¢«æ”»å‡»æ—¶è°ƒç”¨ï¼Œæ‰£è€ä¹…åº¦
     void LoseWeaponDur();
 	BOOL LoseMineDur(INT32 nItemID);
     void LoseArmorDur(INT32 damage);
@@ -101,25 +101,25 @@ public:
 	void LoseHeroArmorDur();
     void LoseHeroAllDur(INT32 nPercent, EItemLog reason);
 
-	//»ñÈ¡ÎäÆ÷ÀàĞÍ
+	//è·å–æ­¦å™¨ç±»å‹
 	UINT8 GetWeaponType();
 	UINT8 GetHeroWeaponType();
 
 	void GetAppearance(INT32 nAvatar[]);
 	void GetHeroAppearance(INT32 nAvatar[]);
 
-	//¸øĞÂÊÖ´©Ä¬ÈÏ×°±¸£¬½ö¹©ĞÂÊÖ´´½¨µÄ½Å±¾µ÷ÓÃ
+	//ç»™æ–°æ‰‹ç©¿é»˜è®¤è£…å¤‡ï¼Œä»…ä¾›æ–°æ‰‹åˆ›å»ºçš„è„šæœ¬è°ƒç”¨
 	BOOL EquipItemOnBirth(INT32 itemid, UINT8 itemslot);
 
-	//¸øÓ¢ĞÛ´©Ä¬ÈÏ×°±¸£¬½ö¹©Ó¢ĞÛ´´½¨µÄ½Å±¾µ÷ÓÃ
+	//ç»™è‹±é›„ç©¿é»˜è®¤è£…å¤‡ï¼Œä»…ä¾›è‹±é›„åˆ›å»ºçš„è„šæœ¬è°ƒç”¨
 	BOOL EquipHeroItemOnBirth(INT32 itemid, UINT8 itemslot);
 
-	//»õ±Ò
+	//è´§å¸
 	void SetUseMoneytype01Only(UINT8 use) { m_use_moneytype01_only = use; }
 	UINT8 GetUseMoneytype01Only() const { return m_use_moneytype01_only; }
-	//»ñÈ¡¿ÉÓÃ»õ±Ò
+	//è·å–å¯ç”¨è´§å¸
 	INT64 GetMoney(INT32 moneytype, BOOL use_moneytype01_only = FALSE) const;
-	//»ñÈ¡Êµ¼Ê»õ±ÒÊıÁ¿
+	//è·å–å®é™…è´§å¸æ•°é‡
 	INT64 GetMoneyInfo(INT32 moneytype);
 	void GetMoneyAllInfo(
 		INT64 allMoneys[],
@@ -136,7 +136,7 @@ public:
 	INT32 AddMoney(INT32 moneytype, INT32 nCount, EMoneyLog reason, UINT32 dwSourceID);
 	INT32 SubMoney(INT32 moneytype, INT32 nCount, EMoneyLog reason, UINT32 dwTargetID);
 
-	//×¢Òâ£ºSetMoney½ö¹©GMÊ¹ÓÃ
+	//æ³¨æ„ï¼šSetMoneyä»…ä¾›GMä½¿ç”¨
 	INT32 SetMoney(INT32 moneytype, INT32 nCount);
 
     void AddGoldPool(INT32 money);
@@ -144,30 +144,30 @@ public:
     INT32 GetGoldPool() const;
     INT32 GetChanceByGoldPool() const;
 
-	//Âò¸ñ×Ó
+	//ä¹°æ ¼å­
 	INT32 BuySlots(UINT8 conslot, UINT8 slotcount);
 
-	//ÈÚÁé
+	//èçµ
 	INT32 UpgradeSoul(UINT8 targetconslot, UINT8 targetitemslot, UINT8 srccount, UINT8 srcconslot[], UINT8 srcitemslot[]);
 	INT32 AddSoul(UINT8 equipconslot, UINT8 equipitemslot, UINT8 socketindex, UINT8 soulconslot, UINT8 soulitemslot);
 	INT32 RemoveSoul(UINT8 conslot, UINT8 itemslot, UINT8 socketindex);
 
-	//Öı»ê - ÆÕÍ¨ÃúÎÄÏ´Á·
+	//é“¸é­‚ - æ™®é€šé“­æ–‡æ´—ç»ƒ
 	INT32 RuneItem(UINT8 conslot, UINT8 itemslot, INT32 itemid);
 
-	// ¸ß¼¶ÃúÎÄÏ´Á·
+	// é«˜çº§é“­æ–‡æ´—ç»ƒ
 	INT32 RuneItemAdvance(UINT8 conslot, UINT8 itemslot, INT32 itemid);
 
-	// È·ÈÏ¸ß¼¶Ï´Á·
+	// ç¡®è®¤é«˜çº§æ´—ç»ƒ
 	INT32 RuneItemConfirm(UINT8 conslot, UINT8 itemslot);
 
-    //×°±¸Éı¼¶
+    //è£…å¤‡å‡çº§
     INT32 WeaponLevelUpPutIn();
     INT32 WeaponLevelUpTakeOut();
 	INT32 WeaponLevelUpTakeOutImmediately();
     void OnPhyAttack();
 
-	//·Ö½âºÏ³É
+	//åˆ†è§£åˆæˆ
 	INT32 Decompose(UINT8 conslot, UINT8 itemslot);
 	INT32 Compose(INT32 formulaid);
 
@@ -177,36 +177,36 @@ public:
 
 	UINT32 GetUsedSlotCount(UINT8 conslot);
 
-	//PKµô×°±¸
+	//PKæ‰è£…å¤‡
 	void LoseItemOnDeath(BOOL is_player);
     void DestroyItemOnDeath();
 
-	//ÕûÀí±³°ü
+	//æ•´ç†èƒŒåŒ…
 	INT32 OrganizeBag(UINT8 conslot);
 
-	//ĞÒÔËÖµ
+	//å¹¸è¿å€¼
 	void SetWeaponLuck(INT8 v);
 	void IncreaseWeaponLuck(INT8 v);
 	void DecreaseWeaponLuck();
 
-	//Ì××°
+	//å¥—è£…
 	INT32 GetSetItemCountBefore(const SET_DATA* data, INT32 itemid, UINT8 itemslot);
     INT32 GetSetItemCountAfter(const SET_DATA* data);
 
-	//Ç¿»¯¼¤»îĞ§¹û
+	//å¼ºåŒ–æ¿€æ´»æ•ˆæœ
 	UINT8 GetRefineFx();
 
-	//Õ½¶·Á¦
+	//æˆ˜æ–—åŠ›
 	INT32 GetPow();
 
-    //´«Ææ¹¦ÄÜ£¬¹©ÀîĞÇ¼ÑµÄĞŞ¸ÄÆ÷µ÷ÓÃ
+    //ä¼ å¥‡åŠŸèƒ½ï¼Œä¾›ææ˜Ÿä½³çš„ä¿®æ”¹å™¨è°ƒç”¨
     UINT8 SearchDefaultContainer(INT32 itemid, INT16 dur) const;
     UINT8 SearchDefaultContainer(UINT8 itemtype, UINT8 itemsubtype, INT16 dur) const;
     BOOL LoseItemDur(INT32 itemid, INT16 dur, EItemLog reason);
     BOOL LoseItemDur(UINT8 conslot, UINT8 itemslot, INT16 dur, EItemLog reason);
     BOOL LoseItemDur(UINT8 conslot, UINT8 itemslot, INT32 itemid, INT16 dur, EItemLog reason);
 
-    //ºÚÊĞ
+    //é»‘å¸‚
     struct BMRoleLimitInfo
     {
         INT32 nCount;
@@ -225,7 +225,7 @@ public:
 	INT32 GambleAdvance(INT32 nGambleType, INT32 nGambleLevel);
 	INT32 SpellBookGamble();
 
-	// ========== ×Ô¼ºĞÂÔö´úÂë begin
+	// ========== è‡ªå·±æ–°å¢ä»£ç  begin
 
 	BOOL CheckTemplateIDIsTimeCard(INT32 nTemplateID);
 	INT32 RuneTest(INT32 nRuneID);
@@ -234,13 +234,13 @@ public:
 	INT32 SetSocketColor(INT32 nIndex, INT32 nColor);
 	INT32 GetSetSocketColorCost(int id, int column);
 
-	// ÃüÔËÀñºĞ
+	// å‘½è¿ç¤¼ç›’
 	INT32 AddDestinyWeapon(INT32 nItemID, INT32 nLevel);
 
-	// ×°±¸Éı¼¶µ½Ö¸¶¨¶¥¼¶
+	// è£…å¤‡å‡çº§åˆ°æŒ‡å®šé¡¶çº§
 	INT32 EquipLevelUpToSpecifiedLevel(Item* item, INT32 nLevel);
 
-	// ========== ×Ô¼ºĞÂÔö´úÂë end
+	// ========== è‡ªå·±æ–°å¢ä»£ç  end
 
 #ifdef _ROBOT
 	void SetContainerSize(UINT8 conslot, UINT8 consize);
@@ -285,7 +285,7 @@ private:
 	//for iteration
 	std::list<const Item*> m_allitem;
 
-	//»õ±Ò
+	//è´§å¸
 	INT64 m_moneys[MONEYTYPE_COUNT];
 	INT64 m_moneys_limit[MONEYTYPE_COUNT];
 
@@ -305,10 +305,10 @@ private:
 
     INT32 m_gold_pool;
 
-	//»Ø¹º
+	//å›è´­
 	std::list<Item*> m_soldlist;
 
-	//ÉÏ´ÎÕûÀíÊ±¼ä
+	//ä¸Šæ¬¡æ•´ç†æ—¶é—´
 	UINT32 m_dwLastOrganizeTime;
 
 	//for randomize item
@@ -319,32 +319,32 @@ private:
 	UINT32 m_dwDeathCountFromFirst;
 	UINT32 m_dwLastDeathTime;
 
-    //Á¶µ¶
+    //ç‚¼åˆ€
     UINT32 m_dwWeaponLevelUpStartTime;
     Item* m_WeaponItem;
     INT32 m_nWeaponDur;
     INT32 m_nWeaponPhy, m_nWeaponMag, m_nWeaponTao;
     UINT8 m_byMailNotified;
 
-    //³¬ÖØ¼õËÙ
+    //è¶…é‡å‡é€Ÿ
     CAuraInstance* m_pWeaponAura;
     CAuraInstance* m_pArmorAura;
     CAuraInstance* m_pBagAura;
 
-    //ºÚÊĞÏŞ¹ºÊıÁ¿¼°ÀäÈ´
+    //é»‘å¸‚é™è´­æ•°é‡åŠå†·å´
     std::map<INT32, BMRoleLimitInfo> m_black_market_limit_map;
     std::map<INT32, UINT32> m_black_market_cooldown_map;
 
-    //½ñÈÕÊ¹ÓÃ¾­ÑéÆ¿´ÎÊı
+    //ä»Šæ—¥ä½¿ç”¨ç»éªŒç“¶æ¬¡æ•°
     INT32 m_nExpBottleTimes;
 
 
-	// ========== ×Ô¼ºĞÂÔö´úÂë begin
+	// ========== è‡ªå·±æ–°å¢ä»£ç  begin
 
 	
 
 
-	// ========== ×Ô¼ºĞÂÔö´úÂë end
+	// ========== è‡ªå·±æ–°å¢ä»£ç  end
 
 
 };

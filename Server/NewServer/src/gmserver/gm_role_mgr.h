@@ -35,7 +35,7 @@ public:
 
     BOOL CheckRoleExist(UINT32 dwRoleID);
     BOOL CheckRoleLock(UINT32 dwRoleID, UINT32 dwTLUserID);
-    BOOL AddRole(UINT32 dwRoleID, UINT32 dwTLUserID);           // 跨cmd的锁定，防止其他TL操作
+    BOOL AddRole(UINT32 dwRoleID, UINT32 dwTLUserID);           // 璺╟md鐨勯攣瀹氾紝闃叉鍏朵粬TL鎿嶄綔
     BOOL DelRole(UINT32 dwRoleID, UINT32 dwTLUserID);
     BOOL DelRoleByUserID(UINT32 dwTLUserID);
 

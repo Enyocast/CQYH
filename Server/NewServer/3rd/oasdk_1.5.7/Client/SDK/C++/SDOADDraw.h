@@ -16,14 +16,14 @@ MIDL_INTERFACE("B734270C-41CD-4E62-BE4F-CEC20841E367")
 ISDOADDraw : public IUnknown
 {
 public:
-	/* ³õÊ¼»¯Í¼ÐÎÒýÇæ */
+	/* åˆå§‹åŒ–å›¾å½¢å¼•æ“Ž */
 	STDMETHOD_(HRESULT,Initialize)(THIS_ HWND hWnd, IDirectDraw* pDirectDraw, IDirectDrawSurface* pMainSurface, 
 		int nDDrawVersion, bool bHookWndProc) PURE;	
-	/* äÖÈ¾½çÃæ£¬ÔÚÓÎÏ·³¡¾°äÖÈ¾ºóµ÷ÓÃËü */
+	/* æ¸²æŸ“ç•Œé¢ï¼Œåœ¨æ¸¸æˆåœºæ™¯æ¸²æŸ“åŽè°ƒç”¨å®ƒ */
 	STDMETHOD_(HRESULT,Render)(THIS_ IDirectDrawSurface* pTargetSurface) PURE;	
-	/* ÊÍ·ÅÍ¼ÐÎÒýÇæÏà¹Ø×ÊÔ´ */
+	/* é‡Šæ”¾å›¾å½¢å¼•æ“Žç›¸å…³èµ„æº */
 	STDMETHOD_(HRESULT,Finalize)(THIS) PURE;
-	/* ´«ÈëÏûÏ¢ */
+	/* ä¼ å…¥æ¶ˆæ¯ */
 	STDMETHOD_(HRESULT,OnWindowProc)(THIS_ HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* lResult) PURE;
 };
 

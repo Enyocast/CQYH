@@ -109,13 +109,13 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
     INT32 loop_times = bBigDrop ? 10 : 1;
 
     std::list<CRole*> gold_pool_list;
-    INT32 gold_pool_rate = RATE_MAX;     // ½ğ±Ò³ØËõ¼õÂÊ
+    INT32 gold_pool_rate = RATE_MAX;     // é‡‘å¸æ± ç¼©å‡ç‡
 
     std::list<CRole*> owner_list;
-    INT32 level_diff_rate = RATE_MAX;    // ´òµÍµÈ¼¶NPCµÄÎïÆ·µôÂäµ÷Õû±ÈÀı, ¼ÆËãµÈ¼¶²î[±¬ÂÊËõ¼õ]
-    INT32 fcm_rate = RATE_MAX;           // ·À³ÁÃÔËõ¼õÂÊ
+    INT32 level_diff_rate = RATE_MAX;    // æ‰“ä½ç­‰çº§NPCçš„ç‰©å“æ‰è½è°ƒæ•´æ¯”ä¾‹, è®¡ç®—ç­‰çº§å·®[çˆ†ç‡ç¼©å‡]
+    INT32 fcm_rate = RATE_MAX;           // é˜²æ²‰è¿·ç¼©å‡ç‡
 
-    INT32 final_rate = RATE_MAX;         // ×îÖÕ¸ÅÂÊ
+    INT32 final_rate = RATE_MAX;         // æœ€ç»ˆæ¦‚ç‡
     const static INT64 llMaxLootDistance = (g_GWConfig.nLootDistance * POINT_PER_CM) * (g_GWConfig.nLootDistance * POINT_PER_CM);
 
     LOG_PROCESS_ERROR(chances);
@@ -135,7 +135,7 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
     {
         pTeam = CGameWorld::GetInstance().FindTeam(pOwnerRole->GetTeamID());
 
-        // ×é¶Ó
+        // ç»„é˜Ÿ
         if (pTeam && pOwnerRole->GetLevel() > g_GWConfig.nFreeRoleLevel)
         {
             gold_pool_rate = 0;
@@ -156,14 +156,14 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
             else
                 gold_pool_rate = RATE_MAX;
         }
-        // ¸öÈË
+        // ä¸ªäºº
         else
         {
             gold_pool_list.push_back(pOwnerRole);
             gold_pool_rate = pOwnerRole->GetItemBag()->GetChanceByGoldPool();
         }
 
-        // ×é¶Ó - ¼ÆËãµÈ¼¶²î[±¬ÂÊËõ¼õ]
+        // ç»„é˜Ÿ - è®¡ç®—ç­‰çº§å·®[çˆ†ç‡ç¼©å‡]
         if (pTeam)
         {
             INT32 total_role_level = 0;
@@ -197,7 +197,7 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
                 level_diff_rate = g_GWConfig.nDropChanceRate[level_diff];
             }
         }
-        // ¸öÈË
+        // ä¸ªäºº
         else
         {
             owner_list.push_back(pOwnerRole);
@@ -219,13 +219,13 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
 
     memset(drops, 0, sizeof(drops));
 
-    // ¼ÆËã×îÖÕ¸ÅÂÊ
+    // è®¡ç®—æœ€ç»ˆæ¦‚ç‡
     if (!bUniqueOrBoss)
         final_rate = level_diff_rate;
     final_rate = final_rate * gold_pool_rate / RATE_MAX;
     final_rate = final_rate * fcm_rate / RATE_MAX;
-    //final_rate = final_rate * g_GWConfig.nGlobalDropRate / RATE_MAX;  // Ä¬ÈÏ´úÂë gameworldconfig.lua ÎÄ¼şÖĞ Ğ´µÄÊÇ 100000
-    final_rate = final_rate * 10000 / RATE_MAX;  // ÏÖÔÚ¹Ì¶¨Ğ´³É 10000
+    //final_rate = final_rate * g_GWConfig.nGlobalDropRate / RATE_MAX;  // é»˜è®¤ä»£ç  gameworldconfig.lua æ–‡ä»¶ä¸­ å†™çš„æ˜¯ 100000
+    final_rate = final_rate * 10000 / RATE_MAX;  // ç°åœ¨å›ºå®šå†™æˆ 10000
 
     for (INT32 i = 0; i < loop_times; i++)
     {
@@ -254,7 +254,7 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
         {
             CDrop* drop = drops[i];
 
-            // ĞŞ¸Ä ½ğ±Ò³ØÊıÖµ
+            // ä¿®æ”¹ é‡‘å¸æ± æ•°å€¼
             if (!gold_pool_list.empty())
             {
                 INT32 sub_gold = 0;
@@ -270,7 +270,7 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
                 }
             }
 
-            // Ìí¼Ó ÓĞÊ°È¡È¨µÄ½ÇÉ«
+            // æ·»åŠ  æœ‰æ‹¾å–æƒçš„è§’è‰²
             if (!owner_list.empty())
             {
                 for (std::list<CRole*>::iterator it = owner_list.begin(); it != owner_list.end(); ++it)
@@ -279,11 +279,11 @@ BOOL CDropGenerator::GenerateDrops(INT32 nServerGroup, const DROP_CHANCE_DATA ch
                 }
             }
 
-            // ÔÚµØÍ¼ÖĞÌí¼Ó µØÃæÎïÆ·¶ÔÏó
+            // åœ¨åœ°å›¾ä¸­æ·»åŠ  åœ°é¢ç‰©å“å¯¹è±¡
             bRet = scene->AddDrop(drop, llX, llY, llZ, srcid);
             LOG_CHECK_ERROR(bRet);
 
-            // Ìí¼ÓÊ§°Ü ¾ÍÉ¾³ı¶ÔÏó
+            // æ·»åŠ å¤±è´¥ å°±åˆ é™¤å¯¹è±¡
             if (!bRet)
             {
                 bRet = drop->UnInit();
@@ -354,7 +354,7 @@ BOOL CDropGenerator::GenerateDropContentFromDropGroupData(INT32 nServerGroup, co
 
                 content.m_type = DropContent::DROP_ITEM;
 
-                // ÅĞ¶Ï ÊÇ²»ÊÇÏîÁ´
+                // åˆ¤æ–­ æ˜¯ä¸æ˜¯é¡¹é“¾
                 if (data->m_DropData[i].m_pItemData->m_bySubType == ITEMSUBTYPE_EQUIP_NECKLACE)
                 {
                     content.m_item = CItemMgr::GetInstance().GenerateItem(nServerGroup, data->m_DropData[i].m_pItemData, itemcount, data->m_bRandomDur);
@@ -470,10 +470,10 @@ Exit0:
 	return NULL;
 }
 
-// ¼ì²éµôÂäÏŞÖÆ
+// æ£€æŸ¥æ‰è½é™åˆ¶
 BOOL CDropGenerator::_CheckDropLimit(INT32 nServerGroup, INT32 itemid, INT32 itemcount)
 {
-    // »ñÈ¡ ÎïÆ· [itemid], µ±Ç°È«·şÏŞÖÆÊıÁ¿
+    // è·å– ç‰©å“ [itemid], å½“å‰å…¨æœé™åˆ¶æ•°é‡
     INT32 drop_count = CGameWorld::GetInstance().GetServerVariable(nServerGroup, MakeServerKey(esvtItemDropLimitType0, itemid));
 
     const ITEM_DATA* data = GetItemData(itemid);
@@ -482,18 +482,18 @@ BOOL CDropGenerator::_CheckDropLimit(INT32 nServerGroup, INT32 itemid, INT32 ite
     if (data->m_nDropLimitCount[0] == 0)
         return TRUE;
 
-    // ÅĞ¶ÏÊıÁ¿ ÊÇ·ñ³¬±ê
+    // åˆ¤æ–­æ•°é‡ æ˜¯å¦è¶…æ ‡
     if (drop_count >= data->m_nDropLimitCount[0])
     {
         INF("Drop Limit Exceeded: ServerGroup:%d, ItemID:%d, CurItemCount:%d", nServerGroup, itemid, drop_count);
         return FALSE;
     }
-    // Ã»³¬±ê
+    // æ²¡è¶…æ ‡
     else
     {
         INT32 inc_count = data->m_byDurType == DURTYPE_STACK ? itemcount : 1;
 
-        // ·¢¸øMS, Ôö¼ÓÏŞÖÆÊıÁ¿
+        // å‘ç»™MS, å¢åŠ é™åˆ¶æ•°é‡
         CGameWorld::GetInstance().SetServerVariable(nServerGroup, MakeServerKey(esvtItemDropLimitType0, itemid), FALSE, inc_count);
 
         return TRUE;

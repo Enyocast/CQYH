@@ -7,12 +7,12 @@
 
 enum BT_OPERATOR
 {
-    boLT,   ///< less than                 ÉÙÓÚ
-    boLTE,  ///< less than or equal to     Ð¡ÓÚ»òµÈÓÚ
-    boGT,   ///< greater than              ´óÓÚ
-    boGTE,  ///< greater than or equal to  ´óÓÚ»òµÈÓÚ
-    boEQ,   ///< equal to                  µÈÓÚ
-    boNEQ,  ///< not equal to              ²»µÈÓÚ
+    boLT,   ///< less than                 å°‘äºŽ
+    boLTE,  ///< less than or equal to     å°äºŽæˆ–ç­‰äºŽ
+    boGT,   ///< greater than              å¤§äºŽ
+    boGTE,  ///< greater than or equal to  å¤§äºŽæˆ–ç­‰äºŽ
+    boEQ,   ///< equal to                  ç­‰äºŽ
+    boNEQ,  ///< not equal to              ä¸ç­‰äºŽ
 };
 
 enum BT_TARGET_TYPE
@@ -59,31 +59,31 @@ enum BT_ACTION_TYPE
     batInvalid  = btInvalid,        ///< invalid action
                                     ///< @note do not use this action
 
-                                    ///< Ñ¡ÔñÆ÷£¬Èç¹ûÈÎºÎ×Ó½Úµã·µ»Øtrue£¬ÔòÁ¢¼´·µ»Øtrue£»·ñÔò£¬·µ»Øfalse
+                                    ///< é€‰æ‹©å™¨ï¼Œå¦‚æžœä»»ä½•å­èŠ‚ç‚¹è¿”å›žtrueï¼Œåˆ™ç«‹å³è¿”å›žtrueï¼›å¦åˆ™ï¼Œè¿”å›žfalse
     batSelector = btSelector,       ///< selector, if any child node returns true, it returns true immediately; otherwise, it returns false
 
-                                    ///< ÐòÁÐÆ÷£¬Èç¹ûÈÎºÎ×Ó½Úµã·µ»Øfalse£¬ÔòÁ¢¼´·µ»Øfalse£»·ñÔò£¬Ëü½«·µ»Øtrue
+                                    ///< åºåˆ—å™¨ï¼Œå¦‚æžœä»»ä½•å­èŠ‚ç‚¹è¿”å›žfalseï¼Œåˆ™ç«‹å³è¿”å›žfalseï¼›å¦åˆ™ï¼Œå®ƒå°†è¿”å›žtrue
     batSequencer= btSequencer,      ///< sequencer, if any child node returns false, it returns false immediately; otherwise, it returns true
 
-                                    ///< ²¢ÐÐ£¬ÎÞÂÛÆä×Ó½Úµã·µ»ØÊ²Ã´£¬Ëü×ÜÊÇ·µ»Øtrue
+                                    ///< å¹¶è¡Œï¼Œæ— è®ºå…¶å­èŠ‚ç‚¹è¿”å›žä»€ä¹ˆï¼Œå®ƒæ€»æ˜¯è¿”å›žtrue
     batParallel = btParallel,       ///< parallel, it always returns true whatever its child nodes return
 
-                                    ///< Ö»ÓÐÒ»¸ö×Ó½Úµã£»Èç¹ûÆä×Ó½Úµã·µ»Øtrue£¬Ôò·µ»Øfalse£»·ñÔò£¬Ëü½«·µ»Øtrue
+                                    ///< åªæœ‰ä¸€ä¸ªå­èŠ‚ç‚¹ï¼›å¦‚æžœå…¶å­èŠ‚ç‚¹è¿”å›žtrueï¼Œåˆ™è¿”å›žfalseï¼›å¦åˆ™ï¼Œå®ƒå°†è¿”å›žtrue
     batNot      = btNot,            ///< only one child node; if its child node returns true, it returns false; otherwise, it returns true
 
-                                    ///< µ÷ÊÔ½Úµã½ö¹©³ÌÐòÔ±Ê¹ÓÃ£¬×¢Òâ£ºÖ»ÔÊÐíÒ»¸ö×Ó½Úµã
+                                    ///< è°ƒè¯•èŠ‚ç‚¹ä»…ä¾›ç¨‹åºå‘˜ä½¿ç”¨ï¼Œæ³¨æ„ï¼šåªå…è®¸ä¸€ä¸ªå­èŠ‚ç‚¹
     batDebug    = btDebug,          ///< debug node for programmer only, note: just one child allowed
 
-                                    ///< Ëæ»úÑ¡ÔñÒ»¸ö×Ó½Úµã£¬×î¶à4¸ö×Ó½Úµã
+                                    ///< éšæœºé€‰æ‹©ä¸€ä¸ªå­èŠ‚ç‚¹ï¼Œæœ€å¤š4ä¸ªå­èŠ‚ç‚¹
     batRandom   = btRandom,         ///< btRandom choose a child node, 4 children at most
                                     ///< @param p0 child0 weight
                                     ///< @param p1 child1 weight
                                     ///< @param p2 child2 weight
                                     ///< @param p3 child3 weight
                                     
-                                    ///< ·´¸´Ñ¡Ôñ×Ó½Úµã£¬×¢Òâ£ºÖ»ÔÊÐíÒ»¸ö×Ó½Úµã
+                                    ///< åå¤é€‰æ‹©å­èŠ‚ç‚¹ï¼Œæ³¨æ„ï¼šåªå…è®¸ä¸€ä¸ªå­èŠ‚ç‚¹
     batRepeat   = btRepeat,         ///< repeatly choose the only child, note: just one child allowed
-                                    ///< @param p0 repeat times (at most BT_REPEAT_MAX_TIMES 16)  // ÖØ¸´´ÎÊý, ×î¶à16
+                                    ///< @param p0 repeat times (at most BT_REPEAT_MAX_TIMES 16)  // é‡å¤æ¬¡æ•°, æœ€å¤š16
 
     batBegin = btUserDefine,        ///< the beginning of user defined action in game world
 
@@ -143,11 +143,11 @@ enum BT_ACTION_TYPE
                                     ///< @param p2 #CHAT_LOCATION_TYPE
 									///< @param p3 string param
                                     ///< @note target id may be role id, team id, guild id, channel id (#CHAT_CHANNEL_TYPE)
-    batSetSceneVariable,            ///< set scene variable                         ÉèÖÃ³¡¾°±äÁ¿
+    batSetSceneVariable,            ///< set scene variable                         è®¾ç½®åœºæ™¯å˜é‡
                                     ///< @param p0 variable index
-                                    ///< @param p1 absolute value (optional)        @²ÎÊýp1¾ø¶ÔÖµ£¨¿ÉÑ¡£©
-                                    ///< @param p2 relative value (optional)        @²ÎÊýp2Ïà¶ÔÖµ£¨¿ÉÑ¡£©
-                                    ///< @note p1 is effective only when p2 is zero @×¢Òâ£ºp1½öÔÚp2ÎªÁãÊ±ÓÐÐ§
+                                    ///< @param p1 absolute value (optional)        @å‚æ•°p1ç»å¯¹å€¼ï¼ˆå¯é€‰ï¼‰
+                                    ///< @param p2 relative value (optional)        @å‚æ•°p2ç›¸å¯¹å€¼ï¼ˆå¯é€‰ï¼‰
+                                    ///< @note p1 is effective only when p2 is zero @æ³¨æ„ï¼šp1ä»…åœ¨p2ä¸ºé›¶æ—¶æœ‰æ•ˆ
                                     ///< @see #batCheckSceneVariable, #batCompareSceneVariable
     batSetServerVariable,           ///< set server variable
                                     ///< @param p0 variable index
@@ -522,13 +522,13 @@ enum BT_ACTION_TYPE
                                     ///< @param p1 #BT_OPERATOR
                                     ///< @param p2 distance (cm)
 
-                                    ///< ¼ì²éaiËùÓÐÕßµÄcdÊ±¼ä
+                                    ///< æ£€æŸ¥aiæ‰€æœ‰è€…çš„cdæ—¶é—´
     batCheckCDTimer,                ///< check ai owner's cd timer
                                     ///< @param p0 #COOLDOWN_TYPE
                                     ///< @param p1 cd timer index [0, 65535]
                                     ///< @see #batSetCDTimer
 
-                                    ///< ¼ì²é processor µÄ±äÁ¿
+                                    ///< æ£€æŸ¥ processor çš„å˜é‡
     batCheckAIVariable,             ///< check ai processor's variable
                                     ///< @param p0 #BT_OPERATOR
                                     ///< @param p1 variable index [0, #MAX_AI_VARIABLE_COUNT)
@@ -651,10 +651,10 @@ enum BT_ACTION_TYPE
                                     ///< @see #batWithdraw
     batCheckCanMove,                ///< check if can move
 
-                                    ///< ¼ì²éÊÇ·ñ¿ÉÒÔÊ©·¨£¨²»¿¼ÂÇCDÊ±¼ä£©
+                                    ///< æ£€æŸ¥æ˜¯å¦å¯ä»¥æ–½æ³•ï¼ˆä¸è€ƒè™‘CDæ—¶é—´ï¼‰
     batCheckCanCastSpell,           ///< check if can cast spell (without regard to CD time)
 
-                                    ///< ¶ÔÄ¿±êÊ©Õ¹Ö¸¶¨·¨Êõ
+                                    ///< å¯¹ç›®æ ‡æ–½å±•æŒ‡å®šæ³•æœ¯
     batCastSpellToTarget,           ///< cast specified spell to target
                                     ///< @param p0 spell id
                                     ///< @param p1 #BT_TARGET_TYPE
@@ -709,7 +709,7 @@ enum BT_ACTION_TYPE
 	batWaitCastSpell,				///< wait until casting spell ends
 	batSyncBreakCast,				///
 
-                                    ///< Ïòµ±Ç°ÇøÓò·¢³öÌØ¶¨ÐÅºÅ
+                                    ///< å‘å½“å‰åŒºåŸŸå‘å‡ºç‰¹å®šä¿¡å·
     batIssueSignal,                 ///< issue a specific signal to current region
                                     ///< @param p0 #SIGNAL_TYPE
                                     ///< @param p1 signal TTL (unit: ms)
@@ -717,7 +717,7 @@ enum BT_ACTION_TYPE
                                     ///< @param p3 signal param (default 0)
                                     ///< @see batPickSignal
 
-                                    ///< ³¢ÊÔÔÚÌØ¶¨¾àÀëÄÚÊ°È¡ÌØ¶¨ÐÅºÅ£¬¼ÇÂ¼ÏÂÀ´²¢¼õÉÙÍ£ÁôÊ±¼ä
+                                    ///< å°è¯•åœ¨ç‰¹å®šè·ç¦»å†…æ‹¾å–ç‰¹å®šä¿¡å·ï¼Œè®°å½•ä¸‹æ¥å¹¶å‡å°‘åœç•™æ—¶é—´
     batPickSignal,                  ///< try to pick a specific signal in a specific distance, record it and reduce remain times.
                                     ///< @param p0 #SIGNAL_TYPE
                                     ///< @param p1 distance(unit: cm)
@@ -725,21 +725,21 @@ enum BT_ACTION_TYPE
                                     ///< @param p3 signal param value
 									///< @see batIssueSignal
 
-                                    ///< ¸Ä±ä tarAITarget ´Ó Signal Issuer µÄ tarAITarget
+                                    ///< æ”¹å˜ tarAITarget ä»Ž Signal Issuer çš„ tarAITarget
     batGetTargetFromSignal,         ///< change tarAITarget from Signal Issuer's tarAITarget
-                                    ///< @note must invoke batPickSignal first  // ×¢Òâ±ØÐëÏÈµ÷ÓÃbatPickSignal
+                                    ///< @note must invoke batPickSignal first  // æ³¨æ„å¿…é¡»å…ˆè°ƒç”¨batPickSignal
 
-                                    ///< ÉèÖÃÑ²Âß²ÎÊý
+                                    ///< è®¾ç½®å·¡é€»å‚æ•°
     batSetPatrolParam,              ///< set patrol parameters
                                     ///< @param p0 path id
                                     ///< @param p1 #PATROL_STYLE
                                     ///< @see #batPatrol
 
-                                    ///< ¸ù¾Ý¸ø¶¨Â·¾¶
+                                    ///< æ ¹æ®ç»™å®šè·¯å¾„
     batPatrol,                      ///< patrol in accordance with a given path (a origin server point whose dwNameID just like "p3.1")
                                     ///< @see #batSetPatrolParam
 
-                                    ///< »ñÈ¡ÐÅºÅ·¢²¼ÕßµÄtarAITarget£¬²¢½«ÆäÌí¼Óµ½ÍþÐ²ÁÐ±íÖÐ
+                                    ///< èŽ·å–ä¿¡å·å‘å¸ƒè€…çš„tarAITargetï¼Œå¹¶å°†å…¶æ·»åŠ åˆ°å¨èƒåˆ—è¡¨ä¸­
     batAddThreatListFromSignal,     ///< get signal issuer's tarAITarget, and add it to threat list
                                     ///< @param p0 threat value of tarAITarget
                                     ///< @note must invoke batPickSignal first, usually used to respond signal sigSpreadHate

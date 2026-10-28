@@ -52,7 +52,7 @@ BOOL CMsDropMgr::UnInit()
 
 BOOL CMsDropMgr::MainLoop(void)
 {
-    //每分钟检查一次就够了
+    //姣忓垎閽熸鏌ヤ竴娆″氨澶熶簡
     UINT32 dwCurrentTime = CManageServer::GetInstance().GetGameTime();
 
     if (dwCurrentTime - m_last_check_time < 60)

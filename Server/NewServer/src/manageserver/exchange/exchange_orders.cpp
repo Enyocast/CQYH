@@ -158,7 +158,7 @@ BOOL CExchangeOrders::MainLoop()
     BOOL bRet = FALSE;
     UINT32 curtime = CManageServer::GetInstance().GetGameTime();
 
-    //处理过期订单
+    //澶勭悊杩囨湡璁㈠崟
     for (BUYING_ORDER_MAP::iterator it = m_buy_orders.begin(); it != m_buy_orders.end();)
     {
         OrderList& order_list = it->second;
@@ -186,7 +186,7 @@ BOOL CExchangeOrders::MainLoop()
         }
     }
 
-    //撮合订单
+    //鎾悎璁㈠崟
     while (!m_buy_orders.empty() && !m_sell_orders.empty() && m_buy_orders.begin()->first >= m_sell_orders.begin()->first)
     {
         OrderList& buy_list = m_buy_orders.begin()->second;

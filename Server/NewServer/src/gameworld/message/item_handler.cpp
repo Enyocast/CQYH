@@ -22,7 +22,7 @@
 
 using namespace ExternalMessage;
 
-// ==================== ÏÂÃæÈ«ÊÇ c2gÊÕ°ü Onº¯Êý
+// ==================== ä¸‹é¢å…¨æ˜¯ c2gæ”¶åŒ… Onå‡½æ•°
 
 void CCliMessageHandler::OnUseItem(CRole* pRole, const char* pData)
 {
@@ -377,7 +377,7 @@ void CCliMessageHandler::OnRemoveSoul(CRole* poRole, const char* pData)
     }
 }
 
-// Öý»ê - ÆÕÍ¨ÃúÎÄÏ´Á·
+// é“¸é­‚ - æ™®é€šé“­æ–‡æ´—ç»ƒ
 void CCliMessageHandler::OnRuneItem(CRole* poRole, const char* pData)
 {
     C2G_RUNE_ITEM* pMsg = (C2G_RUNE_ITEM*)pData;
@@ -389,7 +389,7 @@ void CCliMessageHandler::OnRuneItem(CRole* poRole, const char* pData)
     }
 }
 
-// Éý¼¶ÎäÆ÷
+// å‡çº§æ­¦å™¨
 void CCliMessageHandler::OnWeaponLevelUpPutIn(CRole* poRole, const char* pData)
 {
     INT32 err = poRole->GetItemBag()->WeaponLevelUpPutIn();
@@ -398,7 +398,7 @@ void CCliMessageHandler::OnWeaponLevelUpPutIn(CRole* poRole, const char* pData)
         poRole->ErrorCodeNotify(err, 0, 0);
     }
 }
-// È¡»ØÎäÆ÷
+// å–å›žæ­¦å™¨
 void CCliMessageHandler::OnWeaponLevelUpTakeOut(CRole* poRole, const char* pData)
 {
     INT32 err = poRole->GetItemBag()->WeaponLevelUpTakeOut();
@@ -407,7 +407,7 @@ void CCliMessageHandler::OnWeaponLevelUpTakeOut(CRole* poRole, const char* pData
         poRole->ErrorCodeNotify(err, 0, 0);
     }
 }
-// Á¢¼´È¡»Ø
+// ç«‹å³å–å›ž
 void CCliMessageHandler::OnWeaponLevelUpTakeOutImmediately(CRole* poRole, const char* pData)
 {
     INT32 err = poRole->GetItemBag()->WeaponLevelUpTakeOutImmediately();
@@ -502,7 +502,7 @@ void CCliMessageHandler::OnBlackMarketBuy(CRole* poRole, const char* pData)
     }
 }
 
-// ×°±¸ÖØÖý
+// è£…å¤‡é‡é“¸
 void CCliMessageHandler::OnGamble(CRole* poRole, const char* pData)
 {
     C2G_GAMBLE* pMsg = (C2G_GAMBLE*)pData;
@@ -527,7 +527,7 @@ void CCliMessageHandler::OnGambleAdvance(CRole* poRole, const char* pData)
     }
 }
 
-// ÀúÁ·¶Ò»»¾­Ñé
+// åŽ†ç»ƒå…‘æ¢ç»éªŒ
 void CCliMessageHandler::OnExerciseInfo(CRole* poRole, const char* pData)
 {
     INT32 nResult = errItemUnknown;
@@ -629,7 +629,7 @@ Exit0:
     DoErrorCodeNotify(poRole, nResult, 0, 0);
 }
 
-// ÃúÎÄ¸ß¼¶Ï´Á·
+// é“­æ–‡é«˜çº§æ´—ç»ƒ
 void CCliMessageHandler::OnRuneItemAdvance(CRole* poRole, const char* pData)
 {
     C2G_RUNE_ITEM_ADVANCE* pMsg = (C2G_RUNE_ITEM_ADVANCE*)pData;
@@ -641,7 +641,7 @@ void CCliMessageHandler::OnRuneItemAdvance(CRole* poRole, const char* pData)
     }
 }
 
-// È·ÈÏ¸ß¼¶Ï´Á·
+// ç¡®è®¤é«˜çº§æ´—ç»ƒ
 void CCliMessageHandler::OnRuneItemConfirm(CRole* poRole, const char* pData)
 {
     C2G_RUNE_ITEM_ADVANCE_CONFIRM* pMsg = (C2G_RUNE_ITEM_ADVANCE_CONFIRM*)pData;
@@ -657,10 +657,10 @@ void CCliMessageHandler::OnSellResourceItem(CRole* poRole, const char* pData)
 {
 }
 
-// ¼¼ÄÜÊéÖØÖø
+// æŠ€èƒ½ä¹¦é‡è‘—
 void CCliMessageHandler::OnSpellBookGamble(CRole* poRole, const char* pData)
 {
-    // ÔÝÊ± ÆÁ±Î¹¦ÄÜ
+    // æš‚æ—¶ å±è”½åŠŸèƒ½
     //poRole->ErrorCodeNotify(errNpcNoSuchFunction, 0, 0);
 
     INT32 err = poRole->GetItemBag()->SpellBookGamble();
@@ -670,7 +670,7 @@ void CCliMessageHandler::OnSpellBookGamble(CRole* poRole, const char* pData)
     }
 }
 
-// ==================== ÏÂÃæÈ«ÊÇ g2c·¢°ü Doº¯Êý
+// ==================== ä¸‹é¢å…¨æ˜¯ g2cå‘åŒ… Doå‡½æ•°
 
 BOOL CCliMessageHandler::DoSyncRefineLevels(CRole* pRole)
 {
@@ -740,7 +740,7 @@ BOOL CCliMessageHandler::DoSyncRealMoney(CRole* pRole)
     LOG_PROCESS_ERROR(pMsg);
 
     pMsg->wMsg = m2c_sync_real_money;
-    pMsg->nBalance = 1000000;    // Ó¦¸ÃÐ´ pRole->m_dwRealMoney ÒªÐÂ¼Ó×Ö¶Î
+    pMsg->nBalance = 1000000;    // åº”è¯¥å†™ pRole->m_dwRealMoney è¦æ–°åŠ å­—æ®µ
 
     nRetCode = m_poNotifier->SendToUser(pRole->GetSessionID(), (PACKET_BUFFER*)pMsg, sizeof(M2C_SYNC_REAL_MONEY));
     LOG_PROCESS_ERROR(nRetCode);
@@ -1329,7 +1329,7 @@ Exit0:
     return FALSE;
 }
 
-// ¸ß¼¶ÃúÎÄÏ´Á·
+// é«˜çº§é“­æ–‡æ´—ç»ƒ
 BOOL CCliMessageHandler::DoSendRuneItemAdvance(CRole* poRole, UINT8 byResult, UINT16 wRuneA, UINT16 wRuneB)
 {
     INT32 nRetCode = 0;
@@ -1351,7 +1351,7 @@ Exit0:
     return FALSE;
 }
 
-// È·ÈÏ¸ß¼¶Ï´Á·
+// ç¡®è®¤é«˜çº§æ´—ç»ƒ
 BOOL CCliMessageHandler::DoSendRuneItemConfirm(CRole* poRole, UINT8 byResult)
 {
     INT32 nRetCode = 0;
@@ -1978,11 +1978,11 @@ BOOL CCliMessageHandler::DoMSAuctionSell(INT32 nResult, UINT32 dwRoleID, UINT8 b
     {
         memset(pMsg->acItem, 0, dwItemInfoSize);
 
-        // ×Ô¼º¸Ä´úÂë
+        // è‡ªå·±æ”¹ä»£ç 
         dwSize += dwItemInfoSize;
         memcpy_s(pMsg->acItem, dwItemInfoSize, szItemInfo, dwItemInfoSize);
 
-        // Ä¬ÈÏ´úÂë
+        // é»˜è®¤ä»£ç 
         //LOG_PROCESS_ERROR(item);
         //dwSize += item->m_iteminfo.Save(pMsg->acItem);
     }

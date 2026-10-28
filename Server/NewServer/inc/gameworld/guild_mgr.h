@@ -3,7 +3,7 @@
 	file:		guild_mgr.h
 	author:		Allan Tao
 	
-	purpose:	gs °ïÅÉ¹ÜÀíÀà
+	purpose:	gs å¸®æ´¾ç®¡ç†ç±»
 *********************************************************************/
 
 #ifndef _H_GS_GUILD_MGR_H_
@@ -41,7 +41,7 @@ public:
     BOOL    DelWarRelation(UINT32 dwIntruderID, UINT32 dwDefenderID);
 
 public:
-    // µĞ¶ÔµÄ±íÊ¾¿ÉÒÔ»¥Ïàpk£¬ÎŞpkÖµ
+    // æ•Œå¯¹çš„è¡¨ç¤ºå¯ä»¥äº’ç›¸pkï¼Œæ— pkå€¼
     BOOL    IsHostile(UINT32 dwGuildID, UINT32 dwTargetGuildID);
     BOOL    IsFriendly(UINT32 dwGuildID, UINT32 dwTargetGuildID);
 

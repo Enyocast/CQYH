@@ -248,7 +248,7 @@ Exit0:
     return FALSE;
 }
 
-// ¼ÓÔØnpc
+// åŠ è½½npc
 BOOL CScene::_LoadNpc(void)
 {
     INT32 nRetCode = 0;
@@ -852,7 +852,7 @@ BOOL CScene::MainLoop(void)
     _CheckDLRecordRoleBegin(CGameWorld::GetInstance().GetGameFrame());
 #endif	// _ROBOT
 
-    // µ±Ç°µØÍ¼¶ÔÏó, ËùÓĞ Region
+    // å½“å‰åœ°å›¾å¯¹è±¡, æ‰€æœ‰ Region
     UINT32* pdwValidRegionList = m_poStaticData->GetValidRegionList();
     while (*pdwValidRegionList)
     {
@@ -882,7 +882,7 @@ BOOL CScene::MainLoop(void)
 
 #ifndef _ROBOT
 
-    // Npc×ÔÉ±, É¾³ıNpc¶ÔÏó
+    // Npcè‡ªæ€, åˆ é™¤Npcå¯¹è±¡
     {
         NPC_LIVE_TIMER_LIST::iterator it = m_LiveTimerList.begin();
 
@@ -906,7 +906,7 @@ BOOL CScene::MainLoop(void)
         }
     }
 
-    // Npc¸´»î
+    // Npcå¤æ´»
     pNode = m_lstRespawnNpc.Head().pNext;
     while (pNode != &m_lstRespawnNpc.Rear())
     {
@@ -950,7 +950,7 @@ BOOL CScene::MainLoop(void)
         pNode = pNextNode;
     }
 
-    // ĞĞÎªÊ÷
+    // è¡Œä¸ºæ ‘
     pNode = m_lstBTCtx.Head().pNext;
     while (pNode != &m_lstBTCtx.Rear())
     {
@@ -963,7 +963,7 @@ BOOL CScene::MainLoop(void)
         pNode = pNextNode;
     }
 
-    // µØÍ¼Ïú»Ù, °ÑÈË´«³öÈ¥
+    // åœ°å›¾é”€æ¯, æŠŠäººä¼ å‡ºå»
     if (m_nState == edstClosing && m_nClosingFrame < CGameWorld::GetInstance().GetGameFrame())
     {
         nRetCode = TraverseRole(m_TraverseRoleOnDestroy);
@@ -1002,7 +1002,7 @@ BOOL CScene::MainLoop(void)
 
     _CheckDLRecordRoleEnd();
 
-    // É³°Í¿Ë
+    // æ²™å·´å…‹
     if ((m_nSceneTempID + m_nSceneID) % GAME_FPS == CGameWorld::GetInstance().GetGameFrame() % GAME_FPS &&
         m_nSceneTempID == g_GWConfig.Sabac.nSceneTempID)
         _OnSabacMainLoop();
@@ -1764,8 +1764,8 @@ Exit0:
 
 BOOL CScene::AddDrop(CDrop* poDrop, INT64 llX, INT64 llY, INT64 llZ, UINT32 dwSrcID)
 {
-    //³¢ÊÔÕÒµ½ºÏÊÊµÄµôÂäÎ»ÖÃ²¢µôÂä
-    //Èç¹ûÕÒ²»µ½£¬ÔòÉ¾³ıµôÂä²¢·µ»ØFALSE
+    //å°è¯•æ‰¾åˆ°åˆé€‚çš„æ‰è½ä½ç½®å¹¶æ‰è½
+    //å¦‚æœæ‰¾ä¸åˆ°ï¼Œåˆ™åˆ é™¤æ‰è½å¹¶è¿”å›FALSE
 
     INT32 nRetCode = 0;
     INT32 nRegionX = 0;
@@ -2081,7 +2081,7 @@ Exit0:
     return NULL;
 }
 
-// Ë¢ĞÂnpc
+// åˆ·æ–°npc
 CNpc* CScene::SpawnNpc(INT32 nTemplateID, INT64 llX, INT64 llY, INT64 llZ, INT32 nFaceDirection, UINT32 dwHostID, const NPC_SPAWN_POINT* pcSpawnPoint)
 {
     CNpc* poNpc = NULL;
@@ -2089,14 +2089,14 @@ CNpc* CScene::SpawnNpc(INT32 nTemplateID, INT64 llX, INT64 llY, INT64 llZ, INT32
     const NPC_DATA* pNpcData = NULL;
     CAIProcessor* poAIProcessor = NULL;
 
-    // ĞÂ´úÂë - ÓÃÓÚÆÁ±ÎÄ³Ğ©npc, ÕâÀïÖ±½ÓÌø¹ı¾Í²»Ë¢ĞÂÁË, ÒÔºó¸Ä³ÉÅäÖÃ±í
+    // æ–°ä»£ç  - ç”¨äºå±è”½æŸäº›npc, è¿™é‡Œç›´æ¥è·³è¿‡å°±ä¸åˆ·æ–°äº†, ä»¥åæ”¹æˆé…ç½®è¡¨
     if (this->m_nSceneTempID == 143 || this->m_nSceneTempID == 147)
     {
         switch (nTemplateID)
         {
-        case 6171:	  // ¹«²âÌØÊ¹01
-        case 6160:	  // Âê·¨ÌØÊ¹
-        case 6168:    // ÈÙ¹éÌØÊ¹
+        case 6171:	  // å…¬æµ‹ç‰¹ä½¿01
+        case 6160:	  // ç›æ³•ç‰¹ä½¿
+        case 6168:    // è£å½’ç‰¹ä½¿
             return NULL;
         default:
             break;
@@ -2727,7 +2727,7 @@ Exit0:
     return TRUE;
 }
 
-// ÅĞ¶ÏÊÇ²»ÊÇÕÏ°­µã?
+// åˆ¤æ–­æ˜¯ä¸æ˜¯éšœç¢ç‚¹?
 BOOL CScene::IsObstacled(INT64 llSrcX, INT64 llSrcY, INT64 llSrcZ, INT64 llDstX, INT64 llDstY, INT64 llDstZ, BOOL bCheckBlockMove)
 {
     INT32 nRetCode = 0;

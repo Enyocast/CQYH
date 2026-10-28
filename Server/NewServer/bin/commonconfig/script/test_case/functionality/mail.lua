@@ -10,7 +10,7 @@ function TestCase.Mail()
     local session_id1, session_id2;
     local mailid;
 
-    --µÇÂ¼
+    --ç™»å½•
     user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user1");
     check(role1, "failed to create role1");
@@ -21,44 +21,44 @@ function TestCase.Mail()
     check(role2, "failed to create role2");
     session_id2 = user2:GetSessionID();
 
-    --user1: ÓÃGMÖ¸Áî¼ÓÇ®£¬·¢ÓÊ¼şÊÇÒªÇ®µÄ
+    --user1: ç”¨GMæŒ‡ä»¤åŠ é’±ï¼Œå‘é‚®ä»¶æ˜¯è¦é’±çš„
     ret = user1:GMCommand("AddMoney(1, 10000, MONEYLOG_GM_COMMAND)");
     check(ret, "failed to add money");
 
-    --user1: ¸øuser2·¢ÓÊ¼ş
-    ret = user1:SendMail(user_name2, "test mail", "²âÊÔÓÊ¼şÕıÎÄ£¡£¡£¡");
+    --user1: ç»™user2å‘é‚®ä»¶
+    ret = user1:SendMail(user_name2, "test mail", "æµ‹è¯•é‚®ä»¶æ­£æ–‡ï¼ï¼ï¼");
     check(ret, "failed to send mail");
 
-    --user1: ÊÕµ½ÓÊ¼ş·¢ËÍ³É¹¦»Ø¸´
+    --user1: æ”¶åˆ°é‚®ä»¶å‘é€æˆåŠŸå›å¤
     msg = recv_msg(5, session_id1, protocol.m2c_mail_write_success);
     check(msg, "faield to recv m2c_mail_write_success");
 
-    --user2: ÓÊ¼şÁĞ±í
+    --user2: é‚®ä»¶åˆ—è¡¨
     ret = user2:ListMail();
     check(ret, "failed to send list mail");
 
-    --user2: ÊÕµ½ÓÊ¼şÁĞ±í
+    --user2: æ”¶åˆ°é‚®ä»¶åˆ—è¡¨
     msg = recv_msg(5, session_id2, protocol.m2c_mail_list_recv);
     check(msg, "faield to recv m2c_mail_list_recv");
     check(msg.dwMailCount==1, "failed to recv correct mail list msg");
     check(msg.stBriefMailInfo[0].szSenderRoleName==user_name1, "failed to recv correct mail list msg");
     mailid = msg.stBriefMailInfo[0].dwMailID;
 
-    --user2: ¶ÁÈ¡ÓÊ¼ş
+    --user2: è¯»å–é‚®ä»¶
     ret = user2:ReadMail(mailid);
     check(ret, "failed to send read mail");
 
-    --user2: ÊÕµ½¶ÁÈ¡ÓÊ¼ş»Ø¸´
+    --user2: æ”¶åˆ°è¯»å–é‚®ä»¶å›å¤
     msg = recv_msg(5, session_id2, protocol.m2c_mail_read);
     check(msg, "failed to recv m2c_mail_read");
     check(msg.dwMailID==mailid, "failed to recv correct mail read");
-    check(msg.szMailContent=="²âÊÔÓÊ¼şÕıÎÄ£¡£¡£¡", "failed to recv correct mail read");
+    check(msg.szMailContent=="æµ‹è¯•é‚®ä»¶æ­£æ–‡ï¼ï¼ï¼", "failed to recv correct mail read");
 
-    --user2: É¾³ıÓÊ¼ş
+    --user2: åˆ é™¤é‚®ä»¶
     ret = user2:DeleteMail(mailid);
     check(ret, "failed to send delete mail");
 
-    --user2: ÔÙÊÕÒ»´ÎÓÊ¼şÁĞ±í
+    --user2: å†æ”¶ä¸€æ¬¡é‚®ä»¶åˆ—è¡¨
     ret = user2:ListMail();
     check(ret, "failed to send list mail");
 
@@ -66,7 +66,7 @@ function TestCase.Mail()
     check(msg, "faield to recv m2c_mail_list_recv");
     check(msg.dwMailCount==0, "failed to recv correct mail list msg");
 
-    --µÇ³ö
+    --ç™»å‡º
     cleanup(user1);
     cleanup(user2);
 end
@@ -81,39 +81,39 @@ function TestCase.MailAttach()
     local session_id;
     local mailid;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
     session_id = user:GetSessionID();
 
-    --ÓÃGMÖ¸Áî¸ø×Ô¼º·¢Ò»·âÓÊ¼ş£¬´ø¸½¼şµÄ
+    --ç”¨GMæŒ‡ä»¤ç»™è‡ªå·±å‘ä¸€å°é‚®ä»¶ï¼Œå¸¦é™„ä»¶çš„
     ret = user:GMCommand("SelfRole:TestSendSystemMailToSelf(101, 1)");
     check(ret, "failed to send system mail");
 
-    --µÈ´ıĞÂÓÊ¼şÏûÏ¢
+    --ç­‰å¾…æ–°é‚®ä»¶æ¶ˆæ¯
     msg = recv_msg(5, session_id, protocol.m2c_mail_new_count);
     check(msg, "failed to recv m2c_mail_new_count");
     check(msg.dwMailNewCount == 1, "failed to recv correct new mail count");
 
-    --ÇëÇóÓÊ¼şÁĞ±í
+    --è¯·æ±‚é‚®ä»¶åˆ—è¡¨
     ret = user:ListMail();
     check(ret, "failed to send list mail");
 
-    --ÊÕµ½ÓÊ¼şÁĞ±í
+    --æ”¶åˆ°é‚®ä»¶åˆ—è¡¨
     msg = recv_msg(5, session_id, protocol.m2c_mail_list_recv);
     check(msg, "faield to recv m2c_mail_list_recv");
     check(msg.dwMailCount==1, "failed to recv correct mail list msg");
     mailid = msg.stBriefMailInfo[0].dwMailID;
 
-    --ÄÃ¸½¼ş
+    --æ‹¿é™„ä»¶
     ret = user:GetMailAttach(mailid);
     check(ret, "failed to send get mail attach");
 
-    --ÊÕµ½ÎïÆ·±ä¶¯ÏûÏ¢
+    --æ”¶åˆ°ç‰©å“å˜åŠ¨æ¶ˆæ¯
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-    --µÇ³ö
+    --ç™»å‡º
     cleanup(user);
 end

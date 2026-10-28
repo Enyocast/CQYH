@@ -49,7 +49,7 @@
 //
 //            m_ppBox[nIndex]->setDisabled(FALSE);
 //
-//            //switch(pSvrData->nState)        // todo_tq 12  Õâ±ßÒ²ÓĞ×´Ì¬ĞèÒª´¦Àí Allan Tao[17.12.2013] 
+//            //switch(pSvrData->nState)        // todo_tq 12  è¿™è¾¹ä¹Ÿæœ‰çŠ¶æ€éœ€è¦å¤„ç† Allan Tao[17.12.2013] 
 //            //{
 //            //case GM_SVR_STATE_DISCONNECT:
 //            //    {
@@ -142,7 +142,7 @@
 //    nRetCode = CCmdManager::GetInstance().CanExecuteNewCmd();
 //    if (!nRetCode)
 //    {
-//        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ÓĞÃüÁîÕıÔÚÖ´ĞĞ"), QMessageBox::Yes);
+//        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœ‰å‘½ä»¤æ­£åœ¨æ‰§è¡Œ"), QMessageBox::Yes);
 //        return ;
 //    }
 //

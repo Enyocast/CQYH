@@ -107,10 +107,10 @@ INT32 CRealMoneyShop::Buy(MS_ONLINE_ROLE_DATA* pOnlineRole, INT32 nItemID, INT32
     if (strlen(szRoleName) > 0 && CRoleDataMgr::GetInstance().FindRoleByName(szRoleName) == NULL)
         return errRealMoneyShopFriendNotFound;
 
-    // Ä¬ÈÏ´úÂë
+    // é»˜è®¤ä»£ç 
     //COABillMgr::GetInstance().DoCharge(pOnlineRole, total_cost, nItemID, nItemCount, szRoleName);
 
-    // ×Ô¼º¸Ä´úÂë, ·¢¸øGS¿ÛÔª±¦
+    // è‡ªå·±æ”¹ä»£ç , å‘ç»™GSæ‰£å…ƒå®
     bRet = CMessageHandler::GetInstance().DoGSRoleRealMoneyShopBuyItemReq(pOnlineRole->dwGSSessionID, pOnlineRole->dwCliSessionID,szRoleName, pOnlineRole->pRoleData->dwRoleID, total_cost, nItemID, nItemCount);
     LOG_PROCESS_ERROR(bRet);
 
@@ -137,7 +137,7 @@ void CRealMoneyShop::OnCharge(INT32 nResult, UINT32 dwRoleID, INT32 nItemID, INT
         LOG_PROCESS_ERROR(shop_data);
         LOG_PROCESS_ERROR(buyer_role);
 
-        //Èç¹ûÊÇ½ğ±Ò£¬¼ÇÈÕÖ¾
+        //å¦‚æœæ˜¯é‡‘å¸ï¼Œè®°æ—¥å¿—
         if (nItemID == MONEYTYPE_02)
         {
             nRetCode = CMessageHandler::GetInstance().DoDLRealMoney2Money02(CManageServer::GetInstance().GetGameTime(),
@@ -177,13 +177,13 @@ void CRealMoneyShop::OnCharge(INT32 nResult, UINT32 dwRoleID, INT32 nItemID, INT
 
         if (online_target_role)
         {
-            //Èç¹ûÔÚÏß£¬³¢ÊÔ·¢µ½GSÖ±½Ó½ø°ü
+            //å¦‚æœåœ¨çº¿ï¼Œå°è¯•å‘åˆ°GSç›´æ¥è¿›åŒ…
             BOOL bRet = CMessageHandler::GetInstance().DoGSRealMoneyBuySuccess(online_target_role->dwGSSessionID, online_target_role->pRoleData->dwRoleID, nItemID, shop_data->m_shItemCount, nItemCount, shop_data->m_nOriginalPrice, giver_role_name, dwRoleID);
             LOG_PROCESS_ERROR(bRet);
         }
         else
         {
-            //Èç¹û²»ÔÚÏß£¬·¢ÓÊ¼ş
+            //å¦‚æœä¸åœ¨çº¿ï¼Œå‘é‚®ä»¶
             BOOL bRet;
             char mail_subject[MAIL_SUBJECT_LEN];
             char mail_content[MAIL_CONTENT_LEN];

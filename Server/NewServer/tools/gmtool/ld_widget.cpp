@@ -221,7 +221,7 @@ BOOL CLDWidget::UpdatePrice(INT32 nGroupID, INT32 nSellNum, INT32 nBuyNum, PRICE
 
         QString n;
         n.setNum(i+1);
-        QString s = QString::fromLocal8Bit("Âô") + n;
+        QString s = QString::fromLocal8Bit("å–") + n;
         pTreeWidgetItem->setText(0, s);
         lfPrice = pData[i].nPrice;
         lfPrice /= 100;
@@ -242,7 +242,7 @@ BOOL CLDWidget::UpdatePrice(INT32 nGroupID, INT32 nSellNum, INT32 nBuyNum, PRICE
 
         QString n;
         n.setNum(show_i);
-        QString s = QString::fromLocal8Bit("Âò") + n;
+        QString s = QString::fromLocal8Bit("ä¹°") + n;
         pTreeWidgetItem->setText(0, s);
         lfPrice = pData[i].nPrice;
         lfPrice /= 100;
@@ -364,15 +364,15 @@ BOOL CLDWidget::UpdateOrderDetail(INT32 nGroupID, INT32 nOrderType, INT32 nPrice
 
     memset(pBuffer, 0, BUFFER_LENGTH);
 
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%d\n", "Çø×é", nGroupID);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%d\n", "åŒºç»„", nGroupID);
     if (nOrderType == 2)
-        nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\n", "Âôµ¥");
+        nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\n", "å–å•");
     else
-        nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\n", "Âòµ¥");
+        nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\n", "ä¹°å•");
 
     lfPrice = nPrice;
     lfPrice /= 100;
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n", "¼Û¸ñ", lfPrice);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n", "ä»·æ ¼", lfPrice);
     
 
     m_pDetailDialog = new CDetailDialog(m_nGroupID, this);
@@ -436,19 +436,19 @@ BOOL CLDWidget::ShowTodayStat(INT32 nGroupID,
     lfSysTotalMoney = m_llSysTotalMoney / 10000;
     lfSysTotalExchangeMoney = m_llSysTotalExchangeMoney / 10000;
     lfSysExchangeRMB = (double)m_llSysExchangeRMB / 100;
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf Íò\n", "ÏµÍ³Í¶·ÅÁ¿", lfSysTotalMoney);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf Íò\n", "ÏµÍ³³É½»Á¿", lfSysTotalExchangeMoney);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n", "ÏµÍ³³É½»Ôª±¦", lfSysExchangeRMB);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf ä¸‡\n", "ç³»ç»ŸæŠ•æ”¾é‡", lfSysTotalMoney);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf ä¸‡\n", "ç³»ç»Ÿæˆäº¤é‡", lfSysTotalExchangeMoney);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n", "ç³»ç»Ÿæˆäº¤å…ƒå®", lfSysExchangeRMB);
 
     lfTotalMoney = m_llTotalMoney / 10000;
     lfTotalExchangeMoney = m_llTotalExchangeMoney / 10000;
     lfExchangeRMB = (double)m_llExchangeRMB / 100;
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "\n%s\t%.2lf Íò\n", "Íæ¼ÒÍ¶·ÅÁ¿", lfTotalMoney);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf Íò\n", "Íæ¼Ò³É½»Á¿", lfTotalExchangeMoney);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n", "Íæ¼Ò³É½»Ôª±¦", lfExchangeRMB);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "\n%s\t%.2lf ä¸‡\n", "ç©å®¶æŠ•æ”¾é‡", lfTotalMoney);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf ä¸‡\n", "ç©å®¶æˆäº¤é‡", lfTotalExchangeMoney);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n", "ç©å®¶æˆäº¤å…ƒå®", lfExchangeRMB);
 
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n", "µ±ÈÕÆ½¾ù¼Û", m_lfAveragePriceToday);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n", "Ç°1Ğ¡Ê±Æ½¾ù¼Û", m_lfAveragePriceLastHour);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n", "å½“æ—¥å¹³å‡ä»·", m_lfAveragePriceToday);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n", "å‰1å°æ—¶å¹³å‡ä»·", m_lfAveragePriceLastHour);
 
     ui.label->setText(QString::fromLocal8Bit(pBuffer));
 
@@ -499,37 +499,37 @@ BOOL CLDWidget::ShowYesterdayStat(INT32 nGroupID,
     lfSysTotalMoney = m_llSysTotalMoney / 10000;
     lfSysTotalExchangeMoney = m_llSysTotalExchangeMoney / 10000;
     lfSysExchangeRMB = (double)m_llSysExchangeRMB / 100;
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf Íò\n", "ÏµÍ³Í¶·ÅÁ¿", lfSysTotalMoney);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf Íò\n", "ÏµÍ³³É½»Á¿", lfSysTotalExchangeMoney);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n", "ÏµÍ³³É½»Ôª±¦", lfSysExchangeRMB);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf ä¸‡\n", "ç³»ç»ŸæŠ•æ”¾é‡", lfSysTotalMoney);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf ä¸‡\n", "ç³»ç»Ÿæˆäº¤é‡", lfSysTotalExchangeMoney);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n", "ç³»ç»Ÿæˆäº¤å…ƒå®", lfSysExchangeRMB);
 
     lfTotalMoney = m_llTotalMoney / 10000;
     lfTotalExchangeMoney = m_llTotalExchangeMoney / 10000;
     lfExchangeRMB = (double)m_llExchangeRMB / 100;
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf Íò\n", "Íæ¼ÒÍ¶·ÅÁ¿", lfTotalMoney);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf Íò\n", "Íæ¼Ò³É½»Á¿", lfTotalExchangeMoney);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n", "Íæ¼Ò³É½»Ôª±¦", lfExchangeRMB);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf ä¸‡\n", "ç©å®¶æŠ•æ”¾é‡", lfTotalMoney);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf ä¸‡\n", "ç©å®¶æˆäº¤é‡", lfTotalExchangeMoney);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n", "ç©å®¶æˆäº¤å…ƒå®", lfExchangeRMB);
 
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n", "µ±ÈÕÆ½¾ù¼Û", m_lfAveragePriceToday);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n\n\n", "Ç°1Ğ¡Ê±Æ½¾ù¼Û", m_lfAveragePriceLastHour);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n", "å½“æ—¥å¹³å‡ä»·", m_lfAveragePriceToday);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n\n\n", "å‰1å°æ—¶å¹³å‡ä»·", m_lfAveragePriceLastHour);
 
 
     // yesterday
     lfSysYesTotalMoney = llSysYesTotalMoney / 10000;
     lfSysYesTotalExchangeMoney = llSysYesTotalExchangeMoney / 10000;
     lfSysYesExchangeRMB = (double)llSysYesExchangeRMB / 100;
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf Íò\n", "×òÈÕÏµÍ³Í¶·ÅÁ¿", lfSysYesTotalMoney);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf Íò\n", "×òÈÕÏµÍ³³É½»Á¿", lfSysYesTotalExchangeMoney);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n", "×òÈÕÏµÍ³³É½»Ôª±¦", lfSysYesExchangeRMB);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf ä¸‡\n", "æ˜¨æ—¥ç³»ç»ŸæŠ•æ”¾é‡", lfSysYesTotalMoney);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf ä¸‡\n", "æ˜¨æ—¥ç³»ç»Ÿæˆäº¤é‡", lfSysYesTotalExchangeMoney);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n", "æ˜¨æ—¥ç³»ç»Ÿæˆäº¤å…ƒå®", lfSysYesExchangeRMB);
 
     lfYesTotalMoney = llYesTotalMoney / 10000;
     lfYesTotalExchangeMoney = llYesTotalExchangeMoney / 10000;
     lfYesExchangeRMB = (double)llYesExchangeRMB / 100;
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf Íò\n", "×òÈÕÍæ¼ÒÍ¶·ÅÁ¿", lfYesTotalMoney);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf Íò\n", "×òÈÕÍæ¼Ò³É½»Á¿", lfYesTotalExchangeMoney);
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n", "×òÈÕÍæ¼Ò³É½»Ôª±¦", lfYesExchangeRMB);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf ä¸‡\n", "æ˜¨æ—¥ç©å®¶æŠ•æ”¾é‡", lfYesTotalMoney);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf ä¸‡\n", "æ˜¨æ—¥ç©å®¶æˆäº¤é‡", lfYesTotalExchangeMoney);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%.2lf\n\n", "æ˜¨æ—¥ç©å®¶æˆäº¤å…ƒå®", lfYesExchangeRMB);
 
-    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%d\n\n", "×òÈÕÆ½¾ù¼Û", nAveragePriceToday);
+    nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, "%s\t%d\n\n", "æ˜¨æ—¥å¹³å‡ä»·", nAveragePriceToday);
 
     
     pItemInfo = new CGMItemInfo(this);
@@ -578,7 +578,7 @@ BOOL CLDWidget::OutputStatToFile(UINT32 dwBeginTime, UINT32 dwEndTime, INT32 nGr
     memset(pBuffer, 0, BUFFER_LENGTH);
 
     nLength += snprintf(pBuffer + nLength, BUFFER_LENGTH - nLength, 
-        "¿ªÊ¼Ê±¼ä\t½áÊøÊ±¼ä\tÏµÍ³Í¶·ÅÁ¿\tÏµÍ³³É½»Á¿\tÏµÍ³³É½»Ôª±¦\tÍæ¼ÒÍ¶·ÅÁ¿\tÍæ¼Ò³É½»Á¿\tÍæ¼Ò³É½»Ôª±¦\tÆ½¾ù¼Û\n");
+        "å¼€å§‹æ—¶é—´\tç»“æŸæ—¶é—´\tç³»ç»ŸæŠ•æ”¾é‡\tç³»ç»Ÿæˆäº¤é‡\tç³»ç»Ÿæˆäº¤å…ƒå®\tç©å®¶æŠ•æ”¾é‡\tç©å®¶æˆäº¤é‡\tç©å®¶æˆäº¤å…ƒå®\tå¹³å‡ä»·\n");
 
     tTime = dwBeginTime;
     pTMBegin = localtime(&tTime);
@@ -678,7 +678,7 @@ void CLDWidget::ChangeGroup()
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
@@ -703,7 +703,7 @@ void CLDWidget::MoreTradeInfo()
 
     if (m_nGroupID < 1 || m_nGroupID > (MAX_SERVER_GROUP_COUNT - 1))
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·şÎñÆ÷Çø×é²»¶Ô"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœåŠ¡å™¨åŒºç»„ä¸å¯¹"), QMessageBox::Yes);
         return;
     }
 
@@ -724,7 +724,7 @@ void CLDWidget::ExportTradeInfo()
 
     if (m_nGroupID < 1 || m_nGroupID >(MAX_SERVER_GROUP_COUNT - 1))
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·şÎñÆ÷Çø×é²»¶Ô"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœåŠ¡å™¨åŒºç»„ä¸å¯¹"), QMessageBox::Yes);
         return;
     }
 
@@ -749,18 +749,18 @@ void CLDWidget::AddOrder()
 
     if (nGroupID < 1 || nGroupID > (MAX_SERVER_GROUP_COUNT - 1))
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·şÎñÆ÷Çø×é²»¶Ô"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœåŠ¡å™¨åŒºç»„ä¸å¯¹"), QMessageBox::Yes);
         return;
     }
 
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
-    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("×¢Òâ"), QString::fromLocal8Bit("ÊÇ·ñÈ·¶¨µ¥¼Û¼Óµ¥"));
+    QMessageBox::StandardButton  nCheckEnum = QMessageBox::question(this, QString::fromLocal8Bit("æ³¨æ„"), QString::fromLocal8Bit("æ˜¯å¦ç¡®å®šå•ä»·åŠ å•"));
     if (nCheckEnum == QMessageBox::Yes)
     {
         nRetCode = CMessageHandler::GetInstance().DoAddSystemOrder(nGroupID, nPrice, nCount);
@@ -799,14 +799,14 @@ void CLDWidget::OrderDetail(QTreeWidgetItem * item, int column)
 
     if (m_nGroupID < 1 || m_nGroupID >(MAX_SERVER_GROUP_COUNT - 1))
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·şÎñÆ÷Çø×é²»¶Ô"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœåŠ¡å™¨åŒºç»„ä¸å¯¹"), QMessageBox::Yes);
         return;
     }
 
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
@@ -830,14 +830,14 @@ void CLDWidget::OrderDetail_2(QTreeWidgetItem * item, int column)
 
     if (m_nGroupID < 1 || m_nGroupID >(MAX_SERVER_GROUP_COUNT - 1))
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·şÎñÆ÷Çø×é²»¶Ô"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœåŠ¡å™¨åŒºç»„ä¸å¯¹"), QMessageBox::Yes);
         return;
     }
 
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 
@@ -854,14 +854,14 @@ void CLDWidget::SetExchangeLimit()
 
     if (m_nGroupID < 1 || m_nGroupID >(MAX_SERVER_GROUP_COUNT - 1))
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·şÎñÆ÷Çø×é²»¶Ô"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æœåŠ¡å™¨åŒºç»„ä¸å¯¹"), QMessageBox::Yes);
         return;
     }
 
     nRetCode = CServerMgr::GetInstance().IsSingleSelected();
     if (nRetCode == FALSE)
     {
-        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ò»´ÎÖ»ÄÜÖ´ĞĞÒ»¸öÇø·ş"), QMessageBox::Yes);
+        QMessageBox::critical(this, "critical", QString::fromLocal8Bit("ä¸€æ¬¡åªèƒ½æ‰§è¡Œä¸€ä¸ªåŒºæœ"), QMessageBox::Yes);
         return;
     }
 

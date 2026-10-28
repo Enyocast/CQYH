@@ -20,7 +20,7 @@ class CLuaScript;
 
 struct BTNod;
 
-// 额外添加刷新怪物
+// 棰濆娣诲姞鍒锋柊鎬墿
 struct ADD_NPC_SPAWN_POINT
 {
     INT32                   nID;
@@ -320,7 +320,7 @@ public:
 
     const NPC_POSITION* GetNpcPosition(INT32 nTemplateID) const;
 
-    // 额外添加刷新怪物
+    // 棰濆娣诲姞鍒锋柊鎬墿
     void Init_AdditionalProcessNpcs();
 
 private:
@@ -353,7 +353,7 @@ private:
     typedef std::map<INT32, NPC_POSITION> NPC_POS_MAP;
     NPC_POS_MAP m_NpcPosMap;
 
-    // key = 地图ID, value = 额外添加刷新怪物
+    // key = 鍦板浘ID, value = 棰濆娣诲姞鍒锋柊鎬墿
     std::map<INT32, std::vector<ADD_NPC_SPAWN_POINT>> m_vecAddSpawnNpcs;
     std::map<INT32, std::set<INT32>> m_mapBlockNpc;
 };

@@ -18,10 +18,10 @@ g_GameWorld = CGameWorld:GetInstance();
 --g_DropGenerator = CDropGenerator:GetInstance();
 
 
--- ½ÇÉ«±äÁ¿µÄindex 190 ¼ÇÂ¼µÄÊÇÔö¼ÓµÄ¹«»á×ÊÔ´ÊıÁ¿
+-- è§’è‰²å˜é‡çš„index 190 è®°å½•çš„æ˜¯å¢åŠ çš„å…¬ä¼šèµ„æºæ•°é‡
 
 
--- ×ÊÔ´×ª»»³É¶àÉÙ¹±Ï×
+-- èµ„æºè½¬æ¢æˆå¤šå°‘è´¡çŒ®
 function CalcContribute(res_count)
 	return res_count / 10;
 end
@@ -35,7 +35,7 @@ function GetItemCount(owner, itemid, bIncludeBank)
 end
 
 
--- ¼ì²éÃ¿ÈÕ×ÊÔ´¾èÏ×ÉÏÏŞ
+-- æ£€æŸ¥æ¯æ—¥èµ„æºæçŒ®ä¸Šé™
 function CheckCanDonateRes(owner, res_type, res_count)
 	local processor = owner:GetAIProcessor();
 	local npc = Cast(processor:GetOwner(), 'CNpc');
@@ -54,7 +54,7 @@ function CheckCanDonateRes(owner, res_type, res_count)
 		return brvFail;
 	end
 
-	-- ¼ì²éÉÏÏŞ
+	-- æ£€æŸ¥ä¸Šé™
 	local final_res = role:GetRoleGuildData():CalculateResLimit(member.nPosition, res_count);
     if final_res < res_count then
 		return brvFail;
@@ -63,7 +63,7 @@ function CheckCanDonateRes(owner, res_type, res_count)
 	return brvSuccess;
 end
 
--- Ôö¼Ó¹«»áÁ¸Ê³£¬ÎŞ¹±Ï×
+-- å¢åŠ å…¬ä¼šç²®é£Ÿï¼Œæ— è´¡çŒ®
 function GuildHerbNoContribute(owner, res_count)
 	local processor = owner:GetAIProcessor();
 	local npc = Cast(processor:GetOwner(), 'CNpc');
@@ -74,19 +74,19 @@ function GuildHerbNoContribute(owner, res_count)
 	local guild = CGuildMgr:GetInstance():FindGuild(role:GetGuildID());
 	local member = guild:GetMember(role:GetObjID());
 
-	-- ¼ì²éÉÏÏŞ
+	-- æ£€æŸ¥ä¸Šé™
 	local final_res = role:GetRoleGuildData():CalculateResLimit(member.nPosition, res_count);
     if final_res == 0 then
 		return brvFail;
 	end
 
-	-- Ôö¼ÓÁ¸Ê³
+	-- å¢åŠ ç²®é£Ÿ
 	SendMSToAddRes(role:GetObjID(), GUILD_ATTR_HERB, final_res);
 
 	return brvSuccess;
 end
 
--- ¹«»áÄ¾²Ä£¬ÎŞ¹±Ï×
+-- å…¬ä¼šæœ¨æï¼Œæ— è´¡çŒ®
 function GuildWoodNoContribute(owner, res_count)
 	local processor = owner:GetAIProcessor();
 	local npc = Cast(processor:GetOwner(), 'CNpc');
@@ -97,7 +97,7 @@ function GuildWoodNoContribute(owner, res_count)
 	local guild = CGuildMgr:GetInstance():FindGuild(role:GetGuildID());
 	local member = guild:GetMember(role:GetObjID());
 
-	-- ¼ì²éÉÏÏŞ
+	-- æ£€æŸ¥ä¸Šé™
 	local final_res = role:GetRoleGuildData():CalculateResLimit(member.nPosition, res_count);
     if final_res == 0 then
 		return brvFail;
@@ -108,7 +108,7 @@ function GuildWoodNoContribute(owner, res_count)
 	return brvSuccess;
 end
 
--- ¹«»áÊ¯²Ä£¬ÎŞ¹±Ï×
+-- å…¬ä¼šçŸ³æï¼Œæ— è´¡çŒ®
 function GuildCrystalNoContribute(owner, res_count)
 	local processor = owner:GetAIProcessor();
 	local npc = Cast(processor:GetOwner(), 'CNpc');
@@ -119,7 +119,7 @@ function GuildCrystalNoContribute(owner, res_count)
 	local guild = CGuildMgr:GetInstance():FindGuild(role:GetGuildID());
 	local member = guild:GetMember(role:GetObjID());
 
-	-- ¼ì²éÉÏÏŞ
+	-- æ£€æŸ¥ä¸Šé™
 	local final_res = role:GetRoleGuildData():CalculateResLimit(member.nPosition, res_count);
     if final_res == 0 then
 		return brvFail;
@@ -130,7 +130,7 @@ function GuildCrystalNoContribute(owner, res_count)
 	return brvSuccess;
 end
 
--- ¹«»áÌú¿ó£¬ÎŞ¹±Ï×
+-- å…¬ä¼šé“çŸ¿ï¼Œæ— è´¡çŒ®
 function GuildSilverNoContribute(owner, res_count)
 	local processor = owner:GetAIProcessor();
 	local npc = Cast(processor:GetOwner(), 'CNpc');
@@ -141,7 +141,7 @@ function GuildSilverNoContribute(owner, res_count)
 	local guild = CGuildMgr:GetInstance():FindGuild(role:GetGuildID());
 	local member = guild:GetMember(role:GetObjID());
 
-	-- ¼ì²éÉÏÏŞ
+	-- æ£€æŸ¥ä¸Šé™
 	local final_res = role:GetRoleGuildData():CalculateResLimit(member.nPosition, res_count);
     if final_res == 0 then
 		return brvFail;

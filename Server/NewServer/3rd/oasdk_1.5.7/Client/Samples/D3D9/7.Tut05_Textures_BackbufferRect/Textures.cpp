@@ -35,7 +35,7 @@
 #include "SDOADx9.h"
 #include "SDOACfg.h"
 
-/* ½ÓÈëÏà¹ØÈ«¾Ö±äÁ¿  */
+/* æ¥å…¥ç›¸å…³å…¨å±€å˜é‡  */
 HINSTANCE          g_hInstIGWDll = 0;
 LPigwInitialize    igwInitialize = NULL;
 LPigwGetModule     igwGetModule = NULL;
@@ -45,7 +45,7 @@ ISDOADx9*			g_SDOADx9 = NULL;
 ISDOAApp*			g_SDOAApp = NULL;
 ISDOACfg*			g_SDOACfg = NULL;
 
-/* ÊÍ·ÅIGW */
+/* é‡Šæ”¾IGW */
 void CloseIGW()
 {
 	if (g_SDOADx9)
@@ -67,7 +67,7 @@ void CloseIGW()
 	}
 
 	if (igwTerminal)
-	{  // ÊÍ·ÅDLLÇ°×ÜÊÇÏÈµ÷ÓÃigwTerminal
+	{  // é‡Šæ”¾DLLå‰æ€»æ˜¯å…ˆè°ƒç”¨igwTerminal
 		igwTerminal();
 		igwTerminal = NULL;
 	}
@@ -79,7 +79,7 @@ void CloseIGW()
 	igwInitialize = NULL;
 }
 
-/* ¼ÓÔØIGW */
+/* åŠ è½½IGW */
 void OpenIGW()
 {
 	WCHAR strExePath[MAX_PATH] = {0};
@@ -89,7 +89,7 @@ void OpenIGW()
 	strExePath[MAX_PATH-1]=0;
 	strLastSlash = wcsrchr( strExePath, TEXT('\\') );
 	if( strLastSlash )
-	{	// µÃµ½EXEËùÔÚÂ·¾¶
+	{	// å¾—åˆ°EXEæ‰€åœ¨è·¯å¾„
 		StringCchCopyW( strExeName, MAX_PATH, &strLastSlash[1] );
 		*strLastSlash = 0;
 		strLastSlash = wcsrchr( strExeName, TEXT('.') );
@@ -101,13 +101,13 @@ void OpenIGW()
 	StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\GameWidget.dll", strExePath );
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // Èç¹û³ÌĞòÔËĞĞÂ·¾¶ÖĞ²»´æÔÚÔò»»¸öÂ·¾¶ÔÙÊÔ
+	{ // å¦‚æœç¨‹åºè¿è¡Œè·¯å¾„ä¸­ä¸å­˜åœ¨åˆ™æ¢ä¸ªè·¯å¾„å†è¯•
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // Èç¹û³ÌĞòÔËĞĞÂ·¾¶ÖĞ²»´æÔÚÔò»»¸öÂ·¾¶ÔÙÊÔ
+	{ // å¦‚æœç¨‹åºè¿è¡Œè·¯å¾„ä¸­ä¸å­˜åœ¨åˆ™æ¢ä¸ªè·¯å¾„å†è¯•
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
@@ -115,7 +115,7 @@ void OpenIGW()
 	CloseIGW();
 
 	if ( GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF )
-	{	// ÕÒµ½×é¼şÔò¼ÓÔØ	
+	{	// æ‰¾åˆ°ç»„ä»¶åˆ™åŠ è½½	
 		g_hInstIGWDll = LoadLibraryW(strGameWidgetDll);
 		if (g_hInstIGWDll)
 		{
@@ -124,23 +124,23 @@ void OpenIGW()
 			igwTerminal = (LPigwTerminal)GetProcAddress( g_hInstIGWDll, "igwTerminal" );
 			if ( igwInitialize && igwGetModule && igwTerminal)
 			{
-				// ¼ÓÔØ³É¹¦
+				// åŠ è½½æˆåŠŸ
 
-				// ×¢ÒâAppInfoÀàĞÍËùÓĞ×Ö¶Î±ØĞëÌî
+				// æ³¨æ„AppInfoç±»å‹æ‰€æœ‰å­—æ®µå¿…é¡»å¡«
 				AppInfo tmpAppInfo = {
-					sizeof(AppInfo),       // ½á¹¹Ìå´óĞ¡£¬·½±ãÀ©Õ¹
-					9999,                  // ½ÓÈëÓ¦ÓÃID£¬´Ó¿ª·¢ÕßÍøÕ¾ÖĞÉêÇë
-					L"ÁúÌ¶»¢Ñ¨OnLine",     // Ó¦ÓÃÃû³Æ
-					L"0.1.2.0",            // Ó¦ÓÃ¿Í»§¶Ëµ±Ç°°æ±¾ºÅ
-					SDOA_RENDERTYPE_D3D9,  // ¿Í»§¶ËÖ§³ÖµÄÍ¼ĞÎÒıÇæÀàĞÍ£¬ÕâÀïÍ¬Ê±Ö§³Öd3d9ºÍd3d8
-					1,                     // ¿ÉÍ¬Ê±ÔÚÒ»Ì¨»úÆ÷ÉÏÓÎÏ·µÄ×î´óÈËÊı£¨Í¨³£Îª1£¬ÀıÈç:KOFÓ¦¸ÃÊÇ2£©
-					-1,                    // ÓÎÏ·ÇøID£¬²»¿ÉÓÃÊ±´«Èë-1
-					-1                     // ÓÎÏ·×éID£¬²»¿ÉÓÃÊ±´«Èë-1
+					sizeof(AppInfo),       // ç»“æ„ä½“å¤§å°ï¼Œæ–¹ä¾¿æ‰©å±•
+					9999,                  // æ¥å…¥åº”ç”¨IDï¼Œä»å¼€å‘è€…ç½‘ç«™ä¸­ç”³è¯·
+					L"é¾™æ½­è™ç©´OnLine",     // åº”ç”¨åç§°
+					L"0.1.2.0",            // åº”ç”¨å®¢æˆ·ç«¯å½“å‰ç‰ˆæœ¬å·
+					SDOA_RENDERTYPE_D3D9,  // å®¢æˆ·ç«¯æ”¯æŒçš„å›¾å½¢å¼•æ“ç±»å‹ï¼Œè¿™é‡ŒåŒæ—¶æ”¯æŒd3d9å’Œd3d8
+					1,                     // å¯åŒæ—¶åœ¨ä¸€å°æœºå™¨ä¸Šæ¸¸æˆçš„æœ€å¤§äººæ•°ï¼ˆé€šå¸¸ä¸º1ï¼Œä¾‹å¦‚:KOFåº”è¯¥æ˜¯2ï¼‰
+					-1,                    // æ¸¸æˆåŒºIDï¼Œä¸å¯ç”¨æ—¶ä¼ å…¥-1
+					-1                     // æ¸¸æˆç»„IDï¼Œä¸å¯ç”¨æ—¶ä¼ å…¥-1
 
 				};
 
 				if (igwInitialize(SDOA_SDK_VERSION, &tmpAppInfo) == SDOA_OK)
-				{	// ³õÊ¼»¯×é¼ş³É¹¦
+				{	// åˆå§‹åŒ–ç»„ä»¶æˆåŠŸ
 
 					igwGetModule(__uuidof(ISDOADx9), (void**)&g_SDOADx9);
 					igwGetModule(__uuidof(ISDOAApp), (void**)&g_SDOAApp);
@@ -150,10 +150,10 @@ void OpenIGW()
 						CloseIGW();
 
 				}
-				else // ³õÊ¼»¯Ê§°ÜÇå³ı»·¾³
+				else // åˆå§‹åŒ–å¤±è´¥æ¸…é™¤ç¯å¢ƒ
 					CloseIGW();
 			}
-			else  // ¼ÓÔØDLLÊ§°ÜÇå³ı»·¾³
+			else  // åŠ è½½DLLå¤±è´¥æ¸…é™¤ç¯å¢ƒ
 				CloseIGW();
 		}
 	}	
@@ -169,18 +169,18 @@ LPDIRECT3DVERTEXBUFFER9 g_pVB        = NULL; // Buffer to hold vertices
 LPDIRECT3DTEXTURE9      g_pTexture   = NULL; // Our texture
 D3DPRESENT_PARAMETERS	d3dpp;
 bool					g_DeviceLost = false;
-// ÊÇ·ñ±ä»»
+// æ˜¯å¦å˜æ¢
 bool					g_SetupMatrices = true;
 HWND					g_MainWin_hWnd = 0;
-// µ±Ç°´°¿ÚµÄ´óĞ¡
+// å½“å‰çª—å£çš„å¤§å°
 int						g_WinWidth = 640;
 int						g_WinHeight = 480;
-// ÔÚ´°¿ÚÖĞÏÔÊ¾µÄÇøÓò
+// åœ¨çª—å£ä¸­æ˜¾ç¤ºçš„åŒºåŸŸ
 RECT					g_WinRenderRect = {0, 0, g_WinWidth, g_WinHeight};
-// Ê¹ÓÃD3D±³¾°»º³åµÄÇøÓò£¨½öÔÚ´°¿ÚÄ£Ê½ÏÂÓĞĞ§£©
+// ä½¿ç”¨D3DèƒŒæ™¯ç¼“å†²çš„åŒºåŸŸï¼ˆä»…åœ¨çª—å£æ¨¡å¼ä¸‹æœ‰æ•ˆï¼‰
 //RECT					g_D3DRenderRect = g_WinRenderRect;
 RECT					g_D3DRenderRect = {100, 100, g_WinWidth + 100, g_WinHeight + 100};
-// ÊÇ·ñÎª´°¿ÚÄ£Ê½
+// æ˜¯å¦ä¸ºçª—å£æ¨¡å¼
 BOOL					g_IsWindow = TRUE;
 
 // A structure for our custom vertex type. We added texture coordinates
@@ -201,7 +201,7 @@ struct CUSTOMVERTEX
 #endif
 
 
-// »­¸ö¿ò¿òĞèÒªµÄÈ«¾Ö±äÁ¿
+// ç”»ä¸ªæ¡†æ¡†éœ€è¦çš„å…¨å±€å˜é‡
 LPDIRECT3DVERTEXBUFFER9 g_pVB_MyRect			= NULL; 
 LPDIRECT3DINDEXBUFFER9	g_pIndexVB_MyRect		= NULL;
 struct CUSTOMVERTEX_MYRECT
@@ -237,7 +237,7 @@ HRESULT InitD3D( HWND hWnd )
 	d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
 	d3dpp.FullScreen_RefreshRateInHz = D3DPRESENT_INTERVAL_DEFAULT;
 	d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
-	// Èç¹ûÊ¹ÓÃ´¹Ö±Ë¢ĞÂÍ¬²½ÔòÒÔÏÂ²ÎÊı
+	// å¦‚æœä½¿ç”¨å‚ç›´åˆ·æ–°åŒæ­¥åˆ™ä»¥ä¸‹å‚æ•°
 	//d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_ONE;	
 	d3dpp.MultiSampleType = D3DMULTISAMPLE_NONE;
 	d3dpp.BackBufferWidth = 800;
@@ -247,20 +247,20 @@ HRESULT InitD3D( HWND hWnd )
 	D3DDISPLAYMODE tmpMode;
 	
 	if ( D3D_OK == g_pD3D->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &tmpMode) )
-	{	// ÄÜÈ¡µ½±³¾°¸ñÊ½ÔòÉèÖÃ
+	{	// èƒ½å–åˆ°èƒŒæ™¯æ ¼å¼åˆ™è®¾ç½®
 		d3dpp.BackBufferFormat = tmpMode.Format;
 		if ( !d3dpp.Windowed )
-		{// È«ÆÁÄ£Ê½ÏÂÊ¹ÓÃ»ñÈ¡µ½µÄË¢ĞÂÂÊ
+		{// å…¨å±æ¨¡å¼ä¸‹ä½¿ç”¨è·å–åˆ°çš„åˆ·æ–°ç‡
 		  d3dpp.FullScreen_RefreshRateInHz = tmpMode.RefreshRate;
 		}
 	}
 	if (d3dpp.Windowed)	
-	{	// ´°¿ÚÄ£Ê½
+	{	// çª—å£æ¨¡å¼
 		SetWindowLong(hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW);
 		SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0,SWP_NOSIZE | SWP_SHOWWINDOW | SWP_DRAWFRAME | SWP_FRAMECHANGED);
 	}
 	else
-	{	// È«ÆÁÄ£Ê½
+	{	// å…¨å±æ¨¡å¼
 		SetWindowLong(hWnd, GWL_STYLE, WS_POPUP | WS_VISIBLE);
 		SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0,SWP_NOSIZE | SWP_SHOWWINDOW | SWP_DRAWFRAME | SWP_FRAMECHANGED);
 	}
@@ -268,11 +268,11 @@ HRESULT InitD3D( HWND hWnd )
 	if( FAILED( g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
 		D3DCREATE_HARDWARE_VERTEXPROCESSING,
 		&d3dpp, &g_pd3dDevice ) ) )
-	{	// ÓÅÏÈÊ¹ÓÃÓ²¼ş¶¥µã´¦Àí
+	{	// ä¼˜å…ˆä½¿ç”¨ç¡¬ä»¶é¡¶ç‚¹å¤„ç†
 		if( FAILED( g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
 			D3DCREATE_SOFTWARE_VERTEXPROCESSING,
 			&d3dpp, &g_pd3dDevice ) ) )
-		{	// Ó²¼ş¶¥µã´¦ÀíÖ§³Ö´´½¨Ê§°ÜÔòÓÃÈí¼şµÄ
+		{	// ç¡¬ä»¶é¡¶ç‚¹å¤„ç†æ”¯æŒåˆ›å»ºå¤±è´¥åˆ™ç”¨è½¯ä»¶çš„
 			return E_FAIL;
 		}
 	}
@@ -291,23 +291,23 @@ HRESULT InitD3D( HWND hWnd )
 
 bool CreateRenderRes()
 {
-	// ÖØ½¨»æÖÆ×ÊÔ´
+	// é‡å»ºç»˜åˆ¶èµ„æº
 	if ( !g_pd3dDevice )
 		return false;
 
-	// ¶¥µãË÷Òı
+	// é¡¶ç‚¹ç´¢å¼•
 	unsigned short MyRectTriList[] =
 	{
 		0, 1, 2,
 		2, 1, 3
 	};
-	// ¶¥µãÎ»ÖÃ
+	// é¡¶ç‚¹ä½ç½®
 	float fWidth, fHeight;
 	fWidth = 640 - 1.0;
 	fHeight = 480 - 1.0;
 
 
-	// ¶¥µãÎ»ÖÃ
+	// é¡¶ç‚¹ä½ç½®
 	CUSTOMVERTEX_MYRECT MyRectVertex[4] = 
 	{
 		{ 0.0f,		0.0f,	0.0f, 1.0f, 0xffff0000, 0.0f, 0.0f }, // x, y, z, rhw, color, u, v
@@ -458,7 +458,7 @@ VOID SetupMatrices()
     D3DXMATRIXA16 matWorld;
     D3DXMatrixIdentity( &matWorld );
 	if (g_SetupMatrices)
-	{// ÔÊĞíĞı×ª
+	{// å…è®¸æ—‹è½¬
 		g_Angle = timeGetTime()/1000.0f;
 	}
     D3DXMatrixRotationX( &matWorld, g_Angle );
@@ -501,7 +501,7 @@ VOID Render()
     {
 
 		if (g_pVB_MyRect)
-		{	// ¼òµ¥µÄ»­¸ö¿ò¿ò£¬×ö¸ö²Î¿¼Öµ
+		{	// ç®€å•çš„ç”»ä¸ªæ¡†æ¡†ï¼Œåšä¸ªå‚è€ƒå€¼
 			g_pd3dDevice->SetTexture( 0, NULL );
 			g_pd3dDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 			g_pd3dDevice->SetStreamSource( 0, g_pVB_MyRect, 0, sizeof(CUSTOMVERTEX_MYRECT) );
@@ -574,12 +574,12 @@ VOID Render()
     }
 	
 	if (g_IsWindow)
-	{// ´°¿ÚÄ£Ê½
-		// g_D3DRenderRectÎªÖ¸¶¨½«±³¾°»º³åÄÄÒ»²¿·ÖÇøÓò·­×ªµ½Ç°¾°»º³åÖĞ(¼´ÏÔÊ¾)
+	{// çª—å£æ¨¡å¼
+		// g_D3DRenderRectä¸ºæŒ‡å®šå°†èƒŒæ™¯ç¼“å†²å“ªä¸€éƒ¨åˆ†åŒºåŸŸç¿»è½¬åˆ°å‰æ™¯ç¼“å†²ä¸­(å³æ˜¾ç¤º)
 		g_pd3dDevice->Present( &g_D3DRenderRect, &g_WinRenderRect, g_MainWin_hWnd, NULL );
 	}
 	else
-	{// È«ÆÁÄ£Ê½
+	{// å…¨å±æ¨¡å¼
 		// Present the backbuffer contents to the display
 		g_pd3dDevice->Present( NULL, NULL, NULL, NULL );
 	}
@@ -590,12 +590,12 @@ void RefreshUseBackBuffer()
 	if (g_SDOACfg)
 	{
 		if (g_IsWindow)
-		{// ½ö´°¿ÚÄ£Ê½ÏÂ²ÅÓĞĞ§µÄ
-			// Í¨Öªµ±Ç°Í¼ĞÎÒıÇæÊ¹ÓÃ±³¾°»º³åµÄÇøÓòÊÇÄÄÒ»²¿·Ö
+		{// ä»…çª—å£æ¨¡å¼ä¸‹æ‰æœ‰æ•ˆçš„
+			// é€šçŸ¥å½“å‰å›¾å½¢å¼•æ“ä½¿ç”¨èƒŒæ™¯ç¼“å†²çš„åŒºåŸŸæ˜¯å“ªä¸€éƒ¨åˆ†
 			g_SDOACfg->SetUseBackBufferRect(g_D3DRenderRect);
 		}
 		else
-		{// ÕæÈ«ÆÁÄ£Ê½ÏÂÎŞ·¨½öÊ¹ÓÃ²¿·Ö±³¾°»º³åÇøÓòµÄ
+		{// çœŸå…¨å±æ¨¡å¼ä¸‹æ— æ³•ä»…ä½¿ç”¨éƒ¨åˆ†èƒŒæ™¯ç¼“å†²åŒºåŸŸçš„
 			g_D3DRenderRect.left = 0;
 			g_D3DRenderRect.top = 0;
 			g_D3DRenderRect.bottom = 0;
@@ -612,7 +612,7 @@ void RefreshUseBackBuffer()
 LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 {
 	if(g_SDOADx9) 
-	{	// °ÑÏûÏ¢½»¸øIGWÄ£¿é´¦Àí 
+	{	// æŠŠæ¶ˆæ¯äº¤ç»™IGWæ¨¡å—å¤„ç† 
 		LRESULT lResult = 0; 
 		if (g_SDOADx9->OnWindowProc( hWnd, msg, wParam, lParam, &lResult ) == SDOA_OK ) 
 		{ 			
@@ -622,7 +622,7 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
     switch( msg )
     {
 		case WM_SIZE:
-			{	// ×¢ÒâÕâÀïÊÕµ½µÄ´°¿Ú´óĞ¡×ÜÊÇ¿Í»§Çø´óĞ¡
+			{	// æ³¨æ„è¿™é‡Œæ”¶åˆ°çš„çª—å£å¤§å°æ€»æ˜¯å®¢æˆ·åŒºå¤§å°
 				g_WinWidth = LOWORD(lParam);
 				g_WinHeight = HIWORD(lParam);
 				g_WinRenderRect.right = g_WinWidth;
@@ -674,11 +674,11 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 			 DWORD dwMask = (1 << 29);
 			 bool bAltDown = ( (lParam & dwMask) != 0 );
 			 if (bAltDown && (VK_RETURN == wParam))
-			 {	// ÔÚÈ«ÆÁÓë´°¿ÚÄ£Ê½¼äÇĞ»»£¬Ê¹ÓÃ±¿°ì·¨È«²¿ÖØ½¨
+			 {	// åœ¨å…¨å±ä¸çª—å£æ¨¡å¼é—´åˆ‡æ¢ï¼Œä½¿ç”¨ç¬¨åŠæ³•å…¨éƒ¨é‡å»º
 				g_IsWindow = !g_IsWindow;
 				OutputDebugStr("MsgProc WM_SYSKEYDOWN ALT+ENTER begin\n");
 				if (g_SDOADx9)
-				{	// ÊÍ·ÅÍ¼ĞÎÒıÇæ×ÊÔ´
+				{	// é‡Šæ”¾å›¾å½¢å¼•æ“èµ„æº
 					g_SDOADx9->Finalize();
 				}
 				Cleanup();
@@ -686,7 +686,7 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 				GetClientRect(g_MainWin_hWnd, &g_D3DRenderRect);
 				RefreshUseBackBuffer();
 				if (g_SDOADx9)
-				{	// ³õÊ¼»¯IGWÄÚ²¿Í¼ĞÎÒıÇæ
+				{	// åˆå§‹åŒ–IGWå†…éƒ¨å›¾å½¢å¼•æ“
 					g_SDOADx9->Initialize(g_pd3dDevice, &d3dpp, false);
 				}
 				InitGeometry();
@@ -696,7 +696,7 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 			 }
 
 			 if (bAltDown && (VK_HOME == wParam))
-			 {// ²âÊÔÏÔÊ¾Êı¾İ				
+			 {// æµ‹è¯•æ˜¾ç¤ºæ•°æ®				
 				if (g_SDOACfg) 
 				{
 					RECT MySetUseBackBufferRect = {0, 0, 0, 0};
@@ -726,7 +726,7 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 }
 
 void CALLBACK OnLostDevice()
-{   /* Í¨Öªd3dÉè±¸¶ªÊ§ */
+{   /* é€šçŸ¥d3dè®¾å¤‡ä¸¢å¤± */
 	if ( g_pVB_MyRect != NULL )
 	{
 		g_pVB_MyRect->Release();
@@ -757,7 +757,7 @@ void CALLBACK OnLostDevice()
 
 void CALLBACK OnResetDevice()
 {
-	/* Í¨Öªd3dÉè±¸ÖØÖÃ³É¹¦ */
+	/* é€šçŸ¥d3dè®¾å¤‡é‡ç½®æˆåŠŸ */
 	InitGeometry();
 	if ( g_pd3dDevice )
 	{
@@ -795,7 +795,7 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
                               NULL, NULL, wc.hInstance, NULL );
 	RECT rtCurRect;
 	GetClientRect(g_MainWin_hWnd, &rtCurRect);
-	// ×¢ÒâCreateWindowµÄ´°¿Ú´óĞ¡°üÀ¨±êÌâÓë±ß¿òµÄ£¬ÏÂÃæ×¼È·µÄÉèÖÃ¿Í»§ÇøµÄ´óĞ¡
+	// æ³¨æ„CreateWindowçš„çª—å£å¤§å°åŒ…æ‹¬æ ‡é¢˜ä¸è¾¹æ¡†çš„ï¼Œä¸‹é¢å‡†ç¡®çš„è®¾ç½®å®¢æˆ·åŒºçš„å¤§å°
 	SetWindowPos(g_MainWin_hWnd, HWND_TOP, 0, 0, 
 		g_WinWidth - (rtCurRect.right - rtCurRect.left) + g_WinWidth, 
 		g_WinHeight - (rtCurRect.bottom - rtCurRect.top) + g_WinHeight, SWP_NOZORDER + SWP_NOACTIVATE);
@@ -805,12 +805,12 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
     {
 		OpenIGW();
 		if (igwInitialize)
-		{	// ËµÃ÷¼ÓÔØ³É¹¦£¬±íÊ¾ÏÂ......			
-			SetWindowText(g_MainWin_hWnd, "D3D Tutorial [¼ÓÔØIGW×é¼ş³É¹¦]");
+		{	// è¯´æ˜åŠ è½½æˆåŠŸï¼Œè¡¨ç¤ºä¸‹......			
+			SetWindowText(g_MainWin_hWnd, "D3D Tutorial [åŠ è½½IGWç»„ä»¶æˆåŠŸ]");
 		}	
 		RefreshUseBackBuffer();
 		if (g_SDOADx9)
-		{	// ³õÊ¼»¯IGWÄÚ²¿Í¼ĞÎÒıÇæ
+		{	// åˆå§‹åŒ–IGWå†…éƒ¨å›¾å½¢å¼•æ“
 			g_SDOADx9->Initialize(g_pd3dDevice, &d3dpp, false);
 		}
         // Create the scene geometry
@@ -831,9 +831,9 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
                     DispatchMessage( &msg );
                 }
                 else
-				{	// ¼òµ¥´¦ÀíÉè±¸¶ªÊ§ÎÊÌâ
+				{	// ç®€å•å¤„ç†è®¾å¤‡ä¸¢å¤±é—®é¢˜
 					if (g_DeviceLost)
-					{	// ´¦ÓÚÉè±¸¶ªÊ§ÖĞ¿ÉÂıµã»Ö¸´£¬±ÜÃâ³¤Ê±¼ä¶ªÊ§Õ¼ÓÃ¹ı¶àCPU
+					{	// å¤„äºè®¾å¤‡ä¸¢å¤±ä¸­å¯æ…¢ç‚¹æ¢å¤ï¼Œé¿å…é•¿æ—¶é—´ä¸¢å¤±å ç”¨è¿‡å¤šCPU
 						Sleep(100);
 					}
 					if (g_pd3dDevice)
@@ -841,7 +841,7 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 						switch (g_pd3dDevice->TestCooperativeLevel())
 						{
 						case D3D_OK:
-							{	// »æÖÆ
+							{	// ç»˜åˆ¶
 								if (g_pTexture && g_pVB)
 									Render();
 								g_DeviceLost = false;
@@ -874,12 +874,12 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
     }
 
 	if (g_SDOADx9)
-	{	// ÊÍ·ÅIGWÄÚ²¿Í¼ĞÎÒıÇæ
+	{	// é‡Šæ”¾IGWå†…éƒ¨å›¾å½¢å¼•æ“
 		g_SDOADx9->Finalize();
 	}
-	/* ÊÍ·ÅIGW */
+	/* é‡Šæ”¾IGW */
 	CloseIGW();
-	/* ÍêÈ«µÚÒ» */
+	/* å®Œå…¨ç¬¬ä¸€ */
 	Cleanup();
     UnregisterClass( "D3D Tutorial", wc.hInstance );
     return 0;

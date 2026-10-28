@@ -3,7 +3,7 @@
 
 typedef void (CALLBACK *LPHLSCHANGECALLBACKPROC)(const int nHue, const int nLightness, const int nSaturation, const int nUserData);
 
-// ÉèÖÃ½ØÍ¼¿ì¼ü¼üÊ±µÄ¹¦ÄÜ°´¼ü³£Á¿¶¨Òå
+// è®¾ç½®æˆªå›¾å¿«é”®é”®æ—¶çš„åŠŸèƒ½æŒ‰é”®å¸¸é‡å®šä¹‰
 #define	SDOA_ssShift	0x00000001
 #define	SDOA_ssAlt		0x00000002
 #define	SDOA_ssCtrl		0x00000004
@@ -16,48 +16,48 @@ MIDL_INTERFACE("2F578A1F-1168-4D48-AC13-78A487AC5D4B")
 ISDOACfg : public IUnknown
 {
 public:
-	/* É«µ÷*/
+	/* è‰²è°ƒ*/
 	STDMETHOD_(int,GetHue)(THIS) PURE;
 	STDMETHOD_(void,SetHue)(THIS_ const int nHue) PURE;
-	/* ÁÁ¶È */
+	/* äº®åº¦ */
 	STDMETHOD_(int,GetLightness)(THIS) PURE;
 	STDMETHOD_(void,SetLightness)(THIS_ const int nLightness) PURE;
-	/* ±¥ºÍ¶È */
+	/* é¥±å’Œåº¦ */
 	STDMETHOD_(int,GetSaturation)(THIS) PURE;
 	STDMETHOD_(void,SetSaturation)(THIS_ const int nSaturation) PURE;
 
-	/* µÃµ½µ±Ç°È¦È¦½çÃæµÄÏà½üÑÕÉ«Öµ */
+	/* å¾—åˆ°å½“å‰åœˆåœˆç•Œé¢çš„ç›¸è¿‘é¢œè‰²å€¼ */
 	STDMETHOD_(DWORD,GetSkinColor)(THIS) PURE;
-	/* ÉèÖÃµ÷É«ºóÓëÈ¦È¦½çÃæÑÕÉ«Ïà½üµÄÄ¿±êÉ« */
+	/* è®¾ç½®è°ƒè‰²åä¸åœˆåœˆç•Œé¢é¢œè‰²ç›¸è¿‘çš„ç›®æ ‡è‰² */
 	STDMETHOD_(void,SetSkinColor)(THIS_ DWORD nSkinColor) PURE;
 
-	/* µ÷É«±ä»¯»Øµ÷ */
+	/* è°ƒè‰²å˜åŒ–å›è°ƒ */
 	STDMETHOD_(void,SetHLSChangeCallback)(THIS_ LPHLSCHANGECALLBACKPROC fnHLSChangeCallback, const int nUserData) PURE;
-	/* µÃµ½µ±Ç°Ö÷ÌâÃû³Æ */
+	/* å¾—åˆ°å½“å‰ä¸»é¢˜åç§° */
 	STDMETHOD_(bool,GetThemeName)(THIS_ BSTR* bstrThemeName) PURE;
-	/* ÉèÖÃµ±Ç°Ö÷ÌâÃû³Æ£¬ÔÚµÚÒ»´Î³õÊ¼»¯Í¼ĞÎÒıÇæÇ°ÉèÖÃÔòÁ¢¼´ÉúĞ§£¬·ñÔò½«ÔÚÏÂ´ÎÆô¶¯Ê±ÉúĞ§ */
+	/* è®¾ç½®å½“å‰ä¸»é¢˜åç§°ï¼Œåœ¨ç¬¬ä¸€æ¬¡åˆå§‹åŒ–å›¾å½¢å¼•æ“å‰è®¾ç½®åˆ™ç«‹å³ç”Ÿæ•ˆï¼Œå¦åˆ™å°†åœ¨ä¸‹æ¬¡å¯åŠ¨æ—¶ç”Ÿæ•ˆ */
 	STDMETHOD_(bool,SetThemeName)(THIS_ const BSTR bstrThemeName) PURE;
 
-	/* µÃµ½½çÃæÍ¸Ã÷¶È */
+	/* å¾—åˆ°ç•Œé¢é€æ˜åº¦ */
 	STDMETHOD_(int,GetUITransparency)(THIS) PURE;
-	/* ÉèÖÃ½çÃæÍ¸Ã÷¶ÈÖµ·¶Î§[5..100] */
+	/* è®¾ç½®ç•Œé¢é€æ˜åº¦å€¼èŒƒå›´[5..100] */
 	STDMETHOD_(void,SetUITransparency)(THIS_ const int nUITransparency) PURE;
 
 
-	/* ÊÇ·ñ×Ô¶¯¼ì²âÓÎÏ·Êó±êËõ·ÅÇé¿ö */
+	/* æ˜¯å¦è‡ªåŠ¨æ£€æµ‹æ¸¸æˆé¼ æ ‡ç¼©æ”¾æƒ…å†µ */
 	STDMETHOD_(bool,GetAutoCheckMouseScale)(THIS) PURE;
 	STDMETHOD_(void,SetAutoCheckMouseScale)(THIS_ const bool bValue) PURE;
 
-	/* µÃµ½µ±Ç°Âß¼­ÆÁÄ»¿í¸ß£¬Ö÷ÒªÊÇÏŞÖÆÈ¦È¦¿É²Ù×÷µÄ·¶Î§£¬×ÜÊÇ<=´°¿Ú´óĞ¡µÄ */
+	/* å¾—åˆ°å½“å‰é€»è¾‘å±å¹•å®½é«˜ï¼Œä¸»è¦æ˜¯é™åˆ¶åœˆåœˆå¯æ“ä½œçš„èŒƒå›´ï¼Œæ€»æ˜¯<=çª—å£å¤§å°çš„ */
 	STDMETHOD_(void,GetLogicScreen)(THIS_  int* nSw, int* nSh) PURE;
-	/* ÉèÖÃÂß¼­ÆÁÄ»¿í¸ß£¬È«Îª-1Ôò±íÃæ×Ô¶¯¼ì²â */
+	/* è®¾ç½®é€»è¾‘å±å¹•å®½é«˜ï¼Œå…¨ä¸º-1åˆ™è¡¨é¢è‡ªåŠ¨æ£€æµ‹ */
 	STDMETHOD_(void,SetLogicScreen)(THIS_  const int nSw, const int nSh) PURE;
-	/* µÃµ½Ê¹ÓÃ±³¾°»º³åÇøµÄÇøÓò(0, 0, 0, 0)ÎªÄ¬ÈÏÖµ£¬Ê¹ÓÃÈ«²¿ÇøÓò */
+	/* å¾—åˆ°ä½¿ç”¨èƒŒæ™¯ç¼“å†²åŒºçš„åŒºåŸŸ(0, 0, 0, 0)ä¸ºé»˜è®¤å€¼ï¼Œä½¿ç”¨å…¨éƒ¨åŒºåŸŸ */
 	STDMETHOD_(void,GetUseBackBufferRect)(THIS_  PRECT pUseRect) PURE;
-	/* ÉèÖÃÊ¹ÓÃ±³¾°»º³åÇøµÄÇøÓò (0, 0, 0, 0)ÎªÄ¬ÈÏÖµ£¬Ê¹ÓÃÈ«²¿ÇøÓò£¬Èç¹ûÉèÖÃµÄÇøÓòÎŞĞ§·µ»Øfalse  */
+	/* è®¾ç½®ä½¿ç”¨èƒŒæ™¯ç¼“å†²åŒºçš„åŒºåŸŸ (0, 0, 0, 0)ä¸ºé»˜è®¤å€¼ï¼Œä½¿ç”¨å…¨éƒ¨åŒºåŸŸï¼Œå¦‚æœè®¾ç½®çš„åŒºåŸŸæ— æ•ˆè¿”å›false  */
 	STDMETHOD_(bool,SetUseBackBufferRect)(THIS_  RECT rUseRect) PURE;	
 
-	/* µ±Ç°ÊÇ·ñ¼Ç×¡Ê¢´óÍ¨ĞĞÖ¤ */
+	/* å½“å‰æ˜¯å¦è®°ä½ç››å¤§é€šè¡Œè¯ */
 	STDMETHOD_(bool,RememberAccount)(THIS) PURE;
 
 	STDMETHOD_(bool,GetSnapshootScreenHotKey)(THIS_ int* FunKey, int* NormalKey) PURE;

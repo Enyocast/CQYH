@@ -9,20 +9,20 @@
 #define MAX_HANDBOOKITEM_COUNT	(32)
 struct ACHIEVEMENT_DATA
 {
-	INT32 nAchievementID;												// ³É¾ÍID
+	INT32 nAchievementID;												// æˆå°±ID
 	char szName[COMMON_NAME_LEN];
 
-	INT32 vecAchievementType[MAX_CON_PER_ACHIEVEMENT];                  // Ã¿¸öÌõ¼şµÄÀàĞÍ
+	INT32 vecAchievementType[MAX_CON_PER_ACHIEVEMENT];                  // æ¯ä¸ªæ¡ä»¶çš„ç±»å‹
 	INT32 vecAchievementValue1[MAX_CON_PER_ACHIEVEMENT];				
 	INT32 vecAchievementValue2[MAX_CON_PER_ACHIEVEMENT];				
 	INT32 vecAchievementValue3[MAX_CON_PER_ACHIEVEMENT];				
 	INT32 nAwardSlotCount;
 
-	INT32 nPreAchievementID1;											// Ç°ÖÃ³É¾Í1
-	INT32 nPreAchievementID2;											// Ç°ÖÃ³É¾Í2
+	INT32 nPreAchievementID1;											// å‰ç½®æˆå°±1
+	INT32 nPreAchievementID2;											// å‰ç½®æˆå°±2
 
-	INT32 nRewardType[MAX_REWARD_PER_ACHIEVEMENT];						// ³É¾Í½±ÀøÀàĞÍ
-	INT32 nRewardID[MAX_REWARD_PER_ACHIEVEMENT];						// ³É¾Í½±Àø
+	INT32 nRewardType[MAX_REWARD_PER_ACHIEVEMENT];						// æˆå°±å¥–åŠ±ç±»å‹
+	INT32 nRewardID[MAX_REWARD_PER_ACHIEVEMENT];						// æˆå°±å¥–åŠ±
 
 	INT32 nAchievementPts;
 

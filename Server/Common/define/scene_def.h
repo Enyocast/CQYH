@@ -149,15 +149,15 @@ struct ENTER_POS
 	UINT8			bySide;
 };
 
-// ²»ÖªµÀ¸ÉÉ¶ÓÃµÄº¯Êý, lua½Å±¾ÀïÒ²Ã»µ÷ÓÃ¹ý
+// ä¸çŸ¥é“å¹²å•¥ç”¨çš„å‡½æ•°, luaè„šæœ¬é‡Œä¹Ÿæ²¡è°ƒç”¨è¿‡
 inline double I64_2_Double(INT64 llPos)
 {
 	return (double)llPos / POINT_PER_CM;
 }
 
-// ·þÎñÆ÷×ø±ê ×ª Ð­Òé×ø±ê
+// æœåŠ¡å™¨åæ ‡ è½¬ åè®®åæ ‡
 /*
-// µ÷ÓÃÀý×Ó
+// è°ƒç”¨ä¾‹å­
 pMsg->drop.wDestX = ConvertCoordS2N(poDrop->GetX());
 pMsg->drop.wDestY = ConvertCoordS2N(poDrop->GetY());
 pMsg->drop.wDestZ = ConvertCoordS2N(poDrop->GetZ());
@@ -167,13 +167,13 @@ inline UINT16 ConvertCoordS2N(INT64 llCoordination)
     return (UINT16)(llCoordination / POINT_PER_CM / 4);
 }
 
-// Ð­Òé×ø±ê ×ª ·þÎñÆ÷×ø±ê (×ª»»Ö®ºó, ÐèÒªÐÞÕý×ø±ê)
+// åè®®åæ ‡ è½¬ æœåŠ¡å™¨åæ ‡ (è½¬æ¢ä¹‹åŽ, éœ€è¦ä¿®æ­£åæ ‡)
 /*
-// µ÷ÓÃÀý×Ó
+// è°ƒç”¨ä¾‹å­
 nRetCode = poRole->WalkTo(ConvertCoordN2S(pMsg->wDestX), ConvertCoordN2S(pMsg->wDestY));
 PROCESS_ERROR(nRetCode);
 
-// ÔÚ WalkTo º¯ÊýÀïÃæ, ÔÙ¼ÆËãÒ»´Î, ÐÞÕý×ø±ê
+// åœ¨ WalkTo å‡½æ•°é‡Œé¢, å†è®¡ç®—ä¸€æ¬¡, ä¿®æ­£åæ ‡
 m_llDestX = llDestX / GRID_WIDTH * GRID_WIDTH + GRID_WIDTH / 2;
 m_llDestY = llDestY / GRID_WIDTH * GRID_WIDTH + GRID_WIDTH / 2;
 */
@@ -182,9 +182,9 @@ inline INT32 ConvertCoordN2S(UINT16 wCoordination)
     return (INT32)wCoordination * POINT_PER_CM * 4;
 }
 
-// ¿Í»§¶ËÄÚ´æ×ø±ê ×ª ·þÎñÆ÷×ø±ê (×ª»»Ö®ºó, ÔÙ ³ËÒÔ POINT_PER_CM, ²ÅÊÇÕæÕýµÄ·þÎñÆ÷×ø±ê)
+// å®¢æˆ·ç«¯å†…å­˜åæ ‡ è½¬ æœåŠ¡å™¨åæ ‡ (è½¬æ¢ä¹‹åŽ, å† ä¹˜ä»¥ POINT_PER_CM, æ‰æ˜¯çœŸæ­£çš„æœåŠ¡å™¨åæ ‡)
 /*
-// µ÷ÓÃÀý×Ó
+// è°ƒç”¨ä¾‹å­
 ConvertCoordO2N(pData->nLoginJumpX, pData->nLoginJumpY, pData->nLoginJumpZ);
 pData->nLoginJumpX = pData->nLoginJumpX * POINT_PER_CM;
 pData->nLoginJumpY = pData->nLoginJumpY * POINT_PER_CM;
@@ -200,9 +200,9 @@ inline void ConvertCoordO2N(INT32& rnX, INT32& rnY, INT32& rnZ)
 	rnY = (INT32)((llX * k + llY * k) / b);
 }
 
-// ·þÎñÆ÷×ø±ê ×ª ¿Í»§¶ËÄÚ´æ×ø±ê (×ª»»Ö®Ç°, ÏÈ ³ýÒÔ POINT_PER_CM)
+// æœåŠ¡å™¨åæ ‡ è½¬ å®¢æˆ·ç«¯å†…å­˜åæ ‡ (è½¬æ¢ä¹‹å‰, å…ˆ é™¤ä»¥ POINT_PER_CM)
 /*
-// µ÷ÓÃÀý×Ó
+// è°ƒç”¨ä¾‹å­
 INT32 nX = pSpawnPoint->nX / POINT_PER_CM;
 INT32 nY = pSpawnPoint->nY / POINT_PER_CM;
 INT32 nZ = pSpawnPoint->nZ / POINT_PER_CM;

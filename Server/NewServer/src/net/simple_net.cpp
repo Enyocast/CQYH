@@ -704,11 +704,11 @@ namespace SimpleNet
 		LOG_PROCESS_ERROR(nRetCode == 0);
 
 #if defined(WIN32)
-		// ×÷ÓÃ£ºÉèÖÃÌ×½Ó×ÖµÄ·Ç×èÈûÄ£Ê½
-		// FIONBIO£º²Ù×÷ÀàÐÍ£¬±íÊ¾ÉèÖÃ·Ç×èÈû I/O
-		// dwNonBlock = 1£ºÆôÓÃ·Ç×èÈûÄ£Ê½
-		// ·Ç×èÈûÄ£Ê½ÏÂ£¬recv/send µÈº¯ÊýÁ¢¼´·µ»Ø£¬²»»á×èÈûÏß³Ì¡£Èô²Ù×÷ÎÞ·¨Á¢¼´Íê³É£¬·µ»Ø´íÎóÂë£¨Èç WSAEWOULDBLOCK£©
-		// µäÐÍÓÃÍ¾£ºÓÃÓÚÒì²½ I/O »ò¶àÂ·¸´ÓÃÄ£ÐÍ£¨Èç select¡¢epoll£©£¬±ÜÃâÏß³Ì×èÈû
+		// ä½œç”¨ï¼šè®¾ç½®å¥—æŽ¥å­—çš„éžé˜»å¡žæ¨¡å¼
+		// FIONBIOï¼šæ“ä½œç±»åž‹ï¼Œè¡¨ç¤ºè®¾ç½®éžé˜»å¡ž I/O
+		// dwNonBlock = 1ï¼šå¯ç”¨éžé˜»å¡žæ¨¡å¼
+		// éžé˜»å¡žæ¨¡å¼ä¸‹ï¼Œrecv/send ç­‰å‡½æ•°ç«‹å³è¿”å›žï¼Œä¸ä¼šé˜»å¡žçº¿ç¨‹ã€‚è‹¥æ“ä½œæ— æ³•ç«‹å³å®Œæˆï¼Œè¿”å›žé”™è¯¯ç ï¼ˆå¦‚ WSAEWOULDBLOCKï¼‰
+		// å…¸åž‹ç”¨é€”ï¼šç”¨äºŽå¼‚æ­¥ I/O æˆ–å¤šè·¯å¤ç”¨æ¨¡åž‹ï¼ˆå¦‚ selectã€epollï¼‰ï¼Œé¿å…çº¿ç¨‹é˜»å¡ž
 		nRetCode = ioctlsocket(nSocketFD, FIONBIO, (u_long*)&dwNonBlock);
 #elif defined(__linux__)
 		//nRetCode = ioctl(nSocketFD, FIONBIO, (u_long*)&dwNonBlock);
@@ -720,22 +720,22 @@ namespace SimpleNet
 #endif
 		LOG_PROCESS_ERROR(nRetCode == 0);
 
-		// ÉèÖÃ [½ÓÊÕ»º³åÇø´óÐ¡]
+		// è®¾ç½® [æŽ¥æ”¶ç¼“å†²åŒºå¤§å°]
 		nRetCode = setsockopt(nSocketFD, SOL_SOCKET, SO_RCVBUF, (char*)&(m_oInitParam.nRecvBufSize), sizeof(m_oInitParam.nRecvBufSize));
 		LOG_CHECK_ERROR(!nRetCode);
 
-		// ÉèÖÃ [·¢ËÍ»º³åÇø´óÐ¡]
+		// è®¾ç½® [å‘é€ç¼“å†²åŒºå¤§å°]
 		nRetCode = setsockopt(nSocketFD, SOL_SOCKET, SO_SNDBUF, (char*)&(m_oInitParam.nSendBufSize), sizeof(m_oInitParam.nSendBufSize));
 		LOG_CHECK_ERROR(!nRetCode);
 
-		// ¹Ø±ÕÐÐÎª¿ØÖÆ (l_onoff£º·ÇÁã±íÊ¾ÆôÓÃ SO_LINGER) (l_linger£ºµÈ´ýÊ±¼ä£¨Ãë£©)
-		// Èô l_onoff != 0 ÇÒ l_linger > 0£º¹Ø±ÕÊ±»á×èÈû£¬Ö±µ½Êý¾Ý·¢ËÍÍê±Ï»ò³¬Ê±¡£
-		// Èô l_onoff = 0£ºÖ±½Ó¹Ø±Õ£¬¶ªÆúÎ´·¢ËÍÊý¾Ý¡£
+		// å…³é—­è¡Œä¸ºæŽ§åˆ¶ (l_onoffï¼šéžé›¶è¡¨ç¤ºå¯ç”¨ SO_LINGER) (l_lingerï¼šç­‰å¾…æ—¶é—´ï¼ˆç§’ï¼‰)
+		// è‹¥ l_onoff != 0 ä¸” l_linger > 0ï¼šå…³é—­æ—¶ä¼šé˜»å¡žï¼Œç›´åˆ°æ•°æ®å‘é€å®Œæ¯•æˆ–è¶…æ—¶ã€‚
+		// è‹¥ l_onoff = 0ï¼šç›´æŽ¥å…³é—­ï¼Œä¸¢å¼ƒæœªå‘é€æ•°æ®ã€‚
 		nRetCode = setsockopt(nSocketFD, SOL_SOCKET, SO_LINGER, (char*)&(stLinger), sizeof(stLinger));
 		LOG_CHECK_ERROR(!nRetCode);
 
-		// ½ûÓÃ Nagle Ëã·¨ (²ÎÊý£ºnOption = 1 ±íÊ¾½ûÓÃ)
-		// ÒâÒå£ºNagle Ëã·¨»áºÏ²¢Ð¡Êý¾Ý°üÒÔ¼õÉÙÍøÂçÓµÈû£¬µ«Ôö¼ÓÑÓ³Ù¡£½ûÓÃºó£¨TCP_NODELAY=1£©£¬Êý¾ÝÁ¢¼´·¢ËÍ£¬ÊÊÓÃÓÚÊµÊ±ÐÔÒªÇó¸ßµÄ³¡¾°£¨ÈçÓÎÏ·¡¢ÊµÊ±Í¨ÐÅ£©¡£
+		// ç¦ç”¨ Nagle ç®—æ³• (å‚æ•°ï¼šnOption = 1 è¡¨ç¤ºç¦ç”¨)
+		// æ„ä¹‰ï¼šNagle ç®—æ³•ä¼šåˆå¹¶å°æ•°æ®åŒ…ä»¥å‡å°‘ç½‘ç»œæ‹¥å¡žï¼Œä½†å¢žåŠ å»¶è¿Ÿã€‚ç¦ç”¨åŽï¼ˆTCP_NODELAY=1ï¼‰ï¼Œæ•°æ®ç«‹å³å‘é€ï¼Œé€‚ç”¨äºŽå®žæ—¶æ€§è¦æ±‚é«˜çš„åœºæ™¯ï¼ˆå¦‚æ¸¸æˆã€å®žæ—¶é€šä¿¡ï¼‰ã€‚
 		nRetCode = setsockopt(nSocketFD, IPPROTO_TCP, TCP_NODELAY, (char*)&nOption, sizeof(nOption));
 		LOG_PROCESS_ERROR(nRetCode != SOCKET_ERROR);
 

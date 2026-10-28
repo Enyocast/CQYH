@@ -5,8 +5,8 @@ enum EAeward_Action_Type
 {
 	eratInvalid = -1,
 
-	eratAwardReq_Survey,			// Í¨¹ıÅú´ÎºÅÁì½±
-	eratAwardReq_AwardNumber,		// Í¨¹ıÍÆ¹ãÂëÁì½±
+	eratAwardReq_Survey,			// é€šè¿‡æ‰¹æ¬¡å·é¢†å¥–
+	eratAwardReq_AwardNumber,		// é€šè¿‡æ¨å¹¿ç é¢†å¥–
 
 	eratAwardAck,
 

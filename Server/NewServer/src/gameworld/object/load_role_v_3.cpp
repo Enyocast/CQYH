@@ -1,4 +1,4 @@
-// Ä¬ÈÏ´úÂë
+// é»˜è®¤ä»£ç 
 #include "stdafx.h"
 #include "role.h"
 #include "server_config.h"
@@ -13,7 +13,7 @@
 #include "modifier_tree.h"
 #include "message_handler.h"
 
-// ³­´úÂë
+// æŠ„ä»£ç 
 //#include "stdafx.h"
 //#include "role.h"
 //#include "item_bag.h"
@@ -25,7 +25,7 @@
 #include "role_db_def_v_3.h"
 using namespace ROLE_DB_DEF_V_3;
 
-// Íæ¼ÒµÇÂ¼¼ÆËãÊôĞÔ
+// ç©å®¶ç™»å½•è®¡ç®—å±æ€§
 BOOL CRole::_Load_v_3(const char* pcData, UINT32 dwSize)
 {
 	INT32 nRetCode = 0;
@@ -61,7 +61,7 @@ BOOL CRole::_Load_v_3(const char* pcData, UINT32 dwSize)
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
 		case rbtItem:
-			nRetCode = m_ItemBag.Load_v_2(pcBlockData, dwBlockSize);    // V2 ĞÂÔö´úÂë
+			nRetCode = m_ItemBag.Load_v_2(pcBlockData, dwBlockSize);    // V2 æ–°å¢ä»£ç 
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
 		case rbtSpell:
@@ -137,7 +137,7 @@ BOOL CRole::_Load_v_3(const char* pcData, UINT32 dwSize)
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
 		case rbtMisc:
-			nRetCode = _LoadMisc_v_3(pcBlockData, dwBlockSize);    // V3 ĞÂÔö´úÂë
+			nRetCode = _LoadMisc_v_3(pcBlockData, dwBlockSize);    // V3 æ–°å¢ä»£ç 
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
 		case rbtArena:
@@ -168,7 +168,7 @@ BOOL CRole::_Load_v_3(const char* pcData, UINT32 dwSize)
 			nRetCode = m_ItemBag.LoadBlackMarketCooldown_v_1(pcBlockData, dwBlockSize);
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
-		case rbtGamble:    // ²¹³ä
+		case rbtGamble:    // è¡¥å……
 			nRetCode = m_Gamble.Load_v_1(pcBlockData, dwBlockSize);
 			LOG_PROCESS_ERROR(nRetCode);
 			break;
@@ -188,9 +188,9 @@ Exit0:
 	return FALSE;
 }
 
-// ========== ³­µÄ´úÂë begin ==========
+// ========== æŠ„çš„ä»£ç  begin ==========
 
-// ÕÒº¯Êı m_pOwner->GetFixRoleCallback()
+// æ‰¾å‡½æ•° m_pOwner->GetFixRoleCallback()
 BOOL CItemBag::Load_v_2(const char* pcData, UINT32 dwSize)
 {
 	const ROLE_DB_ITEM_DATA* pItemData = (const ROLE_DB_ITEM_DATA*)pcData;
@@ -220,7 +220,7 @@ BOOL CItemBag::Load_v_2(const char* pcData, UINT32 dwSize)
 
 	m_con_sizes[CONSLOT_DEFAULT] = pItemData->byDefaultSlotSize;
 	m_con_sizes[CONSLOT_BANK] = pItemData->byBankSlotSize;
-	m_con_sizes[CONSLOT_RESOURCE] = pItemData->byResourceSlotSize;    // ĞÂÔö´úÂë
+	m_con_sizes[CONSLOT_RESOURCE] = pItemData->byResourceSlotSize;    // æ–°å¢ä»£ç 
 	
 	m_dwWeaponLevelUpStartTime = pItemData->dwWeaponLevelUpStartTime;
 	m_nWeaponDur = pItemData->nWeaponDur;
@@ -243,7 +243,7 @@ BOOL CItemBag::Load_v_2(const char* pcData, UINT32 dwSize)
 		}
 		else
 		{
-			// ³­µÄ´úÂë - ÔİÊ±ÆÁ±Î
+			// æŠ„çš„ä»£ç  - æš‚æ—¶å±è”½
 			//if (m_pOwner->GetFixRoleCallback())
 			//{
 			//	if (iteminfo.m_byConSlot >= CONSLOT_COUNT ||
@@ -299,7 +299,7 @@ BOOL CItemBag::Load_v_2(const char* pcData, UINT32 dwSize)
 
 	LOG_PROCESS_ERROR(buflen == pItemData->dwItemInfoBufLen);
 
-	//¼ÆËãÇ¿»¯¼¤»îÊôĞÔ
+	//è®¡ç®—å¼ºåŒ–æ¿€æ´»å±æ€§
 	{
 		const REFINE_ATTR_DATA* cur_data = NULL;
 		UINT16 cur_min_level = MAX_REFINE_LEVEL;
@@ -309,7 +309,7 @@ BOOL CItemBag::Load_v_2(const char* pcData, UINT32 dwSize)
 				cur_min_level = m_refine_levels[i];
 		}
 
-		// ÔİÊ±ÆÁ±Î
+		// æš‚æ—¶å±è”½
 		cur_data = CDataManager<REFINE_ATTR_DATA>::GetInstance().GetData(REFINE_ATTR_DATA::MakeKey(cur_min_level, m_pOwner->GetClass(), NES_TOTAL));
 		if (cur_data)
 		{
@@ -318,9 +318,9 @@ BOOL CItemBag::Load_v_2(const char* pcData, UINT32 dwSize)
 		}
 	}
 	
-	// Ä§ÑªÊ¯, »Ø¸´µÀ¾ß
+	// é­”è¡€çŸ³, å›å¤é“å…·
 	{
-		// ÔİÊ±ÆÁ±Î
+		// æš‚æ—¶å±è”½
 		//Item* RecoverItem = GetItem(CONSLOT_RECOVER, 0);
 		//if (RecoverItem && RecoverItem->m_pTemplate->m_nTemplateID >= 2800265 && RecoverItem->m_pTemplate->m_nTemplateID <= 2800272)
 		//{
@@ -390,11 +390,11 @@ BOOL CRole::_LoadMisc_v_3(const char* pcData, UINT32 dwSize)
 	m_nKilledByPlayer = pcMiscData->nKilledByPlayer;
 
 	{
-		// ÔİÊ±ÓÃ Ä¬ÈÏ´úÂë
+		// æš‚æ—¶ç”¨ é»˜è®¤ä»£ç 
 		INT32 nTimeDiff = (INT32)pcMiscData->dwNextFreeReviveTime - (INT32)CGameWorld::GetInstance().GetGameTime();
 		m_nNextFreeReviveFrm = nTimeDiff * GAME_FPS + CGameWorld::GetInstance().GetGameFrame();
 
-		// ÔİÊ±ÆÁ±Î
+		// æš‚æ—¶å±è”½
 		//m_dwNextFreeReviveTime = pcMiscData->dwNextFreeReviveTime;
 	}
 
@@ -427,7 +427,7 @@ BOOL CRole::_LoadMisc_v_3(const char* pcData, UINT32 dwSize)
 	if (m_nJigsawRemainTime <= 0)
 		StartAntiCheat();
 	
-	// ÔİÊ±ÆÁ±Î
+	// æš‚æ—¶å±è”½
 	/*
 	m_dwChatRecoverTime = pcMiscData->dwChatRecoverTime;
 	m_nChatFoulTimes = pcMiscData->nChatFoulTimes;
@@ -447,7 +447,7 @@ BOOL CRole::_LoadMisc_v_3(const char* pcData, UINT32 dwSize)
 	m_dwPKProtect = pcMiscData->dwPKProtect;
 	*/
 
-	// ĞÂÔö´úÂë
+	// æ–°å¢ä»£ç 
 	m_dwGameTimeCard = pcMiscData->dwGameTimeCard;
 	m_nRuneNormal_Warrior   = pcMiscData->nRuneNormal_Warrior;
 	m_nRuneNormal_Mage      = pcMiscData->nRuneNormal_Mage;
@@ -463,5 +463,5 @@ BOOL CRole::_LoadMisc_v_3(const char* pcData, UINT32 dwSize)
 }
 
 
-// ========== ³­µÄ´úÂë end ==========
+// ========== æŠ„çš„ä»£ç  end ==========
 

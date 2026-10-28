@@ -36,7 +36,7 @@ void CCliMessageHandler::OnCastSpellEx(CRole* poRole, const char* pData)
 
 	PROCESS_ERROR_RET_CODE(!poRole->IsFreeMode(), errFreeMode);
 
-	// ÐÞ¸Ä×Ô¼ºµÄ³¯Ïò, ×ªÏòÄ¿±ê
+	// ä¿®æ”¹è‡ªå·±çš„æœå‘, è½¬å‘ç›®æ ‡
 	if (pMsg->byRotateToTarget)
 	{
 		INT32 nNewDirection = g_GetDirection(poRole->GetX(), poRole->GetY(), nTargetX, nTargetY);
@@ -56,7 +56,7 @@ void CCliMessageHandler::OnCastSpellEx(CRole* poRole, const char* pData)
 		}
 	}
 
-	// »ñÈ¡¼¼ÄÜ¶ÔÏó
+	// èŽ·å–æŠ€èƒ½å¯¹è±¡
 	poSpellSet = poRole->GetSpellBook().GetSpellSet(pMsg->wSpellID);
 
 	PROCESS_ERROR_RET_CODE(poSpellSet != NULL, errSpellNotExists);
@@ -68,8 +68,8 @@ void CCliMessageHandler::OnCastSpellEx(CRole* poRole, const char* pData)
 	LOG_PROCESS_ERROR(poSpell);
 
 	{
-		// whether or not canceling current spell - ÊÇ·ñÈ¡Ïûµ±Ç°¼¼ÄÜ
-		CSpellInstance* poCastingSpell = poRole->GetCastingSpell();    // »ñÈ¡µ±Ç°ÕýÔÚÊÍ·ÅÖÐµÄ¼¼ÄÜ¶ÔÏó
+		// whether or not canceling current spell - æ˜¯å¦å–æ¶ˆå½“å‰æŠ€èƒ½
+		CSpellInstance* poCastingSpell = poRole->GetCastingSpell();    // èŽ·å–å½“å‰æ­£åœ¨é‡Šæ”¾ä¸­çš„æŠ€èƒ½å¯¹è±¡
 		if (poCastingSpell != NULL)
 		{
 			PROCESS_ERROR_RET_CODE(poCastingSpell->GetID() != poSpell->GetID(), errSpellCasting);

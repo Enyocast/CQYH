@@ -41,11 +41,11 @@ public:
     void OnCreateRole(CUser* poUser, CRole* poRole, BOOL bSuccess);
     void OnDeleteRole(CUser* poUser, UINT32 dwRoleID, BOOL bSuccess);
 
-    // ¸üĞÂÏÔÊ¾ÓÎÏ·ÖĞÍæ¼Ò½ÇÉ«ÁĞ±íĞÅÏ¢¡£
+    // æ›´æ–°æ˜¾ç¤ºæ¸¸æˆä¸­ç©å®¶è§’è‰²åˆ—è¡¨ä¿¡æ¯ã€‚
     void UpdateRoleTable(CRole * poRole);
     void RemovePlayingRole(CRole * poRole);
 
-    // ´ÓUI»ñÈ¡ÓÃ»§ÊäÈëĞÅÏ¢¡£
+    // ä»UIè·å–ç”¨æˆ·è¾“å…¥ä¿¡æ¯ã€‚
     BOOL requireParam(const CHAR * pcszName, CHAR * pszVal, INT32 nLen);
 
     void setCaseStatus(const char* pcszCaseName, const char* pcszMessage);

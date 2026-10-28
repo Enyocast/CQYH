@@ -38,32 +38,32 @@ namespace ExternalMessage
 		c2m_query_line_req,
 
 		// master
-		c2m_master_teacher_ignore,      // Ê¦¸µÎŞÊÓor¾Ü¾øÍÆËÍÇëÇóÊ¦¸µĞÅÏ¢
-		c2m_master_get_recruit_list,    // À­È¡Ê¦Í½ÕĞÄ¼°ñ
-		//c2m_master_apply_recruit,       // ÉêÇëÕĞÄ¼Í½µÜ
-		//c2m_master_cancel_recruit,      // È¡ÏûÕĞÄ¼Í½µÜ
-		c2m_master_get_solo_list,       // À­È¡Ã»ÓĞ°İÊ¦µÄÍæ¼ÒÁĞ±í
+		c2m_master_teacher_ignore,      // å¸ˆå‚…æ— è§†oræ‹’ç»æ¨é€è¯·æ±‚å¸ˆå‚…ä¿¡æ¯
+		c2m_master_get_recruit_list,    // æ‹‰å–å¸ˆå¾’æ‹›å‹Ÿæ¦œ
+		//c2m_master_apply_recruit,       // ç”³è¯·æ‹›å‹Ÿå¾’å¼Ÿ
+		//c2m_master_cancel_recruit,      // å–æ¶ˆæ‹›å‹Ÿå¾’å¼Ÿ
+		c2m_master_get_solo_list,       // æ‹‰å–æ²¡æœ‰æ‹œå¸ˆçš„ç©å®¶åˆ—è¡¨
 
-		c2m_master_stud_submit_app,     // ÉêÇë°İÊ¦
-		c2m_master_agree_stud_app,      // Í¬Òâ°İÊ¦ÉêÇë
-		c2m_master_refuse_stud_app,     // Ê¦¸µ¾Ü¾øÍ½µÜ°İÊ¦ÉêÇë
-		c2m_master_cancel_stud_app,     // Í½µÜÖ÷¶¯È¡Ïû°İÊ¦ÉêÇë
+		c2m_master_stud_submit_app,     // ç”³è¯·æ‹œå¸ˆ
+		c2m_master_agree_stud_app,      // åŒæ„æ‹œå¸ˆç”³è¯·
+		c2m_master_refuse_stud_app,     // å¸ˆå‚…æ‹’ç»å¾’å¼Ÿæ‹œå¸ˆç”³è¯·
+		c2m_master_cancel_stud_app,     // å¾’å¼Ÿä¸»åŠ¨å–æ¶ˆæ‹œå¸ˆç”³è¯·
 
 		c2m_master_teacher_submit_app,
 		c2m_master_agree_teacher_app,
 		c2m_master_refuse_teacher_app,
 		c2m_master_cancel_teacher_app,
 
-		c2m_master_leave_teacher,        // Í½µÜÅÑÊ¦
-		c2m_master_fire_stud,           // Ê¦¸µ¿ª³ıÍ½µÜ
+		c2m_master_leave_teacher,        // å¾’å¼Ÿå›å¸ˆ
+		c2m_master_fire_stud,           // å¸ˆå‚…å¼€é™¤å¾’å¼Ÿ
 
-		c2m_master_info,     // À­È¡Ê¦Í½Êı¾İ
+		c2m_master_info,     // æ‹‰å–å¸ˆå¾’æ•°æ®
 
 		c2m_master_cz,
 		c2m_master_grad,
 
 
-		//c2m_master_cong_level_up,  // ¹§Ï²Éı¼¶
+		//c2m_master_cong_level_up,  // æ­å–œå‡çº§
 
 		// mail
 		c2m_mail_write,
@@ -78,42 +78,42 @@ namespace ExternalMessage
 		c2m_join_battle_confirm_ack,		// obsoleted
 
 		// guild
-		c2m_query_guild_name,			    // ²éÑ¯¹«»áÃû³Æ
-		c2m_view_guild_list,			    // ²é¿´¹«»áÁĞ±í
-		c2m_more_guild_info,			    // ¸ü¶à¹«»áĞÅÏ¢
-		c2m_find_guild,					    // ÕÒµ½¹«»á
-		c2m_apply_to_join_guild,		    // ÉêÇë¼ÓÈë¹«»á
-		c2m_get_apply_guild_list,		    // »ñÈ¡ÉêÇë¹«»áÃûµ¥
-		c2m_revert_guild_apply,			    // »Ö¸´¹«»áÉêÇë
-		c2m_invite_to_join_guild,		    // ÑûÇë¼ÓÈë¹«»á
-		c2m_revert_guild_invitation,	    // »Ö¸´¹«»áÑûÇë
-		c2m_disband_guild,				    // ½âÉ¢¹«»á
-		c2m_guild_notice_change,		    // ¹«»áÍ¨Öª±ä¸ü
-		c2m_guild_announce_change,		    // ¹«»áĞû²¼±ä¸ü
-		c2m_guild_forbid_chat,			    // ¹«»á½ûÖ¹ÁÄÌì
-		c2m_guild_change_position,		    // ¹«»á¸Ä±äÁ¢³¡
-		c2m_guild_role_leave,               // ¹«»á½ÇÉ«Àë¿ª to be del
-		c2m_guild_banish_role,			    // ¹«»áÖğ³ö½ÇÉ« Ìß³ö¹«»á
-		c2m_guild_demise,				    // ¹«»áÃğÍö
-		c2m_guild_diplomat_app,			    // ĞĞ»áÍâ½»¹ÙÓ¦ÓÃ³ÌĞò
-		c2m_guild_get_apply_union_list,     // ¹«»á»ñÈ¡ÉêÇëÁªÃËÃûµ¥ only alliance
-		c2m_guild_reply_union_app,		    // ¹«»á»Ø¸´ÁªÃËÓ¦ÓÃ³ÌĞò
-		c2m_guild_cancel_alliance,		    // ¹«»áÈ¡ÏûÁªÃË
-		c2m_guild_change_storage_right,	    // ¹«»á±ä¸ü´æ´¢È¨
-		c2m_guild_move_item,			    // ¹«»áÒÆ¶¯ÎïÆ·
-		c2m_guild_more_history,			    // ¹«»á¸ü¶àÀúÊ·¼ÇÂ¼
-		c2m_guild_more_chest,			    // ¹«»á¸ü¶à×Ê½ğ¼ÇÂ¼
+		c2m_query_guild_name,			    // æŸ¥è¯¢å…¬ä¼šåç§°
+		c2m_view_guild_list,			    // æŸ¥çœ‹å…¬ä¼šåˆ—è¡¨
+		c2m_more_guild_info,			    // æ›´å¤šå…¬ä¼šä¿¡æ¯
+		c2m_find_guild,					    // æ‰¾åˆ°å…¬ä¼š
+		c2m_apply_to_join_guild,		    // ç”³è¯·åŠ å…¥å…¬ä¼š
+		c2m_get_apply_guild_list,		    // è·å–ç”³è¯·å…¬ä¼šåå•
+		c2m_revert_guild_apply,			    // æ¢å¤å…¬ä¼šç”³è¯·
+		c2m_invite_to_join_guild,		    // é‚€è¯·åŠ å…¥å…¬ä¼š
+		c2m_revert_guild_invitation,	    // æ¢å¤å…¬ä¼šé‚€è¯·
+		c2m_disband_guild,				    // è§£æ•£å…¬ä¼š
+		c2m_guild_notice_change,		    // å…¬ä¼šé€šçŸ¥å˜æ›´
+		c2m_guild_announce_change,		    // å…¬ä¼šå®£å¸ƒå˜æ›´
+		c2m_guild_forbid_chat,			    // å…¬ä¼šç¦æ­¢èŠå¤©
+		c2m_guild_change_position,		    // å…¬ä¼šæ”¹å˜ç«‹åœº
+		c2m_guild_role_leave,               // å…¬ä¼šè§’è‰²ç¦»å¼€ to be del
+		c2m_guild_banish_role,			    // å…¬ä¼šé€å‡ºè§’è‰² è¸¢å‡ºå…¬ä¼š
+		c2m_guild_demise,				    // å…¬ä¼šç­äº¡
+		c2m_guild_diplomat_app,			    // è¡Œä¼šå¤–äº¤å®˜åº”ç”¨ç¨‹åº
+		c2m_guild_get_apply_union_list,     // å…¬ä¼šè·å–ç”³è¯·è”ç›Ÿåå• only alliance
+		c2m_guild_reply_union_app,		    // å…¬ä¼šå›å¤è”ç›Ÿåº”ç”¨ç¨‹åº
+		c2m_guild_cancel_alliance,		    // å…¬ä¼šå–æ¶ˆè”ç›Ÿ
+		c2m_guild_change_storage_right,	    // å…¬ä¼šå˜æ›´å­˜å‚¨æƒ
+		c2m_guild_move_item,			    // å…¬ä¼šç§»åŠ¨ç‰©å“
+		c2m_guild_more_history,			    // å…¬ä¼šæ›´å¤šå†å²è®°å½•
+		c2m_guild_more_chest,			    // å…¬ä¼šæ›´å¤šèµ„é‡‘è®°å½•
 
-		c2m_guild_upgrade_welfare,			// °ï»áÉı¼¶¸£Àû
-		c2m_guild_cancel_welfare_upgrade,	// °ï»áÈ¡Ïû¸£ÀûÉı¼¶
-		c2m_guild_cancel_building_upgrade,	// °ï»áÈ¡Ïû½¨ÖşÉı¼¶
+		c2m_guild_upgrade_welfare,			// å¸®ä¼šå‡çº§ç¦åˆ©
+		c2m_guild_cancel_welfare_upgrade,	// å¸®ä¼šå–æ¶ˆç¦åˆ©å‡çº§
+		c2m_guild_cancel_building_upgrade,	// å¸®ä¼šå–æ¶ˆå»ºç­‘å‡çº§
 		//c2m_guild_del_building,			// 
 
-		c2m_guild_get_dungeon_list,			// ¹«»áµÃµ½µØÀÎÃûµ¥ obsoleted
-		c2m_guild_declare_war,				// ¹«»áĞûÕ½
-		c2m_guild_achievement,				// ¹«»á³É¾Í
+		c2m_guild_get_dungeon_list,			// å…¬ä¼šå¾—åˆ°åœ°ç‰¢åå• obsoleted
+		c2m_guild_declare_war,				// å…¬ä¼šå®£æˆ˜
+		c2m_guild_achievement,				// å…¬ä¼šæˆå°±
 
-		c2m_guild_activity,					// ¹«»á»î¶¯
+		c2m_guild_activity,					// å…¬ä¼šæ´»åŠ¨
 
 		// arena
 		c2m_arena_get_data,
@@ -147,25 +147,25 @@ namespace ExternalMessage
 		c2m_sale_info,						// obsoleted
 
 		// gm
-		c2m_gm_command,				// GmÃüÁî
+		c2m_gm_command,				// Gmå‘½ä»¤
 
 		// ranklist
-		c2m_query_ranklist,			// ²éÑ¯ÅÅĞĞ°ñ
+		c2m_query_ranklist,			// æŸ¥è¯¢æ’è¡Œæ¦œ
 
 		// award
-		c2m_award_use_number,		// ÖĞ½±?
+		c2m_award_use_number,		// ä¸­å¥–?
 
 		// time
-		c2m_buy_time,		        // ¹ºÂòµã¿¨
+		c2m_buy_time,		        // è´­ä¹°ç‚¹å¡
 
-		c2m_change_recall_state,    // ÔÊĞíÌìµØºÏÒ»
+		c2m_change_recall_state,    // å…è®¸å¤©åœ°åˆä¸€
 
-		c2m_dynamic_auth,           // ¶¯Ì¬ÑéÖ¤
+		c2m_dynamic_auth,           // åŠ¨æ€éªŒè¯
 
-		c2m_team_query,	            // 615, ¶ÓÎé²éÑ¯
-		c2m_team_invite,            // 616, ¶ÓÎéÑûÇë
+		c2m_team_query,	            // 615, é˜Ÿä¼æŸ¥è¯¢
+		c2m_team_invite,            // 616, é˜Ÿä¼é‚€è¯·
 
-        c2m_arena_fund,             // ¾º¼¼³¡»ù½ğ
+        c2m_arena_fund,             // ç«æŠ€åœºåŸºé‡‘
 
 		c2m_message_end = 900,
 	};

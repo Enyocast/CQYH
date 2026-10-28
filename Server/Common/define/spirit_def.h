@@ -1,39 +1,39 @@
 #ifndef _SPIRIT_DEF_H_
 #define _SPIRIT_DEF_H_    
 
-// ¾³½ç×ÜÀÀ
-#define  SPIRIT_OPEN_LEVEL					1	// (¾³½ç¿ªÆôµÈ¼¶)
+// å¢ƒç•Œæ€»è§ˆ
+#define  SPIRIT_OPEN_LEVEL					1	// (å¢ƒç•Œå¼€å¯ç­‰çº§)
 
-#define  MAX_EXT2PTS_MULTIPLE				20	// (»ê×ªÐÞÁ¶µãÒ»¼üÍê³ÉµÄ)½ð±ÒÏûºÄ×î´ó±¶Êý(¸úÃ¿´Î×ª»¯´ÎÊýÓÐ¹Ø)
-#define  MAX_EXP2PTS_THRESHOLD				50	// (»ê×ªÐÞÁ¶µãÒ»¼üÍê³ÉµÄ)ÈÕ³£×î´óÍê³É´ÎÊý
-#define  MAX_SPIRIT_LEVEL					70	// ¾³½ç×î´óµÈ¼¶	
+#define  MAX_EXT2PTS_MULTIPLE				20	// (é­‚è½¬ä¿®ç‚¼ç‚¹ä¸€é”®å®Œæˆçš„)é‡‘å¸æ¶ˆè€—æœ€å¤§å€æ•°(è·Ÿæ¯æ¬¡è½¬åŒ–æ¬¡æ•°æœ‰å…³)
+#define  MAX_EXP2PTS_THRESHOLD				50	// (é­‚è½¬ä¿®ç‚¼ç‚¹ä¸€é”®å®Œæˆçš„)æ—¥å¸¸æœ€å¤§å®Œæˆæ¬¡æ•°
+#define  MAX_SPIRIT_LEVEL					70	// å¢ƒç•Œæœ€å¤§ç­‰çº§	
 
-#define  MAX_SPIRIT_NODE_PER_LEVEL			2	// Ã¿¸ö¾³½çµÈ¼¶¿ÉÒÔ¹ÒµÄnode
+#define  MAX_SPIRIT_NODE_PER_LEVEL			2	// æ¯ä¸ªå¢ƒç•Œç­‰çº§å¯ä»¥æŒ‚çš„node
 
-// Æøº£
-#define  MAX_AIRSEA_BAG_CONTAINER_SIZE		32	// Æøº£°ü¹üµÄ´óÐ¡
-#define	 MAX_AIRSEA_STALL_CONTAINER_SIZE	16  // Æøº£²Ö¿âµÄ´óÐ¡
-#define  MAX_AIRSEA_EQUIP_CONTAINER_SIZE	9	// Æøº£×°±¸À¸´óÐ¡
+// æ°”æµ·
+#define  MAX_AIRSEA_BAG_CONTAINER_SIZE		32	// æ°”æµ·åŒ…è£¹çš„å¤§å°
+#define	 MAX_AIRSEA_STALL_CONTAINER_SIZE	16  // æ°”æµ·ä»“åº“çš„å¤§å°
+#define  MAX_AIRSEA_EQUIP_CONTAINER_SIZE	9	// æ°”æµ·è£…å¤‡æ å¤§å°
 
-#define  MAX_AIR_PROCEDURE					5	// Á·Æø½×¶Î
-#define	 MAX_DROP_AIR_COUNT					40	// Á·ÆÚ½×¶Î¿ÉÅäÖÃµôÂäÊýÄ¿
+#define  MAX_AIR_PROCEDURE					5	// ç»ƒæ°”é˜¶æ®µ
+#define	 MAX_DROP_AIR_COUNT					40	// ç»ƒæœŸé˜¶æ®µå¯é…ç½®æŽ‰è½æ•°ç›®
 
-#define  MAX_AIR_LEVEL						10	// ÆøµÄ×î´óµÈ¼¶
-#define  MAX_AIR_NODE						256	// ×î´ónodeÊýÄ¿
-#define	 MAX_ATTR_PER_NODE					2	// Ã¿¸önodeËù´ø×î´óÊôÐÔÊýÄ¿
+#define  MAX_AIR_LEVEL						10	// æ°”çš„æœ€å¤§ç­‰çº§
+#define  MAX_AIR_NODE						256	// æœ€å¤§nodeæ•°ç›®
+#define	 MAX_ATTR_PER_NODE					2	// æ¯ä¸ªnodeæ‰€å¸¦æœ€å¤§å±žæ€§æ•°ç›®
 
-#define  MAX_SPIRIT_BUY_SLOT_COST			100	// Âò°ü¹üÏûºÄ
-#define  INVALID_AIR_ID						0	// ÎÞÐ§Æøid
-#define  INVALID_AIR_INDEX					(-1)// ÎÞÐ§ÆøÎ»ÖÃ
+#define  MAX_SPIRIT_BUY_SLOT_COST			100	// ä¹°åŒ…è£¹æ¶ˆè€—
+#define  INVALID_AIR_ID						0	// æ— æ•ˆæ°”id
+#define  INVALID_AIR_INDEX					(-1)// æ— æ•ˆæ°”ä½ç½®
 
-#define  MAX_EXP2PTS_LEVEL					32	// »ê×ªÐÞÁ¶µã×ª»¯´ÎÊýÅäÖÃµÈ¼¶¶Î
+#define  MAX_EXP2PTS_LEVEL					32	// é­‚è½¬ä¿®ç‚¼ç‚¹è½¬åŒ–æ¬¡æ•°é…ç½®ç­‰çº§æ®µ
 
-// Ñªº£
-#define  MAX_BLOODSEA_PAGE					4	// ÑªÂö
-#define  MAX_BLOODSEA_SLOT_PER_PAGE			10	// Ã¿¸öÑªÂöµÄ¿×ÊýÁ¿
-#define  MAX_BLOODSEA_SLOT_NUMBER			10	// Ã¿¸öÑªÂö¿×³öÏÖµÄ×î´óÖµ
-#define	 MAX_BLOODSEA_ATTR_PER_SLOT			2	// Ã¿¸öÑªÂö¿×Ëù´ø×î´óÊôÐÔÊýÁ¿
-#define  BLOODSEA_SLOT_INIT_SLOT			0	// Ã¿¸öÑªÂö¿×¿ªÊ¼µÄ³õÊ¼Î»ÖÃ
+// è¡€æµ·
+#define  MAX_BLOODSEA_PAGE					4	// è¡€è„‰
+#define  MAX_BLOODSEA_SLOT_PER_PAGE			10	// æ¯ä¸ªè¡€è„‰çš„å­”æ•°é‡
+#define  MAX_BLOODSEA_SLOT_NUMBER			10	// æ¯ä¸ªè¡€è„‰å­”å‡ºçŽ°çš„æœ€å¤§å€¼
+#define	 MAX_BLOODSEA_ATTR_PER_SLOT			2	// æ¯ä¸ªè¡€è„‰å­”æ‰€å¸¦æœ€å¤§å±žæ€§æ•°é‡
+#define  BLOODSEA_SLOT_INIT_SLOT			0	// æ¯ä¸ªè¡€è„‰å­”å¼€å§‹çš„åˆå§‹ä½ç½®
 
 enum SPIRIT_AIR_SEA_BAG_TYPE
 {
@@ -48,12 +48,12 @@ enum SPIRIT_AIR_SEA_BAG_TYPE
 enum SPIRIT_AIR_TYPE
 {
 	spiritInvalid = -1,
-	spiritPower,	// ÂùÁ¦
-	spiritSwift,	// Ñ¸½Ý
-	spiritWise,		// î£ÖÇ
-	spiritBody,		// ¸ÕÌå
-	spiritDivine,	// ÉñÊ¥
-	spiritKing,		// Íò·¨
+	spiritPower,	// è›®åŠ›
+	spiritSwift,	// è¿…æ·
+	spiritWise,		// ç¿æ™º
+	spiritBody,		// åˆšä½“
+	spiritDivine,	// ç¥žåœ£
+	spiritKing,		// ä¸‡æ³•
 };
 
 inline INT32 MAKE_AIR_LEVEL_KEY(INT32 nLevel, INT32 nClass)

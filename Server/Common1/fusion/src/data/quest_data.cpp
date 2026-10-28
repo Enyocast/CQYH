@@ -7,7 +7,7 @@ BOOL QUEST_DATA::ReadLine(INT32& rnID, const char*& rpcszName, QUEST_DATA* pData
 {
     READ_START();
 
-    // ª˘±æ Ù–‘
+    // Âü∫Êú¨Â±ûÊÄß
     READ_INT("QuestTempID", nQuestID);
 
     READ_INT("ResetType", eResetType);
@@ -45,7 +45,7 @@ BOOL QUEST_DATA::ReadLine(INT32& rnID, const char*& rpcszName, QUEST_DATA* pData
 		READ_LENGTH(szColumn, nZ[nIdx]);
 	}
 
-    // Ω”Ωª»ŒŒÒºÏ≤‚Ãıº˛
+    // Êé•‰∫§‰ªªÂä°Ê£ÄÊµãÊù°‰ª∂
     READ_INT("MaxCompleteCount", nMaxCompletedCount);
     if (pData->nQuestID >= 0 && pData->nQuestID < MAX_NORMAL_QUEST_COUNT)
         LOG_PROCESS_ERROR(pData->nMaxCompletedCount == 0 || pData->nMaxCompletedCount == 1);
@@ -55,7 +55,7 @@ BOOL QUEST_DATA::ReadLine(INT32& rnID, const char*& rpcszName, QUEST_DATA* pData
     READ_INT("SexLimit", nSexLimit);
     READ_INT("RelationLimit", nRelationLimit);
 
-    // Ω”»ŒŒÒºÏ≤‚Ãıº˛
+    // Êé•‰ªªÂä°Ê£ÄÊµãÊù°‰ª∂
     READ_INT("PreQuestTempID1", nPreQuestID1);
     READ_INT("PreQuestTempID2", nPreQuestID2);
     READ_INT("StartNPCNew", nStartNpcID);
@@ -110,7 +110,7 @@ BOOL QUEST_DATA::ReadLine(INT32& rnID, const char*& rpcszName, QUEST_DATA* pData
     READ_INT("VarLimit.CheckVarCnt2", nLimitVarValue2);
     READ_STR("BeforeAcceptScriptName", szBeforeAcceptScriptName);
 
-    // Ω”»ŒŒÒ÷¥––∂Ø◊˜
+    // Êé•‰ªªÂä°ÊâßË°åÂä®‰Ωú
     READ_INT("OfferCurrencyType", nOfferMoneyType);
     READ_INT("OfferCurrencyAmount", nOfferMoneyAmount);
     READ_INT("OfferBuff", nOfferBuffID);
@@ -120,7 +120,7 @@ BOOL QUEST_DATA::ReadLine(INT32& rnID, const char*& rpcszName, QUEST_DATA* pData
     READ_INT("OfferItem.CheckItemCnt1", nOfferItemCnt);
     READ_STR("AfterAcceptScriptName", szAfterAcceptScriptName);
 
-    // Ωª»ŒŒÒºÏ≤‚Ãıº˛
+    // ‰∫§‰ªªÂä°Ê£ÄÊµãÊù°‰ª∂
 	READ_INT("TalkNpcID", nTalkNpcID);
 	READ_INT("TalkVarID", nTalkVarID);
 	READ_INT("ExplorVarID", nExploreVarID);
@@ -210,7 +210,7 @@ BOOL QUEST_DATA::ReadLine(INT32& rnID, const char*& rpcszName, QUEST_DATA* pData
 		}
 	}
 
-    // Ωª»ŒŒÒ÷¥––∂Ø◊˜
+    // ‰∫§‰ªªÂä°ÊâßË°åÂä®‰Ωú
  	READ_INT("AwardCurrencyType", stRewardData.nAwardMoneyType1);
  	READ_INT("AwardCurrencyAmount", stRewardData.nAwardMoneyAmount1);
 	READ_INT("AwardCurrencyTypeEx", stRewardData.nAwardMoneyType2);

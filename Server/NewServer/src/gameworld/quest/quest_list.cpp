@@ -153,7 +153,7 @@ INT32 CQuestList::CanAccept(const QUEST_DATA* pQuestData, INT32 nAcceptType, INT
 
 		pCircleQuestData =  CDataManager<CIRCLE_QUEST_DATA>::GetInstance().GetData(MAKE_CIRCLE_QUEST_KEY(pQuestData->nCircleID, 
 			(m_stCircleQuest[pQuestData->nCircleID-1].nCompleteCount+1), m_pOwner->GetLevel()));
-		LOG_PROCESS_ERROR_RET_CODE(pCircleQuestData, errQuestCircleDailyComplete);			// ÕÒ²»µ½ËµÃ÷½ñÌì¸Ã»·ÒÑ¾­×öÂúÁË
+		LOG_PROCESS_ERROR_RET_CODE(pCircleQuestData, errQuestCircleDailyComplete);			// æ‰¾ä¸åˆ°è¯´æ˜ä»Šå¤©è¯¥ç¯å·²ç»åšæ»¡äº†
 
 		LOG_PROCESS_ERROR(pQuestData->nQuestID == m_stCircleQuest[pQuestData->nCircleID-1].nQuestID);
 		LOG_PROCESS_ERROR(m_stCircleQuest[pQuestData->nCircleID-1].nCompleteCount < pCircleQuestData->nMaxCirclePerDay);
@@ -394,7 +394,7 @@ INT32 CQuestList::CanAccept(const QUEST_DATA* pQuestData, INT32 nAcceptType, INT
 		LOG_PROCESS_ERROR_RET_CODE(m_pOwner->GetItemBag()->GetFreeSlots(CONSLOT_DEFAULT) > 1, errQuestItemBagFull);
 	}
 
-	// µ÷ÓÃ½Å±¾
+	// è°ƒç”¨è„šæœ¬
 	if ( '\0' != pQuestData->szBeforeAcceptScriptName[0])
 	{
 		INT32 nRetCode = 0;
@@ -504,7 +504,7 @@ INT32 CQuestList::Accept(INT32 nQuestID)
 		}
 	}
 
-	// µ÷ÓÃ½Å±¾
+	// è°ƒç”¨è„šæœ¬
 	if ( '\0' != pQuestData->szAfterAcceptScriptName[0])
 	{
 		INT32 nRetCode = 0;
@@ -754,7 +754,7 @@ INT32 CQuestList::CanComplete(INT32 nQuestID)
 
 	PROCESS_ERROR_RET_CODE(dwRewardDefaultItemCount <= m_pOwner->GetItemBag()->GetFreeSlots(CONSLOT_DEFAULT), errQuestItemBagFull);
 
-	// µ÷ÓÃ½Å±¾
+	// è°ƒç”¨è„šæœ¬
 	if ( '\0' != pQuestData->szBeforeCompleteScriptName[0])
 	{
 		INT32 nRetCode = 0;
@@ -847,7 +847,7 @@ INT32 CQuestList::Complete(INT32 nQuestID, INT32 nSelectedAwardIdx)
 		LOG_PROCESS_ERROR(it != m_AcceptedNormalQuestList.end());
 	}
 
-	// µ÷ÓÃ½Å±¾
+	// è°ƒç”¨è„šæœ¬
 	if ( '\0' != pQuestData->szAfterCompleteScriptName[0])
 	{
 		CLuaScript* poScript = CScriptMgr::GetInstance().FindScript(QUEST_SCRIPT_NAME);
@@ -1088,7 +1088,7 @@ INT32 CQuestList::Abandon(INT32 nQuestID)
 	pQuestData = CDataManager<QUEST_DATA>::GetInstance().GetData(nQuestID);
 	LOG_PROCESS_ERROR(pQuestData);
 
-	// µ÷ÓÃ½Å±¾
+	// è°ƒç”¨è„šæœ¬
 	if ( '\0' != pQuestData->szAbandonScriptName[0])
 	{
 		CLuaScript* poScript = CScriptMgr::GetInstance().FindScript(QUEST_SCRIPT_NAME);
@@ -1153,7 +1153,7 @@ INT32 CQuestList::Abandon(INT32 nQuestID)
 		}
 	}
 
-	// Èç¹ûÎª»ØÊÕµÀ¾ßÈÎÎñ£¬Çåµô±êÖ¾
+	// å¦‚æœä¸ºå›æ”¶é“å…·ä»»åŠ¡ï¼Œæ¸…æ‰æ ‡å¿—
 
 	for (INT32 nCheckVarIndex = 0; nCheckVarIndex < MAX_CHECK_VAR_COUNT; nCheckVarIndex++)
 	{
@@ -1697,7 +1697,7 @@ BOOL CQuestList::_CheckVariable(const ACCEPTED_QUEST* pAcceptedQuest, INT32 nVar
 	case vtClient:
 		{
 			// modified by zhangrui05
-			// ÎªÁË½ÚÊ¡Ê¹ÓÃClient±äÁ¿, ¿Í»§¶Ë½«ECVT_QuestºÅ±äÁ¿°´Î»´æ´¢£¬nValue´ú±íÎ»Êı£¬ËùÒÔÕâÀïµÄÅĞ¶¨Ğè°´Î»À´ÅĞ¶¨
+			// ä¸ºäº†èŠ‚çœä½¿ç”¨Clientå˜é‡, å®¢æˆ·ç«¯å°†ECVT_Questå·å˜é‡æŒ‰ä½å­˜å‚¨ï¼ŒnValueä»£è¡¨ä½æ•°ï¼Œæ‰€ä»¥è¿™é‡Œçš„åˆ¤å®šéœ€æŒ‰ä½æ¥åˆ¤å®š
 			PROCESS_ERROR((m_pOwner->GetClientVariable(nIndex) & (1 << nValue)) > 0);
 		}
 		break;
@@ -1916,7 +1916,7 @@ INT32 CQuestList::GenerateRewardQuest(void)
 	m_qwRewardAccepted = 0;
 	m_qwRewardCompleted = 0;
 
-	// ¿¼ÂÇµ½Éı¼¶µ¼ÖÂindex¶Ô²»ÉÏµÄÇé¿ö£¬´Óaceepeted questÀïÃæÄÃµ½½ÓÁËÎ´Íê³ÉµÄÊıÁ¿
+	// è€ƒè™‘åˆ°å‡çº§å¯¼è‡´indexå¯¹ä¸ä¸Šçš„æƒ…å†µï¼Œä»aceepeted questé‡Œé¢æ‹¿åˆ°æ¥äº†æœªå®Œæˆçš„æ•°é‡
 	for (Iter = m_AcceptedNormalQuestList.begin(); Iter != m_AcceptedNormalQuestList.end(); Iter++)
 	{
 		const QUEST_DATA* pQuestData = CDataManager<QUEST_DATA>::GetInstance().GetData(Iter->nQuestID);
@@ -1934,7 +1934,7 @@ INT32 CQuestList::GenerateRewardQuest(void)
 		}
 	}
 	
-	if (m_nRewardIndex != m_pOwner->GetLevel()/5) // ¸üĞÂindex
+	if (m_nRewardIndex != m_pOwner->GetLevel()/5) // æ›´æ–°index
 	{
 		memset(&m_qwRewardAccepted, 0, sizeof(m_qwRewardAccepted));
 		m_nRewardIndex = m_pOwner->GetLevel()/5;
@@ -1942,7 +1942,7 @@ INT32 CQuestList::GenerateRewardQuest(void)
 
 	while (nQuestCount < MAX_REWARD_QUEST_COUNT_PER_ROLE)
 	{
-		INT32 nIndex = CDailyQuestMgr::GetInstance().GetRandomQuestIndex(m_nRewardIndex);		//´íÎóËµÃ÷ÕâÒ»¼¶ÒÑ¾­Ã»ÓĞĞüÉÍÈÎÎñÁË
+		INT32 nIndex = CDailyQuestMgr::GetInstance().GetRandomQuestIndex(m_nRewardIndex);		//é”™è¯¯è¯´æ˜è¿™ä¸€çº§å·²ç»æ²¡æœ‰æ‚¬èµä»»åŠ¡äº†
 		PROCESS_ERROR(nIndex>=0 && nIndex<MAX_REWARD_QUEST_COUNT_PER_GROUP);
 
 		if (!(m_qwRewardQuest & ((UINT64)1<<nIndex)) && !(m_qwRewardAccepted & ((UINT64)1<<nIndex)))

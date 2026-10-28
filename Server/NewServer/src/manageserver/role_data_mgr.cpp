@@ -155,15 +155,15 @@ BOOL CRoleDataMgr::_LoadGM(std::list<void*>& rResult, void* pUserData)
 
         LOG_PROCESS_ERROR(IsValidGroup(pLoadResult->bySvrGroup));
 
-        // Ä¬ÈÏ´úÂë
+        // é»˜è®¤ä»£ç 
         //nType = pLoadResult->qwID;
         //dwRoleID = pLoadResult->qwID >> 32;
         //dwTime = pLoadResult->dwTime;
 
-        // ×Ô¼º¸Ä´úÂë
-        nType = GM_RECORD_FREEZE_ROLE;  // ¹Ì¶¨¶³½á½ÇÉ«
-        dwRoleID = pLoadResult->qwID;   // Êı¾İ¿â gm±í, ID×Ö¶Î Ö±½ÓĞ´½ÇÉ«ID
-        dwTime = pLoadResult->dwTime;   // ·â½ûÊ±¼ä
+        // è‡ªå·±æ”¹ä»£ç 
+        nType = GM_RECORD_FREEZE_ROLE;  // å›ºå®šå†»ç»“è§’è‰²
+        dwRoleID = pLoadResult->qwID;   // æ•°æ®åº“ gmè¡¨, IDå­—æ®µ ç›´æ¥å†™è§’è‰²ID
+        dwTime = pLoadResult->dwTime;   // å°ç¦æ—¶é—´
 
         //dwTime = (dwTime == 0 ? 0xFFFFFFFF : dwTime);
 

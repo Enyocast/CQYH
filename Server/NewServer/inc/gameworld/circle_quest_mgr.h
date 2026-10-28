@@ -30,7 +30,7 @@ private:
 	typedef std::list<INT32>	CIRCLE_QUEST_ID_LIST;
 	typedef CIRCLE_QUEST_ID_LIST::iterator IterCircleQuestIDList;
 
-	CIRCLE_QUEST_ID_LIST	m_Circle_Quest_ID_List[MAX_CIRCLE_COUNT][MAX_ROLE_LEVEL/CIRCLE_QUEST_LEVEL_PER_GRADE];	//每一个环维护MAX_ROLE_LEVEL个等级段, 用户随玩家等级段的任务给玩家
+	CIRCLE_QUEST_ID_LIST	m_Circle_Quest_ID_List[MAX_CIRCLE_COUNT][MAX_ROLE_LEVEL/CIRCLE_QUEST_LEVEL_PER_GRADE];	//姣忎竴涓幆缁存姢MAX_ROLE_LEVEL涓瓑绾ф, 鐢ㄦ埛闅忕帺瀹剁瓑绾ф鐨勪换鍔＄粰鐜╁
 
 	INT32	m_nGroupID[MAX_CIRCLE_QUEST_COUNT];
 };

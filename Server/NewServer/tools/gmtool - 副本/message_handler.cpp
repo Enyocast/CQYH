@@ -139,7 +139,7 @@ void CMessageHandler::OnDisconnected(ISocketSession* pSocketSession, BOOL bRemot
 
     if (pGMSession->eState != GM_SVR_STATE_DISCONNECT && pGMSession->eState != GM_SVR_STATE_NONE)
     {
-        nRetCode = CGMLog::GetInstance().Log("·şÎñÆ÷[%s]¶ÏÁ¬!!!", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
+        nRetCode = CGMLog::GetInstance().Log("æœåŠ¡å™¨[%s]æ–­è¿!!!", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
         LOG_PROCESS_ERROR(nRetCode);
 
         pGMSession->eState  = GM_SVR_STATE_DISCONNECT;
@@ -1060,7 +1060,7 @@ void CMessageHandler::OnGMRegisterAck(PACKET_BUFFER *pPacketBuffer, UINT32 dwSiz
     else
     {
         pGMSession->nConnectState = SESSION_DEAD;
-        CGMLog::GetInstance().Log("Î´ÄÜ×¢²áµ½·şÎñÆ÷[%s]", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
+        CGMLog::GetInstance().Log("æœªèƒ½æ³¨å†Œåˆ°æœåŠ¡å™¨[%s]", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
     }
 
     return ;
@@ -1107,12 +1107,12 @@ void CMessageHandler::OnGMLoginAck(PACKET_BUFFER *pPacketBuffer, UINT32 dwSize, 
         nRetCode = g_gmtool.UpdateSvrNameColor(pGMSession->dwSessionID, GM_SVR_STATE_LOGIN);
         LOG_PROCESS_ERROR(nRetCode);
 
-        nRetCode = CGMLog::GetInstance().Log("³É¹¦µÇÂ½·şÎñÆ÷[%s]", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
+        nRetCode = CGMLog::GetInstance().Log("æˆåŠŸç™»é™†æœåŠ¡å™¨[%s]", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
         LOG_PROCESS_ERROR(nRetCode);
     }
     else
     {
-        nRetCode = CGMLog::GetInstance().Log("µÇÂ½·şÎñÆ÷Ê§°Ü[%s], errCode[%d]", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data(), pMsg->nResult);
+        nRetCode = CGMLog::GetInstance().Log("ç™»é™†æœåŠ¡å™¨å¤±è´¥[%s], errCode[%d]", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data(), pMsg->nResult);
         LOG_PROCESS_ERROR(nRetCode);
     }
 
@@ -1177,7 +1177,7 @@ void CMessageHandler::OnGMLogoutAck(PACKET_BUFFER *pPacketBuffer, UINT32 dwSize,
     if (g_gmtool.GetLDWidget())
         g_gmtool.GetLDWidget()->UnInit();
 
-    nRetCode = CGMLog::GetInstance().Log("³É¹¦µÇ³ö·şÎñÆ÷[%s]", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
+    nRetCode = CGMLog::GetInstance().Log("æˆåŠŸç™»å‡ºæœåŠ¡å™¨[%s]", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
     LOG_PROCESS_ERROR(nRetCode);
 
     nRetCode = CServerMgr::GetInstance().UpdateSelectServer();
@@ -1214,7 +1214,7 @@ void CMessageHandler::OnGMPreQueryAck(PACKET_BUFFER *pPacketBuffer, UINT32 dwSiz
 
     if (pMsg->dwRoleID == 0)
     {
-        g_gmtool.OutputMessageBox("Î´²éÑ¯µ½½ÇÉ«");
+        g_gmtool.OutputMessageBox("æœªæŸ¥è¯¢åˆ°è§’è‰²");
         LOG_PROCESS_ERROR(FALSE);
     }
 
@@ -1343,7 +1343,7 @@ void CMessageHandler::OnGMQueryRoleID(PACKET_BUFFER *pPacketBuffer, UINT32 dwSiz
     }
 
     if (pMsg->byIsEnd == 1)
-        CGMLog::GetInstance().Log("Êı¾İ¹ı¶à£¬²¿·ÖÊı¾İÎ´ÏÔÊ¾");
+        CGMLog::GetInstance().Log("æ•°æ®è¿‡å¤šï¼Œéƒ¨åˆ†æ•°æ®æœªæ˜¾ç¤º");
 
 
     return;
@@ -1411,7 +1411,7 @@ void CMessageHandler::OnGMForbidChatAck(PACKET_BUFFER *pPacketBuffer, UINT32 dwS
     
     if (pForbidChat->roleList.begin()->dwRoleID != pMsg->dwRoleID)
     {
-        g_gmtool.OutputLog("½ûÑÔ´¦Àí·µ»Ø²»ÊÇÍ¬Ò»½ÇÉ«£¬ÑÏÖØ´íÎó£¡");
+        g_gmtool.OutputLog("ç¦è¨€å¤„ç†è¿”å›ä¸æ˜¯åŒä¸€è§’è‰²ï¼Œä¸¥é‡é”™è¯¯ï¼");
         LOG_PROCESS_ERROR(FALSE);
     }
     else
@@ -1425,7 +1425,7 @@ void CMessageHandler::OnGMForbidChatAck(PACKET_BUFFER *pPacketBuffer, UINT32 dwS
             nRetCode = CCmdManager::GetInstance().PreQuery(CMD_FORBIDDEN_CHAT, pForbidChat->roleList.begin()->szRoleName, pForbidChat);
             if (nRetCode == FALSE)
             {
-                //QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+                //QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
                 LOG_PROCESS_ERROR(FALSE);
             }
         }
@@ -1464,7 +1464,7 @@ void CMessageHandler::OnGMFreezeRoleAck(PACKET_BUFFER *pPacketBuffer, UINT32 dwS
 
     if (pFreezeRole->roleList.begin()->dwRoleID != pMsg->dwRoleID)
     {
-        g_gmtool.OutputLog("·âºÅ´¦Àí·µ»Ø²»ÊÇÍ¬Ò»½ÇÉ«£¬ÑÏÖØ´íÎó£¡");
+        g_gmtool.OutputLog("å°å·å¤„ç†è¿”å›ä¸æ˜¯åŒä¸€è§’è‰²ï¼Œä¸¥é‡é”™è¯¯ï¼");
         LOG_PROCESS_ERROR(FALSE);
     }
     else
@@ -1478,7 +1478,7 @@ void CMessageHandler::OnGMFreezeRoleAck(PACKET_BUFFER *pPacketBuffer, UINT32 dwS
             nRetCode = CCmdManager::GetInstance().PreQuery(CMD_FREEZE_ROLE, pFreezeRole->roleList.begin()->szRoleName, pFreezeRole);
             if (nRetCode == FALSE)
             {
-                //QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+                //QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
                 LOG_PROCESS_ERROR(FALSE);
             }
         }
@@ -1517,7 +1517,7 @@ void CMessageHandler::OnGMKickRoleAck(PACKET_BUFFER *pPacketBuffer, UINT32 dwSiz
 
     if (pKickRole->roleList.begin()->dwRoleID != pMsg->dwRoleID)
     {
-        g_gmtool.OutputLog("ÌßÈË´¦Àí·µ»Ø²»ÊÇÍ¬Ò»½ÇÉ«£¬ÑÏÖØ´íÎó£¡");
+        g_gmtool.OutputLog("è¸¢äººå¤„ç†è¿”å›ä¸æ˜¯åŒä¸€è§’è‰²ï¼Œä¸¥é‡é”™è¯¯ï¼");
         LOG_PROCESS_ERROR(FALSE);
     }
     else
@@ -1531,7 +1531,7 @@ void CMessageHandler::OnGMKickRoleAck(PACKET_BUFFER *pPacketBuffer, UINT32 dwSiz
             nRetCode = CCmdManager::GetInstance().PreQuery(CMD_KICK_ROLE, pKickRole->roleList.begin()->szRoleName, pKickRole);
             if (nRetCode == FALSE)
             {
-                //QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+                //QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
                 LOG_PROCESS_ERROR(FALSE);
             }
         }
@@ -1570,7 +1570,7 @@ void CMessageHandler::OnGMSendMailAck(PACKET_BUFFER *pPacketBuffer, UINT32 dwSiz
 
     if (pSendMail->roleList.begin()->dwRoleID != pMsg->dwRoleID)
     {
-        g_gmtool.OutputLog("·¢ËÍÓÊ¼ş´¦Àí·µ»Ø²»ÊÇÍ¬Ò»½ÇÉ«£¬ÑÏÖØ´íÎó£¡");
+        g_gmtool.OutputLog("å‘é€é‚®ä»¶å¤„ç†è¿”å›ä¸æ˜¯åŒä¸€è§’è‰²ï¼Œä¸¥é‡é”™è¯¯ï¼");
         LOG_PROCESS_ERROR(FALSE);
     }
     else
@@ -1584,7 +1584,7 @@ void CMessageHandler::OnGMSendMailAck(PACKET_BUFFER *pPacketBuffer, UINT32 dwSiz
             nRetCode = CCmdManager::GetInstance().PreQuery(CMD_SEND_MAIL, pSendMail->roleList.begin()->szRoleName, pSendMail);
             if (nRetCode == FALSE)
             {
-                //QMessageBox::critical(this, "critical", QString::fromLocal8Bit("·¢ËÍÃüÁîÊ§°Ü"), QMessageBox::Yes);
+                //QMessageBox::critical(this, "critical", QString::fromLocal8Bit("å‘é€å‘½ä»¤å¤±è´¥"), QMessageBox::Yes);
                 LOG_PROCESS_ERROR(FALSE);
             }
         }
@@ -1664,7 +1664,7 @@ void CMessageHandler::OnGMGetAnnounceAck(PACKET_BUFFER *pPacketBuffer, UINT32 dw
         LOG_PROCESS_ERROR(nRetCode);
     }
     else
-        g_gmtool.OutputMessageBox("µ±Ç°Ã»ÓĞ¹«¸æ");
+        g_gmtool.OutputMessageBox("å½“å‰æ²¡æœ‰å…¬å‘Š");
 
     return;
 Exit0:
@@ -1850,7 +1850,7 @@ void CMessageHandler::OnGMQueryNameToIDAck(PACKET_BUFFER *pPacketBuffer, UINT32 
         pFile = fopen("../nameTOid.txt", "w");
         if (pFile == NULL)
         {
-            nRetCode = CGMLog::GetInstance().Log("  ·şÎñÆ÷[%s]£¬ÅúÁ¿²éÑ¯ID´ò¿ªÎÄ¼şÊ§°Ü", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
+            nRetCode = CGMLog::GetInstance().Log("  æœåŠ¡å™¨[%s]ï¼Œæ‰¹é‡æŸ¥è¯¢IDæ‰“å¼€æ–‡ä»¶å¤±è´¥", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
             LOG_PROCESS_ERROR(FALSE);
         }
 
@@ -1864,7 +1864,7 @@ void CMessageHandler::OnGMQueryNameToIDAck(PACKET_BUFFER *pPacketBuffer, UINT32 
             nTempLength = sprintf(pBuffer + nLength, "%s  %d\r\n", iter->second.szRoleName, iter->second.dwRoleID);
             if (nTempLength == -1)
             {
-                CGMLog::GetInstance().Log("  ·şÎñÆ÷[%s]£¬ÅúÁ¿²éÑ¯IDÎÄ¼şĞ´ÈëÊ§°Ü", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
+                CGMLog::GetInstance().Log("  æœåŠ¡å™¨[%s]ï¼Œæ‰¹é‡æŸ¥è¯¢IDæ–‡ä»¶å†™å…¥å¤±è´¥", QString::fromUtf8(pGMSession->szGMName).toLocal8Bit().data());
                 LOG_PROCESS_ERROR(FALSE);
             }
             else
@@ -2045,9 +2045,9 @@ void CMessageHandler::OnGMAddSystemOrderAck(PACKET_BUFFER *pPacketBuffer, UINT32
     GM2TL_ADD_SYSTEM_ORDER_ACK  *pMsg = (GM2TL_ADD_SYSTEM_ORDER_ACK*)pPacketBuffer;
 
     if (pMsg->nResult == errSuccess)
-        snprintf(szBuffer, 256, "Ôö¼Ó¶©µ¥³É¹¦. µ¥¼Û %.2lf, ÊıÁ¿ %d", (double)pMsg->nPrice / 100, pMsg->nCount);
+        snprintf(szBuffer, 256, "å¢åŠ è®¢å•æˆåŠŸ. å•ä»· %.2lf, æ•°é‡ %d", (double)pMsg->nPrice / 100, pMsg->nCount);
     else
-        snprintf(szBuffer, 256, "Ôö¼Ó¶©µ¥Ê§°Ü. µ¥¼Û %.2lf, ÊıÁ¿ %d", (double)pMsg->nPrice / 100, pMsg->nCount);
+        snprintf(szBuffer, 256, "å¢åŠ è®¢å•å¤±è´¥. å•ä»· %.2lf, æ•°é‡ %d", (double)pMsg->nPrice / 100, pMsg->nCount);
     g_gmtool.OutputLog(szBuffer);
 }
 
@@ -2057,9 +2057,9 @@ void CMessageHandler::OnGMDelSystemOrderAck(PACKET_BUFFER *pPacketBuffer, UINT32
     GM2TL_DEL_SYSTEM_ORDER_ACK  *pMsg = (GM2TL_DEL_SYSTEM_ORDER_ACK*)pPacketBuffer;
 
     if (pMsg->nResult == errSuccess)
-        snprintf(szBuffer, 256, "È¡Ïû¶©µ¥³É¹¦. µ¥¼Û %.2lf, ÊıÁ¿ %d", (double)pMsg->nPrice / 100, pMsg->nCount);
+        snprintf(szBuffer, 256, "å–æ¶ˆè®¢å•æˆåŠŸ. å•ä»· %.2lf, æ•°é‡ %d", (double)pMsg->nPrice / 100, pMsg->nCount);
     else
-        snprintf(szBuffer, 256, "È¡Ïû¶©µ¥Ê§°Ü. µ¥¼Û %.2lf, ÊıÁ¿ %d", (double)pMsg->nPrice / 100, pMsg->nCount);
+        snprintf(szBuffer, 256, "å–æ¶ˆè®¢å•å¤±è´¥. å•ä»· %.2lf, æ•°é‡ %d", (double)pMsg->nPrice / 100, pMsg->nCount);
 
     g_gmtool.OutputLog(szBuffer);
 
@@ -2102,7 +2102,7 @@ void CMessageHandler::OnGMQuerySysExchangeInfoAck(PACKET_BUFFER *pPacketBuffer, 
             pMsg->llSysExchangeRMB, pMsg->llExchangeRMB,
             pMsg->nAveragePriceToday, pMsg->nAveragePriceLastHour);
 
-        g_gmtool.OutputLog("µ¼³öÊı¾İ³É¹¦");
+        g_gmtool.OutputLog("å¯¼å‡ºæ•°æ®æˆåŠŸ");
     }
     
 
@@ -2132,7 +2132,7 @@ void CMessageHandler::OnGMSetExchangeLimitAck(PACKET_BUFFER *pPacketBuffer, UINT
     if (g_gmtool.GetLDWidget())
     {
         g_gmtool.GetLDWidget()->ShowExchangeLimit(pMsg->nPriceHigh, pMsg->nPriceLow, pMsg->nSingleOrderLimit, pMsg->nDailyOrderLimit);
-        g_gmtool.OutputLog("ĞŞ¸Ä¶©µ¥ÏŞÖÆ³É¹¦");
+        g_gmtool.OutputLog("ä¿®æ”¹è®¢å•é™åˆ¶æˆåŠŸ");
     }
 
 Exit0:

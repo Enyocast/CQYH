@@ -21,11 +21,11 @@
 #include <mmsystem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <strsafe.h>        // StringCchÏà¹ØÓÃ
+#include <strsafe.h>        // StringCchç›¸å…³ç”¨
 #include "SDOA4Client.h"
 
 
-/* ½ÓÈëÏà¹ØÈ«¾Ö±äÁ¿  */
+/* æŽ¥å…¥ç›¸å…³å…¨å±€å˜é‡  */
 HINSTANCE          g_hInstIGWDll = 0;
 LPigwInitialize    igwInitialize = NULL;
 LPigwGetModule     igwGetModule = NULL;
@@ -51,11 +51,11 @@ struct CUSTOMVERTEX
 // Our custom FVF, which describes our custom vertex structure
 #define D3DFVF_CUSTOMVERTEX (D3DFVF_XYZ|D3DFVF_NORMAL)
 
-/* ÊÍ·ÅIGW */
+/* é‡Šæ”¾IGW */
 void CloseIGW()
 {
 	if (igwTerminal)
-	{  // ÊÍ·ÅDLLÇ°×ÜÊÇÏÈµ÷ÓÃigwTerminal
+	{  // é‡Šæ”¾DLLå‰æ€»æ˜¯å…ˆè°ƒç”¨igwTerminal
 		igwTerminal();
 		igwTerminal = NULL;
 	}
@@ -67,7 +67,7 @@ void CloseIGW()
 	igwInitialize = NULL;
 }
 
-/* ¼ÓÔØIGW */
+/* åŠ è½½IGW */
 void OpenIGW()
 {
 	WCHAR strExePath[MAX_PATH] = {0};
@@ -77,7 +77,7 @@ void OpenIGW()
 	strExePath[MAX_PATH-1]=0;
 	strLastSlash = wcsrchr( strExePath, TEXT('\\') );
 	if( strLastSlash )
-	{	// µÃµ½EXEËùÔÚÂ·¾¶
+	{	// å¾—åˆ°EXEæ‰€åœ¨è·¯å¾„
 		StringCchCopyW( strExeName, MAX_PATH, &strLastSlash[1] );
 		*strLastSlash = 0;
 		strLastSlash = wcsrchr( strExeName, TEXT('.') );
@@ -89,14 +89,14 @@ void OpenIGW()
 	StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\GameWidget.dll", strExePath );
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // Èç¹û³ÌÐòÔËÐÐÂ·¾¶ÖÐ²»´æÔÚÔò»»¸öÂ·¾¶ÔÙÊÔ
+	{ // å¦‚æžœç¨‹åºè¿è¡Œè·¯å¾„ä¸­ä¸å­˜åœ¨åˆ™æ¢ä¸ªè·¯å¾„å†è¯•
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
 	CloseIGW();
 
 	if ( GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF )
-	{	// ÕÒµ½×é¼þÔò¼ÓÔØ	
+	{	// æ‰¾åˆ°ç»„ä»¶åˆ™åŠ è½½	
 		g_hInstIGWDll = LoadLibraryW(strGameWidgetDll);
 		if (g_hInstIGWDll)
 		{
@@ -105,29 +105,29 @@ void OpenIGW()
 			igwTerminal = (LPigwTerminal)GetProcAddress( g_hInstIGWDll, "igwTerminal" );
 			if ( igwInitialize && igwGetModule && igwTerminal)
 			{
-				// ¼ÓÔØ³É¹¦
+				// åŠ è½½æˆåŠŸ
 
-				// ×¢ÒâAppInfoÀàÐÍËùÓÐ×Ö¶Î±ØÐëÌî
+				// æ³¨æ„AppInfoç±»åž‹æ‰€æœ‰å­—æ®µå¿…é¡»å¡«
 				AppInfo tmpAppInfo = {
-					sizeof(AppInfo),       // ½á¹¹Ìå´óÐ¡£¬·½±ãÀ©Õ¹
-					9999,                  // ½ÓÈëÓ¦ÓÃID£¬´Ó¿ª·¢ÕßÍøÕ¾ÖÐÉêÇë
-					L"ÁúÌ¶»¢Ñ¨OnLine",     // Ó¦ÓÃÃû³Æ
-					L"0.1.2.0",            // Ó¦ÓÃ¿Í»§¶Ëµ±Ç°°æ±¾ºÅ
-					SDOA_RENDERTYPE_D3D9,  // ¿Í»§¶ËÖ§³ÖµÄÍ¼ÐÎÒýÇæÀàÐÍ£¬ÕâÀïÍ¬Ê±Ö§³Öd3d9ºÍd3d8
-					1,                     // ¿ÉÍ¬Ê±ÔÚÒ»Ì¨»úÆ÷ÉÏÓÎÏ·µÄ×î´óÈËÊý£¨Í¨³£Îª1£¬ÀýÈç:KOFÓ¦¸ÃÊÇ2£©
-					-1,                    // ÓÎÏ·ÇøID£¬²»¿ÉÓÃÊ±´«Èë-1
-					-1                     // ÓÎÏ·×éID£¬²»¿ÉÓÃÊ±´«Èë-1
+					sizeof(AppInfo),       // ç»“æž„ä½“å¤§å°ï¼Œæ–¹ä¾¿æ‰©å±•
+					9999,                  // æŽ¥å…¥åº”ç”¨IDï¼Œä»Žå¼€å‘è€…ç½‘ç«™ä¸­ç”³è¯·
+					L"é¾™æ½­è™Žç©´OnLine",     // åº”ç”¨åç§°
+					L"0.1.2.0",            // åº”ç”¨å®¢æˆ·ç«¯å½“å‰ç‰ˆæœ¬å·
+					SDOA_RENDERTYPE_D3D9,  // å®¢æˆ·ç«¯æ”¯æŒçš„å›¾å½¢å¼•æ“Žç±»åž‹ï¼Œè¿™é‡ŒåŒæ—¶æ”¯æŒd3d9å’Œd3d8
+					1,                     // å¯åŒæ—¶åœ¨ä¸€å°æœºå™¨ä¸Šæ¸¸æˆçš„æœ€å¤§äººæ•°ï¼ˆé€šå¸¸ä¸º1ï¼Œä¾‹å¦‚:KOFåº”è¯¥æ˜¯2ï¼‰
+					-1,                    // æ¸¸æˆåŒºIDï¼Œä¸å¯ç”¨æ—¶ä¼ å…¥-1
+					-1                     // æ¸¸æˆç»„IDï¼Œä¸å¯ç”¨æ—¶ä¼ å…¥-1
 
 				};
 
 				if (igwInitialize(SDOA_SDK_VERSION, &tmpAppInfo) == SDOA_OK)
-				{	// ³õÊ¼»¯×é¼þ³É¹¦
+				{	// åˆå§‹åŒ–ç»„ä»¶æˆåŠŸ
 
 				}
-				else // ³õÊ¼»¯Ê§°ÜÇå³ý»·¾³
+				else // åˆå§‹åŒ–å¤±è´¥æ¸…é™¤çŽ¯å¢ƒ
 					CloseIGW();
 			}
-			else  // ¼ÓÔØDLLÊ§°ÜÇå³ý»·¾³
+			else  // åŠ è½½DLLå¤±è´¥æ¸…é™¤çŽ¯å¢ƒ
 				CloseIGW();
 		}
 	}
@@ -157,7 +157,7 @@ HRESULT InitD3D( HWND hWnd )
     d3dpp.BackBufferFormat = d3ddm.Format;
     d3dpp.EnableAutoDepthStencil = TRUE;
     d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
-	d3dpp.hDeviceWindow = hWnd;// ×¢ÒâIGWÄÚ²¿×ÜÊÇÍ¨¹ýËüÈ¡µ½ÓÎÏ·Ö÷´°¿ÚµÄ
+	d3dpp.hDeviceWindow = hWnd;// æ³¨æ„IGWå†…éƒ¨æ€»æ˜¯é€šè¿‡å®ƒå–åˆ°æ¸¸æˆä¸»çª—å£çš„
 
     // Create the D3DDevice
     if( FAILED( g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
@@ -374,7 +374,7 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 
 void CALLBACK OnLostDevice()
 {
-	/* Í¨Öªd3dÉè±¸¶ªÊ§ */
+	/* é€šçŸ¥d3dè®¾å¤‡ä¸¢å¤± */
 	if( g_pVB != NULL )
 	{
 		g_pVB->Release();
@@ -384,7 +384,7 @@ void CALLBACK OnLostDevice()
 
 void CALLBACK OnResetDevice()
 {
-	/* Í¨Öªd3dÉè±¸ÖØÖÃ³É¹¦ */
+	/* é€šçŸ¥d3dè®¾å¤‡é‡ç½®æˆåŠŸ */
 	InitGeometry();
 	// Turn off culling
 	g_pd3dDevice->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
@@ -418,11 +418,11 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
     // Initialize Direct3D
     if( SUCCEEDED( InitD3D( hWnd ) ) )
     {
-		/* ¼ÓÔØIGW */
+		/* åŠ è½½IGW */
 		OpenIGW();
 		if (igwInitialize)
-		{	// ËµÃ÷¼ÓÔØ³É¹¦£¬±íÊ¾ÏÂ......			
-			SetWindowText(hWnd, "D3D Tutorial [¼ÓÔØIGW×é¼þ³É¹¦]");
+		{	// è¯´æ˜ŽåŠ è½½æˆåŠŸï¼Œè¡¨ç¤ºä¸‹......			
+			SetWindowText(hWnd, "D3D Tutorial [åŠ è½½IGWç»„ä»¶æˆåŠŸ]");
 		}	
 
         // Create the geometry
@@ -446,9 +446,9 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 					DispatchMessage( &msg );
                 }
                 else
-				{	// ¼òµ¥´¦ÀíÉè±¸¶ªÊ§ÎÊÌâ
+				{	// ç®€å•å¤„ç†è®¾å¤‡ä¸¢å¤±é—®é¢˜
 					if (g_DeviceLost)
-					{	// ´¦ÓÚÉè±¸¶ªÊ§ÖÐ¿ÉÂýµã»Ö¸´£¬±ÜÃâ³¤Ê±¼ä¶ªÊ§Õ¼ÓÃ¹ý¶àCPU
+					{	// å¤„äºŽè®¾å¤‡ä¸¢å¤±ä¸­å¯æ…¢ç‚¹æ¢å¤ï¼Œé¿å…é•¿æ—¶é—´ä¸¢å¤±å ç”¨è¿‡å¤šCPU
 						Sleep(50);
 					}
 					switch (g_pd3dDevice->TestCooperativeLevel())
@@ -484,7 +484,7 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
         }
     }
 
-	/* ÊÍ·ÅIGW */
+	/* é‡Šæ”¾IGW */
 	CloseIGW();
 
     // Clean up everything and exit the app

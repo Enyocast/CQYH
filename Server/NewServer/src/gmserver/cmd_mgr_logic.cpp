@@ -26,9 +26,9 @@ BOOL CB_PreQueryRoleID(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     LOG_PROCESS_ERROR(pTLUser);
 
     nRetCode = CDBMgr::GetInstance().PreQueryRoleID(pQueryCmd);
-    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
 
-    LOG_ECHO_ERROR(pQueryCmd->dwRoleID != 0, pTLUser->GetID(), "½ÇÉ«²»´æÔÚ");
+    LOG_ECHO_ERROR(pQueryCmd->dwRoleID != 0, pTLUser->GetID(), "è§’è‰²ä¸å­˜åœ¨");
 
     nRetCode = CMessageHandler::GetInstance().DoTLPreQueryAck(pTLUser->GetSessionID(), pQueryCmd->szRoleName, pQueryCmd->dwRoleID);
     LOG_CHECK_ERROR(nRetCode);
@@ -64,7 +64,7 @@ BOOL CB_QueryRoleID(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         pCmd->eCmdState = GM_LS_TIMEOUT;
 
         nRetCode = CDBMgr::GetInstance().QueryRoleID(pQueryCmd);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
     }
         break;
     case GM_LS_TIMEOUT:
@@ -72,7 +72,7 @@ BOOL CB_QueryRoleID(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] Query RoleID timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
@@ -80,12 +80,12 @@ BOOL CB_QueryRoleID(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     {
         DBG("TLUserID[%u] Query RoleID Reslut[%d]", pTLUser->GetID(), pQueryCmd->nResult);
 
-        LOG_ECHO_ERROR(pQueryCmd->nResult == errSuccess, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+        LOG_ECHO_ERROR(pQueryCmd->nResult == errSuccess, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
 
         nRetCode = CMessageHandler::GetInstance().DoTLQueryRoleIDAck(pTLUser->GetSessionID(), pQueryCmd->nCount, pQueryCmd->RoleKey);
         LOG_PROCESS_ERROR(nRetCode);
         
-        EchoTLError(pTLUser->GetSessionID(), "²éÑ¯½ÇÉ«ID³É¹¦");
+        EchoTLError(pTLUser->GetSessionID(), "æŸ¥è¯¢è§’è‰²IDæˆåŠŸ");
 
         //pTLUser->ClearCmd();
         CKernel::GetInstance().PopCmd(pCmd);
@@ -141,7 +141,7 @@ BOOL CB_QueryRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     case GM_LS_MS_QUERY_ROLE_INFO_ACK:
     {
         LOG_ECHO_ERROR(pCmd->nResult == errSuccess, pTLUser->GetSessionID(), 
-            "È¥ms²éÑ¯½ÇÉ«Ê§°Ü[%s]", CGmServer::GetInstance().GetErrString(pCmd->nResult));
+            "åŽ»msæŸ¥è¯¢è§’è‰²å¤±è´¥[%s]", CGmServer::GetInstance().GetErrString(pCmd->nResult));
 
         pCmd->eCmdState = GM_LS_LOAD_ROLE;
     }
@@ -149,12 +149,12 @@ BOOL CB_QueryRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     case GM_LS_LOAD_ROLE:
     {
         nRetCode = CDBMgr::GetInstance().QueryRoleData(pQueryCmd);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
     }
         break;
     case GM_LS_LOAD_ROLE_ACK:
     {
-        LOG_ECHO_ERROR(pCmd->nResult == errSuccess, pTLUser->GetSessionID(), "¼ÓÔØ½ÇÉ«Ê§°Ü");
+        LOG_ECHO_ERROR(pCmd->nResult == errSuccess, pTLUser->GetSessionID(), "åŠ è½½è§’è‰²å¤±è´¥");
 
         if (pQueryCmd->bIsOnline == TRUE)
         {
@@ -169,7 +169,7 @@ BOOL CB_QueryRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         }
 
         nRetCode = LoadRole(pQueryCmd, pQueryCmd->nLength, pQueryCmd->szData);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½âÎö½ÇÉ«Êý¾ÝÊ§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§£æžè§’è‰²æ•°æ®å¤±è´¥");
 
         pQueryCmd->eCmdState = GM_LS_QUERY_GUILD_ID;
     }
@@ -179,7 +179,7 @@ BOOL CB_QueryRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] Query Role Data timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
@@ -190,15 +190,15 @@ BOOL CB_QueryRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         DBG("TLUserID[%u] Query Role Data, begin query guild id", pTLUser->GetID());
 
         nRetCode = CDBMgr::GetInstance().QueryGuildID(pQueryCmd);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
     }
         break;
     case GM_LS_QUERY_GUILD_ID_ACK:
     {
-        LOG_ECHO_ERROR(pCmd->nResult == errSuccess, pTLUser->GetSessionID(), "¼ÓÔØ¹«»áÊ§°Ü");
+        LOG_ECHO_ERROR(pCmd->nResult == errSuccess, pTLUser->GetSessionID(), "åŠ è½½å…¬ä¼šå¤±è´¥");
 
         nRetCode = LoadGuild(pQueryCmd, pQueryCmd->nLength, pQueryCmd->szData);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½âÎö¹«»áÊý¾ÝÊ§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§£æžå…¬ä¼šæ•°æ®å¤±è´¥");
 
         pCmd->eCmdState = GM_LS_QUERY_GM_FORBID;
     }
@@ -210,15 +210,15 @@ BOOL CB_QueryRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         DBG("TLUserID[%u] Query Role Data, begin query forbid time", pTLUser->GetID());
 
         nRetCode = CDBMgr::GetInstance().QueryGMForbid(pQueryCmd);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "²éÑ¯GM·âÍ£Êý¾ÝÊ§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æŸ¥è¯¢GMå°åœæ•°æ®å¤±è´¥");
     }
         break;
     case GM_LS_QUERY_GM_FORBID_ACK:
     {
-        LOG_ECHO_ERROR(pCmd->nResult == errSuccess, pTLUser->GetSessionID(), "¼ÓÔØGM·âÍ£Êý¾ÝÊ§°Ü");
+        LOG_ECHO_ERROR(pCmd->nResult == errSuccess, pTLUser->GetSessionID(), "åŠ è½½GMå°åœæ•°æ®å¤±è´¥");
 
         nRetCode = LoadGMForbid(pQueryCmd, pQueryCmd->nLength, pQueryCmd->szData);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½âÎöGM·âÍ£Êý¾ÝÊ§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§£æžGMå°åœæ•°æ®å¤±è´¥");
 
         pCmd->eCmdState = GM_LS_LOAD_MAIL;
     }
@@ -230,15 +230,15 @@ BOOL CB_QueryRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         DBG("TLUserID[%u] query role data, begin query mail", pTLUser->GetID());
 
         nRetCode = CDBMgr::GetInstance().QueryMail(pQueryCmd);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "²éÑ¯ÓÊ¼þÊ§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æŸ¥è¯¢é‚®ä»¶å¤±è´¥");
     }
         break;
     case GM_LS_LOAD_MAIL_ACK:
     {
-        LOG_ECHO_ERROR(pCmd->nResult == errSuccess, pTLUser->GetSessionID(), "¼ÓÔØÓÊ¼þÊý¾ÝÊ§°Ü");
+        LOG_ECHO_ERROR(pCmd->nResult == errSuccess, pTLUser->GetSessionID(), "åŠ è½½é‚®ä»¶æ•°æ®å¤±è´¥");
 
         nRetCode = LoadMail(pQueryCmd, pQueryCmd->nLength, pQueryCmd->szData);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½âÎöÓÊ¼þÊý¾ÝÊ§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§£æžé‚®ä»¶æ•°æ®å¤±è´¥");
 
         DBG("TLUserID[%u] Query Role Data, result[%d]", pTLUser->GetID(), pQueryCmd->nResult);
 
@@ -246,7 +246,7 @@ BOOL CB_QueryRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
             pQueryCmd->bIsOnline, pQueryCmd->nLength, pQueryCmd->szData);
         LOG_CHECK_ERROR(nRetCode);
 
-        EchoTLError(pTLUser->GetSessionID(), "²éÑ¯½ÇÉ«Êý¾Ý³É¹¦");
+        EchoTLError(pTLUser->GetSessionID(), "æŸ¥è¯¢è§’è‰²æ•°æ®æˆåŠŸ");
 
         if (pQueryCmd->poRole)
         {
@@ -295,14 +295,14 @@ BOOL CB_ForbiddenChat(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
             DBG("TLUserID[%u] Forbid Role Chat send msg to ms", pTLUser->GetID());
             // online 
             nRetCode = CMessageHandler::GetInstance().DoMSForbidChat(pTLUser->GetID(), pForbidChat->dwSerialID, pForbidChat->dwTime, pForbidChat->dwRoleID);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "·¢ËÍÏûÏ¢µ½msÊ§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "å‘é€æ¶ˆæ¯åˆ°mså¤±è´¥");
         }
         else
         {
             DBG("TLUserID[%u] Forbid Role Chat modify db directly, ms not online", pTLUser->GetID());
 
             nRetCode = CDBMgr::GetInstance().ForbiddenChat(pForbidChat);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
 
             pForbidChat->nResult = errSuccess;
             pForbidChat->eCmdState = GM_LS_FORBID_CHAT_ACK;
@@ -314,7 +314,7 @@ BOOL CB_ForbiddenChat(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] Forbid Role Chat timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
@@ -322,7 +322,7 @@ BOOL CB_ForbiddenChat(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     {
         INF("TLUserID[%u] Forbid Role Chat , result[%d]", pTLUser->GetID(), pForbidChat->nResult);
 
-        LOG_ECHO_ERROR(pForbidChat->nResult == errSuccess, pTLUser->GetSessionID(), "½ûÑÔÊ§°Ü");
+        LOG_ECHO_ERROR(pForbidChat->nResult == errSuccess, pTLUser->GetSessionID(), "ç¦è¨€å¤±è´¥");
 
         nRetCode = CMessageHandler::GetInstance().DoTLForbidChatAck(pTLUser->GetSessionID(), pForbidChat->dwRoleID);
         LOG_CHECK_ERROR(nRetCode);
@@ -343,9 +343,9 @@ BOOL CB_ForbiddenChat(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         }
 
         if (pForbidChat->dwTime == 0)
-            EchoTLError(pTLUser->GetSessionID(), "½â³ý½ûÑÔ³É¹¦");
+            EchoTLError(pTLUser->GetSessionID(), "è§£é™¤ç¦è¨€æˆåŠŸ");
         else
-            EchoTLError(pTLUser->GetSessionID(), "½ûÑÔ³É¹¦");
+            EchoTLError(pTLUser->GetSessionID(), "ç¦è¨€æˆåŠŸ");
 
         //pTLUser->ClearCmd();
         CKernel::GetInstance().PopCmd(pCmd);
@@ -385,14 +385,14 @@ BOOL CB_FreezeRole(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
 
             // online 
             nRetCode = CMessageHandler::GetInstance().DoMSFreezeRole(pTLUser->GetID(), pFreezeRole->dwSerialID, pFreezeRole->dwTime, pFreezeRole->dwRoleID);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "·¢ËÍÏûÏ¢µ½msÊ§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "å‘é€æ¶ˆæ¯åˆ°mså¤±è´¥");
         }
         else
         {
             DBG("TLUserID[%u] Freeze Role modify db directly, ms not online", pTLUser->GetID());
 
             nRetCode = CDBMgr::GetInstance().FreezeRole(pFreezeRole);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
 
             pFreezeRole->nResult = errSuccess;
             pFreezeRole->eCmdState = GM_LS_FREEZE_ROLE_ACK;
@@ -404,7 +404,7 @@ BOOL CB_FreezeRole(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] Freeze Role timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
@@ -412,7 +412,7 @@ BOOL CB_FreezeRole(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     {
         INF("TLUserID[%u] Freeze Role Result[%d]", pTLUser->GetID(), pFreezeRole->nResult);
 
-        LOG_ECHO_ERROR(pFreezeRole->nResult == errSuccess, pTLUser->GetSessionID(), "·âºÅÊ§°Ü");
+        LOG_ECHO_ERROR(pFreezeRole->nResult == errSuccess, pTLUser->GetSessionID(), "å°å·å¤±è´¥");
 
         nRetCode = CMessageHandler::GetInstance().DoTLFreezeRoleAck(pTLUser->GetSessionID(), pFreezeRole->dwRoleID);
         LOG_CHECK_ERROR(nRetCode);
@@ -433,9 +433,9 @@ BOOL CB_FreezeRole(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         }
 
         if (pFreezeRole->dwTime == 0)
-            EchoTLError(pTLUser->GetSessionID(), "½â³ý¶³½á³É¹¦");
+            EchoTLError(pTLUser->GetSessionID(), "è§£é™¤å†»ç»“æˆåŠŸ");
         else
-            EchoTLError(pTLUser->GetSessionID(), "¶³½á½ÇÉ«³É¹¦");
+            EchoTLError(pTLUser->GetSessionID(), "å†»ç»“è§’è‰²æˆåŠŸ");
 
         CKernel::GetInstance().PopCmd(pCmd);
         CCmdMgr::GetInstance().DeleteCmd(pCmd);
@@ -474,7 +474,7 @@ BOOL CB_KickRole(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
 
             // online 
             nRetCode = CMessageHandler::GetInstance().DoMSKickRole(pTLUser->GetID(), pKickRole->dwSerialID, pKickRole->dwRoleID);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "·¢ËÍÏûÏ¢µ½msÊ§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "å‘é€æ¶ˆæ¯åˆ°mså¤±è´¥");
         }
         else
         {
@@ -490,7 +490,7 @@ BOOL CB_KickRole(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] Kick Role timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
@@ -498,7 +498,7 @@ BOOL CB_KickRole(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     {
         INF("TLUserID[%u] Kick Role Result[%d]", pTLUser->GetID(), pKickRole->nResult);
 
-        LOG_ECHO_ERROR(pKickRole->nResult == errSuccess || pKickRole->nResult == errGMMSNotOnline, pTLUser->GetSessionID(), "ÌßÈËÊ§°Ü");
+        LOG_ECHO_ERROR(pKickRole->nResult == errSuccess || pKickRole->nResult == errGMMSNotOnline, pTLUser->GetSessionID(), "è¸¢äººå¤±è´¥");
 
         nRetCode = CMessageHandler::GetInstance().DoTLKickRoleAck(pTLUser->GetSessionID(), pKickRole->dwRoleID);
         LOG_CHECK_ERROR(nRetCode);
@@ -506,7 +506,7 @@ BOOL CB_KickRole(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         nRetCode = CGMLog::GetInstance().WriteLog(pKickRole->szUserName, "kick role", "RoleID[%u]", pKickRole->dwRoleID);
         LOG_CHECK_ERROR(nRetCode);
 
-        EchoTLError(pTLUser->GetSessionID(), "Ç¿ÖÆ½ÇÉ«ÏÂÏß³É¹¦");
+        EchoTLError(pTLUser->GetSessionID(), "å¼ºåˆ¶è§’è‰²ä¸‹çº¿æˆåŠŸ");
 
         CKernel::GetInstance().PopCmd(pCmd);
         CCmdMgr::GetInstance().DeleteCmd(pCmd);
@@ -547,14 +547,14 @@ BOOL CB_SendMail(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
             // online 
             nRetCode = CMessageHandler::GetInstance().DoMSSendMail(pTLUser->GetID(),
                 pSendMail->dwSerialID, pSendMail->dwRoleID, pSendMail->szTitle, pSendMail->szContent, pSendMail->dwItemID, pSendMail->nItemNum);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "·¢ËÍÏûÏ¢µ½msÊ§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "å‘é€æ¶ˆæ¯åˆ°mså¤±è´¥");
         }
         else
         {
             DBG("TLUserID[%u] Send Mail modify db directly, ms not online", pTLUser->GetID());
 
             nRetCode = CDBMgr::GetInstance().SendMail(pCmd);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
 
             pSendMail->eCmdState = GM_LS_SEND_MAIL_ACK;
             pSendMail->nResult = errSuccess;
@@ -566,7 +566,7 @@ BOOL CB_SendMail(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] Send Mail timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
@@ -574,7 +574,7 @@ BOOL CB_SendMail(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     {
         DBG("TLUserID[%u] Send Mail Result[%d]", pTLUser->GetID(), pSendMail->nResult);
 
-        LOG_ECHO_ERROR(pSendMail->nResult == errSuccess, pTLUser->GetSessionID(), "·¢ËÍÓÊ¼þÊ§°Ü");
+        LOG_ECHO_ERROR(pSendMail->nResult == errSuccess, pTLUser->GetSessionID(), "å‘é€é‚®ä»¶å¤±è´¥");
 
         nRetCode = CMessageHandler::GetInstance().DoTLSendMailAck(pTLUser->GetSessionID(), pSendMail->dwRoleID);
         LOG_CHECK_ERROR(nRetCode);
@@ -583,7 +583,7 @@ BOOL CB_SendMail(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
             pSendMail->dwRoleID, pSendMail->szTitle, pSendMail->szContent, pSendMail->dwItemID, pSendMail->nItemNum, pSendMail->szReason);
         LOG_CHECK_ERROR(nRetCode);
 
-        EchoTLError(pTLUser->GetSessionID(), "ÓÊ¼þ·¢ËÍ³É¹¦");
+        EchoTLError(pTLUser->GetSessionID(), "é‚®ä»¶å‘é€æˆåŠŸ");
 
         //pTLUser->ClearCmd();
         CKernel::GetInstance().PopCmd(pCmd);
@@ -624,7 +624,7 @@ BOOL CB_Announce(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
             // online 
             nRetCode = CMessageHandler::GetInstance().DoMSAnnounce(pAnnounce->nGroupID, pTLUser->GetID(), 
                 pAnnounce->dwSerialID, pAnnounce->dwBeginTime, pAnnounce->nRepeatNum, pAnnounce->dwIntervalTime, pAnnounce->szText);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "·¢ËÍÏûÏ¢µ½msÊ§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "å‘é€æ¶ˆæ¯åˆ°mså¤±è´¥");
         }
         else
         {
@@ -640,7 +640,7 @@ BOOL CB_Announce(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] send announce timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
@@ -648,7 +648,7 @@ BOOL CB_Announce(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     {
         DBG("TLUserID[%u] groupid[%d] send announce Result[%d]", pTLUser->GetID(), pAnnounce->nGroupID, pAnnounce->nResult);
 
-        LOG_ECHO_ERROR(pAnnounce->nResult == errSuccess, pTLUser->GetSessionID(), "·¢ËÍ¹«¸æÊ§°Ü");
+        LOG_ECHO_ERROR(pAnnounce->nResult == errSuccess, pTLUser->GetSessionID(), "å‘é€å…¬å‘Šå¤±è´¥");
 
         nRetCode = CMessageHandler::GetInstance().DoTLAnnounceAck(pAnnounce->nGroupID, pTLUser->GetSessionID(), errSuccess);
         LOG_CHECK_ERROR(nRetCode);
@@ -669,7 +669,7 @@ BOOL CB_Announce(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
             LOG_CHECK_ERROR(nRetCode);
         }
 
-        EchoTLError(pTLUser->GetSessionID(), "¹«¸æ·¢ËÍ³É¹¦");
+        EchoTLError(pTLUser->GetSessionID(), "å…¬å‘Šå‘é€æˆåŠŸ");
 
         CKernel::GetInstance().PopCmd(pCmd);
         CCmdMgr::GetInstance().DeleteCmd(pCmd);
@@ -713,7 +713,7 @@ BOOL CB_GetAnnounceList(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
             DBG("TLUserID[%u] query announce list send msg to ms", pTLUser->GetID());
             // online 
             nRetCode = CMessageHandler::GetInstance().DoMSGetAnnounceList(pAnnounce->nGroupID, pTLUser->GetID(), pAnnounce->dwSerialID);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "·¢ËÍÏûÏ¢µ½msÊ§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "å‘é€æ¶ˆæ¯åˆ°mså¤±è´¥");
         }
         else
         {
@@ -728,7 +728,7 @@ BOOL CB_GetAnnounceList(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] query announce list timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
@@ -736,12 +736,12 @@ BOOL CB_GetAnnounceList(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     {
         DBG("TLUserID[%u] groupid[%d] query announce list Result[%d]", pTLUser->GetID(), pAnnounce->nGroupID, pAnnounce->nResult);
 
-        LOG_ECHO_ERROR(pAnnounce->nResult == errSuccess, pTLUser->GetSessionID(), "»ñÈ¡¹«¸æÊ§°Ü");
+        LOG_ECHO_ERROR(pAnnounce->nResult == errSuccess, pTLUser->GetSessionID(), "èŽ·å–å…¬å‘Šå¤±è´¥");
 
         nRetCode = CMessageHandler::GetInstance().DoTLGetAnnounceListAck(pAnnounce->nGroupID, pTLUser->GetSessionID(), pCmd);
         LOG_CHECK_ERROR(nRetCode);
 
-        EchoTLError(pTLUser->GetSessionID(), "»ñÈ¡¹«¸æÁÐ±í³É¹¦");
+        EchoTLError(pTLUser->GetSessionID(), "èŽ·å–å…¬å‘Šåˆ—è¡¨æˆåŠŸ");
 
         CKernel::GetInstance().PopCmd(pCmd);
         CCmdMgr::GetInstance().DeleteCmd(pCmd);
@@ -779,7 +779,7 @@ BOOL CB_DelAnnounce(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
             DBG("TLUserID[%u] del announce send msg to ms", pTLUser->GetID());
             // online 
             nRetCode = CMessageHandler::GetInstance().DoMSDelAnnounce(pAnnounce->nGroupID, pTLUser->GetID(), pAnnounce->dwSerialID, pAnnounce->dwAnnounceSerial);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "·¢ËÍÏûÏ¢µ½msÊ§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "å‘é€æ¶ˆæ¯åˆ°mså¤±è´¥");
         }
         else
         {
@@ -794,14 +794,14 @@ BOOL CB_DelAnnounce(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] del announce timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
     case GM_LS_DEL_ANNOUNCE_ACK:
     {
         DBG("TLUserID[%u] groupid[%d] del announce Result[%d]", pTLUser->GetID(), pAnnounce->nGroupID, pAnnounce->nResult);
-        LOG_ECHO_ERROR(pAnnounce->nResult == errSuccess, pTLUser->GetSessionID(), "É¾³ýÐûÑÔÊ§°Ü");
+        LOG_ECHO_ERROR(pAnnounce->nResult == errSuccess, pTLUser->GetSessionID(), "åˆ é™¤å®£è¨€å¤±è´¥");
 
         nRetCode = CMessageHandler::GetInstance().DoTLDelAnnounceAck(pAnnounce->nGroupID, pTLUser->GetSessionID(), pAnnounce->dwAnnounceSerial);
         LOG_CHECK_ERROR(nRetCode);
@@ -809,7 +809,7 @@ BOOL CB_DelAnnounce(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         nRetCode = CGMLog::GetInstance().WriteLog(pAnnounce->szUserName, "del announce", "GroupID[%d]AnnounceSerial[%u]", pAnnounce->nGroupID, pAnnounce->dwAnnounceSerial);
         LOG_CHECK_ERROR(nRetCode);
 
-        EchoTLError(pTLUser->GetSessionID(), "É¾³ý¹«¸æ³É¹¦");
+        EchoTLError(pTLUser->GetSessionID(), "åˆ é™¤å…¬å‘ŠæˆåŠŸ");
 
         CKernel::GetInstance().PopCmd(pCmd);
         CCmdMgr::GetInstance().DeleteCmd(pCmd);
@@ -844,7 +844,7 @@ BOOL CB_Log(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         pCmd->eCmdState = GM_LS_TIMEOUT;
 
         nRetCode = CDBMgr::GetInstance().QueryLog(pCmdLog);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
     }
         break;
     case GM_LS_TIMEOUT:
@@ -852,7 +852,7 @@ BOOL CB_Log(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] query log timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
@@ -865,7 +865,7 @@ BOOL CB_Log(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
 
         DBG("TLUserID[%u] query log Result[%d]", pTLUser->GetID(), pCmdLog->nResult);
 
-        LOG_ECHO_ERROR(pCmdLog->nResult == errSuccess, pTLUser->GetSessionID(), "²éÑ¯ÈÕÖ¾Ê§°Ü");
+        LOG_ECHO_ERROR(pCmdLog->nResult == errSuccess, pTLUser->GetSessionID(), "æŸ¥è¯¢æ—¥å¿—å¤±è´¥");
 
         nRetCode = CMessageHandler::GetInstance().DoTLLogAck(pTLUser->GetSessionID(), pCmdLog->nLogType, pCmdLog->bTruncated, pCmdLog->nLength, pCmdLog->szBuffer);
         LOG_CHECK_ERROR(nRetCode);
@@ -874,7 +874,7 @@ BOOL CB_Log(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
             //pCmdLog->nLogType, pCmdLog->szQueryStr);
         //LOG_CHECK_ERROR(nRetCode);
 
-        EchoTLError(pTLUser->GetSessionID(), "ÈÕÖ¾²éÑ¯³É¹¦");
+        EchoTLError(pTLUser->GetSessionID(), "æ—¥å¿—æŸ¥è¯¢æˆåŠŸ");
 
         CKernel::GetInstance().PopCmd(pCmd);
         CCmdMgr::GetInstance().DeleteCmd(pCmd);
@@ -913,7 +913,7 @@ BOOL CB_ExeGMStr(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
             DBG("TLUserID[%u] exe gm str send to ms", pTLUser->GetID());
             // online 
             nRetCode = CMessageHandler::GetInstance().DoMSExeGMStrCmd(pTLUser->GetID(), pCmd->dwSerialID, pExeGMStr->szGMStr);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "·¢ËÍÏûÏ¢µ½msÊ§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "å‘é€æ¶ˆæ¯åˆ°mså¤±è´¥");
         }
         else
         {
@@ -928,7 +928,7 @@ BOOL CB_ExeGMStr(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] exe gm str timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
@@ -936,7 +936,7 @@ BOOL CB_ExeGMStr(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     {
         DBG("TLUserID[%u] exe gm str Result[%d]", pTLUser->GetID(), pExeGMStr->nResult);
 
-        LOG_ECHO_ERROR(pExeGMStr->nResult == errSuccess, pTLUser->GetSessionID(), "gmÖ¸ÁîÖ´ÐÐÊ§°Ü");
+        LOG_ECHO_ERROR(pExeGMStr->nResult == errSuccess, pTLUser->GetSessionID(), "gmæŒ‡ä»¤æ‰§è¡Œå¤±è´¥");
 
         nRetCode = CMessageHandler::GetInstance().DoTLExeGMStrAck(pTLUser->GetSessionID());
         LOG_CHECK_ERROR(nRetCode);
@@ -944,7 +944,7 @@ BOOL CB_ExeGMStr(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         nRetCode = CGMLog::GetInstance().WriteLog(pExeGMStr->szUserName, "execute gm str cmd", "Str[%s]", pExeGMStr->szGMStr);
         LOG_CHECK_ERROR(nRetCode);
 
-        EchoTLError(pTLUser->GetSessionID(), "GMÖ¸Áî³É¹¦");
+        EchoTLError(pTLUser->GetSessionID(), "GMæŒ‡ä»¤æˆåŠŸ");
 
         CKernel::GetInstance().PopCmd(pCmd);
         CCmdMgr::GetInstance().DeleteCmd(pCmd);
@@ -973,7 +973,7 @@ BOOL CB_LoadRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     LOG_PROCESS_ERROR(pTLUser);
 
     nRetCode = CGMRoleMgr::GetInstance().CheckRoleLock(pLoadRoleCmd->dwRoleID, pLoadRoleCmd->dwTLUserID);
-    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½ÇÉ«ÒÑ±»ÆäËûÓÃ»§¼ÓÔØ");
+    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§’è‰²å·²è¢«å…¶ä»–ç”¨æˆ·åŠ è½½");
 
     switch (pCmd->eCmdState)
     {
@@ -986,22 +986,22 @@ BOOL CB_LoadRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
             DBG("TLUserID[%u] load role send msg to ms to check role is frozen", pTLUser->GetID());
             // online 
             nRetCode = CMessageHandler::GetInstance().DoCheckRoleFreeze(pTLUser->GetID(), pCmd->dwSerialID, pLoadRoleCmd->dwRoleID);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "·¢ËÍÏûÏ¢µ½msÊ§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "å‘é€æ¶ˆæ¯åˆ°mså¤±è´¥");
         }
         else
         {
             DBG("TLUserID[%u] load role ask db to check role is frozen", pTLUser->GetID());
             nRetCode = CDBMgr::GetInstance().CheckRoleFreeze(pLoadRoleCmd);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½ÇÉ«Î´±»¶³½á");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§’è‰²æœªè¢«å†»ç»“");
         }
     }
         break;
     case GM_LS_MS_CHECK_ROLE_FREEZE_ACK:
     {
-        LOG_ECHO_ERROR(pLoadRoleCmd->nResult != errGMRoleNotFreeze, pTLUser->GetSessionID(), "½ÇÉ«Î´±»¶³½á");
-        LOG_ECHO_ERROR(pLoadRoleCmd->nResult != errGMRoleFreezeLessOneHour, pTLUser->GetSessionID(), "½ÇÉ«¶³½áÊ±¼äÐ¡ÓÚ1Ð¡Ê±");
-        LOG_ECHO_ERROR(pLoadRoleCmd->nResult != errGMRoleOnline, pTLUser->GetSessionID(), "½ÇÉ«ÔÚÏß");
-        LOG_ECHO_ERROR(pLoadRoleCmd->nResult == errSuccess, pTLUser->GetSessionID(), "ÆäËû´íÎó[%s]", CGmServer::GetInstance().GetErrString(pLoadRoleCmd->nResult));
+        LOG_ECHO_ERROR(pLoadRoleCmd->nResult != errGMRoleNotFreeze, pTLUser->GetSessionID(), "è§’è‰²æœªè¢«å†»ç»“");
+        LOG_ECHO_ERROR(pLoadRoleCmd->nResult != errGMRoleFreezeLessOneHour, pTLUser->GetSessionID(), "è§’è‰²å†»ç»“æ—¶é—´å°äºŽ1å°æ—¶");
+        LOG_ECHO_ERROR(pLoadRoleCmd->nResult != errGMRoleOnline, pTLUser->GetSessionID(), "è§’è‰²åœ¨çº¿");
+        LOG_ECHO_ERROR(pLoadRoleCmd->nResult == errSuccess, pTLUser->GetSessionID(), "å…¶ä»–é”™è¯¯[%s]", CGmServer::GetInstance().GetErrString(pLoadRoleCmd->nResult));
 
         pCmd->eCmdState = GM_LS_LOAD_ROLE;
     }
@@ -1010,7 +1010,7 @@ BOOL CB_LoadRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     {
         DBG("TLUserID[%u] load role", pTLUser->GetID());
         nRetCode = CDBMgr::GetInstance().LoadRole(pLoadRoleCmd->dwSerialID, pLoadRoleCmd->dwRoleID);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
 
         pCmd->eCmdState = GM_LS_TIMEOUT;
     }
@@ -1020,16 +1020,16 @@ BOOL CB_LoadRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] load role timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
     case GM_LS_LOAD_ROLE_ACK:
     {
-        LOG_ECHO_ERROR(pLoadRoleCmd->nResult == errSuccess, pTLUser->GetSessionID(), "¼ÓÔØ½ÇÉ«Ê§°Ü");
+        LOG_ECHO_ERROR(pLoadRoleCmd->nResult == errSuccess, pTLUser->GetSessionID(), "åŠ è½½è§’è‰²å¤±è´¥");
 
         nRetCode = LoadRole(pLoadRoleCmd, pLoadRoleCmd->nLength, pLoadRoleCmd->szData);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½âÎö½ÇÉ«Êý¾ÝÊ§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§£æžè§’è‰²æ•°æ®å¤±è´¥");
 
         pCmd->eCmdState = GM_LS_LOAD_MAIL;
     }
@@ -1039,20 +1039,20 @@ BOOL CB_LoadRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         pCmd->eCmdState = GM_LS_TIMEOUT;
 
         nRetCode = CDBMgr::GetInstance().LoadMail(pLoadRoleCmd);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
     }
         break;
     case GM_LS_LOAD_MAIL_ACK:
     {
-        LOG_ECHO_ERROR(pLoadRoleCmd->nResult == errSuccess, pTLUser->GetSessionID(), "¼ÓÔØÓÊ¼þÊ§°Ü");
+        LOG_ECHO_ERROR(pLoadRoleCmd->nResult == errSuccess, pTLUser->GetSessionID(), "åŠ è½½é‚®ä»¶å¤±è´¥");
 
         nRetCode = LoadMail(pLoadRoleCmd, pLoadRoleCmd->nLength, pLoadRoleCmd->szData);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½âÎöÓÊ¼þÊý¾ÝÊ§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§£æžé‚®ä»¶æ•°æ®å¤±è´¥");
 
         nRetCode = CMessageHandler::GetInstance().DoTLLoadRoleDataAck(pTLUser->GetSessionID(), pLoadRoleCmd->dwRoleID, pLoadRoleCmd->nLength, pLoadRoleCmd->szData);
         LOG_CHECK_ERROR(nRetCode);
 
-        EchoTLError(pTLUser->GetSessionID(), "¼ÓÔØ½ÇÉ«Êý¾Ý³É¹¦");
+        EchoTLError(pTLUser->GetSessionID(), "åŠ è½½è§’è‰²æ•°æ®æˆåŠŸ");
 
         if (pLoadRoleCmd->poRole)
         {
@@ -1102,12 +1102,12 @@ BOOL CB_ModifyRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     LOG_PROCESS_ERROR(pTLUser);
 
     nRetCode = CGMRoleMgr::GetInstance().CheckRoleLock(pModifyRoleCmd->dwRoleID, pModifyRoleCmd->dwTLUserID);
-    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½ÇÉ«ÒÑ±»ÆäËûÓÃ»§¼ÓÔØ");
+    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§’è‰²å·²è¢«å…¶ä»–ç”¨æˆ·åŠ è½½");
 
     if (pModifyRoleCmd->dwTargetRoleID != 0)
     {
         nRetCode = CGMRoleMgr::GetInstance().CheckRoleLock(pModifyRoleCmd->dwTargetRoleID, pModifyRoleCmd->dwTLUserID);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Ä¿±ê½ÇÉ«ÒÑ±»ÆäËûÓÃ»§¼ÓÔØ");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "ç›®æ ‡è§’è‰²å·²è¢«å…¶ä»–ç”¨æˆ·åŠ è½½");
     }
 
     switch (pCmd->eCmdState)
@@ -1119,7 +1119,7 @@ BOOL CB_ModifyRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
             DBG("TLUserID[%u] modify role send msg to ms to clear role cache", pTLUser->GetID());
 
             nRetCode = CMessageHandler::GetInstance().DoMSClearRoleCache(pModifyRoleCmd->dwTLUserID, pModifyRoleCmd->dwRoleID, pModifyRoleCmd->dwSerialID);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "·¢ËÍÏûÏ¢µ½msÊ§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "å‘é€æ¶ˆæ¯åˆ°mså¤±è´¥");
 
             pCmd->eCmdState = GM_LS_TIMEOUT;
         }
@@ -1135,14 +1135,14 @@ BOOL CB_ModifyRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     case GM_LS_MS_DEL_ROLE_CACHE_ACK:
     {
         DBG("TLUserID[%u] modify role step 90, Result[%d]", pTLUser->GetID(), pModifyRoleCmd->nResult);
-        LOG_ECHO_ERROR(pModifyRoleCmd->nResult == errSuccess, pTLUser->GetSessionID(), "Çå³þ½ÇÉ«cacheÊý¾ÝÊ§°Ü");
+        LOG_ECHO_ERROR(pModifyRoleCmd->nResult == errSuccess, pTLUser->GetSessionID(), "æ¸…æ¥šè§’è‰²cacheæ•°æ®å¤±è´¥");
 
         if (pModifyRoleCmd->bClearTargetRoleCache == FALSE)
         {
             DBG("TLUserID[%u] modify role send msg to ms to clear target cache", pTLUser->GetID());
 
             nRetCode = CMessageHandler::GetInstance().DoMSClearRoleCache(pModifyRoleCmd->dwTLUserID, pModifyRoleCmd->dwTargetRoleID, pModifyRoleCmd->dwSerialID);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "·¢ËÍÏûÏ¢µ½msÊ§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "å‘é€æ¶ˆæ¯åˆ°mså¤±è´¥");
 
             pModifyRoleCmd->bClearTargetRoleCache = TRUE;
             pModifyRoleCmd->eCmdState = GM_LS_TIMEOUT;
@@ -1174,17 +1174,17 @@ BOOL CB_ModifyRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
                     DBG("TLUserID[%u] modify role send msg to ms to del mail", pTLUser->GetID());
 
                     nRetCode = CMessageHandler::GetInstance().DoMSDelMail(pTLUser->GetID(), pCmd->dwSerialID, pModifyRoleCmd->dwRoleID, *((UINT32*)pSlot->szData));
-                    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "·¢ËÍÏûÏ¢µ½msÊ§°Ü");
+                    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "å‘é€æ¶ˆæ¯åˆ°mså¤±è´¥");
 
                     ++pModifyRoleCmd->nMailCount;
-                    //LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "msÔÚÏß£¬²»ÄÜÉ¾³ýÓÊ¼þ");
+                    //LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "msåœ¨çº¿ï¼Œä¸èƒ½åˆ é™¤é‚®ä»¶");
                 }
                 else
                 {
                     DBG("TLUserID[%u] modify role db del mail", pTLUser->GetID());
 
                     nRetCode = CDBMgr::GetInstance().DelMail(*((UINT32*)pSlot->szData));
-                    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+                    LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
                     --pModifyRoleCmd->nSlotCount;
 
                     GM_LOG_BUFFER   buff;
@@ -1232,7 +1232,7 @@ BOOL CB_ModifyRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         pModifyRoleCmd->poSelfRole = NULL;
 
         nRetCode = CDBMgr::GetInstance().LoadRole(pModifyRoleCmd->dwSerialID, pModifyRoleCmd->dwRoleID);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
 
         pModifyRoleCmd->eCmdState = GM_LS_TIMEOUT;
     }
@@ -1242,14 +1242,14 @@ BOOL CB_ModifyRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] modify role timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
     case GM_LS_LOAD_ROLE_ACK:
     {
         DBG("TLUserID[%u] modify role Result[%d]", pTLUser->GetID(), pModifyRoleCmd->nResult);
-        LOG_ECHO_ERROR(pModifyRoleCmd->nResult == errSuccess, pTLUser->GetSessionID(), "¼ÓÔØ½ÇÉ«Êý¾ÝÊ§°Ü");
+        LOG_ECHO_ERROR(pModifyRoleCmd->nResult == errSuccess, pTLUser->GetSessionID(), "åŠ è½½è§’è‰²æ•°æ®å¤±è´¥");
 
         if (pModifyRoleCmd->dwTargetRoleID == 0)
         {
@@ -1265,7 +1265,7 @@ BOOL CB_ModifyRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
                 pModifyRoleCmd->poRole = pModifyRoleCmd->poTargetRole;
 
                 nRetCode = CDBMgr::GetInstance().LoadRole(pModifyRoleCmd->dwSerialID, pModifyRoleCmd->dwTargetRoleID);
-                LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+                LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
                 pModifyRoleCmd->eCmdState = GM_LS_TIMEOUT;
             }
             else
@@ -1278,11 +1278,11 @@ BOOL CB_ModifyRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         break;
     case GM_LS_MODIFY_ROLE:
     {
-        LOG_ECHO_ERROR(pModifyRoleCmd->nResult == errSuccess, pTLUser->GetSessionID(), "¼ÓÔØÄ¿±ê½ÇÉ«Ê§°Ü");
+        LOG_ECHO_ERROR(pModifyRoleCmd->nResult == errSuccess, pTLUser->GetSessionID(), "åŠ è½½ç›®æ ‡è§’è‰²å¤±è´¥");
 
         // modify role
         nRetCode = ModifyRoleData(pModifyRoleCmd);
-        LOG_ECHO_ERROR(nRetCode == errSuccess, pTLUser->GetSessionID(), "ÐÞ¸Ä½ÇÉ«Êý¾Ý³É¹¦");
+        LOG_ECHO_ERROR(nRetCode == errSuccess, pTLUser->GetSessionID(), "ä¿®æ”¹è§’è‰²æ•°æ®æˆåŠŸ");
 
         pModifyRoleCmd->eCmdState = GM_LS_MODIFY_ROLE_ACK;
         pModifyRoleCmd->nResult = errSuccess;
@@ -1293,7 +1293,7 @@ BOOL CB_ModifyRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     {
         DBG("TLUserID[%u] modify role Result[%d]", pTLUser->GetID(), pModifyRoleCmd->nResult);
 
-        LOG_ECHO_ERROR(pModifyRoleCmd->nResult == errSuccess, pTLUser->GetSessionID(), "ÐÞ¸Ä½ÇÉ«Êý¾ÝÊ§°Ü");
+        LOG_ECHO_ERROR(pModifyRoleCmd->nResult == errSuccess, pTLUser->GetSessionID(), "ä¿®æ”¹è§’è‰²æ•°æ®å¤±è´¥");
 
         for (CMD_MODIFY_ROLE::LOG_LIST::iterator iter = pModifyRoleCmd->logList.begin(); iter != pModifyRoleCmd->logList.end(); ++iter)
         {
@@ -1303,18 +1303,18 @@ BOOL CB_ModifyRoleData(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         }
 
         nRetCode = CGMRoleMgr::GetInstance().DelRole(pModifyRoleCmd->dwRoleID, pModifyRoleCmd->dwTLUserID);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½âËø½ÇÉ«Ê§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§£é”è§’è‰²å¤±è´¥");
 
         if (pModifyRoleCmd->dwTargetRoleID)
         {
             nRetCode = CGMRoleMgr::GetInstance().DelRole(pModifyRoleCmd->dwTargetRoleID, pModifyRoleCmd->dwTLUserID);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½âËøÄ¿±ê½ÇÉ«Ê§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§£é”ç›®æ ‡è§’è‰²å¤±è´¥");
         }
 
         nRetCode = CMessageHandler::GetInstance().DoTLModifyRoleDataAck(pTLUser->GetSessionID(), pModifyRoleCmd->dwRoleID);
         LOG_CHECK_ERROR(nRetCode);
 
-        EchoTLError(pTLUser->GetSessionID(), "ÐÞ¸Ä½ÇÉ«Êý¾Ý³É¹¦");
+        EchoTLError(pTLUser->GetSessionID(), "ä¿®æ”¹è§’è‰²æ•°æ®æˆåŠŸ");
 
         if (pModifyRoleCmd->poSelfRole)
         {
@@ -1387,7 +1387,7 @@ BOOL CB_QueryNameToID(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         pCmd->eCmdState = GM_LS_TIMEOUT;
 
         nRetCode = CDBMgr::GetInstance().QueryNameToID(pQueryCmd);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
     }
         break;
     case GM_LS_TIMEOUT:
@@ -1395,7 +1395,7 @@ BOOL CB_QueryNameToID(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] query name id list timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
@@ -1403,7 +1403,7 @@ BOOL CB_QueryNameToID(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     {
         DBG("TLUserID[%u] query name id list Result[%d]", pTLUser->GetID(), pQueryCmd->nResult);
 
-        LOG_ECHO_ERROR(pQueryCmd->nResult == errSuccess, pTLUser->GetSessionID(), "ÅúÁ¿²éÑ¯Ê§°Ü");
+        LOG_ECHO_ERROR(pQueryCmd->nResult == errSuccess, pTLUser->GetSessionID(), "æ‰¹é‡æŸ¥è¯¢å¤±è´¥");
 
         nRetCode = CMessageHandler::GetInstance().DoTLQueryNameToIDAck(pTLUser->GetSessionID(), pQueryCmd->nIndex, pQueryCmd->dwRoleID);
         LOG_CHECK_ERROR(nRetCode);
@@ -1411,7 +1411,7 @@ BOOL CB_QueryNameToID(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         //nRetCode = CGMLog::GetInstance().WriteLog(pQueryCmd->szUserName, "query name to id", "Name[%s]", pQueryCmd->szRoleName);
         //LOG_CHECK_ERROR(nRetCode);
 
-        EchoTLError(pTLUser->GetSessionID(), "ÅúÁ¿²éÑ¯½ÇÉ«ID³É¹¦");
+        EchoTLError(pTLUser->GetSessionID(), "æ‰¹é‡æŸ¥è¯¢è§’è‰²IDæˆåŠŸ");
 
         //pTLUser->ClearCmd();
         CKernel::GetInstance().PopCmd(pCmd);
@@ -1452,14 +1452,14 @@ BOOL CB_RoleExeCmd(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
             DBG("TLUserID[%u] role exe gm cmd send msg to ms to check role online", pTLUser->GetID());
 
             nRetCode = CMessageHandler::GetInstance().DoCheckRoleFreeze(pTLUser->GetID(), pCmd->dwSerialID, pRoleExeCmd->dwRoleID);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "·¢ËÍÏûÏ¢µ½msÊ§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "å‘é€æ¶ˆæ¯åˆ°mså¤±è´¥");
         }
         else
         {
             DBG("TLUserID[%u] role exe gm cmd ms not online, db check role online", pTLUser->GetID());
 
             nRetCode = CDBMgr::GetInstance().CheckRoleFreeze(pRoleExeCmd);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½ÇÉ«Î´±»¶³½á");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§’è‰²æœªè¢«å†»ç»“");
 
             pCmd->eCmdState = GM_LS_MS_CHECK_ROLE_FREEZE_ACK;
             pRoleExeCmd->nResult = errSuccess;
@@ -1468,10 +1468,10 @@ BOOL CB_RoleExeCmd(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         break;
     case GM_LS_MS_CHECK_ROLE_FREEZE_ACK:
     {
-        LOG_ECHO_ERROR(pRoleExeCmd->nResult != errGMRoleNotFreeze, pTLUser->GetSessionID(), "½ÇÉ«Î´±»¶³½á");
-        LOG_ECHO_ERROR(pRoleExeCmd->nResult != errGMRoleFreezeLessOneHour, pTLUser->GetSessionID(), "½ÇÉ«¶³½áÊ±¼äÐ¡ÓÚ1Ð¡Ê±");
-        LOG_ECHO_ERROR(pRoleExeCmd->nResult != errGMRoleOnline, pTLUser->GetSessionID(), "½ÇÉ«ÔÚÏß");
-        LOG_ECHO_ERROR(pRoleExeCmd->nResult == errSuccess, pTLUser->GetSessionID(), "ÆäËû´íÎó");
+        LOG_ECHO_ERROR(pRoleExeCmd->nResult != errGMRoleNotFreeze, pTLUser->GetSessionID(), "è§’è‰²æœªè¢«å†»ç»“");
+        LOG_ECHO_ERROR(pRoleExeCmd->nResult != errGMRoleFreezeLessOneHour, pTLUser->GetSessionID(), "è§’è‰²å†»ç»“æ—¶é—´å°äºŽ1å°æ—¶");
+        LOG_ECHO_ERROR(pRoleExeCmd->nResult != errGMRoleOnline, pTLUser->GetSessionID(), "è§’è‰²åœ¨çº¿");
+        LOG_ECHO_ERROR(pRoleExeCmd->nResult == errSuccess, pTLUser->GetSessionID(), "å…¶ä»–é”™è¯¯");
 
         pCmd->eCmdState = GM_LS_MS_DEL_ROLE_CACHE;
     }
@@ -1484,7 +1484,7 @@ BOOL CB_RoleExeCmd(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
             DBG("TLUserID[%u] role exe gm cmd send msg to ms, clear role cache", pTLUser->GetID());
 
             nRetCode = CMessageHandler::GetInstance().DoMSClearRoleCache(pRoleExeCmd->dwTLUserID, pRoleExeCmd->dwRoleID, pRoleExeCmd->dwSerialID);
-            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "·¢ËÍÏûÏ¢µ½msÊ§°Ü");
+            LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "å‘é€æ¶ˆæ¯åˆ°mså¤±è´¥");
         }
         else
         {
@@ -1499,10 +1499,10 @@ BOOL CB_RoleExeCmd(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     {
         DBG("TLUserID[%u] role exe gm cmd clear role cache Result[%d]", pTLUser->GetID(), pRoleExeCmd->nResult);
 
-        LOG_ECHO_ERROR(pRoleExeCmd->nResult == errSuccess, pTLUser->GetSessionID(), "Çå³þ½ÇÉ«cacheÊý¾ÝÊ§°Ü");
+        LOG_ECHO_ERROR(pRoleExeCmd->nResult == errSuccess, pTLUser->GetSessionID(), "æ¸…æ¥šè§’è‰²cacheæ•°æ®å¤±è´¥");
 
         nRetCode = CGMRoleMgr::GetInstance().CheckRoleLock(pRoleExeCmd->dwRoleID, pRoleExeCmd->dwTLUserID);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½ÇÉ«ÒÑ±»ÆäËûÓÃ»§¼ÓÔØ");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§’è‰²å·²è¢«å…¶ä»–ç”¨æˆ·åŠ è½½");
 
         pCmd->eCmdState = GM_LS_LOAD_ROLE;
     }
@@ -1510,7 +1510,7 @@ BOOL CB_RoleExeCmd(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     case GM_LS_LOAD_ROLE:
     {
         nRetCode = CDBMgr::GetInstance().LoadRole(pRoleExeCmd->dwSerialID, pRoleExeCmd->dwRoleID);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
 
         DBG("TLUserID[%u] role exe gm cmd ExeSuccess", pTLUser->GetID());
     }
@@ -1520,7 +1520,7 @@ BOOL CB_RoleExeCmd(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] role exe gm cmd timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
@@ -1528,16 +1528,16 @@ BOOL CB_RoleExeCmd(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     {
         DBG("TLUserID[%u] role exe gm cmd Result[%d]", pTLUser->GetID(), pRoleExeCmd->nResult);
 
-        LOG_ECHO_ERROR(pRoleExeCmd->nResult == errSuccess, pTLUser->GetSessionID(), "¼ÓÔØ½ÇÉ«Êý¾ÝÊ§°Ü");
+        LOG_ECHO_ERROR(pRoleExeCmd->nResult == errSuccess, pTLUser->GetSessionID(), "åŠ è½½è§’è‰²æ•°æ®å¤±è´¥");
 
         nRetCode = ExeLuaGMCmd(pRoleExeCmd);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Ö´ÐÐGMÖ¸ÁîÊ§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ‰§è¡ŒGMæŒ‡ä»¤å¤±è´¥");
 
         nRetCode = CGMRoleMgr::GetInstance().CheckRoleLock(pRoleExeCmd->dwRoleID, pRoleExeCmd->dwTLUserID);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½ÇÉ«ÒÑ±»ÆäËûÓÃ»§¼ÓÔØ");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§’è‰²å·²è¢«å…¶ä»–ç”¨æˆ·åŠ è½½");
 
         nRetCode = CGMRoleMgr::GetInstance().DelRole(pRoleExeCmd->dwRoleID, pRoleExeCmd->dwTLUserID);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "½âËø½ÇÉ«Ê§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "è§£é”è§’è‰²å¤±è´¥");
 
         LOG_CHECK_ERROR(pRoleExeCmd->poRole);
         if (pRoleExeCmd->poRole)
@@ -1552,7 +1552,7 @@ BOOL CB_RoleExeCmd(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
             pRoleExeCmd->dwRoleID, pRoleExeCmd->szGM, pRoleExeCmd->szReason);
         LOG_CHECK_ERROR(nRetCode);
 
-        EchoTLError(pTLUser->GetSessionID(), "¶Ô½ÇÉ«Ö´ÐÐgmÖ¸Áî³É¹¦");
+        EchoTLError(pTLUser->GetSessionID(), "å¯¹è§’è‰²æ‰§è¡ŒgmæŒ‡ä»¤æˆåŠŸ");
 
         CKernel::GetInstance().PopCmd(pCmd);
         CCmdMgr::GetInstance().DeleteCmd(pCmd);
@@ -1603,7 +1603,7 @@ BOOL CB_QuerySysExchangeInfo(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         pCmd->eCmdState = GM_LS_TIMEOUT;
 
         nRetCode = CDBMgr::GetInstance().QuerySysExchangeOrder(pQueryCmd);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
     }
         break;
     case GM_LS_TIMEOUT:
@@ -1611,14 +1611,14 @@ BOOL CB_QuerySysExchangeInfo(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
         if (time(NULL) > pCmd->nTimeout)
         {
             INF("TLUserID[%u] Query system exchange info timeout", pTLUser->GetID());
-            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "Ö´ÐÐ³¬Ê±");
+            LOG_ECHO_ERROR(FALSE, pTLUser->GetSessionID(), "æ‰§è¡Œè¶…æ—¶");
         }
     }
         break;
     case GM_LS_SYS_EXCHANGE_ORDER_ACK:
     {
         DBG("TLUserID[%u] query sys exchange order result[%d]", pTLUser->GetID(), pCmd->nResult);
-        LOG_ECHO_ERROR(pCmd->nResult == errSuccess, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+        LOG_ECHO_ERROR(pCmd->nResult == errSuccess, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
         pCmd->eCmdState = GM_LS_SYS_EXCHANGE_LOG;
     }
         break;
@@ -1626,13 +1626,13 @@ BOOL CB_QuerySysExchangeInfo(CTLUser *pTLUser, CMD_DATA_BASE *pCmd)
     {
         pCmd->eCmdState = GM_LS_TIMEOUT;
         nRetCode = CDBMgr::GetInstance().QuerySysExchangeLog(pCmd);
-        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+        LOG_ECHO_ERROR(nRetCode, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
     }
         break;
     case GM_LS_SYS_EXCHANGE_LOG_ACK:
     {
         DBG("TLUserID[%u] query sys exchange log result[%d]", pTLUser->GetID(), pCmd->nResult);
-        LOG_ECHO_ERROR(pQueryCmd->nResult == errSuccess, pTLUser->GetSessionID(), "Êý¾Ý¿â²éÑ¯Ê§°Ü");
+        LOG_ECHO_ERROR(pQueryCmd->nResult == errSuccess, pTLUser->GetSessionID(), "æ•°æ®åº“æŸ¥è¯¢å¤±è´¥");
 
         nRetCode = CMessageHandler::GetInstance().DoTLQuerySystemExchangeInfo(pTLUser->GetSessionID(), 
             pQueryCmd->dwBeginDayTime, pQueryCmd->dwEndDayTime, 

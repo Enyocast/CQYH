@@ -15,9 +15,9 @@ enum TITLE_PRE_COND
 {
     TITLE_PRE_COND_NONE     = 0,
     TITLE_NEDD_LEVEL        = 1,
-    TITLE_SPIRIT_LEVEL      = 2,        // æ≥ΩÁ
+    TITLE_SPIRIT_LEVEL      = 2,        // Â¢ÉÁïå
     TITLE_NEED_VIP          = 3,
-    TITLE_NEDD_EVIL_VALUE   = 4,        // …∆∂Ò÷µ
+    TITLE_NEDD_EVIL_VALUE   = 4,        // ÂñÑÊÅ∂ÂÄº
 
 };
 

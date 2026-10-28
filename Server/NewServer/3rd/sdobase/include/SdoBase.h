@@ -25,8 +25,8 @@
 
 typedef enum 
 {
-	E_REQUEST=0xA1,    //ÇëÇó
-	E_RESPONSE=0xA2     //Ó¦´ð
+	E_REQUEST=0xA1,    //è¯·æ±‚
+	E_RESPONSE=0xA2     //åº”ç­”
 }EMsgDirection;
 
 

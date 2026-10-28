@@ -2,8 +2,8 @@
 #define SDOAGDI_H
 
 
-#define SDOA_GDIMODE_DESKTOP  0 // 绘制渲染到桌面上
-#define SDOA_GDIMODE_HOST     1 // 绘制到HOST的窗口上
+#define SDOA_GDIMODE_DESKTOP  0 // 缁樺埗娓叉煋鍒版闈笂
+#define SDOA_GDIMODE_HOST     1 // 缁樺埗鍒癏OST鐨勭獥鍙ｄ笂
 
 
 typedef interface ISDOAGDI ISDOAGDI;
@@ -13,13 +13,13 @@ MIDL_INTERFACE("85DE7C68-1D88-4FBF-AF20-6178813C8037")
 ISDOAGDI : public IUnknown
 {
 public:
-	/* 初始化GDI资源 */
+	/* 鍒濆鍖朑DI璧勬簮 */
 	STDMETHOD_(HRESULT,Initialize)(THIS_ HWND hHostWnd, int nMode) PURE;	
-	/* 渲染界面 */
+	/* 娓叉煋鐣岄潰 */
 	STDMETHOD_(HRESULT,Render)(THIS_ HWND hWnd, HDC hDC) PURE;	
-	/* 释放GDI相关资源 */
+	/* 閲婃斁GDI鐩稿叧璧勬簮 */
 	STDMETHOD_(HRESULT,Finalize)(THIS_ HWND hWnd) PURE;
-	/* 传入消息 */
+	/* 浼犲叆娑堟伅 */
 	STDMETHOD_(HRESULT,OnWindowProc)(THIS_ HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* lResult) PURE;
 };
 

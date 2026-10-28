@@ -51,7 +51,7 @@ INT32 CCIRCLE_QUEST_MGR::AddCircleQuest(QUEST_DATA* pQuest)
 		if (!m_Circle_Quest_ID_List[pQuest->nCircleID][nIndex].empty())
 		{
 			const QUEST_DATA* pQuestBegin = CDataManager<QUEST_DATA>::GetInstance().GetData(*(m_Circle_Quest_ID_List[pQuest->nCircleID][nIndex].begin()));
-			PROCESS_SUCCESS(!pQuestBegin);	// ÕÒ²»µ½ÎªºÏÀí,ÒòÎªÉèÖÃkeyÔÚ×îºó
+			PROCESS_SUCCESS(!pQuestBegin);	// æ‰¾ä¸åˆ°ä¸ºåˆç†,å› ä¸ºè®¾ç½®keyåœ¨æœ€åŽ
 
 			if(pQuest->nStartNpcID != pQuestBegin->nStartNpcID)
 			{

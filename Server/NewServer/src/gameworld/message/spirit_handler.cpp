@@ -42,7 +42,7 @@ void CCliMessageHandler::OnSpiritAddAir(CRole *poRole, const char *pData)
 			INT32 nProductAirIndex = poRole->GetSpirit().GetHigherAirLevelIndex();;
 
 			nResult = poRole->GetSpirit().ProductAir(nProductAirIndex);
-			PROCESS_ERROR_RET_CODE(nResult == errSuccess, nResult);		//	练到一半修炼点没了
+			PROCESS_ERROR_RET_CODE(nResult == errSuccess, nResult);		//	缁冨埌涓�鍗婁慨鐐肩偣娌′簡
 		}
 	}
 	else

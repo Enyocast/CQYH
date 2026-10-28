@@ -254,19 +254,19 @@ BOOL CCliMessageHandler::Init(IMessageNotifier* poNotifier, IPacketAllocator* po
 
     REGISTER_MESSAGE(c2g_unshield,                  	&CCliMessageHandler::OnUnShieldRole,        TRUE);
 
-    // ÈÚÁé - ´ò¿×/ÏâÇ¶±¦Ê¯/ÒÆ³ý±¦Ê¯
+    // èžçµ - æ‰“å­”/é•¶åµŒå®çŸ³/ç§»é™¤å®çŸ³
     REGISTER_MESSAGE(c2g_upgrade_soul,              	&CCliMessageHandler::OnUpgradeSoul,         TRUE);
     REGISTER_MESSAGE(c2g_add_soul,                  	&CCliMessageHandler::OnAddSoul,             TRUE);
     REGISTER_MESSAGE(c2g_remove_soul,               	&CCliMessageHandler::OnRemoveSoul,          TRUE);
 
-    // Öý»ê - ÆÕÍ¨ÃúÎÄÏ´Á·
+    // é“¸é­‚ - æ™®é€šé“­æ–‡æ´—ç»ƒ
     REGISTER_MESSAGE(c2g_rune_item,                     &CCliMessageHandler::OnRuneItem,            TRUE);
 
-    // ×°±¸Éý¼¶
+    // è£…å¤‡å‡çº§
     REGISTER_MESSAGE(c2g_weapon_level_up_put_in,        &CCliMessageHandler::OnWeaponLevelUpPutIn,  TRUE);
     REGISTER_MESSAGE(c2g_weapon_level_up_take_out,      &CCliMessageHandler::OnWeaponLevelUpTakeOut,TRUE);
 
-    // ·Ö½áºÏ³É
+    // åˆ†ç»“åˆæˆ
     REGISTER_MESSAGE(c2g_decompose,              	    &CCliMessageHandler::OnDecompose,           TRUE);
     REGISTER_MESSAGE(c2g_compose,              	        &CCliMessageHandler::OnCompose,             TRUE);
 
@@ -308,7 +308,7 @@ BOOL CCliMessageHandler::Init(IMessageNotifier* poNotifier, IPacketAllocator* po
 	REGISTER_MESSAGE(c2g_leave_guild,                   &CCliMessageHandler::OnLeavelGuild, TRUE);
 	REGISTER_MESSAGE(c2g_query_guild_war_record,        &CCliMessageHandler::OnQueryGuildWarRecord, TRUE);
 
-	// ÃúÎÄ¸ß¼¶Ï´Á·, È·ÈÏ¸ß¼¶Ï´Á·
+	// é“­æ–‡é«˜çº§æ´—ç»ƒ, ç¡®è®¤é«˜çº§æ´—ç»ƒ
 	REGISTER_MESSAGE(c2g_rune_item_advance,             &CCliMessageHandler::OnRuneItemAdvance, TRUE);
 	REGISTER_MESSAGE(c2g_rune_item_advance_confirm,     &CCliMessageHandler::OnRuneItemConfirm, TRUE);
 
@@ -947,7 +947,7 @@ BOOL CCliMessageHandler::DoSyncGameDataBegin(CRole* poRole)
     pMsg->dwVIPTime[vlLevel3] = poRole->GetVIPTime(vlLevel3);
 	pMsg->dwServerTime = CGameWorld::GetInstance().GetGameTime();
 	pMsg->dwServerStartTime = g_ServerConfig.GroupConfig[poRole->GetServerGroup()].dwStartDate;
-	pMsg->wMaxLevel = g_GWConfig.nLevelLimit;    // ÉèÖÃÓÎÏ·×î¸ßµÈ¼¶
+	pMsg->wMaxLevel = g_GWConfig.nLevelLimit;    // è®¾ç½®æ¸¸æˆæœ€é«˜ç­‰çº§
 
 	pMsg->dwHeroID = 0;
 	pMsg->byHeroClass = clsInvalid;

@@ -326,7 +326,7 @@ void CExchangeHistoryUI::paintEvent(QPaintEvent *event)
         n1 = rd.nLow;
         n4 = rd.nHigh;
 
-        if (rd.nClose > rd.nOpen)       // ÕÇ,ºìÉ«
+        if (rd.nClose > rd.nOpen)       // æ¶¨,çº¢è‰²
         {
             pen.setColor(QColor(255, 50, 50));
             pRc = &blackColor;
@@ -334,7 +334,7 @@ void CExchangeHistoryUI::paintEvent(QPaintEvent *event)
             n2 = rd.nOpen;
             n3 = rd.nClose;
         }
-        else if (rd.nClose < rd.nOpen)      // µø, ÂÌÉ«
+        else if (rd.nClose < rd.nOpen)      // è·Œ, ç»¿è‰²
         {
             pen.setColor(QColor(84, 255, 255));
             pRc = &greenColor;

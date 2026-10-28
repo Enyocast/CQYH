@@ -540,7 +540,7 @@ BOOL CCharacter::MoveLoop(void)
     case CMS_MOVE:
         _OnMove();
         break;
-    case CMS_MINE:  // ³ÖĞøÍÚ¿óÖĞ
+    case CMS_MINE:  // æŒç»­æŒ–çŸ¿ä¸­
         _OnMine();
         break;
     case CMS_DASH:
@@ -714,7 +714,7 @@ Exit0:
 BOOL CCharacter::RunTo(INT64 llDestX, INT64 llDestY)
 {
     PROCESS_ERROR(CanActiveMove());
-    PROCESS_ERROR(m_nCurrentHp >= MIN_HP_WHILE_RUNNING);  // 10µãÑªÁ¿ÒÔÏÂ, ¾Í²»ÄÜÅÜÁË
+    PROCESS_ERROR(m_nCurrentHp >= MIN_HP_WHILE_RUNNING);  // 10ç‚¹è¡€é‡ä»¥ä¸‹, å°±ä¸èƒ½è·‘äº†
     PROCESS_ERROR(!GetCCFlag().CheckFlag(cclSlowed));
     PROCESS_ERROR(m_nRunTimer < CGameWorld::GetInstance().GetGameFrame());
     LOG_PROCESS_ERROR(m_llDestX == 0 && m_llDestY == 0);
@@ -763,7 +763,7 @@ BOOL CCharacter::Mine(INT64 llDestX, INT64 llDestY)
     m_llDestY = llDestY / GRID_WIDTH * GRID_WIDTH + GRID_WIDTH / 2;
     m_eMoveState = CMS_MINE;
 
-    // ¼ÆËãÍÚ¿ó¼ä¸ô
+    // è®¡ç®—æŒ–çŸ¿é—´éš”
     nMineInterval = g_GWConfig.nMineInterval - g_Min(813, g_Min(375, m_nLevel * 14) + 60 * m_AttrList.GetAttr(catAtkSpeed)) +
         m_AttrList.GetAttr(catExtraHardTime);
 
@@ -926,16 +926,16 @@ BOOL CCharacter::Die(INT32 nParam)
 #endif
 
     ClearGridCharRef();
-    m_ThreatList.Clear();    // Çå¿Õ³ğºŞÁĞ±í
+    m_ThreatList.Clear();    // æ¸…ç©ºä»‡æ¨åˆ—è¡¨
     m_eMoveState = CMS_DIE;
 
 #ifndef _ROBOT
-    _LeaveCombat();    // ÍÑÕ½
+    _LeaveCombat();    // è„±æˆ˜
 
     if (m_poAIProcessor != NULL)
         m_poAIProcessor->SetTargetID(0);
 
-    // ·¢ËÍËÀÍö·â°ü
+    // å‘é€æ­»äº¡å°åŒ…
     nRetCode = CCliMessageHandler::GetInstance().DoCharDie(this, nParam);
     LOG_CHECK_ERROR(nRetCode);
 
@@ -1021,7 +1021,7 @@ void CCharacter::_OnWalk(void)
         INT32 nDestDirection8 = ConvertToDir8(g_GetDirection(m_llX, m_llY, m_llDestX, m_llDestY));
         SetFaceDirection(nDestDirection8 * (MAX_DIRECTION_COUNT / DT_DIRECTION_8_COUNT));
 
-        // ¼ÆËã³¯ÏòµÄÄ¿µÄ×ø±ê
+        // è®¡ç®—æœå‘çš„ç›®çš„åæ ‡
         INT64 llDestX = m_llX + g_nAdjacentX[nDestDirection8] * GRID_WIDTH;
         INT64 llDestY = m_llY + g_nAdjacentY[nDestDirection8] * GRID_WIDTH;
 
@@ -1067,11 +1067,11 @@ void CCharacter::_OnRun(void)
         INT64 llDestX = m_llX + g_nAdjacentX[nDestDirection8] * GRID_WIDTH;
         INT64 llDestY = m_llY + g_nAdjacentY[nDestDirection8] * GRID_WIDTH;
 
-        nRetCode = _GridMove(llDestX, llDestY);  // º¯ÊıÀïÃæĞŞ¸Ä m_llX, m_llY
+        nRetCode = _GridMove(llDestX, llDestY);  // å‡½æ•°é‡Œé¢ä¿®æ”¹ m_llX, m_llY
         PROCESS_ERROR(nRetCode);
         PROCESS_ERROR(m_eMoveState == CMS_RUN);
 
-        llDestX = m_llX + g_nAdjacentX[nDestDirection8] * GRID_WIDTH;  // ³¯×ÅÄ¿±ê·½Ïò, ÔÙ×ßÒ»²½
+        llDestX = m_llX + g_nAdjacentX[nDestDirection8] * GRID_WIDTH;  // æœç€ç›®æ ‡æ–¹å‘, å†èµ°ä¸€æ­¥
         llDestY = m_llY + g_nAdjacentY[nDestDirection8] * GRID_WIDTH;
 
         _GridMove(llDestX, llDestY);
@@ -1086,7 +1086,7 @@ void CCharacter::_OnRun(void)
         nRetCode = CCliMessageHandler::GetInstance().DoCharRun(this);
         LOG_CHECK_ERROR(nRetCode);
 
-        CheckMissileTag();  // ÅĞ¶ÏÊÇ·ñ²Èµ½ÏİÚå
+        CheckMissileTag();  // åˆ¤æ–­æ˜¯å¦è¸©åˆ°é™·é˜±
 #endif	// _ROBOT
     }
 
@@ -1286,29 +1286,29 @@ void CCharacter::_OnMine(void)
         pcSceneData = m_poScene->GetSceneData();
         LOG_PROCESS_ERROR(pcSceneData);
 
-        // ¿Û³ı³úÍ·ÄÍ¾Ã
+        // æ‰£é™¤é”„å¤´è€ä¹…
         if (pcSceneData->nMineItemID1 > 0)
         {
-            // 99900007-º××ì³ú
+            // 99900007-é¹¤å˜´é”„
             nRetCode = poRole->GetItemBag()->LoseMineDur(pcSceneData->nMineItemID1);
             if (!nRetCode)
             {
                 PROCESS_ERROR(pcSceneData->nMineItemID2 > 0);
 
-                // 99900041-ĞşÌú³ú
+                // 99900041-ç„é“é”„
                 nRetCode = poRole->GetItemBag()->LoseMineDur(pcSceneData->nMineItemID2);
                 PROCESS_ERROR(nRetCode);
             }
         }
 
-        // »ñÈ¡µ±Ç°×ø±êµãÊı¾İ
+        // è·å–å½“å‰åæ ‡ç‚¹æ•°æ®
         nRetCode = m_poScene->GetLowerGrid(m_llDestX, m_llDestY, m_llZ, pcZoneData, pcGridData);
         LOG_PROCESS_ERROR(nRetCode);
 
-        // ÅĞ¶Ïµ±Ç°×ø±êµã, ÊÇ²»ÊÇ¿óµã
+        // åˆ¤æ–­å½“å‰åæ ‡ç‚¹, æ˜¯ä¸æ˜¯çŸ¿ç‚¹
         if (pcGridData && pcGridData->bMine)
         {
-            // ÅĞ¶Ïµ±Ç°²É¼¯µã×ø±ê, ÊÇ²»ÊÇ×îºóÒ»´Î²É¼¯µÄ×ø±ê
+            // åˆ¤æ–­å½“å‰é‡‡é›†ç‚¹åæ ‡, æ˜¯ä¸æ˜¯æœ€åä¸€æ¬¡é‡‡é›†çš„åæ ‡
             INT32 nMinePos = ((m_llX / GRID_WIDTH) << 16) | (m_llY / GRID_WIDTH);
             if (nMinePos != m_nLastMinePos)
             {
@@ -1319,20 +1319,20 @@ void CCharacter::_OnMine(void)
             if (m_nMineCDTimer <= CGameWorld::GetInstance().GetGameFrame())
             {
                 INT32 nRate = g_GWConfig.nGlobalDropRate;
-                nRate = nRate * poRole->GetFcmRate() / RATE_MAX;  // ÅĞ¶Ï·À³ÁÃÔ, ¼õÉÙÒ»°ë¸ÅÂÊ
-                nRate = nRate * poRole->GetItemBag()->GetChanceByGoldPool() / RATE_MAX;  // Ê¹ÓÃ Æ£ÀÍÖµ, ¼ÆËã¸ÅÂÊ
+                nRate = nRate * poRole->GetFcmRate() / RATE_MAX;  // åˆ¤æ–­é˜²æ²‰è¿·, å‡å°‘ä¸€åŠæ¦‚ç‡
+                nRate = nRate * poRole->GetItemBag()->GetChanceByGoldPool() / RATE_MAX;  // ä½¿ç”¨ ç–²åŠ³å€¼, è®¡ç®—æ¦‚ç‡
 
                 for (INT32 nIndex = 0; nIndex < MAX_MINE_DROP_GROUP; nIndex++)
                 {
-                    // ÅĞ¶Ï¸ÅÂÊ, ÊÇ·ñÍÚ³ö¶«Î÷
+                    // åˆ¤æ–­æ¦‚ç‡, æ˜¯å¦æŒ–å‡ºä¸œè¥¿
                     DropContent content = { 0 };
                     nRetCode = CDropGenerator::GetInstance().GenerateDropContentFromDropChanceData(
                         //poRole->GetServerGroup(), pcSceneData->MineDrop + nIndex, content, nRate);
-                        poRole->GetServerGroup(), pcSceneData->MineDrop[1] + nIndex, content, nRate);    // ÔİÊ±¹Ì¶¨Ê¹ÓÃ ÏÂ±ê[1]
+                        poRole->GetServerGroup(), pcSceneData->MineDrop[1] + nIndex, content, nRate);    // æš‚æ—¶å›ºå®šä½¿ç”¨ ä¸‹æ ‡[1]
                     if (!nRetCode)
                         continue;
 
-                    // ÍÚ³ö»õ±Ò
+                    // æŒ–å‡ºè´§å¸
                     if (content.m_type == DropContent::DROP_MONEY)
                     {
                         nRetCode = poRole->GetItemBag()->AddMoney(content.m_money.moneytype, content.m_money.count, MONEYLOG_MINE, 0);
@@ -1343,7 +1343,7 @@ void CCharacter::_OnMine(void)
                                 poRole->GetItemBag()->SubGoldPool(content.m_money.count);
                         }
                     }
-                    // ÍÚ³öÎïÆ·
+                    // æŒ–å‡ºç‰©å“
                     else if (content.m_type == DropContent::DROP_ITEM)
                     {
                         nRetCode = poRole->GetItemBag()->AddItem(content.m_item, ITEMLOG_MINE, 0);
@@ -1372,10 +1372,10 @@ void CCharacter::_OnMine(void)
             }
 
             //if (g_Random(RATE_MAX) < pcSceneData->nMineDoodadChance)
-            if (g_Random(RATE_MAX) < pcSceneData->nMineDoodadChance[1])    // ÔİÊ±¹Ì¶¨Ê¹ÓÃ ÏÂ±ê[1]
+            if (g_Random(RATE_MAX) < pcSceneData->nMineDoodadChance[1])    // æš‚æ—¶å›ºå®šä½¿ç”¨ ä¸‹æ ‡[1]
             {
                 //CDoodad* poDoodad = m_poScene->SpawnDoodad(pcSceneData->nMineDoodadID, m_llX, m_llY, m_llZ, m_nFaceDirection, NULL);
-                CDoodad* poDoodad = m_poScene->SpawnDoodad(pcSceneData->nMineDoodadID[1], m_llX, m_llY, m_llZ, m_nFaceDirection, NULL);    // ÔİÊ±¹Ì¶¨Ê¹ÓÃ ÏÂ±ê[1]
+                CDoodad* poDoodad = m_poScene->SpawnDoodad(pcSceneData->nMineDoodadID[1], m_llX, m_llY, m_llZ, m_nFaceDirection, NULL);    // æš‚æ—¶å›ºå®šä½¿ç”¨ ä¸‹æ ‡[1]
                 LOG_CHECK_ERROR(poDoodad);
             }
         }

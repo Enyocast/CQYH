@@ -10,22 +10,22 @@ struct SPIRIT_DATA
 {
 	// base
 	INT32 nLevel;
-	INT32 nNextLevelExp;										// Éı¼¶¾­Ñé
-	INT32 nSoulCost;											// Ã¿´Î×ª»¯ÏûºÄ»ê
-	INT32 nAddExp;												// Ã¿´Î×ª»¯Ôö¼Ó¾­Ñé
-	INT32 nAddSpiritPts;										// Ã¿´Î×ª»¯Ôö¼ÓĞŞÁ¶µã
-	INT32 nPower;												// Õ½¶·Á¦
-	INT32 nAttrTemplateNodeID[MAX_SPIRIT_NODE_PER_LEVEL];		// ÊôĞÔÄ£°åID
+	INT32 nNextLevelExp;										// å‡çº§ç»éªŒ
+	INT32 nSoulCost;											// æ¯æ¬¡è½¬åŒ–æ¶ˆè€—é­‚
+	INT32 nAddExp;												// æ¯æ¬¡è½¬åŒ–å¢åŠ ç»éªŒ
+	INT32 nAddSpiritPts;										// æ¯æ¬¡è½¬åŒ–å¢åŠ ä¿®ç‚¼ç‚¹
+	INT32 nPower;												// æˆ˜æ–—åŠ›
+	INT32 nAttrTemplateNodeID[MAX_SPIRIT_NODE_PER_LEVEL];		// å±æ€§æ¨¡æ¿ID
 	INT32 nAttrNodeID[MAX_SPIRIT_NODE_PER_LEVEL];				
-	BOOL  nBroadcastStringID;									// ÊÇ·ñĞèÒªµçÊÓ»ú¹ã²¥
+	BOOL  nBroadcastStringID;									// æ˜¯å¦éœ€è¦ç”µè§†æœºå¹¿æ’­
 
 	// Exp2Pts
-	UINT32	dwDailyChangeCDTime;								// ×ª»¯CDÊ±¼ä
-	INT32	nOfflineChangeDiscount[vlTotal-1];					// vipÀëÏß×ª»¯µÄÕÛ¿Û
-	INT32	nVipOnlineChangeDiscount[vlTotal-1];				// vipÔÚÏß×ª»¯µÄ¼Ó³É
-	INT32	nMoneyCostOneShot;									// Ò»¼ü×ª»¯½ğ±ÒÏûºÄ
-	INT32	nDailyExp2PtsMoneyCost;								// »ê×ªĞŞÁ¶µãÃ¿ÈÕ×î´óÏûºÄ
-	INT32	nDailyExp2PtsMaxCount;								// »ì×ªĞŞÁ¶µãÃ¿ÈÕ×î´ó´ÎÊı
+	UINT32	dwDailyChangeCDTime;								// è½¬åŒ–CDæ—¶é—´
+	INT32	nOfflineChangeDiscount[vlTotal-1];					// vipç¦»çº¿è½¬åŒ–çš„æŠ˜æ‰£
+	INT32	nVipOnlineChangeDiscount[vlTotal-1];				// vipåœ¨çº¿è½¬åŒ–çš„åŠ æˆ
+	INT32	nMoneyCostOneShot;									// ä¸€é”®è½¬åŒ–é‡‘å¸æ¶ˆè€—
+	INT32	nDailyExp2PtsMoneyCost;								// é­‚è½¬ä¿®ç‚¼ç‚¹æ¯æ—¥æœ€å¤§æ¶ˆè€—
+	INT32	nDailyExp2PtsMaxCount;								// æ··è½¬ä¿®ç‚¼ç‚¹æ¯æ—¥æœ€å¤§æ¬¡æ•°
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, SPIRIT_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
@@ -33,21 +33,21 @@ struct SPIRIT_DATA
 struct SPIRIT_CHANGE_DATA
 {
 	INT32	nIndex;
-	INT32	nDailyChangeTime;					// Ã¿ÈÕÍê³É´ÎÊı
-	INT32	nMoneyCostDiscount;					// ½ğ±Ò¼Ó³É 
+	INT32	nDailyChangeTime;					// æ¯æ—¥å®Œæˆæ¬¡æ•°
+	INT32	nMoneyCostDiscount;					// é‡‘å¸åŠ æˆ 
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, SPIRIT_CHANGE_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
 
-struct AIR_LEVEL_DATA							// Á·Æø½×¶ÎÊı¾İ
+struct AIR_LEVEL_DATA							// ç»ƒæ°”é˜¶æ®µæ•°æ®
 {
-	INT32	nLevel;								// Á·Æø½×¶Î
+	INT32	nLevel;								// ç»ƒæ°”é˜¶æ®µ
 	INT32	nPtsCost;
 	INT32	nNextLevelRate;
-	INT32	nSpiritLevelLimit;					// ¾³½çµÈ¼¶ÏŞÖÆ
-	INT32	nDropMoneyCount;					// Íò·¨Ö®ÆøÊıÁ¿
-	INT32	nClassLimit;						// Ö°ÒµÏŞÖÆ(ÓÃÓÚ¿ØÖÆµôÂäÆøµÄÀàĞÍ)   
-	BOOL	nBroadcastStringID;					// ÊÇ·ñĞèÒª¹ã²¥
+	INT32	nSpiritLevelLimit;					// å¢ƒç•Œç­‰çº§é™åˆ¶
+	INT32	nDropMoneyCount;					// ä¸‡æ³•ä¹‹æ°”æ•°é‡
+	INT32	nClassLimit;						// èŒä¸šé™åˆ¶(ç”¨äºæ§åˆ¶æ‰è½æ°”çš„ç±»å‹)   
+	BOOL	nBroadcastStringID;					// æ˜¯å¦éœ€è¦å¹¿æ’­
 
 	INT32	nDropAirID[MAX_DROP_AIR_COUNT];
 	INT32	nDropAirRate[MAX_DROP_AIR_COUNT];   
@@ -55,17 +55,17 @@ struct AIR_LEVEL_DATA							// Á·Æø½×¶ÎÊı¾İ
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, AIR_LEVEL_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
 
-struct AIR_DATA						// ÆøÊôĞÔÄ£°å
+struct AIR_DATA						// æ°”å±æ€§æ¨¡æ¿
 {
 	INT32	nAirID;
 	INT32	nColor;
-	INT32	nLevel;					// ÆøµÄµÈ¼¶
-	INT32	nExp;					// ³õÊ¼¾­Ñé
-	INT32	nNextLevelExp;			// Éı¼¶¾­Ñé
+	INT32	nLevel;					// æ°”çš„ç­‰çº§
+	INT32	nExp;					// åˆå§‹ç»éªŒ
+	INT32	nNextLevelExp;			// å‡çº§ç»éªŒ
 	INT32	nNextLevelID;
-	INT32	nExchangeCount;			// Íò·¨Ö®Æø¶Ò»»ÊıÁ¿
-	INT32	nGroupID;				// ×éid Í¬×éµÄÆøÖ»ÄÜ×°±¸Ò»¸ö
-	INT32	nBroadcastStringID;			// ÊÇ·ñĞèÒª¹ã²¥
+	INT32	nExchangeCount;			// ä¸‡æ³•ä¹‹æ°”å…‘æ¢æ•°é‡
+	INT32	nGroupID;				// ç»„id åŒç»„çš„æ°”åªèƒ½è£…å¤‡ä¸€ä¸ª
+	INT32	nBroadcastStringID;			// æ˜¯å¦éœ€è¦å¹¿æ’­
 
 	INT32	nHandbookType;	
 	INT32	nHandbookIndex;		
@@ -77,19 +77,19 @@ struct AIR_DATA						// ÆøÊôĞÔÄ£°å
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, AIR_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
 
-struct BLOOD_DATA												// ÑªÂö
+struct BLOOD_DATA												// è¡€è„‰
 {
 	INT32	nPage;
 	INT32	nSlot;
 	INT32	nNumber;
 
 	INT32	nSpiritPtsCost;
-	INT32	nRate;												// Ë¢³ö10µÄ¸ÅÂÊ
-	INT32	nLevelLimit;										// ËùĞè¾³½çµÈ¼¶
+	INT32	nRate;												// åˆ·å‡º10çš„æ¦‚ç‡
+	INT32	nLevelLimit;										// æ‰€éœ€å¢ƒç•Œç­‰çº§
 
-	INT32	nPageLevelLimit;									// ¿ªÆô´ËÑªÂöËùĞèÒªÈËÎïµÈ¼¶
+	INT32	nPageLevelLimit;									// å¼€å¯æ­¤è¡€è„‰æ‰€éœ€è¦äººç‰©ç­‰çº§
 
-	INT32	nAttrTemplateNodeID[MAX_BLOODSEA_ATTR_PER_SLOT];	// ÊôĞÔ
+	INT32	nAttrTemplateNodeID[MAX_BLOODSEA_ATTR_PER_SLOT];	// å±æ€§
 	INT32	nNodeID[MAX_BLOODSEA_ATTR_PER_SLOT];
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, BLOOD_DATA* pData, CTabFile* pTabConfig, INT32 nRow);

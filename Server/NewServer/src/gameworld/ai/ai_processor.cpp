@@ -648,7 +648,7 @@ BOOL CAIProcessor::Follow(void)
         }
         else if (m_poOwner->GetObjType() == otNpc)
 		{
-			//²»¸úËæÌø×ª³¡¾°
+			//ä¸è·Ÿéšè·³è½¬åœºæ™¯
 			PROCESS_ERROR(FALSE);
             //nRetCode = CGameWorld::GetInstance().JumpTo((CNpc*)m_poOwner, poHost->GetScene()->GetSceneTempID(),
             //    poHost->GetScene()->GetSceneID(), poHost->GetX(), poHost->GetY(), poHost->GetZ(), poHost->GetFaceDirection());
@@ -1333,7 +1333,7 @@ inline BOOL CAIProcessor::CScanNearby::operator()(CCharacter* poChar)
 		if (m_poAIProcessor->GetOwner()->CanAttack(poChar))
 		{
 			PROCESS_ERROR(!poChar->GetCCFlag().CheckFlag(cclInvincible));
-            PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, ÏÝÚå¹Ö
+            PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, é™·é˜±æ€ª
 
 			if (poChar->GetObjType() == otRole)
 			{
@@ -1436,7 +1436,7 @@ BOOL CAIProcessor::CScanEnemy::operator()(CCharacter* poChar)
 
 	PROCESS_ERROR(!poChar->IsDead());
 	PROCESS_ERROR(!poChar->GetCCFlag().CheckFlag(cclInvincible));
-    PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, ÏÝÚå¹Ö
+    PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, é™·é˜±æ€ª
 
 	if (poChar->GetCCFlag().CheckFlag(cclInvisible) && !m_poAIProcessor->IgnoreInvisible())
 	{
@@ -1483,7 +1483,7 @@ BOOL CAIProcessor::CScanRedName::operator()(CCharacter* poChar)
 
 	PROCESS_ERROR(!poChar->IsDead());
 	PROCESS_ERROR(!poChar->GetCCFlag().CheckFlag(cclInvincible));
-    PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, ÏÝÚå¹Ö
+    PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, é™·é˜±æ€ª
 
 	llDistance = m_poAIProcessor->GetOwner()->GetDistance3D(poChar);
 	PROCESS_ERROR(llDistance < m_llNearestEnemyDistance);
@@ -1531,7 +1531,7 @@ BOOL CAIProcessor::CScanSabacEnemy::operator()(CCharacter* poChar)
 
 	PROCESS_ERROR(!poChar->IsDead());
 	PROCESS_ERROR(!poChar->GetCCFlag().CheckFlag(cclInvincible));
-    PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, ÏÝÚå¹Ö
+    PROCESS_ERROR(poChar->GetFlag().CheckFlag(cfNeverBeHit) == FALSE);      // redmine 23610, é™·é˜±æ€ª
 
 	if (poChar->GetCCFlag().CheckFlag(cclInvisible) && !m_poAIProcessor->IgnoreInvisible())
 	{
@@ -1720,7 +1720,7 @@ BOOL CAIProcessor::PetScanEnemy(INT32 nLevel, INT64 llDistance, INT32 nspellEffe
         CCharacter* poTargetChar = CGameWorld::GetInstance().FindValidCharacter(((THREAT_NODE*)pNode)->dwCharID);
         if (poTargetChar == NULL)
             continue;
-        if (poTargetChar->GetObjID() != m_poOwner->GetObjID())      // ÎªÁËÈÃÖ÷ÈË¹¥»÷³èÎïµÄÊ±ºò£¬³èÎïÄÜ½øÈëÕ½¶·×´Ì¬¡£ ÔÚidle tree ÉÏÕâ¸öactionÖ®ºóÓÐÅÐÄ¿±êÊÇ·ñÊÇÖ÷ÈË
+        if (poTargetChar->GetObjID() != m_poOwner->GetObjID())      // ä¸ºäº†è®©ä¸»äººæ”»å‡»å® ç‰©çš„æ—¶å€™ï¼Œå® ç‰©èƒ½è¿›å…¥æˆ˜æ–—çŠ¶æ€ã€‚ åœ¨idle tree ä¸Šè¿™ä¸ªactionä¹‹åŽæœ‰åˆ¤ç›®æ ‡æ˜¯å¦æ˜¯ä¸»äºº
         {
             if (poTargetChar->GetObjType() != otNpc)
                 continue;
@@ -1788,7 +1788,7 @@ BOOL CAIProcessor::PetScanEnemy(INT32 nLevel, INT64 llDistance, INT32 nspellEffe
         if (nRetCode == FALSE)
             continue;
 
-        if (((CNpc*)poTargetChar)->GetNpcData() && ((CNpc*)poTargetChar)->GetNpcData()->bCounterInvisible == FALSE)    // ²ß»®ËµµÄÔ¶³Ì¹Ö±êÇ©...
+        if (((CNpc*)poTargetChar)->GetNpcData() && ((CNpc*)poTargetChar)->GetNpcData()->bCounterInvisible == FALSE)    // ç­–åˆ’è¯´çš„è¿œç¨‹æ€ªæ ‡ç­¾...
         {
             dwTargetID = poTargetChar->GetObjID();
             continue;

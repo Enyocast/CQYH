@@ -75,7 +75,7 @@ struct MS_ONLINE_ROLE_DATA : public BASE_LIST_NODE
     typedef std::list<UINT32>   PERSONAL_ENEMY_LIST;    
     PERSONAL_ENEMY_LIST m_personalEnemy;// fifo
 
-    // ³ğÈËµÄ·´Ãæ£¬É±¹ıµÄÈË
+    // ä»‡äººçš„åé¢ï¼Œæ€è¿‡çš„äºº
     typedef std::set<UINT32>   PE_KILL_LIST;
     PE_KILL_LIST        m_KillList;
 

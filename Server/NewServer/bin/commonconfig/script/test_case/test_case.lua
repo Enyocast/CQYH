@@ -184,7 +184,7 @@ CommandList = {
 	--"Command_GameLogic(1)",
 	--"Command_DBLoad(5)",
 	--"Command_DBOperate(1)",
-	"TraverseAllAchievements()",  -- 遍历成就系统
+	"TraverseAllAchievements()",  -- 閬嶅巻鎴愬氨绯荤粺
 }
 
 Include("script/test_case/functionality/healingwell.lua");

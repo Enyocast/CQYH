@@ -3,7 +3,7 @@ created:	7:4:2013   15:23
 file:		ms_guild_mgr.cpp
 author:		Allan Tao
 
-purpose:	°ï»áÏà¹ØÂß¼­£¬°ïÅÉlist¼°ÅÅĞò²éÑ¯Âß¼­
+purpose:	å¸®ä¼šç›¸å…³é€»è¾‘ï¼Œå¸®æ´¾liståŠæ’åºæŸ¥è¯¢é€»è¾‘
 *********************************************************************/
 
 #include "stdafx.h"
@@ -342,7 +342,7 @@ BOOL CMsGuildMgr::Init()
     nRetCode = m_UpgradeTriggerPool.Init(g_GuildConfig.nGuildUpgradeTriggerPool);
     LOG_PROCESS_ERROR(nRetCode);
 
-    // todo_tq ¹«»áÕ½£¬poolÊıÁ¿
+    // todo_tq å…¬ä¼šæˆ˜ï¼Œpoolæ•°é‡
     nRetCode = m_GuildWarPool.Init(g_GuildConfig.nGuildGuildWarPool);
     LOG_PROCESS_ERROR(nRetCode);
 
@@ -472,7 +472,7 @@ BOOL CMsGuildMgr::LoadGuild(GUILD_DB& db_data)
     LOG_PROCESS_ERROR(poMsGuild->Load(db_data));
 
     // other construct
-    // ¹¹ÔìÓĞĞòguild list
+    // æ„é€ æœ‰åºguild list
     nRetCode = InsertGuildIntoLvlRank(poMsGuild);
     LOG_PROCESS_ERROR(nRetCode);
 
@@ -573,14 +573,14 @@ BOOL CMsGuildMgr::MainLoop()
 
 	// global timer
 
-	// 30Ãë¶¨Ê±Æ÷
+	// 30ç§’å®šæ—¶å™¨
 	if ( 0 == dwCurrentTime % 30 )
 	{
 
-		// 1·ÖÖÓ¶¨Ê±Æ÷
+		// 1åˆ†é’Ÿå®šæ—¶å™¨
 		if ( 0 == dwCurrentTime % 60)
 		{
-            // 10·ÖÖÓ¶¨Ê±Æ÷ Allan Tao[8.5.2013] 
+            // 10åˆ†é’Ÿå®šæ—¶å™¨ Allan Tao[8.5.2013] 
 			if ( 0 == dwCurrentTime % 600 )
 			{
                 // one hour
@@ -1247,7 +1247,7 @@ INT32 CMsGuildMgr::CreateGuild(MS_ONLINE_ROLE_DATA &onlineRoleData, const char *
     poMsGuild = FindGuildByName(pcszGuildName);      // to be optimized
     LOG_PROCESS_ERROR(poMsGuild);
 
-    // ¹¹ÔìÓĞĞòguild list
+    // æ„é€ æœ‰åºguild list
     nRetCode = InsertGuildIntoLvlRank(poMsGuild);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode, errGuildInternalError);
 
@@ -1376,7 +1376,7 @@ Exit0:
 //        G_GUILD_APPLICANTION_DATA   *pAppData = NULL;
 //        pAppData = (G_GUILD_APPLICANTION_DATA*)((char *)pNext - (char *)(&((G_GUILD_APPLICANTION_DATA*)0)->m_roleAppListNode));
 //
-//        if (pAppData->dwEndTime < dwCurrentTime + dwCheckTime)   // Î´À´ dwCheckTime ÃëÖ®ÄÚµÄÈ«²¿É¾³ı
+//        if (pAppData->dwEndTime < dwCurrentTime + dwCheckTime)   // æœªæ¥ dwCheckTime ç§’ä¹‹å†…çš„å…¨éƒ¨åˆ é™¤
 //        {
 //            BASE_LIST_NODE *pOldNext = pNext;
 //            pNext = pNext->pNext;
@@ -1400,7 +1400,7 @@ Exit0:
 //                LOG_CHECK_ERROR(nRetCode);
 //            }
 //        }
-//        else    // °´Ê±¼äÀ´Ëµ£¬ÊÇµİÔö¶ÓÁĞ Allan Tao[8.5.2013] 
+//        else    // æŒ‰æ—¶é—´æ¥è¯´ï¼Œæ˜¯é€’å¢é˜Ÿåˆ— Allan Tao[8.5.2013] 
 //            break;
 //    }
 //

@@ -127,11 +127,11 @@ BOOL CGameServer::Init(INetEventHandler* poNetEventHandler)
 	nRetCode = m_PacketAllocator.Init(g_ServerConfig.GS.Net.nSmallPacketCount, g_ServerConfig.GS.Net.nLargePacketCount);
 	LOG_PROCESS_ERROR(nRetCode);
 
-    // ³õÊ¼»¯ - ÊıÑ§
+    // åˆå§‹åŒ– - æ•°å­¦
     nRetCode = _InitMathTable();
     LOG_PROCESS_ERROR(nRetCode);
 
-    // ÄÚÁªÍø
+    // å†…è”ç½‘
 #if defined(WIN32)
     IntranetInitParam.nMaxAcceptor = g_ServerConfig.GS.Net.nMaxAcceptor;
     IntranetInitParam.nMaxConnector = g_ServerConfig.GS.Net.nMaxConnector;
@@ -242,14 +242,14 @@ BOOL CGameServer::MainLoop(void)
 		if (!rGameWorld.IsFreezeTime())
 			rGameWorld.SetGameTime((UINT32)time(NULL));
 		
-		rGameWorld.MainLoop();    // Ö÷Ñ­»·
+		rGameWorld.MainLoop();    // ä¸»å¾ªç¯
 
-		nRetCode = CGSSessionMgr::GetInstance().MainLoop();  // ÄÚÁªÍøÅĞ¶ÏÊÇ·ñµôÏß
+		nRetCode = CGSSessionMgr::GetInstance().MainLoop();  // å†…è”ç½‘åˆ¤æ–­æ˜¯å¦æ‰çº¿
 		LOG_PROCESS_ERROR(nRetCode);
 	}
 
     LOG_PROCESS_ERROR(m_poNet);
-    nRetCode = m_poNet->MainLoop();    // ÍøÂçÑ­»·
+    nRetCode = m_poNet->MainLoop();    // ç½‘ç»œå¾ªç¯
     LOG_PROCESS_ERROR(nRetCode);
 
 #ifndef _FINAL
@@ -297,7 +297,7 @@ bool CGameServer::CKickAllRole::operator()(UINT32 dwRoleID, CRole* poRole)
 
     poRole->SetState(rsWaitUnlockRoleData);
 
-    // ÕÒ²»µ½SceneÊÇÓĞÑÏÖØBUG
+    // æ‰¾ä¸åˆ°Sceneæ˜¯æœ‰ä¸¥é‡BUG
     CScene* poScene = poRole->GetScene();
     LOG_CHECK_ERROR(poScene);
 
@@ -348,22 +348,22 @@ BOOL _InitServer(void)
 	nRetCode = CheckDiskRemainCapacity();
 	LOG_PROCESS_ERROR(nRetCode);
 
-    // ³õÊ¼»¯ - ´´½¨ÄÚÁªÍø
+    // åˆå§‹åŒ– - åˆ›å»ºå†…è”ç½‘
 	nRetCode = rGameServer.Init(&rGSMessageHandler);
 	LOG_PROCESS_ERROR(nRetCode);
 
-    // ³õÊ¼»¯ - ÄÚÁªÍøº¯Êı
+    // åˆå§‹åŒ– - å†…è”ç½‘å‡½æ•°
 	nRetCode = rGSMessageHandler.Init(rGameServer.GetNetInterface(), rGameServer.GetPacketAllocator(), rGameServer.GetMessageNotifier());
 	LOG_PROCESS_ERROR(nRetCode);
 
-    // ³õÊ¼»¯ - ¸÷ÖÖSESSION×Ö¶Î
+    // åˆå§‹åŒ– - å„ç§SESSIONå­—æ®µ
 	nRetCode = CGSSessionMgr::GetInstance().Init(rGameServer.GetNetInterface());
 	LOG_PROCESS_ERROR(nRetCode);
 
     //INF("---- Test Sleep 1 ----");
     //Sleep(1000 * 10000);
 
-    // ³õÊ¼»¯·şÎñ¶Ë, ¼ÓÔØÅäÖÃ
+    // åˆå§‹åŒ–æœåŠ¡ç«¯, åŠ è½½é…ç½®
     nRetCode = g_InitGameWorldLib(GetTickCountEx(), rGameServer.GetMessageNotifier(), rGameServer.GetPacketAllocator());
     LOG_PROCESS_ERROR(nRetCode);
 

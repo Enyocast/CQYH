@@ -10,15 +10,15 @@
 namespace  ERR_CREATEROLE_DB
 {
     const INT32 ID_NOERROR = 0;
-    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "²Ù×÷³É¹¦");
+    const TCHAR* STR_NOERROR = _SDTSource2T("GBK", "æ“ä½œæˆåŠŸ");
 
     const INT32 ID_TOOMUCHROLE = 1;
-    const TCHAR* STR_TOOMUCHROLE = _SDTSource2T("GBK", "½ÇÉ«´´½¨¹ý¶à");
+    const TCHAR* STR_TOOMUCHROLE = _SDTSource2T("GBK", "è§’è‰²åˆ›å»ºè¿‡å¤š");
 
     const INT32 ID_PARAMERROR = 2;
-    const TCHAR* STR_PARAMERROR = _SDTSource2T("GBK", "²ÎÊý²»ÕýÈ·");
+    const TCHAR* STR_PARAMERROR = _SDTSource2T("GBK", "å‚æ•°ä¸æ­£ç¡®");
 
     const INT32 ID_UNKNOWERROR = 3;
-    const TCHAR* STR_UNKNOWERROR = _SDTSource2T("GBK", "½ÇÉ«ÃûÖØ¸´»òÊý¾Ý¿â´íÎó");
+    const TCHAR* STR_UNKNOWERROR = _SDTSource2T("GBK", "è§’è‰²åé‡å¤æˆ–æ•°æ®åº“é”™è¯¯");
 }
 

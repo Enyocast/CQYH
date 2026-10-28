@@ -15,16 +15,16 @@ using namespace SGDP;
 namespace  ERR_CREATEROLE_DB
 {
     extern const INT32 ID_NOERROR/* = 0*/;
-    extern const TCHAR* STR_NOERROR/* = _SDTSource2T("GBK", "²Ù×÷³É¹¦")*/;
+    extern const TCHAR* STR_NOERROR/* = _SDTSource2T("GBK", "æ“ä½œæˆåŠŸ")*/;
 
     extern const INT32 ID_TOOMUCHROLE/* = 1*/;
-    extern const TCHAR* STR_TOOMUCHROLE/* = _SDTSource2T("GBK", "½ÇÉ«´´½¨¹ı¶à")*/;
+    extern const TCHAR* STR_TOOMUCHROLE/* = _SDTSource2T("GBK", "è§’è‰²åˆ›å»ºè¿‡å¤š")*/;
 
     extern const INT32 ID_PARAMERROR/* = 2*/;
-    extern const TCHAR* STR_PARAMERROR/* = _SDTSource2T("GBK", "²ÎÊı²»ÕıÈ·")*/;
+    extern const TCHAR* STR_PARAMERROR/* = _SDTSource2T("GBK", "å‚æ•°ä¸æ­£ç¡®")*/;
 
     extern const INT32 ID_UNKNOWERROR/* = 3*/;
-    extern const TCHAR* STR_UNKNOWERROR/* = _SDTSource2T("GBK", "½ÇÉ«ÃûÖØ¸´»òÊı¾İ¿â´íÎó")*/;
+    extern const TCHAR* STR_UNKNOWERROR/* = _SDTSource2T("GBK", "è§’è‰²åé‡å¤æˆ–æ•°æ®åº“é”™è¯¯")*/;
 }
 
 #endif

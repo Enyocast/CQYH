@@ -18,80 +18,80 @@ enum GRID_PK_TYPE
 {
     gptInvalid = -1,
 
-	gptNormal,  // ÆÕÍ¨ÇøÓò£¨Ä¬ÈÏPK¹æÔò£©
-	gptFree,    // ×ÔÓÉPKÇø£¨ÔÊĞíÎŞÏŞÖÆPK£©
-	gptSafe,    // °²È«Çø£¨½ûÖ¹PK£©
+	gptNormal,  // æ™®é€šåŒºåŸŸï¼ˆé»˜è®¤PKè§„åˆ™ï¼‰
+	gptFree,    // è‡ªç”±PKåŒºï¼ˆå…è®¸æ— é™åˆ¶PKï¼‰
+	gptSafe,    // å®‰å…¨åŒºï¼ˆç¦æ­¢PKï¼‰
 
     gptTotal
 };
 
 
-// GRID_DATA ¾ö¶¨Íø¸ñµÄ¹æÔò£¨ÄÜ·ñĞĞ×ß¡¢ÊÇ·ñ°²È«Çø£©¡£
-// GRID_INSTANCE_DATA ¼ÇÂ¼Íø¸ñµÄÊµÊ±±ä»¯£¨µ±Ç°ÓĞ¶àÉÙ½ÇÉ«¡¢ÊÇ·ñÓĞ¼¼ÄÜÌØĞ§£©¡£
+// GRID_DATA å†³å®šç½‘æ ¼çš„è§„åˆ™ï¼ˆèƒ½å¦è¡Œèµ°ã€æ˜¯å¦å®‰å…¨åŒºï¼‰ã€‚
+// GRID_INSTANCE_DATA è®°å½•ç½‘æ ¼çš„å®æ—¶å˜åŒ–ï¼ˆå½“å‰æœ‰å¤šå°‘è§’è‰²ã€æ˜¯å¦æœ‰æŠ€èƒ½ç‰¹æ•ˆï¼‰ã€‚
 
 #pragma pack(push, 1)
 
 struct GRID_DATA
 {
-	// »ù´¡ÊôĞÔ
-	unsigned uNextGrid				: NEXT_GRID_BIT;    // ÏÂÒ»²ãÍø¸ñË÷Òı£¨ÓÃÓÚ¶à²ã½á¹¹£©
-	unsigned uNoObstacle			: 6;				// ÎŞÕÏ°­±ê¼Ç£¨¿ÉÄÜÓÃÓÚ¿ìËÙÅĞ¶Ï£©
-	unsigned uVolume				: GRID_VOLUME_BIT;  // Ìå»ıÇøÓòË÷Òı
-	unsigned uDoor					: GRID_DOOR_BIT;    // ÈôÖµ·Ç0£¬¿ÉÄÜ±íÊ¾ÃÅµÄ×´Ì¬Ó°ÏìÍ¨ĞĞ
+	// åŸºç¡€å±æ€§
+	unsigned uNextGrid				: NEXT_GRID_BIT;    // ä¸‹ä¸€å±‚ç½‘æ ¼ç´¢å¼•ï¼ˆç”¨äºå¤šå±‚ç»“æ„ï¼‰
+	unsigned uNoObstacle			: 6;				// æ— éšœç¢æ ‡è®°ï¼ˆå¯èƒ½ç”¨äºå¿«é€Ÿåˆ¤æ–­ï¼‰
+	unsigned uVolume				: GRID_VOLUME_BIT;  // ä½“ç§¯åŒºåŸŸç´¢å¼•
+	unsigned uDoor					: GRID_DOOR_BIT;    // è‹¥å€¼é0ï¼Œå¯èƒ½è¡¨ç¤ºé—¨çš„çŠ¶æ€å½±å“é€šè¡Œ
 
-	// ÆäËû¹¦ÄÜ
-	unsigned uPkType				: 2;    // ÃÅ×´Ì¬£¨0=ÎŞÃÅ£©
+	// å…¶ä»–åŠŸèƒ½
+	unsigned uPkType				: 2;    // é—¨çŠ¶æ€ï¼ˆ0=æ— é—¨ï¼‰
 	unsigned bBorder				: 1;
 
-	// °ÚÌ¯Çø - ±êÊ¶Íø¸ñÊÇ·ñÊôÓÚ°ÚÌ¯ÇøÓò¼°ÆäµÈ¼¶ (0=ÆÕÍ¨ÇøÓò(²»¿É°ÚÌ¯), 1/2/3=²»Í¬µÈ¼¶µÄ°ÚÌ¯Çø(ÀıÈç£º³õ¼¶°ÚÌ¯Çø¡¢¸ß¼¶°ÚÌ¯Çø))
+	// æ‘†æ‘ŠåŒº - æ ‡è¯†ç½‘æ ¼æ˜¯å¦å±äºæ‘†æ‘ŠåŒºåŸŸåŠå…¶ç­‰çº§ (0=æ™®é€šåŒºåŸŸ(ä¸å¯æ‘†æ‘Š), 1/2/3=ä¸åŒç­‰çº§çš„æ‘†æ‘ŠåŒº(ä¾‹å¦‚ï¼šåˆçº§æ‘†æ‘ŠåŒºã€é«˜çº§æ‘†æ‘ŠåŒº))
 	unsigned uStallLevel			: 2;
 
-	unsigned bQuest					: 1;    // ÈÎÎñµã?
+	unsigned bQuest					: 1;    // ä»»åŠ¡ç‚¹?
 
-	// ×èµ²±ê¼Ç
-	unsigned bBlockMove				: 1;    // 1=×èµ²ÒÆ¶¯£¨ÕÏ°­µã£©
-	unsigned bBlockLeap				: 1;	// 1=×èµ²ÌøÔ¾
-	unsigned bBlockMissile			: 1;	// 1=×èµ²µ¼µ¯
-	unsigned bBlockBullet			: 1;	// 1=×èµ²×Óµ¯
+	// é˜»æŒ¡æ ‡è®°
+	unsigned bBlockMove				: 1;    // 1=é˜»æŒ¡ç§»åŠ¨ï¼ˆéšœç¢ç‚¹ï¼‰
+	unsigned bBlockLeap				: 1;	// 1=é˜»æŒ¡è·³è·ƒ
+	unsigned bBlockMissile			: 1;	// 1=é˜»æŒ¡å¯¼å¼¹
+	unsigned bBlockBullet			: 1;	// 1=é˜»æŒ¡å­å¼¹
 
 
 	unsigned bNotBlockChar			: 1;
-	unsigned bMine                  : 1;    // ÊÇ·ñÊÇ¿óµã
-	unsigned bCannotTeleport		: 1;    // ÊÇ·ñ½ûÖ¹´«ËÍ(1=½ûÖ¹£¬0=ÔÊĞí)
-	unsigned bRoleCannotLoseItem	: 1;    // Íæ¼ÒËÀÍöÊ±, ÔÚ´ËÍø¸ñÊÇ·ñ²»»áµôÂäÎïÆ·(ÀıÈç°²È«Çø)(1=½ûÖ¹£¬0=ÔÊĞí)
-	unsigned bRoleCannotDropItem	: 1;    // ½ÇÉ«²»ÄÜ¶ªÆúÎïÆ·Çø(1=½ûÖ¹£¬0=ÔÊĞí)
-	// µÚ1¸ö 32Î»½áÊø
+	unsigned bMine                  : 1;    // æ˜¯å¦æ˜¯çŸ¿ç‚¹
+	unsigned bCannotTeleport		: 1;    // æ˜¯å¦ç¦æ­¢ä¼ é€(1=ç¦æ­¢ï¼Œ0=å…è®¸)
+	unsigned bRoleCannotLoseItem	: 1;    // ç©å®¶æ­»äº¡æ—¶, åœ¨æ­¤ç½‘æ ¼æ˜¯å¦ä¸ä¼šæ‰è½ç‰©å“(ä¾‹å¦‚å®‰å…¨åŒº)(1=ç¦æ­¢ï¼Œ0=å…è®¸)
+	unsigned bRoleCannotDropItem	: 1;    // è§’è‰²ä¸èƒ½ä¸¢å¼ƒç‰©å“åŒº(1=ç¦æ­¢ï¼Œ0=å…è®¸)
+	// ç¬¬1ä¸ª 32ä½ç»“æŸ
 
-	unsigned bSlayerArea			: 1;    // ºìÃûÇø
-	unsigned bCannotDropItem		: 1;	// ÊÇ·ñ½ûÖ¹¶ªÆúÎïÆ·£¨1=½ûÖ¹£¬0=ÔÊĞí£©
-	unsigned uMineLevel				: 2;	// ¿óµãµÈ¼¶?
-	unsigned bTeleportPoint			: 1;    // ÊÇ·ñÊÇ´«ËÍµã
-	unsigned uReserved1				: 27;	// Ô¤¶¨Õ¼Î»27Î»
-	// µÚ2¸ö 32Î»½áÊø
+	unsigned bSlayerArea			: 1;    // çº¢ååŒº
+	unsigned bCannotDropItem		: 1;	// æ˜¯å¦ç¦æ­¢ä¸¢å¼ƒç‰©å“ï¼ˆ1=ç¦æ­¢ï¼Œ0=å…è®¸ï¼‰
+	unsigned uMineLevel				: 2;	// çŸ¿ç‚¹ç­‰çº§?
+	unsigned bTeleportPoint			: 1;    // æ˜¯å¦æ˜¯ä¼ é€ç‚¹
+	unsigned uReserved1				: 27;	// é¢„å®šå ä½27ä½
+	// ç¬¬2ä¸ª 32ä½ç»“æŸ
 
-	unsigned uReserved2				: 32;	// Ô¤¶¨Õ¼Î»32Î»
-	// µÚ3¸ö 32Î»½áÊø
+	unsigned uReserved2				: 32;	// é¢„å®šå ä½32ä½
+	// ç¬¬3ä¸ª 32ä½ç»“æŸ
 
-	// ¸ß¶È
-	unsigned uLowLayer				: GRID_LAYER_HEIGHT_BIT;    // µ×²ã¸ß¶È
-	unsigned uHighLayer				: GRID_LAYER_HEIGHT_BIT;    // ¸ß²ã¸ß¶È
+	// é«˜åº¦
+	unsigned uLowLayer				: GRID_LAYER_HEIGHT_BIT;    // åº•å±‚é«˜åº¦
+	unsigned uHighLayer				: GRID_LAYER_HEIGHT_BIT;    // é«˜å±‚é«˜åº¦
 	unsigned uEdge					: EDGE_INDEX_BIT;
 
-	// Âß¼­±ê¼Ç
-	unsigned bOutOfPoly				: 1;    // 1=ÔÚ¶à±ßĞÎÇøÓòÍâ£¨²»¿ÉĞĞ×ß£©
-	unsigned bInServerPointRange	: 1;	// ÊÇ·ñÔÚ·şÎñÆ÷µã·¶Î§ÄÚ
-	unsigned uReserved3				: 2;	// Ô¤¶¨Õ¼Î»2Î»
-	// µÚ4¸ö 32Î»½áÊø
+	// é€»è¾‘æ ‡è®°
+	unsigned bOutOfPoly				: 1;    // 1=åœ¨å¤šè¾¹å½¢åŒºåŸŸå¤–ï¼ˆä¸å¯è¡Œèµ°ï¼‰
+	unsigned bInServerPointRange	: 1;	// æ˜¯å¦åœ¨æœåŠ¡å™¨ç‚¹èŒƒå›´å†…
+	unsigned uReserved3				: 2;	// é¢„å®šå ä½2ä½
+	// ç¬¬4ä¸ª 32ä½ç»“æŸ
 };
 
-// Íø¸ñÊµÀıÊı¾İ
+// ç½‘æ ¼å®ä¾‹æ•°æ®
 struct GRID_INSTANCE_DATA
 {
-	unsigned char uCharRef			: 4;    // µ±Ç°Íø¸ñÖĞ ½ÇÉ«ÒıÓÃÊıÁ¿
-	unsigned char uDropRef			: 2;    // µ±Ç°Íø¸ñÖĞ µôÂäÎïÒıÓÃÊıÁ¿
-	unsigned char uMissileTag1		: 1;    // µ±Ç°Íø¸ñÊÇ·ñÓĞ µ¼µ¯/Í¶ÉäÎï ´æÔÚ
+	unsigned char uCharRef			: 4;    // å½“å‰ç½‘æ ¼ä¸­ è§’è‰²å¼•ç”¨æ•°é‡
+	unsigned char uDropRef			: 2;    // å½“å‰ç½‘æ ¼ä¸­ æ‰è½ç‰©å¼•ç”¨æ•°é‡
+	unsigned char uMissileTag1		: 1;    // å½“å‰ç½‘æ ¼æ˜¯å¦æœ‰ å¯¼å¼¹/æŠ•å°„ç‰© å­˜åœ¨
 	unsigned char uMissileTag2		: 1;
-	unsigned short uReserved		: 8;    // Ô¤¶¨Õ¼Î»8Î»
+	unsigned short uReserved		: 8;    // é¢„å®šå ä½8ä½
 };
 
 #pragma pack(pop)

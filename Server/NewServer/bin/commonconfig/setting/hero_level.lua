@@ -1,6 +1,6 @@
 hero_level_define = {
   
-   owner='¸µÀÚ',
+   owner='å‚…ç£Š',
   
 Level = { 
         type = 'number',

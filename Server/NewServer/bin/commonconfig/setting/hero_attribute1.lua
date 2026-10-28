@@ -1,6 +1,6 @@
 hero_attribute1_define = {
   
-   owner='¸µÀÚ',
+   owner='å‚…ç£Š',
   
 Class = { 
         type = 'number',

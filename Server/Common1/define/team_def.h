@@ -20,8 +20,8 @@
 #define	MAX_TEAM_DUNGEON	(64)
 
 // Team Auction
-#define  TEAM_AUCTION_BID_FRAME_INTERVAL	(20 * GAME_FPS)	// 出价时间间隔
-#define	 TEAM_AUCTION_ITEM_INIT_INDEX	(1)		// 拍卖物品初始编号
+#define  TEAM_AUCTION_BID_FRAME_INTERVAL	(20 * GAME_FPS)	// 鍑轰环鏃堕棿闂撮殧
+#define	 TEAM_AUCTION_ITEM_INIT_INDEX	(1)		// 鎷嶅崠鐗╁搧鍒濆缂栧彿
 
 enum TEAM_ANSWER_TYPE
 {
@@ -39,8 +39,8 @@ enum TEAM_ASSIGN
 {
 	etaInvalid,
 
-    etaFreeForAll,      //自由拾取
-	etaTeamAuction,		//组队拍卖
+    etaFreeForAll,      //鑷敱鎷惧彇
+	etaTeamAuction,		//缁勯槦鎷嶅崠
 
 	etaTotal
 };

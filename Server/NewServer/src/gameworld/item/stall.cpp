@@ -326,7 +326,7 @@ INT32 CStall::BuyGood(CRole* buyer, UINT8 slot, INT32 itemcount, INT64 modifyfra
     nRetCode = m_pOwner->GetItemBag()->TransferItemTo(buyer->GetItemBag(), good.item, itemcount, ITEMLOG_PLAYER_STALL);
     if (nRetCode == errSuccess)
     {
-        // 优化
+        // 浼樺寲
         if (cost_excluding_tax)
         {
             buyer->GetItemBag()->SubMoney(MONEYTYPE_02, cost_excluding_tax + total_tax, MONEYLOG_PLAYER_STALL, m_pOwner->GetObjID());
@@ -337,7 +337,7 @@ INT32 CStall::BuyGood(CRole* buyer, UINT8 slot, INT32 itemcount, INT64 modifyfra
             buyer->GetItemBag()->SubMoney(MONEYTYPE_02, total_tax, MONEYLOG_PLAYER_STALL_TAX, 0);
         }
 
-        // 默认代码
+        // 榛樿浠ｇ爜
         //if (cost_excluding_tax)
         //{
         //    buyer->GetItemBag()->SubMoney(MONEYTYPE_02, cost_excluding_tax, MONEYLOG_PLAYER_STALL, m_pOwner->GetObjID());

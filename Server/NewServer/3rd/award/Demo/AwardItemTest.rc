@@ -1,4 +1,4 @@
-//Microsoft Developer Studio generated resource script.
+Ôªø//Microsoft Developer Studio generated resource script.
 //
 #include "resource.h"
 
@@ -18,7 +18,7 @@
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 #ifdef _WIN32
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
-#pragma code_page(936)
+#pragma code_page(65001)
 #endif //_WIN32
 
 #ifdef APSTUDIO_INVOKED
@@ -48,7 +48,7 @@ BEGIN
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE 4, 2\r\n"
-    "#pragma code_page(936)\r\n"
+    "#pragma code_page(65001)\r\n"
     "#endif //_WIN32\r\n"
     "#include ""res\\AwardItemTest.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
     "#include ""l.chs\\afxres.rc""          // Standard components\r\n"
@@ -75,14 +75,14 @@ IDR_MAINFRAME           ICON    DISCARDABLE     "res\\AwardItemTest.ico"
 
 IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 235, 55
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "πÿ”⁄ AwardItemTest"
-FONT 9, "ÀŒÃÂ"
+CAPTION "ÂÖ≥‰∫é AwardItemTest"
+FONT 9, "ÂÆã‰Ωì"
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "AwardItemTest 1.0 ∞Ê",IDC_STATIC,40,10,119,8,
+    LTEXT           "AwardItemTest 1.0 Áâà",IDC_STATIC,40,10,119,8,
                     SS_NOPREFIX
-    LTEXT           "∞Ê»®À˘”– (C) 2009",IDC_STATIC,40,25,119,8
-    DEFPUSHBUTTON   "»∑∂®",IDOK,178,7,50,14,WS_GROUP
+    LTEXT           "ÁâàÊùÉÊâÄÊúâ (C) 2009",IDC_STATIC,40,25,119,8
+    DEFPUSHBUTTON   "Á°ÆÂÆö",IDOK,178,7,50,14,WS_GROUP
 END
 
 IDD_AWARDITEMTEST_DIALOG DIALOGEX 0, 0, 338, 338
@@ -90,33 +90,33 @@ STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP |
     WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_APPWINDOW
 CAPTION "AwardItemTest"
-FONT 9, "ÀŒÃÂ"
+FONT 9, "ÂÆã‰Ωì"
 BEGIN
-    DEFPUSHBUTTON   "»∑∂®",IDOK,260,7,50,14
-    PUSHBUTTON      "»°œ˚",IDCANCEL,260,23,50,14
+    DEFPUSHBUTTON   "Á°ÆÂÆö",IDOK,260,7,50,14
+    PUSHBUTTON      "ÂèñÊ∂à",IDCANCEL,260,23,50,14
     LISTBOX         IDC_LIST_RESULT,7,102,324,229,LBS_SORT | 
                     LBS_DISABLENOSCROLL | WS_VSCROLL | WS_HSCROLL | 
                     WS_TABSTOP
-    LTEXT           "”√ªß√˚",IDC_STATIC,7,10,27,10
+    LTEXT           "Áî®Êà∑Âêç",IDC_STATIC,7,10,27,10
     EDITTEXT        IDC_EDIT_USER_ID,43,7,54,14,ES_AUTOHSCROLL
     LTEXT           "",IDC_STATIC,77,12,8,8
-    LTEXT           "”√ªßµ»º∂",IDC_STATIC,7,29,33,8
+    LTEXT           "Áî®Êà∑Á≠âÁ∫ß",IDC_STATIC,7,29,33,8
     EDITTEXT        IDC_EDIT_USER_GRADE,43,25,54,14,ES_AUTOHSCROLL
-    LTEXT           "¡ÏΩ±µ»º∂",IDC_STATIC,117,28,33,8
+    LTEXT           "È¢ÜÂ•ñÁ≠âÁ∫ß",IDC_STATIC,117,28,33,8
     EDITTEXT        IDC_EDIT_AWARD_GRADE,153,24,49,14,ES_AUTOHSCROLL
-    LTEXT           "Ω«…´√˚",IDC_STATIC,125,11,25,8
+    LTEXT           "ËßíËâ≤Âêç",IDC_STATIC,125,11,25,8
     EDITTEXT        IDC_EDIT_ROLE_NAME,153,7,49,14,ES_AUTOHSCROLL
-    CONTROL         "Ω≈∆¡ÏΩ±",IDC_RADIO_GOLDAWARD,"Button",
+    CONTROL         "ÈáëÁâåÈ¢ÜÂ•ñ",IDC_RADIO_GOLDAWARD,"Button",
                     BS_AUTORADIOBUTTON,7,85,48,10
-    CONTROL         "≈˙¥Œ¡ÏΩ±",IDC_RADIO_AWARDBATCH,"Button",
+    CONTROL         "ÊâπÊ¨°È¢ÜÂ•ñ",IDC_RADIO_AWARDBATCH,"Button",
                     BS_AUTORADIOBUTTON,59,85,48,10
-    CONTROL         "∫≈¬Î¡ÏΩ±",IDC_RADIO_AWARDNUM,"Button",
+    CONTROL         "Âè∑Á†ÅÈ¢ÜÂ•ñ",IDC_RADIO_AWARDNUM,"Button",
                     BS_AUTORADIOBUTTON,110,85,48,10
-    LTEXT           "”√ªß÷∞“µ",IDC_STATIC,7,47,33,8
+    LTEXT           "Áî®Êà∑ËÅå‰∏ö",IDC_STATIC,7,47,33,8
     EDITTEXT        IDC_EDIT_PROFESSION,43,44,54,14,ES_AUTOHSCROLL
-    LTEXT           "≈˙¥Œ∫≈",IDC_STATIC,120,45,25,8
+    LTEXT           "ÊâπÊ¨°Âè∑",IDC_STATIC,120,45,25,8
     EDITTEXT        IDC_EDIT_BATCHID,154,41,51,14,ES_AUTOHSCROLL
-    LTEXT           "¡ÏΩ±∫≈¬Î",IDC_STATIC,7,65,33,8
+    LTEXT           "È¢ÜÂ•ñÂè∑Á†Å",IDC_STATIC,7,65,33,8
     EDITTEXT        IDC_EDIT_AWARDNUM,44,62,163,14,ES_AUTOHSCROLL
 END
 
@@ -145,13 +145,13 @@ BEGIN
         BLOCK "080404B0"
         BEGIN
             VALUE "CompanyName", "\0"
-            VALUE "FileDescription", "AwardItemTest Microsoft ª˘¥°¿‡”¶”√≥Ã–Ú\0"
+            VALUE "FileDescription", "AwardItemTest Microsoft Âü∫Á°ÄÁ±ªÂ∫îÁî®Á®ãÂ∫è\0"
             VALUE "FileVersion", "1, 0, 0, 1\0"
             VALUE "InternalName", "AwardItemTest\0"
-            VALUE "LegalCopyright", "∞Ê»®À˘”– (C) 2009\0"
+            VALUE "LegalCopyright", "ÁâàÊùÉÊâÄÊúâ (C) 2009\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "AwardItemTest.EXE\0"
-            VALUE "ProductName", "AwardItemTest ”¶”√≥Ã–Ú\0"
+            VALUE "ProductName", "AwardItemTest Â∫îÁî®Á®ãÂ∫è\0"
             VALUE "ProductVersion", "1, 0, 0, 1\0"
         END
     END
@@ -198,7 +198,7 @@ END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
-    IDS_ABOUTBOX            "πÿ”⁄ AwardItemTest(&A)..."
+    IDS_ABOUTBOX            "ÂÖ≥‰∫é AwardItemTest(&A)..."
 END
 
 #endif    // Chinese (P.R.C.) resources
@@ -219,7 +219,7 @@ END
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 #ifdef _WIN32
 LANGUAGE 4, 2
-#pragma code_page(936)
+#pragma code_page(65001)
 #endif //_WIN32
 #include "res\AwardItemTest.rc2"  // non-Microsoft Visual C++ edited resources
 #include "l.chs\afxres.rc"          // Standard components

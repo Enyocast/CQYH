@@ -3,7 +3,7 @@
 	file:		master_ms_def.h
 	author:		Allan Tao
 	
-	purpose:	Ê¦Í½ÏµÍ³
+	purpose:	å¸ˆå¾’ç³»ç»Ÿ
 *********************************************************************/
 
 
@@ -11,15 +11,15 @@
 #define _H_MASTER_DEF_H_
 
 #include "string_def.h"
-#define MAX_STUDENT_NUM (5)                   // ×î´óÍ½µÜÊıÁ¿
+#define MAX_STUDENT_NUM (5)                   // æœ€å¤§å¾’å¼Ÿæ•°é‡
 //#define MAX_STUD_APP_NUM    (8)         
 //#define MAX_TEACHER_APP_NUM     (8)
-#define GRADUATE_LEVEL (30)                     // ±ÏÒµµÈ¼¶£¬Ò²¾ÍÊÇ39¼¶µ½40µÄÊ±ºò¹§Ï²³öÊ¦
+#define GRADUATE_LEVEL (30)                     // æ¯•ä¸šç­‰çº§ï¼Œä¹Ÿå°±æ˜¯39çº§åˆ°40çš„æ—¶å€™æ­å–œå‡ºå¸ˆ
 #define STUD_LEVEL_LOWER_LIMIT  (1)
 
-//#define FIRE_STUDENT_CD (86400)                 // ÔÙ´Î¿ª³öÍ½µÜcd
-#define REGET_MASTER_CD (86400)                 // ÖØĞÂ°İÊ¦cd
-#define APPLY_VALID_TIME (86400)                // ÉêÇëÓĞĞ§Ê±¼ä
+//#define FIRE_STUDENT_CD (86400)                 // å†æ¬¡å¼€å‡ºå¾’å¼Ÿcd
+#define REGET_MASTER_CD (86400)                 // é‡æ–°æ‹œå¸ˆcd
+#define APPLY_VALID_TIME (86400)                // ç”³è¯·æœ‰æ•ˆæ—¶é—´
 #define SEND_MASTER_INFO_NUM (30)               // msg use
 #define SEND_SOLO_INFO_NUM  (30)                // msg use
 #define MAX_CZ_TEXT_LENGTH  (150 + 1)
@@ -37,7 +37,7 @@ enum MASTER_STATE
     MASTER_BECOME_TEACHER = 3,
 };
 
-// ¹§Ï²Éı¼¶¸½¼ÓÀàĞÍ
+// æ­å–œå‡çº§é™„åŠ ç±»å‹
 enum MASTER_CONG_TYPE
 {
     MASTER_CONG_BEGIN       = 0,

@@ -11,19 +11,19 @@ MIDL_INTERFACE("6469AE4A-4862-4248-913C-704179AFE43E")
 ISDOADx8 : public IUnknown
 {
 public:
-	/* ³õÊ¼»¯d3dÉè±¸ */
+	/* åˆå§‹åŒ–d3dè®¾å¤‡ */
 	STDMETHOD_(HRESULT,Initialize)(THIS_ IDirect3DDevice8* pDev8, D3DPRESENT_PARAMETERS* pParams, bool bHookGameWnd) PURE;	
-	/* äÖÈ¾½çÃæÄÚ²¿ÒÑ¾­µ÷ÓÃBeginSceneºÍEndScene£¬È·ÈÏÔÚEndSceneÖ®ºóµ÷ÓÃËü */
+	/* æ¸²æŸ“ç•Œé¢å†…éƒ¨å·²ç»è°ƒç”¨BeginSceneå’ŒEndSceneï¼Œç¡®è®¤åœ¨EndSceneä¹‹åŽè°ƒç”¨å®ƒ */
 	STDMETHOD_(HRESULT,Render)(THIS) PURE;	
-	/* È·±£ÔÚBeginScene¡¢EndSceneÖ®¼äµ÷ÓÃRenderEx */
+	/* ç¡®ä¿åœ¨BeginSceneã€EndSceneä¹‹é—´è°ƒç”¨RenderEx */
 	STDMETHOD_(HRESULT,RenderEx)(THIS) PURE;	
-	/* ÊÍ·Åd3dÏà¹Ø×ÊÔ´ */
+	/* é‡Šæ”¾d3dç›¸å…³èµ„æº */
 	STDMETHOD_(HRESULT,Finalize)(THIS) PURE;
-	/* ÖØÖÃÉè±¸ */
+	/* é‡ç½®è®¾å¤‡ */
 	STDMETHOD_(void,OnDeviceReset)(THIS_ D3DPRESENT_PARAMETERS* pParams) PURE;
-	/* Éè±¸¶ªÊ§ */
+	/* è®¾å¤‡ä¸¢å¤± */
 	STDMETHOD_(void,OnDeviceLost)(THIS) PURE;
-	/* ´«ÈëÏûÏ¢ */
+	/* ä¼ å…¥æ¶ˆæ¯ */
 	STDMETHOD_(HRESULT,OnWindowProc)(THIS_ HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* lResult) PURE;
 };
 

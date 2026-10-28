@@ -21,8 +21,8 @@ function BeMaster(owner)
 
 	ret = user:GMCommand("Level 25");
 
-	-- jump to ±ÈÆæÊ¡
-	--local ret = user:GMCommand("Jump ±ÈÆæÊ¡");
+	-- jump to æ¯”å¥‡çœ
+	--local ret = user:GMCommand("Jump æ¯”å¥‡çœ");
 
 	--if role:GetLevel() > GRADUATE_LEVEL and role:GetMaster():IsTeacher() == false and role:GetMaster():IsStudent() == false then
 	--	local ret = user:GMCommand("AcceptQuest(30)");

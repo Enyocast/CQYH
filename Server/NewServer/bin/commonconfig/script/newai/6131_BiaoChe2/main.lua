@@ -10,12 +10,12 @@ LoadPackage("data_manager.pkg");
 
 Include("script/newai/sub_tree/sub_tree.lh")
 
-BROCAST_LOSE_ESCORT_TIMER = nastCustom + 1;                -- �ڳ���ʧ֪ͨ��ʱ��
-CHECK_ESCORT_DISTANCE_TIMER = nastCustom + 2;              -- ����ڳ����붨ʱ��
-BROCAST_LOSE_ESCORT_INTERVAL = 20000;                      -- �ڳ���ʧ֪ͨʱ��������λ/ms��
-CHECK_ESCORT_DISTANCE_INTERVAL = 1000;                     -- ����ڳ����ɫ�ľ���ʱ��������λ/ms��
+BROCAST_LOSE_ESCORT_TIMER = nastCustom + 1;                -- 镖车丢失通知定时器
+CHECK_ESCORT_DISTANCE_TIMER = nastCustom + 2;              -- 检测镖车距离定时器
+BROCAST_LOSE_ESCORT_INTERVAL = 20000;                      -- 镖车丢失通知时间间隔（单位/ms）
+CHECK_ESCORT_DISTANCE_INTERVAL = 1000;                     -- 检测镖车与角色的距离时间间隔（单位/ms）
 
-ESCORT_CAR_VALID_FOLLOW_DISTANCE = 6 * GRID_WIDTH;         -- �ڳ����ɫ����Ч�ľ���
+ESCORT_CAR_VALID_FOLLOW_DISTANCE = 6 * GRID_WIDTH;         -- 镖车与角色的有效的距离
 
 g_GameWorld = CGameWorld:GetInstance();
 

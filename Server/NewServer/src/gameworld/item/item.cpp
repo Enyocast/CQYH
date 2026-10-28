@@ -41,25 +41,25 @@ void Item::OnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot)
     c->SetPendingItem(this);
     c->SetPendingItemSlot(slot);
 
-    //»ù´¡ÊôĞÔ
+    //åŸºç¡€å±æ€§
     for (INT32 i = 0; i < equip_data->m_nNodeCount; i++)
     {
         CModifierTree::GetInstance().ApplyExtraNode(equip_data->m_nNodeIDs[i], c, NULL);
     }
 
-    //ÌìÆøÊôĞÔ
+    //å¤©æ°”å±æ€§
     if (equip_data->m_pWeatherAttrData)
     {
         CModifierTree::GetInstance().ApplyExtraNode(equip_data->m_pWeatherAttrData->m_nNodeID, c, NULL);
     }
 
-    //ÌØÊâ¼¼ÄÜ
+    //ç‰¹æ®ŠæŠ€èƒ½
     if (equip_data->m_pSpecialAttrData)
     {
         CModifierTree::GetInstance().ApplyExtraNode(equip_data->m_pSpecialAttrData->m_nNodeID, c, NULL);
     }
 
-    //Ëæ»úÊôĞÔ
+    //éšæœºå±æ€§
     for (INT32 i = 0; i < MAX_RANDOM_ATTR_COUNT; i++)
     {
         if (m_iteminfo.m_wRandomAttrID[i])
@@ -70,7 +70,7 @@ void Item::OnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot)
         }
     }
 
-    //ÈÚÁéÊôĞÔ
+    //èçµå±æ€§
     for (INT32 i = 0; i < MAX_SOCKET_COUNT; i++)
     {
         if (m_iteminfo.m_nSoulID[i])
@@ -81,7 +81,7 @@ void Item::OnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot)
         }
     }
 
-    //Ç¿»¯ÊôĞÔ
+    //å¼ºåŒ–å±æ€§
     if (c->GetObjType() == otRole)
     {
         if (refine > 0)
@@ -94,7 +94,7 @@ void Item::OnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot)
         }
     }
 
-    //Ì××°ÊôĞÔ
+    //å¥—è£…å±æ€§
     if (equip_data->m_SetData && c->GetObjType() == otRole)
     {
         CRole* role = (CRole*)c;
@@ -119,7 +119,7 @@ void Item::OnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot)
         }
     }
 
-    //Öı»êÊôĞÔ
+    //é“¸é­‚å±æ€§
     for (UINT32 i = 0; i < MAX_RUNE_COUNT; i++)
     {
         if (m_iteminfo.m_wRune[i])
@@ -130,11 +130,11 @@ void Item::OnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot)
         }
     }
 
-    //ĞÒÔËÖµ
+    //å¹¸è¿å€¼
     if (m_iteminfo.m_byLuck)
         c->GetAttrList().SetAttrBase(c, catLuck, m_iteminfo.m_byLuck);
 
-    //Éı¼¶ÊôĞÔ
+    //å‡çº§å±æ€§
     if (m_iteminfo.m_byLevelupPhyPoint)
         c->GetAttrList().AddAttrA(c, catMaxPhyAtk, m_iteminfo.m_byLevelupPhyPoint);
     if (m_iteminfo.m_byLevelupMagPoint)
@@ -165,25 +165,25 @@ void Item::OnUnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot)
 
     c->TrigEvent(meoOnEquipItem, NULL);
 
-    //»ù´¡ÊôĞÔ
+    //åŸºç¡€å±æ€§
     for (INT32 i = 0; i < equip_data->m_nNodeCount; i++)
     {
         CModifierTree::GetInstance().RollBackExtraNode(equip_data->m_nNodeIDs[i], c, NULL);
     }
 
-    //ÌìÆøÊôĞÔ
+    //å¤©æ°”å±æ€§
     if (equip_data->m_pWeatherAttrData)
     {
         CModifierTree::GetInstance().RollBackExtraNode(equip_data->m_pWeatherAttrData->m_nNodeID, c, NULL);
     }
 
-    //ÌØÊâ¼¼ÄÜ
+    //ç‰¹æ®ŠæŠ€èƒ½
     if (equip_data->m_pSpecialAttrData)
     {
         CModifierTree::GetInstance().RollBackExtraNode(equip_data->m_pSpecialAttrData->m_nNodeID, c, NULL);
     }
 
-    //Ëæ»úÊôĞÔ
+    //éšæœºå±æ€§
     for (INT32 i = 0; i < MAX_RANDOM_ATTR_COUNT; i++)
     {
         if (m_iteminfo.m_wRandomAttrID[i])
@@ -194,7 +194,7 @@ void Item::OnUnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot)
         }
     }
 
-    //ÈÚÁéÊôĞÔ
+    //èçµå±æ€§
     for (INT32 i = 0; i < MAX_SOCKET_COUNT; i++)
     {
         if (m_iteminfo.m_nSoulID[i])
@@ -205,7 +205,7 @@ void Item::OnUnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot)
         }
     }
 
-    //Ç¿»¯ÊôĞÔ
+    //å¼ºåŒ–å±æ€§
     if (c->GetObjType() == otRole)
     {
         if (refine > 0)
@@ -218,7 +218,7 @@ void Item::OnUnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot)
         }
     }
 
-    //Ì××°ÊôĞÔ
+    //å¥—è£…å±æ€§
     if (equip_data->m_SetData && c->GetObjType() == otRole)
     {
         CRole* role = (CRole*)c;
@@ -243,7 +243,7 @@ void Item::OnUnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot)
         }
     }
 
-    //Öı»êÊôĞÔ
+    //é“¸é­‚å±æ€§
     for (UINT32 i = 0; i < MAX_RUNE_COUNT; i++)
     {
         if (m_iteminfo.m_wRune[i])
@@ -254,11 +254,11 @@ void Item::OnUnEquip(CCharacter* c, UINT16 refine, UINT8 cls, UINT8 slot)
         }
     }
 
-    //ĞÒÔËÖµ
+    //å¹¸è¿å€¼
     if (m_iteminfo.m_byLuck)
         c->GetAttrList().SetAttrBase(c, catLuck, 0);
 
-    //Éı¼¶ÊôĞÔ
+    //å‡çº§å±æ€§
     if (m_iteminfo.m_byLevelupPhyPoint)
         c->GetAttrList().AddAttrA(c, catMaxPhyAtk, -m_iteminfo.m_byLevelupPhyPoint);
     if (m_iteminfo.m_byLevelupMagPoint)
@@ -274,7 +274,7 @@ Exit0:
     return;
 }
 
-//µ÷ÊÔ¹¦ÄÜ
+//è°ƒè¯•åŠŸèƒ½
 BOOL Item::SetAttribute(INT32 index, UINT16 attrid)
 {
     LOG_PROCESS_ERROR(m_pTemplate->m_byType == ITEMTYPE_EQUIP);

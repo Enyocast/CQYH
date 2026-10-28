@@ -1,5 +1,5 @@
 soul_define = {
-owner='¸µÀÚ',
+owner='å‚…ç£Š',
 
 TemplateID = {
     type = 'number',

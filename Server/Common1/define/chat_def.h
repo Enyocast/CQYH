@@ -32,7 +32,7 @@ enum CHAT_LOCATION_TYPE
 	cltTvShow,
 	cltUrl,
 	cltDialog,
-	cltTrumpet,		//À®°ÈµÀ¾ß
+	cltTrumpet,		//å–‡å­é“å…·
 	cltGMTrumpet,
 
 	cltTotal,

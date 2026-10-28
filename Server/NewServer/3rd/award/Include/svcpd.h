@@ -4,14 +4,14 @@
 #define SVCPD "SVCPD"
 #define SVCPDMSGVERSION 1130927
 
-/** ÏûÏ¢¶¨Òå*/
+/** æ¶ˆæ¯å®šä¹‰*/
 #define SVCPDC2SREQ 0x00000001
 #define SVCPDC2SRES 0x80000001
 #define SVCPDC2SREQEX 0x00000002
 #define SVCPDC2SRESEX 0x00000002
 
 
-/**¸öĞÔ»¯½Ó¿Ú·½·¨*/
+/**ä¸ªæ€§åŒ–æ¥å£æ–¹æ³•*/
 #define GETINDIVIDUALTREND "analysis.getIndividualTrend"
 #define GETCHARACTERTREND "analysis.getCharacterTrend"
 #define GETPLATFORMTREND "analysis.getPtIndexInfo"
@@ -30,32 +30,32 @@
 #define MAX_JASON_LEN 1024
 #define MAX_PARAM_LEN 1024
 
-/** ÏûÏ¢½á¹¹¶¨Òå*/
-#pragma pack (push,1)  /// Ö¸¶¨°´ 1 ×Ö½Ú¶ÔÆë
+/** æ¶ˆæ¯ç»“æ„å®šä¹‰*/
+#pragma pack (push,1)  /// æŒ‡å®šæŒ‰ 1 å­—èŠ‚å¯¹é½
 
 typedef struct
 {
-    int  msgLen      ;  /// Õû¸öÏûÏ¢°üµÄ×Ö½Ú³¤¶È£¬°üÀ¨ÏûÏ¢Í·ºÍÏûÏ¢Ìå                    
-    int  msgType     ;  /// ÏûÏ¢ÀàĞÍ£¬´¦ÀíÍ¬Ò»·şÎñµÄ¸÷ÖÖÀ´»ØÏûÏ¢µÄÀàĞÍÇø·Ö              
-    char msgId[MAX_MSGID_LEN+1] ;  /// ÏûÏ¢°üĞòÁĞºÅ,Ö÷¶¯·¢ËÍ·½Ìá¹©£¬·´À¡ÏûÏ¢ÓëÇëÇóÏûÏ¢msgId±£³ÖÒ»ÖÂ
-    int  callTime    ;  /// ·¢ËÍÊ±¼ä                                                    
-    int  version     ;  /// ÏûÏ¢Ğ­ÒéµÄ°æ±¾ĞÅÏ¢                    
+    int  msgLen      ;  /// æ•´ä¸ªæ¶ˆæ¯åŒ…çš„å­—èŠ‚é•¿åº¦ï¼ŒåŒ…æ‹¬æ¶ˆæ¯å¤´å’Œæ¶ˆæ¯ä½“                    
+    int  msgType     ;  /// æ¶ˆæ¯ç±»å‹ï¼Œå¤„ç†åŒä¸€æœåŠ¡çš„å„ç§æ¥å›æ¶ˆæ¯çš„ç±»å‹åŒºåˆ†              
+    char msgId[MAX_MSGID_LEN+1] ;  /// æ¶ˆæ¯åŒ…åºåˆ—å·,ä¸»åŠ¨å‘é€æ–¹æä¾›ï¼Œåé¦ˆæ¶ˆæ¯ä¸è¯·æ±‚æ¶ˆæ¯msgIdä¿æŒä¸€è‡´
+    int  callTime    ;  /// å‘é€æ—¶é—´                                                    
+    int  version     ;  /// æ¶ˆæ¯åè®®çš„ç‰ˆæœ¬ä¿¡æ¯                    
 }SotsPdMsgHeadDef;
 
 typedef struct{
-    int gameId; //ÓÎÏ·ID
+    int gameId; //æ¸¸æˆID
     char idvMethod[MAX_METHOD_LEN+1];
-    char userId[MAX_USERID_LEN+1]   ;  //Íæ¼ÒÕÊºÅ
+    char userId[MAX_USERID_LEN+1]   ;  //ç©å®¶å¸å·
     //char roleId[MAX_ROLEID_LEN+1];
-    char roleName[MAX_ROLENAME_LEN+1] ; //½ÇÉ«Ãû
-    char params[MAX_PARAM_LEN+1];//¸ñÊ½matrix_id=16&account=sayaye8
+    char roleName[MAX_ROLENAME_LEN+1] ; //è§’è‰²å
+    char params[MAX_PARAM_LEN+1];//æ ¼å¼matrix_id=16&account=sayaye8
 }PersonalDataC2SReqDef;
 
 typedef struct{
-    int result; //0: ³É¹¦£»other: Ê§°Ü
-    char userId[MAX_USERID_LEN+1]   ;  //Íæ¼ÒÕÊºÅ
-    char roleName[MAX_ROLENAME_LEN+1]; //½ÇÉ«Ãû
-    char jasonRes[MAX_JASON_LEN+1];    //jason¸ñÊ½
+    int result; //0: æˆåŠŸï¼›other: å¤±è´¥
+    char userId[MAX_USERID_LEN+1]   ;  //ç©å®¶å¸å·
+    char roleName[MAX_ROLENAME_LEN+1]; //è§’è‰²å
+    char jasonRes[MAX_JASON_LEN+1];    //jasonæ ¼å¼
 }PersonalDataC2SResDef;
 
 typedef struct{
@@ -69,13 +69,13 @@ typedef struct{
 }SvcpdC2SRes;
 
 /*typedef struct{
-    int gameId; //ÓÎÏ·ID
+    int gameId; //æ¸¸æˆID
     int areaId;
     int groupId;
     //int hostId;
-    char userId[MAX_USERID_LEN+1]   ;  //Íæ¼ÒÕÊºÅ
-    char roleId[MAX_ROLEID_LEN+1];  //½ÇÉ«ID
-    char roleName[MAX_ROLENAME_LEN+1] ; //½ÇÉ«Ãû
+    char userId[MAX_USERID_LEN+1]   ;  //ç©å®¶å¸å·
+    char roleId[MAX_ROLEID_LEN+1];  //è§’è‰²ID
+    char roleName[MAX_ROLENAME_LEN+1] ; //è§’è‰²å
 }GetIndividualTrendC2SReqDef;
 
 typedef struct{
@@ -83,7 +83,7 @@ typedef struct{
     GetIndividualTrendC2SReqDef msgBody;
 }GetIndividualTrendC2SReq;
 */
-#pragma pack (pop) /// È¡ÏûÖ¸¶¨¶ÔÆë£¬»Ö¸´È±Ê¡¶ÔÆë
+#pragma pack (pop) /// å–æ¶ˆæŒ‡å®šå¯¹é½ï¼Œæ¢å¤ç¼ºçœå¯¹é½
 
 #endif  //_SVCPD_H_
 

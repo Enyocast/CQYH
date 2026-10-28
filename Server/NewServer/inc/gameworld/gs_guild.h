@@ -90,7 +90,7 @@ public:
     GS_G_B_DATA*    NextUpgradeBuilding();
 
 
-    // todo_tq ÁªÃËµĞ¶Ô¹ØÏµ£¬¿¼ÂÇÊÇ²»ÊÇ·ÅÔÚmgrÀïÃæ£¬ Ä¿Ç°¿´À´ÓÃË«BaseList»òÕßµ¥BaseListÊÇ²»»®ËãµÄ£¬»òÕßÓĞ²éÑ¯ÕÏ°­µÄ Allan Tao[14.11.2013] 
+    // todo_tq è”ç›Ÿæ•Œå¯¹å…³ç³»ï¼Œè€ƒè™‘æ˜¯ä¸æ˜¯æ”¾åœ¨mgré‡Œé¢ï¼Œ ç›®å‰çœ‹æ¥ç”¨åŒBaseListæˆ–è€…å•BaseListæ˜¯ä¸åˆ’ç®—çš„ï¼Œæˆ–è€…æœ‰æŸ¥è¯¢éšœç¢çš„ Allan Tao[14.11.2013] 
     BOOL    AddAlliance(UINT32 dwTargetID);
     BOOL    DelAlliance(UINT32 dwTargetID);
     BOOL    IsAlliance(UINT32 dwTargetID);

@@ -12,14 +12,14 @@ struct SCENE_TELEPORTS
 {
     INT32 ID;
 
-    INT32 SrcSceneID;	// Ô´³¡¾°ID
-    INT32 SrcRadius;	// ´«ËÍµã°ë¾¶·¶Î§(POINT)
-    INT32 SrcSceneX;	// ´«ËÍµãÔÚÔ´³¡¾°ÖĞµÄÎ»ÖÃ(POINT)
+    INT32 SrcSceneID;	// æºåœºæ™¯ID
+    INT32 SrcRadius;	// ä¼ é€ç‚¹åŠå¾„èŒƒå›´(POINT)
+    INT32 SrcSceneX;	// ä¼ é€ç‚¹åœ¨æºåœºæ™¯ä¸­çš„ä½ç½®(POINT)
     INT32 SrcSceneY;
     INT32 SrcSceneZ;
 
-    INT32 TargetSceneID; // Ä¿±ê³¡¾°ID
-    INT32 TargetSceneX;	// Ä¿±êÎ»ÖÃ(POINT)
+    INT32 TargetSceneID; // ç›®æ ‡åœºæ™¯ID
+    INT32 TargetSceneX;	// ç›®æ ‡ä½ç½®(POINT)
     INT32 TargetSceneY;
     INT32 TargetSceneZ;
 	INT32 TargetRotationYaw;
@@ -29,12 +29,12 @@ struct SCENE_TELEPORTS
 struct TELEPORT_PLATFORM
 {
 	INT32 ID;
-	INT32 nInitEnable;		//³õÊ¼¿ÉÓÃ
-	INT32 nMoneyType;		//ÏûºÄ½ğÇ®ÀàĞÍ
-	INT32 nMoney;			//ÏûºÄÊıÁ¿
+	INT32 nInitEnable;		//åˆå§‹å¯ç”¨
+	INT32 nMoneyType;		//æ¶ˆè€—é‡‘é’±ç±»å‹
+	INT32 nMoney;			//æ¶ˆè€—æ•°é‡
 
-	INT32 nSceneID;			//³¡¾°ID
-	INT32 nRadius;			//·¶Î§
+	INT32 nSceneID;			//åœºæ™¯ID
+	INT32 nRadius;			//èŒƒå›´
 	INT32 nSceneX;			
 	INT32 nSceneY;
 	INT32 nSceneZ;

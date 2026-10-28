@@ -9,7 +9,7 @@ function TestCase.Trade()
     local msg;
     local session_id1, session_id2;
 
-    --µÇÂ¼
+    --ç™»å½•
     user1, role1 = startup(user_name1, user_name1);
     check(user1, "failed to create user1");
     check(role1, "failed to create role1");
@@ -20,7 +20,7 @@ function TestCase.Trade()
     check(role2, "failed to create role2");
     session_id2 = user2:GetSessionID();
 
-    --user1: ÓÃGMÖ¸Áî¼ÓµãÇ®£¬µÈÏÂ½»Ò×ÓÃ
+    --user1: ç”¨GMæŒ‡ä»¤åŠ ç‚¹é’±ï¼Œç­‰ä¸‹äº¤æ˜“ç”¨
     ret = user1:GMCommand("AddMoney(2, 10000, MONEYLOG_GM_COMMAND)");
     check(ret, "failed to send gm command");
 
@@ -28,128 +28,128 @@ function TestCase.Trade()
     check(msg, "failed to recv g2c_money_change");
     check(msg.nMoney == 10000, "failed to get correct money");
 
-    --user2: ÓÃGMÖ¸Áî¼Ó1¼şµÀ¾ß£¬µÈÏÂ½»Ò×ÓÃ
+    --user2: ç”¨GMæŒ‡ä»¤åŠ 1ä»¶é“å…·ï¼Œç­‰ä¸‹äº¤æ˜“ç”¨
     ret = user2:GMCommand("AddItem(101, 1)");
     check(msg, "failed to send gm command");
 
     msg = recv_msg(5, session_id2, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-    --user1: ÇëÇó½»Ò×
+    --user1: è¯·æ±‚äº¤æ˜“
     ret = user1:AskTrade(role2:GetObjID());
     check(ret, "failed to ask trade");
 
-    --user2: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user2: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user2: ¾Ü¾ø½»Ò×
+    --user2: æ‹’ç»äº¤æ˜“
     ret = user2:CancelTrade();
     check(ret, "failed to cancel trade");
 
-    --user1: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user1: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user1: ÇëÇó½»Ò×
+    --user1: è¯·æ±‚äº¤æ˜“
     ret = user1:AskTrade(role2:GetObjID());
     check(ret, "failed to ask trade");
 
-    --user2: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user2: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user2: ½ÓÊÜ½»Ò×
+    --user2: æ¥å—äº¤æ˜“
     ret = user2:AcceptTrade(role1:GetObjID());
     check(ret, "failed to cancel trade");
 
-    --user1: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user1: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user1: ³ö1000¿éÇ®
+    --user1: å‡º1000å—é’±
     ret = user1:SetTradeMoney(1000);
     check(ret, "failed to set trade money");
 
-    --user2: ÊÕµ½user1³öÇ®µÄÏûÏ¢
+    --user2: æ”¶åˆ°user1å‡ºé’±çš„æ¶ˆæ¯
     msg = recv_msg(5, session_id2, protocol.g2c_trade_set_money);
     check(msg, "failed to recv g2c_trade_set_money");
 
     wait(2);
 
-    --user2: ³öµÀ¾ß
+    --user2: å‡ºé“å…·
     ret = user2:SetTradeItem(0, 1, 2, 0);
     check(ret, "failed to set trade item");
 
-    --user1: ÊÜµ½user2³öµÀ¾ßĞÅÏ¢
+    --user1: å—åˆ°user2å‡ºé“å…·ä¿¡æ¯
     msg = recv_msg(5, session_id1, protocol.g2c_trade_set_item);
     check(msg, "failed to recv g2c_trade_set_item");
 
     wait(2);
 
-    --user1: Ëø¶¨
+    --user1: é”å®š
     ret = user1:LockTrade();
     check(ret, "failed to lock trade");
 
-    --user2: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user2: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user2: Ëø¶¨
+    --user2: é”å®š
     ret = user2:LockTrade();
     check(ret, "failed to lock trade");
 
-    --user1: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user1: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user1: È·ÈÏ
+    --user1: ç¡®è®¤
     ret = user1:ConfirmTrade();
     check(ret, "failed to lock trade");
 
-    --user2: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user2: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     msg = recv_msg(5, session_id2, protocol.g2c_trade_state_change);
     check(msg, "failed to recv g2c_trade_state_change");
 
     wait(2);
 
-    --user2: È·ÈÏ
+    --user2: ç¡®è®¤
     ret = user2:ConfirmTrade();
     check(ret, "failed to lock trade");
 
-    --user1: ÊÕµ½½»Ò××´Ì¬¸Ä±ä
+    --user1: æ”¶åˆ°äº¤æ˜“çŠ¶æ€æ”¹å˜
     --msg = recv_msg(5, session_id1, protocol.g2c_trade_state_change);
     --check(msg, "failed to recv g2c_trade_state_change");
 
-    --user1: ÊÕµ½Ç®
+    --user1: æ”¶åˆ°é’±
     --msg = recv_msg(5, session_id1, protocol.g2c_money_change);
     --check(msg, "failed to recv g2c_money_change");
     --check(msg.nMoney == 9950, "failed to recv correct money (user1)");
 
-    --user1: ÊÕµ½µÀ¾ß
+    --user1: æ”¶åˆ°é“å…·
     msg = recv_msg(5, session_id1, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
 
-    --user2: ÊÕµ½Ç®
+    --user2: æ”¶åˆ°é’±
     msg = recv_msg(5, session_id2, protocol.g2c_money_change);
     check(msg, "failed to recv g2c_money_change");
     check(msg.nMoney == 1000, "failed to recv correct money (user2)");
 
     wait(2);
 
-    --µÇ³ö
+    --ç™»å‡º
     cleanup(user1);
     cleanup(user2);
 end

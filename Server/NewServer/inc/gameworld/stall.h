@@ -59,12 +59,12 @@ public:
 
 private:
     INT64 _GetTotalPrice() const;
-    //Ì¯Î»Êı¾İ£¬²»´æÅÌ
+    //æ‘Šä½æ•°æ®ï¼Œä¸å­˜ç›˜
     EStallState m_state;
     char		m_szStallName[STALL_NAME_LEN];
     Goods		m_goods;
 
-    //Ì¯Î»Éı¼¶µ½ÆÚÊ±¼ä£¬´æÅÌ
+    //æ‘Šä½å‡çº§åˆ°æœŸæ—¶é—´ï¼Œå­˜ç›˜
     UINT32 m_dwUpgradeExpireTime;
 
     CRole* m_pOwner;

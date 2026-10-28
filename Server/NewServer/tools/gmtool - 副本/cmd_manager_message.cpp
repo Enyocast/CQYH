@@ -3,7 +3,7 @@
 	file:		cmd_manager_message.cpp
 	author:		Allan Tao
 	
-	purpose:	message ·â×°
+	purpose:	message å°è£…
 *********************************************************************/
 
 

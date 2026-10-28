@@ -1,5 +1,5 @@
 guild_building_define = {
-	owner='³Â¿­',
+	owner='é™ˆå‡¯',
 	ID = {
 		type = 'number',
 		default = 0,
@@ -22,60 +22,60 @@ guild_building_define = {
 		default = 0,
 		min = 1,
 	},
-	MoneyConsumption = {  -- Éı¼¶½ğÇ®ÏûºÄ
+	MoneyConsumption = {  -- å‡çº§é‡‘é’±æ¶ˆè€—
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	HerbConsumption = { -- Éı¼¶²İÒ©ÏûºÄ
+	HerbConsumption = { -- å‡çº§è‰è¯æ¶ˆè€—
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	WoodConsumption = {  -- Éı¼¶Ä¾²ÄÏûºÄ
+	WoodConsumption = {  -- å‡çº§æœ¨ææ¶ˆè€—
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	CrystalConsumption = {  -- Éı¼¶Ë®¾§ÏûºÄ
+	CrystalConsumption = {  -- å‡çº§æ°´æ™¶æ¶ˆè€—
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	SilverConsumption = {  -- Éı¼¶ÃØÒøÏûºÄ
+	SilverConsumption = {  -- å‡çº§ç§˜é“¶æ¶ˆè€—
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	UpgradeTime = {	-- Éı¼¶ĞèÒªÊ±¼ä£¬ µ¥Î»£ºÃë
+	UpgradeTime = {	-- å‡çº§éœ€è¦æ—¶é—´ï¼Œ å•ä½ï¼šç§’
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	RoutineConsumption = {	-- ÈÕ³£ÏûºÄ£¬ Ã¿Ğ¡Ê±ÏûºÄ¼Ò×å×Ê½ğ
+	RoutineConsumption = {	-- æ—¥å¸¸æ¶ˆè€—ï¼Œ æ¯å°æ—¶æ¶ˆè€—å®¶æ—èµ„é‡‘
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	ConditionBuildingID = {	-- Éı¼¶Ç°ÖÃ¹«»á½¨ÖşID
+	ConditionBuildingID = {	-- å‡çº§å‰ç½®å…¬ä¼šå»ºç­‘ID
 		type = 'link',
 		default = 0,
 		refertable = 'guild_building',
 		referfield = 'ID',
 	},
-	ConditionBuildingLvl = {	-- Éı¼¶Ç°ÖÃ¹«»á½¨ÖşµÈ¼¶
+	ConditionBuildingLvl = {	-- å‡çº§å‰ç½®å…¬ä¼šå»ºç­‘ç­‰çº§
 		type = 'link',
 		default = 0,
 		refertable = 'guild_building',
 		referfield = 'Level',
 	},
-	UpgradeSpellID = {		-- Éı¼¶ºó£¬½¨Öşnpc¶Ô×Ô¼ºÊÍ·ÅµÄspell id
+	UpgradeSpellID = {		-- å‡çº§åï¼Œå»ºç­‘npcå¯¹è‡ªå·±é‡Šæ”¾çš„spell id
 		type = 'link',
 		default = 0,
 		refertable = 'spell',
 		referfield = 'ID',
 	},
-	Param1 = {		-- ²ß»®×Ô¶¨Òå
+	Param1 = {		-- ç­–åˆ’è‡ªå®šä¹‰
 		type = 'number',
 		default = 0,
 		min = 0,

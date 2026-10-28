@@ -71,13 +71,13 @@ function lottery(owner)
 			role:GetItemBag():AddItem(21003, 1, MONEYLOG_PACKAGE, 0, true);
 		end
 	elseif random_number < 900000 then
-		role:GetItemBag():AddItem(80003, 1, MONEYLOG_PACKAGE, 0, true);--×£¸£ÓÍ
+		role:GetItemBag():AddItem(80003, 1, MONEYLOG_PACKAGE, 0, true);--ç¥ç¦æ²¹
 	elseif random_number < 950000 then
-		role:GetItemBag():AddItem(1800040, 1, MONEYLOG_PACKAGE, 0, true);--ÌØĞŞ¾í
+		role:GetItemBag():AddItem(1800040, 1, MONEYLOG_PACKAGE, 0, true);--ç‰¹ä¿®å·
 	elseif random_number < 975000 then
-		role:GetItemBag():AddItem(2800341, 1, MONEYLOG_PACKAGE, 0, true);--ÆÕÍ¨±¦Ê¯   ÕâÀïĞèÒª×öÒ»¸öËùÓĞ±¦Ê¯Ëæ»ú³öÒ»¸öµÄÀñ°ü
+		role:GetItemBag():AddItem(2800341, 1, MONEYLOG_PACKAGE, 0, true);--æ™®é€šå®çŸ³   è¿™é‡Œéœ€è¦åšä¸€ä¸ªæ‰€æœ‰å®çŸ³éšæœºå‡ºä¸€ä¸ªçš„ç¤¼åŒ…
 	else
-		role:GetItemBag():AddItem(2800340, 1, MONEYLOG_PACKAGE, 0, true);--±ùÁÑ¹·²ĞÒ³  ÕâÀïĞèÒª×öÒ»¸ö±ùÁÑ¹·Ëæ»ú³öÒ»¸öµÄÀñ°ü
+		role:GetItemBag():AddItem(2800340, 1, MONEYLOG_PACKAGE, 0, true);--å†°è£‚ç‹—æ®‹é¡µ  è¿™é‡Œéœ€è¦åšä¸€ä¸ªå†°è£‚ç‹—éšæœºå‡ºä¸€ä¸ªçš„ç¤¼åŒ…
 	end
 	--print("lottery end");
 	return brvSuccess;
@@ -90,7 +90,7 @@ function DaKong(owner)
 	local weapon = bag:GetItem(CONSLOT_DEFAULT, 0);
 	local equip_data = CDataManager_EQUIP_DATA_:GetInstance():GetData(weapon.m_iteminfo.m_nTemplateID);
 	if weapon == nil or equip_data == nil then
-		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "Çë½«ĞèÒª´ò¿×µÄ×°±¸·ÅÔÚÎïÆ·À¸µÚÒ»¸ñÔÙÊ¹ÓÃ´ËÎïÆ·.");
+		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "è¯·å°†éœ€è¦æ‰“å­”çš„è£…å¤‡æ”¾åœ¨ç‰©å“æ ç¬¬ä¸€æ ¼å†ä½¿ç”¨æ­¤ç‰©å“.");
 		return brvFail;
 	end
 
@@ -100,27 +100,27 @@ function DaKong(owner)
 	local socketcount = weapon.m_iteminfo.m_dwSocketCombination;
 
 	if weapon.m_iteminfo.m_nSoulID[0] ~= 0 or  weapon.m_iteminfo.m_nSoulID[1] ~= 0 or  weapon.m_iteminfo.m_nSoulID[2] ~= 0 then
-		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "Çë°Ñ±¦Ê¯²ğ³ıºóÔÙÊ¹ÓÃ´ËÎïÆ·¡£");
+		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "è¯·æŠŠå®çŸ³æ‹†é™¤åå†ä½¿ç”¨æ­¤ç‰©å“ã€‚");
 		return errItemNoConsumeUse;
 	end
 
 	if socketcount < 10 then 
-		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "±ØĞëÓµÓĞË«¿×²ÅÄÜ½øĞĞ¸ß¼¶´ò¿×¡£");
+		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "å¿…é¡»æ‹¥æœ‰åŒå­”æ‰èƒ½è¿›è¡Œé«˜çº§æ‰“å­”ã€‚");
 		return brvFail;
 	end
 
 	if bind == 10 then
-		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "°ó¶¨×°±¸ÎŞ·¨´ò¿×¡£");
+		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "ç»‘å®šè£…å¤‡æ— æ³•æ‰“å­”ã€‚");
 		return brvFail;
 	end
 	if dur - weapon.m_iteminfo.m_nCurDur > 1000 then 
-		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "Î´ĞŞÀíµÄ×°±¸ÎŞ·¨´ò¿×¡£");
+		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "æœªä¿®ç†çš„è£…å¤‡æ— æ³•æ‰“å­”ã€‚");
 		return brvFail;	
 	end
 
 	local ret = bag:GenerateSocket(true,1);
 	if ret == 1 then 
-		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "´ò¿×³É¹¦¡£");
+		pRole:GetScene():Say(pRole:GetObjID(), cltTvShow, "æ‰“å­”æˆåŠŸã€‚");
 	end
 	return brvSuccess;
 end

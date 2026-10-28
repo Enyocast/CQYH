@@ -18,13 +18,13 @@
 HINSTANCE hInst;								// current instance
 TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
 TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
-// µ±Ç°´°¿ÚµÄ´óĞ¡
+// å½“å‰çª—å£çš„å¤§å°
 int						g_WinWidth = 640;
 int						g_WinHeight = 480;
 HWND					g_MainWin_hWnd = 0;
-BOOL					g_bIsWindow = TRUE;		// ÊÇ·ñÎª´°¿ÚÄ£Ê½
-BOOL					g_bVSync = TRUE;		// ÊÇ·ñË¢ĞÂÍ¬²½
-BOOL					g_DeviceLost = FALSE;	// ÊÇ·ñÊÇÉè±¸¶ªÊ§×´Ì¬
+BOOL					g_bIsWindow = TRUE;		// æ˜¯å¦ä¸ºçª—å£æ¨¡å¼
+BOOL					g_bVSync = TRUE;		// æ˜¯å¦åˆ·æ–°åŒæ­¥
+BOOL					g_DeviceLost = FALSE;	// æ˜¯å¦æ˜¯è®¾å¤‡ä¸¢å¤±çŠ¶æ€
 BOOL					g_bIsSizeMove = FALSE;
 IDirect3D7*				g_pDirect3D		= NULL;
 IDirect3DDevice7*		g_pDevice7		= NULL;
@@ -33,7 +33,7 @@ IDirectDrawSurface7*	g_pFrontBuffer	= NULL;
 IDirectDrawSurface7*	g_pBackBuffer	= NULL;
 IDirectDrawClipper*		g_pClipper		= NULL;
 
-/* ½ÓÈëÏà¹ØÈ«¾Ö±äÁ¿  begin*/
+/* æ¥å…¥ç›¸å…³å…¨å±€å˜é‡  begin*/
 HINSTANCE          g_hInstIGWDll = 0;
 LPigwInitialize    igwInitialize = NULL;
 LPigwGetModule     igwGetModule = NULL;
@@ -41,7 +41,7 @@ LPigwTerminal      igwTerminal = NULL;
 
 ISDOADx7*			g_SDOADx7 = NULL;
 ISDOAApp*			g_SDOAApp = NULL;
-/* ½ÓÈëÏà¹ØÈ«¾Ö±äÁ¿  end*/
+/* æ¥å…¥ç›¸å…³å…¨å±€å˜é‡  end*/
 
 #define SAFE_RELEASE(x) {if (x){ x->Release(); x = NULL;}}
 
@@ -54,8 +54,8 @@ void				FreeDevice();
 void				FlipWindowed();
 void				Flip();
 BOOL				MayRender();
-void				OnDeviceLost(); // Í¨ÖªÉè±¸¶ªÊ§
-void				OnDeviceReset();// Í¨ÖªÉè±¸ÖØÖÃ
+void				OnDeviceLost(); // é€šçŸ¥è®¾å¤‡ä¸¢å¤±
+void				OnDeviceReset();// é€šçŸ¥è®¾å¤‡é‡ç½®
 void				Render();
 
 void				OpenIGW();
@@ -83,17 +83,17 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 	hAccelTable = LoadAccelerators(hInstance, (LPCTSTR)IDC_D3D7CPPTEST);
 
-	// ¼ÓÔØIGW
+	// åŠ è½½IGW
 	OpenIGW();
 	if (igwInitialize)
-	{	// ËµÃ÷¼ÓÔØ³É¹¦£¬±íÊ¾ÏÂ......			
-		SetWindowText(g_MainWin_hWnd, "D3D Tutorial [¼ÓÔØIGW×é¼ş³É¹¦]");
+	{	// è¯´æ˜åŠ è½½æˆåŠŸï¼Œè¡¨ç¤ºä¸‹......			
+		SetWindowText(g_MainWin_hWnd, "D3D Tutorial [åŠ è½½IGWç»„ä»¶æˆåŠŸ]");
 	}	
 	
 	if (!InitDevice())
 	{
-		MessageBox(g_MainWin_hWnd, "´´½¨D3D7Éè±¸´íÎó", "ÌáÊ¾", MB_OK);
-		PostQuitMessage(0);// ³ö´íÌáÊ¾ÍêºóÍË³ö
+		MessageBox(g_MainWin_hWnd, "åˆ›å»ºD3D7è®¾å¤‡é”™è¯¯", "æç¤º", MB_OK);
+		PostQuitMessage(0);// å‡ºé”™æç¤ºå®Œåé€€å‡º
 	}
 
 	// Enter the message loop
@@ -106,18 +106,18 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 			DispatchMessage( &msg );
 		}
 		else
-		{ // Ã»ÓĞÏûÏ¢Ê±»æÖÆ
+		{ // æ²¡æœ‰æ¶ˆæ¯æ—¶ç»˜åˆ¶
 			if (g_DeviceLost == TRUE)
-			{	// ´¦ÓÚÉè±¸¶ªÊ§ÖĞ¿ÉÂıµã»Ö¸´£¬±ÜÃâ³¤Ê±¼ä¶ªÊ§Õ¼ÓÃ¹ı¶àCPU
+			{	// å¤„äºè®¾å¤‡ä¸¢å¤±ä¸­å¯æ…¢ç‚¹æ¢å¤ï¼Œé¿å…é•¿æ—¶é—´ä¸¢å¤±å ç”¨è¿‡å¤šCPU
 				Sleep(100);
 			}
 			if(g_pDevice7)
-			{// ËµÃ÷Éè±¸´´½¨³É¹¦
-				Render();// äÖÈ¾Ïà¹Ø
+			{// è¯´æ˜è®¾å¤‡åˆ›å»ºæˆåŠŸ
+				Render();// æ¸²æŸ“ç›¸å…³
 			}// if(g_pDevice7)
 		}
 	}// while
-	// ÊÍ·ÅIGW
+	// é‡Šæ”¾IGW
 	CloseIGW();
 	FreeDevice();
 	return (int) msg.wParam;
@@ -178,7 +178,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    RECT rtCurRect;
    GetClientRect(g_MainWin_hWnd, &rtCurRect);
-   // ×¢ÒâCreateWindowµÄ´°¿Ú´óĞ¡°üÀ¨±êÌâÓë±ß¿òµÄ£¬ÏÂÃæ×¼È·µÄÉèÖÃ¿Í»§ÇøµÄ´óĞ¡
+   // æ³¨æ„CreateWindowçš„çª—å£å¤§å°åŒ…æ‹¬æ ‡é¢˜ä¸è¾¹æ¡†çš„ï¼Œä¸‹é¢å‡†ç¡®çš„è®¾ç½®å®¢æˆ·åŒºçš„å¤§å°
    SetWindowPos(g_MainWin_hWnd, HWND_TOP, 0, 0, 
 	   g_WinWidth - (rtCurRect.right - rtCurRect.left) + g_WinWidth, 
 	   g_WinHeight - (rtCurRect.bottom - rtCurRect.top) + g_WinHeight, SWP_NOZORDER + SWP_NOACTIVATE);
@@ -194,43 +194,43 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    return TRUE;
 }
 
-BOOL isSDOLogin = false; // ×¢ÒâÒ»¶¨ÒªÊÇBOOLÀàĞÍ£¬²»ÄÜÎªbool·ñÔò¿ÉÄÜ»áµ¼ÖÂÎÊÌâ
+BOOL isSDOLogin = false; // æ³¨æ„ä¸€å®šè¦æ˜¯BOOLç±»å‹ï¼Œä¸èƒ½ä¸ºboolå¦åˆ™å¯èƒ½ä¼šå¯¼è‡´é—®é¢˜
 LoginResult loginResult;
 
 BOOL CALLBACK OnLogin(int nErrorCode, const LoginResult* pLoginResult, int nUserData, int nReserved) 
-{ // ×¢Òâ¸Ã»Øµ÷·µ»ØtrueÔò¹Ø±ÕµÇÂ¼¶Ô»°¿ò£¬·ñÔòµÇÂ¼¶Ô»°¿òÈÔÈ»ÏÔÊ¾
+{ // æ³¨æ„è¯¥å›è°ƒè¿”å›trueåˆ™å…³é—­ç™»å½•å¯¹è¯æ¡†ï¼Œå¦åˆ™ç™»å½•å¯¹è¯æ¡†ä»ç„¶æ˜¾ç¤º
 
 	isSDOLogin = (SDOA_OK == nErrorCode); 
 	if (isSDOLogin) 
 	{ 
 		loginResult = *pLoginResult; 
-		// µÇÂ¼³É¹¦ºó,°ÑÓÃ»§Ê¹ÓÃµÄÓÎÏ·½ÇÉ«ĞÅÏ¢´«ÈëIGW
+		// ç™»å½•æˆåŠŸå,æŠŠç”¨æˆ·ä½¿ç”¨çš„æ¸¸æˆè§’è‰²ä¿¡æ¯ä¼ å…¥IGW
 		if (g_SDOAApp)
 		{
-			RoleInfo tmpRoleInfo = { sizeof(RoleInfo), L"ÃÀÃ²ÏÉ×Ó", 0 } ;
-			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // ÉèÖÃ½ÇÉ«ĞÅÏ¢£¬¿É¶à´Îµ÷ÓÃ£¬Ö»ÒªÓÃ»§ÇĞ»»ÁË½ÇÉ«¾Íµ÷ÓÃÍ¨ÖªIGW
+			RoleInfo tmpRoleInfo = { sizeof(RoleInfo), L"ç¾è²Œä»™å­", 0 } ;
+			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // è®¾ç½®è§’è‰²ä¿¡æ¯ï¼Œå¯å¤šæ¬¡è°ƒç”¨ï¼Œåªè¦ç”¨æˆ·åˆ‡æ¢äº†è§’è‰²å°±è°ƒç”¨é€šçŸ¥IGW
 		}
 	}
 
 	if (SDOA_ERRORCODE_SHOWMESSAGE == nErrorCode)
-	{ // µÇÂ¼´íÎóÏûÏ¢´¦Àí
+	{ // ç™»å½•é”™è¯¯æ¶ˆæ¯å¤„ç†
 		if (nReserved != 0)
 		{
 			LoginMessage* pCurLoginMsg = (LoginMessage*)nReserved;
 			if (pCurLoginMsg->dwSize >= sizeof(LoginMessage))
-			{ // ¼æÈİĞÔ´¦Àí 
-				// ĞŞ¸Ä´íÎóÌáÊ¾¶Ô»°¿ò±êÌâ
-				//SysReAllocString(pCurLoginMsg->pbstrTitle, L"[²âÊÔÓÎÏ·´íÎóÌáÊ¾]");
+			{ // å…¼å®¹æ€§å¤„ç† 
+				// ä¿®æ”¹é”™è¯¯æç¤ºå¯¹è¯æ¡†æ ‡é¢˜
+				//SysReAllocString(pCurLoginMsg->pbstrTitle, L"[æµ‹è¯•æ¸¸æˆé”™è¯¯æç¤º]");
 
-				// ´ËÊ±·µ»ØFALSEÔòÊ¹ÓÃÄ¬ÈÏÌáÊ¾
+				// æ­¤æ—¶è¿”å›FALSEåˆ™ä½¿ç”¨é»˜è®¤æç¤º
 
-				// ´ËÊ±·µ»ØTRUEÔòÊ¹ÓÃ×Ô¶¨ÒåµÄÌáÊ¾
+				// æ­¤æ—¶è¿”å›TRUEåˆ™ä½¿ç”¨è‡ªå®šä¹‰çš„æç¤º
 				//isSDOLogin = TRUE;
 				//::MessageBox(0, *pCurLoginMsg->pbstrContent, *pCurLoginMsg->pbstrTitle, MB_OK);
 			}
 		}
 	}
-	return isSDOLogin; // ³£¹æÂß¼­£¬µÇÂ¼³É¹¦Ôò¹Ø±ÕµÇÂ¼¶Ô»°¿ò
+	return isSDOLogin; // å¸¸è§„é€»è¾‘ï¼Œç™»å½•æˆåŠŸåˆ™å…³é—­ç™»å½•å¯¹è¯æ¡†
 }
 
 //
@@ -246,7 +246,7 @@ BOOL CALLBACK OnLogin(int nErrorCode, const LoginResult* pLoginResult, int nUser
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	if(g_SDOADx7) 
-	{	// °ÑÏûÏ¢½»¸øIGWÄ£¿é´¦Àí 
+	{	// æŠŠæ¶ˆæ¯äº¤ç»™IGWæ¨¡å—å¤„ç† 
 		LRESULT lResult = 0; 
 		if (g_SDOADx7->OnWindowProc( hWnd, message, wParam, lParam, &lResult ) == SDOA_OK ) 
 		{ 			
@@ -254,7 +254,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		} 
 	}
 	if ( SDOA_WM_CLIENT_RUN == message)
-	{	// ÏÔÊ¾µÇÂ¼¶Ô»°¿ò
+	{	// æ˜¾ç¤ºç™»å½•å¯¹è¯æ¡†
 		if (g_SDOAApp)
 		{
 			g_SDOAApp->ShowLoginDialog(OnLogin, 0, 0);
@@ -277,15 +277,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			DWORD dwMask = (1 << 29);
 			bool bAltDown = ( (lParam & dwMask) != 0 );
 			if (bAltDown && (VK_RETURN == wParam))
-			{	// ÔÚÈ«ÆÁÓë´°¿ÚÄ£Ê½¼äÇĞ»»£¬È«²¿ÖØ½¨
+			{	// åœ¨å…¨å±ä¸çª—å£æ¨¡å¼é—´åˆ‡æ¢ï¼Œå…¨éƒ¨é‡å»º
 				g_bIsWindow = !g_bIsWindow;
 				OutputDebugString("MsgProc WM_SYSKEYDOWN ALT+ENTER begin\n");
 
 				FreeDevice();
 				if (!InitDevice())
 				{
-					MessageBox(g_MainWin_hWnd, "´´½¨D3D7Éè±¸´íÎó", "ÌáÊ¾", MB_OK);
-					PostQuitMessage(0);// ³ö´íÌáÊ¾ÍêºóÍË³ö
+					MessageBox(g_MainWin_hWnd, "åˆ›å»ºD3D7è®¾å¤‡é”™è¯¯", "æç¤º", MB_OK);
+					PostQuitMessage(0);// å‡ºé”™æç¤ºå®Œåé€€å‡º
 				}
 
 				OutputDebugString("MsgProc WM_SYSKEYDOWN ALT+ENTER end\n");
@@ -297,7 +297,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		//// TODO: Add any drawing code here...
 		//EndPaint(hWnd, &ps);
 		if (g_bIsSizeMove && g_bIsWindow)
-		{// ÔÚÒÆ¶¯ÖĞ
+		{// åœ¨ç§»åŠ¨ä¸­
 			Render();
 		}
 		break;
@@ -356,7 +356,7 @@ BOOL CreateBackBuffer()
 		DDSCAPS2 BackCaps;
 		ZeroMemory( &BackCaps, sizeof(BackCaps) );
 		BackCaps.dwCaps = DDSCAPS_BACKBUFFER;
-		// ×¢ÒâgetµÄÒªÊ¹g_pBackBufferÔÚg_pFrontBufferÖ®Ç°Release
+		// æ³¨æ„getçš„è¦ä½¿g_pBackBufferåœ¨g_pFrontBufferä¹‹å‰Release
 		bResult = SUCCEEDED(g_pFrontBuffer->GetAttachedSurface(&BackCaps, &g_pBackBuffer));		
 	}
 	return bResult;
@@ -376,7 +376,7 @@ BOOL CreateClipper()
 }
 
 BOOL InitDevice()
-{ // ´´½¨d3d7Éè±¸
+{ // åˆ›å»ºd3d7è®¾å¤‡
 	BOOL bResult = FALSE;	
 	bResult = SUCCEEDED(DirectDrawCreateEx( NULL, (void**)&g_pDirectDraw7, IID_IDirectDraw7, NULL ));
 	if (!bResult)
@@ -408,12 +408,12 @@ BOOL InitDevice()
 		return bResult;
 	}
 	if (g_bIsWindow)	
-	{	// ´°¿ÚÄ£Ê½
+	{	// çª—å£æ¨¡å¼
 		SetWindowLong(g_MainWin_hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW);
 		SetWindowPos(g_MainWin_hWnd, HWND_NOTOPMOST, 0, 0, 0, 0,SWP_NOSIZE | SWP_SHOWWINDOW | SWP_DRAWFRAME | SWP_FRAMECHANGED);
 	}
 	else
-	{	// È«ÆÁÄ£Ê½
+	{	// å…¨å±æ¨¡å¼
 		SetWindowLong(g_MainWin_hWnd, GWL_STYLE, WS_POPUP | WS_VISIBLE);
 		SetWindowPos(g_MainWin_hWnd, HWND_NOTOPMOST, 0, 0, 0, 0,SWP_NOSIZE | SWP_SHOWWINDOW | SWP_DRAWFRAME | SWP_FRAMECHANGED);
 	}
@@ -564,7 +564,7 @@ BOOL MayRender()
 		}
 		if ((g_DeviceLost && (! bIsLost)) || (bIsLost && bNeedReset))
 		{
-			OnDeviceReset();// Í¨ÖªÉèÖÃÖØÖÃ,ÓÉÓÚ¿ÉÄÜÖØÖÃÊ§°Ü£¬ËùÒÔÏÂ´ÎÔÙ¼ì²é³É¹¦Ê±²ÅÔÊĞí
+			OnDeviceReset();// é€šçŸ¥è®¾ç½®é‡ç½®,ç”±äºå¯èƒ½é‡ç½®å¤±è´¥ï¼Œæ‰€ä»¥ä¸‹æ¬¡å†æ£€æŸ¥æˆåŠŸæ—¶æ‰å…è®¸
 			g_DeviceLost = FALSE;
 			return bResult;
 		}
@@ -576,7 +576,7 @@ BOOL MayRender()
 void Render()
 {
 	if (MayRender())
-	{// ÔÊĞíäÖÈ¾Ôò»æÖÆ
+	{// å…è®¸æ¸²æŸ“åˆ™ç»˜åˆ¶
 		if (SUCCEEDED(g_pDevice7->Clear(0, NULL, D3DCLEAR_TARGET, 0, 0.0f, 0)))
 		{
 			if (SUCCEEDED(g_pDevice7->BeginScene()))
@@ -597,7 +597,7 @@ void Render()
 }
 
 
-/* ÊÍ·ÅIGW */
+/* é‡Šæ”¾IGW */
 void CloseIGW()
 {
 	if (g_SDOADx7)
@@ -613,7 +613,7 @@ void CloseIGW()
 	}
 
 	if (igwTerminal)
-	{  // ÊÍ·ÅDLLÇ°×ÜÊÇÏÈµ÷ÓÃigwTerminal
+	{  // é‡Šæ”¾DLLå‰æ€»æ˜¯å…ˆè°ƒç”¨igwTerminal
 		igwTerminal();
 		igwTerminal = NULL;
 	}
@@ -625,7 +625,7 @@ void CloseIGW()
 	igwInitialize = NULL;
 }
 
-/* ¼ÓÔØIGW */
+/* åŠ è½½IGW */
 void OpenIGW()
 {
 	WCHAR strExePath[MAX_PATH] = {0};
@@ -635,7 +635,7 @@ void OpenIGW()
 	strExePath[MAX_PATH-1]=0;
 	strLastSlash = wcsrchr( strExePath, TEXT('\\') );
 	if( strLastSlash )
-	{	// µÃµ½EXEËùÔÚÂ·¾¶
+	{	// å¾—åˆ°EXEæ‰€åœ¨è·¯å¾„
 		StringCchCopyW( strExeName, MAX_PATH, &strLastSlash[1] );
 		*strLastSlash = 0;
 		strLastSlash = wcsrchr( strExeName, TEXT('.') );
@@ -647,26 +647,26 @@ void OpenIGW()
 	StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\GameWidget.dll", strExePath );
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // Èç¹û³ÌĞòÔËĞĞÂ·¾¶ÖĞ²»´æÔÚÔò»»¸öÂ·¾¶ÔÙÊÔ
+	{ // å¦‚æœç¨‹åºè¿è¡Œè·¯å¾„ä¸­ä¸å­˜åœ¨åˆ™æ¢ä¸ªè·¯å¾„å†è¯•
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // Èç¹û³ÌĞòÔËĞĞÂ·¾¶ÖĞ²»´æÔÚÔò»»¸öÂ·¾¶ÔÙÊÔ
+	{ // å¦‚æœç¨‹åºè¿è¡Œè·¯å¾„ä¸­ä¸å­˜åœ¨åˆ™æ¢ä¸ªè·¯å¾„å†è¯•
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // Èç¹û³ÌĞòÔËĞĞÂ·¾¶ÖĞ²»´æÔÚÔò»»¸öÂ·¾¶ÔÙÊÔ
+	{ // å¦‚æœç¨‹åºè¿è¡Œè·¯å¾„ä¸­ä¸å­˜åœ¨åˆ™æ¢ä¸ªè·¯å¾„å†è¯•
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // Èç¹û³ÌĞòÔËĞĞÂ·¾¶ÖĞ²»´æÔÚÔò»»¸öÂ·¾¶ÔÙÊÔ
+	{ // å¦‚æœç¨‹åºè¿è¡Œè·¯å¾„ä¸­ä¸å­˜åœ¨åˆ™æ¢ä¸ªè·¯å¾„å†è¯•
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
 	CloseIGW();
 
 	if ( GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF )
-	{	// ÕÒµ½×é¼şÔò¼ÓÔØ	
+	{	// æ‰¾åˆ°ç»„ä»¶åˆ™åŠ è½½	
 		g_hInstIGWDll = LoadLibraryW(strGameWidgetDll);
 		if (g_hInstIGWDll)
 		{
@@ -675,23 +675,23 @@ void OpenIGW()
 			igwTerminal = (LPigwTerminal)GetProcAddress( g_hInstIGWDll, "igwTerminal" );
 			if ( igwInitialize && igwGetModule && igwTerminal)
 			{
-				// ¼ÓÔØ³É¹¦
+				// åŠ è½½æˆåŠŸ
 
-				// ×¢ÒâAppInfoÀàĞÍËùÓĞ×Ö¶Î±ØĞëÌî
+				// æ³¨æ„AppInfoç±»å‹æ‰€æœ‰å­—æ®µå¿…é¡»å¡«
 				AppInfo tmpAppInfo = {
-					sizeof(AppInfo),       // ½á¹¹Ìå´óĞ¡£¬·½±ãÀ©Õ¹
-					9999,                  // ½ÓÈëÓ¦ÓÃID£¬´Ó¿ª·¢ÕßÍøÕ¾ÖĞÉêÇë
-					L"ÁúÌ¶»¢Ñ¨OnLine",     // Ó¦ÓÃÃû³Æ
-					L"0.1.2.0",            // Ó¦ÓÃ¿Í»§¶Ëµ±Ç°°æ±¾ºÅ
-					SDOA_RENDERTYPE_D3D7,  // ¿Í»§¶ËÖ§³ÖµÄÍ¼ĞÎÒıÇæÀàĞÍ£¬d3d7
-					1,                     // ¿ÉÍ¬Ê±ÔÚÒ»Ì¨»úÆ÷ÉÏÓÎÏ·µÄ×î´óÈËÊı£¨Í¨³£Îª1£¬ÀıÈç:KOFÓ¦¸ÃÊÇ2£©
-					-1,                    // ÓÎÏ·ÇøID£¬²»¿ÉÓÃÊ±´«Èë-1
-					-1                     // ÓÎÏ·×éID£¬²»¿ÉÓÃÊ±´«Èë-1
+					sizeof(AppInfo),       // ç»“æ„ä½“å¤§å°ï¼Œæ–¹ä¾¿æ‰©å±•
+					9999,                  // æ¥å…¥åº”ç”¨IDï¼Œä»å¼€å‘è€…ç½‘ç«™ä¸­ç”³è¯·
+					L"é¾™æ½­è™ç©´OnLine",     // åº”ç”¨åç§°
+					L"0.1.2.0",            // åº”ç”¨å®¢æˆ·ç«¯å½“å‰ç‰ˆæœ¬å·
+					SDOA_RENDERTYPE_D3D7,  // å®¢æˆ·ç«¯æ”¯æŒçš„å›¾å½¢å¼•æ“ç±»å‹ï¼Œd3d7
+					1,                     // å¯åŒæ—¶åœ¨ä¸€å°æœºå™¨ä¸Šæ¸¸æˆçš„æœ€å¤§äººæ•°ï¼ˆé€šå¸¸ä¸º1ï¼Œä¾‹å¦‚:KOFåº”è¯¥æ˜¯2ï¼‰
+					-1,                    // æ¸¸æˆåŒºIDï¼Œä¸å¯ç”¨æ—¶ä¼ å…¥-1
+					-1                     // æ¸¸æˆç»„IDï¼Œä¸å¯ç”¨æ—¶ä¼ å…¥-1
 
 				};
 
 				if (igwInitialize(SDOA_SDK_VERSION, &tmpAppInfo) == SDOA_OK)
-				{	// ³õÊ¼»¯×é¼ş³É¹¦
+				{	// åˆå§‹åŒ–ç»„ä»¶æˆåŠŸ
 
 					igwGetModule(__uuidof(ISDOADx7), (void**)&g_SDOADx7);
 					igwGetModule(__uuidof(ISDOAApp), (void**)&g_SDOAApp);
@@ -700,10 +700,10 @@ void OpenIGW()
 						CloseIGW();
 
 				}
-				else // ³õÊ¼»¯Ê§°ÜÇå³ı»·¾³
+				else // åˆå§‹åŒ–å¤±è´¥æ¸…é™¤ç¯å¢ƒ
 					CloseIGW();
 			}
-			else  // ¼ÓÔØDLLÊ§°ÜÇå³ı»·¾³
+			else  // åŠ è½½DLLå¤±è´¥æ¸…é™¤ç¯å¢ƒ
 				CloseIGW();
 		}
 	}	

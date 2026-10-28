@@ -77,7 +77,7 @@
 //
 //    //if (nIndex == g_GMConfig.MSList.nSvrNum)
 //    //{
-//    //    // todo_tq ÁÙÊ±ÉÏÏßµÄms£¬¸øËû·ÖÅä¶ÀÁ¢µÄip Allan Tao[20.12.2013] 
+//    //    // todo_tq ä¸´æ—¶ä¸Šçº¿çš„msï¼Œç»™ä»–åˆ†é…ç‹¬ç«‹çš„ip Allan Tao[20.12.2013] 
 //    //}
 //
 //
@@ -92,7 +92,7 @@
 //{
 //    LOG_PROCESS_ERROR(dwSessionID < MAX_MS_SESSION_COUNT);
 //
-//    // todo_tq  init ºÍ uninit Allan Tao[20.12.2013] 
+//    // todo_tq  init å’Œ uninit Allan Tao[20.12.2013] 
 //    m_listMSData[dwSessionID].nState = MS_STATE_OFFLINE;
 //    m_listMSData[dwSessionID].dwSvrID = 0;
 //

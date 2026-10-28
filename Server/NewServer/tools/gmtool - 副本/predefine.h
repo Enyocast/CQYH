@@ -13,54 +13,54 @@
 
 
 #define MAX_SEARCH_ROLE_NUM (32)
-#define USER_SEARCH_TYPE_STRING_1 "½ÇÉ«Ãû"
+#define USER_SEARCH_TYPE_STRING_1 "è§’è‰²å"
 
-const char cszUserSearchTypeName[]    = "½ÇÉ«Ãû";
-const char cszUserSearchTypeID[] = "½ÇÉ«ID";
-const char cszUserSearchTypeAccount[] = "ÕËºÅ";
+const char cszUserSearchTypeName[]    = "è§’è‰²å";
+const char cszUserSearchTypeID[] = "è§’è‰²ID";
+const char cszUserSearchTypeAccount[] = "è´¦å·";
 
-const char cszItemSearchTypeGuid[] = "µÀ¾ßÁ÷Ë®ºÅ";
-const char cszItemSearchTypeTemplateID[] = "µÀ¾ßÀàĞÍID";
+const char cszItemSearchTypeGuid[] = "é“å…·æµæ°´å·";
+const char cszItemSearchTypeTemplateID[] = "é“å…·ç±»å‹ID";
 
-const char  cszAllSvr[]   = "È«ÇøÈ«·ş";
+const char  cszAllSvr[]   = "å…¨åŒºå…¨æœ";
 
 const INT32 MIN_TIME = 1356969600;
 
 
 const char cszMoneyTypeName[15][32] = {
-    "°ó½ğ", 
-    "½ğ±Ò", 
+    "ç»‘é‡‘", 
+    "é‡‘å¸", 
     "unused", 
     "unused", 
-    "Æ£ÀÍ¶È", 
-    "»ê", 
-    "ÃûÊ¦Öµ", 
-    "Íò·¨Ö®Æø", 
-    "Õ½³¡µãÊı", 
-    "¼Ò×å¹±Ï×", 
-    "ĞŞÁ¶µã", 
-    "µÀÒåÖµ", 
-    "¾º¼¼³¡µãÊı", 
-    "³É¾ÍµãÊı",
+    "ç–²åŠ³åº¦", 
+    "é­‚", 
+    "åå¸ˆå€¼", 
+    "ä¸‡æ³•ä¹‹æ°”", 
+    "æˆ˜åœºç‚¹æ•°", 
+    "å®¶æ—è´¡çŒ®", 
+    "ä¿®ç‚¼ç‚¹", 
+    "é“ä¹‰å€¼", 
+    "ç«æŠ€åœºç‚¹æ•°", 
+    "æˆå°±ç‚¹æ•°",
     ""};
 
 const char cszItemBagName[6][32] = {
-    "×°±¸",
-    "±³°üÒ»",
-    "±³°ü¶ş",
-    "±³°üÈı",
-    "±³°üËÄ",
-    "²Ö¿â¶ş"
+    "è£…å¤‡",
+    "èƒŒåŒ…ä¸€",
+    "èƒŒåŒ…äºŒ",
+    "èƒŒåŒ…ä¸‰",
+    "èƒŒåŒ…å››",
+    "ä»“åº“äºŒ"
     };
 
 const char cszMailTypeName[2][32] = {
-    "Íæ¼ÒÓÊ¼ş",
-    "ÏµÍ³ÓÊ¼ş",
+    "ç©å®¶é‚®ä»¶",
+    "ç³»ç»Ÿé‚®ä»¶",
 };
 
 const char cszMailIsNewName[2][32] = {
-    "ÒÑÁìÈ¡",
-    "Î´ÁìÈ¡",
+    "å·²é¢†å–",
+    "æœªé¢†å–",
 };
 
 enum SESSION_CONNECT_STATE

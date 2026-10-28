@@ -17,7 +17,7 @@ function TestRecruit(role, user, session_id, byCount)
 	local recruitListCount = 0;
 	local ret;
 
-	-- Ç°ÖÃÀ­È¡
+	-- å‰ç½®æ‹‰å–
 	g_RobotMessageHandler:DoMstGetRecruit(role);
 	msg = recv_msg(50, session_id, protocol.m2c_master_recruit_list);
 	check(msg, "failed to recv m2c_master_recruit_list");
@@ -28,14 +28,14 @@ function TestRecruit(role, user, session_id, byCount)
 	--end
 
 	print(recruitListCount);
-	-- ÉêÇë
+	-- ç”³è¯·
 	g_RobotMessageHandler:DoMstApplyRecruit(role);
 	msg = recv_msg(50, session_id, protocol.m2c_master_recruit_ack);
 	check(msg, "failed to recv m2c_master_recruit_ack");
 	check(msg.dwType == 1, "m2c_master_recruit_ack value error");
 
 	wait(1);
-	-- ÔÙ´ÎÀ­È¡£¬È·ÈÏÊıÁ¿
+	-- å†æ¬¡æ‹‰å–ï¼Œç¡®è®¤æ•°é‡
 	g_RobotMessageHandler:DoMstGetRecruit(role);
 	msg = recv_msg(50, session_id, protocol.m2c_master_recruit_list);
 	check(msg, "failed to recv m2c_master_recruit_list");
@@ -43,13 +43,13 @@ function TestRecruit(role, user, session_id, byCount)
 	print(msg.byCount);
 	check(msg.byCount == recruitListCount + 1, "m2c_master_recruit_list value error");
 
-	-- È¡Ïû
+	-- å–æ¶ˆ
 	g_RobotMessageHandler:DoMstCancelRecruit(role);
 	msg = recv_msg(50, session_id, protocol.m2c_master_recruit_ack);
 	check(msg, "failed to recv m2c_master_recruit_ack");
 	check(msg.dwType == 2, "m2c_master_recruit_ack value error");
 
-	-- ÔÙ´ÎÀ­È¡£¬È·ÈÏÊıÁ¿
+	-- å†æ¬¡æ‹‰å–ï¼Œç¡®è®¤æ•°é‡
 	g_RobotMessageHandler:DoMstGetRecruit(role);
 	msg = recv_msg(50, session_id, protocol.m2c_master_recruit_list);
 	check(msg, "failed to recv m2c_master_recruit_list");
@@ -126,7 +126,7 @@ function TestRefuseAllApp(role, session_id, s_role, s_session_id)
     check(temp_role, "failed to create role");
 	local temp_session_id = temp_user:GetSessionID();
 
-	-- ÔÙ´ÎÉêÇë
+	-- å†æ¬¡ç”³è¯·
 	TestSubmitApp(role, session_id, temp_role, temp_session_id);
 
 	g_RobotMessageHandler:DoMstRefuseStudApp(role, 0);
@@ -259,7 +259,7 @@ function TestCase.Master.MasterRecruit()
 		wait(1);
     end
 
-    -- ±ä³ÉÊ¦¸µ
+    -- å˜æˆå¸ˆå‚…
     for i = 1, teacher_num, 1 do
 		BecomeMasterByMyself(teacher_user[i], teacher_role[i]);
 		wait(1);
@@ -267,7 +267,7 @@ function TestCase.Master.MasterRecruit()
 
 	wait(3);
 
-	-- ÉêÇë
+	-- ç”³è¯·
 	for i = 1, teacher_num, 1 do
 		g_RobotMessageHandler:DoMstApplyRecruit(teacher_role[i]);
 		msg = recv_msg(10, teacher_session[i], protocol.m2c_master_recruit_ack);
@@ -417,12 +417,12 @@ function TestCase.Master.MasterBase()
     check(role, "failed to create role");
 	session_id = user:GetSessionID();
 
-	-- ±ä³ÉÊ¦¸µ
+	-- å˜æˆå¸ˆå‚…
 	BecomeMasterByMyself(user, role);
 
 	wait(5);
 
-	-- ÑéÖ¤ÕĞÍ½ÁĞ±í
+	-- éªŒè¯æ‹›å¾’åˆ—è¡¨
 	TestRecruit(role, user, session_id, 0);
 
 	wait(2);
@@ -433,39 +433,39 @@ function TestCase.Master.MasterBase()
     check(s_role, "failed to create role");
 	local s_session_id = s_user:GetSessionID();
 
-	-- Ìá½»ÉêÇë
+	-- æäº¤ç”³è¯·
 	TestSubmitApp(role, session_id, s_role, s_session_id);
 
-	-- È¡ÏûÉêÇë
+	-- å–æ¶ˆç”³è¯·
 	TestCancelApp(role, session_id, s_role, s_session_id);
 
-	-- Ìá½»ÉêÇë
+	-- æäº¤ç”³è¯·
 	TestSubmitApp(role, session_id, s_role, s_session_id);
 
-	-- ¾Ü¾øÉêÇë
+	-- æ‹’ç»ç”³è¯·
 	TestRefuseApp(role, session_id, s_role, s_session_id);
 
-	-- Ìá½»ÉêÇë
+	-- æäº¤ç”³è¯·
 	TestSubmitApp(role, session_id, s_role, s_session_id);
-	-- ¾Ü¾øËùÓĞ
+	-- æ‹’ç»æ‰€æœ‰
 	TestRefuseAllApp(role, session_id, s_role, s_session_id);
 
-	-- Ìá½»ÉêÇë
+	-- æäº¤ç”³è¯·
 	TestSubmitApp(role, session_id, s_role, s_session_id);
-	-- Í¬Òâ°İÊ¦
+	-- åŒæ„æ‹œå¸ˆ
 	TestAgreeApp(role, session_id, s_role, s_session_id);
 
-	-- ¹§Ï²Éı¼¶
+	-- æ­å–œå‡çº§
 	ret = s_user:GMCommand("AddExp(3000)");
 	check(ret, "failed to send gm command");
 	wait(5);
 	TestCongLevelUp(role, session_id, s_role, s_session_id);
 
 
-	-- Ö÷¶¯ÅÑÊ¦
+	-- ä¸»åŠ¨å›å¸ˆ
 	TestLeaveMaster(role, session_id, s_role, s_session_id);
 
-	-- ¿ª³ı
+	-- å¼€é™¤
 	--TestFireStudent(role, session_id, s_role, s_session_id);
 	--check(role:GetMaster():GetStudentCount() == 0, "student num error!");
 
@@ -503,7 +503,7 @@ function TestRecruitAdvanced(byCount)
 		wait(2);
 	end
 
-	-- Ç°ÖÃÀ­È¡
+	-- å‰ç½®æ‹‰å–
 	g_RobotMessageHandler:DoMstGetRecruit(master_table[1].role);
 	msg = recv_msg(50, master_table[1].session_id, protocol.m2c_master_recruit_list);
 	check(msg, "failed to recv m2c_master_recruit_list");
@@ -515,7 +515,7 @@ function TestRecruitAdvanced(byCount)
 	end
 
 	for k,v in pairs(master_table) do
-		-- ±ä³ÉÊ¦¸µ
+		-- å˜æˆå¸ˆå‚…
 		BecomeMasterByMyself(v.user, v.role);
 		wait(1);
 	end
@@ -526,13 +526,13 @@ function TestRecruitAdvanced(byCount)
 
 	print("--------------------".. recruitListCount);
 	for k,v in pairs(master_table) do
-		-- ÉêÇë
+		-- ç”³è¯·
 		g_RobotMessageHandler:DoMstApplyRecruit(v.role);
 		msg = recv_msg(50, v.session_id, protocol.m2c_master_recruit_ack);
 		check(msg, "failed to recv m2c_master_recruit_ack");
 		check(msg.dwType == 1, "m2c_master_recruit_ack value error");
 
-		-- ÔÙ´ÎÀ­È¡£¬È·ÈÏÊıÁ¿
+		-- å†æ¬¡æ‹‰å–ï¼Œç¡®è®¤æ•°é‡
 		g_RobotMessageHandler:DoMstGetRecruit(v.role);
 		msg = recv_msg(50, v.session_id, protocol.m2c_master_recruit_list);
 		check(msg, "failed to recv m2c_master_recruit_list");
@@ -559,13 +559,13 @@ function TestRecruitAdvanced(byCount)
 	end
 
 
-	-- È¡Ïû
+	-- å–æ¶ˆ
 	--g_RobotMessageHandler:DoMstCancelRecruit(role);
 	--msg = recv_msg(50, session_id, protocol.m2c_master_recruit_ack);
 	--check(msg, "failed to recv m2c_master_recruit_ack");
 	--check(msg.dwType == 2, "m2c_master_recruit_ack value error");
 
-	-- ÔÙ´ÎÀ­È¡£¬È·ÈÏÊıÁ¿
+	-- å†æ¬¡æ‹‰å–ï¼Œç¡®è®¤æ•°é‡
 	--g_RobotMessageHandler:DoMstGetRecruit(role);
 	--msg = recv_msg(50, session_id, protocol.m2c_master_recruit_list);
 	--check(msg, "failed to recv m2c_master_recruit_list");
@@ -593,7 +593,7 @@ function SubmitAppAdvanced()
 	end
 
 	for k,v in pairs(master_table) do
-		-- ±ä³ÉÊ¦¸µ
+		-- å˜æˆå¸ˆå‚…
 		BecomeMasterByMyself(v.user, v.role);
 		wait(1);
 	end
@@ -626,7 +626,7 @@ function SubmitAppAdvanced()
 		end
 	end
 
-	--1ºÅÑ§ÉúĞèÒªÈ¡ÏûÒ»¸ö£¬²ÅÄÜ¼ÌĞø
+	--1å·å­¦ç”Ÿéœ€è¦å–æ¶ˆä¸€ä¸ªï¼Œæ‰èƒ½ç»§ç»­
 	TestCancelApp(master_table[1].role, master_table[1].session_id, student_table[1].role, student_table[1].session_id);
 
 	wait(3);
@@ -765,7 +765,7 @@ function AgreeAllAppAdvanced()
 	end
 
 	for k,v in pairs(master_table) do
-		-- ±ä³ÉÊ¦¸µ
+		-- å˜æˆå¸ˆå‚…
 		BecomeMasterByMyself(v.user, v.role);
 		wait(1);
 	end
@@ -861,18 +861,18 @@ function MasterWholeAdvanced()
 	end
 
 	for k,v in pairs(master_table) do
-		-- ±ä³ÉÊ¦¸µ
+		-- å˜æˆå¸ˆå‚…
 		BecomeMasterByMyself(v.user, v.role);
 		wait(1);
 	end
 
-	-- ÉêÇë
+	-- ç”³è¯·
 	print("student's application list");
 	for i = 1,3,1 do
 		SubmitApp(student_table[i].role, master_table[1].role, student_table[i].session_id, master_table[1].session_id);
 	end
 
-	-- Í¬Òâ
+	-- åŒæ„
 	for i = 1,3,1 do
 		AgreeApplication(student_table[i].role, student_table[i].session_id, master_table[1].role, master_table[1].session_id);
 	end
@@ -880,7 +880,7 @@ function MasterWholeAdvanced()
 	print(master_table[1].role:GetMaster():GetStudentCount());
 	check(master_table[1].role:GetMaster():GetStudentCount() == 3, "add student error!");
 
-	-- Éı¼¶³öÊ¦
+	-- å‡çº§å‡ºå¸ˆ
 	for i = 1, 3, 1 do
 		print("role:"..i);
 		ret = student_table[i].user:GMCommand("AddExp(30000000)");
@@ -969,12 +969,12 @@ function TestCase.Master.MasterAdvanced()
 
 --	local master_user, master_role, m_session_id = NewUser();
 
-	-- ±ä³ÉÊ¦¸µ
+	-- å˜æˆå¸ˆå‚…
 	--BecomeMasterByMyself(master_user, master_role);
 
 
 
-	-- ÊÖ¶¯testcase
+	-- æ‰‹åŠ¨testcase
 	MasterWholeAdvanced();
 end
 

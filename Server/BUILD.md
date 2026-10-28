@@ -37,7 +37,7 @@ the old projects did. Pass `-DCQYH_OUTPUT_TO_BIN=OFF` to keep them in the build 
   compile (`nameserver.h` uses `std::string` without including it).
 * Not migrated: `NewServer/src/asimov` (Qt robot client), `bteditor`, `gameworld/script/script.vcxproj` (the Lua
   bytecode compiler step) and everything under `NewServer/tools` still have their own project files.
-* The source files are GBK encoded (Chinese comments). Edit them with a tool that keeps the bytes as they are.
+* Source files use UTF-8. MSVC emits narrow string literals using GBK for compatibility with the legacy server.
 
 ## Lua bindings
 

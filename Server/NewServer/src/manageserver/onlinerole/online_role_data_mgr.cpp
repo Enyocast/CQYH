@@ -226,12 +226,12 @@ BOOL COnlineRoleDataMgr::DelOnlineRole(MS_ONLINE_ROLE_DATA* poRoleData)
 		LOG_CHECK_ERROR(nRetCode);
 	}
 
-	// Ë¢ÐÂÅÅÐÐ°ñÊý¾Ý
+	// åˆ·æ–°æŽ’è¡Œæ¦œæ•°æ®
 	//bRet = CRankListMgr::GetInstance().UpdateRank(poRoleData->dwCliSessionID, poRoleData->pRoleData->dwRoleID, poRoleData->pRoleData->byLevel);
 	//LOG_CHECK_ERROR(bRet);
 
     ////// friend
-    //Í¨Öª·ÛË¿ÏÂÏß
+    //é€šçŸ¥ç²‰ä¸ä¸‹çº¿
     for (MS_ONLINE_ROLE_DATA::FanMap::const_iterator it=poRoleData->m_fans.begin(); it!=poRoleData->m_fans.end(); ++it)
     {
         MS_ONLINE_ROLE_DATA* online_role = FindOnlineRoleByRoleID(*it);
@@ -252,7 +252,7 @@ BOOL COnlineRoleDataMgr::DelOnlineRole(MS_ONLINE_ROLE_DATA* poRoleData)
     LOG_CHECK_ERROR(nRetCode);
 
     ////// guild
-    poRoleData->pRoleData->nLastLoginTime = CManageServer::GetInstance().GetGameTime();        // ¼ÇÂ¼ÏÂÏßÊ±¼ä Allan Tao[9.6.2013] 
+    poRoleData->pRoleData->nLastLoginTime = CManageServer::GetInstance().GetGameTime();        // è®°å½•ä¸‹çº¿æ—¶é—´ Allan Tao[9.6.2013] 
     if (0 != poRoleData->pRoleData->dwGuildID)
     {
         poMsGuild = CMsGuildMgr::GetInstance().FindGuildByID(poRoleData->pRoleData->dwGuildID);

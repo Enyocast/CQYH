@@ -418,14 +418,14 @@ namespace ROLE_DB_DEF_V_2
 	{
 		/********* overal ********/
 
-		UINT8	byLevel;						// ¾³½çµÈ¼¶
-		INT32	nExp;							// ¾­ÑéÖµ
+		UINT8	byLevel;						// å¢ƒç•Œç­‰çº§
+		INT32	nExp;							// ç»éªŒå€¼
 
-		UINT32	dwExp2PtsRemainTime;			// Ê£Óà×ª»¯Ê±¼ä
-		INT32	nMoneyCost;						// »ê×ªĞŞÁ¶µã×ÜÏûºÄ½ğ±Ò
+		UINT32	dwExp2PtsRemainTime;			// å‰©ä½™è½¬åŒ–æ—¶é—´
+		INT32	nMoneyCost;						// é­‚è½¬ä¿®ç‚¼ç‚¹æ€»æ¶ˆè€—é‡‘å¸
 
-		UINT32 dwDailyUseMoneyChangeCount;		// Ã¿ÌìÊ¹ÓÃ½ğ±Ò×ª»»´ÎÊı
-		UINT32 dwNextScanTimer;					// ÏÂ´ÎÉ¨ÃèÊ±¼ä(ÓÃÓÚÃ¿ÈÕÖØÖÃ)			
+		UINT32 dwDailyUseMoneyChangeCount;		// æ¯å¤©ä½¿ç”¨é‡‘å¸è½¬æ¢æ¬¡æ•°
+		UINT32 dwNextScanTimer;					// ä¸‹æ¬¡æ‰«ææ—¶é—´(ç”¨äºæ¯æ—¥é‡ç½®)			
 
 		/********* air sea **********/
 
@@ -442,7 +442,7 @@ namespace ROLE_DB_DEF_V_2
 		INT32  nStallContainerSize;
 		INT32  nEquipContainerSize;
 
-		INT32  nProductAirLevel;		// Á·ÆøµÈ¼¶
+		INT32  nProductAirLevel;		// ç»ƒæ°”ç­‰çº§
 
 		/********* blood sea **********/
 		INT32  nBloodSlot[4][10];	// MAX_BLOODSEA_PAGE MAX_BLOODSEA_SLOT_PER_PAGE

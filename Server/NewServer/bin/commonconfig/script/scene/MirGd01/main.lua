@@ -11,7 +11,7 @@ LoadPackage("role.pkg")
 LoadPackage("ai.pkg")
 
 
--- ¹«»áÎÂÈª
+-- å…¬ä¼šæ¸©æ³‰
 
 -- attack
 GUILD_WAR_FACTION_A = 1;
@@ -30,13 +30,13 @@ WAIT_TO_TELEPORT_TIME = 30000;		-- ms
 DEITY_NPC_NAMEID = "Insc01";
 DEITY_NPC_ID_LIST =
 {
-	[0] = 6898;    -- 0¼¶
-	[1] = 6899;    -- 1¼¶
+	[0] = 6898;    -- 0çº§
+	[1] = 6899;    -- 1çº§
 	[2] = 6900;
 	[3] = 6901;
 	[4] = 6902;
 	[5] = 6903;
-	[6] = 6903;    -- 6¼¶
+	[6] = 6903;    -- 6çº§
 };
 
 

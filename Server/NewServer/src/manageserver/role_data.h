@@ -50,7 +50,7 @@ struct MS_ROLE_DATA
     UINT8           bySex;
     UINT8           byClass;
     UINT8           byVIPLevel;
-    INT32           nLastLoginTime; // 无其他地方使用，暂时被guild征用 Allan Tao[9.6.2013] 
+    INT32           nLastLoginTime; // 鏃犲叾浠栧湴鏂逛娇鐢紝鏆傛椂琚玤uild寰佺敤 Allan Tao[9.6.2013] 
 
     UINT32          dwForbidChatTime;
     UINT32          dwLoginFrozenTime;
@@ -86,7 +86,7 @@ struct MS_ROLE_DATA
     UINT8 eAuctionQueryStatus;
 
     // guild
-    // todo_tq guild 考虑字段复用 Allan Tao[22.4.2013] 
+    // todo_tq guild 鑰冭檻瀛楁澶嶇敤 Allan Tao[22.4.2013] 
     UINT32      dwGuildID;
     UINT32      dwJoinGuildCD;
     UINT8       byApplicationCount;

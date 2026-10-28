@@ -5,7 +5,7 @@ typedef struct rsa_st RSA;
 
 BOOL Buffer2String(UINT8* pBuffer, INT32 nBufferSize, char* pText, INT32& nTextSize);
 
-// ·µ»Øfalse ±íÊ¾ ownerid ¸ú×°±¸µÄowner²»¶Ô»òÕßÇ©ÃûÑéÖ¤²»¶Ô
+// è¿”å›false è¡¨ç¤º ownerid è·Ÿè£…å¤‡çš„ownerä¸å¯¹æˆ–è€…ç­¾åéªŒè¯ä¸å¯¹
 BOOL String2Buffer(UCHAR* pBuffer, INT32& nBufferSize, char* pText);
 
 #endif // _CHAT_MGR_H_

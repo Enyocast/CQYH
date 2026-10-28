@@ -287,7 +287,7 @@ inline BOOL g_PointInCube(INT32 px, INT32 py, INT32 pz, INT32 ltx, INT32 lty, IN
     return FALSE;
 }
 
-// ËÄÉáÁùÈëÎå³ÉË«
+// å››èˆå…­å…¥äº”æˆåŒ
 inline INT32 round_div(INT32 dividend, INT32 divisor)
 {
     INT32 quotient = dividend / divisor;

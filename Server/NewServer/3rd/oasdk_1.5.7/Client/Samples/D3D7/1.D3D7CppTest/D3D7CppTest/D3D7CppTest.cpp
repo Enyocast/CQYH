@@ -12,13 +12,13 @@
 HINSTANCE hInst;								// current instance
 TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
 TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
-// µ±Ç°´°¿ÚµÄ´óĞ¡
+// å½“å‰çª—å£çš„å¤§å°
 int						g_WinWidth = 640;
 int						g_WinHeight = 480;
 HWND					g_MainWin_hWnd = 0;
-BOOL					g_bIsWindow = TRUE;		// ÊÇ·ñÎª´°¿ÚÄ£Ê½
-BOOL					g_bVSync = TRUE;		// ÊÇ·ñË¢ĞÂÍ¬²½
-BOOL					g_DeviceLost = FALSE;	// ÊÇ·ñÊÇÉè±¸¶ªÊ§×´Ì¬
+BOOL					g_bIsWindow = TRUE;		// æ˜¯å¦ä¸ºçª—å£æ¨¡å¼
+BOOL					g_bVSync = TRUE;		// æ˜¯å¦åˆ·æ–°åŒæ­¥
+BOOL					g_DeviceLost = FALSE;	// æ˜¯å¦æ˜¯è®¾å¤‡ä¸¢å¤±çŠ¶æ€
 BOOL					g_bIsSizeMove = FALSE;
 IDirect3D7*				g_pDirect3D		= NULL;
 IDirect3DDevice7*		g_pDevice7		= NULL;
@@ -38,8 +38,8 @@ void				FreeDevice();
 void				FlipWindowed();
 void				Flip();
 BOOL				MayRender();
-void				OnDeviceLost(); // Í¨ÖªÉè±¸¶ªÊ§
-void				OnDeviceReset();// Í¨ÖªÉè±¸ÖØÖÃ
+void				OnDeviceLost(); // é€šçŸ¥è®¾å¤‡ä¸¢å¤±
+void				OnDeviceReset();// é€šçŸ¥è®¾å¤‡é‡ç½®
 void				Render();
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
@@ -66,8 +66,8 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	
 	if (!InitDevice())
 	{
-		MessageBox(g_MainWin_hWnd, "´´½¨D3D7Éè±¸´íÎó", "ÌáÊ¾", MB_OK);
-		PostQuitMessage(0);// ³ö´íÌáÊ¾ÍêºóÍË³ö
+		MessageBox(g_MainWin_hWnd, "åˆ›å»ºD3D7è®¾å¤‡é”™è¯¯", "æç¤º", MB_OK);
+		PostQuitMessage(0);// å‡ºé”™æç¤ºå®Œåé€€å‡º
 	}
 
 	// Enter the message loop
@@ -80,14 +80,14 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 			DispatchMessage( &msg );
 		}
 		else
-		{ // Ã»ÓĞÏûÏ¢Ê±»æÖÆ
+		{ // æ²¡æœ‰æ¶ˆæ¯æ—¶ç»˜åˆ¶
 			if (g_DeviceLost == TRUE)
-			{	// ´¦ÓÚÉè±¸¶ªÊ§ÖĞ¿ÉÂıµã»Ö¸´£¬±ÜÃâ³¤Ê±¼ä¶ªÊ§Õ¼ÓÃ¹ı¶àCPU
+			{	// å¤„äºè®¾å¤‡ä¸¢å¤±ä¸­å¯æ…¢ç‚¹æ¢å¤ï¼Œé¿å…é•¿æ—¶é—´ä¸¢å¤±å ç”¨è¿‡å¤šCPU
 				Sleep(100);
 			}
 			if(g_pDevice7)
-			{// ËµÃ÷Éè±¸´´½¨³É¹¦
-				Render();// äÖÈ¾Ïà¹Ø
+			{// è¯´æ˜è®¾å¤‡åˆ›å»ºæˆåŠŸ
+				Render();// æ¸²æŸ“ç›¸å…³
 			}// if(g_pDevice7)
 		}
 	}// while
@@ -154,7 +154,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    RECT rtCurRect;
    GetClientRect(g_MainWin_hWnd, &rtCurRect);
-   // ×¢ÒâCreateWindowµÄ´°¿Ú´óĞ¡°üÀ¨±êÌâÓë±ß¿òµÄ£¬ÏÂÃæ×¼È·µÄÉèÖÃ¿Í»§ÇøµÄ´óĞ¡
+   // æ³¨æ„CreateWindowçš„çª—å£å¤§å°åŒ…æ‹¬æ ‡é¢˜ä¸è¾¹æ¡†çš„ï¼Œä¸‹é¢å‡†ç¡®çš„è®¾ç½®å®¢æˆ·åŒºçš„å¤§å°
    SetWindowPos(g_MainWin_hWnd, HWND_TOP, 0, 0, 
 	   g_WinWidth - (rtCurRect.right - rtCurRect.left) + g_WinWidth, 
 	   g_WinHeight - (rtCurRect.bottom - rtCurRect.top) + g_WinHeight, SWP_NOZORDER + SWP_NOACTIVATE);
@@ -198,15 +198,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			DWORD dwMask = (1 << 29);
 			bool bAltDown = ( (lParam & dwMask) != 0 );
 			if (bAltDown && (VK_RETURN == wParam))
-			{	// ÔÚÈ«ÆÁÓë´°¿ÚÄ£Ê½¼äÇĞ»»£¬È«²¿ÖØ½¨
+			{	// åœ¨å…¨å±ä¸çª—å£æ¨¡å¼é—´åˆ‡æ¢ï¼Œå…¨éƒ¨é‡å»º
 				g_bIsWindow = !g_bIsWindow;
 				OutputDebugString("MsgProc WM_SYSKEYDOWN ALT+ENTER begin\n");
 
 				FreeDevice();
 				if (!InitDevice())
 				{
-					MessageBox(g_MainWin_hWnd, "´´½¨D3D7Éè±¸´íÎó", "ÌáÊ¾", MB_OK);
-					PostQuitMessage(0);// ³ö´íÌáÊ¾ÍêºóÍË³ö
+					MessageBox(g_MainWin_hWnd, "åˆ›å»ºD3D7è®¾å¤‡é”™è¯¯", "æç¤º", MB_OK);
+					PostQuitMessage(0);// å‡ºé”™æç¤ºå®Œåé€€å‡º
 				}
 
 				OutputDebugString("MsgProc WM_SYSKEYDOWN ALT+ENTER end\n");
@@ -218,7 +218,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		//// TODO: Add any drawing code here...
 		//EndPaint(hWnd, &ps);
 		if (g_bIsSizeMove && g_bIsWindow)
-		{// ÔÚÒÆ¶¯ÖĞ
+		{// åœ¨ç§»åŠ¨ä¸­
 			Render();
 		}
 		break;
@@ -277,7 +277,7 @@ BOOL CreateBackBuffer()
 		DDSCAPS2 BackCaps;
 		ZeroMemory( &BackCaps, sizeof(BackCaps) );
 		BackCaps.dwCaps = DDSCAPS_BACKBUFFER;
-		// ×¢ÒâgetµÄÒªÊ¹g_pBackBufferÔÚg_pFrontBufferÖ®Ç°Release
+		// æ³¨æ„getçš„è¦ä½¿g_pBackBufferåœ¨g_pFrontBufferä¹‹å‰Release
 		bResult = SUCCEEDED(g_pFrontBuffer->GetAttachedSurface(&BackCaps, &g_pBackBuffer));		
 	}
 	return bResult;
@@ -297,7 +297,7 @@ BOOL CreateClipper()
 }
 
 BOOL InitDevice()
-{ // ´´½¨d3d7Éè±¸
+{ // åˆ›å»ºd3d7è®¾å¤‡
 	BOOL bResult = FALSE;	
 	bResult = SUCCEEDED(DirectDrawCreateEx( NULL, (void**)&g_pDirectDraw7, IID_IDirectDraw7, NULL ));
 	if (!bResult)
@@ -329,12 +329,12 @@ BOOL InitDevice()
 		return bResult;
 	}
 	if (g_bIsWindow)	
-	{	// ´°¿ÚÄ£Ê½
+	{	// çª—å£æ¨¡å¼
 		SetWindowLong(g_MainWin_hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW);
 		SetWindowPos(g_MainWin_hWnd, HWND_NOTOPMOST, 0, 0, 0, 0,SWP_NOSIZE | SWP_SHOWWINDOW | SWP_DRAWFRAME | SWP_FRAMECHANGED);
 	}
 	else
-	{	// È«ÆÁÄ£Ê½
+	{	// å…¨å±æ¨¡å¼
 		SetWindowLong(g_MainWin_hWnd, GWL_STYLE, WS_POPUP | WS_VISIBLE);
 		SetWindowPos(g_MainWin_hWnd, HWND_NOTOPMOST, 0, 0, 0, 0,SWP_NOSIZE | SWP_SHOWWINDOW | SWP_DRAWFRAME | SWP_FRAMECHANGED);
 	}
@@ -470,7 +470,7 @@ BOOL MayRender()
 		}
 		if ((g_DeviceLost && (! bIsLost)) || (bIsLost && bNeedReset))
 		{
-			OnDeviceReset();// Í¨ÖªÉèÖÃÖØÖÃ,ÓÉÓÚ¿ÉÄÜÖØÖÃÊ§°Ü£¬ËùÒÔÏÂ´ÎÔÙ¼ì²é³É¹¦Ê±²ÅÔÊĞí
+			OnDeviceReset();// é€šçŸ¥è®¾ç½®é‡ç½®,ç”±äºå¯èƒ½é‡ç½®å¤±è´¥ï¼Œæ‰€ä»¥ä¸‹æ¬¡å†æ£€æŸ¥æˆåŠŸæ—¶æ‰å…è®¸
 			g_DeviceLost = FALSE;
 			return bResult;
 		}
@@ -482,7 +482,7 @@ BOOL MayRender()
 void Render()
 {
 	if (MayRender())
-	{// ÔÊĞíäÖÈ¾Ôò»æÖÆ
+	{// å…è®¸æ¸²æŸ“åˆ™ç»˜åˆ¶
 		if (SUCCEEDED(g_pDevice7->Clear(0, NULL, D3DCLEAR_TARGET, 0, 0.0f, 0)))
 		{
 			if (SUCCEEDED(g_pDevice7->BeginScene()))

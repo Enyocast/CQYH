@@ -40,7 +40,7 @@ TL_CONFIG["GMList"] ={
 		},
 		[1] = {
 			nSvrID = 1,
-			szName = "²âÊÔÒ»",
+			szName = "æµ‹è¯•ä¸€",
 			szAddr = "127.0.0.1",
 			dwPort = 9011,
 		},

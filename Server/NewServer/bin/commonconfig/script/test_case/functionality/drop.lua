@@ -1,5 +1,5 @@
 
---function TestCase.Drop()   Ã»ÓĞ²âÊÔµôÂäµÄgmÖ¸ÁîÁË
+--function TestCase.Drop()   æ²¡æœ‰æµ‹è¯•æ‰è½çš„gmæŒ‡ä»¤äº†
 function Drop()
     local user_name = "Drop" .. os.date("%H%M%S");
     local user;
@@ -8,17 +8,17 @@ function Drop()
     local msg;
     local session_id;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name, GROUP_ID, clsWarrior, cstMale, SERVER_PORT, 102);
     check(user, "failed to create user");
     check(role, "failed to create role");
 
     session_id = user:GetSessionID();
-    --ÓÃGMÖ¸Áî²úÉúµôÂä
+    --ç”¨GMæŒ‡ä»¤äº§ç”Ÿæ‰è½
     ret = user:GMCommand("TestDrop(1)");
     check(ret, "failed to send gm command");
 
-    --¼ì²éµôÂä»Ø°ü
+    --æ£€æŸ¥æ‰è½å›åŒ…
     msg = recv_msg(5, session_id, protocol.g2c_sync_drop_list);
     check(msg, "failed to  recv g2c_sync_drop_list");
     check(msg.byIsNew==1, "failed to recv new drop");
@@ -27,25 +27,25 @@ function Drop()
 
     local dropid = msg.astDrops[0].dwDropID;
 
-    --Ê°È¡µôÂä
+    --æ‹¾å–æ‰è½
     ret = user:PickUpItem(dropid);
     check(ret, "failed to send pick up item");
 
-    --Ó¦µ±ÊÕµ½ÎïÆ·±ä»¯µÄ»Ø°ü
+    --åº”å½“æ”¶åˆ°ç‰©å“å˜åŒ–çš„å›åŒ…
     msg = recv_msg(5, session_id, protocol.g2c_item_change);
     check(msg, "failed to recv g2c_item_change");
     check(msg.stItem.nTemplateID==13, "failed to create correct item");
 
-    --Ó¦µ±ÊÕµ½µôÂäÏûÊ§µÄ»Ø°ü
+    --åº”å½“æ”¶åˆ°æ‰è½æ¶ˆå¤±çš„å›åŒ…
     msg = recv_msg(5, session_id, protocol.g2c_object_disappear);
     check(msg, "failed to recv g2c_object_disappear");
     check(msg.dwObjID==dropid, "failed to receive correct drop disappear msg");
 
-    --ÔÙÓÃGMÖ¸Áî²úÉúÒ»´ÎµôÂä
+    --å†ç”¨GMæŒ‡ä»¤äº§ç”Ÿä¸€æ¬¡æ‰è½
     ret = user:GMCommand("TestDrop(1)");
     check(ret, "failed to send gm command");
 
-    --¼ì²éµôÂä»Ø°ü
+    --æ£€æŸ¥æ‰è½å›åŒ…
     msg = recv_msg(5, session_id, protocol.g2c_sync_drop_list);
     check(msg, "failed to  recv g2c_sync_drop_list");
     check(msg.byIsNew==1, "failed to recv new drop");
@@ -54,16 +54,16 @@ function Drop()
     
     dropid = msg.astDrops[0].dwDropID;
 
-    --µÈ5·ÖÖÓµôÂäÏûÊ§
+    --ç­‰5åˆ†é’Ÿæ‰è½æ¶ˆå¤±
     msg = recv_msg(310, session_id, protocol.g2c_object_disappear);
     check(msg, "failed to recv g2c_object_disappear");
     check(msg.dwObjID==dropid, "failed to receive correct drop disappear msg");
 
-    --²âÊÔÍê³É£¬µÇ³ö
+    --æµ‹è¯•å®Œæˆï¼Œç™»å‡º
     cleanup(user);
 end
 
---function TestCase.OperateDoodad()   ÄÇ¸ödoodad¿ÉÄÜÒ²Ã»ÓĞÁË
+--function TestCase.OperateDoodad()   é‚£ä¸ªdoodadå¯èƒ½ä¹Ÿæ²¡æœ‰äº†
 function OperateDoodad()
     local user_name = "Doodad" .. os.date("%Y%H%M%S");
     local user;
@@ -72,25 +72,25 @@ function OperateDoodad()
     local msg;
     local session_id;
 
-    --µÇÂ¼
+    --ç™»å½•
     user, role = startup(user_name, user_name);
     check(user, "failed to create user");
     check(role, "failed to create role");
 
     session_id = user:GetSessionID();
 
-    --ÓÃGMÖ¸ÁîÕÙ»½Ò»¸öDoodad
+    --ç”¨GMæŒ‡ä»¤å¬å”¤ä¸€ä¸ªDoodad
     ret = user:GMCommand("SummonDoodad(1)");
     check(ret, "failed to send gm command");
 
-    --¼ì²éÕÙ»½³öµÄDoodad
+    --æ£€æŸ¥å¬å”¤å‡ºçš„Doodad
     msg = recv_msg(30, session_id, protocol.g2c_sync_doodad_list);
     check(msg, "failed to recv sync doodad list msg");
     check(msg.astAppearData[0].nTemplateID==1, "failed to recv correct doodad list");
 
     local doodad_id = msg.astAppearData[0].dwDoodadID;
 
-    --µãDoodad
+    --ç‚¹Doodad
     ret = user:OperateDoodad(doodad_id);
     check(ret, "failed to operate doodad");
 
@@ -122,6 +122,6 @@ function OperateDoodad()
 	check(msg, "failed to recv g2c_object_disappear");
 	check(msg.dwObjID == doodad_id, "error doodad id");
 
-    --²âÊÔÍê³É£¬µÇ³ö
+    --æµ‹è¯•å®Œæˆï¼Œç™»å‡º
     cleanup(user);
 end

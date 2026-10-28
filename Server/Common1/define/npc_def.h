@@ -13,8 +13,8 @@
 #define MAX_LEVEL_DIFF          (15)
 
 #define MAX_PET_LEVEL           (7)
-#define CASTER_WASHOUT_TIME    (30)        // √Î
-#define TARGET_WASHOUT_TIME    (6)         // √Î
+#define CASTER_WASHOUT_TIME    (30)        // Áßí
+#define TARGET_WASHOUT_TIME    (6)         // Áßí
 
 
 enum NPC_STATE

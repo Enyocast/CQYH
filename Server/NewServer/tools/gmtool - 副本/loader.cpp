@@ -33,7 +33,7 @@ loader::loader(QWidget *parent, Qt::WindowFlags flags)
     char        szNum[32] = { 0 };
     char        szSubVersion[32] = { 0 };
 
-    setWindowTitle(QString::fromLocal8Bit("GM¹¤¾ß: ") + QString::fromLocal8Bit("    °æ±¾ºÅ: ") + QString::fromLocal8Bit(gm_itoa(GM_MAJOR_VERSION, szNum))
+    setWindowTitle(QString::fromLocal8Bit("GMå·¥å…·: ") + QString::fromLocal8Bit("    ç‰ˆæœ¬å·: ") + QString::fromLocal8Bit(gm_itoa(GM_MAJOR_VERSION, szNum))
         + QString::fromLocal8Bit("---") + QString::fromLocal8Bit(gm_itoa(GM_MINOR_VERSION, szSubVersion)));
 
     //m_nTimeID = startTimer(125);
@@ -82,7 +82,7 @@ Exit1:
     ui.label_3->show();
     return ;
 Exit0:
-    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("Ã»ÓĞ·şÎñÆ÷Æô¶¯ÖĞ£¬²»ÄÜÍê³ÉµÇÂ¼"), QMessageBox::Yes);
+    QMessageBox::critical(this, "critical", QString::fromLocal8Bit("æ²¡æœ‰æœåŠ¡å™¨å¯åŠ¨ä¸­ï¼Œä¸èƒ½å®Œæˆç™»å½•"), QMessageBox::Yes);
     return ;
 }
 

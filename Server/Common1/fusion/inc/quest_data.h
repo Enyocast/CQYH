@@ -7,61 +7,61 @@
 #include "quest_reward_data.h"
 struct QUEST_DATA
 {
-    // »ù±¾ÊôÐÔ
-    INT32       nQuestID;                                           // ÈÎÎñID
-    INT32       eResetType;                                         // ÖØÖÃÈÎÎñÀàÐÍ
-	INT32		nQuestType;											// ÈÎÎñÀàÐÍ
-	INT32		nCircleID;											// »·ID
-	INT32		nQuality;											// Æ·ÖÊ
-    UINT32      dwResetTime;                                        // ÖØÖÃÈÎÎñÆ«ÒÆÊ±¼ä
-    BOOL        bCanAbandon;                                        // ÊÇ·ñ¿ÉÒÔ·ÅÆúÈÎÎñ
-	BOOL		bCanShare;											// ÊÇ·ñ¿É±»¹²Ïí
-	BOOL		bCanPublish;										// ÊÇ·ñ¿É·¢²¼
+    // åŸºæœ¬å±žæ€§
+    INT32       nQuestID;                                           // ä»»åŠ¡ID
+    INT32       eResetType;                                         // é‡ç½®ä»»åŠ¡ç±»åž‹
+	INT32		nQuestType;											// ä»»åŠ¡ç±»åž‹
+	INT32		nCircleID;											// çŽ¯ID
+	INT32		nQuality;											// å“è´¨
+    UINT32      dwResetTime;                                        // é‡ç½®ä»»åŠ¡åç§»æ—¶é—´
+    BOOL        bCanAbandon;                                        // æ˜¯å¦å¯ä»¥æ”¾å¼ƒä»»åŠ¡
+	BOOL		bCanShare;											// æ˜¯å¦å¯è¢«å…±äº«
+	BOOL		bCanPublish;										// æ˜¯å¦å¯å‘å¸ƒ
 
-	INT32		nEmergencyCoolDown;									// CDÊ±¼ä
+	INT32		nEmergencyCoolDown;									// CDæ—¶é—´
 
-	UINT32		nDurationLimit;										// ÊÇ·ñÏÞÊ±
-	char		szName[COMMON_NAME_LEN];							// ÈÎÎñÃû³Æ
+	UINT32		nDurationLimit;										// æ˜¯å¦é™æ—¶
+	char		szName[COMMON_NAME_LEN];							// ä»»åŠ¡åç§°
 
-	INT32		nSceneID[MAX_FLY_SPOT_PER_QUEST];					// ·ÉÐÐµØÍ¼ID
-	INT32		nX[MAX_FLY_SPOT_PER_QUEST];							// ·ÉÐÐµãx
-	INT32		nY[MAX_FLY_SPOT_PER_QUEST];							// ·ÉÐÐµãy
-	INT32		nZ[MAX_FLY_SPOT_PER_QUEST];							// ·ÉÐÐµãz
+	INT32		nSceneID[MAX_FLY_SPOT_PER_QUEST];					// é£žè¡Œåœ°å›¾ID
+	INT32		nX[MAX_FLY_SPOT_PER_QUEST];							// é£žè¡Œç‚¹x
+	INT32		nY[MAX_FLY_SPOT_PER_QUEST];							// é£žè¡Œç‚¹y
+	INT32		nZ[MAX_FLY_SPOT_PER_QUEST];							// é£žè¡Œç‚¹z
 
-    // ½Ó½»ÈÎÎñ¼ì²âÌõ¼þ
-    INT32       nMaxCompletedCount;                                 // ÈÎÎñ×î¶à¿ÉÒÔ±»Íê³ÉµÄ´ÎÊý£¨ÔÚÈÎÎñÖØÖÃÖ®ºó£©,0±íÊ¾¿ÉÎÞÏÞÖÆÍê³É
-    INT32       nClassLimit;                                        // ÈÎÎñÖ°ÒµÐèÇó
-    INT32       nSexLimit;                                          // ÐÔ±ðÐèÇó
-    INT32       nRelationLimit;                                     // ¹ØÏµÐèÇó
+    // æŽ¥äº¤ä»»åŠ¡æ£€æµ‹æ¡ä»¶
+    INT32       nMaxCompletedCount;                                 // ä»»åŠ¡æœ€å¤šå¯ä»¥è¢«å®Œæˆçš„æ¬¡æ•°ï¼ˆåœ¨ä»»åŠ¡é‡ç½®ä¹‹åŽï¼‰,0è¡¨ç¤ºå¯æ— é™åˆ¶å®Œæˆ
+    INT32       nClassLimit;                                        // ä»»åŠ¡èŒä¸šéœ€æ±‚
+    INT32       nSexLimit;                                          // æ€§åˆ«éœ€æ±‚
+    INT32       nRelationLimit;                                     // å…³ç³»éœ€æ±‚
 
-    // ½ÓÈÎÎñ¼ì²âÌõ¼þ
-    INT32       nPreQuestID1;                                       // Ç°ÖÃÈÎÎñID
-    INT32       nPreQuestID2;                                       // Ç°ÖÃÈÎÎñID
-    INT32       nStartNpcID;                                        // ¿ªÊ¼ÈÎÎñµÄNPC ID
-    INT32       nStartItemID;                                       // ¿ªÊ¼ÈÎÎñµÄItem ID
-    BOOL        bStartZone;                                         // ÊÇ·ñ´ÓÇøÓò´¥·¢
+    // æŽ¥ä»»åŠ¡æ£€æµ‹æ¡ä»¶
+    INT32       nPreQuestID1;                                       // å‰ç½®ä»»åŠ¡ID
+    INT32       nPreQuestID2;                                       // å‰ç½®ä»»åŠ¡ID
+    INT32       nStartNpcID;                                        // å¼€å§‹ä»»åŠ¡çš„NPC ID
+    INT32       nStartItemID;                                       // å¼€å§‹ä»»åŠ¡çš„Item ID
+    BOOL        bStartZone;                                         // æ˜¯å¦ä»ŽåŒºåŸŸè§¦å‘
 
-    INT32       nMinLevelLimit;                                     // ÈÎÎñ×îµÍµÈ¼¶ÐèÇó
-    INT32       nMaxLevelLimit;                                     // ÈÎÎñ×î¸ßµÈ¼¶ÐèÇó
-    INT32       nBuffIDLimit;                                       // ÐèÇóBUFF ID
-    INT32       nBuffLevelLimit;                                    // ÐèÇóBUFF ID
-    INT32       nMoneyTypeLimit;                                    // ÐèÇó»õ±ÒÀàÐÍ
-    INT32       nMoneyAmountLimit;                                  // ÐèÇó»õ±ÒÊýÁ¿£¨²»¿Û³ý£©
-    INT32       nReputationForceID;                                 // ÐèÇóNpcÊÆÁ¦ÉùÍû
-    INT32       nReputationMinLimit;                                // ÐèÇó×îµÍÉùÍû
-    INT32       nReputationMaxLimit;                                // ÐèÇó×î¸ßÉùÍû
+    INT32       nMinLevelLimit;                                     // ä»»åŠ¡æœ€ä½Žç­‰çº§éœ€æ±‚
+    INT32       nMaxLevelLimit;                                     // ä»»åŠ¡æœ€é«˜ç­‰çº§éœ€æ±‚
+    INT32       nBuffIDLimit;                                       // éœ€æ±‚BUFF ID
+    INT32       nBuffLevelLimit;                                    // éœ€æ±‚BUFF ID
+    INT32       nMoneyTypeLimit;                                    // éœ€æ±‚è´§å¸ç±»åž‹
+    INT32       nMoneyAmountLimit;                                  // éœ€æ±‚è´§å¸æ•°é‡ï¼ˆä¸æ‰£é™¤ï¼‰
+    INT32       nReputationForceID;                                 // éœ€æ±‚NpcåŠ¿åŠ›å£°æœ›
+    INT32       nReputationMinLimit;                                // éœ€æ±‚æœ€ä½Žå£°æœ›
+    INT32       nReputationMaxLimit;                                // éœ€æ±‚æœ€é«˜å£°æœ›
 
     INT32       nYearLimit;
     INT32       nMonthLimit;
 
-    INT32       nStartWeekday;                                      // ÐÇÆÚÖØ¸´ÈÎÎñÔÊÐí½ÓÊÜµÄ¿ªÊ¼Ê±¼ä
-    INT32       nWeekdayDuration;                                   // ÐÇÆÚÖØ¸´ÈÎÎñµÄ³ÖÐøÊ±¼ä
+    INT32       nStartWeekday;                                      // æ˜ŸæœŸé‡å¤ä»»åŠ¡å…è®¸æŽ¥å—çš„å¼€å§‹æ—¶é—´
+    INT32       nWeekdayDuration;                                   // æ˜ŸæœŸé‡å¤ä»»åŠ¡çš„æŒç»­æ—¶é—´
 
-    INT32       nStartMonthday;                                      // ÔÂ·ÝÖØ¸´ÈÎÎñÔÊÐí½ÓÊÜµÄ¿ªÊ¼Ê±¼ä
-    INT32       nMonthdayDuration;                                   // ÔÂ·ÝÖØ¸´ÈÎÎñµÄ³ÖÐøÊ±¼ä£¨²»¿ÉÒÔ¿çÔÂ£©
+    INT32       nStartMonthday;                                      // æœˆä»½é‡å¤ä»»åŠ¡å…è®¸æŽ¥å—çš„å¼€å§‹æ—¶é—´
+    INT32       nMonthdayDuration;                                   // æœˆä»½é‡å¤ä»»åŠ¡çš„æŒç»­æ—¶é—´ï¼ˆä¸å¯ä»¥è·¨æœˆï¼‰
 
-    UINT32      dwAcceptStartTime;                                  // ÔÊÐí½ÓÊÜÊ±¼ä·¶Î§¿ªÊ¼
-    UINT32      dwAcceptEndTime;                                    // ÔÊÐí½ÓÊÜÊ±¼ä·¶Î§½áÊø
+    UINT32      dwAcceptStartTime;                                  // å…è®¸æŽ¥å—æ—¶é—´èŒƒå›´å¼€å§‹
+    UINT32      dwAcceptEndTime;                                    // å…è®¸æŽ¥å—æ—¶é—´èŒƒå›´ç»“æŸ
     INT32       nAcceptStartHour;
     INT32       nAcceptStartMin;
     INT32       nAcceptEndHour;
@@ -69,71 +69,71 @@ struct QUEST_DATA
     INT32       nAcceptStartDayTime;
     INT32       nAcceptEndDayTime;
 
-    INT32       vecItemLimitID[4];                                  // ÉíÉÏµÀ¾ßÐèÇó
+    INT32       vecItemLimitID[4];                                  // èº«ä¸Šé“å…·éœ€æ±‚
     INT32       vecItemLimitCnt[4];
 
-    INT32       nLimitVarID1;                                       // ÐèÇó±äÁ¿ID1
-    INT32       nLimitVarValue1;                                    // ÐèÇó±äÁ¿Öµ1£¨ÅÐ¶ÏÏàµÈ£©
-    INT32       nLimitVarID2;                                       // ÐèÇó±äÁ¿ID2
-    INT32       nLimitVarValue2;                                    // ÐèÇó±äÁ¿Öµ2£¨ÅÐ¶ÏÏàµÈ£©
-    CHAR        szBeforeAcceptScriptName[COMMON_NAME_LEN];          // ½ÓÈÎÎñÇ°¼ì²â½Å±¾Ãû³Æ
+    INT32       nLimitVarID1;                                       // éœ€æ±‚å˜é‡ID1
+    INT32       nLimitVarValue1;                                    // éœ€æ±‚å˜é‡å€¼1ï¼ˆåˆ¤æ–­ç›¸ç­‰ï¼‰
+    INT32       nLimitVarID2;                                       // éœ€æ±‚å˜é‡ID2
+    INT32       nLimitVarValue2;                                    // éœ€æ±‚å˜é‡å€¼2ï¼ˆåˆ¤æ–­ç›¸ç­‰ï¼‰
+    CHAR        szBeforeAcceptScriptName[COMMON_NAME_LEN];          // æŽ¥ä»»åŠ¡å‰æ£€æµ‹è„šæœ¬åç§°
 
-    // ½ÓÈÎÎñÖ´ÐÐ¶¯×÷
-    INT32       nOfferMoneyType;                                    // ½ÓÈÎÎñ»ñµÃ»õ±ÒÀàÐÍ
-    INT32       nOfferMoneyAmount;                                  // ½ÓÈÎÎñ»ñµÃ»õ±ÒÊýÁ¿(¸ºÖµÎª¿ÛÇ®)
-    INT32       nOfferBuffID;                                       // ½ÓÈÎÎñ»ñµÃ BUFF ID
-    INT32       nOfferBuffLevel;                                    // ½ÓÈÎÎñ»ñµÃ BUFF Level
+    // æŽ¥ä»»åŠ¡æ‰§è¡ŒåŠ¨ä½œ
+    INT32       nOfferMoneyType;                                    // æŽ¥ä»»åŠ¡èŽ·å¾—è´§å¸ç±»åž‹
+    INT32       nOfferMoneyAmount;                                  // æŽ¥ä»»åŠ¡èŽ·å¾—è´§å¸æ•°é‡(è´Ÿå€¼ä¸ºæ‰£é’±)
+    INT32       nOfferBuffID;                                       // æŽ¥ä»»åŠ¡èŽ·å¾— BUFF ID
+    INT32       nOfferBuffLevel;                                    // æŽ¥ä»»åŠ¡èŽ·å¾— BUFF Level
 
-    INT32       nOfferItemID;                                       // ½ÓÈÎÎñ»ñµÃ(¿Û³ý)µÀ¾ß
-    INT32       nOfferItemCnt;                                      // ¸ºÖµÎª¿Û³ýÁ¿
-    CHAR        szAfterAcceptScriptName[COMMON_NAME_LEN];           // ½ÓÈÎÎñºóÍê³É½Å±¾Ãû³Æ
+    INT32       nOfferItemID;                                       // æŽ¥ä»»åŠ¡èŽ·å¾—(æ‰£é™¤)é“å…·
+    INT32       nOfferItemCnt;                                      // è´Ÿå€¼ä¸ºæ‰£é™¤é‡
+    CHAR        szAfterAcceptScriptName[COMMON_NAME_LEN];           // æŽ¥ä»»åŠ¡åŽå®Œæˆè„šæœ¬åç§°
 
-    // ½»ÈÎÎñ¼ì²âÌõ¼þ
-    INT32       nFinishNpc;                                         // ÈÎÎñ½áÊøµÄNPC ID
-	INT32		nFinishItemID;										// ½áÊøÈÎÎñµÄItem ID
-    INT32       nCheckBuffID;                                       // ÈÎÎñÍê³ÉµÄBUF¼ì²é
+    // äº¤ä»»åŠ¡æ£€æµ‹æ¡ä»¶
+    INT32       nFinishNpc;                                         // ä»»åŠ¡ç»“æŸçš„NPC ID
+	INT32		nFinishItemID;										// ç»“æŸä»»åŠ¡çš„Item ID
+    INT32       nCheckBuffID;                                       // ä»»åŠ¡å®Œæˆçš„BUFæ£€æŸ¥
     INT32       nCheckBuffLevel;
-	INT32		nCheckLevel;										// ÈÎÎñÍê³ÉµÇ¼Ç¼ì²é
+	INT32		nCheckLevel;										// ä»»åŠ¡å®Œæˆç™»è®°æ£€æŸ¥
 
-	INT32		nCheckKillPlayerLevlStart[CHECK_KILL_PLAYER_CONDITION];	// ¼ì²éÉ±ËÀÍæ¼Ò×îµÍµÈ¼«
-	INT32		nCheckKillPlayerLevlEnd[CHECK_KILL_PLAYER_CONDITION];	// ¼ì²éÉ±ËÀÍæ¼Ò×î¸ßµÈ¼«
-	INT32		nCheckKillPlayerCount[CHECK_KILL_PLAYER_CONDITION];		// ¼ì²éÉ±ËÀÍæ¼Ò¸öÊý	
-	INT32		nCheckKillBufPlayerBufID[CHECK_KILL_PLAYER_CONDITION];	// É±ËÀÖ¸¶¨bufIDµÄÍæ¼Ò
-	INT32		nCheckKillBufPlayerCount[CHECK_KILL_PLAYER_CONDITION];	// É±ËÀÖ¸¶¨bufIDµÄÍæ¼ÒÊýÁ¿
+	INT32		nCheckKillPlayerLevlStart[CHECK_KILL_PLAYER_CONDITION];	// æ£€æŸ¥æ€æ­»çŽ©å®¶æœ€ä½Žç­‰æž
+	INT32		nCheckKillPlayerLevlEnd[CHECK_KILL_PLAYER_CONDITION];	// æ£€æŸ¥æ€æ­»çŽ©å®¶æœ€é«˜ç­‰æž
+	INT32		nCheckKillPlayerCount[CHECK_KILL_PLAYER_CONDITION];		// æ£€æŸ¥æ€æ­»çŽ©å®¶ä¸ªæ•°	
+	INT32		nCheckKillBufPlayerBufID[CHECK_KILL_PLAYER_CONDITION];	// æ€æ­»æŒ‡å®šbufIDçš„çŽ©å®¶
+	INT32		nCheckKillBufPlayerCount[CHECK_KILL_PLAYER_CONDITION];	// æ€æ­»æŒ‡å®šbufIDçš„çŽ©å®¶æ•°é‡
 
-    INT32       nCheckKillNpcID[MAX_CONDITION_PER_QUEST];			// É±¹ÖÊý¼ì²é
-    INT32       nCheckKillNpcGroupID[MAX_CONDITION_PER_QUEST];			// É±¹Ö×é¼ì²é
+    INT32       nCheckKillNpcID[MAX_CONDITION_PER_QUEST];			// æ€æ€ªæ•°æ£€æŸ¥
+    INT32       nCheckKillNpcGroupID[MAX_CONDITION_PER_QUEST];			// æ€æ€ªç»„æ£€æŸ¥
     INT32       nCheckKillNpcCnt[MAX_CONDITION_PER_QUEST];
 
-	INT32		nCheckKillItemNpcID[MAX_CONDITION_PER_QUEST];		// ÈÎÎñÎïÆ·µôÂänpcid
-	INT32		nCheckKillItemNpcRate[MAX_CONDITION_PER_QUEST];		// ÈÎÎñÎïÆ·µôÂä¸ÅÂÊ
+	INT32		nCheckKillItemNpcID[MAX_CONDITION_PER_QUEST];		// ä»»åŠ¡ç‰©å“æŽ‰è½npcid
+	INT32		nCheckKillItemNpcRate[MAX_CONDITION_PER_QUEST];		// ä»»åŠ¡ç‰©å“æŽ‰è½æ¦‚çŽ‡
     INT32       nCheckKillItemCnt[MAX_CONDITION_PER_QUEST];
  
-	UINT32		nCheckKillDoodadID[MAX_CONDITION_PER_QUEST];		// ÐèÒª´Ý»ÙµÄDoodad ID
-	INT32		nCheckKillDoodadCnt[MAX_CONDITION_PER_QUEST];		// ÐèÒª´Ý»ÙµÄDoodad ID
+	UINT32		nCheckKillDoodadID[MAX_CONDITION_PER_QUEST];		// éœ€è¦æ‘§æ¯çš„Doodad ID
+	INT32		nCheckKillDoodadCnt[MAX_CONDITION_PER_QUEST];		// éœ€è¦æ‘§æ¯çš„Doodad ID
 
-	INT32		nCheckItemID[MAX_CONDITION_PER_QUEST];				// ¼ì²éÎïÆ·
+	INT32		nCheckItemID[MAX_CONDITION_PER_QUEST];				// æ£€æŸ¥ç‰©å“
     INT32       nCheckItemCount[MAX_CONDITION_PER_QUEST];
 
-	INT32       nCheckReputationForceID;							// ÐèÇóNpcÊÆÁ¦ÉùÍû
-	INT32       nCheckReputationForceValue;	                        // ÐèÇóÉùÍû
+	INT32       nCheckReputationForceID;							// éœ€æ±‚NpcåŠ¿åŠ›å£°æœ›
+	INT32       nCheckReputationForceValue;	                        // éœ€æ±‚å£°æœ›
 
-    INT32       nCheckVarID[MAX_CHECK_VAR_COUNT];                   // ÐèÇó±äÁ¿ID1
-    INT32       nCheckVarValue[MAX_CHECK_VAR_COUNT];                // ÐèÇó±äÁ¿Öµ1£¨ÅÐ¶ÏÏàµÈ£©
+    INT32       nCheckVarID[MAX_CHECK_VAR_COUNT];                   // éœ€æ±‚å˜é‡ID1
+    INT32       nCheckVarValue[MAX_CHECK_VAR_COUNT];                // éœ€æ±‚å˜é‡å€¼1ï¼ˆåˆ¤æ–­ç›¸ç­‰ï¼‰
 
-    CHAR        szBeforeCompleteScriptName[COMMON_NAME_LEN];        // Íê³ÉÈÎÎñÌõ¼þ½Å±¾Ãû³Æ
+    CHAR        szBeforeCompleteScriptName[COMMON_NAME_LEN];        // å®Œæˆä»»åŠ¡æ¡ä»¶è„šæœ¬åç§°
 
-    // ½»ÈÎÎñÖ´ÐÐ¶¯×÷
-	INT32		nTalkNpcID;											// ¶Ô»°µÄNPC ID
-	INT32		nTalkVarID;											// ¶Ô»°ËùÓÃVar ID
-	INT32		nExploreVarID;										// Ì½Ë÷ËùÓÃVar ID
-    CHAR        szAfterCompleteScriptName[COMMON_NAME_LEN];         // Íê³ÉÈÎÎñ½Å±¾Ãû³Æ
+    // äº¤ä»»åŠ¡æ‰§è¡ŒåŠ¨ä½œ
+	INT32		nTalkNpcID;											// å¯¹è¯çš„NPC ID
+	INT32		nTalkVarID;											// å¯¹è¯æ‰€ç”¨Var ID
+	INT32		nExploreVarID;										// æŽ¢ç´¢æ‰€ç”¨Var ID
+    CHAR        szAfterCompleteScriptName[COMMON_NAME_LEN];         // å®Œæˆä»»åŠ¡è„šæœ¬åç§°
 	
-	// ½»ÈÎÎñ½±Àø
-	QUEST_REWARD_DATA stRewardData;									// ½±ÀøÎïÆ·
+	// äº¤ä»»åŠ¡å¥–åŠ±
+	QUEST_REWARD_DATA stRewardData;									// å¥–åŠ±ç‰©å“
 
-	// ·ÅÆúÈÎÎñÖ´ÐÐ¶¯×÷
-    CHAR        szAbandonScriptName[COMMON_NAME_LEN];				// Íê³ÉÈÎÎñ½Å±¾Ãû³Æ
+	// æ”¾å¼ƒä»»åŠ¡æ‰§è¡ŒåŠ¨ä½œ
+    CHAR        szAbandonScriptName[COMMON_NAME_LEN];				// å®Œæˆä»»åŠ¡è„šæœ¬åç§°
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, QUEST_DATA* pData, CTabFile * pTabConfig, INT32 nRow);
 	static BOOL CheckValidQuestID(INT32 nQuestType, INT32 nQuestID);
@@ -142,7 +142,7 @@ struct QUEST_DATA
 
 struct REWARD_QUEST_MONEY_COST_DATA
 {
-	// ÐüÉÍÈÎÎñÍ»ÆÆÉÏÏÞ½ð±ÒÏûºÄ
+	// æ‚¬èµä»»åŠ¡çªç ´ä¸Šé™é‡‘å¸æ¶ˆè€—
 
 	INT32		nTime;
 	INT32		nMoneyCost;
@@ -152,7 +152,7 @@ struct REWARD_QUEST_MONEY_COST_DATA
 
 struct QUEST_RECYCLE_DATA
 {
-	// ×°±¸»ØÊÕÈÎÎñ£¬¶ÔÓ¦±äÁ¿Ö¸¶¨
+	// è£…å¤‡å›žæ”¶ä»»åŠ¡ï¼Œå¯¹åº”å˜é‡æŒ‡å®š
 
 	INT32		nItemLevel;
 	INT32		nItemColor;

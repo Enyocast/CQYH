@@ -2,7 +2,7 @@
 #define _QUEST_DEF_H_
 
 #define FLY_TO_QUEST_ZONE_COST				(2)
-#define FLY_TO_QUEST_ZONE_FIRST_COST		(199)				// ·ÉÐ¬ÐÂÊÖÒýµ¼Ç°¼¸´Î¿ÛÇ®
+#define FLY_TO_QUEST_ZONE_FIRST_COST		(199)				// é£žéž‹æ–°æ‰‹å¼•å¯¼å‰å‡ æ¬¡æ‰£é’±
 
 /******************************************************/
 
@@ -22,15 +22,15 @@
 
 /********************reward quest**********************************/
 
-#define GENERATE_REWARD_QUEST_LEVEL					(25)		// ÐüÉÍÈÎÎñ¿ªÆôµÈ¼¶
-#define MAX_REWARD_QUEST_DAILY_COMPLETE_COUNT		(3)			// ÐüÉÍÈÎÎñÃ¿ÌìÃâ·Ñ¿É×ö´ÎÊý
+#define GENERATE_REWARD_QUEST_LEVEL					(25)		// æ‚¬èµä»»åŠ¡å¼€å¯ç­‰çº§
+#define MAX_REWARD_QUEST_DAILY_COMPLETE_COUNT		(3)			// æ‚¬èµä»»åŠ¡æ¯å¤©å…è´¹å¯åšæ¬¡æ•°
 #define MAX_REWARD_QUEST_COUNT_PER_ROLE				(3)
-#define REWARD_QUEST_BUY_COMPLETE_ONETIME_COST		(1000)		// ÈÕ³£ÐüÉÍÔö¼ÓÒ»´ÎÍê³ÉÉÏÏÞ
-#define REWARD_QUEST_BUY_COMPLETE_ONSHOT_COST		(1000)		// ÈÕ³£ÈÎÎñÒ»¼üÍê³ÉÃ¿ÈÎÎñÏûºÄ
-#define REWARD_QUEST_BRUSH_COST						(1000)		// Ë¢ÐÂÈÎÎñË¢ÐÂÏûºÄ
-#define REWARD_QUEST_BRUSH_CD_INTERVAL				(7200)		// ÈÕ³£ÈÎÎñµÄË¢ÐÂcdÊ±¼ä2Ð¡Ê±
-#define MAX_REWARD_QUEST_COUNT_PER_GROUP			(64)		// Ã¿¸öµÈ¼¶¶Î×î¶àÎ¬»¤µÄÈÎÎñ¸öÊý
-#define MAX_REWARD_QUEST_DAILY_COMPLETE_TIME		(30)		// ÈÕ³£ÐüÉÍÃ¿Ìì×Ü¹²¿É×ö´ÎÊý
+#define REWARD_QUEST_BUY_COMPLETE_ONETIME_COST		(1000)		// æ—¥å¸¸æ‚¬èµå¢žåŠ ä¸€æ¬¡å®Œæˆä¸Šé™
+#define REWARD_QUEST_BUY_COMPLETE_ONSHOT_COST		(1000)		// æ—¥å¸¸ä»»åŠ¡ä¸€é”®å®Œæˆæ¯ä»»åŠ¡æ¶ˆè€—
+#define REWARD_QUEST_BRUSH_COST						(1000)		// åˆ·æ–°ä»»åŠ¡åˆ·æ–°æ¶ˆè€—
+#define REWARD_QUEST_BRUSH_CD_INTERVAL				(7200)		// æ—¥å¸¸ä»»åŠ¡çš„åˆ·æ–°cdæ—¶é—´2å°æ—¶
+#define MAX_REWARD_QUEST_COUNT_PER_GROUP			(64)		// æ¯ä¸ªç­‰çº§æ®µæœ€å¤šç»´æŠ¤çš„ä»»åŠ¡ä¸ªæ•°
+#define MAX_REWARD_QUEST_DAILY_COMPLETE_TIME		(30)		// æ—¥å¸¸æ‚¬èµæ¯å¤©æ€»å…±å¯åšæ¬¡æ•°
 
 #define MAX_REWARD_QUEST_COUNT						(1024)
 #define REWARD_QUEST_START_ID						(CIRCLE_QUEST_START_ID + MAX_CIRCLE_QUEST_COUNT)
@@ -71,10 +71,10 @@ enum QUEST_ACCEPT_TYPE
 	qatInvalid,
 
 	qatNpc,
-	qatShare,	// Í¨¹ý¹²ÏíÈÎÎñ·½Ê½½ÓÊÜ
-	qatPublish, // Ê¦Í½¹²ÏíÈÎÎñ
-	qatEmegency,// Í¨¹ý½ô¼±ÈÎÎñ·½Ê½½ÓÊÜ
-    qatItem,    // Í¨¹ýÓÒ¼üµã»÷ÎïÆ··½Ê½½ÓÊÜ
+	qatShare,	// é€šè¿‡å…±äº«ä»»åŠ¡æ–¹å¼æŽ¥å—
+	qatPublish, // å¸ˆå¾’å…±äº«ä»»åŠ¡
+	qatEmegency,// é€šè¿‡ç´§æ€¥ä»»åŠ¡æ–¹å¼æŽ¥å—
+    qatItem,    // é€šè¿‡å³é”®ç‚¹å‡»ç‰©å“æ–¹å¼æŽ¥å—
 
 	qatTotal
 };

@@ -1,5 +1,5 @@
 guild_welfare_define = {
-	owner='³Â¿­',
+	owner='é™ˆå‡¯',
 	ID = {
 		type = 'number',
 		default = 0,
@@ -15,13 +15,13 @@ guild_welfare_define = {
 		default = 0,
 		min = 1,
 	},
-	AuraID = {			-- ¹ºÂòµÄbuffer id
+	AuraID = {			-- è´­ä¹°çš„buffer id
 		type = 'link',
 		default = 0,
 		refertable = 'aura',
 		referfield = 'ID',
 	},
-	Kind = {  			-- ¸£ÀûbufferËùÊôµÄ×é
+	Kind = {  			-- ç¦åˆ©bufferæ‰€å±çš„ç»„
 		type = 'number',
 		default = 0,
 		min = 0,
@@ -31,64 +31,64 @@ guild_welfare_define = {
 		default = 0,
 		min = 0,
 	},
-	UpgradeTime = {		-- Éı¼¶ĞèÒªÊ±¼ä£¬ µ¥Î»£ºÃë
+	UpgradeTime = {		-- å‡çº§éœ€è¦æ—¶é—´ï¼Œ å•ä½ï¼šç§’
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	ConditionBuildingID = {	-- Éı¼¶Ç°ÖÃ¹«»á½¨ÖşID
+	ConditionBuildingID = {	-- å‡çº§å‰ç½®å…¬ä¼šå»ºç­‘ID
 		type = 'link',
 		default = 0,
 		refertable = 'guild_building',
 		referfield = 'ID',
 	},
-	ConditionBuildingLvl = {	-- Éı¼¶Ç°ÖÃ¹«»á½¨ÖşµÈ¼¶
+	ConditionBuildingLvl = {	-- å‡çº§å‰ç½®å…¬ä¼šå»ºç­‘ç­‰çº§
 		type = 'link',
 		default = 0,
 		refertable = 'guild_building',
 		referfield = 'Level',
 	},
-	PurchaseLevelRequirement = {  	-- ¶Ò»»bufferµÄ½ÇÉ«µÈ¼¶ĞèÇó
+	PurchaseLevelRequirement = {  	-- å…‘æ¢bufferçš„è§’è‰²ç­‰çº§éœ€æ±‚
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	PurchaseMoneyConsumption = {  -- ¶Ò»»bufferµÄ½ÇÉ«½ğÇ®ĞèÇó
+	PurchaseMoneyConsumption = {  -- å…‘æ¢bufferçš„è§’è‰²é‡‘é’±éœ€æ±‚
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	PurchaseGuildCurrencyConsumption = {  -- ¶Ò»»bufferµÄ¼Ò×å¹±Ï×ĞèÇó
+	PurchaseGuildCurrencyConsumption = {  -- å…‘æ¢bufferçš„å®¶æ—è´¡çŒ®éœ€æ±‚
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	PurchaseLimit = {  			-- ¶Ò»»´ÎÊıÏŞÖÆ
+	PurchaseLimit = {  			-- å…‘æ¢æ¬¡æ•°é™åˆ¶
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	UpgradeMoneyConsumption = {  -- Éı¼¶½ğÇ®ÏûºÄ
+	UpgradeMoneyConsumption = {  -- å‡çº§é‡‘é’±æ¶ˆè€—
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	UpgradeHerbConsumption = { -- Éı¼¶²İÒ©ÏûºÄ
+	UpgradeHerbConsumption = { -- å‡çº§è‰è¯æ¶ˆè€—
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	UpgradeWoodConsumption = {  -- Éı¼¶Ä¾²ÄÏûºÄ
+	UpgradeWoodConsumption = {  -- å‡çº§æœ¨ææ¶ˆè€—
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	UpgradeCrystalConsumption = {  -- Éı¼¶Ë®¾§ÏûºÄ
+	UpgradeCrystalConsumption = {  -- å‡çº§æ°´æ™¶æ¶ˆè€—
 		type = 'number',
 		default = 0,
 		min = 0,
 	},
-	UpgradeSilverConsumption = {  -- Éı¼¶ÃØÒøÏûºÄ
+	UpgradeSilverConsumption = {  -- å‡çº§ç§˜é“¶æ¶ˆè€—
 		type = 'number',
 		default = 0,
 		min = 0,

@@ -107,10 +107,10 @@ namespace ExternalMessage
         g2c_role_learn_item_spell,
         g2c_role_remove_item_spell,
 
-        g2c_char_precast_spell,  // Ô¤¶¨¼¼ÄÜ?
-        g2c_char_prepare_spell,  // ×¼±¸¼¼ÄÜ?
-        g2c_char_ex_cast_spell,  // ÊÍ·Å¼¼ÄÜex?
-        g2c_char_cast_spell,     // ÊÍ·Å¼¼ÄÜ?
+        g2c_char_precast_spell,  // é¢„å®šæŠ€èƒ½?
+        g2c_char_prepare_spell,  // å‡†å¤‡æŠ€èƒ½?
+        g2c_char_ex_cast_spell,  // é‡Šæ”¾æŠ€èƒ½ex?
+        g2c_char_cast_spell,     // é‡Šæ”¾æŠ€èƒ½?
         //		g2c_char_spell_pre_effect,
         g2c_char_spell_effect,
         g2c_char_break_cast,
@@ -124,7 +124,7 @@ namespace ExternalMessage
         g2c_clear_spell_cache,
         g2c_sync_missile_list,
 
-        g2c_add_cooldown,    // Ìí¼ÓÀäÈ´
+        g2c_add_cooldown,    // æ·»åŠ å†·å´
         g2c_sync_pk_mode,
         g2c_enter_combat,
         g2c_leave_combat,
@@ -133,7 +133,7 @@ namespace ExternalMessage
         g2c_addto_threatlist,
         g2c_delfrom_threatlist,
 
-        g2c_new_aura,    // Ôö¼Óbuff¹â»·
+        g2c_new_aura,    // å¢åŠ buffå…‰ç¯
         g2c_del_aura,
         g2c_aura_change,
         g2c_aura_effect,
@@ -328,20 +328,20 @@ namespace ExternalMessage
         g2c_shield_ack,
         g2c_unshield_ack,
 
-        // ÈÚÁé
+        // èçµ
         g2c_upgrade_soul,
         g2c_add_soul,
         g2c_remove_soul,
 
-        // Öı»ê
+        // é“¸é­‚
         g2c_rune_item,
 
-        // ×°±¸Éı¼¶
+        // è£…å¤‡å‡çº§
         g2c_weapon_level_up_put_in,
         g2c_weapon_level_up_take_out,
         g2c_weapon_level_up_result,
 
-        // ×°±¸·Ö½âºÏ³É
+        // è£…å¤‡åˆ†è§£åˆæˆ
         g2c_decompose,
         g2c_compose,
 
@@ -403,8 +403,8 @@ namespace ExternalMessage
         g2c_arena_result,
         g2c_countdown,
 
-        g2c_rune_item_advance,			// ¸ß¼¶ÃúÎÄÏ´Á·Ó¦´ğ
-        g2c_rune_item_advance_confirm,  // È·ÈÏ¸ß¼¶Ï´Á·Ó¦´ğ
+        g2c_rune_item_advance,			// é«˜çº§é“­æ–‡æ´—ç»ƒåº”ç­”
+        g2c_rune_item_advance_confirm,  // ç¡®è®¤é«˜çº§æ´—ç»ƒåº”ç­”
 
         g2c_potion_gamble,
 
@@ -2336,22 +2336,22 @@ namespace ExternalMessage
 
     struct G2C_UPGRADE_SOUL : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
     };
 
     struct G2C_ADD_SOUL : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
     };
 
     struct G2C_REMOVE_SOUL : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
     };
 
     struct G2C_RUNE_ITEM : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
     };
 
     struct G2C_WEAPON_LEVEL_UP_PUT_IN : MESSAGE_HEADER
@@ -2364,12 +2364,12 @@ namespace ExternalMessage
 
     struct G2C_WEAPON_LEVEL_UP_RESULT : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
     };
 
     struct G2C_DECOMPOSE : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
         INT32       nOriginalItemID;
         INT32       nItemID[MAX_DECOMPOSE_ITEM_COUNT];
         INT32       nItemCount[MAX_DECOMPOSE_ITEM_COUNT];
@@ -2377,14 +2377,14 @@ namespace ExternalMessage
 
     struct G2C_COMPOSE : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦£¬2³É¹¦ÇÒ±©»÷ 
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸï¼Œ2æˆåŠŸä¸”æš´å‡» 
         INT32       nResultItemID;
     };
 
     struct G2C_REFINE : MESSAGE_HEADER
     {
         UINT8       bySlot;
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
         UINT16      wRefineLevel;
     };
 
@@ -2395,7 +2395,7 @@ namespace ExternalMessage
 
     struct G2C_IDENTIFY_ITEM : MESSAGE_HEADER
     {
-        UINT8       byResult;//0Ê§°Ü£¬1³É¹¦
+        UINT8       byResult;//0å¤±è´¥ï¼Œ1æˆåŠŸ
     };
 
     struct G2C_DRAW_DEBUG_LINE : MESSAGE_HEADER
@@ -2506,7 +2506,7 @@ namespace ExternalMessage
 
     struct G2C_GAMBLE : MESSAGE_HEADER
     {
-        INT32   nResult;//1³É¹¦£¬0Ê§°Ü
+        INT32   nResult;//1æˆåŠŸï¼Œ0å¤±è´¥
         INT32   nItemID;
     };
 
@@ -2548,23 +2548,23 @@ namespace ExternalMessage
 
     struct G2C_SPELL_BOOK_GAMBLE : MESSAGE_HEADER
     {
-        INT32   nResult;//1³É¹¦£¬0Ê§°Ü
+        INT32   nResult;//1æˆåŠŸï¼Œ0å¤±è´¥
         INT32   nItemID;
     };
     struct G2C_RUNE_ITEM_ADVANCE : MESSAGE_HEADER
     {
-        UINT8   byResult; //0Ê§°Ü£¬1³É¹¦
+        UINT8   byResult; //0å¤±è´¥ï¼Œ1æˆåŠŸ
         UINT16  wRune[MAX_RUNE_COUNT];
     };
 
     struct G2C_RUNE_ITEM_ADVANCE_CONFIRM : MESSAGE_HEADER
     {
-        UINT8   byResult; //0Ê§°Ü£¬1³É¹¦
+        UINT8   byResult; //0å¤±è´¥ï¼Œ1æˆåŠŸ
     };
 
     struct G2C_POTION_GAMBLE : MESSAGE_HEADER
     {
-        INT32   nResult;//1³É¹¦£¬0Ê§°Ü
+        INT32   nResult;//1æˆåŠŸï¼Œ0å¤±è´¥
         INT32   nItemID;
     };
 

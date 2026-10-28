@@ -35,10 +35,10 @@ size_t		utf8_to_wchar(const char *in, size_t insize, wchar_t *out,
 size_t		wchar_to_utf8(const wchar_t *in, size_t insize, char *out,
 		    size_t outsize, int flags);
 
-// ĞÂÔö´úÂë
-char* char_to_utf8(char* str_mb);            // ANSIµÄchar×Ö·û´® ×ª³É utf8µÄchar×Ö·û´®
-char* utf8_to_char(const char* str_utf8);    // utf8µÄchar×Ö·û´® ×ª³É ANSIµÄchar×Ö·û´®
-void free_converted_string(char* str);       // ¸¨Öúº¯Êı£ºÊÍ·ÅÄÚ´æ
+// æ–°å¢ä»£ç 
+char* char_to_utf8(char* str_mb);            // ANSIçš„charå­—ç¬¦ä¸² è½¬æˆ utf8çš„charå­—ç¬¦ä¸²
+char* utf8_to_char(const char* str_utf8);    // utf8çš„charå­—ç¬¦ä¸² è½¬æˆ ANSIçš„charå­—ç¬¦ä¸²
+void free_converted_string(char* str);       // è¾…åŠ©å‡½æ•°ï¼šé‡Šæ”¾å†…å­˜
 
 inline size_t utf8_2_utf16(const char* pcszSrc, size_t uSrcLen, wchar_t* pszDest, size_t uDestLen)
 {

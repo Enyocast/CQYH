@@ -1,5 +1,5 @@
 set_define = {
-owner='¸µÀÚ',
+owner='å‚…ç£Š',
 
 SetID = {
     type = 'number',

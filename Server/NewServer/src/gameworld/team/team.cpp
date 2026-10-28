@@ -76,11 +76,11 @@ INT32 CTeamInGS::Mainloop(void)
 
 	PROCESS_SUCCESS(m_AuctionItemList.empty());
 
-	// »ñÈ¡µÚÒ»¸öÊý¾Ý
+	// èŽ·å–ç¬¬ä¸€ä¸ªæ•°æ®
 	poAuctionItem = *(m_AuctionItemList.begin());
 	LOG_PROCESS_ERROR(poAuctionItem);
 
-	// Èç¹ûÃ»ÓÐ¿ªÊ¼ÅÄÂô, Ôò¿ªÊ¼ÅÄÂô
+	// å¦‚æžœæ²¡æœ‰å¼€å§‹æ‹å–, åˆ™å¼€å§‹æ‹å–
 	if (!poAuctionItem->bInBidding)
 	{
 #ifndef _ROBOT
@@ -97,9 +97,9 @@ INT32 CTeamInGS::Mainloop(void)
 			poAuctionItem->dwEndFrm = CGameWorld::GetInstance().GetGameFrame() + CONVERT_TIME(g_GWConfig.nTeamAuctionTimeout);
 	}
 
-	// [µ½Ê±¼äÁË] »òÕß [Ã»ÓÐÄÜÍ¶±êµÄ½ÇÉ«ÁË] (ËµÃ÷È«Ô±·ÅÆúÁË), ÔòÖ±½Ó½áÊøÅÄÂô
-	//if (poAuctionItem->dwEndFrm <= CGameWorld::GetInstance().GetGameFrame()    // Ô­´úÂë Ö»ÅÐ¶ÏÊ±¼ä
-	if (poAuctionItem->dwEndFrm <= CGameWorld::GetInstance().GetGameFrame() ||   // ÐÂ´úÂë ÅÐ¶ÏÊ±¼ä + ÅÐ¶Ï¿ÉÒÔ³ö¼Û½ÇÉ«ÊýÁ¿
+	// [åˆ°æ—¶é—´äº†] æˆ–è€… [æ²¡æœ‰èƒ½æŠ•æ ‡çš„è§’è‰²äº†] (è¯´æ˜Žå…¨å‘˜æ”¾å¼ƒäº†), åˆ™ç›´æŽ¥ç»“æŸæ‹å–
+	//if (poAuctionItem->dwEndFrm <= CGameWorld::GetInstance().GetGameFrame()    // åŽŸä»£ç  åªåˆ¤æ–­æ—¶é—´
+	if (poAuctionItem->dwEndFrm <= CGameWorld::GetInstance().GetGameFrame() ||   // æ–°ä»£ç  åˆ¤æ–­æ—¶é—´ + åˆ¤æ–­å¯ä»¥å‡ºä»·è§’è‰²æ•°é‡
 		poAuctionItem->BidRoleList.empty() == TRUE)
 	{
 		UINT32 dwTax = 0;
@@ -176,7 +176,7 @@ INT32 CTeamInGS::Mainloop(void)
 		LOG_CHECK_ERROR(nRetCode);
 #endif
 
-		// µ¯³öµÚÒ»¸öÊý¾Ý
+		// å¼¹å‡ºç¬¬ä¸€ä¸ªæ•°æ®
 		m_AuctionItemList.pop_front();
 		CGameWorld::GetInstance().DelTeamAutionItem(poAuctionItem);
 	}
@@ -277,7 +277,7 @@ BOOL CTeamInGS::AddAuctionItem(CDrop* poDrop)
 	poAuctionItem->RewardRoleList.clear();
 	poAuctionItem->dwWinnerID = 0;
 	poAuctionItem->poItem = poDrop->m_content.m_item;
-	poAuctionItem->dwIndex = m_dwAuctionItemIndex++;    // ¼ÆËãÅÄÂôÐòºÅ, ´Ó1¿ªÊ¼
+	poAuctionItem->dwIndex = m_dwAuctionItemIndex++;    // è®¡ç®—æ‹å–åºå·, ä»Ž1å¼€å§‹
 	poAuctionItem->poScene = poDrop->GetScene();
 	poAuctionItem->bInBidding = FALSE;
 	poAuctionItem->dwEndFrm = 0;

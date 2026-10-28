@@ -24,7 +24,7 @@ const DROP_CHANCE_DATA* CGamble::GetDropChangeData(const GAMBLE_DATA* data)
 {
 	BOOL world_group_activated = FALSE;
 	
-	// ÔÝÊ±ÆÁ±Î
+	// æš‚æ—¶å±è”½
 	/*
 	LOG_PROCESS_ERROR(data);
 	LOG_PROCESS_ERROR(data->nGambleType >= 0 && data->nGambleType < egtTotal);

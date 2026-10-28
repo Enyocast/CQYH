@@ -14,13 +14,13 @@ enum EAuctionSearchResultSortBy
 enum EAuctionStatus
 {
     easInvalid,
-    easEffective,       //¾ºÅÄÖĞ
-    easCanceled,        //Ö÷¶¯È¡Ïû
-    easExpired,         //Á÷ÅÄ
-    easWaitForPayment,  //ÅÄÂô³É¹¦£¬µÈ´ı¸¶Î²¿î
-    easFinished,        //ÅÄÂô³É¹¦£¬Î²¿îÒÑ¸¶Çå
-    easPaymentExpired,  //ÅÄÂô³É¹¦£¬Î²¿î³¬Ê±
-    easError,           //´íÎóµ¥
+    easEffective,       //ç«æ‹ä¸­
+    easCanceled,        //ä¸»åŠ¨å–æ¶ˆ
+    easExpired,         //æµæ‹
+    easWaitForPayment,  //æ‹å–æˆåŠŸï¼Œç­‰å¾…ä»˜å°¾æ¬¾
+    easFinished,        //æ‹å–æˆåŠŸï¼Œå°¾æ¬¾å·²ä»˜æ¸…
+    easPaymentExpired,  //æ‹å–æˆåŠŸï¼Œå°¾æ¬¾è¶…æ—¶
+    easError,           //é”™è¯¯å•
     easTotal
 };
 

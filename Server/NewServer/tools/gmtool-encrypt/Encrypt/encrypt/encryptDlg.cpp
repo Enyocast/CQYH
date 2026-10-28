@@ -238,7 +238,7 @@ void CencryptDlg::OnBnClickedButton2()
     delete[] pInputStr;
     delete[] pOutputStr;
 
-    CString tmp("解密成功");
+    CString tmp("瑙ｅ瘑鎴愬姛");
     MessageBox(tmp);
 }
 
@@ -304,6 +304,6 @@ void CencryptDlg::OnBnClickedButton1()
     delete[] pInputStr;
     delete[] pOutputStr;
 
-    CString tmp("加密成功");
+    CString tmp("鍔犲瘑鎴愬姛");
     MessageBox(tmp);
 }

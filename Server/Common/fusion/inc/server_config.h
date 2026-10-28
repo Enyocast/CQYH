@@ -381,20 +381,20 @@ struct SERVER_CONFIG
         GM_CMD_DATA     gmCmdList[GM_CMD_NUM];
     } GM_PWD;
 
-	// ×Ô¶¨ÒåÅäÖÃ
+	// è‡ªå®šä¹‰é…ç½®
 	struct CUSTOM_CONFIG
 	{
-		BOOL               bGmComandEnable;         // ×Ô¶¨Òå[GMÃüÁî¿ª¹Ø]
-		GM_CUSTOM_CONFIG   GmRoleName;              // ×Ô¶¨Òå[GM½ÇÉ«Ãû×Ö]
+		BOOL               bGmComandEnable;         // è‡ªå®šä¹‰[GMå‘½ä»¤å¼€å…³]
+		GM_CUSTOM_CONFIG   GmRoleName;              // è‡ªå®šä¹‰[GMè§’è‰²åå­—]
 
-		BOOL               bCustomGameTimeCardEnable;            // ×Ô¶¨Òå[µã¿¨¹¦ÄÜ¿ª¹Ø]
-		INT32              nCustomFreeRoleLevel;                 // ×Ô¶¨Òå[×ÔÓÉÈËÎïµÈ¼¶]
-		INT32              nCustomGameTimeCardTemplateID[10];    // ×Ô¶¨Òå[µã¿¨µÀ¾ßÎïÆ·ID]
+		BOOL               bCustomGameTimeCardEnable;            // è‡ªå®šä¹‰[ç‚¹å¡åŠŸèƒ½å¼€å…³]
+		INT32              nCustomFreeRoleLevel;                 // è‡ªå®šä¹‰[è‡ªç”±äººç‰©ç­‰çº§]
+		INT32              nCustomGameTimeCardTemplateID[10];    // è‡ªå®šä¹‰[ç‚¹å¡é“å…·ç‰©å“ID]
 
-		INT32              nLuck2NecklaceItemID[5];        // ÔË2ÔË2ÏîÁ´ÎïÆ·ID
-		INT32              nMinLuck2AttributelID;          // attribute.txt ÅäÖÃÖĞ, "ĞÒÔË2"ÊôĞÔµÄ×îĞ¡IDÖµ
-		INT32              nMaxLuck2AttributelID;          // attribute.txt ÅäÖÃÖĞ, "ĞÒÔË2"ÊôĞÔµÄ×î´óIDÖµ
-		INT32			   nItemDropLimitLuck2NecklaceDuration;  // ÏŞÖÆÊ±¼ä/ÊıÁ¿
+		INT32              nLuck2NecklaceItemID[5];        // è¿2è¿2é¡¹é“¾ç‰©å“ID
+		INT32              nMinLuck2AttributelID;          // attribute.txt é…ç½®ä¸­, "å¹¸è¿2"å±æ€§çš„æœ€å°IDå€¼
+		INT32              nMaxLuck2AttributelID;          // attribute.txt é…ç½®ä¸­, "å¹¸è¿2"å±æ€§çš„æœ€å¤§IDå€¼
+		INT32			   nItemDropLimitLuck2NecklaceDuration;  // é™åˆ¶æ—¶é—´/æ•°é‡
 		INT32			   nItemDropLimitLuck2NecklaceCount;
 
 

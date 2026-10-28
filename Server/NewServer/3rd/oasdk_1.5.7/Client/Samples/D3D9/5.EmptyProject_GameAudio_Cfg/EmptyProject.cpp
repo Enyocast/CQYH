@@ -13,7 +13,7 @@
 #include "SDOADx9.h"
 #include "SDOACfg.h"
 
-/* ½ÓÈëÏà¹ØÈ«¾Ö±äÁ¿  */
+/* æ¥å…¥ç›¸å…³å…¨å±€å˜é‡  */
 HINSTANCE          g_hInstIGWDll = 0;
 LPigwInitialize    igwInitialize = NULL;
 LPigwGetModule     igwGetModule = NULL;
@@ -27,7 +27,7 @@ int					g_LogicScreenWidth  = 640;
 int					g_LogicScreenHeight = 480;
 
 
-/* ÊÍ·ÅIGW */
+/* é‡Šæ”¾IGW */
 void CloseIGW()
 {
 	if (g_SDOADx9)
@@ -49,7 +49,7 @@ void CloseIGW()
 	}
 
 	if (igwTerminal)
-	{  // ÊÍ·ÅDLLÇ°×ÜÊÇÏÈµ÷ÓÃigwTerminal
+	{  // é‡Šæ”¾DLLå‰æ€»æ˜¯å…ˆè°ƒç”¨igwTerminal
 		igwTerminal();
 		igwTerminal = NULL;
 	}
@@ -61,7 +61,7 @@ void CloseIGW()
 	igwInitialize = NULL;
 }
 
-/* ¼ÓÔØIGW */
+/* åŠ è½½IGW */
 void OpenIGW()
 {
 	WCHAR strExePath[MAX_PATH] = {0};
@@ -71,7 +71,7 @@ void OpenIGW()
 	strExePath[MAX_PATH-1]=0;
 	strLastSlash = wcsrchr( strExePath, TEXT('\\') );
 	if( strLastSlash )
-	{	// µÃµ½EXEËùÔÚÂ·¾¶
+	{	// å¾—åˆ°EXEæ‰€åœ¨è·¯å¾„
 		StringCchCopyW( strExeName, MAX_PATH, &strLastSlash[1] );
 		*strLastSlash = 0;
 		strLastSlash = wcsrchr( strExeName, TEXT('.') );
@@ -83,13 +83,13 @@ void OpenIGW()
 	StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\GameWidget.dll", strExePath );
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // Èç¹û³ÌĞòÔËĞĞÂ·¾¶ÖĞ²»´æÔÚÔò»»¸öÂ·¾¶ÔÙÊÔ
+	{ // å¦‚æœç¨‹åºè¿è¡Œè·¯å¾„ä¸­ä¸å­˜åœ¨åˆ™æ¢ä¸ªè·¯å¾„å†è¯•
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // Èç¹û³ÌĞòÔËĞĞÂ·¾¶ÖĞ²»´æÔÚÔò»»¸öÂ·¾¶ÔÙÊÔ
+	{ // å¦‚æœç¨‹åºè¿è¡Œè·¯å¾„ä¸­ä¸å­˜åœ¨åˆ™æ¢ä¸ªè·¯å¾„å†è¯•
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
@@ -97,7 +97,7 @@ void OpenIGW()
 	CloseIGW();
 
 	if ( GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF )
-	{	// ÕÒµ½×é¼şÔò¼ÓÔØ	
+	{	// æ‰¾åˆ°ç»„ä»¶åˆ™åŠ è½½	
 		g_hInstIGWDll = LoadLibraryW(strGameWidgetDll);
 		if (g_hInstIGWDll)
 		{
@@ -106,23 +106,23 @@ void OpenIGW()
 			igwTerminal = (LPigwTerminal)GetProcAddress( g_hInstIGWDll, "igwTerminal" );
 			if ( igwInitialize && igwGetModule && igwTerminal)
 			{
-				// ¼ÓÔØ³É¹¦
+				// åŠ è½½æˆåŠŸ
 
-				// ×¢ÒâAppInfoÀàĞÍËùÓĞ×Ö¶Î±ØĞëÌî
+				// æ³¨æ„AppInfoç±»å‹æ‰€æœ‰å­—æ®µå¿…é¡»å¡«
 				AppInfo tmpAppInfo = {
-					sizeof(AppInfo),       // ½á¹¹Ìå´óĞ¡£¬·½±ãÀ©Õ¹
-					9999,                  // ½ÓÈëÓ¦ÓÃID£¬´Ó¿ª·¢ÕßÍøÕ¾ÖĞÉêÇë
-					L"ÁúÌ¶»¢Ñ¨OnLine",     // Ó¦ÓÃÃû³Æ
-					L"0.1.2.0",            // Ó¦ÓÃ¿Í»§¶Ëµ±Ç°°æ±¾ºÅ
-					SDOA_RENDERTYPE_D3D9,  // ¿Í»§¶ËÖ§³ÖµÄÍ¼ĞÎÒıÇæÀàĞÍ£¬ÕâÀïÍ¬Ê±Ö§³Öd3d9ºÍd3d8
-					1,                     // ¿ÉÍ¬Ê±ÔÚÒ»Ì¨»úÆ÷ÉÏÓÎÏ·µÄ×î´óÈËÊı£¨Í¨³£Îª1£¬ÀıÈç:KOFÓ¦¸ÃÊÇ2£©
-					-1,                    // ÓÎÏ·ÇøID£¬²»¿ÉÓÃÊ±´«Èë-1
-					-1                     // ÓÎÏ·×éID£¬²»¿ÉÓÃÊ±´«Èë-1
+					sizeof(AppInfo),       // ç»“æ„ä½“å¤§å°ï¼Œæ–¹ä¾¿æ‰©å±•
+					9999,                  // æ¥å…¥åº”ç”¨IDï¼Œä»å¼€å‘è€…ç½‘ç«™ä¸­ç”³è¯·
+					L"é¾™æ½­è™ç©´OnLine",     // åº”ç”¨åç§°
+					L"0.1.2.0",            // åº”ç”¨å®¢æˆ·ç«¯å½“å‰ç‰ˆæœ¬å·
+					SDOA_RENDERTYPE_D3D9,  // å®¢æˆ·ç«¯æ”¯æŒçš„å›¾å½¢å¼•æ“ç±»å‹ï¼Œè¿™é‡ŒåŒæ—¶æ”¯æŒd3d9å’Œd3d8
+					1,                     // å¯åŒæ—¶åœ¨ä¸€å°æœºå™¨ä¸Šæ¸¸æˆçš„æœ€å¤§äººæ•°ï¼ˆé€šå¸¸ä¸º1ï¼Œä¾‹å¦‚:KOFåº”è¯¥æ˜¯2ï¼‰
+					-1,                    // æ¸¸æˆåŒºIDï¼Œä¸å¯ç”¨æ—¶ä¼ å…¥-1
+					-1                     // æ¸¸æˆç»„IDï¼Œä¸å¯ç”¨æ—¶ä¼ å…¥-1
 
 				};
 
 				if (igwInitialize(SDOA_SDK_VERSION, &tmpAppInfo) == SDOA_OK)
-				{	// ³õÊ¼»¯×é¼ş³É¹¦
+				{	// åˆå§‹åŒ–ç»„ä»¶æˆåŠŸ
 
 					igwGetModule(__uuidof(ISDOADx9), (void**)&g_SDOADx9);
 					igwGetModule(__uuidof(ISDOAApp), (void**)&g_SDOAApp);
@@ -132,10 +132,10 @@ void OpenIGW()
 						CloseIGW();
 
 				}
-				else // ³õÊ¼»¯Ê§°ÜÇå³ı»·¾³
+				else // åˆå§‹åŒ–å¤±è´¥æ¸…é™¤ç¯å¢ƒ
 					CloseIGW();
 			}
-			else  // ¼ÓÔØDLLÊ§°ÜÇå³ı»·¾³
+			else  // åŠ è½½DLLå¤±è´¥æ¸…é™¤ç¯å¢ƒ
 				CloseIGW();
 		}
 	}	
@@ -143,7 +143,7 @@ void OpenIGW()
 
 
 CDXUTDialogResourceManager	g_DialogResourceManager; // manager for shared resources of dialogs
-CDXUTDialog					g_SkinColorSet;          // Ä£Äâµ÷É«¿ØÖÆ
+CDXUTDialog					g_SkinColorSet;          // æ¨¡æ‹Ÿè°ƒè‰²æ§åˆ¶
 
 #define IDC_SKINCOLORHUELABEL	1
 #define IDC_SKINCOLORLIGHTLABEL	2
@@ -157,7 +157,7 @@ CDXUTDialog					g_SkinColorSet;          // Ä£Äâµ÷É«¿ØÖÆ
 #define IDC_COLORGREENBTN		8
 #define IDC_COLORBLUEBTN		9
 
-// »­¸ö¿ò¿òĞèÒªµÄÈ«¾Ö±äÁ¿
+// ç”»ä¸ªæ¡†æ¡†éœ€è¦çš„å…¨å±€å˜é‡
 LPDIRECT3DVERTEXBUFFER9 g_pVB			= NULL; 
 LPDIRECT3DINDEXBUFFER9	g_pIndexVB		= NULL;
 struct CUSTOMVERTEX
@@ -187,24 +187,24 @@ VOID Cleanup()
 
 bool CreateRenderRes()
 {
-	// ÖØ½¨»æÖÆ×ÊÔ´
+	// é‡å»ºç»˜åˆ¶èµ„æº
 	IDirect3DDevice9* pd3dDevice = DXUTGetD3DDevice();
 	if ( !pd3dDevice )
 		return false;
 	Cleanup();
-	// ¶¥µãË÷Òı
+	// é¡¶ç‚¹ç´¢å¼•
 	unsigned short MyRectTriList[] =
 	{
 		0, 1, 2,
 		2, 1, 3
 	};
-	// ¶¥µãÎ»ÖÃ
+	// é¡¶ç‚¹ä½ç½®
 	float fWidth, fHeight;
 	fWidth = g_LogicScreenWidth - 1.0f;
 	fHeight = g_LogicScreenHeight - 1.0f;
 
 
-	// ¶¥µãÎ»ÖÃ
+	// é¡¶ç‚¹ä½ç½®
 	CUSTOMVERTEX MyRectVertex[4] = 
 	{
 		{ 0.0f,		0.0f,	0.0f, 1.0f, 0xffff0000, 0.0f, 0.0f }, // x, y, z, rhw, color, u, v
@@ -275,7 +275,7 @@ HRESULT CALLBACK OnCreateDevice( IDirect3DDevice9* pd3dDevice, const D3DSURFACE_
 	HRESULT hr;
 	V_RETURN( g_DialogResourceManager.OnCreateDevice( pd3dDevice ) );
 	if (g_SDOADx9)
-	{	// ³õÊ¼»¯IGWÄÚ²¿Í¼ĞÎÒıÇæ
+	{	// åˆå§‹åŒ–IGWå†…éƒ¨å›¾å½¢å¼•æ“
 		D3DPRESENT_PARAMETERS d3dpp = DXUTGetPresentParameters ();
 		g_SDOADx9->Initialize( pd3dDevice, &d3dpp, FALSE );
 	}
@@ -300,7 +300,7 @@ HRESULT CALLBACK OnResetDevice( IDirect3DDevice9* pd3dDevice,
 	g_SkinColorSet.SetSize( 180, 180 );
 	
 	if(g_SDOADx9)
-	{	// Í¨ÖªIGW d3dÉè±¸ÖØÖÃ³É¹¦
+	{	// é€šçŸ¥IGW d3dè®¾å¤‡é‡ç½®æˆåŠŸ
 		D3DPRESENT_PARAMETERS d3dpp = DXUTGetPresentParameters () ;	
 		g_SDOADx9->OnDeviceReset ( &d3dpp ) ;
 	}
@@ -330,7 +330,7 @@ void CALLBACK OnFrameRender( IDirect3DDevice9* pd3dDevice, double fTime, float f
 	if( SUCCEEDED( pd3dDevice->BeginScene() ) )
 	{
 		if (g_pVB)
-		{	// ¼òµ¥µÄ»­¸ö¿ò¿ò£¬ÒâË¼ÒâË¼¾ÍĞĞÁË
+		{	// ç®€å•çš„ç”»ä¸ªæ¡†æ¡†ï¼Œæ„æ€æ„æ€å°±è¡Œäº†
 			pd3dDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 			pd3dDevice->SetStreamSource( 0, g_pVB, 0, sizeof(CUSTOMVERTEX) );
 			pd3dDevice->SetIndices(g_pIndexVB);
@@ -343,7 +343,7 @@ void CALLBACK OnFrameRender( IDirect3DDevice9* pd3dDevice, double fTime, float f
     // Render the scene
     if( SUCCEEDED( pd3dDevice->BeginScene() ) )
     {
-		/* »æÖÆIGW½çÃæ */
+		/* ç»˜åˆ¶IGWç•Œé¢ */
 		if (g_SDOADx9)
 			g_SDOADx9->RenderEx();
 
@@ -351,44 +351,44 @@ void CALLBACK OnFrameRender( IDirect3DDevice9* pd3dDevice, double fTime, float f
     }
 }
 
-BOOL isSDOLogin = false; // ×¢ÒâÒ»¶¨ÒªÊÇBOOLÀàĞÍ£¬²»ÄÜÎªbool·ñÔò¿ÉÄÜ»áµ¼ÖÂÎÊÌâ
+BOOL isSDOLogin = false; // æ³¨æ„ä¸€å®šè¦æ˜¯BOOLç±»å‹ï¼Œä¸èƒ½ä¸ºboolå¦åˆ™å¯èƒ½ä¼šå¯¼è‡´é—®é¢˜
 LoginResult loginResult;
 
 BOOL CALLBACK OnLogin(int nErrorCode, const LoginResult* pLoginResult, int nUserData, int nReserved) 
-{ // ×¢Òâ¸Ã»Øµ÷·µ»ØtrueÔò¹Ø±ÕµÇÂ¼¶Ô»°¿ò£¬·ñÔòµÇÂ¼¶Ô»°¿òÈÔÈ»ÏÔÊ¾
+{ // æ³¨æ„è¯¥å›è°ƒè¿”å›trueåˆ™å…³é—­ç™»å½•å¯¹è¯æ¡†ï¼Œå¦åˆ™ç™»å½•å¯¹è¯æ¡†ä»ç„¶æ˜¾ç¤º
 	
 	isSDOLogin = (SDOA_ERRORCODE_OK == nErrorCode); 
 	if (isSDOLogin) 
 	{ 
 		loginResult = *pLoginResult; 
-		// µÇÂ¼³É¹¦ºó,°ÑÓÃ»§Ê¹ÓÃµÄÓÎÏ·½ÇÉ«ĞÅÏ¢´«ÈëIGW
+		// ç™»å½•æˆåŠŸå,æŠŠç”¨æˆ·ä½¿ç”¨çš„æ¸¸æˆè§’è‰²ä¿¡æ¯ä¼ å…¥IGW
 		if (g_SDOAApp)
 		{
-			RoleInfo tmpRoleInfo = { sizeof(RoleInfo), L"ÃÀÃ²ÏÉ×Ó", 0 } ;
-			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // ÉèÖÃ½ÇÉ«ĞÅÏ¢£¬¿É¶à´Îµ÷ÓÃ£¬Ö»ÒªÓÃ»§ÇĞ»»ÁË½ÇÉ«¾Íµ÷ÓÃÍ¨ÖªIGW
+			RoleInfo tmpRoleInfo = { sizeof(RoleInfo), L"ç¾è²Œä»™å­", 0 } ;
+			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // è®¾ç½®è§’è‰²ä¿¡æ¯ï¼Œå¯å¤šæ¬¡è°ƒç”¨ï¼Œåªè¦ç”¨æˆ·åˆ‡æ¢äº†è§’è‰²å°±è°ƒç”¨é€šçŸ¥IGW
 		}
 	} 
 
 	if (SDOA_ERRORCODE_SHOWMESSAGE == nErrorCode)
-	{ // µÇÂ¼´íÎóÏûÏ¢´¦Àí
+	{ // ç™»å½•é”™è¯¯æ¶ˆæ¯å¤„ç†
 		if (nReserved != 0)
 		{
 			LoginMessage* pCurLoginMsg = (LoginMessage*)nReserved;
 			//LoginMessage* pCurLoginMsg = reinterpret_cast<LoginMessage*>(nReserved);
 			if (pCurLoginMsg->dwSize >= sizeof(LoginMessage))
-			{ // ¼æÈİĞÔ´¦Àí 
-				// ĞŞ¸Ä´íÎóÌáÊ¾¶Ô»°¿ò±êÌâ
-				//SysReAllocString(pCurLoginMsg->pbstrTitle, L"[²âÊÔÓÎÏ·´íÎóÌáÊ¾]");
+			{ // å…¼å®¹æ€§å¤„ç† 
+				// ä¿®æ”¹é”™è¯¯æç¤ºå¯¹è¯æ¡†æ ‡é¢˜
+				//SysReAllocString(pCurLoginMsg->pbstrTitle, L"[æµ‹è¯•æ¸¸æˆé”™è¯¯æç¤º]");
 
-				// ´ËÊ±·µ»ØFALSEÔòÊ¹ÓÃÄ¬ÈÏÌáÊ¾
+				// æ­¤æ—¶è¿”å›FALSEåˆ™ä½¿ç”¨é»˜è®¤æç¤º
 
-				// ´ËÊ±·µ»ØTRUEÔòÊ¹ÓÃ×Ô¶¨ÒåµÄÌáÊ¾
+				// æ­¤æ—¶è¿”å›TRUEåˆ™ä½¿ç”¨è‡ªå®šä¹‰çš„æç¤º
 				//isSDOLogin = TRUE;
 				//::MessageBox(0, *pCurLoginMsg->pbstrContent, *pCurLoginMsg->pbstrTitle, MB_OK);
 			}
 		}
 	}
-	return isSDOLogin; // ³£¹æÂß¼­£¬µÇÂ¼³É¹¦Ôò¹Ø±ÕµÇÂ¼¶Ô»°¿ò
+	return isSDOLogin; // å¸¸è§„é€»è¾‘ï¼Œç™»å½•æˆåŠŸåˆ™å…³é—­ç™»å½•å¯¹è¯æ¡†
 } 
 
 //--------------------------------------------------------------------------------------
@@ -398,11 +398,11 @@ LRESULT CALLBACK MsgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
                           bool* pbNoFurtherProcessing, void* pUserContext )
 {
 	if(g_SDOADx9) 
-	{	// °ÑÏûÏ¢½»¸øIGWÄ£¿é´¦Àí 
+	{	// æŠŠæ¶ˆæ¯äº¤ç»™IGWæ¨¡å—å¤„ç† 
 		LRESULT lResult; 
 		if (g_SDOADx9->OnWindowProc( hWnd, uMsg, wParam, lParam, &lResult ) == SDOA_OK ) 
 		{ 
-			*pbNoFurtherProcessing = true;// ²»ÈÃ×ÔÉíÔÙ´¦ÀíÏûÏ¢ 
+			*pbNoFurtherProcessing = true;// ä¸è®©è‡ªèº«å†å¤„ç†æ¶ˆæ¯ 
 			return lResult; 
 		} 
 	} 
@@ -411,7 +411,7 @@ LRESULT CALLBACK MsgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
 
 	if ( (UINT)SDOA_WM_CLIENT_RUN == uMsg )
 	{
-		// ´Ë¿Ì¿ÉÒÔ¿ªÊ¼µÇÂ¼
+		// æ­¤åˆ»å¯ä»¥å¼€å§‹ç™»å½•
 		if (g_SDOAApp)
 		{
 			g_SDOAApp->ShowLoginDialog(OnLogin, 0, 0);			
@@ -440,7 +440,7 @@ void CALLBACK OnLostDevice( void* pUserContext )
 	Cleanup();
 	g_DialogResourceManager.OnLostDevice();
 
-	/* Í¨ÖªIGW d3dÉè±¸¶ªÊ§ */
+	/* é€šçŸ¥IGW d3dè®¾å¤‡ä¸¢å¤± */
 	if(g_SDOADx9)
 		g_SDOADx9->OnDeviceLost();
 }
@@ -454,7 +454,7 @@ void CALLBACK OnDestroyDevice( void* pUserContext )
 	Cleanup();
 	g_DialogResourceManager.OnDestroyDevice();
 
-	/* ÊÍ·ÅIGWÍ¼ĞÎÒıÇæ */
+	/* é‡Šæ”¾IGWå›¾å½¢å¼•æ“ */
 	if (g_SDOADx9)
 		g_SDOADx9->Finalize();
 }
@@ -473,7 +473,7 @@ void CALLBACK OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pControl, v
 			g_SDOACfg->SetHue(g_dwHue);
 		}
 		WCHAR wszSkinColorHueBuf[256];
-		StringCchPrintf( wszSkinColorHueBuf, 256, L"É«µ÷£º %d", g_dwHue );
+		StringCchPrintf( wszSkinColorHueBuf, 256, L"è‰²è°ƒï¼š %d", g_dwHue );
 		g_SkinColorSet.GetStatic( IDC_SKINCOLORHUELABEL )->SetText( wszSkinColorHueBuf );
 		
 		break;
@@ -485,7 +485,7 @@ void CALLBACK OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pControl, v
 			g_SDOACfg->SetLightness(g_dwLight);
 		}
 		WCHAR wszSkinColorLightBuf[256];
-		StringCchPrintf( wszSkinColorLightBuf, 256, L"ÁÁ¶È£º %d", g_dwLight );
+		StringCchPrintf( wszSkinColorLightBuf, 256, L"äº®åº¦ï¼š %d", g_dwLight );
 		g_SkinColorSet.GetStatic( IDC_SKINCOLORLIGHTLABEL )->SetText( wszSkinColorLightBuf );
 		break;
 	case IDC_SKINCOLORSAT:
@@ -496,7 +496,7 @@ void CALLBACK OnGUIEvent( UINT nEvent, int nControlID, CDXUTControl* pControl, v
 			g_SDOACfg->SetSaturation(g_dwSat);
 		}
 		WCHAR wszSkinColorSatBuf[256];
-		StringCchPrintf( wszSkinColorSatBuf, 256, L"±¥ºÏ¶È£º %d", g_dwSat );
+		StringCchPrintf( wszSkinColorSatBuf, 256, L"é¥±åˆåº¦ï¼š %d", g_dwSat );
 		g_SkinColorSet.GetStatic( IDC_SKINCOLORLIGHTLABEL )->SetText( wszSkinColorSatBuf );
 		break;
 	case IDC_COLORREDBTN:
@@ -529,22 +529,22 @@ void InitApp()
 
 	g_SkinColorSet.SetCallback( OnGUIEvent );
 	int iY = 10;
-	g_SkinColorSet.AddStatic( IDC_SKINCOLORHUELABEL, L"É«µ÷:0", 35, iY += 20, 125, 22);
+	g_SkinColorSet.AddStatic( IDC_SKINCOLORHUELABEL, L"è‰²è°ƒ:0", 35, iY += 20, 125, 22);
 	g_SkinColorSet.AddSlider( IDC_SKINCOLORHUE, 10, iY += 20, 150, 10, -180, 180, 0);
-	g_SkinColorSet.AddStatic( IDC_SKINCOLORLIGHTLABEL, L"ÁÁ¶È:0", 35, iY += 20, 125, 22);
+	g_SkinColorSet.AddStatic( IDC_SKINCOLORLIGHTLABEL, L"äº®åº¦:0", 35, iY += 20, 125, 22);
 	g_SkinColorSet.AddSlider( IDC_SKINCOLORLIGHT, 10, iY += 20, 150, 10, -66, 66, 0);
-	g_SkinColorSet.AddStatic( IDC_SKINCOLORSATLABEL, L"±¥ºÏ¶È:0", 35, iY += 20, 125, 22);
+	g_SkinColorSet.AddStatic( IDC_SKINCOLORSATLABEL, L"é¥±åˆåº¦:0", 35, iY += 20, 125, 22);
 	g_SkinColorSet.AddSlider( IDC_SKINCOLORSAT, 10, iY += 20, 150, 10, -180, 180, 0);
 
-	g_SkinColorSet.AddButton( IDC_COLORREDBTN, L"ºìÉ«", 10, iY +=15, 180, 15, 0);
-	g_SkinColorSet.AddButton( IDC_COLORGREENBTN, L"ÂÌÉ«", 10, iY +=15,180, 15, 0);
-	g_SkinColorSet.AddButton( IDC_COLORBLUEBTN, L"À¶É«", 10, iY +=15, 180, 15, 0);
+	g_SkinColorSet.AddButton( IDC_COLORREDBTN, L"çº¢è‰²", 10, iY +=15, 180, 15, 0);
+	g_SkinColorSet.AddButton( IDC_COLORGREENBTN, L"ç»¿è‰²", 10, iY +=15,180, 15, 0);
+	g_SkinColorSet.AddButton( IDC_COLORBLUEBTN, L"è“è‰²", 10, iY +=15, 180, 15, 0);
 }
 
 void CALLBACK TestHLSChangeCallback(const int nHue, const int nLightness, const int nSaturation, const int nUserData)
 {
 	if (g_SDOACfg)
-	{// ×¢ÒâÅäÖÃµ÷É«¹¦ÄÜµÄ½Ó¿Ú±ØĞëÔÚÊÕµ½SDOA_WM_CLIENT_RUNÏûÏ¢Ö®ºóµ÷ÓÃ²ÅÓĞĞ§
+	{// æ³¨æ„é…ç½®è°ƒè‰²åŠŸèƒ½çš„æ¥å£å¿…é¡»åœ¨æ”¶åˆ°SDOA_WM_CLIENT_RUNæ¶ˆæ¯ä¹‹åè°ƒç”¨æ‰æœ‰æ•ˆ
 		int nTmpHue, nTmpLight, nTmpSat;
 		CDXUTSlider* pTmpSlider = NULL;
 		WCHAR wszSkinColorBuf[256];
@@ -554,7 +554,7 @@ void CALLBACK TestHLSChangeCallback(const int nHue, const int nLightness, const 
 		{
 			pTmpSlider->SetValue( nHue );
 			nTmpHue = pTmpSlider->GetValue();
-			StringCchPrintf( wszSkinColorBuf, 256, L"É«µ÷£º %d", nTmpHue );
+			StringCchPrintf( wszSkinColorBuf, 256, L"è‰²è°ƒï¼š %d", nTmpHue );
 			g_SkinColorSet.GetStatic( IDC_SKINCOLORHUELABEL )->SetText( wszSkinColorBuf );
 		}
 		pTmpSlider = g_SkinColorSet.GetSlider(IDC_SKINCOLORLIGHT);
@@ -562,7 +562,7 @@ void CALLBACK TestHLSChangeCallback(const int nHue, const int nLightness, const 
 		{
 			pTmpSlider->SetValue( nLightness );
 			nTmpLight = pTmpSlider->GetValue();
-			StringCchPrintf( wszSkinColorBuf, 256, L"ÁÁ¶È£º %d", nTmpLight );
+			StringCchPrintf( wszSkinColorBuf, 256, L"äº®åº¦ï¼š %d", nTmpLight );
 			g_SkinColorSet.GetStatic( IDC_SKINCOLORLIGHTLABEL )->SetText( wszSkinColorBuf );
 		}
 		pTmpSlider = g_SkinColorSet.GetSlider(IDC_SKINCOLORSAT);
@@ -570,7 +570,7 @@ void CALLBACK TestHLSChangeCallback(const int nHue, const int nLightness, const 
 		{
 			pTmpSlider->SetValue( nSaturation );
 			nTmpSat = pTmpSlider->GetValue();
-			StringCchPrintf( wszSkinColorBuf, 256, L"±¥ºÏ¶È£º %d", nTmpSat );
+			StringCchPrintf( wszSkinColorBuf, 256, L"é¥±åˆåº¦ï¼š %d", nTmpSat );
 			g_SkinColorSet.GetStatic( IDC_SKINCOLORSATLABEL )->SetText( wszSkinColorBuf );
 		}
 	}
@@ -585,10 +585,10 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 #if defined(DEBUG) | defined(_DEBUG)
     _CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #endif
-	/* ¼ÓÔØIGW */
+	/* åŠ è½½IGW */
 	OpenIGW();
 	if (g_SDOACfg)
-	{// ±ä¸üÖ÷Ìâ±ØĞëÒª×îÔçµ÷ÓÃ²ÅÓĞĞ§
+	{// å˜æ›´ä¸»é¢˜å¿…é¡»è¦æœ€æ—©è°ƒç”¨æ‰æœ‰æ•ˆ
 		BSTR bstrThemeName = SysAllocString(L"");
 		if (g_SDOACfg->SetThemeName(bstrThemeName))
 		{
@@ -620,15 +620,15 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
     DXUTCreateDevice( D3DADAPTER_DEFAULT, true, 800, 600, IsDeviceAcceptable, ModifyDeviceSettings );
 
 	if (igwInitialize)
-	{	// ËµÃ÷¼ÓÔØ³É¹¦£¬±íÊ¾ÏÂ......
+	{	// è¯´æ˜åŠ è½½æˆåŠŸï¼Œè¡¨ç¤ºä¸‹......
 		HWND hMainWin = DXUTGetHWND();
-		SetWindowTextW(hMainWin, L"EmptyProject [¼ÓÔØIGW×é¼ş³É¹¦]");
+		SetWindowTextW(hMainWin, L"EmptyProject [åŠ è½½IGWç»„ä»¶æˆåŠŸ]");
 	}
 
 	if (g_SDOACfg)
-	{ // ÉèÖÃµ÷É«±ä»¯»Øµ÷
+	{ // è®¾ç½®è°ƒè‰²å˜åŒ–å›è°ƒ
 		g_SDOACfg->SetHLSChangeCallback(TestHLSChangeCallback, 0);		
-		// ÉèÖÃÈ¦È¦Ö÷Òª½çÃæÏìÓ¦µÄÂß¼­ÆÁÄ»¿í¡¢¸ß£¨¶¼ÉèÖÃÎª-1Ê±ÔòÊ¹ÓÃµÄÊÇ±³¾°»º³å´óĞ¡£©
+		// è®¾ç½®åœˆåœˆä¸»è¦ç•Œé¢å“åº”çš„é€»è¾‘å±å¹•å®½ã€é«˜ï¼ˆéƒ½è®¾ç½®ä¸º-1æ—¶åˆ™ä½¿ç”¨çš„æ˜¯èƒŒæ™¯ç¼“å†²å¤§å°ï¼‰
 		g_SDOACfg->SetLogicScreen(g_LogicScreenWidth, g_LogicScreenHeight);
 		RECT tmpRect;
 		g_SDOACfg->GetUseBackBufferRect(&tmpRect);
@@ -642,9 +642,9 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 		WCHAR strMyOutput[100] = {0};
 		StringCchPrintfW( strMyOutput, 100, L"\nGetSnapshootScreenHotKey iFunKey=%d, iNormalKey=%d)\n", iFunKey, iNormalKey);
 		OutputDebugStringW(strMyOutput);
-		// ÉèÖÃ½ØÍ¼¿ì½İ¼üÎªCtrl+Num2
+		// è®¾ç½®æˆªå›¾å¿«æ·é”®ä¸ºCtrl+Num2
 		g_SDOACfg->SetSnapshootScreenHotKey(SDOA_ssCtrl, VK_NUMPAD2);
-		// ÎŞ½ØÍ¼¿ì½İ¼ü
+		// æ— æˆªå›¾å¿«æ·é”®
 		//g_SDOACfg->SetSnapshootScreenHotKey(0, 0);
 
 	}
@@ -654,11 +654,11 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 
     // TODO: Perform any application-level cleanup here
 	if (isSDOLogin && g_SDOAApp)
-	{ // µÇÂ¼³É¹¦£¬ÍË³öÊ±ÒªµÇ³ö
+	{ // ç™»å½•æˆåŠŸï¼Œé€€å‡ºæ—¶è¦ç™»å‡º
 		g_SDOAApp->Logout();
 	}
 
-	/* ÊÍ·ÅIGW */
+	/* é‡Šæ”¾IGW */
 	CloseIGW();
 
     return DXUTGetExitCode();

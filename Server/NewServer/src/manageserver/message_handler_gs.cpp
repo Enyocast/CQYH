@@ -81,7 +81,7 @@ void CMessageHandler::OnGSCreateSceneAck(PACKET_BUFFER* pPacketBuffer, UINT32 dw
         for (std::list<UINT32>::iterator itr = pDestSceneInfo->WaitUserList.begin(); itr != pDestSceneInfo->WaitUserList.end(); ++itr)
         {
             MS_USER* poUser = CUserMgr::GetInstance().FindUserBySessionID(*itr);
-            if (poUser == NULL) //  ÏÂÏßÁË
+            if (poUser == NULL) //  ä¸‹çº¿äº†
                 continue;
 
             MS_ONLINE_ROLE_DATA* pOnlineRole = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(poUser->dwCurRoleID);
@@ -129,7 +129,7 @@ void CMessageHandler::OnGSCreateSceneAck(PACKET_BUFFER* pPacketBuffer, UINT32 dw
             itr != pDestSceneInfo->WaitUserList.end(); ++itr)
         {
             MS_USER* poUser = CUserMgr::GetInstance().FindUserBySessionID(*itr);
-            if (poUser == NULL) //  ÏÂÏßÁË
+            if (poUser == NULL) //  ä¸‹çº¿äº†
                 continue;
 
             MS_ONLINE_ROLE_DATA* pOnlineRole = COnlineRoleDataMgr::GetInstance().FindOnlineRoleByRoleID(poUser->dwCurRoleID);
@@ -277,7 +277,7 @@ void CMessageHandler::OnGSQueryScene(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize
     LOG_PROCESS_ERROR(pGSSession);
     dwGSSessionID = pGSSession->dwSessionID;
 
-    // user±ØÈ»ÄÜÕÒµ½£¬×´Ì¬ÓĞ¿ÉÄÜ²»¶Ô
+    // userå¿…ç„¶èƒ½æ‰¾åˆ°ï¼ŒçŠ¶æ€æœ‰å¯èƒ½ä¸å¯¹
     poUser = CUserMgr::GetInstance().FindUserBySessionID(pMsg->dwClientSessionID);
     LOG_PROCESS_ERROR_RET_CODE(poUser, errCritical);
     PROCESS_ERROR(poUser->eState == USER_STATE_INGAME);
@@ -471,7 +471,7 @@ void CMessageHandler::OnGSEnterGS(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, I
     LOG_PROCESS_ERROR(pGSSession);
     dwGSSessionID = pGSSession->dwSessionID;
 
-    // ±ØÈ»¿ÉÒÔÕÒµ½User£¬·ñÔòÓĞBUG
+    // å¿…ç„¶å¯ä»¥æ‰¾åˆ°Userï¼Œå¦åˆ™æœ‰BUG
     poUser = CUserMgr::GetInstance().FindUserBySessionID(pMsg->dwClientSessionID);
     LOG_PROCESS_ERROR(poUser);
     PROCESS_ERROR(poUser->eState == USER_STATE_LOGIN_GSREADY || poUser->eState == USER_STATE_JUMP_GSREADY);
@@ -493,18 +493,18 @@ void CMessageHandler::OnGSEnterGS(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, I
     pOnlineRole->dwMasterCD = pMsg->dwMasterCD;
     pOnlineRole->pRoleData->dwJoinGuildCD = pMsg->dwGuildCD;
     pOnlineRole->nGMLevel = pMsg->byGMLevel;
-    pOnlineRole->pRoleData->nLastLoginTime = 0;     // ÉÏÏß×´Ì¬£¬ÖÃ0 Allan Tao[9.6.2013] 
+    pOnlineRole->pRoleData->nLastLoginTime = 0;     // ä¸Šçº¿çŠ¶æ€ï¼Œç½®0 Allan Tao[9.6.2013] 
     pOnlineRole->bTwitter = pMsg->byTwitter;
     pOnlineRole->dwBeDeterminedRoleID = 0;
     pOnlineRole->dwMasterTwitterCD = pMsg->dwMasterTwitterCD;
 
     if (poUser->eState == USER_STATE_LOGIN_GSREADY)
     {
-        nRetCode = _DoLoginSyncInfo(pOnlineRole);  // Í¬²½½ÇÉ« ¶ÓÎé/¹«»á/ÓÊ¼ş/ºÃÓÑ/Ê¦Í½/É³°Í¿Ë/µñÏñĞÅÏ¢
+        nRetCode = _DoLoginSyncInfo(pOnlineRole);  // åŒæ­¥è§’è‰² é˜Ÿä¼/å…¬ä¼š/é‚®ä»¶/å¥½å‹/å¸ˆå¾’/æ²™å·´å…‹/é›•åƒä¿¡æ¯
         LOG_PROCESS_ERROR(nRetCode);
     }
 
-    nRetCode = _DoLoadOrSyncInfo(pOnlineRole);  // Í¬²½½ÇÉ« ÌØÊâÉç½» ¹«»á½ûÑÔÊ±¼ä/Ê¦Í½ĞÅÏ¢
+    nRetCode = _DoLoadOrSyncInfo(pOnlineRole);  // åŒæ­¥è§’è‰² ç‰¹æ®Šç¤¾äº¤ å…¬ä¼šç¦è¨€æ—¶é—´/å¸ˆå¾’ä¿¡æ¯
     LOG_CHECK_ERROR(nRetCode);
 
     nRetCode = DoGSEnterGSAck(dwGSSessionID, pMsg->dwClientSessionID, pMsg->dwRoleID);
@@ -553,7 +553,7 @@ void CMessageHandler::OnGSLeaveGSAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize
     SGSSession* poGSSession = (SGSSession*)pSocketSession->GetUserData();
     LOG_PROCESS_ERROR(poGSSession);
 
-    // user±ØÈ»´æÔÚ£¬·ñÔòÓĞBUG
+    // userå¿…ç„¶å­˜åœ¨ï¼Œå¦åˆ™æœ‰BUG
     poUser = CUserMgr::GetInstance().FindUserBySessionID(pMsg->dwClientSessionID);
     LOG_PROCESS_ERROR(poUser);
 
@@ -994,7 +994,7 @@ void CMessageHandler::OnGSChatMessage(PACKET_BUFFER* pPacketBuffer, UINT32 dwSiz
                 pMsg->szMessage, pMsg->byServerGroupID, pMsg->bGM);
             LOG_PROCESS_ERROR_RET_CODE(nRetCode, errChatServiceUnavaible);
         }
-        // ¹«¸æ
+        // å…¬å‘Š
         else
         {
             nRetCode = DoClientChatMessage(pMsg->szName, pMsg->dwSourceID, pMsg->dwTargetID, pMsg->byLocation,
@@ -1876,10 +1876,10 @@ Exit0:
 }
 
 
-// todo guild war end ¿¼ÂÇÖ®ºóÖØ¹¹°ÑËû·Åµ½luaÀïÃæÈÃ²ß»®È¥¸ã Allan Tao[11.11.2013]
+// todo guild war end è€ƒè™‘ä¹‹åé‡æ„æŠŠä»–æ”¾åˆ°luaé‡Œé¢è®©ç­–åˆ’å»æ Allan Tao[11.11.2013]
 //void CMessageHandler::OnGSGuildBattleScore(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 //{
-//    // todo_tq ÉÏÒ»¸ö°æ±¾µÄ¹«»áÕ½½áËã
+//    // todo_tq ä¸Šä¸€ä¸ªç‰ˆæœ¬çš„å…¬ä¼šæˆ˜ç»“ç®—
 //	INT32       nRetCode = 0;
 //	INT32       nResult = errUnknownError;
 //	MS_GUILD_WAR_DATA   *pWarData = NULL;
@@ -2658,10 +2658,10 @@ void CMessageHandler::OnGSAgreeTeacherAppAck(PACKET_BUFFER* pPacketBuffer, UINT3
 
 
     nRetCode = MasterCancelRecvApp(*pstOnlineRole, pOnlineTeacher->pRoleData->dwRoleID);
-    PROCESS_ERROR_RET_CODE(nRetCode, errMasterNoTeacherApp);            // todo_tq Õâ¸öµØ·½È¥µôlogÊÇÒòÎªÈ¡ÏûÉêÇëµÄÊ±ºòÃ»ÓĞÍ¨Öª¶Ô·½
+    PROCESS_ERROR_RET_CODE(nRetCode, errMasterNoTeacherApp);            // todo_tq è¿™ä¸ªåœ°æ–¹å»æ‰logæ˜¯å› ä¸ºå–æ¶ˆç”³è¯·çš„æ—¶å€™æ²¡æœ‰é€šçŸ¥å¯¹æ–¹
 
     nRetCode = MasterCancelSendApp(*pOnlineTeacher, pstOnlineRole->pRoleData->dwRoleID);
-    PROCESS_ERROR_RET_CODE(nRetCode, errMasterNoTeacherApp);            // todo_tq Õâ¸öµØ·½È¥µôlogÊÇÒòÎªÈ¡ÏûÉêÇëµÄÊ±ºòÃ»ÓĞÍ¨Öª¶Ô·½
+    PROCESS_ERROR_RET_CODE(nRetCode, errMasterNoTeacherApp);            // todo_tq è¿™ä¸ªåœ°æ–¹å»æ‰logæ˜¯å› ä¸ºå–æ¶ˆç”³è¯·çš„æ—¶å€™æ²¡æœ‰é€šçŸ¥å¯¹æ–¹
 
     nRetCode = CMasterMgr::GetInstance().CreateMasterRelation(*pOnlineTeacher, *pstOnlineRole);
     LOG_PROCESS_ERROR_RET_CODE(nRetCode == errSuccess, nRetCode);
@@ -3072,7 +3072,7 @@ Exit0:
 
 void CMessageHandler::OnGSAuctionBuy(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
-    // ÄÜ×ßµ½ÕâÒ»²½, ËµÃ÷ ¿Ï¶¨ÊÇ¿Û¿î³É¹¦ÁË
+    // èƒ½èµ°åˆ°è¿™ä¸€æ­¥, è¯´æ˜ è‚¯å®šæ˜¯æ‰£æ¬¾æˆåŠŸäº†
     G2M_AUCTION_BUY* pMsg = (G2M_AUCTION_BUY*)pPacketBuffer;
 
     MS_ROLE_DATA* role = CRoleDataMgr::GetInstance().FindRole(pMsg->dwRoleID);
@@ -3110,7 +3110,7 @@ Exit0:
 
 void CMessageHandler::OnGSAuctionPay(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
-    // ÄÜ×ßµ½ÕâÒ»²½ [¸¶Î²¿î], ËµÃ÷ ¿Ï¶¨ÊÇ¿Û¿î³É¹¦ÁË
+    // èƒ½èµ°åˆ°è¿™ä¸€æ­¥ [ä»˜å°¾æ¬¾], è¯´æ˜ è‚¯å®šæ˜¯æ‰£æ¬¾æˆåŠŸäº†
     Auction* auction = NULL;
     G2M_AUCTION_PAY* pMsg = (G2M_AUCTION_PAY*)pPacketBuffer;
 
@@ -3544,26 +3544,26 @@ Exit0:
     return;
 }
 
-// Íæ¼Ò²éÑ¯Ôª±¦
+// ç©å®¶æŸ¥è¯¢å…ƒå®
 void CMessageHandler::OnGSQueryRealMoneyAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
     G2M_QUERY_REAL_MONEY_ACK* pMsg = (G2M_QUERY_REAL_MONEY_ACK*)pPacketBuffer;
     CMessageHandler::GetInstance().DoClientSyncRealMoney(pMsg->dwCliSessionID, pMsg->llRealMoney);
 }
 
-// Íæ¼Ò¹ºÂòÉÌ³ÇÎïÆ·
+// ç©å®¶è´­ä¹°å•†åŸç‰©å“
 void CMessageHandler::OnGSRoleRealMoneyShopBuyItemAck(PACKET_BUFFER* pPacketBuffer, UINT32 dwSize, ISocketSession* pSocketSession)
 {
     G2M_ROLE_REAL_MONEY_SHOP_BUY_ACK* pMsg = (G2M_ROLE_REAL_MONEY_SHOP_BUY_ACK*)pPacketBuffer;
 
     if (pMsg->nResult == 0)
     {
-        // ¹ºÂò³É¹¦
+        // è´­ä¹°æˆåŠŸ
         CRealMoneyShop::GetInstance().OnCharge(pMsg->nResult, pMsg->dwRoleID, pMsg->nItemID, pMsg->nItemCount, pMsg->szRoleName);
     }
 }
 
-// ========== ÏÂÃæÈ«ÊÇ DoGS º¯Êı ==========
+// ========== ä¸‹é¢å…¨æ˜¯ DoGS å‡½æ•° ==========
 
 BOOL CMessageHandler::DoGSRegisterAck(UINT32 dwGSSessionID)
 {
@@ -6069,7 +6069,7 @@ Exit0:
     return FALSE;
 }
 
-// ===== ÏÂÃæÈ«ÊÇ×Ô¼ºĞÂ¼Ó´úÂë =====
+// ===== ä¸‹é¢å…¨æ˜¯è‡ªå·±æ–°åŠ ä»£ç  =====
 
 BOOL CMessageHandler::DoGSQueryYuanBao(INT32 dwGSSessionID, UINT32 dwCliSessionID, UINT32 dwRoleID)
 {
@@ -6093,7 +6093,7 @@ Exit0:
     return FALSE;
 }
 
-// Íæ¼Ò¹ºÂòÉÌ³ÇÎïÆ·
+// ç©å®¶è´­ä¹°å•†åŸç‰©å“
 BOOL CMessageHandler::DoGSRoleRealMoneyShopBuyItemReq(INT32 dwGSSessionID, UINT32 dwCliSessionID, CHAR* pcszRoleName, UINT32 dwRoleID, INT32 nTotalCost, INT32 nItemID, INT32 nItemCount)
 {
     INT32 nRetCode = 0;
@@ -6120,7 +6120,7 @@ Exit0:
     return FALSE;
 }
 
-// Íæ¼Ò¹ºÂòµã¿¨
+// ç©å®¶è´­ä¹°ç‚¹å¡
 BOOL CMessageHandler::DoGSCustomRoleBuyTime(INT32 dwGSSessionID, UINT32 dwCliSessionID, UINT32 dwRoleID, UINT32 dwBuyTimeCost)
 {
     INT32 nRetCode = 0;

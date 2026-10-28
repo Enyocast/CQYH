@@ -322,37 +322,37 @@ wchar_to_utf8(const wchar_t *in, size_t insize, char *out, size_t outsize,
 	return (total);
 }
 
-// char×Ö·û´® ×ª³É utf8µÄ char×Ö·û´®
+// charå­—ç¬¦ä¸² è½¬æˆ utf8çš„ charå­—ç¬¦ä¸²
 char* char_to_utf8(char* str_mb)
 {
-	// »ñÈ¡¿í×Ö·û×Ö·û´®³¤¶È£¨°üÀ¨NULLÖÕÖ¹·û£©
+	// è·å–å®½å­—ç¬¦å­—ç¬¦ä¸²é•¿åº¦ï¼ˆåŒ…æ‹¬NULLç»ˆæ­¢ç¬¦ï¼‰
 	int len_wcs = MultiByteToWideChar(CP_ACP, 0, str_mb, -1, NULL, 0);
 
-	// ÉêÇë¿í×Ö·û×Ö·û´®¿Õ¼ä
+	// ç”³è¯·å®½å­—ç¬¦å­—ç¬¦ä¸²ç©ºé—´
 	wchar_t* str_wcs = new wchar_t[len_wcs];
 
-	// ×ª»»Îª¿í×Ö·û×Ö·û´®
+	// è½¬æ¢ä¸ºå®½å­—ç¬¦å­—ç¬¦ä¸²
 	MultiByteToWideChar(CP_ACP, 0, str_mb, -1, str_wcs, len_wcs);
 
-	// »ñÈ¡UTF-8×Ö·û´®³¤¶È£¨°üÀ¨NULLÖÕÖ¹·û£©
+	// è·å–UTF-8å­—ç¬¦ä¸²é•¿åº¦ï¼ˆåŒ…æ‹¬NULLç»ˆæ­¢ç¬¦ï¼‰
 	int len_utf8 = WideCharToMultiByte(CP_UTF8, 0, str_wcs, -1, NULL, 0, NULL, NULL);
 
-	// ÉêÇëUTF-8×Ö·û´®¿Õ¼ä
+	// ç”³è¯·UTF-8å­—ç¬¦ä¸²ç©ºé—´
 	char* str_utf8 = new char[len_utf8];
 
-	// ×ª»»ÎªUTF-8×Ö·û´®
+	// è½¬æ¢ä¸ºUTF-8å­—ç¬¦ä¸²
 	WideCharToMultiByte(CP_UTF8, 0, str_wcs, -1, str_utf8, len_utf8, NULL, NULL);
 
-	delete[] str_wcs; // ÊÍ·Å¿í×Ö·û×Ö·û´®¿Õ¼ä
+	delete[] str_wcs; // é‡Šæ”¾å®½å­—ç¬¦å­—ç¬¦ä¸²ç©ºé—´
 
-	// Õı³£À´Ëµ Õâ¸öÒ²ÊÇĞèÒªdeleteµÄ, µ«ÊÇÏë°Ñ½á¹û×÷Îª·µ»ØÖµ, ÄÇÃ´ÔÚº¯ÊıÀï¾Í²»ÄÜdelete
-	// Ö»ÄÜÔÚÍâÃæÀûÓÃÍê·µ»ØÖµÖ®ºó, ÔÙdelete
+	// æ­£å¸¸æ¥è¯´ è¿™ä¸ªä¹Ÿæ˜¯éœ€è¦deleteçš„, ä½†æ˜¯æƒ³æŠŠç»“æœä½œä¸ºè¿”å›å€¼, é‚£ä¹ˆåœ¨å‡½æ•°é‡Œå°±ä¸èƒ½delete
+	// åªèƒ½åœ¨å¤–é¢åˆ©ç”¨å®Œè¿”å›å€¼ä¹‹å, å†delete
 	// delete[] str_utf8;
 
 	return str_utf8;
 }
 
-// UTF-8 ×ª ANSI
+// UTF-8 è½¬ ANSI
 char* utf8_to_char(const char* str_utf8)
 {
 	if (str_utf8 == NULL) return NULL;
@@ -376,14 +376,14 @@ char* utf8_to_char(const char* str_utf8)
 
 	delete[] str_wcs;
 
-	// Õı³£À´Ëµ Õâ¸öÒ²ÊÇĞèÒªdeleteµÄ, µ«ÊÇÏë°Ñ½á¹û×÷Îª·µ»ØÖµ, ÄÇÃ´ÔÚº¯ÊıÀï¾Í²»ÄÜdelete
-	// Ö»ÄÜÔÚÍâÃæÀûÓÃÍê·µ»ØÖµÖ®ºó, ÔÙdelete
+	// æ­£å¸¸æ¥è¯´ è¿™ä¸ªä¹Ÿæ˜¯éœ€è¦deleteçš„, ä½†æ˜¯æƒ³æŠŠç»“æœä½œä¸ºè¿”å›å€¼, é‚£ä¹ˆåœ¨å‡½æ•°é‡Œå°±ä¸èƒ½delete
+	// åªèƒ½åœ¨å¤–é¢åˆ©ç”¨å®Œè¿”å›å€¼ä¹‹å, å†delete
 	// delete[] str_mb;
 
 	return str_mb;
 }
 
-// ¸¨Öúº¯Êı£ºÊÍ·ÅÄÚ´æ
+// è¾…åŠ©å‡½æ•°ï¼šé‡Šæ”¾å†…å­˜
 void free_converted_string(char* str)
 {
 	if (str) {

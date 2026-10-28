@@ -101,11 +101,11 @@ private:
 	INT32 m_nLevel;
 	INT32 m_nExp;
 
-	UINT32 m_dwNextExp2PtsTime;				// ÏÂ´Î×ª»¯Ê±¼ä(×ÔÈ»×ª»»)
+	UINT32 m_dwNextExp2PtsTime;				// ä¸‹æ¬¡è½¬åŒ–æ—¶é—´(è‡ªç„¶è½¬æ¢)
 
-	UINT32 m_dwDailyUseMoneyChangeCount;	// Ã¿ÌìÊ¹ÓÃ½ğ±Ò×ª»»´ÎÊı
-	UINT32 m_dwNextScanTimer;				// ÏÂ´ÎÉ¨ÃèÊ±¼ä(ÓÃÓÚÃ¿ÈÕÖØÖÃ)
-	INT32  m_nTotalMoneyCost;				// »ê×ªĞŞÁ¶µãÏûºÄ½ğ±Ò
+	UINT32 m_dwDailyUseMoneyChangeCount;	// æ¯å¤©ä½¿ç”¨é‡‘å¸è½¬æ¢æ¬¡æ•°
+	UINT32 m_dwNextScanTimer;				// ä¸‹æ¬¡æ‰«ææ—¶é—´(ç”¨äºæ¯æ—¥é‡ç½®)
+	INT32  m_nTotalMoneyCost;				// é­‚è½¬ä¿®ç‚¼ç‚¹æ¶ˆè€—é‡‘å¸
 	/************************** airsea **********************************************/
 
 	CAir  m_BagContainer[MAX_AIRSEA_BAG_CONTAINER_SIZE];
@@ -116,7 +116,7 @@ private:
 	INT32 m_nStallContainerSize;
 	INT32 m_nEquipContainerSize;
 
-	INT32 m_nProductAirLevel;		// Á·ÆøµÈ¼¶
+	INT32 m_nProductAirLevel;		// ç»ƒæ°”ç­‰çº§
 
 	/************************** bloodsea **********************************************/
 	INT32 m_nBloodSlot[MAX_BLOODSEA_PAGE][MAX_BLOODSEA_SLOT_PER_PAGE];

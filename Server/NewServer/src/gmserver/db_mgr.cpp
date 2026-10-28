@@ -106,7 +106,7 @@ BOOL CDBMgr::Init()
         g_GMSlaverStmtList, sSqlTotal, 2);
     LOG_PROCESS_ERROR(nRetCode);
 
-    // Ä¬ÈÏ´úÂë ÔÝÊ±ÆÁ±Î
+    // é»˜è®¤ä»£ç  æš‚æ—¶å±è”½
     //nRetCode = GetLogDataSqlMgr().Init(
     //    m_DBLogData.szServerAddr,
     //    m_DBLogData.szLoginName,
@@ -607,7 +607,7 @@ BOOL CDBMgr::QueryLog(CMD_DATA_BASE *pCmd)
     LOG_PROCESS_ERROR(pCmdID);
     *pCmdID = pCmd->dwSerialID;
 
-    // Ä¬ÈÏ´úÂë ÔÝÊ±ÆÁ±Î
+    // é»˜è®¤ä»£ç  æš‚æ—¶å±è”½
     /*
     switch (pCmdLog->nLogType)
     {

@@ -1,6 +1,6 @@
 #include "Application.h"
 #include <stdio.h>
-#include <strsafe.h>        // StringCchÏà¹ØÓÃ
+#include <strsafe.h>        // StringCchç›¸å…³ç”¨
 #include "windows.h"
 #include "SDOA4Client.h"
 #include "SDOADDraw.h"
@@ -10,7 +10,7 @@
 const int WINDOW_WIDTH  = 800;
 const int WINDOW_HEIGHT = 600;
 
-/* ½ÓÈëÏà¹ØÈ«¾Ö±äÁ¿  */
+/* æ¥å…¥ç›¸å…³å…¨å±€å˜é‡  */
 HINSTANCE          g_hInstIGWDll = 0;
 LPigwInitialize    igwInitialize = NULL;
 LPigwGetModule     igwGetModule = NULL;
@@ -19,7 +19,7 @@ LPigwTerminal      igwTerminal = NULL;
 ISDOADDraw*			g_SDOADDraw = NULL;
 ISDOAApp*			g_SDOAApp = NULL;
 
-/* ÊÍ·ÅIGW */
+/* é‡Šæ”¾IGW */
 void CloseIGW()
 {
 	if (g_SDOADDraw)
@@ -34,7 +34,7 @@ void CloseIGW()
 	}
 
 	if (igwTerminal)
-	{  // ÊÍ·ÅDLLÇ°×ÜÊÇÏÈµ÷ÓÃigwTerminal
+	{  // é‡Šæ”¾DLLå‰æ€»æ˜¯å…ˆè°ƒç”¨igwTerminal
 		igwTerminal();
 		igwTerminal = NULL;
 	}
@@ -46,7 +46,7 @@ void CloseIGW()
 	igwInitialize = NULL;
 }
 
-/* ¼ÓÔØIGW */
+/* åŠ è½½IGW */
 void OpenIGW()
 {
 	WCHAR strExePath[MAX_PATH] = {0};
@@ -56,7 +56,7 @@ void OpenIGW()
 	strExePath[MAX_PATH-1]=0;
 	strLastSlash = wcsrchr( strExePath, TEXT('\\') );
 	if( strLastSlash )
-	{	// µÃµ½EXEËùÔÚÂ·¾¶
+	{	// å¾—åˆ°EXEæ‰€åœ¨è·¯å¾„
 		StringCchCopyW( strExeName, MAX_PATH, &strLastSlash[1] );
 		*strLastSlash = 0;
 		strLastSlash = wcsrchr( strExeName, TEXT('.') );
@@ -68,14 +68,14 @@ void OpenIGW()
 	StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\GameWidget.dll", strExePath );
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // Èç¹û³ÌĞòÔËĞĞÂ·¾¶ÖĞ²»´æÔÚÔò»»¸öÂ·¾¶ÔÙÊÔ
+	{ // å¦‚æœç¨‹åºè¿è¡Œè·¯å¾„ä¸­ä¸å­˜åœ¨åˆ™æ¢ä¸ªè·¯å¾„å†è¯•
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
 	CloseIGW();
 
 	if ( GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF )
-	{	// ÕÒµ½×é¼şÔò¼ÓÔØ	
+	{	// æ‰¾åˆ°ç»„ä»¶åˆ™åŠ è½½	
 		g_hInstIGWDll = LoadLibraryW(strGameWidgetDll);
 		if (g_hInstIGWDll)
 		{
@@ -84,74 +84,74 @@ void OpenIGW()
 			igwTerminal = (LPigwTerminal)GetProcAddress( g_hInstIGWDll, "igwTerminal" );
 			if ( igwInitialize && igwGetModule && igwTerminal)
 			{
-				// ¼ÓÔØ³É¹¦
+				// åŠ è½½æˆåŠŸ
 
-				// ×¢ÒâAppInfoÀàĞÍËùÓĞ×Ö¶Î±ØĞëÌî
+				// æ³¨æ„AppInfoç±»å‹æ‰€æœ‰å­—æ®µå¿…é¡»å¡«
 				AppInfo tmpAppInfo = {
-					sizeof(AppInfo),       // ½á¹¹Ìå´óĞ¡£¬·½±ãÀ©Õ¹
-					9999,                  // ½ÓÈëÓ¦ÓÃID£¬´Ó¿ª·¢ÕßÍøÕ¾ÖĞÉêÇë
-					L"ÁúÌ¶»¢Ñ¨OnLine",     // Ó¦ÓÃÃû³Æ
-					L"0.1.2.0",            // Ó¦ÓÃ¿Í»§¶Ëµ±Ç°°æ±¾ºÅ
-					SDOA_RENDERTYPE_DDRAW, // ¿Í»§¶ËÖ§³ÖµÄÍ¼ĞÎÒıÇæÀàĞÍ
-					1,                     // ¿ÉÍ¬Ê±ÔÚÒ»Ì¨»úÆ÷ÉÏÓÎÏ·µÄ×î´óÈËÊı£¨Í¨³£Îª1£¬ÀıÈç:KOFÓ¦¸ÃÊÇ2£©
-					-1,                    // ÓÎÏ·ÇøID£¬²»¿ÉÓÃÊ±´«Èë-1
-					-1                     // ÓÎÏ·×éID£¬²»¿ÉÓÃÊ±´«Èë-1
+					sizeof(AppInfo),       // ç»“æ„ä½“å¤§å°ï¼Œæ–¹ä¾¿æ‰©å±•
+					9999,                  // æ¥å…¥åº”ç”¨IDï¼Œä»å¼€å‘è€…ç½‘ç«™ä¸­ç”³è¯·
+					L"é¾™æ½­è™ç©´OnLine",     // åº”ç”¨åç§°
+					L"0.1.2.0",            // åº”ç”¨å®¢æˆ·ç«¯å½“å‰ç‰ˆæœ¬å·
+					SDOA_RENDERTYPE_DDRAW, // å®¢æˆ·ç«¯æ”¯æŒçš„å›¾å½¢å¼•æ“ç±»å‹
+					1,                     // å¯åŒæ—¶åœ¨ä¸€å°æœºå™¨ä¸Šæ¸¸æˆçš„æœ€å¤§äººæ•°ï¼ˆé€šå¸¸ä¸º1ï¼Œä¾‹å¦‚:KOFåº”è¯¥æ˜¯2ï¼‰
+					-1,                    // æ¸¸æˆåŒºIDï¼Œä¸å¯ç”¨æ—¶ä¼ å…¥-1
+					-1                     // æ¸¸æˆç»„IDï¼Œä¸å¯ç”¨æ—¶ä¼ å…¥-1
 
 				};
 
 				if (igwInitialize(SDOA_SDK_VERSION, &tmpAppInfo) == SDOA_OK)
-				{	// ³õÊ¼»¯×é¼ş³É¹¦
-					// »ñÈ¡×é¼ş½Ó¿Ú
+				{	// åˆå§‹åŒ–ç»„ä»¶æˆåŠŸ
+					// è·å–ç»„ä»¶æ¥å£
 					igwGetModule(__uuidof(ISDOADDraw), (void**)&g_SDOADDraw);
 					igwGetModule(__uuidof(ISDOAApp), (void**)&g_SDOAApp);
 					if ( (g_SDOADDraw == NULL) || (g_SDOAApp == NULL) )
 						CloseIGW();					
 				}
-				else // ³õÊ¼»¯Ê§°ÜÇå³ı»·¾³
+				else // åˆå§‹åŒ–å¤±è´¥æ¸…é™¤ç¯å¢ƒ
 					CloseIGW();
 			}
-			else  // ¼ÓÔØDLLÊ§°ÜÇå³ı»·¾³
+			else  // åŠ è½½DLLå¤±è´¥æ¸…é™¤ç¯å¢ƒ
 				CloseIGW();
 		}
 	}
 }
 
-BOOL isSDOLogin = false; // ×¢ÒâÒ»¶¨ÒªÊÇBOOLÀàĞÍ£¬²»ÄÜÎªbool·ñÔò¿ÉÄÜ»áµ¼ÖÂÎÊÌâ
+BOOL isSDOLogin = false; // æ³¨æ„ä¸€å®šè¦æ˜¯BOOLç±»å‹ï¼Œä¸èƒ½ä¸ºboolå¦åˆ™å¯èƒ½ä¼šå¯¼è‡´é—®é¢˜
 LoginResult loginResult;
 
 BOOL CALLBACK OnLogin(int nErrorCode, const LoginResult* pLoginResult, int nUserData, int nReserved) 
-{ // ×¢Òâ¸Ã»Øµ÷·µ»ØtrueÔò¹Ø±ÕµÇÂ¼¶Ô»°¿ò£¬·ñÔòµÇÂ¼¶Ô»°¿òÈÔÈ»ÏÔÊ¾
+{ // æ³¨æ„è¯¥å›è°ƒè¿”å›trueåˆ™å…³é—­ç™»å½•å¯¹è¯æ¡†ï¼Œå¦åˆ™ç™»å½•å¯¹è¯æ¡†ä»ç„¶æ˜¾ç¤º
 
 	isSDOLogin = (SDOA_OK == nErrorCode); 
 	if (isSDOLogin) 
 	{ 
 		loginResult = *pLoginResult; 
-		// µÇÂ¼³É¹¦ºó,°ÑÓÃ»§Ê¹ÓÃµÄÓÎÏ·½ÇÉ«ĞÅÏ¢´«ÈëIGW
+		// ç™»å½•æˆåŠŸå,æŠŠç”¨æˆ·ä½¿ç”¨çš„æ¸¸æˆè§’è‰²ä¿¡æ¯ä¼ å…¥IGW
 		if (g_SDOAApp)
 		{
-			RoleInfo tmpRoleInfo = { sizeof(RoleInfo), L"ÃÀÃ²ÏÉ×Ó", 0 } ;
-			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // ÉèÖÃ½ÇÉ«ĞÅÏ¢£¬¿É¶à´Îµ÷ÓÃ£¬Ö»ÒªÓÃ»§ÇĞ»»ÁË½ÇÉ«¾Íµ÷ÓÃÍ¨ÖªIGW
+			RoleInfo tmpRoleInfo = { sizeof(RoleInfo), L"ç¾è²Œä»™å­", 0 } ;
+			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // è®¾ç½®è§’è‰²ä¿¡æ¯ï¼Œå¯å¤šæ¬¡è°ƒç”¨ï¼Œåªè¦ç”¨æˆ·åˆ‡æ¢äº†è§’è‰²å°±è°ƒç”¨é€šçŸ¥IGW
 		}
 	}
 	if (SDOA_ERRORCODE_SHOWMESSAGE == nErrorCode)
-	{ // µÇÂ¼´íÎóÏûÏ¢´¦Àí
+	{ // ç™»å½•é”™è¯¯æ¶ˆæ¯å¤„ç†
 		if (nReserved != 0)
 		{
 			LoginMessage* pCurLoginMsg = (LoginMessage*)nReserved;
 			if (pCurLoginMsg->dwSize >= sizeof(LoginMessage))
-			{ // ¼æÈİĞÔ´¦Àí 
-				// ĞŞ¸Ä´íÎóÌáÊ¾¶Ô»°¿ò±êÌâ
-				//SysReAllocString(pCurLoginMsg->pbstrTitle, L"[²âÊÔÓÎÏ·´íÎóÌáÊ¾]");
+			{ // å…¼å®¹æ€§å¤„ç† 
+				// ä¿®æ”¹é”™è¯¯æç¤ºå¯¹è¯æ¡†æ ‡é¢˜
+				//SysReAllocString(pCurLoginMsg->pbstrTitle, L"[æµ‹è¯•æ¸¸æˆé”™è¯¯æç¤º]");
 
-				// ´ËÊ±·µ»ØFALSEÔòÊ¹ÓÃÄ¬ÈÏÌáÊ¾
+				// æ­¤æ—¶è¿”å›FALSEåˆ™ä½¿ç”¨é»˜è®¤æç¤º
 
-				// ´ËÊ±·µ»ØTRUEÔòÊ¹ÓÃ×Ô¶¨ÒåµÄÌáÊ¾
+				// æ­¤æ—¶è¿”å›TRUEåˆ™ä½¿ç”¨è‡ªå®šä¹‰çš„æç¤º
 				//isSDOLogin = TRUE;
 				//::MessageBox(0, *pCurLoginMsg->pbstrContent, *pCurLoginMsg->pbstrTitle, MB_OK);
 			}
 		}
 	}
-	return isSDOLogin; // ³£¹æÂß¼­£¬µÇÂ¼³É¹¦Ôò¹Ø±ÕµÇÂ¼¶Ô»°¿ò
+	return isSDOLogin; // å¸¸è§„é€»è¾‘ï¼Œç™»å½•æˆåŠŸåˆ™å…³é—­ç™»å½•å¯¹è¯æ¡†
 } 
 
 
@@ -177,11 +177,11 @@ CApplication::~CApplication()
 
     ShutdownDDraw();
 	if (isSDOLogin && g_SDOAApp)
-	{	// µÇÂ¼³É¹¦ÔòµÇ³ö
+	{	// ç™»å½•æˆåŠŸåˆ™ç™»å‡º
 		g_SDOAApp->Logout();
 	}
 
-	/* ÊÍ·ÅIGW */
+	/* é‡Šæ”¾IGW */
 	CloseIGW();
 
     ShutdownWindow();
@@ -196,11 +196,11 @@ bool CApplication::Initialize()
         return false;
     }
 
-	/* ¼ÓÔØIGW */
+	/* åŠ è½½IGW */
 	OpenIGW();
 	if (igwInitialize)
-	{	// ËµÃ÷¼ÓÔØ³É¹¦£¬±íÊ¾ÏÂ......		
-		SetWindowTextW(m_hWnd, L"IGW DDraw Sample [¼ÓÔØIGW×é¼ş³É¹¦]");
+	{	// è¯´æ˜åŠ è½½æˆåŠŸï¼Œè¡¨ç¤ºä¸‹......		
+		SetWindowTextW(m_hWnd, L"IGW DDraw Sample [åŠ è½½IGWç»„ä»¶æˆåŠŸ]");
 	}
 
 
@@ -223,7 +223,7 @@ char* EncodeParam(LPSTR AData, int ASize, bool AQueryStr = true, bool AUseUTF8 =
 LRESULT CApplication::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	if (g_SDOADDraw)
-	{	// °ÑÏûÏ¢½»¸øIGWÄ£¿é´¦Àí 
+	{	// æŠŠæ¶ˆæ¯äº¤ç»™IGWæ¨¡å—å¤„ç† 
 		LRESULT lResult; 
 		if (g_SDOADDraw->OnWindowProc( hWnd, uMsg, wParam, lParam, &lResult ) == SDOA_OK ) 
 		{ 			
@@ -233,7 +233,7 @@ LRESULT CApplication::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 
 	if ( (UINT)SDOA_WM_CLIENT_RUN == uMsg )
 	{
-		// ´Ë¿Ì¿ÉÒÔ¿ªÊ¼µÇÂ¼
+		// æ­¤åˆ»å¯ä»¥å¼€å§‹ç™»å½•
 		if (g_SDOAApp)
 		{
 			g_SDOAApp->ShowLoginDialog(OnLogin, 0, 0);			
@@ -252,7 +252,7 @@ LRESULT CApplication::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 			bool bAltDown = ( (lParam & dwMask) != 0 );
 
 			if (bAltDown && (VK_RETURN == wParam))
-			{	// ÔÚÈ«ÆÁÓë´°¿ÚÄ£Ê½¼äÇĞ»»
+			{	// åœ¨å…¨å±ä¸çª—å£æ¨¡å¼é—´åˆ‡æ¢
 				ShutdownDDraw();
 				m_bIsFullScreen = !m_bIsFullScreen;
 				if (m_bIsFullScreen)
@@ -508,7 +508,7 @@ bool CApplication::InitDDraw(bool AFullScreen)
 		m_pMainSurface->SetClipper( m_pClipper );
 	}
 
-	/* ³õÊ¼»¯IGWÄÚ²¿Í¼ĞÎÒıÇæ */
+	/* åˆå§‹åŒ–IGWå†…éƒ¨å›¾å½¢å¼•æ“ */
 	if ( g_SDOADDraw && m_pDirectDraw && m_pMainSurface)
 	{
 		LPDIRECTDRAW dd = NULL;
@@ -533,7 +533,7 @@ bool CApplication::InitDDraw(bool AFullScreen)
 void CApplication::ShutdownDDraw()
 {
 	if (g_SDOADDraw)
-	{	// /* ÊÍ·ÅIGWÍ¼ĞÎÒıÇæ */
+	{	// /* é‡Šæ”¾IGWå›¾å½¢å¼•æ“ */
 		g_SDOADDraw->Finalize();
 	}
 	SAFE_RELEASE(m_dds);
@@ -613,7 +613,7 @@ void CApplication::FrameMove()
         ::OutputDebugString("blt back surface failed");
 
 	if (g_SDOADDraw)
-	{	// »æÖÆIGW½çÃæ
+	{	// ç»˜åˆ¶IGWç•Œé¢
 		if (!m_dds)
 		{
 			m_pBackSurface->QueryInterface(IID_IDirectDrawSurface, (void**)&m_dds);
@@ -624,7 +624,7 @@ void CApplication::FrameMove()
 
 	if ( !m_bIsFullScreen )
 	{
-		//´°¿ÚÄ£Ê½Ê¹ÓÃ
+		//çª—å£æ¨¡å¼ä½¿ç”¨
 		RECT rt;
 		::GetClientRect( m_hWnd, &rt );
 

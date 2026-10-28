@@ -13,11 +13,11 @@ struct Order
     UINT8 m_byOrderStatus;
     UINT32 m_dwRoleID;
     INT32 m_nPrice;
-    INT32 m_nCount;         //ÓÃ»§Ìá½»µÄ×ÜÊÖÊı£¬ÕæÕıÓĞĞ§µÄÊÖÊıÊÇÏÂÃæµÄCurCount£¬´ËCount½öÓÃÓÚ¿Í»§¶ËÏÔÊ¾ÓÃ
-    INT32 m_nCurCount;      //µ±Ç°Ê£ÓàÊÖÊı
+    INT32 m_nCount;         //ç”¨æˆ·æäº¤çš„æ€»æ‰‹æ•°ï¼ŒçœŸæ­£æœ‰æ•ˆçš„æ‰‹æ•°æ˜¯ä¸‹é¢çš„CurCountï¼Œæ­¤Countä»…ç”¨äºå®¢æˆ·ç«¯æ˜¾ç¤ºç”¨
+    INT32 m_nCurCount;      //å½“å‰å‰©ä½™æ‰‹æ•°
     INT32 m_nCurMoney;
 
-    INT32 m_nBillingCount;  //ÓÉÓÚ¼Æ·ÑÆ½Ì¨²¢·ÇÏÈµ½ÏÈ´¦Àí£¬Òò´Ë±ØĞëµÈµ½ËùÓĞµÄtranferµÄ»Ø¸´ºó²Å¿ÉÒÔunfreeze£¬´Ë±äÁ¿½ö¼ÇÂ¼Æ½Ì¨ÖĞFreezeµÄ±ÊÊı£¬´ó²¿·ÖÇé¿öÏÂ´ËÊıÖµÓ¦µÈÍ¬ÓÚCurCount
+    INT32 m_nBillingCount;  //ç”±äºè®¡è´¹å¹³å°å¹¶éå…ˆåˆ°å…ˆå¤„ç†ï¼Œå› æ­¤å¿…é¡»ç­‰åˆ°æ‰€æœ‰çš„tranferçš„å›å¤åæ‰å¯ä»¥unfreezeï¼Œæ­¤å˜é‡ä»…è®°å½•å¹³å°ä¸­Freezeçš„ç¬”æ•°ï¼Œå¤§éƒ¨åˆ†æƒ…å†µä¸‹æ­¤æ•°å€¼åº”ç­‰åŒäºCurCount
     char m_szBillingOrderID[OA_BILLING_ORDER_ID_LEN];
 };
 

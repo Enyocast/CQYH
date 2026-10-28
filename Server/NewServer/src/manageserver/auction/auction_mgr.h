@@ -97,14 +97,14 @@ private:
     CAuctionThread* m_threads;
     UINT32 m_dwSearchThreadIndex;
 
-    // map<RoleID, 参与竞拍的Auction对象列表>
+    // map<RoleID, 鍙備笌绔炴媿鐨凙uction瀵硅薄鍒楄〃>
     typedef std::map<UINT32, AUCTION_LIST> ROLE_AUCTION_LIST;
     ROLE_AUCTION_LIST m_role_buying_auction_list;
     ROLE_AUCTION_LIST m_role_bought_auction_list;
     ROLE_AUCTION_LIST m_role_selling_auction_list;
     ROLE_AUCTION_LIST m_role_sold_auction_list;
 
-    // 相当于一个嵌套map => map<AuctionID, map<RoleID, llDepositPrice>>
+    // 鐩稿綋浜庝竴涓祵濂梞ap => map<AuctionID, map<RoleID, llDepositPrice>>
     typedef std::map<UINT32, INT64> AUCTION_DEPOSIT_MAP;
     typedef std::map<UINT32, AUCTION_DEPOSIT_MAP> ALL_DEPOSIT_MAP;
     ALL_DEPOSIT_MAP m_deposit_map;

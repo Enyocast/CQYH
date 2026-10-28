@@ -243,7 +243,7 @@ public:
 	BOOL DoSendRemoveSoulResult(CRole* poRole, UINT8 byResult);
     BOOL DoSendRuneItem(CRole* poRole, UINT8 byResult);
 
-	// 高级铭文洗练, 确认高级洗练
+	// 楂樼骇閾枃娲楃粌, 纭楂樼骇娲楃粌
 	BOOL DoSendRuneItemAdvance(CRole* poRole, UINT8 byResult, UINT16 wRuneA, UINT16 wRuneB);
 	BOOL DoSendRuneItemConfirm(CRole* poRole, UINT8 byResult);
 
@@ -696,7 +696,7 @@ private:
     void OnBlackMarketCooldownInfo(CRole* poRole, const char* pData);
     void OnBlackMarketBuy(CRole* poRole, const char* pData);
 
-	// 重铸 c2g_potion_gamble
+	// 閲嶉摳 c2g_potion_gamble
     void OnGamble(CRole* poRole, const char* pData);
     void OnPotionGamble(CRole* poRole, const char* pData);
     void OnGambleAdvance(CRole* poRole, const char* pData);
@@ -848,20 +848,20 @@ private:
 	// shield list
 	void OnUnShieldRole(CRole *poRole, const char *pData);
 
-	// 融灵
+	// 铻嶇伒
 	void OnUpgradeSoul(CRole *poRole, const char *pData);
 	void OnAddSoul(CRole *poRole, const char *pData);
 	void OnRemoveSoul(CRole *poRole, const char *pData);
 
-    // 铸魂
+    // 閾搁瓊
     void OnRuneItem(CRole *poRole, const char *pData);
 
-    // 装备升级
+    // 瑁呭鍗囩骇
     void OnWeaponLevelUpPutIn(CRole *poRole, const char *pData);
     void OnWeaponLevelUpTakeOut(CRole *poRole, const char *pData);
 	void OnWeaponLevelUpTakeOutImmediately(CRole* poRole, const char* pData);
 
-    // 分结合成
+    // 鍒嗙粨鍚堟垚
     void OnDecompose(CRole *poRole, const char *pData);
     void OnCompose(CRole *poRole, const char *pData);
 
@@ -894,13 +894,13 @@ private:
 	// anti-cheat
 	void OnJigsawAnswer(CRole* poRole, const char *pData);
 
-	// 技能书重著
+	// 鎶�鑳戒功閲嶈憲
 	void OnSpellBookGamble(CRole* poRole, const char* pData);
 
 	// c2g_arena_reward
 	void OnArenaReward(CRole* poRole, const char* pData);
 
-	// 高级铭文洗练, 确认高级洗练
+	// 楂樼骇閾枃娲楃粌, 纭楂樼骇娲楃粌
 	void OnRuneItemAdvance(CRole* poRole, const char* pData);
 	void OnRuneItemConfirm(CRole* poRole, const char* pData);
 

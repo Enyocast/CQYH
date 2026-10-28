@@ -114,12 +114,12 @@ BOOL EQUIP_DATA::ReadLine(INT32& rnID, const char*& rpcszName, EQUIP_DATA* pData
     READ_INT("CannotUnEquip", m_byCannotUnEquip);
 
 
-    // // ĞÂÔö´úÂë - ¿×Î»
+    // // æ–°å¢ä»£ç  - å­”ä½
     // UINT8 m_byCanSocket;
     // UINT8 m_bySocketCountMaxNew;
     // UINT8 m_byFirstSocketCost;
     // 
-    // // ´ò¿×ÏûºÄ
+    // // æ‰“å­”æ¶ˆè€—
     // UINT8 m_bySecondSocketCost_RED
     // UINT8 m_bySecondSocketCost_YELLOW
     // UINT8 m_bySecondSocketCost_BLUE
@@ -130,14 +130,14 @@ BOOL EQUIP_DATA::ReadLine(INT32& rnID, const char*& rpcszName, EQUIP_DATA* pData
     // UINT8 m_bySecondSocketCost_ORANGE
     // UINT8 m_bySecondSocketCost_BROWN
 
-    // ĞÂÔö´úÂë - ¿×Î»
+    // æ–°å¢ä»£ç  - å­”ä½
     READ_INT("CanSocket", m_byCanSocket);
     READ_INT("SocketCountMaxNew", m_bySocketCountMaxNew);
     READ_INT("FirstSocketCost", m_byFirstSocketCost);
     READ_INT("SecondSocketCost", m_bySecondSocketCost);
 
 
-    // Ä¬ÈÏ´úÂë - ¿×Î»
+    // é»˜è®¤ä»£ç  - å­”ä½
     READ_INT("SocketChance", m_nSocketChance);
 	READ_INT("SocketCountMin", m_bySocketCountMin);
     READ_INT("SocketCountMax", m_bySocketCountMax);

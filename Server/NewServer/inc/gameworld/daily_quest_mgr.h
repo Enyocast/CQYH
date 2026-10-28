@@ -4,7 +4,7 @@
 #include "role_def.h"
 #include "quest_def.h"
 
-#define MAX_DAILY_QUEST_GROUP_COUNT (MAX_ROLE_LEVEL/5)	// µÈ¼¶¶ÎÊıÁ¿
+#define MAX_DAILY_QUEST_GROUP_COUNT (MAX_ROLE_LEVEL/5)	// ç­‰çº§æ®µæ•°é‡
 
 struct QUEST_DATA;
 

@@ -11,16 +11,16 @@
 
 enum GPK_CHECK_INFO
 {
-	CHECK_EXCEPT = -1,					//CSAUTHÒì³£
-	CHECK_SUCCEED = 0,					//¼ì²é³É¹¦
-	CHECK_CSAUTH_ERROR = 0x1,			//¿Í»§¶Ë¼ÆËã½á¹û²»ÕıÈ·£¬·ÇÕı³£¿Í»§¶Ë
-	CHECK_NO_ADMIN = 0x2,				//Ã»ÓĞ¹ÜÀíÔ±È¨ÏŞ
-	CHECK_WINDOWS64BIT = 0x4,			//µ±Ç°²Ù×÷ÏµÍ³ÊÇ64Î»
-	CHECK_CSAUTH_ERRORLEN = 0x8,		//¿Í»§¶Ë·â°ü³¤¶È²»ÕıÈ·
-	CHECK_CSAUTH_ERRORDYN = 0x10,		//¿Í»§¶Ë·â°ü³¤¶È²»ÕıÈ·
-	CHECK_FIND_CHEAT_EXCEPT = 0x20,		//Íâ¹ÒĞÅÏ¢·â°ü±»ÆÆ»µ
-	CHECK_FIND_CHEAT_NEED_KICK = 0x40,	//·¢ÏÖÍâ¹Ò£¬ĞèÒªÖĞ¶ÏÍæ¼ÒÁ¬Ïß
-	CHECK_FIND_CHEAT_ONLY_LOG = 0x80	//·¢ÏÖÍâ¹Ò£¬Ö»ĞèÒª¼ÇÂ¼£¬²»ÄÜÖĞ¶ÏÍæ¼ÒÁ¬Ïß
+	CHECK_EXCEPT = -1,					//CSAUTHå¼‚å¸¸
+	CHECK_SUCCEED = 0,					//æ£€æŸ¥æˆåŠŸ
+	CHECK_CSAUTH_ERROR = 0x1,			//å®¢æˆ·ç«¯è®¡ç®—ç»“æœä¸æ­£ç¡®ï¼Œéæ­£å¸¸å®¢æˆ·ç«¯
+	CHECK_NO_ADMIN = 0x2,				//æ²¡æœ‰ç®¡ç†å‘˜æƒé™
+	CHECK_WINDOWS64BIT = 0x4,			//å½“å‰æ“ä½œç³»ç»Ÿæ˜¯64ä½
+	CHECK_CSAUTH_ERRORLEN = 0x8,		//å®¢æˆ·ç«¯å°åŒ…é•¿åº¦ä¸æ­£ç¡®
+	CHECK_CSAUTH_ERRORDYN = 0x10,		//å®¢æˆ·ç«¯å°åŒ…é•¿åº¦ä¸æ­£ç¡®
+	CHECK_FIND_CHEAT_EXCEPT = 0x20,		//å¤–æŒ‚ä¿¡æ¯å°åŒ…è¢«ç ´å
+	CHECK_FIND_CHEAT_NEED_KICK = 0x40,	//å‘ç°å¤–æŒ‚ï¼Œéœ€è¦ä¸­æ–­ç©å®¶è¿çº¿
+	CHECK_FIND_CHEAT_ONLY_LOG = 0x80	//å‘ç°å¤–æŒ‚ï¼Œåªéœ€è¦è®°å½•ï¼Œä¸èƒ½ä¸­æ–­ç©å®¶è¿çº¿
 };
 
 enum GPK_CHEAT_INFO_TYPE
@@ -77,18 +77,18 @@ namespace SGPK{
 class IGPKCSAuth
 {
 public:
-	//Function:Éú³ÉCSAuthÊı¾İ	
+	//Function:ç”ŸæˆCSAuthæ•°æ®	
 	//Parameter:ppDataRet:address of pointer ,recive the auth data
-	//			Object:ÓÃÓÚ»Øµ÷µÄ¶ÔÏóÖ¸Õë£¬¿ÉÄÜÊÇÒ»¸ösocket£¬Ò²¿ÉÄÜÊÇÒ»¸öÓÃ»§ÀàµÈ¡£ÉõÖÁÒ²¿ÉÄÜÎªNULL,¾ßÌå¶ÔÏóÀàĞÍÓÉÓÎÏ·¼Ü¹¹¾ö¶¨
-	//          SendToClt: »Øµ÷º¯Êı
-	//return:   ´óÓÚ0ÎªÊı¾İ³¤¶È£¬-1ÎªÒì³££¬0±íÊ¾ÉÏ´ÎµÄAuth¼ì²é¿Í»§¶ËÃ»ÓĞ»ØÓ¦¡£ÓĞÍâ¹ÒÆÁ±ÎÁËAuth·â°ü¡£
+	//			Object:ç”¨äºå›è°ƒçš„å¯¹è±¡æŒ‡é’ˆï¼Œå¯èƒ½æ˜¯ä¸€ä¸ªsocketï¼Œä¹Ÿå¯èƒ½æ˜¯ä¸€ä¸ªç”¨æˆ·ç±»ç­‰ã€‚ç”šè‡³ä¹Ÿå¯èƒ½ä¸ºNULL,å…·ä½“å¯¹è±¡ç±»å‹ç”±æ¸¸æˆæ¶æ„å†³å®š
+	//          SendToClt: å›è°ƒå‡½æ•°
+	//return:   å¤§äº0ä¸ºæ•°æ®é•¿åº¦ï¼Œ-1ä¸ºå¼‚å¸¸ï¼Œ0è¡¨ç¤ºä¸Šæ¬¡çš„Authæ£€æŸ¥å®¢æˆ·ç«¯æ²¡æœ‰å›åº”ã€‚æœ‰å¤–æŒ‚å±è”½äº†Authå°åŒ…ã€‚
 	virtual int  GetAuthData(const unsigned char **ppDataRet,void *Object,fnGPK_SvrCallBack SendToClt=NULL) =0;
 
-	//Function:¼ì²é¿Í»§¶Ë·µ»ØµÄAuthÊı¾İ¡£
+	//Function:æ£€æŸ¥å®¢æˆ·ç«¯è¿”å›çš„Authæ•°æ®ã€‚
 	//Parameter:ppDataRet:address of pointer ,recive the auth data
-	//          lpData:ÊäÈëµÄÊı¾İÖ¸Õë
-	//          nLen:Êı¾İ³¤¶È
-	//return:   ·µ»ØÖµÄÚÈİ¼ûGPK_CHECK_INFO;
+	//          lpData:è¾“å…¥çš„æ•°æ®æŒ‡é’ˆ
+	//          nLen:æ•°æ®é•¿åº¦
+	//return:   è¿”å›å€¼å†…å®¹è§GPK_CHECK_INFO;
 	virtual int  CheckAuthReply(const unsigned char **ppDataRet,unsigned char * lpData, unsigned long nLen)=0;
 
 	virtual int GetCSAuthDynCode(const unsigned char **ppCodeRet) = 0;
@@ -111,7 +111,7 @@ public:
     virtual int GPK_API LoadBinary(const char * pszSvrBinDir, const char * pszsCltBinDir) = 0;
 
     //Function: get a random index for dynamic code
-    //Return: >= 0 if successful£¬-1 if error
+    //Return: >= 0 if successfulï¼Œ-1 if error
     virtual int GPK_API GetRandIdx() = 0;
 
     //Function: Get client dynamic code
@@ -136,12 +136,12 @@ public:
 
 	//GPK2.X
 	//Function:load Auth DB file
-	//Parameter:pszCmdFileName£ºfilename
+	//Parameter:pszCmdFileNameï¼šfilename
 	//return: true if successful
 	virtual bool          GPK_API  LoadAuthFile(const char * pszCmdFileName) = 0;
 
 
-	////Function:Create a IGPKCSAuth Object for One Session(ÎªÒ»¸öÁ¬½Ó»á»°Éú³ÉÒ»¸öIGPKCSAuth¶ÔÏó¡£)
+	////Function:Create a IGPKCSAuth Object for One Session(ä¸ºä¸€ä¸ªè¿æ¥ä¼šè¯ç”Ÿæˆä¸€ä¸ªIGPKCSAuthå¯¹è±¡ã€‚)
 	virtual IGPKCSAuth*   GPK_API  AllocAuthObject() = 0;
 };
 

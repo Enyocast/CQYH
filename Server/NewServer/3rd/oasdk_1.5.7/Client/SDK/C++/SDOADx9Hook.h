@@ -11,9 +11,9 @@ MIDL_INTERFACE("2449B1FC-DDD6-44CB-AD23-CD8BFAB14CA3")
 ISDOADx9Hook : public IUnknown
 {
 public:
-	/* 初始化d3d设备 */
+	/* 鍒濆鍖杁3d璁惧 */
 	STDMETHOD_(HRESULT,Hook)(THIS_ IDirect3DDevice9* pDev9, HWND hHookGameWnd) PURE;	
-	/* 释放d3d相关资源 */
+	/* 閲婃斁d3d鐩稿叧璧勬簮 */
 	STDMETHOD_(HRESULT,unHook)(THIS) PURE;
 };
 

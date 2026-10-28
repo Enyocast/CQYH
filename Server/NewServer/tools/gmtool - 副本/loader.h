@@ -3,7 +3,7 @@
 	file:		loader.h
 	author:		Allan Tao
 	
-	purpose:	µÇÂ½½çÃæÀà
+	purpose:	ç™»é™†ç•Œé¢ç±»
 *********************************************************************/
 #ifndef LOADER_H
 #define LOADER_H
