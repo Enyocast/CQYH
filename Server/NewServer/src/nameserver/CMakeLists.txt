@@ -22,7 +22,6 @@ target_include_directories(nameserver PRIVATE
     ${CQYH_SERVER_DIR}/NewServer/3rd/lua/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/gpk/Include
     ${CQYH_SERVER_DIR}/NewServer/3rd/zlib
-    ${CQYH_SERVER_DIR}/NewServer/3rd/mysql-5.1.65/include
 )
 target_compile_definitions(nameserver PRIVATE
     NOMINMAX

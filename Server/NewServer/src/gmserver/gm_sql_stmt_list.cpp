@@ -3,7 +3,7 @@
 
 SQL_STMT_DATA g_GMMasterSqlStmtList[msqlTotal] =
 {
-    { 0, GMMasterMysqlSelectRoleData, "SELECT GroupID{uc}, RoleID{ud}, RoleName{s24}, UserName{s64}, LoginTime{s20}, UNIX_TIMESTAMP(DeleteTime){ud}, RoleData{b8192} from role WHERE RoleID = [ud]" },
+    { 0, GMMasterMysqlSelectRoleData, "SELECT GroupID{uc}, RoleID{ud}, RoleName{s24}, UserName{s64}, LoginTime{s20}, COALESCE(UNIX_TIMESTAMP(DeleteTime), 0){ud}, RoleData{b8192} from role WHERE RoleID = [ud]" },
     { 0, GMMasterMysqlSelectMail, "SELECT MailID{ud}, UNIX_TIMESTAMP(MailTime){ud}, MailType{uc}, IsNew{uc}, AttachLocked{uc}, MailSubject{s60}, AttachType{uc}, Attach{b64} from mail WHERE ReceiverRoleID = [ud]" },
     { 0, GMMasterMysqlUpdateRoleData, "UPDATE role SET BaseData = [b8000], RoleData = [b32768] WHERE RoleID = [ud]" },
 
@@ -21,7 +21,7 @@ SQL_STMT_DATA g_GMSlaverStmtList[sSqlTotal] =
     { 0, GMMysqlSelectRoleID , "SELECT RoleID{ud} FROM role WHERE RoleName = [s24]"},
     { 0, GMMysqlSelectRoleIDByRoleName, "SELECT RoleID{ud}, RoleName{s24}, UserName{s64} FROM role WHERE RoleName like concat('%', [s24], '%') ORDER BY LENGTH(RoleName)" },
     { 0, GMMysqlSelectRoleIDByUserName, "SELECT RoleID{ud}, RoleName{s24}, UserName{s64} FROM role WHERE UserName = [s64]" },
-    { 0, GMMysqlSelectRoleData, "SELECT GroupID{uc}, RoleID{ud}, RoleName{s24}, UserName{s64}, LoginTime{s20}, UNIX_TIMESTAMP(DeleteTime){ud}, RoleData{b8192} from role WHERE RoleID = [ud]" },
+    { 0, GMMysqlSelectRoleData, "SELECT GroupID{uc}, RoleID{ud}, RoleName{s24}, UserName{s64}, LoginTime{s20}, COALESCE(UNIX_TIMESTAMP(DeleteTime), 0){ud}, RoleData{b8192} from role WHERE RoleID = [ud]" },
     { 0, GMMysqlSelectGuildID , "SELECT GuildID{ud} from guild_member WHERE RoleID = [ud]" },
     { 0, GMMysqlSelectGMForbid, "SELECT ID{ul}, Time{s20} from gm WHERE ID = [ul] or ID = [ul]" },
     { 0, GMMysqlSelectMail, "SELECT MailID{ud}, UNIX_TIMESTAMP(MailTime){ud}, MailType{uc}, IsNew{uc}, AttachLocked{uc}, MailSubject{s60}, AttachType{uc}, Attach{b64} from mail WHERE ReceiverRoleID = [ud]" },

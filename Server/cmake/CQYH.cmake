@@ -68,9 +68,14 @@ function(cqyh_server_output tgt out_name)
             set_target_properties(${tgt} PROPERTIES RUNTIME_OUTPUT_DIRECTORY_${cfg} "${dir}")
         endforeach()
     endif()
+    cqyh_copy_runtime_dlls(${tgt})
+endfunction()
+
+function(cqyh_copy_runtime_dlls tgt)
     if(WIN32)
         add_custom_command(TARGET ${tgt} POST_BUILD
             COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_RUNTIME_DLLS:${tgt}> $<TARGET_FILE_DIR:${tgt}>
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CQYH_MYSQL_RUNTIME_DLLS} $<TARGET_FILE_DIR:${tgt}>
             COMMAND_EXPAND_LISTS)
     endif()
 endfunction()

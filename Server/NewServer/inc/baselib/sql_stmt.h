@@ -6,7 +6,6 @@
 struct SQL_STMT_DATA;
 class CSqlStmt;
 class CSqlMgr;
-typedef struct st_mysql_time MYSQL_TIME;
 
 typedef BOOL (*SQL_STMT_CALLBACK_FUNC)(std::list<void*>& rResult, void* pUserData);
 

@@ -29,7 +29,7 @@ The schema file contains tables and four stored procedures, with no top-level se
 
 ## Application compatibility
 
-The game server must treat NULL DeleteTime as not deleted and write NULL instead of a zero date. Connector mapping of TINYINT fields should be checked after removing display widths. User-column differences and mail lengths between the original variants remain meaningful.
+The CMake game-server build now uses the MySQL 26.10.0 C API, treats NULL DeleteTime as not deleted, and writes NULL instead of a zero date. The statement parser specifies TINYINT bindings explicitly rather than relying on integer display widths. User-column differences and mail lengths between the original variants remain meaningful. See [the server MySQL notes](../../Server/BUILD.md#mysql) for build and test setup.
 
 The sample accounts and legacy plaintext password fields are preserved from the original populated export. These are sample game data; no local MySQL connection credentials are included.
 

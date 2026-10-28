@@ -33,6 +33,9 @@ option(CQYH_BUILD_TESTS "Build the test programs (ctest)" ON)
 if(CQYH_BUILD_TESTS)
     enable_testing()
     add_subdirectory(NewServer/test/asio_net)
+    if(WIN32)
+        add_subdirectory(NewServer/test/mysql)
+    endif()
 endif()
 
 # nameserver is not part of the Visual Studio solution (universe.sln) and does not compile as it stands

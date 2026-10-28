@@ -49,7 +49,6 @@ target_include_directories(gmserver PRIVATE
     ${CQYH_SERVER_DIR}/NewServer/3rd/toluapp/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/lua/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/zlib
-    ${CQYH_SERVER_DIR}/NewServer/3rd/mysql-5.1.65/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/gpk/Include
 )
 target_compile_definitions(gmserver PRIVATE

@@ -5,7 +5,7 @@
 #include "circle_list.h"
 #include "db/db_operation.h"
 
-typedef struct st_mysql MYSQL;
+struct MYSQL;
 struct DBSetting;
 class CMsGuild;
 class CMsGuildMember;

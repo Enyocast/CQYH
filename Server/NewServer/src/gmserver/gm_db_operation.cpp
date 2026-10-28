@@ -61,7 +61,7 @@ BOOL CDBItemLogWithGuid::UnInit()
 {
     if (m_stmt)
     {
-        my_bool bRet = mysql_stmt_close(m_stmt);
+        bool bRet = mysql_stmt_close(m_stmt);
         m_stmt = NULL;
         return 0 == bRet;
     }
@@ -173,7 +173,7 @@ BOOL CDBItemLogWithTempID::UnInit()
 {
     if (m_stmt)
     {
-        my_bool bRet = mysql_stmt_close(m_stmt);
+        bool bRet = mysql_stmt_close(m_stmt);
         m_stmt = NULL;
         return 0 == bRet;
     }
@@ -292,7 +292,7 @@ BOOL CDBItemLogWithRoleGuid::UnInit()
 {
     if (m_stmt)
     {
-        my_bool bRet = mysql_stmt_close(m_stmt);
+        bool bRet = mysql_stmt_close(m_stmt);
         m_stmt = NULL;
         return 0 == bRet;
     }
@@ -412,7 +412,7 @@ BOOL CDBItemLogWithRoleTempID::UnInit()
 {
     if (m_stmt)
     {
-        my_bool bRet = mysql_stmt_close(m_stmt);
+        bool bRet = mysql_stmt_close(m_stmt);
         m_stmt = NULL;
         return 0 == bRet;
     }
@@ -532,7 +532,7 @@ BOOL CDBItemLogWithRole::UnInit()
 {
     if (m_stmt)
     {
-        my_bool bRet = mysql_stmt_close(m_stmt);
+        bool bRet = mysql_stmt_close(m_stmt);
         m_stmt = NULL;
         return 0 == bRet;
     }

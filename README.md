@@ -97,13 +97,13 @@ Visual Studio and the DirectX SDK come from Microsoft. Everything else is hosted
 |---|---|---|
 | Server build | Visual Studio 2022 (CMake 3.25+ is bundled) Windows SDK: 10.0 Platform Toolset: v143 | Microsoft (not hosted) |
 | Client build | Visual Studio 2022 Windows SDK: 10.0 Platform Toolset: v143 (workloads: Desktop development with C++, .NET desktop development with the .NET Framework 4.8 targeting pack), DirectX SDK (June 2010) | Microsoft (not hosted) |
-| Database | MySQL 5.5.62 (64-bit MSI) – the original notes also mention 5.1 | [`MySQL Install.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/MySQL%20Install.7z) |
+| Database / server C API | MySQL 26.10.0 (x64); the shared C API client is bundled in `Server/NewServer/3rd` | [Official MySQL downloads](https://dev.mysql.com/downloads/mysql/) and [server setup notes](Server/BUILD.md#mysql) |
 | Database tool | Navicat for MySQL 12.1 (64-bit) | [`Navicat Install.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/Navicat%20Install.7z) |
 | Client troubleshooting | DirectX repair tool (blank-screen and DirectX errors on old clients) | [`DirectX 4.2 Repair Tool.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/DirectX%204.2%20Repair%20Tool.7z) |
 | Dev environment | Python 2.7.8, Perforce P4V, XAMPP 1.8.3 | [`Dev Tools Install.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/Dev%20Tools%20Install.7z) |
 | Setup and compile notes | Build, database and runtime guides, SQL files, design documents | [`Documentation.7z`](https://mirfiles.co.uk/resources/mir2/users/Jev/Legend%20Eternal/Organised/Documentation.7z) |
 
-- **MySQL:** official installers are also available from the [MySQL archive](https://downloads.mysql.com/archives/community/) (5.5.62 Windows MSI and ZIP).
+- **MySQL:** use the [modern schema and matching data](Database/mysql-modern/README.md) with the rebuilt server. The archived MySQL 5.1/5.5 installers and original database dumps belong to the historical release.
 - **Navicat** is commercial software and needs a valid licence; the official version is on the [Navicat website](https://www.navicat.com/en/products#navicat). Any MySQL client works if you prefer another.
 - **Legacy client problems:** if the DirectX SDK installer fails, uninstall the Microsoft Visual C++ redistributables (2005 to 2022), reinstall the SDK, then run the DirectX repair tool. The details are in `Documentation.7z`.
 - Packaged client builds, packaged server builds and the rest of the release are in the same folder.

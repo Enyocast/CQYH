@@ -34,6 +34,35 @@ the old projects did. Pass `-DCQYH_OUTPUT_TO_BIN=OFF` to keep them in the build 
   bytecode compiler step) and everything under `NewServer/tools` still have their own project files.
 * The source files are GBK encoded (Chinese comments). Edit them with a tool that keeps the bytes as they are.
 
+## MySQL
+
+The CMake server build uses the Oracle MySQL **26.10.0 C API**, bundled in `NewServer/3rd/mysql-26.10.0`
+and imported as `cqyh::mysql` SHARED in `cmake/ThirdParty.cmake`. Debug and Release use the same client library.
+The Windows build copies `libmysql.dll`, `libssl-3-x64.dll` and `libcrypto-3-x64.dll` alongside each executable.
+The Linux x64 shared client requires glibc 2.28+ and carries its OpenSSL libraries in `lib/linux64/private`.
+See the dependency's `README.md` for upstream package URLs and checksums.
+The old SDK remains in `NewServer/3rd` for the separate legacy tool projects.
+
+Use the matching fresh-install schema and optional data in [Database/mysql-modern](../Database/mysql-modern/README.md).
+The server now represents an unset `DeleteTime` as SQL NULL and converts it to zero in game data.
+Existing databases need their zero deletion dates converted to NULL and those columns made nullable before
+using this build. The archived SQL exports and `commonconfig/sql` bootstrap scripts target the old database;
+they are not an upgrade path for populated databases. This change does not upgrade a local database service.
+
+MySQL uses `caching_sha2_password` authentication; the modern client supports it without enabling the removed
+`mysql_native_password` plugin. Rebuild the server executables before connecting to a modern database.
+
+The Windows `mysql_roles` regression test runs the production role create/delete/restore writers under strict
+SQL mode. It skips unless a test instance is explicitly selected. The account needs permission to create and
+drop databases named `cqyh_mysql_test_*`; each run removes only its own database:
+
+```powershell
+$env:CQYH_TEST_MYSQL_PORT = "33360"
+$env:CQYH_TEST_MYSQL_USER = "root"
+# Optional: CQYH_TEST_MYSQL_HOST and CQYH_TEST_MYSQL_PASSWORD
+ctest --preset vs2022-debug -R mysql_roles --output-on-failure
+```
+
 ## Networking
 
 The client facing side (`gateserver`, `balanceserver`, `mgateserver`) uses the asio transport in

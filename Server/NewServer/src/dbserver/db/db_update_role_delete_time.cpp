@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "db_update_role_delete_time.h"
 
-#define DELETE_ROLE "UPDATE role SET DeleteTime = FROM_UNIXTIME(?) WHERE RoleID = ?"
+#define DELETE_ROLE "UPDATE role SET DeleteTime = FROM_UNIXTIME(NULLIF(?, 0)) WHERE RoleID = ?"
 
 CDBUpdateRoleDeleteTime::CDBUpdateRoleDeleteTime()
 {
@@ -51,7 +51,7 @@ Exit0:
 
 BOOL CDBUpdateRoleDeleteTime::UnInit()
 {
-    my_bool res = 0;
+    bool res = 0;
     if (m_stmt)
     {
         res = mysql_stmt_close(m_stmt);

@@ -59,7 +59,6 @@ target_include_directories(baselib PRIVATE
     ${CQYH_SERVER_DIR}/NewServer/inc/baselib
     ${CQYH_SERVER_DIR}/NewServer/3rd/lua/src
     ${CQYH_SERVER_DIR}/NewServer/3rd/toluapp/include
-    ${CQYH_SERVER_DIR}/NewServer/3rd/mysql-5.1.65/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/zlib
     ${CQYH_SERVER_DIR}/Common/define
     ${CQYH_SERVER_DIR}/Common/fusion/inc
@@ -69,3 +68,6 @@ if(MSVC)
     target_sources(baselib PRIVATE code.asm)
 endif()
 
+
+# Propagate the matching C API headers and runtime to users of baselib.
+target_link_libraries(baselib PUBLIC cqyh::mysql)

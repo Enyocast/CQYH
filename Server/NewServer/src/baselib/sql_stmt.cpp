@@ -165,7 +165,7 @@ Exit0:
 
 BOOL CSqlStmt::PushTime(time_t tValue)
 {
-    MYSQL_TIME      mysqlTime;
+    MYSQL_TIME      mysqlTime = {};
     struct tm *pTm = localtime(&tValue);
     LOG_PROCESS_ERROR(pTm);
 
@@ -176,7 +176,7 @@ BOOL CSqlStmt::PushTime(time_t tValue)
     mysqlTime.minute    = pTm->tm_min;
     mysqlTime.second    = pTm->tm_sec;
 
-    mysqlTime.neg       = FALSE;
+    mysqlTime.time_type = MYSQL_TIMESTAMP_DATETIME;
     mysqlTime.second_part   = 0;
 
     LOG_PROCESS_ERROR(m_nParamCount < m_pSqlStmtData->nParamCount);

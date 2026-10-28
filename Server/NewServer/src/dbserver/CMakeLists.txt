@@ -30,7 +30,6 @@ target_include_directories(dbserver PRIVATE
     ${CQYH_SERVER_DIR}/NewServer/inc
     ${CQYH_SERVER_DIR}/NewServer/inc/net
     ${CQYH_SERVER_DIR}/NewServer/inc/baselib
-    ${CQYH_SERVER_DIR}/NewServer/3rd/mysql-5.1.65/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/zlib
 )
 target_compile_definitions(dbserver PRIVATE

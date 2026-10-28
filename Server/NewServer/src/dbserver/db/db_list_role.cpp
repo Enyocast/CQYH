@@ -4,7 +4,7 @@
 #include "server_def.h"
 #include "role_db_base_data_conv.h"
 
-#define LIST_ROLE "SELECT RoleID, BaseData, UNIX_TIMESTAMP(DeleteTime) FROM role WHERE UserName = ? AND GroupID = ? AND RoleDeleted = 0 ORDER BY CreateTime"
+#define LIST_ROLE "SELECT RoleID, BaseData, COALESCE(UNIX_TIMESTAMP(DeleteTime), 0) FROM role WHERE UserName = ? AND GroupID = ? AND RoleDeleted = 0 ORDER BY CreateTime"
 
 CDBListRole::CDBListRole()
 {
@@ -42,7 +42,7 @@ Exit0:
 
 BOOL CDBListRole::UnInit()
 {
-    my_bool res = 0;
+    bool res = 0;
     if (m_stmt)
     {
         res = mysql_stmt_close(m_stmt);

@@ -12,7 +12,7 @@
 #include "../db/db_save_role.h"
 #include "../db/db_list_role.h"
 
-typedef struct st_mysql MYSQL;
+struct MYSQL;
 
 class CDBWorkerThread : public CThread
 {

@@ -1,7 +1,7 @@
 #ifndef _DB_INIT_H_
 #define _DB_INIT_H_
 
-typedef struct st_mysql MYSQL;
+#include "mysql.h"
 
 BOOL ExistDB(MYSQL* mysql, const char* dbname);
 BOOL CreateDB(MYSQL* mysql, const char* dbname);

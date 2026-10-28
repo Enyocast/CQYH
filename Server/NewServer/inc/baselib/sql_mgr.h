@@ -11,9 +11,7 @@
 #define MAX_DB_WORKER_THREAD_COUNT  (8)
 #define MAX_SQL_QUERY_LEN           (1024 * 8)
 
-typedef struct st_mysql MYSQL;
-typedef struct st_mysql_stmt MYSQL_STMT;
-typedef struct st_mysql_bind MYSQL_BIND;
+#include "mysql.h"
 
 /************************************************************************/
 /* INT8      c                                                          */

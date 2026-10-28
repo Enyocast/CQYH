@@ -45,7 +45,7 @@ Exit0:
 
 BOOL CDBDeleteRole::UnInit()
 {
-    my_bool res = 0;
+    bool res = 0;
     if (m_stmt)
     {
         res = mysql_stmt_close(m_stmt);

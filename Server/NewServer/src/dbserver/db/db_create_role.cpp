@@ -8,7 +8,7 @@
 #include "../logic/dbuser.h"
 #include "../logic/mem_mgr.h"
 
-#define CREATE_ROLE "INSERT INTO role (GroupID, RoleID, RoleName, UserName, CreateTime, DeleteTime, LoginTime, RoleDeleted, BaseData, RoleData) VALUES (?, ?, ?, ?, now(), 0, now(), 0, ?, ?)"
+#define CREATE_ROLE "INSERT INTO role (GroupID, RoleID, RoleName, UserName, CreateTime, DeleteTime, LoginTime, RoleDeleted, BaseData, RoleData) VALUES (?, ?, ?, ?, now(), NULL, now(), 0, ?, ?)"
 
 CDBCreateRole::CDBCreateRole()
 {
@@ -46,7 +46,7 @@ Exit0:
 
 BOOL CDBCreateRole::UnInit()
 {
-    my_bool res = 0;
+    bool res = 0;
     if (m_stmt)
     {
         res = mysql_stmt_close(m_stmt);

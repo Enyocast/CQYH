@@ -33,43 +33,43 @@ SQL_STMT_DATA g_MSSqlStmtList[msqlTotal] =
     { 4, msqlSelectExchangeLog, "SELECT GroupID{uc}, UNIX_TIMESTAMP(ExchangeTime){ud}, SellerRoleID{ud}, SellerOrderID{ul}, BuyerRoleID{ud}, BuyerOrderID{ul}, Price{d}, Count{d} FROM exchange_log WHERE ExchangeTime >= SUBDATE(now(), 7) ORDER BY ExchangeTime ASC" },
     { 4, msqlInsertExchangeLog, "INSERT INTO exchange_log (GroupID, ExchangeTime, SellerRoleID, SellerOrderID, BuyerRoleID, BuyerOrderID, Price, Count) VALUES ([uc], FROM_UNIXTIME([ud]), [ud], [ul], [ud], [ul], [d], [d])" },
 
-    { 5, mysqlSelectMaster, "SELECT GroupID{uc}, TeacherID{ud}, StudentID{ud} FROM master WHERE DeleteTime = 0"},
+    { 5, mysqlSelectMaster, "SELECT GroupID{uc}, TeacherID{ud}, StudentID{ud} FROM master WHERE DeleteTime IS NULL"},
     { 5, mysqlInsertMaster, "INSERT INTO master (GroupID, TeacherID, StudentID, CreateTime) VALUES ([uc], [ud], [ud], now())"},
     { 5, mysqlDeleteMaster, "DELETE FROM master WHERE TeacherID = [ud] AND StudentID = [ud]"},
     //{ 5, mysqlDeleteMaster, "UPDATE master SET DeleteTime = now() WHERE TeacherID = [ud] AND StudentID = [ud]" },
-    { 5, mysqlClearMaster, "DELETE FROM master WHERE UNIX_TIMESTAMP(DeleteTime) <> 0 AND UNIX_TIMESTAMP(DeleteTime) < [ud]"},
+    { 5, mysqlClearMaster, "DELETE FROM master WHERE DeleteTime IS NOT NULL AND UNIX_TIMESTAMP(DeleteTime) < [ud]"},
 
-    { 5, mysqlSelectMasterCZ, "SELECT GroupID{uc}, ID{ul}, cz{uc} FROM master_cz WHERE DeleteTime = 0"},
+    { 5, mysqlSelectMasterCZ, "SELECT GroupID{uc}, ID{ul}, cz{uc} FROM master_cz WHERE DeleteTime IS NULL"},
     { 5, mysqlInsertMasterCZ, "INSERT INTO master_cz (GroupID, ID, cz, CreateTime) VALUES ([uc], [ul], [uc], now())"},
     { 5, mysqlDeleteMasterCZ, "DELETE FROM master_cz WHERE ID = [ul]"},
     { 5, mysqlUpdateMasterCZ, "UPDATE master_cz SET cz = [uc] WHERE id = [ul]"},
-    { 5, mysqlClearMasterCZ, "DELETE FROM master_cz WHERE UNIX_TIMESTAMP(DeleteTime) <> 0 AND UNIX_TIMESTAMP(DeleteTime) < [ud]" },
+    { 5, mysqlClearMasterCZ, "DELETE FROM master_cz WHERE DeleteTime IS NOT NULL AND UNIX_TIMESTAMP(DeleteTime) < [ud]" },
 
-    { 6, mysqlSelectGuild, "SELECT GuildID{ud}, Version{uh}, GuildName{s24}, GroupID{uc}, LeaderID{ud}, CreaterName{s24}, UNIX_TIMESTAMP(CreateTime){d}, Announce{s100}, Notice{s200}, MainData{z60000} FROM guild WHERE UNIX_TIMESTAMP(DeleteTime) = 0" },
+    { 6, mysqlSelectGuild, "SELECT GuildID{ud}, Version{uh}, GuildName{s24}, GroupID{uc}, LeaderID{ud}, CreaterName{s24}, UNIX_TIMESTAMP(CreateTime){d}, Announce{s100}, Notice{s200}, MainData{z60000} FROM guild WHERE DeleteTime IS NULL" },
     { 6, mysqlInsertGuild, "INSERT INTO guild (GuildID, Version, GuildName, GroupID, LeaderID, CreaterName, CreateTime, Announce, MainData) VALUES ([ud], [uh], [s24], [uc], [ud], [s24], now(), [s100], [z60000])"},
     { 6, mysqlUpdateGuild, "UPDATE guild SET MainData = [z60000] WHERE GuildID = [ud] LIMIT 1"},
     { 6, mysqlDeleteGuild, "UPDATE guild SET DeleteTime = now() WHERE GuildID = [ud] LIMIT 1"},
     { 6, mysqlUpdateGuildNotice, "UPDATE guild SET Notice = [s200] WHERE GuildID = [ud] LIMIT 1"},
     { 6, mysqlUpdateGuildAnnounce, "UPDATE guild SET Announce = [s100] WHERE GuildID = [ud] LIMIT 1"},
     { 6, mysqlUpdateGuildLeader, "UPDATE guild SET LeaderID = [ud] WHERE GuildID = [ud] LIMIT 1"},
-    { 6, mysqlClearGuild , "DELETE FROM guild WHERE UNIX_TIMESTAMP(DeleteTime) <> 0 AND UNIX_TIMESTAMP(DeleteTime) < [ud]"},
+    { 6, mysqlClearGuild , "DELETE FROM guild WHERE DeleteTime IS NOT NULL AND UNIX_TIMESTAMP(DeleteTime) < [ud]"},
 
     { 6, mysqlSelectGuildWar, "SELECT GroupID{uc}, IntruderID{ud}, DefenderID{ud}, UNIX_TIMESTAMP(BeginDayTime){ud} FROM guild_war WHERE UNIX_TIMESTAMP(BeginDayTime) > [ud] ORDER BY UNIX_TIMESTAMP(BeginDayTime) ASC"},
     { 6, mysqlInsertGuildWar, "INSERT INTO guild_war (GroupID, IntruderID, DefenderID, BeginDayTime) VALUES([uc], [ud], [ud], FROM_UNIXTIME([ud]))" },
 
-    { 6, mysqlSelectGMember, "SELECT GroupID{uc}, RoleID{ud}, GuildID{ud}, Position{uc}, Flag{uc}, Salary{d}, UNIX_TIMESTAMP(DrawSalaryTime){ud}, Pow{d} FROM guild_member WHERE DeleteTime = 0"},
+    { 6, mysqlSelectGMember, "SELECT GroupID{uc}, RoleID{ud}, GuildID{ud}, Position{uc}, Flag{uc}, Salary{d}, UNIX_TIMESTAMP(DrawSalaryTime){ud}, Pow{d} FROM guild_member WHERE DeleteTime IS NULL"},
     { 6, mysqlInsertGMember, "INSERT INTO guild_member (RoleID, GroupID, GuildID, Position, Flag, Salary, DrawSalaryTime, CreateTime) VALUES ( [ud], [uc], [ud], [uc], [uc], [d], FROM_UNIXTIME([ud]), now())"},
     //{ 6, mysqlDeleteGMember, "UPDATE guild_member SET DeleteTime = now() WHERE RoleID = [ud] LIMIT 1" },
     { 6, mysqlDeleteGMember, "DELETE FROM guild_member WHERE RoleID = [ud] LIMIT 1" },
     { 6, mysqlUpdateGMember, "UPDATE guild_member SET Position = [uc], Flag = [uc], Salary = [d], DrawSalaryTime = FROM_UNIXTIME([ud]), Pow = [d] WHERE RoleID = [ud] LIMIT 1"},
     //{ 6, mysqlDeleteGMemberByGuildID, "UPDATE guild_member SET DeleteTime = now() WHERE GuildID = [ud]" },
     { 6, mysqlDeleteGMemberByGuildID, "DELETE FROM guild_member WHERE GuildID = [ud]" },
-    { 6, mysqlClearGMember, "DELETE FROM guild_member WHERE UNIX_TIMESTAMP(DeleteTime) <> 0 AND UNIX_TIMESTAMP(DeleteTime) < [ud]" },
+    { 6, mysqlClearGMember, "DELETE FROM guild_member WHERE DeleteTime IS NOT NULL AND UNIX_TIMESTAMP(DeleteTime) < [ud]" },
 
-    { 7, mysqlInsertArena, "INSERT INTO arena (GroupID, Fund, Rank) VALUES ([uc], [ul], [b324])" },
-    { 7, mysqlSelectArena, "SELECT GroupID{uc}, Fund{ul}, Rank{b324} FROM arena"},
+    { 7, mysqlInsertArena, "INSERT INTO arena (GroupID, Fund, `Rank`) VALUES ([uc], [ul], [b324])" },
+    { 7, mysqlSelectArena, "SELECT GroupID{uc}, Fund{ul}, `Rank`{b324} FROM arena"},
     { 7, mysqlUpdateArenaFund, "UPDATE arena SET Fund = [ul] WHERE GroupID = [uc]" },
-    { 7, mysqlUpdateArenaRank, "UPDATE arena SET Rank = [b324] WHERE GroupID = [uc]"},
+    { 7, mysqlUpdateArenaRank, "UPDATE arena SET `Rank` = [b324] WHERE GroupID = [uc]"},
 
     { 8, mysqlDeleteExpiredMail, "DELETE FROM mail WHERE MailTime < SUBDATE(now(), 30)"},
     { 8, mysqlSelectMail, "SELECT GroupID{uc}, MailID{ud}, UNIX_TIMESTAMP(MailTime){ud}, SenderRoleID{ud}, ReceiverRoleID{ud}, MailType{uc}, IsNew{uc}, AttachLocked{uc}, MailSubject{s60}, MailContent{s420}, AttachType{uc}, Attach{b64} FROM mail ORDER BY MailID ASC"},
@@ -97,7 +97,7 @@ SQL_STMT_DATA g_MSSqlStmtList[msqlTotal] =
 	{ 0, mysqlUpdateGroup, "UPDATE group_ms SET RegisterTime = NOW() WHERE GroupID = [uc] AND RegisterIp = [s31]" },
 	{ 0, mysqlDeleteGroup, "DELETE FROM group_ms WHERE RegisterIp = [s31]" },
 
-    // "SELECT GroupID{uc}, ID{ul}, cz{uc} FROM master_cz WHERE DeleteTime = 0"
+    // "SELECT GroupID{uc}, ID{ul}, cz{uc} FROM master_cz WHERE DeleteTime IS NULL"
 	//{ 0, mysqlSelectLoginQuery, "SELECT RealMoney{ul} FROM user WHERE UserName = [s33] AND Password = [s32]" },
 	{ 0, mysqlSelectLoginQuery, "SELECT * FROM user WHERE UserName = [s33] AND Password = [s32]" },
 

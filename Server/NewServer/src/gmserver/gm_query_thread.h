@@ -17,7 +17,7 @@
 #include "../dbserver/db/db_load_role.h"
 #include "../dbserver/db/db_save_role.h"
 
-typedef struct st_mysql MYSQL;
+struct MYSQL;
 struct DBSetting;
 
 class CGMQueryThread : public CThread

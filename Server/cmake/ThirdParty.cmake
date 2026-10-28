@@ -1,7 +1,7 @@
 # Pre-built third-party libraries that live in NewServer/3rd (there is no source for them in the repo).
 #
 # Windows : lib/win64 import/static libs (+ the DLLs that go with the import libs)
-# Linux   : lib/linux64 static libs where the repo has them; zlib comes from the system.
+# Linux   : lib/linux64 libraries where the repo has them; zlib comes from the system.
 # A missing Linux library only fails when something links against it.
 
 set(_3rd "${CQYH_SERVER_DIR}/NewServer/3rd")
@@ -14,7 +14,7 @@ function(_cqyh_imported name kind)
         IMPORTED_CONFIGURATIONS "RELEASE;DEBUG"
         MAP_IMPORTED_CONFIG_RELWITHDEBINFO RELEASE
         MAP_IMPORTED_CONFIG_MINSIZEREL RELEASE)
-    if(kind STREQUAL "SHARED")
+    if(kind STREQUAL "SHARED" AND WIN32)
         set_target_properties(cqyh::${name} PROPERTIES
             IMPORTED_IMPLIB_RELEASE   "${A_RELEASE}"
             IMPORTED_IMPLIB_DEBUG     "${A_DEBUG}"
@@ -40,9 +40,13 @@ if(WIN32)
         RELEASE "${_3rd}/zlib/lib/win64/zlib.lib"
         DEBUG   "${_3rd}/zlib/lib/win64/zlib_d.lib")
 
+    # Oracle ships one C API client for both Debug and Release applications.
     _cqyh_imported(mysql SHARED
-        RELEASE "${_3rd}/mysql-5.1.65/lib/win64/libmysql64.lib"   DLL_RELEASE "${_3rd}/mysql-5.1.65/lib/win64/libmysql64.dll"
-        DEBUG   "${_3rd}/mysql-5.1.65/lib/win64/libmysql64_d.lib" DLL_DEBUG   "${_3rd}/mysql-5.1.65/lib/win64/libmysql64_d.dll")
+        RELEASE "${_3rd}/mysql-26.10.0/lib/win64/libmysql.lib" DLL_RELEASE "${_3rd}/mysql-26.10.0/lib/win64/libmysql.dll"
+        DEBUG   "${_3rd}/mysql-26.10.0/lib/win64/libmysql.lib" DLL_DEBUG   "${_3rd}/mysql-26.10.0/lib/win64/libmysql.dll")
+    set(CQYH_MYSQL_RUNTIME_DLLS
+        "${_3rd}/mysql-26.10.0/lib/win64/libssl-3-x64.dll"
+        "${_3rd}/mysql-26.10.0/lib/win64/libcrypto-3-x64.dll")
 
     # GPK: only a Debug redistributable DLL is shipped; used for both configurations.
     _cqyh_imported(gpk SHARED
@@ -73,9 +77,9 @@ else()
     _cqyh_imported(toluapp STATIC
         RELEASE "${_3rd}/toluapp/lib/linux64/libtolua++.a"
         DEBUG   "${_3rd}/toluapp/lib/linux64/libtolua++.a")
-    _cqyh_imported(mysql STATIC
-        RELEASE "${_3rd}/mysql-5.1.65/lib/linux64/libmysqlclient.a"
-        DEBUG   "${_3rd}/mysql-5.1.65/lib/linux64/libmysqlclient.a")
+    _cqyh_imported(mysql SHARED
+        RELEASE "${_3rd}/mysql-26.10.0/lib/linux64/libmysqlclient.so.24"
+        DEBUG   "${_3rd}/mysql-26.10.0/lib/linux64/libmysqlclient.so.24")
     _cqyh_imported(gpk STATIC
         RELEASE "${_3rd}/gpk/Redist/Debug/Server/64-Centos. 6.x/libGPKitSvr.a"
         DEBUG   "${_3rd}/gpk/Redist/Debug/Server/64-Centos. 6.x/libGPKitSvr.a")
@@ -88,3 +92,6 @@ else()
     add_library(cqyh::sdobase INTERFACE IMPORTED GLOBAL)
     add_library(cqyh::fcm INTERFACE IMPORTED GLOBAL)
 endif()
+
+set_target_properties(cqyh::mysql PROPERTIES
+    INTERFACE_INCLUDE_DIRECTORIES "${_3rd}/mysql-26.10.0/include")

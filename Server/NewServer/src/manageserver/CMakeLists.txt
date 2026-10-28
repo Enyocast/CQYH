@@ -102,7 +102,6 @@ target_include_directories(manageserver PRIVATE
     ${CQYH_SERVER_DIR}/Common/fusion/inc
     ${CQYH_SERVER_DIR}/Common/message
     ${CQYH_SERVER_DIR}/Common/define
-    ${CQYH_SERVER_DIR}/NewServer/3rd/mysql-5.1.65/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/toluapp/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/lua/src
     ${CQYH_SERVER_DIR}/NewServer/3rd/zlib
