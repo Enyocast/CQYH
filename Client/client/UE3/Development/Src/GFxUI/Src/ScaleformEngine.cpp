@@ -637,10 +637,8 @@ class FGFxExternalInterface : public GFx::ExternalInterface
 
 						if(!pfunc)
 						{
-							SET_WARN_COLOR(COLOR_YELLOW);
 							warnf(NAME_Error, TEXT("------- 从AS回调回来的函数没有找到： fun[%s] obj[%s]"),
 								*umethodName.ToString(), *pextern->GetFullName());
-							CLEAR_WARN_COLOR();
 							return;
 						}
 // oscar@snda
@@ -880,9 +878,7 @@ void FGFxEngine::InitCommonRT ( GFx::Loader& mLoader )
 	fontCacheConfig.TextureHeight  = 1024;
 	fontCacheConfig.MaxSlotHeight  = 48;
 	//    fontCacheConfig.SlotPadding    = 2;
-
-	//shan@snda
-	fontCacheConfig.NumTextures = 4;
+	//    fontCacheConfig.MaxNumTextures = 1;
 	fontCacheConfig.TexUpdWidth = 128;
 	fontCacheConfig.TexUpdHeight = 256;
 
@@ -4011,6 +4007,7 @@ UBOOL FGFxEngine::GetTopMostMovieUnderMouse(FGFxMovie** ppMovie)
 //shan@snda[
 void FGFxEngine::SetFilterCacheDisable()
 {
+	/*
 	for ( INT DPG = 0; DPG < SDPG_MAX; DPG++ )
 	{
 		for ( INT i = 0; i < DPGOpenMovies[DPG].Num(); ++i )
@@ -4018,11 +4015,12 @@ void FGFxEngine::SetFilterCacheDisable()
 			FGFxMovie& movie = *DPGOpenMovies[DPG] ( i );
 			if ( movie.fVisible && IsHudEnabled() || ( movie.pUMovie && movie.pUMovie->bDisplayWithHudOff ) )
 			{
-				TreeRoot *pnode = movie.DispHandle.GetRenderEntry();
+				Scaleform::GFx::TreeRoot *pnode = movie.DispHandle.GetRenderEntry();
 				pnode->SetFilterCacheDisable();
 			}
 		}
 	}
+	*/
 }
 //shan@snda]
 

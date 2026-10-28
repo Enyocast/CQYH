@@ -130,6 +130,25 @@ Everything in `Client` opens and builds from Visual Studio 2022; Visual Studio 2
   - The linker rejects objects built with different `_MSC_VER` values, so the `/FAILIFMISMATCH:_MSC_VER=1600` marker inside some prebuilt `.lib` files (`recastd`, `squishd`, `FxSDKd`/`FxCGd`/`FxAnalysisd`, `nvTriStripD`, `NxTetraDebug`, `ConvexDecompositionDEBUG`) was changed to `1900`. These `.lib` files are part of **Client Assets**, so use the ones from the Client Assets download that carry this change.
   - Other configurations (Release/Shipping, Win64) may need the same treatment for their library variants; the first link error names the library.
 
+### Opening the client in the UE3 editor (prebuilt map editor)
+
+The editor that is known to work is the **prebuilt 2025 "Win32 - Modified and Compiled" map editor**, run against the full client tree. It is not an editor built from this source: that is what the release's `Map Editor Tool Description` describes. The steps below are the setup of a contributor who runs it successfully (`MMOGame.exe editor -log -NoGADWarning -dx9 -LANGUAGE=ENG`). The editor binaries are build output and are not in git.
+
+1. Put [Client Assets](#client-assets-required-to-build-and-run-the-client) in place, and also the **retail client** (`Client 1.0.0.2 104129`): its `MMOGame\Config` data tables and `CookedPC` extras are missing from Client Assets.
+2. Extract the **`Win32 - Modified and Compiled`** folder from the release's `Map Editor Tool Description`. It holds 43 files: `MMOGame.exe`, `MMOGame-Win32-Debug.exe`, the custom wxWidgets 2.8.9 DLLs and build leftovers. Overlay it onto `Client\client\UE3\Binaries\Win32` with `Client\Setup-PrebuiltEditor.ps1 -BundleDir "<path to that folder>"` (it copies only `.exe`, `.dll`, `.config` and backs up what it replaces).
+3. Use the genuine `UE3ShaderCompileWorker.exe` (56 KB, 2015). The 274 KB 2020 file in Client Assets is a different program: it prints a `cmd` banner and exits. Pass it with `-ShaderWorker`.
+4. In `MMOGame\Config\DefaultEditorUserSettings.ini` and `MMOEditorUserSettings.ini` set source control to `Disabled=True` and `AutoAddNewFiles=False`.
+5. Install, or check for, the official runtimes: Visual C++ 2010 SP1 x86, DirectX End-User Runtimes (June 2010) and .NET Framework 4.x. A missing `mss32.dll` (Bink, delay-loaded) does not matter in editor mode.
+6. Run `Client\Launch_Editor_DX9.bat` (use DX9 first; `Launch_Editor_DX11.bat` is the second stage). Open `Content\Maps\testgrid.udk` first, then `Content\Maps\_MMOMaps\Mir2\MirDg09\MirDg09.udk`.
+7. **Do not save.** Do not use Save All, ESMAP/ESSCENE, any Build command, cooking or commandlets. Answer *No* to every "save modified packages" prompt. Consider blocking the exe's outbound network access in the firewall for the first launch: the binary talks to historical login/P4/web endpoints.
+
+**Client source patch.** The release also says to replace `ScaleformEngine.cpp` in the client source and recompile. That patch is already applied here (`Development\Src\GFxUI\Src\ScaleformEngine.cpp`). It has not been rebuilt into a working editor.
+
+**Known problems (not solved yet)**
+- **The editor built from this source does not start.** `MMOGame-Win32-Debug.exe` built here reaches `FEngineLoop::PreInit` and then fails on `FX_Warrior_SE_Alondra.upk` (`Bad name index 8192/449`) and on the data tables (`StringMap.txt`, `CTabFile::Init`, UTF-16 BOM check). Use the prebuilt editor above until this is fixed.
+- **`MMO*.ini` are generated files.** The engine rewrites them as `[IniVersion]`-only stubs (about 37 bytes) when it decides they are stale, and keeps the stubs if the start fails. After any failed start restore them (the complete copies are in the first import commit `f1411e9a`). The complete set a working editor needs includes `DrawSilhouettes` in `MMOSystemSettingsHD.ini`.
+- When the prebuilt editor is run from a git working copy it still stopped in `FSystemSettings::LoadFromIni` with `Couldn't find system setting DrawSilhouettes in Ini section SystemSettingsEditor`, even with the contributor's `MMO*.ini` copied in and matching file timestamps. The contributor's own tree does not show this, so some difference between the two trees has not been found yet.
+- Do not commit regenerated `*Classes.h` files (see the build notes above).
 ### Building the server with Visual Studio 2022
 
 The server builds with CMake (x64, C++23). The old makefiles and Visual Studio project files are gone.
