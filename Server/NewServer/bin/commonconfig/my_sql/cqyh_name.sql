@@ -399,15 +399,15 @@ CREATE TABLE `shop_log`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
-  `Index` int(4) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '序号',
-  `UserName` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '账号',
-  `Password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
-  `Question` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '问题',
-  `Answer` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '答案',
-  `QQ` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'QQ号',
-  `Invite` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '邀请码',
-  `RegisterTime` datetime NOT NULL COMMENT '注册时间',
-  `RealMoney` int(8) NOT NULL DEFAULT 0 COMMENT '元宝数量',
+  `Index` int(4) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'Sequence number',
+  `UserName` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Account',
+  `Password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Password',
+  `Question` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Question',
+  `Answer` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Answer',
+  `QQ` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'QQ number',
+  `Invite` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT 'Invitation code',
+  `RegisterTime` datetime NOT NULL COMMENT 'Registration time',
+  `RealMoney` int(8) NOT NULL DEFAULT 0 COMMENT 'Yuanbao amount',
   PRIMARY KEY (`Index`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
@@ -441,7 +441,7 @@ CREATE TABLE `variable`  (
 DROP TABLE IF EXISTS `version`;
 CREATE TABLE `version`  (
   `id` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `number` int(4) NOT NULL COMMENT '正常应该写8, 卖家给的sql中log的文件执行完了是15'
+  `number` int(4) NOT NULL COMMENT 'Normally this should be 8; after running the log SQL supplied by the seller it was 15'
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
