@@ -1,275 +1,275 @@
 SDOA_SDK  Version SDOA_SDK_CSO.1.5.7.20100407.VSL
 (2010-04-12)
 ===============
-¸ÅÊö
+Overview
 -------------
-±¾²úÆ·ÎªÊ¢´óÔÚÏßÍÆ³öÒ»ÏµÁĞ°üÀ¨È¦È¦¡¢ÈÏÖ¤¡¢¼Æ·ÑµÈ·şÎñµÄ²úÆ·¡£±¾SDK°üÀ¨±¾²úÆ·½ÓÈëÓ¦ÓÃËùĞèµÄ³ÌĞò×é¼şÓëÊ¾Àı¡¢ÑİÊ¾¡¢ÎÄµµ¡£
+This Shanda Online product provides services including Quanquan, authentication, and billing. The SDK includes components, samples, demonstrations, and documentation for integrating applications.
  
-Ä¿Â¼ËµÃ÷
+Directory contents
 -------------
- |-  Client               //¿Í»§¶ËÄ£¿é
- |   |-  bin              // IGW¿Í»§¶ËÄ£¿é³ÌĞòÎÄ¼ş
- |   |-  Samples          //¸÷ÖÖäÖÈ¾¼¼ÊõÏÂµÄÓ¦ÓÃ½ÓÈëIGW·¶Àı
- |   |-  SDK              //Í·ÎÄ¼ş
- |   |-  Tools		  //¹¤¾ß
- |-  Server               //·şÎñ¶ËÄ£¿é
- |   |-  linux            //linux»·¾³×é¼ş
- |   |   |-  bin          //³ÌĞòÎÄ¼ş
- |   |   |-  samples      //Ä£¿é½ÓÈë·¶Àı´úÂë
- |   |-  win32            //windows»·¾³×é¼ş
- |   |   |-  bin          //³ÌĞòÎÄ¼ş
- |   |   |-  samples       //Ä£¿é½ÓÈë·¶Àı´úÂë
- |-  DEMO                  //ÑİÊ¾³ÌĞò
- |   |-  GameClient(IGW)   // IGWÑİÊ¾³ÌĞò
+ |-  Client               //Client components
+ |   |-  bin              // IGW client program files
+ |   |-  Samples          //IGW integration examples for different rendering technologies
+ |   |-  SDK              //Header files
+ |   |-  Tools		  //Tools
+ |-  Server               //Server components
+ |   |-  linux            //Linux components
+ |   |   |-  bin          //Program files
+ |   |   |-  samples      //Module integration examples
+ |   |-  win32            //Windows components
+ |   |   |-  bin          //Program files
+ |   |   |-  samples       //Module integration examples
+ |-  DEMO                  //Demo
+ |   |-  GameClient(IGW)   // IGW demo
 
- ½ÓÈëÅäÖÃËµÃ÷
+ Integration and configuration
 -------------
-1¡¢ÈçĞèÔËĞĞSDKÖĞµÄDEMO£¬±ØĞëÓĞ·ÃÎÊ¹«ÍøµÄ»·¾³£¬ÖÁÉÙ¿ÉÒÔ·ÃÎÊÈçºóIP£º210.51.30.84, 210.51.31.208,210.51.31.209;
-2¡¢¿ªÊ¼±¾²úÆ·½ÓÈë¿ª·¢Ç°£¬Çëµ½±¾²úÆ·¹Ù·½ÍøÕ¾ http://open.sdo.comÉÏ×¢²áÓÃ»§£¬»ñµÃÉÌÎñ±àºÅ£¨SPID£©£¬×¢²áÄúÒª½ÓÈëµÄÓ¦ÓÃ£¬»ñµÃÓ¦ÓÃ±àºÅ£¨AppID£©;
-3¡¢µ÷ÊÔÄúµÄ²úÆ·½ÓÈë´úÂëÇ°£¬Çëµ½±¾²úÆ·¹Ù·½ÍøÕ¾http://open.sdo.comÉÏµÄ¿ª·¢Æ½Ì¨µÇ¼ÇÄúµÄ·şÎñÆ÷ĞÅÏ¢¡£
-4¡¢µ÷ÊÔºÍ²âÊÔÄúµÄ½ÓÈë´úÂëÊ±£¬ÇëÈ·±£³ÌĞòÔËĞĞ»·¾³ÄÜ·ÃÎÊ¹«Íø£¬ÖÁÉÙ¿ÉÒÔ·ÃÎÊÈçºóIP£º210.51.30.84, 210.51.31.208,210.51.31.209;
-5¡¢ÉÏÏßÔËÓªÄúµÄÓ¦ÓÃÇ°£¬Çëµ½±¾²úÆ·¹Ù·½ÍøÕ¾http://open.sdo.comÉÏµÄÔËÓªÆ½Ì¨µÇ¼ÇÄúµÄ·şÎñÆ÷ĞÅÏ¢¡£
+1 Running the SDK demo requires Internet access, including at least these IP addresses: 210.51.30.84, 210.51.31.208,210.51.31.209;
+2 Before integration development, register at http://open.sdo.com to obtain an SPID and register the application to obtain an AppID;
+3 Before debugging integration code, register server details on the development platform at http://open.sdo.com.
+4 When debugging or testing integration, ensure Internet access to at least these IP addresses: 210.51.30.84, 210.51.31.208,210.51.31.209;
+5 Before launching the application, register server details on the operations platform at http://open.sdo.com.
 
  
-°æ±¾ÀúÊ·
+Version history
 -------------
-°æ±¾ºÅ:SDOA_SDK_CSO.1.5.7.20100407.VSL
-·¢²¼ÈÕÆÚ:2010-04-12
-ĞŞÕıÎÊÌâ
-·şÎñ¶Ë×é¼ş²¿·Ö£º
-·şÎñÆ÷×é¼ş°æ±¾ºÅ£ºsdoa4serverdll_REL_1_3_7_20100122
+Version:SDOA_SDK_CSO.1.5.7.20100407.VSL
+Release date:2010-04-12
+Fixes
+Server components:
+Server component version:sdoa4serverdll_REL_1_3_7_20100122
 
-¿Í»§¶Ë×é¼ş²¿·Ö£º
-¸üĞÂIGWµÄ°æ±¾£¨ÓÉ0.9.1.248¸üĞÂÎª0.9.1.330£©
-(1). ÌØÊâÕÊºÅÎŞ·¨¹ºÂòµÀ¾ß £¨272°æ±¾´æÔÚ£©¡£ 
-(2). ÓÎÏ·È«ÆÁÄ£Ê½ÏÂÒøĞĞ°²È«¿Ø¼şÏÂÔØµØÖ·ÎŞĞ§£¨272°æ±¾´æÔÚ£¬ÏßÉÏ´æÔÚ£©¡£ 
-(3). ÒøĞĞ¿¨³äÖµµ¯³ö²å¼şÒì³£ £¨272°æ±¾´æÔÚ£©¡£ 
-
-
-°æ±¾ºÅ:SDOA_SDK_CSO.1.5.7.20100326.VSL
-·¢²¼ÈÕÆÚ:2010-03-26
-ĞÂÔö¹¦ÄÜ£º
-·şÎñ¶Ë×é¼ş²¿·Ö£º
-ÎŞ
-
-¿Í»§¶Ë×é¼ş²¿·Ö£º
-ÎŞ
-
-ĞŞÕıÎÊÌâ
-·şÎñ¶Ë×é¼ş²¿·Ö£º
-ÎŞ
-
-¿Í»§¶Ë×é¼ş²¿·Ö£º
-1. iAgent.exeÌæ»»ÎªĞÂ°æ±¾
-   Ô­°æ±¾Î´Í¨¹ıÇ÷ÊÆÉ±¶¾Èí¼ş£¬È¥³ı¿ÉÄÜÓ°ÏìµÄ´úÂëºóÖØĞÂ±àÒë¡¢Ç©Ãû
-2. GameWidget.xmlÓĞ¹Ø²é¿´°ïÖúÒ»ÏîµÄÁ´½ÓµØÖ·ÓĞĞŞ¸Ä
-   ĞŞ¸ÄÎªĞÂÈ¦È¦¹ÙÍøµØÖ·
-3. ÖØĞÂ´ò°ü£¬¸ü»»ÁËĞÂµÄ°æ±¾ĞÅÏ¢ÃèÊöÎÄ¼şVerInfo.xml
+Client components:
+Updated IGW from 0.9.1.248 to 0.9.1.330
+(1). Special accounts could not purchase items (present in version 272).
+(2). The bank security control download URL was invalid in full-screen games (present in version 272 and production).
+(3). The bank-card top-up plugin failed to open correctly (present in version 272).
 
 
-°æ±¾ºÅ:SDOA_SDK_CS.1.3.7.20100122.VSL
-·¢²¼ÈÕÆÚ:2010-02-03
-ĞÂÔö¹¦ÄÜ£º
-·şÎñ¶Ë×é¼ş²¿·Ö£º
-SDOA4SERVER ĞÂÔö¼ÇÂ¼ÈÏÖ¤³É¹¦ÂÊµÄÍ³¼ÆÈÕÖ¾ÎÄ¼ş£ºÎÄ¼şÎªÃ¿ÌìÒ»¸öÎÄ¼ş£¬ÎÄ¼şÃûÎªAUTHENSTAT*.log£¬ 
-ÎÄ¼şÄÚÈİ¸ñÊ½Îª£ºÊ±¼ä£¬ÈÏÖ¤Êı£¬³É¹¦Êı£¬Ê§°ÜÊı£¬³É¹¦ÂÊ£»
-ÆäÖĞ×ÜÊı¡¢³É¹¦Êı¡¢Ê§°ÜÊı¶¼ÊÇµ±Ììµ½¸ÃÊ±¼äµÄÀÛ»ıÊıÁ¿¡£
+Version:SDOA_SDK_CSO.1.5.7.20100326.VSL
+Release date:2010-03-26
+New features:
+Server components:
+None
 
-¿Í»§¶Ë×é¼ş²¿·Ö£º
-ÎŞ
+Client components:
+None
 
-ĞŞÕıÎÊÌâ
-·şÎñ¶Ë×é¼ş²¿·Ö£º
-(1).ĞŞ¸´sdoa4serverÈÏÖ¤¹¦ÄÜÔÚÒ»µ÷ÓÃÍêinitializeºóÁ¢¼´µ÷ÓÃRelease³ÌĞò¾Í»ácrashµÄÎÊÌâ£»
-(2)¡¢ĞŞ¸´linuxÏÂ¶©µ¥³öÏÖ´óĞ¡Ğ´ÎÊÌâ¡£
+Fixes
+Server components:
+None
 
-¿Í»§¶Ë×é¼ş²¿·Ö£º
-ÎŞ
-
-
-°æ±¾ºÅ:SDOA_SDK_CS.1.3.6.0828.002.VSW
-·¢²¼ÈÕÆÚ:2009-11-25
-ĞŞÕıÎÊÌâ
-·şÎñ¶Ë×é¼ş²¿·Ö£º
-(1). ĞŞ¸´ÍøÂçÁ¬½Ó³ö´íÊ±oas_keyÎª¸ºÊıµÄbug 
-
-¿Í»§¶Ë×é¼ş²¿·Ö£º
-ÎŞ
-
-ÎÄµµ²¿·Ö£º
-ÎŞ
+Client components:
+1. Replaced iAgent.exe with a new version.
+   The original failed Trend Micro antivirus checks; potentially problematic code was removed before recompiling and signing.
+2. Changed the help link in GameWidget.xml.
+   The link now points to the new Quanquan website.
+3. Repackaged with an updated VerInfo.xml version information file.
 
 
-°æ±¾ºÅ:SDOA_SDK_CS.1.3.7.1124.VSL
-·¢²¼ÈÕÆÚ:2009-11-24
-ĞŞÕıÎÊÌâ
-·şÎñ¶Ë×é¼ş²¿·Ö£º
-1. ÅäÖÃ·şÎñÆ÷¸ÄÓÃÍ³Ò»ÅäÖÃ·şÎñÆ÷¡£
-OAÍ³Ò»ÅäÖÃÏµÍ³ÊÇÎªÁËÅäºÏOAÏµÍ³×é¼şÁé»îµÄ»ñÈ¡ËùĞèµÄÅäÖÃÎª³õÖÔ¶øÉè¼Æ¿ª·¢µÄÒ»Ì×¸¨ÖúÏµÍ³¡£¸ÃÏµÍ³·şÎñ¶ËÊ¹ÓÃhttp·şÎñÆ÷Ìá¹©Ò»¸öhttpÇëÇó·şÎñ£¬¿Í»§¶ËÓĞC++¿ª·¢·â×°µ½sdoa4server×é¼şÖĞ£¬¹©ÓÎÏ··şÎñÆ÷Í¸Ã÷µ÷ÓÃ¡£
-ÓÉÓÚÅäÖÃÏµÍ³Ö®¸ºÔğ¶ÔÍâÌá¹©ÅäÖÃ²»Éæ¼°µ½ÈÎºÎÒµÎñËùÒÔ¿ÉÒÔÓÃÓÚÈÎºÎĞèÒª¶¯Ì¬»ñÈ¡ÅäÖÃÇÒÅäÖÃ¸ñÊ½Îªxml¸ñÊ½µÄÏµÍ³¡£
+Version:SDOA_SDK_CS.1.3.7.20100122.VSL
+Release date:2010-02-03
+New features:
+Server components:
+SDOA4SERVER now writes daily authentication success statistics to AUTHENSTAT*.log.
+The fields are time, authentication count, successes, failures, and success rate.
+Counts accumulate from the start of the day to the recorded time.
 
-¿Í»§¶Ë×é¼ş²¿·Ö£º
-ÎŞ
+Client components:
+None
 
-ÎÄµµ²¿·Ö£º¡¶SDOA_CS_API_Manual_1.3.7.0924.chm¡·
-±ä¸üËµÃ÷£º
-1. Ôö¼ÓÁËÒì²½ÏìÓ¦»Øµ÷º¯Êı
-2. Ôö¼ÓÁËIGW×Ô¶¯¸üĞÂËµÃ÷ºÍÏà¹Ø×¢ÒâÊÂÏî
-3. Ôö¼Ó¿Í»§¶ËµÇÂ¼¿ç½ø³Ì·½Ê½µÄ½Ó¿ÚËµÃ÷¡£
-4. Ôö¼ÓIGW GDI½Ó¿ÚËµÃ÷¡£
-5. Ôö¼ÓÁË¿Í»§¶Ëº¯ÊıºÍ·şÎñÆ÷¶Ë·µ»ØÖµ´íÎó´úÂë±í
-6. Ôö¼ÓÊ¾Àı´úÂëµÄÄâÕæ¶ÈÓëÖ¸µ¼ĞÔ¡¢ÍêÉÆ×¢ÊÍ¡£
-7. Ôö¼ÓÁËIGW½çÃæ¶¨ÖÆËµÃ÷
+Fixes
+Server components:
+(1).Fixed an sdoa4server crash when Release was called immediately after initialize;
+(2) Fixed order case handling on Linux.
+
+Client components:
+None
 
 
-°æ±¾ºÅ:SDOA_SDK_CS.1.3.6.0828
-·¢²¼ÈÕÆÚ:2009-08-28
-ĞŞÕıÎÊÌâ
-¿Í»§¶Ë×é¼ş²¿·Ö£º
-1. Ôö¼ÓµÇÂ¼¶Ô»°¿òµ¯³ö¡¢µã»÷µÇÂ¼°´Å¥PostMessageÖÁÓÎÏ·Ö÷´°¿ÚµÄ¹¦ÄÜ
-2. ĞŞÕı¼Ç×¡ÕËºÅºó»»ÆäËûÕËºÅÎŞ·¨¼Ç×¡µÄÎÊÌâ
-3. ĞŞÕıD3D8ÏÂÄ³Ğ©µÍÅäÖÃ(Ö÷ÒªÊÇÏÔ¿¨ĞÔÄÜ½ÏÈõ)»úÆ÷ÎŞ·¨ÏÔÊ¾È¦È¦½çÃæµÄÎÊÌâ(×¢£º¿ÉÄÜĞèÒªÌØ¶¨ÏÔ¿¨Çı¶¯Ö§³Ö)
-4. ĞŞÕıÄ³Ğ©Çé¿öÏÂÇĞ»»ÊäÈë·¨»áµ¼ÖÂ½ø³Ì¼ÙËÀµÄÎÊÌâ
-5. ÌØĞÔĞŞ¸Ä£º´°¿Ú²»¿ÉÓÃÊ±²»ÏÔÊ¾TooltipÌáÊ¾
-6. ÈÏÖ¤×é¼ş¸üĞÂµ½1.0.4.0°æ±¾(UDPÈÏÖ¤³¬Ê±Ê±¼ä¸ü¸ÄÎª10s)
+Version:SDOA_SDK_CS.1.3.6.0828.002.VSW
+Release date:2009-11-25
+Fixes
+Server components:
+(1). Fixed negative oas_key values on network connection errors.
+
+Client components:
+None
+
+Documentation:
+None
 
 
-°æ±¾ºÅ:SDOA_SDK_CS.1.3.6.0827
-·¢²¼ÈÕÆÚ:2009-08-27
-ĞŞÕıÎÊÌâ
-¿Í»§¶Ë×é¼ş²¿·Ö£º
-1. ĞŞÕı¹Ì¶¨À¸¿ÉÒÔµ¯³öÓÒ¼ü²Ëµ¥ÇÒ¹¦ÄÜÎŞĞ§µÄBUG£¬¹Ì¶¨À¸²»ÔÊĞíµ¯³öÓÒ¼ü²Ëµ¥
-2. ĞŞÕı¹Ì¶¨À¸¶ÁÈ¡·şÎñÆ÷ÅäÖÃÊ§°ÜºóÎ´ÕıÈ·¼ÓÔØ±¾µØÄ¬ÈÏÅäÖÃµÄBUG
-3¡¢ĞŞÕıºóÌ¨·¢²¼Ó¦ÓÃÅÅĞò£¨·Ç¹Ì¶¨À¸£©¿Í»§¶ËÎ´ÕıÈ·Ë¢ĞÂµÄBUG
-4. ĞŞÕıÄ³Ğ©ÓÎÏ·¸üĞÂºóÍË³öÈÔÈ»»á±¨´íµÄÎÊÌâ
-5. ĞŞÕıÔÚÄ³Ğ©Ìõ¼şÏÂ²à±ßÀ¸ÖÃ¶¥Ïî¿ÉÄÜÎŞ·¨ÕıÈ·Ë¢ĞÂµÄÎÊÌâ
-6. ¸üĞÂ½çÃæÔö¼ÓÖ§³Ö×ó¼üµã»÷ÍÏ¶¯´°¿ÚÎ»ÖÃµÄ¹¦ÄÜ
-7. ¼¯³É½üÆÚDDrawÓÅ»¯µÄ³É¹¦£¬ÕûÌåĞÔÄÜÌáÉıÔÚ5%×óÓÒ
+Version:SDOA_SDK_CS.1.3.7.1124.VSL
+Release date:2009-11-24
+Fixes
+Server components:
+1. Switched to the unified configuration server.
+The OA unified configuration system provides flexible configuration for OA components. Its server exposes an HTTP service, and its C++ client is wrapped in sdoa4server for transparent use by game servers.
+Because it only supplies configuration and contains no business logic, it can be used by any system that dynamically retrieves XML configuration.
+
+Client components:
+None
+
+Documentation:SDOA_CS_API_Manual_1.3.7.0924.chm
+Changes:
+1. Added an asynchronous response callback.
+2. Added IGW automatic update instructions and precautions.
+3. Documented the cross-process client login interface.
+4. Documented the IGW GDI interface.
+5. Added error code tables for client functions and server return values.
+6. Made sample code more realistic and instructive and improved its comments.
+7. Added IGW interface customization instructions.
 
 
-°æ±¾ºÅ:SDOA_SDK_CS.1.3.5.0814
-·¢²¼ÈÕÆÚ:2009-08-14
-ĞÂÔö¹¦ÄÜ£º
-·şÎñ¶Ë×é¼ş²¿·Ö£º
-1¡¢Ìí¼ÓÁËÒì²½·¢ËÍ»Øµ÷ÏìÓ¦µÄ½Ó¿Ú
-¿Í»§¶Ë×é¼ş²¿·Ö£º
-1.IGW×Ô¶¯¸üĞÂ
-2.IGWÈ«ÆÁÊäÈë·¨
-3.Ó¦ÓÃ¼ÓÃÜ¹¦ÄÜ
-4.Ó¦ÓÃ¹Ì¶¨À¸ºóÌ¨ÅÅĞò¹¦ÄÜ
-5.SDG¹ã¸æÊı¾İ²É¼¯ĞÅÏ¢
-¿Í»§¶ËÍêÉÆ¹¦ÄÜ£º
-1.¶ÁÈ¡ÅäÖÃÎÄ¼şµÄ·½Ê½µ÷Õû£¬ÔÊĞí´«Ææ¡¢´«ÊÀÀàËÆÓÎÏ·¶àÖÖµÇÂ¼·½Ê½²¢´æ
-2.DDrawÓÅ»¯³É¹û
-3.Ê¹ÓÃĞÂ°æÃÜÂëÕÒ»Ø&ÃÜÂëĞŞ¸Ä£¬¸ü°²È«£¬¸ü±ã½İ
-4.Ê¹ÓÃĞÂ°æÕËºÅ×¢²á£¬¹ı³Ì¸ü¿ì¸ü·½±ã
-
-ĞŞÕıÎÊÌâ£º
-·şÎñ¶Ë×é¼ş²¿·Ö£º
-1¡¢ĞŞ¸´ÈÏÖ¤Ä£¿éÓÉÓÚ¶¨Ê±Æ÷ÒıÆğµÄCPU100%µÄÎÊÌâ
-2¡¢ĞŞ¸´freebsdÆô¶¯coreµôÎÊÌâ
-3¡¢ÈÏÖ¤ÍË³öÊ±²»ÄÜºÜ¿ìÍË³öµÄÎÊÌâ
-4¡¢³õÊ¼»¯²»³É¹¦Ê±£¬Îö¹¹³ö´íµÄÎÊÌâ
-5¡¢¸ñÊ½»¯ÏûÏ¢ÈÕÖ¾£¬±ãÓÚÈë¿â
-6¡¢ĞŞ¸´ĞÄÌøÏà¹ØµÄÎÊÌâ¡£ 
-¿Í»§¶Ë×é¼ş²¿·Ö£º
-1.ĞŞÕı¸ö±ğÓ¦ÓÃÍ¼Æ¬²»·¨ÏÔÊ¾ÎÊÌâ
-2.ĞŞÕı¹¤ĞĞU¶ÜÎŞ·¨²Ù×÷ÎÊÌâ
-3.ĞŞÕı¹¦·òĞ¡×ÓÖĞÆµ·±×îĞ¡»¯ÓëÕı³£Ä£Ê½¼äÇĞ»»µ¼ÖÂµÄÎÊÌâ
+Version:SDOA_SDK_CS.1.3.6.0828
+Release date:2009-08-28
+Fixes
+Client components:
+1. Added a login dialog that posts a message to the main game window when the login button is clicked.
+2. Fixed remembering a different account after an account was already saved.
+3. Fixed the Quanquan interface failing to display under D3D8 on some low-specification systems, mainly those with weaker graphics cards (specific graphics drivers may be required).
+4. Fixed a process hang when switching input methods in some circumstances.
+5. Changed tooltips to remain hidden when the window is unavailable.
+6. Updated the authentication component to 1.0.4.0 (UDP authentication timeout changed to 10 seconds).
 
 
-ÎÄµµ²¿·Ö£º¡¶SDOA_CS_API_Manual_1.3.5.0814¡·¡¢¡¶SDOA_CS_API_Manual_English_1.3.2.0723.chm¡·
+Version:SDOA_SDK_CS.1.3.6.0827
+Release date:2009-08-27
+Fixes
+Client components:
+1. Disabled the nonfunctional context menu on the fixed bar.
+2. Fixed loading the local default configuration when the fixed bar cannot read server configuration.
+3 Fixed client refresh after application ordering changes published by the backend (outside the fixed bar).
+4. Fixed errors on exit after updates in some games.
+5. Fixed refresh of pinned sidebar items under certain conditions.
+6. Added left-button dragging to move the update window.
+7. Integrated recent DDraw optimizations, improving overall performance by about 5%.
 
 
-°æ±¾ºÅ:SDOA_SDK_1.1.1.0618
-·¢²¼ÈÕÆÚ:2009-06-18
-ĞÂÔö¹¦ÄÜ£º
-·şÎñ¶Ë×é¼ş²¿·Ö£º
-ÎŞ
-¿Í»§¶Ë×é¼ş²¿·Ö£º
-1¡¢Ôö¼ÓÈÃ½Å±¾·½±ã¿ØÖÆ½¹µãµÄÊôĞÔ
-2¡¢IGW¶ÔÏóÔö¼ÓSDOAInfoÊôĞÔÓÃÓÚSDOATest²âÊÔWidgetÏÔÊ¾½ÓÈëĞÅÏ¢
-3¡¢Ö§³ÖCAS½Å±¾Ìø×ª
+Version:SDOA_SDK_CS.1.3.5.0814
+Release date:2009-08-14
+New features:
+Server components:
+1 Added an interface for asynchronous response callbacks.
+Client components:
+1.IGW automatic updates
+2.IGW full-screen input method
+3.Application encryption
+4.Backend ordering of applications in the fixed bar
+5.SDG advertising data collection
+Client improvements:
+1.Adjusted configuration loading to allow multiple login methods in games such as Legend and World of Legend.
+2.DDraw optimizations
+3.Updated password recovery and change flows for greater security and convenience.
+4.Updated account registration for a faster, easier process.
 
-ĞŞÕıÎÊÌâ£º
-·şÎñ¶Ë×é¼ş²¿·Ö£º
-ÎŞ
-¿Í»§¶Ë×é¼ş²¿·Ö£º
-1¡¢ĞŞÕıÈ¦È¦Í¼±ê×îĞ¡»¯Ê±¿ìËÙÍÏ¶¯»áÂ©ÏûÏ¢ÎÊÌâ
-2¡¢ĞŞÕıModifyAppInfo½Ó¿Ú¹¦ÄÜ²»ÕıÈ·ÎÊÌâ(ÓÎÏ·Çø·şĞÅÏ¢²»»á±ä»¯)
-3¡¢ĞŞÕıÈ«ÆÁ´°¿ÚIEÊ±µã·µ»Ø½¹µã²»ÔÚÓÎÏ·ÉÏÎÊÌâ
-4¡¢ĞŞÕıÇĞ»»Ö÷ÌâºóÔÚÈ«ÆÁÓë·ÇÈ«ÆÁ±ä»»µ¼ÖÂÏÔÊ¾²»ÕıÈ·ÎÊÌâ
-5¡¢ĞŞÕıÍøÒ³ÖĞÎÄ×ÖÊäÈë¿òÒ»´Î»Ø³µ£¬ÏìÓ¦¶ş´ÎÎÊÌâ¡£Èç£º¡°×¢²á¡±Ó¦ÓÃ£¬»Ø³µ¼üÈ·ÈÏ×¢²á£¬ÌáÊ¾ÑéÖ¤Âë´íÎóµ«ÕÊºÅÒÑ¾­×¢²á³É¹¦
-6¡¢ĞŞÕı´ò¿ªÍøÒ³´°¿ÚÄ£Ê½ÏÂĞŞ¸ÄÓÎÏ·´°¿Ú´óĞ¡ÍøÒ³´°¿ÚÎŞ±ä»¯ÎÊÌâ(×¢ÒâÒªĞŞ¸ÄÖ÷ÌâµÄFullScrWebBrowser.xmlÄ¬ÈÏÀàĞÍÎªTScriptFullIEForm)
-7¡¢ĞŞÕıÄ¬ÈÏ´´½¨µÄ´°¿Ú²¿·ÖÈ±ÉÙ¶ÔÏó¼æÈİĞÔ²»¼ÑÎÊÌâ
-8¡¢ĞŞÕı×¢²á¹²5¸öBUG£º
-£¨1£©¡¢×¢²áÒ³ÃæÍÆ¼öºÃÓÑ×¢²á¹¦ÄÜÓĞÒì³£
-£¨2£©¡¢×¢²áÒ³Ãæ¹ØÓÚÃÜÂëµÄÌáÊ¾ÓĞÎó
-£¨3£©¡¢×¢²áÒ³ÃæÍÆ¼öºÃÓÑ×¢²á¹¦ÄÜµÄÑ¡Ôñ¿òÒì³£
-£¨4£©¡¢ÍÆ¼öºÃÓÑÊ¹ÓÃ´íÎóµÄÓÊÏäµØÖ·ÄÜ³É¹¦×¢²á
-£¨5£©¡¢×¢²áÒ³ÃæÃÜÂë°ïÖúÌáÊ¾¿òÏÔÊ¾Òì³£
-ĞŞÕı°æ±¾BUG:
-£¨1£©¡¢´°¿ÚÄ£Ê½ÏÂÈ«ÆÁ´ò¿ªSDOÖ÷Õ¾ÖĞTAB¼üÎŞĞ§
-£¨2£©¡¢È«ÆÁÄ£Ê½ÖĞ´°¿Ú´ò¿ªSDO²¿·ÖÍøÕ¾³öÏÖ¼æÈİĞÔÒì³£
-£¨3£©¡¢IGW°æ±¾²âÊÔÓ¦ÓÃÖĞÔÚ´°¿ÚÖĞ´ò¿ªSDOÖ÷Õ¾´æÔÚÒì³£
-£¨4£©¡¢IGW°æ±¾²âÊÔÓ¦ÓÃÖĞÏÂÀ­¿òÒì³£
-ÎÄµµ²¿·Ö£º¡¶SDOA_CS_API_Manual_1.1.1.0618.chm ¡·
+Fixes:
+Server components:
+1 Fixed a timer in the authentication module causing 100% CPU usage.
+2 Fixed a core dump on FreeBSD startup.
+3 Fixed slow authentication shutdown.
+4 Fixed a destruction error after unsuccessful initialization.
+5 Formatted message logs for database ingestion.
+6 Fixed heartbeat issues.
+Client components:
+1.Fixed images failing to display in some applications.
+2.Fixed operation of ICBC U-Shield devices.
+3.Fixed issues caused by frequent switching between minimized and normal mode in Kung Fu Kid.
 
 
-°æ±¾ºÅ:SDOA_SDK_1.1.0.0603
-·¢²¼ÈÕÆÚ:2009-06-03      
-ĞÂÔö¹¦ÄÜ£º
-·şÎñ¶Ë×é¼ş²¿·Ö£º
-1¡¢serverÄ¿Â¼ÏÂ²¹³äincludeÄ¿Â¼ÓëÅäÖÃÎÄ¼şsdoa4server.ini
-2¡¢ÈÕÖ¾ÖĞÌí¼ÓÈ¡ÅäÖÃÊ§°Ü¼ÇÂ¼·µ»ØµÄ´íÎóÂë¡£ 
-3¡¢Ôö¼ÓÁËÒ»ÖÖ¶©µ¥ÀàĞÍ£¨¶à»õ±Ò¿Û·Ñ £©¡£
-4¡¢SamplesÏÂÔö¼ÓÁË¹Ø¼üµÄ´«Èë½ÇÉ«ĞÅÏ¢²½ÖèµÄÑİÊ¾´úÂë
-5¡¢ËùÓĞSamplesÏÂµÄreadme.txtÔö¼ÓĞŞ¸ÄÀúÊ·ÃèÊö
-6¡¢Ôö¼ÓÁËGCC3.4±àÒëµÄ¶ş½øÖÆ°æ±¾¡£
-¿Í»§¶Ë×é¼ş²¿·Ö£º
-1¡¢Ôö¼ÓÓÎÏ·¿É×Ô¶¨ÒåµÇÂ¼¶Ô»°¿òÌáÊ¾´¦ÀíµÄ»úÖÆ
-2¡¢Ôö¼Ó¿ÉÍ¨¹ıÅäÖÃÉè¶¨Ä³Ğ©´°¿Ú²»¿ÉÍÏ¶¯µÄ¹¦ÄÜ
-3¡¢Ôö¼Ó¿ÉÍ¨¹ıÅäÖÃÉè¶¨È¦È¦¹¤¾ßÀ¸ÔÚµÇÂ¼Ç°²»¿É¼ûµÄ¹¦ÄÜ£¨¿ÉÍ¨¹ıºóÌ¨Ç¿ÖÆÅäÖÃ£©
-4¡¢Ôö¼Ó¶ÔUSBÃÜ±¦µÄÖ§³Ö
-5¡¢Ôö¼ÓSDOAĞÂÈÏÖ¤·½Ê½µÄÖ§³Ö
-6¡¢Ôö¼Ó¶Ô·ÇÏµÍ³Ö÷ÌâµÄµ÷É«Ö§³Ö
-7¡¢µÇÂ¼½çÃæµ÷Õû£¬Ôö¼Ó¹ã¸æÍ¼Æ¬
-8¡¢·Å¿íÁÁ¶È¡¢±¥ºÍ¶ÈÉèÖÃ£¬¿ÉÒÔµ÷³ö¸ü¶àÑÕÉ«
-9¡¢¶ÔÊ¹ÓÃOpenWindow´ò¿ªµÄURL×öÏŞÖÆ£¬ÕıÊ½»·¾³Ä¬ÈÏÖ»ÔÊĞí´ò¿ª*.sdo.comÍøÕ¾
-10¡¢¿Í»§¶Ë·µ»ØµÄĞÅÏ¢ÖĞÔö¼ÓÊÇ·ñ³ÉÄê±êÊ¶£¨LoginResult½á¹¹ÖĞµÄÔ­IDCardÊôĞÔ£¬¡±0¡±Î´³ÉÄê£¬¡±1¡±³ÉÄê£©
-11¡¢½Ó¿ÚÓëÀÏ°æ±¾±£³Ö¼æÈİ£¬Ìæ»»ÀÏ°æ±¾¼´¿ÉÖ±½ÓÊ¹ÓÃ
-
-ĞŞÕıÎÊÌâ£º
-·şÎñ¶Ë×é¼ş²¿·Ö£º
-1¡¢¸ü¸ÄÈÏÖ¤¿Í»§¶ËÎªÒì²½Ä£Ê½£¬Ìá¸ßÁË´¦ÀíÄÜÁ¦¡£
-2¡¢ĞŞÕıÁË¶©µ¥¹ı³¤Çé¿öÏÂ£¬²»ÄÜ¼Ó½âÃÜµÄÎÊÌâ¡£
-3¡¢ĞŞ¸ÄINIÎÄ¼ş£¬¸ü¼ÓÊÊºÏ½ÓÈë·½Ê¹ÓÃ
-4¡¢ĞŞÕıÁË·¢²¼°æ±¾µÄ°æ±¾ºÅ¹æÔò£¬Õâ´Î½øĞĞÁËÍ³Ò»
-5¡¢ĞŞ¸´ÁËÈÏÖ¤Ä£¿éµÄÊı¾İ´íÎ»ÎÊÌâ¡£ 
-6¡¢ĞŞ¸´ÁËÄ³Ğ©¶©µ¥¹ı³¤Çé¿öÏÂ£¬¼ÓÃÜ½âÃÜÊ§Ğ§µÄÎÊÌâ£¬²¢½«Ç©ÃûÊı¾İ³¤¶È·Å´óÖÁ4000×Ö½Ú¡£
-7¡¢ĞŞ¸ÄÓÉÓÚ¶¨Ê±ÈÎÎñµ¼ÖÂÕ¼ÓÃCPU100%µÄÎÊÌâ¡£ 
-8¡¢ĞŞ¸´ÁËÊÚÈ¨·şÎñ¶ËÖ»·µ»Ø²¿·ÖµÄ·ûºÏÌõ¼şµÄGSINFOÏûÏ¢µÄÎÊÌâ¡£
-9¡¢C++Ê¾ÀıÎÄ¼şoasample.cppĞŞ¸Ä´«ÈëÅäÖÃÎÄ¼şConfClt.confÎªsdoa4server.ini¡£
-¿Í»§¶Ë×é¼ş²¿·Ö£º
-1¡¢ĞŞÕı´°¿ÚÏìÓ¦ÁËonCloseQueryÊÂ¼ş¿ÉÄÜµ¼ÖÂ´°¿ÚÎŞ·¨ÕıÈ·¹Ø±ÕµÄBUG
-2¡¢ĞŞÕı·şÎñÆ÷ĞèÒªÖ¤ÊéÊ±¿Í»§¶ËÎŞ·¨µ¯³öÖ¤ÊéÑ¡Ôñ¶Ô»°¿òµÄBUG£¨ÍøÒøÖ§³Ö£©
-3¡¢ĞŞ¸ÄÉè¶¨£¬²»ÏŞÖÆÈ«ÆÁIEÒ³Ãæµ¯³öConfirmÈ·ÈÏ¶Ô»°¿ò£¨ÍøÒøÖ§³Ö£©
-4¡¢ĞŞÕıÁË½ğÉ½·¢ÏÖµÄOpenWindowµ÷ÓÃÊ§°ÜµÄÎÊÌâ
-5¡¢ĞŞÕıÊÜÏµÍ³DPIÉèÖÃÓ°Ïìµ½½çÃæ×ÖÌå´óĞ¡µÄÎÊÌâ
-6¡¢ĞŞÕı³äÖµÓ¦ÓÃÖĞ¶ÔÒøĞĞ¿¨Ö§³ÖµÄ¼¸¸öÎÊÌâ
-7¡¢ĞŞÕıÃÜ±¦µÇÂ¼Ê§°ÜºóÃ»ÓĞ¹Ø±ÕÃÜ±¦ÑéÖ¤¶Ô»°¿òµ¼ÖÂÔÙ´ÎÑéÖ¤ÃÜ±¦Ê§°ÜµÄÎÊÌâ
-8¡¢ĞŞ¸ÄÁËÑéÖ¤Ëæ»úÊıÃÜ±¦µÄÌáÊ¾
-9¡¢ĞŞÕıSDOA 1.0 API ½Ó¿ÚÖĞµÄ¼¸¸ö´íÎó
-10¡¢ĞŞÕıĞÄÌø¡¢´Ó·şÎñÆ÷»ñÈ¡ÅäÖÃÔÚÄ³Ğ©Ìõ¼şÏÂ¿ÉÄÜ³öÏÖµÄÎÊÌâ
-11¡¢ĞŞÕıÄ³Ğ©Ìõ¼şÏÂµÇÂ¼¶Ô»°¿òÎŞ·¨ºô³öµÄÎÊÌâ
-12¡¢ĞŞÕıÒòÄ¿Â¼°²È«È¨ÏŞÉèÖÃÎÊÌâ¿ÉÄÜµ¼ÖÂIGWÎŞ·¨±»¼ÓÔØµÄBUG
-13¡¢ĞŞÕıTaskBarÎ»ÖÃ¶¨Î»²»¾«È·µÄÎÊÌâ
+Documentation:SDOA_CS_API_Manual_1.3.5.0814 SDOA_CS_API_Manual_English_1.3.2.0723.chm
 
 
-°æ±¾ºÅ£ºSDOA_SDK_1.0RC
-·¢²¼ÈÕÆÚ£º2009-04-30
-ĞÂÔö¹¦ÄÜ£º
-ÎŞ£¨³õ°æ£©  
-ĞŞÕıÎÊÌâ£º
-ÎŞ£¨³õ°æ£©   
+Version:SDOA_SDK_1.1.1.0618
+Release date:2009-06-18
+New features:
+Server components:
+None
+Client components:
+1 Added a property allowing scripts to control focus easily.
+2 Added the SDOAInfo property to IGW objects for the SDOATest widget to display integration information.
+3 Added support for CAS script navigation.
+
+Fixes:
+Server components:
+None
+Client components:
+1 Fixed lost messages when quickly dragging the minimized Quanquan icon.
+2 Fixed ModifyAppInfo failing to update game region and server information.
+3 Fixed focus not returning to the game after using Back in a full-screen IE window.
+4 Fixed incorrect display when switching full-screen mode after changing themes.
+5 Fixed text inputs responding twice to Enter; for example, registration could succeed while reporting an incorrect verification code.
+6 Fixed the web window not resizing with the game window in windowed mode (set the default type in the theme's FullScrWebBrowser.xml to TScriptFullIEForm).
+7 Fixed missing objects and compatibility problems in some default windows.
+8 Fixed five registration bugs:
+ï¼ˆ1ï¼‰ The registration page's friend referral feature failed.
+ï¼ˆ2ï¼‰ Password guidance on the registration page was incorrect.
+ï¼ˆ3ï¼‰ The friend referral selection box behaved incorrectly.
+ï¼ˆ4ï¼‰ Friend referrals could register with invalid email addresses.
+ï¼ˆ5ï¼‰ The registration password help tooltip displayed incorrectly.
+Fixed release bugs:
+ï¼ˆ1ï¼‰ Tab did not work when the SDO homepage was opened full-screen from windowed mode.
+ï¼ˆ2ï¼‰ Some SDO sites had compatibility issues when opened in a window from full-screen mode.
+ï¼ˆ3ï¼‰ Opening the SDO homepage in a window failed in the IGW version test application.
+ï¼ˆ4ï¼‰ Drop-down controls behaved incorrectly in the IGW version test application.
+Documentation:SDOA_CS_API_Manual_1.1.1.0618.chm
+
+
+Version:SDOA_SDK_1.1.0.0603
+Release date:2009-06-03
+New features:
+Server components:
+1 Added an include directory and sdoa4server.ini under server.
+2 Added the returned error code to configuration retrieval failure logs.
+3 Added a multi-currency billing order type.
+4 Added sample code showing the important step of passing character information.
+5 Added revision histories to all sample readme.txt files.
+6 Added binaries built with GCC 3.4.
+Client components:
+1 Added a mechanism for games to customize login dialog prompts.
+2 Added configuration to make selected windows non-draggable.
+3 Added configuration to hide the Quanquan toolbar before login (which the backend can enforce).
+4 Added support for USB security tokens.
+5 Added support for the new SDOA authentication method.
+6 Added color adjustment for non-system themes.
+7 Adjusted the login screen and added advertising images.
+8 Expanded brightness and saturation settings to allow more colors.
+9 Restricted URLs opened with OpenWindow; production defaults to allowing only *.sdo.com sites.
+10 Added an adult indicator to client results using the existing LoginResult.IDCard field (0 for a minor, 1 for an adult).
+11 The interface remains compatible with older versions and can be used by replacing the old release.
+
+Fixes:
+Server components:
+1 Changed the authentication client to asynchronous operation to improve throughput.
+2 Fixed encryption and decryption of long orders.
+3 Adjusted the INI file for integrators.
+4 Standardized release version numbering.
+5 Fixed misaligned data in the authentication module.
+6 Fixed encryption and decryption failures for some long orders and increased the signature data limit to 4,000 bytes.
+7 Fixed a scheduled task causing 100% CPU usage.
+8 Fixed the authorization server returning only some matching GSINFO messages.
+9 Changed the configuration file passed by the C++ sample oasample.cpp from ConfClt.conf to sdoa4server.ini.
+Client components:
+1 Fixed windows potentially failing to close after an onCloseQuery event.
+2 Fixed the certificate selection dialog failing to appear when required by the server (online banking support).
+3 Allowed confirmation dialogs on full-screen IE pages (online banking support).
+4 Fixed an OpenWindow call failure reported by Kingsoft.
+5 Fixed interface font sizes being affected by system DPI settings.
+6 Fixed several bank-card issues in the top-up application.
+7 Fixed a token verification dialog remaining open after login failure and causing subsequent verification to fail.
+8 Updated the prompt for random-number token verification.
+9 Fixed several errors in the SDOA 1.0 API.
+10 Fixed heartbeat and server configuration retrieval issues under certain conditions.
+11 Fixed the login dialog failing to open under certain conditions.
+12 Fixed IGW failing to load because of directory permissions.
+13 Fixed inaccurate TaskBar positioning.
+
+
+Version:SDOA_SDK_1.0RC
+Release date:2009-04-30
+New features:
+None (initial release)
+Fixes:
+None (initial release)
 

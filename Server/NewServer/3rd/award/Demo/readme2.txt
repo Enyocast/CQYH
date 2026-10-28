@@ -1,33 +1,33 @@
-Ò»£º¹ØÓÚ±à³Ì
+1. Programming
 
-1¡¢ ³ÌĞò±àÒëÊ±´øÉÏÈçÏÂ3¸öÎÄ¼ş
-	sotsapi.h ¿Í»§¶Ë¿ª·¢µ÷ÓÃµÄÍ·ÎÄ¼ş
-    sotscommondefine.h ¿Í»§¶Ëµ÷ÓÃ³£ÓÃµÄĞÅÏ¢Í·ÎÄ¼ş
-	sdtype.h  ×Ö·ûÀàĞÍµÄ¶¨ÒåÍ·ÎÄ¼ş
+1ã€ Include these three files when building
+	sotsapi.h Header for client development
+    sotscommondefine.h Header containing common client information
+	sdtype.h  Header defining character types
 	
-2¡¢ÓÃ»§±à³ÌÊ±Ö÷Òª¿´ ¡°Í³Ò»ÏûÏ¢Æ½Ì¨_¿Í»§¶ËC-C++µ÷ÓÃ½Ó¿Ú.doc¡± ÎÄµµ±ã¿É
-	±à³Ì¹ı³ÌÈçÏÂ£º
-	ÏÈµ÷ÓÃ³õÊ¼»¯º¯Êı SotsInitialize ½¨Á¢Í¬·şÎñÆ÷µÄÁ¬½Ó
-	È»ºóÒ»°ãµ÷ÓÃ Òì²½½Ó¿Ú SotsAsynCall °ÑÁì½±ÏûÏ¢·¢ËÍ¸ø·şÎñÆ÷ £¨Áì½±ÏûÏ¢²Î¼û ¡°µÀ¾ßÍÆËÍÓëÁì½±ÏûÏ¢Ğ­Òé¶¨Òå_V1.2_44.doc¡±£©
-	²¢ÇÒÍ¨¹ıÒì²½×¢²áº¯Êı pSotsMsgHandler µÃµ½·´À¡ÏûÏ¢ 
-	³ÌĞòÍË³öÊ± µ÷ÓÃ×¢Ïú½Ó¿Ú SotsTerminate ¡£
+2ã€For client development, consult the Unified Message Platform client C/C++ interface document (â€œç»Ÿä¸€æ¶ˆæ¯å¹³å°_å®¢æˆ·ç«¯C-C++è°ƒç”¨æ¥å£.docâ€).
+	Programming sequence:
+	First call SotsInitialize to connect to the server.
+	Then typically call SotsAsynCall to send the reward claim asynchronously (see the item push and reward claim protocol document â€œé“å…·æ¨é€ä¸é¢†å¥–æ¶ˆæ¯åè®®å®šä¹‰_V1.2_44.docâ€).
+	Receive responses through the registered pSotsMsgHandler callback.
+	Call SotsTerminate when the program exits.
 
-¶ş£º¹ØÓÚ³ÌĞòÔËĞĞ £¨³ÌĞòÊÇ¶¯Ì¬¼ÓÔØ£©
+2. Running the program (dynamic loading)
 
-1¡¢³ÌĞòÔËĞĞÊ±ĞèÒªÔÚÔËĞĞÄ¿Â¼ÏÂ´ø RpcClt.dll ,sotsapi.dll ,ToolsGetConf.exe ÈıÎÄ¼ş
+1ã€Place RpcClt.dll, sotsapi.dll and ToolsGetConf.exe in the runtime directory.
 
-2¡¢ÅäÖÃÎÄ¼şÄ¿Â¼ sotsconf  ·ÅÔÚÔËĞĞ³ÌĞòµÄÉÏÒ»¼¶Ä¿Â¼
+2ã€Place the sotsconf configuration directory in the parent of the runtime directory.
 
-Èı£ºĞŞ¸Ä¼ÇÂ¼
+3. Change history
 
-20090617 ĞŞ¸ÄÁËÁ¬½ÓÂıµÄÎÊÌâ
-20090806 Ôö¼ÓÁËÉ¾³ı2¸öÔÂÇ°µÄÈÕÖ¾ÎÄ¼şµÄ¹¦ÄÜ
-20090924 °Ñ°æ±¾Éı¼¶Îª2.0  ÓĞ±ğÓÚ¾ÉµÄ¼ÇÕËÏµÍ³ (»Øµ÷º¯ÊıÔö¼ÓÁË svcname ĞÅÏ¢)
-20091210 ĞŞ¸Ä³ÌĞòÔËĞĞÄ¿Â¼ºÍ´æ·ÅÄ¿Â¼²»Í¬µÄÇé¿ö
-20091211 GDÏûÏ¢Ìå½ÚĞò 1 ¶ÔÆë£¬ÆäËû½á¹¹Îª 4 ×Ö½Ú¶ÔÆë£¨·¢ËÍµÀ¾ßºÍÁì½±½Ó¿Ú²»¸üĞÂ¼ÌĞøÎª4×Ö½Ú¶ÔÆë£©
-20091228 ĞŞ¸ÄÁË±£Áô1¸öÔÂÈÕÖ¾ÎÄ¼şµÄBUG£¬ĞŞ¸ÄÁËÈÕÖ¾´òÓ¡ĞÅÏ¢£¨ÏÈĞŞ¸Ä´òÓ¡¼¶±ğ£¬ÔÙ´òÓ¡ĞŞ¸ÄĞÅÏ¢£© 
-20100309 ĞŞ¸ÄÁË±Ø´ïÏûÏ¢°üµÄÈÕÖ¾´òÓ¡¼°·¢ËÍÏûÏ¢µÄ´òÓ¡£¨debug¼¶±ğ´òÓ¡£© 
-20100325 ĞŞ¸ÄÁË±Ø´ïÏûÏ¢°ü´¦Àí»úÖÆ£¬Ã¿10·ÖÖÓÉ¨Ãè´¦Àí
-20101028 1¡¢ĞŞ¸ÄÁË¿Í»§¶ËÁ¬½Ó³¬Ê±µÄÊ±¼äÓÉ 5s ¸ÄÎª 60s,2¡¢ĞŞ¸ÄÁËGetSotsUniqueId º¯Êı¡£orderid <= 32 Î»
-20110310 1¡¢ĞŞ¸ÄÁË sprintf Îª snprintf ,2¡¢ĞŞ¸ÄÁËÍøÂçÒì³£Ê±¿ÉÄÜ»áÒıÆğ¿Í»§¶ËÒì³£µÄBUG,3¡¢ÔÚÏß³Ì¿ªÊ¼´¦Ôö¼Ó²¶»ñÒì³£
+20090617 Fixed slow connections
+20090806 Added deletion of logs older than two months
+20090924 Upgraded to version 2.0, distinct from the old accounting system (added svcname to the callback)
+20091210 Fixed handling when the runtime and storage directories differ
+20091211 Aligned GD message bodies to 1 byte and other structures to 4 bytes (item delivery and reward claim interfaces remain 4-byte aligned)
+20091228 Fixed one-month log retention and logging of log-level changes
+20100309 Changed guaranteed-delivery and send logging to debug level
+20100325 Changed guaranteed-delivery processing to scan every 10 minutes
+20101028 1ã€Changed the client connection timeout from 5s to 60s,2ã€Changed GetSotsUniqueId; orderid is at most 32 characters
+20110310 1ã€Replaced sprintf with snprintf ,2ã€Fixed a client exception caused by network errors,3ã€Added exception handling at thread startup
 

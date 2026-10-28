@@ -1,14 +1,14 @@
 SDOA_Client_SDK_Sample_OpenGL  Version 0.9.1.320
 
-完成时间
+Completion date
 ===============
 2009.04.10
 
-概述
+Overview
 ----
-本文档为SDOA CS架构客户端接入SDK：OpenGL图形引擎客户端接入源码示例
+This document describes the SDOA client SDK integration sample for the OpenGL graphics engine.
 
-目录说明
+Directory contents
 --------
 |- 1.Lesson1
 |- 2.Lesson1_LoadIGW
@@ -16,23 +16,23 @@ SDOA_Client_SDK_Sample_OpenGL  Version 0.9.1.320
 |- 4.Lesson1_ShowLoginDialog
 
 
-接入配置说明
+Integration and configuration
 --------------
 1.Lesson1
-源代码下载自http://nehe.gamedev.net
-未添加任何接入相关代码，用于方便做对比
+Source code downloaded from http://nehe.gamedev.net
+No integration code is included, to provide a baseline for comparison.
 
 2.Lesson1_LoadIGW
-在原1.Lesson1基础上增加加载IGW组件代码
+Adds code to load the IGW component to 1.Lesson1.
 
 3.Lesson1_ShowIGW
-在2.Lesson1_LoadIGW基础上，完成图形部分接入，可以正确显示IGW
+Completes graphics integration on top of 2.Lesson1_LoadIGW and displays IGW.
 
 4.Lesson1_ShowLoginDialog
-在3.Lesson1_ShowIGW基础上增加显示登录对话框
+Adds a login dialog to 3.Lesson1_ShowIGW.
 
 
-版本历史
+Version history
 ---------
-2009-04-10	发布SDK preview版本
-2009-05-14  4.Lesson1_ShowLoginDialog 增加模拟传入角色信息演示代码
+2009-04-10	Released the SDK preview
+2009-05-14  4.Lesson1_ShowLoginDialog: added sample code that simulates passing character information.

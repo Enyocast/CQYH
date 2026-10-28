@@ -1,14 +1,14 @@
 SDOA_Client_SDK_Sample_GDI  Version 0.9.1.320
 
-完成时间
+Completion date
 ===============
 2010.03.26
 
-概述
+Overview
 ----
-本文档为SDOA CS架构客户端接入SDK：GDI图形引擎客户端接入源码示例
+This document describes the SDOA client SDK integration sample for the GDI graphics engine.
 
-目录说明
+Directory contents
 --------
 |- 1.NormalGDIWin
 |- 2.NormalGDIWin_LoadIGW
@@ -18,27 +18,27 @@ SDOA_Client_SDK_Sample_GDI  Version 0.9.1.320
 |- 6.NormalGDIWin_HostLauncherGame
 
 
-接入配置说明
+Integration and configuration
 --------------
 1.NormalGDIWin
-正常的Windows窗口，用于代码对比用。
+A standard Windows window provided as a code comparison baseline.
 
 2.NormalGDIWin_LoadIGW
-在原1.NormalGDIWin基础上增加加载IGW组件代码
+Adds code to load the IGW component to 1.NormalGDIWin.
 
 3.NormalGDIWin_ShowLoginDialog
-在2.NormalGDIWin_LoadIGW基础上，完成图形部分接入，可以正确显示IGW
+Completes graphics integration on top of 2.NormalGDIWin_LoadIGW and displays IGW.
 
 4.NormalGDIWin_LauncherGame
-在3.NormalGDIWin_ShowLoginDialog基础上增加加载游戏代码，注意需要提前编译5.Tut04_Lights_GameTestLoginDirect
+Adds game loading to 3.NormalGDIWin_ShowLoginDialog. Build 5.Tut04_Lights_GameTestLoginDirect first.
 
 5.Tut04_Lights_GameTestLoginDirect
-演示如何通过GDI模式登录，然后游戏实现无登录框的方式登录，即跨进程登录演示。
+Demonstrates cross-process login: log in through GDI, then start the game without another login dialog.
 
 6.NormalGDIWin_HostLauncherGame
-演示了如何将IGW界面绘制到指定窗口上
+Demonstrates drawing the IGW interface in a specified window.
 
 
-版本历史
+Version history
 ---------
-2010-03-26	发布第一个版本
+2010-03-26	Released the first version
