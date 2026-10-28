@@ -11,33 +11,38 @@ set(CQYH_SERVER_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)   # solution folders (the tools go into "Tools")
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)   # Visual Studio solution folders; CMAKE_FOLDER is the default for new targets
 
 include(CQYH)
+
+set(CMAKE_FOLDER "Dependencies/ThirdParty")
 include(ThirdParty)
 include(Sol2)
 include(Asio)
 
 # Static libraries
+set(CMAKE_FOLDER "Dependencies/Libraries")
 add_subdirectory(Common/fusion)
 add_subdirectory(NewServer/src/baselib)
 add_subdirectory(NewServer/src/net)
 add_subdirectory(NewServer/src/gameworld)
 
 # Servers
+set(CMAKE_FOLDER "Servers")
 foreach(server
         gateserver loginserver balanceserver dbserver datalogserver
         gameserver manageserver gmserver mgateserver mobileserver gen_msg)
     add_subdirectory(NewServer/src/${server})
 endforeach()
 
-# Tools (Visual Studio solution folder "Tools")
+# Tools (they set their own "Tools" folder)
 option(CQYH_BUILD_TOOLS "Build the command line / GUI tools in NewServer/tools" ON)
 if(CQYH_BUILD_TOOLS)
     add_subdirectory(NewServer/tools)
 endif()
 
 # Tests
+set(CMAKE_FOLDER "Tests")
 option(CQYH_BUILD_TESTS "Build the test programs (ctest)" ON)
 if(CQYH_BUILD_TESTS)
     enable_testing()
