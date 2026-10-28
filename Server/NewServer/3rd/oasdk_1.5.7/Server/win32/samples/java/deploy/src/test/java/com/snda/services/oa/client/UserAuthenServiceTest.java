@@ -3,7 +3,7 @@ package com.snda.services.oa.client;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicLong;
 /**
- * 用户信息认证
+ * User information authentication
  */
 import com.snda.services.oa.client.impl.UserAuthenServiceProvider;
 

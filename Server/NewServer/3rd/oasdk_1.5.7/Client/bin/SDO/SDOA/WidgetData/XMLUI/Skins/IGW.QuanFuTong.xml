@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <widget>
-	<!-- widgetskinsresource是定义Skin用到的资源包括图片，字体，颜色等，解析时被优先于widgetskins处理 -->
+	<!-- widgetskinsresource defines skin resources such as images, fonts and colors; it is parsed before widgetskins -->
 	<widgetskinsresource>
 		<images>
 			<image name="IGW_QuanFuTongControls" src="..\Images\IGW_QuanFuTongSkin.png" skincolor="true"/>

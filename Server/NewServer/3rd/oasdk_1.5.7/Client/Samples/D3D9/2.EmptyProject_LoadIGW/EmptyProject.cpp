@@ -9,17 +9,17 @@
 #include "resource.h"
 #include "SDOA4Client.h"
 
-/* 接入相关全局变量  */
+/* Integration-related global variables  */
 HINSTANCE          g_hInstIGWDll = 0;
 LPigwInitialize    igwInitialize = NULL;
 LPigwGetModule     igwGetModule = NULL;
 LPigwTerminal      igwTerminal = NULL;
 
-/* 释放IGW */
+/* Release IGW */
 void CloseIGW()
 {
 	if (igwTerminal)
-	{  // 释放DLL前总是先调用igwTerminal
+	{  // Always call igwTerminal before releasing the DLL
 		igwTerminal();
 		igwTerminal = NULL;
 	}
@@ -31,7 +31,7 @@ void CloseIGW()
 	igwInitialize = NULL;
 }
 
-/* 加载IGW */
+/* Load IGW */
 void OpenIGW()
 {
 	WCHAR strExePath[MAX_PATH] = {0};
@@ -41,7 +41,7 @@ void OpenIGW()
 	strExePath[MAX_PATH-1]=0;
 	strLastSlash = wcsrchr( strExePath, TEXT('\\') );
 	if( strLastSlash )
-	{	// 得到EXE所在路径
+	{	// Get the EXE directory
 		StringCchCopyW( strExeName, MAX_PATH, &strLastSlash[1] );
 		*strLastSlash = 0;
 		strLastSlash = wcsrchr( strExeName, TEXT('.') );
@@ -53,14 +53,14 @@ void OpenIGW()
 	StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\GameWidget.dll", strExePath );
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // 如果程序运行路径中不存在则换个路径再试
+	{ // If it is absent from the executable path, try another path
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
 	CloseIGW();
 
 	if ( GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF )
-	{	// 找到组件则加载	
+	{	// Load the component if found
 		g_hInstIGWDll = LoadLibraryW(strGameWidgetDll);
 		if (g_hInstIGWDll)
 		{
@@ -69,22 +69,22 @@ void OpenIGW()
 			igwTerminal = (LPigwTerminal)GetProcAddress( g_hInstIGWDll, "igwTerminal" );
 			if ( igwInitialize && igwGetModule && igwTerminal)
 			{
-				// 加载成功
-				// 注意AppInfo类型所有字段必须填
+				// Loaded successfully
+				// All AppInfo fields must be filled in
 				AppInfo tmpAppInfo = {
-					sizeof(AppInfo),       // 结构体大小，方便扩展
-					9999,                  // 接入应用ID，从开发者网站中申请
-					L"龙潭虎穴OnLine",     // 应用名称
-					L"0.1.2.0",            // 应用客户端当前版本号
-					SDOA_RENDERTYPE_D3D9,  // 客户端支持的图形引擎类型，这里同时支持d3d9和d3d8
-					1,                     // 可同时在一台机器上游戏的最大人数（通常为1，例如:KOF应该是2）
-					-1,                    // 游戏区ID，不可用时传入-1
-					-1                     // 游戏组ID，不可用时传入-1
+					sizeof(AppInfo),       // Structure size for extensibility
+					9999,                  // Application ID obtained from the developer website
+					L"龙潭虎穴OnLine",     // Application name
+					L"0.1.2.0",            // Current application client version
+					SDOA_RENDERTYPE_D3D9,  // Client graphics engine type; both D3D9 and D3D8 are supported here
+					1,                     // Maximum simultaneous players on one machine (usually 1; for example, KOF uses 2)
+					-1,                    // Game area ID; pass -1 when unavailable
+					-1                     // Game group ID; pass -1 when unavailable
 
 				};
 
 				if (igwInitialize(SDOA_SDK_VERSION, &tmpAppInfo) == SDOA_OK)
-				{ // 初始化组件成功
+				{ // Component initialized successfully
 
 				}
 				else
@@ -208,7 +208,7 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 #if defined(DEBUG) | defined(_DEBUG)
     _CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #endif
-	/* 加载IGW */
+	/* Load IGW */
 	OpenIGW();
 
     // Set the callback functions
@@ -229,7 +229,7 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
     DXUTCreateDevice( D3DADAPTER_DEFAULT, true, 640, 480, IsDeviceAcceptable, ModifyDeviceSettings );
 
 	if (igwInitialize)
-	{	// 说明加载成功，表示下......
+	{	// Indicate that loading succeeded
 		HWND hMainWin = DXUTGetHWND();
 		SetWindowTextW(hMainWin, L"EmptyProject [加载IGW组件成功]");
 	}		
@@ -239,7 +239,7 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 
     // TODO: Perform any application-level cleanup here
 
-	/* 释放IGW */
+	/* Release IGW */
 	CloseIGW();
 
     return DXUTGetExitCode();

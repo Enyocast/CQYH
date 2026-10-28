@@ -1,25 +1,25 @@
 package com.snda.services.oa.client;
 
 /**
- * 订单相关的服务,包括产生订单号,订单签名
+ * Order services, including order number generation and signing
  * @author Structchen
  *
  */
 public interface OrderService {
 	
 	/**
-	 * 自动产生一个订单ID
+	 * Automatically generate an order ID
 	 * @return 
 	 */
 	public String generateOrderId();
 	
 	/**
 	 * 
-	 * 对订单进行签名返回签名以后的字符串.
+	 * Sign the order and return the signed string.
 	 * 
 	 * @param orderInfo
 	 * 
-	 * @return String 返回包含订单签名字符串Url
+	 * @return String URL containing the order signature
 	 */
 	public String buildOrderUrl(AbstractOrderInfo orderInfo);
 }

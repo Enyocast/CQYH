@@ -12,13 +12,13 @@
 HINSTANCE hInst;								// current instance
 TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
 TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
-// 当前窗口的大小
+// Current window size
 int						g_WinWidth = 640;
 int						g_WinHeight = 480;
 HWND					g_MainWin_hWnd = 0;
-BOOL					g_bIsWindow = TRUE;		// 是否为窗口模式
-BOOL					g_bVSync = TRUE;		// 是否刷新同步
-BOOL					g_DeviceLost = FALSE;	// 是否是设备丢失状态
+BOOL					g_bIsWindow = TRUE;		// Whether windowed mode is enabled
+BOOL					g_bVSync = TRUE;		// Whether vertical sync is enabled
+BOOL					g_DeviceLost = FALSE;	// Whether the device is lost
 BOOL					g_bIsSizeMove = FALSE;
 IDirect3D7*				g_pDirect3D		= NULL;
 IDirect3DDevice7*		g_pDevice7		= NULL;
@@ -38,8 +38,8 @@ void				FreeDevice();
 void				FlipWindowed();
 void				Flip();
 BOOL				MayRender();
-void				OnDeviceLost(); // 通知设备丢失
-void				OnDeviceReset();// 通知设备重置
+void				OnDeviceLost(); // Notify device loss
+void				OnDeviceReset();// Notify device reset
 void				Render();
 
 int APIENTRY _tWinMain(HINSTANCE hInstance,
@@ -67,7 +67,7 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 	if (!InitDevice())
 	{
 		MessageBox(g_MainWin_hWnd, "创建D3D7设备错误", "提示", MB_OK);
-		PostQuitMessage(0);// 出错提示完后退出
+		PostQuitMessage(0);// Exit after displaying the error
 	}
 
 	// Enter the message loop
@@ -80,14 +80,14 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 			DispatchMessage( &msg );
 		}
 		else
-		{ // 没有消息时绘制
+		{ // Render when there are no messages
 			if (g_DeviceLost == TRUE)
-			{	// 处于设备丢失中可慢点恢复，避免长时间丢失占用过多CPU
+			{	// Retry recovery slowly while the device is lost to avoid excessive CPU use
 				Sleep(100);
 			}
 			if(g_pDevice7)
-			{// 说明设备创建成功
-				Render();// 渲染相关
+			{// Device creation succeeded
+				Render();// Rendering
 			}// if(g_pDevice7)
 		}
 	}// while
@@ -154,7 +154,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    RECT rtCurRect;
    GetClientRect(g_MainWin_hWnd, &rtCurRect);
-   // 注意CreateWindow的窗口大小包括标题与边框的，下面准确的设置客户区的大小
+   // CreateWindow size includes the title bar and borders; set the client area size precisely below
    SetWindowPos(g_MainWin_hWnd, HWND_TOP, 0, 0, 
 	   g_WinWidth - (rtCurRect.right - rtCurRect.left) + g_WinWidth, 
 	   g_WinHeight - (rtCurRect.bottom - rtCurRect.top) + g_WinHeight, SWP_NOZORDER + SWP_NOACTIVATE);
@@ -198,7 +198,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			DWORD dwMask = (1 << 29);
 			bool bAltDown = ( (lParam & dwMask) != 0 );
 			if (bAltDown && (VK_RETURN == wParam))
-			{	// 在全屏与窗口模式间切换，全部重建
+			{	// Recreate everything when switching between fullscreen and windowed modes
 				g_bIsWindow = !g_bIsWindow;
 				OutputDebugString("MsgProc WM_SYSKEYDOWN ALT+ENTER begin\n");
 
@@ -206,7 +206,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				if (!InitDevice())
 				{
 					MessageBox(g_MainWin_hWnd, "创建D3D7设备错误", "提示", MB_OK);
-					PostQuitMessage(0);// 出错提示完后退出
+					PostQuitMessage(0);// Exit after displaying the error
 				}
 
 				OutputDebugString("MsgProc WM_SYSKEYDOWN ALT+ENTER end\n");
@@ -218,7 +218,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		//// TODO: Add any drawing code here...
 		//EndPaint(hWnd, &ps);
 		if (g_bIsSizeMove && g_bIsWindow)
-		{// 在移动中
+		{// Moving
 			Render();
 		}
 		break;
@@ -277,7 +277,7 @@ BOOL CreateBackBuffer()
 		DDSCAPS2 BackCaps;
 		ZeroMemory( &BackCaps, sizeof(BackCaps) );
 		BackCaps.dwCaps = DDSCAPS_BACKBUFFER;
-		// 注意get的要使g_pBackBuffer在g_pFrontBuffer之前Release
+		// Release the acquired g_pBackBuffer before g_pFrontBuffer
 		bResult = SUCCEEDED(g_pFrontBuffer->GetAttachedSurface(&BackCaps, &g_pBackBuffer));		
 	}
 	return bResult;
@@ -297,7 +297,7 @@ BOOL CreateClipper()
 }
 
 BOOL InitDevice()
-{ // 创建d3d7设备
+{ // Create the D3D7 device
 	BOOL bResult = FALSE;	
 	bResult = SUCCEEDED(DirectDrawCreateEx( NULL, (void**)&g_pDirectDraw7, IID_IDirectDraw7, NULL ));
 	if (!bResult)
@@ -329,12 +329,12 @@ BOOL InitDevice()
 		return bResult;
 	}
 	if (g_bIsWindow)	
-	{	// 窗口模式
+	{	// Windowed mode
 		SetWindowLong(g_MainWin_hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW);
 		SetWindowPos(g_MainWin_hWnd, HWND_NOTOPMOST, 0, 0, 0, 0,SWP_NOSIZE | SWP_SHOWWINDOW | SWP_DRAWFRAME | SWP_FRAMECHANGED);
 	}
 	else
-	{	// 全屏模式
+	{	// Fullscreen mode
 		SetWindowLong(g_MainWin_hWnd, GWL_STYLE, WS_POPUP | WS_VISIBLE);
 		SetWindowPos(g_MainWin_hWnd, HWND_NOTOPMOST, 0, 0, 0, 0,SWP_NOSIZE | SWP_SHOWWINDOW | SWP_DRAWFRAME | SWP_FRAMECHANGED);
 	}
@@ -470,7 +470,7 @@ BOOL MayRender()
 		}
 		if ((g_DeviceLost && (! bIsLost)) || (bIsLost && bNeedReset))
 		{
-			OnDeviceReset();// 通知设置重置,由于可能重置失败，所以下次再检查成功时才允许
+			OnDeviceReset();// Notify device reset; since reset may fail, allow it only after the next successful check
 			g_DeviceLost = FALSE;
 			return bResult;
 		}
@@ -482,7 +482,7 @@ BOOL MayRender()
 void Render()
 {
 	if (MayRender())
-	{// 允许渲染则绘制
+	{// Render when allowed
 		if (SUCCEEDED(g_pDevice7->Clear(0, NULL, D3DCLEAR_TARGET, 0, 0.0f, 0)))
 		{
 			if (SUCCEEDED(g_pDevice7->BeginScene()))

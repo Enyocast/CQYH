@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import com.snda.services.oa.client.impl.VerifySignatureServiceProvider;
 /**
- * 校验签名，生成签名的业务测试
+ * Signature verification and generation service test
  * @author chenyifang
  *
  */
@@ -32,13 +32,13 @@ public class VerifySignatureServicetest {
 						for (int i = 0; i < perThreadNum; i++) {
 							VerifySignatureServiceProvider signProvider = new VerifySignatureServiceProvider();
 						   /**
-						    * 生成签名示例，如：需要生成的参数为：
+						    * Signature generation example; the parameters to sign are:
 						    * orderId|userId|appId|areaId|groupId|depPayType|depValue|callTime|indication
 						    */
 							String signed = signProvider.sign("00000099520090429102100000000007|40093433|10001|1|1|3|1|2009-04-29 10:21:01|1|appcode:1");
 							System.out.println("signed="+signed);
 							/**
-							 * 校验签名示例，如：需要校验的参数为:
+							 * Signature verification example; the parameters to verify are:
 							 * orderId|userId|appId|areaId|groupId|depPayType|depValue|callTime|indication
 							 */
 							boolean flag = signProvider.verify("00000099520090429102100000000007|40093433|10001|1|1|3|1|2009-04-29 10:21:01|1|appcode:1", signed);

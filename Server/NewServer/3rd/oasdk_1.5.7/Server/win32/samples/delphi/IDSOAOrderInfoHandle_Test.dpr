@@ -7,7 +7,7 @@ uses
   SysUtils,
   sdoa4server in 'sdoa4server.pas';
 
-//回调函数体内处理
+//Callback handler
 function DoMsgHandle(nMsgType: Integer; pReq: ISDOAMsg; pRes: ISDOAMsg): Integer; stdcall;
 const
 {$J+}
@@ -22,7 +22,7 @@ begin
   case nMsgType of
 
     SDOA_ITEM_SEND_REQUEST:
-      begin  //道具发送请求处理
+      begin  //Handle item delivery request
         pszMsg := pReq.GetValue('orderId');
         if (pszMsg <> nil) then
           Writeln(Format('orderid=%s', [pszMsg]));
@@ -65,7 +65,7 @@ begin
 
         Inc(i);
 
-        // 返回处理应答信息
+        // Return the response
         descMsg := Format('descMsg-%d', [i]);
         appendix := Format('appendix-%d', [i]);
 
@@ -76,7 +76,7 @@ begin
       end;
 
     SDOA_DEPOSIT_REQUEST:
-      begin //充值请求处理
+      begin //Handle top-up request
         //serviceId=XX^$^areaId=XX^$^groupId=XX^$^depPayType=XX^$^depValue=XX^$^orderId[32]=XX^$^
         //userId=XX^$^callTime=XX^$^indication
 
@@ -114,7 +114,7 @@ begin
 
         Inc(i);
 
-        // 返回处理应答信息
+        // Return the response
         descMsg := Format('descMsg-%d', [i]);
         appendix := Format('appendix-%d', [i]);
 
@@ -135,16 +135,16 @@ var
 begin
   pOrderHandle := sdoaCreateOrderHandler;
 
-  //初始化全付通客户端/
+  //Initialize the Quanfutong client
   pOrderHandle.Initialize('sdoa4server.ini', @DoMsgHandle);
     
-  //创建订单信息演示，返回的obj需要DestroyOrderInfo，销毁
-  //当玩家有扣费请求过来是需要使用，根据不同的请求生成不同的订单信息
-  //具体设置的值需要参照相关协议文档
+  //Example of creating order information; destroy the returned obj with DestroyOrderInfo
+  //Use this when a player requests payment; generate order information for the request type
+  //Refer to the protocol documentation for the values to set
   obj := pOrderHandle.CreateOrderInfo(1);
   if obj = 0 then Exit;
 
-  //生成唯一订单号码函数演示 函数内生成
+  //Example of generating a unique order number inside the function
   pOrderHandle.GetUniqueId(szId);
   Writeln(Format('qftGetUniqueId = %s', [szId]));
 
@@ -156,11 +156,11 @@ begin
   pOrderHandle.SetOrderInfoValue(obj , 'goodsInfo', '1098,1,1#1099,1,1');
   pOrderHandle.SetOrderInfoValue(obj , 'indication', 'test');
 
-  //对数据签名并生成URL参数串，szUrl用于返回给客户端
+  //Sign the data and generate URL parameters; szUrl is returned to the client
   pOrderHandle.BuildOrderUrl(obj, szUrl);
-  Writeln(Format('szUrl=%s', [szUrl])); 
+  Writeln(Format('szUrl=%s', [szUrl]));
     
-  //销毁订单信息 
-  pOrderHandle.DestroyOrderInfo(obj); 
+  //Destroy the order information
+  pOrderHandle.DestroyOrderInfo(obj);
 
 end.

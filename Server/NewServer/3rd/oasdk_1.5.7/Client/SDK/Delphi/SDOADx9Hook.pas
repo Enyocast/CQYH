@@ -1,14 +1,14 @@
 {------------------------------------------------------------------------------}
 { SDOADx9Hook.pas for gwCore                                                   }
 {------------------------------------------------------------------------------}
-{ 单元描述:                                                                    }
-{ 单元作者: 盛大网络 谢斌 (xiebin@snda.com)                                    }
-{ 参考文档:                                                                    }
-{ 创建日期: 2009-11-13 14:28:41                                                }
+{ Unit description:                                                                    }
+{ Unit author: Shanda Network Xie Bin (xiebin@snda.com)                                    }
+{ References:                                                                    }
+{ Created: 2009-11-13 14:28:41                                                }
 {------------------------------------------------------------------------------}
-{ 使用说明:                                                                    }
+{ Usage:                                                                    }
 {------------------------------------------------------------------------------}
-{ 修改历史:                                                                    }
+{ Revision history:                                                                    }
 {------------------------------------------------------------------------------}
 unit SDOADx9Hook;
 
@@ -22,13 +22,13 @@ const
 
 
 type
-  { dx9图形接口 }
+  { DX9 graphics interface }
   PSDOADx9Hook = ^ISDOADx9Hook;
   ISDOADx9Hook = interface(IUnknown)
     ['{2449B1FC-DDD6-44CB-AD23-CD8BFAB14CA3}']
-    { Hook d3d设备 }
+    { Hook the D3D device }
     function Hook(Dev9: IDirect3DDevice9; HookGameWnd: HWND): HRESULT; stdcall;
-    { unHook d3d设备 }
+    { Unhook the D3D device }
     function unHook(): HRESULT; stdcall;
   end;
 

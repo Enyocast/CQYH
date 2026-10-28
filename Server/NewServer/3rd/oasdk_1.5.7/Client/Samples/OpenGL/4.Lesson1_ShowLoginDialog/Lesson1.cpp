@@ -10,9 +10,9 @@
 #include <gl\gl.h>			// Header File For The OpenGL32 Library
 #include <gl\glu.h>			// Header File For The GLu32 Library
 #include <gl\glaux.h>		// Header File For The Glaux Library
-#include <strsafe.h>        // StringCch相关用
-#include "SDOA4Client.h"    // IGW接入头文件
-#include "SDOAOpenGL.h"     // IGW接入头文件
+#include <strsafe.h>        // For StringCch
+#include "SDOA4Client.h"    // IGW integration header
+#include "SDOAOpenGL.h"     // IGW integration header
 
 HDC			hDC=NULL;		// Private GDI Device Context
 HGLRC		hRC=NULL;		// Permanent Rendering Context
@@ -26,7 +26,7 @@ bool	fullscreen=TRUE;	// Fullscreen Flag Set To Fullscreen Mode By Default
 LRESULT	CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);	// Declaration For WndProc
 
 
-/* 接入相关全局变量  */
+/* Integration-related global variables  */
 HINSTANCE          g_hInstIGWDll = 0;
 LPigwInitialize    igwInitialize = NULL;
 LPigwGetModule     igwGetModule = NULL;
@@ -34,7 +34,7 @@ LPigwTerminal      igwTerminal = NULL;
 ISDOAOpenGL*		g_SDOAOpenGL = NULL;
 ISDOAApp*			g_SDOAApp = NULL;
 
-/* 释放IGW */
+/* Release IGW */
 void CloseIGW()
 {
 	if (g_SDOAOpenGL)
@@ -50,7 +50,7 @@ void CloseIGW()
 	}
 
 	if (igwTerminal)
-	{  // 释放DLL前总是先调用igwTerminal
+	{  // Always call igwTerminal before releasing the DLL
 		igwTerminal();
 		igwTerminal = NULL;
 	}
@@ -62,7 +62,7 @@ void CloseIGW()
 	igwInitialize = NULL;
 }
 
-/* 加载IGW */
+/* Load IGW */
 void OpenIGW()
 {
 	WCHAR strExePath[MAX_PATH] = {0};
@@ -72,7 +72,7 @@ void OpenIGW()
 	strExePath[MAX_PATH-1]=0;
 	strLastSlash = wcsrchr( strExePath, TEXT('\\') );
 	if( strLastSlash )
-	{	// 得到EXE所在路径
+	{	// Get the EXE directory
 		StringCchCopyW( strExeName, MAX_PATH, &strLastSlash[1] );
 		*strLastSlash = 0;
 		strLastSlash = wcsrchr( strExeName, TEXT('.') );
@@ -84,14 +84,14 @@ void OpenIGW()
 	StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\GameWidget.dll", strExePath );
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // 如果程序运行路径中不存在则换个路径再试
+	{ // If it is absent from the executable path, try another path
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
 	CloseIGW();
 
 	if ( GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF )
-	{	// 找到组件则加载	
+	{	// Load the component if found
 		g_hInstIGWDll = LoadLibraryW(strGameWidgetDll);
 		if (g_hInstIGWDll)
 		{
@@ -100,23 +100,23 @@ void OpenIGW()
 			igwTerminal = (LPigwTerminal)GetProcAddress( g_hInstIGWDll, "igwTerminal" );
 			if ( igwInitialize && igwGetModule && igwTerminal)
 			{
-				// 加载成功
-				// 注意AppInfo类型所有字段必须填
+				// Loaded successfully
+				// All AppInfo fields must be filled in
 				AppInfo tmpAppInfo = {
-					sizeof(AppInfo),       // 结构体大小，方便扩展
-					9999,                  // 接入应用ID，从开发者网站中申请
-					L"龙潭虎穴OnLine",     // 应用名称
-					L"0.1.2.0",            // 应用客户端当前版本号
-					SDOA_RENDERTYPE_OPENGL,// 客户端支持的图形引擎类型
-					1,                     // 可同时在一台机器上游戏的最大人数（通常为1，例如:KOF应该是2）
-					-1,                    // 游戏区ID，不可用时传入-1
-					-1                     // 游戏组ID，不可用时传入-1
+					sizeof(AppInfo),       // Structure size for extensibility
+					9999,                  // Application ID obtained from the developer website
+					L"龙潭虎穴OnLine",     // Application name
+					L"0.1.2.0",            // Current application client version
+					SDOA_RENDERTYPE_OPENGL,// Graphics engine type supported by the client
+					1,                     // Maximum simultaneous players on one machine (usually 1; for example, KOF uses 2)
+					-1,                    // Game area ID; pass -1 when unavailable
+					-1                     // Game group ID; pass -1 when unavailable
 
 				};
 
 				if (igwInitialize(SDOA_SDK_VERSION, &tmpAppInfo) == SDOA_OK)
-				{ // 初始化组件成功
-					// 获取组件接口
+				{ // Component initialized successfully
+					// Get the component interface
 					igwGetModule(__uuidof(ISDOAOpenGL), (void**)&g_SDOAOpenGL);
 					igwGetModule(__uuidof(ISDOAApp), (void**)&g_SDOAApp);
 					if ( (!g_SDOAOpenGL) || (!g_SDOAApp))
@@ -380,42 +380,42 @@ BOOL CreateGLWindow(char* title, int width, int height, int bits, bool fullscree
 	return TRUE;									// Success
 }
 
-BOOL isSDOLogin = false; // 注意一定要是BOOL类型，不能为bool否则可能会导致问题
+BOOL isSDOLogin = false; // Use BOOL, not bool, to avoid potential problems
 LoginResult loginResult;
 
 BOOL CALLBACK OnLogin(int nErrorCode, const LoginResult* pLoginResult, int nUserData, int nReserved) 
-{ // 注意该回调返回true则关闭登录对话框，否则登录对话框仍然显示
+{ // This callback closes the login dialog if it returns true; otherwise the dialog remains visible
 
 	isSDOLogin = (SDOA_OK == nErrorCode); 
 	if (isSDOLogin) 
 	{ 
 		loginResult = *pLoginResult; 
-		// 登录成功后,把用户使用的游戏角色信息传入IGW
+		// After login succeeds, pass the selected character information to IGW
 		if (g_SDOAApp)
 		{
 			RoleInfo tmpRoleInfo = { sizeof(RoleInfo), L"美貌仙子", 0 } ;
-			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // 设置角色信息，可多次调用，只要用户切换了角色就调用通知IGW
+			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // Set character information; call again to notify IGW whenever the user changes character
 		}
 	} 
 	if (SDOA_ERRORCODE_SHOWMESSAGE == nErrorCode)
-	{ // 登录错误消息处理
+	{ // Handle login errors
 		if (nReserved != 0)
 		{
 			LoginMessage* pCurLoginMsg = (LoginMessage*)nReserved;
 			if (pCurLoginMsg->dwSize >= sizeof(LoginMessage))
-			{ // 兼容性处理 
-				// 修改错误提示对话框标题
+			{ // Compatibility handling
+				// Change the error dialog title
 				//SysReAllocString(pCurLoginMsg->pbstrTitle, L"[测试游戏错误提示]");
 
-				// 此时返回FALSE则使用默认提示
+				// Return FALSE to use the default message
 
-				// 此时返回TRUE则使用自定义的提示
+				// Return TRUE to use the custom message
 				//isSDOLogin = TRUE;
 				//::MessageBox(0, *pCurLoginMsg->pbstrContent, *pCurLoginMsg->pbstrTitle, MB_OK);
 			}
 		}
 	}
-	return isSDOLogin; // 常规逻辑，登录成功则关闭登录对话框
+	return isSDOLogin; // Normal behavior: close the login dialog after successful login
 } 
 
 LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
@@ -423,16 +423,16 @@ LRESULT CALLBACK WndProc(	HWND	hWnd,			// Handle For This Window
 							WPARAM	wParam,			// Additional Message Information
 							LPARAM	lParam)			// Additional Message Information
 {
-	/* 传入消息给IGW处理 */
+	/* Pass the message to IGW for processing */
 	if (g_SDOAOpenGL)
 	{
 		LRESULT tmpResult = 0;
 		if (g_SDOAOpenGL->OnWindowProc(hWnd, uMsg, wParam, lParam, &tmpResult) == SDOA_OK)
-		{	// 不再让游戏处理已经被IGW处理过的消息
+		{	// Do not pass messages already handled by IGW to the game
 			return tmpResult;
 		}
 	}
-	/* 显示登录对话框 */
+	/* Show the login dialog */
 	if ( SDOA_WM_CLIENT_RUN == uMsg)
 	{
 		if (g_SDOAApp)
@@ -518,16 +518,16 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 		return 0;									// Quit If Window Was Not Created
 	}
 
-	/* 加载IGW */
+	/* Load IGW */
 	OpenIGW();
 	if (igwInitialize)
-	{	// 说明加载成功，表示下......		
+	{	// Indicate that loading succeeded
 		SetWindowText(hWnd, "NeHe's OpenGL Framework [加载IGW组件成功]");
 	}
 
 	
 	if (g_SDOAOpenGL)
-	{	// 初始化IGW内部图形引擎
+	{	// Initialize the IGW graphics engine
 		g_SDOAOpenGL->Initialize(hDC, hRC, false);
 	}
 
@@ -561,7 +561,7 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 
 
 					if (g_SDOAOpenGL)
-					{	// 绘制IGW
+					{	// Render IGW
 						g_SDOAOpenGL->Render();
 					}
 					SwapBuffers(hDC);				// Swap Buffers (Double Buffering)
@@ -570,18 +570,18 @@ int WINAPI WinMain(	HINSTANCE	hInstance,			// Instance
 		}
 	}
 
-	/* 释放IGW内部图形引擎 */
+	/* Release the IGW graphics engine */
 	if (g_SDOAOpenGL)
 	{
 		g_SDOAOpenGL->Finalize();
 	}
 
 	if (isSDOLogin && g_SDOAApp)
-	{	// 登录成功则一定要登出
+	{	// Always log out after successful login
 		g_SDOAApp->Logout();
 	}
 
-	/* 释放IGW */
+	/* Release IGW */
 	CloseIGW();
 
 	// Shutdown

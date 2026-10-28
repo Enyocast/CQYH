@@ -8,7 +8,7 @@ import com.snda.services.oa.client.OrderService;
 
 /**
  * 
- * ¶©µ¥·þÎñ
+ * Order service
  * 
  * @author Structchen
  * 

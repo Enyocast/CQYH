@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <widget>
-	<!-- namespace标签有则为整个描述文件中的name、fontname、imagename等名称指定加上名称前辍
-			例如:namespace是"igwskin"，则所有定义的名称都为"igwskin." + 定义的名称，下面定义的图片就为"igwskin.IGW_Controls"
-			名称空间可以为空，但如果没有该标签则名称空间默认为该文件的全路径例如："c:\IGW.DefaultSkin.xml."
+	<!-- When present, the namespace tag prefixes names such as name, fontname and imagename throughout the description file
+			For example, namespace "igwskin" prefixes all names with "igwskin."; the image below becomes "igwskin.IGW_Controls"
+			The namespace may be empty; if the tag is absent, it defaults to the full file path, e.g. "c:\IGW.DefaultSkin.xml."
 	 -->
 	<namespace></namespace>
-	<!-- widgetskinsresource是定义Skin用到的资源包括图片，字体，颜色等，解析时被优先于widgetskins处理 -->
+	<!-- widgetskinsresource defines skin resources such as images, fonts and colors; it is parsed before widgetskins -->
 	<widgetskinsresource>
 		<images>
-			<!-- 注意图片名称全局使用的 system="true" 则没有使用仍然不释放，为false时超过5秒不使用则自动释放 -->			
+			<!-- Image names are global. With system="true" they remain loaded when unused; with false they are released after five seconds unused. -->
 			<image name="IGW_DefaultControls" src="..\Images\IGW_DefaultSkin.png" system="true" skincolor="true"/>
 			<image name="IGW_NormalWBControls" src="..\Images\HLSWGSkin.png" system="true" skincolor="true"/>
 			<image name="IGW_WebBrowserExCtrl" src="..\Images\HLS_SY_WGSkin.png" system="true" skincolor="true"/>
@@ -16,7 +16,7 @@
 			<image name="IGW_WidgetStatusImg" src="..\Images\IGW_WidgetStatusSkin.png" system="true"/>
 		</images>
 		<fonts>
-			<!-- 注意字体名称全局使用的 -->
+			<!-- Font names are global -->
 			<font name="normalyouyan" family="幼圆" size="16" bold="False" italic="True" underLine="False" system="False"/> 
 			<font name="Normal" family="宋体" size="9" bold="False" italic="False" underLine="False" system="true"/>
 			<font name="NormalUnderLine" family="宋体" size="9" bold="False" italic="False" underLine="True" system="true"/>
@@ -28,22 +28,22 @@
 			<font name="VerFont" family="Tahoma" size="9" bold="False" italic="False" underLine="False" system="true"/>
 		</fonts>
 		
-		<!-- skincolors比较特殊是一组配色方案 -->
+		<!-- skincolors defines a set of color schemes -->
 		<skincolors>
 			<skincolor name="">			
 			</skincolor>
 		</skincolors>
-		<!-- cursors指定按光标类型指定图片 -->
+		<!-- cursors maps cursor types to images -->
 		<cursors>
-		  <!-- 确保在skinname中指定的图片在widgetskins中有定义，这里是做个名称映射，使整个控件体系只需要按光标类型响应而不用关心具体的skin -->
+		  <!-- Ensure images named by skinname are defined in widgetskins. This mapping lets controls respond to cursor types without depending on a specific skin. -->
 			<normalcursor skinname="cursor02_16x22" />
 			<dragcursor skinname="cursor_hand_drag" />
 			<editcursor skinname="" />
 		</cursors>
 	</widgetskinsresource>
-	<!-- widgetskins中的system为真标识该skin文件只会被加载一次不允许重复加载 -->
+	<!-- A true system flag in widgetskins means the skin file is loaded only once -->
 	<widgetskins system="true">
-		<!-- 在formbar中 头、中、尾分别为 sdtHover, sdtPress, sdtFocused -->
+		<!-- In formbar, the head, middle and tail are sdtHover, sdtPress and sdtFocused respectively -->
 		<skin name="bg_igwbarsvertical" system="true" imagecenterdraw="false" imagestretchdraw="true">
 			<hover imagename="IGW_DefaultControls" left="0" top="0" right="66" bottom="24"/>
 			<press imagename="IGW_DefaultControls" left="0" top="24" right="66" bottom="28"/>
@@ -143,7 +143,7 @@
 			<normal imagename="IGW_DefaultControls" left="190" top="253" right="250" bottom="255"/>
 		</skin>
 		<skin name="bg_igwmenu" system="true" imagecenterdraw="false" imagestretchdraw="true">
-			<!-- 注意imagewell用于标识该图片按照九宫格的方式缩放（左上角宽度，左上角高度，右下角宽度，右下角高度） -->	
+			<!-- imagewell specifies nine-slice scaling (top-left width and height, bottom-right width and height) -->
 			<normal imagename="IGW_DefaultControls" left="56" top="174" right="75" bottom="192" imagewell="(2, 2, 2, 2)"/>
 		</skin>
 		<skin name="bg_igwmenuitem18x18" system="true" imagecenterdraw="false" imagestretchdraw="true">

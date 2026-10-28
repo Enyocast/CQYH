@@ -16,14 +16,14 @@ MIDL_INTERFACE("B734270C-41CD-4E62-BE4F-CEC20841E367")
 ISDOADDraw : public IUnknown
 {
 public:
-	/* 初始化图形引擎 */
+	/* Initialize the graphics engine */
 	STDMETHOD_(HRESULT,Initialize)(THIS_ HWND hWnd, IDirectDraw* pDirectDraw, IDirectDrawSurface* pMainSurface, 
 		int nDDrawVersion, bool bHookWndProc) PURE;	
-	/* 渲染界面，在游戏场景渲染后调用它 */
+	/* Render the interface after rendering the game scene */
 	STDMETHOD_(HRESULT,Render)(THIS_ IDirectDrawSurface* pTargetSurface) PURE;	
-	/* 释放图形引擎相关资源 */
+	/* Release graphics engine resources */
 	STDMETHOD_(HRESULT,Finalize)(THIS) PURE;
-	/* 传入消息 */
+	/* Pass a message */
 	STDMETHOD_(HRESULT,OnWindowProc)(THIS_ HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* lResult) PURE;
 };
 

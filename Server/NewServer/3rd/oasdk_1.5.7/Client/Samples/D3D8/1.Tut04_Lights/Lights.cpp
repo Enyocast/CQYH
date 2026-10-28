@@ -81,7 +81,7 @@ HRESULT InitD3D( HWND hWnd )
     d3dpp.BackBufferFormat = d3ddm.Format;
     d3dpp.EnableAutoDepthStencil = TRUE;
     d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
-	d3dpp.hDeviceWindow = hWnd;// 注意IGW内部总是通过它取到游戏主窗口的
+	d3dpp.hDeviceWindow = hWnd;// IGW always uses this to obtain the game main window
 
     // Create the D3DDevice
     if( FAILED( g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
@@ -298,7 +298,7 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 
 void CALLBACK OnLostDevice()
 {
-	/* 通知d3d设备丢失 */
+	/* Notify D3D device loss */
 	if( g_pVB != NULL )
 	{
 		g_pVB->Release();
@@ -308,7 +308,7 @@ void CALLBACK OnLostDevice()
 
 void CALLBACK OnResetDevice()
 {
-	/* 通知d3d设备重置成功 */
+	/* Notify successful D3D device reset */
 	InitGeometry();
 	// Turn off culling
 	g_pd3dDevice->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
@@ -364,9 +364,9 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 					DispatchMessage( &msg );
                 }
                 else
-				{	// 简单处理设备丢失问题
+				{	// Handle device loss simply
 					if (g_DeviceLost == true)
-					{	// 处于设备丢失中可慢点恢复，避免长时间丢失占用过多CPU
+					{	// Retry recovery slowly while the device is lost to avoid excessive CPU use
 						Sleep(50);
 					}
 					switch (g_pd3dDevice->TestCooperativeLevel())

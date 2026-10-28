@@ -48,10 +48,10 @@ function goNext()
   		curSelCloseReason = radio[2].value + ": " + txtReason.value;
   	}
   	//alert(curSelCloseReason);
-  	// 将原因提示，关闭时使用最后一次提交的原因
+	// Show the reason; use the last submitted reason when closing
   	PostCloseIGWReason(curSelCloseReason);
     window.location.href = "p4.html";
-    // 提交并记录关闭原因
+    // Submit and record the reason for closing
     
    }
 }

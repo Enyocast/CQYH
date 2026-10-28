@@ -11,16 +11,16 @@
 
 enum GPK_CHECK_INFO
 {
-	CHECK_EXCEPT = -1,					//CSAUTH异常
-	CHECK_SUCCEED = 0,					//检查成功
-	CHECK_CSAUTH_ERROR = 0x1,			//客户端计算结果不正确，非正常客户端
-	CHECK_NO_ADMIN = 0x2,				//没有管理员权限
-	CHECK_WINDOWS64BIT = 0x4,			//当前操作系统是64位
-	CHECK_CSAUTH_ERRORLEN = 0x8,		//客户端封包长度不正确
-	CHECK_CSAUTH_ERRORDYN = 0x10,		//客户端封包长度不正确
-	CHECK_FIND_CHEAT_EXCEPT = 0x20,		//外挂信息封包被破坏
-	CHECK_FIND_CHEAT_NEED_KICK = 0x40,	//发现外挂，需要中断玩家连线
-	CHECK_FIND_CHEAT_ONLY_LOG = 0x80	//发现外挂，只需要记录，不能中断玩家连线
+	CHECK_EXCEPT = -1,					//CSAUTH error
+	CHECK_SUCCEED = 0,					//Check succeeded
+	CHECK_CSAUTH_ERROR = 0x1,			//Incorrect client calculation result; abnormal client
+	CHECK_NO_ADMIN = 0x2,				//No administrator privileges
+	CHECK_WINDOWS64BIT = 0x4,			//The current operating system is 64-bit
+	CHECK_CSAUTH_ERRORLEN = 0x8,		//Incorrect client packet length
+	CHECK_CSAUTH_ERRORDYN = 0x10,		//Incorrect client packet length
+	CHECK_FIND_CHEAT_EXCEPT = 0x20,		//Cheat information packet is corrupted
+	CHECK_FIND_CHEAT_NEED_KICK = 0x40,	//Cheat detected; disconnect the player
+	CHECK_FIND_CHEAT_ONLY_LOG = 0x80	//Cheat detected; log only, do not disconnect the player
 };
 
 enum GPK_CHEAT_INFO_TYPE
@@ -77,18 +77,18 @@ namespace SGPK{
 class IGPKCSAuth
 {
 public:
-	//Function:生成CSAuth数据	
+	//Function: Generate CSAuth data
 	//Parameter:ppDataRet:address of pointer ,recive the auth data
-	//			Object:用于回调的对象指针，可能是一个socket，也可能是一个用户类等。甚至也可能为NULL,具体对象类型由游戏架构决定
-	//          SendToClt: 回调函数
-	//return:   大于0为数据长度，-1为异常，0表示上次的Auth检查客户端没有回应。有外挂屏蔽了Auth封包。
+	//			Object: Callback object pointer; may be a socket, user object or NULL, depending on the game architecture
+	//          SendToClt: Callback function
+	//return: Positive data length, -1 on error, or 0 if the client did not answer the previous Auth check; a cheat blocked the Auth packet.
 	virtual int  GetAuthData(const unsigned char **ppDataRet,void *Object,fnGPK_SvrCallBack SendToClt=NULL) =0;
 
-	//Function:检查客户端返回的Auth数据。
+	//Function: Check Auth data returned by the client.
 	//Parameter:ppDataRet:address of pointer ,recive the auth data
-	//          lpData:输入的数据指针
-	//          nLen:数据长度
-	//return:   返回值内容见GPK_CHECK_INFO;
+	//          lpData: Input data pointer
+	//          nLen: Data length
+	//return: See GPK_CHECK_INFO for return values;
 	virtual int  CheckAuthReply(const unsigned char **ppDataRet,unsigned char * lpData, unsigned long nLen)=0;
 
 	virtual int GetCSAuthDynCode(const unsigned char **ppCodeRet) = 0;
@@ -141,7 +141,7 @@ public:
 	virtual bool          GPK_API  LoadAuthFile(const char * pszCmdFileName) = 0;
 
 
-	////Function:Create a IGPKCSAuth Object for One Session(为一个连接会话生成一个IGPKCSAuth对象。)
+	////Function: Create an IGPKCSAuth object for one session.
 	virtual IGPKCSAuth*   GPK_API  AllocAuthObject() = 0;
 };
 

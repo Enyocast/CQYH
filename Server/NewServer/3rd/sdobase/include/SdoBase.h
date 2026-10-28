@@ -25,8 +25,8 @@
 
 typedef enum 
 {
-	E_REQUEST=0xA1,    //请求
-	E_RESPONSE=0xA2     //应答
+	E_REQUEST=0xA1,    //Request
+	E_RESPONSE=0xA2     //Response
 }EMsgDirection;
 
 

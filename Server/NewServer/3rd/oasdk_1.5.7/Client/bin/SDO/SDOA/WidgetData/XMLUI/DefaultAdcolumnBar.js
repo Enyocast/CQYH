@@ -1,12 +1,12 @@
 function DefaultAdcolumnBarOnResize(Sender){
-	// 改变大小后收到通知
+	// Receive notification after resize
 	btnPageDown.top = Sender.height - 14;
 	
 	//btnPageUp.visible = true;
 	//btnPageUp.caption = DefaultAdcolumnBar.ActiveWidgetItem.WidgetNameSpace;
 	
-	// DefaultAdcolumnBar.ActiveWidgetItem 得到当前广告边栏的WidgetItem
-	// DefaultAdcolumnBar.ActiveWindows    得到当前显示的widget的窗口
+	// DefaultAdcolumnBar.ActiveWidgetItem gets the current ad sidebar widget item
+	// DefaultAdcolumnBar.ActiveWindows gets the currently displayed widget window
 	
 }
 

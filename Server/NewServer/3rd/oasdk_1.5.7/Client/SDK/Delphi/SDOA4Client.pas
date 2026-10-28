@@ -1,22 +1,22 @@
 {------------------------------------------------------------------------------}
 { SDOA4Client.pas for gwCore                                                }
 {------------------------------------------------------------------------------}
-{ 单元描述: 对外接口类型定义                                                   }
-{ 单元作者: 盛大网络 IGW项目组                                                 }
-{ 参考文档: IGWInterface.pas
-            为使外部接口更易理解，易使用，这里保留原系统接口体系兼容
-            同时定义包装一套对外使用的类型和接口，将来内部体系变化，
-            但对外接口必须一致
+{ Unit description: External interface type definitions                                                   }
+{ Unit author: Shanda Network IGW team                                                 }
+{ References: IGWInterface.pas
+            The original interface system is retained for compatibility and ease of use.
+            Wrapped external types and interfaces are also defined; internal implementation may change,
+            but the external interface must remain consistent.
 
-  严重注意：该单元不直接对外，内容会有方便理解的注释，便于代码维护
-            对外发布时去掉内部细节相关注释
+  Important: this unit is not exposed directly and includes explanatory comments for maintenance.
+            Remove comments about internal details before external release.
 
                                                                                }
-{ 创建日期: 2009-2-25 9:36:35                                                  }
+{ Created: 2009-2-25 9:36:35                                                  }
 {------------------------------------------------------------------------------}
-{ 使用说明:                                                                    }
+{ Usage:                                                                    }
 {------------------------------------------------------------------------------}
-{ 修改历史:                                                                    }
+{ Revision history:                                                                    }
 {------------------------------------------------------------------------------}
 unit SDOA4Client;
 
@@ -26,32 +26,32 @@ uses Windows;
 
 const
   {
-    SDOA_SDK_VERSION 表示一套接入的SDK版本号
+    SDOA_SDK_VERSION identifies the integration SDK version
   }
   SDOA_SDK_VERSION = $0200;
 
 const
   SDOA_OK      = 0;
   SDOA_FALSE   = 1;
-  SDOA_INSUFFICIENT_BUFFER = 122;  // 内存不足
+  SDOA_INSUFFICIENT_BUFFER = 122;  // Insufficient memory
 
-  // SDOA开始工作后发出的消息
+  // Message sent after SDOA starts
   SDOA_WM_CLIENT_RUN     = $A604;  // WM_USER + $A204
-  // IGW发送给游戏客户端的通知消息
+  // Notifications sent by IGW to the game client
   SDOA_WM_CLIENT_NOTIFY  = $A610;  // WM_USER + $A210;
-    // wParam: 通知事件ID; lParam: 扩展信息，无内容为0
-    SDOA_NOTIFY_SHOWLOGIN   =  1;  // 呼出登录对话框，lParam为密宝类型
-    SDOA_NOTIFY_LOGINCLICK  =  2;  // 点击了“登录”按钮，lParam为密宝类型
-  // 游戏客户端发送给IGW的通知消息
+    // wParam: notification event ID; lParam: additional information, or 0 if absent
+    SDOA_NOTIFY_SHOWLOGIN   =  1;  // Open the login dialog; lParam is the security token type
+    SDOA_NOTIFY_LOGINCLICK  =  2;  // Login button clicked; lParam is the security token type
+  // Notifications sent by the game client to IGW
   SDOA_WM_HOST_NOTIFY    = $A611;  // WM_USER + $A211;
 
-  // 密宝类型
-  SDOA_EKEY_NONE            =  0;  // 无密宝或静态认证
-  SDOA_EKEY_D6              =  1;  // D6密宝
-  SDOA_EKEY_A8              =  2;  // A8密宝(挑战码)
-  SDOA_EKEY_ECARD           =  3;  // 安全卡
-  SDOA_EKEY_USB             =  4;  // USB密宝
-  SDOA_EKEY_SIM             =  5;  // SIM卡密宝
+  // Security token types
+  SDOA_EKEY_NONE            =  0;  // No security token or static authentication
+  SDOA_EKEY_D6              =  1;  // D6 security token
+  SDOA_EKEY_A8              =  2;  // A8 security token (challenge code)
+  SDOA_EKEY_ECARD           =  3;  // Security card
+  SDOA_EKEY_USB             =  4;  // USB security token
+  SDOA_EKEY_SIM             =  5;  // SIM security token
 
 const
   IID_ISDOAApp: TGUID = '{C8187484-1C5F-48DF-8497-2136A72A5733}';
@@ -61,7 +61,7 @@ const
   IID_ISDOALoginByGame: TGUID = '{EEC79425-397C-4E5A-951C-3260BF97BBB3}';
 
 const
-  // 游戏类型
+  // Game type
   SDOA_RENDERTYPE_UNKNOWN            = $0;
   SDOA_RENDERTYPE_GDI                = $1;
   SDOA_RENDERTYPE_DDRAW              = $4;
@@ -72,46 +72,46 @@ const
   SDOA_RENDERTYPE_OPENGL             = $80;
 
 const
-  { 外部控制Screen状态 }
-  SDOA_SCREEN_NONE   = 0;      // Screen没有被创建
-  SDOA_SCREEN_NORMAL = 1;      // 正常显示状态
-  SDOA_SCREEN_MINI   = 2;      // 最小化状态
+  { External Screen state control }
+  SDOA_SCREEN_NONE   = 0;      // Screen has not been created
+  SDOA_SCREEN_NORMAL = 1;      // Normally displayed
+  SDOA_SCREEN_MINI   = 2;      // Minimized
 
 const
-   { 内部IWidgetWindows状态控制 }
-  SDOA_WINDOWSSTATUS_NONE   = 0;      // 窗口没有被创建
-  SDOA_WINDOWSSTATUS_SHOW   = 1;      // 窗口显示状态
-  SDOA_WINDOWSSTATUS_HIDE   = 2;      // 窗口隐藏
-  // 窗口类型
-  SDOA_WINDOWSTYPE_NONE = 0;     // 未知类型
-  SDOA_WINDOWSTYPE_TOOLBAR = 1;  // 工具栏
-  SDOA_WINDOWSTYPE_WIDGET = 2;   // Widget窗口
-  SDOA_WINDOWSTYPE_WINDOWS = 3;  // 普通窗口
+   { Internal IWidgetWindows state control }
+  SDOA_WINDOWSSTATUS_NONE   = 0;      // Window has not been created
+  SDOA_WINDOWSSTATUS_SHOW   = 1;      // Window is displayed
+  SDOA_WINDOWSSTATUS_HIDE   = 2;      // Window is hidden
+  // Window type
+  SDOA_WINDOWSTYPE_NONE = 0;     // Unknown type
+  SDOA_WINDOWSTYPE_TOOLBAR = 1;  // Toolbar
+  SDOA_WINDOWSTYPE_WIDGET = 2;   // Widget window
+  SDOA_WINDOWSTYPE_WINDOWS = 3;  // Normal window
 
-  // 打开Widget的选项
-  SDOA_OPENWIDGET_DEFAULT     = 0;  // 默认
-  SDOA_OPENWIDGET_NOBARICON   = 1;  // 仅打开Widget，不自动添加到工具栏上
+  // Widget opening options
+  SDOA_OPENWIDGET_DEFAULT     = 0;  // Default
+  SDOA_OPENWIDGET_NOBARICON   = 1;  // Open the Widget without adding it to the toolbar
 
-  // 接口SetSelfCursor用到的常量
-  SDOA_CURSOR_AUTO     = 0;    // 自动检测是否自绘鼠标指针
-  SDOA_CURSOR_SELF     = 1;    // 始终自绘制鼠标指针
-  SDOA_CURSOR_HIDESELF = 2;    // 始终不自绘制鼠标指针
+  // Constants used by SetSelfCursor
+  SDOA_CURSOR_AUTO     = 0;    // Automatically detect whether to draw the cursor
+  SDOA_CURSOR_SELF     = 1;    // Always draw the cursor
+  SDOA_CURSOR_HIDESELF = 2;    // Never draw the cursor
 
-// 登录方法
-  SDOA_LOGINMETHOD_SSO  =      0;   // 登录方法：SSO
-  SDOA_LOGINMETHOD_SDO  =      1;   // 登录方法：SDO(CAS)
+// Login method
+  SDOA_LOGINMETHOD_SSO  =      0;   // Login method: SSO
+  SDOA_LOGINMETHOD_SDO  =      1;   // Login method: SDO(CAS)
 
-// 登录状态
-  SDOA_LOGINSTATE_UNKNOWN    = -1;  // 未知，参数不正确或获取状态异常
-  SDOA_LOGINSTATE_NONE       = 0;   // 还没有调用过登录方法
-  SDOA_LOGINSTATE_OK         = 1;   // 登录成功
-  SDOA_LOGINSTATE_CONNECTING = 2;   // 正在登录
-  SDOA_LOGINSTATE_FAILED     = 3;   // 登录失败
-  SDOA_LOGINSTATE_LOGOUT     = 4;   // 已登出
+// Login state
+  SDOA_LOGINSTATE_UNKNOWN    = -1;  // Unknown: invalid parameter or error retrieving state
+  SDOA_LOGINSTATE_NONE       = 0;   // Login has not been called
+  SDOA_LOGINSTATE_OK         = 1;   // Login succeeded
+  SDOA_LOGINSTATE_CONNECTING = 2;   // Login in progress
+  SDOA_LOGINSTATE_FAILED     = 3;   // Login failed
+  SDOA_LOGINSTATE_LOGOUT     = 4;   // Logged out
 
-// 圈圈工具条展开模式
-  SDOA_BARMODE_ICONBOTTOM = 0;   // 工具条在圈圈图标下面
-  SDOA_BARMODE_ICONTOP    = 1;   // 工具条在圈圈图标上面
+// Quanquan toolbar expansion mode
+  SDOA_BARMODE_ICONBOTTOM = 0;   // Toolbar below the Quanquan icon
+  SDOA_BARMODE_ICONTOP    = 1;   // Toolbar above the Quanquan icon
 
 
 
@@ -119,28 +119,28 @@ type
   PAppInfo = ^TAppInfo;
   TAppInfo = packed record
     Size       : DWORD;       // = SizeOf(TAppInfo)
-    AppID        : LongInt;     // 盛大统一游戏ID
-    AppName      : PWideChar;   // 游戏名称
-    AppVer       : PWideChar;   // 游戏版本
-    RenderType   : LongInt;     // 游戏类型            (取值 RENDERTYPE_UNKNOWN..RENDERTYPE_OPENGL)
-    MaxUser      : LongInt;     // 游戏可同时在一台机器上游戏的最大人数（通常为1，例如:KOF应该是2）
-    AreaId       : Integer;     // 游戏区ID	(注意：不可用时传-1)
-    GroupId      : Integer;     // 游戏组ID  (注意：不可用时传-1)
+    AppID        : LongInt;     // Shanda unified game ID
+    AppName      : PWideChar;   // Game name
+    AppVer       : PWideChar;   // Game version
+    RenderType   : LongInt;     // Game type (RENDERTYPE_UNKNOWN..RENDERTYPE_OPENGL)
+    MaxUser      : LongInt;     // Maximum simultaneous players on one machine (usually 1; for example, 2 for KOF)
+    AreaId       : Integer;     // Game area ID (pass -1 if unavailable)
+    GroupId      : Integer;     // Game group ID (pass -1 if unavailable)
   end;// TAppInfo
     
 type
   PRoleInfo = ^TRoleInfo;
   TRoleInfo = packed record
     Size       : DWORD;                   // = SizeOf(TUserDetailInfo)
-    RoleName     : PWideChar;             // 昵称
-    Sex          : LongInt;               // 性别(0: 女; 1: 男)
+    RoleName     : PWideChar;             // Nickname
+    Sex          : LongInt;               // Sex (0: female; 1: male)
     // more
   end;
   
   PSDOAWinProperty = ^TSDOAWinProperty;
   TSDOAWinProperty = packed record
-    WinType: integer;          // 窗口类型(只用于标识)
-    Status: integer;           // 窗口状态
+    WinType: integer;          // Window type (identification only)
+    Status: integer;           // Window state
     Left: integer;
     Top: integer;
     Width: integer;
@@ -149,22 +149,22 @@ type
 
   PLoginResult_V1 = ^TLoginResult_V1;
   TLoginResult_V1 = packed record
-    Size           : DWORD;        // = SizeOf(TLoginResult)，为以后扩充提供可能
-    SessionId      : PAnsiChar;    // 用于后台验证的token串
-    SndaId         : PAnsiChar;    // 用户ID
-    IdentityState  : PAnsiChar;    // 是否成年标识，0未成年，1成年
-    Appendix       : PAnsiChar;    // 附加字段，保留
+    Size           : DWORD;        // = SizeOf(TLoginResult), allowing future extensions
+    SessionId      : PAnsiChar;    // Token used for backend validation
+    SndaId         : PAnsiChar;    // User ID
+    IdentityState  : PAnsiChar;    // Adult indicator: 0 minor, 1 adult
+    Appendix       : PAnsiChar;    // Reserved additional field
   end;
 
   PLoginResult_V2 = ^TLoginResult_V2;
   TLoginResult_V2 = packed record
-    Size           : DWORD;        // = SizeOf(TLoginResult)，为以后扩充提供可能
-    SessionId      : PAnsiChar;    // 用于后台验证的token串
-    SndaId         : PAnsiChar;    // 用户ID
-    IdentityState  : PAnsiChar;    // 是否成年标识，0未成年，1成年
-    Appendix       : PAnsiChar;    // 附加字段，保留
-    // 2009.09.02新增
-    Additional     : PAnsiChar;    // 附加信息，需要调用LoginDirect时传回
+    Size           : DWORD;        // = SizeOf(TLoginResult), allowing future extensions
+    SessionId      : PAnsiChar;    // Token used for backend validation
+    SndaId         : PAnsiChar;    // User ID
+    IdentityState  : PAnsiChar;    // Adult indicator: 0 minor, 1 adult
+    Appendix       : PAnsiChar;    // Reserved additional field
+    // Added 2009-09-02
+    Additional     : PAnsiChar;    // Additional information to pass back to LoginDirect
   end;
 
   PLoginResult = ^TLoginResult;
@@ -173,63 +173,63 @@ type
   PLoginMessage = ^TLoginMessage;
   TLoginMessage = packed record
     dwSize       : DWORD;
-    nErrorCode   : Integer;        // 登录错误码，为0时仅提示信息
-    pbstrTitle   : PPWideChar;     // 提示标题，可以调用SysReallocString修改其中的内容，注意，回调结果后IGW将调用SysFreeString释放已分配的内存
-    pbstrContent : PPWideChar;     // 提示内容，可以调用SysReallocString修改其中的内容，注意，回调结果后IGW将调用SysFreeString释放已分配的内存
+    nErrorCode   : Integer;        // Login error code; 0 indicates an informational message
+    pbstrTitle   : PPWideChar;     // Message title; SysReallocString may modify it. IGW frees the allocated memory with SysFreeString after the callback.
+    pbstrContent : PPWideChar;     // Message text; SysReallocString may modify it. IGW frees the allocated memory with SysFreeString after the callback.
   end;
 
   PLoginDataPacket = ^TLoginDataPacket;
   TLoginDataPacket = packed record
     dwSize       : DWORD;
-    DataPacket   : PWideChar;      // 需要发送给LoginServer登录用的数据包
-    Appendix     : PWideChar;      // 附加字段，保留
+    DataPacket   : PWideChar;      // Login data packet to send to LoginServer
+    Appendix     : PWideChar;      // Reserved additional field
   end;
 
 const
-  // TLoginCallback中回调参数ErrorCode值定义
-  SDOA_ERRORCODE_OK              = 0;    // 登录成功
-  SDOA_ERRORCODE_CANCEL          = -1;   // 用户按取消关闭了登录对话框
-  SDOA_ERRORCODE_UILOST          = -2;   // 加载对话框UI文件缺失或无效
-  SDOA_ERRORCODE_FAILED          = -3;   // 登录失败
-  SDOA_ERRORCODE_UNKNOWN         = -4;   // 未知错误
-  SDOA_ERRORCODE_INVALIDPARAM    = -5;   // 参数无效
-  SDOA_ERRORCODE_UNEXCEPT        = -6;   // 未知异常
-  SDOA_ERRORCODE_ALREAYEXISTS    = -7;   // 已经存在
-  SDOA_ERRORCODE_SHOWMESSAGE     = -10;  // 显示对示对话框
-  SDOA_ERRORCODE_LOGINPACKET     = -11;  // 通过游戏登录数据包
+  // ErrorCode values for the TLoginCallback callback
+  SDOA_ERRORCODE_OK              = 0;    // Login succeeded
+  SDOA_ERRORCODE_CANCEL          = -1;   // The user canceled the login dialog
+  SDOA_ERRORCODE_UILOST          = -2;   // The dialog UI file is missing or invalid
+  SDOA_ERRORCODE_FAILED          = -3;   // Login failed
+  SDOA_ERRORCODE_UNKNOWN         = -4;   // Unknown error
+  SDOA_ERRORCODE_INVALIDPARAM    = -5;   // Invalid parameter
+  SDOA_ERRORCODE_UNEXCEPT        = -6;   // Unknown exception
+  SDOA_ERRORCODE_ALREAYEXISTS    = -7;   // Already exists
+  SDOA_ERRORCODE_SHOWMESSAGE     = -10;  // Display a message dialog
+  SDOA_ERRORCODE_LOGINPACKET     = -11;  // Login using a game data packet
 
-type  
+type
   //============================================================================
-  // 登录回调函数
-  // ErrorCode:     登录返回错误代码
-  // LoginResult:   登录返回结果，只在 ErrorCode = SDOA_ERRORCODE_OK 时才有效
-  // UserData:      在调用ShowLoginDialog时传入的用户数据
-  // Reserved:      保留，暂不使用，目前总是为0(不等于ShowLoginDialog中传入的Reserved参数)
-  // 返回值:        为True将关闭对话框，为False不关闭
+  // Login callback
+  // ErrorCode:     Login error code
+  // LoginResult:   Login result; valid only when ErrorCode = SDOA_ERRORCODE_OK
+  // UserData:      User data passed to ShowLoginDialog
+  // Reserved:      Reserved and unused; currently always 0 (not the Reserved argument passed to ShowLoginDialog)
+  // Return value:        True closes the dialog; False leaves it open
   //
   // 2009.03.30
-  // 扩展功能，当ErrorCode = ERRORCODE_SHOWMESSAGE时，Reserved返回PLoginMessage结果
-  // 返回True时，IGW将不再弹出对话框，游戏可以自行弹出提示对话框等
-  // 返回False时，IGW继续弹出对话框，可以调用SysReallocString修改Title,Content其中的内容，以便游戏显示自定义的错误提示
-  //              注意：回调结果后IGW将调用SysFreeString释放已分配的内存
+  // When ErrorCode = ERRORCODE_SHOWMESSAGE, Reserved returns a PLoginMessage result
+  // If True is returned, IGW does not show the dialog and the game may show its own prompt
+  // If False is returned, IGW shows the dialog; SysReallocString can modify Title and Content for a custom error message
+  //              Note: IGW frees the allocated memory with SysFreeString after the callback
   //
   // 2009.12.31
-  // 当 ErrorCode = SDOA_ERRORCODE_LOGINPACKET 时, Reserved 返回 PLoginDataPacket 结构
+  // When ErrorCode = SDOA_ERRORCODE_LOGINPACKET, Reserved returns a PLoginDataPacket structure
 
   TLoginCallback = function(ErrorCode: Integer; LoginResult: PLoginResult;
     UserData: Integer; Reserved: Integer): BOOL; stdcall;
 
 const
-  // ShowLoginDialog Reserved参数选项
-  SDOA_LOGIN_DEFAULT             = 0;    // 默认登录模式
-  SDOA_LOGIN_BYGAME              = 5;    // 通过游戏登录模式
+  // ShowLoginDialog Reserved parameter options
+  SDOA_LOGIN_DEFAULT             = 0;    // Default login mode
+  SDOA_LOGIN_BYGAME              = 5;    // Game login mode
 
 type
-  { 整个SDOA基础应用接口 }
+  { Base SDOA application interface }
   PSDOAApp = ^ISDOAApp;
   ISDOAApp = interface(IUnknown)
     ['{C8187484-1C5F-48DF-8497-2136A72A5733}']
-    // 显示登录对话框
+    // Show the login dialog
     function ShowLoginDialog(Callback: TLoginCallback; UserData: Integer;
                              Reserved: Integer): Integer; stdcall;
     procedure ModifyAppInfo(const AppInfo: PAppInfo); stdcall;
@@ -237,10 +237,10 @@ type
     function GetLoginState(LoginMethod: Integer): Integer; stdcall;
     procedure SetRoleInfo(const RoleInfo: PRoleInfo); stdcall;
 
-    // 显示充值对话框 
+    // Show the top-up dialog
     function ShowPaymentDialog(ASrc: PWideChar): Integer; stdcall;
 
-    // 配置SDOA UI相关
+    // SDOA UI configuration
     function GetScreenStatus(): integer; stdcall;
     procedure SetScreenStatus(Value: integer); stdcall;
     function GetScreenEnabled(): boolean; stdcall;
@@ -255,7 +255,7 @@ type
     function GetSelfCursor(): Integer; stdcall;
     procedure SetSelfCursor(Value: Integer); stdcall;
 
-    // 功能相关
+    // Functions
     function OpenWidget(AWidgetNameSpace: PWideChar): integer; stdcall;
     function OpenWidgetEx(AWidgetNameSpace, AParam: PWideChar;
                           Flag: Cardinal): integer; stdcall;
@@ -272,7 +272,7 @@ type
     function SetWinProperty(AWinName: PWideChar; AWinProperty: PSDOAWinProperty): integer; stdcall;
   end;
 
-  // ISDOAApp2  2009.09.02增加新接口
+  // ISDOAApp2  New interface added 2009-09-02
   PSDOAApp2 = ^ISDOAApp2;
   ISDOAApp2 = interface(ISDOAApp)
     ['{3F35136C-7061-4E69-BF3A-CC78D026F48F}']
@@ -283,17 +283,17 @@ type
   PSDOALoginByGame = ^ISDOALoginByGame;
   ISDOALoginByGame = interface(IUnknown)
     ['{EEC79425-397C-4E5A-951C-3260BF97BBB3}']
-    { 设置OrderId }
+    { Set OrderId }
     function SetOrderId(const OrderId: PWideChar; Reserved: Integer): Integer; stdcall;
-    { 通知登录结果 }
+    { Report the login result }
     function NotifyLoginResult(const DataPacket: PWideChar; Reserved: Integer): Integer; stdcall;
-    { 通知错误 }
+    { Report an error }
     function NotifyError(const AErrorMsg: PWideChar; Reserved: Integer): Integer; stdcall;
   end;
 
 type
   //============================================================================
-  // 音量值的有效范围在0-100（0为无声，100为最大）
+  // Valid volume is 0-100 (0 is silent and 100 is maximum)
   TGetAudioSoundVolume  = function(): DWORD; stdcall;
   TGetAudioEffectVolume = function(): DWORD; stdcall;
   TSetAudioSoundVolume  = procedure (NewVolume: DWORD); stdcall;
@@ -305,7 +305,7 @@ type
     procedure SendData(const Request: PWideChar; out Response: PWideChar); stdcall;
     procedure Set_RevertChannel(Reverter: ISDOACommonChannel); stdcall;
     function  Get_RevertChannel: ISDOACommonChannel; stdcall;
-    procedure Close; stdcall;  //通知这个管道可以关闭了。
+    procedure Close; stdcall;  //Notify that this channel can close.
     function  Get_ChannelType(var ChannelType: PChar; BufferLen:DWORD):Integer; // max 64
       stdcall;
   end;
@@ -314,16 +314,16 @@ type
   PSDOAAppUtils = ^ISDOAAppUtils;
   ISDOAAppUtils = interface(IUnknown)
     ['{1170C2F9-28AD-4EA8-8392-E9A219C8FF65}']
-    // 声音控制
-    // 设置声音控制相关回调
+    // Audio control
+    // Set audio control callbacks
     procedure SetAudioSetting(AGetAudioSoundVolume: TGetAudioSoundVolume;
                               ASetAudioSoundVolume: TSetAudioSoundVolume;
                               AGetAudioEffectVolume: TGetAudioEffectVolume;
                               ASetAudioEffectVolume: TSetAudioEffectVolume); stdcall;
-    // 通知SDOA游戏声音有变化
+    // Notify SDOA that game audio has changed
     procedure NodifyAudioChanged(); stdcall;
 
-    // 设置创建数据通道的回调
+    // Set the data channel creation callback
     procedure SetCreateChannelCallback(const CreateChannel: TCreateChannel); stdcall;
   end;
 
@@ -340,9 +340,9 @@ type
 
 
 type
-  { 注意igwInitialize中dwSdkVersion参数使用常量 SDOA_SDK_VERSION }
+  { Use SDOA_SDK_VERSION for the dwSdkVersion argument to igwInitialize }
   TigwInitialize = function(dwSdkVersion: DWORD; const pAppInfo: PAppInfo): Integer; stdcall;
-  { 接口ID得到接口 }
+  { Get an interface by ID }
   TigwGetModule = function(const IID: TGUID; out Intf): Boolean; stdcall;
   TigwTerminal = function: Integer; stdcall;
 

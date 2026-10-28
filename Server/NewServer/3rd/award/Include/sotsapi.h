@@ -1,14 +1,14 @@
 /*
-* Copyright (c) 2008,上海盛大网络SDG账务部
+* Copyright (c) 2008, Shanghai Shanda Network SDG Accounting Department
 * All rights reserved.
 * 
-* 文件名称： SotsAPI.h
-* 摘    要： 定义了Sots的API接口
+* File name: SotsAPI.h
+* Summary: Defines the Sots API interface
 * 
-* 当前版本： 1.0
-* 修改内容：
-* 作    者：xionghq
-* 完成日期： 2008年11月10日
+* Current version: 1.0
+* Changes:
+* Author:xionghq
+* Completed: November 10, 2008
 */
 
 #ifndef SotsAPI_H
@@ -17,7 +17,7 @@
 #include "sdtype.h"
 #include "sotscommondefine.h"
 
-/// 申明API函数
+/// Declare API functions
 #ifdef WIN32
 #ifdef RPCCLT_EXPORTS
 #define DECLSOTSAPI __declspec(dllexport)
@@ -29,14 +29,14 @@
 #endif
 
 /*********************************************
-功能：pSotsMsgHandler回调类句柄，主要用于如下情况：
-	1、异步调用的返回消息包;
-	2、服务器主动发送的消息包;
-	3、其他客户端调用SotsNotify接口的推送消息包 
-参数：ULONG  异步调用时返回值（用于异步调用的返回消息包，其他情况无效）
-	  char*  回调的消息包的 SERVICENAME
-	  char*  回调的消息包
-	  INT32  回调消息包的大小
+Purpose: pSotsMsgHandler callback handle, used primarily for:
+	1. Responses to asynchronous calls;
+	2. Messages initiated by the server;
+	3. Push messages from other clients calling SotsNotify
+Parameters: ULONG asynchronous call return value (valid only for asynchronous responses)
+	  char* SERVICENAME of the callback message
+	  char* callback message
+	  INT32 callback message size
 **********************************************/
 typedef void (* pSotsMsgHandler)(ULONG,char *,char*,INT32);
 
@@ -47,44 +47,44 @@ extern "C"
 #endif
 
 /*********************************************
-功能:	注册接口初始化函数 传入配置文件通过该配置文件从配置服务端获取客户端的配置信息
-		指定异步调用的回调函数句柄 传入回调函数句柄
-参数: 	configFileName 配置文件信息 
-		handler 回调函数句柄 如果是同步调用可以不传入 默认为NULL
-返回值: 1 成功 , 其他失败
+Purpose: Initialize the interface, using the supplied configuration file to fetch client configuration from the configuration server
+		Specify the callback function handle for asynchronous calls
+Parameters: configFileName configuration file information
+		handler callback handle; optional for synchronous calls, defaults to NULL
+Returns: 1 on success; other values indicate failure
 **********************************************/
 DECLSOTSAPI INT32 SotsInitialize(const char *configFileName,pSotsMsgHandler handler = NULL) ;
 
 /*********************************************
-功能:	注销函数
-参数: 	无
-返回值: 1 成功 , 其他失败
+Purpose: Terminate the interface
+Parameters: none
+Returns: 1 on success; other values indicate failure
 **********************************************/
 DECLSOTSAPI INT32 SotsTerminate() ;
 
 
 /*********************************************
-功能:	异步调用函数 传入发送消息包信息,返回值为句柄号与回调的句柄号匹配
-参数: 	const char *serviceName 消息服务名
-		const void* data 发送消息包
-		INT32 dataLen 发送消息包的长度
-		UINT32 flags 发送消息包的类型: 0 普通消息包,1 消息包不需要反馈,4 消息必达,5 必达且不需要反馈（1和4的组合）
-返回值: 大于0 成功,返回调用的句柄号,该句柄号在回调时传出 
-		其他失败
+Purpose: Send an asynchronous message; the returned handle matches the callback handle
+Parameters: const char *serviceName message service name
+		const void* data outgoing message
+		INT32 dataLen outgoing message length
+		UINT32 flags: 0 normal, 1 no response, 4 guaranteed delivery, 5 guaranteed delivery without response (1 | 4)
+Returns: a positive call handle on success, passed back to the callback
+		other values indicate failure
 **********************************************/
 DECLSOTSAPI ULONG SotsAsynCall(const char *serviceName, 
 						const void *data, INT32 dataLen, UINT32 flags) ;
 
 
 /*********************************************
-功能:	同步调用函数 传入发送消息包信息
-参数: 	const char *serviceName 消息服务名
-		const void* inData 发送消息包
-		INT32 inDataLen 发送消息包的长度
-		const void* outData 反馈消息包
-		INT32 inDataLen 反馈消息包的长度
-		UINT32 flags 发送消息包的类型: 0 普通消息包,1 消息包不需要反馈,4 消息必达,5 必达且不需要反馈（1和4的组合）
-返回值: 反馈消息包outData长度,大于等于0 成功 , 其他失败
+Purpose: Send a synchronous message
+Parameters: const char *serviceName message service name
+		const void* inData outgoing message
+		INT32 inDataLen outgoing message length
+		const void* outData response message
+		INT32 inDataLen response message length
+		UINT32 flags: 0 normal, 1 no response, 4 guaranteed delivery, 5 guaranteed delivery without response (1 | 4)
+Returns: outData response length; nonnegative indicates success, other values indicate failure
 **********************************************/
 DECLSOTSAPI INT32 SotsCall(const char *serviceName, 
 						const void *inData, INT32 inDataLen, 
@@ -92,30 +92,30 @@ DECLSOTSAPI INT32 SotsCall(const char *serviceName,
 
 
 /*********************************************
-功能:	客户端到客户端的发送接口，不需要通过SERVICE。
-参数: 	UINT32 gsId 客户端的GAMESERVER ID 号（由服务器配置）
-		const char *serviceName 消息服务名
-		const void* data 发送消息包
-		INT32 dataLen 发送消息包的长度
-		UINT32 flags 发送消息包的类型: 0 普通消息包,1 消息包不需要反馈,4 消息必达,5 必达且不需要反馈（1和4的组合）
-返回值: 1 成功 , 其他失败。 
+Purpose: Send client-to-client messages without going through SERVICE.
+Parameters: UINT32 gsId client GAMESERVER ID (configured by the server)
+		const char *serviceName message service name
+		const void* data outgoing message
+		INT32 dataLen outgoing message length
+		UINT32 flags: 0 normal, 1 no response, 4 guaranteed delivery, 5 guaranteed delivery without response (1 | 4)
+Returns: 1 on success; other values indicate failure.
 **********************************************/
 DECLSOTSAPI INT32 SotsNotify(UINT32 gsId, const char *serviceName,const void* data, INT32 dataLen, UINT32 flags);
 
 
 /*********************************************
-功能:	获取唯一字符串函数 主要是为了统一各客户端使用统一的识别码
-参数: 	char *orderId 输出字符串
-		INT32 len 字符串orderid的长度	
-返回值: 1 成功 , 其他失败
+Purpose: Obtain a unique string so clients use a consistent identifier
+Parameters: char *orderId output string
+		INT32 len length of the orderId string
+Returns: 1 on success; other values indicate failure
 **********************************************/
 DECLSOTSAPI INT32 GetSotsUniqueId(char *orderId,INT32 len) ;
 
 
 /*********************************************
-功能:	获取客户端的配置信息
-参数: 	SOTSCLIENTINFO *info 客户端信息
-返回值: 1 成功 , 其他失败
+Purpose: Get client configuration
+Parameters: SOTSCLIENTINFO *info client information
+Returns: 1 on success; other values indicate failure
 **********************************************/
 DECLSOTSAPI INT32 GetSotsClientInfo(SOTSCLIENTINFO *info) ;
 

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!-- GameWidget配置文件 -->
-<!-- ConfigName: 商户联调环境 -->
+<!-- GameWidget configuration file -->
+<!-- ConfigName: merchant integration test environment -->
 <GameWidget>
 	<SDOA>
 		<!-- SDOA Passport -->

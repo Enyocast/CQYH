@@ -44,7 +44,7 @@ function OnbtnhelpClick(Sender){
   }
   else
   {
-    // 如果精灵不存在，直接OpenIE打开页面
+    // If the sprite is unavailable, open the page directly with OpenIE
     var WURL  = "http://chhelp.sdrs.sdo.com:8080/sdchweb/default.asp?co=1&tp=3&ut=1&id=&gd=" +
                 "&gm=" + WidgetAtom.Info.GameId +
                 "&ar=" + WidgetAtom.Info.GameAreaId +
@@ -60,7 +60,7 @@ function OnbtnhelpClick(Sender){
 //igwCapScreenDialog.onresize="OnigwCapScreenDialogResize(Self);";
 
 function LoadMain(){
-	// 只有时不时不显示的skin资源需要cache，总是显示的可以不cache
+	// Cache only skin resources that are sometimes hidden; always-visible resources need not be cached
 	igwCapScreenDialog.AddCacheSkins("btn_max12x12");
 	igwCapScreenDialog.AddCacheSkins("btn_restore12x12");
 	

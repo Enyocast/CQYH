@@ -1,14 +1,14 @@
 {------------------------------------------------------------------------------}
 { SDOADx8Hook.pas for gwCore                                                   }
 {------------------------------------------------------------------------------}
-{ 单元描述: 实现让外部可以hook d3d8图形功能                                    } 
-{ 单元作者: 盛大网络 谢斌 (xiebin@snda.com)                                    }
-{ 参考文档:                                                                    }
-{ 创建日期: 2009-11-19 10:09:15                                                }
+{ Unit description: Allows external applications to hook D3D8 graphics                                    }
+{ Unit author: Shanda Network Xie Bin (xiebin@snda.com)                                    }
+{ References:                                                                    }
+{ Created: 2009-11-19 10:09:15                                                }
 {------------------------------------------------------------------------------}
-{ 使用说明:                                                                    }
+{ Usage:                                                                    }
 {------------------------------------------------------------------------------}
-{ 修改历史:                                                                    }
+{ Revision history:                                                                    }
 {------------------------------------------------------------------------------}
 unit SDOADx8Hook;
 
@@ -22,13 +22,13 @@ const
 
 
 type
-  { dx8图形接口 }
+  { DX8 graphics interface }
   PSDOADx8Hook = ^ISDOADx8Hook;
   ISDOADx8Hook = interface(IUnknown)
     ['{C87C0531-B8EB-4D7B-A8B9-634E10B736B9}']
-    { Hook d3d设备 }
+    { Hook the D3D device }
     function Hook(Dev8: IDirect3DDevice8; HookGameWnd: HWND): HRESULT; stdcall;
-    { unHook d3d设备 }
+    { Unhook the D3D device }
     function unHook(): HRESULT; stdcall;
   end;
 

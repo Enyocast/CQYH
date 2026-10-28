@@ -2,7 +2,7 @@ package com.snda.services.oa.client.impl;
 
 import com.snda.services.oa.client.AbstractOrderInfo;
 /**
- * 扣费接口定义
+ * Payment interface definition
  * @author chenyifang
  *
  */

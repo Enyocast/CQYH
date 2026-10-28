@@ -35,7 +35,7 @@
 #include "SDOADx9.h"
 #include "SDOACfg.h"
 
-/* 接入相关全局变量  */
+/* Integration-related global variables  */
 HINSTANCE          g_hInstIGWDll = 0;
 LPigwInitialize    igwInitialize = NULL;
 LPigwGetModule     igwGetModule = NULL;
@@ -45,7 +45,7 @@ ISDOADx9*			g_SDOADx9 = NULL;
 ISDOAApp*			g_SDOAApp = NULL;
 ISDOACfg*			g_SDOACfg = NULL;
 
-/* 释放IGW */
+/* Release IGW */
 void CloseIGW()
 {
 	if (g_SDOADx9)
@@ -67,7 +67,7 @@ void CloseIGW()
 	}
 
 	if (igwTerminal)
-	{  // 释放DLL前总是先调用igwTerminal
+	{  // Always call igwTerminal before releasing the DLL
 		igwTerminal();
 		igwTerminal = NULL;
 	}
@@ -79,7 +79,7 @@ void CloseIGW()
 	igwInitialize = NULL;
 }
 
-/* 加载IGW */
+/* Load IGW */
 void OpenIGW()
 {
 	WCHAR strExePath[MAX_PATH] = {0};
@@ -89,7 +89,7 @@ void OpenIGW()
 	strExePath[MAX_PATH-1]=0;
 	strLastSlash = wcsrchr( strExePath, TEXT('\\') );
 	if( strLastSlash )
-	{	// 得到EXE所在路径
+	{	// Get the EXE directory
 		StringCchCopyW( strExeName, MAX_PATH, &strLastSlash[1] );
 		*strLastSlash = 0;
 		strLastSlash = wcsrchr( strExeName, TEXT('.') );
@@ -101,13 +101,13 @@ void OpenIGW()
 	StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\GameWidget.dll", strExePath );
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // 如果程序运行路径中不存在则换个路径再试
+	{ // If it is absent from the executable path, try another path
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // 如果程序运行路径中不存在则换个路径再试
+	{ // If it is absent from the executable path, try another path
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
@@ -115,7 +115,7 @@ void OpenIGW()
 	CloseIGW();
 
 	if ( GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF )
-	{	// 找到组件则加载	
+	{	// Load the component if found
 		g_hInstIGWDll = LoadLibraryW(strGameWidgetDll);
 		if (g_hInstIGWDll)
 		{
@@ -124,23 +124,23 @@ void OpenIGW()
 			igwTerminal = (LPigwTerminal)GetProcAddress( g_hInstIGWDll, "igwTerminal" );
 			if ( igwInitialize && igwGetModule && igwTerminal)
 			{
-				// 加载成功
+				// Loaded successfully
 
-				// 注意AppInfo类型所有字段必须填
+				// All AppInfo fields must be filled in
 				AppInfo tmpAppInfo = {
-					sizeof(AppInfo),       // 结构体大小，方便扩展
-					9999,                  // 接入应用ID，从开发者网站中申请
-					L"龙潭虎穴OnLine",     // 应用名称
-					L"0.1.2.0",            // 应用客户端当前版本号
-					SDOA_RENDERTYPE_D3D9,  // 客户端支持的图形引擎类型，这里同时支持d3d9和d3d8
-					1,                     // 可同时在一台机器上游戏的最大人数（通常为1，例如:KOF应该是2）
-					-1,                    // 游戏区ID，不可用时传入-1
-					-1                     // 游戏组ID，不可用时传入-1
+					sizeof(AppInfo),       // Structure size for extensibility
+					9999,                  // Application ID obtained from the developer website
+					L"龙潭虎穴OnLine",     // Application name
+					L"0.1.2.0",            // Current application client version
+					SDOA_RENDERTYPE_D3D9,  // Client graphics engine type; both D3D9 and D3D8 are supported here
+					1,                     // Maximum simultaneous players on one machine (usually 1; for example, KOF uses 2)
+					-1,                    // Game area ID; pass -1 when unavailable
+					-1                     // Game group ID; pass -1 when unavailable
 
 				};
 
 				if (igwInitialize(SDOA_SDK_VERSION, &tmpAppInfo) == SDOA_OK)
-				{	// 初始化组件成功
+				{	// Component initialized successfully
 
 					igwGetModule(__uuidof(ISDOADx9), (void**)&g_SDOADx9);
 					igwGetModule(__uuidof(ISDOAApp), (void**)&g_SDOAApp);
@@ -150,10 +150,10 @@ void OpenIGW()
 						CloseIGW();
 
 				}
-				else // 初始化失败清除环境
+				else // Clean up after initialization failure
 					CloseIGW();
 			}
-			else  // 加载DLL失败清除环境
+			else  // Clean up after DLL load failure
 				CloseIGW();
 		}
 	}	
@@ -169,18 +169,18 @@ LPDIRECT3DVERTEXBUFFER9 g_pVB        = NULL; // Buffer to hold vertices
 LPDIRECT3DTEXTURE9      g_pTexture   = NULL; // Our texture
 D3DPRESENT_PARAMETERS	d3dpp;
 bool					g_DeviceLost = false;
-// 是否变换
+// Whether to transform
 bool					g_SetupMatrices = true;
 HWND					g_MainWin_hWnd = 0;
-// 当前窗口的大小
+// Current window size
 int						g_WinWidth = 640;
 int						g_WinHeight = 480;
-// 在窗口中显示的区域
+// Region displayed in the window
 RECT					g_WinRenderRect = {0, 0, g_WinWidth, g_WinHeight};
-// 使用D3D背景缓冲的区域（仅在窗口模式下有效）
+// D3D back buffer region (valid only in windowed mode)
 //RECT					g_D3DRenderRect = g_WinRenderRect;
 RECT					g_D3DRenderRect = {100, 100, g_WinWidth + 100, g_WinHeight + 100};
-// 是否为窗口模式
+// Whether windowed mode is enabled
 BOOL					g_IsWindow = TRUE;
 
 // A structure for our custom vertex type. We added texture coordinates
@@ -201,7 +201,7 @@ struct CUSTOMVERTEX
 #endif
 
 
-// 画个框框需要的全局变量
+// Globals needed to draw a box
 LPDIRECT3DVERTEXBUFFER9 g_pVB_MyRect			= NULL; 
 LPDIRECT3DINDEXBUFFER9	g_pIndexVB_MyRect		= NULL;
 struct CUSTOMVERTEX_MYRECT
@@ -237,7 +237,7 @@ HRESULT InitD3D( HWND hWnd )
 	d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
 	d3dpp.FullScreen_RefreshRateInHz = D3DPRESENT_INTERVAL_DEFAULT;
 	d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
-	// 如果使用垂直刷新同步则以下参数
+	// Parameters for vertical sync
 	//d3dpp.PresentationInterval = D3DPRESENT_INTERVAL_ONE;	
 	d3dpp.MultiSampleType = D3DMULTISAMPLE_NONE;
 	d3dpp.BackBufferWidth = 800;
@@ -247,20 +247,20 @@ HRESULT InitD3D( HWND hWnd )
 	D3DDISPLAYMODE tmpMode;
 	
 	if ( D3D_OK == g_pD3D->GetAdapterDisplayMode(D3DADAPTER_DEFAULT, &tmpMode) )
-	{	// 能取到背景格式则设置
+	{	// Set the back buffer format if available
 		d3dpp.BackBufferFormat = tmpMode.Format;
 		if ( !d3dpp.Windowed )
-		{// 全屏模式下使用获取到的刷新率
+		{// Use the detected refresh rate in fullscreen mode
 		  d3dpp.FullScreen_RefreshRateInHz = tmpMode.RefreshRate;
 		}
 	}
 	if (d3dpp.Windowed)	
-	{	// 窗口模式
+	{	// Windowed mode
 		SetWindowLong(hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW);
 		SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0,SWP_NOSIZE | SWP_SHOWWINDOW | SWP_DRAWFRAME | SWP_FRAMECHANGED);
 	}
 	else
-	{	// 全屏模式
+	{	// Fullscreen mode
 		SetWindowLong(hWnd, GWL_STYLE, WS_POPUP | WS_VISIBLE);
 		SetWindowPos(hWnd, HWND_NOTOPMOST, 0, 0, 0, 0,SWP_NOSIZE | SWP_SHOWWINDOW | SWP_DRAWFRAME | SWP_FRAMECHANGED);
 	}
@@ -268,11 +268,11 @@ HRESULT InitD3D( HWND hWnd )
 	if( FAILED( g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
 		D3DCREATE_HARDWARE_VERTEXPROCESSING,
 		&d3dpp, &g_pd3dDevice ) ) )
-	{	// 优先使用硬件顶点处理
+	{	// Prefer hardware vertex processing
 		if( FAILED( g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
 			D3DCREATE_SOFTWARE_VERTEXPROCESSING,
 			&d3dpp, &g_pd3dDevice ) ) )
-		{	// 硬件顶点处理支持创建失败则用软件的
+		{	// Use software vertex processing if hardware creation fails
 			return E_FAIL;
 		}
 	}
@@ -291,23 +291,23 @@ HRESULT InitD3D( HWND hWnd )
 
 bool CreateRenderRes()
 {
-	// 重建绘制资源
+	// Recreate rendering resources
 	if ( !g_pd3dDevice )
 		return false;
 
-	// 顶点索引
+	// Vertex indices
 	unsigned short MyRectTriList[] =
 	{
 		0, 1, 2,
 		2, 1, 3
 	};
-	// 顶点位置
+	// Vertex positions
 	float fWidth, fHeight;
 	fWidth = 640 - 1.0;
 	fHeight = 480 - 1.0;
 
 
-	// 顶点位置
+	// Vertex positions
 	CUSTOMVERTEX_MYRECT MyRectVertex[4] = 
 	{
 		{ 0.0f,		0.0f,	0.0f, 1.0f, 0xffff0000, 0.0f, 0.0f }, // x, y, z, rhw, color, u, v
@@ -458,7 +458,7 @@ VOID SetupMatrices()
     D3DXMATRIXA16 matWorld;
     D3DXMatrixIdentity( &matWorld );
 	if (g_SetupMatrices)
-	{// 允许旋转
+	{// Allow rotation
 		g_Angle = timeGetTime()/1000.0f;
 	}
     D3DXMatrixRotationX( &matWorld, g_Angle );
@@ -501,7 +501,7 @@ VOID Render()
     {
 
 		if (g_pVB_MyRect)
-		{	// 简单的画个框框，做个参考值
+		{	// Draw a simple box for reference
 			g_pd3dDevice->SetTexture( 0, NULL );
 			g_pd3dDevice->SetRenderState(D3DRS_FILLMODE, D3DFILL_WIREFRAME);
 			g_pd3dDevice->SetStreamSource( 0, g_pVB_MyRect, 0, sizeof(CUSTOMVERTEX_MYRECT) );
@@ -574,12 +574,12 @@ VOID Render()
     }
 	
 	if (g_IsWindow)
-	{// 窗口模式
-		// g_D3DRenderRect为指定将背景缓冲哪一部分区域翻转到前景缓冲中(即显示)
+	{// Windowed mode
+		// g_D3DRenderRect specifies which back buffer region is copied to the front buffer for display
 		g_pd3dDevice->Present( &g_D3DRenderRect, &g_WinRenderRect, g_MainWin_hWnd, NULL );
 	}
 	else
-	{// 全屏模式
+	{// Fullscreen mode
 		// Present the backbuffer contents to the display
 		g_pd3dDevice->Present( NULL, NULL, NULL, NULL );
 	}
@@ -590,12 +590,12 @@ void RefreshUseBackBuffer()
 	if (g_SDOACfg)
 	{
 		if (g_IsWindow)
-		{// 仅窗口模式下才有效的
-			// 通知当前图形引擎使用背景缓冲的区域是哪一部分
+		{// Valid only in windowed mode
+			// Tell the graphics engine which back buffer region to use
 			g_SDOACfg->SetUseBackBufferRect(g_D3DRenderRect);
 		}
 		else
-		{// 真全屏模式下无法仅使用部分背景缓冲区域的
+		{// True fullscreen mode cannot use only part of the back buffer
 			g_D3DRenderRect.left = 0;
 			g_D3DRenderRect.top = 0;
 			g_D3DRenderRect.bottom = 0;
@@ -612,7 +612,7 @@ void RefreshUseBackBuffer()
 LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 {
 	if(g_SDOADx9) 
-	{	// 把消息交给IGW模块处理 
+	{	// Pass the message to IGW for processing
 		LRESULT lResult = 0; 
 		if (g_SDOADx9->OnWindowProc( hWnd, msg, wParam, lParam, &lResult ) == SDOA_OK ) 
 		{ 			
@@ -622,7 +622,7 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
     switch( msg )
     {
 		case WM_SIZE:
-			{	// 注意这里收到的窗口大小总是客户区大小
+			{	// The window size received here is always the client area size
 				g_WinWidth = LOWORD(lParam);
 				g_WinHeight = HIWORD(lParam);
 				g_WinRenderRect.right = g_WinWidth;
@@ -674,11 +674,11 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 			 DWORD dwMask = (1 << 29);
 			 bool bAltDown = ( (lParam & dwMask) != 0 );
 			 if (bAltDown && (VK_RETURN == wParam))
-			 {	// 在全屏与窗口模式间切换，使用笨办法全部重建
+			 {	// Recreate everything when switching between fullscreen and windowed modes
 				g_IsWindow = !g_IsWindow;
 				OutputDebugStr("MsgProc WM_SYSKEYDOWN ALT+ENTER begin\n");
 				if (g_SDOADx9)
-				{	// 释放图形引擎资源
+				{	// Release graphics engine resources
 					g_SDOADx9->Finalize();
 				}
 				Cleanup();
@@ -686,7 +686,7 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 				GetClientRect(g_MainWin_hWnd, &g_D3DRenderRect);
 				RefreshUseBackBuffer();
 				if (g_SDOADx9)
-				{	// 初始化IGW内部图形引擎
+				{	// Initialize the IGW graphics engine
 					g_SDOADx9->Initialize(g_pd3dDevice, &d3dpp, false);
 				}
 				InitGeometry();
@@ -696,7 +696,7 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 			 }
 
 			 if (bAltDown && (VK_HOME == wParam))
-			 {// 测试显示数据				
+			 {// Test display data
 				if (g_SDOACfg) 
 				{
 					RECT MySetUseBackBufferRect = {0, 0, 0, 0};
@@ -726,7 +726,7 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 }
 
 void CALLBACK OnLostDevice()
-{   /* 通知d3d设备丢失 */
+{   /* Notify D3D device loss */
 	if ( g_pVB_MyRect != NULL )
 	{
 		g_pVB_MyRect->Release();
@@ -757,7 +757,7 @@ void CALLBACK OnLostDevice()
 
 void CALLBACK OnResetDevice()
 {
-	/* 通知d3d设备重置成功 */
+	/* Notify successful D3D device reset */
 	InitGeometry();
 	if ( g_pd3dDevice )
 	{
@@ -795,7 +795,7 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
                               NULL, NULL, wc.hInstance, NULL );
 	RECT rtCurRect;
 	GetClientRect(g_MainWin_hWnd, &rtCurRect);
-	// 注意CreateWindow的窗口大小包括标题与边框的，下面准确的设置客户区的大小
+	// CreateWindow size includes the title bar and borders; set the client area size precisely below
 	SetWindowPos(g_MainWin_hWnd, HWND_TOP, 0, 0, 
 		g_WinWidth - (rtCurRect.right - rtCurRect.left) + g_WinWidth, 
 		g_WinHeight - (rtCurRect.bottom - rtCurRect.top) + g_WinHeight, SWP_NOZORDER + SWP_NOACTIVATE);
@@ -805,12 +805,12 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
     {
 		OpenIGW();
 		if (igwInitialize)
-		{	// 说明加载成功，表示下......			
+		{	// Indicate that loading succeeded
 			SetWindowText(g_MainWin_hWnd, "D3D Tutorial [加载IGW组件成功]");
 		}	
 		RefreshUseBackBuffer();
 		if (g_SDOADx9)
-		{	// 初始化IGW内部图形引擎
+		{	// Initialize the IGW graphics engine
 			g_SDOADx9->Initialize(g_pd3dDevice, &d3dpp, false);
 		}
         // Create the scene geometry
@@ -831,9 +831,9 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
                     DispatchMessage( &msg );
                 }
                 else
-				{	// 简单处理设备丢失问题
+				{	// Handle device loss simply
 					if (g_DeviceLost)
-					{	// 处于设备丢失中可慢点恢复，避免长时间丢失占用过多CPU
+					{	// Retry recovery slowly while the device is lost to avoid excessive CPU use
 						Sleep(100);
 					}
 					if (g_pd3dDevice)
@@ -841,7 +841,7 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 						switch (g_pd3dDevice->TestCooperativeLevel())
 						{
 						case D3D_OK:
-							{	// 绘制
+							{	// Render
 								if (g_pTexture && g_pVB)
 									Render();
 								g_DeviceLost = false;
@@ -874,12 +874,12 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
     }
 
 	if (g_SDOADx9)
-	{	// 释放IGW内部图形引擎
+	{	// Release the IGW graphics engine
 		g_SDOADx9->Finalize();
 	}
-	/* 释放IGW */
+	/* Release IGW */
 	CloseIGW();
-	/* 完全第一 */
+	/* Completely first */
 	Cleanup();
     UnregisterClass( "D3D Tutorial", wc.hInstance );
     return 0;

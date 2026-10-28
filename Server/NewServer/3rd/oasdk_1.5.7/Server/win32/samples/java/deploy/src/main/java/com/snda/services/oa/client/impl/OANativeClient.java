@@ -8,11 +8,11 @@ import com.snda.services.util.NativeClassLoader;
 public class OANativeClient {
 	public static boolean initializeStatus = true;
 	static {
-		String projectHome = System.getProperty("project.home",".");// 动态库文件放置的路径
+		String projectHome = System.getProperty("project.home",".");// Directory containing the dynamic library
 		File filePath = new File(projectHome);
-		NativeClassLoader.loadLibrary("OANativeClient");// OANativeClient为动态库名字，载入dll,不需要后缀的
+		NativeClassLoader.loadLibrary("OANativeClient");// OANativeClient is the dynamic library name; load it without the DLL suffix
 
-		String confFileName = "sdoa4server.ini";// 初始化文件名字
+		String confFileName = "sdoa4server.ini";// Initialization file name
 		String configFile = new File(new File(filePath, "conf"),confFileName).getAbsolutePath();
 		int inted = init(configFile);
 		if (inted != 0) {
@@ -26,7 +26,7 @@ public class OANativeClient {
 	/**
 	 * 
 	 * @param config
-	 *            配置文件的路径 ，包括名称
+	 *            Configuration file path, including its name
 	 * @return
 	 */
 	public native static int init(String config);
@@ -34,45 +34,45 @@ public class OANativeClient {
 	/**
 	 * 
 	 * @param keys
-	 *            订单信息中的变量
+	 *            Order information field
 	 * @param values
-	 *            对应订单信息中的变量的值
+	 *            Value of the corresponding order field
 	 *   @param         orderType
-	 *            订单类型：
+	 *            Order type:
 	 * @return
 	 */
 	public native static String buildOrderUrl(String[] keys, String[] values,int orderType);
 
 	/**
-	 * 生成唯一的订单号
+	 * Generate a unique order number
 	 * 
 	 * @return
 	 */
 	public native static String generateOrderId();
 
 	/**
-	 * 认证用户信息
+	 * Authenticate user information
 	 * 
 	 * @param sessionId
-	 *            需要验证的Token或者SessionId
+	 *            Token or session ID to validate
 	 * @param clientIpAddress
-	 *            客户端IP
+	 *            Client IP
 	 * @param uniqueId
-	 *            token唯一id
+	 *            Unique token ID
 	 * @return
 	 */
 	public native static UserInfo getUserInfo(String sessionId,
 			String clientIpAddress, long uniqueId);
 
 	/**
-	 * 验证签名
+	 * Verify the signature
 	 * 
 	 * @param source
-	 *            待验证源数据
+	 *            Source data to verify
 	 * @param length
-	 *            待验证源数据长度
+	 *            Length of source data to verify
 	 * @param signedString
-	 *            待验证签名
+	 *            Signature to verify
 	 * @return
 	 */
 

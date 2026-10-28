@@ -1,6 +1,6 @@
 #include "Application.h"
 #include <stdio.h>
-#include <strsafe.h>        // StringCch相关用
+#include <strsafe.h>        // For StringCch
 #include "windows.h"
 #include "SDOA4Client.h"
 #include "SDOADDraw.h"
@@ -10,7 +10,7 @@
 const int WINDOW_WIDTH  = 800;
 const int WINDOW_HEIGHT = 600;
 
-/* 接入相关全局变量  */
+/* Integration-related global variables  */
 HINSTANCE          g_hInstIGWDll = 0;
 LPigwInitialize    igwInitialize = NULL;
 LPigwGetModule     igwGetModule = NULL;
@@ -19,7 +19,7 @@ LPigwTerminal      igwTerminal = NULL;
 ISDOADDraw*			g_SDOADDraw = NULL;
 ISDOAApp*			g_SDOAApp = NULL;
 
-/* 释放IGW */
+/* Release IGW */
 void CloseIGW()
 {
 	if (g_SDOADDraw)
@@ -34,7 +34,7 @@ void CloseIGW()
 	}
 
 	if (igwTerminal)
-	{  // 释放DLL前总是先调用igwTerminal
+	{  // Always call igwTerminal before releasing the DLL
 		igwTerminal();
 		igwTerminal = NULL;
 	}
@@ -46,7 +46,7 @@ void CloseIGW()
 	igwInitialize = NULL;
 }
 
-/* 加载IGW */
+/* Load IGW */
 void OpenIGW()
 {
 	WCHAR strExePath[MAX_PATH] = {0};
@@ -56,7 +56,7 @@ void OpenIGW()
 	strExePath[MAX_PATH-1]=0;
 	strLastSlash = wcsrchr( strExePath, TEXT('\\') );
 	if( strLastSlash )
-	{	// 得到EXE所在路径
+	{	// Get the EXE directory
 		StringCchCopyW( strExeName, MAX_PATH, &strLastSlash[1] );
 		*strLastSlash = 0;
 		strLastSlash = wcsrchr( strExeName, TEXT('.') );
@@ -68,14 +68,14 @@ void OpenIGW()
 	StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\GameWidget.dll", strExePath );
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // 如果程序运行路径中不存在则换个路径再试
+	{ // If it is absent from the executable path, try another path
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
 	CloseIGW();
 
 	if ( GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF )
-	{	// 找到组件则加载	
+	{	// Load the component if found
 		g_hInstIGWDll = LoadLibraryW(strGameWidgetDll);
 		if (g_hInstIGWDll)
 		{
@@ -84,74 +84,74 @@ void OpenIGW()
 			igwTerminal = (LPigwTerminal)GetProcAddress( g_hInstIGWDll, "igwTerminal" );
 			if ( igwInitialize && igwGetModule && igwTerminal)
 			{
-				// 加载成功
+				// Loaded successfully
 
-				// 注意AppInfo类型所有字段必须填
+				// All AppInfo fields must be filled in
 				AppInfo tmpAppInfo = {
-					sizeof(AppInfo),       // 结构体大小，方便扩展
-					9999,                  // 接入应用ID，从开发者网站中申请
-					L"龙潭虎穴OnLine",     // 应用名称
-					L"0.1.2.0",            // 应用客户端当前版本号
-					SDOA_RENDERTYPE_DDRAW, // 客户端支持的图形引擎类型
-					1,                     // 可同时在一台机器上游戏的最大人数（通常为1，例如:KOF应该是2）
-					-1,                    // 游戏区ID，不可用时传入-1
-					-1                     // 游戏组ID，不可用时传入-1
+					sizeof(AppInfo),       // Structure size for extensibility
+					9999,                  // Application ID obtained from the developer website
+					L"龙潭虎穴OnLine",     // Application name
+					L"0.1.2.0",            // Current application client version
+					SDOA_RENDERTYPE_DDRAW, // Graphics engine type supported by the client
+					1,                     // Maximum simultaneous players on one machine (usually 1; for example, KOF uses 2)
+					-1,                    // Game area ID; pass -1 when unavailable
+					-1                     // Game group ID; pass -1 when unavailable
 
 				};
 
 				if (igwInitialize(SDOA_SDK_VERSION, &tmpAppInfo) == SDOA_OK)
-				{	// 初始化组件成功
-					// 获取组件接口
+				{	// Component initialized successfully
+					// Get the component interface
 					igwGetModule(__uuidof(ISDOADDraw), (void**)&g_SDOADDraw);
 					igwGetModule(__uuidof(ISDOAApp), (void**)&g_SDOAApp);
 					if ( (g_SDOADDraw == NULL) || (g_SDOAApp == NULL) )
 						CloseIGW();					
 				}
-				else // 初始化失败清除环境
+				else // Clean up after initialization failure
 					CloseIGW();
 			}
-			else  // 加载DLL失败清除环境
+			else  // Clean up after DLL load failure
 				CloseIGW();
 		}
 	}
 }
 
-BOOL isSDOLogin = false; // 注意一定要是BOOL类型，不能为bool否则可能会导致问题
+BOOL isSDOLogin = false; // Use BOOL, not bool, to avoid potential problems
 LoginResult loginResult;
 
 BOOL CALLBACK OnLogin(int nErrorCode, const LoginResult* pLoginResult, int nUserData, int nReserved) 
-{ // 注意该回调返回true则关闭登录对话框，否则登录对话框仍然显示
+{ // This callback closes the login dialog if it returns true; otherwise the dialog remains visible
 
 	isSDOLogin = (SDOA_OK == nErrorCode); 
 	if (isSDOLogin) 
 	{ 
 		loginResult = *pLoginResult; 
-		// 登录成功后,把用户使用的游戏角色信息传入IGW
+		// After login succeeds, pass the selected character information to IGW
 		if (g_SDOAApp)
 		{
 			RoleInfo tmpRoleInfo = { sizeof(RoleInfo), L"美貌仙子", 0 } ;
-			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // 设置角色信息，可多次调用，只要用户切换了角色就调用通知IGW
+			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // Set character information; call again to notify IGW whenever the user changes character
 		}
 	}
 	if (SDOA_ERRORCODE_SHOWMESSAGE == nErrorCode)
-	{ // 登录错误消息处理
+	{ // Handle login errors
 		if (nReserved != 0)
 		{
 			LoginMessage* pCurLoginMsg = (LoginMessage*)nReserved;
 			if (pCurLoginMsg->dwSize >= sizeof(LoginMessage))
-			{ // 兼容性处理 
-				// 修改错误提示对话框标题
+			{ // Compatibility handling
+				// Change the error dialog title
 				//SysReAllocString(pCurLoginMsg->pbstrTitle, L"[测试游戏错误提示]");
 
-				// 此时返回FALSE则使用默认提示
+				// Return FALSE to use the default message
 
-				// 此时返回TRUE则使用自定义的提示
+				// Return TRUE to use the custom message
 				//isSDOLogin = TRUE;
 				//::MessageBox(0, *pCurLoginMsg->pbstrContent, *pCurLoginMsg->pbstrTitle, MB_OK);
 			}
 		}
 	}
-	return isSDOLogin; // 常规逻辑，登录成功则关闭登录对话框
+	return isSDOLogin; // Normal behavior: close the login dialog after successful login
 } 
 
 
@@ -177,11 +177,11 @@ CApplication::~CApplication()
 
     ShutdownDDraw();
 	if (isSDOLogin && g_SDOAApp)
-	{	// 登录成功则登出
+	{	// Log out after successful login
 		g_SDOAApp->Logout();
 	}
 
-	/* 释放IGW */
+	/* Release IGW */
 	CloseIGW();
 
     ShutdownWindow();
@@ -196,10 +196,10 @@ bool CApplication::Initialize()
         return false;
     }
 
-	/* 加载IGW */
+	/* Load IGW */
 	OpenIGW();
 	if (igwInitialize)
-	{	// 说明加载成功，表示下......		
+	{	// Indicate that loading succeeded
 		SetWindowTextW(m_hWnd, L"IGW DDraw Sample [加载IGW组件成功]");
 	}
 
@@ -223,7 +223,7 @@ char* EncodeParam(LPSTR AData, int ASize, bool AQueryStr = true, bool AUseUTF8 =
 LRESULT CApplication::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	if (g_SDOADDraw)
-	{	// 把消息交给IGW模块处理 
+	{	// Pass the message to IGW for processing
 		LRESULT lResult; 
 		if (g_SDOADDraw->OnWindowProc( hWnd, uMsg, wParam, lParam, &lResult ) == SDOA_OK ) 
 		{ 			
@@ -233,7 +233,7 @@ LRESULT CApplication::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 
 	if ( (UINT)SDOA_WM_CLIENT_RUN == uMsg )
 	{
-		// 此刻可以开始登录
+		// Login can begin now
 		if (g_SDOAApp)
 		{
 			g_SDOAApp->ShowLoginDialog(OnLogin, 0, 0);			
@@ -252,7 +252,7 @@ LRESULT CApplication::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 			bool bAltDown = ( (lParam & dwMask) != 0 );
 
 			if (bAltDown && (VK_RETURN == wParam))
-			{	// 在全屏与窗口模式间切换
+			{	// Switch between fullscreen and windowed modes
 				ShutdownDDraw();
 				m_bIsFullScreen = !m_bIsFullScreen;
 				if (m_bIsFullScreen)
@@ -508,7 +508,7 @@ bool CApplication::InitDDraw(bool AFullScreen)
 		m_pMainSurface->SetClipper( m_pClipper );
 	}
 
-	/* 初始化IGW内部图形引擎 */
+	/* Initialize the IGW graphics engine */
 	if ( g_SDOADDraw && m_pDirectDraw && m_pMainSurface)
 	{
 		LPDIRECTDRAW dd = NULL;
@@ -533,7 +533,7 @@ bool CApplication::InitDDraw(bool AFullScreen)
 void CApplication::ShutdownDDraw()
 {
 	if (g_SDOADDraw)
-	{	// /* 释放IGW图形引擎 */
+	{	// /* Release the IGW graphics engine */
 		g_SDOADDraw->Finalize();
 	}
 	SAFE_RELEASE(m_dds);
@@ -613,7 +613,7 @@ void CApplication::FrameMove()
         ::OutputDebugString("blt back surface failed");
 
 	if (g_SDOADDraw)
-	{	// 绘制IGW界面
+	{	// Render the IGW interface
 		if (!m_dds)
 		{
 			m_pBackSurface->QueryInterface(IID_IDirectDrawSurface, (void**)&m_dds);
@@ -624,7 +624,7 @@ void CApplication::FrameMove()
 
 	if ( !m_bIsFullScreen )
 	{
-		//窗口模式使用
+		//Used in windowed mode
 		RECT rt;
 		::GetClientRect( m_hWnd, &rt );
 

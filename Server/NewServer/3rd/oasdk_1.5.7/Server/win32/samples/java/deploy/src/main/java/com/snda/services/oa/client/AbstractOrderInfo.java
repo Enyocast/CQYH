@@ -6,11 +6,11 @@ import java.util.Map;
 
 /**
  * 
- * 该抽象订单接口,类变量必须得公开,
- * 订单对象发送到订单服务层的时候,将订单内部的字段进行数据格式化,
- * 格式化数据的时候将会过滤修饰符为 transient static 非public 的字段.
+ * This abstract order interface requires public class fields.
+ * When an order is sent to the service layer, its fields are formatted.
+ * Formatting excludes transient, static and non-public fields.
  * 
- * 字段类型支持包括String在内的所有基础类型数据
+ * Field types include String and all primitive types.
  * 
  * @author Structchen
  *

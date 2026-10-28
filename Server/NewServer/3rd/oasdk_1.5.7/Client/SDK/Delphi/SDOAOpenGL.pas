@@ -1,14 +1,14 @@
 {------------------------------------------------------------------------------}
 { SDOAOpenGL.pas for gwCore                                                    }
 {------------------------------------------------------------------------------}
-{ 单元描述:  外部OpenGL图形引擎接口                                            }
-{ 单元作者: 盛大网络 IGW项目组                                                 }
-{ 参考文档:                                                                    }
-{ 创建日期: 2009-2-25 13:55:36                                                 }
+{ Unit description:  External OpenGL graphics interface                                            }
+{ Unit author: Shanda Network IGW team                                                 }
+{ References:                                                                    }
+{ Created: 2009-2-25 13:55:36                                                 }
 {------------------------------------------------------------------------------}
-{ 使用说明:                                                                    }
+{ Usage:                                                                    }
 {------------------------------------------------------------------------------}
-{ 修改历史:                                                                    }
+{ Revision history:                                                                    }
 {------------------------------------------------------------------------------}
 unit SDOAOpenGL;
 
@@ -24,13 +24,13 @@ type
   PSDOAOpenGL = ^ISDOAOpenGL;
   ISDOAOpenGL = interface(IUnknown)
     ['{E6DCDBF9-6058-4210-9979-766B9E56C9C9}']
-    { 初始化图形系统 }
+    { Initialize the graphics system }
     function Initialize(DC: HDC; RC: HGLRC; AHookWnd: Boolean): HRESULT; stdcall;
-    { 渲染 }
+    { Render }
     function Render(): HRESULT; stdcall;
-    { 释放图形系统相关资源 }
+    { Release graphics system resources }
     function Finalize(): HRESULT; stdcall;
-     { 传入消息 }
+     { Pass a message }
     function OnWindowProc(hWnd: HWND; uMsg: UINT; wParam: WPARAM; lParam: LPARAM;
       var lResult: LRESULT): HRESULT; stdcall;
   end;

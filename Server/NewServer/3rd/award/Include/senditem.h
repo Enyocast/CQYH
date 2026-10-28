@@ -3,14 +3,14 @@
 
 #include "svccommoninfo.h"
 
-#define SVCSENDITEM     "SVCSENDITEM"   /// "道具"消息服务  
+#define SVCSENDITEM     "SVCSENDITEM"   /// Item message service
 
-#define ITEMC2SREQ            0x00000001   /// "道具"发送请求  
-#define ITEMC2SRES            0x80000001   /// "道具"发送反馈  
-#define ITEMS2CREQ            0x00000002   /// "道具"下发请求  
-#define ITEMS2CRES            0x80000002   /// "道具"下发反馈  
+#define ITEMC2SREQ            0x00000001   /// Item send request
+#define ITEMC2SRES            0x80000001   /// Item send response
+#define ITEMS2CREQ            0x00000002   /// Item delivery request
+#define ITEMS2CRES            0x80000002   /// Item delivery response
 
-#pragma pack (push,4)  /// 指定按 4 字节对齐
+#pragma pack (push,4)  /// Set 4-byte alignment
 
 typedef struct
 {

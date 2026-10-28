@@ -18,12 +18,12 @@ public class NativeClassLoader {
 	    }
 	    
 	    /**
-	     * 查找循序：
-	     * 	1、首先根据环境变量 ${project.library.path}
-	     * 	2、环境变量 ${project.home}/native
-	     * 	3、环境变量 ${project.home}/.
-	     * 	4、当前工作路径  
-	     * 	5、最后 ${java.library.path}
+	     * Search order:
+	     * 	1. Environment variable ${project.library.path}
+	     * 	2. Environment variable ${project.home}/native
+	     * 	3. Environment variable ${project.home}/.
+	     * 	4. Current working directory
+	     * 	5. Finally, ${java.library.path}
 	     * @param libraryName
 	     */
 	    public static void loadLibrary(String libraryName){
@@ -76,7 +76,7 @@ public class NativeClassLoader {
 	    
 	    /**
 	     * 
-	     * @param parent 当前类库所在的文件夹
+	     * @param parent directory containing the library
 	     * @param libraryName
 	     */
 	    public static void loadLibrary(File parent,String libraryName){

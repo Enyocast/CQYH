@@ -11,9 +11,9 @@ MIDL_INTERFACE("C87C0531-B8EB-4D7B-A8B9-634E10B736B9")
 ISDOADx8Hook : public IUnknown
 {
 public:
-	/* 初始化d3d设备 */
+	/* Initialize the D3D device */
 	STDMETHOD_(HRESULT,Hook)(THIS_ IDirect3DDevice8* pDev8, HWND hHookGameWnd) PURE;		
-	/* 释放d3d相关资源 */
+	/* Release D3D resources */
 	STDMETHOD_(HRESULT,unHook)(THIS) PURE;
 };
 

@@ -1,25 +1,25 @@
 package com.snda.services.oa.client;
 
 /**
- * 验证签名服务
+ * Signature verification service
  * @author StructChen
  *
  */
 public interface VerifySignatureService {
 	
 	/**
-	 * 验证签名是否一致
-	 * @param source 未签名的字符串
-	 * @param verrifiedString 已经签名的字符串
-	 * @return boolean  验证签名一致则返回true
+	 * Check whether signatures match
+	 * @param source unsigned string
+	 * @param verrifiedString signed string
+	 * @return boolean true if the signature matches
 	 */
 	public boolean verify(String source,String verrifiedString);
 	
 	/**
-	 * 对字符串进行签名
+	 * Sign a string
 	 * 
-	 * @param source 需要进行签名的字符串
-	 * @return String 返回签名
+	 * @param source string to sign
+	 * @return String signature
 	 */
 	public String sign(String source);
 }

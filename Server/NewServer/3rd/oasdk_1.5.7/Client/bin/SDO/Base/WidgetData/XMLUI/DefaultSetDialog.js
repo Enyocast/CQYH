@@ -65,7 +65,7 @@ function VisibleTabControls(iTabIndex, bVisible)
 			checkboxAllowPopupMsg.visible = bVisible;
 			labelSystemSetRegion.visible = bVisible;
 			checkboxAllowServerMsg.visible = bVisible;
-                        //Ä£Ê½Ñ¡Ôñ
+                        //Mode selection
                         checkboxMinTypeSet.Visible= bVisible;
                       
 			btnTabSystemSet.Enabled = !bVisible;			

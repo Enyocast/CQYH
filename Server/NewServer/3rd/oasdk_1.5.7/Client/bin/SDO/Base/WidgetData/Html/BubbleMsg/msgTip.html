@@ -51,26 +51,26 @@ function thisMovie(movieName) {
 
 var arrowWidth = 28;
 var arrowHeight = 25;
-//背景大小
+//Background size
 var backWidth = 60;
 var backHeight = 65;
-//背景透明度
+//Background opacity
 var backAlpha = 97;
-//线条颜色
+//Line color
 var lineColor = 0x51BDFF;
-//填充颜色
+//Fill color
 var fillColor = 0xffffff;
-//文字总大小
+//Total text size
 var txtWidth = 40;
 var txtHeight = 65;
-//方向	lt 左上	lb 左下	rt 右上	rb 右下
+//Direction: lt top-left, lb bottom-left, rt top-right, rb bottom-right
 var aspect = "rt";
-//需要显示的文字信息
+//Text to display
 var msg = "您有新<br/>消息<br/>请查收";
 
-//显示新信息提示
+//Show new message notification
 function showMsgTip(){
-	//箭头大小
+	//Arrow size
 	return {arrowWidth:arrowWidth,  arrowHeight:arrowHeight, backWidth:backWidth, backHeight:backHeight, lineColor:lineColor, fillColor:fillColor, msg:msg , txtWidth:txtWidth , txtHeight:txtHeight , backAlpha:backAlpha, aspect:aspect};
 }
 

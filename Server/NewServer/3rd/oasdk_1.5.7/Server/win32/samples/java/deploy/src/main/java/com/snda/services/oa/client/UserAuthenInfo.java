@@ -1,7 +1,7 @@
 package com.snda.services.oa.client;
 
 /**
- * 用户验证相关的信息对象
+ * User authentication information
  * 
  * @author Structchen
  *

@@ -2,7 +2,7 @@
 #define _FCMSDK_H_
 
 typedef int (*funcPtr)(const char* szUserID, const char* szRoleID,int iOnlineMinutes,int iOfflineMinutes);
-typedef void (*funcPtrSwitch)(int needFCM); //needFCM = 1需要防沉迷 ，needFCM = 0不需要防沉迷
+typedef void (*funcPtrSwitch)(int needFCM); //needFCM = 1 enables anti-addiction controls; needFCM = 0 disables them
 typedef void (*QueryFuncPtr)(const char* szUserID, const char* szRoleID,int iState ,int iOnlineMinutes,int iOfflineMinutes);
 
 class CFCMSDKBase
@@ -20,7 +20,7 @@ public:
 	virtual int __stdcall FCMIDOffline(const char* szUserID, const char* szRoleID,const char *IPAddr);
 	virtual int __stdcall FCMIDOnlineGS(const char* szUserID, const char* szRoleID,const char *IPAddr);
 	virtual int __stdcall FCMIDOfflineGS(const char* szUserID, const char* szRoleID,const char *IPAddr);
-	//2010-08-11 为了兼容老的版本,不修改函数顺序(不使用新接口，可以不重新链接)
+	//2010-08-11: Preserve function order for compatibility with older versions (relinking is unnecessary when not using the new interface)
 	virtual bool __stdcall initFCMSDKEx(const char* szGameType, int GameTypeLength
 		, const  char* szGameArea, int GameAreaLength
 		,const char* szServerCode, int ServerCodeLength

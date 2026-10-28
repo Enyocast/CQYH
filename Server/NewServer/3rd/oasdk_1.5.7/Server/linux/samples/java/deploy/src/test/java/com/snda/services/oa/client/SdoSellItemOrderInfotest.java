@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import com.snda.services.oa.client.impl.OrderServiceProvider;
 import com.snda.services.oa.client.impl.SdoSellItemOrderInfo;
 /**
- * 寄售道具订单调用示例，参数具体填写参考协议
+ * Item consignment example; see the protocol for parameter values
  * @author chenyifang
  *
  */
@@ -34,7 +34,7 @@ public class SdoSellItemOrderInfotest {
 							OrderService orderProvider = new OrderServiceProvider();
 							SdoSellItemOrderInfo order = new SdoSellItemOrderInfo();
 							/**
-							 * 对寄售道具订单信息进行传值
+							 * Populate the item consignment order information
 							 */
 							order.orderId = orderProvider.generateOrderId();
 							order.orderIdRelation="223423333333333334";
@@ -49,7 +49,7 @@ public class SdoSellItemOrderInfotest {
 							order.indication="0";
 							order.userIdDest="24234";
 							order.userIdSrc="6323423";
-							/** 产生 一个 订单请求的url。如下格式：
+							/** Generate an order request URL in the following format:
 							 * http://192.168.68.92:8080/billgate/SdoSellItem.do?key=966&callTime=2009-04-29+11%3A17%3A37&userIdSrc=6323423&amount=1&feeDest=1&feeSrc=1&userIdDest=24234&orderIdRelation=223423333333333334&orderId=00000096620090429111737000001996&goodsNum=1&payType=3&indication=0&goodsInfo=1%2C1%2C1&sign=6A13C8488AF480D9E746C70A33135F6E
 							 */
 							String orderUrl = orderProvider

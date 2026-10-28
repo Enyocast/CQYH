@@ -21,12 +21,12 @@
 #include <mmsystem.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <strsafe.h>        // StringCch相关用
+#include <strsafe.h>        // For StringCch
 #include "SDOA4Client.h"
 #include "SDOADx8.h"
 
 
-/* 接入相关全局变量  */
+/* Integration-related global variables  */
 HINSTANCE          g_hInstIGWDll = 0;
 LPigwInitialize    igwInitialize = NULL;
 LPigwGetModule     igwGetModule = NULL;
@@ -54,7 +54,7 @@ struct CUSTOMVERTEX
 // Our custom FVF, which describes our custom vertex structure
 #define D3DFVF_CUSTOMVERTEX (D3DFVF_XYZ|D3DFVF_NORMAL)
 
-/* 释放IGW */
+/* Release IGW */
 void CloseIGW()
 {
 	if (g_SDOADx8)
@@ -64,7 +64,7 @@ void CloseIGW()
 	}
 
 	if (igwTerminal)
-	{  // 释放DLL前总是先调用igwTerminal
+	{  // Always call igwTerminal before releasing the DLL
 		igwTerminal();
 		igwTerminal = NULL;
 	}
@@ -76,7 +76,7 @@ void CloseIGW()
 	igwInitialize = NULL;
 }
 
-/* 加载IGW */
+/* Load IGW */
 void OpenIGW()
 {
 	WCHAR strExePath[MAX_PATH] = {0};
@@ -86,7 +86,7 @@ void OpenIGW()
 	strExePath[MAX_PATH-1]=0;
 	strLastSlash = wcsrchr( strExePath, TEXT('\\') );
 	if( strLastSlash )
-	{	// 得到EXE所在路径
+	{	// Get the EXE directory
 		StringCchCopyW( strExeName, MAX_PATH, &strLastSlash[1] );
 		*strLastSlash = 0;
 		strLastSlash = wcsrchr( strExeName, TEXT('.') );
@@ -98,14 +98,14 @@ void OpenIGW()
 	StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\GameWidget.dll", strExePath );
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // 如果程序运行路径中不存在则换个路径再试
+	{ // If it is absent from the executable path, try another path
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
 	CloseIGW();
 
 	if ( GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF )
-	{	// 找到组件则加载	
+	{	// Load the component if found
 		g_hInstIGWDll = LoadLibraryW(strGameWidgetDll);
 		if (g_hInstIGWDll)
 		{
@@ -114,24 +114,24 @@ void OpenIGW()
 			igwTerminal = (LPigwTerminal)GetProcAddress( g_hInstIGWDll, "igwTerminal" );
 			if ( igwInitialize && igwGetModule && igwTerminal)
 			{
-				// 加载成功
+				// Loaded successfully
 
-				// 注意AppInfo类型所有字段必须填
+				// All AppInfo fields must be filled in
 				AppInfo tmpAppInfo = {
-					sizeof(AppInfo),       // 结构体大小，方便扩展
-					9999,                  // 接入应用ID，从开发者网站中申请
-					L"龙潭虎穴OnLine",     // 应用名称
-					L"0.1.2.0",            // 应用客户端当前版本号
-					SDOA_RENDERTYPE_D3D8,  // 客户端支持的图形引擎类型
-					1,                     // 可同时在一台机器上游戏的最大人数（通常为1，例如:KOF应该是2）
-					-1,                    // 游戏区ID，不可用时传入-1
-					-1                     // 游戏组ID，不可用时传入-1
+					sizeof(AppInfo),       // Structure size for extensibility
+					9999,                  // Application ID obtained from the developer website
+					L"龙潭虎穴OnLine",     // Application name
+					L"0.1.2.0",            // Current application client version
+					SDOA_RENDERTYPE_D3D8,  // Graphics engine type supported by the client
+					1,                     // Maximum simultaneous players on one machine (usually 1; for example, KOF uses 2)
+					-1,                    // Game area ID; pass -1 when unavailable
+					-1                     // Game group ID; pass -1 when unavailable
 
 				};
 
 				if (igwInitialize(SDOA_SDK_VERSION, &tmpAppInfo) == SDOA_OK)
-				{	// 初始化组件成功
-					// 获取组件接口
+				{	// Component initialized successfully
+					// Get the component interface
 					
 					igwGetModule(__uuidof(ISDOADx8), (void**)&g_SDOADx8);
 					if (!g_SDOADx8)
@@ -140,10 +140,10 @@ void OpenIGW()
 					}
 						
 				}
-				else // 初始化失败清除环境
+				else // Clean up after initialization failure
 					CloseIGW();
 			}
-			else  // 加载DLL失败清除环境
+			else  // Clean up after DLL load failure
 				CloseIGW();
 		}
 	}
@@ -173,7 +173,7 @@ HRESULT InitD3D( HWND hWnd )
     d3dpp.BackBufferFormat = d3ddm.Format;
     d3dpp.EnableAutoDepthStencil = TRUE;
     d3dpp.AutoDepthStencilFormat = D3DFMT_D16;
-	d3dpp.hDeviceWindow = hWnd;// 注意IGW内部总是通过它取到游戏主窗口的
+	d3dpp.hDeviceWindow = hWnd;// IGW always uses this to obtain the game main window
 
     // Create the D3DDevice
     if( FAILED( g_pD3D->CreateDevice( D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
@@ -381,7 +381,7 @@ VOID Render()
 LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 {
 	if(g_SDOADx8) 
-	{	// 把消息交给IGW模块处理 
+	{	// Pass the message to IGW for processing
 		LRESULT lResult = 0; 
 		if (g_SDOADx8->OnWindowProc( hWnd, msg, wParam, lParam, &lResult ) == SDOA_OK ) 
 		{ 			
@@ -400,7 +400,7 @@ LRESULT WINAPI MsgProc( HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam )
 
 void CALLBACK OnLostDevice()
 {
-	/* 通知d3d设备丢失 */
+	/* Notify D3D device loss */
 	if( g_pVB != NULL )
 	{
 		g_pVB->Release();
@@ -412,7 +412,7 @@ void CALLBACK OnLostDevice()
 
 void CALLBACK OnResetDevice()
 {
-	/* 通知d3d设备重置成功 */
+	/* Notify successful D3D device reset */
 	InitGeometry();
 	// Turn off culling
 	g_pd3dDevice->SetRenderState( D3DRS_CULLMODE, D3DCULL_NONE );
@@ -448,15 +448,15 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
     // Initialize Direct3D
     if( SUCCEEDED( InitD3D( hWnd ) ) )
     {
-		/* 加载IGW */
+		/* Load IGW */
 		OpenIGW();
 		if (igwInitialize)
-		{	// 说明加载成功，表示下......			
+		{	// Indicate that loading succeeded
 			SetWindowText(hWnd, "D3D Tutorial [加载IGW组件成功]");
 		}	
 
 		if (g_SDOADx8)
-		{	// 初始化IGW内部图形引擎
+		{	// Initialize the IGW graphics engine
 			g_SDOADx8->Initialize(g_pd3dDevice, &d3dpp, false);
 		}
 
@@ -478,9 +478,9 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
 					DispatchMessage( &msg );
                 }
                 else
-				{	// 简单处理设备丢失问题
+				{	// Handle device loss simply
 					if (g_DeviceLost)
-					{	// 处于设备丢失中可慢点恢复，避免长时间丢失占用过多CPU
+					{	// Retry recovery slowly while the device is lost to avoid excessive CPU use
 						Sleep(50);
 					}
 					switch (g_pd3dDevice->TestCooperativeLevel())
@@ -517,11 +517,11 @@ INT WINAPI WinMain( HINSTANCE hInst, HINSTANCE, LPSTR, INT )
     }
 
 	if (g_SDOADx8)
-	{	// 释放IGW内部图形引擎
+	{	// Release the IGW graphics engine
 		g_SDOADx8->Finalize();
 	}
 
-	/* 释放IGW */
+	/* Release IGW */
 	CloseIGW();
 
     // Clean up everything and exit the app

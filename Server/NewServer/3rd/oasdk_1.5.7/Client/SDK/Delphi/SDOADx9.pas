@@ -1,14 +1,14 @@
 {------------------------------------------------------------------------------}
 { SDOADx9.pas for gwCore                                                      }
 {------------------------------------------------------------------------------}
-{ 单元描述:  外部dx9图形引擎接口                                               }
-{ 单元作者: 盛大网络 IGW项目组                                                 }
-{ 参考文档:                                                                    }
-{ 创建日期: 2009-2-25 13:55:01                                                 }
+{ Unit description:  External DX9 graphics interface                                               }
+{ Unit author: Shanda Network IGW team                                                 }
+{ References:                                                                    }
+{ Created: 2009-2-25 13:55:01                                                 }
 {------------------------------------------------------------------------------}
-{ 使用说明:                                                                    }
+{ Usage:                                                                    }
 {------------------------------------------------------------------------------}
-{ 修改历史:                                                                    }
+{ Revision history:                                                                    }
 {------------------------------------------------------------------------------}
 unit SDOADx9;
 
@@ -22,25 +22,25 @@ const
 
 
 type
-  { dx9图形接口 }
+  { DX9 graphics interface }
   PSDOADx9 = ^ISDOADx9;
   ISDOADx9 = interface(IUnknown)
     ['{59B789AB-BEE9-4C68-AA23-BCA9AB1A3E50}']
-    { 初始化d3d设备 }
+    { Initialize the D3D device }
     function Initialize(Dev9: IDirect3DDevice9;
       Params: PD3DPresentParameters; HookGameWnd: boolean): HRESULT; stdcall;
-    // 渲染界面内部已经调用BeginScene和EndScene，确认在EndScene之后调用它
+    // Rendering calls BeginScene and EndScene internally; call it after EndScene
     function Render(): HRESULT; stdcall;
-    // 确保在BeginScene、EndScene之间调用RenderEx
+    // Call RenderEx between BeginScene and EndScene
     function RenderEx(): HRESULT; stdcall;
-    { 释放d3d相关资源 }
+    { Release D3D resources }
     function Finalize(): HRESULT; stdcall;
 
-     { 重置设备 }
+     { Reset the device }
     procedure OnDeviceReset(Params: PD3DPresentParameters); stdcall;
-     { 设备丢失 }
+     { Device lost }
     procedure OnDeviceLost(); stdcall;
-     { 传入消息 }
+     { Pass a message }
     function OnWindowProc(hWnd: HWND; uMsg: UINT; wParam: WPARAM; lParam: LPARAM;
       var lResult: LRESULT): HRESULT; stdcall;
   end;

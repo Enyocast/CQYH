@@ -70,7 +70,7 @@ LRESULT CApplication::WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lPa
 			bool bAltDown = ( (lParam & dwMask) != 0 );
 
 			if (bAltDown && (VK_RETURN == wParam))
-			{	// 在全屏与窗口模式间切换
+			{	// Switch between fullscreen and windowed modes
 				ShutdownDDraw();
 				m_bIsFullScreen = !m_bIsFullScreen;
 				if (m_bIsFullScreen)
@@ -419,7 +419,7 @@ void CApplication::FrameMove()
 
 	if ( !m_bIsFullScreen )
 	{
-		//窗口模式使用
+		//Used in windowed mode
 		RECT rt;
 		::GetClientRect( m_hWnd, &rt );
 

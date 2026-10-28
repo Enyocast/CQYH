@@ -47,12 +47,12 @@ namespace SGPK{
 
 
 		//GPK2.X
-        //Function: 处理由服务端发来的Auth数据。
-		//Parameter: Object, 用于回调的对象指针，可能是一个socket，也可能是一个用户类等。甚至也可能为NULL,具体对象类型由游戏架构决定
-		//		     SendToSvr，回调函数
-		//           lpData:[in,out],数据指针，处理后作为输出数据指针
-		//           nLen:数据长度
-		//Return: 大于0为计算后数据的长度，否则表示计算失败
+        //Function: Process Auth data received from the server.
+		//Parameter: Object, callback object pointer; may be a socket, user object or NULL, depending on the game architecture
+		//		     SendToSvr, callback function
+		//           lpData: [in,out] data pointer; contains the output after processing
+		//           nLen: Data length
+		//Return: Positive processed data length, otherwise processing failed
 		
 		virtual int GPK_API ProcessAuth(void * Object,fnGPK_CltCallBack SendToSvr,unsigned char * lpData, unsigned long nLen) = 0;
 
@@ -62,16 +62,16 @@ namespace SGPK{
 
 	/* ====================================================================
 
-	*函数说明:
-	*启动GPK
+	*Function:
+	*Start GPK
 
-	*参数说明:
-	*UpdateServerURL - 更新服务器的URL地址
-	*GameCode - 游戏代号, 8字节长, 加\0结尾最长为9字节长
+	*Parameters:
+	*UpdateServerURL - update server URL
+	*GameCode - 8-byte game code, up to 9 bytes including the terminating \0
 
-	*返回值:
-	*TRUE - 成功
-	*FALSE - 失败
+	*Return value:
+	*TRUE - success
+	*FALSE - failure
 	*/
 
 extern "C" IGPKCltDynCode * GPK_API GPKStart(IN LPCSTR UpdateServerURL,

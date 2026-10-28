@@ -17,13 +17,13 @@
 HINSTANCE hInst;								// current instance
 TCHAR szTitle[MAX_LOADSTRING];					// The title bar text
 TCHAR szWindowClass[MAX_LOADSTRING];			// the main window class name
-// 当前窗口的大小
+// Current window size
 int						g_WinWidth = 640;
 int						g_WinHeight = 480;
 HWND					g_MainWin_hWnd = 0;
-BOOL					g_bIsWindow = TRUE;		// 是否为窗口模式
-BOOL					g_bVSync = TRUE;		// 是否刷新同步
-BOOL					g_DeviceLost = FALSE;	// 是否是设备丢失状态
+BOOL					g_bIsWindow = TRUE;		// Whether windowed mode is enabled
+BOOL					g_bVSync = TRUE;		// Whether vertical sync is enabled
+BOOL					g_DeviceLost = FALSE;	// Whether the device is lost
 BOOL					g_bIsSizeMove = FALSE;
 IDirect3D7*				g_pDirect3D		= NULL;
 IDirect3DDevice7*		g_pDevice7		= NULL;
@@ -32,7 +32,7 @@ IDirectDrawSurface7*	g_pFrontBuffer	= NULL;
 IDirectDrawSurface7*	g_pBackBuffer	= NULL;
 IDirectDrawClipper*		g_pClipper		= NULL;
 
-/* 接入相关全局变量  begin*/
+/* Integration-related global variables  begin*/
 HINSTANCE          g_hInstIGWDll = 0;
 LPigwInitialize    igwInitialize = NULL;
 LPigwGetModule     igwGetModule = NULL;
@@ -40,7 +40,7 @@ LPigwTerminal      igwTerminal = NULL;
 
 ISDOADx7*			g_SDOADx7 = NULL;
 ISDOAApp*			g_SDOAApp = NULL;
-/* 接入相关全局变量  end*/
+/* Integration-related global variables  end*/
 
 #define SAFE_RELEASE(x) {if (x){ x->Release(); x = NULL;}}
 
@@ -53,8 +53,8 @@ void				FreeDevice();
 void				FlipWindowed();
 void				Flip();
 BOOL				MayRender();
-void				OnDeviceLost(); // 通知设备丢失
-void				OnDeviceReset();// 通知设备重置
+void				OnDeviceLost(); // Notify device loss
+void				OnDeviceReset();// Notify device reset
 void				Render();
 
 void				OpenIGW();
@@ -82,17 +82,17 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 
 	hAccelTable = LoadAccelerators(hInstance, (LPCTSTR)IDC_D3D7CPPTEST);
 
-	// 加载IGW
+	// Load IGW
 	OpenIGW();
 	if (igwInitialize)
-	{	// 说明加载成功，表示下......			
+	{	// Indicate that loading succeeded
 		SetWindowText(g_MainWin_hWnd, "D3D Tutorial [加载IGW组件成功]");
 	}	
 	
 	if (!InitDevice())
 	{
 		MessageBox(g_MainWin_hWnd, "创建D3D7设备错误", "提示", MB_OK);
-		PostQuitMessage(0);// 出错提示完后退出
+		PostQuitMessage(0);// Exit after displaying the error
 	}
 
 	// Enter the message loop
@@ -105,18 +105,18 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
 			DispatchMessage( &msg );
 		}
 		else
-		{ // 没有消息时绘制
+		{ // Render when there are no messages
 			if (g_DeviceLost == TRUE)
-			{	// 处于设备丢失中可慢点恢复，避免长时间丢失占用过多CPU
+			{	// Retry recovery slowly while the device is lost to avoid excessive CPU use
 				Sleep(100);
 			}
 			if(g_pDevice7)
-			{// 说明设备创建成功
-				Render();// 渲染相关
+			{// Device creation succeeded
+				Render();// Rendering
 			}// if(g_pDevice7)
 		}
 	}// while
-	// 释放IGW
+	// Release IGW
 	CloseIGW();
 	FreeDevice();
 	return (int) msg.wParam;
@@ -177,7 +177,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    RECT rtCurRect;
    GetClientRect(g_MainWin_hWnd, &rtCurRect);
-   // 注意CreateWindow的窗口大小包括标题与边框的，下面准确的设置客户区的大小
+   // CreateWindow size includes the title bar and borders; set the client area size precisely below
    SetWindowPos(g_MainWin_hWnd, HWND_TOP, 0, 0, 
 	   g_WinWidth - (rtCurRect.right - rtCurRect.left) + g_WinWidth, 
 	   g_WinHeight - (rtCurRect.bottom - rtCurRect.top) + g_WinHeight, SWP_NOZORDER + SWP_NOACTIVATE);
@@ -206,7 +206,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	if(g_SDOADx7) 
-	{	// 把消息交给IGW模块处理 
+	{	// Pass the message to IGW for processing
 		LRESULT lResult = 0; 
 		if (g_SDOADx7->OnWindowProc( hWnd, message, wParam, lParam, &lResult ) == SDOA_OK ) 
 		{ 			
@@ -229,7 +229,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			DWORD dwMask = (1 << 29);
 			bool bAltDown = ( (lParam & dwMask) != 0 );
 			if (bAltDown && (VK_RETURN == wParam))
-			{	// 在全屏与窗口模式间切换，全部重建
+			{	// Recreate everything when switching between fullscreen and windowed modes
 				g_bIsWindow = !g_bIsWindow;
 				OutputDebugString("MsgProc WM_SYSKEYDOWN ALT+ENTER begin\n");
 
@@ -237,7 +237,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				if (!InitDevice())
 				{
 					MessageBox(g_MainWin_hWnd, "创建D3D7设备错误", "提示", MB_OK);
-					PostQuitMessage(0);// 出错提示完后退出
+					PostQuitMessage(0);// Exit after displaying the error
 				}
 
 				OutputDebugString("MsgProc WM_SYSKEYDOWN ALT+ENTER end\n");
@@ -249,7 +249,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		//// TODO: Add any drawing code here...
 		//EndPaint(hWnd, &ps);
 		if (g_bIsSizeMove && g_bIsWindow)
-		{// 在移动中
+		{// Moving
 			Render();
 		}
 		break;
@@ -308,7 +308,7 @@ BOOL CreateBackBuffer()
 		DDSCAPS2 BackCaps;
 		ZeroMemory( &BackCaps, sizeof(BackCaps) );
 		BackCaps.dwCaps = DDSCAPS_BACKBUFFER;
-		// 注意get的要使g_pBackBuffer在g_pFrontBuffer之前Release
+		// Release the acquired g_pBackBuffer before g_pFrontBuffer
 		bResult = SUCCEEDED(g_pFrontBuffer->GetAttachedSurface(&BackCaps, &g_pBackBuffer));		
 	}
 	return bResult;
@@ -328,7 +328,7 @@ BOOL CreateClipper()
 }
 
 BOOL InitDevice()
-{ // 创建d3d7设备
+{ // Create the D3D7 device
 	BOOL bResult = FALSE;	
 	bResult = SUCCEEDED(DirectDrawCreateEx( NULL, (void**)&g_pDirectDraw7, IID_IDirectDraw7, NULL ));
 	if (!bResult)
@@ -360,12 +360,12 @@ BOOL InitDevice()
 		return bResult;
 	}
 	if (g_bIsWindow)	
-	{	// 窗口模式
+	{	// Windowed mode
 		SetWindowLong(g_MainWin_hWnd, GWL_STYLE, WS_OVERLAPPEDWINDOW);
 		SetWindowPos(g_MainWin_hWnd, HWND_NOTOPMOST, 0, 0, 0, 0,SWP_NOSIZE | SWP_SHOWWINDOW | SWP_DRAWFRAME | SWP_FRAMECHANGED);
 	}
 	else
-	{	// 全屏模式
+	{	// Fullscreen mode
 		SetWindowLong(g_MainWin_hWnd, GWL_STYLE, WS_POPUP | WS_VISIBLE);
 		SetWindowPos(g_MainWin_hWnd, HWND_NOTOPMOST, 0, 0, 0, 0,SWP_NOSIZE | SWP_SHOWWINDOW | SWP_DRAWFRAME | SWP_FRAMECHANGED);
 	}
@@ -516,7 +516,7 @@ BOOL MayRender()
 		}
 		if ((g_DeviceLost && (! bIsLost)) || (bIsLost && bNeedReset))
 		{
-			OnDeviceReset();// 通知设置重置,由于可能重置失败，所以下次再检查成功时才允许
+			OnDeviceReset();// Notify device reset; since reset may fail, allow it only after the next successful check
 			g_DeviceLost = FALSE;
 			return bResult;
 		}
@@ -528,7 +528,7 @@ BOOL MayRender()
 void Render()
 {
 	if (MayRender())
-	{// 允许渲染则绘制
+	{// Render when allowed
 		if (SUCCEEDED(g_pDevice7->Clear(0, NULL, D3DCLEAR_TARGET, 0, 0.0f, 0)))
 		{
 			if (SUCCEEDED(g_pDevice7->BeginScene()))
@@ -548,7 +548,7 @@ void Render()
 }
 
 
-/* 释放IGW */
+/* Release IGW */
 void CloseIGW()
 {
 	if (g_SDOADx7)
@@ -564,7 +564,7 @@ void CloseIGW()
 	}
 
 	if (igwTerminal)
-	{  // 释放DLL前总是先调用igwTerminal
+	{  // Always call igwTerminal before releasing the DLL
 		igwTerminal();
 		igwTerminal = NULL;
 	}
@@ -576,7 +576,7 @@ void CloseIGW()
 	igwInitialize = NULL;
 }
 
-/* 加载IGW */
+/* Load IGW */
 void OpenIGW()
 {
 	WCHAR strExePath[MAX_PATH] = {0};
@@ -586,7 +586,7 @@ void OpenIGW()
 	strExePath[MAX_PATH-1]=0;
 	strLastSlash = wcsrchr( strExePath, TEXT('\\') );
 	if( strLastSlash )
-	{	// 得到EXE所在路径
+	{	// Get the EXE directory
 		StringCchCopyW( strExeName, MAX_PATH, &strLastSlash[1] );
 		*strLastSlash = 0;
 		strLastSlash = wcsrchr( strExeName, TEXT('.') );
@@ -598,26 +598,26 @@ void OpenIGW()
 	StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\GameWidget.dll", strExePath );
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // 如果程序运行路径中不存在则换个路径再试
+	{ // If it is absent from the executable path, try another path
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // 如果程序运行路径中不存在则换个路径再试
+	{ // If it is absent from the executable path, try another path
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // 如果程序运行路径中不存在则换个路径再试
+	{ // If it is absent from the executable path, try another path
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // 如果程序运行路径中不存在则换个路径再试
+	{ // If it is absent from the executable path, try another path
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
 	CloseIGW();
 
 	if ( GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF )
-	{	// 找到组件则加载	
+	{	// Load the component if found
 		g_hInstIGWDll = LoadLibraryW(strGameWidgetDll);
 		if (g_hInstIGWDll)
 		{
@@ -626,23 +626,23 @@ void OpenIGW()
 			igwTerminal = (LPigwTerminal)GetProcAddress( g_hInstIGWDll, "igwTerminal" );
 			if ( igwInitialize && igwGetModule && igwTerminal)
 			{
-				// 加载成功
+				// Loaded successfully
 
-				// 注意AppInfo类型所有字段必须填
+				// All AppInfo fields must be filled in
 				AppInfo tmpAppInfo = {
-					sizeof(AppInfo),       // 结构体大小，方便扩展
-					9999,                  // 接入应用ID，从开发者网站中申请
-					L"龙潭虎穴OnLine",     // 应用名称
-					L"0.1.2.0",            // 应用客户端当前版本号
-					SDOA_RENDERTYPE_D3D7,  // 客户端支持的图形引擎类型，d3d7
-					1,                     // 可同时在一台机器上游戏的最大人数（通常为1，例如:KOF应该是2）
-					-1,                    // 游戏区ID，不可用时传入-1
-					-1                     // 游戏组ID，不可用时传入-1
+					sizeof(AppInfo),       // Structure size for extensibility
+					9999,                  // Application ID obtained from the developer website
+					L"龙潭虎穴OnLine",     // Application name
+					L"0.1.2.0",            // Current application client version
+					SDOA_RENDERTYPE_D3D7,  // Client graphics engine type: D3D7
+					1,                     // Maximum simultaneous players on one machine (usually 1; for example, KOF uses 2)
+					-1,                    // Game area ID; pass -1 when unavailable
+					-1                     // Game group ID; pass -1 when unavailable
 
 				};
 
 				if (igwInitialize(SDOA_SDK_VERSION, &tmpAppInfo) == SDOA_OK)
-				{	// 初始化组件成功
+				{	// Component initialized successfully
 
 					igwGetModule(__uuidof(ISDOADx7), (void**)&g_SDOADx7);
 					igwGetModule(__uuidof(ISDOAApp), (void**)&g_SDOAApp);
@@ -651,10 +651,10 @@ void OpenIGW()
 						CloseIGW();
 
 				}
-				else // 初始化失败清除环境
+				else // Clean up after initialization failure
 					CloseIGW();
 			}
-			else  // 加载DLL失败清除环境
+			else  // Clean up after DLL load failure
 				CloseIGW();
 		}
 	}	

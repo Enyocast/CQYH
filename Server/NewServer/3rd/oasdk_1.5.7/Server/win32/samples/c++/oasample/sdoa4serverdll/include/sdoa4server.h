@@ -1,15 +1,15 @@
 /*
-* Copyright (c) 2009,盛大在线 计费平台中心
+* Copyright (c) 2009, Shanda Online Billing Platform Center
 * All rights reserved.
 * 
-* 文件名称：sdoa4server.h
-* 摘    要：各接口函数定义
-* 当前版本：2.0
-* 作    者：SNDA
-* 完成日期：2009年2月23日
+* File name: sdoa4server.h
+* Summary: Interface function definitions
+* Current version: 2.0
+* Author: SNDA
+* Completed: February 23, 2009
 *
-* 修改内容：2.0最终对外接口
-* 修改时间：2009年3月10日
+* Changes: Final public 2.0 interface
+* Modified: March 10, 2009
 */
 
 #ifndef SDOA4SERVER_H
@@ -23,69 +23,69 @@
 interface ISDOAMsg : ISDUnknown 
 {
 	//----------------------------------------------------------------------------------------
-	//名称：GetValue
-	//描述：获取指定消息内指定字段的值
-	//参数：
-	//	[in]szKey：         数据关键字
-	//返回：                关键字对应的内容，没有该关键字返回NULL
+	//Name: GetValue
+	//Description: Get a field value from a message
+	//Parameters:
+	//	[in] szKey: Data key
+	//Returns: Value for the key, or NULL if absent
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(const char*)	GetValue(const char* szKey) = 0;
 	
 	//----------------------------------------------------------------------------------------
-	//名称：SetValue
-	//描述：给指定消息添加指定字段的值
-	//参数：
-	//	[in]szKey：         数据关键字
-	//	[in]szValue：       数据值
-	//返回：                0成功，其他失败（一般为数据长度溢出）
+	//Name: SetValue
+	//Description: Add a field value to a message
+	//Parameters:
+	//	[in] szKey: Data key
+	//	[in] szValue: Data value
+	//Returns: 0 on success; other values indicate failure (usually data length overflow)
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int)	SetValue(const char* szKey, const char* szValue) = 0;
 };
 
 SNDAAPI(ISDOAMsg*) sdoaCreateMsg(void);
 //---------------------------------------------------------------------------------------
-//名称：UserInfoCallback
-//描述：认证信息回调处理函数，由sdk使用方实现
-//参数：
-//	[out]nResult：          返回消息结果(具体错误类型说明参见相关错误文档)
-//	[out]nUniqueId：        关联ID
-//	[in/out]pMsg：          消息解析设置接口
-//返回：无
+//Name: UserInfoCallback
+//Description: Authentication callback implemented by the SDK user
+//Parameters:
+//	[out] nResult: Result (see error documentation for error types)
+//	[out] nUniqueId: Correlation ID
+//	[in/out] pMsg: Message parsing and setting interface
+//Returns: Nothing
 //----------------------------------------------------------------------------------------
 typedef int (SNDACALLBACK *UserInfoCallback)(int nResult, unsigned long nUniqueId, ISDOAMsg *pMsg);
 
 interface ISDOAUserInfoAuthen : ISDUnknown
 {
 	//----------------------------------------------------------------------------------------
-	//名称：Initialize
-	//描述：初始化
-	//参数：
-	//	[in]szConfPath：    配置文件，如果为NULL则使用缺省的ConfClt.conf配置文件
-	//	[in]pCallbackFunc： 回调函数地址
-	//返回：                0 成功；!0 失败；
+	//Name: Initialize
+	//Description: Initialize
+	//Parameters:
+	//	[in] szConfPath: Configuration file; NULL selects the default ConfClt.conf
+	//	[in] pCallbackFunc: Callback function address
+	//Returns: 0 on success; nonzero on failure
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int) Initialize(const char *szConfPath, UserInfoCallback pCallbackFunc) = 0;
 	
 	//----------------------------------------------------------------------------------------
-	//名称：AsyncGetUserInfo
-	//描述：异步获取认证结果(通过Initialize设置回调函数)
-	//参数：
-	//	[in]szSessionId：   需要验证的Token或者SessionId
-	//	[in]szEndpointIp：  客户端IP
-	//	[in]nUniqueId：     token唯一id
-	//返回：                0 成功；!0 失败；
+	//Name: AsyncGetUserInfo
+	//Description: Get authentication result asynchronously (set callback with Initialize)
+	//Parameters:
+	//	[in] szSessionId: Token or session ID to validate
+	//	[in] szEndpointIp: Client IP
+	//	[in] nUniqueId: Unique token ID
+	//Returns: 0 on success; nonzero on failure
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int) AsyncGetUserInfo(const char *szSessionId, const char *szEndpointIp, const unsigned long nUniqueId) = 0;
 	
 	//----------------------------------------------------------------------------------------
-	//名称：SyncGetUserInfo
-	//描述：同步获取认证结果
-	//参数：
-	//	[in]szSessionId：   需要验证的Token或者SessionId
-	//	[in]szEndpointIp：  客户端IP
-	//	[in]nUniqueId：     token唯一id
-	//	[in/out]pMsg：      返回的用户信息		
-	//返回：                0 成功；!0 失败；
+	//Name: SyncGetUserInfo
+	//Description: Get authentication result synchronously
+	//Parameters:
+	//	[in] szSessionId: Token or session ID to validate
+	//	[in] szEndpointIp: Client IP
+	//	[in] nUniqueId: Unique token ID
+	//	[in/out] pMsg: Returned user information
+	//Returns: 0 on success; nonzero on failure
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int) SyncGetUserInfo(const char *szSessionId, const char *szEndpointIp, const unsigned long nUniqueId, ISDOAMsg* pMsg) = 0;
 
@@ -97,42 +97,42 @@ SNDAAPI(ISDOAUserInfoAuthen*) sdoaCreateUserInfoAuthen(void);
 interface ISDOARSASign : ISDUnknown
 {
 	//----------------------------------------------------------------------------------------
-	//名称：InitialPriKey
-	//描述：指定订单进行RSA签名时所需的私钥文件位置，初始化RSA私钥签名接口
-	//参数：
-	//	[in]szPriKeyFile：  私钥文件名(全路径或相对路径)
-	//返回：                0 成功；!0 失败；
+	//Name: InitialPriKey
+	//Description: Set the private key file for RSA order signing and initialize the signing interface
+	//Parameters:
+	//	[in] szPriKeyFile: Private key file name (absolute or relative path)
+	//Returns: 0 on success; nonzero on failure
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int) InitialPriKey(const char *szPriKeyFile) = 0;
 	
 	//----------------------------------------------------------------------------------------
-	//名称：Sign
-	//描述：基于商户私钥对订单参数进行签名，获得签名字符串
-	//参数：
-	//	[in]szData：        要签名的数据
-	//	[in]nDataLength：   要签名的数据长度 
-	//	[out]szSignature：  签名,长度512Byte.
-	//返回：                0 成功；!0 失败；
+	//Name: Sign
+	//Description: Sign order parameters with the merchant private key and obtain a signature string
+	//Parameters:
+	//	[in] szData: Data to sign
+	//	[in] nDataLength: Length of data to sign
+	//	[out] szSignature: Signature, 512 bytes long
+	//Returns: 0 on success; nonzero on failure
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int) Sign(const char *szData, int nDataLength, char* szSignature) = 0;
 	
 	//----------------------------------------------------------------------------------------
-	//名称：InitialPubKey
-	//描述：指定订单进行RSA签名验证时所需的公钥文件位置，初始化RSA公钥验证接口
-	//参数：
-	//	[in]szPubKeyFile：  公钥文件名(全路径或相对路径)
-	//返回：                0 成功；!0 失败；
+	//Name: InitialPubKey
+	//Description: Set the public key file for RSA order signature verification and initialize the verification interface
+	//Parameters:
+	//	[in] szPubKeyFile: Public key file name (absolute or relative path)
+	//Returns: 0 on success; nonzero on failure
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int) InitialPubKey(const char *szPubKeyFile) = 0;
 	
 	//----------------------------------------------------------------------------------------
-	//名称：VerifySignature
-	//描述：基于盛大公钥对盛大计费接口提交的道具发送通知参数进行验证
-	//参数：
-	//	[in]szData：        待验证源数据
-	//	[in]nDataLength：   待验证源数据长度 
-	//	[in]szSignature：   待验证签名
-	//返回：                0 成功；!0 失败；
+	//Name: VerifySignature
+	//Description: Verify item delivery notification parameters submitted by the Shanda billing interface using the Shanda public key
+	//Parameters:
+	//	[in] szData: Source data to verify
+	//	[in] nDataLength: Length of source data to verify
+	//	[in] szSignature: Signature to verify
+	//Returns: 0 on success; nonzero on failure
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int) VerifySignature(const char *szData,int nDataLength,const char* szSignature) = 0;
 };
@@ -141,13 +141,13 @@ SNDAAPI(ISDOARSASign*) sdoaCreateRSASign(void);
 #endif //#ifdef USE_SDOARSA
 
 //---------------------------------------------------------------------------------------
-//名称：RecvMsgCallback
-//描述：订单信息回调处理函数，由sdk使用方实现
-//参数：
-//	nMsgType：              消息类型：目前有道具和充值两个消息，定义参照itemproto.h
-//	pRequest：              请求消息对象：参照接口ISDOAMsg，内容只包含包体 定义参照itemproto.h
-//	pResponse：             回调处理完后应答：参照接口ISDOAMsg，内容只包含包体 定义参照itemproto.h
-//返回：                    无
+//Name: RecvMsgCallback
+//Description: Order callback implemented by the SDK user
+//Parameters:
+//	nMsgType: Message type; item and recharge messages are defined in itemproto.h
+//	pRequest: Request message object; see ISDOAMsg; body only, defined in itemproto.h
+//	pResponse: Callback response; see ISDOAMsg; body only, defined in itemproto.h
+//Returns: Nothing
 //----------------------------------------------------------------------------------------
 
 typedef int (SNDACALLBACK *RecvMsgCallback)(int nMsgType, ISDOAMsg* pRequest, ISDOAMsg* pResponse);
@@ -155,101 +155,101 @@ typedef int (SNDACALLBACK *RecvMsgCallback)(int nMsgType, ISDOAMsg* pRequest, IS
 interface ISDOAOrderHandler : ISDUnknown
 {
 	//----------------------------------------------------------------------------------------
-	//名称：Initialize
-	//描述：初始化全付通客户端
-	//参数：
-	//	[in]szConfPath：    配置文件，如果为NULL则使用缺省的ConfClt.conf配置文件
-	//	[in]pCallbackFunc： 消息处理回调函数
-	//返回：                0 成功；!0 失败；
-	//                      -10225001 配置文件不存在
-	//                      -10225002 生成授权配置文件失败
-	//                      -10225003 授权SDK初始化失败
-	//                      -10225004 创建网络调度线程失败
-	//                      -10225005 创建本地侦听SOCKET失败
-	//                      -10225006 创建回调线程失败
+	//Name: Initialize
+	//Description: Initialize the QuanFuTong client
+	//Parameters:
+	//	[in] szConfPath: Configuration file; NULL selects the default ConfClt.conf
+	//	[in] pCallbackFunc: Message handling callback
+	//Returns: 0 on success; nonzero on failure
+	//                      -10225001 Configuration file does not exist
+	//                      -10225002 Failed to generate authorization configuration
+	//                      -10225003 Failed to initialize authorization SDK
+	//                      -10225004 Failed to create network dispatch thread
+	//                      -10225005 Failed to create local listening socket
+	//                      -10225006 Failed to create callback thread
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int) Initialize(const char *szConfPath, RecvMsgCallback pCallbackFunc) = 0;
 	
 	//----------------------------------------------------------------------------------------
-	//名称：CreateOrderInfo
-	//描述：创建订单信息
-	//参数：
-	//	[in]nType：         1.扣费信息，2.道具发送信息
-	//返回：                订单信息，0 失败
-	//                      !0为ULONG对象指针
+	//Name: CreateOrderInfo
+	//Description: Create order information
+	//Parameters:
+	//	[in] nType: 1. payment information; 2. item delivery information
+	//Returns: Order information, or 0 on failure
+	//                      Nonzero is a ULONG object pointer
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(ULONG) CreateOrderInfo(const int nType) = 0;
 	
 	//----------------------------------------------------------------------------------------
-	//名称：DestroyOrderInfo
-	//描述：销毁订单信息
-	//参数：
-	//	[in]pOrderInfo：    订单信息
-	//返回：                0 成功，无其他返回
+	//Name: DestroyOrderInfo
+	//Description: Destroy order information
+	//Parameters:
+	//	[in] pOrderInfo: Order information
+	//Returns: 0 on success; no other return value
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int) DestroyOrderInfo(ULONG pOrderInfo) = 0;
 	
 	//----------------------------------------------------------------------------------------
-	//名称：SetOrderInfoValue
-	//描述：往订单信息添加值
-	//参数：
-	//	[in]pOrderInfo：    订单信息
-	//	[in]szKey[in]：     数据关键字
-	//	[in]szValue：       数据值
-	//返回：0               成功 无其他返回
+	//Name: SetOrderInfoValue
+	//Description: Add a value to order information
+	//Parameters:
+	//	[in] pOrderInfo: Order information
+	//	[in] szKey[in]: Data key
+	//	[in] szValue: Data value
+	//Returns: 0 on success; no other return value
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int) SetOrderInfoValue(ULONG pOrderInfo, const char *szKey, const char *szValue) = 0;
 
 	//----------------------------------------------------------------------------------------
-	//名称：BuildOrderUrl
-	//描述：签名订单信息，并返回相应http请求内容
-	//参数：
-	//	[in]pOrderInfo：    扣费对象
-	//	[out]szUrl：        http请求URL,最大2048字节如：char szUrl[2048]
-	//返回：                0成功，无其他返回
+	//Name: BuildOrderUrl
+	//Description: Sign order information and return the corresponding HTTP request
+	//Parameters:
+	//	[in] pOrderInfo: Payment object
+	//	[out] szUrl: HTTP request URL, at most 2048 bytes, e.g. char szUrl[2048]
+	//Returns: 0 on success; no other return value
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int) BuildOrderUrl(ULONG pOrderInfo, char *szUrl) = 0;
 
 	//----------------------------------------------------------------------------------------
-	//名称：SignData
-	//描述：数据包签名
-	//参数：
-	//	[in]szData：        要签名的数据
-	//	[in]nDataLength：   要签名的数据长度 
-	//	[out]szSignature：  返回32字节的数据包签名,32字节结尾加上'\0'，即需要33字节空间如char szUrl[33]
-	//返回：                0 成功；!0 失败；
-	//                      -10225007 失败
+	//Name: SignData
+	//Description: Sign the data packet
+	//Parameters:
+	//	[in] szData: Data to sign
+	//	[in] nDataLength: Length of data to sign
+	//	[out] szSignature: Returns a 32-byte packet signature plus a terminating '\0'; requires 33 bytes, e.g. char szUrl[33]
+	//Returns: 0 on success; nonzero on failure
+	//                      -10225007 Failure
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int) SignData(const char* szData, const int nDataLength, char* szSignature) = 0;
 
 	//----------------------------------------------------------------------------------------
-	//名称：VerifySignature
-	//描述：数据包签名校验
-	//参数：
-	//	[in]szData：        待验证源数据
-	//	[in]nDataLength：   待验证源数据长度
-	//	[in]szSignature：   待验证签名
-	//返回：                0 成功；!0 失败；
-	//                      -10225008	失败
+	//Name: VerifySignature
+	//Description: Verify the data packet signature
+	//Parameters:
+	//	[in] szData: Source data to verify
+	//	[in] nDataLength: Length of source data to verify
+	//	[in] szSignature: Signature to verify
+	//Returns: 0 on success; nonzero on failure
+	//                      -10225008	Failure
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int) VerifySignature(const char* szData, const int nDataLength, const char* szSignature) = 0;
 
 	//----------------------------------------------------------------------------------------
-	//名称：GetUniqueId
-	//描述：获取唯一ID
-	//参数：
-	//	[out]szUniqueId：   唯一ID输出地址,32字节结尾加上'\0'，即需要33字节空间，如char szUrl[33]
-	//返回：                0 成功；!0 失败；
-	//                      -10225009	参数为NULL
+	//Name: GetUniqueId
+	//Description: Get a unique ID
+	//Parameters:
+	//	[out] szUniqueId: Unique ID output, 32 bytes plus a terminating '\0'; requires 33 bytes, e.g. char szUrl[33]
+	//Returns: 0 on success; nonzero on failure
+	//                      -10225009	Parameter is NULL
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int) GetUniqueId(char *szUniqueId) = 0;
 
 	//----------------------------------------------------------------------------------------
-	//名称：UnInitialize
-	//描述：全付通客户端卸载
-	//参数：
-	//	无
-	//返回：                0 成功；无其他返回失败；
+	//Name: UnInitialize
+	//Description: Shut down the QuanFuTong client
+	//Parameters:
+	//	None
+	//Returns: 0 on success; no other failure return
 	//----------------------------------------------------------------------------------------
 	SNDAMETHOD(int) UnInitialize() = 0;
 };

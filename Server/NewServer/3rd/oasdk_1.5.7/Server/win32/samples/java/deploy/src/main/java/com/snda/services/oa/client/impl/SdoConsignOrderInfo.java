@@ -2,7 +2,7 @@ package com.snda.services.oa.client.impl;
 
 import com.snda.services.oa.client.AbstractOrderInfo;
 /**
- * 交易接口定义
+ * Trade interface definition
  * @author chenyifang
  *
  */

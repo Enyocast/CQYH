@@ -3,14 +3,14 @@
 
 #include "svccommoninfo.h"
 
-#define SVCAWARDITEM	"SVCAWARD"   /// 领奖消息服务  
+#define SVCAWARDITEM	"SVCAWARD"   /// Reward claim message service
 
-#define AWARDAUTHENREQ            0x00000001   /// 领奖认证请求  
-#define AWARDAUTHENRES            0x80000001   /// 领奖认证反馈  
-#define AWARDACK                  0x00000002   /// 领奖确定  
-#define GOLDAWARDAUTHENREQ        0x00000003   /// 金牌领奖认证请求  
-#define GOLDAWARDAUTHENRES        0x80000003   /// 金牌领奖认证反馈 
-#define GOLDAWARDACK              0x00000004   /// 金牌领奖确定			
+#define AWARDAUTHENREQ            0x00000001   /// Reward claim authentication request
+#define AWARDAUTHENRES            0x80000001   /// Reward claim authentication response
+#define AWARDACK                  0x00000002   /// Reward claim confirmation
+#define GOLDAWARDAUTHENREQ        0x00000003   /// Gold reward claim authentication request
+#define GOLDAWARDAUTHENRES        0x80000003   /// Gold reward claim authentication response
+#define GOLDAWARDACK              0x00000004   /// Gold reward claim confirmation
 
 #define	NO_AWARDITEM			0xffffffff
 #define	PACKET_ERROR			0xfffffffe
@@ -18,7 +18,7 @@
 
 #define	MAX_DESC_LEN			  64
 
-#pragma pack (push,4)  /// 指定按 4 字节对齐
+#pragma pack (push,4)  /// Set 4-byte alignment
 
 typedef struct
 {

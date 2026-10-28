@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import com.snda.services.oa.client.impl.OrderServiceProvider;
 import com.snda.services.oa.client.impl.SdoSendItemOrderInfo;
 /**
- * 只发送道具订单调用示例，参数具体填写参考协议
+ * Item delivery order example; see the protocol for parameter values
  * @author chenyifang
  *
  */
@@ -34,7 +34,7 @@ public class SdoSendItemOrderInfotest {
 							OrderService orderProvider = new OrderServiceProvider();
 							SdoSendItemOrderInfo order = new SdoSendItemOrderInfo();
 							/**
-							 * 对发送道具订单信息进行传值
+							 * Populate the item delivery order information
 							 */
 							order.orderId = orderProvider.generateOrderId();
 							order.appId=1;
@@ -47,7 +47,7 @@ public class SdoSendItemOrderInfotest {
 							order.goodsNum = 1;
 							order.indication = "test123";
 							/**
-							 *  产生 一个 订单请求的url。如下格式：
+							 *  Generate an order request URL in the following format:
 							 *  http://192.168.68.92:8080/billgate/sdoSendItem.do?key=966&callTime=2009-04-29+11%3A18%3A13&groupId=1&userId=234234&appId=1&spId=1&orderId=00000096620090429111813000001997&areaId=1&goodsNum=1&payType=3&indication=test123&goodsInfo=1%2C1%2C1&sign=892BD26B4C489A4DBAB2C01B13C045E6
 							 */
 							String orderUrl = orderProvider

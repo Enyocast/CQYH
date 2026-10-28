@@ -1,19 +1,19 @@
 package com.snda.services.oa.client;
 
 /**
- * 用户信息,获取用户以后返回的信息,
+ * User information returned after lookup
  * @author Structchen
  *
  */
 public class UserInfo {
 	
 	/**
-	 * ptId,这个对游戏来说可能不提供.
+	 * ptId may not be provided to the game.
 	 */
 	public String ptId;
 	
 	/**
-	 * sndaId,如果用户存则该值一定有
+	 * sndaId is present if the user exists
 	 */
 	public String sndaId;
 	
@@ -22,7 +22,7 @@ public class UserInfo {
 	public String idCard;
 	
 	/**
-	 * 返回用户信息的结果代码
+	 * Result code returned with user information
 	 */
 	public int result;
 }

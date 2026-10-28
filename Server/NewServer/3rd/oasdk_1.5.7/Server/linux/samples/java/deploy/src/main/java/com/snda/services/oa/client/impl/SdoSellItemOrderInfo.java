@@ -2,7 +2,7 @@ package com.snda.services.oa.client.impl;
 
 import com.snda.services.oa.client.AbstractOrderInfo;
 /**
- * 寄售道具接口定义
+ * Item consignment interface definition
  * @author chenyifang
  *
  */

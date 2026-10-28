@@ -152,7 +152,7 @@ DWORD WINAPI ClientThread(LPVOID lpParam)
 			printf("[%x]CheckAuthReply ok!!!\n",sock);
 		}
 
-		Sleep(5000);   //根据需要设置检查间隔，一般设置为3-5分钟
+		Sleep(5000);   //Set the check interval as needed, normally 3-5 minutes
 	}  
 
 	sock->p_gpkAuthObject->Release();

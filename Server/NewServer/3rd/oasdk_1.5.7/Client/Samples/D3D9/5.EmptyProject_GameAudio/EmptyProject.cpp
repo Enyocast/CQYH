@@ -12,7 +12,7 @@
 #include "SDOA4Client.h"
 #include "SDOADx9.h"
 
-/* 接入相关全局变量  */
+/* Integration-related global variables  */
 HINSTANCE          g_hInstIGWDll = 0;
 LPigwInitialize    igwInitialize = NULL;
 LPigwGetModule     igwGetModule = NULL;
@@ -22,7 +22,7 @@ ISDOADx9*			g_SDOADx9 = NULL;
 ISDOAApp*			g_SDOAApp = NULL;
 ISDOAAppUtils*		g_SDOAAppUtils = NULL;
 
-/* 释放IGW */
+/* Release IGW */
 void CloseIGW()
 {
 	if (g_SDOADx9)
@@ -44,7 +44,7 @@ void CloseIGW()
 	}
 
 	if (igwTerminal)
-	{  // 释放DLL前总是先调用igwTerminal
+	{  // Always call igwTerminal before releasing the DLL
 		igwTerminal();
 		igwTerminal = NULL;
 	}
@@ -56,7 +56,7 @@ void CloseIGW()
 	igwInitialize = NULL;
 }
 
-/* 加载IGW */
+/* Load IGW */
 void OpenIGW()
 {
 	WCHAR strExePath[MAX_PATH] = {0};
@@ -66,7 +66,7 @@ void OpenIGW()
 	strExePath[MAX_PATH-1]=0;
 	strLastSlash = wcsrchr( strExePath, TEXT('\\') );
 	if( strLastSlash )
-	{	// 得到EXE所在路径
+	{	// Get the EXE directory
 		StringCchCopyW( strExeName, MAX_PATH, &strLastSlash[1] );
 		*strLastSlash = 0;
 		strLastSlash = wcsrchr( strExeName, TEXT('.') );
@@ -78,14 +78,14 @@ void OpenIGW()
 	StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\GameWidget.dll", strExePath );
 
 	if ( !(GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF) )
-	{ // 如果程序运行路径中不存在则换个路径再试
+	{ // If it is absent from the executable path, try another path
 		StringCchPrintfW( strGameWidgetDll, MAX_PATH, L"%s\\..\\..\\..\\..\\bin\\GameWidget.dll", strExePath );
 	}
 
 	CloseIGW();
 
 	if ( GetFileAttributesW(strGameWidgetDll) != 0xFFFFFFFF )
-	{	// 找到组件则加载	
+	{	// Load the component if found
 		g_hInstIGWDll = LoadLibraryW(strGameWidgetDll);
 		if (g_hInstIGWDll)
 		{
@@ -94,23 +94,23 @@ void OpenIGW()
 			igwTerminal = (LPigwTerminal)GetProcAddress( g_hInstIGWDll, "igwTerminal" );
 			if ( igwInitialize && igwGetModule && igwTerminal)
 			{
-				// 加载成功
+				// Loaded successfully
 
-				// 注意AppInfo类型所有字段必须填
+				// All AppInfo fields must be filled in
 				AppInfo tmpAppInfo = {
-					sizeof(AppInfo),       // 结构体大小，方便扩展
-					9999,                  // 接入应用ID，从开发者网站中申请
-					L"龙潭虎穴OnLine",     // 应用名称
-					L"0.1.2.0",            // 应用客户端当前版本号
-					SDOA_RENDERTYPE_D3D9,  // 客户端支持的图形引擎类型，这里同时支持d3d9和d3d8
-					1,                     // 可同时在一台机器上游戏的最大人数（通常为1，例如:KOF应该是2）
-					-1,                    // 游戏区ID，不可用时传入-1
-					-1                     // 游戏组ID，不可用时传入-1
+					sizeof(AppInfo),       // Structure size for extensibility
+					9999,                  // Application ID obtained from the developer website
+					L"龙潭虎穴OnLine",     // Application name
+					L"0.1.2.0",            // Current application client version
+					SDOA_RENDERTYPE_D3D9,  // Client graphics engine type; both D3D9 and D3D8 are supported here
+					1,                     // Maximum simultaneous players on one machine (usually 1; for example, KOF uses 2)
+					-1,                    // Game area ID; pass -1 when unavailable
+					-1                     // Game group ID; pass -1 when unavailable
 
 				};
 
 				if (igwInitialize(SDOA_SDK_VERSION, &tmpAppInfo) == SDOA_OK)
-				{	// 初始化组件成功
+				{	// Component initialized successfully
 
 					igwGetModule(__uuidof(ISDOADx9), (void**)&g_SDOADx9);
 					igwGetModule(__uuidof(ISDOAApp), (void**)&g_SDOAApp);
@@ -120,10 +120,10 @@ void OpenIGW()
 						CloseIGW();
 
 				}
-				else // 初始化失败清除环境
+				else // Clean up after initialization failure
 					CloseIGW();
 			}
-			else  // 加载DLL失败清除环境
+			else  // Clean up after DLL load failure
 				CloseIGW();
 		}
 	}
@@ -133,7 +133,7 @@ void OpenIGW()
 
 
 CDXUTDialogResourceManager	g_DialogResourceManager; // manager for shared resources of dialogs
-CDXUTDialog					g_GameAudioSet;          // 模拟音量控制
+CDXUTDialog					g_GameAudioSet;          // Simulated volume controls
 
 #define IDC_AUDIOSOUNDLABEL		1
 #define IDC_AUDIOEFFECTLABEL	2
@@ -174,7 +174,7 @@ HRESULT CALLBACK OnCreateDevice( IDirect3DDevice9* pd3dDevice, const D3DSURFACE_
 	HRESULT hr;
 	V_RETURN( g_DialogResourceManager.OnCreateDevice( pd3dDevice ) );
 	if (g_SDOADx9)
-	{	// 初始化IGW内部图形引擎
+	{	// Initialize the IGW graphics engine
 		D3DPRESENT_PARAMETERS d3dpp = DXUTGetPresentParameters ();
 		g_SDOADx9->Initialize( pd3dDevice, &d3dpp, FALSE );
 	}
@@ -194,7 +194,7 @@ HRESULT CALLBACK OnResetDevice( IDirect3DDevice9* pd3dDevice,
 	g_GameAudioSet.SetSize( 180, 180 );
 	
 	if(g_SDOADx9)
-	{	// 通知IGW d3d设备重置成功
+	{	// Notify IGW that the D3D device reset succeeded
 		D3DPRESENT_PARAMETERS d3dpp = DXUTGetPresentParameters () ;	
 		g_SDOADx9->OnDeviceReset ( &d3dpp ) ;
 	}
@@ -225,7 +225,7 @@ void CALLBACK OnFrameRender( IDirect3DDevice9* pd3dDevice, double fTime, float f
     // Render the scene
     if( SUCCEEDED( pd3dDevice->BeginScene() ) )
     {
-		/* 绘制IGW界面 */
+		/* Render the IGW interface */
 		if (g_SDOADx9)
 			g_SDOADx9->RenderEx();
 
@@ -233,43 +233,43 @@ void CALLBACK OnFrameRender( IDirect3DDevice9* pd3dDevice, double fTime, float f
     }
 }
 
-BOOL isSDOLogin = false; // 注意一定要是BOOL类型，不能为bool否则可能会导致问题
+BOOL isSDOLogin = false; // Use BOOL, not bool, to avoid potential problems
 LoginResult loginResult;
 
 BOOL CALLBACK OnLogin(int nErrorCode, const LoginResult* pLoginResult, int nUserData, int nReserved) 
-{ // 注意该回调返回true则关闭登录对话框，否则登录对话框仍然显示
+{ // This callback closes the login dialog if it returns true; otherwise the dialog remains visible
 	
 	isSDOLogin = (SDOA_ERRORCODE_OK == nErrorCode); 
 	if (isSDOLogin) 
 	{ 
 		loginResult = *pLoginResult; 
-		// 登录成功后,把用户使用的游戏角色信息传入IGW
+		// After login succeeds, pass the selected character information to IGW
 		if (g_SDOAApp)
 		{
 			RoleInfo tmpRoleInfo = { sizeof(RoleInfo), L"美貌仙子", 0 } ;
-			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // 设置角色信息，可多次调用，只要用户切换了角色就调用通知IGW
+			g_SDOAApp->SetRoleInfo(&tmpRoleInfo);  // Set character information; call again to notify IGW whenever the user changes character
 		}
 	} 
 
 	if (SDOA_ERRORCODE_SHOWMESSAGE == nErrorCode)
-	{ // 登录错误消息处理
+	{ // Handle login errors
 		if (nReserved != 0)
 		{
 			LoginMessage* pCurLoginMsg = (LoginMessage*)nReserved;
 			if (pCurLoginMsg->dwSize >= sizeof(LoginMessage))
-			{ // 兼容性处理 
-				// 修改错误提示对话框标题
+			{ // Compatibility handling
+				// Change the error dialog title
 				//SysReAllocString(pCurLoginMsg->pbstrTitle, L"[测试游戏错误提示]");
 
-				// 此时返回FALSE则使用默认提示
+				// Return FALSE to use the default message
 
-				// 此时返回TRUE则使用自定义的提示
+				// Return TRUE to use the custom message
 				//isSDOLogin = TRUE;
 				//::MessageBox(0, *pCurLoginMsg->pbstrContent, *pCurLoginMsg->pbstrTitle, MB_OK);
 			}
 		}
 	}
-	return isSDOLogin; // 常规逻辑，登录成功则关闭登录对话框
+	return isSDOLogin; // Normal behavior: close the login dialog after successful login
 } 
 
 //--------------------------------------------------------------------------------------
@@ -279,11 +279,11 @@ LRESULT CALLBACK MsgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
                           bool* pbNoFurtherProcessing, void* pUserContext )
 {
 	if(g_SDOADx9) 
-	{	// 把消息交给IGW模块处理 
+	{	// Pass the message to IGW for processing
 		LRESULT lResult; 
 		if (g_SDOADx9->OnWindowProc( hWnd, uMsg, wParam, lParam, &lResult ) == SDOA_OK ) 
 		{ 
-			*pbNoFurtherProcessing = true;// 不让自身再处理消息 
+			*pbNoFurtherProcessing = true;// Do not process the message further
 			return lResult; 
 		} 
 	} 
@@ -292,7 +292,7 @@ LRESULT CALLBACK MsgProc( HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam,
 
 	if ( (UINT)SDOA_WM_CLIENT_RUN == uMsg )
 	{
-		// 此刻可以开始登录
+		// Login can begin now
 		if (g_SDOAApp)
 		{
 			g_SDOAApp->ShowLoginDialog(OnLogin, 0, 0);
@@ -321,7 +321,7 @@ void CALLBACK OnLostDevice( void* pUserContext )
 {
 	g_DialogResourceManager.OnLostDevice();
 
-	/* 通知IGW d3d设备丢失 */
+	/* Notify IGW of D3D device loss */
 	if(g_SDOADx9)
 		g_SDOADx9->OnDeviceLost();
 }
@@ -334,7 +334,7 @@ void CALLBACK OnDestroyDevice( void* pUserContext )
 {
 	g_DialogResourceManager.OnDestroyDevice();
 
-	/* 释放IGW图形引擎 */
+	/* Release the IGW graphics engine */
 	if (g_SDOADx9)
 		g_SDOADx9->Finalize();
 }
@@ -390,7 +390,7 @@ void InitApp()
 }
 
 void WINAPI TestSetAudioSoundVolume(DWORD NewVolume)
-{ // 测试设置音乐音量，仅模拟个数值变化
+{ // Test setting music volume by simulating a value change
 	DWORD tmpValue;
 	if (NewVolume >= 100)
 	{
@@ -414,7 +414,7 @@ DWORD WINAPI TestGetAudioSoundVolume()
 }
 
 void WINAPI TestSetAudioEffectVolume(DWORD NewVolume)
-{ // 测试设置音效音量，仅模拟个数值变化，
+{ // Test setting sound effect volume by simulating a value change
 	DWORD tmpValue;
 	if (NewVolume >= 100)
 	{
@@ -447,7 +447,7 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 #if defined(DEBUG) | defined(_DEBUG)
     _CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF );
 #endif
-	/* 加载IGW */
+	/* Load IGW */
 	OpenIGW();
 
     // Set the callback functions
@@ -469,13 +469,13 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
     DXUTCreateDevice( D3DADAPTER_DEFAULT, true, 640, 480, IsDeviceAcceptable, ModifyDeviceSettings );
 
 	if (igwInitialize)
-	{	// 说明加载成功，表示下......
+	{	// Indicate that loading succeeded
 		HWND hMainWin = DXUTGetHWND();
 		SetWindowTextW(hMainWin, L"EmptyProject [加载IGW组件成功]");
 	}		
 
 	if (g_SDOAAppUtils)
-	{  // 设置音量控制回调函数
+	{  // Set volume control callbacks
 		g_SDOAAppUtils->SetAudioSetting(TestGetAudioSoundVolume, TestSetAudioSoundVolume, TestGetAudioEffectVolume, TestSetAudioEffectVolume);
 	}
 
@@ -484,11 +484,11 @@ INT WINAPI WinMain( HINSTANCE, HINSTANCE, LPSTR, int )
 
     // TODO: Perform any application-level cleanup here
 	if (isSDOLogin && g_SDOAApp)
-	{ // 登录成功，退出时要登出
+	{ // Log out on exit after a successful login
 		g_SDOAApp->Logout();
 	}
 
-	/* 释放IGW */
+	/* Release IGW */
 	CloseIGW();
 
     return DXUTGetExitCode();

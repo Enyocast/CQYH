@@ -7,28 +7,28 @@
 
 #pragma pack(push,1)
 
-// SDOA_SDK_VERSION 表示一套接入的SDK版本号
+// SDOA_SDK_VERSION identifies the integrated SDK version
 #define SDOA_SDK_VERSION                 0x0200
 
-// SDOA 返回值
+// SDOA return values
 #define SDOA_OK                      0
 #define SDOA_FALSE                   1
 
-// 内存不足
+// Out of memory
 #define SDOA_INSUFFICIENT_BUFFER     122  
 
-// SDOA开始工作后发出的消息
+// Messages sent after SDOA starts
 #define SDOA_WM_CLIENT_RUN			0xA604  // WM_USER + 0xA204
-// IGW发送给游戏客户端的通知消息
+// Notification sent by IGW to the game client
 #define SDOA_WM_CLIENT_NOTIFY		0xA610  // WM_USER + 0xA210
-// wParam: 通知事件ID; lParam: 扩展信息，无内容为0
-#define SDOA_NOTIFY_SHOWLOGIN     1    // 呼出登录对话框
-#define SDOA_NOTIFY_LOGINCLICK    2    // 点击了“登录”按钮
-// 游戏客户端发送给IGW的通知消息
+// wParam: notification event ID; lParam: additional information, or 0 if absent
+#define SDOA_NOTIFY_SHOWLOGIN     1    // Show the login dialog
+#define SDOA_NOTIFY_LOGINCLICK    2    // Login button clicked
+// Notification sent by the game client to IGW
 #define SDOA_WM_HOST_NOTIFY			0xA611	// WM_USER + 0xA211
 
 
-// 游戏图形引擎类型
+// Game graphics engine type
 #define SDOA_RENDERTYPE_UNKNOWN             0x00
 #define SDOA_RENDERTYPE_GDI                 0x01
 #define SDOA_RENDERTYPE_DDRAW               0x04
@@ -38,70 +38,70 @@
 #define SDOA_RENDERTYPE_D3D10               0x40
 #define SDOA_RENDERTYPE_OPENGL              0x80
 
-// 外部控制Screen状态 
-#define SDOA_SCREEN_NONE				0		// Screen没有被创建
-#define SDOA_SCREEN_NORMAL				1		// 正常显示状态
-#define SDOA_SCREEN_MINI				2		// 最小化状态
+// Externally controlled screen state
+#define SDOA_SCREEN_NONE				0		// Screen has not been created
+#define SDOA_SCREEN_NORMAL				1		// Normally displayed
+#define SDOA_SCREEN_MINI				2		// Minimized
 
 
-// 内部IWidgetWindows状态控制 
-#define SDOA_WINDOWSSTATUS_NONE			0		// 窗口没有被创建
-#define SDOA_WINDOWSSTATUS_SHOW			1		// 窗口显示状态
-#define SDOA_WINDOWSSTATUS_HIDE			2		// 窗口隐藏
-// 窗口类型
-#define SDOA_WINDOWSTYPE_NONE		0       // 未知类型
-#define SDOA_WINDOWSTYPE_TOOLBAR	1		// 工具栏
-#define SDOA_WINDOWSTYPE_WIDGET		2		// Widget窗口
-#define SDOA_WINDOWSTYPE_WINDOWS	3		// 普通窗口
+// Internal IWidgetWindows state control
+#define SDOA_WINDOWSSTATUS_NONE			0		// Window has not been created
+#define SDOA_WINDOWSSTATUS_SHOW			1		// Window is visible
+#define SDOA_WINDOWSSTATUS_HIDE			2		// Window is hidden
+// Window type
+#define SDOA_WINDOWSTYPE_NONE		0       // Unknown type
+#define SDOA_WINDOWSTYPE_TOOLBAR	1		// Toolbar
+#define SDOA_WINDOWSTYPE_WIDGET		2		// Widget window
+#define SDOA_WINDOWSTYPE_WINDOWS	3		// Normal window
 
-// 打开Widget的选项
-#define SDOA_OPENWIDGET_DEFAULT			0		// 默认
-#define SDOA_OPENWIDGET_NOBARICON		1		// 仅打开Widget，不自动添加到工具栏上
+// Widget opening options
+#define SDOA_OPENWIDGET_DEFAULT			0		// Default
+#define SDOA_OPENWIDGET_NOBARICON		1		// Open the widget without automatically adding it to the toolbar
 
-// 接口SetSelfCursor用到的常量
-#define SDOA_CURSOR_AUTO		0	// 自动检测是否自绘鼠标指针
-#define SDOA_CURSOR_SELF		1	// 始终自绘制鼠标指针
-#define SDOA_CURSOR_HIDESELF	2	// 始终不自绘制鼠标指针
+// Constants used by SetSelfCursor
+#define SDOA_CURSOR_AUTO		0	// Automatically detect whether to draw the cursor
+#define SDOA_CURSOR_SELF		1	// Always draw the cursor
+#define SDOA_CURSOR_HIDESELF	2	// Never draw the cursor
 
-// 登录方法
-#define SDOA_LOGINMETHOD_SSO        0   // 登录方法：SSO
-#define SDOA_LOGINMETHOD_SDO        1   // 登录方法：SDO(CAS)
+// Login method
+#define SDOA_LOGINMETHOD_SSO        0   // Login method: SSO
+#define SDOA_LOGINMETHOD_SDO        1   // Login method: SDO (CAS)
 
-// 登录状态
-#define SDOA_LOGINSTATE_UNKNOWN     -1  // 未知，参数不正确或获取状态异常
-#define SDOA_LOGINSTATE_NONE        0   // 还没有调用过登录方法
-#define SDOA_LOGINSTATE_OK          1   // 登录成功
-#define SDOA_LOGINSTATE_CONNECTING  2   // 正在登录
-#define SDOA_LOGINSTATE_FAILED      3   // 登录失败
-#define SDOA_LOGINSTATE_LOGOUT      4   // 已登出
+// Login state
+#define SDOA_LOGINSTATE_UNKNOWN     -1  // Unknown: invalid parameter or error getting state
+#define SDOA_LOGINSTATE_NONE        0   // Login has not been called
+#define SDOA_LOGINSTATE_OK          1   // Login succeeded
+#define SDOA_LOGINSTATE_CONNECTING  2   // Logging in
+#define SDOA_LOGINSTATE_FAILED      3   // Login failed
+#define SDOA_LOGINSTATE_LOGOUT      4   // Logged out
 
-// 圈圈工具条展开模式
-#define SDOA_BARMODE_ICONBOTTOM		0   // 工具条在圈圈图标下面
-#define SDOA_BARMODE_ICONTOP		1   // 工具条在圈圈图标上面
+// QuanQuan toolbar expansion mode
+#define SDOA_BARMODE_ICONBOTTOM		0   // Toolbar below the QuanQuan icon
+#define SDOA_BARMODE_ICONTOP		1   // Toolbar above the QuanQuan icon
 
 struct AppInfo {
 	DWORD		cbSize;				// = sizeof(AppInfo)
-	int			nAppID;				// 盛大统一游戏ID
-	LPCWSTR		pwcsAppName;		// 游戏名称
-	LPCWSTR		pwcsAppVer;		   	// 游戏版本
-	int			nRenderType;		// 游戏图形引擎类型 (取值SDOA_RENDERTYPE_UNKNOWN..SDOA_RENDERTYPE_OPENGL)
-	int			nMaxUser;			// 游戏可同时在一台机器上游戏的最大人数（通常为1，例如:KOF应该是2）
-	int			nAreaId;			// 游戏区ID	(注意：不可用时传-1)
-	int			nGroupId;           // 游戏组ID	(注意：不可用时传-1)
+	int			nAppID;				// Shanda unified game ID
+	LPCWSTR		pwcsAppName;		// Game name
+	LPCWSTR		pwcsAppVer;		   	// Game version
+	int			nRenderType;		// Game graphics engine type (SDOA_RENDERTYPE_UNKNOWN..SDOA_RENDERTYPE_OPENGL)
+	int			nMaxUser;			// Maximum simultaneous players on one machine (usually 1; KOF uses 2)
+	int			nAreaId;			// Game area ID (pass -1 when unavailable)
+	int			nGroupId;           // Game group ID (pass -1 when unavailable)
 };
 
 
 struct RoleInfo{
 	DWORD		cbSize;                 // sizeof(RoleInfo)
-	LPCWSTR		pwcsRoleName;			// 昵称
-	int			nSex;                   // 性别(0: 女; 1: 男)
+	LPCWSTR		pwcsRoleName;			// Nickname
+	int			nSex;                   // Gender (0: female; 1: male)
 	// more
 };
 
 struct SDOAWinProperty{
-	int nWinType;				// 窗口类型(只用于标识窗口类型，设置无效)
-	int nStatus;				// 窗口状态
-	// 以下是位置、宽高信息
+	int nWinType;				// Window type (identification only; setting has no effect)
+	int nStatus;				// Window state
+	// Position and dimensions follow
 	int nLeft;
 	int nTop;
 	int nWidth;
@@ -110,49 +110,49 @@ struct SDOAWinProperty{
 
 
 struct LoginResult {
-	DWORD  cbSize;			// sizeof(LoginResult)，为以后扩充提供可能
-	LPCSTR szSessionId;		// 用于后台验证的token串
-	LPCSTR szSndaid;		// 用户ID
-	LPCSTR szIdentityState;	// 是否成年标识，0未成年，1成年
-	LPCSTR szAppendix;		// 附加字段，保留
-	// 2009.09.02新增
-	LPCSTR szAdditional;    // 附加信息，需要调用LoginDirect时传回
+	DWORD  cbSize;			// sizeof(LoginResult), allowing future extension
+	LPCSTR szSessionId;		// Token string for backend validation
+	LPCSTR szSndaid;		// User ID
+	LPCSTR szIdentityState;	// Adult flag: 0 minor, 1 adult
+	LPCSTR szAppendix;		// Additional field, reserved
+	// Added 2009-09-02
+	LPCSTR szAdditional;    // Additional information to pass back to LoginDirect
 };
 
  struct LoginMessage {
    DWORD  dwSize;
-   int    nErrorCode;   // 登录组件返回的错误码,仅供参考，详细内容请用pbstrContent
-   BSTR*  pbstrTitle;	// 提示标题，可以调用SysReallocString修改其中的内容，注意，回调结果后IGW将调用SysFreeString释放已分配的内存
-   BSTR*  pbstrContent;	// 提示内容，可以调用SysReallocString修改其中的内容，注意，回调结果后IGW将调用SysFreeString释放已分配的内存
+   int    nErrorCode;   // Login component error code for reference; use pbstrContent for details
+   BSTR*  pbstrTitle;	// Message title; use SysReallocString to modify it. IGW calls SysFreeString after the callback to release allocated memory.
+   BSTR*  pbstrContent;	// Message content; use SysReallocString to modify it. IGW calls SysFreeString after the callback to release allocated memory.
  };
 
-// LPLOGINCALLBACKPROC中回调参数ErrorCode值定义
-#define SDOA_ERRORCODE_OK               0    // 登录成功
-#define SDOA_ERRORCODE_CANCEL           -1   // 用户按取消关闭了登录对话框
-#define SDOA_ERRORCODE_UILOST           -2   // 加载对话框UI文件缺失或无效
-#define SDOA_ERRORCODE_FAILED           -3   // 登录失败
-#define SDOA_ERRORCODE_UNKNOWN          -4   // 未知错误
-#define SDOA_ERRORCODE_INVALIDPARAM     -5   // 参数无效
-#define SDOA_ERRORCODE_UNEXCEPT         -6   // 未知异常
-#define SDOA_ERRORCODE_ALREAYEXISTS     -7   // 已经存在
-#define SDOA_ERRORCODE_SHOWMESSAGE      -10  // 显示对示对话框
+// ErrorCode values for LPLOGINCALLBACKPROC
+#define SDOA_ERRORCODE_OK               0    // Login succeeded
+#define SDOA_ERRORCODE_CANCEL           -1   // User cancelled and closed the login dialog
+#define SDOA_ERRORCODE_UILOST           -2   // Login dialog UI file is missing or invalid
+#define SDOA_ERRORCODE_FAILED           -3   // Login failed
+#define SDOA_ERRORCODE_UNKNOWN          -4   // Unknown error
+#define SDOA_ERRORCODE_INVALIDPARAM     -5   // Invalid parameter
+#define SDOA_ERRORCODE_UNEXCEPT         -6   // Unknown exception
+#define SDOA_ERRORCODE_ALREAYEXISTS     -7   // Already exists
+#define SDOA_ERRORCODE_SHOWMESSAGE      -10  // Show the message dialog
 
 
-// 登录回调函数
-// nErrorCode:     登录返回错误代码
-// pLoginResult:   登录返回结果，只在 nErrorCode = SDOA_ERRORCODE_OK 时才有效
-// nUserData:      在调用ShowLoginDialog时传入的用户数据
-// nReserved:      保留，暂不使用，目前总是为0(不等于ShowLoginDialog中传入的Reserved参数)
-// 返回值:        为TRUE将关闭对话框，为FALSE不关闭
+// Login callback
+// nErrorCode: Login error code
+// pLoginResult: Login result, valid only when nErrorCode = SDOA_ERRORCODE_OK
+// nUserData: User data passed to ShowLoginDialog
+// nReserved: Reserved and currently always 0 (not the Reserved argument to ShowLoginDialog)
+// Return: TRUE closes the dialog; FALSE leaves it open
 //
 // 2009.03.30
-// 扩展功能，当nErrorCode = ERRORCODE_SHOWMESSAGE时，Reserved返回LoginMessage*结果
-// 返回TRUE时，IGW将不再弹出对话框，游戏可以自行弹出提示对话框等
-// 返回FALSE时，IGW继续弹出对话框，可以调用SysReallocString修改Title,Content其中的内容，以便游戏显示自定义的错误提示
-//              注意：回调结果后IGW将调用SysFreeString释放已分配的内存
+// Extension: when nErrorCode = ERRORCODE_SHOWMESSAGE, Reserved returns a LoginMessage*
+// Return TRUE to suppress the IGW dialog so the game can display its own message
+// Return FALSE to show the IGW dialog; use SysReallocString to customize Title and Content
+//              IGW calls SysFreeString after the callback to release allocated memory
 typedef BOOL (CALLBACK *LPLOGINCALLBACKPROC)(int nErrorCode, const LoginResult* pLoginResult, int nUserData, int nReserved);
 
-// 应用接口
+// Application interface
 typedef interface ISDOAApp ISDOAApp;
 typedef ISDOAApp *PSDOAApp, *LPSDOAApp;
 
@@ -160,7 +160,7 @@ MIDL_INTERFACE("C8187484-1C5F-48DF-8497-2136A72A5733")
 ISDOAApp : public IUnknown
 {
 public:
-	// 显示登录对话框
+	// Show the login dialog
 	STDMETHOD_(int,ShowLoginDialog)(THIS_ LPLOGINCALLBACKPROC fnCallback, int nUserData, int nReserved) PURE;
 
 	STDMETHOD_(void,ModifyAppInfo)(THIS_ const AppInfo* pAppInfo) PURE;
@@ -169,10 +169,10 @@ public:
 	STDMETHOD_(void,SetRoleInfo)(THIS_ const RoleInfo* pRoleInfo) PURE;
 	
 
-	// 显示充值对话框 
+	// Show the recharge dialog
 	STDMETHOD_(int,ShowPaymentDialog)(THIS_ LPCWSTR pwcsSrc) PURE;
 
-	// 配置SDOA UI相关
+	// Configure SDOA UI
 	STDMETHOD_(int,GetScreenStatus)(THIS) PURE;
 	STDMETHOD_(void,SetScreenStatus)(THIS_ int nValue) PURE;
 	STDMETHOD_(bool,GetScreenEnabled)(THIS) PURE;
@@ -188,7 +188,7 @@ public:
 	STDMETHOD_(int,GetSelfCursor)(THIS) PURE;
 	STDMETHOD_(void,SetSelfCursor)(THIS_ int nValue) PURE;
 
-	// 功能相关
+	// Features
 	STDMETHOD_(int,OpenWidget)(THIS_ LPCWSTR pwcsWidgetNameSpace) PURE;
 	STDMETHOD_(int,OpenWidgetEx)(THIS_ LPCWSTR pwcsWidgetNameSpace, LPCWSTR pwcsParam, int nFlag) PURE;
 	STDMETHOD_(int,CloseWidget)(THIS_ LPCWSTR pwcsWidgetNameSpace) PURE;
@@ -214,18 +214,18 @@ public:
 };
 
 
-// 游戏实现的声音控制回调
-// 注意音量值的有效范围在0-100
+// Sound control callback implemented by the game
+// Valid volume range is 0-100
 typedef DWORD (CALLBACK *LPGETAUDIOSOUNDVOLUME)();
 typedef void  (CALLBACK *LPSETAUDIOSOUNDVOLUME)(DWORD nNewVolume);
 typedef DWORD (CALLBACK *LPGETAUDIOEFFECTVOLUME)();
 typedef void  (CALLBACK *LPSETAUDIOEFFECTVOLUME)(DWORD nNewVolume);
 
-// 通用数据传输接口
+// General data transfer interface
 class ICommonChannel
 {
 public:
-	// 下列三个方法是为兼容Delphi的接口而设置，在C++中不需要实现，但需要保留在此位置
+	// The next three methods support Delphi compatibility; C++ implementations must retain their positions but need not implement them
 	virtual HRESULT _stdcall QueryInterface(REFIID riid, void **ppvObject) = 0;
 	virtual ULONG _stdcall AddRef(void) = 0;
 	virtual ULONG _stdcall Release(void) = 0;
@@ -248,20 +248,20 @@ MIDL_INTERFACE("1170C2F9-28AD-4EA8-8392-E9A219C8FF65")
 ISDOAAppUtils : public IUnknown
 {
 public:
-	// 声音控制
-	// 设置声音控制相关回调
+	// Sound control
+	// Set sound control callbacks
 	STDMETHOD_(void,SetAudioSetting)(THIS_ 
 		LPGETAUDIOSOUNDVOLUME  fnGetAudioSoundVolume,
 		LPSETAUDIOSOUNDVOLUME  fnSetAudioSoundVolume,
 		LPGETAUDIOEFFECTVOLUME fnGetAudioEffectVolume,
 		LPSETAUDIOEFFECTVOLUME fnSetAudioEffectVolume ) PURE;
-	// 通知SDOA游戏声音有变化                          
+	// Notify SDOA that game sound has changed
 	STDMETHOD_(void,NodifyAudioChanged)(THIS) PURE;	
-	// 设置创建数据通道的回调
+	// Set the data channel creation callback
 	STDMETHOD_(void,SetCreateChannelCallback)(THIS_ const LPCREATECHANNEL fnCreateChannel) PURE;	
 };
 
-// 异步回调
+// Asynchronous callback
 typedef void (CALLBACK *LPQUERYCALLBACK)(int nRetCode, int nUserData);
 
 typedef interface ISDOAClientService ISDOAClientService;
@@ -277,7 +277,7 @@ public:
 	STDMETHOD_(int, GetValue)(THIS_ const BSTR bstrKey, BSTR* bstrValue) PURE;	
 };
 
-/* 注意igwInitialize中dwSdkVersion参数使用宏 SDOA_SDK_VERSION */
+/* Use the SDOA_SDK_VERSION macro for the dwSdkVersion argument to igwInitialize. */
 typedef int  (WINAPI* LPigwInitialize)(DWORD dwSdkVersion, const AppInfo* pAppInfo);
 typedef bool (WINAPI* LPigwGetModule)(REFIID riid, void** intf);
 typedef int  (WINAPI* LPigwTerminal)();

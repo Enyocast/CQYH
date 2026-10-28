@@ -1,15 +1,15 @@
 {*
-* Copyright (c) 2009,盛大在线 计费平台中心
+* Copyright (c) 2009,Shanda Online Billing Platform Center
 * All rights reserved.
 *
-* 文件名称：sdoa4server.h
-* 摘    要：各接口函数定义
-* 当前版本：2.0
-* 作    者：SNDA
-* 完成日期：2009年2月23日
+* File name:sdoa4server.h
+* Summary:Interface function definitions
+* Current version:2.0
+* Author:SNDA
+* Completion date:2009-02-23
 *
-* 修改内容：2.0最终对外接口
-* 修改时间：2009年3月10日
+* Changes:Final 2.0 public interface
+* Modified:2009-03-10
 *}
 
 unit sdoa4server;
@@ -49,21 +49,21 @@ type
   ISDOAMsg = class(ISDUnknown)
 
     //----------------------------------------------------------------------------------------
-    //名称：GetValue
-    //描述：获取指定消息内指定字段的值
-    //参数：
-    //  [in]szKey：         数据关键字
-    //返回：                关键字对应的内容，没有该关键字返回NULL
+    //Name: GetValue
+    //Description: Get the value of the specified field in a message
+    //Parameters:
+    //  [in]szKey:         Data key
+    //Returns:                 Value for the key, or NULL if the key is absent
     //----------------------------------------------------------------------------------------
     function GetValue(const szKey: PAnsiChar): PAnsiChar; virtual; stdcall; abstract;
 
     //----------------------------------------------------------------------------------------
-    //名称：SetValue
-    //描述：给指定消息添加指定字段的值
-    //参数：
-    //  [in]szKey：         数据关键字
-    //  [in]szValue：       数据值
-    //返回：                0成功，其他失败（一般为数据长度溢出）
+    //Name: SetValue
+    //Description: Add a field value to a message
+    //Parameters:
+    //  [in]szKey:         Data key
+    //  [in]szValue:       Data value
+    //Returns:                 0 on success; other values indicate failure, usually a data length overflow
     //----------------------------------------------------------------------------------------
     function SetValue(const szKey, szValue: PAnsiChar): Integer; virtual; stdcall; abstract;
 
@@ -72,47 +72,47 @@ type
   { ISDOAUserInfoAuthen }
   
   //---------------------------------------------------------------------------------------
-  //名称：UserInfoCallback
-  //描述：认证信息回调处理函数，由sdk使用方实现
-  //参数：
-  //  [out]nResult：          返回消息结果(具体错误类型说明参见相关错误文档)
-  //  [out]nUniqueId：        关联ID
-  //  [in/out]pMsg：          消息解析设置接口
-  //返回：无
+  //Name: UserInfoCallback
+  //Description: Authentication information callback implemented by the SDK user
+  //Parameters:
+  //  [out]nResult:          Result code (see the error documentation for details)
+  //  [out]nUniqueId:        Correlation ID
+  //  [in/out]pMsg:          Message parsing and setting interface
+  //Returns: None
   //----------------------------------------------------------------------------------------
   TUserInfoCallback = function(nResult: Integer; nUniqueId: Cardinal; pMsg: ISDOAMsg): Integer; stdcall;
 
   ISDOAUserInfoAuthen = class(ISDUnknown)
 
     //----------------------------------------------------------------------------------------
-    //名称：Initialize
-    //描述：初始化
-    //参数：
-    //  [in]szConfPath：    配置文件，如果为NULL则使用缺省的ConfClt.conf配置文件
-    //  [in]pCallbackFunc： 回调函数地址
-    //返回：                0 成功；!0 失败；
+    //Name: Initialize
+    //Description: Initialize
+    //Parameters:
+    //  [in]szConfPath:    Configuration file; NULL selects the default ConfClt.conf
+    //  [in]pCallbackFunc: Callback function address
+    //Returns:                 0 on success; nonzero on failure;
     //----------------------------------------------------------------------------------------
     function Initialize(const szConfPath: PAnsiChar; pCallbackFunc: TUserInfoCallback): Integer; virtual; stdcall; abstract;
 
     //----------------------------------------------------------------------------------------
-    //名称：AsyncGetUserInfo
-    //描述：异步获取认证结果(通过Initialize设置回调函数)
-    //参数：
-    //  [in]sessionId：     需要验证的Token或者SessionId
-    //  [in]clientIp：      客户端IP
-    //  [in]nUniqueId：     token唯一id
-    //返回：                0 成功；!0 失败；
+    //Name: AsyncGetUserInfo
+    //Description: Get the authentication result asynchronously (set the callback with Initialize)
+    //Parameters:
+    //  [in]sessionId:     Token or SessionId to validate
+    //  [in]clientIp:      Client IP address
+    //  [in]nUniqueId:     Unique token ID
+    //Returns:                 0 on success; nonzero on failure;
     //----------------------------------------------------------------------------------------
     function AsyncGetUserInfo(const szSessionId, szEndpointIp: PAnsiChar; nUniqueId: Cardinal): Integer; virtual; stdcall; abstract;
 
     //----------------------------------------------------------------------------------------
-    //名称：SyncGetUserInfo
-    //描述：同步获取认证结果
-    //参数：
-    //  [in]sessionId：     需要验证的Token或者SessionId
-    //  [in]clientIp：      客户端IP
-    //  [in/out]pMsg：      返回的用户信息    
-    //返回：                0 成功；!0 失败；
+    //Name: SyncGetUserInfo
+    //Description: Get the authentication result synchronously
+    //Parameters:
+    //  [in]sessionId:     Token or SessionId to validate
+    //  [in]clientIp:      Client IP address
+    //  [in/out]pMsg:      Returned user information
+    //Returns:                 0 on success; nonzero on failure;
     //----------------------------------------------------------------------------------------
     function SyncGetUserInfo(const szSessionId, szEndpointIp: PAnsiChar; nUniqueId: Cardinal; pMsg: ISDOAMsg): Integer; virtual; stdcall; abstract;
 
@@ -125,42 +125,42 @@ type
   ISDOARSASign  = class(ISDUnknown)
 
     //----------------------------------------------------------------------------------------
-    //名称：InitialPriKey
-    //描述：指定订单进行RSA签名时所需的私钥文件位置，初始化RSA私钥签名接口
-    //参数：
-    //  [in]szPriKeyFile：  私钥文件名(全路径或相对路径)
-    //返回：                0 成功；!0 失败；
+    //Name: InitialPriKey
+    //Description: Initialize RSA signing with the private key file used to sign orders
+    //Parameters:
+    //  [in]szPriKeyFile:  Private key file name (absolute or relative path)
+    //Returns:                 0 on success; nonzero on failure;
     //----------------------------------------------------------------------------------------
     function InitialPriKey(const szPriKeyFile: PAnsiChar): Integer; virtual; stdcall; abstract;
   
     //----------------------------------------------------------------------------------------
-    //名称：Sign
-    //描述：基于商户私钥对订单参数进行签名，获得签名字符串
-    //参数：
-    //  [in]szData：        要签名的数据
-    //  [in]nDataLength：   要签名的数据长度 
-    //  [out]szSignature：  签名,长度512Byte.
-    //返回：                0 成功；!0 失败；
+    //Name: Sign
+    //Description: Sign order parameters with the merchant private key and return the signature
+    //Parameters:
+    //  [in]szData:        Data to sign
+    //  [in]nDataLength:   Length of the data to sign
+    //  [out]szSignature:  Signature, 512 bytes long.
+    //Returns:                 0 on success; nonzero on failure;
     //----------------------------------------------------------------------------------------
     function Sign(const szData: PAnsiChar; nDataLength: Integer; szSignature: PAnsiChar): Integer; virtual; stdcall; abstract;
   
     //----------------------------------------------------------------------------------------
-    //名称：InitialPubKey
-    //描述：指定订单进行RSA签名验证时所需的公钥文件位置，初始化RSA公钥验证接口
-    //参数：
-    //  [in]szPubKeyFile：  公钥文件名(全路径或相对路径)
-    //返回：                0 成功；!0 失败；
+    //Name: InitialPubKey
+    //Description: Initialize RSA signature verification with the public key file
+    //Parameters:
+    //  [in]szPubKeyFile:  Public key file name (absolute or relative path)
+    //Returns:                 0 on success; nonzero on failure;
     //----------------------------------------------------------------------------------------
     function InitialPubKey(const szPubKeyFile: PAnsiChar): Integer; virtual; stdcall; abstract;
   
     //----------------------------------------------------------------------------------------
-    //名称：VerifySignature
-    //描述：基于盛大公钥对盛大计费接口提交的道具发送通知参数进行验证
-    //参数：
-    //  [in]szData：        待验证源数据
-    //  [in]nDataLength：   待验证源数据长度 
-    //  [in]szSignature：   待验证签名
-    //返回：                0 成功；!0 失败；
+    //Name: VerifySignature
+    //Description: Verify item delivery notification parameters submitted to the Shanda billing interface using the Shanda public key
+    //Parameters:
+    //  [in]szData:        Source data to verify
+    //  [in]nDataLength:   Length of the source data to verify
+    //  [in]szSignature:   Signature to verify
+    //Returns:                 0 on success; nonzero on failure;
     //----------------------------------------------------------------------------------------
     function VerifySignature(const szData: PAnsiChar; nDataLength: Integer; const szSignature: PAnsiChar): Integer; virtual; stdcall; abstract;
 
@@ -169,13 +169,13 @@ type
 {$ENDIF} //ifdef USE_SDOARSA
 
 //---------------------------------------------------------------------------------------
-//名称：RecvMsgCallback
-//描述：订单信息回调处理函数，由sdk使用方实现
-//参数：
-//  nMsgType：              消息类型：目前有道具和充值两个消息，定义参照itemproto.h
-//  pRequest：              请求消息对象：参照接口ISDOAMsg，内容只包含包体 定义参照itemproto.h
-//  pResponse：             回调处理完后应答：参照接口ISDOAMsg，内容只包含包体 定义参照itemproto.h
-//返回：                    无
+//Name: RecvMsgCallback
+//Description: Order information callback implemented by the SDK user
+//Parameters:
+//  nMsgType:              Message type: item delivery or top-up; see itemproto.h
+//  pRequest:              Request message object: ISDOAMsg containing only the body; see itemproto.h
+//  pResponse:             Callback response: ISDOAMsg containing only the body; see itemproto.h
+//Returns:                     None
 //----------------------------------------------------------------------------------------
 
   { ISDOAOrderHandler }
@@ -187,129 +187,129 @@ type
   ISDOAOrderHandler = class(ISDUnknown)
 
     //----------------------------------------------------------------------------------------
-    //名称：Initialize
-    //描述：初始化全付通客户端
-    //参数：
-    //  [in]szConfPath：    配置文件，如果为NULL则使用缺省的ConfClt.conf配置文件
-    //  [in]pCallbackFunc： 消息处理回调函数
-    //返回：                0 成功；!0 失败；
-    //                      -10225001 配置文件不存在
-    //                      -10225002 生成授权配置文件失败
-    //                      -10225003 授权SDK初始化失败
-    //                      -10225004 创建网络调度线程失败
-    //                      -10225005 创建本地侦听SOCKET失败
-    //                      -10225006 创建回调线程失败
+    //Name: Initialize
+    //Description: Initialize the Quanfutong client
+    //Parameters:
+    //  [in]szConfPath:    Configuration file; NULL selects the default ConfClt.conf
+    //  [in]pCallbackFunc: Message processing callback
+    //Returns:                 0 on success; nonzero on failure;
+    //                      -10225001 Configuration file does not exist
+    //                      -10225002 Failed to generate authorization configuration
+    //                      -10225003 Failed to initialize the authorization SDK
+    //                      -10225004 Failed to create the network dispatch thread
+    //                      -10225005 Failed to create the local listening socket
+    //                      -10225006 Failed to create the callback thread
     //----------------------------------------------------------------------------------------
     function Initialize(const szConfPath: PAnsiChar; pCallbackFunc: TRecvMsgCallback): Integer; virtual; stdcall; abstract;
 
 
     //2009-8-28
     //----------------------------------------------------------------------------------------
-    //名称：InitializeEx
-    //描述：初始化全付通客户端，后发货采用异步应答方式。和Initialize只允许调用一个
-    //参数：
-    //	[in]szConfPath：    配置文件，如果为NULL则使用缺省的sdoa4server.ini配置文件
-    //	[in]pCallbackFunc： 消息处理回调函数
-    //返回：                0 成功；!0 失败；
-    //						-10225000 已经初始化
-    //                      -10225001 配置文件不存在
-    //                      -10225002 生成授权配置文件失败
-    //                      -10225003 授权SDK初始化失败
-    //                      -10225004 创建网络调度线程失败
-    //                      -10225005 创建本地侦听SOCKET失败
-    //                      -10225006 创建回调线程失败
+    //Name: InitializeEx
+    //Description: Initialize the Quanfutong client with asynchronous responses for deferred delivery; call either this or Initialize, not both
+    //Parameters:
+    //	[in]szConfPath:    Configuration file; NULL selects the default sdoa4server.ini
+    //	[in]pCallbackFunc: Message processing callback
+    //Returns:                 0 on success; nonzero on failure;
+    //						-10225000 Already initialized
+    //                      -10225001 Configuration file does not exist
+    //                      -10225002 Failed to generate authorization configuration
+    //                      -10225003 Failed to initialize the authorization SDK
+    //                      -10225004 Failed to create the network dispatch thread
+    //                      -10225005 Failed to create the local listening socket
+    //                      -10225006 Failed to create the callback thread
     //----------------------------------------------------------------------------------------
     function InitializeEx(const szConfPath: PAnsiChar; pCallbackFunc: TAsyncMsgCallback): Integer; virtual; stdcall; abstract;
 
 
 
     //----------------------------------------------------------------------------------------
-    //名称：CreateOrderInfo
-    //描述：创建订单信息
-    //参数：
-    //  [in]nType：         1.扣费信息，2.道具发送信息
-    //返回：                订单信息，0 失败
-    //                      !0为ULONG对象指针
+    //Name: CreateOrderInfo
+    //Description: Create order information
+    //Parameters:
+    //  [in]nType:         1: billing information; 2: item delivery information
+    //Returns:                 Order information; 0 on failure
+    //                      Nonzero ULONG object pointer
     //----------------------------------------------------------------------------------------
     function CreateOrderInfo(nType: Integer): ULONG; virtual; stdcall; abstract;
   
     //----------------------------------------------------------------------------------------
-    //名称：DestroyOrderInfo
-    //描述：销毁订单信息
-    //参数：
-    //  [in]pOrderInfo：    订单信息
-    //返回：                0 成功，无其他返回
+    //Name: DestroyOrderInfo
+    //Description: Destroy order information
+    //Parameters:
+    //  [in]pOrderInfo:    Order information
+    //Returns:                 0 on success; no other result
     //----------------------------------------------------------------------------------------
     function DestroyOrderInfo(pOrderInfo: ULONG): Integer; virtual; stdcall; abstract;
 
     //----------------------------------------------------------------------------------------
-    //名称：SetOrderInfoValue
-    //描述：往订单信息添加值
-    //参数：
-    //  [in]pOrderInfo：    订单信息
-    //  [in]szKey[in]：     数据关键字
-    //  [in]szValue：       数据值
-    //返回：0               成功 无其他返回
+    //Name: SetOrderInfoValue
+    //Description: Add a value to order information
+    //Parameters:
+    //  [in]pOrderInfo:    Order information
+    //  [in]szKey[in]:     Data key
+    //  [in]szValue:       Data value
+    //Returns: 0               Success; no other result
     //----------------------------------------------------------------------------------------
     function SetOrderInfoValue(pOrderInfo: ULONG; const szKey, szValue: PAnsiChar): Integer; virtual; stdcall; abstract;
 
     //----------------------------------------------------------------------------------------
-    //名称：BuildOrderUrl
-    //描述：签名订单信息，并返回相应http请求内容
-    //参数：
-    //  [in]pOrderInfo：    扣费对象
-    //  [out]szUrl：        http请求URL,最大2048字节如：char szUrl[2048]
-    //返回：                0成功，无其他返回
+    //Name: BuildOrderUrl
+    //Description: Sign order information and return the corresponding HTTP request
+    //Parameters:
+    //  [in]pOrderInfo:    Billing object
+    //  [out]szUrl:        HTTP request URL, at most 2048 bytes, e.g. char szUrl[2048]
+    //Returns:                 0 on success; no other result
     //----------------------------------------------------------------------------------------
     function BuildOrderUrl(pOrderInfo: ULONG; szUrl: PAnsiChar): Integer; virtual; stdcall; abstract;
 
     //----------------------------------------------------------------------------------------
-    //名称：SignData
-    //描述：数据包签名
-    //参数：
-    //  [in]szData：        要签名的数据
-    //  [in]nDataLength：   要签名的数据长度 
-    //  [out]szSignature：  返回32字节的数据包签名,32字节结尾加上'\0'，即需要33字节空间如char szUrl[33]
-    //返回：                0 成功；!0 失败；
-    //                      -10225007 失败
+    //Name: SignData
+    //Description: Sign a data packet
+    //Parameters:
+    //  [in]szData:        Data to sign
+    //  [in]nDataLength:   Length of the data to sign
+    //  [out]szSignature:  Return a 32-byte packet signature plus a null terminator; provide 33 bytes, e.g. char szUrl[33]
+    //Returns:                 0 on success; nonzero on failure;
+    //                      -10225007 Failure
     //----------------------------------------------------------------------------------------
     function SignData(const szData: PAnsiChar; nDataLength: Integer; szSignature: PAnsiChar): Integer; virtual; stdcall; abstract;
 
     //----------------------------------------------------------------------------------------
-    //名称：VerifySignature
-    //描述：数据包签名校验
-    //参数：
-    //  [in]szData：        待验证源数据
-    //  [in]nLen：          待验证源数据长度
-    //  [in]szOriginalSign：待验证签名
-    //返回：                0 成功；!0 失败；
-    //                      -10225008  失败
+    //Name: VerifySignature
+    //Description: Verify a data packet signature
+    //Parameters:
+    //  [in]szData:        Source data to verify
+    //  [in]nLen:          Length of the source data to verify
+    //  [in]szOriginalSign:Signature to verify
+    //Returns:                 0 on success; nonzero on failure;
+    //                      -10225008  Failure
     //----------------------------------------------------------------------------------------
     function VerifySignature(const szData: PAnsiChar; nDataLength: Integer; const szSignature: PAnsiChar): Integer; virtual; stdcall; abstract;
 
     //----------------------------------------------------------------------------------------
-    //名称：GetUniqueId
-    //描述：获取唯一ID
-    //参数：
-    //  [out]szUniqueId：   唯一ID输出地址,32字节结尾加上'\0'，即需要33字节空间，如char szUrl[33]
-    //返回：                0 成功；!0 失败；
-    //                      -10225009  参数为NULL
+    //Name: GetUniqueId
+    //Description: Get a unique ID
+    //Parameters:
+    //  [out]szUniqueId:   Output buffer for a 32-byte unique ID plus a null terminator; provide 33 bytes, e.g. char szUrl[33]
+    //Returns:                 0 on success; nonzero on failure;
+    //                      -10225009  Parameter is NULL
     //----------------------------------------------------------------------------------------
     function GetUniqueId(szUniqueId: PAnsiChar): Integer; virtual; stdcall; abstract;
 
 
     //2009-8-28
     //---------------------------------------------------------------------------------------
-    //名称：SendResponse
-    //描述：异步发送应答响应
-    //参数：
-    //	nMsgType：              AsyncMsgCallback 回调获得的消息类型
-    //	nMsgFrom：              AsyncMsgCallback 消息来源，发送应答时需要作为参数传入。
-    //	nMsgSeq：               AsyncMsgCallback 消息序列号，发送应答时需要作为参数传入
-    //返回：                     0 成功；!0 失败；
-    //							-10225010	orderid不存在为NULL
-    //							-10225011	网络断开
-    //							-10225012	消息发送源不存在，一般为网络断开后
+    //Name: SendResponse
+    //Description: Send a response asynchronously
+    //Parameters:
+    //	nMsgType:              Message type from the AsyncMsgCallback callback
+    //	nMsgFrom:              Message source from AsyncMsgCallback; pass it when sending the response.
+    //	nMsgSeq:               Message sequence from AsyncMsgCallback; pass it when sending the response
+    //Returns:                      0 on success; nonzero on failure;
+    //							-10225010	orderid does not exist or is NULL
+    //							-10225011	Network disconnected
+    //							-10225012	Message source does not exist, usually after a network disconnect
     //----------------------------------------------------------------------------------------
     function SendResponse(nMsgType: Integer; nMsgFrom: Integer; nMsgSeq: Integer; pResponse: ISDOAMsg): Integer; virtual; stdcall; abstract;
 
@@ -317,11 +317,11 @@ type
 
 
     //----------------------------------------------------------------------------------------
-    //名称：UnInitialize
-    //描述：全付通客户端卸载
-    //参数：
-    //  无
-    //返回：                0 成功；无其他返回失败；
+    //Name: UnInitialize
+    //Description: Uninitialize the Quanfutong client
+    //Parameters:
+    //  None
+    //Returns:                 0 on success; no other failure result;
     //----------------------------------------------------------------------------------------
     function UnInitialize(): Integer; virtual; stdcall; abstract;
 

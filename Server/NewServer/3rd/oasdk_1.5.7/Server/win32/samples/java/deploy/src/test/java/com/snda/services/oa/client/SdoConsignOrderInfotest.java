@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import com.snda.services.oa.client.impl.OrderServiceProvider;
 import com.snda.services.oa.client.impl.SdoConsignOrderInfo;
 /**
- * 交易订单调用示例，参数具体填写参考协议
+ * Trade order example; see the protocol for parameter values
  * @author chenyifang
  *
  */
@@ -34,7 +34,7 @@ public class SdoConsignOrderInfotest {
 							OrderService orderProvider = new OrderServiceProvider();
 							SdoConsignOrderInfo order = new SdoConsignOrderInfo();
 							/**
-							 * 对交易接口订单信息进行传值
+							 * Populate the trade order information
 							 */
 							order.orderId = orderProvider.generateOrderId();
 							order.amount = 1;
@@ -49,7 +49,7 @@ public class SdoConsignOrderInfotest {
 							order.userIdSrc="7675675";
 							
 							/**
-							 * 产生 一个 订单请求的url。如下格式：
+							 * Generate an order request URL in the following format:
 							 * http://192.168.68.92:8080/billgate/sdoConsign.do?key=966&callTime=2009-04-29+10%3A55%3A00&userIdSrc=testbbb&amount=1&feeDest=1&feeSrc=0&userIdDest=testaaa&orderId=00000096620090429105500000000100&goodsNum=1&payType=3&indication=test123&goodsInfo=1%2C1%2C1&sign=651A9E9B508E67820B5E410E0F6D73F1
 							 * 
 							 */

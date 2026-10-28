@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import com.snda.services.oa.client.impl.OrderServiceProvider;
 import com.snda.services.oa.client.impl.SdoSellCurrencyOrderInfo;
 /**
- * 寄售元宝订单调用示例，参数具体填写参考协议
+ * Ingot consignment example; see the protocol for parameter values
  * @author chenyifang
  *
  */
@@ -35,7 +35,7 @@ public class SdoSellCurrencyOrderInfotest {
 							OrderService orderProvider = new OrderServiceProvider();
 							SdoSellCurrencyOrderInfo order = new SdoSellCurrencyOrderInfo();
 							/**
-							 * 对寄售元宝订单信息进行传值
+							 * Populate the ingot consignment order information
 							 */
 							order.orderId = orderProvider.generateOrderId();
 							order.amount = 1;
@@ -46,7 +46,7 @@ public class SdoSellCurrencyOrderInfotest {
 							order.confirm=1;
 							order.goodsInfo="1,1,1";
 							order.goodsNum=1;
-							/** 产生 一个 订单请求的url。如下格式：
+							/** Generate an order request URL in the following format:
 							 * http://192.168.68.92:8080/billgate/SdoSellCurrency.do?vendorCode=test&key=966&callTime=2009-04-29+11%3A11%3A26&amount=1&userId=234234&orderId=00000096620090429111126000001995&confirm=1&goodsNum=1&payType=3&indication=test123&goodsInfo=1%2C1%2C1&sign=B78687CE4F2CEE7CD274A7F0A9840125
 							 */
 							String orderUrl = orderProvider

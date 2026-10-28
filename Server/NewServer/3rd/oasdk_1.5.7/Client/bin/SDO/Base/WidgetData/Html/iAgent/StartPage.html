@@ -9,13 +9,13 @@
 <!--
 //  window.resizeTo(640,480);
 function OpenOOSet()
-{ // 根据当前实际状态显示
+{ // Display according to the current state
 	if (GetIGWState())
-	{	// 当前状态是开着的，则设置界面默认为关闭选中  
+	{	// If currently open, select Close by default
 	  window.location.href = "p3.html";
 	}
 	else
-	{	// 当前状态是半着的，则设置界面默认为开启选中	
+	{	// If currently partially open, select Open by default
 		window.location.href = "p2.html";
 	}
 }
