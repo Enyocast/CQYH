@@ -19,16 +19,16 @@
 
 // unused
 #define MAX_GUILD_NUM_SYSTEM_LIMIT  (16384)
-#define MAX_APPLY_GUILD_ROLE_NUM    (200)   // 帮派最多允许申请的玩家数量，暂定
-#define GUILD_MAX_MEMBER_COUNT    (250)           // 最大成员数量
-//#define GUILD_MEMBER_SYS_LIMIT      (250)       // 系统限制的最大玩家数量
+#define MAX_APPLY_GUILD_ROLE_NUM    (200)   // Tentative maximum number of players who may apply to a guild
+#define GUILD_MAX_MEMBER_COUNT    (250)           // Maximum member count
+//#define GUILD_MEMBER_SYS_LIMIT      (250)       // System limit on player count
 
-#define MAX_VIEW_GUILD_LIST_COUNT (12)      // 帮派查看，一次发送帮派数量
+#define MAX_VIEW_GUILD_LIST_COUNT (12)      // Number of guilds sent per guild-list request
 
-#define ROLE_MAX_APPLICATION     (10)       // 角色一次最多可申请加入的帮派数量
+#define ROLE_MAX_APPLICATION     (10)       // Maximum simultaneous guild applications per character
 
-#define GUILD_MAX_ALLIANCE_NUM      (10)     // 最大联盟帮派数量
-#define GUILD_MAX_ENEMY_NUM          (10)    // 最大敌对帮派数量
+#define GUILD_MAX_ALLIANCE_NUM      (10)     // Maximum allied guild count
+#define GUILD_MAX_ENEMY_NUM          (10)    // Maximum enemy guild count
 
 #define GUILD_DATA_NTF_HISTORY_NUM   (10)
 #define GUILD_MAX_CHEST_NTF_NUM     (50)
@@ -41,7 +41,7 @@
 #define GUILD_STORAGE_MAX_TAG_NUM (6)
 #define GUILD_STORAGE_LOW_LIMIT     (10000)
 
-#define GUILD_MAX_APPLY_ALLIANCE_NUM    (250)           // 再大每次发送就不考虑了，这都是世界公敌了
+#define GUILD_MAX_APPLY_ALLIANCE_NUM    (250)           // Larger per-send counts are not considered; these are already enemies of the world
 
 #define GUILD_MAX_WELFARE_AURA_COUNT  (64)
 #define GUILD_MAX_UPGRADE_AURA_COUNT (2)
@@ -51,11 +51,11 @@
 
 //#define WEEK_SECOND (604800)
 #define ONE_DAY_SECOND      (86400)
-//#define ROLE_APPLICATION_LAST_TIME  (300) // 申请存在时间
-//#define GUILD_DISBAND_LEVEL_LIMIT   (3)     // 帮派解散的最高等级限制，低于这个等级才可以删除
+//#define ROLE_APPLICATION_LAST_TIME  (300) // Application lifetime
+//#define GUILD_DISBAND_LEVEL_LIMIT   (3)     // Maximum guild level for disbanding; only guilds below this level may be deleted
 
-#define GUILD_UPDATE_RANKLIST_STARTTIME		(3600*4)	// 帮派刷新排行榜开始时间，每天凌晨4点开始
-#define GUILD_UPDATE_RANKLIST_ENDIME		(3600*4 + 128)	// 帮派刷新排行榜结束时间，持续128秒，1024桢内做完
+#define GUILD_UPDATE_RANKLIST_STARTTIME		(3600*4)	// Guild ranking refresh starts daily at 4 a.m.
+#define GUILD_UPDATE_RANKLIST_ENDIME		(3600*4 + 128)	// Guild ranking refresh ends after 128 seconds; finish within 1,024 frames
 
 #define GUILD_DUNGEON_AWARD_NUM (8)
 
@@ -75,7 +75,7 @@
 //////////////////////////////////////////////////////////////////////////
 // server use
 
-#define MAX_TIME_DEVIATION      (10)            // 允许时间计算误差
+#define MAX_TIME_DEVIATION      (10)            // Allowed time calculation error
 
 #define MAX_GUILD_CORE_MEMBER   (20)
 
@@ -104,21 +104,21 @@ enum GUILD_POSITION_TYPE
     GUILD_POSITION_LEADER       = 1,
     GUILD_POSITION_SUBLEADER    = 2,
     GUILD_POSITION_ELDER        = 3,
-    GUILD_POSITION_BISHOP       = 4,        // 主教 ， 殿主
-    GUILD_POSITION_DEACON       = 5,        // 执事
-    GUILD_POSITION_SUBDEACON    = 6,        // 副执事，主簿
-    GUILD_POSITION_CIVILIAN     = 7,        // 帮众
+    GUILD_POSITION_BISHOP       = 4,        // Bishop, hall master
+    GUILD_POSITION_DEACON       = 5,        // Deacon
+    GUILD_POSITION_SUBDEACON    = 6,        // Subdeacon, registrar
+    GUILD_POSITION_CIVILIAN     = 7,        // Guild member
 
     GUILD_POSITION_TOTAL        = 8,
 };
 
-#define GUILD_POSITION_COUNT  (GUILD_POSITION_TOTAL-1)       // GUILD_POSITION_TYPE 关联这个
+#define GUILD_POSITION_COUNT  (GUILD_POSITION_TOTAL-1)       // Associated with GUILD_POSITION_TYPE
 
 enum GUILD_POSITION_RIGHT_FIELD
 {
     G_POS_RIGHT_NONE                = 0,
-    G_POS_RIGHT_INVITE              = 1 << 0,               // 邀请权限（觉得有重复）
-    G_POS_RIGHT_RECRUIT             = 1 << 1,               // 拒绝或者接受的权限
+    G_POS_RIGHT_INVITE              = 1 << 0,               // Invitation permission (possibly redundant)
+    G_POS_RIGHT_RECRUIT             = 1 << 1,               // Permission to reject or accept
     G_POS_RIGHT_FORBID_CHAT         = 1 << 2,
     G_POS_RIGHT_NOTICE              = 1 << 3,
     G_POS_RIGHT_SET_STORAGE_RIGHT   = 1 << 4,
@@ -127,7 +127,7 @@ enum GUILD_POSITION_RIGHT_FIELD
     G_POS_RIGHT_UPGRADE_WELFARE     = 1 << 7,
     G_POS_RIGHT_CHANGE_POS          = 1 << 8,
     G_POS_RIGHT_BANISH              = 1 << 9,
-    G_POS_RIGHT_DIPLOMAT            = 1 << 10,      // 外交
+    G_POS_RIGHT_DIPLOMAT            = 1 << 10,      // Diplomacy
     G_POS_RIGHT_ACTIVITY            = 1 << 11,
 
     //G_POS_RIGHT_MANAGE_MONEY = 1 << 8,
@@ -151,15 +151,15 @@ enum GUILD_STORAGE_RIGHT_FLAG
 
 enum GUILD_FLAG_FIELD
 {
-    GUILD_FLAG_IS_CHAT_FORBIDDEN = 1 << 0,  // 是否被禁言
+    GUILD_FLAG_IS_CHAT_FORBIDDEN = 1 << 0,  // Whether muted
 };
 
 enum GUILD_DIPLOMATIC_TIME_TYPE
 {
-    G_DIPLOMATIC_TIME_1     = 1,    // 1天
-    G_DIPLOMATIC_TIME_2     = 2,    // 3天
-    G_DIPLOMATIC_TIME_3     = 3,    // 7天
-    G_DIPLOMATIC_TIME_4     = 4,    // 30天
+    G_DIPLOMATIC_TIME_1     = 1,    // 1 day
+    G_DIPLOMATIC_TIME_2     = 2,    // 3 days
+    G_DIPLOMATIC_TIME_3     = 3,    // 7 days
+    G_DIPLOMATIC_TIME_4     = 4,    // 30 days
 };
 
 enum GUILD_REVERT_APPLY_ENUM
@@ -185,7 +185,7 @@ enum GUILD_RESOURCE_CHANGE_TYPE
 
 enum GUILD_ATTR_ENUM
 {
-    // 前面的给guild variables 用的，相当于index Allan Tao[19.11.2013] 
+    // The preceding values are used for guild variables, equivalent to an index. Allan Tao [19.11.2013]
     GUILD_ATTR_BEGIN = MAX_GUILD_VARIABLE_COUNT + 1,
     GUILD_ATTR_MONEY,
     GUILD_ATTR_LEVEL,
@@ -319,40 +319,40 @@ enum GUILD_REPLY
 enum GUILD_BUILDING_ENUM
 {
     GUILD_B_NONE                = 0,
-    GUILD_B_MAIN                = 1,    // 主殿
-    GUILD_B_BUSINESS            = 2,    // 商会
-    GUILD_B_DEITY               = 3,    // 神坛
-    GUILD_B_HOUSE               = 4,    // 居所
-    GUILD_B_STORAGE             = 5,    // 金库
-    GUILD_B_STAFF               = 6,    // 战事厅
-    GUILD_B_WONDER              = 7,    // 图腾
-    GUILD_B_HERB                = 8,    // 农场
-    GUILD_B_WOOD                = 9,    // 林场
-    GUILD_B_CRYSTAL             = 10,   // 石场
-    GUILD_B_SILVER              = 11,   // 矿场
-    GUILD_B_HERB_STORAGE        = 12,   // 粮仓
-    GUILD_B_WOOD_STORAGE        = 13,   // 木仓
-    GUILD_B_CRYSTAL_STORAGE     = 14,   // 石仓
-    GUILD_B_SILVER_STORAGE      = 15,   // 矿仓
+    GUILD_B_MAIN                = 1,    // Main hall
+    GUILD_B_BUSINESS            = 2,    // Commerce hall
+    GUILD_B_DEITY               = 3,    // Shrine
+    GUILD_B_HOUSE               = 4,    // Residence
+    GUILD_B_STORAGE             = 5,    // Treasury
+    GUILD_B_STAFF               = 6,    // War hall
+    GUILD_B_WONDER              = 7,    // Totem
+    GUILD_B_HERB                = 8,    // Farm
+    GUILD_B_WOOD                = 9,    // Lumber yard
+    GUILD_B_CRYSTAL             = 10,   // Quarry
+    GUILD_B_SILVER              = 11,   // Mine
+    GUILD_B_HERB_STORAGE        = 12,   // Granary
+    GUILD_B_WOOD_STORAGE        = 13,   // Lumber storage
+    GUILD_B_CRYSTAL_STORAGE     = 14,   // Stone storage
+    GUILD_B_SILVER_STORAGE      = 15,   // Ore storage
 
     GUILD_B_FUNATIONAL_NUM      = 16,
 
-    GUILD_B_GATE                = 16,   // 城门
-    GUILD_B_WALL                = 17,   // 城墙
+    GUILD_B_GATE                = 16,   // City gate
+    GUILD_B_WALL                = 17,   // City wall
 
-    GUILD_B_ARMSHOP             = 18,   // 兵工厂
-    GUILD_B_ARROW               = 19,	// 箭塔
-    GUILD_B_TURRET              = 20,	// 炮塔
-    GUILD_B_GROUP_ATTACK        = 21,   // 群攻塔
-    GUILD_B_MAGIC               = 22,   // 魔法塔
-    GUILD_B_CURE                = 23,   // 加血塔
+    GUILD_B_ARMSHOP             = 18,   // Armory
+    GUILD_B_ARROW               = 19,	// Arrow tower
+    GUILD_B_TURRET              = 20,	// Cannon tower
+    GUILD_B_GROUP_ATTACK        = 21,   // Area-attack tower
+    GUILD_B_MAGIC               = 22,   // Magic tower
+    GUILD_B_CURE                = 23,   // Healing tower
 	
-    GUILD_B_BLOCK               = 24,   // 路障
+    GUILD_B_BLOCK               = 24,   // Barricade
 
     GUILD_B_NUM,
 
 
-    GUILD_B_PROTECTOR           = GUILD_B_NUM,          // 公会保护者
+    GUILD_B_PROTECTOR           = GUILD_B_NUM,          // Guild protector
 
 
 

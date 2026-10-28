@@ -149,15 +149,15 @@ struct ENTER_POS
 	UINT8			bySide;
 };
 
-// 不知道干啥用的函数, lua脚本里也没调用过
+// Unknown purpose; not called by Lua scripts either
 inline double I64_2_Double(INT64 llPos)
 {
 	return (double)llPos / POINT_PER_CM;
 }
 
-// 服务器坐标 转 协议坐标
+// Convert server coordinates to protocol coordinates
 /*
-// 调用例子
+// Usage example
 pMsg->drop.wDestX = ConvertCoordS2N(poDrop->GetX());
 pMsg->drop.wDestY = ConvertCoordS2N(poDrop->GetY());
 pMsg->drop.wDestZ = ConvertCoordS2N(poDrop->GetZ());
@@ -167,13 +167,13 @@ inline UINT16 ConvertCoordS2N(INT64 llCoordination)
     return (UINT16)(llCoordination / POINT_PER_CM / 4);
 }
 
-// 协议坐标 转 服务器坐标 (转换之后, 需要修正坐标)
+// Convert protocol coordinates to server coordinates (coordinates must be corrected after conversion)
 /*
-// 调用例子
+// Usage example
 nRetCode = poRole->WalkTo(ConvertCoordN2S(pMsg->wDestX), ConvertCoordN2S(pMsg->wDestY));
 PROCESS_ERROR(nRetCode);
 
-// 在 WalkTo 函数里面, 再计算一次, 修正坐标
+// Calculate again in WalkTo to correct the coordinates
 m_llDestX = llDestX / GRID_WIDTH * GRID_WIDTH + GRID_WIDTH / 2;
 m_llDestY = llDestY / GRID_WIDTH * GRID_WIDTH + GRID_WIDTH / 2;
 */
@@ -182,9 +182,9 @@ inline INT32 ConvertCoordN2S(UINT16 wCoordination)
     return (INT32)wCoordination * POINT_PER_CM * 4;
 }
 
-// 客户端内存坐标 转 服务器坐标 (转换之后, 再 乘以 POINT_PER_CM, 才是真正的服务器坐标)
+// Convert client memory coordinates to server coordinates (multiply by POINT_PER_CM after conversion)
 /*
-// 调用例子
+// Usage example
 ConvertCoordO2N(pData->nLoginJumpX, pData->nLoginJumpY, pData->nLoginJumpZ);
 pData->nLoginJumpX = pData->nLoginJumpX * POINT_PER_CM;
 pData->nLoginJumpY = pData->nLoginJumpY * POINT_PER_CM;
@@ -200,9 +200,9 @@ inline void ConvertCoordO2N(INT32& rnX, INT32& rnY, INT32& rnZ)
 	rnY = (INT32)((llX * k + llY * k) / b);
 }
 
-// 服务器坐标 转 客户端内存坐标 (转换之前, 先 除以 POINT_PER_CM)
+// Convert server coordinates to client memory coordinates (divide by POINT_PER_CM before conversion)
 /*
-// 调用例子
+// Usage example
 INT32 nX = pSpawnPoint->nX / POINT_PER_CM;
 INT32 nY = pSpawnPoint->nY / POINT_PER_CM;
 INT32 nZ = pSpawnPoint->nZ / POINT_PER_CM;

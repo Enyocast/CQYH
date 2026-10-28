@@ -8,7 +8,7 @@
 #include "data_manager.h"
 #include "spell_def.h"
 
-//固有属性列表
+//Intrinsic attribute list
 static const INT16 FixAttrTable[] =
 {
     catPhyAtk,     // 0
@@ -76,9 +76,9 @@ struct ITEM_DATA
     UINT8 m_byExpensiveItem;
     UINT8 m_byDropBroadcast;
     UINT8 m_bPkDrop;
-    UINT8 m_bTeamAuction;       //是否可以组队拍卖
-    UINT8 m_bAuction;           //是否可拍卖
-    INT32 m_nAuctionFee[MAX_AUCTION_TIME_INTERVAL_TYPE];        //拍卖保管费
+    UINT8 m_bTeamAuction;       //Whether team auction is allowed
+    UINT8 m_bAuction;           //Whether auction is allowed
+    INT32 m_nAuctionFee[MAX_AUCTION_TIME_INTERVAL_TYPE];        //Auction storage fee
     UINT8 m_byAuctionType;
     INT32 m_nDefaultAuctionPrice;
     INT32 m_nPlayerDropTime;
@@ -110,14 +110,14 @@ struct EQUIP_DATA : public ITEM_DATA
     UINT8 m_byDestroyOnDeath;
     UINT8 m_byCannotUnEquip;
 
-    // 新增代码 - 孔位
+    // Additional code - sockets
     UINT8 m_byCanSocket;
     UINT8 m_bySocketCountMaxNew;
     UINT8 m_byFirstSocketCost;
-    UINT8 m_bySecondSocketCost;      // 打孔消耗
+    UINT8 m_bySecondSocketCost;      // Socket creation cost
 
 
-    // 默认代码 - 孔位
+    // Default code - sockets
     INT32 m_nSocketChance;
     UINT8 m_bySocketCountMin;
     UINT8 m_bySocketCountMax;
@@ -132,21 +132,21 @@ struct EQUIP_DATA : public ITEM_DATA
     INT32 m_nLuckModifier;
     SET_DATA* m_SetData;
 
-    //固有属性
+    //Intrinsic attributes
     INT32 m_nFixAttr[FixAttrTableSize];
 
-    //固有天气属性
+    //Intrinsic weather attributes
     INT32 m_nWeatherAttrID;
 
-    //固有特殊技能
+    //Intrinsic special skills
     INT32 m_nSpecialAttrID;
 
-    //属性池ID和概率
+    //Attribute pool IDs and probabilities
     INT32 m_nRandomAttributeChance;
     INT32 m_nAttributePoolID[MAX_RANDOM_ATTR_COUNT];
     INT32 m_nAttributePoolChance[MAX_RANDOM_ATTR_COUNT];
 
-    //第二个铭文出现的最少花费数(需随机)
+    //Minimum cost before the second inscription can appear (randomized)
     UINT32 m_dwSecondRuneCostMin;
     UINT32 m_dwSecondRuneCostMax;
 

@@ -93,7 +93,7 @@ BOOL LoadGlobalConfig(const char* pcszFileName)
 		}
 	}
 
-    // 初始化Gm角色名字
+    // Initialize GM character names
     strxcpy(g_GmRoleName[0], g_ServerConfig.CC.GmRoleName.szRoleName0, ROLE_NAME_LEN);
     strxcpy(g_GmRoleName[1], g_ServerConfig.CC.GmRoleName.szRoleName1, ROLE_NAME_LEN);
     strxcpy(g_GmRoleName[2], g_ServerConfig.CC.GmRoleName.szRoleName2, ROLE_NAME_LEN);

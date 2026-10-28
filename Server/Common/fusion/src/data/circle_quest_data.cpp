@@ -38,7 +38,7 @@ BOOL CIRCLE_REWARD_DATA::ReadLine(INT32& rnID, const char*& rpcszName, CIRCLE_RE
 
 	READ_INT("GroupID", nRewardGroupID);
 
-	// 交任务执行动作
+	// Actions performed on quest completion
  	READ_INT("AwardMoneyType", stQuestRewardData.nAwardMoneyType1);
  	READ_INT("AwardMoneyAmount", stQuestRewardData.nAwardMoneyAmount1);
  	READ_INT("AwardMoneyTypeEx", stQuestRewardData.nAwardMoneyType2);

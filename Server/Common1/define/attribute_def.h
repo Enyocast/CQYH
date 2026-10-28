@@ -7,7 +7,7 @@
 #define MAX_ATTR_NAME_LEN	(128)				///< @line
 
 
-/// Warning: catPhyAtkHi, catPhyAtkLo, catMagAtkHi, catMagAtkLo这四个属性是放大1w倍存储的，但并不用Rate结尾。
+/// Warning: catPhyAtkHi, catPhyAtkLo, catMagAtkHi, catMagAtkLoThese four attributes are stored multiplied by 10,000, but do not end in Rate.
 
 ///@enum CHAR_ATTR_TYPE
 enum CHAR_ATTR_TYPE

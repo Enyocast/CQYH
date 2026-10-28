@@ -110,7 +110,7 @@ enum SERVER_GROUP_INDEX
 };
 
 #define SNDA_APPID					(991002359)
-#define FCM_APPID                   (3001)  //防沉迷的appid只有2个bytes，所以防沉迷新开了一个appid，仅用于防沉迷
+#define FCM_APPID                   (3001)  //The anti-addiction app ID is only two bytes, so a separate app ID is used exclusively for anti-addiction
 #define MAX_GS_SESSION_COUNT        (64)    // MAX_GS_SESSION_COUNT + MAX_GT_SESSION_COUNT <= 64 (FD_SETSIZE)
 #define MAX_GT_SESSION_COUNT        (32)
 #define MAX_MS_SESSION_COUNT        (32)

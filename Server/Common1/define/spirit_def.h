@@ -1,39 +1,39 @@
 #ifndef _SPIRIT_DEF_H_
 #define _SPIRIT_DEF_H_    
 
-// 境界总览
-#define  SPIRIT_OPEN_LEVEL					1	// (境界开启等级)
+// Spirit level overview
+#define  SPIRIT_OPEN_LEVEL					1	// (Level at which spirit progression unlocks)
 
-#define  MAX_EXT2PTS_MULTIPLE				20	// (魂转修炼点一键完成的)金币消耗最大倍数(跟每次转化次数有关)
-#define  MAX_EXP2PTS_THRESHOLD				50	// (魂转修炼点一键完成的)日常最大完成次数
-#define  MAX_SPIRIT_LEVEL					70	// 境界最大等级	
+#define  MAX_EXT2PTS_MULTIPLE				20	// Maximum gold cost multiplier for one-click soul-to-cultivation conversion (depends on the number of conversions)
+#define  MAX_EXP2PTS_THRESHOLD				50	// Daily completion limit for one-click soul-to-cultivation conversion
+#define  MAX_SPIRIT_LEVEL					70	// Maximum spirit level
 
-#define  MAX_SPIRIT_NODE_PER_LEVEL			2	// 每个境界等级可以挂的node
+#define  MAX_SPIRIT_NODE_PER_LEVEL			2	// Nodes assignable at each spirit level
 
-// 气海
-#define  MAX_AIRSEA_BAG_CONTAINER_SIZE		32	// 气海包裹的大小
-#define	 MAX_AIRSEA_STALL_CONTAINER_SIZE	16  // 气海仓库的大小
-#define  MAX_AIRSEA_EQUIP_CONTAINER_SIZE	9	// 气海装备栏大小
+// Air sea
+#define  MAX_AIRSEA_BAG_CONTAINER_SIZE		32	// Air sea bag size
+#define	 MAX_AIRSEA_STALL_CONTAINER_SIZE	16  // Air sea storage size
+#define  MAX_AIRSEA_EQUIP_CONTAINER_SIZE	9	// Air sea equipment slot count
 
-#define  MAX_AIR_PROCEDURE					5	// 练气阶段
-#define	 MAX_DROP_AIR_COUNT					40	// 练期阶段可配置掉落数目
+#define  MAX_AIR_PROCEDURE					5	// Qi cultivation stages
+#define	 MAX_DROP_AIR_COUNT					40	// Configurable drop count during cultivation
 
-#define  MAX_AIR_LEVEL						10	// 气的最大等级
-#define  MAX_AIR_NODE						256	// 最大node数目
-#define	 MAX_ATTR_PER_NODE					2	// 每个node所带最大属性数目
+#define  MAX_AIR_LEVEL						10	// Maximum qi level
+#define  MAX_AIR_NODE						256	// Maximum node count
+#define	 MAX_ATTR_PER_NODE					2	// Maximum attributes per node
 
-#define  MAX_SPIRIT_BUY_SLOT_COST			100	// 买包裹消耗
-#define  INVALID_AIR_ID						0	// 无效气id
-#define  INVALID_AIR_INDEX					(-1)// 无效气位置
+#define  MAX_SPIRIT_BUY_SLOT_COST			100	// Cost of buying bag slots
+#define  INVALID_AIR_ID						0	// Invalid qi ID
+#define  INVALID_AIR_INDEX					(-1)// Invalid qi index
 
-#define  MAX_EXP2PTS_LEVEL					32	// 魂转修炼点转化次数配置等级段
+#define  MAX_EXP2PTS_LEVEL					32	// Level brackets for configured soul-to-cultivation conversion counts
 
-// 血海
-#define  MAX_BLOODSEA_PAGE					4	// 血脉
-#define  MAX_BLOODSEA_SLOT_PER_PAGE			10	// 每个血脉的孔数量
-#define  MAX_BLOODSEA_SLOT_NUMBER			10	// 每个血脉孔出现的最大值
-#define	 MAX_BLOODSEA_ATTR_PER_SLOT			2	// 每个血脉孔所带最大属性数量
-#define  BLOODSEA_SLOT_INIT_SLOT			0	// 每个血脉孔开始的初始位置
+// Blood sea
+#define  MAX_BLOODSEA_PAGE					4	// Bloodline
+#define  MAX_BLOODSEA_SLOT_PER_PAGE			10	// Slots per bloodline
+#define  MAX_BLOODSEA_SLOT_NUMBER			10	// Maximum value for each bloodline slot
+#define	 MAX_BLOODSEA_ATTR_PER_SLOT			2	// Maximum attributes per bloodline slot
+#define  BLOODSEA_SLOT_INIT_SLOT			0	// Initial position for each bloodline slot
 
 enum SPIRIT_AIR_SEA_BAG_TYPE
 {
@@ -48,12 +48,12 @@ enum SPIRIT_AIR_SEA_BAG_TYPE
 enum SPIRIT_AIR_TYPE
 {
 	spiritInvalid = -1,
-	spiritPower,	// 蛮力
-	spiritSwift,	// 迅捷
-	spiritWise,		// 睿智
-	spiritBody,		// 刚体
-	spiritDivine,	// 神圣
-	spiritKing,		// 万法
+	spiritPower,	// Strength
+	spiritSwift,	// Swiftness
+	spiritWise,		// Wisdom
+	spiritBody,		// Toughness
+	spiritDivine,	// Divinity
+	spiritKing,		// Arcane
 };
 
 inline INT32 MAKE_AIR_LEVEL_KEY(INT32 nLevel, INT32 nClass)

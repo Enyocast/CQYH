@@ -5,8 +5,8 @@ enum EAeward_Action_Type
 {
 	eratInvalid = -1,
 
-	eratAwardReq_Survey,			// 通过批次号领奖
-	eratAwardReq_AwardNumber,		// 通过推广码领奖
+	eratAwardReq_Survey,			// Claim reward using batch number
+	eratAwardReq_AwardNumber,		// Claim reward using promotional code
 
 	eratAwardAck,
 

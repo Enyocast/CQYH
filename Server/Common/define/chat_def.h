@@ -27,13 +27,13 @@ enum CHAT_LOCATION_TYPE
 {
 	cltInvalid,
 
-	cltNormal,		// 聊天窗口系统黄字
-	cltLighting,	// 滚屏公告
-	cltTvShow,		// 屏幕上方, 中间黄字
-	cltUrl,			// 聊天窗口系统黄字
-	cltDialog,      // 聊天窗口系统黄字
-	cltTrumpet,		// 喇叭道具
-	cltGMTrumpet,   // 聊天窗口系统黄字
+	cltNormal,		// Yellow system text in the chat window
+	cltLighting,	// Scrolling announcement
+	cltTvShow,		// Yellow text centered at the top of the screen
+	cltUrl,			// Yellow system text in the chat window
+	cltDialog,      // Yellow system text in the chat window
+	cltTrumpet,		// Trumpet item
+	cltGMTrumpet,   // Yellow system text in the chat window
 
 	cltTotal,
 };

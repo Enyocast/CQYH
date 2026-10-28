@@ -327,20 +327,20 @@ namespace ExternalMessage
         g2c_shield_ack,
         g2c_unshield_ack,
 
-        // 融灵
+        // Soul fusion
         g2c_upgrade_soul,
         g2c_add_soul,
         g2c_remove_soul,
 
-        // 铸魂
+        // Soul forging
         g2c_rune_item,
 
-        // 装备升级
+        // Equipment upgrade
         g2c_weapon_level_up_put_in,
         g2c_weapon_level_up_take_out,
         g2c_weapon_level_up_result,
 
-        // 装备分解合成
+        // Equipment decomposition and crafting
         g2c_decompose,
         g2c_compose,
 
@@ -2295,22 +2295,22 @@ namespace ExternalMessage
 
     struct G2C_UPGRADE_SOUL : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
     };
 
     struct G2C_ADD_SOUL : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
     };
 
     struct G2C_REMOVE_SOUL : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
     };
 
     struct G2C_RUNE_ITEM : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
     };
 
     struct G2C_WEAPON_LEVEL_UP_PUT_IN : MESSAGE_HEADER
@@ -2323,12 +2323,12 @@ namespace ExternalMessage
 
     struct G2C_WEAPON_LEVEL_UP_RESULT : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
     };
 
     struct G2C_DECOMPOSE : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
         INT32       nOriginalItemID;
         INT32       nItemID[MAX_DECOMPOSE_ITEM_COUNT];
         INT32       nItemCount[MAX_DECOMPOSE_ITEM_COUNT];
@@ -2336,14 +2336,14 @@ namespace ExternalMessage
 
     struct G2C_COMPOSE : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功，2成功且暴击 
+        UINT8       byResult;//0 = failure, 1 = success, 2 = success with critical hit
         INT32       nResultItemID;
     };
 
     struct G2C_REFINE : MESSAGE_HEADER
     {
         UINT8       bySlot;
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
         UINT16      wRefineLevel;
     };
 
@@ -2354,7 +2354,7 @@ namespace ExternalMessage
 
     struct G2C_IDENTIFY_ITEM : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
     };
 
 	struct G2C_DRAW_DEBUG_LINE : MESSAGE_HEADER
@@ -2465,7 +2465,7 @@ namespace ExternalMessage
 
     struct G2C_GAMBLE : MESSAGE_HEADER
     {
-        INT32   nResult;//1成功，0失败
+        INT32   nResult;//1 = success, 0 = failure
         INT32   nItemID;
     };
 

@@ -12,73 +12,73 @@
 enum EItemLog
 {
 	ITEMLOG_INVALID = -1,					///< invalid
-	ITEMLOG_SHOP,							///< 商人购物
-	ITEMLOG_LOOT,							///< 拾取
-	ITEMLOG_GM_COMMAND,						///< GM指令
-	ITEMLOG_QUEST_PREPAY,					///< 接受任务给予
-	ITEMLOG_QUEST_REWARD,					///< 完成任务奖励
-	ITEMLOG_DUNGEON_REWARD,					///< 副本奖励
-	ITEMLOG_PLAYER_STALL,					///< 玩家摆摊
-	ITEMLOG_PLAYER_TRADE,					///< 玩家交易
-	ITEMLOG_BUY_BACK,						///< 回购
-	ITEMLOG_CREATE_ROLE,					///< 创建角色
-	ITEMLOG_CREATE_HERO,					///< 创建英雄
-	ITEMLOG_SCRIPT,							///< 脚本
-	ITEMLOG_GET_MAIL_ATTACH,				///< 邮件附件
-	ITEMLOG_GUILD_STORAGE,					///< 公会仓库进出
-	ITEMLOG_GUILD_DESTORY,                  ///< 公会解散
-	ITEMLOG_ACHIEVEMENT_REWARD,				///< 成就奖励
-	ITEMLOG_UPGRADE_SOUL,					///< 灵石升级
-	ITEMLOG_REMOVE_SOUL,					///< 灵石拆除
-	ITEMLOG_NPC_DROP,						///< 怪物掉落
-	ITEMLOG_USER_REQUEST,					///< 玩家丢弃
-	ITEMLOG_SELL,							///< 出售给商人
-	ITEMLOG_CAST_SPELL,						///< 释放技能
-	ITEMLOG_REFINE_ITEM,					///< 体格强化
-	ITEMLOG_COMPLETE_QUEST,					///< 完成任务上交
-	ITEMLOG_CREATE_GUILD,					///< 创建公会
-	ITEMLOG_USE_ITEM,						///< 使用物品
-	ITEMLOG_INSERT_SOUL,					///< 灵石融合
-	ITEMLOG_AUCTION_SELL,					///< 拍卖行出售
-	ITEMLOG_RUNE,							///< 铭文
-	ITEMLOG_DECOMPOSE,						///< 物品分解
-	ITEMLOG_COMPOSE,						///< 物品合成
-	ITEMLOG_ACTIVITY_REWARD,				///< 活动奖励
-	ITEMLOG_REVIVE,							///< 复活
-	ITEMLOG_GM,								///< GM工具
-	ITEMLOG_OPEN_DOODAD,					///< 打开doodad
-	ITEMLOG_REAL_MONEY_SHOP,				///< 商城
-	ITEMLOG_TEAM_AUCTION,					///< 组队拍卖
-	ITEMLOG_TEAM_AUCTION_FAILED,			///< 组队拍卖失败
-	ITEMLOG_QUEST_RECYCLE,					///< 环任务
-	ITEMLOG_EXCHANGE,						///< 交易行
-	ITEMLOG_ARENA_COMMON_REWARD,			///< 竞技场奖励
-	ITEMLOG_SABAC_AWARD,					///< 沙巴克奖励
-	ITEMLOG_REPUTATION_AWARD,				///< 声望奖励
-	ITEMLOG_SPLIT,							///< 物品拆分
-	ITEMLOG_MOVE,							///< 物品堆叠
-	ITEMLOG_ORGANIZE_BAG,					///< 物品整理
-	ITEMLOG_EQUIP_LEVELUP,					///< 装备升级
-	ITEMLOG_EQUIP_LEVELUP_FAILED,			///< 装备升级失败
-	ITEMLOG_EQUIP_LEVELUP_SUCCEEDED,		///< 装备升级成功
-	ITEMLOG_RECOVER_USED_UP,				///< 恢复类道具用尽
-	ITEMLOG_MINE,							///< 挖矿
-	ITEMLOG_ENROLL_SABAC,					///< 沙巴克报名
-	ITEMLOG_DEATH,							///< 死亡
-	ITEMLOG_SPELL,							///< 技能效果
-	ITEMLOG_ATTACK,							///< 攻击
-	ITEMLOG_ATTACKED,						///< 被攻击
-	ITEMLOG_TRUMPET,						///< 喇叭
-	ITEMLOG_CHECKIN_AWARD,					///< 签到奖励
-	ITEMLOG_AWARD,							///< 平台奖励
-	ITEMLOG_BLACK_MARKET,					///< 黑市
-	ITEMLOG_MATERIAL,						///< 矿石洗练
-	ITEMLOG_GAMBLE,							///< 装备重铸
-	ITEMLOG_PACKAGE,						///< 礼包
-	ITEMLOG_IDENTIFY,						///< 物品鉴定
-	ITEMLOG_RANDOMIZE,                      ///< 物品洗练
-	ITEMLOG_LUCK_OIL,                       ///< 祝福油
-	ITEMLOG_SIGN,                           ///< 装备签名
+	ITEMLOG_SHOP,							///< Merchant purchase
+	ITEMLOG_LOOT,							///< Loot
+	ITEMLOG_GM_COMMAND,						///< GM command
+	ITEMLOG_QUEST_PREPAY,					///< Granted on quest acceptance
+	ITEMLOG_QUEST_REWARD,					///< Quest completion reward
+	ITEMLOG_DUNGEON_REWARD,					///< Dungeon reward
+	ITEMLOG_PLAYER_STALL,					///< Player stall
+	ITEMLOG_PLAYER_TRADE,					///< Player trade
+	ITEMLOG_BUY_BACK,						///< Buyback
+	ITEMLOG_CREATE_ROLE,					///< Create character
+	ITEMLOG_CREATE_HERO,					///< Create hero
+	ITEMLOG_SCRIPT,							///< Script
+	ITEMLOG_GET_MAIL_ATTACH,				///< Mail attachment
+	ITEMLOG_GUILD_STORAGE,					///< Guild storage transfer
+	ITEMLOG_GUILD_DESTORY,                  ///< Guild dissolution
+	ITEMLOG_ACHIEVEMENT_REWARD,				///< Achievement reward
+	ITEMLOG_UPGRADE_SOUL,					///< Soul stone upgrade
+	ITEMLOG_REMOVE_SOUL,					///< Soul stone removal
+	ITEMLOG_NPC_DROP,						///< Monster drop
+	ITEMLOG_USER_REQUEST,					///< Player discard
+	ITEMLOG_SELL,							///< Sell to merchant
+	ITEMLOG_CAST_SPELL,						///< Cast spell
+	ITEMLOG_REFINE_ITEM,					///< Physique enhancement
+	ITEMLOG_COMPLETE_QUEST,					///< Turn in on quest completion
+	ITEMLOG_CREATE_GUILD,					///< Create guild
+	ITEMLOG_USE_ITEM,						///< Use item
+	ITEMLOG_INSERT_SOUL,					///< Soul stone fusion
+	ITEMLOG_AUCTION_SELL,					///< Auction house sale
+	ITEMLOG_RUNE,							///< Inscription
+	ITEMLOG_DECOMPOSE,						///< Item decomposition
+	ITEMLOG_COMPOSE,						///< Item crafting
+	ITEMLOG_ACTIVITY_REWARD,				///< Event reward
+	ITEMLOG_REVIVE,							///< Revival
+	ITEMLOG_GM,								///< GM tool
+	ITEMLOG_OPEN_DOODAD,					///< Open doodad
+	ITEMLOG_REAL_MONEY_SHOP,				///< Cash shop
+	ITEMLOG_TEAM_AUCTION,					///< Team auction
+	ITEMLOG_TEAM_AUCTION_FAILED,			///< Team auction failed
+	ITEMLOG_QUEST_RECYCLE,					///< Cycle quest
+	ITEMLOG_EXCHANGE,						///< Exchange
+	ITEMLOG_ARENA_COMMON_REWARD,			///< Arena reward
+	ITEMLOG_SABAC_AWARD,					///< Sabac reward
+	ITEMLOG_REPUTATION_AWARD,				///< Reputation reward
+	ITEMLOG_SPLIT,							///< Split item stack
+	ITEMLOG_MOVE,							///< Stack items
+	ITEMLOG_ORGANIZE_BAG,					///< Organize items
+	ITEMLOG_EQUIP_LEVELUP,					///< Equipment upgrade
+	ITEMLOG_EQUIP_LEVELUP_FAILED,			///< Equipment upgrade failed
+	ITEMLOG_EQUIP_LEVELUP_SUCCEEDED,		///< Equipment upgrade succeeded
+	ITEMLOG_RECOVER_USED_UP,				///< Recovery item consumed
+	ITEMLOG_MINE,							///< Mining
+	ITEMLOG_ENROLL_SABAC,					///< Sabac registration
+	ITEMLOG_DEATH,							///< Death
+	ITEMLOG_SPELL,							///< Spell effect
+	ITEMLOG_ATTACK,							///< Attack
+	ITEMLOG_ATTACKED,						///< Attacked
+	ITEMLOG_TRUMPET,						///< Trumpet
+	ITEMLOG_CHECKIN_AWARD,					///< Check-in reward
+	ITEMLOG_AWARD,							///< Platform reward
+	ITEMLOG_BLACK_MARKET,					///< Black market
+	ITEMLOG_MATERIAL,						///< Ore refinement
+	ITEMLOG_GAMBLE,							///< Equipment reforging
+	ITEMLOG_PACKAGE,						///< Gift pack
+	ITEMLOG_IDENTIFY,						///< Item identification
+	ITEMLOG_RANDOMIZE,                      ///< Item refinement
+	ITEMLOG_LUCK_OIL,                       ///< Blessing oil
+	ITEMLOG_SIGN,                           ///< Equipment signature
 
 	ITEMLOG_TOTAL,							///< total
 };
@@ -87,109 +87,109 @@ enum EItemLog
 enum EMoneyLog
 {
     MONEYLOG_INVALID = -1,					///< invalid
-    MONEYLOG_BUY_ITEM,						///< 商人购物
-	MONEYLOG_REPAIR,						///< 装备修理
-	MONEYLOG_PLAYER_STALL,					///< 玩家摆摊
-	MONEYLOG_PLAYER_STALL_TAX,				///< 玩家摆摊税收
-	MONEYLOG_PLAYER_TRADE,					///< 玩家交易
-	MONEYLOG_PLAYER_TRADE_TAX,				///< 玩家交易税收
-	MONEYLOG_BUY_BACK,						///< 回购
-	MONEYLOG_REFINE_ITEM,					///< 体格强化
-	MONEYLOG_BUY_SLOTS,						///< 背包或银行格子扩充
-	MONEYLOG_REMOVE_SOUL,					///< 灵石拆除
-	MONEYLOG_CREATE_GUILD,					///< 创建公会
-	MONEYLOG_GUILD_CONTRIBUTE,				///< 公会贡献
-	MONEYLOG_GUILD_POP_ITEM,				///< 公会仓库使用
-	MOMEYLOG_GUILD_ENTER_DUNGEON,			///< 进入公会副本
-	MONEYLOG_TELEPORT_PLATFORM,				///< 传送
-	MONEYLOG_DUNGEON_SELECT_REWARD,			///< 副本奖励
-	MONEYLOG_CAST_SPELL,					///< 释放技能
-	MONEYLOG_MAIL_COST,						///< 邮资
-	MONEYLOG_LOOT,							///< 拾取
-	MONEYLOG_SELL_ITEM,						///< 出售给商人
-	MONEYLOG_QUEST_PREPAY,					///< 接受任务给予
-	MONEYLOG_QUEST_REWARD,					///< 完成任务奖励
-	MONEYLOG_QUEST_COST,					///< 接受任务扣除
-	MONEYLOG_GUILD_SALARY,					///< 公会薪资
-	MONEYLOG_DUNGEON_REWARD,				///< 副本奖励
-	MONEYLOG_GM_COMMAND,					///< GM指令
-	MONEYLOG_SCRIPT,						///< 脚本
-	MONEYLOG_IDENTIFY_ITEM,					///< 物品鉴定
-	MONEYLOG_RANDOMIZE_ITEM,				///< 物品洗练
-	MONEYLOG_QUEST_FLY_COST,				///< 传送至任务区域
-	MONEYLOG_SIGN_ITEM_COST,				///< 装备签名
-	MONEYLOG_AUCTION_SELL_COST,				///< 拍卖行出售
-	MONEYLOG_AUCTION_BUY_COST,				///< 拍卖行购买
-	MONEYLOG_CHANGE_WEATHER,				///< 改变天气
-	MONEYLOG_BUY_VIP,						///< VIP购买
-	MONEYLOG_DAILY_QUEST_BUY_COMPLETE_TIME,	///< 购买日常任务完成次数
-	MONEYLOG_DAILY_QUEST_BUY_ONESHOT,		///< 刷新日常任务
-	MONEYLOG_OPEN_GUILD_DUNGEON,			///< 打开公会副本
-	MONEYLOG_GUILD_DECLARE_WAR,				///< 公会宣战
-	MONEYLOG_DECOMPOSE,						///< 物品分解
-	MONEYLOG_COMPOSE,						///< 物品合成
-    MONEYLOG_SPIRIT_EXP2PTS,				///< 练魂
-	MONEYLOG_SPIRIT_ADDAIR,					///< 练气
-	MONEYLOG_SPIRIT_BUYSLOT,				///< 购买境界格子
-	MONEYLOG_SPIRIT_BUYEXCHANGEAIR,			///< 装备气
-	MONEYLOG_SPIRIT_BLOOD,					///< 刷血脉等级
-	MONEYLOG_REVIVE,						///< 复活
-	MONEYLOG_CREATE_ARENA_TEAM,				///< 创建竞技场队伍
-	MONEYLOG_GUILD_BUY_AURA,				///< 公会光环购买
-	MONEYLOG_GET_MAIL_ATTACH,				///< 邮件附件
-	MONEYLOG_GM,							///< GM工具
-	MONEYLOG_REAL_MONEY_SHOP,				///< 商城
-	MONEYLOG_TEAM_AUCTION_BONUS,			///< 组队拍卖分钱
-	MONEYLOG_TEAM_AUCTION_RETURN,			///< 组队拍卖返还钱
-	MONEYLOG_TEAM_AUCTION_DEPOSITE,			///< 组队拍卖
-	MONEYLOG_EXCHANGE,						///< 交易行
-	MONEYLOG_EXCHANGE_FEE,					///< 交易行手续费
-	MONEYLOG_MASTER_CZ,						///< 师徒祝贺
-	MONEYLOG_ACHIEVEMENT_REWARD,			///< 成就奖励
-	MONEYLOG_RUNE,							///< 铭文
-	MONEYLOG_ARENA_JOIN_SEASON,				///< 加入竞技场赛季
-	MONEYLOG_ARENA_RANK_REWARD,				///< 竞技场排名奖励
-	MONEYLOG_ENROLL_SABAC,					///< 沙巴克报名
-	MONEYLOG_EQUIP_LEVELUP,					///< 装备升级
-	MONEYLOG_REPUTATION_AWARD,				///< 声望奖励
-	MONEYLOG_UPGRADE_STALL,					///< 摊位升级
-	MONEYLOG_MINE,							///< 采矿
-	MONEYLOG_AWARD,							///< 平台奖励
-	MONEYLOG_ERECT_STATUS,					///< 塑像
-	MONEYLOG_FCM_LOSS,						///< 防沉迷扣除
-	MONEYLOG_DAILY_LIMIT_LOSS,				///< 超过货币每日上限扣除
-	MONEYLOG_WEEKLY_LIMIT_LOSS,				///< 超过货币每周上限扣除
-	MONEYLOG_TOTAL_LIMIT_LOSS,				///< 超过货币总上限扣除
-	MONEYLOG_CHAT_COST,						///< 聊天
-	MONEYLOG_ESCORT,						///< 押镖
-	MONEYLOG_BLACK_MARKET,					///< 黑市
-	MONEYLOG_MATERIAL,						///< 矿石洗练
-	MONEYLOG_BIRTH,							///< 创建角色
-	MONEYLOG_EXP_MORAL,						///< 经验转化道义值
-	MONEYLOG_TEACHER_REWARD,				///< 师傅奖励
-	MONEYLOG_STUDENT_REWARD,				///< 徒弟奖励
+    MONEYLOG_BUY_ITEM,						///< Merchant purchase
+	MONEYLOG_REPAIR,						///< Equipment repair
+	MONEYLOG_PLAYER_STALL,					///< Player stall
+	MONEYLOG_PLAYER_STALL_TAX,				///< Player stall tax
+	MONEYLOG_PLAYER_TRADE,					///< Player trade
+	MONEYLOG_PLAYER_TRADE_TAX,				///< Player trade tax
+	MONEYLOG_BUY_BACK,						///< Buyback
+	MONEYLOG_REFINE_ITEM,					///< Physique enhancement
+	MONEYLOG_BUY_SLOTS,						///< Expand bag or bank slots
+	MONEYLOG_REMOVE_SOUL,					///< Soul stone removal
+	MONEYLOG_CREATE_GUILD,					///< Create guild
+	MONEYLOG_GUILD_CONTRIBUTE,				///< Guild contribution
+	MONEYLOG_GUILD_POP_ITEM,				///< Use guild storage
+	MOMEYLOG_GUILD_ENTER_DUNGEON,			///< Enter guild dungeon
+	MONEYLOG_TELEPORT_PLATFORM,				///< Teleport
+	MONEYLOG_DUNGEON_SELECT_REWARD,			///< Dungeon reward
+	MONEYLOG_CAST_SPELL,					///< Cast spell
+	MONEYLOG_MAIL_COST,						///< Postage
+	MONEYLOG_LOOT,							///< Loot
+	MONEYLOG_SELL_ITEM,						///< Sell to merchant
+	MONEYLOG_QUEST_PREPAY,					///< Granted on quest acceptance
+	MONEYLOG_QUEST_REWARD,					///< Quest completion reward
+	MONEYLOG_QUEST_COST,					///< Deducted on quest acceptance
+	MONEYLOG_GUILD_SALARY,					///< Guild salary
+	MONEYLOG_DUNGEON_REWARD,				///< Dungeon reward
+	MONEYLOG_GM_COMMAND,					///< GM command
+	MONEYLOG_SCRIPT,						///< Script
+	MONEYLOG_IDENTIFY_ITEM,					///< Item identification
+	MONEYLOG_RANDOMIZE_ITEM,				///< Item refinement
+	MONEYLOG_QUEST_FLY_COST,				///< Teleport to quest area
+	MONEYLOG_SIGN_ITEM_COST,				///< Equipment signature
+	MONEYLOG_AUCTION_SELL_COST,				///< Auction house sale
+	MONEYLOG_AUCTION_BUY_COST,				///< Auction house purchase
+	MONEYLOG_CHANGE_WEATHER,				///< Change weather
+	MONEYLOG_BUY_VIP,						///< VIP purchase
+	MONEYLOG_DAILY_QUEST_BUY_COMPLETE_TIME,	///< Purchase daily quest completions
+	MONEYLOG_DAILY_QUEST_BUY_ONESHOT,		///< Refresh daily quests
+	MONEYLOG_OPEN_GUILD_DUNGEON,			///< Open guild dungeon
+	MONEYLOG_GUILD_DECLARE_WAR,				///< Declare guild war
+	MONEYLOG_DECOMPOSE,						///< Item decomposition
+	MONEYLOG_COMPOSE,						///< Item crafting
+    MONEYLOG_SPIRIT_EXP2PTS,				///< Soul cultivation
+	MONEYLOG_SPIRIT_ADDAIR,					///< Qi cultivation
+	MONEYLOG_SPIRIT_BUYSLOT,				///< Purchase spirit slots
+	MONEYLOG_SPIRIT_BUYEXCHANGEAIR,			///< Equip qi
+	MONEYLOG_SPIRIT_BLOOD,					///< Roll bloodline level
+	MONEYLOG_REVIVE,						///< Revival
+	MONEYLOG_CREATE_ARENA_TEAM,				///< Create arena team
+	MONEYLOG_GUILD_BUY_AURA,				///< Purchase guild aura
+	MONEYLOG_GET_MAIL_ATTACH,				///< Mail attachment
+	MONEYLOG_GM,							///< GM tool
+	MONEYLOG_REAL_MONEY_SHOP,				///< Cash shop
+	MONEYLOG_TEAM_AUCTION_BONUS,			///< Team auction proceeds
+	MONEYLOG_TEAM_AUCTION_RETURN,			///< Team auction refund
+	MONEYLOG_TEAM_AUCTION_DEPOSITE,			///< Team auction
+	MONEYLOG_EXCHANGE,						///< Exchange
+	MONEYLOG_EXCHANGE_FEE,					///< Exchange fee
+	MONEYLOG_MASTER_CZ,						///< Mentorship congratulations
+	MONEYLOG_ACHIEVEMENT_REWARD,			///< Achievement reward
+	MONEYLOG_RUNE,							///< Inscription
+	MONEYLOG_ARENA_JOIN_SEASON,				///< Join arena season
+	MONEYLOG_ARENA_RANK_REWARD,				///< Arena ranking reward
+	MONEYLOG_ENROLL_SABAC,					///< Sabac registration
+	MONEYLOG_EQUIP_LEVELUP,					///< Equipment upgrade
+	MONEYLOG_REPUTATION_AWARD,				///< Reputation reward
+	MONEYLOG_UPGRADE_STALL,					///< Stall upgrade
+	MONEYLOG_MINE,							///< Mining
+	MONEYLOG_AWARD,							///< Platform reward
+	MONEYLOG_ERECT_STATUS,					///< Statue
+	MONEYLOG_FCM_LOSS,						///< Anti-addiction deduction
+	MONEYLOG_DAILY_LIMIT_LOSS,				///< Deduction for exceeding daily currency limit
+	MONEYLOG_WEEKLY_LIMIT_LOSS,				///< Deduction for exceeding weekly currency limit
+	MONEYLOG_TOTAL_LIMIT_LOSS,				///< Deduction for exceeding total currency limit
+	MONEYLOG_CHAT_COST,						///< Chat
+	MONEYLOG_ESCORT,						///< Escort
+	MONEYLOG_BLACK_MARKET,					///< Black market
+	MONEYLOG_MATERIAL,						///< Ore refinement
+	MONEYLOG_BIRTH,							///< Create character
+	MONEYLOG_EXP_MORAL,						///< Convert experience to virtue points
+	MONEYLOG_TEACHER_REWARD,				///< Mentor reward
+	MONEYLOG_STUDENT_REWARD,				///< Student reward
 
 	MONEYLOG_BT_BEGIN = 10000,
-	MONEYLOG_BT_01,							///< 策划自定义类型01
-	MONEYLOG_BT_02,							///< 策划自定义类型02
-	MONEYLOG_BT_03,							///< 策划自定义类型03
-	MONEYLOG_BT_04,							///< 策划自定义类型04
-	MONEYLOG_BT_05,							///< 策划自定义类型05
-	MONEYLOG_BT_06,							///< 策划自定义类型06
-	MONEYLOG_BT_07,							///< 策划自定义类型07
-	MONEYLOG_BT_08,							///< 策划自定义类型08
-	MONEYLOG_BT_09,							///< 策划自定义类型09
-	MONEYLOG_BT_10,							///< 策划自定义类型10
-	MONEYLOG_BT_11,							///< 策划自定义类型11
-    MONEYLOG_BT_12,							///< 策划自定义类型12
-    MONEYLOG_BT_13,							///< 策划自定义类型13
-    MONEYLOG_BT_14,							///< 策划自定义类型14
-    MONEYLOG_BT_15,							///< 策划自定义类型15
-    MONEYLOG_BT_16,							///< 策划自定义类型16
-    MONEYLOG_BT_17,							///< 策划自定义类型17
-    MONEYLOG_BT_18,							///< 策划自定义类型18
-    MONEYLOG_BT_19,							///< 策划自定义类型19
-    MONEYLOG_BT_20,							///< 策划自定义类型20
+	MONEYLOG_BT_01,							///< Designer-defined type 01
+	MONEYLOG_BT_02,							///< Designer-defined type 02
+	MONEYLOG_BT_03,							///< Designer-defined type 03
+	MONEYLOG_BT_04,							///< Designer-defined type 04
+	MONEYLOG_BT_05,							///< Designer-defined type 05
+	MONEYLOG_BT_06,							///< Designer-defined type 06
+	MONEYLOG_BT_07,							///< Designer-defined type 07
+	MONEYLOG_BT_08,							///< Designer-defined type 08
+	MONEYLOG_BT_09,							///< Designer-defined type 09
+	MONEYLOG_BT_10,							///< Designer-defined type 10
+	MONEYLOG_BT_11,							///< Designer-defined type 11
+    MONEYLOG_BT_12,							///< Designer-defined type 12
+    MONEYLOG_BT_13,							///< Designer-defined type 13
+    MONEYLOG_BT_14,							///< Designer-defined type 14
+    MONEYLOG_BT_15,							///< Designer-defined type 15
+    MONEYLOG_BT_16,							///< Designer-defined type 16
+    MONEYLOG_BT_17,							///< Designer-defined type 17
+    MONEYLOG_BT_18,							///< Designer-defined type 18
+    MONEYLOG_BT_19,							///< Designer-defined type 19
+    MONEYLOG_BT_20,							///< Designer-defined type 20
 
     MONEYLOG_TOTAL,							///< 
 };
@@ -208,19 +208,19 @@ enum EItemActionType
 enum ITEM_TYPE
 {
     ITEMTYPE_INVALID,
-    ITEMTYPE_USABLE,        ///< 消耗品
-    ITEMTYPE_EQUIP,         ///< 装备
-    ITEMTYPE_MATERIAL,      ///< 材料
-    ITEMTYPE_FORMULA,       ///< 配方
-    ITEMTYPE_SPELLBOOK,     ///< 技能书
-    ITEMTYPE_RUNE,          ///< 符文
-    ITEMTYPE_DAN,			///< 丹药
-    ITEMTYPE_SOUL,          ///< 灵魂
-    ITEMTYPE_MISC,          ///< 其他
-    ITEMTYPE_QUEST,         ///< 任务
-    ITEMTYPE_DEPOSIT,       ///< 储值
-    ITEMTYPE_RECOVER,       ///< 自动恢复
-    ITEMTYPE_RMB,           ///< 商城
+    ITEMTYPE_USABLE,        ///< Consumable
+    ITEMTYPE_EQUIP,         ///< Equipment
+    ITEMTYPE_MATERIAL,      ///< Material
+    ITEMTYPE_FORMULA,       ///< Recipe
+    ITEMTYPE_SPELLBOOK,     ///< Spellbook
+    ITEMTYPE_RUNE,          ///< Rune
+    ITEMTYPE_DAN,			///< Pill
+    ITEMTYPE_SOUL,          ///< Soul
+    ITEMTYPE_MISC,          ///< Other
+    ITEMTYPE_QUEST,         ///< Quest
+    ITEMTYPE_DEPOSIT,       ///< Stored value
+    ITEMTYPE_RECOVER,       ///< Automatic recovery
+    ITEMTYPE_RMB,           ///< Cash shop
     ITEMTYPE_TOTAL,
 };
 
@@ -228,50 +228,50 @@ enum ITEM_SUBTYPE
 {
     ITEMSUBTYPE_INVALID,
 
-    ITEMSUBTYPE_USABLE_FOOD = 1,        ///< 食物
-    ITEMSUBTYPE_USABLE_DRINK,           ///< 饮料
-    ITEMSUBTYPE_USABLE_POTION,          ///< 药水
-    ITEMSUBTYPE_USABLE_FLASK,           ///< 合剂
-    ITEMSUBTYPE_USABLE_SCROLL,          ///< 卷轴
-    ITEMSUBTYPE_USABLE_MISC,            ///< 其他
-    ITEMSUBTYPE_USABLE_GREY_POWDER,     ///< 灰色药粉
-    ITEMSUBTYPE_USABLE_YELLOW_POWDER,   ///< 黄色药粉
-    ITEMSUBTYPE_USABLE_RUNE,            ///< 护身符
+    ITEMSUBTYPE_USABLE_FOOD = 1,        ///< Food
+    ITEMSUBTYPE_USABLE_DRINK,           ///< Drink
+    ITEMSUBTYPE_USABLE_POTION,          ///< Potion
+    ITEMSUBTYPE_USABLE_FLASK,           ///< Flask
+    ITEMSUBTYPE_USABLE_SCROLL,          ///< Scroll
+    ITEMSUBTYPE_USABLE_MISC,            ///< Other
+    ITEMSUBTYPE_USABLE_GREY_POWDER,     ///< Gray powder
+    ITEMSUBTYPE_USABLE_YELLOW_POWDER,   ///< Yellow powder
+    ITEMSUBTYPE_USABLE_RUNE,            ///< Amulet
 
-    ITEMSUBTYPE_EQUIP_WEAPON = 1,       ///< 武器
-    ITEMSUBTYPE_EQUIP_HAT,              ///< 帽子
-    ITEMSUBTYPE_EQUIP_SHOULDER_ARMOR,   ///< 肩甲
-    ITEMSUBTYPE_EQUIP_CHEST_ARMOR,      ///< 胸甲
-    ITEMSUBTYPE_EQUIP_WRIST_ARMOR,      ///< 护腕
-    ITEMSUBTYPE_EQUIP_BELT,             ///< 腰带
-    ITEMSUBTYPE_EQUIP_SHOES,            ///< 鞋子
-    ITEMSUBTYPE_EQUIP_CLOAK,            ///< 披风
-    ITEMSUBTYPE_EQUIP_NECKLACE,         ///< 项链
-    ITEMSUBTYPE_EQUIP_RING,             ///< 戒指
-    ITEMSUBTYPE_EQUIP_BRACELET,         ///< 手镯
+    ITEMSUBTYPE_EQUIP_WEAPON = 1,       ///< Weapon
+    ITEMSUBTYPE_EQUIP_HAT,              ///< Hat
+    ITEMSUBTYPE_EQUIP_SHOULDER_ARMOR,   ///< Shoulder armor
+    ITEMSUBTYPE_EQUIP_CHEST_ARMOR,      ///< Chest armor
+    ITEMSUBTYPE_EQUIP_WRIST_ARMOR,      ///< Wrist armor
+    ITEMSUBTYPE_EQUIP_BELT,             ///< Belt
+    ITEMSUBTYPE_EQUIP_SHOES,            ///< Shoes
+    ITEMSUBTYPE_EQUIP_CLOAK,            ///< Cloak
+    ITEMSUBTYPE_EQUIP_NECKLACE,         ///< Necklace
+    ITEMSUBTYPE_EQUIP_RING,             ///< Ring
+    ITEMSUBTYPE_EQUIP_BRACELET,         ///< Bracelet
 
-    ITEMSUBTYPE_MATERIAL_REFINE = 1,    ///< 强化材料
-    ITEMSUBTYPE_MATERIAL_COMPOSE,       ///< 合成材料
-    ITEMSUBTYPE_MATERIAL_WEAPON_LEVELUP,///< 武器升级材料
-    ITEMSUBTYPE_MATERIAL_MISC,          ///< 无用材料
+    ITEMSUBTYPE_MATERIAL_REFINE = 1,    ///< Enhancement material
+    ITEMSUBTYPE_MATERIAL_COMPOSE,       ///< Crafting material
+    ITEMSUBTYPE_MATERIAL_WEAPON_LEVELUP,///< Weapon upgrade material
+    ITEMSUBTYPE_MATERIAL_MISC,          ///< Miscellaneous material
 
     ITEMSUBTYPE_FORMULA_DEFAULT = 1,
 
-    ITEMSUBTYPE_SPELLBOOK_PLAYER = 1,   ///< 玩家技能书
-    ITEMSUBTYPE_SPELLBOOK_PET,          ///< 宠物技能书
+    ITEMSUBTYPE_SPELLBOOK_PLAYER = 1,   ///< Player spellbook
+    ITEMSUBTYPE_SPELLBOOK_PET,          ///< Pet spellbook
 
     ITEMSUBTYPE_RUNE_DEFAULT = 1,
     ITEMSUBTYPE_DAN_DEFAULT = 1,
     ITEMSUBTYPE_SOUL_DEFAULT = 1,
 
     ITEMSUBTYPE_MISC_DEFAULT = 1,
-    ITEMSUBTYPE_MISC_PET,               ///< 宠物
-    ITEMSUBTYPE_MISC_MOUNT,             ///< 坐骑
+    ITEMSUBTYPE_MISC_PET,               ///< Pet
+    ITEMSUBTYPE_MISC_MOUNT,             ///< Mount
 
     ITEMSUBTYPE_QUEST_DEFAULT = 1,
 
-    ITEMSUBTYPE_DEPOSIT_SOUL = 1,       ///< 魂瓶
-    ITEMSUBTYPE_DEPOSIT_EXP,            ///< 经验瓶
+    ITEMSUBTYPE_DEPOSIT_SOUL = 1,       ///< Soul bottle
+    ITEMSUBTYPE_DEPOSIT_EXP,            ///< Experience bottle
 
     ITEMSUBTYPE_RECOVER_HP = 1,
     ITEMSUBTYPE_RECOVER_MP,
@@ -283,137 +283,137 @@ enum ITEM_SUBTYPE
 enum WEAPON_TYPE
 {
     WEAPONTYPE_INVALID = -1,
-    WEAPONTYPE_HAND,            ///< 未持武器，空手
-    WEAPONTYPE_01,              ///< 单持挥砍类
-    WEAPONTYPE_02,              ///< 单持敲打类
-    WEAPONTYPE_03,              ///< 并持短兵重型类
-    WEAPONTYPE_04,              ///< 并持长柄重型类
-    WEAPONTYPE_05,              ///< 双持重型类
-    WEAPONTYPE_06,              ///< 并持东方长柄类
-    WEAPONTYPE_07,              ///< 双持手套类
-    WEAPONTYPE_08,              ///< 双持短兵类
-    WEAPONTYPE_09,              ///< 双持链刃类
-    WEAPONTYPE_10,              ///< 双持手弩类
-    WEAPONTYPE_11,              ///< 弩
-    WEAPONTYPE_12,              ///< 弓
-    WEAPONTYPE_13,              ///< 单持短柄类
-    WEAPONTYPE_14,              ///< 法杖
-    WEAPONTYPE_15,              ///< 剑(单持东方短兵)
-    WEAPONTYPE_16,              ///< 扇
-    WEAPONTYPE_17,              ///< 棍
+    WEAPONTYPE_HAND,            ///< Unarmed
+    WEAPONTYPE_01,              ///< One-handed slashing weapon
+    WEAPONTYPE_02,              ///< One-handed blunt weapon
+    WEAPONTYPE_03,              ///< Two-handed heavy short weapon
+    WEAPONTYPE_04,              ///< Two-handed heavy polearm
+    WEAPONTYPE_05,              ///< Dual-wield heavy weapons
+    WEAPONTYPE_06,              ///< Two-handed eastern polearm
+    WEAPONTYPE_07,              ///< Dual-wield gloves
+    WEAPONTYPE_08,              ///< Dual-wield short weapons
+    WEAPONTYPE_09,              ///< Dual-wield chain blades
+    WEAPONTYPE_10,              ///< Dual-wield hand crossbows
+    WEAPONTYPE_11,              ///< Crossbow
+    WEAPONTYPE_12,              ///< Bow
+    WEAPONTYPE_13,              ///< One-handed short weapon
+    WEAPONTYPE_14,              ///< Staff
+    WEAPONTYPE_15,              ///< Sword (one-handed eastern short weapon)
+    WEAPONTYPE_16,              ///< Fan
+    WEAPONTYPE_17,              ///< Rod
     WEAPONTYPE_TOTAL
 };
 
 enum ARMOR_TYPE
 {
     ARMORTYPE_INVALID = -1,
-    ARMORTYPE_NO_ARMOR,         ///< 未穿装备，赤膊
-    ARMORTYPE_CLOTH,            ///< 布甲
-    ARMORTYPE_LEATHER,          ///< 皮甲
-    ARMORTYPE_CHAIN,            ///< 锁甲
-    ARMORTYPE_PLATE,            ///< 板甲
-    ARMORTYPE_BACK,             ///< 披风
-    ARMORTYPE_JEWELRY,          ///< 首饰
-    ARMORTYPE_AVATAR            ///< 时装
+    ARMORTYPE_NO_ARMOR,         ///< Unarmored
+    ARMORTYPE_CLOTH,            ///< Cloth armor
+    ARMORTYPE_LEATHER,          ///< Leather armor
+    ARMORTYPE_CHAIN,            ///< Mail armor
+    ARMORTYPE_PLATE,            ///< Plate armor
+    ARMORTYPE_BACK,             ///< Cloak
+    ARMORTYPE_JEWELRY,          ///< Jewelry
+    ARMORTYPE_AVATAR            ///< Costume
 };
 
 enum ITEM_COLOR
 {
     ITEMCOLOR_INVALID = -1,
-    ITEMCOLOR_WHITE,            ///< 白色
-    ITEMCOLOR_GREEN,            ///< 绿色
-    ITEMCOLOR_BLUE,             ///< 蓝色
-    ITEMCOLOR_PURPLE,           ///< 紫色
-    ITEMCOLOR_ORANGE,           ///< 橙色
-    ITEMCOLOR_RESERVED1,        ///< 预留1
-    ITEMCOLOR_RESERVED2,        ///< 预留2
+    ITEMCOLOR_WHITE,            ///< White
+    ITEMCOLOR_GREEN,            ///< Green
+    ITEMCOLOR_BLUE,             ///< Blue
+    ITEMCOLOR_PURPLE,           ///< Purple
+    ITEMCOLOR_ORANGE,           ///< Orange
+    ITEMCOLOR_RESERVED1,        ///< Reserved 1
+    ITEMCOLOR_RESERVED2,        ///< Reserved 2
     ITEMCOLOR_TOTAL
 };
 
 enum ITEM_COMBAT_TYPE
 {
-    ITEMCOMBAT_BOTH,    ///< 道具使用不关心战斗状态
-    ITEMCOMBAT_IN,      ///< 道具必须在战斗状态下使用
-    ITEMCOMBAT_OUT      ///< 道具必须在非战斗状态下使用
+    ITEMCOMBAT_BOTH,    ///< Item can be used regardless of combat state
+    ITEMCOMBAT_IN,      ///< Item must be used in combat
+    ITEMCOMBAT_OUT      ///< Item must be used out of combat
 };
 
 enum DUR_TYPE
 {
-    DURTYPE_NONE,   ///< 无耐久
-    DURTYPE_EQUIP,  ///< 装备耐久
-    DURTYPE_STACK,  ///< 物品堆叠
-    DURTYPE_USE,    ///< 使用次数
-    DURTYPE_DEPOSIT,///< 储值
-    DURTYPE_RECOVER,///< 自动恢复
-    DURTYPE_PURITY  ///< 纯度
+    DURTYPE_NONE,   ///< No durability
+    DURTYPE_EQUIP,  ///< Equipment durability
+    DURTYPE_STACK,  ///< Stack items
+    DURTYPE_USE,    ///< Number of uses
+    DURTYPE_DEPOSIT,///< Stored value
+    DURTYPE_RECOVER,///< Automatic recovery
+    DURTYPE_PURITY  ///< Purity
 };
 
 #define EQUIP_DUR_MULTIPLIER (1000)
 
 enum BIND_TYPE
 {
-    BINDTYPE_NONE,      ///< 不绑定
-    BINDTYPE_BOU,       ///< 使用绑定, bind on use
-    BINDTYPE_BOE,       ///< 装备绑定, bind on equip
-    BINDTYPE_BOP,       ///< 拾取绑定, bind on pick up
-    BINDTYPE_BOT,       ///< 交易绑定, bind on trade
-    BINDTYPE_BINDED = 10///< 已绑定
+    BINDTYPE_NONE,      ///< Not bound
+    BINDTYPE_BOU,       ///< Bind on use
+    BINDTYPE_BOE,       ///< Bind on equip
+    BINDTYPE_BOP,       ///< Bind on pickup
+    BINDTYPE_BOT,       ///< Bind on trade
+    BINDTYPE_BINDED = 10///< Bound
 };
 
 enum PK_DROP_TYPE
 {
-    PKDROP_BY_CHANCE,   ///< 随机
-    PKDROP_NOT_DROP,    ///< 肯定不会掉落
-    PKDROP_MUST_DROP,   ///< 肯定会掉落
+    PKDROP_BY_CHANCE,   ///< Random
+    PKDROP_NOT_DROP,    ///< Never drops
+    PKDROP_MUST_DROP,   ///< Always drops
 };
 
 enum IDENTIFY_TYPE
 {
-    IDENTIFY_TYPE_NO,       ///< 未鉴定
-    IDENTIFY_TYPE_YES,      ///< 已鉴定
-    IDENTIFY_TYPE_LEVEL_UP, ///< 已鉴定，等待试刀
+    IDENTIFY_TYPE_NO,       ///< Unidentified
+    IDENTIFY_TYPE_YES,      ///< Identified
+    IDENTIFY_TYPE_LEVEL_UP, ///< Identified; awaiting weapon trial
 };
 
 enum CONTAINER_SLOT
 {
-    CONSLOT_EQUIPPED,       ///< 已装备物品
-    CONSLOT_DEFAULT,        ///< 默认包裹
-    CONSLOT_BANK,           ///< 银行
-    CONSLOT_HERO_EQUIPPED,  ///< 英雄已装备物品
-    CONSLOT_HERO_EQUIPMENT, ///< 英雄包裹
-    CONSLOT_DEPOSIT,        ///< 储值栏
+    CONSLOT_EQUIPPED,       ///< Equipped items
+    CONSLOT_DEFAULT,        ///< Default bag
+    CONSLOT_BANK,           ///< Bank
+    CONSLOT_HERO_EQUIPPED,  ///< Hero equipped items
+    CONSLOT_HERO_EQUIPMENT, ///< Hero bag
+    CONSLOT_DEPOSIT,        ///< Stored-value slots
     CONSLOT_RECOVER,
     CONSLOT_COUNT,
 
 	///<  client only
-	CONSLOT_P2P_MY,         ///< p2p交易我的栏位
-	CONSLOT_P2P_TG,         ///< p2p交易对方的栏位
+	CONSLOT_P2P_MY,         ///< My P2P trade slots
+	CONSLOT_P2P_TG,         ///< Other player’s P2P trade slots
 	CONSLOT_STALL_SETTING,  ///< 
 	CONSLOT_STALL_BUY,      ///< 
-    CONSLOT_PROFILE,        ///< 查看他人信息
-	CONSLOT_GUILD_BANK,		///< 公会仓库
+    CONSLOT_PROFILE,        ///< View another player’s information
+	CONSLOT_GUILD_BANK,		///< Guild storage
 
     ///<  server only
-    CONSLOT_WEAPON_LEVEL_UP = 100,///< 炼刀
+    CONSLOT_WEAPON_LEVEL_UP = 100,///< Weapon refinement
 };
 
 enum NORMAL_EQUIP_SLOT
 {
-    //部位名         部位名中文       可装备物品       可装备物品英文
+    //Slot                         Equipable item
     //------------------------------------------------------------
-    NES_MAIN_HAND,  ///< 手部          武器            Weapon
-    NES_BODY,       ///< 身体          衣服或铠甲       Chest Armor
-    NES_BACK,       ///< 背部          披风            Cloak
-    NES_HEAD,       ///< 头部          帽子            Hat
-    NES_SHOULDER,   ///< 肩部          护肩            Shoulder Armor
-    NES_ARM,        ///< 腕部          护腕            Wrist Armor
-    NES_WAIST,      ///< 腰部          腰带            Belt
-    NES_FOOT,       ///< 脚部          鞋子            Shoes
-    NES_NECK,       ///< 颈部          项链            Necklace
-    NES_FINGER_L,   ///< 左手指        戒指            Ring
-    NES_FINGER_R,   ///< 右手指        戒指            Ring
-    NES_WRIST_L,    ///< 左手腕        手镯            Bracelet
-    NES_WRIST_R,    ///< 右手腕        手镯            Bracelet
+    NES_MAIN_HAND,  ///< Hand                         Weapon
+    NES_BODY,       ///< Body                         Chest armor
+    NES_BACK,       ///< Back                         Cloak
+    NES_HEAD,       ///< Head                         Hat
+    NES_SHOULDER,   ///< Shoulder                     Shoulder armor
+    NES_ARM,        ///< Arm                          Wrist armor
+    NES_WAIST,      ///< Waist                        Belt
+    NES_FOOT,       ///< Foot                         Shoes
+    NES_NECK,       ///< Neck                         Necklace
+    NES_FINGER_L,   ///< Left finger                  Ring
+    NES_FINGER_R,   ///< Right finger                 Ring
+    NES_WRIST_L,    ///< Left wrist                   Bracelet
+    NES_WRIST_R,    ///< Right wrist                  Bracelet
     NES_TOTAL,
     NES_VISIBLE_TOTAL = NES_BACK + 1
 };
@@ -452,12 +452,12 @@ enum EStallState
 #define MAX_TRADE_SLOT (6)
 enum ETradeState
 {
-    etsFree,            ///< 未交易
-    etsAsking,          ///< 申请
-    etsBeingAsked,      ///< 被申请
-    etsTrading,         ///< 交易中
-    etsLocked,          ///< 已锁定
-    etsConfirmed,       ///< 已确认
+    etsFree,            ///< Not trading
+    etsAsking,          ///< Requesting
+    etsBeingAsked,      ///< Request received
+    etsTrading,         ///< Trading
+    etsLocked,          ///< Locked
+    etsConfirmed,       ///< Confirmed
     etsSuccess
 };
 
@@ -491,10 +491,10 @@ enum EOrderType
 enum EOrderStatus
 {
     eosInvalid,
-    eosEffective,   //有效单
-    eosCanceled,    //主动撤单
-    eosExpired,     //超时撤单
-    eosFinished,    //完全成交
+    eosEffective,   //Active order
+    eosCanceled,    //Canceled by user
+    eosExpired,     //Canceled after timeout
+    eosFinished,    //Fully filled
     eosTotal,
 };
 
@@ -505,9 +505,9 @@ enum EBlackMarketLimitType
     ebmltServer
 };
 
-#define MAX_RUNE_COUNT          (6)         ///<  武器上的铭文孔数量，最多6个
+#define MAX_RUNE_COUNT          (6)         ///<  Inscription sockets on a weapon, maximum 6
 
-#define MAX_SOCKET_COUNT        (3)         ///<  灵魂插槽，每件装备最多3个
+#define MAX_SOCKET_COUNT        (3)         ///<  Soul sockets per equipment item, maximum 3
 
 struct DROP_CHANCE_DATA
 {
@@ -522,36 +522,36 @@ static const INT32 RUNE_SELL_PRICE = 1;
 
 static const UINT8 INVALID_ITEM_SLOT = 255;
 
-static const INT32 TRADE_TAX = 700; ///< 万分比，即7%
+static const INT32 TRADE_TAX = 700; ///< In ten-thousandths, i.e. 7%
 
 static const INT8 INIT_CONTAINER_SIZE[CONSLOT_COUNT] = { NES_TOTAL, 32, 16, NES_TOTAL, 16, DEPOSIT_ITEM_SLOT_TOTAL, 1 };
 static const INT8 MAX_CONTAINER_SIZE[CONSLOT_COUNT] = { NES_TOTAL, 64, 72, NES_TOTAL, 16, DEPOSIT_ITEM_SLOT_TOTAL, 1 };
 static const INT32 GM_MAX_ITEM_COUNT = NES_TOTAL + 64 + 72 + NES_TOTAL + 16 + DEPOSIT_ITEM_SLOT_TOTAL + 1;
 
-static const INT32 MAX_RANDOM_ATTR_COUNT = 4;   ///< 物品上的随机属性，最多4条
+static const INT32 MAX_RANDOM_ATTR_COUNT = 4;   ///< Random attributes on an item, maximum 4
 
-static const UINT8 MAX_SOUL_UPGRADE_SRC = 5;    ///< 灵魂升级最多吞噬5个其他灵魂
+static const UINT8 MAX_SOUL_UPGRADE_SRC = 5;    ///< Soul upgrades consume at most 5 other souls
 
 static const UINT8 MAX_REFINE_COST_COUNT = 3;
 static const UINT8 MAX_REFINE_ATTR_COUNT = 5;
 
-static const UINT8 MAX_SET_PART_COUNT = 8; ///< 套装部件最大数量
-static const UINT8 MAX_SET_ATTR_COUNT = 8; ///< 套装属性最大数量
+static const UINT8 MAX_SET_PART_COUNT = 8; ///< Maximum set pieces
+static const UINT8 MAX_SET_ATTR_COUNT = 8; ///< Maximum set attributes
 
-static const INT32 RUNE_ITEM_COST = 10000;               ///< 铭文洗练花费
-static const INT32 RUNE_ITEMID_WARRIOR_1 = 21001;       ///< 铭文洗练消耗铭文石
-static const INT32 RUNE_ITEMID_MAGE_1 = 21002;          ///< 铭文洗练消耗铭文石
-static const INT32 RUNE_ITEMID_TAOIST_1 = 21003;        ///< 铭文洗练消耗铭文石
-static const INT32 RUNE_ITEMID_WARRIOR_2 = 21011;       ///< 铭文洗练消耗铭文石
-static const INT32 RUNE_ITEMID_MAGE_2 = 21012;          ///< 铭文洗练消耗铭文石
-static const INT32 RUNE_ITEMID_TAOIST_2 = 21013;        ///< 铭文洗练消耗铭文石
+static const INT32 RUNE_ITEM_COST = 10000;               ///< Inscription refinement cost
+static const INT32 RUNE_ITEMID_WARRIOR_1 = 21001;       ///< Inscription stones consumed by refinement
+static const INT32 RUNE_ITEMID_MAGE_1 = 21002;          ///< Inscription stones consumed by refinement
+static const INT32 RUNE_ITEMID_TAOIST_1 = 21003;        ///< Inscription stones consumed by refinement
+static const INT32 RUNE_ITEMID_WARRIOR_2 = 21011;       ///< Inscription stones consumed by refinement
+static const INT32 RUNE_ITEMID_MAGE_2 = 21012;          ///< Inscription stones consumed by refinement
+static const INT32 RUNE_ITEMID_TAOIST_2 = 21013;        ///< Inscription stones consumed by refinement
 
-static const UINT8 MAX_DECOMPOSE_ITEM_COUNT = 3; ///< 分解装备最多产生3件物品
-static const UINT8 MAX_COMPOSE_ITEM_COUNT = 6;   ///< 合成装备最多需要6种原料
+static const UINT8 MAX_DECOMPOSE_ITEM_COUNT = 3; ///< Equipment decomposition produces at most 3 items
+static const UINT8 MAX_COMPOSE_ITEM_COUNT = 6;   ///< Equipment crafting requires at most 6 material types
 
-static const INT32 SIGN_ITEM_COST = 100; ///< 装备签名消耗金币
-static const INT32 AUCTION_FEE_RATE = 80;///< 拍卖保管费退回80%
-static const INT32 AUCTION_TAX = 10;     ///< 拍卖税5%
+static const INT32 SIGN_ITEM_COST = 100; ///< Gold cost to sign equipment
+static const INT32 AUCTION_FEE_RATE = 80;///< Refund 80% of the auction storage fee
+static const INT32 AUCTION_TAX = 10;     ///< Auction tax 5%
 static const INT32 MAX_AUCTION_SELLING_ITEMS = 10;
 static const INT32 MAX_AUCTION_BUYING_ITEMS = 10;
 

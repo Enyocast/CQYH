@@ -9,28 +9,28 @@ enum RANK_LIST
 	rlInvalid = -1,
     rlBegin,
 
-    // 个人排行榜
+    // Individual rankings
     rlRoleBegin = rlBegin,
 
-	rlLevel = rlRoleBegin,			// 等级排行榜
+	rlLevel = rlRoleBegin,			// Level rankings
 	rlLevelWarrior,
 	rlLevelMage,
 	rlLevelTaoist,
 	rlLevelRogue,
 	rlLevelArcher,	
 
-	rlPower,					    // 战斗力排行榜
+	rlPower,					    // Combat power rankings
 	rlPowerWarrior,
 	rlPowerMage,
 	rlPowerTaoist,
 	rlPowerRogue,
 	rlPowerArcher,	
 
-	rlMoney,					    // 财富排行榜
-	rlAchievement,				    // 成就点数排行榜
-	rlMaster,					    // 名师值排行榜
-	rlPkValue,					    // pk值排行榜
-	rlTotalKillCount,			    // 总杀人数
+	rlMoney,					    // Wealth rankings
+	rlAchievement,				    // Achievement point rankings
+	rlMaster,					    // Mentor point rankings
+	rlPkValue,					    // PvP value rankings
+	rlTotalKillCount,			    // Total kill count
 
 	rlActivity01,
 	rlActivity02,
@@ -39,24 +39,24 @@ enum RANK_LIST
 
     rlRoleEnd,
 
-	// 家族排行榜
+	// Guild rankings
     rlGuildBegin = rlRoleEnd,
 
-    rlGuild_Level = rlGuildBegin,   // 家族等级排行榜
-	rlGuild_Money,				    // 家族金钱排行榜
-	rlGuild_Resource_Herb,		    // 家族资源01
-	rlGuild_Resource_Wood,		    // 家族资源02
-	rlGuild_Resource_Crystal,	    // 家族资源03
-	rlGuild_Resource_Silver,	    // 家族资源04
-	rlGuild_Pow,					// 家族总战斗力
+    rlGuild_Level = rlGuildBegin,   // Guild level rankings
+	rlGuild_Money,				    // Guild money rankings
+	rlGuild_Resource_Herb,		    // Guild resource 01
+	rlGuild_Resource_Wood,		    // Guild resource 02
+	rlGuild_Resource_Crystal,	    // Guild resource 03
+	rlGuild_Resource_Silver,	    // Guild resource 04
+	rlGuild_Pow,					// Total guild combat power
 
     rlGuildEnd,
 
-	// 竞技场排行榜
+	// Arena rankings
  //   rlArenaBegin = rlGuildEnd,
 
- //   rlArenaScore = rlArenaBegin,    //竞技场5v5积分
-	//rlRoleArenaScore,			    // 竞技场1v1积分排行榜
+ //   rlArenaScore = rlArenaBegin,    //Arena 5v5 points
+	//rlRoleArenaScore,			    // Arena 1v1 points rankings
 
  //   rlArenaEnd,
 

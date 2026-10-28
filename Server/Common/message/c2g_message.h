@@ -29,7 +29,7 @@ namespace ExternalMessage
         c2g_ping,
 		c2g_revive,
 		c2g_cancel_cutscene,
-		c2g_role_teleport,          // 可能是传送戒指触发
+		c2g_role_teleport,          // Possibly triggered by a teleport ring
 		c2g_query_role_location,
 		c2g_recall_team_member,
 		c2g_role_mine,
@@ -42,7 +42,7 @@ namespace ExternalMessage
 		c2g_role_cancel_cast,
 		c2g_learn_spell,
 		c2g_role_adjust_target_point,
-		c2g_change_pk_mode,              // 切换攻击模式
+		c2g_change_pk_mode,              // Change attack mode
 		c2g_equip_spell,
 		c2g_combat_pose_switch,
 		c2g_cancel_aura,
@@ -50,18 +50,18 @@ namespace ExternalMessage
 		c2g_clear_spell_cache,
 
 		// item
-		c2g_move_item,	  // 43, 移动物品
-		c2g_use_item,	  // 44, 使用物品
-		c2g_split_item,	  // 45, 拆解物品
-		c2g_delete_item,  // 46, 丢弃物品
-		c2g_pickup_item,  // 47, 拾取物品
+		c2g_move_item,	  // 43, Move item
+		c2g_use_item,	  // 44, Use item
+		c2g_split_item,	  // 45, Split item
+		c2g_delete_item,  // 46, Discard item
+		c2g_pickup_item,  // 47, Pick up item
 		c2g_buy_item,
 		c2g_sell_item,
 		c2g_view_sold_items,
 		c2g_buy_back_item,
-		c2g_repair_item,				// 修理物品
-        c2g_repair_all_equipped_item,   // 商店修理全身
-        c2g_special_repair_item,        // 特殊修理
+		c2g_repair_item,				// Repair item
+        c2g_repair_all_equipped_item,   // Repair all equipped items at a shop
+        c2g_special_repair_item,        // Special repair
 		c2g_refine,						// obseleted
 		c2g_buy_container_slot,
         c2g_organize_bag,
@@ -217,19 +217,19 @@ namespace ExternalMessage
         // shield list
         c2g_unshield,
 
-        // 融灵
+        // Soul fusion
         c2g_upgrade_soul,    // 
-        c2g_add_soul,		 // 镶嵌宝石
-        c2g_remove_soul,	 // 拆除宝石
+        c2g_add_soul,		 // Insert gem
+        c2g_remove_soul,	 // Remove gem
 
-        // 铭文
-        c2g_rune_item,       // 普通铭文洗练
+        // Inscription
+        c2g_rune_item,       // Normal inscription refinement
 
-        // 装备升级
+        // Equipment upgrade
         c2g_weapon_level_up_put_in,
         c2g_weapon_level_up_take_out,
 
-        // 装备分解合成
+        // Equipment decomposition and crafting
         c2g_decompose,
         c2g_compose,
 
@@ -265,7 +265,7 @@ namespace ExternalMessage
         c2g_black_market_buy,
 
         // gamble
-        c2g_gamble,    // 已经废弃
+        c2g_gamble,    // Deprecated
 
         // exercise
         c2g_exercise_info,
@@ -273,29 +273,29 @@ namespace ExternalMessage
         c2g_get_exercise_exp,
 
 		// anti-cheat
-		c2g_jigsaw_answer,    // 回答挂机问题
+		c2g_jigsaw_answer,    // Answer the AFK question
 
-        // 升级武器立即取回
+        // Immediately retrieve upgraded weapon
         c2g_weapon_level_up_take_out_immediately,
 
-        // 技能书重著
-        c2g_spell_book_gamble,    // 187, 技能书重著
+        // Spellbook reforging
+        c2g_spell_book_gamble,    // 187, Spellbook reforging
 
         c2g_arena_reward,
 
-        c2g_leave_guild,			   // 189, 退出公会
-        c2g_query_guild_war_record,    // 190, 查询公会战记录
+        c2g_leave_guild,			   // 189, Leave guild
+        c2g_query_guild_war_record,    // 190, Query guild war records
 
-        c2g_rune_item_advance,      	// 铭文高级洗练
-        c2g_rune_item_advance_confirm,  // 确认高级洗练
+        c2g_rune_item_advance,      	// Advanced inscription refinement
+        c2g_rune_item_advance_confirm,  // Confirm advanced refinement
 
         c2g_potion_gamble,
-        c2g_gamble_advance,   	  // 194, 装备重著
+        c2g_gamble_advance,   	  // 194, Equipment reforging
 
-        c2g_sell_resource_item,   // 一键出售资源包物品?
+        c2g_sell_resource_item,   // Sell resource bag items in one click?
 
-		c2g_dice_bet,			// 取消投点?
-		c2g_lovers_teleprot,    // 夫妻传送?
+		c2g_dice_bet,			// Cancel dice roll?
+		c2g_lovers_teleprot,    // Spouse teleport?
 
 		c2g_message_end = 512,
 	};

@@ -55,16 +55,16 @@ enum SPELL_FLAG_BITS
 	sfbInvalid = -1,
 
 	sfbRoundTableBegin,
-	sfbCrit = sfbRoundTableBegin,	// 暴击 = 0
-	sfbBlock,						// 格挡 = 1
-	sfbDodge,						// 闪避 = 2
-	sfbParry,						// 招架 = 3
-	sfbMiss,						// 未命中 = 4
-	sfbNormal,						// 普通 = 5
+	sfbCrit = sfbRoundTableBegin,	// Critical hit = 0
+	sfbBlock,						// Block = 1
+	sfbDodge,						// Dodge = 2
+	sfbParry,						// Parry = 3
+	sfbMiss,						// Miss = 4
+	sfbNormal,						// Normal = 5
 	sfbRoundTableEnd,
 
-	sfbImmune = sfbRoundTableEnd,	// 免疫 = 6
-	sfbDead,						// 死亡 = 7
+	sfbImmune = sfbRoundTableEnd,	// Immune = 6
+	sfbDead,						// Death = 7
 	sfbEmptyEffect,
 
 	sfbTotal
@@ -74,11 +74,11 @@ enum SPELL_CAST_TYPE
 {
 	spctInvalid = -1,
 
-	spctPassive,     // 被动技能
-	spctActive,	     // 主动技能
-	spctSubSpell,    // 子技能
-	spctDirectly,    // 直接技能
-	spctSwitch,	     // 开关技能/瞬间技能
+	spctPassive,     // Passive spell
+	spctActive,	     // Active spell
+	spctSubSpell,    // Sub-spell
+	spctDirectly,    // Direct spell
+	spctSwitch,	     // Toggle / instant spell
 
 	spctTotal
 };
@@ -87,9 +87,9 @@ enum SPELL_JUDGE_TYPE
 {
 	spjtInvalid = -1,
 
-	spjtDirectly,  // 直接判断
-	spjtPhy,	   // 物理判断
-	spjtMag,	   // 魔法判断
+	spjtDirectly,  // Direct check
+	spjtPhy,	   // Physical check
+	spjtMag,	   // Magic check
 
 	spjtTotal
 };
@@ -131,24 +131,24 @@ enum SPELL_RANGE_TYPE
 {
 	sprtInvalid = -1,
 
-	sprtSingle,			 // 0 单一
-	sprtCircle,			 // 1 圆形
-	sprtSector,			 // 2 扇形
-	sprtArc,			 // 3 弧形
-	sprtRectangle,		 // 4 矩形
-	sprtRearHalfCircle,  // 5 后半圆
+	sprtSingle,			 // 0 Single
+	sprtCircle,			 // 1 Circle
+	sprtSector,			 // 2 Sector
+	sprtArc,			 // 3 Arc
+	sprtRectangle,		 // 4 Rectangle
+	sprtRearHalfCircle,  // 5 Rear semicircle
 
-	sprtGridBegin = sprtRearHalfCircle, // 5  网格范围起始
-	sprtGridLine,						// 6  直线网格
-	sprtGridRect,						// 7  矩形网格
-	sprtGridCross,						// 8  十字形网格
-	sprtGridX,							// 9  X形网格
-	sprtGridU,							// 10 U形网格
-	sprtGridSingle,						// 11 单点网格
-	sprtGridLineTransverse,				// 12 横向直线网格
-	sprtGridMultiLine,					// 13 多重直线网格
+	sprtGridBegin = sprtRearHalfCircle, // 5  Grid range begins
+	sprtGridLine,						// 6  Line grid
+	sprtGridRect,						// 7  Rectangle grid
+	sprtGridCross,						// 8  Cross-shaped grid
+	sprtGridX,							// 9  X-shaped grid
+	sprtGridU,							// 10 U-shaped grid
+	sprtGridSingle,						// 11 Single-point grid
+	sprtGridLineTransverse,				// 12 Horizontal line grid
+	sprtGridMultiLine,					// 13 Multiple-line grid
 
-	sprtGridEnd,						// 14 网格范围结束
+	sprtGridEnd,						// 14 Grid range ends
 
 	sprtTotal = sprtGridEnd,
 };
@@ -261,14 +261,14 @@ enum SPELL_PREPARE_TYPE
 	spptTotal
 };
 
-// 技能取消类型
+// Spell cancellation type
 enum SPELL_CANCEL_TYPE
 {
 	spcltInvalid = -1,
 
-	spcltNone,			   // 无
-	spcltDependOnValue,    // 依赖值
-	spcltInstant,		   // 瞬间
+	spcltNone,			   // None
+	spcltDependOnValue,    // Depends on value
+	spcltInstant,		   // Instant
 
 	spcltTotal,
 };

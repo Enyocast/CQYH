@@ -174,15 +174,15 @@ namespace ROLE_DB_DEF_V_3
 		INT32	nDailyOnlineTime;
 		UINT32	dwPKProtect;
 
-		UINT32	dwGameTimeCard;    // 点卡时间(剩余秒数), 自加代码
+		UINT32	dwGameTimeCard;    // Game time card duration (seconds remaining), added code
 
-		INT32   nRuneNormal_Warrior;    // 普通铭文洗练节点
+		INT32   nRuneNormal_Warrior;    // Normal inscription refinement node
 		INT32   nRuneNormal_Mage;
 		INT32   nRuneNormal_Taoist;
-		INT32   nRuneAdvanced_Warrior;  // 高级铭文洗练节点
+		INT32   nRuneAdvanced_Warrior;  // Advanced inscription refinement node
 		INT32   nRuneAdvanced_Mage;
 		INT32   nRuneAdvanced_Taoist;
-		INT32   nLuckRootCount;         // 祝福油节点
+		INT32   nLuckRootCount;         // Blessing oil node
 
 		INT32	nReserved[505];
 	};
@@ -438,14 +438,14 @@ namespace ROLE_DB_DEF_V_3
 	{
 		/********* overal ********/
 
-		UINT8	byLevel;						// 境界等级
-		INT32	nExp;							// 经验值
+		UINT8	byLevel;						// Spirit level
+		INT32	nExp;							// Experience points
 
-		UINT32	dwExp2PtsRemainTime;			// 剩余转化时间
-		INT32	nMoneyCost;						// 魂转修炼点总消耗金币
+		UINT32	dwExp2PtsRemainTime;			// Remaining conversion time
+		INT32	nMoneyCost;						// Total gold spent converting soul to cultivation points
 
-		UINT32 dwDailyUseMoneyChangeCount;		// 每天使用金币转换次数
-		UINT32 dwNextScanTimer;					// 下次扫描时间(用于每日重置)			
+		UINT32 dwDailyUseMoneyChangeCount;		// Daily number of conversions using gold
+		UINT32 dwNextScanTimer;					// Next scan time (used for daily reset)
 
 		/********* air sea **********/
 
@@ -462,7 +462,7 @@ namespace ROLE_DB_DEF_V_3
 		INT32  nStallContainerSize;
 		INT32  nEquipContainerSize;
 
-		INT32  nProductAirLevel;		// 练气等级
+		INT32  nProductAirLevel;		// Qi cultivation level
 
 		/********* blood sea **********/
 		INT32  nBloodSlot[4][10];	// MAX_BLOODSEA_PAGE MAX_BLOODSEA_SLOT_PER_PAGE

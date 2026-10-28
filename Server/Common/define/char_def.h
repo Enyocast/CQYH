@@ -30,7 +30,7 @@ enum CHAR_MOVE_STATE
 	CMS_TOTAL
 };
 
-// 技能状态
+// Skill state
 enum CHAR_SPELL_STATE
 {
 	cspsInvalid = -1,
@@ -85,19 +85,19 @@ enum CHAR_SPECIES_TYPE
 {
 	spcInvalid = -1,
 
-	spcNone,	   // 无类型
-	spcPlayer,	   // 玩家
-	spcHuman,	   // 人类
-	spcHumanlike,  // 类人生物
-	spcBeast,	   // 野兽
-	spcInsect,	   // 昆虫
-	spcPlant,	   // 植物
-	spcUndead,	   // 亡灵
-	spcMachine,	   // 机械
-	spcDragon,	   // 龙族
-	spcDemon,	   // 恶魔
-	spcElements,   // 元素生物
-	spcBuilding,   // 建筑
+	spcNone,	   // No type
+	spcPlayer,	   // Player
+	spcHuman,	   // Human
+	spcHumanlike,  // Humanoid
+	spcBeast,	   // Beast
+	spcInsect,	   // Insect
+	spcPlant,	   // Plant
+	spcUndead,	   // Undead
+	spcMachine,	   // Machine
+	spcDragon,	   // Dragon
+	spcDemon,	   // Demon
+	spcElements,   // Elemental
+	spcBuilding,   // Building
 
 	spcTotal,
 };
@@ -199,7 +199,7 @@ enum CHAR_REVIVE_TYPE
 	crtTotal,
 };
 
-// 玩家 => login, inrange
+// Player => login, in range
 // Npc => inrange, spawn, revive, NoPerforSpawn
 enum SCENE_OBJECT_APPEAR_TYPE
 {
@@ -250,9 +250,9 @@ enum ENUM_COMBAT_STAT_ENTRY
 };
 
 
-// ========== 新增代码, 自己新增加 枚举
+// ========== Additional code, custom enum
 
-// 铭文洗练节点
+// Inscription refinement node
 enum ROLE_RUNE_ROOT
 {
 	rrrNormal,

@@ -12,13 +12,13 @@
 
 struct SCENE_PHYX_HEADER
 {
-    UINT32    dwTag;        // 文件标识（固定为'phyx'）
-    UINT32    dwVersion;    // 文件版本号
-    INT32     nMaxZoneX;    // 场景X方向最大区域数
-    INT32     nMaxZoneY;    // 场景Y方向最大区域数
-    UINT32    dwZoneCount;  // 总区域数量
-    char      szVolumnScript[MAX_VOLUME_COUNT][MAX_EMBEDDED_SCRIPT_LEN];    // 体积触发脚本
-    INT32     nMaxVolumeTriggerCount[MAX_VOLUME_COUNT];    // 最大体积触发次数
+    UINT32    dwTag;        // File signature (fixed to 'phyx')
+    UINT32    dwVersion;    // File version
+    INT32     nMaxZoneX;    // Maximum number of scene zones along X
+    INT32     nMaxZoneY;    // Maximum number of scene zones along Y
+    UINT32    dwZoneCount;  // Total zone count
+    char      szVolumnScript[MAX_VOLUME_COUNT][MAX_EMBEDDED_SCRIPT_LEN];    // Volume trigger scripts
+    INT32     nMaxVolumeTriggerCount[MAX_VOLUME_COUNT];    // Maximum trigger count per volume
 };
 
 

@@ -1,35 +1,35 @@
 #ifndef _SPIRITLEVEL_DEF_H_
 #define _SPIRITLEVEL_DEF_H_    
 
-// 境界总览
-#define  MAX_EXT2PTS_MULTIPLE				20	// (魂转修炼点一键完成的)金币消耗最大倍数(跟每次转化次数有关)
-#define  MAX_EXP2PTS_THRESHOLD				50	// (魂转修炼点一键完成的)日常最大完成次数
+// Spirit level overview
+#define  MAX_EXT2PTS_MULTIPLE				20	// Maximum gold cost multiplier for one-click soul-to-cultivation conversion (depends on the number of conversions)
+#define  MAX_EXP2PTS_THRESHOLD				50	// Daily completion limit for one-click soul-to-cultivation conversion
 
-// 气海
-#define  MAX_AIRSEA_CONTAINER_SIZE			24	// 气海包裹的大小1
-#define  ORIGINAL_AIRSEA_CONTAINER_SIZE		12	// 初始气海包裹的大小
-#define  MAX_SPIRIT_LEVEL					18	// 境界最大等级	
+// Air sea
+#define  MAX_AIRSEA_CONTAINER_SIZE			24	// Air sea bag size 1
+#define  ORIGINAL_AIRSEA_CONTAINER_SIZE		12	// Initial air sea bag size
+#define  MAX_SPIRIT_LEVEL					18	// Maximum spirit level
 
-#define  MAX_AIR_PROCEDURE					5	// 练气阶段
+#define  MAX_AIR_PROCEDURE					5	// Qi cultivation stages
 
-#define  MAX_AIR_LEVEL						9	// 气的最大等级
-#define  MAX_AIR_NODE						256	// 最大node数目
-#define	 MAX_ATTR_PER_NODE					2	// 每个node所带最大属性数目
+#define  MAX_AIR_LEVEL						9	// Maximum qi level
+#define  MAX_AIR_NODE						256	// Maximum node count
+#define	 MAX_ATTR_PER_NODE					2	// Maximum attributes per node
 
-// 血海
-#define  MAX_DAN_PER_LEVEL					1024 // 每一级丹最多能磕的数目
-#define	 MAX_DAN_TYPE						5	 // 丹药类型种类
-#define  MAX_DAN_LEVEL_PER_TYPE				7	 // 每一级丹的等级
+// Blood sea
+#define  MAX_DAN_PER_LEVEL					1024 // Maximum pills consumable per pill level
+#define	 MAX_DAN_TYPE						5	 // Number of pill types
+#define  MAX_DAN_LEVEL_PER_TYPE				7	 // Pill levels per type
 
 enum SPIRIT_AIR_TYPE
 {
 	spiritInvalid = -1,
-	spiritPower,	// 蛮力
-	spiritSwift,	// 迅捷
-	spiritWise,		// 睿智
-	spiritBody,		// 刚体
-	spiritDivine,	// 神圣
-	spiritKing,		// 万法
+	spiritPower,	// Strength
+	spiritSwift,	// Swiftness
+	spiritWise,		// Wisdom
+	spiritBody,		// Toughness
+	spiritDivine,	// Divinity
+	spiritKing,		// Arcane
 };
 
 #endif  //_SPIRITLEVEL_DEF_H_

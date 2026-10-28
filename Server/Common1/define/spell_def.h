@@ -55,16 +55,16 @@ enum SPELL_FLAG_BITS
 	sfbInvalid = -1,
 
 	sfbRoundTableBegin,
-	sfbCrit = sfbRoundTableBegin,	// 暴击 = 0
-	sfbBlock,						// 格挡 = 1
-	sfbDodge,						// 闪避 = 2
-	sfbParry,						// 招架 = 3
-	sfbMiss,						// 未命中 = 4
-	sfbNormal,						// 普通 = 5
+	sfbCrit = sfbRoundTableBegin,	// Critical hit = 0
+	sfbBlock,						// Block = 1
+	sfbDodge,						// Dodge = 2
+	sfbParry,						// Parry = 3
+	sfbMiss,						// Miss = 4
+	sfbNormal,						// Normal = 5
 	sfbRoundTableEnd,
 
-	sfbImmune = sfbRoundTableEnd,	// 免疫 = 6
-	sfbDead,						// 死亡 = 7
+	sfbImmune = sfbRoundTableEnd,	// Immune = 6
+	sfbDead,						// Death = 7
 	sfbEmptyEffect,
 
 	sfbTotal

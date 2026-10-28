@@ -38,32 +38,32 @@ namespace ExternalMessage
 		c2m_query_line_req,
 
 		// master
-		c2m_master_teacher_ignore,      // 师傅无视or拒绝推送请求师傅信息
-		c2m_master_get_recruit_list,    // 拉取师徒招募榜
-		//c2m_master_apply_recruit,       // 申请招募徒弟
-		//c2m_master_cancel_recruit,      // 取消招募徒弟
-		c2m_master_get_solo_list,       // 拉取没有拜师的玩家列表
+		c2m_master_teacher_ignore,      // Mentor ignores or rejects a request to push mentor information
+		c2m_master_get_recruit_list,    // Fetch mentorship recruitment list
+		//c2m_master_apply_recruit,       // Apply to recruit students
+		//c2m_master_cancel_recruit,      // Cancel student recruitment
+		c2m_master_get_solo_list,       // Fetch players without a mentor
 
-		c2m_master_stud_submit_app,     // 申请拜师
-		c2m_master_agree_stud_app,      // 同意拜师申请
-		c2m_master_refuse_stud_app,     // 师傅拒绝徒弟拜师申请
-		c2m_master_cancel_stud_app,     // 徒弟主动取消拜师申请
+		c2m_master_stud_submit_app,     // Apply for mentorship
+		c2m_master_agree_stud_app,      // Accept a mentorship application
+		c2m_master_refuse_stud_app,     // Mentor rejects student’s application
+		c2m_master_cancel_stud_app,     // Student cancels mentorship application
 
 		c2m_master_teacher_submit_app,
 		c2m_master_agree_teacher_app,
 		c2m_master_refuse_teacher_app,
 		c2m_master_cancel_teacher_app,
 
-		c2m_master_leave_teacher,        // 徒弟叛师
-		c2m_master_fire_stud,           // 师傅开除徒弟
+		c2m_master_leave_teacher,        // Student leaves mentor
+		c2m_master_fire_stud,           // Mentor dismisses student
 
-		c2m_master_info,     // 拉取师徒数据
+		c2m_master_info,     // Fetch mentorship data
 
 		c2m_master_cz,
 		c2m_master_grad,
 
 
-		//c2m_master_cong_level_up,  // 恭喜升级
+		//c2m_master_cong_level_up,  // Congratulate level-up
 
 		// mail
 		c2m_mail_write,
@@ -78,42 +78,42 @@ namespace ExternalMessage
 		c2m_join_battle_confirm_ack,		// obsoleted
 
 		// guild
-		c2m_query_guild_name,			    // 查询公会名称
-		c2m_view_guild_list,			    // 查看公会列表
-		c2m_more_guild_info,			    // 更多公会信息
-		c2m_find_guild,					    // 找到公会
-		c2m_apply_to_join_guild,		    // 申请加入公会
-		c2m_get_apply_guild_list,		    // 获取申请公会名单
-		c2m_revert_guild_apply,			    // 恢复公会申请
-		c2m_invite_to_join_guild,		    // 邀请加入公会
-		c2m_revert_guild_invitation,	    // 恢复公会邀请
-		c2m_disband_guild,				    // 解散公会
-		c2m_guild_notice_change,		    // 公会通知变更
-		c2m_guild_announce_change,		    // 公会宣布变更
-		c2m_guild_forbid_chat,			    // 公会禁止聊天
-		c2m_guild_change_position,		    // 公会改变立场
-		c2m_guild_role_leave,               // 公会角色离开 to be del
-		c2m_guild_banish_role,			    // 公会逐出角色 踢出公会
-		c2m_guild_demise,				    // 公会灭亡
-		c2m_guild_diplomat_app,			    // 行会外交官应用程序
-		c2m_guild_get_apply_union_list,     // 公会获取申请联盟名单 only alliance
-		c2m_guild_reply_union_app,		    // 公会回复联盟应用程序
-		c2m_guild_cancel_alliance,		    // 公会取消联盟
-		c2m_guild_change_storage_right,	    // 公会变更存储权
-		c2m_guild_move_item,			    // 公会移动物品
-		c2m_guild_more_history,			    // 公会更多历史记录
-		c2m_guild_more_chest,			    // 公会更多资金记录
+		c2m_query_guild_name,			    // Query guild name
+		c2m_view_guild_list,			    // View guild list
+		c2m_more_guild_info,			    // More guild information
+		c2m_find_guild,					    // Find guild
+		c2m_apply_to_join_guild,		    // Apply to join a guild
+		c2m_get_apply_guild_list,		    // Get guild application list
+		c2m_revert_guild_apply,			    // Restore guild application
+		c2m_invite_to_join_guild,		    // Invite to guild
+		c2m_revert_guild_invitation,	    // Restore guild invitation
+		c2m_disband_guild,				    // Disband guild
+		c2m_guild_notice_change,		    // Change guild notice
+		c2m_guild_announce_change,		    // Change guild announcement
+		c2m_guild_forbid_chat,			    // Mute guild chat
+		c2m_guild_change_position,		    // Change guild position
+		c2m_guild_role_leave,               // Character leaves guild to be del
+		c2m_guild_banish_role,			    // Expel character from guild
+		c2m_guild_demise,				    // Guild demise
+		c2m_guild_diplomat_app,			    // Guild diplomacy application
+		c2m_guild_get_apply_union_list,     // Get guild alliance application list only alliance
+		c2m_guild_reply_union_app,		    // Reply to alliance application
+		c2m_guild_cancel_alliance,		    // Cancel guild alliance
+		c2m_guild_change_storage_right,	    // Change guild storage permissions
+		c2m_guild_move_item,			    // Move guild item
+		c2m_guild_more_history,			    // Get more guild history
+		c2m_guild_more_chest,			    // Get more guild fund records
 
-		c2m_guild_upgrade_welfare,			// 帮会升级福利
-		c2m_guild_cancel_welfare_upgrade,	// 帮会取消福利升级
-		c2m_guild_cancel_building_upgrade,	// 帮会取消建筑升级
+		c2m_guild_upgrade_welfare,			// Upgrade guild welfare
+		c2m_guild_cancel_welfare_upgrade,	// Cancel guild welfare upgrade
+		c2m_guild_cancel_building_upgrade,	// Cancel guild building upgrade
 		//c2m_guild_del_building,			// 
 
-		c2m_guild_get_dungeon_list,			// 公会得到地牢名单 obsoleted
-		c2m_guild_declare_war,				// 公会宣战
-		c2m_guild_achievement,				// 公会成就
+		c2m_guild_get_dungeon_list,			// Get guild dungeon list obsoleted
+		c2m_guild_declare_war,				// Declare guild war
+		c2m_guild_achievement,				// Guild achievements
 
-		c2m_guild_activity,					// 公会活动
+		c2m_guild_activity,					// Guild activity
 
 		// arena
 		c2m_arena_get_data,
@@ -147,25 +147,25 @@ namespace ExternalMessage
 		c2m_sale_info,						// obsoleted
 
 		// gm
-		c2m_gm_command,				// Gm命令
+		c2m_gm_command,				// GM command
 
 		// ranklist
-		c2m_query_ranklist,			// 查询排行榜
+		c2m_query_ranklist,			// Query rankings
 
 		// award
-		c2m_award_use_number,		// 中奖?
+		c2m_award_use_number,		// Prize?
 
 		// time
-		c2m_buy_time,		        // 购买点卡
+		c2m_buy_time,		        // Purchase game time card
 
-		c2m_change_recall_state,    // 允许天地合一
+		c2m_change_recall_state,    // Allow heaven-and-earth unity
 
-		c2m_dynamic_auth,           // 动态验证
+		c2m_dynamic_auth,           // Dynamic authentication
 
-		c2m_team_query,	            // 615, 队伍查询
-		c2m_team_invite,            // 616, 队伍邀请
+		c2m_team_query,	            // 615, Query team
+		c2m_team_invite,            // 616, Invite to team
 
-        c2m_arena_fund,             // 竞技场基金
+        c2m_arena_fund,             // Arena fund
 
 		c2m_message_end = 900,
 	};

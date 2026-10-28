@@ -114,12 +114,12 @@ BOOL EQUIP_DATA::ReadLine(INT32& rnID, const char*& rpcszName, EQUIP_DATA* pData
     READ_INT("CannotUnEquip", m_byCannotUnEquip);
 
 
-    // // 新增代码 - 孔位
+    // // Additional code - sockets
     // UINT8 m_byCanSocket;
     // UINT8 m_bySocketCountMaxNew;
     // UINT8 m_byFirstSocketCost;
     // 
-    // // 打孔消耗
+    // // Socket creation cost
     // UINT8 m_bySecondSocketCost_RED
     // UINT8 m_bySecondSocketCost_YELLOW
     // UINT8 m_bySecondSocketCost_BLUE
@@ -130,14 +130,14 @@ BOOL EQUIP_DATA::ReadLine(INT32& rnID, const char*& rpcszName, EQUIP_DATA* pData
     // UINT8 m_bySecondSocketCost_ORANGE
     // UINT8 m_bySecondSocketCost_BROWN
 
-    // 新增代码 - 孔位
+    // Additional code - sockets
     READ_INT("CanSocket", m_byCanSocket);
     READ_INT("SocketCountMaxNew", m_bySocketCountMaxNew);
     READ_INT("FirstSocketCost", m_byFirstSocketCost);
     READ_INT("SecondSocketCost", m_bySecondSocketCost);
 
 
-    // 默认代码 - 孔位
+    // Default code - sockets
     READ_INT("SocketChance", m_nSocketChance);
 	READ_INT("SocketCountMin", m_bySocketCountMin);
     READ_INT("SocketCountMax", m_bySocketCountMax);

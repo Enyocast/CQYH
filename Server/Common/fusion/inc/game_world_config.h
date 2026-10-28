@@ -20,7 +20,7 @@ struct GAME_WORLD_CONFIG
 	INT32       nLootDistance;
 	INT32       nCompareAchievementDistance;
 	INT32       nExpShareDistance;
-	INT32		nLevelLimit;    // 设置游戏最高等级
+	INT32		nLevelLimit;    // Set the maximum game level
 	INT32       nTeamAuctionTimeout;
 	INT32       nTeamAuctionTax;
 
@@ -332,7 +332,7 @@ struct GAME_WORLD_CONFIG
 	} GpkPunishOption;
 
 	// arena 
-	UINT32          dwArenaSceneTemplateID;    // 补充代码
+	UINT32          dwArenaSceneTemplateID;    // Additional code
 
     struct ARENA 
     {

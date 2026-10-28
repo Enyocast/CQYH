@@ -38,32 +38,32 @@ namespace ExternalMessage
 		c2m_query_line_req,
 
         // master
-        c2m_master_teacher_ignore,      // 师傅无视or拒绝推送请求师傅信息
-        c2m_master_get_recruit_list,    // 拉取师徒招募榜
-        //c2m_master_apply_recruit,       // 申请招募徒弟
-        //c2m_master_cancel_recruit,      // 取消招募徒弟
-        c2m_master_get_solo_list,       // 拉取没有拜师的玩家列表
+        c2m_master_teacher_ignore,      // Mentor ignores or rejects a request to push mentor information
+        c2m_master_get_recruit_list,    // Fetch mentorship recruitment list
+        //c2m_master_apply_recruit,       // Apply to recruit students
+        //c2m_master_cancel_recruit,      // Cancel student recruitment
+        c2m_master_get_solo_list,       // Fetch players without a mentor
 
-        c2m_master_stud_submit_app,     // 申请拜师
-        c2m_master_agree_stud_app,      // 同意拜师申请
-        c2m_master_refuse_stud_app,     // 师傅拒绝徒弟拜师申请
-        c2m_master_cancel_stud_app,     // 徒弟主动取消拜师申请
+        c2m_master_stud_submit_app,     // Apply for mentorship
+        c2m_master_agree_stud_app,      // Accept a mentorship application
+        c2m_master_refuse_stud_app,     // Mentor rejects student’s application
+        c2m_master_cancel_stud_app,     // Student cancels mentorship application
 
         c2m_master_teacher_submit_app,
         c2m_master_agree_teacher_app,
         c2m_master_refuse_teacher_app,
         c2m_master_cancel_teacher_app,
 
-        c2m_master_leave_teacher,        // 徒弟叛师
-        c2m_master_fire_stud,           // 师傅开除徒弟
+        c2m_master_leave_teacher,        // Student leaves mentor
+        c2m_master_fire_stud,           // Mentor dismisses student
 
-        c2m_master_info,     // 拉取师徒数据
+        c2m_master_info,     // Fetch mentorship data
 
         c2m_master_cz,
         c2m_master_grad,
 
         
-        //c2m_master_cong_level_up,  // 恭喜升级
+        //c2m_master_cong_level_up,  // Congratulate level-up
 
         // mail
         c2m_mail_write,

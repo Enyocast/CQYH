@@ -11,11 +11,11 @@ enum EOrderType
 enum EOrderStatus
 {
 	eosInvalid,
-	eosEffective,   //有效单
-	eosCanceled,    //主动撤单
-	eosExpired,     //超时撤单
-	eosFinished,    //完全成交
-	eosError,       //错误单
+	eosEffective,   //Active order
+	eosCanceled,    //Canceled by user
+	eosExpired,     //Canceled after timeout
+	eosFinished,    //Fully filled
+	eosError,       //Invalid order
 	eosTotal,
 };
 

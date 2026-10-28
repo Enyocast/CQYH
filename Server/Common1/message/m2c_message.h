@@ -52,18 +52,18 @@ namespace ExternalMessage
         // master
         m2c_master_twitter_ack,
         m2c_master_hello_teacher,
-        m2c_master_recruit_list,        // 下发师徒招募列表
-        //m2c_master_recruit_ack,         // 申请，取消招募的返回值
-        m2c_master_get_solo_list_ack,       // 返回预备徒弟的列表
+        m2c_master_recruit_list,        // Send mentorship recruitment list
+        //m2c_master_recruit_ack,         // Result of applying for or canceling recruitment
+        m2c_master_get_solo_list_ack,       // Return list of prospective students
 
         m2c_master_info,
         m2c_master_sync_lvl,
 
         m2c_master_stud_submit_app_ack,
-        m2c_master_stud_submit_app_ntf,         // 师傅收到徒弟的拜师申请
+        m2c_master_stud_submit_app_ntf,         // Mentor receives a student application
         m2c_master_agree_stud_app_ack,
-        m2c_master_refuse_stud_app_ack,         // 发送给师傅
-        m2c_master_refuse_stud_app_ntf,         // 发送给徒弟，被师傅拒绝了
+        m2c_master_refuse_stud_app_ack,         // Sent to the mentor
+        m2c_master_refuse_stud_app_ntf,         // Sent to the student when rejected by the mentor
         m2c_master_cancel_stud_app_ack,
         m2c_master_cancel_stud_app_ntf,
 
@@ -874,7 +874,7 @@ namespace ExternalMessage
 
         INT32       arrVariables[MAX_GUILD_VARIABLE_COUNT];
 
-        G_B_DATA    arrBData[GUILD_MAX_BUILDING_NUM];       // 改成变长包 Allan Tao[19.3.2014] 
+        G_B_DATA    arrBData[GUILD_MAX_BUILDING_NUM];       // Changed to a variable-length packet, Allan Tao [19.3.2014]
         G_B_U_DATA  arrBUData[GUILD_MAX_UPGRADE_BUILDING_COUNT];
         INT8        arrWelfareAuraLvl[GUILD_MAX_WELFARE_AURA_COUNT];
         INT8        arrWelfareUpgradeAuraID[GUILD_MAX_UPGRADE_AURA_COUNT];

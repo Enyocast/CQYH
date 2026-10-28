@@ -217,19 +217,19 @@ namespace ExternalMessage
         // shield list
         c2g_unshield,
 
-        // 融灵
+        // Soul fusion
         c2g_upgrade_soul,
         c2g_add_soul,
         c2g_remove_soul,
 
-        // 铭文
+        // Inscription
         c2g_rune_item,
 
-        // 装备升级
+        // Equipment upgrade
         c2g_weapon_level_up_put_in,
         c2g_weapon_level_up_take_out,
 
-        // 装备分解合成
+        // Equipment decomposition and crafting
         c2g_decompose,
         c2g_compose,
 

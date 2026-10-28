@@ -14,13 +14,13 @@ enum EAuctionSearchResultSortBy
 enum EAuctionStatus
 {
     easInvalid,
-    easEffective,       //竞拍中
-    easCanceled,        //主动取消
-    easExpired,         //流拍
-    easWaitForPayment,  //拍卖成功，等待付尾款
-    easFinished,        //拍卖成功，尾款已付清
-    easPaymentExpired,  //拍卖成功，尾款超时
-    easError,           //错误单
+    easEffective,       //Bidding in progress
+    easCanceled,        //Canceled by seller
+    easExpired,         //Auction ended without a sale
+    easWaitForPayment,  //Auction succeeded; awaiting final payment
+    easFinished,        //Auction succeeded; final payment received
+    easPaymentExpired,  //Auction succeeded; final payment expired
+    easError,           //Invalid listing
     easTotal
 };
 

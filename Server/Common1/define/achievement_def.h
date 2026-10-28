@@ -256,16 +256,16 @@ enum ACHIEVEMENT_VARIABLE_DEF
 
 	avdStatisticEnd,
 
-	avdQuestFlytoZone,					// 新手引导 任务飞鞋用 前几次免费
+	avdQuestFlytoZone,					// New-player tutorial: the first few quest teleport uses are free
 
-	avdLastOfflineTime,					// 记录下线时间
+	avdLastOfflineTime,					// Record the last logout time
 
-	avdRewardQuestCompleteCount,		// 每日悬赏任务的完成次数，用于活动显示
+	avdRewardQuestCompleteCount,		// Daily bounty quests completed, used for activity display
 
 	avdKillPlayerLevelDuarionBegin,
-	avdKillPlayerLevelDuarion1 = avdKillPlayerLevelDuarionBegin,			// 杀死等级段1玩家，
-	avdKillPlayerLevelDuarion2,												// 杀死等级段2玩家，
-	avdKillPlayerLevelDuarion3,												// 杀死等级段3玩家，	
+	avdKillPlayerLevelDuarion1 = avdKillPlayerLevelDuarionBegin,			// Kill a player in level bracket 1
+	avdKillPlayerLevelDuarion2,												// Kill a player in level bracket 2
+	avdKillPlayerLevelDuarion3,												// Kill a player in level bracket 3
 
 	avdEquipDecompose,
 	avdEquipCompose,

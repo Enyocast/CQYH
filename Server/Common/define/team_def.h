@@ -20,8 +20,8 @@
 #define	MAX_TEAM_DUNGEON	(64)
 
 // Team Auction
-#define  TEAM_AUCTION_BID_FRAME_INTERVAL	(20 * GAME_FPS)	// 出价时间间隔
-#define	 TEAM_AUCTION_ITEM_INIT_INDEX	(1)		// 拍卖物品初始编号
+#define  TEAM_AUCTION_BID_FRAME_INTERVAL	(20 * GAME_FPS)	// Bid interval
+#define	 TEAM_AUCTION_ITEM_INIT_INDEX	(1)		// Initial auction item index
 
 enum TEAM_ANSWER_TYPE
 {
@@ -39,9 +39,9 @@ enum TEAM_ASSIGN
 {
 	etaInvalid,
 
-    etaFreeForAll,      //自由拾取
-	etaTeamAuction,		//组队拍卖
-	etaLeaderPick,		//队长拾取
+    etaFreeForAll,      //Free-for-all loot
+	etaTeamAuction,		//Team auction
+	etaLeaderPick,		//Leader loot
 
 	etaTotal
 };

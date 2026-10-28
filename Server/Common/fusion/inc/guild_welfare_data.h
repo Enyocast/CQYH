@@ -27,7 +27,7 @@ struct GUILD_WELFARE_DATA
     INT32       nPurchaseLevelRequirement;
     INT32       nPurchaseMoneyConsumption;
     INT32       nPurchaseGuildCurrencyConsumption;
-    //INT32       nPurchaseLimit;         // 次数
+    //INT32       nPurchaseLimit;         // Count
     INT32       arrVipPurchaseLimit[4];
 
     INT32       nUpgradeMoneyConsumption;

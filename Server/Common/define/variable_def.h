@@ -107,26 +107,26 @@ enum SERVER_VARIABLE_TYPE
 
 	esvtDefault = esvtInvalid,
 
-	esvtRune,				// 铭文洗练限制
+	esvtRune,				// Inscription refinement limit
 	esvtRuneRefreshTime,    // 
 
-	esvtItemDropLimitType0,				  // 怪物掉落限制
+	esvtItemDropLimitType0,				  // Monster drop limit
     esvtItemDropLimitType0RefreshTime,	  // 
     esvtItemDropLimitType1,				  // 
     esvtItemDropLimitType1RefreshTime,	  // 
     esvtItemDropLimitType2,				  // 
     esvtItemDropLimitType2RefreshTime,    // 
 
-	esvtItemDropLimitLuck2Necklace,       // 运2项链限制专用
-	esvtItemDropLimitLuck2NecklaceRefreshTime,       // 运2项链限制专用, 刷新时间
+	esvtItemDropLimitLuck2Necklace,       // Luck +2 necklace limit only
+	esvtItemDropLimitLuck2NecklaceRefreshTime,       // Luck +2 necklace limit only, refresh time
 
-    esvtWorldGambleCount,			 // 当前全区重铸数量
-    esvtPreviousWorldGambleCount,    // 上一次全区重铸数量
+    esvtWorldGambleCount,			 // Current server-wide reforging count
+    esvtPreviousWorldGambleCount,    // Previous server-wide reforging count
 
-    esvtArena,    // 竞技场
-    esvtGuild,	  // 公会
+    esvtArena,    // Arena
+    esvtGuild,	  // Guild
 
-	esvtSceneLostFaction,    // 场景迷失派系?
+	esvtSceneLostFaction,    // Scene lost faction?
 
 	esvtTotal
 };

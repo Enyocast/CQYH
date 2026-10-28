@@ -107,10 +107,10 @@ namespace ExternalMessage
         g2c_role_learn_item_spell,
         g2c_role_remove_item_spell,
 
-        g2c_char_precast_spell,  // 预定技能?
-        g2c_char_prepare_spell,  // 准备技能?
-        g2c_char_ex_cast_spell,  // 释放技能ex?
-        g2c_char_cast_spell,     // 释放技能?
+        g2c_char_precast_spell,  // Queue a spell?
+        g2c_char_prepare_spell,  // Prepare a spell?
+        g2c_char_ex_cast_spell,  // Cast extended spell?
+        g2c_char_cast_spell,     // Cast a spell?
         //		g2c_char_spell_pre_effect,
         g2c_char_spell_effect,
         g2c_char_break_cast,
@@ -124,7 +124,7 @@ namespace ExternalMessage
         g2c_clear_spell_cache,
         g2c_sync_missile_list,
 
-        g2c_add_cooldown,    // 添加冷却
+        g2c_add_cooldown,    // Add cooldown
         g2c_sync_pk_mode,
         g2c_enter_combat,
         g2c_leave_combat,
@@ -133,7 +133,7 @@ namespace ExternalMessage
         g2c_addto_threatlist,
         g2c_delfrom_threatlist,
 
-        g2c_new_aura,    // 增加buff光环
+        g2c_new_aura,    // Add buff aura
         g2c_del_aura,
         g2c_aura_change,
         g2c_aura_effect,
@@ -328,20 +328,20 @@ namespace ExternalMessage
         g2c_shield_ack,
         g2c_unshield_ack,
 
-        // 融灵
+        // Soul fusion
         g2c_upgrade_soul,
         g2c_add_soul,
         g2c_remove_soul,
 
-        // 铸魂
+        // Soul forging
         g2c_rune_item,
 
-        // 装备升级
+        // Equipment upgrade
         g2c_weapon_level_up_put_in,
         g2c_weapon_level_up_take_out,
         g2c_weapon_level_up_result,
 
-        // 装备分解合成
+        // Equipment decomposition and crafting
         g2c_decompose,
         g2c_compose,
 
@@ -403,8 +403,8 @@ namespace ExternalMessage
         g2c_arena_result,
         g2c_countdown,
 
-        g2c_rune_item_advance,			// 高级铭文洗练应答
-        g2c_rune_item_advance_confirm,  // 确认高级洗练应答
+        g2c_rune_item_advance,			// Advanced inscription refinement response
+        g2c_rune_item_advance_confirm,  // Advanced refinement confirmation response
 
         g2c_potion_gamble,
 
@@ -2336,22 +2336,22 @@ namespace ExternalMessage
 
     struct G2C_UPGRADE_SOUL : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
     };
 
     struct G2C_ADD_SOUL : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
     };
 
     struct G2C_REMOVE_SOUL : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
     };
 
     struct G2C_RUNE_ITEM : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
     };
 
     struct G2C_WEAPON_LEVEL_UP_PUT_IN : MESSAGE_HEADER
@@ -2364,12 +2364,12 @@ namespace ExternalMessage
 
     struct G2C_WEAPON_LEVEL_UP_RESULT : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
     };
 
     struct G2C_DECOMPOSE : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
         INT32       nOriginalItemID;
         INT32       nItemID[MAX_DECOMPOSE_ITEM_COUNT];
         INT32       nItemCount[MAX_DECOMPOSE_ITEM_COUNT];
@@ -2377,14 +2377,14 @@ namespace ExternalMessage
 
     struct G2C_COMPOSE : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功，2成功且暴击 
+        UINT8       byResult;//0 = failure, 1 = success, 2 = success with critical hit
         INT32       nResultItemID;
     };
 
     struct G2C_REFINE : MESSAGE_HEADER
     {
         UINT8       bySlot;
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
         UINT16      wRefineLevel;
     };
 
@@ -2395,7 +2395,7 @@ namespace ExternalMessage
 
     struct G2C_IDENTIFY_ITEM : MESSAGE_HEADER
     {
-        UINT8       byResult;//0失败，1成功
+        UINT8       byResult;//0 = failure, 1 = success
     };
 
     struct G2C_DRAW_DEBUG_LINE : MESSAGE_HEADER
@@ -2506,7 +2506,7 @@ namespace ExternalMessage
 
     struct G2C_GAMBLE : MESSAGE_HEADER
     {
-        INT32   nResult;//1成功，0失败
+        INT32   nResult;//1 = success, 0 = failure
         INT32   nItemID;
     };
 
@@ -2548,23 +2548,23 @@ namespace ExternalMessage
 
     struct G2C_SPELL_BOOK_GAMBLE : MESSAGE_HEADER
     {
-        INT32   nResult;//1成功，0失败
+        INT32   nResult;//1 = success, 0 = failure
         INT32   nItemID;
     };
     struct G2C_RUNE_ITEM_ADVANCE : MESSAGE_HEADER
     {
-        UINT8   byResult; //0失败，1成功
+        UINT8   byResult; //0 = failure, 1 = success
         UINT16  wRune[MAX_RUNE_COUNT];
     };
 
     struct G2C_RUNE_ITEM_ADVANCE_CONFIRM : MESSAGE_HEADER
     {
-        UINT8   byResult; //0失败，1成功
+        UINT8   byResult; //0 = failure, 1 = success
     };
 
     struct G2C_POTION_GAMBLE : MESSAGE_HEADER
     {
-        INT32   nResult;//1成功，0失败
+        INT32   nResult;//1 = success, 0 = failure
         INT32   nItemID;
     };
 

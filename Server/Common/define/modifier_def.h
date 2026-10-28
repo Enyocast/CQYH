@@ -80,148 +80,148 @@ enum CHAR_MODIFIER_INDEX
 {
 	cmiInvalid = 0,
 
-	cmi_A,			///< @line		改变自身的走路或者跑步速度 1参为改变的类型(具体数值)
-	cmi_B,			///< @line		改变自身的一些属性(具体数值)
-	cmi_003,		///< @line		改变自身的一些属性(百分比)  通过光环的 GetEffectPct() 函数获得百分比数值
-	cmi_004,		///< @line		改变自身的走路或者跑步速度 1参为改变的类型(百分比) 通过光环的 GetEffectPct() 函数获得百分比数值
-	cmi_005,		///< @line		GenerateSingleBullet,							生成单发子弹（单体攻击）
-	cmi_006,		///< @line		GenerateMultiBullet,							生成多发子弹（散射/多重射击）
-	cmi_007,		///< @line		GenerateMissile,								生成飞行投射物（火球、箭矢等）
-	cmi_008,		///< @line		Charge,											冲锋（直线位移+伤害）
-	cmi_009,		///< @line		SingleAura,										单体状态效果（如单体Buff）
-	cmi_010,		///< @line		MultiAura,										群体状态效果（如团队Buff）
-	cmi_011,		///< @line		Stun,											眩晕（硬控）
-	cmi_012,		///< @line		EnableAttribute,								开启属性
-	cmi_013,		///< @line		MutiBulletWithAvgDamage,						均摊伤害的多发子弹（如霰弹枪）
-	cmi_014,		///< @line		AuraRegisterEvent,								状态效果注册事件（如触发条件）
+	cmi_A,			///< @line		Change walk or run speed; parameter 1 specifies the change type (absolute value)
+	cmi_B,			///< @line		Change selected attributes by an absolute value
+	cmi_003,		///< @line		Change selected attributes by a percentage obtained from the aura’s GetEffectPct() function
+	cmi_004,		///< @line		Change walk or run speed; parameter 1 specifies the change type (percentage from the aura’s GetEffectPct())
+	cmi_005,		///< @line		GenerateSingleBullet,							Generate one bullet (single-target attack)
+	cmi_006,		///< @line		GenerateMultiBullet,							Generate multiple bullets (spread or multi-shot)
+	cmi_007,		///< @line		GenerateMissile,								Generate a projectile (such as a fireball or arrow)
+	cmi_008,		///< @line		Charge,											Charge (straight-line movement and damage)
+	cmi_009,		///< @line		SingleAura,										Apply a single-target status effect (such as a buff)
+	cmi_010,		///< @line		MultiAura,										Apply a group status effect (such as a party buff)
+	cmi_011,		///< @line		Stun,											Stun (hard crowd control)
+	cmi_012,		///< @line		EnableAttribute,								Enable an attribute
+	cmi_013,		///< @line		MutiBulletWithAvgDamage,						Generate multiple bullets with shared damage (such as a shotgun)
+	cmi_014,		///< @line		AuraRegisterEvent,								Register an event for a status effect (such as a trigger condition)
 	cmi_015,		///< @line		______NotImplemented_No15,						
-	cmi_016,		///< @line		LeapToTargetPos,								跳跃至目标位置（突进）
-	cmi_017,		///< @line		SpellRegisterEventOnEquip,						装备时注册技能事件（如触发特效）
-	cmi_018,		///< @line		Fear,											恐惧（软控，目标逃跑）
-	cmi_019,		///< @line		ModifyAttackWithDefense,						根据防御力修正攻击（破甲机制）
-	cmi_020,		///< @line		DirectlyAddSpell,								直接添加技能
-	cmi_021,		///< @line		CircleSearchEnemyAndCastSubSpell,				圆形搜索敌人并施放子技能
-	cmi_022,		///< @line		ReduceCurrentAuraStackCount,					减少当前光环层数
-	cmi_023,		///< @line		ModifyPendingSpell,								修改待生效技能（动态调整）
-	cmi_024,		///< @line		SetDamageAbsorb,								设置伤害吸收（护盾值）
-	cmi_025,		///< @line		AuraCheckDamageAbsorb,							状态检查伤害吸收（如护盾）
-	cmi_026,		///< @line		SpellRegisterTimerEvent,						技能定时事件（延迟触发）
-	cmi_027,		///< @line		DirectlyCastSubSpell,							直接释放子技能
-	cmi_028,		///< @line		TeleportToLockedTarget,							传送至锁定目标（闪现）
-	cmi_029,		///< @line		CharInvincible,									角色无敌（短暂免伤）
-	cmi_030,		///< @line		ChargeToTarget,									向目标冲锋
-	cmi_031,		///< @line		GenerateSingleHealBullet,						生成单体治疗子弹（如治疗箭）
-	cmi_032,		///< @line		GenerateMultiHealBullet,						生成群体治疗子弹（范围治疗）
-	cmi_033,		///< @line		GenerateTeamHealBullet,							生成队伍治疗子弹（团队回血）
-	cmi_034,		///< @line		AdjustSpellDirectionWithFaceDirection,			根据角色朝向调整技能方向
-	cmi_035,		///< @line		RecoveryHp,										恢复HP
-	cmi_036,		///< @line		CheckItem,										检查物品（消耗品/装备需求）
-	cmi_037,		///< @line		CheckAccumulateTime,							检查累积时间（如充能机制）
-	cmi_038,		///< @line		SetCharFlagBit,									设置角色标志位
-	cmi_039,		///< @line		Random,											随机
-	cmi_040,		///< @line		ClearNextTarget,								清除下一个目标
-	cmi_041,		///< @line		CheckMpByPercent,								按百分比检查MP
-	cmi_042,		///< @line		CheckMpByValue,									按固定值检查MP
-	cmi_043,		///< @line		ReviveTarget,									复活目标
-	cmi_044,		///< @line		TeleportToNearestGraveyard,						传送至最近墓地（死亡复活）
-	cmi_045,		///< @line		CheckAndConsumeMoney,							检查并且消耗货币
-	cmi_046,		///< @line		CheckTargetCount,								检查目标数量
-	cmi_047,		///< @line		LockNearestTargetInSector,						锁定扇形内最近目标
-	cmi_048,		///< @line		LockNearestTarget,								锁定最近目标
-	cmi_049,		///< @line		KnockBack,										击退
-	cmi_050,		///< @line		ModifierCost,									修改技能花费
-	cmi_051,		///< @line		SummonNpc,										召唤NPC（宠物/图腾）
-	cmi_052,		///< @line		RotateTargetPt,									旋转目标角度
-	cmi_053,		///< @line		CheckIntervalAndCastSubSpell,					检查间隔并施放子技能（周期性效果）
-	cmi_054,		///< @line		RotateSelf,										旋转自己
-	cmi_055,		///< @line		CheckMultiAccumulateTime,						检查多重累积时间
-	cmi_056,		///< @line		CheckHpByPct,									按百分比检查HP
-	cmi_057,		///< @line		CheckHpByValue,									按固定值检查HP
-	cmi_058,		///< @line		CheckExFlag,									检查Ex标志 (技能?)
-	cmi_059,		///< @line		SetExFlag,										设置Ex标志 (技能?)
-	cmi_060,		///< @line		RemoveAura,										移除光环
-	cmi_061,		///< @line		CastSubSpellByAuraCaster,						根据光环施法者触发子技能
-	cmi_062,		///< @line		CheckCurrentWeaponType,							检查当前武器类型
-	cmi_063,		///< @line		AuraTimeupEffect,								状态结束时的效果（如爆炸/回血）
-	cmi_064,		///< @line		AuraKnockBack,									状态附带击退（如光环爆炸）
-	cmi_065,		///< @line		GenerateDivergentMissile,						生成分叉投射物（如分裂弹）
-	cmi_066,		///< @line		GenerateRandomTargetPt,							生成随机目标点（如范围轰炸）
-	cmi_067,		///< @line		FindAura,										查找状态效果（检查是否存在）
-	cmi_068,		///< @line		SubstituteNextSpell,							替换下一个技能
-	cmi_069,		///< @line		AddAuraToCaster,								给施法者添加状态（自我增益）
-	cmi_070,		///< @line		ScanTarget,										扫描目标（范围内索敌）
-	cmi_071,		///< @line		Silence,										沉默（禁止施法）
-	cmi_072,		///< @line		CheckCurrentAura,								检查当前光环
-	cmi_073,		///< @line		GhostStep,										鬼步（瞬移残影）
-	cmi_074,		///< @line		LeapAndMissile,									跳跃和导弹?
-	cmi_075,		///< @line		DispelAuraByID,									按ID驱散状态
-	cmi_076,		///< @line		DispelAuraByType,								按类型驱散状态（如驱散所有Debuff）
-	cmi_077,		///< @line		DispelAuraBySubType,							根据子类型消除光环
-	cmi_078,		///< @line		BatchDispelAuraByType,							批量驱散同类状态
-	cmi_079,		///< @line		CheckLockTarget,								检查锁定目标
-	cmi_080,		///< @line		BreakCast,										停止触发
-	cmi_081,		///< @line		ChargeToNextTarget,								冲锋到下一个目标
-	cmi_082,		///< @line		ModifyParamX,									修改参数X（通用数值调整）
-	cmi_083,		///< @line		CheckCurrentSpell,								检查当前技能
-	cmi_084,		///< @line		Freeze,											冻结（定身+冰伤）
-	cmi_085,		///< @line		CheckObjType,									检查对象类型（玩家/NPC/陷阱等）
-	cmi_086,		///< @line		SetStance,										设置姿态（战斗/非战斗状态）
-	cmi_087,		///< @line		DragByAura,										被状态效果拖动（如黑洞吸引）
-	cmi_088,		///< @line		SyncFlagPos,									同步标志位置
-	cmi_089,		///< @line		Thrown,											投掷（强制位移，如抓取抛投）
-	cmi_090,		///< @line		CheckThrown,									检查投掷
-	cmi_091,		///< @line		RotateToLockedTarget,							旋转到锁定目标
-	cmi_092,		///< @line		DirectlySummonNpc,								直接召唤NPC（无延迟）
-	cmi_093,		///< @line		ResetScanner,									重置扫描
-	cmi_094,		///< @line		CheckChangedWeaponType,							检查切换后的武器类型
-	cmi_095,		///< @line		Suicide,										自杀（自爆技能）
-	cmi_096,		///< @line		ModifyCanbeThrown,								修改可以投掷
-	cmi_097,		///< @line		CheckPass,										检查通过条件
-	cmi_098,		///< @line		LockNearestTargetInRect,						锁定矩形内最近目标
-	cmi_099,		///< @line		ScanTargetAndExcludeLocked,						扫描目标并排除已锁定
-	cmi_100,		///< @line		NpcCopySelf,									NPC复制自身（镜像分身）
-	cmi_101,		///< @line		ClientShowTime,									客户端显示时间（如倒计时UI）
-	cmi_102,		///< @line		JumpToAuraCaster,								跳跃到光环施法者
-	cmi_103,		///< @line		BreakAuraCasterSpell,							打断状态施法者的施法(光环)
-	cmi_104,		///< @line		SingleBulletToNextLoopedTarget,					子弹循环攻击下一个目标（弹射机制）
-	cmi_105,		///< @line		ChargeCertainDistance,							固定距离冲锋
-	cmi_106,		///< @line		CheckDistanceBetweenCasterAndTarget,			检查施法者与目标之间的距离
-	cmi_107,		///< @line		GenerateMissileFromCaster,						从施法者生成投射物
-	cmi_108,		///< @line		ModifyParam1WithTargetDistance,					根据目标距离修改参数1（如远程衰减）
-	cmi_109,		///< @line		ModifySpellEffectAccordingToAccumulateParam,    根据累积参数修改技能效果
-	cmi_110,		///< @line		ReduceAuraStackCount,							减少状态效果的叠加层数
-	cmi_111,		///< @line		CastingSpellRegisterEvent,						施法时注册事件（如读条回调）
-	cmi_112,		///< @line		GenerateBlock,									生成格挡效果
-	cmi_113,		///< @line		RefreshSlotCD,									刷新技能槽CD
-	cmi_114,		///< @line		CheckHpInCircle,								检查圆形区域内目标的HP
-	cmi_115,		///< @line		RemoveTargetAura,								移除目标光环
-	cmi_116,		///< @line		CheckWeather,									检查天气（如雨天增强雷电技能）
-	cmi_117,		///< @line		CheckAuraCasterLive,							检查光环施法者是否存活
-	cmi_118,		///< @line		RemovePendingAura,								移除待生效的状态效果
-	cmi_119,		///< @line		AddPendingSpellAttr,							添加待生效的技能属性
-	cmi_120,		///< @line		AddMaxHpAndCurrentHp,							增加最大HP和当前HP
-	cmi_121,		///< @line		CheckIsBoss,									检查目标是否为BOSS
-	cmi_122,		///< @line		CheckIsDaytime,									检查是否为白天
-	cmi_123,		///< @line		AddParamX,										增加ParamX
-	cmi_124,		///< @line		AuraLoadTransformSpell,							状态效果加载变形技能
-	cmi_125,		///< @line		CastSubSpellToAuraCaster,						对状态施法者触发子技能
-	cmi_126,		///< @line		Seduced,										魅惑（目标暂时叛变）
-	cmi_127,		///< @line		CheckIsMoving,									检查是否在移动
-	cmi_128,		///< @line		Like 063,										[状态结束时的效果（如爆炸/回血）] ?
-	cmi_129,		///< @line		ModifyAuraAttr,									修改状态属性（如延长持续时间）
-	cmi_130,		///< @line		ThrownFromCurrentPos,							从当前位置投掷
-	cmi_131,		///< @line		Leap,											跳跃
-	cmi_132,		///< @line		LeapToLockedTarget,								跳跃至锁定目标（如猛扑）
-	cmi_133,		///< @line		SuperMassiveBlackHole,							超级黑洞（大范围牵引效果）
-	cmi_134,		///< @line		ShareDamageWithAuraCaster,						与状态施法者分摊伤害（生命链接）
-	cmi_135,		///< @line		TriggerEventRootSpellCD,						触发关联技能的冷却事件
-	cmi_136,		///< @line		IgnoreDynamicBlock,								忽略动态阻挡（穿墙技能）
-	cmi_AllNpcSpecies,	///< @line	AllNpcSpeciesDamage,							对某类NPC造成特定伤害（种族克制）
-	cmi_138,		///< @line		SetSpellFlag,									设置技能标记（如“不可打断”）
-	cmi_139,		///< @line		RemoveAllDebuff,								移除所有负面状态（净化）
-	cmi_140,		///< @line		ChangeWeather,									改变天气（技能触发环境变化）
-	cmi_141,		///< @line		SubstituteMainSpellID,							替换主技能ID
-	cmi_142,		///< @line		CheckSlotSpellID,								检查技能槽中的技能ID
+	cmi_016,		///< @line		LeapToTargetPos,								Leap to the target position (gap closer)
+	cmi_017,		///< @line		SpellRegisterEventOnEquip,						Register a spell event on equip (such as a triggered effect)
+	cmi_018,		///< @line		Fear,											Fear (soft crowd control; target flees)
+	cmi_019,		///< @line		ModifyAttackWithDefense,						Adjust attack based on defense (armor penetration)
+	cmi_020,		///< @line		DirectlyAddSpell,								Add a spell directly
+	cmi_021,		///< @line		CircleSearchEnemyAndCastSubSpell,				Search for enemies in a circle and cast a sub-spell
+	cmi_022,		///< @line		ReduceCurrentAuraStackCount,					Reduce the current aura stack count
+	cmi_023,		///< @line		ModifyPendingSpell,								Modify a pending spell (dynamic adjustment)
+	cmi_024,		///< @line		SetDamageAbsorb,								Set damage absorption (shield value)
+	cmi_025,		///< @line		AuraCheckDamageAbsorb,							Check status damage absorption (such as a shield)
+	cmi_026,		///< @line		SpellRegisterTimerEvent,						Register a timed spell event (delayed trigger)
+	cmi_027,		///< @line		DirectlyCastSubSpell,							Cast a sub-spell directly
+	cmi_028,		///< @line		TeleportToLockedTarget,							Teleport to the locked target (blink)
+	cmi_029,		///< @line		CharInvincible,									Make the character invincible (brief damage immunity)
+	cmi_030,		///< @line		ChargeToTarget,									Charge toward the target
+	cmi_031,		///< @line		GenerateSingleHealBullet,						Generate a single-target healing bullet (such as a healing arrow)
+	cmi_032,		///< @line		GenerateMultiHealBullet,						Generate multiple healing bullets (area healing)
+	cmi_033,		///< @line		GenerateTeamHealBullet,							Generate team healing bullets
+	cmi_034,		///< @line		AdjustSpellDirectionWithFaceDirection,			Adjust spell direction to match character facing
+	cmi_035,		///< @line		RecoveryHp,										Restore HP
+	cmi_036,		///< @line		CheckItem,										Check an item (consumable or equipment requirement)
+	cmi_037,		///< @line		CheckAccumulateTime,							Check accumulated time (such as a charge mechanic)
+	cmi_038,		///< @line		SetCharFlagBit,									Set a character flag bit
+	cmi_039,		///< @line		Random,											Random
+	cmi_040,		///< @line		ClearNextTarget,								Clear the next target
+	cmi_041,		///< @line		CheckMpByPercent,								Check MP by percentage
+	cmi_042,		///< @line		CheckMpByValue,									Check MP by fixed value
+	cmi_043,		///< @line		ReviveTarget,									Revive the target
+	cmi_044,		///< @line		TeleportToNearestGraveyard,						Teleport to the nearest graveyard (death and revival)
+	cmi_045,		///< @line		CheckAndConsumeMoney,							Check and consume currency
+	cmi_046,		///< @line		CheckTargetCount,								Check target count
+	cmi_047,		///< @line		LockNearestTargetInSector,						Lock the nearest target in a sector
+	cmi_048,		///< @line		LockNearestTarget,								Lock the nearest target
+	cmi_049,		///< @line		KnockBack,										Knock back
+	cmi_050,		///< @line		ModifierCost,									Modify spell cost
+	cmi_051,		///< @line		SummonNpc,										Summon an NPC (pet or totem)
+	cmi_052,		///< @line		RotateTargetPt,									Rotate the target angle
+	cmi_053,		///< @line		CheckIntervalAndCastSubSpell,					Check the interval and cast a sub-spell (periodic effect)
+	cmi_054,		///< @line		RotateSelf,										Rotate self
+	cmi_055,		///< @line		CheckMultiAccumulateTime,						Check multiple accumulated times
+	cmi_056,		///< @line		CheckHpByPct,									Check HP by percentage
+	cmi_057,		///< @line		CheckHpByValue,									Check HP by fixed value
+	cmi_058,		///< @line		CheckExFlag,									Check the Ex flag (spell?)
+	cmi_059,		///< @line		SetExFlag,										Set the Ex flag (spell?)
+	cmi_060,		///< @line		RemoveAura,										Remove an aura
+	cmi_061,		///< @line		CastSubSpellByAuraCaster,						Trigger a sub-spell based on the aura caster
+	cmi_062,		///< @line		CheckCurrentWeaponType,							Check the current weapon type
+	cmi_063,		///< @line		AuraTimeupEffect,								Effect when the status expires (such as an explosion or healing)
+	cmi_064,		///< @line		AuraKnockBack,									Apply knockback from a status (such as an aura explosion)
+	cmi_065,		///< @line		GenerateDivergentMissile,						Generate a branching projectile (such as a splitting shot)
+	cmi_066,		///< @line		GenerateRandomTargetPt,							Generate a random target point (such as area bombardment)
+	cmi_067,		///< @line		FindAura,										Find a status effect (check whether it exists)
+	cmi_068,		///< @line		SubstituteNextSpell,							Replace the next spell
+	cmi_069,		///< @line		AddAuraToCaster,								Apply a status effect to the caster (self-buff)
+	cmi_070,		///< @line		ScanTarget,										Scan for targets in range
+	cmi_071,		///< @line		Silence,										Silence (prevent spellcasting)
+	cmi_072,		///< @line		CheckCurrentAura,								Check the current aura
+	cmi_073,		///< @line		GhostStep,										Ghost step (teleport with an afterimage)
+	cmi_074,		///< @line		LeapAndMissile,									Leap and missile?
+	cmi_075,		///< @line		DispelAuraByID,									Dispel a status by ID
+	cmi_076,		///< @line		DispelAuraByType,								Dispel statuses by type (such as all debuffs)
+	cmi_077,		///< @line		DispelAuraBySubType,							Dispel an aura by subtype
+	cmi_078,		///< @line		BatchDispelAuraByType,							Batch-dispel statuses of the same type
+	cmi_079,		///< @line		CheckLockTarget,								Check the locked target
+	cmi_080,		///< @line		BreakCast,										Stop triggering
+	cmi_081,		///< @line		ChargeToNextTarget,								Charge to the next target
+	cmi_082,		///< @line		ModifyParamX,									Modify parameter X (general value adjustment)
+	cmi_083,		///< @line		CheckCurrentSpell,								Check the current spell
+	cmi_084,		///< @line		Freeze,											Freeze (immobilization and ice damage)
+	cmi_085,		///< @line		CheckObjType,									Check object type (player, NPC, trap, etc.)
+	cmi_086,		///< @line		SetStance,										Set stance (combat or non-combat)
+	cmi_087,		///< @line		DragByAura,										Pull with a status effect (such as black-hole attraction)
+	cmi_088,		///< @line		SyncFlagPos,									Synchronize flag position
+	cmi_089,		///< @line		Thrown,											Throw (forced movement, such as a grab and throw)
+	cmi_090,		///< @line		CheckThrown,									Check throw
+	cmi_091,		///< @line		RotateToLockedTarget,							Rotate toward the locked target
+	cmi_092,		///< @line		DirectlySummonNpc,								Summon an NPC directly (without delay)
+	cmi_093,		///< @line		ResetScanner,									Reset the scanner
+	cmi_094,		///< @line		CheckChangedWeaponType,							Check the weapon type after switching
+	cmi_095,		///< @line		Suicide,										Suicide (self-destruct spell)
+	cmi_096,		///< @line		ModifyCanbeThrown,								Modify whether the target can be thrown
+	cmi_097,		///< @line		CheckPass,										Check pass conditions
+	cmi_098,		///< @line		LockNearestTargetInRect,						Lock the nearest target in a rectangle
+	cmi_099,		///< @line		ScanTargetAndExcludeLocked,						Scan targets excluding the locked target
+	cmi_100,		///< @line		NpcCopySelf,									NPCNPC copies itself (mirror image)
+	cmi_101,		///< @line		ClientShowTime,									Client display time (such as a countdown UI)
+	cmi_102,		///< @line		JumpToAuraCaster,								Leap to the aura caster
+	cmi_103,		///< @line		BreakAuraCasterSpell,							Interrupt the aura caster’s spell
+	cmi_104,		///< @line		SingleBulletToNextLoopedTarget,					Bullet attacks the next target in a loop (bounce mechanic)
+	cmi_105,		///< @line		ChargeCertainDistance,							Charge a fixed distance
+	cmi_106,		///< @line		CheckDistanceBetweenCasterAndTarget,			Check distance between caster and target
+	cmi_107,		///< @line		GenerateMissileFromCaster,						Generate a projectile from the caster
+	cmi_108,		///< @line		ModifyParam1WithTargetDistance,					Modify parameter 1 based on target distance (such as ranged falloff)
+	cmi_109,		///< @line		ModifySpellEffectAccordingToAccumulateParam,    Modify spell effects based on accumulated parameters
+	cmi_110,		///< @line		ReduceAuraStackCount,							Reduce the status effect stack count
+	cmi_111,		///< @line		CastingSpellRegisterEvent,						Register an event when casting a spell (such as a cast-bar callback)
+	cmi_112,		///< @line		GenerateBlock,									Generate a block effect
+	cmi_113,		///< @line		RefreshSlotCD,									Refresh the spell slot cooldown
+	cmi_114,		///< @line		CheckHpInCircle,								Check HP of targets within a circular area
+	cmi_115,		///< @line		RemoveTargetAura,								Remove an aura from the target
+	cmi_116,		///< @line		CheckWeather,									Check weather (such as rain enhancing lightning spells)
+	cmi_117,		///< @line		CheckAuraCasterLive,							Check whether the aura caster is alive
+	cmi_118,		///< @line		RemovePendingAura,								Remove a pending status effect
+	cmi_119,		///< @line		AddPendingSpellAttr,							Add pending spell attributes
+	cmi_120,		///< @line		AddMaxHpAndCurrentHp,							Increase maximum HP and current HP
+	cmi_121,		///< @line		CheckIsBoss,									Check whether the target is a boss
+	cmi_122,		///< @line		CheckIsDaytime,									Check whether it is daytime
+	cmi_123,		///< @line		AddParamX,										Increase ParamX
+	cmi_124,		///< @line		AuraLoadTransformSpell,							Load a transformation spell for the status effect
+	cmi_125,		///< @line		CastSubSpellToAuraCaster,						Trigger a sub-spell on the status caster
+	cmi_126,		///< @line		Seduced,										Charm (target temporarily defects)
+	cmi_127,		///< @line		CheckIsMoving,									Check whether moving
+	cmi_128,		///< @line		Like 063,										[Effect when the status expires (such as an explosion or healing)]?
+	cmi_129,		///< @line		ModifyAuraAttr,									Modify status attributes (such as extending duration)
+	cmi_130,		///< @line		ThrownFromCurrentPos,							Throw from the current position
+	cmi_131,		///< @line		Leap,											Leap
+	cmi_132,		///< @line		LeapToLockedTarget,								Leap to the locked target (such as a pounce)
+	cmi_133,		///< @line		SuperMassiveBlackHole,							Supermassive black hole (large-area pull effect)
+	cmi_134,		///< @line		ShareDamageWithAuraCaster,						Share damage with the status caster (life link)
+	cmi_135,		///< @line		TriggerEventRootSpellCD,						Trigger the associated spell cooldown event
+	cmi_136,		///< @line		IgnoreDynamicBlock,								Ignore dynamic obstacles (wall-crossing spell)
+	cmi_AllNpcSpecies,	///< @line	AllNpcSpeciesDamage,							Deal specific damage to an NPC species (species advantage)
+	cmi_138,		///< @line		SetSpellFlag,									Set spell flags (such as “cannot be interrupted”)
+	cmi_139,		///< @line		RemoveAllDebuff,								Remove all negative statuses (cleanse)
+	cmi_140,		///< @line		ChangeWeather,									Change weather (spell-triggered environmental change)
+	cmi_141,		///< @line		SubstituteMainSpellID,							Replace the main spell ID
+	cmi_142,		///< @line		CheckSlotSpellID,								Check the spell ID in the spell slot
 	cmi_143,		///< @line		,
 	cmi_144,		///< @line		,
 	cmi_145,		///< @line		,
@@ -289,10 +289,10 @@ enum CHAR_MODIFIER_INDEX
 	cmi_207,		///< @line		,
 	cmi_208,		///< @line		,
 	cmi_209,		///< @line		,
-	cmi_210,		///< @line		护身戒指/麻痹戒指/超负载戒指/复活戒指/隐身戒指/虹魔戒指/项链/手镯/红宝石戒指/思贝儿手镯/龙之手镯/逍遥扇/龙之戒指/心灵手镯/恶魔铃铛/铂金戒指/骑士手镯
-	cmi_211,		///< @line		集合令
-	cmi_212,		///< @line		侦测项链
-	cmi_213,		///< @line		传送戒指
+	cmi_210,		///< @line		Protective / paralysis / overload / resurrection / invisibility / Hongmo ring; necklace; bracelet; ruby ring; Sibeier bracelet; dragon bracelet; Xiaoyao fan; dragon ring; soul bracelet; demon bell; platinum ring; knight bracelet
+	cmi_211,		///< @line		Rally order
+	cmi_212,		///< @line		Detection necklace
+	cmi_213,		///< @line		Teleport ring
 	cmi_214,		///< @line		,
 	cmi_215,		///< @line		,
 	cmi_216,		///< @line		,
@@ -302,7 +302,7 @@ enum CHAR_MODIFIER_INDEX
 	cmi_220,		///< @line		,
 	cmi_221,		///< @line		,
 	cmi_222,		///< @line		,
-	cmi_223,		///< @line		魔血戒指/项链/手镯/魔血转换
+	cmi_223,		///< @line		Magic blood ring / necklace / bracelet / magic blood conversion
 	cmi_224,		///< @line		,
 	cmi_225,		///< @line		,
 	cmi_226,		///< @line		,

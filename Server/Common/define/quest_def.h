@@ -2,7 +2,7 @@
 #define _QUEST_DEF_H_
 
 #define FLY_TO_QUEST_ZONE_COST				(2)
-#define FLY_TO_QUEST_ZONE_FIRST_COST		(199)				// 飞鞋新手引导前几次扣钱
+#define FLY_TO_QUEST_ZONE_FIRST_COST		(199)				// Cost of the first few tutorial quest teleports
 
 /******************************************************/
 
@@ -22,15 +22,15 @@
 
 /********************reward quest**********************************/
 
-#define GENERATE_REWARD_QUEST_LEVEL					(25)		// 悬赏任务开启等级
-#define MAX_REWARD_QUEST_DAILY_COMPLETE_COUNT		(3)			// 悬赏任务每天免费可做次数
+#define GENERATE_REWARD_QUEST_LEVEL					(25)		// Level at which bounty quests unlock
+#define MAX_REWARD_QUEST_DAILY_COMPLETE_COUNT		(3)			// Number of free bounty quests per day
 #define MAX_REWARD_QUEST_COUNT_PER_ROLE				(3)
-#define REWARD_QUEST_BUY_COMPLETE_ONETIME_COST		(1000)		// 日常悬赏增加一次完成上限
-#define REWARD_QUEST_BUY_COMPLETE_ONSHOT_COST		(1000)		// 日常任务一键完成每任务消耗
-#define REWARD_QUEST_BRUSH_COST						(1000)		// 刷新任务刷新消耗
-#define REWARD_QUEST_BRUSH_CD_INTERVAL				(7200)		// 日常任务的刷新cd时间2小时
-#define MAX_REWARD_QUEST_COUNT_PER_GROUP			(64)		// 每个等级段最多维护的任务个数
-#define MAX_REWARD_QUEST_DAILY_COMPLETE_TIME		(30)		// 日常悬赏每天总共可做次数
+#define REWARD_QUEST_BUY_COMPLETE_ONETIME_COST		(1000)		// Cost to increase the daily bounty completion limit by one
+#define REWARD_QUEST_BUY_COMPLETE_ONSHOT_COST		(1000)		// Per-quest cost of completing daily quests in one click
+#define REWARD_QUEST_BRUSH_COST						(1000)		// Cost to refresh quests
+#define REWARD_QUEST_BRUSH_CD_INTERVAL				(7200)		// Daily quest refresh cooldown: two hours
+#define MAX_REWARD_QUEST_COUNT_PER_GROUP			(64)		// Maximum number of quests maintained per level bracket
+#define MAX_REWARD_QUEST_DAILY_COMPLETE_TIME		(30)		// Total daily bounty quest completion limit
 
 #define MAX_REWARD_QUEST_COUNT						(1024)
 #define REWARD_QUEST_START_ID						(CIRCLE_QUEST_START_ID + MAX_CIRCLE_QUEST_COUNT)
@@ -71,10 +71,10 @@ enum QUEST_ACCEPT_TYPE
 	qatInvalid,
 
 	qatNpc,
-	qatShare,	// 通过共享任务方式接受
-	qatPublish, // 师徒共享任务
-	qatEmegency,// 通过紧急任务方式接受
-    qatItem,    // 通过右键点击物品方式接受
+	qatShare,	// Accepted through quest sharing
+	qatPublish, // Mentor-student shared quest
+	qatEmegency,// Accepted as an emergency quest
+    qatItem,    // Accepted by right-clicking an item
 
 	qatTotal
 };

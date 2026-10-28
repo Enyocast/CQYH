@@ -18,7 +18,7 @@ BOOL ACHIEVEMENT_DATA::ReadLine(INT32& rnID, const char*& rpcszName, ACHIEVEMENT
 
 	READ_INT("AchievementPts", nAchievementPts);
 
-	// 完成成就条件
+	// Achievement completion conditions
 	for (int nIndex = 0; nIndex < MAX_CON_PER_ACHIEVEMENT; nIndex++)
 	{
 		char szAchievement[COMMON_NAME_LEN];
@@ -37,7 +37,7 @@ BOOL ACHIEVEMENT_DATA::ReadLine(INT32& rnID, const char*& rpcszName, ACHIEVEMENT
 
 	}
 
-	// 完成成就奖励
+	// Achievement completion rewards
 	pData->nAwardSlotCount = 0;
 	for (int nIndex = 0; nIndex < MAX_REWARD_PER_ACHIEVEMENT; nIndex++)
 	{	
@@ -134,7 +134,7 @@ BOOL CAchievementIndexData::Init(void)
 
 			LOG_PROCESS_ERROR(nCondType >= adInvalid && nCondType <= adTotal);
 
-			//过滤无效条件类型
+			//Filter invalid condition types
 			if (adInvalid == nCondType){ continue; }
 			if (adTotal == nCondType){ continue; }
 

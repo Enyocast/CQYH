@@ -15,8 +15,8 @@ struct DROP_GROUP_DATA_RAW
     INT32 m_nDropGroupID;
     BOOL m_bEnabled;
 
-    // Mod： 是 Modify 的缩写，意为“修改”、“调整”。Chance： 意为“几率”、“概率”。ByLevel： 意为“根据等级”。
-    BOOL m_bModChanceByLevel;    // 猜测功能 - 根据（玩家或怪物）的等级来调整（掉落组内各个物品的）掉落概率。
+    // Mod abbreviates modify; chance means probability; ByLevel means according to level.
+    BOOL m_bModChanceByLevel;    // Likely adjusts each item’s drop probability according to player or monster level.
 
     BOOL m_bRandomDur;
     INT32 m_nDropLimitType;

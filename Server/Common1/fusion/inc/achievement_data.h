@@ -9,20 +9,20 @@
 #define MAX_HANDBOOKITEM_COUNT	(32)
 struct ACHIEVEMENT_DATA
 {
-	INT32 nAchievementID;												// 成就ID
+	INT32 nAchievementID;												// Achievement ID
 	char szName[COMMON_NAME_LEN];
 
-	INT32 vecAchievementType[MAX_CON_PER_ACHIEVEMENT];                  // 每个条件的类型
+	INT32 vecAchievementType[MAX_CON_PER_ACHIEVEMENT];                  // Type of each condition
 	INT32 vecAchievementValue1[MAX_CON_PER_ACHIEVEMENT];				
 	INT32 vecAchievementValue2[MAX_CON_PER_ACHIEVEMENT];				
 	INT32 vecAchievementValue3[MAX_CON_PER_ACHIEVEMENT];				
 	INT32 nAwardSlotCount;
 
-	INT32 nPreAchievementID1;											// 前置成就1
-	INT32 nPreAchievementID2;											// 前置成就2
+	INT32 nPreAchievementID1;											// Prerequisite achievement 1
+	INT32 nPreAchievementID2;											// Prerequisite achievement 2
 
-	INT32 nRewardType[MAX_REWARD_PER_ACHIEVEMENT];						// 成就奖励类型
-	INT32 nRewardID[MAX_REWARD_PER_ACHIEVEMENT];						// 成就奖励
+	INT32 nRewardType[MAX_REWARD_PER_ACHIEVEMENT];						// Achievement reward type
+	INT32 nRewardID[MAX_REWARD_PER_ACHIEVEMENT];						// Achievement reward
 
 	INT32 nAchievementPts;
 

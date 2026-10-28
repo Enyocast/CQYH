@@ -381,20 +381,20 @@ struct SERVER_CONFIG
         GM_CMD_DATA     gmCmdList[GM_CMD_NUM];
     } GM_PWD;
 
-	// 自定义配置
+	// Custom configuration
 	struct CUSTOM_CONFIG
 	{
-		BOOL               bGmComandEnable;         // 自定义[GM命令开关]
-		GM_CUSTOM_CONFIG   GmRoleName;              // 自定义[GM角色名字]
+		BOOL               bGmComandEnable;         // Custom setting: enable GM commands
+		GM_CUSTOM_CONFIG   GmRoleName;              // Custom setting: GM character names
 
-		BOOL               bCustomGameTimeCardEnable;            // 自定义[点卡功能开关]
-		INT32              nCustomFreeRoleLevel;                 // 自定义[自由人物等级]
-		INT32              nCustomGameTimeCardTemplateID[10];    // 自定义[点卡道具物品ID]
+		BOOL               bCustomGameTimeCardEnable;            // Custom setting: enable game time cards
+		INT32              nCustomFreeRoleLevel;                 // Custom setting: free character level
+		INT32              nCustomGameTimeCardTemplateID[10];    // Custom setting: game time card item IDs
 
-		INT32              nLuck2NecklaceItemID[5];        // 运2运2项链物品ID
-		INT32              nMinLuck2AttributelID;          // attribute.txt 配置中, "幸运2"属性的最小ID值
-		INT32              nMaxLuck2AttributelID;          // attribute.txt 配置中, "幸运2"属性的最大ID值
-		INT32			   nItemDropLimitLuck2NecklaceDuration;  // 限制时间/数量
+		INT32              nLuck2NecklaceItemID[5];        // Luck +2 necklace item IDs
+		INT32              nMinLuck2AttributelID;          // Minimum ID for the "Luck +2" attribute in attribute.txt
+		INT32              nMaxLuck2AttributelID;          // Maximum ID for the "Luck +2" attribute in attribute.txt
+		INT32			   nItemDropLimitLuck2NecklaceDuration;  // Limit duration / quantity
 		INT32			   nItemDropLimitLuck2NecklaceCount;
 
 

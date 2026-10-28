@@ -196,7 +196,7 @@ enum CHAR_REVIVE_TYPE
 	crtTotal,
 };
 
-// 玩家只有login和inrange, npc只有inrange spawn和revive,NoPerforSpawn
+// Players only have login and in-range; NPCs only have in-range spawn and revive, NoPerforSpawn
 enum SCENE_OBJECT_APPEAR_TYPE
 {
     soatInvalid,

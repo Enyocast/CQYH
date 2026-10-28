@@ -3,7 +3,7 @@
 	file:		master_ms_def.h
 	author:		Allan Tao
 	
-	purpose:	师徒系统
+	purpose:	Mentorship system
 *********************************************************************/
 
 
@@ -11,15 +11,15 @@
 #define _H_MASTER_DEF_H_
 
 #include "string_def.h"
-#define MAX_STUDENT_NUM (5)                   // 最大徒弟数量
+#define MAX_STUDENT_NUM (5)                   // Maximum number of students
 //#define MAX_STUD_APP_NUM    (8)         
 //#define MAX_TEACHER_APP_NUM     (8)
-#define GRADUATE_LEVEL (30)                     // 毕业等级，也就是39级到40的时候恭喜出师
+#define GRADUATE_LEVEL (30)                     // Graduation level; congratulate the student on graduating when advancing from level 39 to 40
 #define STUD_LEVEL_LOWER_LIMIT  (1)
 
-//#define FIRE_STUDENT_CD (86400)                 // 再次开出徒弟cd
-#define REGET_MASTER_CD (86400)                 // 重新拜师cd
-#define APPLY_VALID_TIME (86400)                // 申请有效时间
+//#define FIRE_STUDENT_CD (86400)                 // Cooldown before dismissing another student
+#define REGET_MASTER_CD (86400)                 // Cooldown before choosing another mentor
+#define APPLY_VALID_TIME (86400)                // Application validity period
 #define SEND_MASTER_INFO_NUM (30)               // msg use
 #define SEND_SOLO_INFO_NUM  (30)                // msg use
 #define MAX_CZ_TEXT_LENGTH  (150 + 1)
@@ -37,7 +37,7 @@ enum MASTER_STATE
     MASTER_BECOME_TEACHER = 3,
 };
 
-// 恭喜升级附加类型
+// Additional level-up congratulation type
 enum MASTER_CONG_TYPE
 {
     MASTER_CONG_BEGIN       = 0,

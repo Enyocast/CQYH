@@ -7,7 +7,7 @@
 #include "data_manager.h"
 #include "spell_def.h"
 
-//固有属性列表
+//Intrinsic attribute list
 static const INT16 FixAttrTable[] =
 {
     catPhyAtk,
@@ -75,9 +75,9 @@ struct ITEM_DATA
     UINT8 m_byStat;
     UINT8 m_byExpensiveItem;
     UINT8 m_bPkDrop;
-    UINT8 m_bTeamAuction;       //是否可以组队拍卖
-    UINT8 m_bAuction;           //是否可拍卖
-    INT32 m_nAuctionFee;        //拍卖保管费
+    UINT8 m_bTeamAuction;       //Whether team auction is allowed
+    UINT8 m_bAuction;           //Whether auction is allowed
+    INT32 m_nAuctionFee;        //Auction storage fee
     UINT8 m_byAuctionType;
     UINT8 m_byAuctionSubType;
     INT32 m_nDefaultAuctionPrice;
@@ -118,21 +118,21 @@ struct EQUIP_DATA : public ITEM_DATA
     INT32 m_nCanDecompose;
     SET_DATA* m_SetData;
 
-    //固有属性
+    //Intrinsic attributes
     INT32 m_nFixAttr[FixAttrTableSize];
 
-    //固有天气属性
+    //Intrinsic weather attributes
     INT32 m_nWeatherAttrID;
 
-    //固有特殊技能
+    //Intrinsic special skills
     INT32 m_nSpecialAttrID;
 
-    //属性池ID和概率
+    //Attribute pool IDs and probabilities
     INT32 m_nRandomAttributeChance;
     INT32 m_nAttributePoolID[MAX_RANDOM_ATTR_COUNT];
     INT32 m_nAttributePoolChance[MAX_RANDOM_ATTR_COUNT];
 
-    //第二个铭文出现的最少花费数
+    // Minimum cost before the second inscription can appear
     UINT32 m_dwSecondRuneCost;
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, EQUIP_DATA* pData, CTabFile* pTabConfig, INT32 nRow);

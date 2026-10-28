@@ -7,7 +7,7 @@
 struct PK_DROP_COUNT_DATA
 {
     INT32 m_nLevel;
-    INT32 m_nMaxDropCount[3][rncTotal];    //掉落上限，前一个3表示背包内普通物品，背包内贵重物品，已装备物品；后一个3表示白名，黄名，红名
+    INT32 m_nMaxDropCount[3][rncTotal];    //Drop limits: the first dimension represents ordinary inventory items, valuable inventory items, and equipped items; the second represents white, yellow, and red names
     INT32 m_nProtectTime;
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, PK_DROP_COUNT_DATA* pData, CTabFile* pTabConfig, INT32 nRow);

@@ -7,61 +7,61 @@
 #include "quest_reward_data.h"
 struct QUEST_DATA
 {
-    // 基本属性
-    INT32       nQuestID;                                           // 任务ID
-    INT32       eResetType;                                         // 重置任务类型
-	INT32		nQuestType;											// 任务类型
-	INT32		nCircleID;											// 环ID
-	INT32		nQuality;											// 品质
-    UINT32      dwResetTime;                                        // 重置任务偏移时间
-    BOOL        bCanAbandon;                                        // 是否可以放弃任务
-	BOOL		bCanShare;											// 是否可被共享
-	BOOL		bCanPublish;										// 是否可发布
+    // Basic attributes
+    INT32       nQuestID;                                           // Quest ID
+    INT32       eResetType;                                         // Quest reset type
+	INT32		nQuestType;											// Quest type
+	INT32		nCircleID;											// Cycle ID
+	INT32		nQuality;											// Quality
+    UINT32      dwResetTime;                                        // Quest reset time offset
+    BOOL        bCanAbandon;                                        // Whether the quest can be abandoned
+	BOOL		bCanShare;											// Whether the quest can be shared
+	BOOL		bCanPublish;										// Whether the quest can be published
 
-	INT32		nEmergencyCoolDown;									// CD时间
+	INT32		nEmergencyCoolDown;									// Cooldown
 
-	UINT32		nDurationLimit;										// 是否限时
-	char		szName[COMMON_NAME_LEN];							// 任务名称
+	UINT32		nDurationLimit;										// Whether the quest is time-limited
+	char		szName[COMMON_NAME_LEN];							// Quest name
 
-	INT32		nSceneID[MAX_FLY_SPOT_PER_QUEST];					// 飞行地图ID
-	INT32		nX[MAX_FLY_SPOT_PER_QUEST];							// 飞行点x
-	INT32		nY[MAX_FLY_SPOT_PER_QUEST];							// 飞行点y
-	INT32		nZ[MAX_FLY_SPOT_PER_QUEST];							// 飞行点z
+	INT32		nSceneID[MAX_FLY_SPOT_PER_QUEST];					// Teleport destination map IDs
+	INT32		nX[MAX_FLY_SPOT_PER_QUEST];							// Teleport point X
+	INT32		nY[MAX_FLY_SPOT_PER_QUEST];							// Teleport point Y
+	INT32		nZ[MAX_FLY_SPOT_PER_QUEST];							// Teleport point Z
 
-    // 接交任务检测条件
-    INT32       nMaxCompletedCount;                                 // 任务最多可以被完成的次数（在任务重置之后）,0表示可无限制完成
-    INT32       nClassLimit;                                        // 任务职业需求
-    INT32       nSexLimit;                                          // 性别需求
-    INT32       nRelationLimit;                                     // 关系需求
+    // Quest acceptance and completion conditions
+    INT32       nMaxCompletedCount;                                 // Maximum completions after a quest reset; 0 means unlimited
+    INT32       nClassLimit;                                        // Required class
+    INT32       nSexLimit;                                          // Required sex
+    INT32       nRelationLimit;                                     // Required relationship
 
-    // 接任务检测条件
-    INT32       nPreQuestID1;                                       // 前置任务ID
-    INT32       nPreQuestID2;                                       // 前置任务ID
-    INT32       nStartNpcID;                                        // 开始任务的NPC ID
-    INT32       nStartItemID;                                       // 开始任务的Item ID
-    BOOL        bStartZone;                                         // 是否从区域触发
+    // Quest acceptance conditions
+    INT32       nPreQuestID1;                                       // Prerequisite quest ID
+    INT32       nPreQuestID2;                                       // Prerequisite quest ID
+    INT32       nStartNpcID;                                        // NPC ID that starts the quest
+    INT32       nStartItemID;                                       // Item ID that starts the quest
+    BOOL        bStartZone;                                         // Whether the quest is triggered by an area
 
-    INT32       nMinLevelLimit;                                     // 任务最低等级需求
-    INT32       nMaxLevelLimit;                                     // 任务最高等级需求
-    INT32       nBuffIDLimit;                                       // 需求BUFF ID
-    INT32       nBuffLevelLimit;                                    // 需求BUFF ID
-    INT32       nMoneyTypeLimit;                                    // 需求货币类型
-    INT32       nMoneyAmountLimit;                                  // 需求货币数量（不扣除）
-    INT32       nReputationForceID;                                 // 需求Npc势力声望
-    INT32       nReputationMinLimit;                                // 需求最低声望
-    INT32       nReputationMaxLimit;                                // 需求最高声望
+    INT32       nMinLevelLimit;                                     // Minimum required level
+    INT32       nMaxLevelLimit;                                     // Maximum allowed level
+    INT32       nBuffIDLimit;                                       // Required buff ID
+    INT32       nBuffLevelLimit;                                    // Required buff ID
+    INT32       nMoneyTypeLimit;                                    // Required currency type
+    INT32       nMoneyAmountLimit;                                  // Required currency amount (not deducted)
+    INT32       nReputationForceID;                                 // Required NPC faction reputation
+    INT32       nReputationMinLimit;                                // Minimum required reputation
+    INT32       nReputationMaxLimit;                                // Maximum allowed reputation
 
     INT32       nYearLimit;
     INT32       nMonthLimit;
 
-    INT32       nStartWeekday;                                      // 星期重复任务允许接受的开始时间
-    INT32       nWeekdayDuration;                                   // 星期重复任务的持续时间
+    INT32       nStartWeekday;                                      // Acceptance start time for a weekly recurring quest
+    INT32       nWeekdayDuration;                                   // Duration of a weekly recurring quest
 
-    INT32       nStartMonthday;                                      // 月份重复任务允许接受的开始时间
-    INT32       nMonthdayDuration;                                   // 月份重复任务的持续时间（不可以跨月）
+    INT32       nStartMonthday;                                      // Acceptance start time for a monthly recurring quest
+    INT32       nMonthdayDuration;                                   // Duration of a monthly recurring quest (cannot cross a month boundary)
 
-    UINT32      dwAcceptStartTime;                                  // 允许接受时间范围开始
-    UINT32      dwAcceptEndTime;                                    // 允许接受时间范围结束
+    UINT32      dwAcceptStartTime;                                  // Start of the allowed acceptance period
+    UINT32      dwAcceptEndTime;                                    // End of the allowed acceptance period
     INT32       nAcceptStartHour;
     INT32       nAcceptStartMin;
     INT32       nAcceptEndHour;
@@ -69,71 +69,71 @@ struct QUEST_DATA
     INT32       nAcceptStartDayTime;
     INT32       nAcceptEndDayTime;
 
-    INT32       vecItemLimitID[4];                                  // 身上道具需求
+    INT32       vecItemLimitID[4];                                  // Required carried items
     INT32       vecItemLimitCnt[4];
 
-    INT32       nLimitVarID1;                                       // 需求变量ID1
-    INT32       nLimitVarValue1;                                    // 需求变量值1（判断相等）
-    INT32       nLimitVarID2;                                       // 需求变量ID2
-    INT32       nLimitVarValue2;                                    // 需求变量值2（判断相等）
-    CHAR        szBeforeAcceptScriptName[COMMON_NAME_LEN];          // 接任务前检测脚本名称
+    INT32       nLimitVarID1;                                       // Required variable ID 1
+    INT32       nLimitVarValue1;                                    // Required variable value 1 (equality check)
+    INT32       nLimitVarID2;                                       // Required variable ID 2
+    INT32       nLimitVarValue2;                                    // Required variable value 2 (equality check)
+    CHAR        szBeforeAcceptScriptName[COMMON_NAME_LEN];          // Script checked before quest acceptance
 
-    // 接任务执行动作
-    INT32       nOfferMoneyType;                                    // 接任务获得货币类型
-    INT32       nOfferMoneyAmount;                                  // 接任务获得货币数量(负值为扣钱)
-    INT32       nOfferBuffID;                                       // 接任务获得 BUFF ID
-    INT32       nOfferBuffLevel;                                    // 接任务获得 BUFF Level
+    // Actions performed on quest acceptance
+    INT32       nOfferMoneyType;                                    // Currency type granted on acceptance
+    INT32       nOfferMoneyAmount;                                  // Currency amount granted on acceptance (negative deducts money)
+    INT32       nOfferBuffID;                                       // Buff ID granted on acceptance
+    INT32       nOfferBuffLevel;                                    // Buff level granted on acceptance
 
-    INT32       nOfferItemID;                                       // 接任务获得(扣除)道具
-    INT32       nOfferItemCnt;                                      // 负值为扣除量
-    CHAR        szAfterAcceptScriptName[COMMON_NAME_LEN];           // 接任务后完成脚本名称
+    INT32       nOfferItemID;                                       // Item granted or removed on acceptance
+    INT32       nOfferItemCnt;                                      // Negative values indicate the amount removed
+    CHAR        szAfterAcceptScriptName[COMMON_NAME_LEN];           // Script executed after quest acceptance
 
-    // 交任务检测条件
-    INT32       nFinishNpc;                                         // 任务结束的NPC ID
-	INT32		nFinishItemID;										// 结束任务的Item ID
-    INT32       nCheckBuffID;                                       // 任务完成的BUF检查
+    // Quest completion conditions
+    INT32       nFinishNpc;                                         // NPC ID that completes the quest
+	INT32		nFinishItemID;										// Item ID that completes the quest
+    INT32       nCheckBuffID;                                       // Buff check for quest completion
     INT32       nCheckBuffLevel;
-	INT32		nCheckLevel;										// 任务完成登记检查
+	INT32		nCheckLevel;										// Level check for quest completion
 
-	INT32		nCheckKillPlayerLevlStart[CHECK_KILL_PLAYER_CONDITION];	// 检查杀死玩家最低等极
-	INT32		nCheckKillPlayerLevlEnd[CHECK_KILL_PLAYER_CONDITION];	// 检查杀死玩家最高等极
-	INT32		nCheckKillPlayerCount[CHECK_KILL_PLAYER_CONDITION];		// 检查杀死玩家个数	
-	INT32		nCheckKillBufPlayerBufID[CHECK_KILL_PLAYER_CONDITION];	// 杀死指定bufID的玩家
-	INT32		nCheckKillBufPlayerCount[CHECK_KILL_PLAYER_CONDITION];	// 杀死指定bufID的玩家数量
+	INT32		nCheckKillPlayerLevlStart[CHECK_KILL_PLAYER_CONDITION];	// Minimum level of player kills to count
+	INT32		nCheckKillPlayerLevlEnd[CHECK_KILL_PLAYER_CONDITION];	// Maximum level of player kills to count
+	INT32		nCheckKillPlayerCount[CHECK_KILL_PLAYER_CONDITION];		// Required number of player kills
+	INT32		nCheckKillBufPlayerBufID[CHECK_KILL_PLAYER_CONDITION];	// Kill a player with the specified buff ID
+	INT32		nCheckKillBufPlayerCount[CHECK_KILL_PLAYER_CONDITION];	// Required kills of players with the specified buff ID
 
-    INT32       nCheckKillNpcID[MAX_CONDITION_PER_QUEST];			// 杀怪数检查
-    INT32       nCheckKillNpcGroupID[MAX_CONDITION_PER_QUEST];			// 杀怪组检查
+    INT32       nCheckKillNpcID[MAX_CONDITION_PER_QUEST];			// Monster kill count check
+    INT32       nCheckKillNpcGroupID[MAX_CONDITION_PER_QUEST];			// Monster group kill check
     INT32       nCheckKillNpcCnt[MAX_CONDITION_PER_QUEST];
 
-	INT32		nCheckKillItemNpcID[MAX_CONDITION_PER_QUEST];		// 任务物品掉落npcid
-	INT32		nCheckKillItemNpcRate[MAX_CONDITION_PER_QUEST];		// 任务物品掉落概率
+	INT32		nCheckKillItemNpcID[MAX_CONDITION_PER_QUEST];		// NPC ID that drops the quest item
+	INT32		nCheckKillItemNpcRate[MAX_CONDITION_PER_QUEST];		// Quest item drop probability
     INT32       nCheckKillItemCnt[MAX_CONDITION_PER_QUEST];
  
-	UINT32		nCheckKillDoodadID[MAX_CONDITION_PER_QUEST];		// 需要摧毁的Doodad ID
-	INT32		nCheckKillDoodadCnt[MAX_CONDITION_PER_QUEST];		// 需要摧毁的Doodad ID
+	UINT32		nCheckKillDoodadID[MAX_CONDITION_PER_QUEST];		// Doodad ID to destroy
+	INT32		nCheckKillDoodadCnt[MAX_CONDITION_PER_QUEST];		// Doodad ID to destroy
 
-	INT32		nCheckItemID[MAX_CONDITION_PER_QUEST];				// 检查物品
+	INT32		nCheckItemID[MAX_CONDITION_PER_QUEST];				// Check items
     INT32       nCheckItemCount[MAX_CONDITION_PER_QUEST];
 
-	INT32       nCheckReputationForceID;							// 需求Npc势力声望
-	INT32       nCheckReputationForceValue;	                        // 需求声望
+	INT32       nCheckReputationForceID;							// Required NPC faction reputation
+	INT32       nCheckReputationForceValue;	                        // Required reputation
 
-    INT32       nCheckVarID[MAX_CHECK_VAR_COUNT];                   // 需求变量ID1
-    INT32       nCheckVarValue[MAX_CHECK_VAR_COUNT];                // 需求变量值1（判断相等）
+    INT32       nCheckVarID[MAX_CHECK_VAR_COUNT];                   // Required variable ID 1
+    INT32       nCheckVarValue[MAX_CHECK_VAR_COUNT];                // Required variable value 1 (equality check)
 
-    CHAR        szBeforeCompleteScriptName[COMMON_NAME_LEN];        // 完成任务条件脚本名称
+    CHAR        szBeforeCompleteScriptName[COMMON_NAME_LEN];        // Script checking quest completion conditions
 
-    // 交任务执行动作
-	INT32		nTalkNpcID;											// 对话的NPC ID
-	INT32		nTalkVarID;											// 对话所用Var ID
-	INT32		nExploreVarID;										// 探索所用Var ID
-    CHAR        szAfterCompleteScriptName[COMMON_NAME_LEN];         // 完成任务脚本名称
+    // Actions performed on quest completion
+	INT32		nTalkNpcID;											// NPC ID for dialogue
+	INT32		nTalkVarID;											// Variable ID used for dialogue
+	INT32		nExploreVarID;										// Variable ID used for exploration
+    CHAR        szAfterCompleteScriptName[COMMON_NAME_LEN];         // Quest completion script name
 	
-	// 交任务奖励
-	QUEST_REWARD_DATA stRewardData;									// 奖励物品
+	// Quest completion reward
+	QUEST_REWARD_DATA stRewardData;									// Reward item
 
-	// 放弃任务执行动作
-    CHAR        szAbandonScriptName[COMMON_NAME_LEN];				// 完成任务脚本名称
+	// Actions performed when abandoning the quest
+    CHAR        szAbandonScriptName[COMMON_NAME_LEN];				// Quest completion script name
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, QUEST_DATA* pData, CTabFile * pTabConfig, INT32 nRow);
 	static BOOL CheckValidQuestID(INT32 nQuestType, INT32 nQuestID);
@@ -142,7 +142,7 @@ struct QUEST_DATA
 
 struct REWARD_QUEST_MONEY_COST_DATA
 {
-	// 悬赏任务突破上限金币消耗
+	// Gold cost to raise the bounty quest limit
 
 	INT32		nTime;
 	INT32		nMoneyCost;
@@ -152,7 +152,7 @@ struct REWARD_QUEST_MONEY_COST_DATA
 
 struct QUEST_RECYCLE_DATA
 {
-	// 装备回收任务，对应变量指定
+	// Equipment recycling quest; specified by the corresponding variable
 
 	INT32		nItemLevel;
 	INT32		nItemColor;

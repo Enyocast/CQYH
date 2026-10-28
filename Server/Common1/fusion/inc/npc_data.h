@@ -41,14 +41,14 @@ struct NPC_DATA
     BOOL                    bExclusive;
 	BOOL					bNeverBeHit;
 
-    BOOL                    bProfit;                    //控制是否掉落物品,经验,魂
+    BOOL                    bProfit;                    //Controls whether items, experience, and soul are dropped
 	INT32                   nExpRate;
     INT32                   nSoulRate;
-    BOOL                    bDailyExp;                  //控制是否计入每日经验上限
+    BOOL                    bDailyExp;                  //Controls whether experience counts toward the daily limit
 	BOOL					bAuraInvalid;
 
 	INT32					nKillPlayerVarIndex;		
-	INT32					nBeKilledVarIndex;			// 杀死指定ID的怪物对应的玩家变量
+	INT32					nBeKilledVarIndex;			// Player variable corresponding to killing a monster with the specified ID
 
     INT32                   nShopID;
     INT32                   nBlackMarketID;

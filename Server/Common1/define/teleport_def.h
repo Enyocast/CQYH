@@ -12,14 +12,14 @@ struct SCENE_TELEPORTS
 {
     INT32 ID;
 
-    INT32 SrcSceneID;	// 源场景ID
-    INT32 SrcRadius;	// 传送点半径范围(POINT)
-    INT32 SrcSceneX;	// 传送点在源场景中的位置(POINT)
+    INT32 SrcSceneID;	// Source scene ID
+    INT32 SrcRadius;	// Teleport point radius (POINT)
+    INT32 SrcSceneX;	// Teleport point position in the source scene (POINT)
     INT32 SrcSceneY;
     INT32 SrcSceneZ;
 
-    INT32 TargetSceneID; // 目标场景ID
-    INT32 TargetSceneX;	// 目标位置(POINT)
+    INT32 TargetSceneID; // Target scene ID
+    INT32 TargetSceneX;	// Target position (POINT)
     INT32 TargetSceneY;
     INT32 TargetSceneZ;
 	INT32 TargetRotationYaw;
@@ -28,12 +28,12 @@ struct SCENE_TELEPORTS
 struct TELEPORT_PLATFORM
 {
 	INT32 ID;
-	INT32 nInitEnable;		//初始可用
-	INT32 nMoneyType;		//消耗金钱类型
-	INT32 nMoney;			//消耗数量
+	INT32 nInitEnable;		//Initially enabled
+	INT32 nMoneyType;		//Currency type consumed
+	INT32 nMoney;			//Amount consumed
 
-	INT32 nSceneID;			//场景ID
-	INT32 nRadius;			//范围
+	INT32 nSceneID;			//Scene ID
+	INT32 nRadius;			//Radius
 	INT32 nSceneX;			
 	INT32 nSceneY;
 	INT32 nSceneZ;

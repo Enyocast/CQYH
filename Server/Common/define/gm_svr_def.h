@@ -53,7 +53,7 @@ enum GM_COMMAND
 
     GM_CMD_QUERY_STATIS_INFO,
 
-    // 应该是卖家 自定义的GM命令
+    // Probably a seller-defined GM command
     GM_CMD_QUERY_ROLE_ID,
     GM_CMD_EXE_GM_STR,
     GM_CMD_SYS_EXCHANGE_INFO,

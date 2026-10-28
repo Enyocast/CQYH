@@ -15,9 +15,9 @@ enum TITLE_PRE_COND
 {
     TITLE_PRE_COND_NONE     = 0,
     TITLE_NEDD_LEVEL        = 1,
-    TITLE_SPIRIT_LEVEL      = 2,        // 境界
+    TITLE_SPIRIT_LEVEL      = 2,        // Spirit level
     TITLE_NEED_VIP          = 3,
-    TITLE_NEDD_EVIL_VALUE   = 4,        // 善恶值
+    TITLE_NEDD_EVIL_VALUE   = 4,        // Good/evil value
 
 };
 

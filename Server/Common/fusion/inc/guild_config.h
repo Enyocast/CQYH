@@ -29,7 +29,7 @@ struct GUILD_CONFIG
     INT32       nCrystal;
     INT32       nSilver;
 
-    INT16       nInitGuildPositionRight[8]; // GUILD_POSITION_COUNT， 以此来跳过0
+    INT16       nInitGuildPositionRight[8]; // GUILD_POSITION_COUNT; skip index 0
     INT16       nInitGuildStorageRight[7];  // GUILD_POSITION_COUNT
 
     INT32       nGuildDisbandLevelLimit;
@@ -37,7 +37,7 @@ struct GUILD_CONFIG
     INT32       nGuildApplicationLastTime;
     INT32       nGuildPopItemComsumeMoney;
 
-    // 薪水
+    // Salary
     INT32       nInitGuildMaxSalary;
     INT32       nGuildDrawSalaryPercent;
     INT32       nGuildObtainMoneyLimitPerWeek;
@@ -51,13 +51,13 @@ struct GUILD_CONFIG
     INT32       nDiplomatAppLastTime;
 
 
-    // 取消升级 返还比例
+    // Refund percentage when canceling an upgrade
     INT32       nBuildingUpgradeRefundPercent;
     INT32       nDelBuildingRefundPercent;
     INT32       nWelfareBufferUpgradeRefundPercent;
     INT32       nAddResourceInterval;
 
-    // 家族属地
+    // Guild territory
     UINT32      dwSceneTemplateID;
     INT32       nEnterMapPosX;
     INT32       nEnterMapPosY;
@@ -66,7 +66,7 @@ struct GUILD_CONFIG
     UINT32      dwServerPoint;
     UINT32      dwTargetGuildServerPoint;
 
-    // 王城地图
+    // Royal city map
     UINT32      dwPalaceSceneTemplateID;
 
     char        szBMainNameID[8];
@@ -103,7 +103,7 @@ struct GUILD_CONFIG
 
     INT32           nGuildWarBeginTime;
     INT32           nGuildWarEndTime;
-    INT32           nGuildWarScriptBeginTime;     // 补充代码
+    INT32           nGuildWarScriptBeginTime;     // Additional code
 
     INT32           nGuildWarProtectionTime;
     INT32           nGuildWarAttackCD;
@@ -112,10 +112,10 @@ struct GUILD_CONFIG
     INT32           nGuildWarAttackEndAuraID;
     INT32           nGuildWarDefendEndAuraID;
 
-    INT32           nGuildWarMoneyPlunderPercent;       // 公会资金包万分比
-    INT32           nGuildWarResPlunderPercent;         // 资源包万分比
-    INT32           nGuildWarMoneyPlunder;              // 公会战胜利 赢取获得对方的公会资金万分比
-    INT32           nGuildWarResPlunder;                // 公会战胜利 赢取获得对方的资源万分比
+    INT32           nGuildWarMoneyPlunderPercent;       // Guild funds package rate, in ten-thousandths
+    INT32           nGuildWarResPlunderPercent;         // Resource package rate, in ten-thousandths
+    INT32           nGuildWarMoneyPlunder;              // Share of the opposing guild’s funds awarded for winning a guild war, in ten-thousandths
+    INT32           nGuildWarResPlunder;                // Share of the opposing guild’s resources awarded for winning a guild war, in ten-thousandths
     //////////////////////////////////////////////////////////////////////////
 
     // match war
@@ -133,7 +133,7 @@ struct GUILD_CONFIG
 
     //////////////////////////////////////////////////////////////////////////
 
-    INT32           nGuildDungeonUpdateTime;        // 凌晨4点的秒数
+    INT32           nGuildDungeonUpdateTime;        // Time of 4 a.m. in seconds
     INT32           nGuildDungeonSalaryPercent;
 
     // guild prosperity
