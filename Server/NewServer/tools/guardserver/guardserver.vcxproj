@@ -53,9 +53,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-    <Import Project="..\..\src\gameworld\script\toluapp.props" />
-  </ImportGroup>
+
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -102,7 +100,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;../../inc;../../inc/baselib;../../inc/net;../../../common/fusion/inc;../../../common/message;../../../common/define;../../3rd/mysql/include;../../3rd/toluapp/include;../../3rd/lua/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../../inc;../../inc/baselib;../../inc/net;../../../common/fusion/inc;../../../common/message;../../../common/define;../../3rd/mysql/include;../../3rd/lua/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN64;_WINDOWS;_DEBUG;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <ExceptionHandling />
@@ -115,9 +113,9 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>iphlpapi.lib;ws2_32.lib;winmm.lib;shlwapi.lib;baselib_d.lib;net_d.lib;lua64_d.lib;toluapp_d.lib;psapi.lib;zlib_d.lib;dbghelp.lib;fusion_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>iphlpapi.lib;ws2_32.lib;winmm.lib;shlwapi.lib;baselib_d.lib;net_d.lib;lua64_d.lib;psapi.lib;zlib_d.lib;dbghelp.lib;fusion_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../lib/win64;../../3rd/lua/lib/win64;../../3rd/toluapp/lib/win64;../../3rd/zlib/lib/win64;../../../common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../lib/win64;../../3rd/lua/lib/win64;../../3rd/zlib/lib/win64;../../../common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
@@ -134,7 +132,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;../../inc;../../inc/baselib;../../inc/net;../../../common/fusion/inc;../../../common/message;../../../common/define;../../3rd/mysql/include;../../3rd/toluapp/include;../../3rd/lua/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../../inc;../../inc/baselib;../../inc/net;../../../common/fusion/inc;../../../common/message;../../../common/define;../../3rd/mysql/include;../../3rd/lua/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN64;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -147,9 +145,9 @@
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>iphlpapi.lib;ws2_32.lib;winmm.lib;shlwapi.lib;baselib.lib;net.lib;lua64.lib;toluapp.lib;psapi.lib;zlib.lib;dbghelp.lib;fusion.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>iphlpapi.lib;ws2_32.lib;winmm.lib;shlwapi.lib;baselib.lib;net.lib;lua64.lib;psapi.lib;zlib.lib;dbghelp.lib;fusion.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../lib/win64;../../3rd/lua/lib/win64;../../3rd/toluapp/lib/win64;../../3rd/zlib/lib/win64;../../../common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../lib/win64;../../3rd/lua/lib/win64;../../3rd/zlib/lib/win64;../../../common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -167,7 +165,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>./;../../inc;../../inc/baselib;../../inc/net;../../../common/fusion/inc;../../../common/message;../../../common/define;../../3rd/mysql/include;../../3rd/toluapp/include;../../3rd/lua/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../../inc;../../inc/baselib;../../inc/net;../../../common/fusion/inc;../../../common/message;../../../common/define;../../3rd/mysql/include;../../3rd/lua/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN64;_WINDOWS;_DEBUG;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_DEPRECATE;_FINAL</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <ExceptionHandling />
@@ -181,9 +179,9 @@
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>iphlpapi.lib;ws2_32.lib;winmm.lib;shlwapi.lib;baselib_d.lib;net_d.lib;lua64_d.lib;toluapp_d.lib;psapi.lib;zlib_d.lib;dbghelp.lib;fusion_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>iphlpapi.lib;ws2_32.lib;winmm.lib;shlwapi.lib;baselib_d.lib;net_d.lib;lua64_d.lib;psapi.lib;zlib_d.lib;dbghelp.lib;fusion_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../lib/win64;../../3rd/lua/lib/win64;../../3rd/toluapp/lib/win64;../../3rd/zlib/lib/win64;../../../common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../lib/win64;../../3rd/lua/lib/win64;../../3rd/zlib/lib/win64;../../../common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
@@ -200,7 +198,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>./;../../inc;../../inc/baselib;../../inc/net;../../../common/fusion/inc;../../../common/message;../../../common/define;../../3rd/mysql/include;../../3rd/toluapp/include;../../3rd/lua/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./;../../inc;../../inc/baselib;../../inc/net;../../../common/fusion/inc;../../../common/message;../../../common/define;../../3rd/mysql/include;../../3rd/lua/src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN64;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;_CRT_SECURE_NO_DEPRECATE;_FINAL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -213,9 +211,9 @@
       <ProgramDataBaseFileName>$(IntDir)vc$(PlatformToolsetVersion).pdb</ProgramDataBaseFileName>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>iphlpapi.lib;ws2_32.lib;winmm.lib;shlwapi.lib;baselib.lib;net.lib;lua64.lib;toluapp.lib;psapi.lib;zlib.lib;dbghelp.lib;fusion.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>iphlpapi.lib;ws2_32.lib;winmm.lib;shlwapi.lib;baselib.lib;net.lib;lua64.lib;psapi.lib;zlib.lib;dbghelp.lib;fusion.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
-      <AdditionalLibraryDirectories>../../lib/win64;../../3rd/lua/lib/win64;../../3rd/toluapp/lib/win64;../../3rd/zlib/lib/win64;../../../common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../lib/win64;../../3rd/lua/lib/win64;../../3rd/zlib/lib/win64;../../../common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -253,7 +251,5 @@
     <None Include="gd_session_mgr.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\..\src\gameworld\script\toluapp.targets" />
-  </ImportGroup>
+
 </Project>

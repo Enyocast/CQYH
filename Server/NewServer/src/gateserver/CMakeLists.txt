@@ -29,9 +29,9 @@ target_compile_definitions(gateserver PRIVATE
 )
 target_link_libraries(gateserver PRIVATE
     baselib
-    net
+    cqyh::net
     cqyh::lua
-    cqyh::toluapp
+    cqyh::sol2
     cqyh::zlib
     fusion
     cqyh::syslibs

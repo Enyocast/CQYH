@@ -1,8 +1,8 @@
 <Project>
-  <!-- Imported automatically by MSBuild for every project under Server\. -->
-  <PropertyGroup>
-    <!-- Lua script that makes tolua++ output reproducible (no generation timestamp).
-         Used by the toluapp*.props custom build steps via: toluappc.exe -L "$(ToluaFixedDateScript)" -->
-    <ToluaFixedDateScript>$(MSBuildThisFileDirectory)tolua_fixed_date.lua</ToluaFixedDateScript>
-  </PropertyGroup>
+  <!-- The separate legacy tool projects share the vendored sol2 headers. -->
+  <ItemDefinitionGroup Condition="'$(MSBuildProjectExtension)' == '.vcxproj'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)NewServer\3rd\sol2\include;$(MSBuildThisFileDirectory)NewServer\inc\baselib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
 </Project>

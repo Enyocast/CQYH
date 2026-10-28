@@ -1,8 +1,6 @@
 #ifndef _ACHIEVEMENT_DEF_H_
 #define _ACHIEVEMENT_DEF_H_
 
-// tolua_begin
-
 #define MAX_CON_PER_ACHIEVEMENT 6
 #define ACHIEVEMENT_MAX 512
 
@@ -325,7 +323,5 @@ enum ACHIEVEMENT_VARIABLE_DEF
 
 	avdTotal,
 };
-
-// tolua_end
 
 #endif // _ACHIEVEMENT_DEF_H_

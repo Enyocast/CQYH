@@ -5,8 +5,6 @@
 #include "missile_def.h"
 #include "data_manager.h"
 
-//tolua_begin
-
 struct MISSILE_DATA
 {
 	INT32 m_nTemplateID;
@@ -14,6 +12,5 @@ struct MISSILE_DATA
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, MISSILE_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-//tolua_end
 
 #endif	// _MISSILE_DATA_H_

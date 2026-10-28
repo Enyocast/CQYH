@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "sol_bindings.h"
 #include "asimov.h"
 #include <QtWidgets/QApplication>
 
@@ -16,12 +17,11 @@
 #include "robot_message_notifier.h"
 #include "user_mgr.h"
 
-#include "tolua++.h"
-#include "script/tolua_asimov_common.h"
-#include "script/tolua_asimov_user.h"
-#include "script/tolua_asimov_user_mgr.h"
-#include "script/tolua_asimov_message_handler.h"
-#include "script/tolua_msg.h"
+#include "script/sol_asimov_common.h"
+#include "script/sol_asimov_user.h"
+#include "script/sol_asimov_user_mgr.h"
+#include "script/sol_asimov_message_handler.h"
+#include "script/sol_msg.h"
 
 #include "string_ex.h"
 #include "dump.h"
@@ -95,19 +95,19 @@ BOOL _InitAsimov(void)
     nRetCode = CAsimovMessageHandler::GetInstance().Init(g_pNet, &g_PacketAllocator);
     LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("asimov_common.pkg", tolua_asimov_common_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("asimov_common.pkg", sol_asimov_common_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("asimov_user.pkg", tolua_asimov_user_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("asimov_user.pkg", sol_asimov_user_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("asimov_user_mgr.pkg", tolua_asimov_user_mgr_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("asimov_user_mgr.pkg", sol_asimov_user_mgr_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("asimov_message_handler.pkg", tolua_asimov_message_handler_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("asimov_message_handler.pkg", sol_asimov_message_handler_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("msg.pkg", tolua_msg_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("msg.pkg", sol_msg_open);
     LOG_PROCESS_ERROR(nRetCode);
 
 	nRetCode = CScriptMgr::GetInstance().RegisterFuncList(g_RobotLuaScriptFuncTable);

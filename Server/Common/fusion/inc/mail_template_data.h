@@ -3,8 +3,6 @@
 
 #include "string_def.h"
 #include "data_manager.h"
-
-//tolua_begin
 struct MAIL_TEMPLATE_DATA
 {
     INT32 m_nTemplateID;
@@ -15,8 +13,6 @@ struct MAIL_TEMPLATE_DATA
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, MAIL_TEMPLATE_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-
-//tolua_end
 
 enum MAIL_TEMPLATE_ID
 {

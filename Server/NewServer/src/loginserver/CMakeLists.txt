@@ -26,9 +26,9 @@ target_compile_definitions(loginserver PRIVATE
     _CRT_SECURE_NO_DEPRECATE
 )
 target_link_libraries(loginserver PRIVATE
-    net
+    cqyh::net
     cqyh::lua
-    cqyh::toluapp
+    cqyh::sol2
     cqyh::sdobase
     cqyh::zlib
     fusion

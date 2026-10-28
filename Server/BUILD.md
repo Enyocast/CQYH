@@ -15,7 +15,7 @@ The old makefiles and Visual Studio project files are gone; Visual Studio and th
 ```
 cmake --preset vs2022
 cmake --build --preset vs2022-debug        (or vs2022-release)
-ctest --preset vs2022-debug                (runs the asio transport test)
+ctest --preset vs2022-debug                (runs transport, Lua bindings and optional MySQL tests)
 ```
 
 Executables are written to `NewServer/bin/<server>/<server>64[_d].exe`, where the configs and scripts are, exactly as
@@ -25,14 +25,41 @@ the old projects did. Pass `-DCQYH_OUTPUT_TO_BIN=OFF` to keep them in the build 
 
 * asio (standalone, header only) is downloaded on the first configure and pinned by hash (`cmake/Asio.cmake`). To
   build offline point `-DCQYH_ASIO_SOURCE_DIR=<asio checkout>` at an existing copy.
-* `-DCQYH_CXX_STANDARD=14|17|20|23` selects the language standard (default 23). The legacy code needs MSVC's
+* sol2 v3.3.1 is vendored in `NewServer/3rd/sol2` alongside the other third-party libraries. The build uses these
+  local headers directly; it does not download sol2. Lua 5.1 is compiled from the bundled `3rd/lua/src` sources
+  with the server's toolchain, so the old Lua DLLs and their Visual C++ 2013 Debug runtime are unnecessary.
+* `-DCQYH_CXX_STANDARD=17|20|23` selects the language standard (default 23). The legacy code needs MSVC's
   `/permissive` mode; that is set in `cmake/CQYH.cmake`.
 * The source lists in the `CMakeLists.txt` files are explicit. A new `.cpp` has to be added there.
+* `CQYH_MSVC_COMPILE_PROCESSES` limits compiler workers per MSBuild target (default 2). sol2 templates need
+  substantial compiler memory; increase this only when the machine has enough memory for parallel targets too.
 * `nameserver` is not built by default (`-DCQYH_BUILD_NAMESERVER=ON`): it was never in the old solution and does not
   compile (`nameserver.h` uses `std::string` without including it).
 * Not migrated: `NewServer/src/asimov` (Qt robot client), `bteditor`, `gameworld/script/script.vcxproj` (the Lua
   bytecode compiler step) and everything under `NewServer/tools` still have their own project files.
 * The source files are GBK encoded (Chinese comments). Edit them with a tool that keeps the bytes as they are.
+
+## Lua bindings
+
+The server uses typed sol2 registrations in C++. Fusion registrations live under
+`Common/fusion/src/script/bindings`, grouped into `config`, `data`, `definitions` and `support` folders.
+Feature files such as `config/game_world_bindings.cpp` and `data/quest_bindings.cpp` keep each type's members
+together. The `script/sol_*.cpp` entry points assemble these shared registrations; `bindings/registration.h`
+declares their internal functions. `Common1/fusion` follows the same layout for its alternative protocol variant.
+The other server and tool binding directories follow the same feature-based layout. Packet registrations are
+under `bindings/external` and `bindings/internal`, named by direction and feature, for example
+`external_client_to_game_movement_bindings.cpp` and `internal_manage_to_database_bindings.cpp`.
+Enum-string registrations are grouped by their declaring headers under `bindings/definitions`.
+Numbered binding source files are no longer used.
+Edit these C++ registrations directly; there is no binding generator or package specification to regenerate.
+Existing `LoadPackage("name.pkg")` strings remain module identifiers for scripts.
+The networking objects are archived as `net`, `net_lua_external` and `net_lua_internal` to stay below MSVC's
+Debug archive size limit; CMake consumers link `cqyh::net` for the complete interface.
+
+The shared policy in `NewServer/inc/baselib/sol_bindings.h` preserves zero-based C arrays, nested object references,
+bounded string assignment and named objects passed through `CLuaScript::CallFunction`. `Cast(object, "CType")`
+converts base pointers and packet pointers to registered script types. Existing scripts now use this function.
+`ctest -R lua_bindings --output-on-failure` exercises these behaviors.
 
 ## MySQL
 

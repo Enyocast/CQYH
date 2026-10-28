@@ -7,8 +7,6 @@
 
 #include "string_def.h"
 #include "guild_def.h"
-
-// tolua_begin
 struct ASIMOV_GUILD_MEMBER 
 {
     UINT32      dwRoleID;
@@ -17,8 +15,6 @@ struct ASIMOV_GUILD_MEMBER
     INT32       nSalary;
     UINT32      dwDrawSalaryTime;
 };
-
-// tolua_end
 
 struct ASIMOV_DIPLOMAT_DATA
 {

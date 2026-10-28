@@ -1,4 +1,5 @@
 ﻿#include "stdafx.h"
+#include "sol_bindings.h"
 #include "gs_message_handler.h"
 
 #include "time_ex.h"
@@ -40,7 +41,6 @@
 #include "guild_mgr.h"
 #include "guild_building_data.h"
 #include "achievement_def.h"
-#include "../3rd/toluapp/include/tolua++.h"
 #include "guild_dungeon_data.h"
 #include "scene_file_mgr.h"
 #include "adventure.h"
@@ -3780,7 +3780,7 @@ BOOL CGSMessageHandler::_CallDebugGMCommand(CRole* poRole, const char* pcszComma
 
 		if (poRole)
 		{
-			tolua_pushusertype(poScript->GetLuaState(), poRole, "CRole");
+			cqyh::lua::push_object(poScript->GetLuaState(), poRole, "CRole");
 			lua_setglobal(poScript->GetLuaState(), "TargetRole");
 		}
 		else
@@ -3852,7 +3852,7 @@ BOOL CGSMessageHandler::_CallFinalGMCommand(CRole* poRole, const char* pcszComma
 		poScript = CScriptMgr::GetInstance().FindScript(GS_CS_SCRIPT_NAME);
 		LOG_PROCESS_ERROR(poScript);
 
-		tolua_pushusertype(poScript->GetLuaState(), poRole, "CRole");
+		cqyh::lua::push_object(poScript->GetLuaState(), poRole, "CRole");
 		lua_setglobal(poScript->GetLuaState(), "role");
 
 		nRetCode = poScript->CallFunction("OnGSCommand", "s:b", pcszCommand, &bGMRet);

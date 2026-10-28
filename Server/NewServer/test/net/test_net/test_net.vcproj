@@ -68,9 +68,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="baselib_d.lib net_d.lib sdu_d.lib iphlpapi.lib ws2_32.lib lua_d.lib toluapp_d.lib"
+				AdditionalDependencies="baselib_d.lib net_d.lib sdu_d.lib iphlpapi.lib ws2_32.lib lua_d.lib "
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="../../../3rd/toluapp/lib/win32;../../../lib/win32;../../../3rd/sdu/lib/win32;../../../3rd/libiconv/lib/win32;../../../3rd/lua/lib/win32"
+				AdditionalLibraryDirectories="../../../lib/win32;../../../3rd/sdu/lib/win32;../../../3rd/libiconv/lib/win32;../../../3rd/lua/lib/win32"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -143,9 +143,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="baselib_d.lib net_d.lib sdu_d.lib iphlpapi.lib ws2_32.lib lua64_d.lib toluapp_d.lib"
+				AdditionalDependencies="baselib_d.lib net_d.lib sdu_d.lib iphlpapi.lib ws2_32.lib lua64_d.lib "
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="../../../lib/win64;../../../3rd/sdu/lib/win64;../../../3rd/libiconv/lib/win64;../../../3rd/lua/lib/win64;../../../3rd/toluapp/lib/win64"
+				AdditionalLibraryDirectories="../../../lib/win64;../../../3rd/sdu/lib/win64;../../../3rd/libiconv/lib/win64;../../../3rd/lua/lib/win64"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="17"
@@ -218,9 +218,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="baselib.lib net.lib sdu.lib iphlpapi.lib ws2_32.lib lua.lib toluapp.lib"
+				AdditionalDependencies="baselib.lib net.lib sdu.lib iphlpapi.lib ws2_32.lib lua.lib "
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="../../../3rd/toluapp/lib/win32;../../../lib/win32;../../../3rd/sdu/lib/win32;../../../3rd/libiconv/lib/win32;../../../3rd/lua/lib/win32"
+				AdditionalLibraryDirectories="../../../lib/win32;../../../3rd/sdu/lib/win32;../../../3rd/libiconv/lib/win32;../../../3rd/lua/lib/win32"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"
@@ -296,9 +296,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="baselib.lib net.lib sdu.lib iphlpapi.lib ws2_32.lib lua64.lib toluapp.lib"
+				AdditionalDependencies="baselib.lib net.lib sdu.lib iphlpapi.lib ws2_32.lib lua64.lib "
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="../../../lib/win64;../../../3rd/sdu/lib/win64;../../../3rd/libiconv/lib/win64;../../../3rd/lua/lib/win64;../../../3rd/toluapp/lib/win64"
+				AdditionalLibraryDirectories="../../../lib/win64;../../../3rd/sdu/lib/win64;../../../3rd/libiconv/lib/win64;../../../3rd/lua/lib/win64"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				OptimizeReferences="2"

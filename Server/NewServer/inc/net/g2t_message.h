@@ -4,7 +4,6 @@
 #include "internal_message_header.h"
 
 #pragma pack(push, 1)
-// tolua_begin
 namespace InternalMessage
 {
     enum G2T_MESSAGE_ID
@@ -49,7 +48,6 @@ namespace InternalMessage
 		UINT8		byLogout;
 	};
 };
-// tolua_end
 #pragma pack(pop)
 
 #endif  // _G2T_MESSAGE_H_

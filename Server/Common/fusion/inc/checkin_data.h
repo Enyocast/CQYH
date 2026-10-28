@@ -4,8 +4,6 @@
 #include "string_def.h"
 #include "data_manager.h"
 
-//tolua_begin
-
 struct CHECKIN_DATA
 {
 	INT32 nDay;
@@ -16,7 +14,5 @@ struct CHECKIN_DATA
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, CHECKIN_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-
-//tolua_end
 
 #endif // checkin_data_h__

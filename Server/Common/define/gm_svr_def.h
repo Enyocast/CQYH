@@ -10,9 +10,6 @@
 #define _H_GM_SVR_DEF_H_
 
 #define GM_COMMAND_TABLE_PATH      "globalconfig/gmsecurityconfig.lua"
-
-
-//tolua_begin
 #define MAX_GM_USER     (128)
 
 #define MAX_ITEM_BUFFER_SIZE        (32 * 1024)
@@ -115,9 +112,6 @@ enum GM_PERMISSION
     GM_PERMISSION_9         = 5,
     GM_PERMISSION_GUEST     = 1,           // guest
 };
-
-
-//tolua_end
 
 
 

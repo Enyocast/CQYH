@@ -165,19 +165,19 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>main</Filter>
     </ClCompile>
-    <ClCompile Include="script\tolua_common.cpp">
+    <ClCompile Include="script\sol_common.cpp">
       <Filter>script\generated files</Filter>
     </ClCompile>
-    <ClCompile Include="script\tolua_enum.cpp">
+    <ClCompile Include="script\sol_enum.cpp">
       <Filter>script\generated files</Filter>
     </ClCompile>
-    <ClCompile Include="script\tolua_global_config.cpp">
+    <ClCompile Include="script\sol_global_config.cpp">
       <Filter>script\generated files</Filter>
     </ClCompile>
-    <ClCompile Include="script\tolua_guild_config.cpp">
+    <ClCompile Include="script\sol_guild_config.cpp">
       <Filter>script\generated files</Filter>
     </ClCompile>
-    <ClCompile Include="script\tolua_string_table.cpp">
+    <ClCompile Include="script\sol_string_table.cpp">
       <Filter>script\generated files</Filter>
     </ClCompile>
     <ClCompile Include="role_db_base_data_conv.cpp">
@@ -210,7 +210,7 @@
     <ClCompile Include="data\gamble_data.cpp">
       <Filter>data</Filter>
     </ClCompile>
-    <ClCompile Include="script\tolua_guild_def.cpp">
+    <ClCompile Include="script\sol_guild_def.cpp">
       <Filter>script\generated files</Filter>
     </ClCompile>
     <ClCompile Include="data\gm_log_note.cpp">
@@ -222,7 +222,7 @@
     <ClCompile Include="enum_string.cpp">
       <Filter>enumstring</Filter>
     </ClCompile>
-    <ClCompile Include="script\tolua_enumstr.cpp">
+    <ClCompile Include="script\sol_enumstr.cpp">
       <Filter>script\generated files</Filter>
     </ClCompile>
     <ClCompile Include="data\master_gift.cpp" />
@@ -528,19 +528,19 @@
     <ClInclude Include="stdafx.h">
       <Filter>main</Filter>
     </ClInclude>
-    <ClInclude Include="script\tolua_common.h">
+    <ClInclude Include="script\sol_common.h">
       <Filter>script\generated files</Filter>
     </ClInclude>
-    <ClInclude Include="script\tolua_enum.h">
+    <ClInclude Include="script\sol_enum.h">
       <Filter>script\generated files</Filter>
     </ClInclude>
-    <ClInclude Include="script\tolua_global_config.h">
+    <ClInclude Include="script\sol_global_config.h">
       <Filter>script\generated files</Filter>
     </ClInclude>
-    <ClInclude Include="script\tolua_guild_config.h">
+    <ClInclude Include="script\sol_guild_config.h">
       <Filter>script\generated files</Filter>
     </ClInclude>
-    <ClInclude Include="script\tolua_string_table.h">
+    <ClInclude Include="script\sol_string_table.h">
       <Filter>script\generated files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\define\role_db_def.h">
@@ -585,7 +585,7 @@
     <ClInclude Include="..\..\define\dds_def.h">
       <Filter>define</Filter>
     </ClInclude>
-    <ClInclude Include="script\tolua_guild_def.h">
+    <ClInclude Include="script\sol_guild_def.h">
       <Filter>script\generated files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\gm_log_note.h">
@@ -600,30 +600,18 @@
     <ClInclude Include="..\inc\enum_string.h">
       <Filter>enumstring</Filter>
     </ClInclude>
-    <ClInclude Include="script\tolua_enumstr.h">
+    <ClInclude Include="script\sol_enumstr.h">
       <Filter>script\generated files</Filter>
     </ClInclude>
     <ClInclude Include="..\inc\master_gift.h" />
   </ItemGroup>
   <ItemGroup>
-    <toluapp Include="script\common.pkg">
-      <Filter>script\package</Filter>
-    </toluapp>
-    <toluapp Include="script\enum.pkg">
-      <Filter>script\package</Filter>
-    </toluapp>
-    <toluapp Include="script\global_config.pkg">
-      <Filter>script\package</Filter>
-    </toluapp>
-    <toluapp Include="script\guild_config.pkg">
-      <Filter>script\package</Filter>
-    </toluapp>
-    <toluapp Include="script\string_table.pkg">
-      <Filter>script\package</Filter>
-    </toluapp>
-    <toluapp Include="script\guild_def.pkg">
-      <Filter>script\package</Filter>
-    </toluapp>
+
+
+
+
+
+
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="..\inc\guild_config.h">
@@ -631,8 +619,55 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <toluapp_gen_msg Include="script\enumstr.epkg">
-      <Filter>script\package</Filter>
-    </toluapp_gen_msg>
+
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="script\bindings\config\asimov_bindings.cpp"><Filter>Lua bindings\config</Filter></ClCompile>
+    <ClCompile Include="script\bindings\config\game_world_bindings.cpp"><Filter>Lua bindings\config</Filter></ClCompile>
+    <ClCompile Include="script\bindings\config\global_bindings.cpp"><Filter>Lua bindings\config</Filter></ClCompile>
+    <ClCompile Include="script\bindings\config\guard_bindings.cpp"><Filter>Lua bindings\config</Filter></ClCompile>
+    <ClCompile Include="script\bindings\config\guild_bindings.cpp"><Filter>Lua bindings\config</Filter></ClCompile>
+    <ClCompile Include="script\bindings\config\mt_bindings.cpp"><Filter>Lua bindings\config</Filter></ClCompile>
+    <ClCompile Include="script\bindings\config\new_role_bindings.cpp"><Filter>Lua bindings\config</Filter></ClCompile>
+    <ClCompile Include="script\bindings\config\obj_pool_bindings.cpp"><Filter>Lua bindings\config</Filter></ClCompile>
+    <ClCompile Include="script\bindings\config\server_bindings.cpp"><Filter>Lua bindings\config</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\achievement_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\adventure_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\ai_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\attribute_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\aura_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\char_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\chat_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\doodad_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\error_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\friend_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\gm_svr_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\grid_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\guild_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\id_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\item_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\master_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\missile_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\modifier_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\money_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\npc_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\quest_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\queue_match_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\role_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\scene_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\scene_file_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\server_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\spell_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\team_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\definitions\variable_bindings.cpp"><Filter>Lua bindings\definitions</Filter></ClCompile>
+    <ClCompile Include="script\bindings\support\log_bindings.cpp"><Filter>Lua bindings\support</Filter></ClCompile>
+    <Filter Include="Lua bindings" />
+    <Filter Include="Lua bindings\config" />
+    <Filter Include="Lua bindings\definitions" />
+    <Filter Include="Lua bindings\support" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="script\bindings\registration.h"><Filter>Lua bindings</Filter></ClInclude>
   </ItemGroup>
 </Project>

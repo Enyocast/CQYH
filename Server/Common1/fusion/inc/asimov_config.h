@@ -2,8 +2,6 @@
 #define _ASIMOV_CONFIG_H_
 
 #include "global_config.h"
-
-// tolua_begin
 #pragma pack(push, 8)
 
 struct ASIMOV_CONFIG
@@ -19,7 +17,6 @@ struct ASIMOV_CONFIG
 };
 
 #pragma pack(pop)
-// tolua_end
 
 extern ASIMOV_CONFIG g_AsimovConfig;
 

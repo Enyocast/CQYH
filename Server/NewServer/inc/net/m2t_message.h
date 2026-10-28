@@ -4,7 +4,6 @@
 #include "internal_message_header.h"
 
 #pragma pack(push, 1)
-// tolua_begin
 namespace InternalMessage
 {
     enum M2T_MESSAGE_ID
@@ -102,7 +101,6 @@ namespace InternalMessage
         char    UserData[USER_DATA_LEN];
 	};
 };
-// tolua_end
 #pragma pack(pop)
 
 #endif  // _M2T_MESSAGE_H_

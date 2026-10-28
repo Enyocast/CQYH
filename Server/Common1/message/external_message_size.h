@@ -1,12 +1,9 @@
 #ifndef _EXTERNAL_MESSAGE_SIZE_H_
 #define _EXTERNAL_MESSAGE_SIZE_H_
-
-// tolua_begin
 extern INT32 g_nMessageVersion;
 extern INT32 g_nS2CMessageSize[];
 extern INT32 g_nC2SMessageSize[];
 extern char* g_szC2SMessageName[];
 extern char* g_szS2CMessageName[];
-// tolua_end
 
 #endif  // _EXTERNAL_MESSAGE_SIZE_H_

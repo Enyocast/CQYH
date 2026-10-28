@@ -5,8 +5,6 @@
 #include "attribute_def.h"
 
 class CTabFile;
-
-//tolua_begin
 struct HERO_ATTR_DATA
 {
 	INT32 m_nLevel;
@@ -16,7 +14,6 @@ struct HERO_ATTR_DATA
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, HERO_ATTR_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-//tolua_end
 
 inline INT32 MakeHeroAttrKey(INT32 nLevel, INT32 nClass)
 {

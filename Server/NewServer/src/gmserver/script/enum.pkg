@@ -1,3 +1,0 @@
-$pfile "./script/common.pkg"
-$hfile "../../inc/gm/gm_def.h"
-$hfile "./gm_svr_def.h"

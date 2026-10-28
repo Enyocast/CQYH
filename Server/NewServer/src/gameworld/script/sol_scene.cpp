@@ -1,0 +1,210 @@
+#include "stdafx.h"
+#include "sol_bindings.h"
+#include "stdlib.h"
+#include "scene.h"
+#include "math_ex.h"
+#include "scene_file_mgr.h"
+#include "../../../Common/define/scene_def.h"
+#include "../../inc/gameworld/scene_file_mgr.h"
+#include "../../../../Common/define/grid_def.h"
+#include "../../../inc/gameworld/npc.h"
+#include "../../../inc/baselib/weight_rand.h"
+#include "../../../../Common/define/teleport_def.h"
+#include "../../../inc/baselib/btnod.h"
+#include "../../../inc/gameworld/doodad.h"
+#include "../../../inc/gameworld/role.h"
+#include "../../../../Common/fusion/inc/scene_data.h"
+
+int sol_scene_open(lua_State* L)
+{
+    sol::state_view lua(L);
+    sol::table globals = lua.globals();
+    globals["POINT_PER_CM"] = static_cast<lua_Number>(POINT_PER_CM);
+    globals["POINT_PER_METER"] = static_cast<lua_Number>(POINT_PER_METER);
+    globals["GAME_FPS"] = static_cast<lua_Number>(GAME_FPS);
+    globals["GRID_WIDTH"] = static_cast<lua_Number>(GRID_WIDTH);
+    globals["GRID_LAYER_HEIGHT"] = static_cast<lua_Number>(GRID_LAYER_HEIGHT);
+    globals["ZONE_WIDTH"] = static_cast<lua_Number>(ZONE_WIDTH);
+    globals["REGION_WIDTH"] = static_cast<lua_Number>(REGION_WIDTH);
+    globals["MAX_SCENE_WIDTH"] = static_cast<lua_Number>(MAX_SCENE_WIDTH);
+    globals["MAX_REGION_PER_SCENE"] = static_cast<lua_Number>(MAX_REGION_PER_SCENE);
+    globals["MAX_ZONE_PER_SCENE"] = static_cast<lua_Number>(MAX_ZONE_PER_SCENE);
+    globals["GRID_PER_ZONE"] = static_cast<lua_Number>(GRID_PER_ZONE);
+    globals["MAX_MOVE_SPEED"] = static_cast<lua_Number>(MAX_MOVE_SPEED);
+    globals["MAX_NPC_SPAWN_POINT_PER_SMALL_GROUP"] = static_cast<lua_Number>(MAX_NPC_SPAWN_POINT_PER_SMALL_GROUP);
+    globals["MAX_NPC_SMALL_GROUP_PER_MEDIUM_GROUP"] = static_cast<lua_Number>(MAX_NPC_SMALL_GROUP_PER_MEDIUM_GROUP);
+    globals["MAX_NPC_MEDIUM_GROUP_PER_LARGE_GROUP"] = static_cast<lua_Number>(MAX_NPC_MEDIUM_GROUP_PER_LARGE_GROUP);
+    globals["MAX_NPC_MEDIUM_GROUP_COUNT"] = static_cast<lua_Number>(MAX_NPC_MEDIUM_GROUP_COUNT);
+    globals["MAX_NPC_LARGE_GROUP_COUNT"] = static_cast<lua_Number>(MAX_NPC_LARGE_GROUP_COUNT);
+    globals["MAX_NPC_TEMPLATE_COUNT"] = static_cast<lua_Number>(MAX_NPC_TEMPLATE_COUNT);
+    globals["MAX_SINGLE_NPC_COUNT"] = static_cast<lua_Number>(MAX_SINGLE_NPC_COUNT);
+    globals["MAX_DOODAD_SPAWN_GROUP_COUNT"] = static_cast<lua_Number>(MAX_DOODAD_SPAWN_GROUP_COUNT);
+    globals["MAX_DOODAD_SPAWN_POINT_COUNT"] = static_cast<lua_Number>(MAX_DOODAD_SPAWN_POINT_COUNT);
+    globals["MAX_DOODAD_COUNT_PER_GROUP"] = static_cast<lua_Number>(MAX_DOODAD_COUNT_PER_GROUP);
+    globals["MAX_SCENE_ENTER_DISTANCE"] = static_cast<lua_Number>(MAX_SCENE_ENTER_DISTANCE);
+    globals["MAX_DOOR_ID"] = static_cast<lua_Number>(MAX_DOOR_ID);
+    globals["MAX_SCENE_TEMPLATE_COUNT"] = static_cast<lua_Number>(MAX_SCENE_TEMPLATE_COUNT);
+    globals["MAX_VOLUME_COUNT"] = static_cast<lua_Number>(MAX_VOLUME_COUNT);
+    globals["MAX_RANDOM_WEATHER_COUNT"] = static_cast<lua_Number>(MAX_RANDOM_WEATHER_COUNT);
+    globals["MAX_SYNC_CHAR_COUNT"] = static_cast<lua_Number>(MAX_SYNC_CHAR_COUNT);
+    globals["MAX_SYNC_DOODAD_COUNT"] = static_cast<lua_Number>(MAX_SYNC_DOODAD_COUNT);
+    globals["MAX_VELOCITY_Z"] = static_cast<lua_Number>(MAX_VELOCITY_Z);
+    globals["GLOBAL_GRAVITY"] = static_cast<lua_Number>(GLOBAL_GRAVITY);
+    globals["SCENE_READY_TIME"] = static_cast<lua_Number>(SCENE_READY_TIME);
+    globals["MAX_SIDE_COUNT"] = static_cast<lua_Number>(MAX_SIDE_COUNT);
+    globals["MAX_FACTION_COUNT"] = static_cast<lua_Number>(MAX_FACTION_COUNT);
+    globals["ROLE_HEIGHT"] = static_cast<lua_Number>(ROLE_HEIGHT);
+    globals["SYNC_BATTLE_MEMBER_TIME"] = static_cast<lua_Number>(SYNC_BATTLE_MEMBER_TIME);
+    globals["MAX_LINE_SCENE_NUMBER"] = static_cast<lua_Number>(MAX_LINE_SCENE_NUMBER);
+    globals["DAYTIME_HOURS"] = static_cast<lua_Number>(DAYTIME_HOURS);
+    globals["DL_RECORD_ROLET_INTERVAL"] = static_cast<lua_Number>(DL_RECORD_ROLET_INTERVAL);
+    globals["MAX_MINE_DROP_GROUP"] = static_cast<lua_Number>(MAX_MINE_DROP_GROUP);
+    globals["MAX_MINE_LEVEL"] = static_cast<lua_Number>(MAX_MINE_LEVEL);
+    globals["swtInvalid"] = static_cast<lua_Number>(swtInvalid);
+    globals["swtNormal"] = static_cast<lua_Number>(swtNormal);
+    globals["swtFog"] = static_cast<lua_Number>(swtFog);
+    globals["swtThunder"] = static_cast<lua_Number>(swtThunder);
+    globals["swtRain"] = static_cast<lua_Number>(swtRain);
+    globals["swtSnow"] = static_cast<lua_Number>(swtSnow);
+    globals["swtStorm"] = static_cast<lua_Number>(swtStorm);
+    globals["swtEclipse"] = static_cast<lua_Number>(swtEclipse);
+    globals["swtTotal"] = static_cast<lua_Number>(swtTotal);
+    globals["sdtInvalid"] = static_cast<lua_Number>(sdtInvalid);
+    globals["sdtDay"] = static_cast<lua_Number>(sdtDay);
+    globals["sdtNight"] = static_cast<lua_Number>(sdtNight);
+    globals["sdtTotal"] = static_cast<lua_Number>(sdtTotal);
+    globals["estInvalid"] = static_cast<lua_Number>(estInvalid);
+    globals["estStatic"] = static_cast<lua_Number>(estStatic);
+    globals["estDungeon"] = static_cast<lua_Number>(estDungeon);
+    globals["estBattleField"] = static_cast<lua_Number>(estBattleField);
+    globals["estArena"] = static_cast<lua_Number>(estArena);
+    globals["estLine"] = static_cast<lua_Number>(estLine);
+    globals["estBirth"] = static_cast<lua_Number>(estBirth);
+    globals["estGuild"] = static_cast<lua_Number>(estGuild);
+    globals["estGuildDungeon"] = static_cast<lua_Number>(estGuildDungeon);
+    globals["estUnique"] = static_cast<lua_Number>(estUnique);
+    globals["estSoloDungeon"] = static_cast<lua_Number>(estSoloDungeon);
+    globals["estTotal"] = static_cast<lua_Number>(estTotal);
+    globals["lssInvalid"] = static_cast<lua_Number>(lssInvalid);
+    globals["lssNormal"] = static_cast<lua_Number>(lssNormal);
+    globals["lssBusy"] = static_cast<lua_Number>(lssBusy);
+    globals["lssFull"] = static_cast<lua_Number>(lssFull);
+    globals["lssTotal"] = static_cast<lua_Number>(lssTotal);
+    globals["bodyInvalid"] = static_cast<lua_Number>(bodyInvalid);
+    globals["body0x0"] = static_cast<lua_Number>(body0x0);
+    globals["body1x1"] = static_cast<lua_Number>(body1x1);
+    globals["body3x3"] = static_cast<lua_Number>(body3x3);
+    globals["bodyTotal"] = static_cast<lua_Number>(bodyTotal);
+    auto type1 = cqyh::lua::usertype<ABSOLUTE_SCENE_POS>(L, globals, "ABSOLUTE_SCENE_POS", "ABSOLUTE_SCENE_POS");
+    type1["nSceneTempID"] = sol::property([](const ABSOLUTE_SCENE_POS& self) { return self.nSceneTempID; }, [](ABSOLUTE_SCENE_POS& self, decltype(ABSOLUTE_SCENE_POS::nSceneTempID) value) { self.nSceneTempID = value; });
+    type1["nSceneID"] = sol::property([](const ABSOLUTE_SCENE_POS& self) { return self.nSceneID; }, [](ABSOLUTE_SCENE_POS& self, decltype(ABSOLUTE_SCENE_POS::nSceneID) value) { self.nSceneID = value; });
+    type1["nX"] = sol::property([](const ABSOLUTE_SCENE_POS& self) { return self.nX; }, [](ABSOLUTE_SCENE_POS& self, decltype(ABSOLUTE_SCENE_POS::nX) value) { self.nX = value; });
+    type1["nY"] = sol::property([](const ABSOLUTE_SCENE_POS& self) { return self.nY; }, [](ABSOLUTE_SCENE_POS& self, decltype(ABSOLUTE_SCENE_POS::nY) value) { self.nY = value; });
+    type1["nZ"] = sol::property([](const ABSOLUTE_SCENE_POS& self) { return self.nZ; }, [](ABSOLUTE_SCENE_POS& self, decltype(ABSOLUTE_SCENE_POS::nZ) value) { self.nZ = value; });
+    type1["nFaceDirection"] = sol::property([](const ABSOLUTE_SCENE_POS& self) { return self.nFaceDirection; }, [](ABSOLUTE_SCENE_POS& self, decltype(ABSOLUTE_SCENE_POS::nFaceDirection) value) { self.nFaceDirection = value; });
+    auto type2 = cqyh::lua::usertype<ENTER_POS>(L, globals, "ENTER_POS", "ENTER_POS");
+    type2["nSceneTempID"] = sol::property([](const ENTER_POS& self) { return self.nSceneTempID; }, [](ENTER_POS& self, decltype(ENTER_POS::nSceneTempID) value) { self.nSceneTempID = value; });
+    type2["nSceneID"] = sol::property([](const ENTER_POS& self) { return self.nSceneID; }, [](ENTER_POS& self, decltype(ENTER_POS::nSceneID) value) { self.nSceneID = value; });
+    type2["bySide"] = sol::property([](const ENTER_POS& self) { return self.bySide; }, [](ENTER_POS& self, decltype(ENTER_POS::bySide) value) { self.bySide = value; });
+    globals.set_function("I64_2_Double", [](signed int llPos) -> decltype(auto) { return I64_2_Double(llPos); });
+    globals.set_function("ConvertCoordS2N", [](signed int llCoordination) -> decltype(auto) { return ConvertCoordS2N(llCoordination); });
+    globals.set_function("ConvertCoordN2S", [](unsigned short wCoordination) -> decltype(auto) { return ConvertCoordN2S(wCoordination); });
+    globals.set_function("ConvertCoordO2N", [](signed int rnX, signed int rnY, signed int rnZ) -> decltype(auto) { ConvertCoordO2N(rnX,rnY,rnZ); return std::make_tuple(rnX, rnY, rnZ); });
+    globals.set_function("ConvertCoordN2O", [](signed int rnX, signed int rnY, signed int rnZ) -> decltype(auto) { ConvertCoordN2O(rnX,rnY,rnZ); return std::make_tuple(rnX, rnY, rnZ); });
+    auto type3 = cqyh::lua::usertype<ADD_NPC_SPAWN_POINT>(L, globals, "ADD_NPC_SPAWN_POINT", "ADD_NPC_SPAWN_POINT");
+    type3["nID"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nID; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nID) value) { self.nID = value; });
+    type3["nTemplateID"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nTemplateID; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nTemplateID) value) { self.nTemplateID = value; });
+    type3["nX"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nX; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nX) value) { self.nX = value; });
+    type3["nY"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nY; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nY) value) { self.nY = value; });
+    type3["nZ"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nZ; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nZ) value) { self.nZ = value; });
+    type3["nDirection"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nDirection; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nDirection) value) { self.nDirection = value; });
+    type3["nRange"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nRange; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nRange) value) { self.nRange = value; });
+    type3["nLevelOffset"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nLevelOffset; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nLevelOffset) value) { self.nLevelOffset = value; });
+    type3["nQuality"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nQuality; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nQuality) value) { self.nQuality = value; });
+    type3["nMinRespawnTime"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nMinRespawnTime; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nMinRespawnTime) value) { self.nMinRespawnTime = value; });
+    type3["nMaxRespawnTime"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nMaxRespawnTime; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nMaxRespawnTime) value) { self.nMaxRespawnTime = value; });
+    type3["nCurrentHp"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nCurrentHp; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nCurrentHp) value) { self.nCurrentHp = value; });
+    type3["nCurrentMp"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nCurrentMp; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nCurrentMp) value) { self.nCurrentMp = value; });
+    type3["bCanDropItem"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return static_cast<bool>(self.bCanDropItem); }, [](ADD_NPC_SPAWN_POINT& self, bool value) { self.bCanDropItem = value; });
+    type3["bAutoSpawn"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return static_cast<bool>(self.bAutoSpawn); }, [](ADD_NPC_SPAWN_POINT& self, bool value) { self.bAutoSpawn = value; });
+    type3["bAutoRespawn"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return static_cast<bool>(self.bAutoRespawn); }, [](ADD_NPC_SPAWN_POINT& self, bool value) { self.bAutoRespawn = value; });
+    type3["nSmallGroupID"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nSmallGroupID; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nSmallGroupID) value) { self.nSmallGroupID = value; });
+    type3["nMediumGroupID"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nMediumGroupID; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nMediumGroupID) value) { self.nMediumGroupID = value; });
+    type3["nLargeGroupID"] = sol::property([](const ADD_NPC_SPAWN_POINT& self) { return self.nLargeGroupID; }, [](ADD_NPC_SPAWN_POINT& self, decltype(ADD_NPC_SPAWN_POINT::nLargeGroupID) value) { self.nLargeGroupID = value; });
+    auto type4 = cqyh::lua::usertype<NPC_SPAWN_POINT>(L, globals, "NPC_SPAWN_POINT", "NPC_SPAWN_POINT");
+    type4["nID"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nID; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nID) value) { self.nID = value; });
+    type4["qwNameID"] = &NPC_SPAWN_POINT::qwNameID;
+    type4["nX"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nX; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nX) value) { self.nX = value; });
+    type4["nY"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nY; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nY) value) { self.nY = value; });
+    type4["nZ"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nZ; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nZ) value) { self.nZ = value; });
+    type4["nDirection"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nDirection; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nDirection) value) { self.nDirection = value; });
+    type4["nRange"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nRange; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nRange) value) { self.nRange = value; });
+    type4["RandNpc"] = &NPC_SPAWN_POINT::RandNpc;
+    type4["nLevelOffset"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nLevelOffset; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nLevelOffset) value) { self.nLevelOffset = value; });
+    type4["nAIID"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nAIID; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nAIID) value) { self.nAIID = value; });
+    type4["nQuality"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nQuality; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nQuality) value) { self.nQuality = value; });
+    type4["nMinRespawnTime"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nMinRespawnTime; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nMinRespawnTime) value) { self.nMinRespawnTime = value; });
+    type4["nMaxRespawnTime"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nMaxRespawnTime; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nMaxRespawnTime) value) { self.nMaxRespawnTime = value; });
+    type4["nSpawnTime"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nSpawnTime; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nSpawnTime) value) { self.nSpawnTime = value; });
+    type4["nReviveTime"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nReviveTime; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nReviveTime) value) { self.nReviveTime = value; });
+    type4["nCurrentHp"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nCurrentHp; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nCurrentHp) value) { self.nCurrentHp = value; });
+    type4["nCurrentMp"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nCurrentMp; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nCurrentMp) value) { self.nCurrentMp = value; });
+    type4["bCanDropItem"] = sol::property([](const NPC_SPAWN_POINT& self) { return static_cast<bool>(self.bCanDropItem); }, [](NPC_SPAWN_POINT& self, bool value) { self.bCanDropItem = value; });
+    type4["nPatrolPathID"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nPatrolPathID; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nPatrolPathID) value) { self.nPatrolPathID = value; });
+    type4["nPatrolStyle"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nPatrolStyle; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nPatrolStyle) value) { self.nPatrolStyle = value; });
+    type4["nFollowHostID"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nFollowHostID; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nFollowHostID) value) { self.nFollowHostID = value; });
+    type4["nFollowOffsetX"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nFollowOffsetX; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nFollowOffsetX) value) { self.nFollowOffsetX = value; });
+    type4["nFollowOffsetY"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nFollowOffsetY; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nFollowOffsetY) value) { self.nFollowOffsetY = value; });
+    type4["bAutoSpawn"] = sol::property([](const NPC_SPAWN_POINT& self) { return static_cast<bool>(self.bAutoSpawn); }, [](NPC_SPAWN_POINT& self, bool value) { self.bAutoSpawn = value; });
+    type4["bAutoRespawn"] = sol::property([](const NPC_SPAWN_POINT& self) { return static_cast<bool>(self.bAutoRespawn); }, [](NPC_SPAWN_POINT& self, bool value) { self.bAutoRespawn = value; });
+    type4["nSmallGroupID"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nSmallGroupID; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nSmallGroupID) value) { self.nSmallGroupID = value; });
+    type4["nMediumGroupID"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nMediumGroupID; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nMediumGroupID) value) { self.nMediumGroupID = value; });
+    type4["nLargeGroupID"] = sol::property([](const NPC_SPAWN_POINT& self) { return self.nLargeGroupID; }, [](NPC_SPAWN_POINT& self, decltype(NPC_SPAWN_POINT::nLargeGroupID) value) { self.nLargeGroupID = value; });
+    type4["pDeadBTRoot"] = &NPC_SPAWN_POINT::pDeadBTRoot;
+    auto type5 = cqyh::lua::usertype<CScene>(L, globals, "CScene", "CScene");
+    type5.set_function("AddRole", [](CScene* self, CRole* opRole, signed int nAppearType) -> decltype(auto) { return static_cast<bool>(self->AddRole(opRole,nAppearType)); });
+    type5.set_function("RemoveRole", [](CScene* self, CRole* poRole) -> decltype(auto) { return static_cast<bool>(self->RemoveRole(poRole)); });
+    type5.set_function("AddNpc", [](CScene* self, CNpc* poNpc, signed int nAppearType) -> decltype(auto) { return static_cast<bool>(self->AddNpc(poNpc,nAppearType)); });
+    type5.set_function("RemoveNpc", [](CScene* self, CNpc* poNpc) -> decltype(auto) { return static_cast<bool>(self->RemoveNpc(poNpc)); });
+    type5.set_function("AddDoodad", [](CScene* self, CDoodad* poDoodad) -> decltype(auto) { return static_cast<bool>(self->AddDoodad(poDoodad)); });
+    type5.set_function("RemoveDoodad", [](CScene* self, CDoodad* poDoodad) -> decltype(auto) { return static_cast<bool>(self->RemoveDoodad(poDoodad)); });
+    type5.set_function("SpawnNpc", [](CScene* self, signed int nTemplateID, INT64 llX, INT64 llY, INT64 llZ, signed int nFaceDirection, signed int nSpawnerCharID, const NPC_SPAWN_POINT* pcSpawnPoint) -> decltype(auto) { return self->SpawnNpc(nTemplateID,llX,llY,llZ,nFaceDirection,nSpawnerCharID,pcSpawnPoint); });
+    type5.set_function("SpawnSingleNpc", [](CScene* self, signed int nSingleNpcID) -> decltype(auto) { return self->SpawnSingleNpc(nSingleNpcID); });
+    type5.set_function("SpawnNpcMediumGroup", [](CScene* self, signed int nMediumGroupID) -> decltype(auto) { return static_cast<bool>(self->SpawnNpcMediumGroup(nMediumGroupID)); });
+    type5.set_function("FindNpc", [](CScene* self, signed int nSingleNpcID) -> decltype(auto) { return self->FindNpc(nSingleNpcID); });
+    type5.set_function("SpawnDoodad", [](CScene* self, signed int nTemplateID, INT64 llX, INT64 llY, INT64 llZ, signed int nFaceDirection) -> decltype(auto) { return self->SpawnDoodad(nTemplateID,llX,llY,llZ,nFaceDirection); });
+    type5.set_function("GetSceneTempID", [](CScene* self) -> decltype(auto) { return self->GetSceneTempID(); });
+    type5.set_function("GetSceneID", [](CScene* self) -> decltype(auto) { return self->GetSceneID(); });
+    type5.set_function("GetSceneData", [](CScene* self) -> decltype(auto) { return self->GetSceneData(); });
+    type5.set_function("GetStaticData", [](CScene* self) -> decltype(auto) { return self->GetStaticData(); });
+    type5.set_function("GetLowerZ", [](CScene* self, signed int nX, signed int nY, signed int nZ) -> decltype(auto) { return self->GetLowerZ(nX,nY,nZ); });
+    type5.set_function("SetDoorState", [](CScene* self, signed int nDoorID, bool bClosed) -> decltype(auto) { self->SetDoorState(nDoorID,bClosed); });
+    type5.set_function("IsDoorClosed", [](CScene* self, signed int nDoorID) -> decltype(auto) { return static_cast<bool>(self->IsDoorClosed(nDoorID)); });
+    type5.set_function("SetVariable", [](CScene* self, signed int nIndex, signed int nValue) -> decltype(auto) { self->SetVariable(nIndex,nValue); });
+    type5.set_function("GetVariable", [](CScene* self, signed int nIndex) -> decltype(auto) { return self->GetVariable(nIndex); });
+    type5.set_function("GetServerGroup", [](CScene* self) -> decltype(auto) { return self->GetServerGroup(); });
+    type5.set_function("GetRoleCount", [](CScene* self) -> decltype(auto) { return self->GetRoleCount(); });
+    type5.set_function("GetNpcCount", [](CScene* self) -> decltype(auto) { return self->GetNpcCount(); });
+    type5.set_function("GetWeather", [](CScene* self) -> decltype(auto) { return self->GetWeather(); });
+    type5.set_function("SetWeather", [](CScene* self, signed int nWeather, signed int nDurationFrame) -> decltype(auto) { return static_cast<bool>(self->SetWeather(nWeather,nDurationFrame)); });
+    type5.set_function("IsSabacStarted", [](CScene* self) -> decltype(auto) { return static_cast<bool>(self->IsSabacStarted()); });
+    type5.set_function("Say", [](CScene* self, unsigned int dwTargetID, unsigned int dwLocation, const char* pcszMessage) -> decltype(auto) { return static_cast<bool>(self->Say(dwTargetID,dwLocation,pcszMessage)); });
+    auto type6 = cqyh::lua::usertype<CSceneStaticData>(L, globals, "CSceneStaticData", "CSceneStaticData");
+    type6.set_function("FindTeleportPoint", [](CSceneStaticData* self, signed int nPointID) -> decltype(auto) { return self->FindTeleportPoint(nPointID); });
+    type6.set_function("GetSingleNpcCount", [](CSceneStaticData* self) -> decltype(auto) { return self->GetSingleNpcCount(); });
+    type6.set_function("GetSingleNpc", [](CSceneStaticData* self, const char* pcszName) -> decltype(auto) { return self->GetSingleNpc(pcszName); });
+    type6.set_function("GetSingleNpcByName", [](CSceneStaticData* self, NAMEID qwNameID) -> decltype(auto) { return self->GetSingleNpcByName(qwNameID); });
+    type6.set_function("GetMaxZoneX", [](CSceneStaticData* self) -> decltype(auto) { return self->GetMaxZoneX(); });
+    type6.set_function("GetMaxZoneY", [](CSceneStaticData* self) -> decltype(auto) { return self->GetMaxZoneY(); });
+    type6.set_function("GetGroundGrid", [](CSceneStaticData* self, INT64 llX, INT64 llY) -> decltype(auto) { return self->GetGroundGrid(llX,llY); });
+    auto type7 = cqyh::lua::usertype<CSceneFileMgr>(L, globals, "CSceneFileMgr", "CSceneFileMgr");
+    type7.set_function("GetInstance", []() -> decltype(auto) { return CSceneFileMgr::GetInstance(); });
+    type7.set_function("GetStaticData", [](CSceneFileMgr* self, unsigned int dwSceneTempID) -> decltype(auto) { return self->GetStaticData(dwSceneTempID); });
+    globals["SIN_COS_NUMBER"] = static_cast<lua_Number>(SIN_COS_NUMBER);
+    globals.set_function("g_Sin", [](signed int nDirection) -> decltype(auto) { return g_Sin(nDirection); });
+    globals.set_function("g_Cos", [](signed int nDirection) -> decltype(auto) { return g_Cos(nDirection); });
+    globals.set_function("NormalizeDirection", [](signed int nDirection) -> decltype(auto) { return NormalizeDirection(nDirection); });
+    globals.set_function("g_GetDistance2D", [](signed int llSrcX, signed int llSrcY, signed int llDestX, signed int llDestY) -> decltype(auto) { return g_GetDistance2D(llSrcX,llSrcY,llDestX,llDestY); });
+    globals.set_function("g_GetDistance3D", [](signed int llSrcX, signed int llSrcY, signed int llSrcZ, signed int llDestX, signed int llDestY, signed int llDestZ) -> decltype(auto) { return g_GetDistance3D(llSrcX,llSrcY,llSrcZ,llDestX,llDestY,llDestZ); });
+    return 1;
+}

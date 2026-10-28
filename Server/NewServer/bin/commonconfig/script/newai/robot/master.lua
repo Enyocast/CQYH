@@ -7,7 +7,7 @@ LoadPackage("character.pkg")
 
 function BeMaster(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetObjID() % 9 ~= 0 then
@@ -34,7 +34,7 @@ end
 
 function GetMasterInfo(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():GetState() ~= MASTER_NONE then
@@ -46,7 +46,7 @@ end
 
 function GetMasterRecruitList(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetLevel() >= GRADUATE_LEVEL then
@@ -68,7 +68,7 @@ end
 
 function GetMasterSoloList(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():IsTeacher() == false then
@@ -81,7 +81,7 @@ end
 
 function ApplyToTeacher(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():GetState() == MASTER_STUDENT or role:GetMaster():GetState() == MASTER_TEACHER then
@@ -110,7 +110,7 @@ end
 
 function TeacherAgreeApp(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():GetState() ~= MASTER_TEACHER then
@@ -141,7 +141,7 @@ end
 
 function TeacherRefuseApp(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():GetState() ~= MASTER_TEACHER then
@@ -165,7 +165,7 @@ end
 
 function SoloCancelApp(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():GetState() == MASTER_STUDENT or role:GetMaster():GetState() == MASTER_TEACHER then
@@ -189,7 +189,7 @@ end
 
 function ApplyToStudent(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():GetState() ~= MASTER_TEACHER then
@@ -218,7 +218,7 @@ end
 
 function StudentAgreeApp(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():GetState() == MASTER_STUDENT or role:GetMaster():GetState() == MASTER_TEACHER then
@@ -250,7 +250,7 @@ end
 
 function StudentRefuseApp(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():GetState() == MASTER_STUDENT or role:GetMaster():GetState() == MASTER_TEACHER then
@@ -281,7 +281,7 @@ end
 
 function TeacherCancelApp(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():GetState() ~= MASTER_TEACHER then
@@ -312,7 +312,7 @@ end
 
 function LeaveTeacher(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():GetState() ~= MASTER_STUDENT then
@@ -325,7 +325,7 @@ end
 
 function FireStudent(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():GetState() ~= MASTER_TEACHER then
@@ -355,7 +355,7 @@ end
 
 function MasterCZ(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():GetState() == MASTER_NONE then
@@ -432,7 +432,7 @@ end
 
 function DesireGraduate(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():GetState() ~= MASTER_STUDENT then
@@ -451,7 +451,7 @@ end
 
 function AgreeGraduate(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():GetState() ~= MASTER_TEACHER then
@@ -469,7 +469,7 @@ end
 
 function ForceGraduate(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetMaster():GetState() ~= MASTER_STUDENT then

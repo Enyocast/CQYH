@@ -8,8 +8,6 @@
 #include "score_def.h"
 #include "item_def.h"
 #include "weight_rand.h"
-
-//tolua_begin
 struct SCENE_DATA
 {
 	INT32	nSceneID;
@@ -72,6 +70,5 @@ struct SCENE_DATA
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, SCENE_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-//tolua_end
 
 #endif	// _SCENE_DATA_H_

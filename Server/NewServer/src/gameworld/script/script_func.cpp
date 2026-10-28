@@ -1,6 +1,6 @@
 #include "stdafx.h"
+#include "sol_bindings.h"
 #include "script_func.h"
-#include "tolua++.h"
 #include "script_mgr.h"
 #include "math_ex.h"
 
@@ -71,7 +71,7 @@ int lua_load_ai_data(lua_State* L)
 {
     if (g_pcLoadingNewAIData)
     {
-        tolua_pushusertype(L, (void*)g_pcLoadingNewAIData, "NEW_AI_DATA");
+        cqyh::lua::push_object(L, (void*)g_pcLoadingNewAIData, "NEW_AI_DATA");
         lua_setglobal(L, "d");
         return 1;
     }
@@ -85,7 +85,7 @@ int lua_find_ai_data(lua_State* L)
     const NEW_AI_DATA* pData = CDataManager<NEW_AI_DATA>::GetInstance().GetData(nAIID);
     if ( pData )
     {
-        tolua_pushusertype(L, (void*)pData, "NEW_AI_DATA" );
+        cqyh::lua::push_object(L, (void*)pData, "NEW_AI_DATA" );
     }
     else
     {
@@ -312,7 +312,7 @@ int lua_test_bt_action(lua_State* L)
     INT32 nNodeType;
     INT32 nParam[MAX_BT_PARAM];
 
-    poRole = (CRole*)tolua_tousertype(L, 1, 0);
+    poRole = sol::stack::get<CRole*>(L, 1);
     nNodeType = (INT32)lua_tonumber(L, 2);
     nParam[0] = (INT32)lua_tonumber(L, 3);
     nParam[1] = (INT32)lua_tonumber(L, 4);
@@ -341,7 +341,7 @@ int lua_occupy_sabac(lua_State* L)
 {
 	INT32 nRetCode = 0;
 
-	CRole* poRole = (CRole*)tolua_tousertype(L, 1, 0);
+	CRole* poRole = sol::stack::get<CRole*>(L, 1);
 	LOG_PROCESS_ERROR(poRole);
 
 	CSabacMgr::GetInstance().SetOccupyGuildID(poRole->GetServerGroup(), poRole->GetGuildID());

@@ -20,8 +20,6 @@ class CLuaScript;
 
 struct BTNod;
 
-// tolua_begin
-
 // 额外添加刷新怪物
 struct ADD_NPC_SPAWN_POINT
 {
@@ -91,8 +89,6 @@ struct NPC_SPAWN_POINT
     INT32                   nLargeGroupID;
     BTNod*                  pDeadBTRoot;
 };
-
-// tolua_end
 
 struct NPC_SMALL_SPAWN_GROUP
 {

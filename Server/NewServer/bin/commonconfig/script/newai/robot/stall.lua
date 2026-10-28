@@ -45,7 +45,7 @@ function init_stall_pos(scene_id, scene_static_data)
 end
 
 function open_stall(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     
 	if role:GetObjID() % 9 >= 1 then
@@ -91,7 +91,7 @@ function open_stall(owner)
 end
 
 function close_stall(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     
     if role:GetStall():GetStallState() ~= essOpen then
@@ -105,7 +105,7 @@ function close_stall(owner)
 end
 
 function real_open_stall(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     
     if role:GetStall():GetStallState() ~= essPreparing then
@@ -121,7 +121,7 @@ function real_open_stall(owner)
 end
 
 function real_close_stall(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     
     if role:GetStall():GetStallState() ~= essPreparing and role:GetStall():GetStallState() ~= essOpen then
@@ -136,7 +136,7 @@ function real_close_stall(owner)
 end
 
 function add_stall_item(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     
     if role:GetStall():GetStallState() ~= essPreparing then
@@ -177,7 +177,7 @@ function add_stall_item(owner)
 end
 
 function remove_stall_item(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     
     if role:GetStall():GetStallState() ~= essPreparing then
@@ -196,7 +196,7 @@ function remove_stall_item(owner)
 end
 
 function upgrade_stall(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     
     if role:GetStall():GetStallState() ~= essPreparing then
@@ -216,7 +216,7 @@ function upgrade_stall(owner)
 end
 
 function sync_stall_item(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     
     user:ViewStallItem(role:GetObjID());
@@ -225,7 +225,7 @@ function sync_stall_item(owner)
 end
 
 function view_stall_item(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     
 	if role:GetObjID() % 9 <= 7 then
@@ -248,7 +248,7 @@ function view_stall_item(owner)
 end
 
 function buy_stall_item(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     
 	if role:GetObjID() % 9 <= 7 then
@@ -271,7 +271,7 @@ function buy_stall_item(owner)
 end
 
 function find_staller(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     
 	if role:GetObjID() % 9 <= 7 then
@@ -294,7 +294,7 @@ function find_staller(owner)
 end
 
 function jump_stall_pos(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 	local oScene = role:GetScene();
 

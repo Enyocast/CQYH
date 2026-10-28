@@ -4,8 +4,6 @@
 /// @file adventure_def.h 
 /// @brief adventure definition
 
-// tolua_begin
-
 #define MAX_ADVENTURE_TRIGGER_PARAM (4)
 #define MAX_ADVENTURE_REWARD_PARAM  (8)
 
@@ -37,6 +35,4 @@ enum ADVENTURE_REWARD_TYPE
 
     adrTotal                    ///< @line
 };
-
-// tolua_end
 #endif  // _ADVENTURE_DEF_H_

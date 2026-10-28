@@ -11,7 +11,7 @@ local g_oGameWorld = CGameWorld:GetInstance();
 
 function RoleExp(owner)
 	local processor = owner:GetAIProcessor();
-	local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	local npc = Cast(processor:GetOwner(), 'CNpc');
 
 	local role_id = get_ctx_role_id();
 	local role = CGameWorld:GetInstance():FindRole(role_id);

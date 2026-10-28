@@ -6,8 +6,6 @@
 
 static const INT16  TitleAttrTableSize = 5; 
 static const INT16  TitleConditionTableSize = 2;
-
-//tolua_begin
 struct TITLE_TEMPLATE
 {
     UINT8       m_nTemplateID;
@@ -37,7 +35,6 @@ struct TITLE_TEMPLATE
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, TITLE_TEMPLATE* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-//tolua_end
 
 const TITLE_TEMPLATE* GetTitleTemplate(INT8 nTemplateID);
 

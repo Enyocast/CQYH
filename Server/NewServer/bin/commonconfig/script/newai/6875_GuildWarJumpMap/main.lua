@@ -22,7 +22,7 @@ ServerPoint = g_GuildConfig.dwServerPoint;
 
 function GetTargetGuildSceneID(owner)
 	local processor = owner:GetAIProcessor();
-	local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	local npc = Cast(processor:GetOwner(), 'CNpc');
 
 	local role_id = get_ctx_role_id();
 	local role = gameworld:FindRole(role_id);

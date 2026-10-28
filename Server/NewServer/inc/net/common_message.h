@@ -5,7 +5,6 @@
 #include "statis_info_def.h"
 
 #pragma pack(push, 1)
-// tolua_begin
 namespace InternalMessage
 {
     enum COMMON_MESSAGE_ID
@@ -250,7 +249,6 @@ namespace InternalMessage
 		CHAR				szInfo[128];
 	};
 };
-// tolua_end
 
 #define MAINTAIN_TOOLS_MSG_VERSION (0) // manual update
 

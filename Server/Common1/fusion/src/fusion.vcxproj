@@ -53,10 +53,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-    <Import Project="script\toluapp.props" />
-    <Import Project="..\..\..\NewServer\src\gen_msg\script\toluapp_gen_msg.props" />
-  </ImportGroup>
+
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -97,7 +94,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../inc;../../define;../../../newserver/inc/baselib;../../../newserver/3rd/lua/include;../../../newserver/3rd/zlib;../../../newserver/3rd/toluapp/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../inc;../../define;../../../newserver/inc/baselib;../../../newserver/3rd/lua/include;../../../newserver/3rd/zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN64;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -116,7 +113,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../inc;../../define;../../../newserver/inc/baselib;../../../newserver/3rd/lua/include;../../../newserver/3rd/zlib;../../../newserver/3rd/toluapp/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../inc;../../define;../../../newserver/inc/baselib;../../../newserver/3rd/lua/include;../../../newserver/3rd/zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN64;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -135,7 +132,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../inc;../../define;../../../newserver/inc/baselib;../../../newserver/3rd/lua/include;../../../newserver/3rd/zlib;../../../newserver/3rd/toluapp/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../inc;../../define;../../../newserver/inc/baselib;../../../newserver/3rd/lua/include;../../../newserver/3rd/zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN64;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -154,7 +151,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../inc;../../define;../../../newserver/inc/baselib;../../../newserver/3rd/lua/include;../../../newserver/3rd/zlib;../../../newserver/3rd/toluapp/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../inc;../../define;../../../newserver/inc/baselib;../../../newserver/3rd/lua/include;../../../newserver/3rd/zlib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN64;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -226,13 +223,13 @@
     <ClCompile Include="pet_data.cpp" />
     <ClCompile Include="read_data_helper.cpp" />
     <ClCompile Include="role_db_base_data_conv.cpp" />
-    <ClCompile Include="script\tolua_common.cpp" />
-    <ClCompile Include="script\tolua_enum.cpp" />
-    <ClCompile Include="script\tolua_enumstr.cpp" />
-    <ClCompile Include="script\tolua_global_config.cpp" />
-    <ClCompile Include="script\tolua_guild_config.cpp" />
-    <ClCompile Include="script\tolua_guild_def.cpp" />
-    <ClCompile Include="script\tolua_string_table.cpp" />
+    <ClCompile Include="script\sol_common.cpp" />
+    <ClCompile Include="script\sol_enum.cpp" />
+    <ClCompile Include="script\sol_enumstr.cpp" />
+    <ClCompile Include="script\sol_global_config.cpp" />
+    <ClCompile Include="script\sol_guild_config.cpp" />
+    <ClCompile Include="script\sol_guild_def.cpp" />
+    <ClCompile Include="script\sol_string_table.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'">Create</PrecompiledHeader>
@@ -362,51 +359,69 @@
     <ClInclude Include="..\inc\spell_data.h" />
     <ClInclude Include="..\inc\spirit_data.h" />
     <ClInclude Include="..\inc\title_data.h" />
-    <ClInclude Include="script\tolua_common.h" />
-    <ClInclude Include="script\tolua_enum.h" />
-    <ClInclude Include="script\tolua_enumstr.h" />
-    <ClInclude Include="script\tolua_global_config.h" />
-    <ClInclude Include="script\tolua_guild_config.h" />
-    <ClInclude Include="script\tolua_guild_def.h" />
-    <ClInclude Include="script\tolua_string_table.h" />
+    <ClInclude Include="script\sol_common.h" />
+    <ClInclude Include="script\sol_enum.h" />
+    <ClInclude Include="script\sol_enumstr.h" />
+    <ClInclude Include="script\sol_global_config.h" />
+    <ClInclude Include="script\sol_guild_config.h" />
+    <ClInclude Include="script\sol_guild_def.h" />
+    <ClInclude Include="script\sol_string_table.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <toluapp Include="script\common.pkg" />
-    <toluapp Include="script\enum.pkg">
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"../../define/server_def.h";"../../define/error_def.h";"../../define/id_def.h";"../../define/variable_def.h";"../../define/npc_def.h";"../../define/role_def.h";"../../define/doodad_def.h";"../../define/char_def.h";"../../define/missile_def.h";"../../define/grid_def.h";"../../define/scene_def.h";"../../define/scene_file_def.h";"../../define/arena_team_def.h";"../../define/attribute_def.h";"../../define/spell_def.h";"../../define/aura_def.h";"../../define/affix_def.h";"../../define/ai_def.h";"../../define/chat_def.h";"../../define/friend_def.h";"../../define/item_def.h";"../../define/money_def.h";"../../define/quest_def.h";"../../define/team_def.h";"../../define/room_def.h";"../../define/achievement_def.h";"../../define/master_def.h";"../../define/queue_match_def.h";"../../define/variable_def.h";"../../define/guild_def.h"</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'">"../../define/server_def.h";"../../define/error_def.h";"../../define/id_def.h";"../../define/variable_def.h";"../../define/npc_def.h";"../../define/role_def.h";"../../define/doodad_def.h";"../../define/char_def.h";"../../define/missile_def.h";"../../define/grid_def.h";"../../define/scene_def.h";"../../define/scene_file_def.h";"../../define/arena_team_def.h";"../../define/attribute_def.h";"../../define/spell_def.h";"../../define/aura_def.h";"../../define/affix_def.h";"../../define/ai_def.h";"../../define/chat_def.h";"../../define/friend_def.h";"../../define/item_def.h";"../../define/money_def.h";"../../define/quest_def.h";"../../define/team_def.h";"../../define/room_def.h";"../../define/achievement_def.h";"../../define/master_def.h";"../../define/queue_match_def.h";"../../define/variable_def.h";"../../define/guild_def.h"</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'">"../../define/server_def.h";"../../define/error_def.h";"../../define/id_def.h";"../../define/variable_def.h";"../../define/npc_def.h";"../../define/role_def.h";"../../define/doodad_def.h";"../../define/char_def.h";"../../define/missile_def.h";"../../define/grid_def.h";"../../define/scene_def.h";"../../define/scene_file_def.h";"../../define/arena_team_def.h";"../../define/attribute_def.h";"../../define/spell_def.h";"../../define/aura_def.h";"../../define/affix_def.h";"../../define/ai_def.h";"../../define/chat_def.h";"../../define/friend_def.h";"../../define/item_def.h";"../../define/money_def.h";"../../define/quest_def.h";"../../define/team_def.h";"../../define/room_def.h";"../../define/achievement_def.h";"../../define/master_def.h";"../../define/queue_match_def.h";"../../define/variable_def.h";"../../define/guild_def.h"</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"../../define/server_def.h";"../../define/error_def.h";"../../define/id_def.h";"../../define/variable_def.h";"../../define/npc_def.h";"../../define/role_def.h";"../../define/doodad_def.h";"../../define/char_def.h";"../../define/missile_def.h";"../../define/grid_def.h";"../../define/scene_def.h";"../../define/scene_file_def.h";"../../define/arena_team_def.h";"../../define/attribute_def.h";"../../define/spell_def.h";"../../define/aura_def.h";"../../define/affix_def.h";"../../define/ai_def.h";"../../define/chat_def.h";"../../define/friend_def.h";"../../define/item_def.h";"../../define/money_def.h";"../../define/quest_def.h";"../../define/team_def.h";"../../define/room_def.h";"../../define/achievement_def.h";"../../define/master_def.h";"../../define/queue_match_def.h";"../../define/variable_def.h";"../../define/guild_def.h"</AdditionalDependencies>
-    </toluapp>
-    <toluapp Include="script\global_config.pkg">
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../inc/global_config.h;../inc/asimov_config.h;../inc/game_world_config.h;../inc/guild_config.h;../inc/mt_config.h;../inc/new_role_config.h;../inc/obj_pool_config.h;../inc/server_config.h;../../Common/define/guild_def.h</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'">../inc/global_config.h;../inc/asimov_config.h;../inc/game_world_config.h;../inc/guild_config.h;../inc/mt_config.h;../inc/new_role_config.h;../inc/obj_pool_config.h;../inc/server_config.h;../../Common/define/guild_def.h</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'">../inc/global_config.h;../inc/asimov_config.h;../inc/game_world_config.h;../inc/guild_config.h;../inc/mt_config.h;../inc/new_role_config.h;../inc/obj_pool_config.h;../inc/server_config.h;../../Common/define/guild_def.h</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../inc/global_config.h;../inc/asimov_config.h;../inc/game_world_config.h;../inc/guild_config.h;../inc/mt_config.h;../inc/new_role_config.h;../inc/obj_pool_config.h;../inc/server_config.h;../../Common/define/guild_def.h</AdditionalDependencies>
-    </toluapp>
-    <toluapp Include="script\guild_config.pkg">
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../inc/guild_config.h;../src/script/tolua_enum.cpp</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'">../inc/guild_config.h;../src/script/tolua_enum.cpp</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'">../inc/guild_config.h;../src/script/tolua_enum.cpp</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../inc/guild_config.h;../src/script/tolua_enum.cpp</AdditionalDependencies>
-    </toluapp>
-    <toluapp Include="script\guild_def.pkg">
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../../define/guild_def.h</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'">../../define/guild_def.h</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../../define/guild_def.h</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'">../../define/guild_def.h</AdditionalDependencies>
-    </toluapp>
-    <toluapp Include="script\string_table.pkg" />
+
+
+
+
+
   </ItemGroup>
   <ItemGroup>
-    <toluapp_gen_msg Include="script\enumstr.epkg">
-      <FileType>Document</FileType>
-    </toluapp_gen_msg>
+
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-    <Import Project="script\toluapp.targets" />
-    <Import Project="..\..\..\NewServer\src\gen_msg\script\toluapp_gen_msg.targets" />
-  </ImportGroup>
+
+  <ItemGroup>
+    <ClCompile Include="script\bindings\config\asimov_bindings.cpp" />
+    <ClCompile Include="script\bindings\config\game_world_bindings.cpp" />
+    <ClCompile Include="script\bindings\config\global_bindings.cpp" />
+    <ClCompile Include="script\bindings\config\guard_bindings.cpp" />
+    <ClCompile Include="script\bindings\config\guild_bindings.cpp" />
+    <ClCompile Include="script\bindings\config\mt_bindings.cpp" />
+    <ClCompile Include="script\bindings\config\new_role_bindings.cpp" />
+    <ClCompile Include="script\bindings\config\obj_pool_bindings.cpp" />
+    <ClCompile Include="script\bindings\config\server_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\achievement_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\adventure_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\ai_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\attribute_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\aura_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\char_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\chat_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\doodad_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\error_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\friend_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\gm_svr_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\grid_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\guild_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\id_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\item_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\master_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\missile_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\modifier_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\money_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\npc_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\quest_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\queue_match_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\role_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\scene_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\scene_file_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\server_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\spell_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\team_bindings.cpp" />
+    <ClCompile Include="script\bindings\definitions\variable_bindings.cpp" />
+    <ClCompile Include="script\bindings\support\log_bindings.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="script\bindings\registration.h" />
+  </ItemGroup>
 </Project>

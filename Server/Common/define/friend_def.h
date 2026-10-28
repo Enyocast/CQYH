@@ -1,8 +1,6 @@
 #ifndef _FRIEND_DEF_H_
 #define _FRIEND_DEF_H_
 
-// tolua_begin
-
 #define MAX_FRIEND_COUNT (200)
 #define MAX_FRIEND_GROUP_COUNT (10)
 #define FRIEND_GROUP_ENEMY  (21)
@@ -19,7 +17,5 @@ enum FRIEND_STATE
     FS_AFK,
     FS_OFFLINE
 };
-
-// tolua_end
 
 #endif // _FRIEND_DEF_H_

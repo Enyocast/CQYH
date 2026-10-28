@@ -61,7 +61,7 @@ end
 
 function do_jump_action(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
     local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local nRandIndex = math.random(1, 1000);

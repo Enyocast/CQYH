@@ -5,7 +5,6 @@
 #include "external_message_header.h"
 
 #pragma pack(push, 1)
-// tolua_begin
 namespace ExternalMessage
 {
 	enum C2LC_MESSAGE_ID
@@ -23,8 +22,6 @@ namespace ExternalMessage
 		INT32	nGroupID;
     };
 };
-
-// tolua_end
 #pragma pack(pop)
 
 #endif // c2lc_message_h__

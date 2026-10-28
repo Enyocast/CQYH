@@ -4,7 +4,7 @@ LoadPackage("asimov_user.pkg")
 
 function do_role_trade_action(owner)
 	local processor = owner:GetAIProcessor();   
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
  
     local role_id = role:GetObjID();   
@@ -89,7 +89,7 @@ trade_tree =
 -----------------trade function---------------------------------------------
 function performance_trade(owner)
 	local processor = owner:GetAIProcessor();
-	local role = tolua.cast(owner, 'CRole');
+	local role = Cast(owner, 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local npctemplateid = 8464; --±»∆ÊΩ‰÷∏µÍ¿œ∞Â

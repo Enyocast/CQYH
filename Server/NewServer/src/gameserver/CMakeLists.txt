@@ -35,8 +35,8 @@ target_link_libraries(gameserver PRIVATE
     gameworld
     baselib
     cqyh::lua
-    cqyh::toluapp
-    net
+    cqyh::sol2
+    cqyh::net
     cqyh::zlib
     cqyh::gpk
     fusion

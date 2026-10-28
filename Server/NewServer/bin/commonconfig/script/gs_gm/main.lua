@@ -1129,7 +1129,7 @@ end
 function PetInfo()
     local char = Focus();
     if char:GetObjType() == otNpc then
-	    local npc = tolua.cast(char, "CNpc");
+	    local npc = Cast(char, "CNpc");
     	echo("type="..npc:GetPetType());
     	echo("level="..npc:GetPetLevel());
     	echo("max level="..npc:GetPetMaxLevel());
@@ -1141,12 +1141,12 @@ end
 function FocusInfo()
     local char = Focus();
     if char:GetObjType() == otNpc then
-	    local npc = tolua.cast(char, "CNpc");
+	    local npc = Cast(char, "CNpc");
     	echo("id="..npc:GetNpcData().nTemplateID);
     	echo("ai="..npc:GetAIProcessor():GetAIID());
     	echo("quality="..npc:GetQuality());
     elseif char:GetObjType() == otRole then
-        local role = tolua.cast(char, "CRole");
+        local role = Cast(char, "CRole");
         echo("pkvalue="..role:GetPkValue());
         echo("vip="..role:GetVIPLevel()..", "..math.ceil((TargetRole:GetVIPTime(TargetRole:GetVIPLevel()) - g_oGameWorld:GetGameTime()) / 86400).." day");
     end

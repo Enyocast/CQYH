@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include "sol_bindings.h"
 #include "string_ex.h"
 #include "sql_mgr.h"
 #include "ifile.h"
@@ -21,7 +22,6 @@
 #include "data_manager.h"
 #include "achievement_data.h"
 
-#include "../../3rd/toluapp/include/tolua++.h"
 #include "../../src/manageserver/guild/guild_storage.h"
 
 
@@ -399,7 +399,7 @@ void _InsertRoles(CSqlMgr& sqlmgr, CLuaScript* poScript)
 		role.SetClass(g_Random(clsPlayerBegin, clsPlayerEnd - 1));
 		role.SetSex(g_Random(cstMale, cstFemale));
 
-        tolua_pushusertype(poScript->GetLuaState(), &role, "CRole");
+        cqyh::lua::push_object(poScript->GetLuaState(), &role, "CRole");
         lua_setglobal(poScript->GetLuaState(), "TargetRole");
 
         nRetCode = poScript->CallFunction("OnNewGMCommand", "s:b", "InitRobot(false)", &bGMRet);

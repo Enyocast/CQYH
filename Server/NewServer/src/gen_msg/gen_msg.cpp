@@ -13,8 +13,8 @@
 #include "gameworld/bt_action.h"
 #include "bt_event.h"
 
-extern int tolua_external_message_open (lua_State* tolua_S);
-extern int tolua_enum_module_open (lua_State* tolua_S);
+extern int sol_external_message_open (lua_State* L);
+extern int sol_enum_module_open (lua_State* L);
 
 static UINT32 s_dwMsgCRC = 0;
 
@@ -124,7 +124,7 @@ static char s_szMsgScript[] =
 static char s_szEnumScript[] = ""\
 "print('class ServerEnum extends Object native;\\n\\n')\n"\
 "for k,v in pairs(_G) do\n"\
-"   if type(v) == 'table' and k ~= 'os' and k ~= 'table' and k ~= 'string' and k ~= 'math' and k ~= 'coroutine' and k ~= '_G' and k ~= 'debug' and k ~= 'package' and k ~= 'tolua' and k ~= 'io'and k ~= 'ERROR_CODE_DEF' and not getmetatable(v) then\n"\
+"   if type(v) == 'table' and k ~= 'os' and k ~= 'table' and k ~= 'string' and k ~= 'math' and k ~= 'coroutine' and k ~= '_G' and k ~= 'debug' and k ~= 'package' and k ~= 'io'and k ~= 'ERROR_CODE_DEF' and not getmetatable(v) then\n"\
 "       print('enum E'..k..'\\n{\\n')\n"\
 "       local t = {};\n"\
 "       local max = -1;\n"\
@@ -424,7 +424,7 @@ BOOL GenerateMsgSize(void)
     L = LuaScript.GetLuaState();
     LOG_PROCESS_ERROR(L);
 
-    nRetCode = tolua_external_message_open(L);
+    nRetCode = sol_external_message_open(L);
     LOG_PROCESS_ERROR(nRetCode);
 
     LuaFunc.pcszFuncName = "get_c2s_size";
@@ -468,7 +468,7 @@ BOOL GenerateEnum(void)
     L = LuaScript.GetLuaState();
     LOG_PROCESS_ERROR(L);
 
-    tolua_enum_module_open(L);
+    sol_enum_module_open(L);
 
     LuaFunc.pcszFuncName = "print";
     LuaFunc.pFunc = LuaPrint;
@@ -501,7 +501,7 @@ BOOL GenerateErrcode(void)
 	L = LuaScript.GetLuaState();
 	LOG_PROCESS_ERROR(L);
 
-	tolua_enum_module_open(L);
+	sol_enum_module_open(L);
 
 	LuaFunc.pcszFuncName = "print";
 	LuaFunc.pFunc = LuaPrint;
@@ -534,7 +534,7 @@ BOOL GenerateBTNode(void)
     L = LuaScript.GetLuaState();
     LOG_PROCESS_ERROR(L);
 
-    tolua_enum_module_open(L);
+    sol_enum_module_open(L);
 
     LuaFunc.pcszFuncName = "print";
     LuaFunc.pFunc = LuaPrint;
@@ -562,7 +562,7 @@ BOOL GenerateBTEvent(void)
     L = LuaScript.GetLuaState();
     LOG_PROCESS_ERROR(L);
 
-    tolua_enum_module_open(L);
+    sol_enum_module_open(L);
 
     LuaFunc.pcszFuncName = "print";
     LuaFunc.pFunc = LuaPrint;

@@ -6,7 +6,6 @@
 #define NS_MESSAGE_VERSION	(1)
 
 #pragma pack(push, 1)
-// tolua_begin
 namespace InternalMessage
 {
 	enum NS_MESSAGE_ID
@@ -47,8 +46,6 @@ namespace InternalMessage
         char    UserData[USER_DATA_LEN];
 	};
 };
-
-// tolua_end
 
 #pragma pack(pop)
 

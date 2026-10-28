@@ -6,8 +6,6 @@
 
 struct ADVENTURE_DATA;
 
-//tolua_begin
-
 struct DOODAD_DATA
 {
     INT32                       nTemplateID;
@@ -37,6 +35,5 @@ struct DOODAD_DATA
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, DOODAD_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-//tolua_end
 
 #endif // _DOODAD_DATA_H_

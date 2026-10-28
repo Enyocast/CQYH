@@ -1,7 +1,6 @@
 #ifndef _LUA_SCRIPT_H_
 #define _LUA_SCRIPT_H_
 
-#define tolua_readonly
 
 extern "C"
 {

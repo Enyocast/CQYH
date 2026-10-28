@@ -9,8 +9,14 @@ add_executable(datalogserver
     dl_message_notifier.cpp
     dl_session_mgr.cpp
     logdata.cpp
-    script/tolua_common.cpp
-    script/tolua_enum_str.cpp
+    script/sol_common.cpp
+    script/sol_enum_str.cpp
+    script/bindings/definitions/char_bindings.cpp
+    script/bindings/definitions/guild_bindings.cpp
+    script/bindings/definitions/id_bindings.cpp
+    script/bindings/definitions/item_bindings.cpp
+    script/bindings/definitions/quest_bindings.cpp
+    script/bindings/registration.h
     stdafx.cpp
 )
 
@@ -27,7 +33,6 @@ target_include_directories(datalogserver PRIVATE
     ${CQYH_SERVER_DIR}/NewServer/inc/net
     ${CQYH_SERVER_DIR}/NewServer/inc/gameworld
     ${CQYH_SERVER_DIR}/NewServer/3rd/lua/include
-    ${CQYH_SERVER_DIR}/NewServer/3rd/toluapp/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/gpk/Include
     ${CQYH_SERVER_DIR}/NewServer/3rd/zlib
 )
@@ -37,9 +42,9 @@ target_compile_definitions(datalogserver PRIVATE
 )
 target_link_libraries(datalogserver PRIVATE
     gameworld
-    net
+    cqyh::net
     cqyh::lua
-    cqyh::toluapp
+    cqyh::sol2
     cqyh::mysql
     baselib
     cqyh::zlib
@@ -49,3 +54,8 @@ target_link_libraries(datalogserver PRIVATE
 )
 cqyh_server_output(datalogserver datalogserver64)
 
+
+get_target_property(_binding_sources datalogserver SOURCES)
+list(FILTER _binding_sources INCLUDE REGEX "^script/bindings/")
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/script/bindings"
+    PREFIX "Lua bindings" FILES ${_binding_sources})

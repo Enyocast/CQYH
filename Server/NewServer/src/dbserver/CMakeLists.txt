@@ -39,9 +39,9 @@ target_compile_definitions(dbserver PRIVATE
 target_link_libraries(dbserver PRIVATE
     cqyh::mysql
     baselib
-    net
+    cqyh::net
     cqyh::lua
-    cqyh::toluapp
+    cqyh::sol2
     cqyh::zlib
     fusion
     cqyh::syslibs

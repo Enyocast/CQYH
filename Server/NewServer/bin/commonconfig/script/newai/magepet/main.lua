@@ -14,7 +14,7 @@ local 	AURA_INHERIT_PET_LEVEL = 2511;     -- 叛变保护
 
 function MeetToGod(owner)
 	local processor = owner:GetAIProcessor();
-	local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	local npc = Cast(processor:GetOwner(), 'CNpc');
 
 	local hostid = npc:GetHostID();
 	local role = CGameWorld:GetInstance():FindRole(hostid);

@@ -9,7 +9,7 @@
 #include "script_mgr.h"
 
 extern LUA_FUNC g_EditorScriptFuncTable[];
-int tolua_e_enum_open (lua_State* tolua_S);
+int sol_e_enum_open (lua_State* L);
 
 int InitScript( const char* pszScriptPath )
 {
@@ -21,7 +21,7 @@ int InitScript( const char* pszScriptPath )
 	nRetCode = CScriptMgr::GetInstance().Init( pszScriptPath );
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("enum.pkg", tolua_e_enum_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("enum.pkg", sol_e_enum_open);
 
 	nRetCode = CScriptMgr::GetInstance().RegisterFuncList(g_EditorScriptFuncTable);
 	LOG_PROCESS_ERROR(nRetCode);

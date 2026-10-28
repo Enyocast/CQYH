@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "datalogserver.h"
 
-extern int tolua_enum_str_open(lua_State* tolua_S);
+extern int sol_enum_str_open(lua_State* L);
 
 static char    s_szLuaScript[] =
 "cache_list = {};\n" \
@@ -48,7 +48,7 @@ BOOL CDatalogServer::_InitScript(void)
     L = m_LuaScript.GetLuaState();
     LOG_PROCESS_ERROR(L);
 
-    nRetCode = tolua_enum_str_open(L);
+    nRetCode = sol_enum_str_open(L);
     LOG_PROCESS_ERROR(nRetCode);
 
     nRetCode = m_LuaScript.LoadFromBuffer("", s_szLuaScript, sizeof(s_szLuaScript) - 1);;
@@ -109,7 +109,7 @@ Exit0:
 //    L = g_LuaScript.GetLuaState();
 //    LOG_PROCESS_ERROR(L);
 //
-//    nRetCode = tolua_enum_str_open(L);
+//    nRetCode = sol_enum_str_open(L);
 //    LOG_PROCESS_ERROR(nRetCode);
 //
 //    nRetCode = g_LuaScript.LoadFromBuffer("", s_szLuaScript, sizeof(s_szLuaScript) - 1);;

@@ -66,22 +66,24 @@ add_executable(manageserver
     role_data.cpp
     scene/scenemgr.cpp
     script/ms_script_func.cpp
-    script/tolua_arena_mgr.cpp
-    script/tolua_chat_def.cpp
-    script/tolua_common.cpp
-    script/tolua_error_def.cpp
-    script/tolua_master_mgr.cpp
-    script/tolua_ms_chat.cpp
-    script/tolua_ms_guild_member.cpp
-    script/tolua_ms_guild_mgr.cpp
-    script/tolua_ms_guild.cpp
-    script/tolua_online_role_data.cpp
-    script/tolua_ranklist.cpp
-    script/tolua_role_data_mgr.cpp
-    script/tolua_role_data.cpp
-    script/tolua_string_table.cpp
-    script/tolua_user.cpp
+    script/sol_arena_mgr.cpp
+    script/sol_chat_def.cpp
+    script/sol_common.cpp
+    script/sol_error_def.cpp
+    script/sol_master_mgr.cpp
+    script/sol_ms_chat.cpp
+    script/sol_ms_guild_member.cpp
+    script/sol_ms_guild_mgr.cpp
+    script/sol_ms_guild.cpp
+    script/sol_online_role_data.cpp
+    script/sol_ranklist.cpp
+    script/sol_role_data_mgr.cpp
+    script/sol_role_data.cpp
+    script/sol_string_table.cpp
+    script/sol_user.cpp
     server_var.cpp
+    script/bindings/definitions/error_bindings.cpp
+    script/bindings/registration.h
     stdafx.cpp
     team/ms_team_mgr.h.cpp
     team/team.cpp
@@ -102,7 +104,6 @@ target_include_directories(manageserver PRIVATE
     ${CQYH_SERVER_DIR}/Common/fusion/inc
     ${CQYH_SERVER_DIR}/Common/message
     ${CQYH_SERVER_DIR}/Common/define
-    ${CQYH_SERVER_DIR}/NewServer/3rd/toluapp/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/lua/src
     ${CQYH_SERVER_DIR}/NewServer/3rd/zlib
     ${CQYH_SERVER_DIR}/NewServer/3rd/sdobase/include
@@ -115,14 +116,19 @@ target_compile_definitions(manageserver PRIVATE
 target_link_libraries(manageserver PRIVATE
     baselib
     cqyh::lua
-    cqyh::toluapp
+    cqyh::sol2
     cqyh::mysql
     cqyh::zlib
     cqyh::sdobase
     cqyh::fcm
     fusion
-    net
+    cqyh::net
     cqyh::syslibs
 )
 cqyh_server_output(manageserver manageserver64)
 
+
+get_target_property(_binding_sources manageserver SOURCES)
+list(FILTER _binding_sources INCLUDE REGEX "^script/bindings/")
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/script/bindings"
+    PREFIX "Lua bindings" FILES ${_binding_sources})

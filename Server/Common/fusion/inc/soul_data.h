@@ -3,8 +3,6 @@
 
 #include "data_manager.h"
 
-// tolua_begin
-
 struct ATTRIBUTE_DATA;
 struct SOUL_DATA
 {
@@ -19,7 +17,5 @@ struct SOUL_DATA
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, SOUL_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-
-// tolua_end
 
 #endif // _SOUL_DATA_H_

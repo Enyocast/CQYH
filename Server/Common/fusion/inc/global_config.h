@@ -1,8 +1,6 @@
 #ifndef _GLOBAL_CONFIG_H_
 #define _GLOBAL_CONFIG_H_
 
-// tolua_begin
-
 struct LOG_CONFIG
 {
     UINT32      nLogLevelMask;
@@ -43,8 +41,6 @@ struct GM_CUSTOM_CONFIG
     char szRoleName8[25];    // ROLE_NAME_LEN
     char szRoleName9[25];    // ROLE_NAME_LEN
 };
-
-// tolua_end
 
 BOOL LoadGlobalConfig(const char* pcszFileName);
 BOOL SaveGlobalConfig(const char* pcszFilePath);

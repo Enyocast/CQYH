@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "enum_string.h"
 
-extern int tolua_enumstr_open(lua_State* tolua_S);
+extern int sol_enumstr_open(lua_State* L);
 
 static char    s_szLuaScript[] =
 "cache_list = {};\n" \
@@ -49,7 +49,7 @@ BOOL CEnumString::Init(void)
 	L = m_LuaScript.GetLuaState();
 	LOG_PROCESS_ERROR(L);
 
-	nRetCode = tolua_enumstr_open(L);
+	nRetCode = sol_enumstr_open(L);
 	LOG_PROCESS_ERROR(nRetCode);
 
 	nRetCode = m_LuaScript.LoadFromBuffer("", s_szLuaScript, sizeof(s_szLuaScript) - 1);;

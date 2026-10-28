@@ -7,8 +7,6 @@
 
 #define MAX_MODULE_NAME			(256)
 #define MAX_LOG_THREAD_COUNT	(64)
-
-// tolua_begin
 enum LOG_OUTPUT_TYPE
 {
 	lotNone		    = 0x00000000,
@@ -40,7 +38,6 @@ enum LOG_LEVEL_TYPE
 
 	lltAll			= 0xFFFFFFFF
 };
-// tolua_end
 
 #if defined(__linux__)
 #define DBG(__message__, ...)    CLog::GetInstance().WriteLog(lltDebug, __message__, ##__VA_ARGS__)

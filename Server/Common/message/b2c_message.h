@@ -4,7 +4,6 @@
 #include "external_message_header.h"
 
 #pragma pack(push, 1)
-// tolua_begin
 namespace ExternalMessage
 {
 	enum B2C_MESSAGE_ID
@@ -24,7 +23,6 @@ namespace ExternalMessage
 	};
 
 };
-// tolua_end
 #pragma pack(pop)
 
 #endif  // _C2B_MESSAGE_H_

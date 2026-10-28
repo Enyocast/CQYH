@@ -1,7 +1,5 @@
 #ifndef _MISSILE_DEF_H_
 #define _MISSILE_DEF_H_
-
-//tolua_begin
 enum MISSILE_MOVE_TYPE
 {
 	mmtInvalid = -1,
@@ -31,7 +29,5 @@ enum MISSILE_LOCK_TYPE
 
 	mltTotal
 };
-
-//tolua_end
 
 #endif // _missile_def_h__

@@ -11,8 +11,6 @@
 #define _H_MASTER_DEF_H_
 
 #include "string_def.h"
-
-// tolua_begin
 #define MAX_STUDENT_NUM (5)                   // 最大徒弟数量
 //#define MAX_STUD_APP_NUM    (8)         
 //#define MAX_TEACHER_APP_NUM     (8)
@@ -69,9 +67,6 @@ enum MST_SYNC_GS_DATA_TYPE
     MST_SYNC_PUNISH_EXP,
     MST_SYNC_MASTER_EXP_DEC,
 };
-
-
-// tolua_end
 
 #endif //_H_MASTER_DEF_H_
 

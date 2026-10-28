@@ -1,4 +1,0 @@
-$pfile "script/common.pkg"
-$hfile "../../../Common/define/attribute_def.h"
-$hfile "../../../Common/define/role_def.h"
-$hfile "../../../Common/define/modifier_def.h"

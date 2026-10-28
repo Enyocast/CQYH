@@ -31,8 +31,8 @@ target_compile_definitions(nameserver PRIVATE
 target_link_libraries(nameserver PRIVATE
     baselib
     cqyh::lua
-    cqyh::toluapp
-    net
+    cqyh::sol2
+    cqyh::net
     cqyh::zlib
     cqyh::gpk
     fusion

@@ -6,8 +6,6 @@
 /// 
 #include "base_list.h"
 
-//tolua_begin
-
 struct stSignal 
 {
     INT8    nType;          // SIGNAL_TYPE
@@ -17,8 +15,6 @@ struct stSignal
     UINT32  dwIssuerID;
     BASE_LIST_NODE  ListNode;
 };
-
-//tolua_end
 
 #define SIGNAL_MAX_LIVE_FRAME ( 8 * GAME_FPS )
 #define SIGNAL_MAX_PROCESS_TIMES 16

@@ -3,8 +3,6 @@
 
 #include "string_def.h"
 #include "server_def.h"
-
-// tolua_begin
 #pragma pack(push, 8)
 
 struct GUARD_LOG_CONFIG
@@ -73,7 +71,6 @@ struct GUARD_CONFIG
 };
 
 #pragma pack(pop)
-// tolua_end
 
 extern GUARD_CONFIG g_GuardConfig;
 

@@ -4,8 +4,6 @@
 /// @file char_def.h
 /// lua package file char_def.pkg
 
-// tolua_begin
-
 /// @enum CHAR_MOVE_STATE
 enum CHAR_MOVE_STATE
 {
@@ -260,8 +258,5 @@ enum ROLE_RUNE_ROOT
 	rrrNormal,
 	rrrAdvanced,
 };
-
-
-// tolua_end
 
 #endif  // _CHAR_DEF_H_

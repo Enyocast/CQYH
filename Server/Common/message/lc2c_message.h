@@ -5,7 +5,6 @@
 #include "external_message_header.h"
 
 #pragma pack(push, 1)
-// tolua_begin
 namespace ExternalMessage
 {
 	enum LC2C_MESSAGE_ID
@@ -38,8 +37,6 @@ namespace ExternalMessage
 		INT32	nMaxPlayerCount;
 	};
 };
-
-// tolua_end
 #pragma pack(pop)
 
 #endif // lc2c_message_h__

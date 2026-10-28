@@ -54,8 +54,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
+
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -103,9 +102,9 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Qt5Core.lib;Qt5Gui.lib;ws2_32.lib;iphlpapi.lib;toluapp.lib;lua.lib;baselib.lib;net.lib;fusion.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Qt5Core.lib;Qt5Gui.lib;ws2_32.lib;iphlpapi.lib;lua.lib;baselib.lib;net.lib;fusion.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../../lib/win32;../../../3rd/sdu/lib/win32;../../../3rd/lua/lib/win32;../../../3rd/toluapp/lib/win32;../../../../Common/fusion/lib/win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../../lib/win32;../../../3rd/sdu/lib/win32;../../../3rd/lua/lib/win32;../../../../Common/fusion/lib/win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
     </Link>
@@ -125,9 +124,9 @@
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;zlib.lib;ws2_32.lib;winmm.lib;dbghelp.lib;iphlpapi.lib;toluapp.lib;lua64.lib;baselib.lib;net.lib;fusion.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;zlib.lib;ws2_32.lib;winmm.lib;dbghelp.lib;iphlpapi.lib;lua64.lib;baselib.lib;net.lib;fusion.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../../lib/win64;../../../3rd/sdu/lib/win64;../../../3rd/lua/lib/win64;../../../3rd/zlib/lib/win64;../../../3rd/toluapp/lib/win64;../../../../Common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../../lib/win64;../../../3rd/sdu/lib/win64;../../../3rd/lua/lib/win64;../../../3rd/zlib/lib/win64;../../../../Common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
@@ -149,9 +148,9 @@
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Qt5Cored.lib;Qt5Guid.lib;ws2_32.lib;iphlpapi.lib;toluapp_d.lib;lua_d.lib;baselib_d.lib;net_d.lib;fusion_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Qt5Cored.lib;Qt5Guid.lib;ws2_32.lib;iphlpapi.lib;lua_d.lib;baselib_d.lib;net_d.lib;fusion_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)_d.exe</OutputFile>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../../lib/win32;../../../3rd/sdu/lib/win32;../../../3rd/lua/lib/win32;../../../3rd/toluapp/lib/win32;../../../../Common/fusion/lib/win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../../lib/win32;../../../3rd/sdu/lib/win32;../../../3rd/lua/lib/win32;../../../../Common/fusion/lib/win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -173,9 +172,9 @@
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;zlib_d.lib;ws2_32.lib;dbghelp.lib;winmm.lib;iphlpapi.lib;toluapp_d.lib;lua64_d.lib;baselib_d.lib;net_d.lib;fusion_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;zlib_d.lib;ws2_32.lib;dbghelp.lib;winmm.lib;iphlpapi.lib;lua64_d.lib;baselib_d.lib;net_d.lib;fusion_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)_d.exe</OutputFile>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../../lib/win64;../../../3rd/lua/lib/win64;../../../3rd/zlib/lib/win64;../../../3rd/toluapp/lib/win64;../../../../Common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../../lib/win64;../../../3rd/lua/lib/win64;../../../3rd/zlib/lib/win64;../../../../Common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -302,8 +301,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-  </ImportGroup>
+
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" MocOptions="" QtVersion_x0020_Win32="4.6.4" />

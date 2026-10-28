@@ -74,7 +74,7 @@ Server/
 │   │                          dbserver, gmserver, manageserver, nameserver, balanceserver, ...
 │   ├── bin/                   Runtime layout: commonconfig (game scripts and data tables),
 │   │                          start/stop scripts, configs
-│   ├── 3rd/                   Third-party libraries (MySQL, Lua, tolua++, zlib, oasdk, ...)
+│   ├── 3rd/                   Third-party libraries (MySQL, Lua, sol2, zlib, oasdk, ...)
 │   ├── inc/, lib/             Shared headers and libraries
 │   ├── tools/                 gmtool, maintaintool, guardserver, certserver and other tools
 │   └── test/                  Test programs (asio_net: transport integration test)

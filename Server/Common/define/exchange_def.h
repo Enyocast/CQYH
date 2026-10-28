@@ -1,8 +1,6 @@
 #ifndef _EXCHANGE_DEF_H_
 #define _EXCHANGE_DEF_H_
 
-// tolua_begin
-
 enum EOrderType
 {
 	eotInvalid,
@@ -22,7 +20,5 @@ enum EOrderStatus
 };
 
 #define MAX_ORDER_DETAIL_NUM      (512)
-
-// tolua_end
 
 #endif	// _EXCHANGE_DEF_H_

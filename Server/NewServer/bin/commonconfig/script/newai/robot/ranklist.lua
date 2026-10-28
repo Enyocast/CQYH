@@ -6,7 +6,7 @@ LoadPackage("gameworld.pkg")
 function performance_ranklist_query(owner)
 
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local ranktype = math.random(24);	-- role ranklist total type
 	local rankpage = math.random(20);
 	

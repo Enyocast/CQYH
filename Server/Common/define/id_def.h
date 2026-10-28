@@ -4,8 +4,6 @@
 /// @file id_def.h
 /// lua package file id_def.pkg
 
-// tolua_begin
-
 #define INVALID_OBJECT_ID	(0)             ///< @line
 #define OBJECT_TYPE_MASK    (0xF0000000)
 #define OBJECT_ID_MASK      (0x0FFFFFFF)
@@ -45,8 +43,6 @@ inline INT32 GetIndexFromID(UINT32 dwObjID)
 {
     return (dwObjID & OBJECT_ID_MASK);
 }
-
-// tolua_end
 
 inline UINT64 MakeSceneObjID(INT16 nSceneTempID, INT32 nSceneID)
 {

@@ -7,11 +7,11 @@
 *********************************************************************/
 
 #include "stdafx.h"
+#include "sol_bindings.h"
 #include "tl_config.h"
 #include "script_mgr.h"
-#include "tolua++.h"
 #include "string_ex.h"
-#include "script/tolua_tl_config.h"
+#include "script/sol_tl_config.h"
 
 TL_CONFIG   g_TLConfig;
 static char szLoadFileName[256] = {0};
@@ -27,7 +27,7 @@ BOOL LoadTLConfig(const char *pcszFileName)
     nRetCode = oScript.Init();
     LOG_PROCESS_ERROR(nRetCode);
 
-    tolua_tl_config_open(oScript.GetLuaState());
+    sol_tl_config_open(oScript.GetLuaState());
     LOG_PROCESS_ERROR(nRetCode);
 
     nRetCode = oScript.LoadFromFile(pcszFileName);
@@ -52,7 +52,7 @@ BOOL LoadTLConfigFromBuffer(const char *pcScriptName, const char *pcBuffer, UINT
     nRetCode = oScript.Init();
     LOG_PROCESS_ERROR(nRetCode);
 
-    tolua_tl_config_open(oScript.GetLuaState());
+    sol_tl_config_open(oScript.GetLuaState());
     LOG_PROCESS_ERROR(nRetCode);
 
     nRetCode = oScript.LoadFromBuffer(pcScriptName, pcBuffer, dwSize);

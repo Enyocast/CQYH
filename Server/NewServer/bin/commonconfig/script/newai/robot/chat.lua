@@ -1,7 +1,7 @@
 
 function do_chat_action(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local chance = math.random(10000);
     local ChatTargetID = owner:GetObjID();
     

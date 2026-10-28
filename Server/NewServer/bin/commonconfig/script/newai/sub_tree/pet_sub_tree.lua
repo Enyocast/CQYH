@@ -112,7 +112,7 @@ local check_live_time =
 
 function CheckTargetIsPet(owner)
 	local processor = owner:GetAIProcessor();
-	local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	local npc = Cast(processor:GetOwner(), 'CNpc');
 
 	local targetid = processor:GetTargetID();
 	local tarobj = CGameWorld:GetInstance():FindValidCharacter(targetid);
@@ -418,7 +418,7 @@ function GetPetWalkSpeed(born_type, init_level)
 end
 
 function PetAiInit(owner)
-	local npc = tolua.cast(owner, 'CNpc');
+	local npc = Cast(owner, 'CNpc');
 	local npc_data = npc:GetNpcData();
 	local init_level = npc:GetPetInitLevel();
 	local pet_data = GetPetData(npc:GetPetType(), init_level);

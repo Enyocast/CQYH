@@ -1,8 +1,8 @@
 #include "stdafx.h"
+#include "sol_bindings.h"
 
 #include "asimov.h"
 #include "lua_script.h"
-#include "tolua++.h"
 #include "user.h"
 #include "user_mgr.h"
 #include "role_db_def.h"
@@ -134,7 +134,7 @@ INT32 lua_get_base_data(lua_State* L)
 
     INT32 nIndex = (INT32)lua_tonumber(L, 2);
 
-    tolua_pushusertype(L, pBaseData + nIndex, "ROLE_DB_BASE_DATA");
+    cqyh::lua::push_object(L, pBaseData + nIndex, "ROLE_DB_BASE_DATA");
 
     return 1;
 Exit0:
@@ -151,7 +151,7 @@ INT32 lua_get_role_name_from_mschat_message(lua_State* L)
 	nMessageSize = strnlen(pMsg->szMessage, MAX_CHAT_MESSAGE_LEN) + 1;
 	LOG_PROCESS_ERROR(pMsg->szMessage[nMessageSize - 1] == '\0');
 
-	tolua_pushstring(L, pMsg->szMessage + nMessageSize);
+	lua_pushstring(L, pMsg->szMessage + nMessageSize);
 	return 1;
 
 Exit0:
@@ -169,7 +169,7 @@ INT32 lua_get_drop_list_item_count_from_gsmessage(lua_State* L)
 	nMessageSize = pMsg->wSize - sizeof(ExternalMessage::G2C_SYNC_DROP_LIST);
 	nCount = nMessageSize / sizeof(ExternalMessage::DROP_INFO);
 
-	tolua_pushnumber(L, nCount);
+	lua_pushnumber(L, nCount);
 	return 1;
 
 Exit0:
@@ -196,7 +196,7 @@ INT32 lua_get_drop_list_item_from_gsmessage(lua_State* L)
 
 	pDrop = &(pMsg->astDrops[0]) + sizeof(ExternalMessage::DROP_INFO) * nCount;
 
-	tolua_pushusertype(L, pDrop, "ExternalMessage::DROP_INFO");
+	cqyh::lua::push_object(L, pDrop, "ExternalMessage::DROP_INFO");
 	return 1;
 
 Exit0:
@@ -214,7 +214,7 @@ INT32 lua_get_role_name_from_gschat_message(lua_State* L)
 	nMessageSize = strnlen(pMsg->szMessage, MAX_CHAT_MESSAGE_LEN) + 1;
 	LOG_PROCESS_ERROR(pMsg->szMessage[nMessageSize - 1] == '\0');
 
-	tolua_pushstring(L, pMsg->szMessage + nMessageSize);
+	lua_pushstring(L, pMsg->szMessage + nMessageSize);
 	return 1;
 
 Exit0:
@@ -231,7 +231,7 @@ INT32 lua_get_chat_content_from_msmessage(lua_State* L)
 	nMessageSize = strnlen(pMsg->szMessage, MAX_CHAT_MESSAGE_LEN) + 1;
 	LOG_PROCESS_ERROR(pMsg->szMessage[nMessageSize - 1] == '\0');
 
-	tolua_pushstring(L, pMsg->szMessage);
+	lua_pushstring(L, pMsg->szMessage);
 	return 1;
 
 Exit0:
@@ -241,14 +241,14 @@ Exit0:
 INT32 lua_get_variable_type(lua_State* L)
 {
 	INT32 nType = (INT32)lua_tonumber(L, 1);
-	tolua_pushnumber(L, (nType & 0x000F));
+	lua_pushnumber(L, (nType & 0x000F));
 	return 1;
 }
 
 INT32 lua_get_variable_index(lua_State* L)
 {
 	INT32 nIndex = (INT32)lua_tonumber(L, 1);
-	tolua_pushnumber(L, (nIndex & 0xFFF0) >> 4);
+	lua_pushnumber(L, (nIndex & 0xFFF0) >> 4);
 	return 1;
 }
 
@@ -303,7 +303,7 @@ INT32 lua_create_user(lua_State* L)
     nRetCode = poUser->AttachToCoroutine(pcszCoroutineName);
     LOG_PROCESS_ERROR(nRetCode);
 
-    tolua_pushusertype(L, poUser, "CUser");
+    cqyh::lua::push_object(L, poUser, "CUser");
 
     return 1;
 Exit0:
@@ -322,13 +322,13 @@ INT32 lua_rand_another_user(lua_State* L)
 	INT32 nRetCode = 0;
 	CUser* poUser = NULL;
 
-	CUser* poSelfUser = (CUser*)tolua_tousertype(L, 1, "CUser");
+	CUser* poSelfUser = sol::stack::get<CUser*>(L, 1);
 	LOG_PROCESS_ERROR(poSelfUser);
 
 	poUser = CUserMgr::GetInstance().RandAnotherUser(poSelfUser);
 	LOG_PROCESS_ERROR(poUser);
 
-	tolua_pushusertype(L, poUser, "CUser");
+	cqyh::lua::push_object(L, poUser, "CUser");
 
 	return 1;
 Exit0:
@@ -341,7 +341,7 @@ INT32 lua_destory_user(lua_State* L)
 {
     INT32 nRetCode = 0;
 
-    CUser* poUser = (CUser*)tolua_tousertype(L, 1, "CUser");
+    CUser* poUser = sol::stack::get<CUser*>(L, 1);
     LOG_PROCESS_ERROR(poUser);
 
     const char* pcszCoroutineName = lua_tostring(L, 2);
@@ -400,8 +400,8 @@ INT32 lua_get_npc(lua_State* L)
 		poNpcData = (NPC_DATA*)CDataManager<NPC_DATA>::GetInstance().GetData(nTemplateID);
 		LOG_PROCESS_ERROR(poNpcData);
 
-		tolua_pushusertype(L, (void*)pt, "NPC_SPAWN_POINT");
-		tolua_pushusertype(L, poNpcData, "NPC_DATA");
+		cqyh::lua::push_object(L, (void*)pt, "NPC_SPAWN_POINT");
+		cqyh::lua::push_object(L, poNpcData, "NPC_DATA");
 	}
 
 	return 2;
@@ -420,7 +420,7 @@ INT32 lua_goto_npc(lua_State* L)
     char gmcommand[256];
     BOOL bRet = FALSE;
 
-    user = (CUser*)tolua_tousertype(L, 1, "CUser");
+    user = sol::stack::get<CUser*>(L, 1);
     LOG_PROCESS_ERROR(user);
 
     role = user->GetPlayingRole();
@@ -478,7 +478,7 @@ Exit0:
 	Traverse9Region trav;
 	trav.dwFocusID = 0;
 
-    CRole* poRole = (CRole*)tolua_tousertype(L, 1, "CRole");
+    CRole* poRole = sol::stack::get<CRole*>(L, 1);
     LOG_PROCESS_ERROR(poRole);
 
 	poRegion = poRole->GetRegion();

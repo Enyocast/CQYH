@@ -5,8 +5,6 @@
 
 #define PET_ID(__type__, __level__)		(((__type__) << 16) | (__level__))
 
-// tolua_begin
-
 struct PET_DATA
 {
 	INT32	nID;
@@ -24,7 +22,5 @@ struct PET_DATA
 };
 
 const PET_DATA* GetPetData(INT32 nType, INT32 nLevel);
-
-// tolua_end
 
 #endif	// _PET_DATA_H_

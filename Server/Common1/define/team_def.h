@@ -3,8 +3,6 @@
 
 #include "scene_def.h"
 
-// tolua_begin
-
 #define MAX_TEAM_MEMBER_COUNT					(20)
 #define MAX_ADJACENT_ROLE_NOTEAM_COUNT			(32)
 #define MAX_ADJACENT_TEAM_COUNT					(16)
@@ -72,7 +70,5 @@ enum TEAM_BID_STATE
 
 	etbsTotal
 };
-
-// tolua_end
 
 #endif

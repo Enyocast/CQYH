@@ -1,8 +1,6 @@
 #ifndef _RANKLIST_DEF_
 #define _RANKLIST_DEF_
 
-// tolua_begin
-
 #define MAX_RANK_LIST_NODE_COUNT 5000
 #define	MAX_RANK_NODE_NUM_PER_PAGE 10
 
@@ -92,8 +90,6 @@ enum RANK_LIST
 
 	rlTotal,
 };
-
-// tolua_end
 
 #define MAKE_RANKLIST_EXP_KEY(_level_, _exp_) ((_level_<< 32) | _exp_)
 #define GET_RANKLIST_EXP_FROM_KEY(_key_) (_key_ & 0xFFFFFFFF)

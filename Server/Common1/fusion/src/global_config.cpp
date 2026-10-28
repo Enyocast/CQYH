@@ -1,11 +1,11 @@
 #include "stdafx.h"
+#include "sol_bindings.h"
 #include "global_config.h"
 
 #include "ifile.h"
 #include "script_mgr.h"
 #include "string_ex.h"
-#include "tolua++.h"
-#include "script/tolua_global_config.h"
+#include "script/sol_global_config.h"
 
 #include "asimov_config.h"
 #include "game_world_config.h"
@@ -52,7 +52,7 @@ BOOL LoadGlobalConfig(const char* pcszFileName)
     nRetCode = oScript.Init();
     LOG_PROCESS_ERROR(nRetCode);
 
-    tolua_global_config_open(oScript.GetLuaState());
+    sol_global_config_open(oScript.GetLuaState());
 
     nRetCode = oScript.LoadFromFile(pcszFileName);
     LOG_PROCESS_ERROR(nRetCode);
@@ -110,7 +110,7 @@ BOOL SaveGlobalConfig(const char* pcszFilePath)
     //nRetCode = oScript.Init();
     //LOG_PROCESS_ERROR(nRetCode);
     //
-    //tolua_global_config_open(oScript.GetLuaState());
+    //sol_global_config_open(oScript.GetLuaState());
 
     //nRetCode = oScript.LoadFromFile(szLoadFileName);
     //LOG_PROCESS_ERROR(nRetCode);
@@ -147,7 +147,7 @@ BOOL LoadMTConfig(const char* pcszFileName)
     nRetCode = oScript.Init();
     LOG_PROCESS_ERROR(nRetCode);
 
-    tolua_global_config_open(oScript.GetLuaState());
+    sol_global_config_open(oScript.GetLuaState());
 
     nRetCode = oScript.LoadFromFile(pcszFileName);
     LOG_PROCESS_ERROR(nRetCode);
@@ -175,7 +175,7 @@ BOOL LoadGuardConfig(const char* pcszFileName)
 	nRetCode = oScript.Init();
 	LOG_PROCESS_ERROR(nRetCode);
 
-	tolua_global_config_open(oScript.GetLuaState());
+	sol_global_config_open(oScript.GetLuaState());
 
 	nRetCode = oScript.LoadFromFile(pcszFileName);
 	LOG_PROCESS_ERROR(nRetCode);

@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "sol_bindings.h"
 #include "asimov.h"
 
 #include <QtWidgets/QInputDialog>
@@ -6,7 +7,6 @@
 #include <QtWidgets/qtreewidget.h>
 #include <time.h>
 
-#include "tolua++.h"
 
 #include "game_world.h"
 #include "script_mgr.h"
@@ -306,7 +306,7 @@ BOOL asimov::_RefreshVariables(void)
             pTreeItem = ui.userTable->topLevelItem(nIndex);
 
             lua_pushstring(L, pTreeItem->text(0).toUtf8().data());
-            tolua_pushusertype(L, (CUser*)(pTreeItem->data(0, Qt::UserRole).toUInt()), "CUser");
+            cqyh::lua::push_object(L, (CUser*)(pTreeItem->data(0, Qt::UserRole).toUInt()), "CUser");
             lua_settable(L, nUserTable);
         }
 
@@ -322,7 +322,7 @@ BOOL asimov::_RefreshVariables(void)
                 continue;
 
             lua_pushstring(L, (*it)->text(0).toUtf8().data());
-            tolua_pushusertype(L, (CUser*)((*it)->data(0, Qt::UserRole).toUInt()), "CUser");
+            cqyh::lua::push_object(L, (CUser*)((*it)->data(0, Qt::UserRole).toUInt()), "CUser");
             lua_settable(L, nUserTable);
         }
 
@@ -341,7 +341,7 @@ BOOL asimov::_SetGlobalUser(CUser * poUser)
     L = _GetMainLuaState();
     LOG_PROCESS_ERROR(L);
 
-    tolua_pushusertype(L, poUser, "CUser");
+    cqyh::lua::push_object(L, poUser, "CUser");
     lua_setglobal(L, "g_user");
 
     return TRUE;

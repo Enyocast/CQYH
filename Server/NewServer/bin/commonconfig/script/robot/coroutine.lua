@@ -230,7 +230,7 @@ function OnRecvMsg(cname, session_id, msg_id, msg)
 		if(g_RunningList[cname].msgInfo[i].sessionID == session_id and g_RunningList[cname].msgInfo[i].msgID == msg_id) then
 						
 			local szPacketName = g_ProtocolTable[msg_id];
-			msg = tolua.cast(msg, szPacketName);
+			msg = Cast(msg, szPacketName);
 
 			g_RunningList[cname].msgInfo[i].msg = nil;
 			g_RunningList[cname].msgInfo[i].msg = msg;

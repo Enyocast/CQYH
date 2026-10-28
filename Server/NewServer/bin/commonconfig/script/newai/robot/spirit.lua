@@ -15,7 +15,7 @@ g_RobotMessageHandler = CRobotMessageHandler:GetInstance();
 function performance_spirit_exp_change(owner)
 
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	
 	
 	if role:GetLevel() < SPIRIT_OPEN_LEVEL then
@@ -37,7 +37,7 @@ end
 function performance_spirit_add_air(owner)
 
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	
 	if role:GetLevel() < SPIRIT_OPEN_LEVEL then
 		return brvSuccess;
@@ -51,7 +51,7 @@ end
 function performance_spirit_move_air(owner)
 
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	
 	if role:GetLevel() < SPIRIT_OPEN_LEVEL then
 		return brvSuccess;
@@ -78,7 +78,7 @@ end
 function performance_spirit_merge_air(owner)
 
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	
 	if role:GetLevel() < SPIRIT_OPEN_LEVEL then
 		return brvSuccess;
@@ -106,7 +106,7 @@ end
 function performance_spirit_buy_air_slot(owner)
 
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	
 	if role:GetLevel() < SPIRIT_OPEN_LEVEL then
 		return brvSuccess;
@@ -126,7 +126,7 @@ end
 function performance_spirit_exchange_air(owner)
 	
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	
 	if role:GetLevel() < SPIRIT_OPEN_LEVEL then
 		return brvSuccess;
@@ -140,7 +140,7 @@ end
 function performance_spirit_open_blood(owner)
 	
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	
 	if role:GetLevel() < SPIRIT_OPEN_LEVEL then
 		return brvSuccess;
@@ -164,7 +164,7 @@ end
 
 function performance_spirit_brush_slot(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:GetLevel() < SPIRIT_OPEN_LEVEL then

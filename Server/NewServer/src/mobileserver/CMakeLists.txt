@@ -22,9 +22,9 @@ target_include_directories(mobileserver PRIVATE
 )
 target_link_libraries(mobileserver PRIVATE
     baselib
-    net
+    cqyh::net
     cqyh::lua
-    cqyh::toluapp
+    cqyh::sol2
     cqyh::zlib
     fusion
     cqyh::syslibs

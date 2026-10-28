@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "sol_bindings.h"
 #include "lua_script.h"
 
 #include "ifile.h"
@@ -6,10 +7,6 @@
 #include "utf8.h"
 #include "zlib.h"
 
-extern "C"
-{
-	#include "tolua++.h"
-}
 
 #define LUA_SCRIPT_THIS		"LuaScriptThis"
 #define LUA_GLOBAL_BUFFER   "LuaGlobalBuffer"
@@ -38,6 +35,7 @@ BOOL CLuaScript::Init(void)
 	LOG_PROCESS_ERROR(m_pLuaState);
 
     luaL_openlibs(m_pLuaState);
+    cqyh::lua::initialize(m_pLuaState);
 
     lua_register(m_pLuaState, "print", _Print);
 	lua_register(m_pLuaState, "Include", _Include);
@@ -267,7 +265,7 @@ BOOL CLuaScript::_CallFunction(const char* pcszFuncName, const char* pcszFormat,
 			{
 				void* pObj = va_arg(valist, void*);
 				char* pszClassName = va_arg(valist, char*);
-				tolua_pushusertype(m_pLuaState, pObj, pszClassName);
+				cqyh::lua::push_object(m_pLuaState, pObj, pszClassName);
 				nArgnum++;
 			}
 			break;
@@ -346,7 +344,7 @@ BOOL CLuaScript::_CallFunction(const char* pcszFuncName, const char* pcszFormat,
                 LOG_PROCESS_ERROR(ppObj);
                 LOG_PROCESS_ERROR(lua_isuserdata(m_pLuaState, nStackIndex) || lua_isnil(m_pLuaState, nStackIndex));
 
-                *ppObj = lua_touserdata(m_pLuaState, nStackIndex++);
+                *ppObj = cqyh::lua::object_pointer(m_pLuaState, nStackIndex++);
             }
 			break;
         }

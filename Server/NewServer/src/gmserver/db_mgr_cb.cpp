@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "sol_bindings.h"
 #include "db_mgr.h"
 #include "gm_def.h"
 #include "role_db_def.h"
@@ -9,7 +10,6 @@
 #include "kernel.h"
 #include "new_role_config.h"
 #include "script_mgr.h"
-#include "../3rd/toluapp/include/tolua++.h"
 #include "gm_log_note.h"
 #include "item_data.h"
 #include "message_handler.h"
@@ -797,7 +797,7 @@ BOOL ExeLuaGMCmd(CMD_ROLE_EXE_GM_CMD *pCmd)
     poScript = CScriptMgr::GetInstance().FindScript(GM_SCRIPT_NAME);
     LOG_PROCESS_ERROR(poScript);
 
-    tolua_pushusertype(poScript->GetLuaState(), pCmd->poRole, "CRole");
+    cqyh::lua::push_object(poScript->GetLuaState(), pCmd->poRole, "CRole");
     lua_setglobal(poScript->GetLuaState(), "TargetRole");
 
     nRetCode = poScript->CallFunction("OnNewGMCommand", "s:b", pCmd->szGM, &bGMRet);

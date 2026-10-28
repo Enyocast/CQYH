@@ -36,8 +36,6 @@
 #define REWARD_QUEST_START_ID						(CIRCLE_QUEST_START_ID + MAX_CIRCLE_QUEST_COUNT)
 
 /********************normal quest**********************************/
-
-// tolua_begin
 #define MAX_NORMAL_QUEST_COUNT	    (2048)
 #define MAX_NORMAL_QUEST_BYTE_SIZE  (MAX_NORMAL_QUEST_COUNT / 8)
 #define REPEAT_QUEST_START_ID       (10000000)
@@ -134,7 +132,5 @@ enum QUEST_TYPE
 
 	qtTotal,			///< @line
 };
-
-// tolua_end
 
 #endif	// _QUEST_DEF_H_

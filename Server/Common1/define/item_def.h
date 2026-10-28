@@ -4,8 +4,6 @@
 /// @file item_def.h 
 /// @brief item related definition
 
-// tolua_begin   
-
 #define MAX_ITEM_COUNT		(128)
 #define MAX_DROP_COUNT		(128)
 #define MAX_REFINE_LEVEL    (300)
@@ -517,7 +515,7 @@ struct DROP_CHANCE_DATA
 	INT32 nDropChance;
 };
 
-///<  tolua_end
+
 
 static const INT32 EMPTY_SOCKET_SELL_PRICE = 1;
 static const INT32 RUNE_SELL_PRICE = 1;

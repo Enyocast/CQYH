@@ -3,8 +3,6 @@
 
 #include "data_manager.h"
 
-//tolua_begin
-
 struct ROLE_LEVEL_DATA
 {
 	INT32   m_nLevel;
@@ -36,7 +34,5 @@ struct HERO_LEVEL_DATA
 
 
 INT32 GetMaxExp(INT32 nObjType, INT32 nLevel);
-
-//tolua_end
 
 #endif	// _LEVEL_DATA_H_

@@ -15,9 +15,6 @@
 
 #include "string_def.h"
 #include "guild_def.h"
-
-
-// tolua_begin
 struct GS_GUILD_MEMBER 
 {
     UINT32      dwRoleID;
@@ -31,9 +28,6 @@ struct GS_GUILD_MEMBER
         return dwRoleID == dwRoleID;
     }
 };
-
-
-// tolua_end
 
 class CScene;
 

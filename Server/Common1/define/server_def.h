@@ -1,8 +1,6 @@
 #ifndef _SERVER_DEF_H_
 #define _SERVER_DEF_H_
 
-// tolua_begin
-
 enum SERVER_GROUP_STATE
 {
     sgsInvalid,
@@ -124,8 +122,6 @@ enum SERVER_GROUP_INDEX
 #define MAX_CLIENT_SESSION_COUNT    (0xFFFF)
 #define MAX_BS_CLIENT_SESSION_COUNT (0x0FFF)
 #define MAX_EXTERNAL_IP_COUNT		(8)
-
-// tolua_end
 
 static const char* DEFAULT_PAK_PATH	= "data";
 

@@ -8,8 +8,6 @@
 #include "score_def.h"
 #include "role_def.h"
 #include "weight_rand.h"
-
-//tolua_begin
 #define MAX_CUSTOM_GOAL_PER_DUNGEON (4)
 
 struct DUNGEON_DATA
@@ -51,6 +49,5 @@ struct DUNGEON_DATA
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, DUNGEON_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-//tolua_end
 
 #endif	// _DUNGEON_DATA_H_

@@ -1,8 +1,6 @@
 #ifndef _SPIRIT_DEF_H_
 #define _SPIRIT_DEF_H_    
 
-// tolua_begin
-
 // 境界总览
 #define  SPIRIT_OPEN_LEVEL					1	// (境界开启等级)
 
@@ -67,8 +65,6 @@ inline INT32 MAKE_BLOOD_KEY(INT32 nPage, INT32 nIndex, INT32 nNumber)
 {
 	return ((nPage << 24) | (nIndex << 16) | nNumber);
 }
-
-// tolua_end
 
 static const INT8 INIT_SPIRIIT_AIR_SEA_BAG_SIZE[sasbtTotal] = {16, 8, 2};
 

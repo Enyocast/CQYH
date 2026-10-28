@@ -20,7 +20,7 @@ g_DropGenerator = CDropGenerator:GetInstance();
 
 function building_say(owner)
 	local processor = owner:GetAIProcessor();
-	local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	local npc = Cast(processor:GetOwner(), 'CNpc');
 
 	--print(processor:GetVariable(2));
 	local scene = npc:GetScene();
@@ -36,7 +36,7 @@ end
 
 function BuildingDead(owner)
 	local processor = owner:GetAIProcessor();
-	local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	local npc = Cast(processor:GetOwner(), 'CNpc');
 
 	local scene = npc:GetScene();
 	local guild = g_GuildMgr:FindGuild(scene:GetSceneID());
@@ -54,7 +54,7 @@ end
 
 function BuildingDrop(owner)
 	local processor = owner:GetAIProcessor();
-	local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	local npc = Cast(processor:GetOwner(), 'CNpc');
 
 	local scene = npc:GetScene();
 

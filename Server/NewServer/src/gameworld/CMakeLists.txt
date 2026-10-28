@@ -97,54 +97,54 @@ add_library(gameworld STATIC
     scene/scene_file_mgr.cpp
     scene/scene.cpp
     script/script_func.cpp
-    script/tolua_achievement_def.cpp
-    script/tolua_achievement_list.cpp
-    script/tolua_adventure.cpp
-    script/tolua_ai.cpp
-    script/tolua_arena.cpp
-    script/tolua_attr_list.cpp
-    script/tolua_attribute_def.cpp
-    script/tolua_char_def.cpp
-    script/tolua_character.cpp
-    script/tolua_chat_def.cpp
-    script/tolua_check_data.cpp
-    script/tolua_common.cpp
-    script/tolua_data_manager.cpp
-    script/tolua_doodad.cpp
-    script/tolua_drop_generator.cpp
-    script/tolua_error_def.cpp
-    script/tolua_friend.cpp
-    script/tolua_gameworld.cpp
-    script/tolua_gs_guild.cpp
-    script/tolua_gs_team.cpp
-    script/tolua_guild_mgr.cpp
-    script/tolua_hero_def.cpp
-    script/tolua_hero.cpp
-    script/tolua_id_def.cpp
-    script/tolua_item_bag.cpp
-    script/tolua_item.cpp
-    script/tolua_master.cpp
-    script/tolua_math_ex.cpp
-    script/tolua_money_def.cpp
-    script/tolua_npc_def.cpp
-    script/tolua_npc.cpp
-    script/tolua_quest_def.cpp
-    script/tolua_quest_list.cpp
-    script/tolua_rank_list_def.cpp
-    script/tolua_role.cpp
-    script/tolua_scene_def.cpp
-    script/tolua_scene_object.cpp
-    script/tolua_scene.cpp
-    script/tolua_score_def.cpp
-    script/tolua_spell_book.cpp
-    script/tolua_spell.cpp
-    script/tolua_spirit_def.cpp
-    script/tolua_spirit.cpp
-    script/tolua_stall.cpp
-    script/tolua_teleport.cpp
-    script/tolua_title.cpp
-    script/tolua_trade.cpp
-    script/tolua_variable.cpp
+    script/sol_achievement_def.cpp
+    script/sol_achievement_list.cpp
+    script/sol_adventure.cpp
+    script/sol_ai.cpp
+    script/sol_arena.cpp
+    script/sol_attr_list.cpp
+    script/sol_attribute_def.cpp
+    script/sol_char_def.cpp
+    script/sol_character.cpp
+    script/sol_chat_def.cpp
+    script/sol_check_data.cpp
+    script/sol_common.cpp
+    script/sol_data_manager.cpp
+    script/sol_doodad.cpp
+    script/sol_drop_generator.cpp
+    script/sol_error_def.cpp
+    script/sol_friend.cpp
+    script/sol_gameworld.cpp
+    script/sol_gs_guild.cpp
+    script/sol_gs_team.cpp
+    script/sol_guild_mgr.cpp
+    script/sol_hero_def.cpp
+    script/sol_hero.cpp
+    script/sol_id_def.cpp
+    script/sol_item_bag.cpp
+    script/sol_item.cpp
+    script/sol_master.cpp
+    script/sol_math_ex.cpp
+    script/sol_money_def.cpp
+    script/sol_npc_def.cpp
+    script/sol_npc.cpp
+    script/sol_quest_def.cpp
+    script/sol_quest_list.cpp
+    script/sol_rank_list_def.cpp
+    script/sol_role.cpp
+    script/sol_scene_def.cpp
+    script/sol_scene_object.cpp
+    script/sol_scene.cpp
+    script/sol_score_def.cpp
+    script/sol_spell_book.cpp
+    script/sol_spell.cpp
+    script/sol_spirit_def.cpp
+    script/sol_spirit.cpp
+    script/sol_stall.cpp
+    script/sol_teleport.cpp
+    script/sol_title.cpp
+    script/sol_trade.cpp
+    script/sol_variable.cpp
     spell/aura_instance.cpp
     spell/aura.cpp
     spell/cooldown.cpp
@@ -160,6 +160,36 @@ add_library(gameworld STATIC
     spell/target_scanner.cpp
     spiritlevel/spirit.cpp
     statistic/statistic.cpp
+    script/bindings/data/achievement_bindings.cpp
+    script/bindings/data/ai_bindings.cpp
+    script/bindings/data/attr_conversion_bindings.cpp
+    script/bindings/data/attribute_bindings.cpp
+    script/bindings/data/aura_bindings.cpp
+    script/bindings/data/doodad_bindings.cpp
+    script/bindings/data/guild_activity_bindings.cpp
+    script/bindings/data/guild_building_bindings.cpp
+    script/bindings/data/init_reputation_bindings.cpp
+    script/bindings/data/item_bindings.cpp
+    script/bindings/data/level_bindings.cpp
+    script/bindings/data/missile_bindings.cpp
+    script/bindings/data/npc_bindings.cpp
+    script/bindings/data/npc_relation_bindings.cpp
+    script/bindings/data/pet_bindings.cpp
+    script/bindings/data/quest_bindings.cpp
+    script/bindings/data/role_relation_bindings.cpp
+    script/bindings/data/scene_bindings.cpp
+    script/bindings/data/shop_bindings.cpp
+    script/bindings/data/soul_bindings.cpp
+    script/bindings/data/spell_bindings.cpp
+    script/bindings/data/title_bindings.cpp
+    script/bindings/definitions/attribute_bindings.cpp
+    script/bindings/definitions/error_bindings.cpp
+    script/bindings/definitions/item_bindings.cpp
+    script/bindings/definitions/modifier_bindings.cpp
+    script/bindings/definitions/role_bindings.cpp
+    script/bindings/gameplay/item_bag_bindings.cpp
+    script/bindings/gameplay/item_mgr_bindings.cpp
+    script/bindings/registration.h
     stdafx.cpp
     team/team.cpp
     title/title.cpp
@@ -178,7 +208,6 @@ target_include_directories(gameworld PRIVATE
     ${CQYH_SERVER_DIR}/NewServer/inc/gameworld
     ${CQYH_SERVER_DIR}/NewServer/inc/baselib
     ${CQYH_SERVER_DIR}/NewServer/3rd/lua/src
-    ${CQYH_SERVER_DIR}/NewServer/3rd/toluapp/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/zlib
     ${CQYH_SERVER_DIR}/NewServer/3rd/gpk/Include
 )
@@ -188,3 +217,10 @@ target_compile_definitions(gameworld PRIVATE
     $<$<CONFIG:Debug>:NOMINMAX>
 )
 
+
+target_link_libraries(gameworld PUBLIC cqyh::sol2)
+
+get_target_property(_binding_sources gameworld SOURCES)
+list(FILTER _binding_sources INCLUDE REGEX "^script/bindings/")
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/script/bindings"
+    PREFIX "Lua bindings" FILES ${_binding_sources})

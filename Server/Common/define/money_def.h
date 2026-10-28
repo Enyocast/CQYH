@@ -4,8 +4,6 @@
 /// @file money_def.h
 /// lua package file money_def.pkg
 
-// tolua_begin
-
 /// @enum MONEY_TYPE
 enum MONEY_TYPE
 {
@@ -28,8 +26,6 @@ enum MONEY_TYPE
 
 	MONEYTYPE_COUNT
 };
-
-// tolua_end
 
 static const INT64 MAX_MONEY = 1000000000000ll;
 static const INT64 ONE_TIME_MAX_MONEY = 2000000000;

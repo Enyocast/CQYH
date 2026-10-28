@@ -5,8 +5,6 @@
 #include "server_def.h"
 #include "global_config.h"
 #include "gm_svr_def.h"
-
-// tolua_begin
 #pragma pack(push, 8)
 
 struct SERVER_CONFIG
@@ -323,6 +321,5 @@ inline BOOL IsValidGroup(INT32 nGroup)
 }
 
 #pragma pack(pop)
-// tolua_end
 
 #endif  // _SERVER_CONFIG_H_

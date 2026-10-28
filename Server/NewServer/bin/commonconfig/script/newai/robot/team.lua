@@ -4,7 +4,7 @@ function do_team_action(owner)
     
     g_RobotMessageHandler:SetTeamAuto(true);
     
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
     local role_id = role:GetObjID();
     local scene = role:GetScene();
     local team;

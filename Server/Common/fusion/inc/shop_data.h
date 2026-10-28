@@ -3,8 +3,6 @@
 
 #include "data_manager.h"
 #include "string_def.h"
-
-//tolua_begin
 struct ITEM_DATA;
 struct SHOP_DATA
 {
@@ -27,7 +25,5 @@ struct SHOP_DATA
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, SHOP_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-
-//tolua_end
 
 #endif // _SHOP_DATA_H_

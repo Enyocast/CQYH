@@ -7,8 +7,6 @@
 /// @file chat_def.h
 /// lua package file chat_def.pkg
 
-// tolua_begin
-
 #define MAX_CHAT_MESSAGE_LEN	(512)
 #define CHAT_SYSTEM_ID          (0)
 
@@ -39,7 +37,5 @@ enum CHAT_LOCATION_TYPE
 
 	cltTotal,
 };
-
-// tolua_end
 
 #endif  //_CHAT_DEF_H_

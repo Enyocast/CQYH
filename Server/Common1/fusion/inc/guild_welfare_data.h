@@ -11,9 +11,6 @@
 
 #include "string_ex.h"
 #include "data_manager.h"
-
-
-//tolua_begin
 struct GUILD_WELFARE_DATA 
 { 
     UINT32      dwID;
@@ -43,9 +40,6 @@ struct GUILD_WELFARE_DATA
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, GUILD_WELFARE_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-
-
-//tolua_end
 
 
 const GUILD_WELFARE_DATA* GetGuildWelfareData(INT32 nType, INT32 nLevel);

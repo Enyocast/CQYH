@@ -17,7 +17,8 @@
   -->
   <ItemDefinitionGroup Condition="'$(MSBuildProjectExtension)' == '.vcxproj'">
     <ClCompile>
-      <AdditionalOptions>%(AdditionalOptions) /source-charset:gbk /execution-charset:gbk</AdditionalOptions>
+      <AdditionalOptions>%(AdditionalOptions) /source-charset:gbk /execution-charset:gbk /bigobj</AdditionalOptions>
+      <LanguageStandard Condition="'$(LanguageStandard)' == ''">stdcpp17</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
 </Project>

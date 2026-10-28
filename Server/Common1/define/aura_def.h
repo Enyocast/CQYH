@@ -3,8 +3,6 @@
 
 ///@file aura_def.h
 /// no lua package file
-
-// tolua_begin
 #define MAX_AURA_EX_EVT	(2)
 
 ///@enum AURA_CATEGORY
@@ -92,8 +90,6 @@ enum AURA_RESIST_TYPE
 
 	aurtTotal
 };
-
-// tolua_end
 
 #endif // _AURA_DEF_H__
 

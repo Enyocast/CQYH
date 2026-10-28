@@ -51,10 +51,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-    <Import Project="..\net\script\toluapp_msg.props" />
-    <Import Project="..\gen_msg\script\toluapp_gen_msg.props" />
-  </ImportGroup>
+
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -92,7 +89,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>.\GeneratedFiles;$(QTDIR)\include;.\GeneratedFiles\$(Configuration);.\;../../inc/gameworld;../../inc/baselib;../../inc/net;../../../Common/define;../../../common/message;../../3rd/lua/include;../../3rd/toluapp/include;../../3rd/gpk/include;../../../Common/fusion/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;$(QTDIR)\include;.\GeneratedFiles\$(Configuration);.\;../../inc/gameworld;../../inc/baselib;../../inc/net;../../../Common/define;../../../common/message;../../3rd/lua/include;../../3rd/gpk/include;../../../Common/fusion/inc</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;QT_LARGEFILE_SUPPORT;QT_NO_DEBUG;NDEBUG;_ROBOT;QT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -102,9 +99,9 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>QtCore4.lib;QtGui4.lib;baselib.lib;gameworld_r.lib;ws2_32.lib;lua.lib;toluapp.lib;iphlpapi.lib;dbghelp.lib;wininet.lib;psapi.lib;fusion.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>QtCore4.lib;QtGui4.lib;baselib.lib;gameworld_r.lib;ws2_32.lib;lua.lib;iphlpapi.lib;dbghelp.lib;wininet.lib;psapi.lib;fusion.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../lib/win32;../../3rd/toluapp/lib/win32;../../3rd/lua/lib/win32;../../../common/fusion/lib/win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../lib/win32;../../3rd/lua/lib/win32;../../../common/fusion/lib/win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
@@ -116,7 +113,7 @@
     </Midl>
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
-      <AdditionalIncludeDirectories>.\GeneratedFiles;$(QTDIR)\include;.\GeneratedFiles\$(Configuration);.\;../../inc/gameworld;../../inc/baselib;../../inc/net;../../../Common/define;../../../common/message;../../3rd/lua/include;../../3rd/toluapp/include;../../3rd/gpk/include;../../../Common/fusion/inc;../../3rd/zlib/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;$(QTDIR)\include;.\GeneratedFiles\$(Configuration);.\;../../inc/gameworld;../../inc/baselib;../../inc/net;../../../Common/define;../../../common/message;../../3rd/lua/include;../../3rd/gpk/include;../../../Common/fusion/inc;../../3rd/zlib/</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN64;QT_LARGEFILE_SUPPORT;QT_NO_DEBUG;NDEBUG;_ROBOT;QT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -125,8 +122,8 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;baselib.lib;gameworld_r.lib;ws2_32.lib;winmm.lib;lua64.lib;toluapp.lib;net.lib;fusion.lib;wininet.lib;zlib.lib;dbghelp.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../lib/win64;../../3rd/lua/lib/win64;../../3rd/toluapp/lib/win64;../../3rd/zlib/lib/win64;../../../common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Core.lib;Qt5Gui.lib;Qt5Widgets.lib;baselib.lib;gameworld_r.lib;ws2_32.lib;winmm.lib;lua64.lib;net.lib;fusion.lib;wininet.lib;zlib.lib;dbghelp.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../lib/win64;../../3rd/lua/lib/win64;../../3rd/zlib/lib/win64;../../../common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
@@ -136,7 +133,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\GeneratedFiles;$(QTDIR)\include;.\GeneratedFiles\$(Configuration);.\;../../inc/gameworld;../../inc/baselib;../../inc/net;../../../Common/define;../../../common/message;../../3rd/lua/include;../../3rd/toluapp/include;../../3rd/gpk/include;../../../Common/fusion/inc</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;$(QTDIR)\include;.\GeneratedFiles\$(Configuration);.\;../../inc/gameworld;../../inc/baselib;../../inc/net;../../../Common/define;../../../common/message;../../3rd/lua/include;../../3rd/gpk/include;../../../Common/fusion/inc</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;QT_LARGEFILE_SUPPORT;_ROBOT;QT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -146,9 +143,9 @@
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>QtCored4.lib;QtGuid4.lib;baselib_d.lib;gameworld_r_d.lib;ws2_32.lib;lua_d.lib;toluapp_d.lib;net_d.lib;iphlpapi.lib;wininet.lib;psapi.lib;fusion_d.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>QtCored4.lib;QtGuid4.lib;baselib_d.lib;gameworld_r_d.lib;ws2_32.lib;lua_d.lib;net_d.lib;iphlpapi.lib;wininet.lib;psapi.lib;fusion_d.lib;dbghelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName)_d.exe</OutputFile>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../lib/win32;../../3rd/lua/lib/win32;../../3rd/toluapp/lib/win32;../../../Common/fusion/lib/win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../lib/win32;../../3rd/lua/lib/win32;../../../Common/fusion/lib/win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
@@ -161,7 +158,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.\GeneratedFiles;$(QTDIR)\include;.\GeneratedFiles\$(Configuration);.\;../../inc/gameworld;../../inc/baselib;../../inc/net;../../../Common/define;../../../common/message;../../3rd/lua/include;../../3rd/toluapp/include;../../3rd/gpk/include;../../../Common/fusion/inc;../../3rd/zlib/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\GeneratedFiles;$(QTDIR)\include;.\GeneratedFiles\$(Configuration);.\;../../inc/gameworld;../../inc/baselib;../../inc/net;../../../Common/define;../../../common/message;../../3rd/lua/include;../../3rd/gpk/include;../../../Common/fusion/inc;../../3rd/zlib/</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN64;QT_LARGEFILE_SUPPORT;_ROBOT;QT_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -171,8 +168,8 @@
       <DisableSpecificWarnings>4819;%(DisableSpecificWarnings)</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;baselib_d.lib;gameworld_r_d.lib;ws2_32.lib;winmm.lib;lua64_d.lib;toluapp_d.lib;net_d.lib;fusion_d.lib;wininet.lib;zlib_d.lib;dbghelp.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../lib/win64;../../3rd/lua/lib/win64;../../3rd/toluapp/lib/win64;../../3rd/zlib/lib/win64;../../../common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Cored.lib;Qt5Guid.lib;Qt5Widgetsd.lib;baselib_d.lib;gameworld_r_d.lib;ws2_32.lib;winmm.lib;lua64_d.lib;net_d.lib;fusion_d.lib;wininet.lib;zlib_d.lib;dbghelp.lib;iphlpapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(QTDIR)\lib;../../lib/win64;../../3rd/lua/lib/win64;../../3rd/zlib/lib/win64;../../../common/fusion/lib/win64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
       <LargeAddressAware>true</LargeAddressAware>
@@ -250,11 +247,11 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="robot_message_notifier.cpp" />
     <ClCompile Include="robot_script_func.cpp" />
-    <ClCompile Include="script\tolua_asimov_common.cpp" />
-    <ClCompile Include="script\tolua_asimov_message_handler.cpp" />
-    <ClCompile Include="script\tolua_asimov_user.cpp" />
-    <ClCompile Include="script\tolua_asimov_user_mgr.cpp" />
-    <ClCompile Include="script\tolua_msg.cpp" />
+    <ClCompile Include="script\sol_asimov_common.cpp" />
+    <ClCompile Include="script\sol_asimov_message_handler.cpp" />
+    <ClCompile Include="script\sol_asimov_user.cpp" />
+    <ClCompile Include="script\sol_asimov_user_mgr.cpp" />
+    <ClCompile Include="script\sol_msg.cpp" />
     <ClCompile Include="sdo\staticlogin.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -268,19 +265,19 @@
   <ItemGroup>
     <CustomBuild Include="asimov.h">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Moc%27ing asimov.h...</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DQT_LARGEFILE_SUPPORT -D_ROBOT -DQT_DLL -D_MBCS  "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(Configuration)\." "-I." "-I.\..\..\inc\gameworld" "-I.\..\..\inc\baselib" "-I.\..\..\inc\net" "-I.\..\..\..\Common\define" "-I.\..\..\..\common\message" "-I.\..\..\3rd\lua\include" "-I.\..\..\3rd\toluapp\include" "-I.\..\..\3rd\gpk\include" "-I.\..\..\..\Common\fusion\inc" "-I$(NOINHERIT)\." "-fStdAfx.h" "-f../../asimov.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DQT_LARGEFILE_SUPPORT -D_ROBOT -DQT_DLL -D_MBCS  "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(Configuration)\." "-I." "-I.\..\..\inc\gameworld" "-I.\..\..\inc\baselib" "-I.\..\..\inc\net" "-I.\..\..\..\Common\define" "-I.\..\..\..\common\message" "-I.\..\..\3rd\lua\include"  "-I.\..\..\3rd\gpk\include" "-I.\..\..\..\Common\fusion\inc" "-I$(NOINHERIT)\." "-fStdAfx.h" "-f../../asimov.h"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Moc%27ing asimov.h...</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN64 -DQT_LARGEFILE_SUPPORT -D_ROBOT -DQT_DLL -D_MBCS  "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(Configuration)\." "-I." "-I.\..\..\inc\gameworld" "-I.\..\..\inc\baselib" "-I.\..\..\inc\net" "-I.\..\..\..\Common\define" "-I.\..\..\..\common\message" "-I.\..\..\3rd\lua\include" "-I.\..\..\3rd\toluapp\include" "-I.\..\..\3rd\gpk\include" "-I.\..\..\..\Common\fusion\inc" "-I.\..\..\3rd\zlib" "-I$(NOINHERIT)\." "-fStdAfx.h" "-f../../asimov.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN64 -DQT_LARGEFILE_SUPPORT -D_ROBOT -DQT_DLL -D_MBCS  "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(Configuration)\." "-I." "-I.\..\..\inc\gameworld" "-I.\..\..\inc\baselib" "-I.\..\..\inc\net" "-I.\..\..\..\Common\define" "-I.\..\..\..\common\message" "-I.\..\..\3rd\lua\include"  "-I.\..\..\3rd\gpk\include" "-I.\..\..\..\Common\fusion\inc" "-I.\..\..\3rd\zlib" "-I$(NOINHERIT)\." "-fStdAfx.h" "-f../../asimov.h"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Moc%27ing asimov.h...</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -D_ROBOT -DQT_DLL -D_MBCS  "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(Configuration)\." "-I." "-I.\..\..\inc\gameworld" "-I.\..\..\inc\baselib" "-I.\..\..\inc\net" "-I.\..\..\..\Common\define" "-I.\..\..\..\common\message" "-I.\..\..\3rd\lua\include" "-I.\..\..\3rd\toluapp\include" "-I.\..\..\3rd\gpk\include" "-I.\..\..\..\Common\fusion\inc" "-I$(NOINHERIT)\." "-fStdAfx.h" "-f../../asimov.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -D_ROBOT -DQT_DLL -D_MBCS  "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(Configuration)\." "-I." "-I.\..\..\inc\gameworld" "-I.\..\..\inc\baselib" "-I.\..\..\inc\net" "-I.\..\..\..\Common\define" "-I.\..\..\..\common\message" "-I.\..\..\3rd\lua\include"  "-I.\..\..\3rd\gpk\include" "-I.\..\..\..\Common\fusion\inc" "-I$(NOINHERIT)\." "-fStdAfx.h" "-f../../asimov.h"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Moc%27ing asimov.h...</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN64 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -D_ROBOT -DQT_DLL -D_MBCS  "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(Configuration)\." "-I." "-I.\..\..\inc\gameworld" "-I.\..\..\inc\baselib" "-I.\..\..\inc\net" "-I.\..\..\..\Common\define" "-I.\..\..\..\common\message" "-I.\..\..\3rd\lua\include" "-I.\..\..\3rd\toluapp\include" "-I.\..\..\3rd\gpk\include" "-I.\..\..\..\Common\fusion\inc" "-I.\..\..\3rd\zlib" "-I$(NOINHERIT)\." "-fStdAfx.h" "-f../../asimov.h"</Command>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o ".\GeneratedFiles\$(ConfigurationName)\moc_%(Filename).cpp"  -DWIN64 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -D_ROBOT -DQT_DLL -D_MBCS  "-I.\GeneratedFiles" "-I$(QTDIR)\include" "-I.\GeneratedFiles\$(Configuration)\." "-I." "-I.\..\..\inc\gameworld" "-I.\..\..\inc\baselib" "-I.\..\..\inc\net" "-I.\..\..\..\Common\define" "-I.\..\..\..\common\message" "-I.\..\..\3rd\lua\include"  "-I.\..\..\3rd\gpk\include" "-I.\..\..\..\Common\fusion\inc" "-I.\..\..\3rd\zlib" "-I$(NOINHERIT)\." "-fStdAfx.h" "-f../../asimov.h"</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(QTDIR)\bin\moc.exe;%(FullPath);%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.\GeneratedFiles\$(Configuration)\moc_%(Filename).cpp;%(Outputs)</Outputs>
     </CustomBuild>
@@ -404,7 +401,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
-    <CustomBuild Include="script\tolua_asimov_common.h">
+    <CustomBuild Include="script\sol_asimov_common.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
@@ -434,7 +431,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
-    <CustomBuild Include="script\tolua_asimov_message_handler.h">
+    <CustomBuild Include="script\sol_asimov_message_handler.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
@@ -464,7 +461,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
-    <CustomBuild Include="script\tolua_asimov_user.h">
+    <CustomBuild Include="script\sol_asimov_user.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
@@ -494,7 +491,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
-    <CustomBuild Include="script\tolua_asimov_user_mgr.h">
+    <CustomBuild Include="script\sol_asimov_user_mgr.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
@@ -524,7 +521,7 @@
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
       </AdditionalInputs>
     </CustomBuild>
-    <CustomBuild Include="script\tolua_msg.h">
+    <CustomBuild Include="script\sol_msg.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
       </Command>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Performing Custom Build Tools</Message>
@@ -676,21 +673,10 @@
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <toluapp_msg Include="script\asimov_common.pkg" />
-    <toluapp_msg Include="script\asimov_message_handler.pkg" />
-    <toluapp_msg Include="script\asimov_user.pkg" />
-    <toluapp_msg Include="script\asimov_user_mgr.pkg" />
-    <toluapp_msg Include="script\msg.pkg">
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">../../../common/message/external_message_header.h;../../../common/message/g2c_message.h;../../../common/message/c2g_message.h;../../../common/message/m2c_message.h;../../../common/message/c2m_message.h;../../../common/message/t2c_message.h;../../../common/message/c2t_message.h</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">../../../common/message/external_message_header.h;../../../common/message/g2c_message.h;../../../common/message/c2g_message.h;../../../common/message/m2c_message.h;../../../common/message/c2m_message.h;../../../common/message/t2c_message.h;../../../common/message/c2t_message.h</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../../../common/message/external_message_header.h;../../../common/message/g2c_message.h;../../../common/message/c2g_message.h;../../../common/message/m2c_message.h;../../../common/message/c2m_message.h;../../../common/message/t2c_message.h;../../../common/message/c2t_message.h</AdditionalDependencies>
-    </toluapp_msg>
+
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-    <Import Project="..\net\script\toluapp_msg.targets" />
-    <Import Project="..\gen_msg\script\toluapp_gen_msg.targets" />
-  </ImportGroup>
+
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" Qt5Version_x0020_x64="5.3.1" MocOptions="" QtVersion_x0020_Win32="$(DefaultQtVersion)" />

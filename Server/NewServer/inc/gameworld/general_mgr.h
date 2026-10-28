@@ -10,14 +10,11 @@
 #ifdef _ROBOT
 
 #include "string_def.h"
-
-// tolua_begin
 struct RAND_ROLE_DATA
 {
     UINT32      dwRoleID;
     char        szRoleName[ROLE_NAME_LEN];
 };
-// tolua_end
 
 class CGeneralMgr
 {

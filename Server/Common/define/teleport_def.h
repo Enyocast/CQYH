@@ -3,8 +3,6 @@
 
 #define TELEPORT_FILE_NAME  "teleports.bin"
 #define TELEPORT_PLATFORM_FILE_NAME	"teleport_platforms.bin"
-
-// tolua_begin
 #define MAX_TELEPORT_POINT_PER_SCENE    128
 #define INVALID_TELEPORT_ID             -1
 
@@ -42,6 +40,5 @@ struct TELEPORT_PLATFORM
 	INT32 nSceneZ;
 	INT32 nRotationYaw;
 };
-// tolua_end
 
 #endif  // _TELEPORT_DEF_H_

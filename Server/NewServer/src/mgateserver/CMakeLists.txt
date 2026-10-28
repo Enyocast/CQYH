@@ -23,9 +23,9 @@ target_include_directories(mgateserver PRIVATE
 )
 target_link_libraries(mgateserver PRIVATE
     baselib
-    net
+    cqyh::net
     cqyh::lua
-    cqyh::toluapp
+    cqyh::sol2
     cqyh::zlib
     fusion
     cqyh::syslibs

@@ -7,11 +7,11 @@
 *********************************************************************/
 
 #include "stdafx.h"
+#include "sol_bindings.h"
 #include "gm_config.h"
 #include "script_mgr.h"
-#include "tolua++.h"
 #include "string_ex.h"
-#include "tolua_gm_config.h"
+#include "sol_gm_config.h"
 
 GM_CONFIG   g_GMConfig;
 static char szLoadFileName[256] = {0};
@@ -27,7 +27,7 @@ BOOL LoadGMConfig(const char *pcszFileName)
     nRetCode = oScript.Init();
     LOG_PROCESS_ERROR(nRetCode);
 
-    tolua_gm_config_open(oScript.GetLuaState());
+    sol_gm_config_open(oScript.GetLuaState());
     LOG_PROCESS_ERROR(nRetCode);
 
     nRetCode = oScript.LoadFromFile(pcszFileName);

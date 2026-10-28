@@ -53,9 +53,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-    <Import Project="script\toluapp_msg.props" />
-  </ImportGroup>
+
   <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
@@ -96,7 +94,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../inc;../../inc/baselib;../../inc/net;../../3rd/lua/src;../../3rd/toluapp/include;../../../common/define;../../../common/message;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../inc;../../inc/baselib;../../inc/net;../../3rd/lua/src;../../../common/define;../../../common/message;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN64;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <ExceptionHandling />
@@ -118,7 +116,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../inc;../../inc/baselib;../../inc/net;../../3rd/lua/src;../../3rd/toluapp/include;../../../common/define;../../../common/message;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../inc;../../inc/baselib;../../inc/net;../../3rd/lua/src;../../../common/define;../../../common/message;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN64;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -140,7 +138,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../inc;../../inc/baselib;../../inc/net;../../3rd/lua/src;../../3rd/toluapp/include;../../../common/define;../../../common/message;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../inc;../../inc/baselib;../../inc/net;../../3rd/lua/src;../../../common/define;../../../common/message;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <ExceptionHandling />
@@ -162,7 +160,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../inc;../../inc/baselib;../../inc/net;../../3rd/lua/src;../../3rd/toluapp/include;../../../common/define;../../../common/message;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../inc;../../inc/baselib;../../inc/net;../../3rd/lua/src;../../../common/define;../../../common/message;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ExceptionHandling />
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -185,9 +183,9 @@
     <ClCompile Include="iocp.cpp" />
     <ClCompile Include="net.cpp" />
     <ClCompile Include="packet_allocator.cpp" />
-    <ClCompile Include="script\tolua_common.cpp" />
-    <ClCompile Include="script\tolua_external_message.cpp" />
-    <ClCompile Include="script\tolua_internal_message.cpp" />
+    <ClCompile Include="script\sol_common.cpp" />
+    <ClCompile Include="script\sol_external_message.cpp" />
+    <ClCompile Include="script\sol_internal_message.cpp" />
     <ClCompile Include="share_mem_net.cpp" />
     <ClCompile Include="simple_net.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -248,9 +246,9 @@
     <ClInclude Include="epoll.h" />
     <ClInclude Include="intranet.h" />
     <ClInclude Include="iocp.h" />
-    <ClInclude Include="script\tolua_common.h" />
-    <ClInclude Include="script\tolua_external_message.h" />
-    <ClInclude Include="script\tolua_internal_message.h" />
+    <ClInclude Include="script\sol_common.h" />
+    <ClInclude Include="script\sol_external_message.h" />
+    <ClInclude Include="script\sol_internal_message.h" />
     <ClInclude Include="share_mem_net.h" />
     <ClInclude Include="simple_net.h" />
     <ClInclude Include="stdafx.h" />
@@ -261,22 +259,258 @@
     <None Include="simple_net.inl" />
   </ItemGroup>
   <ItemGroup>
-    <toluapp_msg Include="script\common.pkg" />
-    <toluapp_msg Include="script\external_message.pkg">
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../../../common/message/external_message_header.h;../../../common/message/g2c_message.h;../../../common/message/c2g_message.h;../../../common/message/m2c_message.h;../../../common/message/c2m_message.h;../../../common/message/t2c_message.h;../../../common/message/c2t_message.h</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'">../../../common/message/external_message_header.h;../../../common/message/g2c_message.h;../../../common/message/c2g_message.h;../../../common/message/m2c_message.h;../../../common/message/c2m_message.h;../../../common/message/t2c_message.h;../../../common/message/c2t_message.h</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'">../../../common/message/external_message_header.h;../../../common/message/g2c_message.h;../../../common/message/c2g_message.h;../../../common/message/m2c_message.h;../../../common/message/c2m_message.h;../../../common/message/t2c_message.h;../../../common/message/c2t_message.h</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../../../common/message/external_message_header.h;../../../common/message/g2c_message.h;../../../common/message/c2g_message.h;../../../common/message/m2c_message.h;../../../common/message/c2m_message.h;../../../common/message/t2c_message.h;../../../common/message/c2t_message.h</AdditionalDependencies>
-    </toluapp_msg>
-    <toluapp_msg Include="script\internal_message.pkg">
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">../../inc/net/common_message.h;../../inc/net/internal_message_header.h;../../inc/net/d2g_message.h;../../inc/net/g2d_message.h;../../inc/net/g2m_message.h;../../inc/net/m2g_message.h;../../inc/net/d2t_message.h;../../inc/net/t2d_message.h;../../inc/net/m2t_message.h;../../inc/net/t2m_message.h;../../inc/net/g2t_message.h;../../inc/net/t2g_message.h;../../inc/net/l2t_message.h;../../inc/net/t2l_message.h;../../inc/net/m2l_message.h;../../inc/net/l2m_message.h;../../inc/net/gmtl_message.h;../../inc/net/gmsvr_message.h</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Final Debug|x64'">../../inc/net/internal_message_header.h;../../inc/net/d2g_message.h;../../inc/net/g2d_message.h;../../inc/net/g2m_message.h;../../inc/net/m2g_message.h;../../inc/net/d2t_message.h;../../inc/net/t2d_message.h;../../inc/net/m2t_message.h;../../inc/net/t2m_message.h;../../inc/net/g2t_message.h;../../inc/net/t2g_message.h;../../inc/net/l2t_message.h;../../inc/net/t2l_message.h;../../inc/net/m2l_message.h;../../inc/net/l2m_message.h;../../inc/net/gmtl_message.h;../../inc/net/gmsvr_message.h</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Final Release|x64'">../../inc/net/internal_message_header.h;../../inc/net/d2g_message.h;../../inc/net/g2d_message.h;../../inc/net/g2m_message.h;../../inc/net/m2g_message.h;../../inc/net/d2t_message.h;../../inc/net/t2d_message.h;../../inc/net/m2t_message.h;../../inc/net/t2m_message.h;../../inc/net/g2t_message.h;../../inc/net/t2g_message.h;../../inc/net/l2t_message.h;../../inc/net/t2l_message.h;../../inc/net/m2l_message.h;../../inc/net/l2m_message.h;../../inc/net/gmtl_message.h;../../inc/net/gmsvr_message.h</AdditionalDependencies>
-      <AdditionalDependencies Condition="'$(Configuration)|$(Platform)'=='Release|x64'">../../inc/net/internal_message_header.h;../../inc/net/d2g_message.h;../../inc/net/g2d_message.h;../../inc/net/g2m_message.h;../../inc/net/m2g_message.h;../../inc/net/d2t_message.h;../../inc/net/t2d_message.h;../../inc/net/m2t_message.h;../../inc/net/t2m_message.h;../../inc/net/g2t_message.h;../../inc/net/t2g_message.h;../../inc/net/l2t_message.h;../../inc/net/t2l_message.h;../../inc/net/m2l_message.h;../../inc/net/l2m_message.h;../../inc/net/gmtl_message.h;../../inc/net/gmsvr_message.h</AdditionalDependencies>
-    </toluapp_msg>
+
+
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-    <Import Project="script\toluapp_msg.targets" />
-  </ImportGroup>
+
+  <ItemGroup>
+    <ClCompile Include="script\bindings\external\external_balance_to_client_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_achievements_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_activities_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_appearance_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_attributes_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_audit_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_auras_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_characters_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_chat_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_combat_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_common_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_companions_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_connection_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_crafting_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_dungeons_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_economy_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_enhancement_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_friends_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_gambling_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_guild_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_guild_buildings_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_guild_members_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_guild_storage_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_guild_war_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_ids_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_inventory_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_mentorship_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_movement_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_progression_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_pvp_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_quests_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_reputation_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_session_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_shops_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_spells_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_stalls_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_team_auction_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_teams_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_titles_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_trade_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_variables_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_world_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_game_world_objects_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_gate_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_activities_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_administration_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_announcements_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_auction_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_audit_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_characters_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_chat_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_common_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_dungeons_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_economy_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_friends_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_guild_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_guild_buildings_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_guild_diplomacy_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_guild_members_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_guild_storage_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_guild_war_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_ids_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_mail_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_mentorship_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_mentorship_recruitment_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_mentorship_students_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_mentorship_teachers_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_pvp_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_teams_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_client_to_manage_world_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_achievements_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_activities_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_appearance_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_attributes_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_auras_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_characters_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_chat_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_combat_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_common_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_companions_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_connection_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_crafting_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_dungeons_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_economy_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_enhancement_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_friends_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_gambling_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_guild_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_guild_members_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_ids_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_inventory_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_loot_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_mentorship_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_mentorship_teachers_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_movement_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_progression_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_pvp_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_quests_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_reputation_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_session_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_shops_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_siege_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_spells_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_stalls_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_synchronization_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_team_auction_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_teams_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_titles_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_trade_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_variables_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_world_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_game_to_client_world_objects_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_gate_to_client_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_headers_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_activities_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_attributes_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_auction_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_audit_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_characters_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_chat_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_common_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_connection_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_dungeons_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_economy_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_friends_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_guild_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_guild_buildings_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_guild_diplomacy_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_guild_members_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_guild_storage_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_guild_war_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_ids_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_mail_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_mentorship_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_mentorship_recruitment_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_mentorship_students_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_mentorship_teachers_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_pvp_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_quests_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_siege_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_teams_bindings.cpp" />
+    <ClCompile Include="script\bindings\external\external_manage_to_client_world_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_certification_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_common_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_database_to_game_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_database_to_gate_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_database_to_manage_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_database_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_gate_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_activities_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_administration_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_auction_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_audit_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_characters_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_chat_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_common_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_connection_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_dungeons_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_economy_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_guild_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_guild_buildings_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_guild_members_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_guild_storage_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_guild_war_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_ids_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_loot_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_mail_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_mentorship_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_mentorship_students_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_mentorship_teachers_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_progression_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_pvp_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_quests_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_session_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_shops_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_siege_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_spells_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_teams_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_variables_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_game_to_manage_world_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gate_to_database_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gate_to_game_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gate_to_login_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gate_to_manage_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_server_administration_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_server_announcements_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_server_audit_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_server_characters_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_server_chat_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_server_connection_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_server_economy_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_server_ids_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_server_mail_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_tool_administration_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_tool_announcements_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_tool_audit_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_tool_characters_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_tool_chat_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_tool_common_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_tool_connection_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_tool_economy_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_tool_ids_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_tool_inventory_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_tool_lookup_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_tool_mail_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_gm_tool_session_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_headers_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_login_to_gate_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_login_to_manage_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_database_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_achievements_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_activities_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_administration_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_auction_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_characters_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_common_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_connection_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_dungeons_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_economy_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_friends_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_guild_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_guild_buildings_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_guild_diplomacy_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_guild_members_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_guild_storage_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_guild_war_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_ids_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_loot_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_mail_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_mentorship_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_mentorship_students_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_mentorship_teachers_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_movement_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_progression_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_pvp_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_shops_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_siege_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_synchronization_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_teams_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_variables_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_world_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_game_world_objects_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_gate_bindings.cpp" />
+    <ClCompile Include="script\bindings\internal\internal_manage_to_login_bindings.cpp" />
+    <ClInclude Include="script\bindings\registration.h" />
+  </ItemGroup>
 </Project>

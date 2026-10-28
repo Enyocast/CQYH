@@ -8,9 +8,6 @@
 
 #ifndef _H_GM_CONFIG_H_
 #define _H_GM_CONFIG_H_
-
-
-// tolua_begin
 #pragma pack(push, 8)
 
 
@@ -55,18 +52,11 @@ struct GM_CONFIG
 #pragma pack(pop)
 
 
-// tolua_end
-
-
 extern GM_CONFIG        g_GMConfig;
 
 
 BOOL LoadGMConfig(const char *pcszFileName);
-
-
-// tolua_begin
 inline GM_CONFIG& GetGMConfig(void) {return g_GMConfig;}   
-// tolua_end
 
 
 #endif //_H_GM_CONFIG_H_

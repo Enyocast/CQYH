@@ -1,7 +1,5 @@
 #ifndef _QUEUE_MATCH_DEF_H_
 #define _QUEUE_MATCH_DEF_H_
-
-// tolua_begin
 #define MAX_BATTLE_TEMPLATE_COUNT	(32)
 #define MAX_ARENA_GROUP_COUNT		(32)
 #define MAX_ARENA_MATCH_GROUP		(3)
@@ -49,7 +47,5 @@ struct QUEUE_DATA
 	UINT32		dwJoinSceneID;
 	UINT32		dwJoinSide;
 };
-
-// tolua_end
 
 #endif

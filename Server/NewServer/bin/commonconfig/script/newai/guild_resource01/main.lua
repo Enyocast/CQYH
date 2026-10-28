@@ -41,7 +41,7 @@ function CheckCanDonateRes(owner, res_type, res_count)
 	end
 
 	local processor = owner:GetAIProcessor();
-	local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	local npc = Cast(processor:GetOwner(), 'CNpc');
 
 	local role_id = get_ctx_role_id();
 	local role = g_GameWorld:FindRole(role_id);
@@ -65,7 +65,7 @@ end
 -- 增加公会粮食，有贡献
 function GuildHerb(owner, res_count)
 	local processor = owner:GetAIProcessor();
-	local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	local npc = Cast(processor:GetOwner(), 'CNpc');
 
 	local role_id = get_ctx_role_id();
 	local role = g_GameWorld:FindRole(role_id);
@@ -91,7 +91,7 @@ end
 -- 公会木材，有贡献
 function GuildWood(owner, res_count)
 	local processor = owner:GetAIProcessor();
-	local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	local npc = Cast(processor:GetOwner(), 'CNpc');
 
 	local role_id = get_ctx_role_id();
 	local role = g_GameWorld:FindRole(role_id);
@@ -115,7 +115,7 @@ end
 -- 公会石材，有贡献
 function GuildCrystal(owner, res_count)
 	local processor = owner:GetAIProcessor();
-	local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	local npc = Cast(processor:GetOwner(), 'CNpc');
 
 	local role_id = get_ctx_role_id();
 	local role = g_GameWorld:FindRole(role_id);
@@ -139,7 +139,7 @@ end
 -- 公会铁矿，有贡献
 function GuildSilver(owner, res_count)
 	local processor = owner:GetAIProcessor();
-	local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	local npc = Cast(processor:GetOwner(), 'CNpc');
 
 	local role_id = get_ctx_role_id();
 	local role = g_GameWorld:FindRole(role_id);

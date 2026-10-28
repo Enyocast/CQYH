@@ -1,10 +1,10 @@
 #include "stdafx.h"
+#include "sol_bindings.h"
 #include "message_handler.h"
 
 #include "imessage_notifier.h"
 #include "g2c_message.h"
 
-#include "tolua++.h"
 
 #include "server_def.h"
 

@@ -1,7 +1,5 @@
 #ifndef _OBJ_POOL_CONFIG_H_
 #define _OBJ_POOL_CONFIG_H_
-
-// tolua_begin
 #pragma pack(push, 8)
 
 struct OBJ_POOL_CONFIG
@@ -40,6 +38,5 @@ struct OBJ_POOL_CONFIG
 extern OBJ_POOL_CONFIG g_ObjPoolConfig;
 
 #pragma pack(pop)
-// tolua_end
 
 #endif  // _OBJ_POOL_CONFIG_H_

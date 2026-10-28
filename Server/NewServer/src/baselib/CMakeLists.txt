@@ -27,9 +27,9 @@ add_library(baselib STATIC
     report.cpp
     rsa_sign.cpp
     script_mgr.cpp
-    script/tolua_check_data.cpp
-    script/tolua_common.cpp
-    script/tolua_tl_config.cpp
+    script/sol_check_data.cpp
+    script/sol_common.cpp
+    script/sol_tl_config.cpp
     share_mem_io.cpp
     share_mem.cpp
     simple_timer.cpp
@@ -58,7 +58,6 @@ target_include_directories(baselib PRIVATE
     ${CQYH_SERVER_DIR}/NewServer/inc
     ${CQYH_SERVER_DIR}/NewServer/inc/baselib
     ${CQYH_SERVER_DIR}/NewServer/3rd/lua/src
-    ${CQYH_SERVER_DIR}/NewServer/3rd/toluapp/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/zlib
     ${CQYH_SERVER_DIR}/Common/define
     ${CQYH_SERVER_DIR}/Common/fusion/inc
@@ -71,3 +70,5 @@ endif()
 
 # Propagate the matching C API headers and runtime to users of baselib.
 target_link_libraries(baselib PUBLIC cqyh::mysql)
+
+target_link_libraries(baselib PUBLIC cqyh::sol2)

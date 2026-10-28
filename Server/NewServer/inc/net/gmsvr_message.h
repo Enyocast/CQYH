@@ -7,8 +7,6 @@
 
 #pragma pack(push, 1)
 
-// tolua_begin
-
 
 namespace InternalMessage
 {
@@ -426,9 +424,6 @@ namespace InternalMessage
         INT32           nDailyOrderLimit;
     };
 }
-
-
-// tolua_end
 
 #pragma pack(pop)
 

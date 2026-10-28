@@ -1,8 +1,6 @@
 #ifndef _GRID_DEF_H_
 #define _GRID_DEF_H_
 
-// tolua_begin
-
 #define GRID_LAYER_HEIGHT_BIT   (12)
 #define NEXT_GRID_BIT           (7)
 #define MAX_NEXT_GRID			(1 << NEXT_GRID_BIT)
@@ -71,7 +69,5 @@ struct GRID_INSTANCE_DATA
 };
 
 #pragma pack(pop)
-
-// tolua_end
 
 #endif  // _GRID_DEF_H_

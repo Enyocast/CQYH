@@ -4,7 +4,6 @@
 #include "internal_message_header.h"
 
 #pragma pack(push, 1)
-// tolua_begin
 namespace InternalMessage
 {
     enum L2M_MESSAGE_ID
@@ -43,7 +42,6 @@ namespace InternalMessage
     };
 
 };
-// tolua_end
 #pragma pack(pop)
 
 #endif  // _L2M_MESSAGE_H_

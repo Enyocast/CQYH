@@ -1,3 +1,0 @@
-$pfile "script/common.pkg"
-$hfile "../../../Common/define/npc_def.h"
-$hfile "../../../common/fusion/inc/npc_data.h"

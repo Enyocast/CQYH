@@ -4,9 +4,6 @@
 
 #include "data_manager.h"
 
-
-//tolua_begin
-
 static const INT16  GuildAchiAwardTableSize = 5;
 static const INT16  GuildAchiCdtnTableSize = 4;
 
@@ -33,8 +30,6 @@ struct GUILD_ACHIEVEMENT
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, GUILD_ACHIEVEMENT* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-
-//tolua_end
 
 
 const GUILD_ACHIEVEMENT * GetGuildAchievement(INT32 nID);

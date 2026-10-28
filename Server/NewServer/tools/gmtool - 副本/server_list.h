@@ -5,10 +5,6 @@
 #include "server_def.h"
 #include "data_manager.h"
 
-
-
-//tolua_begin
-
 struct GROUP_DATA 
 {
     INT32   nGroupID;
@@ -25,7 +21,6 @@ struct SERVER_LIST_DATA
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, SERVER_LIST_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-//tolua_end
 
 struct SERVER_LIST 
 {

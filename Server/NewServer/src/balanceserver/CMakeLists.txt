@@ -27,9 +27,9 @@ target_compile_definitions(balanceserver PRIVATE
 )
 target_link_libraries(balanceserver PRIVATE
     baselib
-    net
+    cqyh::net
     cqyh::lua
-    cqyh::toluapp
+    cqyh::sol2
     cqyh::zlib
     fusion
     cqyh::syslibs

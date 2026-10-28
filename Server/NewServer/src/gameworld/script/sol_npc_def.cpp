@@ -1,0 +1,128 @@
+#include "stdafx.h"
+#include "sol_bindings.h"
+#include "stdlib.h"
+#include "../../../Common/define/npc_def.h"
+#include "../../../common/fusion/inc/npc_data.h"
+#include "../../../inc/baselib/tabfile.h"
+#include "../../../../Common/fusion/inc/adventure_data.h"
+
+int sol_npc_def_open(lua_State* L)
+{
+    sol::state_view lua(L);
+    sol::table globals = lua.globals();
+    globals["MAX_NPC_ID"] = static_cast<lua_Number>(MAX_NPC_ID);
+    globals["MAX_NPC_FORCE_ID"] = static_cast<lua_Number>(MAX_NPC_FORCE_ID);
+    globals["INVALID_FORCE_ID"] = static_cast<lua_Number>(INVALID_FORCE_ID);
+    globals["MAX_NPC_LEVEL"] = static_cast<lua_Number>(MAX_NPC_LEVEL);
+    globals["MIN_NPC_RADIUS"] = static_cast<lua_Number>(MIN_NPC_RADIUS);
+    globals["MAX_LEVEL_DIFF"] = static_cast<lua_Number>(MAX_LEVEL_DIFF);
+    globals["MAX_PET_LEVEL"] = static_cast<lua_Number>(MAX_PET_LEVEL);
+    globals["CASTER_WASHOUT_TIME"] = static_cast<lua_Number>(CASTER_WASHOUT_TIME);
+    globals["TARGET_WASHOUT_TIME"] = static_cast<lua_Number>(TARGET_WASHOUT_TIME);
+    globals["npcInvalid"] = static_cast<lua_Number>(npcInvalid);
+    globals["npcSpawn"] = static_cast<lua_Number>(npcSpawn);
+    globals["npcAlive"] = static_cast<lua_Number>(npcAlive);
+    globals["npcCorpse"] = static_cast<lua_Number>(npcCorpse);
+    globals["npcRespawn"] = static_cast<lua_Number>(npcRespawn);
+    globals["npcRevive"] = static_cast<lua_Number>(npcRevive);
+    globals["npcTotal"] = static_cast<lua_Number>(npcTotal);
+    globals["nqInvalid"] = static_cast<lua_Number>(nqInvalid);
+    globals["nqNormal1"] = static_cast<lua_Number>(nqNormal1);
+    globals["nqNormal2"] = static_cast<lua_Number>(nqNormal2);
+    globals["nqNormal3"] = static_cast<lua_Number>(nqNormal3);
+    globals["nqNormal4"] = static_cast<lua_Number>(nqNormal4);
+    globals["nqNormal5"] = static_cast<lua_Number>(nqNormal5);
+    globals["nqElite"] = static_cast<lua_Number>(nqElite);
+    globals["nqRare"] = static_cast<lua_Number>(nqRare);
+    globals["nqBoss"] = static_cast<lua_Number>(nqBoss);
+    globals["nqTotal"] = static_cast<lua_Number>(nqTotal);
+    globals["npctInvalid"] = static_cast<lua_Number>(npctInvalid);
+    globals["npctNpc"] = static_cast<lua_Number>(npctNpc);
+    globals["npctPet"] = static_cast<lua_Number>(npctPet);
+    globals["npctTotal"] = static_cast<lua_Number>(npctTotal);
+    globals["petInvalid"] = static_cast<lua_Number>(petInvalid);
+    globals["petTotal"] = static_cast<lua_Number>(petTotal);
+    globals["petBornInvalid"] = static_cast<lua_Number>(petBornInvalid);
+    globals["petBornHoly"] = static_cast<lua_Number>(petBornHoly);
+    globals["petBornSkeleton"] = static_cast<lua_Number>(petBornSkeleton);
+    globals["petBornByMage"] = static_cast<lua_Number>(petBornByMage);
+    globals["petBornTotal"] = static_cast<lua_Number>(petBornTotal);
+    globals["psInvalid"] = static_cast<lua_Number>(psInvalid);
+    globals["psIdle"] = static_cast<lua_Number>(psIdle);
+    globals["psFight"] = static_cast<lua_Number>(psFight);
+    globals["psTotal"] = static_cast<lua_Number>(psTotal);
+    globals["PET_AIV_MAGE_PET_SPELL_ID"] = static_cast<lua_Number>(PET_AIV_MAGE_PET_SPELL_ID);
+    globals["PET_AIV_FIGHT_STATE_INDEX"] = static_cast<lua_Number>(PET_AIV_FIGHT_STATE_INDEX);
+    globals["PET_AI_CONTROL"] = static_cast<lua_Number>(PET_AI_CONTROL);
+    globals["PET_AI_IS_EXTRA_WALK"] = static_cast<lua_Number>(PET_AI_IS_EXTRA_WALK);
+    globals["PET_AI_MAGE_CHASE_THRESHOLD"] = static_cast<lua_Number>(PET_AI_MAGE_CHASE_THRESHOLD);
+    globals["PET_AI_MAGE_PREFER_DISTANCE"] = static_cast<lua_Number>(PET_AI_MAGE_PREFER_DISTANCE);
+    globals["PET_AI_GO_HOME"] = static_cast<lua_Number>(PET_AI_GO_HOME);
+    auto type1 = cqyh::lua::usertype<NPC_DATA>(L, globals, "NPC_DATA", "NPC_DATA");
+    type1["nTemplateID"] = sol::property([](const NPC_DATA& self) { return self.nTemplateID; }, [](NPC_DATA& self, decltype(NPC_DATA::nTemplateID) value) { self.nTemplateID = value; });
+    type1["nClientTemplateID"] = sol::property([](const NPC_DATA& self) { return self.nClientTemplateID; }, [](NPC_DATA& self, decltype(NPC_DATA::nClientTemplateID) value) { self.nClientTemplateID = value; });
+    type1["szDisplayName"] = cqyh::lua::string_property(&NPC_DATA::szDisplayName);
+    type1["szName"] = cqyh::lua::string_property(&NPC_DATA::szName);
+    type1["nLevel"] = sol::property([](const NPC_DATA& self) { return self.nLevel; }, [](NPC_DATA& self, decltype(NPC_DATA::nLevel) value) { self.nLevel = value; });
+    type1["nPatternID"] = sol::property([](const NPC_DATA& self) { return self.nPatternID; }, [](NPC_DATA& self, decltype(NPC_DATA::nPatternID) value) { self.nPatternID = value; });
+    type1["nQuality"] = sol::property([](const NPC_DATA& self) { return self.nQuality; }, [](NPC_DATA& self, decltype(NPC_DATA::nQuality) value) { self.nQuality = value; });
+    type1["nBroadcast"] = sol::property([](const NPC_DATA& self) { return self.nBroadcast; }, [](NPC_DATA& self, decltype(NPC_DATA::nBroadcast) value) { self.nBroadcast = value; });
+    type1["nForceID"] = sol::property([](const NPC_DATA& self) { return self.nForceID; }, [](NPC_DATA& self, decltype(NPC_DATA::nForceID) value) { self.nForceID = value; });
+    type1["bReduceReputation"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bReduceReputation); }, [](NPC_DATA& self, bool value) { self.bReduceReputation = value; });
+    type1["nSpecies"] = sol::property([](const NPC_DATA& self) { return self.nSpecies; }, [](NPC_DATA& self, decltype(NPC_DATA::nSpecies) value) { self.nSpecies = value; });
+    type1["nRivalForceID"] = sol::property([](const NPC_DATA& self) { return self.nRivalForceID; }, [](NPC_DATA& self, decltype(NPC_DATA::nRivalForceID) value) { self.nRivalForceID = value; });
+    type1["nGroupID"] = sol::property([](const NPC_DATA& self) { return self.nGroupID; }, [](NPC_DATA& self, decltype(NPC_DATA::nGroupID) value) { self.nGroupID = value; });
+    type1["nBodyType"] = sol::property([](const NPC_DATA& self) { return self.nBodyType; }, [](NPC_DATA& self, decltype(NPC_DATA::nBodyType) value) { self.nBodyType = value; });
+    type1["nSpellEffectGroup"] = sol::property([](const NPC_DATA& self) { return self.nSpellEffectGroup; }, [](NPC_DATA& self, decltype(NPC_DATA::nSpellEffectGroup) value) { self.nSpellEffectGroup = value; });
+    type1["nSpawnTime"] = sol::property([](const NPC_DATA& self) { return self.nSpawnTime; }, [](NPC_DATA& self, decltype(NPC_DATA::nSpawnTime) value) { self.nSpawnTime = value; });
+    type1["nReviveTime"] = sol::property([](const NPC_DATA& self) { return self.nReviveTime; }, [](NPC_DATA& self, decltype(NPC_DATA::nReviveTime) value) { self.nReviveTime = value; });
+    type1["nCorpseTime"] = sol::property([](const NPC_DATA& self) { return self.nCorpseTime; }, [](NPC_DATA& self, decltype(NPC_DATA::nCorpseTime) value) { self.nCorpseTime = value; });
+    type1["nMinRespawnTime"] = sol::property([](const NPC_DATA& self) { return self.nMinRespawnTime; }, [](NPC_DATA& self, decltype(NPC_DATA::nMinRespawnTime) value) { self.nMinRespawnTime = value; });
+    type1["nMaxRespawnTime"] = sol::property([](const NPC_DATA& self) { return self.nMaxRespawnTime; }, [](NPC_DATA& self, decltype(NPC_DATA::nMaxRespawnTime) value) { self.nMaxRespawnTime = value; });
+    type1["nAIID"] = sol::property([](const NPC_DATA& self) { return self.nAIID; }, [](NPC_DATA& self, decltype(NPC_DATA::nAIID) value) { self.nAIID = value; });
+    type1["bImmunePassiveMove"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bImmunePassiveMove); }, [](NPC_DATA& self, bool value) { self.bImmunePassiveMove = value; });
+    type1["bInvincible"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInvincible); }, [](NPC_DATA& self, bool value) { self.bInvincible = value; });
+    type1["bAlwaysRun"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bAlwaysRun); }, [](NPC_DATA& self, bool value) { self.bAlwaysRun = value; });
+    type1["bCanbeThrown"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bCanbeThrown); }, [](NPC_DATA& self, bool value) { self.bCanbeThrown = value; });
+    type1["bIgnoreInvisible"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bIgnoreInvisible); }, [](NPC_DATA& self, bool value) { self.bIgnoreInvisible = value; });
+    type1["bCounterInvisible"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bCounterInvisible); }, [](NPC_DATA& self, bool value) { self.bCounterInvisible = value; });
+    type1["nAttackRange"] = sol::property([](const NPC_DATA& self) { return self.nAttackRange; }, [](NPC_DATA& self, decltype(NPC_DATA::nAttackRange) value) { self.nAttackRange = value; });
+    type1["bExclusive"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bExclusive); }, [](NPC_DATA& self, bool value) { self.bExclusive = value; });
+    type1["bNeverBeHit"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bNeverBeHit); }, [](NPC_DATA& self, bool value) { self.bNeverBeHit = value; });
+    type1["bProfit"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bProfit); }, [](NPC_DATA& self, bool value) { self.bProfit = value; });
+    type1["nExpRate"] = sol::property([](const NPC_DATA& self) { return self.nExpRate; }, [](NPC_DATA& self, decltype(NPC_DATA::nExpRate) value) { self.nExpRate = value; });
+    type1["nSoulRate"] = sol::property([](const NPC_DATA& self) { return self.nSoulRate; }, [](NPC_DATA& self, decltype(NPC_DATA::nSoulRate) value) { self.nSoulRate = value; });
+    type1["bDailyExp"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bDailyExp); }, [](NPC_DATA& self, bool value) { self.bDailyExp = value; });
+    type1["bAuraInvalid"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bAuraInvalid); }, [](NPC_DATA& self, bool value) { self.bAuraInvalid = value; });
+    type1["nKillPlayerVarIndex"] = sol::property([](const NPC_DATA& self) { return self.nKillPlayerVarIndex; }, [](NPC_DATA& self, decltype(NPC_DATA::nKillPlayerVarIndex) value) { self.nKillPlayerVarIndex = value; });
+    type1["nBeKilledVarIndex"] = sol::property([](const NPC_DATA& self) { return self.nBeKilledVarIndex; }, [](NPC_DATA& self, decltype(NPC_DATA::nBeKilledVarIndex) value) { self.nBeKilledVarIndex = value; });
+    type1["nShopID"] = sol::property([](const NPC_DATA& self) { return self.nShopID; }, [](NPC_DATA& self, decltype(NPC_DATA::nShopID) value) { self.nShopID = value; });
+    type1["nBlackMarketID"] = sol::property([](const NPC_DATA& self) { return self.nBlackMarketID; }, [](NPC_DATA& self, decltype(NPC_DATA::nBlackMarketID) value) { self.nBlackMarketID = value; });
+    type1["bInteractBank"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInteractBank); }, [](NPC_DATA& self, bool value) { self.bInteractBank = value; });
+    type1["bInteractGuildBank"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInteractGuildBank); }, [](NPC_DATA& self, bool value) { self.bInteractGuildBank = value; });
+    type1["bInteractRewardQuest"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInteractRewardQuest); }, [](NPC_DATA& self, bool value) { self.bInteractRewardQuest = value; });
+    type1["bInteractCreateGuild"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInteractCreateGuild); }, [](NPC_DATA& self, bool value) { self.bInteractCreateGuild = value; });
+    type1["bInteractGuildSalary"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInteractGuildSalary); }, [](NPC_DATA& self, bool value) { self.bInteractGuildSalary = value; });
+    type1["bInteractAuction"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInteractAuction); }, [](NPC_DATA& self, bool value) { self.bInteractAuction = value; });
+    type1["bInteractRune"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInteractRune); }, [](NPC_DATA& self, bool value) { self.bInteractRune = value; });
+    type1["bInteractSoul"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInteractSoul); }, [](NPC_DATA& self, bool value) { self.bInteractSoul = value; });
+    type1["bInteractWeaponLevelUpPutIn"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInteractWeaponLevelUpPutIn); }, [](NPC_DATA& self, bool value) { self.bInteractWeaponLevelUpPutIn = value; });
+    type1["bInteractWeaponLevelUpTakeOut"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInteractWeaponLevelUpTakeOut); }, [](NPC_DATA& self, bool value) { self.bInteractWeaponLevelUpTakeOut = value; });
+    type1["bInteractSpecialRepair"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInteractSpecialRepair); }, [](NPC_DATA& self, bool value) { self.bInteractSpecialRepair = value; });
+    type1["bInteractGamble"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInteractGamble); }, [](NPC_DATA& self, bool value) { self.bInteractGamble = value; });
+    type1["bInteractExercise"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInteractExercise); }, [](NPC_DATA& self, bool value) { self.bInteractExercise = value; });
+    type1["bInteractSpellBookGamble"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInteractSpellBookGamble); }, [](NPC_DATA& self, bool value) { self.bInteractSpellBookGamble = value; });
+    type1["bInteractArenaReward"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bInteractArenaReward); }, [](NPC_DATA& self, bool value) { self.bInteractArenaReward = value; });
+    type1["nCorpseDoodadID"] = sol::property([](const NPC_DATA& self) { return self.nCorpseDoodadID; }, [](NPC_DATA& self, decltype(NPC_DATA::nCorpseDoodadID) value) { self.nCorpseDoodadID = value; });
+    type1["bDieIDMonitor"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bDieIDMonitor); }, [](NPC_DATA& self, bool value) { self.bDieIDMonitor = value; });
+    type1["bStatMoney"] = sol::property([](const NPC_DATA& self) { return static_cast<bool>(self.bStatMoney); }, [](NPC_DATA& self, bool value) { self.bStatMoney = value; });
+    type1["nBigDropInterval"] = sol::property([](const NPC_DATA& self) { return self.nBigDropInterval; }, [](NPC_DATA& self, decltype(NPC_DATA::nBigDropInterval) value) { self.nBigDropInterval = value; });
+    type1["nRuneGroup"] = sol::property([](const NPC_DATA& self) { return self.nRuneGroup; }, [](NPC_DATA& self, decltype(NPC_DATA::nRuneGroup) value) { self.nRuneGroup = value; });
+    type1["nHandbookType"] = sol::property([](const NPC_DATA& self) { return self.nHandbookType; }, [](NPC_DATA& self, decltype(NPC_DATA::nHandbookType) value) { self.nHandbookType = value; });
+    type1["nHandbookIndex"] = sol::property([](const NPC_DATA& self) { return self.nHandbookIndex; }, [](NPC_DATA& self, decltype(NPC_DATA::nHandbookIndex) value) { self.nHandbookIndex = value; });
+    type1["nKillNpcQuestID"] = sol::property([](const NPC_DATA& self) { return self.nKillNpcQuestID; }, [](NPC_DATA& self, decltype(NPC_DATA::nKillNpcQuestID) value) { self.nKillNpcQuestID = value; });
+    type1["pAdventureData"] = sol::readonly(&NPC_DATA::pAdventureData);
+    type1["szScriptName"] = cqyh::lua::string_property(&NPC_DATA::szScriptName);
+    type1.set_function("ReadLine", [](sol::table, signed int rnID, const char* rpcszName, NPC_DATA* pData, CTabFile* pTabConfig, signed int nRow) -> decltype(auto) { decltype(auto) result = static_cast<bool>(NPC_DATA::ReadLine(rnID,rpcszName,pData,pTabConfig,nRow)); return std::make_tuple(result, rnID, rpcszName); });
+    return 1;
+}

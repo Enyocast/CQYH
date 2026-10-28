@@ -8,8 +8,6 @@
 struct SHOP_DATA;
 struct ADVENTURE_DATA;
 
-// tolua_begin
-
 struct NPC_DATA
 {
 	INT32		            nTemplateID;
@@ -88,7 +86,5 @@ struct NPC_DATA
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, NPC_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-
-//tolua_end
 
 #endif	// _NPC_DATA_H_

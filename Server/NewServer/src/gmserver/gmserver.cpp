@@ -103,10 +103,10 @@ public:
 
 CGmServer   CGmServer::ms_Instance;
 
-//extern int tolua_common_open(lua_State* tolua_S);
-extern int tolua_gm_def_open(lua_State* tolua_S);
-extern int tolua_gm_security_open(lua_State* tolua_S);
-extern int tolua_enum_str_open(lua_State* tolua_S);
+//extern int sol_common_open(lua_State* L);
+extern int sol_gm_def_open(lua_State* L);
+extern int sol_gm_security_open(lua_State* L);
+extern int sol_enum_str_open(lua_State* L);
 
 
 CGmServer::CGmServer()
@@ -402,10 +402,10 @@ BOOL _InitGMScript()
     //poScript = CScriptMgr::GetInstance().NewScript(GM_PERMISSION_NAME);
     //LOG_PROCESS_ERROR(poScript);
 
-    //nRetCode = CScriptMgr::GetInstance().RegisterPackage("common.pkg", tolua_common_open);
+    //nRetCode = CScriptMgr::GetInstance().RegisterPackage("common.pkg", sol_common_open);
     //LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("gm_def.pkg", tolua_gm_def_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("gm_def.pkg", sol_gm_def_open);
     LOG_PROCESS_ERROR(nRetCode);
 
     nRetCode = CGmServer::GetInstance().GetLuaScript()->Init();
@@ -414,7 +414,7 @@ BOOL _InitGMScript()
     L = CGmServer::GetInstance().GetLuaScript()->GetLuaState();
     LOG_PROCESS_ERROR(L);
 
-    nRetCode = tolua_enum_str_open(L);
+    nRetCode = sol_enum_str_open(L);
     LOG_PROCESS_ERROR(nRetCode);
 
     nRetCode = CGmServer::GetInstance().GetLuaScript()->LoadFromBuffer("EnumStr", s_szLuaScript, sizeof(s_szLuaScript) - 1);;

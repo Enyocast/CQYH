@@ -4,8 +4,6 @@
 /// @file npc_def.h
 /// lua package file npc_def.pkg
 
-// tolua_begin
-
 #define MAX_NPC_ID              (10000)
 #define MAX_NPC_FORCE_ID		(64)
 #define INVALID_FORCE_ID		(-1)
@@ -99,7 +97,5 @@ enum PET_AI_VARIABLES
     PET_AI_MAGE_PREFER_DISTANCE = 6,
     PET_AI_GO_HOME = 7,
 };
-
-// tolua_end
 
 #endif  // _NPC_DEF_H_

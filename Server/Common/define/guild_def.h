@@ -11,8 +11,6 @@
 
 #include "variable_def.h"
 
-// tolua_begin
-
 #define GUILD_CREATER_LEVEL     (12)
 #define GUILD_CREATE_MONEY      (200000)
 #define GUILD_CREATE_ITEM_ID    (80002)
@@ -490,8 +488,6 @@ enum GUILD_VARIABLE
     avGuildWarCanOpen = 1,         // main controller, gm use
 
 };
-
-// tolua_end
 
 
 // GUILD_MAX_MEMBER_COUNT

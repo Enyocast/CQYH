@@ -15,10 +15,10 @@ target_include_directories(test_asio_net PRIVATE
 )
 
 target_link_libraries(test_asio_net PRIVATE
-    net
+    cqyh::net
     baselib
     cqyh::lua
-    cqyh::toluapp
+    cqyh::sol2
     cqyh::zlib
     fusion
     cqyh::syslibs

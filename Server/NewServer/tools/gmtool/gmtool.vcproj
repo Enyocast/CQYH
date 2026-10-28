@@ -18,9 +18,7 @@
 		/>
 	</Platforms>
 	<ToolFiles>
-		<ToolFile
-			RelativePath="..\gameworld\script\toluapp.rules"
-		/>
+
 	</ToolFiles>
 	<Configurations>
 		<Configuration
@@ -36,9 +34,7 @@
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
-			<Tool
-				Name="toluapp"
-			/>
+
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
@@ -50,7 +46,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalIncludeDirectories="../../3rd/toluapp/include;..\..\3rd\lua\src;..\..\inc\gm;..\..\inc\net;..\..\3rd\sdu\include;..\..\..\Common\define;..\..\..\Common\fusion\inc;..\..\inc\baselib;..\..\3rd\sdu\include\sdu;.\GeneratedFiles;&quot;$(QTDIR)\include&quot;;&quot;.\GeneratedFiles\$(ConfigurationName)&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;.\;../../3rd/gpk/include"
+				AdditionalIncludeDirectories="..\..\3rd\lua\src;..\..\inc\gm;..\..\inc\net;..\..\3rd\sdu\include;..\..\..\Common\define;..\..\..\Common\fusion\inc;..\..\inc\baselib;..\..\3rd\sdu\include\sdu;.\GeneratedFiles;&quot;$(QTDIR)\include&quot;;&quot;.\GeneratedFiles\$(ConfigurationName)&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;.\;../../3rd/gpk/include"
 				PreprocessorDefinitions="WIN32;QT_LARGEFILE_SUPPORT;QT_NO_DEBUG;NDEBUG;QT_CORE_LIB;QT_GUI_LIB;GMTOOL"
 				RuntimeLibrary="0"
 				TreatWChar_tAsBuiltInType="false"
@@ -68,9 +64,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="qtmain.lib QtCore4.lib QtGui4.lib baselib.lib sdu.lib net.lib ws2_32.lib iphlpapi.lib lua.lib psapi.lib toluapp.lib gpkitsvr.lib fusion.lib"
+				AdditionalDependencies="qtmain.lib QtCore4.lib QtGui4.lib baselib.lib sdu.lib net.lib ws2_32.lib iphlpapi.lib lua.lib psapi.lib gpkitsvr.lib fusion.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
-				AdditionalLibraryDirectories="..\..\..\Common\fusion\lib\win32;../../3rd/lua/lib/win32;../../3rd/toluapp/lib/win32;../../3rd/sdu/lib/win32;../../lib/win32;&quot;$(QTDIR)\lib&quot;;../../3rd/gpk/lib"
+				AdditionalLibraryDirectories="..\..\..\Common\fusion\lib\win32;../../3rd/lua/lib/win32;../../3rd/sdu/lib/win32;../../lib/win32;&quot;$(QTDIR)\lib&quot;;../../3rd/gpk/lib"
 				GenerateDebugInformation="false"
 				ProgramDatabaseFile="$(TargetDir)$(TargetName).pdb"
 				SubSystem="1"
@@ -110,9 +106,7 @@
 			<Tool
 				Name="VCCustomBuildTool"
 			/>
-			<Tool
-				Name="toluapp"
-			/>
+
 			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
@@ -125,7 +119,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../3rd/toluapp/include;..\..\3rd\lua\src;..\..\inc\gm;..\..\inc\net;..\..\3rd\sdu\include;..\..\..\Common\define;..\..\..\Common\fusion\inc;..\..\inc\baselib;..\..\3rd\sdu\include\sdu;.\GeneratedFiles;&quot;$(QTDIR)\include&quot;;&quot;.\GeneratedFiles\$(ConfigurationName)&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;.\;../../3rd/gpk/include"
+				AdditionalIncludeDirectories="..\..\3rd\lua\src;..\..\inc\gm;..\..\inc\net;..\..\3rd\sdu\include;..\..\..\Common\define;..\..\..\Common\fusion\inc;..\..\inc\baselib;..\..\3rd\sdu\include\sdu;.\GeneratedFiles;&quot;$(QTDIR)\include&quot;;&quot;.\GeneratedFiles\$(ConfigurationName)&quot;;&quot;$(QTDIR)\include\QtCore&quot;;&quot;$(QTDIR)\include\QtGui&quot;;.\;../../3rd/gpk/include"
 				PreprocessorDefinitions="GMTOOL;WIN32;QT_LARGEFILE_SUPPORT;QT_CORE_LIB;QT_GUI_LIB"
 				RuntimeLibrary="1"
 				TreatWChar_tAsBuiltInType="false"
@@ -144,9 +138,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="QtCored4.lib QtGuid4.lib baselib_d.lib sdu_d.lib net_d.lib ws2_32.lib iphlpapi.lib lua_d.lib psapi.lib toluapp_d.lib gpkitsvr.lib fusion_d.lib"
+				AdditionalDependencies="QtCored4.lib QtGuid4.lib baselib_d.lib sdu_d.lib net_d.lib ws2_32.lib iphlpapi.lib lua_d.lib psapi.lib gpkitsvr.lib fusion_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName_d).exe"
-				AdditionalLibraryDirectories="..\..\..\Common\fusion\lib\win32;../../3rd/lua/lib/win32;../../3rd/toluapp/lib/win32;../../3rd/sdu/lib/win32;../../lib/win32;&quot;$(QTDIR)\lib&quot;;../../3rd/gpk/lib"
+				AdditionalLibraryDirectories="..\..\..\Common\fusion\lib\win32;../../3rd/lua/lib/win32;../../3rd/sdu/lib/win32;../../lib/win32;&quot;$(QTDIR)\lib&quot;;../../3rd/gpk/lib"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 			/>
@@ -194,7 +188,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing add_item.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../add_item.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../add_item.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -205,7 +199,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing add_item.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../add_item.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../add_item.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -224,7 +218,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing delete_item.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../delete_item.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../delete_item.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -235,7 +229,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing delete_item.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../delete_item.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../delete_item.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -254,7 +248,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing executing.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../executing.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../executing.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -265,7 +259,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing executing.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../executing.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../executing.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -284,7 +278,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing forbidden_chat.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../forbidden_chat.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../forbidden_chat.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -295,7 +289,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing forbidden_chat.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../forbidden_chat.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../forbidden_chat.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -314,7 +308,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing gmtool.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../gmtool.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../gmtool.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -325,7 +319,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing gmtool.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../gmtool.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../gmtool.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -344,7 +338,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing group_select.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../group_select.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../group_select.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -355,7 +349,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing group_select.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../group_select.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../group_select.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -374,7 +368,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing kick_user.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../kick_user.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../kick_user.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -385,7 +379,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing kick_user.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../kick_user.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../kick_user.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -404,7 +398,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing loader.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../loader.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../loader.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -415,7 +409,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing loader.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../loader.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../loader.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -434,7 +428,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing mail.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../mail.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../mail.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -445,7 +439,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing mail.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../mail.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../mail.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -464,7 +458,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing move_position.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../move_position.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../move_position.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -475,7 +469,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing move_position.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../move_position.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../move_position.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -494,7 +488,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing notice.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../notice.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../notice.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -505,7 +499,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing notice.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../notice.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../notice.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -524,7 +518,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing result.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../result.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../result.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -535,7 +529,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing result.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../result.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../result.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -554,7 +548,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing role_info.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../role_info.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../role_info.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -565,7 +559,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing role_info.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../role_info.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../role_info.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -644,7 +638,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing view_friend.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../view_friend.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../view_friend.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -655,7 +649,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing view_friend.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../view_friend.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../view_friend.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -674,7 +668,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing view_guild.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../view_guild.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../view_guild.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -685,7 +679,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing view_guild.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../view_guild.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../view_guild.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -704,7 +698,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing view_mail.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../view_mail.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_NO_DEBUG -DNDEBUG -DQT_CORE_LIB -DQT_GUI_LIB -DGMTOOL -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fStdAfx.h&quot; &quot;-f../../view_mail.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>
@@ -715,7 +709,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Moc&apos;ing view_mail.h..."
-						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot;-I.\..\..\3rd\toluapp\include&quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../view_mail.h&quot;&#x0D;&#x0A;"
+						CommandLine="&quot;$(QTDIR)\bin\moc.exe&quot;   -DGMTOOL -DWIN32 -DQT_LARGEFILE_SUPPORT -DQT_CORE_LIB -DQT_GUI_LIB -D_MBCS  &quot; &quot;-I.\..\..\3rd\lua\src&quot; &quot;-I.\..\..\inc\gm&quot; &quot;-I.\..\..\inc\net&quot; &quot;-I.\..\..\3rd\sdu\include&quot; &quot;-I.\..\..\..\Common\define&quot; &quot;-I.\..\..\..\Common\fusion\inc&quot; &quot;-I.\..\..\inc\baselib&quot; &quot;-I.\..\..\3rd\sdu\include\sdu&quot; &quot;-I.\GeneratedFiles&quot; &quot;-I$(QTDIR)\include&quot; &quot;-I.\GeneratedFiles\$(ConfigurationName)\.&quot; &quot;-I$(QTDIR)\include\QtCore&quot; &quot;-I$(QTDIR)\include\QtGui&quot; &quot;-I.&quot; &quot;-I.\..\..\3rd\gpk\include&quot; &quot;$(InputPath)&quot; -o &quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot; &quot;-fstdafx.h&quot; &quot;-f../../view_mail.h&quot;&#x0D;&#x0A;"
 						AdditionalDependencies="&quot;$(QTDIR)\bin\moc.exe&quot;;$(InputPath)"
 						Outputs="&quot;.\GeneratedFiles\$(ConfigurationName)\moc_$(InputName).cpp&quot;"
 					/>

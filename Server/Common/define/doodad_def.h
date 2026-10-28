@@ -1,8 +1,6 @@
 #ifndef _DOODAD_DEF_H_
 #define _DOODAD_DEF_H_
 
-// tolua_begin
-
 #define MAX_DOODAD_LEVEL        (60)
 
 enum DOODAD_TYPE
@@ -33,6 +31,5 @@ enum DOODAD_SUB_TYPE
 
     dstTotal
 };
-// tolua_end
 
 #endif  // _DOODAD_DEF_H_

@@ -3,8 +3,6 @@
 
 #define MODIFIER_PARAM_COUNT		(3)
 
-//tolua_begin
-
 enum MODIFIER_X_TYPE
 {
 	mxtUseNone = 0,
@@ -334,8 +332,6 @@ enum CHAR_MODIFIER_INDEX
 
 	cmiCount
 };
-
-//tolua_end
 
 #endif // _modifier_def_h__
 

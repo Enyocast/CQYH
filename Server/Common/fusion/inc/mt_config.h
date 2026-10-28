@@ -4,8 +4,6 @@
 #include "string_def.h"
 #include "server_def.h"
 #include "statis_info_def.h"
-
-// tolua_begin
 #pragma pack(push, 8)
 
 struct MAINTAIN_CONFIG
@@ -55,7 +53,6 @@ struct MAINTAIN_CONFIG
 };
 
 #pragma pack(pop)
-// tolua_end
 
 extern MAINTAIN_CONFIG g_MTConfig;
 

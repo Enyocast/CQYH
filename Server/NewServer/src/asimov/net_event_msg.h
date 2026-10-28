@@ -1,7 +1,5 @@
 #ifndef _NET_EVENT_MSG_H_
 #define _NET_EVENT_MSG_H_
-
-// tolua_begin
 namespace ExternalMessage
 {
     enum 
@@ -23,7 +21,5 @@ namespace ExternalMessage
     };
 
 };
-
-// tolua_end
 
 #endif  // _NET_EVENT_MSG_H_

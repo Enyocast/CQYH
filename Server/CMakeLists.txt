@@ -13,6 +13,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 include(CQYH)
 include(ThirdParty)
+include(Sol2)
 include(Asio)
 
 # Static libraries
@@ -33,6 +34,7 @@ option(CQYH_BUILD_TESTS "Build the test programs (ctest)" ON)
 if(CQYH_BUILD_TESTS)
     enable_testing()
     add_subdirectory(NewServer/test/asio_net)
+    add_subdirectory(NewServer/test/lua_bindings)
     if(WIN32)
         add_subdirectory(NewServer/test/mysql)
     endif()

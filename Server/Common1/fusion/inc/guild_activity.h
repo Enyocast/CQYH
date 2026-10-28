@@ -4,8 +4,6 @@
 #include "data_manager.h"
 
 #define GUILD_ACTIVITY_ID(type, level)      ((type << 16) + level)
-
-// tolua_begin
 struct GUILD_ACTIVITY_DATA
 {
     INT32       nType;
@@ -25,8 +23,6 @@ struct GUILD_ACTIVITY_DATA
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, GUILD_ACTIVITY_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 
 };
-
-// tolua_end
 
 
 #endif // _H_GUILD_ACTIVITY_DATA_H_

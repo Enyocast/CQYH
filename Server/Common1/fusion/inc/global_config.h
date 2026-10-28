@@ -1,8 +1,6 @@
 #ifndef _GLOBAL_CONFIG_H_
 #define _GLOBAL_CONFIG_H_
 
-// tolua_begin
-
 struct LOG_CONFIG
 {
     UINT32      nLogLevelMask;
@@ -29,8 +27,6 @@ struct NET_CONFIG
 	INT32		nSendLoopBufferSize;
 	INT32		nRecvLoopBufferSize;
 };
-
-// tolua_end
 
 BOOL LoadGlobalConfig(const char* pcszFileName);
 BOOL SaveGlobalConfig(const char* pcszFilePath);

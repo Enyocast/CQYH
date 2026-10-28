@@ -4,10 +4,6 @@
 
 #include "data_manager.h"
 
-
-
-//tolua_begin
-
 #define GM_LOG_LENGTH   (64)
 #define GM_LOG_NOTE_LENGTH  (256)
 
@@ -21,8 +17,6 @@ struct GM_LOG_NOTE
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, GM_LOG_NOTE* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-
-//tolua_end
 
 typedef std::map<std::string, std::string>  GM_LOG_MAP;
 

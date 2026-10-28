@@ -5,8 +5,6 @@
 #include "npc_def.h"
 #include "role_def.h"
 #include "score_def.h"
-
-// tolua_begin
 #pragma pack(push, 8)
 
 struct GAME_WORLD_CONFIG
@@ -402,6 +400,5 @@ struct GAME_WORLD_CONFIG
 extern GAME_WORLD_CONFIG g_GWConfig;
 
 #pragma pack(pop)
-// tolua_end
 
 #endif  // _GAME_WORLD_CONFIG_H_

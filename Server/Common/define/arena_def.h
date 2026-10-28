@@ -13,8 +13,6 @@
 
 #define ARENA_MAX_LEVEL         (MAX_ROLE_LEVEL + 1)
 
-// tolua_begin
-
 
 #define ARENA_REWARD_COUNT      (100)
 #define ARENA_FIRST_WAIT_TIME       (60)
@@ -142,9 +140,6 @@ struct ARENA_DB_DATA
 };
 
 #pragma pack(pop)
-
-
-// tolua_end
 
 #endif //_H_ARENA_DEF_H_
 

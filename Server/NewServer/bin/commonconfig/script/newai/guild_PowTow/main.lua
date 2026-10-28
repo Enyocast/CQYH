@@ -19,7 +19,7 @@ g_DropGenerator = CDropGenerator:GetInstance();
 
 function building_say(owner)
 	local processor = owner:GetAIProcessor();
-	local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	local npc = Cast(processor:GetOwner(), 'CNpc');
 
 	local scene = npc:GetScene();
 	local x,y,z = ConvertCoordN2O( npc:GetX()/1024, npc:GetY()/1024, npc:GetZ()/1024 )
@@ -34,7 +34,7 @@ end
 
 function BuildingDead(owner)
 	local processor = owner:GetAIProcessor();
-	local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	local npc = Cast(processor:GetOwner(), 'CNpc');
 
 	local scene = npc:GetScene();
 	local guild = g_GuildMgr:FindGuild(scene:GetSceneID());
@@ -64,7 +64,7 @@ Include("script/newai/guild_PowTow/main.uh")
 
 --function AfterBuildingDead(owner)
 	--local processor = owner:GetAIProcessor();
-	--local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	--local npc = Cast(processor:GetOwner(), 'CNpc');
 --
 	--local scene = npc:GetScene();
 --
@@ -108,7 +108,7 @@ Include("script/newai/guild_PowTow/main.uh")
 		--return 0;			-- 失败返回0，也可以普通的通用宝箱
 	--end
 --
-	--local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	--local npc = Cast(processor:GetOwner(), 'CNpc');
 	--if nil == npc then
 		--return 0;			-- 失败返回0，也可以普通的通用宝箱
 	--end
@@ -151,7 +151,7 @@ Include("script/newai/guild_PowTow/main.uh")
 		--return 0;			-- 失败返回0，也可以普通的通用宝箱
 	--end
 --
-	--local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	--local npc = Cast(processor:GetOwner(), 'CNpc');
 	--if nil == npc then
 		--return 0;			-- 失败返回0，也可以普通的通用宝箱
 	--end
@@ -203,7 +203,7 @@ Include("script/newai/guild_PowTow/main.uh")
 		--return 0;
 	--end
 --
-	--local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	--local npc = Cast(processor:GetOwner(), 'CNpc');
 	--if nil == npc then
 		--return 0;
 	--end
@@ -223,7 +223,7 @@ Include("script/newai/guild_PowTow/main.uh")
 		--return 0;			-- 失败返回0，也可以普通的通用宝箱
 	--end
 --
-	--local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	--local npc = Cast(processor:GetOwner(), 'CNpc');
 	--if nil == npc then
 		--return 0;			-- 失败返回0，也可以普通的通用宝箱
 	--end
@@ -264,7 +264,7 @@ Include("script/newai/guild_PowTow/main.uh")
 		--return 0;
 	--end
 --
-	--local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	--local npc = Cast(processor:GetOwner(), 'CNpc');
 	--if nil == npc then
 		--return 0;
 	--end
@@ -290,7 +290,7 @@ Include("script/newai/guild_PowTow/main.uh")
 		--return 0;			-- 失败返回0，也可以普通的通用宝箱
 	--end
 --
-	--local npc = tolua.cast(processor:GetOwner(), 'CNpc');
+	--local npc = Cast(processor:GetOwner(), 'CNpc');
 	--if nil == npc then
 		--return 0;			-- 失败返回0，也可以普通的通用宝箱
 	--end

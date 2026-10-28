@@ -106,8 +106,6 @@ struct G_B_REVIVE_TRIGGER : BASE_TRIGGER_NODE
     UINT64      qwNameID;
 };
 
-// tolua_begin
-
 //struct GUILD_WAR_TRIGGER
 //{
 //    UINT32      dwAttackGuildID;
@@ -161,8 +159,6 @@ struct GUILD_DB
 	char            BlobBuffer[0];
 };
 #pragma pack(pop)
-
-// tolua_end
 
 class CMsGuild
 {

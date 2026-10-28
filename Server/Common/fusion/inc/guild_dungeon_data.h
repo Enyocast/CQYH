@@ -13,8 +13,6 @@
 #include "data_manager.h"
 #include "guild_def.h"
 
-//tolua_begin
-
 static const INT16  GuildDungeonDropGroupCount = GUILD_DUNGEON_AWARD_NUM;
 static const INT16  GuildDungeonAwardTableSize = 5; 
 
@@ -44,8 +42,6 @@ struct GUILD_DUNGEON_DATA
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, GUILD_DUNGEON_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-
-//tolua_end
 
 const GUILD_DUNGEON_DATA * GetGuildDungeonData(UINT32 dwTemplateID);
 

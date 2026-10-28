@@ -1,8 +1,6 @@
 ﻿#ifndef _ERROR_DEF_H_
 #define _ERROR_DEF_H_
 
-// tolua_begin
-
 /// @enum ERROR_CODE_DEF
 enum ERROR_CODE_DEF
 {
@@ -1001,7 +999,5 @@ enum NS_ERROR_CODE_DEF
     errNsNameUnknown,				        ///< 未知错误 
 	errNsTooManyUser,						///< 用户数达上限
 };
-
-// tolua_end
 
 #endif // _ERROR_DEF_H_

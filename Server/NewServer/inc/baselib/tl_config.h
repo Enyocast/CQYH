@@ -8,9 +8,6 @@
 
 #ifndef _H_TL_CONFIG_H_
 #define _H_TL_CONFIG_H_
-
-
-// tolua_begin
 #pragma pack(push, 8)
 
 
@@ -64,8 +61,6 @@ struct TL_CONFIG
 
 #pragma pack(pop)
 
-// tolua_end
-
 GM_SVR *GetServer(INT32 nSvrID);
 
 
@@ -73,10 +68,7 @@ extern TL_CONFIG        g_TLConfig;
 
 BOOL LoadTLConfig(const char *pcszFileName);
 BOOL LoadTLConfigFromBuffer(const char *pcScriptName, const char *pcBuffer, UINT32 dwSize);
-
-// tolua_begin
 inline TL_CONFIG& GetTLConfig(void) {return g_TLConfig;}   
-// tolua_end
 
 
 #endif //_H_TL_CONFIG_H_

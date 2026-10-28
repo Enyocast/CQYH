@@ -4,7 +4,6 @@
 #include "internal_message_header.h"
 
 #pragma pack(push, 1)
-// tolua_begin
 namespace InternalMessage
 {
     enum D2M_MESSAGE_ID
@@ -73,7 +72,6 @@ namespace InternalMessage
         UINT8               byResult; //1³É¹¦ 0Ê§°Ü
     };
 };
-// tolua_end
 #pragma pack(pop)
 
 #endif  // _D2G_MESSAGE_H_

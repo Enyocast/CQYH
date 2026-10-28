@@ -30,8 +30,6 @@ static const INT16 FixAttrTable[] =
 };
 
 static const INT32 FixAttrTableSize = sizeof(FixAttrTable) / sizeof(FixAttrTable[0]);
-
-//tolua_begin
 struct ITEM_DATA
 {
     INT32 m_nTemplateID;
@@ -98,8 +96,6 @@ struct ITEM_DATA
 };
 
 const ITEM_DATA* GetItemData(INT32 nTemplateID);
-
-//tolua_end
 
 struct SET_DATA;
 struct ATTRIBUTE_DATA;

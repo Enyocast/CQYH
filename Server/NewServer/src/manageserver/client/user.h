@@ -5,8 +5,6 @@
 #include "scene_def.h"
 #include "base_list.h"
 
-//tolua_begin
-
 enum EUserState
 {
     USER_STATE_INVALID = 0,
@@ -66,8 +64,6 @@ struct MS_USER
 
     void                    SetFreeMode(BOOL fm);
 };
-
-//tolua_end
 
 #endif
 

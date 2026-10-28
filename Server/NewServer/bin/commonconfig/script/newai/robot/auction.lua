@@ -1,7 +1,7 @@
 
 
 function auction_search_type(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
     user:AuctionSearchType(math.random(14), math.random(7));
@@ -10,7 +10,7 @@ function auction_search_type(owner)
 end
 
 function auction_search(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 
     local itemid = role:GetRandomAuctionItemID();
     if (itemid ~= 0) then
@@ -20,7 +20,7 @@ function auction_search(owner)
 end
 
 function auction_query(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 
     local auctionid = role:GetFirstBuyingAuction();
     if (itemid ~= 0) then
@@ -30,7 +30,7 @@ function auction_query(owner)
 end
 
 function auction_sell(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     local bag = role:GetItemBag();
     
@@ -53,7 +53,7 @@ function auction_sell(owner)
 end
 
 function auction_cancel_sell(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 
     local auctionid = role:GetFirstSellingAuction();
     if (itemid ~= 0) then
@@ -66,7 +66,7 @@ function auction_buy(owner)
 end
 
 function auction_list_my_selling(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     
     user:AuctionListMySelling();
@@ -75,7 +75,7 @@ function auction_list_my_selling(owner)
 end
 
 function auction_list_my_buying(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     
     user:AuctionListMyBuying();

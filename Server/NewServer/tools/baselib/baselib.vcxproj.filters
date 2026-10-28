@@ -28,10 +28,10 @@
     <Filter Include="sharemem">
       <UniqueIdentifier>{d4acacb9-4fe6-49a4-8a1b-8271a2ac7864}</UniqueIdentifier>
     </Filter>
-    <Filter Include="toluapp">
+    <Filter Include="Lua">
       <UniqueIdentifier>{e74c0e30-f5bb-47c3-b608-ff00f5a014e4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="toluapp\generated files">
+    <Filter Include="Lua bindings">
       <UniqueIdentifier>{ccd38205-f18c-4d9a-acc3-e10b71fc62fc}</UniqueIdentifier>
     </Filter>
     <Filter Include="container">
@@ -129,14 +129,14 @@
     <ClInclude Include="..\..\inc\baselib\share_mem_io.h">
       <Filter>sharemem</Filter>
     </ClInclude>
-    <ClInclude Include="script\tolua_check_data.h">
-      <Filter>toluapp\generated files</Filter>
+    <ClInclude Include="script\sol_check_data.h">
+      <Filter>Lua bindings</Filter>
     </ClInclude>
-    <ClInclude Include="script\tolua_common.h">
-      <Filter>toluapp\generated files</Filter>
+    <ClInclude Include="script\sol_common.h">
+      <Filter>Lua bindings</Filter>
     </ClInclude>
-    <ClInclude Include="script\tolua_tl_config.h">
-      <Filter>toluapp\generated files</Filter>
+    <ClInclude Include="script\sol_tl_config.h">
+      <Filter>Lua bindings</Filter>
     </ClInclude>
     <ClInclude Include="..\..\inc\baselib\base_list.h">
       <Filter>container</Filter>
@@ -293,14 +293,14 @@
     <ClCompile Include="share_mem_io.cpp">
       <Filter>sharemem</Filter>
     </ClCompile>
-    <ClCompile Include="script\tolua_check_data.cpp">
-      <Filter>toluapp\generated files</Filter>
+    <ClCompile Include="script\sol_check_data.cpp">
+      <Filter>Lua bindings</Filter>
     </ClCompile>
-    <ClCompile Include="script\tolua_common.cpp">
-      <Filter>toluapp\generated files</Filter>
+    <ClCompile Include="script\sol_common.cpp">
+      <Filter>Lua bindings</Filter>
     </ClCompile>
-    <ClCompile Include="script\tolua_tl_config.cpp">
-      <Filter>toluapp\generated files</Filter>
+    <ClCompile Include="script\sol_tl_config.cpp">
+      <Filter>Lua bindings</Filter>
     </ClCompile>
     <ClCompile Include="circle_list.cpp">
       <Filter>container</Filter>
@@ -367,15 +367,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <toluapp Include="script\check_data.pkg">
-      <Filter>toluapp</Filter>
-    </toluapp>
-    <toluapp Include="script\common.pkg">
-      <Filter>toluapp</Filter>
-    </toluapp>
-    <toluapp Include="script\tl_config.pkg">
-      <Filter>toluapp</Filter>
-    </toluapp>
+
+
+
   </ItemGroup>
   <ItemGroup>
     <MASM Include="code.asm">

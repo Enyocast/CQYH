@@ -7,8 +7,6 @@
 #include "variable_def.h"
 
 #define MAX_HANDBOOKITEM_COUNT	(32)
-
-// tolua_begin
 struct ACHIEVEMENT_DATA
 {
 	INT32 nAchievementID;												// ³É¾ÍID
@@ -42,8 +40,6 @@ struct HANDBOOK_DATA
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, HANDBOOK_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-
-// tolua_end
 
 class CAchievementIndexData
 {

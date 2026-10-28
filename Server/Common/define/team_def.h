@@ -3,8 +3,6 @@
 
 #include "scene_def.h"
 
-// tolua_begin
-
 #define MAX_TEAM_MEMBER_COUNT					(20)
 #define MAX_ADJACENT_ROLE_NOTEAM_COUNT			(32)
 #define MAX_ADJACENT_TEAM_COUNT					(16)
@@ -98,7 +96,5 @@ enum TEAM_AUCTION_MONEY_REASON
 	TAMR_REWARD,
 	TAMR_RETURN_DEPOSITE,
 };
-
-// tolua_end
 
 #endif

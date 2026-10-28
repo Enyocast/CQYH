@@ -34,7 +34,7 @@ function performance_add_title(owner)
 	title_data_init();
 
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local index = math.random(1, TITLE_DATA_NUM);
@@ -53,7 +53,7 @@ function performance_equip_title(owner)
 	title_data_init();
 
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 
@@ -75,7 +75,7 @@ function performance_unequip_title(owner)
 	title_data_init();
 
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local equip_title_id = role:GetTitle():GetEquipedTitleID();

@@ -1,11 +1,11 @@
 
 function do_cancel_cutscene(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 end
 
 function do_select_focus(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	-- lixg: run error
@@ -14,7 +14,7 @@ function do_select_focus(owner)
 end
 
 function do_cancel_spell(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:IsCasting() then
@@ -24,7 +24,7 @@ function do_cancel_spell(owner)
 end
 
 function do_spell_levelup(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local i = math.random(qssActiveBegin, qssActiveEnd - 1);
@@ -35,7 +35,7 @@ function do_spell_levelup(owner)
 end
 
 function do_combat_pose_switch(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local i = math.random(2);
@@ -48,7 +48,7 @@ function do_combat_pose_switch(owner)
 end
 
 function do_cancel_aura(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 --[[-- lixg: run error
 	local aura_list = role:GetAuraList();	-- no export to pkg
@@ -64,7 +64,7 @@ function do_cancel_aura(owner)
 end
 
 function do_on_mount(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	user:GMCommand(".ActivateMount()");
@@ -72,14 +72,14 @@ function do_on_mount(owner)
 end
 
 function do_off_mount(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	user:OffMount();
 end
 
 function do_adjust_target_pt(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	if role:IsCasting() then
@@ -91,12 +91,12 @@ function do_adjust_target_pt(owner)
 end
 
 function do_equip_spell(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 end
 
 function do_cast_spell(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local i = math.random(qssActiveBegin, qssActiveEnd);
@@ -109,6 +109,6 @@ function do_cast_spell(owner)
 end
 
 function do_directly_cast_spell(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 end

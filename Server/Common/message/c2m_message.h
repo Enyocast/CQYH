@@ -4,7 +4,6 @@
 #include "external_message_header.h"
 
 #pragma pack(push, 1)
-// tolua_begin
 namespace ExternalMessage
 {
 	enum C2M_MESSAGE_ID
@@ -747,9 +746,6 @@ namespace ExternalMessage
 		char        szDynamicPassword[OA_DYNAMIC_PASSWORD_LEN];
 	};
 };
-
-
-// tolua_end
 #pragma pack(pop)
 
 #endif  // _C2M_MESSAGE_H_

@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "sol_bindings.h"
 #include "message_handler.h"
 
 #include "imessage_notifier.h"
@@ -7,7 +8,6 @@
 #include "g2o_message.h"
 #include "external_message_size.h"
 
-#include "tolua++.h"
 
 #include "server_def.h"
 
@@ -350,7 +350,7 @@ BOOL CCliMessageHandler::UnInit(void)
 //		poScript = CScriptMgr::GetInstance().FindScript(GM_SCRIPT_NAME);
 //		LOG_PROCESS_ERROR(poScript);
 //
-//		tolua_pushusertype(poScript->GetLuaState(), poRole, "CRole");
+//		cqyh::lua::push_object(poScript->GetLuaState(), poRole, "CRole");
 //		lua_setglobal(poScript->GetLuaState(), "TargetRole");
 //
 //        nRetCode = poScript->CallFunction("OnGMCommand", "s:b", pMsg->szGMCommand, &bGMRet);

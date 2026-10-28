@@ -4,8 +4,6 @@
 ///@file variable_def.h
 ///@brief define game variable constants
 
-// tolua_begin
-
 #define MAX_SCENE_VARIABLE_COUNT    (32)        ///< @line
 #define MAX_ROLE_VARIABLE_COUNT     (2048)		///< @line
 #define MAX_CLIENT_VARIABLE_COUNT   (128)       ///< @line
@@ -137,8 +135,6 @@ inline UINT64 MakeServerKey(UINT32 type, UINT32 id)
 {
 	return (((UINT64)type) << 32) | id;
 }
-
-// tolua_end
 
 static const INT32 nItemDropLimitType[3] = { esvtItemDropLimitType0, esvtItemDropLimitType1, esvtItemDropLimitType2 };
 static const INT32 nItemDropLimitRefreshTime[3] = { esvtItemDropLimitType0RefreshTime, esvtItemDropLimitType1RefreshTime, esvtItemDropLimitType2RefreshTime };

@@ -4,7 +4,6 @@
 #include "internal_message_header.h"
 
 #pragma pack(push, 1)
-// tolua_begin
 namespace InternalMessage
 {
     enum D2G_MESSAGE_ID
@@ -46,7 +45,6 @@ namespace InternalMessage
         UINT32      dwRoleID;
     };
 };
-// tolua_end
 #pragma pack(pop)
 
 #endif  // _D2G_MESSAGE_H_

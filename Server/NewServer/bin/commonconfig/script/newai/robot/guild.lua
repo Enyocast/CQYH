@@ -11,7 +11,7 @@ LoadPackage("scene.pkg")
 
 function QueryGuildInfo(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 
@@ -31,7 +31,7 @@ end
 
 function CreateGuild(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	--print("create guild begin");
@@ -66,7 +66,7 @@ end
 
 function ViewGuildList(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local targetGuildID = 0;
@@ -80,7 +80,7 @@ end
 
 function ApplyToJoinGuild(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -123,7 +123,7 @@ end
 
 function GetApplyGuildAppList(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -147,7 +147,7 @@ end
 
 function RefuseGuildApp(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -187,7 +187,7 @@ end
 
 function AgreeGuildApp(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -219,7 +219,7 @@ end
 
 function InviteToJoinGuild(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -252,7 +252,7 @@ end
 
 function RevertGuildInvitation(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -277,7 +277,7 @@ end
 
 function Disband(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -313,7 +313,7 @@ end
 
 function ChangeNotice(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -341,7 +341,7 @@ end
 
 function ForbidChat(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -376,7 +376,7 @@ end
 
 function ChangePosition(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -424,7 +424,7 @@ end
 
 function LeaveGuild(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -443,7 +443,7 @@ end
 
 function BanishRole(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -474,7 +474,7 @@ end
 
 function Demise(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -501,7 +501,7 @@ end
 
 function DrawSalary(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -519,7 +519,7 @@ end
 
 function ContributeFund(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -556,7 +556,7 @@ end
 
 function ChangeWeather(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -579,7 +579,7 @@ end
 
 function MoreGuildInfo(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -592,7 +592,7 @@ end
 
 function FindGuild(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local targetGuildID = 0;
@@ -607,7 +607,7 @@ end
 
 function MoreHistory(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -626,7 +626,7 @@ end
 
 function MoreChest(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -644,7 +644,7 @@ end
 
 function ChangeStorageRight(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -670,7 +670,7 @@ end
 
 function DiplomatApp(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -704,7 +704,7 @@ end
 
 function GetApplyUnionList(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();
@@ -727,7 +727,7 @@ end
 
 function ReplyUnionApp(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local guildID = role:GetGuildID();

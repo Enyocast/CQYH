@@ -1,11 +1,11 @@
 #include "stdafx.h"
+#include "sol_bindings.h"
 #include "global_config.h"
 
 #include "ifile.h"
 #include "script_mgr.h"
 #include "string_ex.h"
-#include "tolua++.h"
-#include "script/tolua_global_config.h"
+#include "script/sol_global_config.h"
 
 #include "asimov_config.h"
 #include "game_world_config.h"
@@ -20,7 +20,7 @@
 #include <fpu_control.h>
 #endif  // __linux__
 
-TOLUA_API int tolua_data_manager_open(lua_State* tolua_S);
+ int sol_data_manager_open(lua_State* L);
 
 ASIMOV_CONFIG       g_AsimovConfig;
 GAME_WORLD_CONFIG   g_GWConfig;
@@ -56,7 +56,7 @@ BOOL LoadGlobalConfig(const char* pcszFileName)
     nRetCode = oScript.Init();
     LOG_PROCESS_ERROR(nRetCode);
 
-    tolua_global_config_open(oScript.GetLuaState());
+    sol_global_config_open(oScript.GetLuaState());
 
     nRetCode = oScript.LoadFromFile(pcszFileName);
     LOG_PROCESS_ERROR(nRetCode);
@@ -126,7 +126,7 @@ BOOL SaveGlobalConfig(const char* pcszFilePath)
     //nRetCode = oScript.Init();
     //LOG_PROCESS_ERROR(nRetCode);
     //
-    //tolua_global_config_open(oScript.GetLuaState());
+    //sol_global_config_open(oScript.GetLuaState());
 
     //nRetCode = oScript.LoadFromFile(szLoadFileName);
     //LOG_PROCESS_ERROR(nRetCode);
@@ -163,7 +163,7 @@ BOOL LoadMTConfig(const char* pcszFileName)
     nRetCode = oScript.Init();
     LOG_PROCESS_ERROR(nRetCode);
 
-    tolua_global_config_open(oScript.GetLuaState());
+    sol_global_config_open(oScript.GetLuaState());
 
     nRetCode = oScript.LoadFromFile(pcszFileName);
     LOG_PROCESS_ERROR(nRetCode);
@@ -191,7 +191,7 @@ BOOL LoadGuardConfig(const char* pcszFileName)
 	nRetCode = oScript.Init();
 	LOG_PROCESS_ERROR(nRetCode);
 
-	tolua_global_config_open(oScript.GetLuaState());
+	sol_global_config_open(oScript.GetLuaState());
 
 	nRetCode = oScript.LoadFromFile(pcszFileName);
 	LOG_PROCESS_ERROR(nRetCode);
@@ -223,8 +223,8 @@ BOOL LoadAreaGroupData(const char* pcszFileName)
 	nRetCode = oScript.Init();
 	LOG_PROCESS_ERROR(nRetCode);
 
-	tolua_global_config_open(oScript.GetLuaState());
-	tolua_data_manager_open(oScript.GetLuaState());
+	sol_global_config_open(oScript.GetLuaState());
+	sol_data_manager_open(oScript.GetLuaState());
 
 	nRetCode = oScript.LoadFromFile(pcszFileName);
 	LOG_PROCESS_ERROR(nRetCode);

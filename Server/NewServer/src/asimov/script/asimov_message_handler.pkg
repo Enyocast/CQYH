@@ -1,8 +1,0 @@
-$pfile "script/asimov_common.pkg"
-$#include "asimov_message_handler.h"
-
-class CAsimovMessageHandler : public INetEventHandler
-{
-    static CAsimovMessageHandler& GetInstance(void);
-};
-

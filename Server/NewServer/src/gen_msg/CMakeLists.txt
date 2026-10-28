@@ -3,9 +3,179 @@
 
 add_executable(gen_msg
     gen_msg.cpp
-    script/tolua_common.cpp
-    script/tolua_enum_module.cpp
-    script/tolua_external_message.cpp
+    script/sol_common.cpp
+    script/sol_enum_module.cpp
+    script/sol_external_message.cpp
+    script/bindings/definitions/achievement_bindings.cpp
+    script/bindings/definitions/ai_bindings.cpp
+    script/bindings/definitions/attribute_bindings.cpp
+    script/bindings/definitions/aura_bindings.cpp
+    script/bindings/definitions/char_bindings.cpp
+    script/bindings/definitions/chat_bindings.cpp
+    script/bindings/definitions/doodad_bindings.cpp
+    script/bindings/definitions/error_bindings.cpp
+    script/bindings/definitions/friend_bindings.cpp
+    script/bindings/definitions/grid_bindings.cpp
+    script/bindings/definitions/guild_bindings.cpp
+    script/bindings/definitions/id_bindings.cpp
+    script/bindings/definitions/item_bindings.cpp
+    script/bindings/definitions/master_bindings.cpp
+    script/bindings/definitions/missile_bindings.cpp
+    script/bindings/definitions/modifier_bindings.cpp
+    script/bindings/definitions/money_bindings.cpp
+    script/bindings/definitions/npc_bindings.cpp
+    script/bindings/definitions/quest_bindings.cpp
+    script/bindings/definitions/queue_match_bindings.cpp
+    script/bindings/definitions/role_bindings.cpp
+    script/bindings/definitions/scene_bindings.cpp
+    script/bindings/definitions/scene_file_bindings.cpp
+    script/bindings/definitions/spell_bindings.cpp
+    script/bindings/definitions/team_bindings.cpp
+    script/bindings/definitions/variable_bindings.cpp
+    script/bindings/external/external_balance_to_client_bindings.cpp
+    script/bindings/external/external_client_to_game_achievements_bindings.cpp
+    script/bindings/external/external_client_to_game_activities_bindings.cpp
+    script/bindings/external/external_client_to_game_appearance_bindings.cpp
+    script/bindings/external/external_client_to_game_attributes_bindings.cpp
+    script/bindings/external/external_client_to_game_audit_bindings.cpp
+    script/bindings/external/external_client_to_game_auras_bindings.cpp
+    script/bindings/external/external_client_to_game_characters_bindings.cpp
+    script/bindings/external/external_client_to_game_chat_bindings.cpp
+    script/bindings/external/external_client_to_game_combat_bindings.cpp
+    script/bindings/external/external_client_to_game_common_bindings.cpp
+    script/bindings/external/external_client_to_game_companions_bindings.cpp
+    script/bindings/external/external_client_to_game_connection_bindings.cpp
+    script/bindings/external/external_client_to_game_crafting_bindings.cpp
+    script/bindings/external/external_client_to_game_dungeons_bindings.cpp
+    script/bindings/external/external_client_to_game_economy_bindings.cpp
+    script/bindings/external/external_client_to_game_enhancement_bindings.cpp
+    script/bindings/external/external_client_to_game_friends_bindings.cpp
+    script/bindings/external/external_client_to_game_gambling_bindings.cpp
+    script/bindings/external/external_client_to_game_guild_bindings.cpp
+    script/bindings/external/external_client_to_game_guild_buildings_bindings.cpp
+    script/bindings/external/external_client_to_game_guild_members_bindings.cpp
+    script/bindings/external/external_client_to_game_guild_storage_bindings.cpp
+    script/bindings/external/external_client_to_game_guild_war_bindings.cpp
+    script/bindings/external/external_client_to_game_ids_bindings.cpp
+    script/bindings/external/external_client_to_game_inventory_bindings.cpp
+    script/bindings/external/external_client_to_game_mentorship_bindings.cpp
+    script/bindings/external/external_client_to_game_movement_bindings.cpp
+    script/bindings/external/external_client_to_game_progression_bindings.cpp
+    script/bindings/external/external_client_to_game_pvp_bindings.cpp
+    script/bindings/external/external_client_to_game_quests_bindings.cpp
+    script/bindings/external/external_client_to_game_reputation_bindings.cpp
+    script/bindings/external/external_client_to_game_session_bindings.cpp
+    script/bindings/external/external_client_to_game_shops_bindings.cpp
+    script/bindings/external/external_client_to_game_spells_bindings.cpp
+    script/bindings/external/external_client_to_game_stalls_bindings.cpp
+    script/bindings/external/external_client_to_game_team_auction_bindings.cpp
+    script/bindings/external/external_client_to_game_teams_bindings.cpp
+    script/bindings/external/external_client_to_game_titles_bindings.cpp
+    script/bindings/external/external_client_to_game_trade_bindings.cpp
+    script/bindings/external/external_client_to_game_variables_bindings.cpp
+    script/bindings/external/external_client_to_game_world_bindings.cpp
+    script/bindings/external/external_client_to_game_world_objects_bindings.cpp
+    script/bindings/external/external_client_to_gate_bindings.cpp
+    script/bindings/external/external_client_to_manage_activities_bindings.cpp
+    script/bindings/external/external_client_to_manage_administration_bindings.cpp
+    script/bindings/external/external_client_to_manage_announcements_bindings.cpp
+    script/bindings/external/external_client_to_manage_auction_bindings.cpp
+    script/bindings/external/external_client_to_manage_audit_bindings.cpp
+    script/bindings/external/external_client_to_manage_characters_bindings.cpp
+    script/bindings/external/external_client_to_manage_chat_bindings.cpp
+    script/bindings/external/external_client_to_manage_common_bindings.cpp
+    script/bindings/external/external_client_to_manage_dungeons_bindings.cpp
+    script/bindings/external/external_client_to_manage_economy_bindings.cpp
+    script/bindings/external/external_client_to_manage_friends_bindings.cpp
+    script/bindings/external/external_client_to_manage_guild_bindings.cpp
+    script/bindings/external/external_client_to_manage_guild_buildings_bindings.cpp
+    script/bindings/external/external_client_to_manage_guild_diplomacy_bindings.cpp
+    script/bindings/external/external_client_to_manage_guild_members_bindings.cpp
+    script/bindings/external/external_client_to_manage_guild_storage_bindings.cpp
+    script/bindings/external/external_client_to_manage_guild_war_bindings.cpp
+    script/bindings/external/external_client_to_manage_ids_bindings.cpp
+    script/bindings/external/external_client_to_manage_mail_bindings.cpp
+    script/bindings/external/external_client_to_manage_mentorship_bindings.cpp
+    script/bindings/external/external_client_to_manage_mentorship_recruitment_bindings.cpp
+    script/bindings/external/external_client_to_manage_mentorship_students_bindings.cpp
+    script/bindings/external/external_client_to_manage_mentorship_teachers_bindings.cpp
+    script/bindings/external/external_client_to_manage_pvp_bindings.cpp
+    script/bindings/external/external_client_to_manage_session_bindings.cpp
+    script/bindings/external/external_client_to_manage_teams_bindings.cpp
+    script/bindings/external/external_client_to_manage_world_bindings.cpp
+    script/bindings/external/external_game_to_client_achievements_bindings.cpp
+    script/bindings/external/external_game_to_client_activities_bindings.cpp
+    script/bindings/external/external_game_to_client_appearance_bindings.cpp
+    script/bindings/external/external_game_to_client_attributes_bindings.cpp
+    script/bindings/external/external_game_to_client_auras_bindings.cpp
+    script/bindings/external/external_game_to_client_characters_bindings.cpp
+    script/bindings/external/external_game_to_client_chat_bindings.cpp
+    script/bindings/external/external_game_to_client_combat_bindings.cpp
+    script/bindings/external/external_game_to_client_common_bindings.cpp
+    script/bindings/external/external_game_to_client_companions_bindings.cpp
+    script/bindings/external/external_game_to_client_connection_bindings.cpp
+    script/bindings/external/external_game_to_client_crafting_bindings.cpp
+    script/bindings/external/external_game_to_client_dungeons_bindings.cpp
+    script/bindings/external/external_game_to_client_economy_bindings.cpp
+    script/bindings/external/external_game_to_client_enhancement_bindings.cpp
+    script/bindings/external/external_game_to_client_friends_bindings.cpp
+    script/bindings/external/external_game_to_client_gambling_bindings.cpp
+    script/bindings/external/external_game_to_client_guild_bindings.cpp
+    script/bindings/external/external_game_to_client_guild_members_bindings.cpp
+    script/bindings/external/external_game_to_client_ids_bindings.cpp
+    script/bindings/external/external_game_to_client_inventory_bindings.cpp
+    script/bindings/external/external_game_to_client_loot_bindings.cpp
+    script/bindings/external/external_game_to_client_mentorship_bindings.cpp
+    script/bindings/external/external_game_to_client_mentorship_teachers_bindings.cpp
+    script/bindings/external/external_game_to_client_movement_bindings.cpp
+    script/bindings/external/external_game_to_client_progression_bindings.cpp
+    script/bindings/external/external_game_to_client_pvp_bindings.cpp
+    script/bindings/external/external_game_to_client_quests_bindings.cpp
+    script/bindings/external/external_game_to_client_reputation_bindings.cpp
+    script/bindings/external/external_game_to_client_session_bindings.cpp
+    script/bindings/external/external_game_to_client_shops_bindings.cpp
+    script/bindings/external/external_game_to_client_siege_bindings.cpp
+    script/bindings/external/external_game_to_client_spells_bindings.cpp
+    script/bindings/external/external_game_to_client_stalls_bindings.cpp
+    script/bindings/external/external_game_to_client_synchronization_bindings.cpp
+    script/bindings/external/external_game_to_client_team_auction_bindings.cpp
+    script/bindings/external/external_game_to_client_teams_bindings.cpp
+    script/bindings/external/external_game_to_client_titles_bindings.cpp
+    script/bindings/external/external_game_to_client_trade_bindings.cpp
+    script/bindings/external/external_game_to_client_variables_bindings.cpp
+    script/bindings/external/external_game_to_client_world_bindings.cpp
+    script/bindings/external/external_game_to_client_world_objects_bindings.cpp
+    script/bindings/external/external_gate_to_client_bindings.cpp
+    script/bindings/external/external_headers_bindings.cpp
+    script/bindings/external/external_manage_to_client_activities_bindings.cpp
+    script/bindings/external/external_manage_to_client_attributes_bindings.cpp
+    script/bindings/external/external_manage_to_client_auction_bindings.cpp
+    script/bindings/external/external_manage_to_client_audit_bindings.cpp
+    script/bindings/external/external_manage_to_client_characters_bindings.cpp
+    script/bindings/external/external_manage_to_client_chat_bindings.cpp
+    script/bindings/external/external_manage_to_client_common_bindings.cpp
+    script/bindings/external/external_manage_to_client_connection_bindings.cpp
+    script/bindings/external/external_manage_to_client_dungeons_bindings.cpp
+    script/bindings/external/external_manage_to_client_economy_bindings.cpp
+    script/bindings/external/external_manage_to_client_friends_bindings.cpp
+    script/bindings/external/external_manage_to_client_guild_bindings.cpp
+    script/bindings/external/external_manage_to_client_guild_buildings_bindings.cpp
+    script/bindings/external/external_manage_to_client_guild_diplomacy_bindings.cpp
+    script/bindings/external/external_manage_to_client_guild_members_bindings.cpp
+    script/bindings/external/external_manage_to_client_guild_storage_bindings.cpp
+    script/bindings/external/external_manage_to_client_guild_war_bindings.cpp
+    script/bindings/external/external_manage_to_client_ids_bindings.cpp
+    script/bindings/external/external_manage_to_client_mail_bindings.cpp
+    script/bindings/external/external_manage_to_client_mentorship_bindings.cpp
+    script/bindings/external/external_manage_to_client_mentorship_recruitment_bindings.cpp
+    script/bindings/external/external_manage_to_client_mentorship_students_bindings.cpp
+    script/bindings/external/external_manage_to_client_mentorship_teachers_bindings.cpp
+    script/bindings/external/external_manage_to_client_pvp_bindings.cpp
+    script/bindings/external/external_manage_to_client_quests_bindings.cpp
+    script/bindings/external/external_manage_to_client_siege_bindings.cpp
+    script/bindings/external/external_manage_to_client_teams_bindings.cpp
+    script/bindings/external/external_manage_to_client_world_bindings.cpp
+    script/bindings/registration.h
     stdafx.cpp
 )
 
@@ -21,16 +191,20 @@ target_include_directories(gen_msg PRIVATE
     ${CQYH_SERVER_DIR}/NewServer/inc/baselib
     ${CQYH_SERVER_DIR}/NewServer/inc/net
     ${CQYH_SERVER_DIR}/NewServer/3rd/lua/include
-    ${CQYH_SERVER_DIR}/NewServer/3rd/toluapp/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/zlib
 )
 target_link_libraries(gen_msg PRIVATE
     baselib
     cqyh::lua
-    cqyh::toluapp
+    cqyh::sol2
     cqyh::zlib
     fusion
     cqyh::syslibs
 )
 cqyh_server_output(gen_msg gen_msg)
 
+
+get_target_property(_binding_sources gen_msg SOURCES)
+list(FILTER _binding_sources INCLUDE REGEX "^script/bindings/")
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/script/bindings"
+    PREFIX "Lua bindings" FILES ${_binding_sources})

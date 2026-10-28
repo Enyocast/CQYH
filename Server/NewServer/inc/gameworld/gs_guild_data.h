@@ -3,8 +3,6 @@
 #ifndef _H_GS_GUILD_DATA_H_
 #define _H_GS_GUILD_DATA_H_
 
-// tolua_begin
-
 struct GUILD_WAR_DATA
 {
     UINT32  dwIntruderID;
@@ -21,8 +19,6 @@ struct GS_G_B_DATA
     INT32       nLevel;
     UINT32      dwReviveTime;
 };
-
-// tolua_end
 
 
 #endif //_H_GS_GUILD_DATA_H_

@@ -60,14 +60,78 @@ add_library(fusion STATIC
     src/pet_data.cpp
     src/read_data_helper.cpp
     src/role_db_base_data_conv.cpp
-    src/script/tolua_common.cpp
-    src/script/tolua_data_manager.cpp
-    src/script/tolua_enum.cpp
-    src/script/tolua_enumstr.cpp
-    src/script/tolua_global_config.cpp
-    src/script/tolua_guild_config.cpp
-    src/script/tolua_guild_def.cpp
-    src/script/tolua_string_table.cpp
+    src/script/sol_common.cpp
+    src/script/sol_data_manager.cpp
+    src/script/sol_enum.cpp
+    src/script/sol_enumstr.cpp
+    src/script/sol_global_config.cpp
+    src/script/sol_guild_config.cpp
+    src/script/sol_guild_def.cpp
+    src/script/sol_string_table.cpp
+    src/script/bindings/config/asimov_bindings.cpp
+    src/script/bindings/config/game_world_bindings.cpp
+    src/script/bindings/config/global_bindings.cpp
+    src/script/bindings/config/guard_bindings.cpp
+    src/script/bindings/config/guild_bindings.cpp
+    src/script/bindings/config/mt_bindings.cpp
+    src/script/bindings/config/new_role_bindings.cpp
+    src/script/bindings/config/obj_pool_bindings.cpp
+    src/script/bindings/config/server_bindings.cpp
+    src/script/bindings/data/achievement_bindings.cpp
+    src/script/bindings/data/ai_bindings.cpp
+    src/script/bindings/data/attr_conversion_bindings.cpp
+    src/script/bindings/data/attribute_bindings.cpp
+    src/script/bindings/data/aura_bindings.cpp
+    src/script/bindings/data/doodad_bindings.cpp
+    src/script/bindings/data/guild_activity_bindings.cpp
+    src/script/bindings/data/guild_building_bindings.cpp
+    src/script/bindings/data/init_reputation_bindings.cpp
+    src/script/bindings/data/item_bindings.cpp
+    src/script/bindings/data/level_bindings.cpp
+    src/script/bindings/data/mail_template_bindings.cpp
+    src/script/bindings/data/missile_bindings.cpp
+    src/script/bindings/data/npc_bindings.cpp
+    src/script/bindings/data/npc_relation_bindings.cpp
+    src/script/bindings/data/pet_bindings.cpp
+    src/script/bindings/data/quest_bindings.cpp
+    src/script/bindings/data/role_relation_bindings.cpp
+    src/script/bindings/data/scene_bindings.cpp
+    src/script/bindings/data/shop_bindings.cpp
+    src/script/bindings/data/soul_bindings.cpp
+    src/script/bindings/data/spell_bindings.cpp
+    src/script/bindings/data/title_bindings.cpp
+    src/script/bindings/definitions/achievement_bindings.cpp
+    src/script/bindings/definitions/adventure_bindings.cpp
+    src/script/bindings/definitions/ai_bindings.cpp
+    src/script/bindings/definitions/attribute_bindings.cpp
+    src/script/bindings/definitions/aura_bindings.cpp
+    src/script/bindings/definitions/char_bindings.cpp
+    src/script/bindings/definitions/chat_bindings.cpp
+    src/script/bindings/definitions/doodad_bindings.cpp
+    src/script/bindings/definitions/error_bindings.cpp
+    src/script/bindings/definitions/exchange_bindings.cpp
+    src/script/bindings/definitions/friend_bindings.cpp
+    src/script/bindings/definitions/gm_svr_bindings.cpp
+    src/script/bindings/definitions/grid_bindings.cpp
+    src/script/bindings/definitions/guild_bindings.cpp
+    src/script/bindings/definitions/id_bindings.cpp
+    src/script/bindings/definitions/item_bindings.cpp
+    src/script/bindings/definitions/master_bindings.cpp
+    src/script/bindings/definitions/missile_bindings.cpp
+    src/script/bindings/definitions/modifier_bindings.cpp
+    src/script/bindings/definitions/money_bindings.cpp
+    src/script/bindings/definitions/npc_bindings.cpp
+    src/script/bindings/definitions/quest_bindings.cpp
+    src/script/bindings/definitions/queue_match_bindings.cpp
+    src/script/bindings/definitions/role_bindings.cpp
+    src/script/bindings/definitions/scene_bindings.cpp
+    src/script/bindings/definitions/scene_file_bindings.cpp
+    src/script/bindings/definitions/server_bindings.cpp
+    src/script/bindings/definitions/spell_bindings.cpp
+    src/script/bindings/definitions/team_bindings.cpp
+    src/script/bindings/definitions/variable_bindings.cpp
+    src/script/bindings/support/log_bindings.cpp
+    src/script/bindings/registration.h
     src/stdafx.cpp
 )
 
@@ -80,6 +144,13 @@ target_include_directories(fusion PRIVATE
     ${CQYH_SERVER_DIR}/NewServer/inc/baselib
     ${CQYH_SERVER_DIR}/NewServer/3rd/lua/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/zlib
-    ${CQYH_SERVER_DIR}/NewServer/3rd/toluapp/include
 )
 
+
+target_link_libraries(fusion PUBLIC cqyh::sol2)
+
+# Mirror the feature folders in Visual Studio's generated solution.
+get_target_property(_fusion_binding_sources fusion SOURCES)
+list(FILTER _fusion_binding_sources INCLUDE REGEX "^src/script/bindings/")
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/src/script/bindings"
+    PREFIX "Lua bindings" FILES ${_fusion_binding_sources})

@@ -336,12 +336,12 @@ function FocusInfo()
 	echo("mp="..char:GetMp().."/"..char:GetAttrList():GetAttr(catMaxMp));
 
     if char:GetObjType() == otNpc then
-	    local npc = tolua.cast(char, "CNpc");
+	    local npc = Cast(char, "CNpc");
     	echo("id="..npc:GetNpcData().nTemplateID);
     	echo("ai="..npc:GetAIProcessor():GetAIID());
     	echo("quality="..npc:GetQuality());
     elseif char:GetObjType() == otRole then
-        local role = tolua.cast(char, "CRole");
+        local role = Cast(char, "CRole");
         echo("pkvalue="..role:GetPkValue());
 		echo("session="..role:GetSessionID());
 		echo("svrgroup="..role:GetServerGroup());

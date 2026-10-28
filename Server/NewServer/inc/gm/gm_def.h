@@ -11,7 +11,6 @@
 #define _H_GM_DEF_H_
 
 #include "string_def.h"
-// tolua_begin
 
 
 #define FOREVER_TIME (2082729600)
@@ -198,9 +197,6 @@ struct GM_ROLE_MAIL_SLOT
     INT32       nItemCount;
     char        szData[0];
 };
-
-
-// tolua_end
 
 // todo
 #define MAX_QUEST_NAME_LENGTH   (61)

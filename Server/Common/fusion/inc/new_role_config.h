@@ -2,8 +2,6 @@
 #define _NEW_ROLE_CONFIG_H_
 
 #include "char_def.h"
-
-// tolua_begin
 #pragma pack(push, 8)
 
 struct NEW_ROLE_CONFIG
@@ -29,6 +27,5 @@ struct NEW_ROLE_CONFIG
 extern NEW_ROLE_CONFIG g_NewRoleConfig;
 
 #pragma pack(pop)
-// tolua_end
 
 #endif  // _NEW_ROLE_CONFIG_H_

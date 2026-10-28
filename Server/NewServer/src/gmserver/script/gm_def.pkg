@@ -1,3 +1,0 @@
-$pfile "./script/common.pkg"
-$hfile "../../inc/baselib/log.h"
-$hfile "../../inc/gm/gm_def.h"

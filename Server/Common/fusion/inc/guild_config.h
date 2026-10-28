@@ -2,8 +2,6 @@
 #define _GUILD_CONFIG_H_
 
 #include "guild_def.h"
-
-// tolua_begin
 #pragma pack(push, 8)
 
 struct GUILD_CONFIG 
@@ -164,7 +162,6 @@ struct GUILD_CONFIG
 extern GUILD_CONFIG g_GuildConfig;
 
 #pragma pack(pop)
-// tolua_end
 
 
 #endif  // _GUILD_CONFIG_H_

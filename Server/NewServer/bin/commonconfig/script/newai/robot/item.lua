@@ -25,7 +25,7 @@ end
 
 
 function do_move_item_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	user:GMCommand("additem 101 10");
@@ -33,7 +33,7 @@ function do_move_item_action(owner)
 end
 
 function do_split_item_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	user:GMCommand("additem 101 10");
@@ -41,7 +41,7 @@ function do_split_item_action(owner)
 end
 
 function do_delete_item_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 	local item_bag = role:GetItemBag();
 
@@ -57,12 +57,12 @@ function do_delete_item_action(owner)
 end
 
 function do_pickup_item_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 end
 
 function do_buy_item_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	goto_npc(user, 6683, 'callback_buy_item_action');
@@ -84,7 +84,7 @@ function callback_buy_item_action(npc)
 end
 
 function do_sell_item_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	-- interact with npc.
@@ -93,14 +93,14 @@ function do_sell_item_action(owner)
 end
 
 function do_use_item_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	user:UseItem(CONSLOT_DEFAULT, 0);
 end
 
 function do_view_sold_item_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	-- interact with npc.
@@ -110,7 +110,7 @@ function do_view_sold_item_action(owner)
 end
 
 function do_buy_back_item_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	-- interact with npc.
@@ -120,7 +120,7 @@ function do_buy_back_item_action(owner)
 end
 
 function do_repair_item_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	-- interact with npc.
@@ -128,7 +128,7 @@ function do_repair_item_action(owner)
 end
 
 function do_repair_all_equipped_item_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	-- interact with npc.
@@ -138,7 +138,7 @@ function do_repair_all_equipped_item_action(owner)
 end
 
 function do_refine_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	-- interact with npc.
@@ -146,7 +146,7 @@ function do_refine_action(owner)
 end
 
 function do_buy_container_slot_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	-- interact with npc.
@@ -156,14 +156,14 @@ function do_buy_container_slot_action(owner)
 end
 
 function do_organize_bag_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	user:OrganizeBag(CONSLOT_DEFAULT);
 end
 
 function do_identify_item_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	do_delete_item_action(owner);
@@ -173,7 +173,7 @@ function do_identify_item_action(owner)
 end
 
 function do_randomize_item_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	do_identify_item_action(owner);
@@ -182,14 +182,14 @@ function do_randomize_item_action(owner)
 end
 
 function do_confirm_randomize_item_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	user:ConfirmRandomizeItem();
 end
 
 function do_use_moneytype01_only_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	user:UseMoneyType01Only(true);
@@ -197,7 +197,7 @@ function do_use_moneytype01_only_action(owner)
 end
 
 function do_check_npc_shop_data_action(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	-- interact with npc.

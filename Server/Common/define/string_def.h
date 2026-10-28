@@ -210,8 +210,6 @@
 
 #define ANTI_CHEAT_FILE_FOLDER			"cheat"
 
-// tolua_begin
-
 #define SERVER_STRING_START_ID  (1000000)                       ///< @line
 #define STRING_TABLE_STR_LEN    (512)                           ///< @line
 #define STRING_TABLE_STR_COUNT  (2048)                          ///< @line
@@ -246,7 +244,5 @@ enum ENUM_SERVER_STRING
 
     essTotal
 };
-
-// tolua_end
 
 #endif	// _STRING_DEF_H_

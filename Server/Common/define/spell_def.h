@@ -5,8 +5,6 @@
 
 #include "attribute_def.h"
 
-// tolua_begin
-
 //#define MAX_SPELL_SLOT 16
 #define MAX_SPELL_LEVEL 3 
 #define MAX_RUNE_SLOT 0xFF
@@ -446,8 +444,6 @@ enum RUNE_DURABILITY_TYPE
 
 	rdtCount,
 };
-
-// tolua_end
 
 inline INT32 MakeRuneKey(INT32 nSpellID, INT32 nRuneSlot)
 {

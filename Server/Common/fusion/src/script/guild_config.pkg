@@ -1,4 +1,0 @@
-$pfile "script/common.pkg"
-$pfile "script/enum.pkg"
-$hfile "../../../newserver/inc/baselib/log.h"
-$hfile "../inc/guild_config.h"

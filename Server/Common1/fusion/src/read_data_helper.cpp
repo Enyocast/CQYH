@@ -1,9 +1,9 @@
 #include "stdafx.h"
+#include "sol_bindings.h"
 #include "read_data_helper.h"
 
-#include "tolua++.h"
-#include "script/tolua_enum.h"
-#include "script/tolua_string_table.h"
+#include "script/sol_enum.h"
+#include "script/sol_string_table.h"
 
 CLuaScript* g_pReadDataScript = NULL;
 char g_szErrorMsg[16 * 1024] = {0};
@@ -31,8 +31,8 @@ BOOL g_InitReadDataScript(const char* pcszConfigPath, const char* pcszScriptName
     nRetCode = g_pReadDataScript->Init();
     LOG_PROCESS_ERROR(nRetCode);
 
-    tolua_enum_open(g_pReadDataScript->GetLuaState());
-    tolua_string_table_open(g_pReadDataScript->GetLuaState());
+    sol_enum_open(g_pReadDataScript->GetLuaState());
+    sol_string_table_open(g_pReadDataScript->GetLuaState());
 
     LuaFunc.pcszFuncName = "LoadPackage";
     LuaFunc.pFunc = _VoidFunc;

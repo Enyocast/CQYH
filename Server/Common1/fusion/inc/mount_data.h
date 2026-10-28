@@ -5,8 +5,6 @@
 #include "mount_def.h"
 
 class CTabFile;
-
-//tolua_begin
 struct MOUNT_ENTRY
 {
 	INT32 m_nID;
@@ -21,6 +19,5 @@ struct MOUNT_ENTRY
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, MOUNT_ENTRY* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-//tolua_end
 
 #endif // _mount_data_h__

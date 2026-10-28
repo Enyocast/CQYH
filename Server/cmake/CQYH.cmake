@@ -1,7 +1,8 @@
 # Shared helpers for the server build.
 
-set(CQYH_CXX_STANDARD 23 CACHE STRING "C++ standard used for all server targets (14, 17, 20 or 23)")
-set_property(CACHE CQYH_CXX_STANDARD PROPERTY STRINGS 14 17 20 23)
+set(CQYH_CXX_STANDARD 23 CACHE STRING "C++ standard used for all server targets (17, 20 or 23)")
+set_property(CACHE CQYH_CXX_STANDARD PROPERTY STRINGS 17 20 23)
+set(CQYH_MSVC_COMPILE_PROCESSES 2 CACHE STRING "Maximum compiler workers per MSBuild target")
 
 option(CQYH_OUTPUT_TO_BIN
        "Write server executables to NewServer/bin/<server>/ (where the Visual Studio projects put them and where the configs/scripts are found)"
@@ -28,14 +29,14 @@ function(cqyh_target_defaults tgt)
 
     if(MSVC)
         # Same switches as the old projects: no buffer security checks (/GS-), no RTTI (/GR-).
-        # (The old Release projects also asked for /GL + /LTCG; that cannot work with the pre-built zlib/toluapp
+        # (The old Release projects also asked for /GL + /LTCG; that cannot work with the pre-built zlib
         # libraries, which carry intermediate code from an older compiler, so it is not used here.)
         # /std:c++latest turns on /permissive- (strict conformance). The code base relies on non-conforming but
         # long-accepted MSVC behaviour (goto Exit0 jumping over initializations, ...), so switch it back off.
         target_compile_options(${tgt} PRIVATE
             /permissive
             /GS- /GR-
-            /MP
+            /MP${CQYH_MSVC_COMPILE_PROCESSES}
             # Sources are GBK-encoded (Chinese comments/strings, no BOM). Pin the code pages so the result does not
             # depend on the Windows system language.
             /source-charset:gbk /execution-charset:gbk)

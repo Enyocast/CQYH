@@ -8,7 +8,7 @@ LoadPackage("data_manager.pkg")
 
 function performance_achievement_complete(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local data_count = CDataManager_ACHIEVEMENT_DATA_:GetInstance():GetDataCount();
@@ -33,7 +33,7 @@ end
 
 function performance_achievement_compare(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local solo_role = CGeneralMgr:GetInstance():GetRandRole(role:GetObjID());
@@ -42,7 +42,7 @@ end
 
 function performance_achievement_reward(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	local AchID = role:GetAsimovRole():RandCompleteAchievement();

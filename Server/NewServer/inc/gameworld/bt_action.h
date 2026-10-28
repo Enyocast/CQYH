@@ -5,8 +5,6 @@
 /// @brief Behavior Tree Action List
 #include "btnod.h"
 
-// tolua_begin
-
 enum BT_OPERATOR
 {
     boLT,   ///< less than                 ÉÙÓÚ
@@ -818,7 +816,5 @@ enum BT_ACTION_TYPE
 									
     batEnd
 };
-
-//tolua_end
 
 #endif // _BT_ACTION_H_

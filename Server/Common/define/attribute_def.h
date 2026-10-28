@@ -3,8 +3,6 @@
 
 ///@file attribute_def.h
 /// lua package file attribute_def.pkg
-
-// tolua_begin
 #define RATE_MAX			(10000LL)			///< @line
 #define MAX_ATTR_NAME_LEN	(128)				///< @line
 
@@ -368,8 +366,6 @@ enum MISSILE_ATTR_TYPE
 
 	matTotal									///< @line
 };
-
-// tolua_end
 
 inline INT32 MakeAttrKey(INT32 nKey, INT32 nClass)
 {

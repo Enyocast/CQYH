@@ -6,8 +6,6 @@
 
 class CLuaScript;
 
-// tolua_begin
-
 struct ATTR_LEVEL
 {
 	INT32 m_nLevel;
@@ -17,8 +15,6 @@ struct ATTR_LEVEL
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, ATTR_LEVEL* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-
-// tolua_end
 
 //#define MAX_NODE_COUNT 8
 //

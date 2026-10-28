@@ -4,8 +4,6 @@
 /// @file scene_def.h
 /// @brief basic definition of game scene
 
-// tolua_begin
-
 #define POINT_PER_CM			                (1LL << 10)									///< @line (unit: point)
 #define POINT_PER_METER                         (POINT_PER_CM * 100)						///< @line (unit: point)
 #define GAME_FPS	                            (16)										///< @line (unit: frame/second)
@@ -184,8 +182,5 @@ inline void ConvertCoordN2O(INT32& rnX, INT32& rnY, INT32& rnZ)
 	rnX = (INT32)((llX * k + llY * k) / b);
 	rnY = (INT32)((-llX * k + llY * k) / b);
 }
-
-
-// tolua_end
 
 #endif	// _SCENE_DEF_H_

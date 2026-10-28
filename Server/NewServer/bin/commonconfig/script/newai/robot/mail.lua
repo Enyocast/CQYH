@@ -1,7 +1,7 @@
 
 
 function write_mail(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     local target_user = rand_another_user(user);
     
@@ -16,7 +16,7 @@ function write_mail(owner)
 end
 
 function list_mail(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
     
     user:ListMail();
@@ -25,7 +25,7 @@ function list_mail(owner)
 end
 
 function read_mail(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local mailid = role:GetFirstMail();
     
     if (mailid ~= 0) then
@@ -37,7 +37,7 @@ function read_mail(owner)
 end
 
 function delete_mail(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local mailid = role:GetFirstMail();
     
     if (mailid ~= 0) then
@@ -49,7 +49,7 @@ function delete_mail(owner)
 end
 
 function get_mail_attach(owner)
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local mailid = role:GetFirstAttach();
     
     if (mailid ~= 0) then

@@ -3,8 +3,6 @@
 
 #include "lua_script.h"     //SCRIPT_NAME_LEN
 #include "data_manager.h"
-
-//tolua_begin
 #define MAX_AI_ID   (10000)
 #define MAX_AI_INIT_AURA_COUNT  (3)
 #define MAX_AI_DATA_PARAM_COUNT     (8)
@@ -99,7 +97,5 @@ struct NEW_AI_DATA
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, NEW_AI_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-
-//tolua_end
 
 #endif  // _AI_DATA_H_

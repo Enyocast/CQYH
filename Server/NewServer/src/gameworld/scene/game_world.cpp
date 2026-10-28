@@ -88,66 +88,66 @@ CGameWorld CGameWorld::ms_Instance;
 
 char g_StringTable[STRING_TABLE_STR_COUNT][STRING_TABLE_STR_LEN];
 
-extern int tolua_common_open (lua_State* tolua_S);
-extern int tolua_global_config_open(lua_State* tolua_S);
-extern int tolua_guild_config_open(lua_State* tolua_S);
-extern int tolua_scene_object_open (lua_State* tolua_S);
-extern int tolua_scene_open (lua_State* tolua_S);
-extern int tolua_character_open (lua_State* tolua_S);
-extern int tolua_role_open (lua_State* tolua_S);
-extern int tolua_npc_open (lua_State* tolua_S);
-extern int tolua_hero_open (lua_State* tolua_S);
-extern int tolua_teleport_open (lua_State* tolua_S);
-extern int tolua_gameworld_open (lua_State* tolua_S);
-extern int tolua_doodad_open (lua_State* tolua_S);
-extern int tolua_item_open(lua_State* tolua_S);
-extern int tolua_item_bag_open(lua_State* tolua_S);
-extern int tolua_ai_open(lua_State* tolua_S);
-extern int tolua_quest_open(lua_State* tolua_S);
-extern int tolua_robot_message_handler_open(lua_State* tolua_S);
-extern int tolua_char_def_open(lua_State* tolua_S);
-extern int tolua_attr_list_open(lua_State* tolua_S);
-extern int tolua_attribute_def_open(lua_State* tolua_S);
-extern int tolua_math_ex_open(lua_State* tolua_S);
-extern int tolua_chat_def_open(lua_State* tolua_S);
-extern int tolua_id_def_open(lua_State* tolua_S);
-extern int tolua_spell_book_open(lua_State* tolua_S);
-extern int tolua_spell_open(lua_State* tolua_S);
-extern int tolua_data_manager_open(lua_State* tolua_S);
-extern int tolua_variable_open(lua_State* tolua_S);
-extern int tolua_quest_list_open(lua_State* tolua_S);
-extern int tolua_quest_def_open(lua_State* tolua_S);
-extern int tolua_score_def_open(lua_State* tolua_S);
-extern int tolua_title_open(lua_State* tolua_S);
-extern int tolua_achievement_def_open(lua_State* tolua_S);
-extern int tolua_achievement_list_open(lua_State* tolua_S);
-extern int tolua_check_data_open(lua_State* tolua_S);
-extern int tolua_guild_def_open(lua_State* tolua_S);
-extern int tolua_guild_mgr_open(lua_State* tolua_S);
+extern int sol_common_open (lua_State* L);
+extern int sol_global_config_open(lua_State* L);
+extern int sol_guild_config_open(lua_State* L);
+extern int sol_scene_object_open (lua_State* L);
+extern int sol_scene_open (lua_State* L);
+extern int sol_character_open (lua_State* L);
+extern int sol_role_open (lua_State* L);
+extern int sol_npc_open (lua_State* L);
+extern int sol_hero_open (lua_State* L);
+extern int sol_teleport_open (lua_State* L);
+extern int sol_gameworld_open (lua_State* L);
+extern int sol_doodad_open (lua_State* L);
+extern int sol_item_open(lua_State* L);
+extern int sol_item_bag_open(lua_State* L);
+extern int sol_ai_open(lua_State* L);
+extern int sol_quest_open(lua_State* L);
+extern int sol_robot_message_handler_open(lua_State* L);
+extern int sol_char_def_open(lua_State* L);
+extern int sol_attr_list_open(lua_State* L);
+extern int sol_attribute_def_open(lua_State* L);
+extern int sol_math_ex_open(lua_State* L);
+extern int sol_chat_def_open(lua_State* L);
+extern int sol_id_def_open(lua_State* L);
+extern int sol_spell_book_open(lua_State* L);
+extern int sol_spell_open(lua_State* L);
+extern int sol_data_manager_open(lua_State* L);
+extern int sol_variable_open(lua_State* L);
+extern int sol_quest_list_open(lua_State* L);
+extern int sol_quest_def_open(lua_State* L);
+extern int sol_score_def_open(lua_State* L);
+extern int sol_title_open(lua_State* L);
+extern int sol_achievement_def_open(lua_State* L);
+extern int sol_achievement_list_open(lua_State* L);
+extern int sol_check_data_open(lua_State* L);
+extern int sol_guild_def_open(lua_State* L);
+extern int sol_guild_mgr_open(lua_State* L);
 #ifndef _ROBOT
-extern int tolua_gs_guild_open(lua_State* tolua_S);
+extern int sol_gs_guild_open(lua_State* L);
 #else
-extern int tolua_asimov_guild_open(lua_State* tolua_S);
-extern int tolua_asimov_role_open(lua_State* tolua_S);
-extern int tolua_general_mgr_open(lua_State* tolua_S);
+extern int sol_asimov_guild_open(lua_State* L);
+extern int sol_asimov_role_open(lua_State* L);
+extern int sol_general_mgr_open(lua_State* L);
 #endif //_ROBOT
-extern int tolua_friend_open(lua_State* tolua_S);
-extern int tolua_error_def_open(lua_State* tolua_S);
-extern int tolua_gs_team_open(lua_State* tolua_S);
-extern int tolua_string_table_open(lua_State* tolua_S);
-extern int tolua_money_def_open(lua_State* tolua_S);
-extern int tolua_hero_def_open(lua_State* tolua_S);
-extern int tolua_npc_def_open(lua_State* tolua_S);
-extern int tolua_scene_def_open(lua_State* tolua_S);
-extern int tolua_spirit_def_open(lua_State* tolua_S);
-extern int tolua_adventure_open(lua_State* tolua_S);
-extern int tolua_spirit_open(lua_State* tolua_S);
-extern int tolua_arena_open(lua_State* tolua_S);
-extern int tolua_master_open(lua_State* tolua_S);
-extern int tolua_rank_list_def_open(lua_State* tolua_S);
-extern int tolua_stall_open(lua_State* tolua_S);
-extern int tolua_drop_generator_open(lua_State* tolua_S);
-extern int tolua_trade_open(lua_State* tolua_S);
+extern int sol_friend_open(lua_State* L);
+extern int sol_error_def_open(lua_State* L);
+extern int sol_gs_team_open(lua_State* L);
+extern int sol_string_table_open(lua_State* L);
+extern int sol_money_def_open(lua_State* L);
+extern int sol_hero_def_open(lua_State* L);
+extern int sol_npc_def_open(lua_State* L);
+extern int sol_scene_def_open(lua_State* L);
+extern int sol_spirit_def_open(lua_State* L);
+extern int sol_adventure_open(lua_State* L);
+extern int sol_spirit_open(lua_State* L);
+extern int sol_arena_open(lua_State* L);
+extern int sol_master_open(lua_State* L);
+extern int sol_rank_list_def_open(lua_State* L);
+extern int sol_stall_open(lua_State* L);
+extern int sol_drop_generator_open(lua_State* L);
+extern int sol_trade_open(lua_State* L);
 
 extern char g_szErrorMsg[];
 extern INT32 g_nErrorMsgSize;
@@ -1972,178 +1972,178 @@ BOOL _InitScript(void)
 	INT32 nRetCode = 0;
 	CLuaScript* poScript;
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("common.pkg", tolua_common_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("common.pkg", sol_common_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("global_config.pkg", tolua_global_config_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("global_config.pkg", sol_global_config_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("guild_config.pkg", tolua_guild_config_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("guild_config.pkg", sol_guild_config_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("check_data.pkg", tolua_check_data_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("check_data.pkg", sol_check_data_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("scene_object.pkg", tolua_scene_object_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("scene_object.pkg", sol_scene_object_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("scene.pkg", tolua_scene_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("scene.pkg", sol_scene_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("character.pkg", tolua_character_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("character.pkg", sol_character_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("role.pkg", tolua_role_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("role.pkg", sol_role_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("npc.pkg", tolua_npc_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("npc.pkg", sol_npc_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("hero.pkg", tolua_hero_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("hero.pkg", sol_hero_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("guild_def.pkg", tolua_guild_def_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("guild_def.pkg", sol_guild_def_open);
     LOG_PROCESS_ERROR(nRetCode);
 
 #ifndef _ROBOT
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("gs_guild.pkg", tolua_gs_guild_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("gs_guild.pkg", sol_gs_guild_open);
     LOG_PROCESS_ERROR(nRetCode);
 #else
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("asimov_guild.pkg", tolua_asimov_guild_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("asimov_guild.pkg", sol_asimov_guild_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("asimov_role.pkg", tolua_asimov_role_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("asimov_role.pkg", sol_asimov_role_open);
     LOG_PROCESS_ERROR(nRetCode);
 #endif // !_ROBOT
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("guild_mgr.pkg", tolua_guild_mgr_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("guild_mgr.pkg", sol_guild_mgr_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("teleport.pkg", tolua_teleport_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("teleport.pkg", sol_teleport_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("gameworld.pkg", tolua_gameworld_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("gameworld.pkg", sol_gameworld_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("doodad.pkg", tolua_doodad_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("doodad.pkg", sol_doodad_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("item.pkg", tolua_item_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("item.pkg", sol_item_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("item_bag.pkg", tolua_item_bag_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("item_bag.pkg", sol_item_bag_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("spell_book.pkg", tolua_spell_book_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("spell_book.pkg", sol_spell_book_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("spell.pkg", tolua_spell_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("spell.pkg", sol_spell_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("title.pkg", tolua_title_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("title.pkg", sol_title_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("spirit_def.pkg", tolua_spirit_def_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("spirit_def.pkg", sol_spirit_def_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("master.pkg", tolua_master_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("master.pkg", sol_master_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("error_def.pkg", tolua_error_def_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("error_def.pkg", sol_error_def_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("gs_team.pkg", tolua_gs_team_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("gs_team.pkg", sol_gs_team_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
 #ifdef _ROBOT
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("robot_message_handler.pkg", tolua_robot_message_handler_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("robot_message_handler.pkg", sol_robot_message_handler_open);
 	LOG_PROCESS_ERROR(nRetCode);
 #endif
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("ai.pkg", tolua_ai_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("ai.pkg", sol_ai_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("trade.pkg", tolua_trade_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("trade.pkg", sol_trade_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("attr_list.pkg", tolua_attr_list_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("attr_list.pkg", sol_attr_list_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("attribute_def.pkg", tolua_attribute_def_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("attribute_def.pkg", sol_attribute_def_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("char_def.pkg", tolua_char_def_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("char_def.pkg", sol_char_def_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("math_ex.pkg", tolua_math_ex_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("math_ex.pkg", sol_math_ex_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("chat_def.pkg", tolua_chat_def_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("chat_def.pkg", sol_chat_def_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("id_def.pkg", tolua_id_def_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("id_def.pkg", sol_id_def_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("data_manager.pkg", tolua_data_manager_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("data_manager.pkg", sol_data_manager_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("variable.pkg", tolua_variable_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("variable.pkg", sol_variable_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("quest_list.pkg", tolua_quest_list_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("quest_list.pkg", sol_quest_list_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("quest_def.pkg", tolua_quest_def_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("quest_def.pkg", sol_quest_def_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("score_def.pkg", tolua_score_def_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("score_def.pkg", sol_score_def_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("achievement_def.pkg", tolua_achievement_def_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("achievement_def.pkg", sol_achievement_def_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("friend.pkg", tolua_friend_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("friend.pkg", sol_friend_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("achievement_list.pkg", tolua_achievement_list_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("achievement_list.pkg", sol_achievement_list_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("string_table.pkg", tolua_string_table_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("string_table.pkg", sol_string_table_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("money_def.pkg", tolua_money_def_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("money_def.pkg", sol_money_def_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("hero_def.pkg", tolua_hero_def_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("hero_def.pkg", sol_hero_def_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("npc_def.pkg", tolua_npc_def_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("npc_def.pkg", sol_npc_def_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("scene_def.pkg", tolua_scene_def_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("scene_def.pkg", sol_scene_def_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("adventure.pkg", tolua_adventure_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("adventure.pkg", sol_adventure_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("spirit.pkg", tolua_spirit_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("spirit.pkg", sol_spirit_open);
 	LOG_PROCESS_ERROR(nRetCode); 
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("arena.pkg", tolua_arena_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("arena.pkg", sol_arena_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("rank_list_def.pkg", tolua_rank_list_def_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("rank_list_def.pkg", sol_rank_list_def_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
 #ifdef _ROBOT
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("general_mgr.pkg", tolua_general_mgr_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("general_mgr.pkg", sol_general_mgr_open);
 	LOG_PROCESS_ERROR(nRetCode);
 #endif
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("stall.pkg", tolua_stall_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("stall.pkg", sol_stall_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("drop_generator.pkg", tolua_drop_generator_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("drop_generator.pkg", sol_drop_generator_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
     nRetCode = CScriptMgr::GetInstance().RegisterFuncList(g_LuaScriptFuncTable);

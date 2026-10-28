@@ -303,7 +303,7 @@ function reset_pk_value(owner)
 		return brvSuccess;
 	end
 
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
 	local user = CUserMgr:GetInstance():FindUser(role:GetSessionID());
 	if user == nil then
 		print("can't get user by SessionID");
@@ -437,7 +437,7 @@ local validSpellTable = {};
 
 function performance_fight(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(owner, 'CRole');
+    local role = Cast(owner, 'CRole');
     local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
     if role:IsCasting() then

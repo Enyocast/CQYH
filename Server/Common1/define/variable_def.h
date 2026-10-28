@@ -4,8 +4,6 @@
 ///@file variable_def.h
 ///@brief define game variable constants
 
-// tolua_begin
-
 #define MAX_SCENE_VARIABLE_COUNT    (32)        ///< @line
 #define MAX_ROLE_VARIABLE_COUNT     (512)		///< @line
 #define MAX_CLIENT_VARIABLE_COUNT   (128)       ///< @line
@@ -80,7 +78,6 @@ inline UINT32 MakeVariableID(UINT32 dwType, UINT32 dwIndex)
 {
 	return ((dwIndex & VARIABLE_ID_MASK) | (dwType << 28));
 }
-// tolua_end
 
 inline INT32 GetVarTypeFromID(UINT32 dwVarID)
 {

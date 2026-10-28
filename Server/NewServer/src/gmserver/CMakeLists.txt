@@ -25,9 +25,12 @@ add_executable(gmserver
     order_mgr.cpp
     permission_mgr.cpp
     prep_stmt.cpp
-    script/tolua_common.cpp
-    script/tolua_enum_str.cpp
-    script/tolua_gm_def.cpp
+    script/sol_common.cpp
+    script/sol_enum_str.cpp
+    script/sol_gm_def.cpp
+    script/bindings/definitions/error_bindings.cpp
+    script/bindings/definitions/item_bindings.cpp
+    script/bindings/registration.h
     stdafx.cpp
     tl_user.cpp
     user_manager.cpp
@@ -46,7 +49,6 @@ target_include_directories(gmserver PRIVATE
     ${CQYH_SERVER_DIR}/NewServer/inc/baselib
     ${CQYH_SERVER_DIR}/NewServer/inc/net
     ${CQYH_SERVER_DIR}/NewServer/inc/gameworld
-    ${CQYH_SERVER_DIR}/NewServer/3rd/toluapp/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/lua/include
     ${CQYH_SERVER_DIR}/NewServer/3rd/zlib
     ${CQYH_SERVER_DIR}/NewServer/3rd/gpk/Include
@@ -59,13 +61,18 @@ target_link_libraries(gmserver PRIVATE
     gameworld
     baselib
     cqyh::lua
-    cqyh::toluapp
+    cqyh::sol2
     cqyh::zlib
     cqyh::mysql
     cqyh::gpk
     fusion
-    net
+    cqyh::net
     cqyh::syslibs
 )
 cqyh_server_output(gmserver gmserver64)
 
+
+get_target_property(_binding_sources gmserver SOURCES)
+list(FILTER _binding_sources INCLUDE REGEX "^script/bindings/")
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/script/bindings"
+    PREFIX "Lua bindings" FILES ${_binding_sources})

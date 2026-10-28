@@ -1,7 +1,7 @@
 
 function do_query_role_detail_data(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
     local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 	local another_user = CUserMgr:GetInstance():RandAnotherUser(user);
 	if another_user == nil then
@@ -21,7 +21,7 @@ end
 
 function do_query_role_pow(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
     local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 	local target_id = processor:GetTargetID();
 	if target_id ~= 0 then
@@ -36,7 +36,7 @@ end
 
 function do_update_client_variable(owner)
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
     local user =  CUserMgr:GetInstance():FindUser(role:GetSessionID());
 
 	user:UpdateClientVariable(math.random(0, MAX_CLIENT_VARIABLE_COUNT), math.random(0, 100000000));

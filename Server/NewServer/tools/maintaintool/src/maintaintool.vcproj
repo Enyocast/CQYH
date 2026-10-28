@@ -62,10 +62,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="QtCore4.lib QtGui4.lib ws2_32.lib iphlpapi.lib toluapp.lib lua.lib sdu.lib baselib.lib net.lib fusion.lib"
+				AdditionalDependencies="QtCore4.lib QtGui4.lib ws2_32.lib iphlpapi.lib lua.lib sdu.lib baselib.lib net.lib fusion.lib"
 				OutputFile="$(OutDir)\$(ProjectName).exe"
 				LinkIncremental="0"
-				AdditionalLibraryDirectories="&quot;$(QTDIR)\lib&quot;;../../../lib/win32;../../../3rd/sdu/lib/win32;../../../3rd/lua/lib/win32;../../../3rd/toluapp/lib/win32;../../../../Common/fusion/lib/win32"
+				AdditionalLibraryDirectories="&quot;$(QTDIR)\lib&quot;;../../../lib/win32;../../../3rd/sdu/lib/win32;../../../3rd/lua/lib/win32;../../../../Common/fusion/lib/win32"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 			/>
@@ -137,10 +137,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="QtCored4.lib QtGuid4.lib ws2_32.lib iphlpapi.lib toluapp_d.lib lua_d.lib sdu_d.lib baselib_d.lib net_d.lib fusion_d.lib"
+				AdditionalDependencies="QtCored4.lib QtGuid4.lib ws2_32.lib iphlpapi.lib lua_d.lib sdu_d.lib baselib_d.lib net_d.lib fusion_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.exe"
 				LinkIncremental="0"
-				AdditionalLibraryDirectories="&quot;$(QTDIR)\lib&quot;;../../../lib/win32;../../../3rd/sdu/lib/win32;../../../3rd/lua/lib/win32;../../../3rd/toluapp/lib/win32;../../../../Common/fusion/lib/win32"
+				AdditionalLibraryDirectories="&quot;$(QTDIR)\lib&quot;;../../../lib/win32;../../../3rd/sdu/lib/win32;../../../3rd/lua/lib/win32;../../../../Common/fusion/lib/win32"
 				IgnoreAllDefaultLibraries="false"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"

@@ -87,23 +87,23 @@ CManageServer CManageServer::ms_Instance;
 char g_StringTable[STRING_TABLE_STR_COUNT][STRING_TABLE_STR_LEN];
 UINT32 CManageServer::ms_dwDBGroup;
 
-extern int tolua_common_open(lua_State* tolua_S);
-extern int tolua_error_def_open(lua_State* tolua_S);
-extern int tolua_role_data_open(lua_State* tolua_S);
-extern int tolua_role_data_mgr_open(lua_State* tolua_S);
-extern int tolua_online_role_data_open(lua_State* tolua_S);
-extern int tolua_master_mgr_open(lua_State* tolua_S);
-extern int tolua_string_table_open(lua_State *tolua_S);
-extern int tolua_guild_def_open(lua_State* tolua_S);
-extern int tolua_ms_guild_open(lua_State *tolua_S);
-extern int tolua_ms_guild_mgr_open(lua_State* tolua_S);
-extern int tolua_ms_guild_member_open(lua_State* tolua_S);
-extern int tolua_ranklist_open(lua_State* tolua_S);
-extern int tolua_chat_def_open(lua_State* tolua_S);
-extern int tolua_arena_mgr_open(lua_State* tolua_S);
-extern int tolua_global_config_open(lua_State* tolua_S);
-extern int tolua_user_open(lua_State* tolua_S);
-extern int tolua_ms_chat_open(lua_State* tolua_S);
+extern int sol_common_open(lua_State* L);
+extern int sol_error_def_open(lua_State* L);
+extern int sol_role_data_open(lua_State* L);
+extern int sol_role_data_mgr_open(lua_State* L);
+extern int sol_online_role_data_open(lua_State* L);
+extern int sol_master_mgr_open(lua_State* L);
+extern int sol_string_table_open(lua_State *L);
+extern int sol_guild_def_open(lua_State* L);
+extern int sol_ms_guild_open(lua_State *L);
+extern int sol_ms_guild_mgr_open(lua_State* L);
+extern int sol_ms_guild_member_open(lua_State* L);
+extern int sol_ranklist_open(lua_State* L);
+extern int sol_chat_def_open(lua_State* L);
+extern int sol_arena_mgr_open(lua_State* L);
+extern int sol_global_config_open(lua_State* L);
+extern int sol_user_open(lua_State* L);
+extern int sol_ms_chat_open(lua_State* L);
 
 class CCertMessageHandler : public INetEventHandler
 {
@@ -1103,56 +1103,56 @@ BOOL _InitScript(void)
     INT32 nRetCode = 0;
     CLuaScript* poScript;
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("common.pkg", tolua_common_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("common.pkg", sol_common_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("error_def.pkg", tolua_error_def_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("error_def.pkg", sol_error_def_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("role_data.pkg", tolua_role_data_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("role_data.pkg", sol_role_data_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("role_data_mgr.pkg", tolua_role_data_mgr_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("role_data_mgr.pkg", sol_role_data_mgr_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("online_role_data.pkg", tolua_online_role_data_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("online_role_data.pkg", sol_online_role_data_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("master_mgr.pkg", tolua_master_mgr_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("master_mgr.pkg", sol_master_mgr_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("string_table.pkg", tolua_string_table_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("string_table.pkg", sol_string_table_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("guild_def.pkg", tolua_guild_def_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("guild_def.pkg", sol_guild_def_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("ms_guild.pkg", tolua_ms_guild_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("ms_guild.pkg", sol_ms_guild_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("ms_guild_mgr.pkg", tolua_ms_guild_mgr_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("ms_guild_mgr.pkg", sol_ms_guild_mgr_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("ms_guild_member.pkg", tolua_ms_guild_member_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("ms_guild_member.pkg", sol_ms_guild_member_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("ranklist.pkg", tolua_ranklist_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("ranklist.pkg", sol_ranklist_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("chat_def.pkg", tolua_chat_def_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("chat_def.pkg", sol_chat_def_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("arena_mgr.pkg", tolua_arena_mgr_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("arena_mgr.pkg", sol_arena_mgr_open);
     LOG_PROCESS_ERROR(nRetCode);
 
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("user.pkg", tolua_user_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("user.pkg", sol_user_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
-    nRetCode = CScriptMgr::GetInstance().RegisterPackage("ms_chat.pkg", tolua_ms_chat_open);
+    nRetCode = CScriptMgr::GetInstance().RegisterPackage("ms_chat.pkg", sol_ms_chat_open);
     LOG_PROCESS_ERROR(nRetCode);
 
 	// for final_gm/ms.lua
-	nRetCode = CScriptMgr::GetInstance().RegisterPackage("global_config.pkg", tolua_global_config_open);
+	nRetCode = CScriptMgr::GetInstance().RegisterPackage("global_config.pkg", sol_global_config_open);
 	LOG_PROCESS_ERROR(nRetCode);
 
     nRetCode = CScriptMgr::GetInstance().RegisterFuncList(g_LuaScriptFuncTable);

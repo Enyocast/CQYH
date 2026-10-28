@@ -5,6 +5,7 @@
 # A missing Linux library only fails when something links against it.
 
 set(_3rd "${CQYH_SERVER_DIR}/NewServer/3rd")
+include(Lua)
 
 # Debug/Release selection for imported libs; RelWithDebInfo/MinSizeRel use the Release one.
 function(_cqyh_imported name kind)
@@ -28,13 +29,6 @@ function(_cqyh_imported name kind)
 endfunction()
 
 if(WIN32)
-    _cqyh_imported(lua SHARED
-        RELEASE "${_3rd}/lua/lib/win64/lua64.lib"   DLL_RELEASE "${_3rd}/lua/lib/win64/lua64.dll"
-        DEBUG   "${_3rd}/lua/lib/win64/lua64_d.lib" DLL_DEBUG   "${_3rd}/lua/lib/win64/lua64_d.dll")
-
-    _cqyh_imported(toluapp STATIC
-        RELEASE "${_3rd}/toluapp/lib/win64/toluapp.lib"
-        DEBUG   "${_3rd}/toluapp/lib/win64/toluapp_d.lib")
 
     _cqyh_imported(zlib STATIC
         RELEASE "${_3rd}/zlib/lib/win64/zlib.lib"
@@ -71,12 +65,6 @@ else()
     target_link_libraries(cqyh_syslibs INTERFACE pthread dl rt)
     add_library(cqyh::syslibs ALIAS cqyh_syslibs)
 
-    _cqyh_imported(lua STATIC
-        RELEASE "${_3rd}/lua/lib/linux64/liblua.a"
-        DEBUG   "${_3rd}/lua/lib/linux64/liblua.a")
-    _cqyh_imported(toluapp STATIC
-        RELEASE "${_3rd}/toluapp/lib/linux64/libtolua++.a"
-        DEBUG   "${_3rd}/toluapp/lib/linux64/libtolua++.a")
     _cqyh_imported(mysql SHARED
         RELEASE "${_3rd}/mysql-26.10.0/lib/linux64/libmysqlclient.so.24"
         DEBUG   "${_3rd}/mysql-26.10.0/lib/linux64/libmysqlclient.so.24")

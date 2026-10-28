@@ -5,8 +5,6 @@
 #include "attribute_def.h"
 #include "data_manager.h"
 #include "aura_def.h"
-
-//tolua_begin
 struct AURA_ENTRY
 {
 	INT32 m_nID;
@@ -22,7 +20,6 @@ struct AURA_ENTRY
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, AURA_ENTRY* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-//tolua_end
 
 
 #endif // _aura_data_h__

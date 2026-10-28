@@ -5,7 +5,7 @@ Include("robot_message_handler.pkg")
 function performance_activity_reward(owner)
 
 	local processor = owner:GetAIProcessor();
-    local role = tolua.cast(processor:GetOwner(), 'CRole');
+    local role = Cast(processor:GetOwner(), 'CRole');
 	local session_id = user:GetSessionID();		
 
 	for acrivity_index = 1, 32 do

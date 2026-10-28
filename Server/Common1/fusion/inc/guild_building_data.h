@@ -13,9 +13,6 @@
 #include "string_def.h"
 #include "data_manager.h"
 
-
-//tolua_begin
-
 struct GUILD_BUILDING_DATA 
 {
     UINT32      dwID;
@@ -57,10 +54,6 @@ struct GUILD_BUILDING_DATA
 
     static BOOL ReadLine(INT32& rnID, const char*& rpcszName, GUILD_BUILDING_DATA* pData, CTabFile* pTabConfig, INT32 nRow);
 };
-
-
-
-//tolua_end
 
 
 const GUILD_BUILDING_DATA * GetGuildBuildingData(UINT32 dwType, INT32 nLevel);

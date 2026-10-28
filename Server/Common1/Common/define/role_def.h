@@ -5,8 +5,6 @@
 
 /// @file role_def.h
 
-// tolua_begin
-
 #define MAX_ROLE_FRACTION_ID			    (16)                    ///< @line
 #define MAX_ROLE_LEVEL					    (100)                   ///< @line
 #define MAX_PK_VALUE					    (100000)                ///< @line
@@ -159,7 +157,5 @@ enum MSG_PAOPAO_TYPE
 {
     MSG_PP_PERSONAL_ENEMY       = 1,
 };
-
-// tolua_end
 
 #endif	// _ROLE_DEF_H_

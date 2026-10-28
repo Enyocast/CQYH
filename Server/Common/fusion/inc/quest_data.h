@@ -5,8 +5,6 @@
 #include "quest_def.h"
 #include "data_manager.h"
 #include "quest_reward_data.h"
-
-//tolua_begin
 struct QUEST_DATA
 {
     // »ù±¾ÊôÐÔ
@@ -164,7 +162,5 @@ struct QUEST_RECYCLE_DATA
 
 	static BOOL ReadLine(INT32& rnID, const char*& rpcszName, QUEST_RECYCLE_DATA* pData, CTabFile * pTabConfig, INT32 nRow);
 };
-
-//tolua_end
 
 #endif // _QUEST_DATA_H_

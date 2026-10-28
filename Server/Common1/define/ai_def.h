@@ -4,8 +4,6 @@
 /// @file ai_def.h 
 /// @brief AI Func List
 
-// tolua_begin
-
 enum SIGNAL_TYPE
 {
     sigInvalid,
@@ -31,7 +29,5 @@ enum AI_PATROL_STYLE
 
     apsTotal
 };
-
-// tolua_end
 
 #endif // _AI_DEF_H_

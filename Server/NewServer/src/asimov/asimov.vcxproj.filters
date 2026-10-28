@@ -76,19 +76,19 @@
     <ClCompile Include="robot_script_func.cpp">
       <Filter>script</Filter>
     </ClCompile>
-    <ClCompile Include="script\tolua_asimov_common.cpp">
+    <ClCompile Include="script\sol_asimov_common.cpp">
       <Filter>script\generated files</Filter>
     </ClCompile>
-    <ClCompile Include="script\tolua_asimov_message_handler.cpp">
+    <ClCompile Include="script\sol_asimov_message_handler.cpp">
       <Filter>script\generated files</Filter>
     </ClCompile>
-    <ClCompile Include="script\tolua_asimov_user.cpp">
+    <ClCompile Include="script\sol_asimov_user.cpp">
       <Filter>script\generated files</Filter>
     </ClCompile>
-    <ClCompile Include="script\tolua_asimov_user_mgr.cpp">
+    <ClCompile Include="script\sol_asimov_user_mgr.cpp">
       <Filter>script\generated files</Filter>
     </ClCompile>
-    <ClCompile Include="script\tolua_msg.cpp">
+    <ClCompile Include="script\sol_msg.cpp">
       <Filter>script\generated files</Filter>
     </ClCompile>
     <ClCompile Include="sdo\staticlogin.cpp">
@@ -96,21 +96,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <toluapp_msg Include="script\asimov_common.pkg">
-      <Filter>script\package</Filter>
-    </toluapp_msg>
-    <toluapp_msg Include="script\asimov_message_handler.pkg">
-      <Filter>script\package</Filter>
-    </toluapp_msg>
-    <toluapp_msg Include="script\asimov_user.pkg">
-      <Filter>script\package</Filter>
-    </toluapp_msg>
-    <toluapp_msg Include="script\asimov_user_mgr.pkg">
-      <Filter>script\package</Filter>
-    </toluapp_msg>
-    <toluapp_msg Include="script\msg.pkg">
-      <Filter>script\package</Filter>
-    </toluapp_msg>
+
+
+
+
+
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="asimov.ui">
@@ -143,19 +133,19 @@
     <CustomBuild Include="user_mgr.h">
       <Filter>user</Filter>
     </CustomBuild>
-    <CustomBuild Include="script\tolua_asimov_common.h">
+    <CustomBuild Include="script\sol_asimov_common.h">
       <Filter>script\generated files</Filter>
     </CustomBuild>
-    <CustomBuild Include="script\tolua_asimov_message_handler.h">
+    <CustomBuild Include="script\sol_asimov_message_handler.h">
       <Filter>script\generated files</Filter>
     </CustomBuild>
-    <CustomBuild Include="script\tolua_asimov_user.h">
+    <CustomBuild Include="script\sol_asimov_user.h">
       <Filter>script\generated files</Filter>
     </CustomBuild>
-    <CustomBuild Include="script\tolua_asimov_user_mgr.h">
+    <CustomBuild Include="script\sol_asimov_user_mgr.h">
       <Filter>script\generated files</Filter>
     </CustomBuild>
-    <CustomBuild Include="script\tolua_msg.h">
+    <CustomBuild Include="script\sol_msg.h">
       <Filter>script\generated files</Filter>
     </CustomBuild>
     <CustomBuild Include="sdo\staticlogin.h">

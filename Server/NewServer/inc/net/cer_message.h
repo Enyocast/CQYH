@@ -4,7 +4,6 @@
 #include "internal_message_header.h"
 
 #pragma pack(push, 1)
-// tolua_begin
 namespace InternalMessage
 {
     enum CER_MESSAGE_ID
@@ -23,7 +22,6 @@ namespace InternalMessage
     };
 
 };
-// tolua_end
 #pragma pack(pop)
 
 #endif  // _CER_MESSAGE_H_

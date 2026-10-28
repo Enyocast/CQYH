@@ -190,8 +190,6 @@ struct DOODAD_SPAWN_DATA_HEADER
 
 /************************************************************************/
 // sbtServerPoint
-
-// tolua_begin
 enum SERVER_POINT_TYPE
 {
     sptInvalid,
@@ -202,7 +200,6 @@ enum SERVER_POINT_TYPE
 
     sptTotal
 };
-// tolua_end
 
 struct SERVER_POINT
 {

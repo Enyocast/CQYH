@@ -4,7 +4,6 @@
 #include "external_message_header.h"
 
 #pragma pack(push, 1)
-// tolua_begin
 namespace ExternalMessage
 {
 	enum G2C_MESSAGE_ID
@@ -1061,12 +1060,10 @@ namespace ExternalMessage
 		UINT16          wFaceDirection;
 		UINT8           byLifePercent;
 		UINT8			byMountID;
-// tolua_end
 		unsigned char	byCombatPoseOn	: 1;
 		unsigned char	bGreyName		: 1;
         unsigned char   bPet            : 1;
 		unsigned char	uReserved		: 5;
-// tolua_begin
 	};
 
 	struct AURA_BRIEF_DATA
@@ -2508,7 +2505,6 @@ namespace ExternalMessage
 		UINT8	bySuccess;
 	};
 };
-// tolua_end
 #pragma pack(pop)
 
 #endif  // _G2C_MESSAGE_H_
